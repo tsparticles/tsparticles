@@ -18,8 +18,8 @@ importers:
         specifier: ^1.15.18
         version: 1.15.18
       '@tsparticles/cli':
-        specifier: ^3.3.0
-        version: 3.3.0(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)
+        specifier: ^3.3.1
+        version: 3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)
       '@tsparticles/depcruise-config':
         specifier: ^3.3.0
         version: 3.3.0(dependency-cruiser@17.3.8)
@@ -3697,8 +3697,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@tsparticles/cli@3.3.0':
-    resolution: {integrity: sha512-m889cH3jAtL1YiF/t0fv6xmmqZUCvLb0eGUeyKDczS0mQfrm1BWfQ5KU3X0JDzhsoE7sZQszOHz+75r3QYjEdw==}
+  '@tsparticles/cli@3.3.1':
+    resolution: {integrity: sha512-sfw9Y2DLd56v1KnLH+RunrIanAvJhr2R9mpuQlTI05BwAbn1YvB+yZ4GH4eC5xE7lnvW9r1oTUl1+fUWDhhQ+Q==}
     hasBin: true
 
   '@tsparticles/depcruise-config@3.3.0':
@@ -9621,7 +9621,7 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/cli@3.3.0(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)':
+  '@tsparticles/cli@3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)':
     dependencies:
       '@swc/core': 1.15.18
       '@tsparticles/depcruise-config': 3.3.0(dependency-cruiser@17.3.8)
@@ -14151,7 +14151,7 @@ snapshots:
   tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.19.0
+      enhanced-resolve: 5.20.0
       tapable: 2.3.0
       tsconfig-paths: 4.2.0
 
