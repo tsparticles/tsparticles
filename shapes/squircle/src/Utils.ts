@@ -1,9 +1,8 @@
 import { type IShapeDrawData, double, doublePI, identity, none } from "@tsparticles/engine";
+import type { SquircleParticle } from "./SquircleParticle.js";
 
-const EXPONENT = 5,
-  STEPS = 48;
-
-let cachedPath: Path2D | undefined;
+export const defaultExponent = 4,
+  defaultSteps = 64;
 
 /**
  * @param v -
@@ -14,49 +13,37 @@ function sign(v: number): number {
 }
 
 /**
- * @returns -
- */
-function createPath(): Path2D {
-  const path = new Path2D(),
-    step = doublePI / STEPS;
-
-  for (let i = 0; i <= STEPS; i++) {
-    const t = i * step,
-      cos = Math.cos(t),
-      sin = Math.sin(t),
-      x = sign(cos) * Math.pow(Math.abs(cos), double / EXPONENT),
-      y = sign(sin) * Math.pow(Math.abs(sin), double / EXPONENT);
-
-    if (i) {
-      path.lineTo(x, y);
-    } else {
-      path.moveTo(x, y);
-    }
-  }
-
-  path.closePath();
-
-  return path;
-}
-
-/**
- * @returns -
- */
-function getPath(): Path2D {
-  cachedPath ??= createPath();
-
-  return cachedPath;
-}
-
-/**
  * @param data -
  */
-export function drawSquircle(data: IShapeDrawData): void {
-  const { context, radius } = data,
-    path = getPath();
+export function drawSquircle(data: IShapeDrawData<SquircleParticle>): void {
+  const { context, particle, radius } = data;
+
+  if (particle.squircleExponent === undefined || particle.squircleSteps === undefined) {
+    return;
+  }
+
+  const steps = particle.squircleSteps,
+    step = doublePI / steps,
+    exponent = double / particle.squircleExponent;
 
   context.save();
   context.scale(radius, radius);
-  context.fill(path);
+  context.beginPath();
+
+  for (let i = 0; i <= defaultSteps; i++) {
+    const t = i * step,
+      cos = Math.cos(t),
+      sin = Math.sin(t),
+      x = sign(cos) * Math.pow(Math.abs(cos), exponent),
+      y = sign(sin) * Math.pow(Math.abs(sin), exponent);
+
+    if (i) {
+      context.lineTo(x, y);
+    } else {
+      context.moveTo(x, y);
+    }
+  }
+
+  context.closePath();
   context.restore();
 }
