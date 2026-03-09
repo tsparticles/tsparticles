@@ -1,6 +1,7 @@
 import {
   type Engine,
   type IContainerPlugin,
+  type IRgb,
   getLinkColor as engineGetLinkColor,
   getRandom,
   getRangeValue,
@@ -20,6 +21,7 @@ const minOpacity = 0,
   defaultFrequency = 0;
 
 export class LinkInstance implements IContainerPlugin {
+  private readonly _colorCache = new Map<string, string>();
   private readonly _container: LinkContainer;
   private readonly _engine: Engine;
   private readonly _freqs: IParticlesFrequencies;
@@ -37,8 +39,25 @@ export class LinkInstance implements IContainerPlugin {
       return;
     }
 
-    const pos1 = particle.getPosition(),
-      linkOpts = options.links;
+    const linkOpts = options.links,
+      width = particle.retina.linksWidth ?? minWidth,
+      pos1 = particle.getPosition(),
+      twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.links,
+      trianglesEnabled = linkOpts.triangles.enable,
+      p1Destinations = trianglesEnabled ? new Set(links.map(l => l.destination.id)) : null,
+      originalAlpha = context.globalAlpha;
+
+    let currentColorStyle = "",
+      currentWidth = -1,
+      currentAlpha = -1,
+      pathOpen = false;
+
+    const flushLines = (): void => {
+      if (pathOpen) {
+        context.stroke();
+        pathOpen = false;
+      }
+    };
 
     for (const link of links) {
       if (
@@ -48,21 +67,98 @@ export class LinkInstance implements IContainerPlugin {
         continue;
       }
 
-      if (!link.isWarped) {
-        this._drawTriangles(options, particle, link, links, pos1, context);
+      const pos2 = link.destination.getPosition();
+
+      if (trianglesEnabled && !link.isWarped && p1Destinations) {
+        flushLines();
+        this._drawTriangles(options, particle, link, p1Destinations, pos1, pos2, context);
       }
 
-      if (link.opacity <= minOpacity || (particle.retina.linksWidth ?? minWidth) <= minWidth) {
+      if (link.opacity <= minOpacity || width <= minWidth) {
         continue;
       }
 
-      this._drawLinkLine(context, particle, link, pos1);
+      if (!linkOpts.enable) {
+        continue;
+      }
+
+      let opacity = link.opacity,
+        colorLine = link.color;
+
+      const twinkleRgb =
+        twinkle?.enable && getRandom() < twinkle.frequency ? rangeColorToRgb(this._engine, twinkle.color) : undefined;
+
+      if (twinkle && twinkleRgb) {
+        colorLine = twinkleRgb;
+        opacity = getRangeValue(twinkle.opacity);
+      }
+
+      if (!colorLine) {
+        const linkColor =
+          linkOpts.id !== undefined
+            ? this._container.particles.linksColors.get(linkOpts.id)
+            : this._container.particles.linksColor;
+
+        colorLine = engineGetLinkColor(particle, link.destination, linkColor);
+      }
+
+      if (!colorLine) {
+        continue;
+      }
+
+      const colorStyle = this._getCachedStyle(colorLine);
+
+      if (colorStyle !== currentColorStyle || width !== currentWidth || opacity !== currentAlpha) {
+        flushLines();
+
+        context.strokeStyle = colorStyle;
+        context.lineWidth = width;
+        context.globalAlpha = opacity;
+
+        currentColorStyle = colorStyle;
+        currentWidth = width;
+        currentAlpha = opacity;
+
+        context.beginPath();
+
+        pathOpen = true;
+      }
+
+      if (link.isWarped) {
+        const canvasSize = this._container.canvas.size,
+          dx = pos2.x - pos1.x,
+          dy = pos2.y - pos1.y;
+
+        let sx = originPoint.x,
+          sy = originPoint.y;
+
+        if (Math.abs(dx) > canvasSize.width * half) {
+          sx = dx > minDistance ? -canvasSize.width : canvasSize.width;
+        }
+
+        if (Math.abs(dy) > canvasSize.height * half) {
+          sy = dy > minDistance ? -canvasSize.height : canvasSize.height;
+        }
+
+        context.moveTo(pos1.x, pos1.y);
+        context.lineTo(pos2.x + sx, pos2.y + sy);
+        context.moveTo(pos1.x - sx, pos1.y - sy);
+        context.lineTo(pos2.x, pos2.y);
+      } else {
+        context.moveTo(pos1.x, pos1.y);
+        context.lineTo(pos2.x, pos2.y);
+      }
     }
+
+    flushLines();
+
+    context.globalAlpha = originalAlpha;
   }
 
   init(): Promise<void> {
     this._freqs.links.clear();
     this._freqs.triangles.clear();
+    this._colorCache.clear();
     return Promise.resolve();
   }
 
@@ -86,90 +182,13 @@ export class LinkInstance implements IContainerPlugin {
     particle.links = [];
   }
 
-  private _drawLinkLine(
-    context: CanvasRenderingContext2D,
-    p1: LinkParticle,
-    link: ILink,
-    pos1: ReturnType<LinkParticle["getPosition"]>,
-  ): void {
-    const linkOpts = p1.options.links;
-
-    if (!linkOpts?.enable) {
-      return;
-    }
-
-    let opacity = link.opacity,
-      colorLine = link.color;
-
-    const twinkle = (p1.options["twinkle"] as ITwinkle | undefined)?.links;
-
-    if (twinkle?.enable && getRandom() < twinkle.frequency) {
-      const twinkleRgb = rangeColorToRgb(this._engine, twinkle.color);
-
-      if (twinkleRgb) {
-        colorLine = twinkleRgb;
-        opacity = getRangeValue(twinkle.opacity);
-      }
-    }
-
-    if (!colorLine) {
-      const linkColor =
-        linkOpts.id !== undefined
-          ? this._container.particles.linksColors.get(linkOpts.id)
-          : this._container.particles.linksColor;
-
-      colorLine = engineGetLinkColor(p1, link.destination, linkColor);
-    }
-
-    if (!colorLine) {
-      return;
-    }
-
-    const width = p1.retina.linksWidth ?? minWidth,
-      pos2 = link.destination.getPosition(),
-      canvasSize = this._container.canvas.size;
-
-    context.save();
-    context.lineWidth = width;
-    context.strokeStyle = getStyleFromRgb(colorLine, this._container.hdr);
-    context.globalAlpha = opacity;
-    context.beginPath();
-
-    if (link.isWarped) {
-      const dx = pos2.x - pos1.x,
-        dy = pos2.y - pos1.y;
-
-      let sx = originPoint.x,
-        sy = originPoint.y;
-
-      if (Math.abs(dx) > canvasSize.width * half) {
-        sx = dx > minDistance ? -canvasSize.width : canvasSize.width;
-      }
-
-      if (Math.abs(dy) > canvasSize.height * half) {
-        sy = dy > minDistance ? -canvasSize.height : canvasSize.height;
-      }
-
-      /* draw the two half-segments that cross the canvas boundary */
-      context.moveTo(pos1.x, pos1.y);
-      context.lineTo(pos2.x + sx, pos2.y + sy);
-      context.moveTo(pos1.x - sx, pos1.y - sy);
-      context.lineTo(pos2.x, pos2.y);
-    } else {
-      context.moveTo(pos1.x, pos1.y);
-      context.lineTo(pos2.x, pos2.y);
-    }
-
-    context.stroke();
-    context.restore();
-  }
-
   private _drawTriangles(
     options: ParticlesLinkOptions,
     p1: LinkParticle,
     link: ILink,
-    p1Links: ILink[],
+    p1Destinations: Set<number>,
     pos1: ReturnType<LinkParticle["getPosition"]>,
+    pos2: ReturnType<LinkParticle["getPosition"]>,
     context: CanvasRenderingContext2D,
   ): void {
     const p2 = link.destination,
@@ -179,14 +198,11 @@ export class LinkInstance implements IContainerPlugin {
       return;
     }
 
-    const p1Destinations = new Set(p1Links.map(l => l.destination.id)),
-      p2Links = p2.links;
+    const p2Links = p2.links;
 
     if (!p2Links?.length) {
       return;
     }
-
-    const pos2 = p2.getPosition();
 
     for (const vertex of p2Links) {
       if (
@@ -212,8 +228,10 @@ export class LinkInstance implements IContainerPlugin {
 
       const pos3 = p3.getPosition();
 
+      /* triangles each have independent fill state so save/restore is still
+       * needed here — triangles are typically far fewer than lines */
       context.save();
-      context.fillStyle = getStyleFromRgb(colorTriangle, this._container.hdr);
+      context.fillStyle = this._getCachedStyle(colorTriangle);
       context.globalAlpha = opacityTriangle;
       context.beginPath();
       context.moveTo(pos1.x, pos1.y);
@@ -223,6 +241,18 @@ export class LinkInstance implements IContainerPlugin {
       context.fill();
       context.restore();
     }
+  }
+
+  private _getCachedStyle(rgb: IRgb): string {
+    const key = `${rgb.r},${rgb.g},${rgb.b}`;
+    let style = this._colorCache.get(key);
+
+    if (!style) {
+      style = getStyleFromRgb(rgb, this._container.hdr);
+      this._colorCache.set(key, style);
+    }
+
+    return style;
   }
 
   private _getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
