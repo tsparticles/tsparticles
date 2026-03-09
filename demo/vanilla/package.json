@@ -164,6 +164,7 @@
     "@tsparticles/shape-rounded-rect": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-spiral": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-square": "workspace:4.0.0-alpha.26",
+    "@tsparticles/shape-squircle": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-star": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-text": "workspace:4.0.0-alpha.26",
     "@tsparticles/simplex-noise": "workspace:4.0.0-alpha.26",

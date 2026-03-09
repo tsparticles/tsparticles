@@ -171,6 +171,7 @@
     "@tsparticles/shape-rounded-polygon": "4.0.0-alpha.26",
     "@tsparticles/shape-rounded-rect": "4.0.0-alpha.26",
     "@tsparticles/shape-spiral": "4.0.0-alpha.26",
+    "@tsparticles/shape-squircle": "4.0.0-alpha.26",
     "@tsparticles/updater-gradient": "4.0.0-alpha.26",
     "@tsparticles/updater-orbit": "4.0.0-alpha.26",
     "tsparticles": "4.0.0-alpha.26"

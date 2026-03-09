@@ -179,6 +179,7 @@
     "@tsparticles/shape-rounded-polygon": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-rounded-rect": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-spiral": "workspace:4.0.0-alpha.26",
+    "@tsparticles/shape-squircle": "workspace:4.0.0-alpha.26",
     "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.26",
     "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.26",
     "tsparticles": "workspace:4.0.0-alpha.26"

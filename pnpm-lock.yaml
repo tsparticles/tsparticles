@@ -389,6 +389,9 @@ importers:
       '@tsparticles/shape-spiral':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/spiral/dist
+      '@tsparticles/shape-squircle':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../shapes/squircle/dist
       '@tsparticles/updater-gradient':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../updaters/gradient/dist
@@ -1022,6 +1025,9 @@ importers:
       '@tsparticles/shape-square':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/square/dist
+      '@tsparticles/shape-squircle':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../shapes/squircle/dist
       '@tsparticles/shape-star':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/star/dist
@@ -2106,6 +2112,13 @@ importers:
     publishDirectory: dist
 
   shapes/square:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  shapes/squircle:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.26

@@ -95,6 +95,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadRoundedPolygonShape },
       { loadRoundedRectShape },
       { loadSpiralShape },
+      { loadSquircleShape },
 
       { loadEmittersShapeCanvas },
       { loadEmittersShapePath },
@@ -180,6 +181,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/shape-rounded-polygon"),
       import("@tsparticles/shape-rounded-rect"),
       import("@tsparticles/shape-spiral"),
+      import("@tsparticles/shape-squircle"),
 
       import("@tsparticles/plugin-emitters-shape-canvas"),
       import("@tsparticles/plugin-emitters-shape-path"),
@@ -271,6 +273,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadRoundedPolygonShape(e),
       loadRoundedRectShape(e),
       loadSpiralShape(e),
+      loadSquircleShape(e),
     ]);
   });
 }

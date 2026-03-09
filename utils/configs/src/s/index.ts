@@ -12,6 +12,7 @@ import shapePath from "./shapePath.js";
 import shapeRoundedPolygon from "./shapeRoundedPolygon.js";
 import shapeRoundedRect from "./shapeRoundedRect.js";
 import shapeSpiral from "./shapeSpiral.js";
+import shapeSquircle from "./shapeSquircle.js";
 import slow from "./slow.js";
 import snow from "./snow.js";
 import soundsAudio from "./soundsAudio.js";
@@ -41,6 +42,7 @@ export default {
   shapeRoundedPolygon,
   shapeRoundedRect,
   shapeSpiral,
+  shapeSquircle,
   slow,
   snow,
   soundsAudio,
