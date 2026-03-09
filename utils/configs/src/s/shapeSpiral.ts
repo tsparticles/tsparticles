@@ -10,6 +10,9 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
+    fill: {
+      enable: false,
+    },
     stroke: {
       color: {
         value: "#ff0000",
@@ -27,7 +30,6 @@ const options: ISourceOptions = {
         spiral: {
           innerRadius: 0.5,
           lineSpacing: 0.5,
-          fill: false,
           close: false,
         },
       },

@@ -5,9 +5,9 @@ import {
   type OutModeDirection,
   type Particle,
   ParticleOutType,
-  Vector,
   getDistances,
   isPointInside,
+  originPoint,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
@@ -35,7 +35,7 @@ export class DestroyOutMode implements IOutModeManager {
     switch (particle.outType) {
       case ParticleOutType.normal:
       case ParticleOutType.outside:
-        if (isPointInside(particle.position, container.canvas.size, Vector.origin, particle.getRadius(), direction)) {
+        if (isPointInside(particle.position, container.canvas.size, originPoint, particle.getRadius(), direction)) {
           return;
         }
 

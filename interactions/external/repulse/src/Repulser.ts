@@ -45,12 +45,18 @@ const repulseMode = "repulse",
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  private readonly _clickVec: Vector;
   private readonly _engine;
+  private _maxDistance;
+  private readonly _normVec: Vector;
 
   constructor(engine: Engine, container: RepulseContainer) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
+    this._normVec = Vector.origin;
+    this._clickVec = Vector.origin;
 
     container.repulse ??= { particles: [] };
 
@@ -90,6 +96,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     };
   }
 
+  get maxDistance(): number {
+    return this._maxDistance;
+  }
+
   clear(): void {
     // do nothing
   }
@@ -101,6 +111,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     if (!repulse) {
       return;
     }
+
+    this._maxDistance = repulse.distance;
 
     container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
   }
@@ -208,7 +220,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       }
 
       const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-        query = container.particles.quadTree.query(range, p => this.isEnabled(interactivityData, p));
+        query = container.particles.grid.query(range, p => this.isEnabled(interactivityData, p));
 
       for (const particle of query) {
         const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
@@ -219,11 +231,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         if (d <= repulseRadius) {
           repulse.particles.push(particle);
 
-          const vect = Vector.create(dx, dy);
+          this._clickVec.x = dx;
+          this._clickVec.y = dy;
 
-          vect.length = force;
+          this._clickVec.length = force;
 
-          particle.velocity.setTo(vect);
+          particle.velocity.setTo(this._clickVec);
         }
       }
     } else if (repulse.clicking === false) {
@@ -255,7 +268,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     divRepulse?: RepulseDiv,
   ) => void = (interactivityData, position, repulseRadius, area, divRepulse) => {
     const container = this.container,
-      query = container.particles.quadTree.query(area, p => this.isEnabled(interactivityData, p)),
+      query = container.particles.grid.query(area, p => this.isEnabled(interactivityData, p)),
       repulseOptions = container.actualOptions.interactivity?.modes.repulse;
 
     if (!repulseOptions) {
@@ -268,13 +281,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     for (const particle of query) {
       const { dx, dy, distance } = getDistances(particle.position, position),
-        repulseFactor = clamp(easingFunc(easingOffset - distance / repulseRadius) * velocity, minSpeed, maxSpeed),
-        normVec = Vector.create(
-          !distance ? velocity : (dx / distance) * repulseFactor,
-          !distance ? velocity : (dy / distance) * repulseFactor,
-        );
+        repulseFactor = clamp(easingFunc(easingOffset - distance / repulseRadius) * velocity, minSpeed, maxSpeed);
 
-      particle.position.addTo(normVec);
+      this._normVec.x = !distance ? velocity : (dx / distance) * repulseFactor;
+      this._normVec.y = !distance ? velocity : (dy / distance) * repulseFactor;
+
+      particle.position.addTo(this._normVec);
     }
   };
 
@@ -564,7 +576,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         divRepulse?: RepulseDiv
     ): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)) as RepulseParticle[],
+            query = container.particles.grid.query(area, (p) => this.isEnabled(p)) as RepulseParticle[],
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulseOptions) {

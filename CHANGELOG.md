@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixed blend plugin ([6fe33b5](https://github.com/tsparticles/tsparticles/commit/6fe33b5a57526515e718be7594f512201cbb06e8))
+- fixed links issues ([35aa461](https://github.com/tsparticles/tsparticles/commit/35aa46167d390f75fc0f941999b83d9e2dccaa79))
+- fixed links issues ([b548da3](https://github.com/tsparticles/tsparticles/commit/b548da3cbae67106e746ac80b637b1e5b9ad9ef4))
+- fixed spawn color feature for emitters with stroke and fill properties both working ([33b13d4](https://github.com/tsparticles/tsparticles/commit/33b13d46410ec4e6febc9c15d4c39dd68e0cfea7))
+- fixes issue [#5502](https://github.com/tsparticles/tsparticles/issues/5502) ([dec8334](https://github.com/tsparticles/tsparticles/commit/dec8334bedcac009f8c12482dd8f37ed47a85a9a))
+- **tests:** remove unsupported --threads from utils/tests test:ci script; update planning docs ([a2e0a91](https://github.com/tsparticles/tsparticles/commit/a2e0a91a72f1f013a558b5434df9649f81812dfa))
+
+### Features
+
+- **01-core-stabilization-09:** add bundle determinism verification script ([0a466ac](https://github.com/tsparticles/tsparticles/commit/0a466ac89e3c9a31501b682e5141f48bd80ba703))
+- **01-core-stabilization-09:** add determinism script and document plans ([6bf0778](https://github.com/tsparticles/tsparticles/commit/6bf0778fb85e4b45483dda8cd716b349f200c263))
+- added fill palette support, more palettes too in config ([8b4e732](https://github.com/tsparticles/tsparticles/commit/8b4e732b0b5dfca5c8711669e871501b09eacee5))
+- added matrix shape with character animation and palette updates ([6053ec6](https://github.com/tsparticles/tsparticles/commit/6053ec6c0261fd96aa122644930ad8aff30f29f2))
+- added palette support to engine ([2a1febd](https://github.com/tsparticles/tsparticles/commit/2a1febda7ac63cecbe58110b807fc72cad29b0a5))
+- added squircle shape ([9448112](https://github.com/tsparticles/tsparticles/commit/944811245076361418f7c58866f31039f99b7523))
+- replaced particles.color with particles.fill to have (almost) same options as particles.stroke ([d1793cc](https://github.com/tsparticles/tsparticles/commit/d1793cc8a5933281b10a72ae2d04e58ca7ceb8b0))
+- update particle color handling to use fill and stroke properties ([7f01526](https://github.com/tsparticles/tsparticles/commit/7f015265bcaec0659ec20d7c351e7aa8ab82da55))
+
+# [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
+
+### Bug Fixes
+
+- security fix for deepExtend ([78e14a8](https://github.com/tsparticles/tsparticles/commit/78e14a86726bb13c2bf7ff370d9c58190719db6a))
+
+# [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
+
+### Bug Fixes
+
+- fixed triangle shape ([ec4bcc8](https://github.com/tsparticles/tsparticles/commit/ec4bcc837e7ef4e152ec7dd7687475d66d275697))
+
+### Features
+
+- **core:** replace QuadTree with SpatialHashGrid ([1aafda1](https://github.com/tsparticles/tsparticles/commit/1aafda144b7eed546dab28fe534305c100dde986))
+- **trail:** add color mapping configuration for particles and refactor trail logic ([9c0db81](https://github.com/tsparticles/tsparticles/commit/9c0db81de29b924b20d7b6cab30ed1ea12adb15f))
+
+# [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
+
+### Bug Fixes
+
+- some fixes in the zoom plugin ([9b9b7d0](https://github.com/tsparticles/tsparticles/commit/9b9b7d0355aa53eb37fe25ac04731315740faf21))
+
+### Features
+
+- added random path plugin ([be97bda](https://github.com/tsparticles/tsparticles/commit/be97bda197b7696450af25e9a75d7435a7d58362))
+- added zoom feature (disabled by default) ([55f507a](https://github.com/tsparticles/tsparticles/commit/55f507a6c0e0b601b2d85182e326a96dfac7f2bf))
+- moved zoom feature to plugin ([8025e74](https://github.com/tsparticles/tsparticles/commit/8025e74370139b6718c55d554beab5cf3418eed8))
+
+# [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.21](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
 # [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/workspace

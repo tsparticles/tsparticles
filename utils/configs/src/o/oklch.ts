@@ -10,13 +10,16 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "oklch(70% 0.1 266)",
-      animation: {
-        enable: true,
-        speed: 20,
-        sync: true,
+    fill: {
+      color: {
+        value: "oklch(70% 0.1 266)",
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: true,
+        },
       },
+      enable: true,
     },
     shape: {
       type: "circle",

@@ -23,15 +23,16 @@ const absorbersMode = "absorbers";
 
 export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  readonly maxDistance;
 
+  private _dragging = false;
+  private _draggingAbsorber: AbsorberInstance | undefined;
   private readonly _instancesManager;
-
-  private dragging = false;
-  private draggingAbsorber: AbsorberInstance | undefined;
 
   constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
     super(container);
 
+    this.maxDistance = 0;
     this._instancesManager = instancesManager;
 
     this._instancesManager.initContainer(container);
@@ -81,15 +82,15 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             const mouseDist = getDistance(absorber.position, mouse.downPosition);
 
             if (mouseDist <= absorber.size) {
-              this.dragging = true;
-              this.draggingAbsorber = absorber;
+              this._dragging = true;
+              this._draggingAbsorber = absorber;
             }
           } else {
-            this.dragging = false;
-            this.draggingAbsorber = undefined;
+            this._dragging = false;
+            this._draggingAbsorber = undefined;
           }
 
-          if (this.dragging && this.draggingAbsorber == absorber && mouse.position) {
+          if (this._dragging && this._draggingAbsorber == absorber && mouse.position) {
             absorber.position.x = mouse.position.x;
             absorber.position.y = mouse.position.y;
           }

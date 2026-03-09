@@ -5,10 +5,15 @@ on:
   pull_request:
     branches: [main, v4, v3, v2, v1]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+  NX_VERBOSE_LOGGING: true
+  # NX_CLOUD_DISTRIBUTED_EXECUTION will be set dynamically after dependencies are installed.
+  NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
+  firebaseToken: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
 
 jobs:
   build-and-deploy:
@@ -25,23 +30,61 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: "24"
 
       - uses: pnpm/action-setup@v4.2.0
         with:
           run_install: false
 
-      - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
         with:
-          path: ~/.pnpm-store
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Enable Nx Cloud distributed execution
+        if: ${{ env.NX_CLOUD_ACCESS_TOKEN != '' }}
+        run: |
+          echo "NX Cloud token present — enabling distributed execution"
+          echo "NX_CLOUD_DISTRIBUTED_EXECUTION=true" >> $GITHUB_ENV
+
+      - name: Disable Nx Cloud distributed execution
+        if: ${{ env.NX_CLOUD_ACCESS_TOKEN == '' }}
+        run: |
+          echo "NX Cloud token missing — using local nx execution"
+          echo "NX_CLOUD_DISTRIBUTED_EXECUTION=false" >> $GITHUB_ENV
+
+      - name: Initialize Nx Cloud (optional)
+        if: ${{ env.NX_CLOUD_ACCESS_TOKEN != '' }}
+        continue-on-error: true
+        run: |
+          echo "Attempting to start nx-cloud (non-fatal)..."
+          # Show nx-cloud version for debugging (non-sensitive)
+          npx nx-cloud --version || echo "nx-cloud --version not available"
+
+          # Retry start up to 3 times with exponential backoff to handle transient GitHub API errors.
+          retries=0
+          max_retries=3
+          until [ "$retries" -ge "$max_retries" ]; do
+            npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" && break
+            echo "nx-cloud start failed (attempt ${retries}). Retrying in $((2 ** retries))s..."
+            sleep $((2 ** retries))
+            retries=$((retries + 1))
+          done
+
+          if [ "$retries" -ge "$max_retries" ]; then
+            echo "nx-cloud start failed after ${max_retries} attempts; continuing with local nx"
+          fi
 
       - name: Prettify README
         run: pnpm run prettify:ci:readme
@@ -49,21 +92,27 @@ jobs:
       - name: Build packages
         run: npx nx affected -t build:ci
 
+      - name: Run unit tests (test:ci)
+        run: pnpm --filter @tsparticles/tests run test:ci
+
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
           projectId: tsparticles
           channelId: live
 
       - if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
           projectId: tsparticles
 
-      - name: Stop Nx Cloud Session
-        run: npx nx fix-ci
-        if: always()
+      - name: Stop Nx Cloud Session (optional)
+        if: ${{ always() && env.NX_CLOUD_ACCESS_TOKEN != '' }}
+        continue-on-error: true
+        run: |
+          # Best-effort stop of nx cloud session; do not fail the job if command isn't available.
+          npx nx fix-ci || echo "nx fix-ci failed or nx-cloud not present"

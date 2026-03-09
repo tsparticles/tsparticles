@@ -104,7 +104,6 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadEmittersPlugin },
       { loadMotionPlugin },
 
-      // shapes
       { loadCardSuitsShape },
       { loadHeartShape },
       { loadImageShape },
@@ -113,7 +112,6 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadStarShape },
       { loadEmojiShape },
 
-      // updaters
       { loadRotateUpdater },
       { loadLifeUpdater },
       { loadRollUpdater },
@@ -185,7 +183,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     if (container && !container.destroyed) {
       const alias = container as EmitterContainer;
 
-      if (Object.hasOwn(alias, "addEmitter")) {
+      if ("addEmitter" in alias) {
         await alias.addEmitter?.({
           startCount: actualOptions.count,
           position: actualOptions.position,

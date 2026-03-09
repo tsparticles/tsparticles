@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixes issue [#5502](https://github.com/tsparticles/tsparticles/issues/5502) ([dec8334](https://github.com/tsparticles/tsparticles/commit/dec8334bedcac009f8c12482dd8f37ed47a85a9a))
+
+# [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
+# [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
+# [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
+# [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
+# [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
+# [4.0.0-alpha.21](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/plugin-responsive
+
 # [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/plugin-responsive

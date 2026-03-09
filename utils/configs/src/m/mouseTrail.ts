@@ -10,13 +10,16 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 20,
-        sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: true,
+        },
       },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -79,13 +82,16 @@ const options: ISourceOptions = {
         delay: 0.01,
         pauseOnStop: true,
         particles: {
-          color: {
-            value: "#00ff00",
-            animation: {
-              enable: true,
-              speed: 200,
-              sync: false,
+          fill: {
+            color: {
+              value: "#00ff00",
+              animation: {
+                enable: true,
+                speed: 200,
+                sync: false,
+              },
             },
+            enable: true,
           },
           links: {
             enable: false,

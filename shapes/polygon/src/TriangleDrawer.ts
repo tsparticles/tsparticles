@@ -1,33 +1,25 @@
-import { type ICoordinates, type Particle, double } from "@tsparticles/engine";
 import type { ISide } from "./ISide.js";
+import { type Particle } from "@tsparticles/engine";
 import { PolygonDrawerBase } from "./PolygonDrawerBase.js";
 
-const yFactor = 1.66,
-  sides = 3;
+const sides = 3,
+  yFactor = 2.66,
+  sidesFactor = 3;
 
 /**
  */
 export class TriangleDrawer extends PolygonDrawerBase {
-  getCenter(_particle: Particle, radius: number): ICoordinates {
-    return {
-      x: -radius,
-      y: radius / yFactor,
-    };
-  }
-
   override getSidesCount(): number {
     return sides;
   }
 
   getSidesData(_particle: Particle, radius: number): ISide {
-    const diameter = radius * double;
-
     return {
       count: {
-        denominator: 2,
-        numerator: 3,
+        denominator: 1,
+        numerator: sides,
       },
-      length: diameter,
+      length: (radius * yFactor) / (sides / sidesFactor),
     };
   }
 }

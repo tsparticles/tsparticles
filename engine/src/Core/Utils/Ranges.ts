@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import { RangeType } from "../../Enums/RangeType.js";
-import { getDistance } from "../../Utils/MathUtils.js";
+import { checkDistance } from "../../Utils/MathUtils.js";
 import { squareExp } from "./Constants.js";
 
 /**
@@ -67,7 +67,7 @@ export class Circle extends BaseRange {
    * @returns true or false, checking if the given point is inside the circle
    */
   contains(point: ICoordinates): boolean {
-    return getDistance(point, this.position) <= this.radius;
+    return checkDistance(point, this.position, this.radius);
   }
 
   /**
@@ -84,7 +84,7 @@ export class Circle extends BaseRange {
     if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
         rSum = r + circleRange.radius,
-        dist = Math.sqrt(distPos.x ** squareExp + distPos.y ** squareExp);
+        dist = Math.hypot(distPos.x, distPos.y);
 
       return rSum > dist;
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {

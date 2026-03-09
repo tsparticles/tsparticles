@@ -1,7 +1,7 @@
 import { type Container, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { Events } from "./Events/Events.js";
 import type { IInteractivity } from "../Interfaces/IInteractivity.js";
-import { InteractivityDetect } from "../../InteractivityDetect.js";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
 import type { InteractivityEngine } from "../../types.js";
 import { Modes } from "./Modes/Modes.js";
 

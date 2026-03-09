@@ -16,6 +16,7 @@ import { EmitterLife } from "./EmitterLife.js";
 import { EmitterRate } from "./EmitterRate.js";
 import { EmitterShape } from "./EmitterShape.js";
 import { EmitterSize } from "./EmitterSize.js";
+import { EmitterSpawn } from "./EmitterSpawn.js";
 import type { IEmitter } from "../Interfaces/IEmitter.js";
 
 /**
@@ -31,9 +32,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   position?: RecursivePartial<IRangedCoordinates>;
   rate;
-  shape: EmitterShape;
+  shape;
   size?: EmitterSize;
-  spawnColor?: AnimatableColor;
+  spawn;
+  spawnFillColor?: AnimatableColor;
+  spawnStrokeColor?: AnimatableColor;
   startCount;
 
   constructor() {
@@ -42,6 +45,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     this.life = new EmitterLife();
     this.rate = new EmitterRate();
     this.shape = new EmitterShape();
+    this.spawn = new EmitterSpawn();
     this.startCount = 0;
   }
 
@@ -80,6 +84,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
 
     this.rate.load(data.rate);
     this.shape.load(data.shape);
+    this.spawn.load(data.spawn);
 
     if (data.position !== undefined) {
       this.position = {};
@@ -93,10 +98,16 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
       }
     }
 
-    if (data.spawnColor !== undefined) {
-      this.spawnColor ??= new AnimatableColor();
+    if (data.spawnFillColor !== undefined) {
+      this.spawnFillColor ??= new AnimatableColor();
 
-      this.spawnColor.load(data.spawnColor);
+      this.spawnFillColor.load(data.spawnFillColor);
+    }
+
+    if (data.spawnStrokeColor !== undefined) {
+      this.spawnStrokeColor ??= new AnimatableColor();
+
+      this.spawnStrokeColor.load(data.spawnStrokeColor);
     }
 
     if (data.startCount !== undefined) {

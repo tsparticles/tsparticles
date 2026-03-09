@@ -5,18 +5,21 @@ const options: ISourceOptions = {
   name: "Basic",
   particles: {
     number: {
-      value: 80,
+      value: 200,
       density: {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 20,
-        sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: true,
+        },
       },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -32,7 +35,7 @@ const options: ISourceOptions = {
     },
     links: {
       enable: true,
-      distance: 150,
+      distance: 200,
       color: "#ffffff",
       opacity: 0.4,
       width: 1,
@@ -55,7 +58,7 @@ const options: ISourceOptions = {
     },
     modes: {
       repulse: {
-        distance: 200,
+        distance: 100,
       },
       push: {
         quantity: 4,

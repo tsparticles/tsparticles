@@ -33,8 +33,8 @@ const options: ISourceOptions = {
     opacity: {
       value: 1,
     },
-    color: {
-      value: "transparent",
+    fill: {
+      enable: false,
     },
     move: {
       enable: true,

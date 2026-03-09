@@ -1,4 +1,10 @@
-import type { Container, IContainerPlugin, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
+import {
+  type Container,
+  type IContainerPlugin,
+  type IPlugin,
+  type ISourceOptions,
+  type RecursivePartial,
+} from "@tsparticles/engine";
 import type { IResponsiveOptions, ResponsiveContainer, ResponsiveOptions } from "./types.js";
 import { Responsive } from "./Options/Classes/Responsive.js";
 import { ResponsiveMode } from "./ResponsiveMode.js";
@@ -26,9 +32,13 @@ export class ResponsivePlugin implements IPlugin {
     ) => {
       options.load(defaultOptions);
 
-      const responsiveOptions = options.responsive?.find(t =>
-        t.mode === ResponsiveMode.screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
-      );
+      const logicalWidth = width / pxRatio,
+        widthMap: Record<ResponsiveMode, number> = {
+          [ResponsiveMode.screen]: screen.availWidth,
+          [ResponsiveMode.window]: innerWidth,
+          [ResponsiveMode.canvas]: logicalWidth,
+        },
+        responsiveOptions = options.responsive?.find(t => t.maxWidth > widthMap[t.mode]);
 
       options.load(responsiveOptions?.options);
 

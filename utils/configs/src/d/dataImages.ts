@@ -47,9 +47,6 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#ffffff",
-    },
     move: {
       direction: "none",
       enable: true,

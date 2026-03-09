@@ -7,9 +7,16 @@ const minStagesCount = 1;
 /**
  */
 export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContainer> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  private _maxDistance;
+
   constructor(container: InfectableContainer) {
     super(container);
+
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -47,11 +54,13 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
       return;
     }
 
+    this._maxDistance = Math.max(this._maxDistance, infectionStage1.radius);
+
     const pxRatio = container.retina.pixelRatio,
       radius = p1.getRadius() * double + infectionStage1.radius * pxRatio,
       pos = p1.getPosition(),
       infectedStage1 = infectionStage1.infectedStage ?? p1.infection.stage,
-      query = container.particles.quadTree.queryCircle(pos, radius),
+      query = container.particles.grid.queryCircle(pos, radius),
       infections = infectionStage1.rate,
       neighbors = query.length;
 

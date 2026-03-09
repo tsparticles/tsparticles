@@ -1,5 +1,5 @@
 {
-    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.module.json"],
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/dist/tsconfig.module.json"],
     "compilerOptions": {
         "outDir": "./dist/esm"
     }

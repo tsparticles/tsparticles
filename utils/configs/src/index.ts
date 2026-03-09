@@ -15,6 +15,7 @@ import m from "./m/index.js";
 import n from "./n/index.js";
 import o from "./o/index.js";
 import p from "./p/index.js";
+import { palettes } from "./palettes.js";
 import q from "./q/index.js";
 import r from "./r/index.js";
 import s from "./s/index.js";
@@ -25,6 +26,16 @@ import w from "./w/index.js";
 import x from "./x/index.js";
 import y from "./y/index.js";
 import z from "./z/index.js";
+
+for (const key of Object.keys(palettes)) {
+  const palette = palettes[key];
+
+  if (!palette) {
+    continue;
+  }
+
+  tsParticles.addPalette(key, palette);
+}
 
 const configs = {
   ...a,

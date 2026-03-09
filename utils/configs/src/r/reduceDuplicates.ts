@@ -4,8 +4,11 @@ const options: ISourceOptions = {
   key: "reduceDuplicates",
   name: "Reduce Duplicates",
   particles: {
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     move: {
       direction: "none",

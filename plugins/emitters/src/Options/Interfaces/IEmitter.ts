@@ -11,6 +11,7 @@ import type { IEmitterLife } from "./IEmitterLife.js";
 import type { IEmitterRate } from "./IEmitterRate.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./IEmitterSize.js";
+import type { IEmitterSpawn } from "./IEmitterSpawn.js";
 
 /**
  * Particles emitter object options
@@ -75,10 +76,17 @@ export interface IEmitter {
    */
   size?: IEmitterSize;
 
+  spawn: IEmitterSpawn;
+
   /**
-   * The particle spawn color
+   * The particle spawn fill color
    */
-  spawnColor?: IAnimatableColor;
+  spawnFillColor?: IAnimatableColor;
+
+  /**
+   * The particle spawn stroke color
+   */
+  spawnStrokeColor?: IAnimatableColor;
 
   /**
    * The number of starting particles of the emitter

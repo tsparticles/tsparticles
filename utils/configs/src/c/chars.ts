@@ -10,38 +10,36 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
-    },
     stroke: {
       width: 1,
-      color: "#ffffff",
+      color: { value: "#ffffff" },
     },
     shape: {
-      type: "char",
+      type: "text",
       options: {
-        char: [
-          {
-            value: ["t", "s", "P", "a", "r", "t", "i", "c", "l", "e", "s"],
-            font: "Verdana",
-            style: "",
-            weight: "400",
-            fill: true,
+        text: {
+          value: ["t", "s", "P", "a", "r", "t", "i", "c", "l", "e", "s"],
+          font: "Verdana",
+          style: "",
+          weight: "400",
+          particles: {
+            fill: [
+              {
+                color: {
+                  value: "#ff0000",
+                },
+                enable: true,
+              },
+              { enable: false },
+            ],
           },
-          {
-            value: ["t", "s", "P", "a", "r", "t", "i", "c", "l", "e", "s"],
-            font: "Verdana",
-            style: "",
-            weight: "400",
-            fill: false,
-          },
-        ],
+        },
       },
     },
     opacity: {
       value: {
-        min: 0.1,
-        max: 0.5,
+        min: 0.4,
+        max: 0.8,
       },
       animation: {
         enable: true,
@@ -50,13 +48,6 @@ const options: ISourceOptions = {
     },
     size: {
       value: 16,
-    },
-    links: {
-      enable: true,
-      distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1,
     },
     move: {
       enable: true,

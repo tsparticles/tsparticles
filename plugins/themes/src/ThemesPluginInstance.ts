@@ -8,7 +8,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
     this._container = container;
   }
 
-  async init(): Promise<void> {
+  init(): Promise<void> {
     const container = this._container;
 
     container.themeMatchMedia = safeMatchMedia("(prefers-color-scheme: dark)");
@@ -48,7 +48,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
 
     container.loadTheme = loadTheme;
 
-    await Promise.resolve();
+    return Promise.resolve();
   }
 
   manageListeners(add: boolean): void {
@@ -60,7 +60,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
   async start(): Promise<void> {
     this.manageListeners(true);
 
-    await Promise.resolve();
+    return Promise.resolve();
   }
 
   stop(): void {

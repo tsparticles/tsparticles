@@ -16,15 +16,21 @@ const options: ISourceOptions = {
         polygon: {
           sides: 3,
           particles: {
-            color: {
-              value: "#f00",
+            fill: {
+              color: {
+                value: "#f00",
+              },
+              enable: true,
             },
           },
         },
         triangle: {
           particles: {
-            color: {
-              value: "#0f0",
+            fill: {
+              color: {
+                value: "#0f0",
+              },
+              enable: true,
             },
           },
         },

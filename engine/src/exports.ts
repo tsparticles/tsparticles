@@ -1,5 +1,4 @@
 export * from "./Core/Utils/Constants.js";
-export * from "./Core/Utils/Point.js";
 export * from "./Core/Utils/Ranges.js";
 export * from "./Core/Utils/Vectors.js";
 
@@ -40,9 +39,9 @@ export * from "./Options/Classes/Particles/Bounce/ParticlesBounce.js";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounceFactor.js";
 
 export * from "./Options/Classes/Particles/ParticlesOptions.js";
+export * from "./Options/Classes/Particles/Fill.js";
 export * from "./Options/Classes/Particles/Stroke.js";
 
-export * from "./Options/Classes/Particles/Move/MoveAttract.js";
 export * from "./Options/Classes/Particles/Move/Move.js";
 export * from "./Options/Classes/Particles/Move/MoveAngle.js";
 export * from "./Options/Classes/Particles/Move/MoveCenter.js";

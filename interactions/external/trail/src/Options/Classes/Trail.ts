@@ -6,25 +6,24 @@ import {
   isNull,
 } from "@tsparticles/engine";
 import type { ITrail } from "../Interfaces/ITrail.js";
+import { TrailColorCoords } from "./TrailColorCoords.js";
 
-/**
- */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
-  delay;
+  colorCoords?: TrailColorCoords; // Now initialized by default
+  delay: number;
   particles?: RecursivePartial<IParticlesOptions>;
-  pauseOnStop;
-  quantity;
+  pauseOnStop: boolean;
+  quantity: number;
 
   constructor() {
     this.delay = 1;
     this.pauseOnStop = false;
     this.quantity = 1;
+    this.colorCoords = new TrailColorCoords();
   }
 
   load(data?: RecursivePartial<ITrail>): void {
-    if (isNull(data)) {
-      return;
-    }
+    if (isNull(data)) return;
 
     if (data.delay !== undefined) {
       this.delay = data.delay;
@@ -34,12 +33,19 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
       this.quantity = data.quantity;
     }
 
+    if (data.pauseOnStop !== undefined) {
+      this.pauseOnStop = data.pauseOnStop;
+    }
+
     if (data.particles !== undefined) {
       this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
     }
 
-    if (data.pauseOnStop !== undefined) {
-      this.pauseOnStop = data.pauseOnStop;
+    // Use the dedicated loader for color coordinates
+    if (data.colorCoords) {
+      this.colorCoords ??= new TrailColorCoords();
+
+      this.colorCoords.load(data.colorCoords);
     }
   }
 }

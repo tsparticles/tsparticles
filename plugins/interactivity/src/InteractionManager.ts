@@ -15,13 +15,13 @@ import {
   touchMoveEvent,
   touchStartEvent,
 } from "./InteractivityConstants.js";
-import type { IExternalInteractor } from "./IExternalInteractor.js";
-import type { IInteractivityData } from "./IInteractivityData.js";
-import type { IInteractor } from "./IInteractor.js";
-import type { IParticlesInteractor } from "./IParticlesInteractor.js";
+import type { IExternalInteractor } from "./Interfaces/IExternalInteractor.js";
+import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
+import type { IInteractor } from "./Interfaces/IInteractor.js";
+import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
 import type { InteractivityEngine } from "./types.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
-import { InteractorType } from "./InteractorType.js";
+import { InteractorType } from "./Enums/InteractorType.js";
 
 type ContainerClickHandler = (evt: Event) => void;
 
@@ -107,7 +107,7 @@ export class InteractionManager {
             x: pos.x * pxRatio,
             y: pos.y * pxRatio,
           },
-          particles = container.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+          particles = container.particles.grid.queryCircle(posRetina, radius * pxRatio);
 
         callback(e, particles);
       },
@@ -235,7 +235,26 @@ export class InteractionManager {
   /**
    * Initializes the interaction manager, loading all the engine registered managers into the container
    */
-  async init(): Promise<void> {
+  init(): void {
+    this._eventListeners.init();
+
+    for (const interactor of this._interactors) {
+      switch (interactor.type) {
+        case InteractorType.external:
+          this._externalInteractors.push(interactor as IExternalInteractor);
+
+          break;
+        case InteractorType.particles:
+          this._particleInteractors.push(interactor as IParticlesInteractor);
+
+          break;
+      }
+
+      interactor.init();
+    }
+  }
+
+  async initInteractors(): Promise<void> {
     const interactors = await this._engine.getInteractors?.(this.container, true);
 
     if (!interactors) {
@@ -245,20 +264,6 @@ export class InteractionManager {
     this._interactors = interactors;
     this._externalInteractors = [];
     this._particleInteractors = [];
-    this._eventListeners.init();
-
-    for (const interactor of this._interactors) {
-      switch (interactor.type) {
-        case InteractorType.external:
-          this._externalInteractors.push(interactor as IExternalInteractor);
-          break;
-        case InteractorType.particles:
-          this._particleInteractors.push(interactor as IParticlesInteractor);
-          break;
-      }
-
-      interactor.init();
-    }
   }
 
   /**
@@ -319,6 +324,20 @@ export class InteractionManager {
     if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
       this._intersectionObserver.unobserve(interactivityData.element);
     }
+  }
+
+  updateMaxDistance(): void {
+    let maxTotalDistance = 0;
+
+    for (const interactor of this._interactors) {
+      if (interactor.maxDistance > maxTotalDistance) {
+        maxTotalDistance = interactor.maxDistance;
+      }
+    }
+
+    const container = this.container;
+
+    container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
   private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {

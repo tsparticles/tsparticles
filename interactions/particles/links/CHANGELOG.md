@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixed links issues ([35aa461](https://github.com/tsparticles/tsparticles/commit/35aa46167d390f75fc0f941999b83d9e2dccaa79))
+- fixed links issues ([b548da3](https://github.com/tsparticles/tsparticles/commit/b548da3cbae67106e746ac80b637b1e5b9ad9ef4))
+
+### Features
+
+- replaced particles.color with particles.fill to have (almost) same options as particles.stroke ([d1793cc](https://github.com/tsparticles/tsparticles/commit/d1793cc8a5933281b10a72ae2d04e58ca7ceb8b0))
+
+# [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
+
+**Note:** Version bump only for package @tsparticles/interaction-particles-links
+
+# [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
+
+### Features
+
+- **core:** replace QuadTree with SpatialHashGrid ([1aafda1](https://github.com/tsparticles/tsparticles/commit/1aafda144b7eed546dab28fe534305c100dde986))
+
+# [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
+
+**Note:** Version bump only for package @tsparticles/interaction-particles-links
+
+# [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
+
+### Features
+
+- added random path plugin ([be97bda](https://github.com/tsparticles/tsparticles/commit/be97bda197b7696450af25e9a75d7435a7d58362))
+
+# [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
+
+**Note:** Version bump only for package @tsparticles/interaction-particles-links
+
+# [4.0.0-alpha.21](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/interaction-particles-links
+
 # [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/interaction-particles-links

@@ -13,17 +13,16 @@ const options: ISourceOptions = {
     rotate: {
       path: true,
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 20,
-        sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: true,
+        },
       },
-    },
-    stroke: {
-      width: 0,
-      color: "#000000",
+      enable: true,
     },
     shape: {
       type: "image",

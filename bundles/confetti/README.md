@@ -10,7 +10,7 @@ beautiful confetti effects with ease.
 **Included Packages**
 
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
-- [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
+- [@tsparticles/plugin-move](https://github.com/tsparticles/tsparticles/tree/main/plugin/move)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
 - [@tsparticles/plugin-motion](https://github.com/tsparticles/tsparticles/tree/main/plugins/motion)
 - [@tsparticles/shape-cards](https://github.com/tsparticles/tsparticles/tree/main/shapes/cards)
@@ -21,7 +21,7 @@ beautiful confetti effects with ease.
 - [@tsparticles/shape-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
 - [@tsparticles/shape-square](https://github.com/tsparticles/tsparticles/tree/main/shapes/square)
 - [@tsparticles/shape-star](https://github.com/tsparticles/tsparticles/tree/main/shapes/star)
-- [@tsparticles/updater-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-fill-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
 - [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
 - [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)

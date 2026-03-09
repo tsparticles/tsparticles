@@ -7,13 +7,16 @@ const options: ISourceOptions = {
     number: {
       value: 300,
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 360,
-        sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          enable: true,
+          speed: 360,
+          sync: true,
+        },
       },
+      enable: true,
     },
     shape: {
       type: "circle",

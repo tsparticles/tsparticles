@@ -1,5 +1,5 @@
-import path from "path";
-import { fileURLToPath } from "url";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
 
 async function checkErrors() {
@@ -8,7 +8,6 @@ async function checkErrors() {
         reactParticlesJsFoundError = "react-particles-js-found",
         reactParticlesFoundError = "react-particles-found",
         reactTsParticlesFoundError = "react-tsparticles-found",
-        svelteParticlesFoundError = "svelte-particles-found",
         vue2ParticlesFoundError = "vue2-particles-found",
         vue3ParticlesFoundError = "vue3-particles-found";
 
@@ -187,20 +186,6 @@ async function checkErrors() {
         }
 
         if (dependencies["svelte"]) {
-            if (dependencies["svelte-particles"]) {
-                console.error(
-                    "\x1b[31m%s\x1b[0m",
-                    "The package svelte-particles has been deprecated and is not supported anymore."
-                );
-                console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/svelte package.");
-                console.error(
-                    "\x1b[31m%s\x1b[0m",
-                    "This error will be fixed once svelte-particles is removed from the package.json file."
-                );
-
-                throw new Error(svelteParticlesFoundError);
-            }
-
             if (!dependencies["@tsparticles/svelte"]) {
                 console.warn(
                     "\x1b[43m\x1b[30m%s\x1b[0m",
@@ -254,8 +239,7 @@ async function checkErrors() {
             error.message === reactTsParticlesFoundError ||
             error.message === angularParticlesFoundError ||
             error.message === vue2ParticlesFoundError ||
-            error.message === vue3ParticlesFoundError ||
-            error.message === svelteParticlesFoundError
+            error.message === vue3ParticlesFoundError
         ) {
             throw error;
         }

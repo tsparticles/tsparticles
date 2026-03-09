@@ -8,8 +8,11 @@ const options: ISourceOptions = {
       value: 0,
       limit: { value: 1000 },
     },
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     move: {
       enable: true,
@@ -22,6 +25,8 @@ const options: ISourceOptions = {
         delay: {
           value: 0.75,
         },
+        clamp: true,
+        generator: "randomPathGenerator",
       },
     },
     shape: {

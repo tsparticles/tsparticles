@@ -1,3 +1,4 @@
+import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
@@ -11,6 +12,21 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
    * this variable contains the delta between the current frame and the previous frame
    */
   delta: IDelta;
+
+  /**
+   * the position used for drawing (already scaled)
+   */
+  drawPosition: ICoordinates;
+
+  /**
+   * the particle radius used for drawing (already scaled)
+   */
+  drawRadius: number;
+
+  /**
+   * the scale applied for drawing
+   */
+  drawScale: number;
 
   /**
    * the particle fill status
@@ -31,6 +47,21 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
    * the device pixel ratio, used for retina displays
    */
   pixelRatio: number;
+
+  /**
+   * the original position of the particle (before zoom transformations)
+   */
+  position: {
+    /**
+     * x coordinate
+     */
+    x: number;
+
+    /**
+     * y coordinate
+     */
+    y: number;
+  };
 
   /**
    * the particle radius

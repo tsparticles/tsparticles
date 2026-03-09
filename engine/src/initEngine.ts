@@ -1,7 +1,6 @@
 import { Engine } from "./Core/Engine.js";
 
 /**
- *
  * @returns the initialized engine object
  */
 export function initEngine(): Engine {

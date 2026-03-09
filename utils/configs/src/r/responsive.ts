@@ -10,8 +10,11 @@ const options: ISourceOptions = {
         enable: false,
       },
     },
-    color: {
-      value: "#ff0000",
+    fill: {
+      color: {
+        value: "#ff0000",
+      },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -77,8 +80,11 @@ const options: ISourceOptions = {
       maxWidth: 600,
       options: {
         particles: {
-          color: {
-            value: "#0000ff",
+          fill: {
+            color: {
+              value: "#0000ff",
+            },
+            enable: true,
           },
           number: {
             value: 40,
@@ -90,8 +96,11 @@ const options: ISourceOptions = {
       maxWidth: 1000,
       options: {
         particles: {
-          color: {
-            value: "#00ff00",
+          fill: {
+            color: {
+              value: "#00ff00",
+            },
+            enable: true,
           },
           number: {
             value: 60,

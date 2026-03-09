@@ -64,10 +64,8 @@ export function setAnimationFunctions(
   nextFrame: (callback: FrameRequestCallback) => number,
   cancel: (handle: number) => void,
 ): void {
-  _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
-  _animationLoop.cancel = (handle: number): void => {
-    cancel(handle);
-  };
+  _animationLoop.nextFrame = nextFrame;
+  _animationLoop.cancel = cancel;
 }
 
 /**
@@ -179,10 +177,22 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
   const dx = pointA.x - pointB.x,
-    dy = pointA.y - pointB.y,
-    squareExp = 2;
+    dy = pointA.y - pointB.y;
 
-  return { dx: dx, dy: dy, distance: Math.sqrt(dx ** squareExp + dy ** squareExp) };
+  return { dx: dx, dy: dy, distance: Math.hypot(dx, dy) };
+}
+
+/**
+ * Gets the distance squared between two coordinates
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
+ * @returns the distance squared between the two coordinates
+ */
+export function getDistanceSq(pointA: ICoordinates, pointB: ICoordinates): number {
+  const dx = pointA.x - pointB.x,
+    dy = pointA.y - pointB.y;
+
+  return dx * dx + dy * dy;
 }
 
 /**
@@ -192,9 +202,19 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
  * @returns the distance between the two coordinates
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-  return getDistances(pointA, pointB).distance;
+  return Math.sqrt(getDistanceSq(pointA, pointB));
 }
 
+/**
+ * Checks if the distance between two coordinates is less than the given distance
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
+ * @param distance - the distance to check
+ * @returns true if the distance between the two coordinates is less than the given distance, false otherwise
+ */
+export function checkDistance(pointA: ICoordinates, pointB: ICoordinates, distance: number): boolean {
+  return getDistanceSq(pointA, pointB) <= distance * distance;
+}
 /**
  * Converts the given degrees to radians
  * @param degrees - the degrees value to convert

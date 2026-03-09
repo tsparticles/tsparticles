@@ -52,8 +52,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: ["#4285f4", "#34A853", "#FBBC05", "#EA4335"],
+    fill: {
+      color: {
+        value: ["#4285f4", "#34A853", "#FBBC05", "#EA4335"],
+      },
+      enable: true,
     },
     links: {
       blink: false,

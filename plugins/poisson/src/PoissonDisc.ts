@@ -164,10 +164,18 @@ export class PoissonDisc {
     this.reset();
 
     const minCount = 0,
-      step = 1;
+      step = 1,
+      yieldEvery = 100,
+      yieldStepModule = 0;
+
+    let iterations = 0;
 
     while (this.active.length > minCount) {
-      await this.steps(step);
+      this.steps(step);
+
+      if (++iterations % yieldEvery === yieldStepModule) {
+        await new Promise<void>(resolve => setTimeout(resolve));
+      }
     }
   }
 
@@ -175,7 +183,7 @@ export class PoissonDisc {
    * Take a single or n steps through the algorithm
    * @param steps - Number of steps to take
    */
-  async steps(steps: number): Promise<void> {
+  steps(steps: number): void {
     const minCount = 0;
 
     /* Take one or 'n' steps */
@@ -185,7 +193,7 @@ export class PoissonDisc {
         continue;
       }
 
-      await this._step();
+      this._step();
     } // n loop
   }
 
@@ -193,12 +201,8 @@ export class PoissonDisc {
     const minCoordinate = 0,
       gridMinValue = 0,
       maxNeighbourIndex = 1,
-      /* Uniformly distribute the angle or random, not clear in the docs */
-      /* let newAngle = Math.floor(Math.random()*(Math.PI*2)); */
       newAngle = tries * (doublePI / this.retries),
-      /* Get a random distance r to 2r */
       newDist = this.getRandom(this.radius, this.radius * double),
-      /* Calculate the new position */
       offset: ICoordinates = {
         x: Math.cos(newAngle) * newDist,
         y: Math.sin(newAngle) * newDist,
@@ -213,113 +217,108 @@ export class PoissonDisc {
       };
 
     if (
-      newPoint.x > minCoordinate &&
-      newPoint.x < this.size.width &&
-      newPoint.y > minCoordinate &&
-      newPoint.y < this.size.height
+      newPoint.x <= minCoordinate ||
+      newPoint.x >= this.size.width ||
+      newPoint.y <= minCoordinate ||
+      newPoint.y >= this.size.height
     ) {
-      const row = this.grid[newGridCoords.y];
-
-      if (!row) {
-        return;
-      }
-
-      const point = row[newGridCoords.x];
-
-      if (point === undefined) {
-        return;
-      }
-
-      /* It is inside the screen area */
-      if (point < gridMinValue) {
-        /* There is not a point at this grid reference - get the neighbours */
-        for (let i = -1; i <= maxNeighbourIndex; i++) {
-          for (let j = -1; j <= maxNeighbourIndex; j++) {
-            /* Each neighbour grid location */
-            const neighbourGrid: ICoordinates = {
-              x: newGridCoords.x + j,
-              y: newGridCoords.y + i,
-            };
-
-            if (
-              neighbourGrid.x >= minCoordinate &&
-              neighbourGrid.y >= minCoordinate &&
-              neighbourGrid.x < this.cols &&
-              neighbourGrid.y < this.rows &&
-              (neighbourGrid.x !== newGridCoords.x || neighbourGrid.y !== newGridCoords.y)
-            ) {
-              /* Neighbour is within the grid and not the centre point */
-              if (point >= gridMinValue) {
-                /* It has a point in it - check how far away it is */
-                const neighbourIndex = point,
-                  neighbour = this.points[neighbourIndex];
-
-                if (!neighbour) {
-                  continue;
-                }
-
-                const dist = getDistance(newPoint, neighbour.position);
-
-                /* Invalid, to close to a neighbour point */
-                if (dist < this.radius) {
-                  return;
-                }
-              }
-            }
-          }
-        }
-      } else {
-        /* Invalid, there is already a point in this cell */
-        return;
-      }
-    } else {
-      /* Invalid, point is outside the grid */
       return;
+    }
+
+    const row = this.grid[newGridCoords.y];
+
+    if (!row) {
+      return;
+    }
+
+    const cellValue = row[newGridCoords.x];
+
+    if (cellValue === undefined) {
+      return;
+    }
+
+    // La cella è già occupata
+    if (cellValue >= gridMinValue) {
+      return;
+    }
+
+    for (let i = -1; i <= maxNeighbourIndex; i++) {
+      for (let j = -1; j <= maxNeighbourIndex; j++) {
+        if (!i && !j) {
+          continue;
+        }
+
+        const neighbourGrid: ICoordinates = {
+          x: newGridCoords.x + j,
+          y: newGridCoords.y + i,
+        };
+
+        if (
+          neighbourGrid.x < minCoordinate ||
+          neighbourGrid.y < minCoordinate ||
+          neighbourGrid.x >= this.cols ||
+          neighbourGrid.y >= this.rows
+        ) {
+          continue;
+        }
+
+        const neighbourCellValue = this.grid[neighbourGrid.y]?.[neighbourGrid.x];
+
+        if (neighbourCellValue === undefined || neighbourCellValue < gridMinValue) {
+          continue;
+        }
+
+        const neighbour = this.points[neighbourCellValue];
+
+        if (!neighbour) {
+          continue;
+        }
+
+        if (getDistance(newPoint, neighbour.position) < this.radius) {
+          return;
+        }
+      }
     }
 
     return newPoint;
   }
 
-  private async _step(): Promise<void> {
+  private _step(): void {
     const minCount = 0,
       randomActive = this.getRandom(minCount, this.active.length);
 
-    return new Promise(resolve => {
-      let foundNewPoint = false;
+    let foundNewPoint = false;
 
-      for (let tries = 0; tries < this.retries; tries++) {
-        const randomActivePointIndex = this.active[randomActive];
+    for (let tries = 0; tries < this.retries; tries++) {
+      const randomActivePointIndex = this.active[randomActive];
 
-        if (randomActivePointIndex === undefined) {
-          continue;
-        }
-
-        const point = this.points[randomActivePointIndex];
-
-        if (!point) {
-          continue;
-        }
-
-        const newPoint = this._getNewPoint(point, tries);
-
-        if (newPoint) {
-          /* Valid, add this point */
-          foundNewPoint = true;
-
-          this.addPoint(newPoint);
-
-          break;
-        }
+      if (randomActivePointIndex === undefined) {
+        continue;
       }
 
-      if (!foundNewPoint) {
-        const deleteCount = 1;
+      const point = this.points[randomActivePointIndex];
 
-        /* Didn't find a new point after k tries - remove this point from Active list */
-        this.active.splice(randomActive, deleteCount);
+      if (!point) {
+        continue;
       }
 
-      resolve();
-    });
+      const newPoint = this._getNewPoint(point, tries);
+
+      if (newPoint) {
+        /* Valid, add this point */
+        foundNewPoint = true;
+
+        this.addPoint(newPoint);
+
+        break;
+      }
+    }
+
+    if (!foundNewPoint) {
+      const deleteCount = 1;
+
+      /* Didn't find a new point after k tries - remove this point from Active list */
+      this.active.splice(randomActive, deleteCount);
+    }
   }
 }

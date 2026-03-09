@@ -10,8 +10,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     shape: {
       type: "polygon",
@@ -32,8 +35,10 @@ const options: ISourceOptions = {
                   max: 12,
                 },
               },
-              color: {
-                value: "#ff0",
+              fill: {
+                color: {
+                  value: "#ff0",
+                },
               },
             },
           },
@@ -46,8 +51,10 @@ const options: ISourceOptions = {
               size: {
                 value: 8,
               },
-              color: {
-                value: "#0f0",
+              fill: {
+                color: {
+                  value: "#0f0",
+                },
               },
             },
           },
@@ -63,8 +70,10 @@ const options: ISourceOptions = {
                   max: 20,
                 },
               },
-              color: {
-                value: "#f00",
+              fill: {
+                color: {
+                  value: "#f00",
+                },
               },
             },
           },

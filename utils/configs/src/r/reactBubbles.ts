@@ -51,20 +51,16 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#FFF",
+    fill: {
+      color: {
+        value: "#FFF",
+      },
+      enable: true,
     },
     collisions: {
       enable: true,
     },
     move: {
-      attract: {
-        enable: false,
-        rotate: {
-          x: 3000,
-          y: 3000,
-        },
-      },
       direction: "top",
       enable: true,
       speed: {

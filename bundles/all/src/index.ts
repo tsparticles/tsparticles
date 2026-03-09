@@ -51,6 +51,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadSoundsPlugin },
       { loadThemesPlugin },
       { loadTrailPlugin },
+      { loadZoomPlugin },
 
       { loadExportImagePlugin },
       { loadExportJSONPlugin },
@@ -73,6 +74,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadLevyPath },
       { loadPerlinNoisePath },
       { loadPolygonPath },
+      { loadRandomPath },
       { loadSVGPath },
       { loadSpiralPath },
       { loadZigZagPath },
@@ -88,10 +90,12 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadCogShape },
       { loadHeartShape },
       { loadInfinityShape },
+      { loadMatrixShape },
       { loadPathShape },
       { loadRoundedPolygonShape },
       { loadRoundedRectShape },
       { loadSpiralShape },
+      { loadSquircleShape },
 
       { loadEmittersShapeCanvas },
       { loadEmittersShapePath },
@@ -133,6 +137,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/plugin-themes"),
       import("@tsparticles/plugin-trail"),
+      import("@tsparticles/plugin-zoom"),
 
       import("@tsparticles/plugin-export-image"),
       import("@tsparticles/plugin-export-json"),
@@ -155,6 +160,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/path-levy"),
       import("@tsparticles/path-perlin-noise"),
       import("@tsparticles/path-polygon"),
+      import("@tsparticles/path-random"),
       import("@tsparticles/path-svg"),
       import("@tsparticles/path-spiral"),
       import("@tsparticles/path-zig-zag"),
@@ -170,10 +176,12 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/shape-cog"),
       import("@tsparticles/shape-heart"),
       import("@tsparticles/shape-infinity"),
+      import("@tsparticles/shape-matrix"),
       import("@tsparticles/shape-path"),
       import("@tsparticles/shape-rounded-polygon"),
       import("@tsparticles/shape-rounded-rect"),
       import("@tsparticles/shape-spiral"),
+      import("@tsparticles/shape-squircle"),
 
       import("@tsparticles/plugin-emitters-shape-canvas"),
       import("@tsparticles/plugin-emitters-shape-path"),
@@ -221,6 +229,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadSoundsPlugin(e),
       loadThemesPlugin(e),
       loadTrailPlugin(e),
+      loadZoomPlugin(e),
 
       loadExportImagePlugin(e),
       loadExportJSONPlugin(e),
@@ -243,6 +252,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadLevyPath(e),
       loadPerlinNoisePath(e),
       loadPolygonPath(e),
+      loadRandomPath(e),
       loadSVGPath(e),
       loadSpiralPath(e),
       loadZigZagPath(e),
@@ -258,10 +268,12 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadCogShape(e),
       loadHeartShape(e),
       loadInfinityShape(e),
+      loadMatrixShape(e),
       loadPathShape(e),
       loadRoundedPolygonShape(e),
       loadRoundedRectShape(e),
       loadSpiralShape(e),
+      loadSquircleShape(e),
     ]);
   });
 }
