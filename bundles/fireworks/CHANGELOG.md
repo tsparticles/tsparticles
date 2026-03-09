@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Features
+
+- replaced particles.color with particles.fill to have (almost) same options as particles.stroke ([d1793cc](https://github.com/tsparticles/tsparticles/commit/d1793cc8a5933281b10a72ae2d04e58ca7ceb8b0))
+- update particle color handling to use fill and stroke properties ([7f01526](https://github.com/tsparticles/tsparticles/commit/7f015265bcaec0659ec20d7c351e7aa8ab82da55))
+
 # [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
 
 **Note:** Version bump only for package @tsparticles/fireworks

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixes issue [#5502](https://github.com/tsparticles/tsparticles/issues/5502) ([dec8334](https://github.com/tsparticles/tsparticles/commit/dec8334bedcac009f8c12482dd8f37ed47a85a9a))
+
 # [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
 
 **Note:** Version bump only for package @tsparticles/plugin-responsive

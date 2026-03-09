@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixed links issues ([35aa461](https://github.com/tsparticles/tsparticles/commit/35aa46167d390f75fc0f941999b83d9e2dccaa79))
+- fixed links issues ([b548da3](https://github.com/tsparticles/tsparticles/commit/b548da3cbae67106e746ac80b637b1e5b9ad9ef4))
+
+### Features
+
+- replaced particles.color with particles.fill to have (almost) same options as particles.stroke ([d1793cc](https://github.com/tsparticles/tsparticles/commit/d1793cc8a5933281b10a72ae2d04e58ca7ceb8b0))
+
 # [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
 
 **Note:** Version bump only for package @tsparticles/interaction-particles-links

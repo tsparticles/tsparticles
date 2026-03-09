@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-svg",
-  "version": "4.0.0-alpha.26",
+  "version": "4.0.0-alpha.27",
   "description": "tsParticles svg path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -109,8 +109,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.26",
-    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.26"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.27",
+    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.27"
   },
   "publishConfig": {
     "access": "public",

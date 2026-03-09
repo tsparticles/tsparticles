@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Features
+
+- added fill palette support, more palettes too in config ([8b4e732](https://github.com/tsparticles/tsparticles/commit/8b4e732b0b5dfca5c8711669e871501b09eacee5))
+- added matrix shape with character animation and palette updates ([6053ec6](https://github.com/tsparticles/tsparticles/commit/6053ec6c0261fd96aa122644930ad8aff30f29f2))
+- added palette support to engine ([2a1febd](https://github.com/tsparticles/tsparticles/commit/2a1febda7ac63cecbe58110b807fc72cad29b0a5))
+- replaced particles.color with particles.fill to have (almost) same options as particles.stroke ([d1793cc](https://github.com/tsparticles/tsparticles/commit/d1793cc8a5933281b10a72ae2d04e58ca7ceb8b0))
+- update particle color handling to use fill and stroke properties ([7f01526](https://github.com/tsparticles/tsparticles/commit/7f015265bcaec0659ec20d7c351e7aa8ab82da55))
+
 # [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
 
 ### Bug Fixes

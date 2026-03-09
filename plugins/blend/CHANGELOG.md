@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.27](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2026-03-09)
+
+### Bug Fixes
+
+- fixed blend plugin ([6fe33b5](https://github.com/tsparticles/tsparticles/commit/6fe33b5a57526515e718be7594f512201cbb06e8))
+
 # [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
 
 **Note:** Version bump only for package @tsparticles/plugin-blend
