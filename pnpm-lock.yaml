@@ -18,23 +18,23 @@ importers:
         specifier: ^1.15.18
         version: 1.15.18
       '@tsparticles/cli':
-        specifier: ^3.3.1
-        version: 3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)
+        specifier: ^3.3.3
+        version: 3.3.3(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)
       '@tsparticles/depcruise-config':
-        specifier: ^3.3.0
-        version: 3.3.0(dependency-cruiser@17.3.8)
+        specifier: ^3.3.1
+        version: 3.3.1(dependency-cruiser@17.3.8)
       '@tsparticles/eslint-config':
-        specifier: ^3.3.0
-        version: 3.3.0(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
+        specifier: ^3.3.1
+        version: 3.3.1(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
       '@tsparticles/prettier-config':
-        specifier: ^3.3.0
-        version: 3.3.0(prettier@3.8.1)
+        specifier: ^3.3.1
+        version: 3.3.1(prettier@3.8.1)
       '@tsparticles/tsconfig':
-        specifier: ^3.3.0
-        version: 3.3.0(typescript@5.9.3)
+        specifier: ^3.3.1
+        version: 3.3.1(typescript@5.9.3)
       '@tsparticles/webpack-plugin':
-        specifier: ^3.3.0
-        version: 3.3.0(@types/eslint@8.56.6)(jiti@2.6.1)
+        specifier: ^3.3.1
+        version: 3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)
       '@types/jsdom':
         specifier: ^28.0.0
         version: 28.0.0
@@ -3710,32 +3710,32 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@tsparticles/cli@3.3.1':
-    resolution: {integrity: sha512-sfw9Y2DLd56v1KnLH+RunrIanAvJhr2R9mpuQlTI05BwAbn1YvB+yZ4GH4eC5xE7lnvW9r1oTUl1+fUWDhhQ+Q==}
+  '@tsparticles/cli@3.3.3':
+    resolution: {integrity: sha512-X6M5e+UQJlzU4K/gMmSJjcT39KQlnrtj+fHgnfyhGXSA4s5LxFy38NsjdPLcK9X6z+qn54lVjfr57aGZzZ1NBQ==}
     hasBin: true
 
-  '@tsparticles/depcruise-config@3.3.0':
-    resolution: {integrity: sha512-b5Kvz4T1Yo7MiqNoQqGvmbMYFjmSlNaeG1zYhZkOf3QKlFQyvs1sbAz2t21BbKtQQPIg/+hSx74xiASLT/sM/A==}
+  '@tsparticles/depcruise-config@3.3.1':
+    resolution: {integrity: sha512-0HMe7wGz67euogkD1fEOLDKvu5lNys0uTuk+OG+lDQ+d+Q7nQWJc2k2gmMc0pw3xE9zICSosH9p/7zTupGmt4g==}
     peerDependencies:
       dependency-cruiser: ^17
 
-  '@tsparticles/eslint-config@3.3.0':
-    resolution: {integrity: sha512-+FqlNLabhbThFJVN9qQiqJp4NW/hQaio7xMh9BklR186BQVvjZa5AqJ6xgf6bw6TlM4u1XrvVpdnIaiIg2T+iA==}
+  '@tsparticles/eslint-config@3.3.1':
+    resolution: {integrity: sha512-5iB++IDpgpoiejoBYWZ1iAUgRwYvZRINZGzaq5bA+Iqzk3wNflcslDGAiLSdv2oWakv+ySv2e2tb5em5YUwWHA==}
     peerDependencies:
       eslint: ^10
 
-  '@tsparticles/prettier-config@3.3.0':
-    resolution: {integrity: sha512-G3Z381354SYpj33rMAIHeINqjJAHDpuMxWl/uECBlxdbsCqcihN3x093X7eXaLzc/vepuZXnnGOqg5nQwmHsug==}
+  '@tsparticles/prettier-config@3.3.1':
+    resolution: {integrity: sha512-palrqwg+l9naVVnA/p+7BxBTEMpnxne7RiTA8OdLybelsJwzc6pIpJvpqEe7oi9QLqwhbwpgI2K8KxzO0mGxbA==}
     peerDependencies:
       prettier: ^3
 
-  '@tsparticles/tsconfig@3.3.0':
-    resolution: {integrity: sha512-P4V5ZTbXKjm+qNcHccCGqQRBh3pRSlWnFBh1Gvv+hSbmMjx86Nly3ajTskTqq6mtdXzWa/oOYjzBGZUiAa0Bsw==}
+  '@tsparticles/tsconfig@3.3.1':
+    resolution: {integrity: sha512-664kWcH3kTw5dEaSIp+3zdBkYWdz2P/6K3MJIvIhW3i+xKXFQA5zE7HNAkp+iJof4B6cGOhdVOitS2JTiJldSg==}
     peerDependencies:
       typescript: ^5
 
-  '@tsparticles/webpack-plugin@3.3.0':
-    resolution: {integrity: sha512-4j6OhH0l3minkbSV45owPorex2IU/5dLuIkhR0huiPoslcs4YXqChjuf+/ERLnSoIErgy766orCfFYUB9JbjZg==}
+  '@tsparticles/webpack-plugin@3.3.1':
+    resolution: {integrity: sha512-B/F+oGwhdWSODZ1aRNDxcnkv5QmVhwve106kXY+CxD8cNmDHgAbXngmcJXpq9ha0htTkMwLbT609qIgK32kuwg==}
 
   '@tufjs/canonical-json@2.0.0':
     resolution: {integrity: sha512-yVtV8zsdo8qFHe+/3kw81dSLyF7D576A5cCFCi4X7B39tWT7SekaEFUnvnWJHz+9qO7qJTah1JbrDjWKqFtdWA==}
@@ -7648,6 +7648,22 @@ packages:
       uglify-js:
         optional: true
 
+  terser-webpack-plugin@5.4.0:
+    resolution: {integrity: sha512-Bn5vxm48flOIfkdl5CaD2+1CiUVbonWQ3KQPyP7/EuIl9Gbzq/gQFOzaMFUEgVjB1396tcK0SG8XcNJ/2kDH8g==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+
   terser@5.44.1:
     resolution: {integrity: sha512-t/R3R/n0MSwnnazuPpPNVO60LX0SKL45pyl9YlvxIdkH0Of7D5qM2EVe+yASRIlY5pZ73nclYJfNANGWPwFDZw==}
     engines: {node: '>=10'}
@@ -9600,7 +9616,7 @@ snapshots:
   '@stylistic/eslint-plugin@5.10.0(eslint@10.0.3(jiti@2.6.1))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.0.3(jiti@2.6.1))
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/types': 8.57.0
       eslint: 10.0.3(jiti@2.6.1)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -9671,14 +9687,14 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/cli@3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)':
+  '@tsparticles/cli@3.3.3(@types/eslint@8.56.6)(jiti@2.6.1)(webpack-cli@6.0.1)':
     dependencies:
       '@swc/core': 1.15.18
-      '@tsparticles/depcruise-config': 3.3.0(dependency-cruiser@17.3.8)
-      '@tsparticles/eslint-config': 3.3.0(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.0(prettier@3.8.1)
-      '@tsparticles/tsconfig': 3.3.0(typescript@5.9.3)
-      '@tsparticles/webpack-plugin': 3.3.0(@types/eslint@8.56.6)(jiti@2.6.1)
+      '@tsparticles/depcruise-config': 3.3.1(dependency-cruiser@17.3.8)
+      '@tsparticles/eslint-config': 3.3.1(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
+      '@tsparticles/prettier-config': 3.3.1(prettier@3.8.1)
+      '@tsparticles/tsconfig': 3.3.1(typescript@5.9.3)
+      '@tsparticles/webpack-plugin': 3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)
       commander: 14.0.3
       dependency-cruiser: 17.3.8
       eslint: 10.0.3(jiti@2.6.1)
@@ -9686,7 +9702,6 @@ snapshots:
       eslint-plugin-jsdoc: 62.7.1(eslint@10.0.3(jiti@2.6.1))
       eslint-plugin-prettier: 5.5.5(@types/eslint@8.56.6)(eslint-config-prettier@10.1.8(eslint@10.0.3(jiti@2.6.1)))(eslint@10.0.3(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-tsdoc: 0.5.2(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3)
-      fs-extra: 11.3.4
       klaw: 4.1.0
       lookpath: 1.2.3
       path-scurry: 2.0.2
@@ -9710,15 +9725,15 @@ snapshots:
       - webpack-cli
       - webpack-dev-server
 
-  '@tsparticles/depcruise-config@3.3.0(dependency-cruiser@17.3.8)':
+  '@tsparticles/depcruise-config@3.3.1(dependency-cruiser@17.3.8)':
     dependencies:
       dependency-cruiser: 17.3.8
 
-  '@tsparticles/eslint-config@3.3.0(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))':
+  '@tsparticles/eslint-config@3.3.1(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.0.3(jiti@2.6.1))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.0.3(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.0(prettier@3.8.1)
+      '@tsparticles/prettier-config': 3.3.1(prettier@3.8.1)
       eslint: 10.0.3(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.0.3(jiti@2.6.1))
       eslint-plugin-jsdoc: 62.7.1(eslint@10.0.3(jiti@2.6.1))
@@ -9733,21 +9748,21 @@ snapshots:
       - '@types/eslint'
       - supports-color
 
-  '@tsparticles/prettier-config@3.3.0(prettier@3.8.1)':
+  '@tsparticles/prettier-config@3.3.1(prettier@3.8.1)':
     dependencies:
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.4(prettier@3.8.1)
 
-  '@tsparticles/tsconfig@3.3.0(typescript@5.9.3)':
+  '@tsparticles/tsconfig@3.3.1(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
 
-  '@tsparticles/webpack-plugin@3.3.0(@types/eslint@8.56.6)(jiti@2.6.1)':
+  '@tsparticles/webpack-plugin@3.3.1(@types/eslint@8.56.6)(jiti@2.6.1)':
     dependencies:
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.0.3(jiti@2.6.1))
       '@swc/core': 1.15.18
-      '@tsparticles/eslint-config': 3.3.0(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.0(prettier@3.8.1)
+      '@tsparticles/eslint-config': 3.3.1(@types/eslint@8.56.6)(eslint@10.0.3(jiti@2.6.1))
+      '@tsparticles/prettier-config': 3.3.1(prettier@3.8.1)
       browserslist: 4.28.1
       eslint: 10.0.3(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.0.3(jiti@2.6.1))
@@ -9756,7 +9771,7 @@ snapshots:
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.4(prettier@3.8.1)
       swc-loader: 0.2.7(@swc/core@1.15.18)(webpack@5.105.4)
-      terser-webpack-plugin: 5.3.17(@swc/core@1.15.18)(webpack@5.105.4)
+      terser-webpack-plugin: 5.4.0(@swc/core@1.15.18)(webpack@5.105.4)
       typescript: 5.9.3
       typescript-eslint: 8.57.0(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3)
       webpack: 5.105.4(@swc/core@1.15.18)(webpack-cli@6.0.1)
@@ -14092,6 +14107,16 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.44.1
+      webpack: 5.105.4(@swc/core@1.15.18)(webpack-cli@6.0.1)
+    optionalDependencies:
+      '@swc/core': 1.15.18
+
+  terser-webpack-plugin@5.4.0(@swc/core@1.15.18)(webpack@5.105.4):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      terser: 5.46.0
       webpack: 5.105.4(@swc/core@1.15.18)(webpack-cli@6.0.1)
     optionalDependencies:
       '@swc/core': 1.15.18
