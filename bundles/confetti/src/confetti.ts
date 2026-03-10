@@ -200,8 +200,11 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             count: 1,
           },
           particles: {
-            color: {
-              value: actualOptions.colors,
+            fill: {
+              color: {
+                value: actualOptions.colors,
+              },
+              enable: true,
             },
             shape: {
               type: actualOptions.shapes,
@@ -303,8 +306,11 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
       number: {
         value: 0,
       },
-      color: {
-        value: actualOptions.colors,
+      fill: {
+        color: {
+          value: actualOptions.colors,
+        },
+        enable: true,
       },
       shape: {
         type: actualOptions.shapes,

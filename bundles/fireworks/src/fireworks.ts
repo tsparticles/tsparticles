@@ -160,8 +160,11 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       number: {
         value: 0,
       },
-      color: {
-        value: "#fff",
+      fill: {
+        color: {
+          value: "#fff",
+        },
+        enable: true,
       },
       destroy: {
         mode: "split",
@@ -186,6 +189,7 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
               color: {
                 value: options.colors,
               },
+              enable: true,
             },
             stroke: {
               width: 0,
