@@ -110,17 +110,17 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.26",
-    "@tsparticles/engine": "^4.0.0-alpha.26",
-    "@tsparticles/plugin-emitters": "^4.0.0-alpha.26",
-    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.26",
-    "@tsparticles/plugin-motion": "^4.0.0-alpha.26",
-    "@tsparticles/shape-square": "^4.0.0-alpha.26",
-    "@tsparticles/updater-life": "^4.0.0-alpha.26",
-    "@tsparticles/updater-roll": "^4.0.0-alpha.26",
-    "@tsparticles/updater-rotate": "^4.0.0-alpha.26",
-    "@tsparticles/updater-tilt": "^4.0.0-alpha.26",
-    "@tsparticles/updater-wobble": "^4.0.0-alpha.26"
+    "@tsparticles/basic": "^4.0.0-alpha.27",
+    "@tsparticles/engine": "^4.0.0-alpha.27",
+    "@tsparticles/plugin-emitters": "^4.0.0-alpha.27",
+    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.27",
+    "@tsparticles/plugin-motion": "^4.0.0-alpha.27",
+    "@tsparticles/shape-square": "^4.0.0-alpha.27",
+    "@tsparticles/updater-life": "^4.0.0-alpha.27",
+    "@tsparticles/updater-roll": "^4.0.0-alpha.27",
+    "@tsparticles/updater-rotate": "^4.0.0-alpha.27",
+    "@tsparticles/updater-tilt": "^4.0.0-alpha.27",
+    "@tsparticles/updater-wobble": "^4.0.0-alpha.27"
   },
   "type": "module"
 }

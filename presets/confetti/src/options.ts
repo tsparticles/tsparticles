@@ -14,8 +14,11 @@ export const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+    fill: {
+      color: {
+        value: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+      },
+      enable: true,
     },
     shape: {
       type: ["square", "circle"],

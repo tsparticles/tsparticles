@@ -18,8 +18,10 @@ export const options: ISourceOptions = {
       options: {
         circle: [
           {
-            fill: false,
             particles: {
+              fill: {
+                enable: false,
+              },
               stroke: {
                 width: 1,
                 color: {
@@ -39,10 +41,12 @@ export const options: ISourceOptions = {
             },
           },
           {
-            fill: true,
             particles: {
-              color: {
-                value: "#6fd2f3",
+              fill: {
+                color: {
+                  value: "#6fd2f3",
+                },
+                enable: true,
               },
               opacity: {
                 value: { min: 0, max: 0.6 },
@@ -57,10 +61,12 @@ export const options: ISourceOptions = {
             },
           },
           {
-            fill: true,
             particles: {
-              color: {
-                value: "#93e9f3",
+              fill: {
+                color: {
+                  value: "#93e9f3",
+                },
+                enable: true,
               },
               opacity: {
                 value: { min: 0, max: 0.4 },

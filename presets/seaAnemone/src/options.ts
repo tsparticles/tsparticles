@@ -61,26 +61,30 @@ export const options: ISourceOptions = {
       height: 0,
       mode: "precise",
     },
-    spawnColor: {
-      value: "#ff0000",
-      animation: {
-        h: {
-          enable: true,
-          offset: {
-            min: -1.4,
-            max: 1.4,
+    spawn: {
+      fill: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            h: {
+              enable: true,
+              offset: {
+                min: -1.4,
+                max: 1.4,
+              },
+              speed: 5,
+              sync: false,
+            },
+            l: {
+              enable: true,
+              offset: {
+                min: 20,
+                max: 80,
+              },
+              speed: 0,
+              sync: false,
+            },
           },
-          speed: 5,
-          sync: false,
-        },
-        l: {
-          enable: true,
-          offset: {
-            min: 20,
-            max: 80,
-          },
-          speed: 0,
-          sync: false,
         },
       },
     },

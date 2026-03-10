@@ -1,6 +1,7 @@
 packages:
   - apps/*
   - presets/*
+  - palettes/*
 
 onlyBuiltDependencies:
   - '@swc/core'

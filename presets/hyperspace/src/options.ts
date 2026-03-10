@@ -8,8 +8,11 @@ export const options = {
     number: {
       value: 100,
     },
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     life: {
       count: 1,

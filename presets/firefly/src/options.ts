@@ -10,8 +10,11 @@ export const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: "#fff",
+    fill: {
+      color: {
+        value: "#fff",
+      },
+      enable: true,
     },
     life: {
       duration: {
