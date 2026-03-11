@@ -1,3 +1,5 @@
+linkWorkspacePackages: deep
+
 packages:
   - apps/*
   - presets/*

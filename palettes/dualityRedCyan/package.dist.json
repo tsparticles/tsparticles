@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/presets.git",
-    "directory": "palette/dualityRedCyan"
+    "directory": "palettes/dualityRedCyan"
   },
   "keywords": [
     "front-end",
