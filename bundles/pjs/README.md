@@ -31,7 +31,7 @@ specified in the **Included Packages** section.
 Once the scripts are loaded you can set up `particlesJS` like this:
 
 ```javascript
-(async (engine) => {
+(async engine => {
   await initPjs(engine);
 
   particlesJS("tsparticles", {
@@ -47,7 +47,7 @@ Here you can use ParticlesJS options.
 ### Alternative Usage
 
 ```javascript
-(async (engine) => {
+(async engine => {
   initPjs(engine);
 
   Particles.init({

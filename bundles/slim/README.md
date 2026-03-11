@@ -181,7 +181,7 @@ let options = {
   /* custom options */
 };
 
-let particlesInit = async (engine) => {
+let particlesInit = async engine => {
   await loadSlim(engine);
 };
 ```
