@@ -2,52 +2,26 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "extends": "nx/presets/npm.json",
   "nxCloudId": "62a6df5ddbaff92c46e3b366",
+  "defaultBase": "main",
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"],
+      "inputs": ["production", "^production"],
       "cache": true
     },
     "build:ci": {
-      "dependsOn": [
-        "^build:ci"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
+      "dependsOn": ["^build:ci"],
+      "outputs": ["{projectRoot}/dist"],
+      "inputs": ["production", "^production"],
       "cache": true
     },
-    "prepare": {
-      "dependsOn": [
-        "^build",
-        "^prepare"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
-    },
     "package": {
-      "dependsOn": [
-        "^build",
-        "^prepare",
-        "^package"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["^build", "^prepare", "^package"],
+      "outputs": ["{projectRoot}/dist"],
+      "inputs": ["production", "^production"],
+      "cache": true
     }
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud"
-    }
-  },
-  "affected": {
-    "defaultBase": "main"
   },
   "pluginsConfig": {
     "@nx/js": {
@@ -55,13 +29,18 @@
     }
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/pnpm-lock.yaml"
     ],
-    "sharedGlobals": [],
     "production": [
-      "default"
+      "{projectRoot}/src/**/*",
+      "{projectRoot}/package.json",
+      "{projectRoot}/tsconfig*.json",
+      "sharedGlobals"
     ]
   }
 }
