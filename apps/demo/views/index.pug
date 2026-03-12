@@ -22,114 +22,32 @@ html(lang="en")
         link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
 
     body
-        .container-fluid.m-0
+        .container-fluid.m-0.px-3.py-4
+            .row.mb-2
+                .col-12
+                    h2 Presets
             .row
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/ambient.png" alt="Ambient")
-                        .card-body
-                            h5.card-title Ambient
-                            p.card-text Ambient preset demo
-                            a.btn.btn-primary(href="ambient" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/bigCircles.png" alt="Big Circles")
-                        .card-body
-                            h5.card-title Big Circles
-                            p.card-text Big Circles preset demo
-                            a.btn.btn-primary(href="bigCircles" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/bubbles.png" alt="Bubbles")
-                        .card-body
-                            h5.card-title Bubbles
-                            p.card-text Bubbles preset demo
-                            a.btn.btn-primary(href="bubbles" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/confetti.png" alt="Confetti")
-                        .card-body
-                            h5.card-title Confetti
-                            p.card-text Confetti preset demo
-                            a.btn.btn-primary(href="confetti" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/fire.png" alt="Fire")
-                        .card-body
-                            h5.card-title Fire
-                            p.card-text Fire preset demo
-                            a.btn.btn-primary(href="fire" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/firefly.png" alt="Firefly")
-                        .card-body
-                            h5.card-title Firefly
-                            p.card-text Firefly preset demo
-                            a.btn.btn-primary(href="firefly" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/fireworks.png" alt="Fireworks")
-                        .card-body
-                            h5.card-title Fireworks
-                            p.card-text Fireworks preset demo
-                            a.btn.btn-primary(href="fireworks" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/fountain.png" alt="Fountain")
-                        .card-body
-                            h5.card-title Fountain
-                            p.card-text Fountain preset demo
-                            a.btn.btn-primary(href="fountain" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/hyperspace.png" alt="Hyperspace")
-                        .card-body
-                            h5.card-title Hyperspace
-                            p.card-text Hyperspace preset demo
-                            a.btn.btn-primary(href="hyperspace" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/links.png" alt="Links")
-                        .card-body
-                            h5.card-title Links
-                            p.card-text Links preset demo
-                            a.btn.btn-primary(href="links" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/seaAnemone.png" alt="Sea Anemone")
-                        .card-body
-                            h5.card-title Sea Anemone
-                            p.card-text Sea Anemone preset demo
-                            a.btn.btn-primary(href="seaAnemone" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/snow.png" alt="Snow")
-                        .card-body
-                            h5.card-title Snow
-                            p.card-text Snow preset demo
-                            a.btn.btn-primary(href="snow" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/squares.png" alt="Snow")
-                        .card-body
-                            h5.card-title Squares
-                            p.card-text Squares preset demo
-                            a.btn.btn-primary(href="squares" target="_blank") See demo
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/stars.png" alt="Stars")
-                        .card-body
-                            h5.card-title Stars
-                            p.card-text Stars preset demo
-                            a.btn.btn-primary(href="stars" target="_blank") See demo
+                each item in presets
+                    .col-12.col-md-6.col-xl-4.mt-3
+                        .card.h-100
+                            img.card-img-top(src=item.image alt=item.title)
+                            .card-body
+                                h5.card-title= item.title
+                                p.card-text= item.description
+                                a.btn.btn-primary(href=item.route target="_blank") See demo
 
-                .col-4.mt-3
-                    .card
-                        img.card-img-top(src="/images/presets/triangles.png" alt="Triangles")
-                        .card-body
-                            h5.card-title Triangles
-                            p.card-text Triangles preset demo
-                            a.btn.btn-primary(href="triangles" target="_blank") See demo
+            .row.mb-2.mt-5
+                .col-12
+                    h2 Palettes
+            .row
+                each item in palettes
+                    .col-12.col-md-6.col-xl-4.mt-3
+                        .card.h-100
+                            img.card-img-top(src=item.image alt=item.title)
+                            .card-body
+                                h5.card-title= item.title
+                                p.card-text= item.description
+                                a.btn.btn-primary(href=item.route target="_blank") See demo
 
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")

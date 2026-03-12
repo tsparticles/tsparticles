@@ -1,36 +1,107 @@
 import express from "express";
-//import helmet from "helmet";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
-//import rateLimit from "express-rate-limit";
 
 const liveReloadPort = 35730,
-    expressPort = 3015;
+  expressPort = 3015;
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url),
+  __dirname = dirname(__filename),
+  workspaceRoot = resolve(__dirname, "../.."),
+  presetsRoot = resolve(workspaceRoot, "presets"),
+  palettesRoot = resolve(workspaceRoot, "palettes");
+
+const toTitleCase = value => value.replaceAll(/\b\w/g, char => char.toUpperCase());
+
+const camelToKebab = value =>
+  value
+    .replaceAll(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replaceAll(/([A-Z]+)([A-Z][a-z0-9]+)/g, "$1-$2")
+    .toLowerCase();
+
+const toPascal = value => `${value[0].toUpperCase()}${value.slice(1)}`;
+
+const parsePaletteName = folder => {
+  const optionsPath = join(palettesRoot, folder, "src", "options.ts");
+
+  if (!existsSync(optionsPath)) {
+    return toTitleCase(camelToKebab(folder).replaceAll("-", " "));
+  }
+
+  const optionsContent = readFileSync(optionsPath, "utf8"),
+    match = optionsContent.match(/name:\s*"([^"]+)"/);
+
+  return match?.[1] ?? toTitleCase(camelToKebab(folder).replaceAll("-", " "));
+};
+
+const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
+  readdirSync(root, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => entry.name)
+    .sort((a, b) => a.localeCompare(b))
+    .map(folder => {
+      const slug = camelToKebab(folder),
+        packageName = `@tsparticles/${prefix}-${slug}`,
+        title =
+          mode === "palette"
+            ? parsePaletteName(folder)
+            : toTitleCase(slug.replaceAll("-", " ")),
+        loader = `load${toPascal(folder)}${loaderSuffix}`;
+
+      return {
+        id: folder,
+        slug,
+        title,
+        packageName,
+        mountPath: `/${prefix}-${slug}`,
+        route: `/${mode === "palette" ? "palettes" : "presets"}/${folder}`,
+        image: `/images/${mode === "palette" ? "palettes" : "presets"}/${folder}.png`,
+        scriptFile:
+          mode === "palette" ? `tsparticles.palette.palette-${slug}.min.js` : `tsparticles.preset.${slug}.bundle.min.js`,
+        loader,
+        optionValue: slug,
+        description: `${title} ${mode} demo`,
+      };
+    });
+
+const presets = loadCatalog({
+  root: presetsRoot,
+  prefix: "preset",
+  loaderSuffix: "Preset",
+  mode: "preset",
+});
+
+const palettes = loadCatalog({
+  root: palettesRoot,
+  prefix: "palette",
+  loaderSuffix: "Palette",
+  mode: "palette",
+});
+
+const presetMap = new Map(presets.map(item => [item.id, item])),
+  paletteMap = new Map(palettes.map(item => [item.id, item]));
+
 const liveReloadServer = livereload.createServer({
-    port: liveReloadPort
+  port: liveReloadPort,
 });
 
 liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
 });
 
-app.use(connectLiveReload({
-    port: liveReloadPort
-}));
-
-/*const limiter = rateLimit({
-    windowMs: 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
-});
-
-app.use(limiter);*/
-// app.use(helmet()); // Safari requires https, probably a bug
+app.use(
+  connectLiveReload({
+    port: liveReloadPort,
+  }),
+);
 
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -41,87 +112,48 @@ app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/lodash", express.static("./node_modules/lodash"));
-app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
+app.use("/popper.js", express.static("./node_modules/@popperjs/core/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
-app.use("/preset-ambient", express.static("./node_modules/@tsparticles/preset-ambient"));
-app.use("/preset-big-circles", express.static("./node_modules/@tsparticles/preset-big-circles"));
-app.use("/preset-bubbles", express.static("./node_modules/@tsparticles/preset-bubbles"));
-app.use("/preset-confetti", express.static("./node_modules/@tsparticles/preset-confetti"));
-app.use("/preset-fire", express.static("./node_modules/@tsparticles/preset-fire"));
-app.use("/preset-firefly", express.static("./node_modules/@tsparticles/preset-firefly"));
-app.use("/preset-fireworks", express.static("./node_modules/@tsparticles/preset-fireworks"));
-app.use("/preset-fountain", express.static("./node_modules/@tsparticles/preset-fountain"));
-app.use("/preset-hyperspace", express.static("./node_modules/@tsparticles/preset-hyperspace"));
-app.use("/preset-links", express.static("./node_modules/@tsparticles/preset-links"));
-app.use("/preset-sea-anemone", express.static("./node_modules/@tsparticles/preset-sea-anemone"));
-app.use("/preset-squares", express.static("./node_modules/@tsparticles/preset-squares"));
-app.use("/preset-snow", express.static("./node_modules/@tsparticles/preset-snow"));
-app.use("/preset-stars", express.static("./node_modules/@tsparticles/preset-stars"));
-app.use("/preset-triangles", express.static("./node_modules/@tsparticles/preset-triangles"));
+app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic/"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
+app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
+
+for (const item of [...presets, ...palettes]) {
+  app.use(item.mountPath, express.static(`./node_modules/${item.packageName}`));
+}
 
 app.get("/", function (req, res) {
-    res.render("index");
+  res.render("index", { presets, palettes });
 });
 
-app.get("/ambient", function (req, res) {
-    res.render("ambient");
+app.get("/presets/:id", function (req, res) {
+  const item = presetMap.get(req.params.id);
+
+  if (!item) {
+    res.status(404).send("Preset not found");
+
+    return;
+  }
+
+  res.render("preset", { item });
 });
 
-app.get("/bigCircles", function (req, res) {
-    res.render("bigCircles");
+app.get("/palettes/:id", function (req, res) {
+  const item = paletteMap.get(req.params.id);
+
+  if (!item) {
+    res.status(404).send("Palette not found");
+
+    return;
+  }
+
+  res.render("palette", { item });
 });
 
-app.get("/bubbles", function (req, res) {
-    res.render("bubbles");
-});
-
-app.get("/confetti", function (req, res) {
-    res.render("confetti");
-});
-
-app.get("/fire", function (req, res) {
-    res.render("fire");
-});
-
-app.get("/firefly", function (req, res) {
-    res.render("firefly");
-});
-
-app.get("/fireworks", function (req, res) {
-    res.render("fireworks");
-});
-
-app.get("/fountain", function (req, res) {
-    res.render("fountain");
-});
-
-app.get("/hyperspace", function (req, res) {
-    res.render("hyperspace");
-});
-
-app.get("/links", function (req, res) {
-    res.render("links");
-});
-
-app.get("/seaAnemone", function (req, res) {
-    res.render("seaAnemone");
-});
-
-app.get("/squares", function (req, res) {
-    res.render("squares");
-});
-
-app.get("/snow", function (req, res) {
-    res.render("snow");
-});
-
-app.get("/stars", function (req, res) {
-    res.render("stars");
-});
-
-app.get("/triangles", function (req, res) {
-    res.render("triangles");
-});
+for (const item of presets) {
+  app.get(`/${item.id}`, function (req, res) {
+    res.redirect(item.route);
+  });
+}
 
 app.listen(expressPort, () => console.log(`Demo app listening on port ${expressPort}!`));

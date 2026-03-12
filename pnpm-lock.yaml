@@ -170,6 +170,246 @@ importers:
 
   apps/demo:
     dependencies:
+      '@tsparticles/basic':
+        specifier: ^4.0.0-alpha.27
+        version: 4.0.0-alpha.27
+      '@tsparticles/palette-acid-pair':
+        specifier: workspace:^
+        version: link:../../palettes/acidPair/dist
+      '@tsparticles/palette-aurora-borealis':
+        specifier: workspace:^
+        version: link:../../palettes/auroraBorealis/dist
+      '@tsparticles/palette-autumn-leaves':
+        specifier: workspace:^
+        version: link:../../palettes/autumnLeaves/dist
+      '@tsparticles/palette-bioluminescence':
+        specifier: workspace:^
+        version: link:../../palettes/bioluminescence/dist
+      '@tsparticles/palette-blood-and-gore':
+        specifier: workspace:^
+        version: link:../../palettes/bloodAndGore/dist
+      '@tsparticles/palette-candlelight':
+        specifier: workspace:^
+        version: link:../../palettes/candlelight/dist
+      '@tsparticles/palette-caustics':
+        specifier: workspace:^
+        version: link:../../palettes/caustics/dist
+      '@tsparticles/palette-cherry-blossom':
+        specifier: workspace:^
+        version: link:../../palettes/cherryBlossom/dist
+      '@tsparticles/palette-cmy-secondaries':
+        specifier: workspace:^
+        version: link:../../palettes/cmySecondaries/dist
+      '@tsparticles/palette-colored-smoke-magenta':
+        specifier: workspace:^
+        version: link:../../palettes/coloredSmokeMagenta/dist
+      '@tsparticles/palette-colored-smoke-teal':
+        specifier: workspace:^
+        version: link:../../palettes/coloredSmokeTeal/dist
+      '@tsparticles/palette-confetti':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/dist
+      '@tsparticles/palette-cosmic-radiation':
+        specifier: workspace:^
+        version: link:../../palettes/cosmicRadiation/dist
+      '@tsparticles/palette-crt-phosphor':
+        specifier: workspace:^
+        version: link:../../palettes/crtPhosphor/dist
+      '@tsparticles/palette-dandelion-seeds':
+        specifier: workspace:^
+        version: link:../../palettes/dandelionSeeds/dist
+      '@tsparticles/palette-dark-matter':
+        specifier: workspace:^
+        version: link:../../palettes/darkMatter/dist
+      '@tsparticles/palette-deep-ocean':
+        specifier: workspace:^
+        version: link:../../palettes/deepOcean/dist
+      '@tsparticles/palette-desert-sand':
+        specifier: workspace:^
+        version: link:../../palettes/desertSand/dist
+      '@tsparticles/palette-duality-blue-yellow':
+        specifier: workspace:^
+        version: link:../../palettes/dualityBlueYellow/dist
+      '@tsparticles/palette-duality-green-magenta':
+        specifier: workspace:^
+        version: link:../../palettes/dualityGreenMagenta/dist
+      '@tsparticles/palette-duality-red-cyan':
+        specifier: workspace:^
+        version: link:../../palettes/dualityRedCyan/dist
+      '@tsparticles/palette-embers-and-ash':
+        specifier: workspace:^
+        version: link:../../palettes/embersAndAsh/dist
+      '@tsparticles/palette-explosion-debris':
+        specifier: workspace:^
+        version: link:../../palettes/explosionDebris/dist
+      '@tsparticles/palette-fairy-dust':
+        specifier: workspace:^
+        version: link:../../palettes/fairyDust/dist
+      '@tsparticles/palette-fire':
+        specifier: workspace:^
+        version: link:../../palettes/fire/dist
+      '@tsparticles/palette-fire-seed':
+        specifier: workspace:^
+        version: link:../../palettes/fireSeed/dist
+      '@tsparticles/palette-fireflies':
+        specifier: workspace:^
+        version: link:../../palettes/fireflies/dist
+      '@tsparticles/palette-fireworks-gold':
+        specifier: workspace:^
+        version: link:../../palettes/fireworksGold/dist
+      '@tsparticles/palette-fireworks-multicolor':
+        specifier: workspace:^
+        version: link:../../palettes/fireworksMulticolor/dist
+      '@tsparticles/palette-foam-and-bubbles':
+        specifier: workspace:^
+        version: link:../../palettes/foamAndBubbles/dist
+      '@tsparticles/palette-fog-coastal':
+        specifier: workspace:^
+        version: link:../../palettes/fogCoastal/dist
+      '@tsparticles/palette-full-fire-gradient':
+        specifier: workspace:^
+        version: link:../../palettes/fullFireGradient/dist
+      '@tsparticles/palette-full-spectrum':
+        specifier: workspace:^
+        version: link:../../palettes/fullSpectrum/dist
+      '@tsparticles/palette-galaxy-dust':
+        specifier: workspace:^
+        version: link:../../palettes/galaxyDust/dist
+      '@tsparticles/palette-glitch':
+        specifier: workspace:^
+        version: link:../../palettes/glitch/dist
+      '@tsparticles/palette-heat-duality':
+        specifier: workspace:^
+        version: link:../../palettes/heatDuality/dist
+      '@tsparticles/palette-heat-haze':
+        specifier: workspace:^
+        version: link:../../palettes/heatHaze/dist
+      '@tsparticles/palette-hologram':
+        specifier: workspace:^
+        version: link:../../palettes/hologram/dist
+      '@tsparticles/palette-holy-light':
+        specifier: workspace:^
+        version: link:../../palettes/holyLight/dist
+      '@tsparticles/palette-ice-magic':
+        specifier: workspace:^
+        version: link:../../palettes/iceMagic/dist
+      '@tsparticles/palette-ice-triad':
+        specifier: workspace:^
+        version: link:../../palettes/iceTriad/dist
+      '@tsparticles/palette-ink-in-water':
+        specifier: workspace:^
+        version: link:../../palettes/inkInWater/dist
+      '@tsparticles/palette-jellyfish-glow':
+        specifier: workspace:^
+        version: link:../../palettes/jellyfishGlow/dist
+      '@tsparticles/palette-lava-lamp':
+        specifier: workspace:^
+        version: link:../../palettes/lavaLamp/dist
+      '@tsparticles/palette-lens-flare-dust':
+        specifier: workspace:^
+        version: link:../../palettes/lensFlareDust/dist
+      '@tsparticles/palette-lightning':
+        specifier: workspace:^
+        version: link:../../palettes/lightning/dist
+      '@tsparticles/palette-lofi-warm':
+        specifier: workspace:^
+        version: link:../../palettes/lofiWarm/dist
+      '@tsparticles/palette-matrix-rain':
+        specifier: workspace:^
+        version: link:../../palettes/matrixRain/dist
+      '@tsparticles/palette-metal-sparks':
+        specifier: workspace:^
+        version: link:../../palettes/metalSparks/dist
+      '@tsparticles/palette-molten-metal':
+        specifier: workspace:^
+        version: link:../../palettes/moltenMetal/dist
+      '@tsparticles/palette-mud-and-dirt':
+        specifier: workspace:^
+        version: link:../../palettes/mudAndDirt/dist
+      '@tsparticles/palette-neon-city':
+        specifier: workspace:^
+        version: link:../../palettes/neonCity/dist
+      '@tsparticles/palette-network-nodes':
+        specifier: workspace:^
+        version: link:../../palettes/networkNodes/dist
+      '@tsparticles/palette-oil-slick':
+        specifier: workspace:^
+        version: link:../../palettes/oilSlick/dist
+      '@tsparticles/palette-plasma-arc':
+        specifier: workspace:^
+        version: link:../../palettes/plasmaArc/dist
+      '@tsparticles/palette-poison-and-venom':
+        specifier: workspace:^
+        version: link:../../palettes/poisonAndVenom/dist
+      '@tsparticles/palette-pollen-and-spores':
+        specifier: workspace:^
+        version: link:../../palettes/pollenAndSpores/dist
+      '@tsparticles/palette-portal':
+        specifier: workspace:^
+        version: link:../../palettes/portal/dist
+      '@tsparticles/palette-prism-scatter':
+        specifier: workspace:^
+        version: link:../../palettes/prismScatter/dist
+      '@tsparticles/palette-pulsar':
+        specifier: workspace:^
+        version: link:../../palettes/pulsar/dist
+      '@tsparticles/palette-rain':
+        specifier: workspace:^
+        version: link:../../palettes/rain/dist
+      '@tsparticles/palette-rainbow':
+        specifier: workspace:^
+        version: link:../../palettes/rainbow/dist
+      '@tsparticles/palette-rgb-primaries':
+        specifier: workspace:^
+        version: link:../../palettes/rgbPrimaries/dist
+      '@tsparticles/palette-rising-bubbles':
+        specifier: workspace:^
+        version: link:../../palettes/risingBubbles/dist
+      '@tsparticles/palette-rock-and-gravel':
+        specifier: workspace:^
+        version: link:../../palettes/rockAndGravel/dist
+      '@tsparticles/palette-rust-and-corrosion':
+        specifier: workspace:^
+        version: link:../../palettes/rustAndCorrosion/dist
+      '@tsparticles/palette-shockwave':
+        specifier: workspace:^
+        version: link:../../palettes/shockwave/dist
+      '@tsparticles/palette-skin-and-organic':
+        specifier: workspace:^
+        version: link:../../palettes/skinAndOrganic/dist
+      '@tsparticles/palette-smoke-cold':
+        specifier: workspace:^
+        version: link:../../palettes/smokeCold/dist
+      '@tsparticles/palette-smoke-warm':
+        specifier: workspace:^
+        version: link:../../palettes/smokeWarm/dist
+      '@tsparticles/palette-snowfall':
+        specifier: workspace:^
+        version: link:../../palettes/snowfall/dist
+      '@tsparticles/palette-solar-wind':
+        specifier: workspace:^
+        version: link:../../palettes/solarWind/dist
+      '@tsparticles/palette-sunset-binary':
+        specifier: workspace:^
+        version: link:../../palettes/sunsetBinary/dist
+      '@tsparticles/palette-supernova':
+        specifier: workspace:^
+        version: link:../../palettes/supernova/dist
+      '@tsparticles/palette-thermal-map':
+        specifier: workspace:^
+        version: link:../../palettes/thermalMap/dist
+      '@tsparticles/palette-thunderstorm':
+        specifier: workspace:^
+        version: link:../../palettes/thunderstorm/dist
+      '@tsparticles/palette-vaporwave':
+        specifier: workspace:^
+        version: link:../../palettes/vaporwave/dist
+      '@tsparticles/palette-water':
+        specifier: workspace:^
+        version: link:../../palettes/water/dist
+      '@tsparticles/palette-water-splash':
+        specifier: workspace:^
+        version: link:../../palettes/waterSplash/dist
       '@tsparticles/preset-ambient':
         specifier: workspace:^
         version: link:../../presets/ambient/dist
@@ -232,8 +472,8 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       express-rate-limit:
-        specifier: ^8.2.1
-        version: 8.2.1(express@5.2.1)
+        specifier: ^8.3.1
+        version: 8.3.1(express@5.2.1)
       helmet:
         specifier: ^8.1.0
         version: 8.1.0
@@ -247,7 +487,7 @@ importers:
         specifier: ^0.10.3
         version: 0.10.3
       lodash:
-        specifier: 4.17.23
+        specifier: ^4.17.23
         version: 4.17.23
       nodemon:
         specifier: ^3.1.14
@@ -3709,8 +3949,8 @@ packages:
   exponential-backoff@3.1.1:
     resolution: {integrity: sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==}
 
-  express-rate-limit@8.2.1:
-    resolution: {integrity: sha512-PCZEIEIxqwhzw4KF0n7QF4QqruVTcF73O5kFKUnGOyjbCCgizBBiFaYpd/fnBLUMPw/BWw9OsiN7GgrNYr7j6g==}
+  express-rate-limit@8.3.1:
+    resolution: {integrity: sha512-D1dKN+cmyPWuvB+G2SREQDzPY1agpBIcTa9sJxOPMCNeH3gwzhqJRDWCXW3gg0y//+LQ/8j52JbMROWyrKdMdw==}
     engines: {node: '>= 16'}
     peerDependencies:
       express: '>= 4.11'
@@ -4172,10 +4412,6 @@ packages:
   interpret@3.1.1:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
     engines: {node: '>=10.13.0'}
-
-  ip-address@10.0.1:
-    resolution: {integrity: sha512-NWv9YLW4PoW2B7xtzaS3NCot75m6nK7Icdv0o3lfMceJVRfSoQwqD4wEH5rLwoKJwUiZ/rfpiVBhnaF0FK4HoA==}
-    engines: {node: '>= 12'}
 
   ip-address@10.1.0:
     resolution: {integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==}
@@ -9114,10 +9350,10 @@ snapshots:
 
   exponential-backoff@3.1.1: {}
 
-  express-rate-limit@8.2.1(express@5.2.1):
+  express-rate-limit@8.3.1(express@5.2.1):
     dependencies:
       express: 5.2.1
-      ip-address: 10.0.1
+      ip-address: 10.1.0
 
   express@5.2.1:
     dependencies:
@@ -9621,8 +9857,6 @@ snapshots:
       '@types/node': 25.4.0
 
   interpret@3.1.1: {}
-
-  ip-address@10.0.1: {}
 
   ip-address@10.1.0: {}
 
