@@ -244,6 +244,7 @@ end
 
 subgraph pl [Plugins]
 ple[Emitters]
+pli[Interactivity]
 plm[Motion]
 end
 
@@ -269,5 +270,5 @@ subgraph pr [Presets]
 prc[Confetti]
 end
 
-bb & ple & plm & ssq & ul & urol & urot & uti & uw --> prc
+bb & ple & pli & plm & ssq & ul & urol & urot & uti & uw --> prc
 ```

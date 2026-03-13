@@ -72,19 +72,22 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
-e[tsParticles Engine]
+subgraph b [Bundles]
+bb[tsParticles Engine]
+end
 
 subgraph pl [Plugins]
 ple[Emitters]
+pli[Interactivity]
 end
 
-e --> pl
+bb --> pl
 
 subgraph s [Shapes]
 ssq[Square]
 end
 
-e --> s
+bb --> s
 
 subgraph u [Updaters]
 urot[Rotate]
@@ -92,11 +95,11 @@ usi[Size]
 usc[Stroke Color]
 end
 
-e --> u
+bb --> u
 
 subgraph pr [Presets]
 prsn[Squares]
 end
 
-e & ple & ssq & urot & usi & usc --> prsn
+bb & ple & pli & ssq & urot & usi & usc --> prsn
 ```

@@ -70,5 +70,31 @@ The options shown above are valid for all the component libraries.
 ---
 
 ```mermaid
-Online FlowChart & Diagrams Editor - Mermaid Live Editor
+flowchart TD
+
+subgraph b [Bundles]
+bb[tsParticles Basic]
+end
+
+subgraph i [Interactions]
+
+subgraph ie [Externals]
+iep[Push]
+end
+
+end
+
+bb --> i
+
+subgraph pl [Plugins]
+pli[Interactivity]
+end
+
+bb --> pl
+
+subgraph pr [Presets]
+prf[Fire]
+end
+
+bb & iep & pli --> prf
 ```

@@ -71,15 +71,19 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
-subgraph pl [Plugins]
-ple[Emitters]
+subgraph b [Bundles]
+bb[tsParticles Basic]
 end
 
-bb[tsParticles Basic] --> pl
+subgraph u [Updaters]
+usc[Stroke Color]
+end
+
+bb --> u
 
 subgraph pr [Presets]
 prbi[Ambient]
 end
 
-bb & ple --> prbi
+bb & usc --> prbi
 ```

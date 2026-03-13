@@ -72,9 +72,13 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
+subgraph b [Bundles]
+bb[tsParticles Basic]
+end
+
 subgraph pr [Presets]
 prst[Stars]
 end
 
-bb[tsParticles Basic] --> prst
+bb --> prst
 ```

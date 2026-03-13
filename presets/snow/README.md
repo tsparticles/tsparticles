@@ -71,11 +71,15 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
+subgraph b [Bundles]
+bb[tsParticles Basic]
+end
+
 subgraph u [Updaters]
 uwo[Wobble]
 end
 
-bb[tsParticles Engine] --> u
+bb --> u
 
 subgraph pr [Presets]
 prsn[Snow]
