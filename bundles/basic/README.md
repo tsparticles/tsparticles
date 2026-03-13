@@ -19,6 +19,43 @@
 - [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
 - [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
 
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bb[tsparticles/basic]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph p [Plugins]
+  pm[tsparticles/plugin-move]
+  ph[tsparticles/plugin-hex-color]
+  phs[tsparticles/plugin-hsl-color]
+  pr[tsparticles/plugin-rgb-color]
+end
+
+subgraph s [Shapes]
+  sc[tsparticles/shape-circle]
+end
+
+subgraph u [Updaters]
+  uf[tsparticles/updater-fill-color]
+  uo[tsparticles/updater-opacity]
+  uom[tsparticles/updater-out-modes]
+  us[tsparticles/updater-size]
+end
+
+bb --> ce
+bb --> p
+bb --> s
+bb --> u
+```
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
