@@ -13,7 +13,7 @@ importers:
         version: 20.4.3(@types/node@25.4.0)(typescript@5.9.3)
       '@commitlint/config-conventional':
         specifier: ^20.4.3
-        version: 20.4.3
+        version: 20.4.4
       '@swc/core':
         specifier: ^1.15.18
         version: 1.15.18
@@ -2376,8 +2376,8 @@ packages:
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@20.4.3':
-    resolution: {integrity: sha512-9RtLySbYQAs8yEqWEqhSZo9nYhbm57jx7qHXtgRmv/nmeQIjjMcwf6Dl+y5UZcGWgWx435TAYBURONaJIuCjWg==}
+  '@commitlint/config-conventional@20.4.4':
+    resolution: {integrity: sha512-Usg+XXbPNG2GtFWTgRURNWCge1iH1y6jQIvvklOdAbyn2t8ajfVwZCnf5t5X4gUsy17BOiY+myszGsSMIvhOVA==}
     engines: {node: '>=v18'}
 
   '@commitlint/config-validator@20.4.3':
@@ -2438,6 +2438,10 @@ packages:
 
   '@commitlint/types@20.4.3':
     resolution: {integrity: sha512-51OWa1Gi6ODOasPmfJPq6js4pZoomima4XLZZCrkldaH2V5Nb3bVhNXPeT6XV0gubbainSpTw4zi68NqAeCNCg==}
+    engines: {node: '>=v18'}
+
+  '@commitlint/types@20.4.4':
+    resolution: {integrity: sha512-dwTGzyAblFXHJNBOgrTuO5Ee48ioXpS5XPRLLatxhQu149DFAHUcB3f0Q5eea3RM4USSsP1+WVT2dBtLVod4fg==}
     engines: {node: '>=v18'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -8420,9 +8424,9 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/config-conventional@20.4.3':
+  '@commitlint/config-conventional@20.4.4':
     dependencies:
-      '@commitlint/types': 20.4.3
+      '@commitlint/types': 20.4.4
       conventional-changelog-conventionalcommits: 9.3.0
 
   '@commitlint/config-validator@20.4.3':
@@ -8512,6 +8516,11 @@ snapshots:
       escalade: 3.2.0
 
   '@commitlint/types@20.4.3':
+    dependencies:
+      conventional-commits-parser: 6.3.0
+      picocolors: 1.1.1
+
+  '@commitlint/types@20.4.4':
     dependencies:
       conventional-commits-parser: 6.3.0
       picocolors: 1.1.1
