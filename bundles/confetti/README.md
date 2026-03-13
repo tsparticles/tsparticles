@@ -9,27 +9,66 @@ beautiful confetti effects with ease.
 
 **Included Packages**
 
+- [@tsparticles/basic (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/basic)
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
-- [@tsparticles/plugin-move](https://github.com/tsparticles/tsparticles/tree/main/plugin/move)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
 - [@tsparticles/plugin-motion](https://github.com/tsparticles/tsparticles/tree/main/plugins/motion)
 - [@tsparticles/shape-cards](https://github.com/tsparticles/tsparticles/tree/main/shapes/cards)
-- [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
 - [@tsparticles/shape-emoji](https://github.com/tsparticles/tsparticles/tree/main/shapes/emoji)
 - [@tsparticles/shape-heart](https://github.com/tsparticles/tsparticles/tree/main/shapes/heart)
 - [@tsparticles/shape-image](https://github.com/tsparticles/tsparticles/tree/main/shapes/image)
 - [@tsparticles/shape-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
 - [@tsparticles/shape-square](https://github.com/tsparticles/tsparticles/tree/main/shapes/square)
 - [@tsparticles/shape-star](https://github.com/tsparticles/tsparticles/tree/main/shapes/star)
-- [@tsparticles/updater-fill-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
-- [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
-- [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
 - [@tsparticles/updater-roll](https://github.com/tsparticles/tsparticles/tree/main/updaters/roll)
 - [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
-- [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
 - [@tsparticles/updater-tilt](https://github.com/tsparticles/tsparticles/tree/main/updaters/tilt)
 - [@tsparticles/updater-wobble](https://github.com/tsparticles/tsparticles/tree/main/updaters/wobble)
+
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bc[tsparticles/confetti]
+  bb[tsparticles/basic]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph p [Plugins]
+  pe[tsparticles/plugin-emitters]
+  pm[tsparticles/plugin-motion]
+end
+
+subgraph s [Shapes]
+  sca[tsparticles/shape-cards]
+  se[tsparticles/shape-emoji]
+  sh[tsparticles/shape-heart]
+  si[tsparticles/shape-image]
+  sp[tsparticles/shape-polygon]
+  ss[tsparticles/shape-square]
+  sst[tsparticles/shape-star]
+end
+
+subgraph u [Updaters]
+  ul[tsparticles/updater-life]
+  ur[tsparticles/updater-roll]
+  uro[tsparticles/updater-rotate]
+  ut[tsparticles/updater-tilt]
+  uw[tsparticles/updater-wobble]
+end
+
+bc --> bb
+bc --> ce
+bc --> p
+bc --> s
+bc --> u
+```
 
 ## How to use it
 

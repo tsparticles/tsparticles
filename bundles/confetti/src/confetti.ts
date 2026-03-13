@@ -89,6 +89,7 @@ async function initPlugins(engine: Engine): Promise<void> {
           }
 
           clearInterval(interval);
+
           resolve();
         }, timeout);
     });

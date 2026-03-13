@@ -6,6 +6,35 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) particles.js compatibility library.
 
+**Included Packages**
+
+- [tsparticles (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/full)
+- [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
+- [@tsparticles/plugin-responsive](https://github.com/tsparticles/tsparticles/tree/main/plugins/responsive)
+
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bp[tsparticles/pjs]
+  bf[tsparticles]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph p [Plugins]
+  pr[tsparticles/plugin-responsive]
+end
+
+bp --> bf
+bp --> ce
+bp --> p
+```
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery

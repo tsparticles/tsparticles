@@ -72,7 +72,22 @@ export async function loadSlim(engine: Engine): Promise<void> {
 
     await loadBasic(e);
 
-    await loadInteractivityPlugin(e);
+    await Promise.all([
+      loadInteractivityPlugin(e),
+
+      loadEasingQuadPlugin(e),
+
+      loadEmojiShape(e),
+      loadImageShape(e),
+      loadLineShape(e),
+      loadPolygonShape(e),
+      loadSquareShape(e),
+      loadStarShape(e),
+
+      loadLifeUpdater(e),
+      loadRotateUpdater(e),
+      loadStrokeColorUpdater(e),
+    ]);
 
     await Promise.all([
       loadExternalParallaxInteraction(e),
@@ -90,19 +105,6 @@ export async function loadSlim(engine: Engine): Promise<void> {
       loadParticlesAttractInteraction(e),
       loadParticlesCollisionsInteraction(e),
       loadParticlesLinksInteraction(e),
-
-      loadEasingQuadPlugin(e),
-
-      loadEmojiShape(e),
-      loadImageShape(e),
-      loadLineShape(e),
-      loadPolygonShape(e),
-      loadSquareShape(e),
-      loadStarShape(e),
-
-      loadLifeUpdater(e),
-      loadRotateUpdater(e),
-      loadStrokeColorUpdater(e),
     ]);
   });
 }
