@@ -30,7 +30,7 @@ export function drawSquircle(data: IShapeDrawData<SquircleParticle>): void {
   context.scale(radius, radius);
   context.beginPath();
 
-  for (let i = 0; i <= defaultSteps; i++) {
+  for (let i = 0; i <= steps; i++) {
     const t = i * step,
       cos = Math.cos(t),
       sin = Math.sin(t),
