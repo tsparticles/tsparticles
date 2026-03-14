@@ -1,6 +1,6 @@
-import type { IShapeValues } from "@tsparticles/engine";
+import type { IShapeValues, RangeValue } from "@tsparticles/engine";
 
 export interface ISquircleData extends IShapeValues {
-  exponent?: number;
-  steps?: number;
+  exponent?: RangeValue;
+  steps?: RangeValue;
 }
