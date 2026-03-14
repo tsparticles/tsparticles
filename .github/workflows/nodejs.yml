@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: "24"
 
-      - uses: pnpm/action-setup@v4.2.0
+      - uses: pnpm/action-setup@v4.4.0
         with:
           run_install: false
 
