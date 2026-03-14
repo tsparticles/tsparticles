@@ -19,7 +19,9 @@ export async function loadBasic(engine: Engine): Promise<void> {
       { loadHslColorPlugin },
       { loadRgbColorPlugin },
       { loadMovePlugin },
+
       { loadCircleShape },
+
       { loadFillColorUpdater },
       { loadOpacityUpdater },
       { loadOutModesUpdater },
@@ -29,7 +31,9 @@ export async function loadBasic(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-hsl-color"),
       import("@tsparticles/plugin-rgb-color"),
       import("@tsparticles/plugin-move"),
+
       import("@tsparticles/shape-circle"),
+
       import("@tsparticles/updater-fill-color"),
       import("@tsparticles/updater-opacity"),
       import("@tsparticles/updater-out-modes"),

@@ -191,10 +191,6 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadFull(e);
 
     await Promise.all([
-      loadEmittersShapeCanvas(e),
-      loadEmittersShapePath(e),
-      loadEmittersShapePolygon(e),
-
       loadHsvColorPlugin(e),
       loadHwbColorPlugin(e),
       loadLabColorPlugin(e),
@@ -220,7 +216,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadBackgroundMaskPlugin(e),
       loadBlendPlugin(e),
       loadCanvasMaskPlugin(e),
-      loadInfectionPlugin(e),
       loadManualParticlesPlugin(e),
       loadMotionPlugin(e),
       loadPoissonDiscPlugin(e),
@@ -234,11 +229,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadExportImagePlugin(e),
       loadExportJSONPlugin(e),
       loadExportVideoPlugin(e),
-
-      loadExternalParticleInteraction(e),
-      loadExternalPopInteraction(e),
-      loadLightInteraction(e),
-      loadParticlesRepulseInteraction(e),
 
       loadGradientUpdater(e),
       loadOrbitUpdater(e),
@@ -274,6 +264,19 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadRoundedRectShape(e),
       loadSpiralShape(e),
       loadSquircleShape(e),
+    ]);
+
+    await Promise.all([
+      loadExternalParticleInteraction(e),
+      loadExternalPopInteraction(e),
+      loadLightInteraction(e),
+      loadParticlesRepulseInteraction(e),
+
+      loadInfectionPlugin(e),
+
+      loadEmittersShapeCanvas(e),
+      loadEmittersShapePath(e),
+      loadEmittersShapePolygon(e),
     ]);
   });
 }

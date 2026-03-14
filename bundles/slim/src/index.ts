@@ -15,6 +15,8 @@ export async function loadSlim(engine: Engine): Promise<void> {
 
   await engine.register(async e => {
     const [
+      { loadBasic },
+
       { loadExternalParallaxInteraction },
       { loadExternalAttractInteraction },
       { loadExternalBounceInteraction },
@@ -29,19 +31,23 @@ export async function loadSlim(engine: Engine): Promise<void> {
       { loadParticlesAttractInteraction },
       { loadParticlesCollisionsInteraction },
       { loadParticlesLinksInteraction },
+
       { loadEasingQuadPlugin },
+      { loadInteractivityPlugin },
+
       { loadEmojiShape },
       { loadImageShape },
       { loadLineShape },
       { loadPolygonShape },
       { loadSquareShape },
       { loadStarShape },
+
       { loadLifeUpdater },
       { loadRotateUpdater },
       { loadStrokeColorUpdater },
-      { loadBasic },
-      { loadInteractivityPlugin },
     ] = await Promise.all([
+      import("@tsparticles/basic"),
+
       import("@tsparticles/interaction-external-parallax"),
       import("@tsparticles/interaction-external-attract"),
       import("@tsparticles/interaction-external-bounce"),
@@ -56,23 +62,25 @@ export async function loadSlim(engine: Engine): Promise<void> {
       import("@tsparticles/interaction-particles-attract"),
       import("@tsparticles/interaction-particles-collisions"),
       import("@tsparticles/interaction-particles-links"),
+
       import("@tsparticles/plugin-easing-quad"),
+      import("@tsparticles/plugin-interactivity"),
+
       import("@tsparticles/shape-emoji"),
       import("@tsparticles/shape-image"),
       import("@tsparticles/shape-line"),
       import("@tsparticles/shape-polygon"),
       import("@tsparticles/shape-square"),
       import("@tsparticles/shape-star"),
+
       import("@tsparticles/updater-life"),
       import("@tsparticles/updater-rotate"),
       import("@tsparticles/updater-stroke-color"),
-      import("@tsparticles/basic"),
-      import("@tsparticles/plugin-interactivity"),
     ]);
 
-    await loadBasic(e);
-
     await Promise.all([
+      loadBasic(e),
+
       loadInteractivityPlugin(e),
 
       loadEasingQuadPlugin(e),

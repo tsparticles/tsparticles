@@ -15,36 +15,40 @@ export async function loadFull(engine: Engine): Promise<void> {
 
   await engine.register(async e => {
     const [
-      { loadDestroyUpdater },
-      { loadRollUpdater },
-      { loadTiltUpdater },
-      { loadTwinkleUpdater },
-      { loadWobbleUpdater },
-      { loadTextShape },
+      { loadSlim },
       { loadExternalTrailInteraction },
       { loadAbsorbersPlugin },
       { loadEmittersPlugin },
       { loadEmittersShapeCircle },
       { loadEmittersShapeSquare },
-      { loadSlim },
+      { loadTextShape },
+      { loadDestroyUpdater },
+      { loadRollUpdater },
+      { loadTiltUpdater },
+      { loadTwinkleUpdater },
+      { loadWobbleUpdater },
     ] = await Promise.all([
+      import("@tsparticles/slim"),
+
+      import("@tsparticles/interaction-external-trail"),
+
+      import("@tsparticles/plugin-absorbers"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters-shape-circle"),
+      import("@tsparticles/plugin-emitters-shape-square"),
+
+      import("@tsparticles/shape-text"),
+
       import("@tsparticles/updater-destroy"),
       import("@tsparticles/updater-roll"),
       import("@tsparticles/updater-tilt"),
       import("@tsparticles/updater-twinkle"),
       import("@tsparticles/updater-wobble"),
-      import("@tsparticles/shape-text"),
-      import("@tsparticles/interaction-external-trail"),
-      import("@tsparticles/plugin-absorbers"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-emitters-shape-circle"),
-      import("@tsparticles/plugin-emitters-shape-square"),
-      import("@tsparticles/slim"),
     ]);
 
-    await loadSlim(e);
-
     await Promise.all([
+      loadSlim(e),
+
       loadDestroyUpdater(e),
       loadRollUpdater(e),
       loadTiltUpdater(e),
@@ -52,7 +56,9 @@ export async function loadFull(engine: Engine): Promise<void> {
       loadWobbleUpdater(e),
 
       loadTextShape(e),
+    ]);
 
+    await Promise.all([
       loadExternalTrailInteraction(e),
 
       loadAbsorbersPlugin(e),
