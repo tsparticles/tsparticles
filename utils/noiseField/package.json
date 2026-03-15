@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/noise-field",
-  "version": "4.0.0-alpha.27",
+  "version": "4.0.0-alpha.28",
   "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,8 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.27",
-    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.27"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.28",
+    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.28"
   },
   "publishConfig": {
     "access": "public",

@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/tests",
   "private": true,
-  "version": "4.0.0-alpha.27",
+  "version": "4.0.0-alpha.28",
   "scripts": {
     "prettify:ci": "prettier --check ./src",
     "prettify": "prettier --write ./src",
@@ -16,11 +16,11 @@
     "test:ci": "NODE_ENV=test vitest run --maxConcurrency=2"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.27",
-    "@tsparticles/plugin-hex-color": "workspace:4.0.0-alpha.27",
-    "@tsparticles/plugin-hsl-color": "workspace:4.0.0-alpha.27",
-    "@tsparticles/plugin-hsv-color": "workspace:4.0.0-alpha.27",
-    "@tsparticles/plugin-rgb-color": "workspace:4.0.0-alpha.27"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.28",
+    "@tsparticles/plugin-hex-color": "workspace:4.0.0-alpha.28",
+    "@tsparticles/plugin-hsl-color": "workspace:4.0.0-alpha.28",
+    "@tsparticles/plugin-hsv-color": "workspace:4.0.0-alpha.28",
+    "@tsparticles/plugin-rgb-color": "workspace:4.0.0-alpha.28"
   },
   "type": "module"
 }
