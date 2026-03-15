@@ -188,9 +188,22 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-emitters-shape-polygon"),
     ]);
 
-    await loadFull(e);
-
     await Promise.all([
+      loadFull(e).then(async () => {
+        await Promise.all([
+          loadExternalParticleInteraction(e),
+          loadExternalPopInteraction(e),
+          loadLightInteraction(e),
+          loadParticlesRepulseInteraction(e),
+
+          loadInfectionPlugin(e),
+
+          loadEmittersShapeCanvas(e),
+          loadEmittersShapePath(e),
+          loadEmittersShapePolygon(e),
+        ]);
+      }),
+
       loadHsvColorPlugin(e),
       loadHwbColorPlugin(e),
       loadLabColorPlugin(e),
@@ -264,19 +277,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadRoundedRectShape(e),
       loadSpiralShape(e),
       loadSquircleShape(e),
-    ]);
-
-    await Promise.all([
-      loadExternalParticleInteraction(e),
-      loadExternalPopInteraction(e),
-      loadLightInteraction(e),
-      loadParticlesRepulseInteraction(e),
-
-      loadInfectionPlugin(e),
-
-      loadEmittersShapeCanvas(e),
-      loadEmittersShapePath(e),
-      loadEmittersShapePolygon(e),
     ]);
   });
 }

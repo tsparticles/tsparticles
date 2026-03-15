@@ -98,9 +98,8 @@ async function initPlugins(engine: Engine): Promise<void> {
       import("@tsparticles/effect-trail"),
     ]);
 
-    await loadBasic(e);
-
     await Promise.all([
+      loadBasic(e),
       loadEmittersPlugin(e),
       loadSoundsPlugin(e),
       loadRotateUpdater(e),

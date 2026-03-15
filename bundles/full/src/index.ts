@@ -47,7 +47,19 @@ export async function loadFull(engine: Engine): Promise<void> {
     ]);
 
     await Promise.all([
-      loadSlim(e),
+      loadSlim(e).then(async () => {
+        await Promise.all([
+          loadExternalTrailInteraction(e),
+
+          loadAbsorbersPlugin(e),
+          loadEmittersPlugin(e).then(async () => {
+            await Promise.all([
+              loadEmittersShapeCircle(e),
+              loadEmittersShapeSquare(e),
+            ]);
+          }),
+        ]);
+      }),
 
       loadDestroyUpdater(e),
       loadRollUpdater(e),
@@ -56,18 +68,6 @@ export async function loadFull(engine: Engine): Promise<void> {
       loadWobbleUpdater(e),
 
       loadTextShape(e),
-    ]);
-
-    await Promise.all([
-      loadExternalTrailInteraction(e),
-
-      loadAbsorbersPlugin(e),
-      loadEmittersPlugin(e),
-    ]);
-
-    await Promise.all([
-      loadEmittersShapeCircle(e),
-      loadEmittersShapeSquare(e),
     ]);
   });
 }

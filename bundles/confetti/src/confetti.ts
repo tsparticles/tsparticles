@@ -138,9 +138,8 @@ async function initPlugins(engine: Engine): Promise<void> {
       import("@tsparticles/updater-wobble"),
     ]);
 
-    await loadBasic(e);
-
     await Promise.all([
+      loadBasic(e),
       loadMotionPlugin(e),
       loadEmittersPlugin(e),
       loadCardSuitsShape(e),

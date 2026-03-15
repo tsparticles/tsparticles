@@ -81,7 +81,25 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
 
-      loadInteractivityPlugin(e),
+      loadInteractivityPlugin(e).then(async () => {
+        await Promise.all([
+          loadExternalParallaxInteraction(e),
+          loadExternalAttractInteraction(e),
+          loadExternalBounceInteraction(e),
+          loadExternalBubbleInteraction(e),
+          loadExternalConnectInteraction(e),
+          loadExternalGrabInteraction(e),
+          loadExternalPauseInteraction(e),
+          loadExternalPushInteraction(e),
+          loadExternalRemoveInteraction(e),
+          loadExternalRepulseInteraction(e),
+          loadExternalSlowInteraction(e),
+
+          loadParticlesAttractInteraction(e),
+          loadParticlesCollisionsInteraction(e),
+          loadParticlesLinksInteraction(e),
+        ]);
+      }),
 
       loadEasingQuadPlugin(e),
 
@@ -95,24 +113,6 @@ export async function loadSlim(engine: Engine): Promise<void> {
       loadLifeUpdater(e),
       loadRotateUpdater(e),
       loadStrokeColorUpdater(e),
-    ]);
-
-    await Promise.all([
-      loadExternalParallaxInteraction(e),
-      loadExternalAttractInteraction(e),
-      loadExternalBounceInteraction(e),
-      loadExternalBubbleInteraction(e),
-      loadExternalConnectInteraction(e),
-      loadExternalGrabInteraction(e),
-      loadExternalPauseInteraction(e),
-      loadExternalPushInteraction(e),
-      loadExternalRemoveInteraction(e),
-      loadExternalRepulseInteraction(e),
-      loadExternalSlowInteraction(e),
-
-      loadParticlesAttractInteraction(e),
-      loadParticlesCollisionsInteraction(e),
-      loadParticlesLinksInteraction(e),
     ]);
   });
 }
