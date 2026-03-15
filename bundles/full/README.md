@@ -10,15 +10,63 @@ a `@tsparticles/engine` instance.
 **Included Packages**
 
 - [@tsparticles/slim (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/slim)
+- [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
 - [@tsparticles/interaction-external-trail](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/trail)
 - [@tsparticles/plugin-absorbers](https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/plugin-emitters-shape-circle](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters/shape/circle)
+- [@tsparticles/plugin-emitters-shape-square](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters/shape/square)
 - [@tsparticles/shape-text](https://github.com/tsparticles/tsparticles/tree/main/shapes/text)
 - [@tsparticles/updater-destroy](https://github.com/tsparticles/tsparticles/tree/main/updaters/destroy)
 - [@tsparticles/updater-roll](https://github.com/tsparticles/tsparticles/tree/main/updaters/roll)
 - [@tsparticles/updater-tilt](https://github.com/tsparticles/tsparticles/tree/main/updaters/tilt)
 - [@tsparticles/updater-twinkle](https://github.com/tsparticles/tsparticles/tree/main/updaters/twinkle)
 - [@tsparticles/updater-wobble](https://github.com/tsparticles/tsparticles/tree/main/updaters/wobble)
+
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bf[tsparticles]
+  bs[tsparticles/slim]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph i [Interactions]
+  iet[tsparticles/interaction-external-trail]
+end
+
+subgraph p [Plugins]
+  pa[tsparticles/plugin-absorbers]
+  pe[tsparticles/plugin-emitters]
+  pesc[tsparticles/plugin-emitters-shape-circle]
+  pess[tsparticles/plugin-emitters-shape-square]
+end
+
+subgraph s [Shapes]
+  st[tsparticles/shape-text]
+end
+
+subgraph u [Updaters]
+  ud[tsparticles/updater-destroy]
+  ur[tsparticles/updater-roll]
+  ut[tsparticles/updater-tilt]
+  utw[tsparticles/updater-twinkle]
+  uw[tsparticles/updater-wobble]
+end
+
+bf --> bs
+bf --> ce
+bf --> i
+bf --> p
+bf --> s
+bf --> u
+```
 
 ## How to use it
 
@@ -168,7 +216,7 @@ let options = {
   /* custom options */
 };
 
-let particlesInit = async (engine) => {
+let particlesInit = async engine => {
   await loadFull(engine);
 };
 ```

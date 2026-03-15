@@ -9,22 +9,52 @@ beautiful fireworks effects with ease.
 
 **Included Packages**
 
+- [@tsparticles/basic (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/basic)
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
 - [@tsparticles/effect-trail](https://github.com/tsparticles/tsparticles/tree/main/effects/trail)
-- [@tsparticles/plugin-move](https://github.com/tsparticles/tsparticles/tree/main/plugin/move)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
 - [@tsparticles/plugin-emitters-shape-square](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters/shape/square)
 - [@tsparticles/plugin-sounds](https://github.com/tsparticles/tsparticles/tree/main/plugins/sounds)
-- [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
-- [@tsparticles/shape-line](https://github.com/tsparticles/tsparticles/tree/main/shapes/line)
-- [@tsparticles/updater-fill-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
 - [@tsparticles/updater-destroy](https://github.com/tsparticles/tsparticles/tree/main/updaters/destroy)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
-- [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
-- [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
 - [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
-- [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
-- [@tsparticles/updater-stroke-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/strokeColor)
+
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bf[tsparticles/fireworks]
+  bb[tsparticles/basic]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph e [Effects]
+  et[tsparticles/effect-trail]
+end
+
+subgraph p [Plugins]
+  pe[tsparticles/plugin-emitters]
+  pess[tsparticles/plugin-emitters-shape-square]
+  ps[tsparticles/plugin-sounds]
+end
+
+subgraph u [Updaters]
+  ud[tsparticles/updater-destroy]
+  ul[tsparticles/updater-life]
+  ur[tsparticles/updater-rotate]
+end
+
+bf --> bb
+bf --> ce
+bf --> e
+bf --> p
+bf --> u
+```
 
 ## How to use it
 

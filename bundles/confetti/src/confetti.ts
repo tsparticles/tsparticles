@@ -89,6 +89,7 @@ async function initPlugins(engine: Engine): Promise<void> {
           }
 
           clearInterval(interval);
+
           resolve();
         }, timeout);
     });
@@ -137,9 +138,8 @@ async function initPlugins(engine: Engine): Promise<void> {
       import("@tsparticles/updater-wobble"),
     ]);
 
-    await loadBasic(e);
-
     await Promise.all([
+      loadBasic(e),
       loadMotionPlugin(e),
       loadEmittersPlugin(e),
       loadCardSuitsShape(e),
@@ -200,8 +200,11 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             count: 1,
           },
           particles: {
-            color: {
-              value: actualOptions.colors,
+            fill: {
+              color: {
+                value: actualOptions.colors,
+              },
+              enable: true,
             },
             shape: {
               type: actualOptions.shapes,
@@ -303,8 +306,11 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
       number: {
         value: 0,
       },
-      color: {
-        value: actualOptions.colors,
+      fill: {
+        color: {
+          value: actualOptions.colors,
+        },
+        enable: true,
       },
       shape: {
         type: actualOptions.shapes,

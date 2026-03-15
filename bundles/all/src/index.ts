@@ -188,12 +188,38 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-emitters-shape-polygon"),
     ]);
 
-    await loadFull(e);
-
     await Promise.all([
-      loadEmittersShapeCanvas(e),
-      loadEmittersShapePath(e),
-      loadEmittersShapePolygon(e),
+      (async (): Promise<void> => {
+        await loadFull(e);
+
+        await Promise.all([
+          loadExternalParticleInteraction(e),
+          loadExternalPopInteraction(e),
+          loadLightInteraction(e),
+          loadParticlesRepulseInteraction(e),
+
+          loadInfectionPlugin(e),
+
+          loadEmittersShapeCanvas(e),
+          loadEmittersShapePath(e),
+          loadEmittersShapePolygon(e),
+
+          loadBranchesPath(e),
+          loadBrownianPath(e),
+          loadCurlNoisePath(e),
+          loadCurvesPath(e),
+          loadFractalNoisePath(e),
+          loadGridPath(e),
+          loadLevyPath(e),
+          loadPerlinNoisePath(e),
+          loadPolygonPath(e),
+          loadRandomPath(e),
+          loadSVGPath(e),
+          loadSpiralPath(e),
+          loadZigZagPath(e),
+          loadSimplexNoisePath(e),
+        ]);
+      })(),
 
       loadHsvColorPlugin(e),
       loadHwbColorPlugin(e),
@@ -220,7 +246,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadBackgroundMaskPlugin(e),
       loadBlendPlugin(e),
       loadCanvasMaskPlugin(e),
-      loadInfectionPlugin(e),
       loadManualParticlesPlugin(e),
       loadMotionPlugin(e),
       loadPoissonDiscPlugin(e),
@@ -235,28 +260,8 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadExportJSONPlugin(e),
       loadExportVideoPlugin(e),
 
-      loadExternalParticleInteraction(e),
-      loadExternalPopInteraction(e),
-      loadLightInteraction(e),
-      loadParticlesRepulseInteraction(e),
-
       loadGradientUpdater(e),
       loadOrbitUpdater(e),
-
-      loadBranchesPath(e),
-      loadBrownianPath(e),
-      loadCurlNoisePath(e),
-      loadCurvesPath(e),
-      loadFractalNoisePath(e),
-      loadGridPath(e),
-      loadLevyPath(e),
-      loadPerlinNoisePath(e),
-      loadPolygonPath(e),
-      loadRandomPath(e),
-      loadSVGPath(e),
-      loadSpiralPath(e),
-      loadZigZagPath(e),
-      loadSimplexNoisePath(e),
 
       loadBubbleEffect(e),
       loadParticlesEffect(e),

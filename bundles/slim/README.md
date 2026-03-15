@@ -10,6 +10,7 @@ a `@tsparticles/engine` instance.
 **Included Packages**
 
 - [@tsparticles/basic (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/basic)
+- [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
 - [@tsparticles/interaction-external-attract](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/attract)
 - [@tsparticles/interaction-external-bounce](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/bounce)
 - [@tsparticles/interaction-external-bubble](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/bubble)
@@ -24,8 +25,8 @@ a `@tsparticles/engine` instance.
 - [@tsparticles/interaction-particles-attract](https://github.com/tsparticles/tsparticles/tree/main/interactions/particles/attract)
 - [@tsparticles/interaction-particles-collisions](https://github.com/tsparticles/tsparticles/tree/main/interactions/particles/collisions)
 - [@tsparticles/interaction-particles-links](https://github.com/tsparticles/tsparticles/tree/main/interactions/particles/links)
-- [@tsparticles/particles.js](https://github.com/tsparticles/tsparticles/tree/main/bundles/pjs)
 - [@tsparticles/plugin-easing-quad](https://github.com/tsparticles/tsparticles/tree/main/plugins/easings/quad)
+- [@tsparticles/plugin-interactivity](https://github.com/tsparticles/tsparticles/tree/main/plugins/interactivity)
 - [@tsparticles/shape-image](https://github.com/tsparticles/tsparticles/tree/main/shapes/image)
 - [@tsparticles/shape-line](https://github.com/tsparticles/tsparticles/tree/main/shapes/line)
 - [@tsparticles/shape-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
@@ -35,6 +36,65 @@ a `@tsparticles/engine` instance.
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
 - [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
 - [@tsparticles/updater-stroke-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/strokeColor)
+
+## Dependency Graph
+
+```mermaid
+flowchart TD
+
+subgraph b [Bundle]
+  bs[tsparticles/slim]
+  bb[tsparticles/basic]
+end
+
+subgraph c [Core]
+  ce[tsparticles/engine]
+end
+
+subgraph i [Interactions]
+  iea[tsparticles/interaction-external-attract]
+  ieb[tsparticles/interaction-external-bounce]
+  iebu[tsparticles/interaction-external-bubble]
+  iec[tsparticles/interaction-external-connect]
+  ieg[tsparticles/interaction-external-grab]
+  iepa[tsparticles/interaction-external-parallax]
+  iepau[tsparticles/interaction-external-pause]
+  iepu[tsparticles/interaction-external-push]
+  ier[tsparticles/interaction-external-remove]
+  iere[tsparticles/interaction-external-repulse]
+  ies[tsparticles/interaction-external-slow]
+  ipa[tsparticles/interaction-particles-attract]
+  ipc[tsparticles/interaction-particles-collisions]
+  ipl[tsparticles/interaction-particles-links]
+end
+
+subgraph p [Plugins]
+  peq[tsparticles/plugin-easing-quad]
+  pint[tsparticles/plugin-interactivity]
+end
+
+subgraph s [Shapes]
+  se[tsparticles/shape-emoji]
+  si[tsparticles/shape-image]
+  sl[tsparticles/shape-line]
+  sp[tsparticles/shape-polygon]
+  ss[tsparticles/shape-square]
+  sst[tsparticles/shape-star]
+end
+
+subgraph u [Updaters]
+  ul[tsparticles/updater-life]
+  ur[tsparticles/updater-rotate]
+  usc[tsparticles/updater-stroke-color]
+end
+
+bs --> bb
+bs --> ce
+bs --> i
+bs --> p
+bs --> s
+bs --> u
+```
 
 ## How to use it
 
@@ -181,7 +241,7 @@ let options = {
   /* custom options */
 };
 
-let particlesInit = async (engine) => {
+let particlesInit = async engine => {
   await loadSlim(engine);
 };
 ```

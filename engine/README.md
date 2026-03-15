@@ -237,10 +237,10 @@ tsParticles
     id: "tsparticles",
     url: "presets/default.json",
   })
-  .then((container) => {
+  .then(container => {
     console.log("callback - tsparticles config loaded");
   })
-  .catch((error) => {
+  .catch(error => {
     console.error(error);
   });
 
@@ -699,6 +699,12 @@ flowchart TD
 
     subgraph basic-plugins [Plugins]
       plugin-move[Move]
+
+      subgraph basic-plugins-colors [Colors]
+        plugin-hex-color[Hex Color]
+        plugin-hsl-color[HSL Color]
+        plugin-rgb-color[RGB Color]
+      end
     end
 
     subgraph basic-shapes [Shapes]
@@ -772,6 +778,7 @@ flowchart TD
     end
 
     subgraph slim-plugins [Plugins]
+      plugin-interactivity[Interactivity]
 
       subgraph slim-plugins-easings [Easings]
         plugin-easing-quad[Quad]
@@ -863,10 +870,10 @@ flowchart TD
 
   subgraph bundle-all [tsParticles All]
 
-    bundle-pjs[tsParticles Particles.js Compatibility]
-
     subgraph all-effects [Effects]
       effect-bubble[Bubble]
+      effect-particles[Particles]
+      effect-shadow[Shadow]
       effect-trail[Trail]
     end
 
@@ -884,32 +891,51 @@ flowchart TD
     end
 
     subgraph all-paths [Paths]
+      path-branches[Branches]
+      path-brownian[Brownian]
       path-curl-noise[Curl Noise]
       path-curves[Curves]
+      path-fractal-noise[Fractal Noise]
+      path-grid[Grid]
+      path-levy[Levy]
       path-perlin-noise[Perlin Noise]
       path-polygon[Polygon]
+      path-random[Random]
       path-simplex-noise[Simplex Noise]
+      path-spiral[Spiral]
       path-svg[SVG]
+      path-zig-zag[Zig Zag]
     end
 
     subgraph all-plugins [Plugins]
+      plugin-background-mask[Background Mask]
+      plugin-blend[Blend]
       plugin-canvas-mask[Canvas Mask]
 
       subgraph all-plugins-colors [Colors]
         plugin-hsv-color[HSV Color]
+        plugin-hwb-color[HWB Color]
+        plugin-lab-color[Lab Color]
+        plugin-lch-color[Lch Color]
         plugin-named-color[Named Color]
+        plugin-oklab-color[Oklab Color]
         plugin-oklch-color[Oklch Color]
       end
 
       subgraph all-plugins-easings [Easings]
         plugin-easing-back[Back]
+        plugin-easing-bounce[Bounce]
         plugin-easing-circ[Circ]
         plugin-easing-cubic[Cubic]
+        plugin-easing-elastic[Elastic]
         plugin-easing-expo[Expo]
+        plugin-easing-gaussian[Gaussian]
         plugin-easing-linear[Linear]
         plugin-easing-quart[Quart]
         plugin-easing-quint[Quint]
+        plugin-easing-sigmoid[Sigmoid]
         plugin-easing-sine[Sine]
+        plugin-easing-smoothstep[Smoothstep]
       end
 
       subgraph all-plugin-emitters-shapes [Emitters Shapes]
@@ -925,10 +951,15 @@ flowchart TD
       end
 
       plugin-infection[Infection]
+      plugin-manual-particles[Manual Particles]
       plugin-motion[Motion]
       plugin-poisson-disc[Poisson Disc]
       plugin-polygon-mask[Polygon Mask]
+      plugin-responsive[Responsive]
       plugin-sounds[Sounds]
+      plugin-themes[Themes]
+      plugin-trail[Trail]
+      plugin-zoom[Zoom]
     end
 
     subgraph all-shapes [Shapes]
@@ -936,10 +967,13 @@ flowchart TD
       shape-cards[Cards]
       shape-cog[Cog]
       shape-heart[Heart]
+      shape-infinity[Infinity]
+      shape-matrix[Matrix]
       shape-path[Path]
       shape-rounded-polygon[Rounded Polygon]
       shape-rounded-rect[Rounded Rect]
       shape-spiral[Spiral]
+      shape-squircle[Squircle]
     end
 
     subgraph all-updaters [Updaters]
