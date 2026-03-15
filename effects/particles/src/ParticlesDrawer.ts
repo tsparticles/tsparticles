@@ -21,13 +21,13 @@ interface IParticlesRateData {
   quantity: RangeValue;
 }
 
-interface ISpanParticlesData {
+interface ISpawnParticlesData {
   particles?: RecursivePartial<IParticlesOptions>;
   rate?: IParticlesRateData;
 }
 
 interface IParticlesData extends IShapeValues {
-  spawn?: ISpanParticlesData;
+  spawn?: ISpawnParticlesData;
 }
 
 type ParticlesParticle = Particle & {
