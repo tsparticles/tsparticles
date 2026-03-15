@@ -47,19 +47,23 @@ export async function loadFull(engine: Engine): Promise<void> {
     ]);
 
     await Promise.all([
-      loadSlim(e).then(async () => {
+      (async (): Promise<void> => {
+        await loadSlim(e);
+
         await Promise.all([
           loadExternalTrailInteraction(e),
 
           loadAbsorbersPlugin(e),
-          loadEmittersPlugin(e).then(async () => {
+          (async (): Promise<void> => {
+            await loadEmittersPlugin(e);
+
             await Promise.all([
               loadEmittersShapeCircle(e),
               loadEmittersShapeSquare(e),
             ]);
-          }),
+          })(),
         ]);
-      }),
+      })(),
 
       loadDestroyUpdater(e),
       loadRollUpdater(e),

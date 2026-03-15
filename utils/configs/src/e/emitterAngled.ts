@@ -17,7 +17,7 @@ const options: ISourceOptions = {
       type: "circle",
     },
     opacity: {
-      value: 0.3,
+      value: 0.5,
     },
     size: {
       value: {

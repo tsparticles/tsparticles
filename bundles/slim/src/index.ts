@@ -81,7 +81,9 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
 
-      loadInteractivityPlugin(e).then(async () => {
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
         await Promise.all([
           loadExternalParallaxInteraction(e),
           loadExternalAttractInteraction(e),
@@ -99,7 +101,7 @@ export async function loadSlim(engine: Engine): Promise<void> {
           loadParticlesCollisionsInteraction(e),
           loadParticlesLinksInteraction(e),
         ]);
-      }),
+      })(),
 
       loadEasingQuadPlugin(e),
 

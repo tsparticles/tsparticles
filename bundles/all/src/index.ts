@@ -189,7 +189,9 @@ export async function loadAll(engine: Engine): Promise<void> {
     ]);
 
     await Promise.all([
-      loadFull(e).then(async () => {
+      (async (): Promise<void> => {
+        await loadFull(e);
+
         await Promise.all([
           loadExternalParticleInteraction(e),
           loadExternalPopInteraction(e),
@@ -201,8 +203,23 @@ export async function loadAll(engine: Engine): Promise<void> {
           loadEmittersShapeCanvas(e),
           loadEmittersShapePath(e),
           loadEmittersShapePolygon(e),
+
+          loadBranchesPath(e),
+          loadBrownianPath(e),
+          loadCurlNoisePath(e),
+          loadCurvesPath(e),
+          loadFractalNoisePath(e),
+          loadGridPath(e),
+          loadLevyPath(e),
+          loadPerlinNoisePath(e),
+          loadPolygonPath(e),
+          loadRandomPath(e),
+          loadSVGPath(e),
+          loadSpiralPath(e),
+          loadZigZagPath(e),
+          loadSimplexNoisePath(e),
         ]);
-      }),
+      })(),
 
       loadHsvColorPlugin(e),
       loadHwbColorPlugin(e),
@@ -245,21 +262,6 @@ export async function loadAll(engine: Engine): Promise<void> {
 
       loadGradientUpdater(e),
       loadOrbitUpdater(e),
-
-      loadBranchesPath(e),
-      loadBrownianPath(e),
-      loadCurlNoisePath(e),
-      loadCurvesPath(e),
-      loadFractalNoisePath(e),
-      loadGridPath(e),
-      loadLevyPath(e),
-      loadPerlinNoisePath(e),
-      loadPolygonPath(e),
-      loadRandomPath(e),
-      loadSVGPath(e),
-      loadSpiralPath(e),
-      loadZigZagPath(e),
-      loadSimplexNoisePath(e),
 
       loadBubbleEffect(e),
       loadParticlesEffect(e),
