@@ -18,6 +18,7 @@ import {
 const minTrailLength = 2,
   trailLengthOffset = 1,
   minWidth = -1,
+  firstIndex = 0,
   defaultLength = 10;
 
 interface TrailStep {
@@ -82,8 +83,10 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       return;
     }
 
-    while (trail.length > pathLength) {
-      trail.shift();
+    const pathLengthFloor = Math.floor(pathLength);
+
+    if (trail.length > pathLengthFloor) {
+      trail.splice(firstIndex, trail.length - pathLengthFloor);
     }
 
     const trailLength = Math.min(trail.length, pathLength),
