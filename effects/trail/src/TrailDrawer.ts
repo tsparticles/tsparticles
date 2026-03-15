@@ -19,7 +19,9 @@ const minTrailLength = 2,
   trailLengthOffset = 1,
   minWidth = -1,
   firstIndex = 0,
-  defaultLength = 10;
+  defaultLength = 10,
+  minDistance = 0,
+  defaultRatio = 1;
 
 interface TrailStep {
   color: string | CanvasGradient | CanvasPattern;
@@ -102,6 +104,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     let lastPos = trailPos.position;
 
+    context.lineCap = "butt";
+
     for (let i = trailLength; i > none; i--) {
       const step = trail[i - trailLengthOffset];
 
@@ -113,7 +117,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform,
         { distance, dx, dy } = getDistances(lastPos, position);
 
-      // Skip segment if distance is too large (wrap or zoom change)
       if (distance > pathLength * double) {
         lastPos = position;
 
@@ -129,8 +132,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         position.y,
       );
 
+      const overshoot = 0.75,
+        ratio = distance > minDistance ? (distance + overshoot) / distance : defaultRatio;
+
       context.beginPath();
-      context.moveTo(dx, dy);
+      context.moveTo(dx * ratio, dy * ratio);
 
       const warp = {
         x: (lastPos.x + canvasSize.width) % canvasSize.width,
