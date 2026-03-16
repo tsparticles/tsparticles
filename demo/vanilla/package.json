@@ -29,7 +29,7 @@
     "@types/connect-livereload": "^0.6.3",
     "@types/express": "^5.0.6",
     "@types/livereload": "^0.9.5",
-    "@types/node": "^25.4.0",
+    "@types/node": "^25.5.0",
     "@types/stylus": "^0.48.43",
     "ace-builds": "^1.43.6",
     "bootstrap": "^5.3.8",
@@ -44,7 +44,7 @@
     "livereload": "^0.10.3",
     "lodash": "^4.17.23",
     "nodemon": "^3.1.14",
-    "pug": "^3.0.3",
+    "pug": "^3.0.4",
     "stats.ts": "^2.1.6",
     "stylus": "^0.64.0",
     "winston": "^3.19.0"
