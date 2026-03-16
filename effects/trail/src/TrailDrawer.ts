@@ -11,7 +11,6 @@ import {
   getDistances,
   getRangeValue,
   half,
-  none,
   originPoint,
 } from "@tsparticles/engine";
 
@@ -19,9 +18,7 @@ const minTrailLength = 2,
   trailLengthOffset = 1,
   minWidth = -1,
   firstIndex = 0,
-  defaultLength = 10,
-  minDistance = 0,
-  defaultRatio = 1;
+  defaultLength = 10;
 
 interface TrailStep {
   color: string | CanvasGradient | CanvasPattern;
@@ -95,31 +92,37 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       canvasSize = {
         width: particle.container.canvas.size.width * drawScale + diameter,
         height: particle.container.canvas.size.height * drawScale + diameter,
-      },
-      trailPos = trail[trailLength - trailLengthOffset];
-
-    if (!trailPos) {
-      return;
-    }
-
-    let lastPos = trailPos.position;
+      };
 
     context.lineCap = "butt";
+    context.lineJoin = "round";
 
-    for (let i = trailLength; i > none; i--) {
-      const step = trail[i - trailLengthOffset];
+    for (let i = trailLength - trailLengthOffset; i > firstIndex; i--) {
+      const previousStep = trail[i + trailLengthOffset],
+        step = trail[i],
+        nextStep = trail[i - trailLengthOffset];
 
-      if (!step) {
+      if (!previousStep || !step || !nextStep) {
         continue;
       }
 
-      const position = step.position,
+      const previousPosition = previousStep.position,
+        position = step.position,
+        nextPosition = nextStep.position,
         stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform,
-        { distance, dx, dy } = getDistances(lastPos, position);
+        { distance: previousDistance } = getDistances(previousPosition, position),
+        { distance: nextDistance } = getDistances(position, nextPosition);
 
-      if (distance > pathLength * double) {
-        lastPos = position;
+      if (previousDistance > pathLength * double || nextDistance > pathLength * double) {
+        continue;
+      }
 
+      if (
+        Math.abs(previousPosition.x - position.x) > canvasSize.width * half ||
+        Math.abs(previousPosition.y - position.y) > canvasSize.height * half ||
+        Math.abs(position.x - nextPosition.x) > canvasSize.width * half ||
+        Math.abs(position.y - nextPosition.y) > canvasSize.height * half
+      ) {
         continue;
       }
 
@@ -132,27 +135,14 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         position.y,
       );
 
-      const overshoot = 0.75,
-        ratio = distance > minDistance ? (distance + overshoot) / distance : defaultRatio;
+      const startX = (previousPosition.x + position.x) * half - position.x,
+        startY = (previousPosition.y + position.y) * half - position.y,
+        endX = (position.x + nextPosition.x) * half - position.x,
+        endY = (position.y + nextPosition.y) * half - position.y;
 
       context.beginPath();
-      context.moveTo(dx * ratio, dy * ratio);
-
-      const warp = {
-        x: (lastPos.x + canvasSize.width) % canvasSize.width,
-        y: (lastPos.y + canvasSize.height) % canvasSize.height,
-      };
-
-      if (Math.abs(dx) > canvasSize.width * half || Math.abs(dy) > canvasSize.height * half) {
-        lastPos = position;
-
-        continue;
-      }
-
-      context.lineTo(
-        Math.abs(dx) > canvasSize.width * half ? warp.x : originPoint.x,
-        Math.abs(dy) > canvasSize.height * half ? warp.y : originPoint.y,
-      );
+      context.moveTo(startX, startY);
+      context.quadraticCurveTo(originPoint.x, originPoint.y, endX, endY);
 
       const width = Math.max((i / trailLength) * diameter, pxRatio, (particle.trailMinWidth ?? minWidth) * drawScale),
         oldAlpha = context.globalAlpha;
@@ -164,8 +154,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       context.stroke();
 
       context.globalAlpha = oldAlpha;
-
-      lastPos = position;
     }
   }
 
