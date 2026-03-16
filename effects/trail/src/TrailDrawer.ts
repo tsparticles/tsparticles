@@ -14,11 +14,13 @@ import {
   originPoint,
 } from "@tsparticles/engine";
 
-const minTrailLength = 2,
+const minTrailLength = 3,
   trailLengthOffset = 1,
   minWidth = -1,
   firstIndex = 0,
-  defaultLength = 10;
+  defaultLength = 10,
+  loopTrailLengthOffset = 2,
+  loopTrailLengthMinIndex = 1;
 
 interface TrailStep {
   color: string | CanvasGradient | CanvasPattern;
@@ -94,10 +96,12 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         height: particle.container.canvas.size.height * drawScale + diameter,
       };
 
+    context.save();
+
     context.lineCap = "butt";
     context.lineJoin = "round";
 
-    for (let i = trailLength - trailLengthOffset; i > firstIndex; i--) {
+    for (let i = trailLength - loopTrailLengthOffset; i > loopTrailLengthMinIndex; i--) {
       const previousStep = trail[i + trailLengthOffset],
         step = trail[i],
         nextStep = trail[i - trailLengthOffset];
@@ -155,6 +159,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
       context.globalAlpha = oldAlpha;
     }
+
+    context.restore();
   }
 
   particleInit(container: Container, particle: TrailParticle): void {
