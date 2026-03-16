@@ -20,7 +20,7 @@ const minTrailLength = 3,
   firstIndex = 0,
   defaultLength = 10,
   loopTrailLengthOffset = 2,
-  loopTrailLengthMinIndex = 1;
+  loopTrailLengthMinIndex = 0;
 
 interface TrailStep {
   color: string | CanvasGradient | CanvasPattern;
