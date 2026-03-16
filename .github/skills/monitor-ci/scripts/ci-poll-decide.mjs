@@ -76,6 +76,8 @@ const {
   failedTaskIds = [],
   verifiedTaskIds = [],
   couldAutoApplyTasks,
+  autoApplySkipped,
+  autoApplySkipReason,
   userAction,
   cipeUrl,
   commitSha,
@@ -154,14 +156,15 @@ function isNewCipe() {
 //    13. self-healing in progress        → poll  (sh_running)
 //    14. flaky task auto-rerun           → poll  (flaky_rerun)
 //    15. fix auto-applied                → poll  (fix_auto_applied)
-//    16. auto-apply: verification pending→ poll  (verification_pending)
-//    17. auto-apply: verified            → done  (fix_auto_applying)
-//    18. fix: verification failed/none   → done  (fix_needs_review)
-//    19. fix: all/e2e verified           → done  (fix_apply_ready)
-//    20. fix: needs local verify         → done  (fix_needs_local_verify)
-//    21. self-healing failed             → done  (fix_failed)
-//    22. no fix available                → done  (no_fix)
-//    23. fallback                        → poll  (fallback)
+//    16. auto-apply: skipped             → done  (fix_auto_apply_skipped)
+//    17. auto-apply: verification pending→ poll  (verification_pending)
+//    18. auto-apply: verified            → done  (fix_auto_applying)
+//    19. fix: verification failed/none   → done  (fix_needs_review)
+//    20. fix: all/e2e verified           → done  (fix_apply_ready)
+//    21. fix: needs local verify         → done  (fix_needs_local_verify)
+//    22. self-healing failed             → done  (fix_failed)
+//    23. no fix available                → done  (no_fix)
+//    24. fallback                        → poll  (fallback)
 // ============================================================
 
 function classify() {
@@ -209,6 +212,12 @@ function classify() {
 
   // --- Auto-apply path (couldAutoApplyTasks) ---
   if (couldAutoApplyTasks === true) {
+    if (autoApplySkipped === true)
+      return {
+        action: "done",
+        code: "fix_auto_apply_skipped",
+        extra: { autoApplySkipReason },
+      };
     if (verificationStatus === "NOT_STARTED" || verificationStatus === "IN_PROGRESS")
       return { action: "poll", code: "verification_pending" };
     if (verificationStatus === "COMPLETED") return { action: "done", code: "fix_auto_applying" };
@@ -282,6 +291,10 @@ const messages = {
 
   // actionable
   fix_auto_applying: () => "Fix verified! Auto-applying...",
+  fix_auto_apply_skipped: (extra) =>
+    `Fix verified but auto-apply was skipped. ${
+      extra?.autoApplySkipReason ? `Reason: ${extra.autoApplySkipReason}` : "Offer to apply manually."
+    }`,
   fix_needs_review: () => `Fix available but needs review. Verification: ${verificationStatus || "N/A"}`,
   fix_apply_ready: () => "Fix available and verified. Ready to apply.",
   fix_needs_local_verify: (extra) =>
@@ -300,6 +313,7 @@ const messages = {
 const resetProgressCodes = new Set([
   "ci_success",
   "fix_auto_applying",
+  "fix_auto_apply_skipped",
   "fix_needs_review",
   "fix_apply_ready",
   "fix_needs_local_verify",
@@ -351,6 +365,7 @@ function buildOutput(decision) {
   // Add extras
   if (code === "new_cipe_detected") result.newCipeDetected = true;
   if (extra?.verifiableTaskIds) result.verifiableTaskIds = extra.verifiableTaskIds;
+  if (extra?.autoApplySkipReason) result.autoApplySkipReason = extra.autoApplySkipReason;
 
   console.log(JSON.stringify(result));
 }

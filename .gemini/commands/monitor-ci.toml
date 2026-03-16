@@ -1,4 +1,4 @@
-description = "Monitor Nx Cloud CI pipeline and handle self-healing fixes. USE WHEN user says \"monitor ci\", \"watch ci\", \"ci monitor\", \"watch ci for this branch\", \"track ci\", \"check ci status\", wants to track CI status, or needs help with self-healing CI fixes. ALWAYS USE THIS SKILL instead of native CI provider tools (gh, glab, etc.) for CI monitoring."
+description = "Monitor Nx Cloud CI pipeline and handle self-healing fixes. USE WHEN user says \"monitor ci\", \"watch ci\", \"ci monitor\", \"watch ci for this branch\", \"track ci\", \"check ci status\", wants to track CI status, or needs help with self-healing CI fixes. Prefer this skill over native CI provider tools (gh, glab, etc.) for CI monitoring — it integrates with Nx Cloud self-healing which those tools cannot access."
 prompt = """
 # Monitor CI Command
 
@@ -33,7 +33,7 @@ Parse any overrides from `{{args}}` and merge with defaults.
 
 ## Nx Cloud Connection Check
 
-**CRITICAL**: Before starting the monitoring loop, verify the workspace is connected to Nx Cloud.
+Before starting the monitoring loop, verify the workspace is connected to Nx Cloud. Without this connection, no CI data is available and the entire skill is inoperable.
 
 ### Step 0: Verify Nx Cloud Connection
 
@@ -60,9 +60,9 @@ The decision script handles message formatting based on verbosity. When printing
 - Prepend `[monitor-ci]` to every message from the script's `message` field
 - For your own action messages (e.g. "Applying fix via MCP..."), also prepend `[monitor-ci]`
 
-## Anti-Patterns (NEVER DO)
+## Anti-Patterns
 
-**CRITICAL**: The following behaviors are strictly prohibited:
+These behaviors cause real problems — racing with self-healing, losing CI progress, or wasting context:
 
 | Anti-Pattern                                                                                    | Why It's Bad                                                       |
 | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -74,53 +74,27 @@ The decision script handles message formatting based on verbosity. When printing
 
 **If this skill fails to activate**, the fallback is:
 
-1. Use CI provider CLI for READ-ONLY status check (single call, no watch/polling flags)
+1. Use CI provider CLI for a one-time, read-only status check (single call, no watch/polling flags)
 2. Immediately delegate to this skill with gathered context
-3. NEVER continue polling on main agent
-
-**CI provider CLIs are acceptable ONLY for:**
-
-- One-time read of PR/pipeline status
-- Getting PR/branch metadata
-- NOT for continuous monitoring or watch mode
+3. Do not continue polling on main agent — it wastes context tokens and bypasses self-healing
 
 ## Session Context Behavior
 
-**Important:** Within a Claude Code session, conversation context persists. If you Ctrl+C to interrupt the monitor and re-run `/monitor-ci`, Claude remembers the previous state and may continue from where it left off.
-
-- **To continue monitoring:** Just re-run `/monitor-ci` (context is preserved)
-- **To start fresh:** Use `/monitor-ci --fresh` to ignore previous context
-- **For a completely clean slate:** Exit Claude Code and restart `claude`
+If the user previously ran `/monitor-ci` in this session, you may have prior state (poll counts, last CI Attempt URL, etc.). Resume from that state unless `--fresh` is set, in which case discard it and start from Step 1.
 
 ## MCP Tool Reference
 
-### `ci_information`
-
-**Input:**
-
-```json
-{
-  "branch": "string (optional, defaults to current git branch)",
-  "select": "string (optional, comma-separated field names)",
-  "pageToken": "number (optional, 0-based pagination for long strings)"
-}
-```
-
-**Field Sets for Efficient Polling:**
+Three field sets control polling efficiency — use the lightest set that gives you what you need:
 
 ```yaml
-WAIT_FIELDS:
-  'cipeUrl,commitSha,cipeStatus'
-  # Minimal fields for detecting new CI Attempt
-
-LIGHT_FIELDS:
-  'cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage'
-  # Status fields for determining actionable state
-
-HEAVY_FIELDS:
-  'taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription'
-  # Large content fields - fetch only when needed for fix decisions
+WAIT_FIELDS: 'cipeUrl,commitSha,cipeStatus'
+LIGHT_FIELDS: 'cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,autoApplySkipped,autoApplySkipReason,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage'
+HEAVY_FIELDS: 'taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription'
 ```
+
+The `ci_information` tool accepts `branch` (optional, defaults to current git branch), `select` (comma-separated field names), and `pageToken` (0-based pagination for long strings).
+
+The `update_self_healing_fix` tool accepts a `shortLink` and an action: `APPLY`, `REJECT`, or `RERUN_ENVIRONMENT_STATE`.
 
 ## Default Behaviors by Status
 
@@ -128,128 +102,37 @@ The decision script returns one of the following statuses. This table defines th
 
 **Simple exits** — just report and exit:
 
-| Status                  | Default Behavior                                                                                      |
-| ----------------------- | ----------------------------------------------------------------------------------------------------- |
-| `ci_success`            | Exit with success                                                                                     |
-| `cipe_canceled`         | Exit, CI was canceled                                                                                 |
-| `cipe_timed_out`        | Exit, CI timed out                                                                                    |
-| `polling_timeout`       | Exit, polling timeout reached                                                                         |
-| `circuit_breaker`       | Exit, no progress after 5 consecutive polls                                                           |
-| `environment_rerun_cap` | Exit, environment reruns exhausted                                                                    |
-| `fix_auto_applying`     | Do NOT call MCP — self-healing handles it. Record `last_cipe_url`, enter wait mode. No local git ops. |
-| `error`                 | Wait 60s and loop                                                                                     |
+| Status                  | Default Behavior                                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ci_success`            | Exit with success                                                                                                |
+| `cipe_canceled`         | Exit, CI was canceled                                                                                            |
+| `cipe_timed_out`        | Exit, CI timed out                                                                                               |
+| `polling_timeout`       | Exit, polling timeout reached                                                                                    |
+| `circuit_breaker`       | Exit, no progress after 5 consecutive polls                                                                      |
+| `environment_rerun_cap` | Exit, environment reruns exhausted                                                                               |
+| `fix_auto_applying`     | Self-healing is handling it — just record `last_cipe_url`, enter wait mode. No MCP call or local git ops needed. |
+| `error`                 | Wait 60s and loop                                                                                                |
 
-**Statuses requiring action** — see subsections below:
+**Statuses requiring action** — when handling these in Step 3, read `references/fix-flows.md` for the detailed flow:
 
-| Status                   | Summary                                                                           |
-| ------------------------ | --------------------------------------------------------------------------------- |
-| `fix_apply_ready`        | Fix verified (all tasks or e2e-only). Apply via MCP.                              |
-| `fix_needs_local_verify` | Fix has unverified non-e2e tasks. Run locally, then apply or enhance.             |
-| `fix_needs_review`       | Fix verification failed/not attempted. Analyze and decide.                        |
-| `fix_failed`             | Self-healing failed. Fetch heavy data, attempt local fix (gate check first).      |
-| `no_fix`                 | No fix available. Fetch heavy data, attempt local fix (gate check first) or exit. |
-| `environment_issue`      | Request environment rerun via MCP (gate check first).                             |
-| `self_healing_throttled` | Reject old fixes, attempt local fix.                                              |
-| `no_new_cipe`            | CI Attempt never spawned. Auto-fix workflow or exit with guidance.                |
-| `cipe_no_tasks`          | CI failed with no tasks. Retry once with empty commit.                            |
+| Status                   | Summary                                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| `fix_auto_apply_skipped` | Fix verified but auto-apply skipped (e.g., loop prevention). Inform user, offer manual apply. |
+| `fix_apply_ready`        | Fix verified (all tasks or e2e-only). Apply via MCP.                                          |
+| `fix_needs_local_verify` | Fix has unverified non-e2e tasks. Run locally, then apply or enhance.                         |
+| `fix_needs_review`       | Fix verification failed/not attempted. Analyze and decide.                                    |
+| `fix_failed`             | Self-healing failed. Fetch heavy data, attempt local fix (gate check first).                  |
+| `no_fix`                 | No fix available. Fetch heavy data, attempt local fix (gate check first) or exit.             |
+| `environment_issue`      | Request environment rerun via MCP (gate check first).                                         |
+| `self_healing_throttled` | Reject old fixes, attempt local fix.                                                          |
+| `no_new_cipe`            | CI Attempt never spawned. Auto-fix workflow or exit with guidance.                            |
+| `cipe_no_tasks`          | CI failed with no tasks. Retry once with empty commit.                                        |
 
-### fix_apply_ready
+**Key rules (always apply):**
 
-- Spawn UPDATE_FIX subagent with `APPLY`
-- Record `last_cipe_url`, enter wait mode
-
-### fix_needs_local_verify
-
-The script returns `verifiableTaskIds` in its output.
-
-1. **Detect package manager:** `pnpm-lock.yaml` → `pnpm nx`, `yarn.lock` → `yarn nx`, otherwise `npx nx`
-2. **Run verifiable tasks in parallel** — spawn `general` subagents for each task
-3. **If all pass** → spawn UPDATE_FIX subagent with `APPLY`, enter wait mode
-4. **If any fail** → Apply Locally + Enhance Flow (see below)
-
-### fix_needs_review
-
-Spawn FETCH_HEAVY subagent, then analyze fix content (`suggestedFixDescription`, `suggestedFixSummary`, `taskFailureSummaries`):
-
-- If fix looks correct → apply via MCP
-- If fix needs enhancement → Apply Locally + Enhance Flow
-- If fix is wrong → run `ci-state-update.mjs gate --gate-type local-fix`. If not allowed, print message and exit. Otherwise → Reject + Fix From Scratch Flow
-
-### fix_failed / no_fix
-
-Spawn FETCH_HEAVY subagent for `taskFailureSummaries`. Run `ci-state-update.mjs gate --gate-type local-fix` — if not allowed, print message and exit. Otherwise attempt local fix (counter already incremented by gate). If successful → commit, push, enter wait mode. If not → exit with failure.
-
-### environment_issue
-
-1. Run `ci-state-update.mjs gate --gate-type env-rerun`. If not allowed, print message and exit.
-2. Spawn UPDATE_FIX subagent with `RERUN_ENVIRONMENT_STATE`
-3. Enter wait mode with `last_cipe_url` set
-
-### self_healing_throttled
-
-Spawn FETCH_HEAVY subagent for `selfHealingSkipMessage`.
-
-1. **Parse throttle message** for CI Attempt URLs (regex: `/cipes/{id}`)
-2. **Reject previous fixes** — for each URL: spawn FETCH_THROTTLE_INFO to get `shortLink`, then UPDATE_FIX with `REJECT`
-3. **Attempt local fix**: Run `ci-state-update.mjs gate --gate-type local-fix`. If not allowed → skip to step 4. Otherwise use `failedTaskIds` and `taskFailureSummaries` for context.
-4. **Fallback if local fix not possible or budget exhausted**: push empty commit (`git commit --allow-empty -m "ci: rerun after rejecting throttled fixes"`), enter wait mode
-
-### no_new_cipe
-
-1. Report to user: no CI attempt found, suggest checking CI provider
-2. If `--auto-fix-workflow`: detect package manager, run install, commit lockfile if changed, enter wait mode
-3. Otherwise: exit with guidance
-
-### cipe_no_tasks
-
-1. Report to user: CI failed with no tasks recorded
-2. Retry: `git commit --allow-empty -m "chore: retry ci [monitor-ci]"` + push, enter wait mode
-3. If retry also returns `cipe_no_tasks`: exit with failure
-
-## Fix Action Flows
-
-### Apply via MCP
-
-Spawn UPDATE_FIX subagent with `APPLY`. New CI Attempt spawns automatically. No local git ops.
-
-### Apply Locally + Enhance Flow
-
-1. `nx-cloud apply-locally <shortLink>` (sets state to `APPLIED_LOCALLY`)
-2. Enhance code to fix failing tasks
-3. Run failing tasks to verify
-4. If still failing → run `ci-state-update.mjs gate --gate-type local-fix`. If not allowed, commit current state and push (let CI be final judge). Otherwise loop back to enhance.
-5. If passing → commit and push, enter wait mode
-
-### Reject + Fix From Scratch Flow
-
-1. Run `ci-state-update.mjs gate --gate-type local-fix`. If not allowed, print message and exit.
-2. Spawn UPDATE_FIX subagent with `REJECT`
-3. Fix from scratch locally
-4. Commit and push, enter wait mode
-
-### Environment vs Code Failure Recognition
-
-When any local fix path runs a task and it fails, assess whether the failure is a **code issue** or an **environment/tooling issue** before running the gate script.
-
-**Indicators of environment/tooling failures** (non-exhaustive): command not found / binary missing, OOM / heap allocation failures, permission denied, network timeouts / DNS failures, missing system libraries, Docker/container issues, disk space exhaustion.
-
-When detected → bail immediately, do NOT run gate (no budget consumed). Report that the failure is an environment/tooling issue, not a code bug.
-
-**Code failures** (compilation errors, test assertion failures, lint violations, type errors) are genuine candidates for local fix attempts and proceed normally through the gate.
-
-### Git Safety
-
-- NEVER use `git add -A` or `git add .` — always stage specific files by name
-- Users may have concurrent local changes that must NOT be committed
-
-### Commit Message Format
-
-```bash
-git commit -m "fix(<projects>): <brief description>
-
-Failed tasks: <taskId1>, <taskId2>
-Local verification: passed|enhanced|failed-pushing-to-ci"
-```
+- **Git safety**: Stage specific files by name — `git add -A` or `git add .` risks committing the user's unrelated work-in-progress or secrets
+- **Environment failures** (OOM, command not found, permission denied): bail immediately. These aren't code bugs, so spending local-fix budget on them is wasteful
+- **Gate check**: Run `ci-state-update.mjs gate` before local fix attempts — if budget exhausted, print message and exit
 
 ## Main Loop
 
@@ -284,16 +167,7 @@ Determine select fields based on mode:
 - **Wait mode**: use WAIT_FIELDS (`cipeUrl,commitSha,cipeStatus`)
 - **Normal mode (first poll or after newCipeDetected)**: use LIGHT_FIELDS
 
-```
-Task(
-  agent: "ci-monitor-subagent",
-  model: haiku,
-  prompt: "FETCH_STATUS for branch '<branch>'.
-           select: '<fields>'"
-)
-```
-
-The subagent calls `ci_information` and returns a JSON object with the requested fields. This is a **foreground** call — wait for the result.
+Call the `ci_information` tool with the determined `select` fields for the current branch. Wait for the result before proceeding.
 
 #### 2b. Run decision script
 
@@ -347,16 +221,16 @@ When decision script returns `action == "done"`:
 6. **If action expects new CI Attempt**, update tracking (see Step 3a)
 7. If action results in looping, go to Step 2
 
-#### Spawning subagents for actions
+#### Tool calls for actions
 
-Several statuses require fetching heavy data or calling MCP:
+Several statuses require fetching additional data or calling tools:
 
-- **fix_apply_ready**: Spawn UPDATE_FIX subagent with `APPLY`
-- **fix_needs_local_verify**: Spawn FETCH_HEAVY subagent for fix details before local verification
-- **fix_needs_review**: Spawn FETCH_HEAVY subagent → get `suggestedFixDescription`, `suggestedFixSummary`, `taskFailureSummaries`
-- **fix_failed / no_fix**: Spawn FETCH_HEAVY subagent → get `taskFailureSummaries` for local fix context
-- **environment_issue**: Spawn UPDATE_FIX subagent with `RERUN_ENVIRONMENT_STATE`
-- **self_healing_throttled**: Spawn FETCH_HEAVY subagent → get `selfHealingSkipMessage`; then FETCH_THROTTLE_INFO + UPDATE_FIX for each old fix
+- **fix_apply_ready**: Call `update_self_healing_fix` with action `APPLY`
+- **fix_needs_local_verify**: Call `ci_information` with HEAVY_FIELDS for fix details before local verification
+- **fix_needs_review**: Call `ci_information` with HEAVY_FIELDS → get `suggestedFixDescription`, `suggestedFixSummary`, `taskFailureSummaries`
+- **fix_failed / no_fix**: Call `ci_information` with HEAVY_FIELDS → get `taskFailureSummaries` for local fix context
+- **environment_issue**: Call `update_self_healing_fix` with action `RERUN_ENVIRONMENT_STATE`
+- **self_healing_throttled**: Call `ci_information` with HEAVY_FIELDS → get `selfHealingSkipMessage`; then call `update_self_healing_fix` for each old fix
 
 ### Step 3a: Track State for New-CI-Attempt Detection
 
