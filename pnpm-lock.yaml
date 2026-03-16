@@ -1106,7 +1106,7 @@ importers:
         version: 0.9.5
       '@types/node':
         specifier: ^25.4.0
-        version: 25.4.0
+        version: 25.5.0
       '@types/stylus':
         specifier: ^0.48.43
         version: 0.48.43
@@ -3806,14 +3806,11 @@ packages:
   '@types/minimist@1.2.2':
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
 
-  '@types/node@18.19.45':
-    resolution: {integrity: sha512-VZxPKNNhjKmaC1SUYowuXSRSMGyQGmQjvvA1xE4QZ0xce2kLtEhPDS+kqpCPBZYgqblCLQ2DAjSzmgCM5auvhA==}
+  '@types/node@18.19.130':
+    resolution: {integrity: sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==}
 
   '@types/node@24.10.9':
     resolution: {integrity: sha512-ne4A0IpG3+2ETuREInjPNhUGis1SFjv1d5asp8MzEAGtOZeTeHVDOYqOgqfhvseqg/iXty2hjBf1zAOb7RNiNw==}
-
-  '@types/node@25.4.0':
-    resolution: {integrity: sha512-9wLpoeWuBlcbBpOY3XmzSTG3oscB6xjBEEtn+pYXTfhyXhIxC5FsBer2KTopBlvKEiW9l13po9fq+SJY/5lkhw==}
 
   '@types/node@25.5.0':
     resolution: {integrity: sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==}
@@ -9664,7 +9661,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 25.5.0
+      '@types/node': 24.10.9
       '@types/responselike': 1.0.3
 
   '@types/chai@5.2.2':
@@ -9727,7 +9724,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 25.5.0
+      '@types/node': 24.10.9
 
   '@types/livereload@0.9.5':
     dependencies:
@@ -9739,17 +9736,13 @@ snapshots:
 
   '@types/minimist@1.2.2': {}
 
-  '@types/node@18.19.45':
+  '@types/node@18.19.130':
     dependencies:
       undici-types: 5.26.5
 
   '@types/node@24.10.9':
     dependencies:
       undici-types: 7.16.0
-
-  '@types/node@25.4.0':
-    dependencies:
-      undici-types: 7.18.2
 
   '@types/node@25.5.0':
     dependencies:
@@ -9763,7 +9756,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 25.5.0
+      '@types/node': 24.10.9
 
   '@types/send@0.17.1':
     dependencies:
@@ -9793,7 +9786,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.5.0
+      '@types/node': 24.10.9
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3))(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3)':
@@ -14024,14 +14017,14 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
 
-  ts-node@10.9.2(@swc/core@1.15.18)(@types/node@18.19.45)(typescript@5.5.4):
+  ts-node@10.9.2(@swc/core@1.15.18)(@types/node@18.19.130)(typescript@5.5.4):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.9
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 18.19.45
+      '@types/node': 18.19.130
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -14172,11 +14165,11 @@ snapshots:
   typescript-json-schema@0.67.1(@swc/core@1.15.18):
     dependencies:
       '@types/json-schema': 7.0.15
-      '@types/node': 18.19.45
+      '@types/node': 18.19.130
       glob: 7.2.3
       path-equal: 1.2.5
       safe-stable-stringify: 2.5.0
-      ts-node: 10.9.2(@swc/core@1.15.18)(@types/node@18.19.45)(typescript@5.5.4)
+      ts-node: 10.9.2(@swc/core@1.15.18)(@types/node@18.19.130)(typescript@5.5.4)
       typescript: 5.5.4
       vm2: 3.10.0
       yargs: 17.7.2
