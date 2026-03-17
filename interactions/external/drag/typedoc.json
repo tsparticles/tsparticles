@@ -1,0 +1,16 @@
+{
+  "projectDocuments": ["../markdown/**/*.md"],
+  "entryPoints": [
+    "./src/"
+  ],
+  "entryPointStrategy": "expand",
+  "name": "tsParticles Drag External Interaction",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}
+

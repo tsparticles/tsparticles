@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles",
+  "name": "@tsparticles/interaction-external-drag",
   "version": "4.0.0-alpha.28",
-  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "description": "tsParticles drag external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "bundles/full"
+    "directory": "interactions/external/drag"
   },
   "keywords": [
     "front-end",
@@ -59,30 +59,18 @@
     "confetti-js",
     "confettijs",
     "fireworksjs",
-    "canvas-confetti"
+    "canvas-confetti",
+    "tsparticles-plugin",
+    "@tsparticles/interaction"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/matteobruni"
-    },
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/tsparticles"
-    },
-    {
-      "type": "buymeacoffee",
-      "url": "https://www.buymeacoffee.com/matteobruni"
-    }
-  ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.bundle.min.js",
-  "unpkg": "tsparticles.bundle.min.js",
+  "jsdelivr": "tsparticles.interaction.external.drag.min.js",
+  "unpkg": "tsparticles.interaction.external.drag.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -100,19 +88,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "4.0.0-alpha.28",
-    "@tsparticles/interaction-external-drag": "4.0.0-alpha.28",
-    "@tsparticles/interaction-external-trail": "4.0.0-alpha.28",
-    "@tsparticles/plugin-absorbers": "4.0.0-alpha.28",
-    "@tsparticles/plugin-emitters": "4.0.0-alpha.28",
-    "@tsparticles/plugin-emitters-shape-circle": "4.0.0-alpha.28",
-    "@tsparticles/plugin-emitters-shape-square": "4.0.0-alpha.28",
-    "@tsparticles/shape-text": "4.0.0-alpha.28",
-    "@tsparticles/slim": "4.0.0-alpha.28",
-    "@tsparticles/updater-destroy": "4.0.0-alpha.28",
-    "@tsparticles/updater-roll": "4.0.0-alpha.28",
-    "@tsparticles/updater-tilt": "4.0.0-alpha.28",
-    "@tsparticles/updater-twinkle": "4.0.0-alpha.28",
-    "@tsparticles/updater-wobble": "4.0.0-alpha.28"
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.28"
   },
   "publishConfig": {
     "access": "public"
