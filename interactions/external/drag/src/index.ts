@@ -1,6 +1,10 @@
 import { type Engine } from "@tsparticles/engine";
 import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
+export type { IDrag } from "./Options/Interfaces/IDrag.js";
+export type { DragContainer, DragMode, IDragMode } from "./Types.js";
+export { Drag } from "./Options/Classes/Drag.js";
+
 declare const __VERSION__: string;
 
 /**

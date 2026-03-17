@@ -1,31 +1,61 @@
+import type { DragContainer, DragMode, IDragMode } from "./Types.js";
 import {
   ExternalInteractorBase,
   type IInteractivityData,
-  type InteractivityContainer,
+  type IModes,
   type InteractivityParticle,
+  type Modes,
 } from "@tsparticles/plugin-interactivity";
-import { type IDelta, type Particle, getDistance, isInArray } from "@tsparticles/engine";
+import {
+  type IDelta,
+  type Particle,
+  type RecursivePartial,
+  defaultFps,
+  getDistance,
+  isInArray,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
+import { Drag } from "./Options/Classes/Drag.js";
 
-const dragMode = "drag",
+const clickReleaseDelayMs = 50,
+  defaultMomentumFactor = 0.03,
+  dragMode = "drag",
+  firstSampleIndex = 0,
+  lastSampleOffset = 1,
+  maxMomentumSamples = 5,
+  minSamplesForMomentum = 2,
+  momentumToVelocityFactor = millisecondsToSeconds / defaultFps,
   zeroValue = 0;
+
+interface MomentumSample {
+  t: number;
+  x: number;
+  y: number;
+}
 
 /**
  * External drag-and-drop interactor.
  * Allows the user to click and drag particles across the canvas.
  * Relies on pointer state provided by the interactivity plugin.
+ *
+ * Options (under `interactivity.modes.drag`):
+ * - `preserveMomentum` — if `true`, the particle retains the velocity of the drag gesture on release.
+ * - `momentumFactor` — scaling factor for the computed drag velocity (default `0.03`).
  */
-export class Dragger extends ExternalInteractorBase {
+export class Dragger extends ExternalInteractorBase<DragContainer> {
   readonly maxDistance = 0;
 
   private _dragStartClickTime?: number;
+  private _dragStartClickingFalseTime?: number;
   private _draggedParticle?: Particle;
   private _grabOffset?: { x: number; y: number };
   private _lastMousePosition?: { x: number; y: number };
+  private _momentumSamples: MomentumSample[] = [];
   private _mouseDownHandled = false;
   private _savedVelocity?: { x: number; y: number };
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(container: InteractivityContainer) {
+  constructor(container: DragContainer) {
     super(container);
   }
 
@@ -48,7 +78,21 @@ export class Dragger extends ExternalInteractorBase {
 
     // Move the already-grabbed particle
     if (this._draggedParticle) {
-      if (!mouse.inside || this._hasClickEnded(mouse)) {
+      const now = performance.now();
+
+      if (!mouse.clicking) {
+        this._dragStartClickingFalseTime ??= now;
+      } else {
+        this._dragStartClickingFalseTime = undefined;
+      }
+
+      // Fallback for environments where the first interaction can miss clickTime updates.
+      const hasStableClickEndWithoutClickTime =
+        this._dragStartClickTime === undefined &&
+        this._dragStartClickingFalseTime !== undefined &&
+        now - this._dragStartClickingFalseTime >= clickReleaseDelayMs;
+
+      if (!mouse.inside || this._hasClickEnded(mouse) || hasStableClickEndWithoutClickTime) {
         this._releaseDragged();
         this._mouseDownHandled = false;
 
@@ -59,6 +103,14 @@ export class Dragger extends ExternalInteractorBase {
 
       if (!pointerPos) {
         return;
+      }
+
+      // Track pointer positions for momentum calculation
+
+      this._momentumSamples.push({ x: pointerPos.x, y: pointerPos.y, t: now });
+
+      if (this._momentumSamples.length > maxMomentumSamples) {
+        this._momentumSamples.shift();
       }
 
       const targetX = pointerPos.x + (this._grabOffset?.x ?? zeroValue),
@@ -109,6 +161,8 @@ export class Dragger extends ExternalInteractorBase {
       y: renderedPos.y - mousePos.y,
     };
     this._savedVelocity = { x: closest.velocity.x, y: closest.velocity.y };
+    this._dragStartClickingFalseTime = undefined;
+    this._momentumSamples = [{ x: mousePos.x, y: mousePos.y, t: performance.now() }];
 
     closest.velocity.x = zeroValue;
     closest.velocity.y = zeroValue;
@@ -129,6 +183,14 @@ export class Dragger extends ExternalInteractorBase {
     }
 
     return !!events?.onClick.enable && mouse.clicking && !!mouse.position && isInArray(dragMode, events.onClick.mode);
+  }
+
+  loadModeOptions(options: Modes & DragMode, ...sources: RecursivePartial<(IModes & IDragMode) | undefined>[]): void {
+    options.drag ??= new Drag();
+
+    for (const source of sources) {
+      options.drag.load(source?.drag);
+    }
   }
 
   reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
@@ -172,15 +234,43 @@ export class Dragger extends ExternalInteractorBase {
   }
 
   private _releaseDragged(): void {
-    if (this._draggedParticle && this._savedVelocity) {
-      this._draggedParticle.velocity.x = this._savedVelocity.x;
-      this._draggedParticle.velocity.y = this._savedVelocity.y;
+    if (this._draggedParticle) {
+      const dragOptions = this.container.actualOptions.interactivity?.modes.drag,
+        preserveMomentum = dragOptions?.preserveMomentum ?? false;
+
+      if (preserveMomentum && this._momentumSamples.length >= minSamplesForMomentum) {
+        const first = this._momentumSamples[firstSampleIndex],
+          last = this._momentumSamples[this._momentumSamples.length - lastSampleOffset];
+
+        if (first && last) {
+          const dt = last.t - first.t;
+
+          if (dt > zeroValue) {
+            const factor = dragOptions?.momentumFactor ?? defaultMomentumFactor;
+
+            // Convert pointer speed (px/ms) to engine velocity unit used by move updater.
+            this._draggedParticle.velocity.x = ((last.x - first.x) / dt) * momentumToVelocityFactor * factor;
+            this._draggedParticle.velocity.y = ((last.y - first.y) / dt) * momentumToVelocityFactor * factor;
+          } else if (this._savedVelocity) {
+            this._draggedParticle.velocity.x = this._savedVelocity.x;
+            this._draggedParticle.velocity.y = this._savedVelocity.y;
+          }
+        } else if (this._savedVelocity) {
+          this._draggedParticle.velocity.x = this._savedVelocity.x;
+          this._draggedParticle.velocity.y = this._savedVelocity.y;
+        }
+      } else if (this._savedVelocity) {
+        this._draggedParticle.velocity.x = this._savedVelocity.x;
+        this._draggedParticle.velocity.y = this._savedVelocity.y;
+      }
     }
 
     this._draggedParticle = undefined;
     this._dragStartClickTime = undefined;
+    this._dragStartClickingFalseTime = undefined;
     this._grabOffset = undefined;
     this._lastMousePosition = undefined;
+    this._momentumSamples = [];
     this._savedVelocity = undefined;
   }
 }
