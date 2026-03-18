@@ -27,7 +27,7 @@ jobs:
       - name: Derive SHAs for nx affected
         uses: nrwl/nx-set-shas@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "24"
 
