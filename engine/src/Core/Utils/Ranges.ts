@@ -29,6 +29,11 @@ export abstract class BaseRange {
     this.type = type;
   }
 
+  protected _resetPosition(x: number, y: number): void {
+    this.position.x = x;
+    this.position.y = y;
+  }
+
   /**
    * Check if the point is inside the range
    * @param point - the point to check in the range
@@ -47,18 +52,18 @@ export abstract class BaseRange {
 /**
  */
 export class Circle extends BaseRange {
+  radius;
+
   /**
    * Circle constructor, initialized position and radius
    * @param x - X coordinate of the position
    * @param y - Y coordinate of the position
    * @param radius - Circle's radius
    */
-  constructor(
-    x: number,
-    y: number,
-    readonly radius: number,
-  ) {
+  constructor(x: number, y: number, radius: number) {
     super(x, y, RangeType.circle);
+
+    this.radius = radius;
   }
 
   /**
@@ -101,6 +106,14 @@ export class Circle extends BaseRange {
     }
 
     return false;
+  }
+
+  reset(x: number, y: number, radius: number): this {
+    this._resetPosition(x, y);
+
+    this.radius = radius;
+
+    return this;
   }
 }
 
@@ -160,5 +173,12 @@ export class Rectangle extends BaseRange {
       h2 = size2.height;
 
     return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
+  }
+
+  reset(x: number, y: number, width: number, height: number): this {
+    this._resetPosition(x, y);
+    this.size.width = width;
+    this.size.height = height;
+    return this;
   }
 }
