@@ -108,6 +108,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:4.0.0-alpha.28",
+    "@tsparticles/interaction-external-drag": "workspace:4.0.0-alpha.28",
     "@tsparticles/interaction-external-trail": "workspace:4.0.0-alpha.28",
     "@tsparticles/plugin-absorbers": "workspace:4.0.0-alpha.28",
     "@tsparticles/plugin-emitters": "workspace:4.0.0-alpha.28",
