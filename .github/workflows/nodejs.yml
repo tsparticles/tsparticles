@@ -55,7 +55,8 @@ jobs:
         run: |
           if [ -z "$NX_CLOUD_ACCESS_TOKEN" ]; then
             echo "NX Cloud token missing — using local nx execution"
-            echo "NX_CLOUD_DISTRIBUTED_EXECUTION=false" >> $GITHUB_ENV
+            echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
+            echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
             exit 0
           fi
 
@@ -67,10 +68,21 @@ jobs:
           nx_cloud_started=false
 
           until [ "$retries" -ge "$max_retries" ]; do
-            if npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"; then
+            output=$(npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" 2>&1)
+            exit_code=$?
+
+            if echo "$output" | grep -q "401\|sufficient access\|unauthorized\|Unauthorized"; then
+              echo "NX Cloud auth failed (401) — falling back to local nx immediately"
+              echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
+              echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
+              exit 0
+            fi
+
+            if [ "$exit_code" -eq 0 ]; then
               nx_cloud_started=true
               break
             fi
+
             echo "nx-cloud start failed (attempt $((retries + 1))/${max_retries}). Retrying in $((2 ** retries))s..."
             sleep $((2 ** retries))
             retries=$((retries + 1))
@@ -81,7 +93,7 @@ jobs:
             echo "NX_CLOUD_STARTED=true" >> $GITHUB_ENV
           else
             echo "nx-cloud start failed after ${max_retries} attempts — falling back to local nx"
-            echo "NX_CLOUD_DISTRIBUTED_EXECUTION=false" >> $GITHUB_ENV
+            echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
             echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
           fi
 
