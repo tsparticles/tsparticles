@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.28...v4.0.0-beta.0) (2026-03-19)
+
+**Note:** Version bump only for package @tsparticles/plugin-hsv-color
+
 # [4.0.0-alpha.28](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.27...v4.0.0-alpha.28) (2026-03-15)
 
 **Note:** Version bump only for package @tsparticles/plugin-hsv-color

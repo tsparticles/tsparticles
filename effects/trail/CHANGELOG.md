@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.28...v4.0.0-beta.0) (2026-03-19)
+
+### Bug Fixes
+
+- improved trail drawer outcome a bit ([4f5368f](https://github.com/tsparticles/tsparticles/commit/4f5368ff0b404a6c3a440b23020b2ba78eb8e17b))
+- improved trail drawer outcome a bit ([90154ac](https://github.com/tsparticles/tsparticles/commit/90154acc3322bdc4c1f5d40eda1bea3688c2d60a))
+- improved trail drawer performance a bit ([8a28709](https://github.com/tsparticles/tsparticles/commit/8a28709e00f524fcd65bd54d6194e60b9c60845d))
+- reduced checks on trail drawing ([2cc5614](https://github.com/tsparticles/tsparticles/commit/2cc5614c96f0d8f8fa4b4a7c3f882df2778e4cf5))
+- reduced checks on trail drawing ([c1201d2](https://github.com/tsparticles/tsparticles/commit/c1201d24560ed60b49b560ab1ac6950c0b074e58))
+
 # [4.0.0-alpha.28](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.27...v4.0.0-alpha.28) (2026-03-15)
 
 **Note:** Version bump only for package @tsparticles/effect-trail
