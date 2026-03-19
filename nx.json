@@ -5,21 +5,44 @@
   "defaultBase": "main",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     },
     "build:ci": {
-      "dependsOn": ["^build:ci"],
-      "outputs": ["{projectRoot}/dist"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build:ci"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     },
     "package": {
-      "dependsOn": ["^build", "^prepare", "^package"],
-      "outputs": ["{projectRoot}/dist"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build",
+        "^prepare",
+        "^package"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     }
   },
@@ -29,7 +52,10 @@
     }
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "sharedGlobals": [
       "{workspaceRoot}/nx.json",
       "{workspaceRoot}/package.json",
@@ -42,5 +68,6 @@
       "{projectRoot}/tsconfig*.json",
       "sharedGlobals"
     ]
-  }
+  },
+  "analytics": true
 }
