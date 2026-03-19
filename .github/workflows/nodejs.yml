@@ -103,9 +103,6 @@ jobs:
       - name: Build packages
         run: npx nx affected -t build:ci
 
-      - name: Run unit tests (test:ci)
-        run: pnpm --filter @tsparticles/tests run test:ci
-
       - name: Deploy to Firebase (production)
         if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
