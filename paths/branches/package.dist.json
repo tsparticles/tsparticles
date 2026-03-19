@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-branches",
-  "version": "4.0.0-alpha.28",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles branches path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -104,8 +104,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.28",
-    "@tsparticles/plugin-move": "4.0.0-alpha.28"
+    "@tsparticles/engine": "4.0.0-beta.0",
+    "@tsparticles/plugin-move": "4.0.0-beta.0"
   },
   "type": "module"
 }

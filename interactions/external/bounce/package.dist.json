@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-bounce",
-  "version": "4.0.0-alpha.28",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles bounce external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.28",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.28"
+    "@tsparticles/engine": "4.0.0-beta.0",
+    "@tsparticles/plugin-interactivity": "4.0.0-beta.0"
   },
   "publishConfig": {
     "access": "public"

@@ -5,7 +5,6 @@ import {
   executeOnSingleOrMultiple,
   lengthOffset,
   manageListener,
-  touchDelay,
   visibilityChangeEvent,
 } from "@tsparticles/engine";
 import {
@@ -22,6 +21,8 @@ import {
 import type { InteractionManager } from "./InteractionManager.js";
 import type { InteractivityContainer } from "./types.js";
 import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
+
+const touchDelay = 500;
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;

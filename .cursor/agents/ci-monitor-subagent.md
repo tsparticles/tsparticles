@@ -15,7 +15,7 @@ The main agent tells you which command to run:
 ### FETCH_STATUS
 
 Call `ci_information` with the provided branch and select fields. Return a JSON object with ONLY these fields:
-`{ cipeStatus, selfHealingStatus, verificationStatus, selfHealingEnabled, selfHealingSkippedReason, failureClassification, failedTaskIds, verifiedTaskIds, couldAutoApplyTasks, userAction, cipeUrl, commitSha, shortLink }`
+`{ cipeStatus, selfHealingStatus, verificationStatus, selfHealingEnabled, selfHealingSkippedReason, failureClassification, failedTaskIds, verifiedTaskIds, couldAutoApplyTasks, autoApplySkipped, autoApplySkipReason, userAction, cipeUrl, commitSha, shortLink }`
 
 ### FETCH_HEAVY
 

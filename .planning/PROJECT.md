@@ -1,47 +1,53 @@
-# tsparticles — Project Initialization
+# tsParticles — Project
 
 ## What This Is
 
-tsparticles is a TypeScript monorepo that produces a modular particle engine library and multiple distribution bundles (basic, slim, full), along with demo applications. The codebase is used by web developers who want a lightweight, extensible particle system for browser-based visual effects and interactive demos.
+tsParticles is a TypeScript-first, extensible particle engine and ecosystem packaged as a monorepo. It provides a compact runtime (`engine/src/`) plus plugins (`plugins/*/`), path generators (`paths/*/`), utility libraries (`utils/*/`), and prebuilt bundles (`bundles/*/`). This project produces library bundles, demos, and documentation for web developers building particle effects.
 
 ## Core Value
 
-Provide a stable, well-tested, and easy-to-consume particle engine that can be published to npm as multiple curated bundles so consumers can pick the minimal footprint they need.
+Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
 ## Requirements
 
 ### Validated
 
-- ✓ Core engine runtime with public exports — existing (see `engine/src/`)
-- ✓ Feature packages (shapes, updaters, plugins) with standardized hooks — existing (`shapes/*`, `updaters/*`, `plugins/*`)
-- ✓ Bundles producing browser artifacts (webpack configs & `package.dist.json`) — existing (`bundles/*/`)
+- ✓ Engine runtime and public API (`engine/src/index.ts`) — existing
+- ✓ Plugin system and example plugin (`plugins/themes/src/`) — existing
+- ✓ Bundles and build targets (`bundles/slim/`, `bundles/*/webpack.config.js`) — existing
 
 ### Active
 
+- [ ] DEV-01: Stabilize build & CI across the monorepo (consistent Node/pnpm + Nx pipelines)
+- [ ] DEV-02: Improve developer documentation and examples (expand `markdown/` and demo/vanilla)
+- [ ] PERF-01: Reduce per-frame allocations in hot loops and add benchmarks for core update paths
+- [ ] QA-01: Expand test coverage for rendering and physics (utilize `utils/tests/` fixtures)
+- [ ] DX-01: Provide an easy local demo start (`demo/vanilla` quickstart improvements)
+
 ### Out of Scope
 
-- Native mobile SDKs — the project targets web-first consumption
-- Backend services or hosted analytics — demos may use simple demo servers only
+- Mobile native SDKs — this project targets web/browser bundles for now
+- Paid plugin marketplace — commercial distribution is out of scope for initial roadmap
 
 ## Context
 
-- Monorepo managed with `pnpm` and `nx` (root `package.json`, `pnpm-workspace.yaml`, `nx.json`).
-- CI uses GitHub Actions (`.github/workflows/nodejs.yml`, `npm-publish.yml`) with Nx Cloud integration.
-- Core code lives in `engine/src/`; feature packages live under `shapes/`, `updaters/`, `plugins/`; bundles under `bundles/*/`.
-- Existing docs and examples: `typedoc.json`, `demo/vanilla/`, `.github` workflows.
+- Monorepo managed with pnpm, Nx, and Lerna for publishing. Root scripts in `package.json` and workspace layout in `pnpm-workspace.yaml`.
+- Typedoc is used for API docs (`typedoc.json`) and `markdown/` contains higher-level guides.
+- Build outputs are produced via webpack under `bundles/*`.
 
 ## Constraints
 
-- **Compatibility**: Support modern browsers; Node used for tests and CI (Node 18+/24 in CI).
-- **Tooling**: `pnpm` (workspace) and `nx` required for local developer workflows.
-- **Publishing**: Publishing via GitHub Actions and Lerna/Nx — requires repository secrets (NX_CLOUD_ACCESS_TOKEN, FIREBASE_SERVICE_ACCOUNT_TSPARTICLES).
+- **Platform**: Browser-first; Node only for tooling and CI — runtime APIs must not rely on server features.
+- **Compatibility**: Support modern evergreen browsers; minimize polyfills to keep bundles small.
+- **Performance**: Hot-path code (particle update/render loop) needs careful allocation discipline.
 
 ## Key Decisions
 
-| Decision                | Rationale                                     | Outcome |
-| ----------------------- | --------------------------------------------- | ------- |
-| Monorepo with pnpm + nx | Reuse existing structure and CI optimizations | ✓ Good  |
+| Decision                      | Rationale                                                        | Outcome |
+| ----------------------------- | ---------------------------------------------------------------- | ------- |
+| Monorepo with pnpm + Nx       | Organize many small packages and speed local dev with workspaces | ✓ Good  |
+| Web-first, not server runtime | Primary consumers are web apps and demos                         | ✓ Good  |
 
 ---
 
-_Last updated: 2026-03-01 after initialization_
+_Last updated: after project initialization_

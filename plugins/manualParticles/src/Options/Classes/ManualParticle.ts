@@ -6,9 +6,10 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
-  manualDefaultPosition,
 } from "@tsparticles/engine";
 import type { IManualParticle } from "../Interfaces/IManualParticle.js";
+
+const manualDefaultPosition = 50;
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
   options?: RecursivePartial<IParticlesOptions>;

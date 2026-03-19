@@ -3,10 +3,7 @@ import {
   type ICoordinates,
   type IDelta,
   type Particle,
-  clickRadius,
-  minCoordinate,
   safeIntersectionObserver,
-  touchEndLengthOffset,
 } from "@tsparticles/engine";
 import {
   clickEvent,
@@ -22,6 +19,10 @@ import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js"
 import type { InteractivityEngine } from "./types.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
 import { InteractorType } from "./Enums/InteractorType.js";
+
+const clickRadius = 1,
+  touchEndLengthOffset = 1,
+  minCoordinate = 0;
 
 type ContainerClickHandler = (evt: Event) => void;
 

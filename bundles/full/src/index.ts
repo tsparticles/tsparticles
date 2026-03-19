@@ -16,6 +16,7 @@ export async function loadFull(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const [
       { loadSlim },
+      { loadExternalDragInteraction },
       { loadExternalTrailInteraction },
       { loadAbsorbersPlugin },
       { loadEmittersPlugin },
@@ -30,6 +31,7 @@ export async function loadFull(engine: Engine): Promise<void> {
     ] = await Promise.all([
       import("@tsparticles/slim"),
 
+      import("@tsparticles/interaction-external-drag"),
       import("@tsparticles/interaction-external-trail"),
 
       import("@tsparticles/plugin-absorbers"),
@@ -51,6 +53,7 @@ export async function loadFull(engine: Engine): Promise<void> {
         await loadSlim(e);
 
         await Promise.all([
+          loadExternalDragInteraction(e),
           loadExternalTrailInteraction(e),
 
           loadAbsorbersPlugin(e),

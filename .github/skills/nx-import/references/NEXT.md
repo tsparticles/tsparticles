@@ -54,6 +54,20 @@ Next.js app tsconfigs have unique patterns compared to Vite:
 
 Imported Next.js configs may have `// eslint-disable-next-line @typescript-eslint/no-var-requires` but the project ESLint config enables different rule sets. This produces `Unused eslint-disable directive` warnings. Harmless — remove the comment or ignore.
 
+### `@nx/next:init` Rewrites All npm Scripts (Whole-Repo Import)
+
+When `@nx/next:init` runs during a whole-repo import, it rewrites the project's `package.json` scripts to prefixed `nx` calls:
+
+```json
+{
+  "dev": "nx next:dev",
+  "build": "nx next:build",
+  "start": "nx next:start"
+}
+```
+
+This is the standard "npm Script Rewriting" issue from SKILL.md, but triggered by `@nx/next:init` rather than Nx init. **Fix**: Remove all rewritten scripts from `package.json` — `@nx/next/plugin` infers all targets from `next.config.*`.
+
 ---
 
 ## Non-Nx Source (create-next-app)
@@ -65,6 +79,10 @@ For single-project `create-next-app` repos, use whole-repo import into a subdire
 ```bash
 nx import /path/to/source apps/web --ref=main --source=. --no-interactive
 ```
+
+### `next-env.d.ts`
+
+`next build` auto-generates `next-env.d.ts` at the project root. Add `next-env.d.ts` to the dest root `.gitignore` — it is framework-generated and should not be committed.
 
 ### ESLint: Self-Contained `eslint-config-next`
 
@@ -123,17 +141,19 @@ No naming conflicts between frameworks.
 
 ## Fix Order — Nx Source (Subdirectory Import)
 
-1. Generic fixes from SKILL.md (pnpm globs, root deps, `.gitkeep` removal, frontend tsconfig base settings, `@nx/react` typings)
-2. Install Next.js-specific deps: `pnpm add -wD @next/eslint-plugin-next`
-3. ESLint setup (see SKILL.md: "Root ESLint Config Missing")
-4. Jest setup (see SKILL.md: "Jest Preset Missing")
-5. `nx reset && nx sync --yes && nx run-many -t typecheck,build,test,lint`
+1. Import Next.js apps into `apps/<name>` (see SKILL.md: "Application vs Library Detection")
+2. Generic fixes from SKILL.md (pnpm globs, root deps, `.gitkeep` removal, frontend tsconfig base settings, `@nx/react` typings)
+3. Install Next.js-specific deps: `pnpm add -wD @next/eslint-plugin-next`
+4. ESLint setup (see SKILL.md: "Root ESLint Config Missing")
+5. Jest setup (see SKILL.md: "Jest Preset Missing")
+6. `nx reset && nx sync --yes && nx run-many -t typecheck,build,test,lint`
 
 ## Fix Order — Non-Nx Source (create-next-app)
 
-1. Generic fixes from SKILL.md (pnpm globs, stale files cleanup, script rewriting, target name prefixing)
-2. (Optional) If app needs to export types for other workspace projects: fix `noEmit` → `composite` (see SKILL.md)
-3. `nx reset && nx run-many -t next:build,eslint:lint` (or unprefixed names if renamed)
+1. Import into `apps/<name>` (see SKILL.md: "Application vs Library Detection")
+2. Generic fixes from SKILL.md (pnpm globs, stale files cleanup, script rewriting, target name prefixing)
+3. (Optional) If app needs to export types for other workspace projects: fix `noEmit` → `composite` (see SKILL.md)
+4. `nx reset && nx run-many -t next:build,eslint:lint` (or unprefixed names if renamed)
 
 ---
 
@@ -167,6 +187,16 @@ No naming conflicts between frameworks.
 - ESLint self-contained via `eslint-config-next` — no root config needed
 - No test setup (create-next-app doesn't include tests)
 - All targets green: next:build, eslint:lint
+
+### Scenario 4: Non-Nx create-next-app (alongside Vite, React Router 7, TanStack, CRA) → TS preset (PASS)
+
+- See VITE.md Scenario 6 for the full multi-import scenario
+- Next.js-specific findings:
+  1. `@nx/next:init` rewrote all scripts to `nx next:*` format — removed all rewritten scripts
+  2. Stale files: `node_modules/`, `package-lock.json`, `.gitignore` — deleted (npm workspace, no pnpm files)
+  3. ESLint self-contained via `eslint-config-next` — no root config needed
+  4. No tsconfig changes needed — `noEmit: true` stays; `next build` handles type checking
+- Targets: `next:build`, `next:dev`, `next:start`, `eslint:lint`
 
 ### Scenario 5: Mixed Next.js (Nx) + Vite React (standalone) → TS preset (PASS)
 

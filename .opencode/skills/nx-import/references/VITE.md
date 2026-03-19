@@ -43,6 +43,71 @@ See SKILL.md for the generic noEmit→composite fix. Vite-specific additions:
 
 ---
 
+## React Router 7 (Vite-Based)
+
+React Router 7 (`@react-router/dev`) uses Vite under the hood with a `vite.config.ts` and a `react-router.config.ts`. The `@nx/vite/plugin` detects `vite.config.ts` and creates inferred targets.
+
+### Targets
+
+`@nx/vite/plugin` creates `build`, `dev`, `serve` targets. The `build` target invokes the script defined in `package.json` (usually `react-router build`), not `vite build` directly.
+
+**No separate typecheck target from `@nx/vite/plugin`** — React Router 7 typegen is run as part of `typecheck` (e.g. `react-router typegen && tsc`). The `typecheck` target is inferred from the tsconfig. Keep the `typecheck` script in `package.json` if present; it is not rewritten.
+
+### tsconfig Notes
+
+React Router 7 uses a single `tsconfig.json` (no `tsconfig.app.json`/`tsconfig.node.json` split). It includes:
+
+- `"rootDirs": [".", "./.react-router/types"]` — for generated type files; keep as-is
+- `"paths": { "~/*": ["./app/*"] }` — self-referential alias; keep as-is
+- `"noEmit": true` — replace with composite settings per SKILL.md
+
+### Build Output
+
+React Router 7 outputs to `build/` (not `dist/`). Add `build` to the dest root `.gitignore`.
+
+### Generated Types Directory
+
+React Router 7 generates `.react-router/` at the project root for route type generation. Add `.react-router` to the dest root `.gitignore`.
+
+---
+
+## TanStack Start (Vite-Based)
+
+TanStack Start uses Vinxi under the hood, which wraps Vite. Projects have a standard `vite.config.ts` that `@nx/vite/plugin` detects normally.
+
+### Targets
+
+`@nx/vite/plugin` creates `build`, `dev`, `preview`, `serve-static`, `typecheck` targets. The `build` target runs `vite build` which invokes the TanStack Start Vinxi pipeline (produces both client and SSR bundles).
+
+### tsconfig Notes
+
+TanStack Start uses a single `tsconfig.json` with `"allowImportingTsExtensions": true` and `"noEmit": true`. Apply the standard noEmit → composite fix. `allowImportingTsExtensions` is compatible with `emitDeclarationOnly: true` — no change needed.
+
+### `paths` Aliases
+
+TanStack Start commonly uses `"#/*": ["./src/*"]` and `"@/*": ["./src/*"]`. These are self-referential — keep as-is for a single-project app.
+
+### Uncommitted Source Repo
+
+`create-tan-stack` initializes a git repo but does NOT make an initial commit. Before importing, commit first:
+
+```bash
+git -C /path/to/source add . && git -C /path/to/source commit -m "Initial commit"
+```
+
+### Generated and Build Directories
+
+TanStack Start / Vinxi / Nitro generate several directories that must be added to the dest root `.gitignore`:
+
+- `.vinxi` — Vinxi build cache
+- `.tanstack` — TanStack generated files
+- `.nitro` — Nitro build artifacts
+- `.output` — server-side build output (SSR/edge)
+
+These are not covered by `dist` or `build`.
+
+---
+
 ## React-Specific
 
 ### React Dependencies
@@ -195,6 +260,42 @@ Remove `@nx/js/typescript` if all projects use Vite. Keep it (renamed to `"tsc-t
 
 ---
 
+## Redundant npm Scripts After Import
+
+`nx import` copies `package.json` verbatim, so npm scripts come along. For Vite-based projects `@nx/vite/plugin` already infers the same targets from `vite.config.ts` — the npm scripts just shadow the plugin with weaker `nx:run-script` wrappers (no first-class caching inputs/outputs). Remove them after import.
+
+### Standalone Vite App (`create-vite`)
+
+Remove the following scripts — every one is redundant:
+
+| Script                        | Plugin replacement                                                           |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| `dev: vite`                   | `@nx/vite/plugin` → `dev`                                                    |
+| `build: tsc -b && vite build` | `@nx/vite/plugin` → `build`; `typecheck` via `@nx/js/typescript` handles tsc |
+| `preview: vite preview`       | `@nx/vite/plugin` → `preview`                                                |
+| `lint: eslint .`              | `@nx/eslint/plugin` → `eslint:lint`                                          |
+
+### TanStack Start
+
+Remove `build`, `dev`, `preview`, and `test` scripts, but move any hardcoded `--port` flag to `vite.config.ts` first:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  server: { port: 3000 },  // replaces `vite dev --port 3000`
+  ...
+})
+```
+
+### React Router 7 — Keep ALL scripts
+
+Do **not** remove React Router 7 scripts. They use the framework CLI (`react-router build`, `react-router dev`, `react-router-serve`) which is not interchangeable with plain `vite`:
+
+- `typecheck` runs `react-router typegen && tsc` — typegen must precede `tsc` or it fails on missing route types
+- `start` serves the SSR bundle — no plugin equivalent
+
+---
+
 ## Fix Orders
 
 ### Nx Source
@@ -208,18 +309,42 @@ Remove `@nx/js/typescript` if all projects use Vite. Keep it (renamed to `"tsc-t
 
 ### Non-Nx Source (additional steps)
 
+0. Import into `apps/<name>` (see SKILL.md: "Application vs Library Detection")
 1. Generic fixes from SKILL.md (stale files cleanup, pnpm globs, rewritten scripts, target name prefixing, noEmit→composite, ESLint handling)
 2. Fix `noEmit` in **all** tsconfigs (app, node, etc. — non-Nx projects often have multiple)
 3. Add `extends` to solution-style tsconfigs so root settings apply
 4. Fix `resolve.alias` / `__dirname` / `baseUrl`
 5. Ensure `types` include `vite/client` and `node`
 6. Install `@nx/vite` manually if it failed during import
-7. **Vue**: Add `outDir` + `**/*.vue.d.ts` to ESLint ignores
-8. Full verification
+7. Remove redundant npm scripts so `@nx/vite/plugin` infers them natively (see "Redundant npm Scripts" section)
+8. **Vue**: Add `outDir` + `**/*.vue.d.ts` to ESLint ignores
+9. Full verification
 
 ### Multiple-Source Imports
 
 See SKILL.md for generic multi-import (name collisions, dep refs). Vite-specific: fix tsconfig `references` paths for alternate directories (`../../libs/` → `../../libs-beta/`).
+
+### Non-Nx Source: React Router 7
+
+1. Ensure source has at least one commit (see SKILL.md: "Source Repo Has No Commits")
+2. `nx import` whole-repo into `apps/<name>` (see SKILL.md: "Application vs Library Detection") → auto-installs `@nx/vite`, `@nx/react`
+3. Stale file cleanup: `node_modules/`, `package-lock.json`, `.gitignore`
+4. Fix `tsconfig.json`: `noEmit` → `composite + emitDeclarationOnly + outDir + tsBuildInfoFile`
+5. Add `build` and `.react-router` to dest root `.gitignore`
+6. **Keep all npm scripts** — React Router 7 uses framework CLI (`react-router build/dev`), not plain vite (see "Redundant npm Scripts" above)
+7. `npm install && nx reset && nx sync --yes`
+
+### Non-Nx Source: TanStack Start
+
+1. Ensure source has at least one commit — `create-tan-stack` does NOT auto-commit (see SKILL.md)
+2. `nx import` whole-repo into `apps/<name>` (see SKILL.md: "Application vs Library Detection") → auto-installs `@nx/vite`, `@nx/vitest`
+3. Stale file cleanup: `node_modules/`, `package-lock.json`, `.gitignore`
+4. Fix `tsconfig.json`: `noEmit` → `composite + emitDeclarationOnly + outDir + tsBuildInfoFile`
+5. Keep `allowImportingTsExtensions` — compatible with `emitDeclarationOnly: true`
+6. Add `.vinxi`, `.tanstack`, `.nitro`, `.output` to dest root `.gitignore`
+7. Move hardcoded `--port` from `dev` script into `vite.config.ts` (`server: { port: N }`)
+8. Remove redundant npm scripts — `@nx/vite/plugin` infers `build`, `dev`, `preview`, `test` (see "Redundant npm Scripts" above)
+9. `npm install && nx reset && nx sync --yes`
 
 ### Quick Reference: React vs Vue
 
@@ -232,3 +357,41 @@ See SKILL.md for generic multi-import (name collisions, dep refs). Vite-specific
 | ESLint parser | Standard TS              | `vue-eslint-parser` + TS sub-parser       |
 | ESLint setup  | Straightforward          | Must install deps before `@nx/eslint`     |
 | Test utils    | `@testing-library/react` | `@vue/test-utils`                         |
+
+### Quick Reference: Vite-Based React Frameworks
+
+| Aspect             | Vite (standalone) | React Router 7          | TanStack Start           |
+| ------------------ | ----------------- | ----------------------- | ------------------------ |
+| Build config       | `vite.config.ts`  | `vite.config.ts`        | `vite.config.ts`         |
+| Build output       | `dist/`           | `build/`                | `dist/`                  |
+| SSR bundle         | No                | Yes (`build/server/`)   | Yes (`dist/server/`)     |
+| tsconfig layout    | app + node split  | Single tsconfig         | Single tsconfig          |
+| Auto-committed     | Depends on tool   | Usually yes             | **No — commit first**    |
+| `nx import` plugin | `@nx/vite`        | `@nx/vite`, `@nx/react` | `@nx/vite`, `@nx/vitest` |
+
+---
+
+## Iteration Log
+
+### Scenario 6: Multiple non-Nx React apps (CRA, Next.js, React Router 7, TanStack Start, Vite) → TS preset (PASS)
+
+- Sources: 5 standalone non-Nx repos with different build tools
+- Dest: CNW ts preset (Nx 22.5.1), npm workspaces, `packages/*`
+- Import: whole-repo for each, sequential into `packages/<name>`
+- Pre-import fixes:
+  1. Removed `packages/.gitkeep` and committed
+  2. `git init && git add . && git commit` in Vite app (no git at all)
+  3. `git add . && git commit` in TanStack app (git init'd but no commits)
+- Import: `npm exec nx -- import <source> packages/<name> --source=. --ref=main --no-interactive`
+  - Next.js import auto-installed `@nx/eslint`, `@nx/next`
+  - React Router 7 import auto-installed `@nx/vite`, `@nx/react`, `@nx/docker` (Dockerfile present)
+  - TanStack import auto-installed `@nx/vitest`
+- Post-import fixes:
+  1. Removed stale `node_modules/`, `package-lock.json`, `.gitignore` from each package
+  2. Removed Nx-rewritten scripts from `board-games-nextjs/package.json` (had `"build": "nx next:build"`, etc.)
+  3. Updated root `tsconfig.base.json`: `nodenext` → `bundler`, added `dom`/`dom.iterable` to lib, added `jsx: react-jsx`
+  4. Added `build` to dest root `.gitignore` (CRA and React Router 7 output there)
+  5. Fixed `noEmit` → `composite + emitDeclarationOnly` in: `board-games-vite/tsconfig.app.json`, `board-games-vite/tsconfig.node.json`, `board-games-react-router/tsconfig.json`, `board-games-tanstack/tsconfig.json`
+  6. Fixed `tsBuildInfoFile` paths from `./node_modules/.tmp/...` to `./dist/...`
+  7. Installed root `@types/react`, `@types/react-dom`, `@types/node`
+- All targets green: `build` for all 5 projects; `typecheck` for Vite/React Router/TanStack; `next:build` for Next.js

@@ -11,14 +11,16 @@ import {
   getDistances,
   getRangeValue,
   half,
-  none,
   originPoint,
 } from "@tsparticles/engine";
 
-const minTrailLength = 2,
+const minTrailLength = 3,
   trailLengthOffset = 1,
   minWidth = -1,
-  defaultLength = 10;
+  firstIndex = 0,
+  defaultLength = 10,
+  loopTrailLengthOffset = 2,
+  loopTrailLengthMinIndex = 0;
 
 interface TrailStep {
   color: string | CanvasGradient | CanvasPattern;
@@ -82,38 +84,49 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       return;
     }
 
-    while (trail.length > pathLength) {
-      trail.shift();
+    const pathLengthFloor = Math.floor(pathLength);
+
+    if (trail.length > pathLengthFloor) {
+      trail.splice(firstIndex, trail.length - pathLengthFloor);
     }
 
     const trailLength = Math.min(trail.length, pathLength),
       canvasSize = {
         width: particle.container.canvas.size.width * drawScale + diameter,
         height: particle.container.canvas.size.height * drawScale + diameter,
-      },
-      trailPos = trail[trailLength - trailLengthOffset];
+      };
 
-    if (!trailPos) {
-      return;
-    }
+    context.save();
 
-    let lastPos = trailPos.position;
+    context.lineCap = "butt";
+    context.lineJoin = "round";
 
-    for (let i = trailLength; i > none; i--) {
-      const step = trail[i - trailLengthOffset];
+    for (let i = trailLength - loopTrailLengthOffset; i > loopTrailLengthMinIndex; i--) {
+      const previousStep = trail[i + trailLengthOffset],
+        step = trail[i],
+        nextStep = trail[i - trailLengthOffset];
 
-      if (!step) {
+      if (!previousStep || !step || !nextStep) {
         continue;
       }
 
-      const position = step.position,
+      const previousPosition = previousStep.position,
+        position = step.position,
+        nextPosition = nextStep.position,
         stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform,
-        { distance, dx, dy } = getDistances(lastPos, position);
+        { distance: previousDistance } = getDistances(previousPosition, position),
+        { distance: nextDistance } = getDistances(position, nextPosition);
 
-      // Skip segment if distance is too large (wrap or zoom change)
-      if (distance > pathLength * double) {
-        lastPos = position;
+      if (previousDistance > pathLength * double || nextDistance > pathLength * double) {
+        continue;
+      }
 
+      if (
+        Math.abs(previousPosition.x - position.x) > canvasSize.width * half ||
+        Math.abs(previousPosition.y - position.y) > canvasSize.height * half ||
+        Math.abs(position.x - nextPosition.x) > canvasSize.width * half ||
+        Math.abs(position.y - nextPosition.y) > canvasSize.height * half
+      ) {
         continue;
       }
 
@@ -126,24 +139,14 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         position.y,
       );
 
+      const startX = (previousPosition.x + position.x) * half - position.x,
+        startY = (previousPosition.y + position.y) * half - position.y,
+        endX = (position.x + nextPosition.x) * half - position.x,
+        endY = (position.y + nextPosition.y) * half - position.y;
+
       context.beginPath();
-      context.moveTo(dx, dy);
-
-      const warp = {
-        x: (lastPos.x + canvasSize.width) % canvasSize.width,
-        y: (lastPos.y + canvasSize.height) % canvasSize.height,
-      };
-
-      if (Math.abs(dx) > canvasSize.width * half || Math.abs(dy) > canvasSize.height * half) {
-        lastPos = position;
-
-        continue;
-      }
-
-      context.lineTo(
-        Math.abs(dx) > canvasSize.width * half ? warp.x : originPoint.x,
-        Math.abs(dy) > canvasSize.height * half ? warp.y : originPoint.y,
-      );
+      context.moveTo(startX, startY);
+      context.quadraticCurveTo(originPoint.x, originPoint.y, endX, endY);
 
       const width = Math.max((i / trailLength) * diameter, pxRatio, (particle.trailMinWidth ?? minWidth) * drawScale),
         oldAlpha = context.globalAlpha;
@@ -155,9 +158,9 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       context.stroke();
 
       context.globalAlpha = oldAlpha;
-
-      lastPos = position;
     }
+
+    context.restore();
   }
 
   particleInit(container: Container, particle: TrailParticle): void {

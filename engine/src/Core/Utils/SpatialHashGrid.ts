@@ -16,10 +16,17 @@ interface RangeBounds {
 export class SpatialHashGrid {
   private _cellSize: number;
   private readonly _cells = new Map<string, Particle[]>();
+  private readonly _circlePool: Circle[] = [];
+  private _circlePoolIdx;
   private _pendingCellSize?: number;
+  private readonly _rectanglePool: Rectangle[] = [];
+  private _rectanglePoolIdx;
 
   constructor(cellSize: number) {
     this._cellSize = cellSize;
+
+    this._circlePoolIdx = 0;
+    this._rectanglePoolIdx = 0;
   }
 
   /**
@@ -95,42 +102,44 @@ export class SpatialHashGrid {
     return out;
   }
 
-  /**
-   * Convenience for circles
-   * @param position -
-   * @param radius -
-   * @param check -
-   * @param out -
-   * @returns -
-   */
   queryCircle(
     position: ICoordinates,
     radius: number,
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    return this.query(new Circle(position.x, position.y, radius), check, out);
+    const circle = this._acquireCircle(position.x, position.y, radius),
+      result = this.query(circle, check, out);
+
+    this._releaseShapes();
+
+    return result;
   }
 
-  /**
-   * Convenience for rectangles
-   * @param position -
-   * @param size -
-   * @param check -
-   * @param out -
-   * @returns -
-   */
   queryRectangle(
     position: ICoordinates,
     size: IDimension,
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    return this.query(new Rectangle(position.x, position.y, size.width, size.height), check, out);
+    const rect = this._acquireRectangle(position.x, position.y, size.width, size.height),
+      result = this.query(rect, check, out);
+
+    this._releaseShapes();
+
+    return result;
   }
 
   setCellSize(cellSize: number): void {
     this._pendingCellSize = cellSize;
+  }
+
+  private _acquireCircle(x: number, y: number, r: number): Circle {
+    return (this._circlePool[this._circlePoolIdx++] ??= new Circle(x, y, r)).reset(x, y, r);
+  }
+
+  private _acquireRectangle(x: number, y: number, w: number, h: number): Rectangle {
+    return (this._rectanglePool[this._rectanglePoolIdx++] ??= new Rectangle(x, y, w, h)).reset(x, y, w, h);
   }
 
   /**
@@ -177,5 +186,10 @@ export class SpatialHashGrid {
     }
 
     return null;
+  }
+
+  private _releaseShapes(): void {
+    this._circlePoolIdx = 0;
+    this._rectanglePoolIdx = 0;
   }
 }

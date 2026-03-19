@@ -386,3 +386,5 @@ docs.json
 .nx/workspace-data
 
 .nx/polygraph
+.claude/worktrees
+.claude/settings.local.json

@@ -8,7 +8,7 @@ This repository uses a pnpm + Nx TypeScript monorepo structure. The guidance bel
 
 - Install dependencies: `pnpm i`
 - Build all packages: `pnpm run build` (runs `slimbuild` + docs)
-- Build affected packages: `pnpm run build:affected` or `npx nx affected -t build`
+- Build affected packages: `pnpm run build:affected` or `pnpm nx affected -t build`
 - Run the full workspace build (CI): `pnpm run build:ci`
 - Run typedoc (docs): `pnpm run build:docs`
 - Start demo server: `cd demo/vanilla && pnpm start`
@@ -17,17 +17,17 @@ This repository uses a pnpm + Nx TypeScript monorepo structure. The guidance bel
 
 - Format README + markdown: `pnpm run prettify:readme`
 - Check formatting (CI): `pnpm run prettify:ci:readme`
-- Run ESLint (package-local): `npx nx run <project>:lint` or `pnpm --filter <package> run lint`
+- Run ESLint (package-local): `pnpm nx run <project>:lint` or `pnpm --filter <package> run lint`
 - Husky hooks are enabled: local `git commit` runs hooks (`prepare` script in `package.json`). Do not bypass hooks.
 
 ## Tests
 
-- Run all tests (workspace): `pnpm exec vitest` or `npx nx run-many -t test`
+- Run all tests (workspace): `pnpm exec vitest` or `pnpm nx run-many -t test`
 - Run package tests (example): `pnpm --filter @tsparticles/tests test`
 - Run a single test file with Vitest:
   - From package: `pnpm --filter @tsparticles/tests test:particle` (predefined script)
   - Directly: `pnpm exec vitest run path/to/test/file.ts` (e.g. `utils/tests/src/tests/Particle.ts`)
-  - With Nx (project-level): `npx nx test <project> --testFile=src/tests/Particle.ts` (use project-specific options)
+  - With Nx (project-level): `pnpm nx test <project> --testFile=src/tests/Particle.ts` (use project-specific options)
 - Run tests in watch UI: `pnpm --filter @tsparticles/tests test:ui` or `pnpm exec vitest --ui`
 - Coverage: vitest with v8 provider configured in `utils/tests/vitest.config.ts` — CI exposes coverage artifacts under `utils/tests/coverage/`.
 
@@ -124,10 +124,23 @@ PRs
 
 - Cursor skills & rules found under `.cursor/`: follow the skill definitions before invoking local helpers. Notable files:
   - `.cursor/skills/monitor-ci/SKILL.md`
+  - `.cursor/skills/link-workspace-packages/SKILL.md`
   - `.cursor/skills/nx-workspace/SKILL.md`
   - `.cursor/skills/nx-generate/SKILL.md`
+  - `.cursor/skills/nx-import/SKILL.md`
   - `.cursor/skills/nx-run-tasks/SKILL.md`
   - `.cursor/skills/nx-plugins/SKILL.md`
+
+- Equivalent GitHub Copilot assets are also present under `.github/`:
+  - `.github/skills/monitor-ci/SKILL.md`
+  - `.github/skills/link-workspace-packages/SKILL.md`
+  - `.github/skills/nx-workspace/SKILL.md`
+  - `.github/skills/nx-generate/SKILL.md`
+  - `.github/skills/nx-import/SKILL.md`
+  - `.github/skills/nx-run-tasks/SKILL.md`
+  - `.github/skills/nx-plugins/SKILL.md`
+  - `.github/agents/ci-monitor-subagent.agent.md`
+  - `.github/prompts/monitor-ci.prompt.md`
 
 - There is no `.github/copilot-instructions.md` present; follow the repository linting and commit rules instead.
 
