@@ -4,6 +4,8 @@ import { RangeType } from "../../Enums/RangeType.js";
 import { checkDistance } from "../../Utils/MathUtils.js";
 import { squareExp } from "./Constants.js";
 
+const tempPos: ICoordinates = { x: 0, y: 0 };
+
 /**
  */
 export abstract class BaseRange {
@@ -83,25 +85,27 @@ export class Circle extends BaseRange {
   intersects(range: BaseRange): boolean {
     const pos1 = this.position,
       pos2 = range.position,
-      distPos = { x: Math.abs(pos2.x - pos1.x), y: Math.abs(pos2.y - pos1.y) },
       r = this.radius;
+
+    tempPos.x = Math.abs(pos2.x - pos1.x);
+    tempPos.y = Math.abs(pos2.y - pos1.y);
 
     if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
         rSum = r + circleRange.radius,
-        dist = Math.hypot(distPos.x, distPos.y);
+        dist = Math.hypot(tempPos.x, tempPos.y);
 
       return rSum > dist;
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
       const rectRange = range as Rectangle,
         { width, height } = rectRange.size,
-        edges = Math.pow(distPos.x - width, squareExp) + Math.pow(distPos.y - height, squareExp);
+        edges = Math.pow(tempPos.x - width, squareExp) + Math.pow(tempPos.y - height, squareExp);
 
       return (
         edges <= r ** squareExp ||
-        (distPos.x <= r + width && distPos.y <= r + height) ||
-        distPos.x <= width ||
-        distPos.y <= height
+        (tempPos.x <= r + width && tempPos.y <= r + height) ||
+        tempPos.x <= width ||
+        tempPos.y <= height
       );
     }
 
@@ -164,11 +168,15 @@ export class Rectangle extends BaseRange {
       return range.intersects(this);
     }
 
+    if (!(range instanceof Rectangle)) {
+      return false;
+    }
+
     const w = this.size.width,
       h = this.size.height,
       pos1 = this.position,
       pos2 = range.position,
-      size2 = range instanceof Rectangle ? range.size : { width: 0, height: 0 },
+      size2 = range.size,
       w2 = size2.width,
       h2 = size2.height;
 

@@ -16,10 +16,9 @@ interface RangeBounds {
 export class SpatialHashGrid {
   private _cellSize: number;
   private readonly _cells = new Map<string, Particle[]>();
-  private _pendingCellSize?: number;
-
   private readonly _circlePool: Circle[] = [];
   private _circlePoolIdx;
+  private _pendingCellSize?: number;
   private readonly _rectanglePool: Rectangle[] = [];
   private _rectanglePoolIdx;
 
