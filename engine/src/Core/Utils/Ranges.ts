@@ -4,8 +4,6 @@ import { RangeType } from "../../Enums/RangeType.js";
 import { checkDistance } from "../../Utils/MathUtils.js";
 import { squareExp } from "./Constants.js";
 
-const tempPos: ICoordinates = { x: 0, y: 0 };
-
 /**
  */
 export abstract class BaseRange {
@@ -85,28 +83,22 @@ export class Circle extends BaseRange {
   intersects(range: BaseRange): boolean {
     const pos1 = this.position,
       pos2 = range.position,
-      r = this.radius;
-
-    tempPos.x = Math.abs(pos2.x - pos1.x);
-    tempPos.y = Math.abs(pos2.y - pos1.y);
+      r = this.radius,
+      dx = Math.abs(pos2.x - pos1.x),
+      dy = Math.abs(pos2.y - pos1.y);
 
     if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
         rSum = r + circleRange.radius,
-        dist = Math.hypot(tempPos.x, tempPos.y);
+        dist = Math.hypot(dx, dy);
 
       return rSum > dist;
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {
       const rectRange = range as Rectangle,
         { width, height } = rectRange.size,
-        edges = Math.pow(tempPos.x - width, squareExp) + Math.pow(tempPos.y - height, squareExp);
+        edges = Math.pow(dx - width, squareExp) + Math.pow(dy - height, squareExp);
 
-      return (
-        edges <= r ** squareExp ||
-        (tempPos.x <= r + width && tempPos.y <= r + height) ||
-        tempPos.x <= width ||
-        tempPos.y <= height
-      );
+      return edges <= r ** squareExp || (dx <= r + width && dy <= r + height) || dx <= width || dy <= height;
     }
 
     return false;
