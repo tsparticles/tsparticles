@@ -5,12 +5,21 @@ import {
   type IRgba,
   defaultAlpha,
   defaultRgbMin,
+  identity,
   isNumber,
   originPoint,
   safeDocument,
 } from "@tsparticles/engine";
 
-const defaultWidth = 0;
+const defaultWidth = 0,
+  indexesOffset = {
+    r: 0,
+    g: 1,
+    b: 2,
+    a: 3,
+  },
+  alphaMax = 255,
+  alphaFactor = identity / alphaMax;
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -55,14 +64,7 @@ export function getCanvasImageData(
 
     pixels[pos.y] ??= [];
 
-    const indexesOffset = {
-        r: 0,
-        g: 1,
-        b: 2,
-        a: 3,
-      },
-      alphaFactor = 255,
-      row = pixels[pos.y];
+    const row = pixels[pos.y];
 
     if (!row) {
       continue;
@@ -72,7 +74,7 @@ export function getCanvasImageData(
       r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
       g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
       b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
+      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) * alphaFactor,
     };
   }
 
@@ -110,6 +112,7 @@ export function getImageData(
 
       if (!context) {
         reject(new Error("Could not get canvas context"));
+
         return;
       }
 

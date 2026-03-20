@@ -1,4 +1,4 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom } from "@tsparticles/engine";
+import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -56,10 +56,11 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   generate(particle: Particle): Vector {
     const pos = particle.getPosition(),
       { size } = this.options,
+      sizeFactor = identity / size,
       point = {
-        x: Math.max(Math.floor(pos.x / size), originCoordinate),
-        y: Math.max(Math.floor(pos.y / size), originCoordinate),
-        z: Math.max(Math.floor(pos.z / size), originCoordinate),
+        x: Math.max(Math.floor(pos.x * sizeFactor), originCoordinate),
+        y: Math.max(Math.floor(pos.y * sizeFactor), originCoordinate),
+        z: Math.max(Math.floor(pos.z * sizeFactor), originCoordinate),
       },
       { field } = this,
       fieldPoint = field[point.x]?.[point.y]?.[point.z];
@@ -215,7 +216,6 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     options.width = container.canvas.size.width;
     options.height = container.canvas.size.height;
-
     options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
     options.increment =
       (sourceOptions["increment"] as number) > empty
@@ -233,7 +233,6 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
 
     options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
     options.factor.length = factor?.length ?? defaultOptions.factor.length;
-
     options.seed = sourceOptions["seed"] as number | undefined;
 
     this.noiseGen.seed(options.seed ?? getRandom());

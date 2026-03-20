@@ -4,6 +4,8 @@
 import type { Contribution4D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
 
+const quarter = 0.25;
+
 export class SimplexNoise4D {
   private readonly _NORM_4D;
   private readonly _SQUISH_4D;
@@ -18,9 +20,9 @@ export class SimplexNoise4D {
   private _perm4D: Uint8Array;
 
   constructor() {
-    this._NORM_4D = 1.0 / 30.0;
-    this._SQUISH_4D = (Math.sqrt(4 + 1) - 1) * 0.25;
-    this._STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) * 0.25;
+    this._NORM_4D = 1 / 30;
+    this._SQUISH_4D = (Math.sqrt(4 + 1) - 1) * quarter;
+    this._STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) * quarter;
     this._lookup = [];
     this._perm = new Uint8Array(0);
     this._perm4D = new Uint8Array(0);
@@ -2798,7 +2800,6 @@ export class SimplexNoise4D {
   }
 
   /**
-   *
    * @param x -
    * @param y -
    * @param z -
@@ -2866,12 +2867,14 @@ export class SimplexNoise4D {
         value += attn * attn * attn * attn * valuePart;
       }
     }
+
     return value * _NORM_4D;
   }
 
   seed(clientSeed: number): void {
     const { _p4D, _base4D, _lookupPairs4D } = this,
       contributions: Contribution4D[] = [];
+
     for (let i = 0; i < _p4D.length; i += 16) {
       const baseSet = _base4D[_p4D[i]!]!;
 
@@ -2911,6 +2914,7 @@ export class SimplexNoise4D {
 
     this._perm = new Uint8Array(256);
     this._perm4D = new Uint8Array(256);
+
     const source = new Uint8Array(256);
 
     for (let i = 0; i < 256; i++) {
@@ -2935,6 +2939,7 @@ export class SimplexNoise4D {
 
       this._perm[i] = source[r[0]]!;
       this._perm4D[i] = this._perm[i]! & 0xfc;
+
       source[r[0]] = source[i]!;
     }
   }

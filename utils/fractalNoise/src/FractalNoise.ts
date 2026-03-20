@@ -8,7 +8,7 @@ export class FractalNoise {
     this._smoothValueNoise = new SmoothValueNoise();
   }
 
-  noise2d(x: number, y: number, octaves = 5, persistence = 0.5, lacunarity = 2.0): number {
+  noise2d(x: number, y: number, octaves = 5, persistence = 0.5, lacunarity = 2): number {
     let total = 0,
       frequency = 1,
       amplitude = 1,
@@ -24,7 +24,7 @@ export class FractalNoise {
     return total / maxValue;
   }
 
-  noise3d(x: number, y: number, z: number, octaves = 5, persistence = 0.5, lacunarity = 2.0): number {
+  noise3d(x: number, y: number, z: number, octaves = 5, persistence = 0.5, lacunarity = 2): number {
     let total = 0,
       frequency = 1,
       amplitude = 1,
@@ -40,7 +40,7 @@ export class FractalNoise {
     return total / maxValue;
   }
 
-  noise4d(x: number, y: number, z: number, w: number, octaves = 5, persistence = 0.5, lacunarity = 2.0): number {
+  noise4d(x: number, y: number, z: number, w: number, octaves = 5, persistence = 0.5, lacunarity = 2): number {
     let total = 0,
       frequency = 1,
       amplitude = 1,
