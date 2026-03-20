@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Derive SHAs for nx affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - uses: actions/setup-node@v6
         with:
