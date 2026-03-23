@@ -344,7 +344,7 @@ export class ZoomEventListeners {
    */
   private readonly _manageListeners: (add: boolean) => void = add => {
     const handlers = this._handlers,
-      canvas = this.container.canvas.element,
+      canvas = this.container.canvas.domElement,
       options = this.container.actualOptions,
       doc = safeDocument();
 

@@ -6,7 +6,7 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
   /**
    * the canvas context for drawing
    */
-  context: CanvasRenderingContext2D;
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 
   /**
    * this variable contains the delta between the current frame and the previous frame

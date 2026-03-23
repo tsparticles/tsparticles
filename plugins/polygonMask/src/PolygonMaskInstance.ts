@@ -66,7 +66,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     );
   }
 
-  draw(context: CanvasRenderingContext2D): void {
+  draw(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     if (!this.paths?.length) {
       return;
     }

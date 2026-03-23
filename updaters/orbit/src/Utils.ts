@@ -15,7 +15,7 @@ const minWidth = 0;
  * @param end - The end angle of the particle.
  */
 export function drawEllipse(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   particle: Particle,
   fillColorValue: IHsl | undefined,
   radius: number,

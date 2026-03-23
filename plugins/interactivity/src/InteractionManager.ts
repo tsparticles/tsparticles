@@ -153,7 +153,7 @@ export class InteractionManager {
             return;
           }
 
-          const element = container.canvas.element,
+          const element = container.canvas.domElement,
             canvasRect = element ? element.getBoundingClientRect() : undefined,
             pos = {
               x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),

@@ -15,7 +15,7 @@ const defaultWidth = 0;
  * @param hdr - Whether the line should be drawn in HDR mode or not.
  */
 export function drawGrabLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   width: number,
   begin: ICoordinates,
   end: ICoordinates,

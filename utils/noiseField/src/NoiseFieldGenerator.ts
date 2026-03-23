@@ -136,7 +136,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
   }
 
-  private _drawField(ctx: CanvasRenderingContext2D): void {
+  private _drawField(ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     const { field, options } = this;
 
     for (let x = 0; x < options.columns; x++) {

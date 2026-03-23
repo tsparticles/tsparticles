@@ -92,10 +92,12 @@ function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, import
  * Canvas manager
  */
 export class Canvas {
+  domElement?: HTMLCanvasElement;
+
   /**
    * The particles canvas
    */
-  element?: HTMLCanvasElement;
+  element?: HTMLCanvasElement | OffscreenCanvas;
 
   /**
    * The particles canvas dimension
@@ -115,7 +117,7 @@ export class Canvas {
   /**
    * The particles canvas context
    */
-  private _context: CanvasRenderingContext2D | null;
+  private _context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
   private _drawParticlePlugins: IContainerPlugin[];
   private _drawParticlesCleanupPlugins: IContainerPlugin[];
   private _drawParticlesSetupPlugins: IContainerPlugin[];
@@ -125,6 +127,7 @@ export class Canvas {
   private readonly _engine;
   private _generated;
   private _mutationObserver?: MutationObserver;
+  private _offscreen?: OffscreenCanvas;
   private _originalStyle?: CSSStyleDeclaration;
   private _pointerEvents: string;
   private _postDrawUpdaters: IParticleUpdater[];
@@ -227,7 +230,7 @@ export class Canvas {
     this.stop();
 
     if (this._generated) {
-      const element = this.element;
+      const element = this.domElement;
 
       element?.remove();
 
@@ -256,7 +259,7 @@ export class Canvas {
    * @param cb -
    * @returns the result of the callback
    */
-  draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
+  draw<T>(cb: (context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D) => T): T | undefined {
     const ctx = this._context;
 
     if (!ctx) {
@@ -427,7 +430,7 @@ export class Canvas {
     const { container } = this,
       options = container.actualOptions,
       background = options.background,
-      element = this.element;
+      element = this.domElement;
 
     if (!element) {
       return;
@@ -534,17 +537,17 @@ export class Canvas {
    * @param canvas - the canvas HTML element
    */
   loadCanvas(canvas: HTMLCanvasElement): void {
-    if (this._generated && this.element) {
-      this.element.remove();
+    if (this._generated && this.domElement) {
+      this.domElement.remove();
     }
 
     const container = this.container;
 
     this._generated =
       generatedAttribute in canvas.dataset ? canvas.dataset[generatedAttribute] === "true" : this._generated;
-    this.element = canvas;
-    this.element.ariaHidden = "true";
-    this._originalStyle = cloneStyle(this.element.style);
+    this.domElement = canvas;
+    this.domElement.ariaHidden = "true";
+    this._originalStyle = cloneStyle(this.domElement.style);
 
     const standardSize = this._standardSize;
 
@@ -554,8 +557,8 @@ export class Canvas {
     const pxRatio = this.container.retina.pixelRatio,
       retinaSize = this.size;
 
-    canvas.height = retinaSize.height = standardSize.height * pxRatio;
-    canvas.width = retinaSize.width = standardSize.width * pxRatio;
+    retinaSize.width = standardSize.height * pxRatio;
+    retinaSize.height = standardSize.width * pxRatio;
 
     const canSupportHdrQuery = safeMatchMedia("(color-gamut: p3)");
 
@@ -565,7 +568,20 @@ export class Canvas {
       desynchronized: true,
       willReadFrequently: false,
     };
-    this._context = this.element.getContext("2d", this._canvasSettings);
+
+    this.domElement = canvas;
+
+    if (typeof OffscreenCanvas !== "undefined" && typeof canvas.transferControlToOffscreen !== "undefined") {
+      this._offscreen = canvas.transferControlToOffscreen();
+      this._context = this._offscreen.getContext("2d", this._canvasSettings);
+      this.element = this._offscreen;
+    } else {
+      this._context = canvas.getContext("2d", this._canvasSettings);
+      this.element = canvas;
+    }
+
+    this.element.width = retinaSize.width;
+    this.element.height = retinaSize.height;
 
     if (this._context) {
       this._context.globalCompositeOperation = defaultCompositeValue;
@@ -576,6 +592,7 @@ export class Canvas {
     });
 
     container.retina.init();
+
     this.initBackground();
 
     this._safeMutationObserver(obs => {
@@ -625,15 +642,15 @@ export class Canvas {
    * @returns true if the size changed
    */
   resize(): boolean {
-    if (!this.element) {
+    if (!this.domElement || !this.element) {
       return false;
     }
 
     const container = this.container,
       currentSize = container.canvas._standardSize,
       newSize = {
-        width: this.element.offsetWidth,
-        height: this.element.offsetHeight,
+        width: this.domElement.offsetWidth,
+        height: this.domElement.offsetHeight,
       },
       pxRatio = container.retina.pixelRatio,
       retinaSize = {
@@ -655,10 +672,11 @@ export class Canvas {
     currentSize.height = newSize.height;
     currentSize.width = newSize.width;
 
-    const canvasSize = this.size;
+    const canvasSize = this.size,
+      target = this._offscreen ?? this.domElement;
 
-    this.element.width = canvasSize.width = retinaSize.width;
-    this.element.height = canvasSize.height = retinaSize.height;
+    target.width = canvasSize.width = retinaSize.width;
+    target.height = canvasSize.height = retinaSize.height;
 
     if (this.container.started) {
       container.particles.setResizeFactor({
@@ -731,7 +749,7 @@ export class Canvas {
   };
 
   private readonly _applyPreDrawUpdaters: (
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
     particle: Particle,
     radius: number,
     zOpacity: number,
@@ -793,7 +811,7 @@ export class Canvas {
   };
 
   private readonly _initStyle: () => void = () => {
-    const element = this.element,
+    const element = this.domElement,
       options = this.container.actualOptions;
 
     if (!element) {
@@ -822,7 +840,7 @@ export class Canvas {
   };
 
   private readonly _repairStyle: () => void = () => {
-    const element = this.element;
+    const element = this.domElement;
 
     if (!element) {
       return;
@@ -849,7 +867,7 @@ export class Canvas {
   };
 
   private readonly _resetOriginalStyle: () => void = () => {
-    const element = this.element,
+    const element = this.domElement,
       originalStyle = this._originalStyle;
 
     if (!element || !originalStyle) {
@@ -868,7 +886,7 @@ export class Canvas {
   };
 
   private readonly _setFullScreenStyle: () => void = () => {
-    const element = this.element;
+    const element = this.domElement;
 
     if (!element) {
       return;

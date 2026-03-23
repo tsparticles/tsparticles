@@ -16,7 +16,11 @@ export const lightMode = "light";
  * @param context -
  * @param mousePos -
  */
-export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+export function drawLight(
+  container: LightContainer,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  mousePos: ICoordinates,
+): void {
   const lightOptions = container.actualOptions.interactivity?.modes.light?.area;
 
   if (!lightOptions) {
@@ -55,7 +59,7 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
  */
 export function drawParticleShadow(
   container: LightContainer,
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   particle: LightParticle,
   mousePos: ICoordinates,
 ): void {

@@ -121,7 +121,7 @@ export class EventListeners {
       return;
     }
 
-    const canvasEl = container.canvas.element;
+    const canvasEl = container.canvas.domElement;
 
     if (this._resizeObserver && !add) {
       if (canvasEl) {

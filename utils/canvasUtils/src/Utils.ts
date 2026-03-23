@@ -27,7 +27,11 @@ const defaultWidth = 0,
  * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
-export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+export function drawLine(
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  begin: ICoordinates,
+  end: ICoordinates,
+): void {
   context.beginPath();
   context.moveTo(begin.x, begin.y);
   context.lineTo(end.x, end.y);

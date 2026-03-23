@@ -12,16 +12,28 @@ export interface IContainerPlugin {
   canvasClear?: () => boolean;
   canvasPaint?: () => boolean;
   checkParticlePosition?: (particle: Particle, position: ICoordinates, tryCount: number) => boolean;
-  clearDraw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
+  clearDraw?: (context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
   clickPositionValid?: (position: ICoordinates) => boolean;
   destroy?: () => void;
-  draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
-  drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
-  drawParticleCleanup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
-  drawParticleSetup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+  draw?: (context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
+  drawParticle?: (
+    context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
+  drawParticleCleanup?: (
+    context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
+  drawParticleSetup?: (
+    context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+    particle: Particle,
+    delta: IDelta,
+  ) => void;
   drawParticleTransform?: (data: IShapeDrawData) => void;
-  drawSettingsCleanup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
-  drawSettingsSetup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
+  drawSettingsCleanup?: (context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
+  drawSettingsSetup?: (context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, delta: IDelta) => void;
   export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
   init?: () => Promise<void>;
   particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;

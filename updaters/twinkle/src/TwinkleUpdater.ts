@@ -21,7 +21,7 @@ export class TwinkleUpdater implements IParticleUpdater {
 
   getColorStyles(
     particle: Particle,
-    _context: CanvasRenderingContext2D,
+    _context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
     _radius: number,
     opacity: number,
   ): IParticleColorStyle {

@@ -22,7 +22,7 @@ const gradientMin = 0,
  * @returns The gradient.
  */
 export function gradient(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   p1: Particle,
   p2: Particle,
   opacity: number,
@@ -56,7 +56,7 @@ export function gradient(
  * @param end -
  */
 export function drawConnectLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   width: number,
   lineStyle: CanvasGradient,
   begin: ICoordinates,
@@ -78,7 +78,7 @@ export function drawConnectLine(
  */
 export function lineStyle(
   container: ConnectContainer,
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   p1: Particle,
   p2: Particle,
 ): CanvasGradient | undefined {

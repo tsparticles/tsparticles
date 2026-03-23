@@ -12,7 +12,11 @@ import type { Particle } from "../Core/Particle.js";
  * @param dimension - The dimension of the rectangle.
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
  */
-export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
+export function paintBase(
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  dimension: IDimension,
+  baseColor?: string,
+): void {
   context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
 
   context.fillRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
@@ -26,7 +30,7 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
  * @param opacity - The opacity of the image.
  */
 export function paintImage(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   dimension: IDimension,
   image: HTMLImageElement | undefined,
   opacity: number,
@@ -49,7 +53,10 @@ export function paintImage(
  * @param context - The canvas context to clear.
  * @param dimension - The dimension of the canvas.
  */
-export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
+export function clear(
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  dimension: IDimension,
+): void {
   context.clearRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
@@ -232,7 +239,7 @@ export function drawShapeBeforeDraw(drawer: IShapeDrawer | undefined, data: ISha
  * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawParticlePlugin(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   plugin: IContainerPlugin,
   particle: Particle,
   delta: IDelta,

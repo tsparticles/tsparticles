@@ -24,7 +24,11 @@ export function polygon(sides: number, radius: number, rot = defaultRotation): I
  * @param path -
  * @param radius -
  */
-export function roundedPath(context: CanvasRenderingContext2D, path: ICoordinates[], radius: number): void {
+export function roundedPath(
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  path: ICoordinates[],
+  radius: number,
+): void {
   const index1 = 0,
     index2 = 1,
     increment = 1;

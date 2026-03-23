@@ -43,7 +43,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
     );
   }
 
-  drawSettingsCleanup(context: CanvasRenderingContext2D): void {
+  drawSettingsCleanup(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     const zoom = this._container.canvas.zoom;
 
     if (zoom === defaultZoom) {
@@ -53,7 +53,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
     context.restore();
   }
 
-  drawSettingsSetup(context: CanvasRenderingContext2D): void {
+  drawSettingsSetup(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     const zoom = this._container.canvas.zoom;
 
     if (zoom === defaultZoom) {

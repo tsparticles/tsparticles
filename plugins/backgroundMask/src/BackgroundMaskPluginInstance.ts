@@ -47,7 +47,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     return true;
   }
 
-  drawSettingsCleanup(context: CanvasRenderingContext2D): void {
+  drawSettingsCleanup(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     if (!this._defaultCompositeValue) {
       return;
     }
@@ -55,7 +55,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     context.globalCompositeOperation = this._defaultCompositeValue;
   }
 
-  drawSettingsSetup(context: CanvasRenderingContext2D): void {
+  drawSettingsSetup(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     const previousComposite = context.globalCompositeOperation,
       backgroundMask = this._container.actualOptions.backgroundMask;
 

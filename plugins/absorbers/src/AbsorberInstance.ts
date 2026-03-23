@@ -218,7 +218,7 @@ export class AbsorberInstance {
    * The draw method, for drawing the absorber in the canvas
    * @param context - the canvas 2d context used for drawing
    */
-  draw(context: CanvasRenderingContext2D): void {
+  draw(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     context.translate(this.position.x, this.position.y);
     context.beginPath();
     context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);

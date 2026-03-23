@@ -47,7 +47,7 @@ function initImage(data: InitImageData): HTMLImageElement {
 
   img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
 
-  const parent = container.canvas.element?.parentNode ?? safeDocument().body;
+  const parent = container.canvas.domElement?.parentNode ?? safeDocument().body;
 
   parent.append(img);
 
@@ -190,13 +190,13 @@ export class SoundsPluginInstance implements IContainerPlugin {
       options = container.actualOptions,
       soundsOptions = options.sounds;
 
-    if (!soundsOptions?.enable || !container.canvas.element) {
+    if (!soundsOptions?.enable || !container.canvas.domElement) {
       return;
     }
 
     container.muted = true;
 
-    const canvas = container.canvas.element,
+    const canvas = container.canvas.domElement,
       pos: ImageMargins = {
         top: canvas.offsetTop,
         right: canvas.offsetLeft + canvas.offsetWidth,

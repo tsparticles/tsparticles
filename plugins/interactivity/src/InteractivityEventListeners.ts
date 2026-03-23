@@ -218,7 +218,7 @@ export class InteractivityEventListeners {
       interactionManager = this._interactionManager,
       options = container.actualOptions,
       detectType = options.interactivity?.detectsOn,
-      canvasEl = container.canvas.element;
+      canvasEl = container.canvas.domElement;
 
     let mouseLeaveTmpEvent = mouseLeaveEvent;
 
@@ -311,7 +311,7 @@ export class InteractivityEventListeners {
       interactionManager = this._interactionManager,
       options = container.actualOptions,
       interactivity = interactionManager.interactivityData,
-      canvasEl = container.canvas.element;
+      canvasEl = container.canvas.domElement;
 
     if (!interactivity.element) {
       return;

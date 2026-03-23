@@ -33,7 +33,7 @@ const squareExp = 2,
  */
 export function drawPolygonMask(
   engine: Engine,
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   rawData: ICoordinates[],
   stroke: IPolygonMaskDrawStroke,
   hdr = false,
@@ -74,7 +74,7 @@ export function drawPolygonMask(
  */
 export function drawPolygonMaskPath(
   engine: Engine,
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   path: Path2D,
   stroke: IPolygonMaskDrawStroke,
   position: ICoordinates,

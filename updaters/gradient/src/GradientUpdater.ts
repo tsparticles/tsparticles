@@ -37,7 +37,7 @@ export class GradientUpdater implements IParticleUpdater {
 
   getColorStyles(
     particle: GradientParticle,
-    context: CanvasRenderingContext2D,
+    context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
     radius: number,
     opacity: number,
   ): IParticleColorStyle {
