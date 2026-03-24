@@ -597,11 +597,13 @@ export class Canvas {
     this.initBackground();
 
     this._safeMutationObserver(obs => {
-      if (!this.element || !(this.element instanceof Node)) {
+      const element = this.domElement;
+
+      if (!element || !(element instanceof Node)) {
         return;
       }
 
-      obs.observe(this.element, { attributes: true });
+      obs.observe(element, { attributes: true });
     });
   }
 
