@@ -66,7 +66,7 @@ export function clear(
  */
 export function drawParticle(data: IDrawParticleParams): void {
   const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
-    { effectDrawers, shapeDrawers } = container.particles,
+    { effectDrawers, shapeDrawers } = container,
     pos = particle.getPosition(),
     transformData = particle.getTransformData(transform),
     drawScale = defaultZoom,

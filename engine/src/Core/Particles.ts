@@ -17,11 +17,8 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -34,18 +31,12 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
  * Particles manager object
  */
 export class Particles {
-  effectDrawers: Map<string, IEffectDrawer>;
-
   grid;
 
   readonly particleCheckPositionPlugins: IContainerPlugin[];
   readonly particleCreatedPlugins: IContainerPlugin[];
   readonly particleDestroyedPlugins: IContainerPlugin[];
   readonly particlePositionPlugins: IContainerPlugin[];
-
-  shapeDrawers: Map<string, IShapeDrawer>;
-
-  updaters: IParticleUpdater[];
 
   /**
    * All the particles used in canvas
@@ -89,9 +80,6 @@ export class Particles {
     this._minZIndex = 0;
     this._maxZIndex = 0;
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.particleCheckPositionPlugins = [];
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
@@ -156,7 +144,7 @@ export class Particles {
         dispatchEvent: (type, data) => {
           container.dispatchEvent(type, data);
         },
-        effectDrawers: this.effectDrawers,
+        effectDrawers: container.effectDrawers,
         group,
         id: this._nextId,
         initRetina: particle => {
@@ -173,8 +161,8 @@ export class Particles {
         setLastZIndex: zIndex => {
           this.setLastZIndex(zIndex);
         },
-        shapeDrawers: this.shapeDrawers,
-        updaters: this.updaters,
+        shapeDrawers: container.shapeDrawers,
+        updaters: container.updaters,
         zLayers: container.zLayers,
       });
 
@@ -195,11 +183,8 @@ export class Particles {
 
       this._nextId++;
 
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
+      this._container.dispatchEvent(EventType.particleAdded, {
+        particle,
       });
 
       return particle;
@@ -219,20 +204,9 @@ export class Particles {
   }
 
   destroy(): void {
-    for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.();
-    }
-
-    for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.();
-    }
-
     this._array = [];
     this._pool.length = 0;
     this._zArray = [];
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.particleDestroyedPlugins.length = 0;
     this.particleCreatedPlugins.length = 0;
     this.particlePositionPlugins.length = 0;
@@ -330,13 +304,13 @@ export class Particles {
       }
     }
 
-    await this.initPlugins();
+    await this._container.initDrawersAndUpdaters();
 
-    for (const drawer of this.effectDrawers.values()) {
+    for (const drawer of this._container.effectDrawers.values()) {
       await drawer.init?.();
     }
 
-    for (const drawer of this.shapeDrawers.values()) {
+    for (const drawer of this._container.shapeDrawers.values()) {
       await drawer.init?.();
     }
 
@@ -370,14 +344,6 @@ export class Particles {
         this.addParticle();
       }
     }
-  }
-
-  async initPlugins(): Promise<void> {
-    const container = this._container;
-
-    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
-    this.updaters = await this._engine.getUpdaters(container, true);
   }
 
   push(
@@ -518,11 +484,8 @@ export class Particles {
       this._zArray = this._zArray.filter(checkDelete);
 
       for (const particle of particlesToDelete) {
-        this._engine.dispatchEvent(EventType.particleRemoved, {
-          container: this._container,
-          data: {
-            particle,
-          },
+        this._container.dispatchEvent(EventType.particleRemoved, {
+          particle,
         });
       }
 
@@ -535,7 +498,7 @@ export class Particles {
 
     // this loop is required to be done after mouse interactions
     for (const particle of this._array) {
-      for (const updater of this.updaters) {
+      for (const updater of this._container.updaters) {
         updater.update(particle, delta);
       }
 
@@ -645,11 +608,8 @@ export class Particles {
 
     particle.destroy(override);
 
-    this._engine.dispatchEvent(EventType.particleRemoved, {
-      container: this._container,
-      data: {
-        particle,
-      },
+    this._container.dispatchEvent(EventType.particleRemoved, {
+      particle,
     });
 
     this._addToPool(particle);

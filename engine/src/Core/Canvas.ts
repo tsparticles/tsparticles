@@ -522,7 +522,7 @@ export class Canvas {
     this._preDrawUpdaters = [];
     this._postDrawUpdaters = [];
 
-    for (const updater of this._container.particles.updaters) {
+    for (const updater of this._container.updaters) {
       if (updater.afterDraw) {
         this._postDrawUpdaters.push(updater);
       }

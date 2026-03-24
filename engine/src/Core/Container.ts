@@ -13,7 +13,10 @@ import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
@@ -80,6 +83,11 @@ export class Container {
   destroyed;
 
   /**
+   * Effect drawers used by the container
+   */
+  effectDrawers: Map<string, IEffectDrawer>;
+
+  /**
    * The container fps limit, coming from options
    */
   fpsLimit;
@@ -109,9 +117,19 @@ export class Container {
   readonly retina;
 
   /**
+   * Shape drawers used by the container
+   */
+  shapeDrawers: Map<string, IShapeDrawer>;
+
+  /**
    * Check if the particles container is started
    */
   started;
+
+  /**
+   * Updaters used by the container
+   */
+  updaters: IParticleUpdater[];
 
   zLayers;
 
@@ -167,6 +185,9 @@ export class Container {
     this.retina = new Retina(this);
     this.canvas = new Canvas(this._engine, this);
     this.particles = new Particles(this._engine, this);
+    this.effectDrawers = new Map();
+    this.shapeDrawers = new Map();
+    this.updaters = [];
     this.particles.setCanvasSize(this.canvas.size);
     this.particles.setDrawParticleCallback((particle, delta) => {
       const canvas = this.canvas;
@@ -324,7 +345,7 @@ export class Container {
       allContainerPlugins.set(plugin, containerPlugin);
     }
 
-    await this.particles.initPlugins();
+    await this.initDrawersAndUpdaters();
 
     /* options settings */
     this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
@@ -374,6 +395,15 @@ export class Container {
     }
 
     this.dispatchEvent(EventType.particlesSetup);
+  }
+
+  /**
+   * Initializes the effect drawers, shape drawers and updaters for the container
+   */
+  async initDrawersAndUpdaters(): Promise<void> {
+    this.effectDrawers = await this._engine.getEffectDrawers(this, true);
+    this.shapeDrawers = await this._engine.getShapeDrawers(this, true);
+    this.updaters = await this._engine.getUpdaters(this, true);
   }
 
   /**
