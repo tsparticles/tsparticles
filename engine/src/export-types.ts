@@ -14,6 +14,7 @@ export type * from "./Core/Interfaces/ILoadParams.js";
 export type * from "./Core/Interfaces/IPalette.js";
 export type * from "./Core/Interfaces/IParticleColorStyle.js";
 export type * from "./Core/Interfaces/IParticleHslAnimation.js";
+export type * from "./Core/Interfaces/IParticleInitData.js";
 export type * from "./Core/Interfaces/IParticleLife.js";
 export type * from "./Core/Interfaces/IParticleRetinaProps.js";
 export type * from "./Core/Interfaces/IParticleRoll.js";

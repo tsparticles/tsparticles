@@ -42,12 +42,12 @@ import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js"
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
+import type { IParticleInitData } from "./Interfaces/IParticleInitData.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
 import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
 import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { IShapeValues } from "./Interfaces/IShapeValues.js";
@@ -56,28 +56,6 @@ import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import type { RecursivePartial } from "../Types/RecursivePartial.js";
-
-interface ParticleInitData {
-  canvasSize: Readonly<IDimension>;
-  dispatchEvent: (type: string, data: unknown) => void;
-  effectDrawers: Map<string, IEffectDrawer>;
-  group?: string;
-  id: number;
-  initRetina: (particle: Particle) => void;
-  overrideOptions?: RecursivePartial<IParticlesOptions>;
-  particleCheckPositionPlugins: IContainerPlugin[];
-  particleCreatedPlugins: IContainerPlugin[];
-  particleDestroyedPlugins: IContainerPlugin[];
-  particlePositionPlugins: IContainerPlugin[];
-  particlesOptions: ParticlesOptions;
-  pixelRatio: number;
-  position?: ICoordinates;
-  setLastZIndex: (zIndex: number) => void;
-  shapeDrawers: Map<string, IShapeDrawer>;
-  updaters: IParticleUpdater[];
-  zLayers: number;
-}
 
 /**
  * @internal
@@ -496,7 +474,7 @@ export class Particle {
     return this._cachedTransform;
   }
 
-  init(data: ParticleInitData): void {
+  init(data: IParticleInitData): void {
     const {
       canvasSize,
       dispatchEvent,
@@ -634,9 +612,7 @@ export class Particle {
     this.zIndexFactor = this.position.z / zLayers;
     this.sides = 24;
 
-    if (this.effect) {
-      this._effectDrawer = effectDrawers.get(this.effect);
-    }
+    this._effectDrawer = this.effect ? effectDrawers.get(this.effect) : undefined;
 
     const effectDrawer = this._effectDrawer;
 
@@ -644,9 +620,7 @@ export class Particle {
       effectDrawer.loadEffect(this);
     }
 
-    if (this.shape) {
-      this._shapeDrawer = shapeDrawers.get(this.shape);
-    }
+    this._shapeDrawer = this.shape ? shapeDrawers.get(this.shape) : undefined;
 
     const shapeDrawer = this._shapeDrawer;
 
