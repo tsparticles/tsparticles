@@ -12,7 +12,7 @@ export class EmittersInstancesManager {
   private readonly _engine;
 
   constructor(engine: EmittersEngine) {
-    this._containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
+    this._containerArrays = new Map<symbol, EmitterInstance[]>();
     this._engine = engine;
   }
 
@@ -46,29 +46,29 @@ export class EmittersInstancesManager {
   clear(container: EmitterContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
   }
 
   getArray(container: EmitterContainer): EmitterInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this._containerArrays.get(container.id);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this._containerArrays.set(container.id, array);
     }
 
     return array;
   }
 
   initContainer(container: EmitterContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this._containerArrays.has(container.id)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
 
     container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined => {
       const array = this.getArray(container);
@@ -106,6 +106,10 @@ export class EmittersInstancesManager {
         emitter.externalPause();
       }
     };
+  }
+
+  removeContainer(container: EmitterContainer): void {
+    this._containerArrays.delete(container.id);
   }
 
   removeEmitter(container: EmitterContainer, emitter: EmitterInstance): void {

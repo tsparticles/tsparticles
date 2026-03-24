@@ -34,12 +34,12 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   destroy(): void {
     this.clearClickHandlers();
 
-    this._engine.interactors?.delete(this._container);
+    this._engine.interactors?.delete(this._container.id);
   }
 
   particleCreated(particle: Particle): void {
     const interactivityParticle = particle as InteractivityParticle,
-      interactivity = new Interactivity(this._engine, this._container);
+      interactivity = new Interactivity(this._engine, this._container.id);
 
     interactivity.load(this._container.actualOptions.interactivity);
     interactivity.load(interactivityParticle.options.interactivity);

@@ -1,6 +1,5 @@
 import type { AbsorberOptions, IAbsorberOptions } from "./types.js";
 import {
-  type Container,
   type IContainerPlugin,
   type IOptions,
   type IPlugin,
@@ -29,7 +28,7 @@ export class AbsorbersPlugin implements IPlugin {
     return new AbsorbersPluginInstance(container, this._instancesManager);
   }
 
-  loadOptions(_container: Container, options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
+  loadOptions(_containerId: symbol, options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

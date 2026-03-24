@@ -1,5 +1,4 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
-import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import type { Engine } from "../../../Core/Engine.js";
 import { Fill } from "./Fill.js";
@@ -37,12 +36,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   stroke: SingleOrMultiple<Stroke>;
   readonly zIndex;
 
-  private readonly _container;
+  private readonly _containerId?: symbol;
   private readonly _engine;
 
-  constructor(engine: Engine, container?: Container) {
+  constructor(engine: Engine, containerId?: symbol) {
     this._engine = engine;
-    this._container = container;
+    this._containerId = containerId;
 
     this.bounce = new ParticlesBounce();
     this.effect = new Effect();
@@ -114,14 +113,14 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
       });
     }
 
-    if (this._container) {
+    if (this._containerId) {
       for (const plugin of this._engine.plugins) {
         if (plugin.loadParticlesOptions) {
-          plugin.loadParticlesOptions(this._container, this, data);
+          plugin.loadParticlesOptions(this._containerId, this, data);
         }
       }
 
-      const updaters = this._engine.updaters.get(this._container);
+      const updaters = this._engine.updaters.get(this._containerId);
 
       if (updaters) {
         for (const updater of updaters) {

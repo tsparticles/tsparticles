@@ -2,13 +2,14 @@
  * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances
  */
-import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
+  ContainerScopedMap,
   EffectInitializer,
   Initializers,
   ShapeInitializer,
   UpdaterInitializer,
 } from "../Types/EngineInitializers.js";
+import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import {
   canvasFirstIndex,
   canvasTag,
@@ -162,7 +163,7 @@ export class Engine {
   /**
    * The drawers (additional effects) array
    */
-  readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
+  readonly effectDrawers: ContainerScopedMap<Map<string, IEffectDrawer>> = new Map();
 
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
@@ -185,12 +186,12 @@ export class Engine {
   /**
    * The drawers (additional shapes) array
    */
-  readonly shapeDrawers = new Map<Container, Map<string, IShapeDrawer>>();
+  readonly shapeDrawers: ContainerScopedMap<Map<string, IShapeDrawer>> = new Map();
 
   /**
    * The updaters array
    */
-  readonly updaters = new Map<Container, IParticleUpdater[]>();
+  readonly updaters: ContainerScopedMap<IParticleUpdater[]> = new Map();
 
   private _allLoadersSet = new Set<LoadPluginFunction>();
 
@@ -340,10 +341,10 @@ export class Engine {
     );
   }
 
-  clearPlugins(container: Container): void {
-    this.effectDrawers.delete(container);
-    this.shapeDrawers.delete(container);
-    this.updaters.delete(container);
+  clearPluginsById(containerId: symbol): void {
+    this.effectDrawers.delete(containerId);
+    this.shapeDrawers.delete(containerId);
+    this.updaters.delete(containerId);
   }
 
   /**
@@ -489,16 +490,17 @@ export class Engine {
 
   /**
    * Load the given particles options for all the updaters
-   * @param container - the container of the updaters
+   * @param containerId - the container id of the updaters
    * @param options - the actual options to set
    * @param sourceOptions - the source options to read
    */
-  loadParticlesOptions(
-    container: Container,
+
+  loadParticlesOptionsById(
+    containerId: symbol,
     options: ParticlesOptions,
     ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
   ): void {
-    const updaters = this.updaters.get(container);
+    const updaters = this.updaters.get(containerId);
 
     if (!updaters) {
       return;

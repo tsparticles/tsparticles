@@ -1,4 +1,4 @@
-import type { Container, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPreloadOptions, ImageContainer, ImageEngine, PreloadOptions } from "./types.js";
 import { Preload } from "./Options/Classes/Preload.js";
 
@@ -17,7 +17,7 @@ export class ImagePreloaderPlugin implements IPlugin {
     return new ImagePreloaderInstance(this._engine, container);
   }
 
-  loadOptions(_container: Container, options: PreloadOptions, source?: RecursivePartial<IPreloadOptions>): void {
+  loadOptions(_containerId: symbol, options: PreloadOptions, source?: RecursivePartial<IPreloadOptions>): void {
     if (!source?.preload) {
       return;
     }

@@ -52,7 +52,7 @@ function loadContainerOptions(
   container: Container,
   ...sourceOptionsArr: (ISourceOptions | undefined)[]
 ): Options {
-  const options = new Options(engine, container);
+  const options = new Options(engine, container.id);
 
   loadOptions(options, ...sourceOptionsArr);
 
@@ -239,7 +239,7 @@ export class Container {
 
     this.plugins.length = 0;
 
-    this._engine.clearPlugins(this);
+    this._engine.clearPluginsById(this.id);
 
     this.destroyed = true;
 

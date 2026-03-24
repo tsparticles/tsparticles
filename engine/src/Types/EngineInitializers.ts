@@ -3,6 +3,7 @@ import type { IEffectDrawer } from "../Core/Interfaces/IEffectDrawer.js";
 import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater.js";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer.js";
 
+export type ContainerScopedMap<T> = Map<symbol, T>;
 export type GenericInitializer<T> = (container: Container) => Promise<T>;
 export type EffectInitializer = GenericInitializer<IEffectDrawer>;
 export type ShapeInitializer = GenericInitializer<IShapeDrawer>;

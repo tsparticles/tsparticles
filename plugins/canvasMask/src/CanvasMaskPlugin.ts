@@ -13,7 +13,7 @@ export class CanvasMaskPlugin implements IPlugin {
     return new CanvasMaskPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {
+  loadOptions(_containerId: symbol, options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

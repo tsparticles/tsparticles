@@ -20,7 +20,7 @@ export class BackgroundMaskPlugin implements IPlugin {
   }
 
   loadOptions(
-    _container: Container,
+    _containerId: symbol,
     options: BackgroundMaskOptions,
     source?: RecursivePartial<IBackgroundMaskOptions>,
   ): void {

@@ -14,7 +14,7 @@ export async function loadMovePlugin(engine: Engine): Promise<void> {
     const moveEngine = e as MoveEngine;
 
     moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
-    moveEngine.pathGenerators ??= new Map<Container, Map<string, IMovePathGenerator>>();
+    moveEngine.pathGenerators ??= new Map();
 
     /**
      * addPathGenerator adds a named path generator to tsParticles, this can be called by options
@@ -32,7 +32,7 @@ export async function loadMovePlugin(engine: Engine): Promise<void> {
       force = false,
     ): Promise<Map<string, IMovePathGenerator>> => {
       moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
-      moveEngine.pathGenerators ??= new Map<Container, Map<string, IMovePathGenerator>>();
+      moveEngine.pathGenerators ??= new Map();
 
       return getItemMapFromInitializer(
         container,

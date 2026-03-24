@@ -15,6 +15,10 @@ export class EmittersPluginInstance implements IContainerPlugin {
     this._instancesManager.initContainer(this._container);
   }
 
+  destroy(): void {
+    this._instancesManager.removeContainer(this._container);
+  }
+
   async init(): Promise<void> {
     const emittersOptions = this._container.actualOptions.emitters;
 

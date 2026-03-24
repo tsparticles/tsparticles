@@ -42,7 +42,7 @@ export class SoundsPlugin implements IPlugin {
     return new SoundsPluginInstance(container, this._engine);
   }
 
-  loadOptions(_container: Container, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
+  loadOptions(_containerId: symbol, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

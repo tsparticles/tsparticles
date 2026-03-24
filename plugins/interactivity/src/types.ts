@@ -1,5 +1,6 @@
 import type {
   Container,
+  ContainerScopedMap,
   Engine,
   GenericInitializer,
   IOptions,
@@ -54,7 +55,7 @@ export type InteractivityEngine = Engine & {
     interactors?: Map<string, InteractorInitializer>;
   };
 
-  interactors?: Map<Container, IInteractor[]>;
+  interactors?: ContainerScopedMap<IInteractor[]>;
 
   setOnClickHandler?: (callback: (e: Event, particles?: Particle[]) => void) => void;
 };

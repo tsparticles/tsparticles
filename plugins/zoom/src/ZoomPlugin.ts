@@ -13,7 +13,7 @@ export class ZoomPlugin implements IPlugin {
     return new ZoomPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: ZoomOptions, source?: RecursivePartial<IZoomOptions>): void {
+  loadOptions(_containerId: symbol, options: ZoomOptions, source?: RecursivePartial<IZoomOptions>): void {
     if (!this.needsPlugin()) {
       return;
     }

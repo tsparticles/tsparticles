@@ -842,19 +842,13 @@ export function manageListener(
  */
 export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, TItem[]>,
+  map: Map<symbol, TItem[]>,
   initializers: Map<string, TInitializer>,
   force = false,
 ): Promise<TItem[]> {
-  let res = map.get(container);
-
-  if (!res || force) {
-    res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-    map.set(container, res);
-  }
-
-  return res;
+  return getContainerScopedValue(container, map, force, async () =>
+    Promise.all([...initializers.values()].map(t => t(container))),
+  );
 }
 
 /**
@@ -866,22 +860,42 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
  */
 export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, Map<string, TItem>>,
+  map: Map<symbol, Map<string, TItem>>,
   initializers: Map<string, TInitializer>,
   force = false,
 ): Promise<Map<string, TItem>> {
-  let res = map.get(container);
-
-  if (!res || force) {
+  return getContainerScopedValue(container, map, force, async () => {
     const entries = await Promise.all(
       [...initializers.entries()].map(([key, initializer]) =>
         initializer(container).then(item => [key, item] as const),
       ),
     );
 
-    res = new Map(entries);
-    map.set(container, res);
+    return new Map(entries);
+  });
+}
+
+/**
+ *
+ * @param container
+ * @param map
+ * @param force
+ * @param initializer
+ */
+async function getContainerScopedValue<T>(
+  container: Container,
+  map: Map<symbol, T>,
+  force: boolean,
+  initializer: () => Promise<T>,
+): Promise<T> {
+  const key = container.id;
+
+  let value = map.get(key);
+
+  if (!value || force) {
+    value = await initializer();
+    map.set(key, value);
   }
 
-  return res;
+  return value;
 }

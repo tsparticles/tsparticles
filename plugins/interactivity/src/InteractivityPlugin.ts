@@ -34,7 +34,7 @@ export class InteractivityPlugin implements IPlugin {
   }
 
   loadOptions(
-    container: Container,
+    containerId: symbol,
     options: InteractivityOptions,
     source?: RecursivePartial<IInteractivityOptions>,
   ): void {
@@ -45,12 +45,12 @@ export class InteractivityPlugin implements IPlugin {
     let interactivityOptions = options.interactivity;
 
     if (!interactivityOptions?.load) {
-      options.interactivity = interactivityOptions = new Interactivity(this._engine, container);
+      options.interactivity = interactivityOptions = new Interactivity(this._engine, containerId);
     }
 
     interactivityOptions.load(source?.interactivity);
 
-    const interactors = this._engine.interactors?.get(container);
+    const interactors = this._engine.interactors?.get(containerId);
 
     if (!interactors) {
       return;
@@ -64,7 +64,7 @@ export class InteractivityPlugin implements IPlugin {
   }
 
   loadParticlesOptions(
-    container: Container,
+    containerId: symbol,
     options: InteractivityParticlesOptions,
     source?: RecursivePartial<IInteractivityParticlesOptions>,
   ): void {
@@ -72,7 +72,7 @@ export class InteractivityPlugin implements IPlugin {
       options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    const interactors = this._engine.interactors?.get(container) as IParticleInteractorBase[] | undefined;
+    const interactors = this._engine.interactors?.get(containerId) as IParticleInteractorBase[] | undefined;
 
     if (!interactors) {
       return;

@@ -12,12 +12,12 @@ function addLoadImageToEngine(engine: ImageEngine): void {
   engine.getImages ??= (container: ImageContainer): IImage[] => {
     engine.images ??= new Map();
 
-    let images = engine.images.get(container);
+    let images = engine.images.get(container.id);
 
     if (!images) {
       images = [];
 
-      engine.images.set(container, images);
+      engine.images.set(container.id, images);
     }
 
     return images;
@@ -54,7 +54,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       containerImages.push(image);
 
-      engine.images.set(container, containerImages);
+      engine.images.set(container.id, containerImages);
 
       let imageFunc: (image: IImage) => Promise<void>;
 

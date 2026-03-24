@@ -21,6 +21,10 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     this._instancesManager.initContainer(container);
   }
 
+  destroy(): void {
+    this._instancesManager.removeContainer(this._container);
+  }
+
   draw(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
     for (const absorber of this._instancesManager.getArray(this._container)) {
       absorber.draw(context);

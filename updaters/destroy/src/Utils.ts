@@ -43,7 +43,7 @@ function addSplitParticle(
   }
 
   const splitOptions = destroyOptions.split,
-    options = loadParticlesOptions(engine, container, parent.options),
+    options = loadParticlesOptions(engine, container.id, parent.options),
     fillOptions = itemFromSingleOrMultiple(options.fill),
     strokeOptions = itemFromSingleOrMultiple(options.stroke);
 

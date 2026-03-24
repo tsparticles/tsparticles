@@ -20,11 +20,7 @@ export class PolygonMaskPlugin implements IPlugin {
     return new PolygonMaskInstance(container, this._engine);
   }
 
-  loadOptions(
-    _container: Container,
-    options: PolygonMaskOptions,
-    source?: RecursivePartial<IPolygonMaskOptions>,
-  ): void {
+  loadOptions(_containerId: symbol, options: PolygonMaskOptions, source?: RecursivePartial<IPolygonMaskOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

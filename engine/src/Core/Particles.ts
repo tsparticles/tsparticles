@@ -149,7 +149,7 @@ export class Particles {
 
     try {
       const particle = this._pool.pop() ?? new Particle(),
-        particlesOptions = loadParticlesOptions(this._engine, container, container.actualOptions.particles);
+        particlesOptions = loadParticlesOptions(this._engine, container.id, container.actualOptions.particles);
 
       particle.init({
         canvasSize,
@@ -448,7 +448,7 @@ export class Particles {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+      const groupDataOptions = loadParticlesOptions(this._engine, this._container.id, groupData);
 
       this._applyDensity(groupDataOptions, pixelRatio, pluginsCount, group);
     }

@@ -13,7 +13,7 @@ export class MotionPlugin implements IPlugin {
     return new MotionPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {
+  loadOptions(_containerId: symbol, options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {
     if (!this.needsPlugin()) {
       return;
     }

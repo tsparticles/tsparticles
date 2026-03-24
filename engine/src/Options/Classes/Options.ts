@@ -1,7 +1,6 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
-import type { Container } from "../../Core/Container.js";
 import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
@@ -47,12 +46,12 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   style: RecursivePartial<CSSStyleDeclaration>;
   zLayers;
 
-  private readonly _container;
+  private readonly _containerId: symbol;
   private readonly _engine;
 
-  constructor(engine: Engine, container: Container) {
+  constructor(engine: Engine, containerId: symbol) {
     this._engine = engine;
-    this._container = container;
+    this._containerId = containerId;
     this.autoPlay = true;
     this.background = new Background();
     this.clear = true;
@@ -63,7 +62,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.duration = 0;
     this.fpsLimit = 120;
     this.hdr = true;
-    this.particles = loadParticlesOptions(this._engine, this._container);
+    this.particles = loadParticlesOptions(this._engine, this._containerId);
     this.pauseOnBlur = true;
     this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
@@ -168,7 +167,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     this._engine.plugins.forEach(plugin => {
-      plugin.loadOptions(this._container, this, data);
+      plugin.loadOptions(this._containerId, this, data);
     });
   }
 
@@ -196,12 +195,12 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             : undefined,
           enable: paletteData.fill,
         },
-        stroke: !paletteData.fill
-          ? paletteData.colors.map(color => ({
+        stroke: paletteData.fill
+          ? undefined
+          : paletteData.colors.map(color => ({
               color: { value: color },
               width: 1,
-            }))
-          : undefined,
+            })),
       },
     });
   };

@@ -1,4 +1,4 @@
-import { type Container, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { Events } from "./Events/Events.js";
 import type { IInteractivity } from "../Interfaces/IInteractivity.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
@@ -16,10 +16,10 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
   readonly events;
   readonly modes;
 
-  constructor(engine: InteractivityEngine, container?: Container) {
+  constructor(engine: InteractivityEngine, containerId?: symbol) {
     this.detectsOn = InteractivityDetect.window;
     this.events = new Events();
-    this.modes = new Modes(engine, container);
+    this.modes = new Modes(engine, containerId);
   }
 
   load(data?: RecursivePartial<IInteractivity>): void {

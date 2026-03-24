@@ -19,7 +19,7 @@ export class TrailPlugin implements IPlugin {
     return new TrailPluginInstance(container, this._engine);
   }
 
-  loadOptions(_container: Container, options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {
+  loadOptions(_containerId: symbol, options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {
     if (!this.needsPlugin()) {
       return;
     }

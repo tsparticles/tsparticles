@@ -10,7 +10,7 @@ export class AbsorbersInstancesManager {
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this._containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
+    this._containerArrays = new Map<symbol, AbsorberInstance[]>();
     this._engine = engine;
   }
 
@@ -31,29 +31,29 @@ export class AbsorbersInstancesManager {
   clear(container: AbsorberContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
   }
 
   getArray(container: AbsorberContainer): AbsorberInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this._containerArrays.get(container.id);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this._containerArrays.set(container.id, array);
     }
 
     return array;
   }
 
   initContainer(container: AbsorberContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this._containerArrays.has(container.id)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
 
     container.getAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined => {
       const array = this.getArray(container);
@@ -78,5 +78,9 @@ export class AbsorbersInstancesManager {
     if (index >= defaultIndex) {
       this.getArray(container).splice(index, deleteCount);
     }
+  }
+
+  removeContainer(container: AbsorberContainer): void {
+    this._containerArrays.delete(container.id);
   }
 }

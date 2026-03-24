@@ -13,7 +13,7 @@ export class PoissonDiscPlugin implements IPlugin {
     return new PoissonDiscPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
+  loadOptions(_containerId: symbol, options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }
