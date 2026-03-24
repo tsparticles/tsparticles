@@ -96,10 +96,6 @@ export class Container {
    */
   pageHidden;
 
-  readonly particleCreatedPlugins: IContainerPlugin[];
-  readonly particleDestroyedPlugins: IContainerPlugin[];
-  readonly particlePositionPlugins: IContainerPlugin[];
-
   /**
    * The particles manager
    */
@@ -171,10 +167,17 @@ export class Container {
     this.retina = new Retina(this);
     this.canvas = new Canvas(this._engine, this);
     this.particles = new Particles(this._engine, this);
+    this.particles.setCanvasSize(this.canvas.size);
+    this.particles.setDrawParticleCallback((particle, delta) => {
+      const canvas = this.canvas;
+
+      canvas.drawParticlePlugins(particle, delta);
+      canvas.drawParticle(particle, delta);
+    });
+    this.particles.setRedrawCallback((delta: IDelta) => {
+      this.canvas.drawParticles(delta);
+    });
     this.plugins = [];
-    this.particleDestroyedPlugins = [];
-    this.particleCreatedPlugins = [];
-    this.particlePositionPlugins = [];
     /* tsParticles variables with default values */
     this._options = loadContainerOptions(this._engine, this);
     this.actualOptions = loadContainerOptions(this._engine, this);
@@ -321,26 +324,13 @@ export class Container {
     this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
     this.plugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particleCreatedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
 
     for (const [plugin, containerPlugin] of allContainerPlugins) {
-      if (plugin.needsPlugin(this.actualOptions)) {
-        this.plugins.push(containerPlugin);
-
-        if (containerPlugin.particleCreated) {
-          this.particleCreatedPlugins.push(containerPlugin);
-        }
-
-        if (containerPlugin.particleDestroyed) {
-          this.particleDestroyedPlugins.push(containerPlugin);
-        }
-
-        if (containerPlugin.particlePosition) {
-          this.particlePositionPlugins.push(containerPlugin);
-        }
+      if (!plugin.needsPlugin(this.actualOptions)) {
+        continue;
       }
+
+      this.plugins.push(containerPlugin);
     }
 
     /* init canvas + particles */
@@ -370,7 +360,7 @@ export class Container {
 
     this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
-    this.particles.setDensity();
+    this.particles.setDensity(this.retina.pixelRatio);
 
     for (const plugin of this.plugins) {
       plugin.particlesSetup?.();
@@ -525,10 +515,6 @@ export class Container {
     for (const plugin of this.plugins) {
       plugin.stop?.();
     }
-
-    this.particleCreatedPlugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
 
     this._sourceOptions = this._options;
 

@@ -732,7 +732,7 @@ export class Canvas {
       needsRefresh = container.updateActualOptions();
 
     /* density particles enabled */
-    container.particles.setDensity();
+    container.particles.setDensity(container.retina.pixelRatio);
 
     this._applyResizePlugins();
 

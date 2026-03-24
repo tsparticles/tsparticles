@@ -34,11 +34,14 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
  * Particles manager object
  */
 export class Particles {
-  checkParticlePositionPlugins: IContainerPlugin[];
-
   effectDrawers: Map<string, IEffectDrawer>;
 
   grid;
+
+  readonly particleCheckPositionPlugins: IContainerPlugin[];
+  readonly particleCreatedPlugins: IContainerPlugin[];
+  readonly particleDestroyedPlugins: IContainerPlugin[];
+  readonly particlePositionPlugins: IContainerPlugin[];
 
   shapeDrawers: Map<string, IShapeDrawer>;
 
@@ -48,7 +51,9 @@ export class Particles {
    * All the particles used in canvas
    */
   private _array: Particle[];
+  private _canvasSize?: Readonly<IDimension>;
   private readonly _container: Container;
+  private _drawParticleCallback?: (particle: Particle, delta: IDelta) => void;
   private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
   private _limit;
@@ -56,13 +61,14 @@ export class Particles {
   private _minZIndex;
   private _needsSort;
   private _nextId;
-  private _particleResetPlugins: IContainerPlugin[];
-  private _particleUpdatePlugins: IContainerPlugin[];
+  private readonly _particleResetPlugins: IContainerPlugin[];
+  private readonly _particleUpdatePlugins: IContainerPlugin[];
   private readonly _pool: Particle[];
-  private _postParticleUpdatePlugins: IContainerPlugin[];
-  private _postUpdatePlugins: IContainerPlugin[];
+  private readonly _postParticleUpdatePlugins: IContainerPlugin[];
+  private readonly _postUpdatePlugins: IContainerPlugin[];
+  private _redrawCallback?: (delta: IDelta) => void;
   private _resizeFactor?: IDimension;
-  private _updatePlugins: IContainerPlugin[];
+  private readonly _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
 
   /**
@@ -86,7 +92,10 @@ export class Particles {
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
-    this.checkParticlePositionPlugins = [];
+    this.particleCheckPositionPlugins = [];
+    this.particleDestroyedPlugins = [];
+    this.particleCreatedPlugins = [];
+    this.particlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
     this._postUpdatePlugins = [];
@@ -104,6 +113,12 @@ export class Particles {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
+    const canvasSize = this._canvasSize;
+
+    if (!canvasSize) {
+      return;
+    }
+
     const container = this._container,
       limitMode = container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
@@ -133,16 +148,37 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, container),
+      const particle = this._pool.pop() ?? new Particle(),
         particlesOptions = loadParticlesOptions(this._engine, container, container.actualOptions.particles);
 
       particle.init({
-        canvasSize: container.canvas.size,
+        canvasSize,
+        dispatchEvent: (type, data) => {
+          this._engine.dispatchEvent(type, {
+            container,
+            data,
+          });
+        },
+        effectDrawers: this.effectDrawers,
+        group,
         id: this._nextId,
+        initRetina: particle => {
+          container.retina.initParticle(particle);
+        },
+        overrideOptions,
+        particleCheckPositionPlugins: this.particleCheckPositionPlugins,
+        particleCreatedPlugins: this.particleCreatedPlugins,
+        particleDestroyedPlugins: this.particleDestroyedPlugins,
+        particlePositionPlugins: this.particlePositionPlugins,
         particlesOptions,
         position,
-        overrideOptions,
-        group,
+        pixelRatio: container.retina.pixelRatio,
+        setLastZIndex: zIndex => {
+          this.setLastZIndex(zIndex);
+        },
+        shapeDrawers: this.shapeDrawers,
+        updaters: this.updaters,
+        zLayers: container.zLayers,
       });
 
       let canAdd = true;
@@ -200,21 +236,26 @@ export class Particles {
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
-    this.checkParticlePositionPlugins = [];
-    this._particleResetPlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._updatePlugins = [];
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
+    this.particleCheckPositionPlugins.length = 0;
+    this._particleResetPlugins.length = 0;
+    this._particleUpdatePlugins.length = 0;
+    this._postUpdatePlugins.length = 0;
+    this._postParticleUpdatePlugins.length = 0;
+    this._updatePlugins.length = 0;
   }
 
   drawParticles(delta: IDelta): void {
-    for (const particle of this._zArray) {
-      const container = this._container,
-        canvas = container.canvas;
+    const drawParticleCallback = this._drawParticleCallback;
 
-      canvas.drawParticlePlugins(particle, delta);
-      canvas.drawParticle(particle, delta);
+    if (!drawParticleCallback) {
+      return;
+    }
+
+    for (const particle of this._zArray) {
+      drawParticleCallback(particle, delta);
     }
   }
 
@@ -238,12 +279,15 @@ export class Particles {
     this._minZIndex = 0;
     this._maxZIndex = 0;
     this._needsSort = false;
-    this.checkParticlePositionPlugins = [];
-    this._updatePlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._particleResetPlugins = [];
-    this._postParticleUpdatePlugins = [];
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
+    this.particleCheckPositionPlugins.length = 0;
+    this._updatePlugins.length = 0;
+    this._particleUpdatePlugins.length = 0;
+    this._postUpdatePlugins.length = 0;
+    this._particleResetPlugins.length = 0;
+    this._postParticleUpdatePlugins.length = 0;
 
     this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
@@ -252,8 +296,20 @@ export class Particles {
         await plugin.redrawInit();
       }
 
+      if (plugin.particleCreated) {
+        this.particleCreatedPlugins.push(plugin);
+      }
+
+      if (plugin.particleDestroyed) {
+        this.particleDestroyedPlugins.push(plugin);
+      }
+
+      if (plugin.particlePosition) {
+        this.particlePositionPlugins.push(plugin);
+      }
+
       if (plugin.checkParticlePosition) {
-        this.checkParticlePositionPlugins.push(plugin);
+        this.particleCheckPositionPlugins.push(plugin);
       }
 
       if (plugin.update) {
@@ -342,7 +398,7 @@ export class Particles {
     this.clear();
     await this.init();
 
-    this._container.canvas.drawParticles({ value: 0, factor: 0 });
+    this._redrawCallback?.({ value: 0, factor: 0 });
   }
 
   remove(particle: Particle, group?: string, override?: boolean): void {
@@ -368,7 +424,11 @@ export class Particles {
     this.removeAt(minIndex, quantity, group);
   }
 
-  setDensity(): void {
+  setCanvasSize(size: IDimension): void {
+    this._canvasSize = size;
+  }
+
+  setDensity(pixelRatio: number): void {
     const options = this._container.actualOptions,
       groups = options.particles.groups;
 
@@ -389,14 +449,22 @@ export class Particles {
 
       const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
 
-      this._applyDensity(groupDataOptions, pluginsCount, group);
+      this._applyDensity(groupDataOptions, pixelRatio, pluginsCount, group);
     }
 
-    this._applyDensity(options.particles, pluginsCount);
+    this._applyDensity(options.particles, pixelRatio, pluginsCount);
+  }
+
+  setDrawParticleCallback(callback: (particle: Particle, delta: IDelta) => void): void {
+    this._drawParticleCallback = callback;
   }
 
   setLastZIndex(zIndex: number): void {
     this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
+  }
+
+  setRedrawCallback(callback: (delta: IDelta) => void): void {
+    this._redrawCallback = callback;
   }
 
   setResizeFactor(factor: IDimension): void {
@@ -506,6 +574,7 @@ export class Particles {
 
   private readonly _applyDensity = (
     options: ParticlesOptions,
+    pixelRatio: number,
     pluginsCount: number,
     group?: string,
     groupOptions?: ParticlesOptions,
@@ -522,7 +591,7 @@ export class Particles {
       return;
     }
 
-    const densityFactor = this._initDensityFactor(numberOptions.density),
+    const densityFactor = this._initDensityFactor(numberOptions.density, pixelRatio),
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
@@ -541,17 +610,23 @@ export class Particles {
     }
   };
 
-  private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = densityOptions => {
-    const container = this._container;
-
-    if (!container.canvas.element || !densityOptions.enable) {
+  private readonly _initDensityFactor: (densityOptions: IParticlesDensity, pixelRatio: number) => number = (
+    densityOptions,
+    pixelRatio,
+  ) => {
+    if (!densityOptions.enable) {
       return defaultDensityFactor;
     }
 
-    const canvas = container.canvas.element,
-      pxRatio = container.retina.pixelRatio;
+    const canvasSize = this._canvasSize;
 
-    return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
+    if (!canvasSize) {
+      return defaultDensityFactor;
+    }
+
+    return (
+      (canvasSize.width * canvasSize.height) / (densityOptions.height * densityOptions.width * pixelRatio ** squareExp)
+    );
   };
 
   private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {

@@ -57,8 +57,8 @@ export class Retina {
 
     const maxDistance = props.maxDistance;
 
-    maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
-    maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
+    maxDistance.horizontal = moveDistance.horizontal === undefined ? undefined : moveDistance.horizontal * ratio;
+    maxDistance.vertical = moveDistance.vertical === undefined ? undefined : moveDistance.vertical * ratio;
 
     props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
   }
