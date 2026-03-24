@@ -24,6 +24,7 @@ interface ZoomEventListenersHandlers {
  * Zoom event listeners manager
  */
 export class ZoomEventListeners {
+  private readonly _container;
   private _gestureScale: number;
   private readonly _handlers: ZoomEventListenersHandlers;
   private _touchDistance: number;
@@ -32,7 +33,8 @@ export class ZoomEventListeners {
    * Zoom events listener constructor
    * @param container - the calling container
    */
-  constructor(private readonly container: ZoomContainer) {
+  constructor(container: ZoomContainer) {
+    this._container = container;
     this._gestureScale = defaultZoom as number;
     this._touchDistance = initialTouchDistance as number;
     this._handlers = {
@@ -77,7 +79,7 @@ export class ZoomEventListeners {
    * @param event - the gesture event
    */
   private readonly _handleGestureChange = (event: Event): void => {
-    const container = this.container,
+    const container = this._container,
       canvas = container.canvas as {
         element?: HTMLCanvasElement;
         setZoom: (zoom: number, center: { x: number; y: number }) => void;
@@ -117,7 +119,7 @@ export class ZoomEventListeners {
       rect = canvasEl.getBoundingClientRect(),
       clientX = gestureEvent.clientX ?? rect.left + rect.width / touchCenterDivisor,
       clientY = gestureEvent.clientY ?? rect.top + rect.height / touchCenterDivisor,
-      pixelRatio = this.container.retina.pixelRatio,
+      pixelRatio = this._container.retina.pixelRatio,
       centerX = (clientX - rect.left) * pixelRatio,
       centerY = (clientY - rect.top) * pixelRatio;
 
@@ -132,7 +134,7 @@ export class ZoomEventListeners {
    * @param event - the gesture event
    */
   private readonly _handleGestureEnd = (event: Event): void => {
-    const container = this.container,
+    const container = this._container,
       canvas = container.canvas as {
         element?: HTMLCanvasElement;
       },
@@ -163,7 +165,7 @@ export class ZoomEventListeners {
    * @param event - the gesture event
    */
   private readonly _handleGestureStart = (event: Event): void => {
-    const container = this.container,
+    const container = this._container,
       canvas = container.canvas as {
         element?: HTMLCanvasElement;
       },
@@ -198,7 +200,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       zoomOptions = container.actualOptions.zoom,
       canvas = container.canvas as {
         element?: HTMLCanvasElement;
@@ -225,7 +227,7 @@ export class ZoomEventListeners {
       currentZoom = canvas.zoom,
       newZoom = Math.max(zoomOptions.min, Math.min(currentZoom * zoomFactor, zoomOptions.max)),
       rect = canvasEl.getBoundingClientRect(),
-      pixelRatio = this.container.retina.pixelRatio,
+      pixelRatio = this._container.retina.pixelRatio,
       mouseX = (event.clientX - rect.left) * pixelRatio,
       mouseY = (event.clientY - rect.top) * pixelRatio;
 
@@ -267,7 +269,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       zoomOptions = container.actualOptions.zoom,
       canvas = container.canvas as {
         element?: HTMLCanvasElement;
@@ -295,7 +297,7 @@ export class ZoomEventListeners {
       currentZoom = canvas.zoom,
       newZoom = Math.max(zoomOptions.min, Math.min(currentZoom * adjustedScale, zoomOptions.max)),
       rect = canvasEl.getBoundingClientRect(),
-      pixelRatio = this.container.retina.pixelRatio,
+      pixelRatio = this._container.retina.pixelRatio,
       centerX = ((touch1.clientX + touch2.clientX) / touchCenterDivisor - rect.left) * pixelRatio,
       centerY = ((touch1.clientY + touch2.clientY) / touchCenterDivisor - rect.top) * pixelRatio;
 
@@ -344,8 +346,8 @@ export class ZoomEventListeners {
    */
   private readonly _manageListeners: (add: boolean) => void = add => {
     const handlers = this._handlers,
-      canvas = this.container.canvas.domElement,
-      options = this.container.actualOptions,
+      canvas = this._container.canvas.domElement,
+      options = this._container.actualOptions,
       doc = safeDocument();
 
     if (!canvas) {

@@ -1,4 +1,5 @@
 import {
+  type Container,
   type Engine,
   type IParticleColorStyle,
   type IParticleUpdater,
@@ -13,10 +14,12 @@ import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions 
 import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 export class TwinkleUpdater implements IParticleUpdater {
+  private readonly _container;
   private readonly _engine;
 
-  constructor(engine: Engine) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
   }
 
   getColorStyles(
@@ -26,7 +29,7 @@ export class TwinkleUpdater implements IParticleUpdater {
     opacity: number,
   ): IParticleColorStyle {
     const pOptions = particle.options,
-      { container } = particle,
+      container = this._container,
       twinkleOptions = pOptions["twinkle"] as Twinkle | undefined;
 
     if (!twinkleOptions) {

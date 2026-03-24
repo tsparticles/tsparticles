@@ -14,14 +14,14 @@ import {
  * The opacity updater, it manages the opacity on each particle
  */
 export class OpacityUpdater implements IParticleUpdater {
-  private readonly container;
+  private readonly _container;
 
   /**
    * Constructor of opacity updater
    * @param container - The container to manage
    */
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
   }
 
   /**
@@ -39,7 +39,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
     if (opacityAnimation.enable) {
       particle.opacity.velocity =
-        (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.container.retina.reduceFactor;
+        (getRangeValue(opacityAnimation.speed) / percentDenominator) * this._container.retina.reduceFactor;
 
       if (!opacityAnimation.sync) {
         particle.opacity.velocity *= getRandom();

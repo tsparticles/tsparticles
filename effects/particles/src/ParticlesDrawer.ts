@@ -39,8 +39,7 @@ type ParticlesParticle = Particle & {
 
 export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
   drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
-    const { particle } = data,
-      { container } = particle;
+    const { container, particle } = data;
 
     if (!particle.particlesNextSpawn) {
       return;

@@ -37,10 +37,10 @@ type RotateParticlesOptions = ParticlesOptions & {
 const doublePIDeg = 360;
 
 export class RotateUpdater implements IParticleUpdater {
-  private readonly container;
+  private readonly _container;
 
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
   }
 
   init(particle: RotateParticle): void {
@@ -86,7 +86,7 @@ export class RotateUpdater implements IParticleUpdater {
     if (rotateAnimation.enable) {
       particle.rotate.decay = identity - getRangeValue(rotateAnimation.decay);
       particle.rotate.velocity =
-        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this.container.retina.reduceFactor;
+        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this._container.retina.reduceFactor;
 
       if (!rotateAnimation.sync) {
         particle.rotate.velocity *= getRandom();

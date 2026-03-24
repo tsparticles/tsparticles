@@ -57,8 +57,10 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
   }
 
   init(): void {
-    this.container.particles.linksColor = undefined;
-    this.container.particles.linksColors = new Map();
+    const { particles } = this.container;
+
+    particles.linksColor = undefined;
+    particles.linksColors = new Map();
   }
 
   interact(p1: LinkParticle): void {

@@ -11,6 +11,7 @@ interface EventListenersHandlers {
  * Particles container event listeners manager
  */
 export class EventListeners {
+  private readonly _container;
   private readonly _handlers: EventListenersHandlers;
   private _resizeObserver?: ResizeObserver;
   private _resizeTimeout?: NodeJS.Timeout;
@@ -19,7 +20,8 @@ export class EventListeners {
    * Events listener constructor
    * @param container - the calling container
    */
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this._container = container;
     this._handlers = {
       visibilityChange: (): void => {
         this._handleVisibilityChange();
@@ -49,7 +51,7 @@ export class EventListeners {
    * @internal
    */
   private readonly _handleVisibilityChange: () => void = () => {
-    const container = this.container,
+    const container = this._container,
       options = container.actualOptions;
 
     if (!options.pauseOnBlur) {
@@ -83,14 +85,14 @@ export class EventListeners {
     }
 
     const handleResize = async (): Promise<void> => {
-      const canvas = this.container.canvas;
+      const canvas = this._container.canvas;
 
       await canvas.windowResize();
     };
 
     this._resizeTimeout = setTimeout(
       () => void handleResize(),
-      this.container.actualOptions.resize.delay * millisecondsToSeconds,
+      this._container.actualOptions.resize.delay * millisecondsToSeconds,
     );
   };
 
@@ -108,7 +110,7 @@ export class EventListeners {
 
   private readonly _manageResize: (add: boolean) => void = add => {
     const handlers = this._handlers,
-      container = this.container,
+      container = this._container,
       options = container.actualOptions;
 
     if (!options.resize.enable) {

@@ -68,7 +68,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     await Promise.all(promises);
   }
 
-  particleDestroy(particle: EmojiParticle): void {
+  particleDestroy(_container: Container, particle: EmojiParticle): void {
     particle.emojiDataKey = undefined;
   }
 

@@ -13,8 +13,10 @@ const minVelocity = 0;
 
 export class NoneOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
+  private readonly _container;
 
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this._container = container;
     this.modes = [OutMode.none];
   }
 
@@ -38,7 +40,7 @@ export class NoneOutMode implements IOutModeManager {
     }
 
     const gravityOptions = particle.options.move.gravity,
-      container = this.container,
+      container = this._container,
       canvasSize = container.canvas.size,
       pRadius = particle.getRadius();
 

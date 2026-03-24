@@ -13,16 +13,16 @@ import { DestroyMode } from "./Enums/DestroyMode.js";
 import { split } from "./Utils.js";
 
 export class DestroyUpdater implements IParticleUpdater {
-  private readonly container;
-  private readonly engine;
+  private readonly _container;
+  private readonly _engine;
 
   constructor(engine: Engine, container: Container) {
-    this.container = container;
-    this.engine = engine;
+    this._engine = engine;
+    this._container = container;
   }
 
   init(particle: DestroyParticle): void {
-    const container = this.container,
+    const container = this._container,
       particlesOptions = particle.options,
       destroyOptions = particlesOptions.destroy;
 
@@ -80,7 +80,7 @@ export class DestroyUpdater implements IParticleUpdater {
     const destroyOptions = particle.options.destroy;
 
     if (destroyOptions?.mode === DestroyMode.split) {
-      split(this.engine, this.container, particle);
+      split(this._engine, this._container, particle);
     }
   }
 

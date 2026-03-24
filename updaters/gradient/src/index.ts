@@ -9,10 +9,10 @@ export async function loadGradientUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addParticleUpdater("gradient", async () => {
+    e.addParticleUpdater("gradient", async container => {
       const { GradientUpdater } = await import("./GradientUpdater.js");
 
-      return new GradientUpdater(e);
+      return new GradientUpdater(e, container);
     });
   });
 }

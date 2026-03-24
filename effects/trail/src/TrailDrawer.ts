@@ -59,9 +59,9 @@ const defaultTransform = {
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
-    const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
+    const { container, context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
       diameter = drawRadius * double,
-      pxRatio = particle.container.retina.pixelRatio,
+      pxRatio = container.retina.pixelRatio,
       trail = particle.trail;
 
     if (!trail || !particle.trailLength) {
@@ -92,8 +92,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     const trailLength = Math.min(trail.length, pathLength),
       canvasSize = {
-        width: particle.container.canvas.size.width * drawScale + diameter,
-        height: particle.container.canvas.size.height * drawScale + diameter,
+        width: container.canvas.size.width * drawScale + diameter,
+        height: container.canvas.size.height * drawScale + diameter,
       };
 
     context.save();

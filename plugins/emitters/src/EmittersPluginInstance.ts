@@ -5,53 +5,52 @@ import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 /**
  */
 export class EmittersPluginInstance implements IContainerPlugin {
+  private readonly _container;
   private readonly _instancesManager;
 
-  constructor(
-    instancesManager: EmittersInstancesManager,
-    private readonly container: EmitterContainer,
-  ) {
+  constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
+    this._container = container;
     this._instancesManager = instancesManager;
 
-    this._instancesManager.initContainer(container);
+    this._instancesManager.initContainer(this._container);
   }
 
   async init(): Promise<void> {
-    const emittersOptions = this.container.actualOptions.emitters;
+    const emittersOptions = this._container.actualOptions.emitters;
 
     if (isArray(emittersOptions)) {
       for (const emitterOptions of emittersOptions) {
-        await this._instancesManager.addEmitter(this.container, emitterOptions);
+        await this._instancesManager.addEmitter(this._container, emitterOptions);
       }
     } else {
-      await this._instancesManager.addEmitter(this.container, emittersOptions);
+      await this._instancesManager.addEmitter(this._container, emittersOptions);
     }
   }
 
   pause(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this._instancesManager.getArray(this._container)) {
       emitter.pause();
     }
   }
 
   play(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this._instancesManager.getArray(this._container)) {
       emitter.play();
     }
   }
 
   resize(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this._instancesManager.getArray(this._container)) {
       emitter.resize();
     }
   }
 
   stop(): void {
-    this._instancesManager.clear(this.container);
+    this._instancesManager.clear(this._container);
   }
 
   update(delta: IDelta): void {
-    this._instancesManager.getArray(this.container).forEach(emitter => {
+    this._instancesManager.getArray(this._container).forEach(emitter => {
       emitter.update(delta);
     });
   }

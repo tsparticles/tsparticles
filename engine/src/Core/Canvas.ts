@@ -114,6 +114,7 @@ export class Canvas {
   private _canvasSettings?: CanvasRenderingContext2DSettings;
   private _clearDrawPlugins: IContainerPlugin[];
   private _colorPlugins: IContainerPlugin[];
+  private readonly _container;
   /**
    * The particles canvas context
    */
@@ -145,14 +146,12 @@ export class Canvas {
 
   /**
    * Constructor of canvas manager
-   * @param container - the parent container
    * @param engine - the engine managing the whole library
+   * @param container - the parent container
    */
-  constructor(
-    private readonly container: Container,
-    engine: Engine,
-  ) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
     this._standardSize = {
       height: 0,
       width: 0,
@@ -189,11 +188,11 @@ export class Canvas {
   }
 
   private get _fullScreen(): boolean {
-    return this.container.actualOptions.fullScreen.enable;
+    return this._container.actualOptions.fullScreen.enable;
   }
 
   canvasClear(): void {
-    if (!this.container.actualOptions.clear) {
+    if (!this._container.actualOptions.clear) {
       return;
     }
 
@@ -297,7 +296,7 @@ export class Canvas {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       zIndexOptions = particle.options.zIndex,
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
@@ -351,7 +350,7 @@ export class Canvas {
   }
 
   drawParticles(delta: IDelta): void {
-    const { particles } = this.container;
+    const { particles } = this._container;
 
     this.clear();
 
@@ -380,7 +379,7 @@ export class Canvas {
   }
 
   getZoomCenter(): ICoordinates {
-    const pxRatio = this.container.retina.pixelRatio,
+    const pxRatio = this._container.retina.pixelRatio,
       { width, height } = this.size;
 
     if (this._zoomCenter) {
@@ -427,7 +426,7 @@ export class Canvas {
    * Initializes the canvas background
    */
   initBackground(): void {
-    const { container } = this,
+    const { _container: container } = this,
       options = container.actualOptions,
       background = options.background,
       element = this.domElement;
@@ -467,7 +466,7 @@ export class Canvas {
     this._drawSettingsSetupPlugins = [];
     this._drawSettingsCleanupPlugins = [];
 
-    for (const plugin of this.container.plugins) {
+    for (const plugin of this._container.plugins) {
       if (plugin.resize) {
         this._resizePlugins.push(plugin);
       }
@@ -521,7 +520,7 @@ export class Canvas {
     this._preDrawUpdaters = [];
     this._postDrawUpdaters = [];
 
-    for (const updater of this.container.particles.updaters) {
+    for (const updater of this._container.particles.updaters) {
       if (updater.afterDraw) {
         this._postDrawUpdaters.push(updater);
       }
@@ -541,7 +540,7 @@ export class Canvas {
       this.domElement.remove();
     }
 
-    const container = this.container;
+    const container = this._container;
 
     this._generated =
       generatedAttribute in canvas.dataset ? canvas.dataset[generatedAttribute] === "true" : this._generated;
@@ -554,7 +553,7 @@ export class Canvas {
     standardSize.height = canvas.offsetHeight;
     standardSize.width = canvas.offsetWidth;
 
-    const pxRatio = this.container.retina.pixelRatio,
+    const pxRatio = this._container.retina.pixelRatio,
       retinaSize = this.size;
 
     retinaSize.width = standardSize.height * pxRatio;
@@ -646,7 +645,7 @@ export class Canvas {
       return false;
     }
 
-    const container = this.container,
+    const container = this._container,
       currentSize = container.canvas._standardSize,
       newSize = {
         width: this.domElement.offsetWidth,
@@ -678,7 +677,7 @@ export class Canvas {
     target.width = canvasSize.width = retinaSize.width;
     target.height = canvasSize.height = retinaSize.height;
 
-    if (this.container.started) {
+    if (this._container.started) {
       container.particles.setResizeFactor({
         width: currentSize.width / oldSize.width,
         height: currentSize.height / oldSize.height,
@@ -729,7 +728,7 @@ export class Canvas {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       needsRefresh = container.updateActualOptions();
 
     /* density particles enabled */
@@ -812,7 +811,7 @@ export class Canvas {
 
   private readonly _initStyle: () => void = () => {
     const element = this.domElement,
-      options = this.container.actualOptions;
+      options = this._container.actualOptions;
 
     if (!element) {
       return;
@@ -892,6 +891,6 @@ export class Canvas {
       return;
     }
 
-    setStyle(element, getFullScreenStyle(this.container.actualOptions.fullScreen.zIndex), true);
+    setStyle(element, getFullScreenStyle(this._container.actualOptions.fullScreen.zIndex), true);
   };
 }

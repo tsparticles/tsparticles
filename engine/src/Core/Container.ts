@@ -169,7 +169,7 @@ export class Container {
     this._sourceOptions = sourceOptions;
     this._initialSourceOptions = sourceOptions;
     this.retina = new Retina(this);
-    this.canvas = new Canvas(this, this._engine);
+    this.canvas = new Canvas(this._engine, this);
     this.particles = new Particles(this._engine, this);
     this.plugins = [];
     this.particleDestroyedPlugins = [];

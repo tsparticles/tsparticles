@@ -104,7 +104,8 @@ export class Particles {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
-    const limitMode = this._container.actualOptions.particles.number.limit.mode,
+    const container = this._container,
+      limitMode = container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
       currentCount = this.count;
 
@@ -132,9 +133,17 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+      const particle = this._pool.pop() ?? new Particle(this._engine, container),
+        particlesOptions = loadParticlesOptions(this._engine, container, container.actualOptions.particles);
 
-      particle.init(this._nextId, position, overrideOptions, group);
+      particle.init({
+        canvasSize: container.canvas.size,
+        id: this._nextId,
+        particlesOptions,
+        position,
+        overrideOptions,
+        group,
+      });
 
       let canAdd = true;
 
@@ -203,7 +212,11 @@ export class Particles {
 
   drawParticles(delta: IDelta): void {
     for (const particle of this._zArray) {
-      particle.draw(delta);
+      const container = this._container,
+        canvas = container.canvas;
+
+      canvas.drawParticlePlugins(particle, delta);
+      canvas.drawParticle(particle, delta);
     }
   }
 

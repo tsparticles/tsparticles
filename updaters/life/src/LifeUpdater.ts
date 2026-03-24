@@ -17,14 +17,14 @@ const noTime = 0,
   infiniteValue = -1;
 
 export class LifeUpdater implements IParticleUpdater {
-  private readonly container;
+  private readonly _container;
 
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
   }
 
   init(particle: LifeParticle): void {
-    const container = this.container,
+    const container = this._container,
       particlesOptions = particle.options,
       lifeOptions = particlesOptions.life;
 
@@ -79,6 +79,6 @@ export class LifeUpdater implements IParticleUpdater {
       return;
     }
 
-    updateLife(particle, delta, this.container.canvas.size);
+    updateLife(particle, delta, this._container.canvas.size);
   }
 }

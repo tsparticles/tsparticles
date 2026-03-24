@@ -1,5 +1,6 @@
 import {
   AnimationStatus,
+  type Container,
   type Engine,
   GradientType,
   type ICoordinates,
@@ -29,10 +30,12 @@ import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
 
 export class GradientUpdater implements IParticleUpdater {
+  private readonly _container;
   private readonly _engine;
 
-  constructor(engine: Engine) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
   }
 
   getColorStyles(
@@ -47,7 +50,7 @@ export class GradientUpdater implements IParticleUpdater {
       return {};
     }
 
-    const { container } = particle,
+    const container = this._container,
       gradientAngle = gradient.angle.value,
       origin: ICoordinates = { x: 0, y: 0 },
       minRadius = 0,
@@ -89,7 +92,7 @@ export class GradientUpdater implements IParticleUpdater {
       angle: {
         value: getRangeValue(angle.value),
         enable: angle.animation.enable,
-        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * particle.container.retina.reduceFactor,
+        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * this._container.retina.reduceFactor,
         decay: delayOffset - getRangeValue(angle.animation.decay),
         delayTime: getRangeValue(angle.animation.delay) * millisecondsToSeconds,
         max: doublePI,
@@ -131,7 +134,7 @@ export class GradientUpdater implements IParticleUpdater {
       const grHslAnimation = getHslAnimationFromHsl(
           grHslColor,
           grColor.value.animation,
-          particle.container.retina.reduceFactor,
+          this._container.retina.reduceFactor,
         ),
         addColor = {
           stop: grColor.stop,
@@ -145,7 +148,7 @@ export class GradientUpdater implements IParticleUpdater {
                 value: getRangeValue(grColor.opacity.value),
                 velocity:
                   (getRangeValue(grColor.opacity.animation.speed) / percentDenominator) *
-                  particle.container.retina.reduceFactor,
+                  this._container.retina.reduceFactor,
                 decay: delayOffset - getRangeValue(grColor.opacity.animation.decay),
                 delayTime: getRangeValue(grColor.opacity.animation.delay) * millisecondsToSeconds,
                 time: 0,

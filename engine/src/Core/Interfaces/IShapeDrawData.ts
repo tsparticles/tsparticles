@@ -1,8 +1,11 @@
+import type { Container } from "../Container.js";
 import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
 export interface IShapeDrawData<TParticle extends Particle = Particle> {
+  container: Container;
+
   /**
    * the canvas context for drawing
    */

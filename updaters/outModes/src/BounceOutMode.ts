@@ -13,14 +13,16 @@ import type { IOutModeManager } from "./IOutModeManager.js";
 export class BounceOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
 
+  private readonly _container;
   private readonly _particleBouncePlugins: IContainerPlugin[];
 
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this._container = container;
     this.modes = [
       OutMode.bounce,
       OutMode.split,
     ];
-    this._particleBouncePlugins = container.plugins.filter(p => p.particleBounce !== undefined);
+    this._particleBouncePlugins = this._container.plugins.filter(p => p.particleBounce !== undefined);
   }
 
   update(
@@ -33,7 +35,7 @@ export class BounceOutMode implements IOutModeManager {
       return;
     }
 
-    const container = this.container;
+    const container = this._container;
     let handled = false;
 
     for (const plugin of this._particleBouncePlugins) {

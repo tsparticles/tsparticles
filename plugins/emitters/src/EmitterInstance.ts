@@ -99,6 +99,7 @@ export class EmitterInstance {
   spawnStrokeOpacity?: number;
   spawnStrokeWidth?: number;
 
+  private readonly _container;
   private _currentDuration;
   private _currentEmitDelay;
   private _currentSpawnDelay;
@@ -112,6 +113,7 @@ export class EmitterInstance {
   private _mutationObserver?: MutationObserver;
   private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
   private _paused;
+  private readonly _removeCallback;
   private _resizeObserver?: ResizeObserver;
   private readonly _shape?: IEmitterShape;
   private _size;
@@ -120,12 +122,14 @@ export class EmitterInstance {
 
   constructor(
     engine: EmittersEngine,
-    private readonly container: Container,
-    private readonly removeCallback: (emitter: EmitterInstance) => void,
+    container: Container,
+    removeCallback: (emitter: EmitterInstance) => void,
     options: Emitter | RecursivePartial<IEmitter>,
     position?: ICoordinates,
   ) {
     this._engine = engine;
+    this._container = container;
+    this._removeCallback = removeCallback;
     this._currentDuration = 0;
     this._currentEmitDelay = 0;
     this._currentSpawnDelay = 0;
@@ -138,9 +142,10 @@ export class EmitterInstance {
       this.options.load(options);
     }
 
-    this._spawnDelay = container.retina.reduceFactor
-      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
-        container.retina.reduceFactor
+    const retina = this._container.retina;
+
+    this._spawnDelay = retina.reduceFactor
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) / retina.reduceFactor
       : Infinity;
     this.position = this._initialPosition ?? this._calcPosition();
     this.name = this.options.name;
@@ -166,7 +171,7 @@ export class EmitterInstance {
     this._paused = !this.options.autoPlay;
     this._particlesOptions = particlesOptions;
     this._size = this._calcSize();
-    this.size = getSize(this._size, this.container.canvas.size);
+    this.size = getSize(this._size, this._container.canvas.size);
     this._lifeCount = this.options.life.count ?? defaultLifeCount;
     this._immortal = this._lifeCount <= minLifeCount;
 
@@ -194,11 +199,11 @@ export class EmitterInstance {
       shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
 
     if (shapeGenerator) {
-      this._shape = shapeGenerator.generate(this.container, this.position, this.size, this.fill, shapeOptions.options);
+      this._shape = shapeGenerator.generate(this._container, this.position, this.size, this.fill, shapeOptions.options);
     }
 
     this._engine.dispatchEvent("emitterCreated", {
-      container,
+      container: this._container,
       data: {
         emitter: this,
       },
@@ -245,7 +250,7 @@ export class EmitterInstance {
       return;
     }
 
-    const container = this.container;
+    const container = this._container;
 
     if (this._emitDelay === undefined) {
       const delay = getRangeValue(this.options.rate.delay);
@@ -262,7 +267,7 @@ export class EmitterInstance {
 
   resize(): void {
     const initialPosition = this._initialPosition,
-      container = this.container;
+      container = this._container;
 
     this.position =
       initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
@@ -280,7 +285,7 @@ export class EmitterInstance {
       return;
     }
 
-    const container = this.container;
+    const container = this._container;
 
     if (this._firstSpawn) {
       this._firstSpawn = false;
@@ -333,7 +338,7 @@ export class EmitterInstance {
 
       if (this._currentSpawnDelay >= this._spawnDelay) {
         this._engine.dispatchEvent("emitterPlay", {
-          container: this.container,
+          container: this._container,
         });
 
         this.play();
@@ -355,7 +360,7 @@ export class EmitterInstance {
   }
 
   private _calcPosition(): ICoordinates {
-    const container = this.container;
+    const container = this._container;
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
@@ -378,7 +383,7 @@ export class EmitterInstance {
   }
 
   private _calcSize(): IDimensionWithMode {
-    const container = this.container;
+    const container = this._container;
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
@@ -417,10 +422,10 @@ export class EmitterInstance {
     this._resizeObserver?.disconnect();
     this._resizeObserver = undefined;
 
-    this.removeCallback(this);
+    this._removeCallback(this);
 
     this._engine.dispatchEvent("emitterDestroyed", {
-      container: this.container,
+      container: this._container,
       data: {
         emitter: this,
       },
@@ -455,7 +460,7 @@ export class EmitterInstance {
         this.options.spawn.stroke?.width === undefined
           ? defaultStrokeWidth
           : getRangeValue(this.options.spawn.stroke.width),
-      reduceFactor = this.container.retina.reduceFactor,
+      reduceFactor = this._container.retina.reduceFactor,
       needsFillColorAnimation = !!fillHslAnimation,
       needsStrokeColorAnimation = !!strokeHslAnimation,
       needsShapeData = !!this._shape,
@@ -538,7 +543,7 @@ export class EmitterInstance {
       }
 
       if (position) {
-        this.container.particles.addParticle(position, particlesOptions);
+        this._container.particles.addParticle(position, particlesOptions);
       }
     }
   }
@@ -563,7 +568,7 @@ export class EmitterInstance {
     maxValue: number,
     factor: number = defaultColorAnimationFactor,
   ): number => {
-    const container = this.container;
+    const container = this._container;
 
     if (!animation.enable) {
       return initValue;

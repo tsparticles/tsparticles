@@ -1,4 +1,5 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
+import type { IDimension, IParticleTransformValues } from "../export-types.js";
 import { Vector, Vector3d } from "./Utils/Vectors.js";
 import { alterHsl, getHslFromAnimation } from "../Utils/ColorUtils.js";
 import {
@@ -39,7 +40,6 @@ import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
@@ -49,7 +49,6 @@ import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js"
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
 import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
-import type { IParticleTransformValues } from "../export-types.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
@@ -60,7 +59,15 @@ import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+
+interface ParticleInitData {
+  canvasSize: Readonly<IDimension>;
+  group?: string;
+  id: number;
+  overrideOptions?: RecursivePartial<IParticlesOptions>;
+  particlesOptions: ParticlesOptions;
+  position?: ICoordinates;
+}
 
 /**
  * @internal
@@ -167,6 +174,8 @@ export class Particle {
    * Gets particles bubble data
    */
   bubble!: IBubbleParticleData;
+
+  canvasSize!: Readonly<IDimension>;
 
   /**
    * Checks if the particle is destroyed
@@ -368,17 +377,17 @@ export class Particle {
     d: 1,
   };
 
+  private readonly _container;
+
   /**
    * Gets the particle containing engine instance
    * @internal
    */
   private readonly _engine;
 
-  constructor(
-    engine: Engine,
-    readonly container: Container,
-  ) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
   }
 
   destroy(override?: boolean): void {
@@ -390,10 +399,10 @@ export class Particle {
     this.bubble.inRange = false;
     this.slow.inRange = false;
 
-    const container = this.container,
+    const container = this._container,
       shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
-    shapeDrawer?.particleDestroy?.(this);
+    shapeDrawer?.particleDestroy?.(this._container, this);
 
     for (const plugin of container.particleDestroyedPlugins) {
       plugin.particleDestroyed?.(this, override);
@@ -404,19 +413,11 @@ export class Particle {
     }
 
     this._engine.dispatchEvent(EventType.particleDestroyed, {
-      container: this.container,
+      container: this._container,
       data: {
         particle: this,
       },
     });
-  }
-
-  draw(delta: IDelta): void {
-    const container = this.container,
-      canvas = container.canvas;
-
-    canvas.drawParticlePlugins(this, delta);
-    canvas.drawParticle(this, delta);
   }
 
   getAngle(): number {
@@ -487,14 +488,11 @@ export class Particle {
     return this._cachedTransform;
   }
 
-  init(
-    id: number,
-    position?: ICoordinates,
-    overrideOptions?: RecursivePartial<IParticlesOptions>,
-    group?: string,
-  ): void {
-    const container = this.container;
+  init(data: ParticleInitData): void {
+    const container = this._container,
+      { canvasSize, id, group, overrideOptions, position, particlesOptions } = data;
 
+    this.canvasSize = canvasSize;
     this.id = id;
     this.group = group;
     this.effectClose = true;
@@ -513,8 +511,6 @@ export class Particle {
     this.ignoresResizeRatio = true;
 
     const pxRatio = container.retina.pixelRatio,
-      mainOptions = container.actualOptions,
-      particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
       reduceDuplicates = particlesOptions.reduceDuplicates,
       effectType = particlesOptions.effect.type,
       shapeType = particlesOptions.shape.type;
@@ -550,13 +546,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this.container.particles.effectDrawers.keys()];
+      const availableEffects = [...container.particles.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this.container.particles.shapeDrawers.keys()];
+      const availableShapes = [...container.particles.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -625,7 +621,7 @@ export class Particle {
     }
 
     if (shapeDrawer?.loadShape) {
-      shapeDrawer.loadShape(this);
+      shapeDrawer.loadShape(this._container, this);
     }
 
     const sideCountFunc = shapeDrawer?.getSidesCount;
@@ -650,7 +646,7 @@ export class Particle {
 
   isInsideCanvas(): boolean {
     const radius = this.getRadius(),
-      canvasSize = this.container.canvas.size,
+      canvasSize = this.canvasSize,
       position = this.position;
 
     return (
@@ -700,7 +696,7 @@ export class Particle {
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
-    for (const updater of this.container.particles.updaters) {
+    for (const updater of this._container.particles.updaters) {
       updater.reset?.(this);
     }
   }
@@ -712,11 +708,11 @@ export class Particle {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-    const container = this.container,
+    const container = this._container,
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
-      canvasSize = container.canvas.size,
+      canvasSize = this.canvasSize,
       abortController = new AbortController(),
       { signal } = abortController;
 
@@ -799,7 +795,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.x,
-      maxCoord: this.container.canvas.size.width,
+      maxCoord: this.canvasSize.width,
       setCb: (value: number) => (pos.x += value),
       radius,
     });
@@ -814,7 +810,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.y,
-      maxCoord: this.container.canvas.size.height,
+      maxCoord: this.canvasSize.height,
       setCb: (value: number) => (pos.y += value),
       radius,
     });
@@ -841,7 +837,7 @@ export class Particle {
   };
 
   private readonly _initPosition: (position?: ICoordinates) => void = position => {
-    const container = this.container,
+    const container = this._container,
       zIndexValue = getRangeValue(this.options.zIndex.value),
       initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
@@ -852,7 +848,7 @@ export class Particle {
     this.position = initialPosition;
     this.initialPosition = this.position.copy();
 
-    const canvasSize = container.canvas.size;
+    const canvasSize = this.canvasSize;
 
     this.moveCenter = {
       ...getPosition(this.options.move.center, canvasSize),

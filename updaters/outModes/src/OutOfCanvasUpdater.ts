@@ -26,10 +26,10 @@ const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMod
 export class OutOfCanvasUpdater implements IParticleUpdater {
   updaters: Map<OutMode, IOutModeManager>;
 
-  private readonly container;
+  private readonly _container;
 
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
     this.updaters = new Map();
   }
 
@@ -61,7 +61,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     const outModes = particle.options.move.outModes;
 
     if (!this.updaters.has(outMode) && checkOutMode(outModes, outMode)) {
-      this.updaters.set(outMode, getUpdater(this.container));
+      this.updaters.set(outMode, getUpdater(this._container));
     }
   };
 

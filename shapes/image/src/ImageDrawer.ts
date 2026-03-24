@@ -32,7 +32,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param data - the shape draw data
    */
   draw(data: IShapeDrawData<ImageParticle>): void {
-    const { context, radius, particle, opacity } = data,
+    const { container, context, radius, particle, opacity } = data,
       image = particle.image,
       element = image?.element;
 
@@ -43,7 +43,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data, particle.container.canvas.settings);
+      drawGif(data, container.canvas.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {
@@ -83,9 +83,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     await Promise.all(promises);
   }
 
-  loadShape(particle: ImageParticle): void {
-    const { container } = particle;
-
+  loadShape(container: Container, particle: ImageParticle): void {
     if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;
     }
@@ -104,7 +102,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     void this.loadImageShape(container, imageData).then(() => {
-      this.loadShape(particle);
+      this.loadShape(container, particle);
     });
   }
 

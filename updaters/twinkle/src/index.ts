@@ -9,10 +9,10 @@ export async function loadTwinkleUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addParticleUpdater("twinkle", async () => {
+    e.addParticleUpdater("twinkle", async container => {
       const { TwinkleUpdater } = await import("./TwinkleUpdater.js");
 
-      return new TwinkleUpdater(e);
+      return new TwinkleUpdater(e, container);
     });
   });
 }
