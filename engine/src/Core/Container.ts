@@ -184,7 +184,7 @@ export class Container {
 
     /* ---------- tsParticles - start ------------ */
     this._eventListeners = new EventListeners(this);
-    this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
+    this.dispatchEvent(EventType.containerBuilt);
   }
 
   /**
@@ -252,7 +252,14 @@ export class Container {
       }
     }
 
-    this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });
+    this.dispatchEvent(EventType.containerDestroyed);
+  }
+
+  dispatchEvent(type: string, data?: unknown): void {
+    this._engine.dispatchEvent(type, {
+      container: this,
+      data,
+    });
   }
 
   /**
@@ -358,7 +365,7 @@ export class Container {
 
     await this.particles.init();
 
-    this._engine.dispatchEvent(EventType.containerInit, { container: this });
+    this.dispatchEvent(EventType.containerInit);
 
     this.particles.setDensity(this.retina.pixelRatio);
 
@@ -366,7 +373,7 @@ export class Container {
       plugin.particlesSetup?.();
     }
 
-    this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
+    this.dispatchEvent(EventType.particlesSetup);
   }
 
   /**
@@ -395,7 +402,7 @@ export class Container {
       this._paused = true;
     }
 
-    this._engine.dispatchEvent(EventType.containerPaused, { container: this });
+    this.dispatchEvent(EventType.containerPaused);
   }
 
   /**
@@ -427,7 +434,7 @@ export class Container {
       }
     }
 
-    this._engine.dispatchEvent(EventType.containerPlay, { container: this });
+    this.dispatchEvent(EventType.containerPlay);
 
     this.draw(needsUpdate ?? false);
   }
@@ -480,7 +487,7 @@ export class Container {
           await plugin.start?.();
         }
 
-        this._engine.dispatchEvent(EventType.containerStarted, { container: this });
+        this.dispatchEvent(EventType.containerStarted);
 
         this.play();
 
@@ -518,7 +525,7 @@ export class Container {
 
     this._sourceOptions = this._options;
 
-    this._engine.dispatchEvent(EventType.containerStopped, { container: this });
+    this.dispatchEvent(EventType.containerStopped);
   }
 
   /**

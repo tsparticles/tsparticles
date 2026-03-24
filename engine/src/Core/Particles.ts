@@ -154,10 +154,7 @@ export class Particles {
       particle.init({
         canvasSize,
         dispatchEvent: (type, data) => {
-          this._engine.dispatchEvent(type, {
-            container,
-            data,
-          });
+          container.dispatchEvent(type, data);
         },
         effectDrawers: this.effectDrawers,
         group,
