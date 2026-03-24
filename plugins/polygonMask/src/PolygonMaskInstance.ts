@@ -164,7 +164,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
       void (async (): Promise<void> => {
         await this._initRawData(true);
 
-        await container.particles.redraw();
+        await container.particles.redraw(container.retina.pixelRatio);
       })();
     }, timeout);
   }

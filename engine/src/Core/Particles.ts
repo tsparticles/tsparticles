@@ -394,10 +394,11 @@ export class Particles {
     }
   }
 
-  async redraw(): Promise<void> {
+  async redraw(pixelRatio: number): Promise<void> {
     this.clear();
     await this.init();
 
+    this.setDensity(pixelRatio);
     this._redrawCallback?.({ value: 0, factor: 0 });
   }
 
