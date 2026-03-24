@@ -570,12 +570,30 @@ export class Canvas {
       willReadFrequently: false,
     };
 
-    if (typeof OffscreenCanvas !== "undefined" && typeof canvas.transferControlToOffscreen !== "undefined") {
-      this._offscreen = canvas.transferControlToOffscreen();
-      this._context = this._offscreen.getContext("2d", this._canvasSettings);
-      this.element = this._offscreen;
-    } else {
-      this._context = canvas.getContext("2d", this._canvasSettings);
+    const canvasSettings = this._canvasSettings;
+
+    try {
+      if (typeof OffscreenCanvas !== "undefined" && Object.hasOwn(canvas, "transferControlToOffscreen")) {
+        const offscreen = canvas.transferControlToOffscreen(),
+          context = offscreen.getContext("2d", canvasSettings);
+
+        if (context) {
+          this._offscreen = offscreen;
+          this._context = context;
+          this.element = offscreen;
+        } else {
+          this._offscreen = undefined;
+          this._context = canvas.getContext("2d", canvasSettings);
+          this.element = canvas;
+        }
+      } else {
+        this._offscreen = undefined;
+        this._context = canvas.getContext("2d", canvasSettings);
+        this.element = canvas;
+      }
+    } catch {
+      this._offscreen = undefined;
+      this._context = canvas.getContext("2d", canvasSettings);
       this.element = canvas;
     }
 
