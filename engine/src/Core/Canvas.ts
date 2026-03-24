@@ -570,8 +570,6 @@ export class Canvas {
       willReadFrequently: false,
     };
 
-    this.domElement = canvas;
-
     if (typeof OffscreenCanvas !== "undefined" && typeof canvas.transferControlToOffscreen !== "undefined") {
       this._offscreen = canvas.transferControlToOffscreen();
       this._context = this._offscreen.getContext("2d", this._canvasSettings);
