@@ -33,8 +33,8 @@ export class Retina {
       canvas = container.canvas;
 
     if (canvas.domElement) {
-      canvas.size.width = canvas.domElement.width * ratio;
-      canvas.size.height = canvas.domElement.height * ratio;
+      canvas.size.width = canvas.domElement.offsetWidth * ratio;
+      canvas.size.height = canvas.domElement.offsetHeight * ratio;
     }
 
     const particles = options.particles,

@@ -550,14 +550,14 @@ export class Canvas {
 
     const standardSize = this._standardSize;
 
-    standardSize.height = canvas.offsetHeight;
     standardSize.width = canvas.offsetWidth;
+    standardSize.height = canvas.offsetHeight;
 
     const pxRatio = this._container.retina.pixelRatio,
       retinaSize = this.size;
 
-    retinaSize.width = standardSize.height * pxRatio;
-    retinaSize.height = standardSize.width * pxRatio;
+    retinaSize.width = standardSize.width * pxRatio;
+    retinaSize.height = standardSize.height * pxRatio;
 
     const canSupportHdrQuery = safeMatchMedia("(color-gamut: p3)");
 
