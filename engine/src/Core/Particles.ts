@@ -2,8 +2,6 @@ import {
   countOffset,
   defaultDensityFactor,
   defaultRemoveQuantity,
-  deleteCount,
-  lengthOffset,
   minCount,
   minIndex,
   minLimit,
@@ -27,6 +25,9 @@ import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
+const empty = 0,
+  startIndex = 0;
+
 /**
  * Particles manager object
  */
@@ -38,29 +39,26 @@ export class Particles {
   readonly particleDestroyedPlugins: IContainerPlugin[];
   readonly particlePositionPlugins: IContainerPlugin[];
 
-  /**
-   * All the particles used in canvas
-   */
-  private _array: Particle[];
   private _canvasSize?: Readonly<IDimension>;
   private readonly _container: Container;
+  private _count: number;
   private _drawParticleCallback?: (particle: Particle, delta: IDelta) => void;
   private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
+  private _head?: Particle;
   private _limit;
-  private _maxZIndex;
-  private _minZIndex;
-  private _needsSort;
   private _nextId;
   private readonly _particleResetPlugins: IContainerPlugin[];
   private readonly _particleUpdatePlugins: IContainerPlugin[];
-  private readonly _pool: Particle[];
+  private _poolHead?: Particle;
   private readonly _postParticleUpdatePlugins: IContainerPlugin[];
   private readonly _postUpdatePlugins: IContainerPlugin[];
   private _redrawCallback?: (delta: IDelta) => void;
   private _resizeFactor?: IDimension;
+  private _sortedZKeys: number[];
+  private _tail?: Particle;
   private readonly _updatePlugins: IContainerPlugin[];
-  private _zArray: Particle[];
+  private readonly _zLayers: Map<number, Set<Particle>>;
 
   /**
    *
@@ -71,14 +69,13 @@ export class Particles {
     this._engine = engine;
     this._container = container;
     this._nextId = 0;
-    this._array = [];
-    this._zArray = [];
-    this._pool = [];
+    this._count = 0;
     this._limit = 0;
     this._groupLimits = new Map<string, number>();
-    this._needsSort = false;
-    this._minZIndex = 0;
-    this._maxZIndex = 0;
+
+    this._zLayers = new Map<number, Set<Particle>>();
+    this._sortedZKeys = [];
+
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.particleCheckPositionPlugins = [];
     this.particleDestroyedPlugins = [];
@@ -92,7 +89,15 @@ export class Particles {
   }
 
   get count(): number {
-    return this._array.length;
+    return this._count;
+  }
+
+  *[Symbol.iterator](): Generator<Particle, void, unknown> {
+    let current = this._head;
+    while (current) {
+      yield current;
+      current = current.next;
+    }
   }
 
   addParticle(
@@ -136,8 +141,18 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(),
-        particlesOptions = loadParticlesOptions(this._engine, container.id, container.actualOptions.particles);
+      let particle: Particle;
+
+      if (this._poolHead) {
+        particle = this._poolHead;
+        this._poolHead = particle.next;
+        particle.next = undefined;
+        particle.prev = undefined;
+      } else {
+        particle = new Particle();
+      }
+
+      const particlesOptions = loadParticlesOptions(this._engine, container.id, container.actualOptions.particles);
 
       particle.init({
         canvasSize,
@@ -158,8 +173,8 @@ export class Particles {
         particlesOptions,
         position,
         pixelRatio: container.retina.pixelRatio,
-        setLastZIndex: zIndex => {
-          this.setLastZIndex(zIndex);
+        setLastZIndex: () => {
+          // La gestione Z è ora delegata ai bucket
         },
         shapeDrawers: container.shapeDrawers,
         updaters: container.updaters,
@@ -173,13 +188,12 @@ export class Particles {
       }
 
       if (!canAdd) {
-        this._pool.push(particle);
-
+        this._addToPool(particle);
         return;
       }
 
-      this._array.push(particle);
-      this._zArray.push(particle);
+      this._pushActive(particle);
+      this._addToZLayer(particle);
 
       this._nextId++;
 
@@ -199,14 +213,16 @@ export class Particles {
    * Removes all particles from the array
    */
   clear(): void {
-    this._array = [];
-    this._zArray = [];
+    this._head = undefined;
+    this._tail = undefined;
+    this._count = 0;
+    this._zLayers.clear();
+    this._sortedZKeys = [];
   }
 
   destroy(): void {
-    this._array = [];
-    this._pool.length = 0;
-    this._zArray = [];
+    this.clear();
+    this._poolHead = undefined;
     this.particleDestroyedPlugins.length = 0;
     this.particleCreatedPlugins.length = 0;
     this.particlePositionPlugins.length = 0;
@@ -225,21 +241,42 @@ export class Particles {
       return;
     }
 
-    for (const particle of this._zArray) {
-      drawParticleCallback(particle, delta);
+    for (const z of this._sortedZKeys) {
+      const layer = this._zLayers.get(z);
+      if (layer) {
+        for (const particle of layer) {
+          drawParticleCallback(particle, delta);
+        }
+      }
     }
   }
 
   filter(condition: (particle: Particle) => boolean): Particle[] {
-    return this._array.filter(condition);
+    const result: Particle[] = [];
+    for (const particle of this) {
+      if (condition(particle)) {
+        result.push(particle);
+      }
+    }
+    return result;
   }
 
   find(condition: (particle: Particle) => boolean): Particle | undefined {
-    return this._array.find(condition);
+    for (const particle of this) {
+      if (condition(particle)) {
+        return particle;
+      }
+    }
+    return undefined;
   }
 
   get(index: number): Particle | undefined {
-    return this._array[index];
+    let i = 0;
+    for (const particle of this) {
+      if (i === index) return particle;
+      i++;
+    }
+    return undefined;
   }
 
   /* --------- tsParticles functions - particles ----------- */
@@ -247,9 +284,6 @@ export class Particles {
     const container = this._container,
       options = container.actualOptions;
 
-    this._minZIndex = 0;
-    this._maxZIndex = 0;
-    this._needsSort = false;
     this.particleDestroyedPlugins.length = 0;
     this.particleCreatedPlugins.length = 0;
     this.particlePositionPlugins.length = 0;
@@ -366,21 +400,31 @@ export class Particles {
   }
 
   remove(particle: Particle, group?: string, override?: boolean): void {
-    this.removeAt(this._array.indexOf(particle), undefined, group, override);
+    if (group && particle.group !== group) {
+      return;
+    }
+    this._removeNode(particle, override);
   }
 
   removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
-    if (index < minIndex || index > this.count) {
-      return;
+    let current = this._head,
+      i = startIndex;
+
+    while (current && i < index) {
+      current = current.next;
+
+      i++;
     }
 
     let deleted = 0;
 
-    for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this._removeParticle(i, group, override)) {
-        i--;
+    while (current && deleted < quantity) {
+      const next = current.next;
+      if (!group || current.group === group) {
+        this._removeNode(current, override);
         deleted++;
       }
+      current = next;
     }
   }
 
@@ -423,10 +467,6 @@ export class Particles {
     this._drawParticleCallback = callback;
   }
 
-  setLastZIndex(zIndex: number): void {
-    this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
-  }
-
   setRedrawCallback(callback: (delta: IDelta) => void): void {
     this._redrawCallback = callback;
   }
@@ -436,8 +476,6 @@ export class Particles {
   }
 
   update(delta: IDelta): void {
-    const particlesToDelete = new Set<Particle>();
-
     this.grid.clear();
 
     for (const plugin of this._updatePlugins) {
@@ -445,59 +483,48 @@ export class Particles {
     }
 
     const resizeFactor = this._resizeFactor;
+    let current = this._head;
 
-    for (const particle of this._array) {
-      if (resizeFactor && !particle.ignoresResizeRatio) {
-        particle.position.x *= resizeFactor.width;
-        particle.position.y *= resizeFactor.height;
-        particle.initialPosition.x *= resizeFactor.width;
-        particle.initialPosition.y *= resizeFactor.height;
+    while (current) {
+      const next = current.next; // Referenza sicura al prossimo prima di eventuali modifiche
+
+      if (resizeFactor && !current.ignoresResizeRatio) {
+        current.position.x *= resizeFactor.width;
+        current.position.y *= resizeFactor.height;
+        current.initialPosition.x *= resizeFactor.width;
+        current.initialPosition.y *= resizeFactor.height;
       }
 
-      particle.ignoresResizeRatio = false;
+      current.ignoresResizeRatio = false;
 
       for (const plugin of this._particleResetPlugins) {
-        plugin.particleReset?.(particle);
+        plugin.particleReset?.(current);
       }
 
       for (const plugin of this._particleUpdatePlugins) {
-        if (particle.destroyed) {
+        if (current.destroyed) {
           break;
         }
 
-        plugin.particleUpdate?.(particle, delta);
+        plugin.particleUpdate?.(current, delta);
       }
 
-      if (particle.destroyed) {
-        particlesToDelete.add(particle);
-
-        continue;
+      if (current.destroyed) {
+        this._removeNode(current);
+      } else {
+        this._updateZLayer(current);
+        this.grid.insert(current);
       }
 
-      this.grid.insert(particle);
-    }
-
-    if (particlesToDelete.size) {
-      const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
-
-      this._array = this.filter(checkDelete);
-      this._zArray = this._zArray.filter(checkDelete);
-
-      for (const particle of particlesToDelete) {
-        this._container.dispatchEvent(EventType.particleRemoved, {
-          particle,
-        });
-      }
-
-      this._addToPool(...particlesToDelete);
+      current = next;
     }
 
     for (const plugin of this._postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
-    // this loop is required to be done after mouse interactions
-    for (const particle of this._array) {
+    // Secondo passaggio per updaters e post-update
+    for (const particle of this) {
       for (const updater of this._container.updaters) {
         updater.update(particle, delta);
       }
@@ -510,28 +537,37 @@ export class Particles {
     }
 
     delete this._resizeFactor;
-
-    if (this._needsSort) {
-      const zArray = this._zArray;
-
-      zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
-
-      const firstItem = zArray[minIndex],
-        lastItem = zArray[zArray.length - lengthOffset];
-
-      if (!firstItem || !lastItem) {
-        return;
-      }
-
-      this._maxZIndex = firstItem.position.z;
-      this._minZIndex = lastItem.position.z;
-      this._needsSort = false;
-    }
   }
 
   private readonly _addToPool = (...particles: Particle[]): void => {
-    this._pool.push(...particles);
+    for (const p of particles) {
+      p.next = this._poolHead;
+      p.prev = undefined;
+
+      this._poolHead = p;
+    }
   };
+
+  /**
+   * @param particle -
+   */
+  private _addToZLayer(particle: Particle): void {
+    const z = Math.floor(particle.position.z);
+
+    let layer = this._zLayers.get(z);
+
+    if (!layer) {
+      layer = new Set<Particle>();
+
+      this._zLayers.set(z, layer);
+      this._sortedZKeys.push(z);
+      this._sortedZKeys.sort((a, b) => b - a); // Ordine decrescente per il rendering
+    }
+
+    layer.add(particle);
+
+    particle.currentZIndex = z;
+  }
 
   private readonly _applyDensity = (
     options: ParticlesOptions,
@@ -556,7 +592,7 @@ export class Particles {
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
-      particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
+      particlesCount = group === undefined ? this.count : this.filter(t => t.group === group).length;
 
     if (group === undefined) {
       this._limit = numberOptions.limit.value * densityFactor;
@@ -590,30 +626,82 @@ export class Particles {
     );
   };
 
-  private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
-    const particle = this._array[index];
+  /**
+   * @param particle -
+   */
+  private _pushActive(particle: Particle): void {
+    if (this._tail) {
+      particle.prev = this._tail;
 
-    if (!particle) {
-      return false;
+      this._tail.next = particle;
+      this._tail = particle;
+    } else {
+      this._head = particle;
+      this._tail = particle;
     }
 
-    if (particle.group !== group) {
-      return false;
+    this._count++;
+  }
+
+  /**
+   * @param particle -
+   */
+  private _removeFromZLayer(particle: Particle): void {
+    const layer = this._zLayers.get(particle.currentZIndex);
+
+    if (!layer) {
+      return;
     }
 
-    const zIdx = this._zArray.indexOf(particle);
+    layer.delete(particle);
 
-    this._array.splice(index, deleteCount);
-    this._zArray.splice(zIdx, deleteCount);
+    if (layer.size === empty) {
+      this._zLayers.delete(particle.currentZIndex);
+      this._sortedZKeys = this._sortedZKeys.filter(z => z !== particle.currentZIndex);
+    }
+  }
+
+  /**
+   * @param particle -
+   * @param override -
+   */
+  private _removeNode(particle: Particle, override?: boolean): void {
+    if (particle.prev) {
+      particle.prev.next = particle.next;
+    } else {
+      this._head = particle.next;
+    }
+
+    if (particle.next) {
+      particle.next.prev = particle.prev;
+    } else {
+      this._tail = particle.prev;
+    }
+
+    this._removeFromZLayer(particle);
 
     particle.destroy(override);
 
+    this._count--;
+
     this._container.dispatchEvent(EventType.particleRemoved, {
-      particle,
+      particle: particle,
     });
 
     this._addToPool(particle);
+  }
 
-    return true;
-  };
+  /**
+   * @param particle -
+   */
+  private _updateZLayer(particle: Particle): void {
+    const z = Math.floor(particle.position.z);
+
+    if (z === particle.currentZIndex) {
+      return;
+    }
+
+    this._removeFromZLayer(particle);
+    this._addToZLayer(particle);
+  }
 }

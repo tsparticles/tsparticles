@@ -1,6 +1,8 @@
-import { deleteCount, minIndex } from "../Core/Utils/Constants.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
+import { minIndex } from "../Core/Utils/Constants.js";
+
+const deleteCount = 1;
 
 /**
  */

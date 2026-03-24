@@ -165,6 +165,8 @@ export class Particle {
 
   canvasSize!: Readonly<IDimension>;
 
+  currentZIndex!: number;
+
   /**
    * Checks if the particle is destroyed
    */
@@ -238,6 +240,8 @@ export class Particle {
 
   moveCenter!: ICenterCoordinates;
 
+  next?: Particle;
+
   /**
    * Gets particle offset position, used for parallax interaction
    */
@@ -264,6 +268,8 @@ export class Particle {
    * Gets particle current position
    */
   position!: Vector3d;
+
+  prev?: Particle;
 
   /**
    * The random index used by the particle
@@ -607,6 +613,9 @@ export class Particle {
     this.velocity = this.initialVelocity.copy();
 
     setLastZIndex(this.position.z);
+
+    // AGGIUNTA LOGICA: Inizializzazione bucket Z
+    this.currentZIndex = Math.floor(this.position.z);
 
     // Scale z-index factor
     this.zIndexFactor = this.position.z / zLayers;

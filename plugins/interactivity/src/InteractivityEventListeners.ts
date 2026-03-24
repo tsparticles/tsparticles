@@ -3,7 +3,6 @@ import {
   type ICoordinates,
   double,
   executeOnSingleOrMultiple,
-  lengthOffset,
   manageListener,
   visibilityChangeEvent,
 } from "@tsparticles/engine";
@@ -22,7 +21,8 @@ import type { InteractionManager } from "./InteractionManager.js";
 import type { InteractivityContainer } from "./types.js";
 import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
-const touchDelay = 500;
+const touchDelay = 500,
+  lengthOffset = 1;
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;

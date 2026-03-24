@@ -48,17 +48,13 @@
         requestAnimationFrame(update);
     };
 
-    const particlesCount = document.getElementById("particles-count"),
-        zParticlesCount = document.getElementById("z-particles-count"),
-        poolCount = document.getElementById("pool-count");
+    const particlesCount = document.getElementById("particles-count");
 
     setInterval(() => {
         const container = tsParticles.item(0);
 
         if (container) {
             particlesCount.innerText = `${container.particles.count}`;
-            zParticlesCount.innerText = `${container.particles._zArray.length}`;
-            poolCount.innerText = `${container.particles._pool.length}`;
         }
     }, 100);
 
