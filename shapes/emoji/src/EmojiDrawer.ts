@@ -20,7 +20,12 @@ const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", 
   firstItem = 0;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
+  private readonly _container;
   private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
+
+  constructor(container: Container) {
+    this._container = container;
+  }
 
   destroy(): void {
     for (const [key, data] of this._emojiShapeDict) {
@@ -48,8 +53,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     drawEmoji(data, image);
   }
 
-  async init(container: Container): Promise<void> {
-    const options = container.actualOptions,
+  async init(): Promise<void> {
+    const options = this._container.actualOptions,
       shapeData = options.particles.shape;
 
     if (!validTypes.some(t => isInArray(t, shapeData.type))) {
@@ -68,11 +73,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     await Promise.all(promises);
   }
 
-  particleDestroy(_container: Container, particle: EmojiParticle): void {
+  particleDestroy(particle: EmojiParticle): void {
     particle.emojiDataKey = undefined;
   }
 
-  particleInit(container: Container, particle: EmojiParticle): void {
+  particleInit(particle: EmojiParticle): void {
     const shapeData = particle.shapeData as unknown as IEmojiShape;
 
     if (!shapeData.value) {
@@ -111,7 +116,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     const padding = emojiOptions.padding * double,
       maxSize = getRangeMax(particle.size.value),
       fullSize = maxSize + padding,
-      canvasSize = fullSize * double;
+      canvasSize = fullSize * double,
+      container = this._container;
 
     let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
       context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;

@@ -8,12 +8,18 @@ const defaultInnerRadius = 1,
   defaultWidthFactor = 10;
 
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   draw(data: IShapeDrawData<SpiralParticle>): void {
     drawSpiral(data);
   }
 
-  particleInit(container: Container, particle: SpiralParticle): void {
-    const pixelRatio = container.retina.pixelRatio,
+  particleInit(particle: SpiralParticle): void {
+    const pixelRatio = this._container.retina.pixelRatio,
       shapeData = particle.shapeData as ISpiralData | undefined;
 
     particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius) * pixelRatio;

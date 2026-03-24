@@ -1,5 +1,4 @@
 import {
-  type Container,
   type IEffectDrawer,
   type IParticlesOptions,
   type IShapeDrawData,
@@ -63,7 +62,7 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
   }
 
-  particleInit(_container: Container, particle: ParticlesParticle): void {
+  particleInit(particle: ParticlesParticle): void {
     const effectData = particle.effectData as IParticlesData | undefined,
       spawnRate = getRangeValue(effectData?.spawn?.rate?.delay ?? defaultSpawnRate);
 

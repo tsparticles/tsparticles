@@ -1,5 +1,4 @@
 import {
-  type Container,
   type Engine,
   type ICoordinates,
   type IEffectDrawer,
@@ -61,7 +60,7 @@ export class ShadowDrawer implements IEffectDrawer {
     context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
   }
 
-  particleInit(_container: Container, particle: ShadowParticle): void {
+  particleInit(particle: ShadowParticle): void {
     const effectData = particle.effectData as IShadowData | undefined,
       shadowColor = OptionsColor.create(new OptionsColor(), effectData?.color);
 

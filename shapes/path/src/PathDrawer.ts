@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
+import { type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
 import type { IShapePathData } from "./IShapePathData.js";
 import type { PathParticle } from "./PathParticle.js";
 import { drawPath } from "@tsparticles/path-utils";
@@ -14,7 +14,7 @@ export class PathDrawer implements IShapeDrawer<PathParticle> {
     drawPath(context, radius, particle.pathData);
   }
 
-  particleInit(_container: Container, particle: PathParticle): void {
+  particleInit(particle: PathParticle): void {
     const shape = particle.shapeData as IShapePathData | undefined;
 
     if (!shape) {

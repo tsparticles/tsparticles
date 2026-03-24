@@ -402,7 +402,7 @@ export class Particle {
     const container = this._container,
       shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
-    shapeDrawer?.particleDestroy?.(this._container, this);
+    shapeDrawer?.particleDestroy?.(this);
 
     for (const plugin of container.particleDestroyedPlugins) {
       plugin.particleDestroyed?.(this, override);
@@ -621,7 +621,7 @@ export class Particle {
     }
 
     if (shapeDrawer?.loadShape) {
-      shapeDrawer.loadShape(this._container, this);
+      shapeDrawer.loadShape(this);
     }
 
     const sideCountFunc = shapeDrawer?.getSidesCount;
@@ -636,8 +636,8 @@ export class Particle {
       updater.init(this);
     }
 
-    effectDrawer?.particleInit?.(container, this);
-    shapeDrawer?.particleInit?.(container, this);
+    effectDrawer?.particleInit?.(this);
+    shapeDrawer?.particleInit?.(this);
 
     for (const plugin of container.particleCreatedPlugins) {
       plugin.particleCreated?.(this);

@@ -186,14 +186,12 @@ export class Particles {
   }
 
   destroy(): void {
-    const container = this._container;
-
     for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.(container);
+      effectDrawer.destroy?.();
     }
 
     for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.(container);
+      shapeDrawer.destroy?.();
     }
 
     this._array = [];
@@ -282,11 +280,11 @@ export class Particles {
     await this.initPlugins();
 
     for (const drawer of this.effectDrawers.values()) {
-      await drawer.init?.(container);
+      await drawer.init?.();
     }
 
     for (const drawer of this.shapeDrawers.values()) {
-      await drawer.init?.(container);
+      await drawer.init?.();
     }
 
     let handled = false;

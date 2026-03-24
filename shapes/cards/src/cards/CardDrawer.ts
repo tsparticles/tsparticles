@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
+import { type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
 import type { CardParticle } from "../CardParticle.js";
 import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";
@@ -27,7 +27,7 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
     context.globalAlpha = defaultOpacity;
   }
 
-  particleInit(_container: Container, particle: CardParticle): void {
+  particleInit(particle: CardParticle): void {
     const shape = particle.shapeData;
 
     if (!shape) {

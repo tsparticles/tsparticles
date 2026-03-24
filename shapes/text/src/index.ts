@@ -10,10 +10,10 @@ export async function loadTextShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addShape(validTypes, async () => {
+    e.addShape(validTypes, async container => {
       const { TextDrawer } = await import("./TextDrawer.js");
 
-      return new TextDrawer();
+      return new TextDrawer(container);
     });
   });
 }

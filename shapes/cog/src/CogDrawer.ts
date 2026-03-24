@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import { drawCog, drawCogHole } from "./Utils.js";
 import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
@@ -18,7 +18,7 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
     drawCog(data);
   }
 
-  particleInit(_container: Container, particle: CogParticle): void {
+  particleInit(particle: CogParticle): void {
     const shapeData = particle.shapeData as ICogData | undefined;
 
     particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius);

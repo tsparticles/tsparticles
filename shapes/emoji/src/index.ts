@@ -10,10 +10,10 @@ export async function loadEmojiShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addShape(validTypes, async () => {
+    e.addShape(validTypes, async container => {
       const { EmojiDrawer } = await import("./EmojiDrawer.js");
 
-      return new EmojiDrawer();
+      return new EmojiDrawer(container);
     });
   });
 }

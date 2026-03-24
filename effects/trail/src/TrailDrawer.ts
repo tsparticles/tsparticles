@@ -58,6 +58,12 @@ const defaultTransform = {
 };
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
     const { container, context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
       diameter = drawRadius * double,
@@ -163,10 +169,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     context.restore();
   }
 
-  particleInit(container: Container, particle: TrailParticle): void {
+  particleInit(particle: TrailParticle): void {
     particle.trail = [];
 
-    const effectData = particle.effectData as ITrailData | undefined;
+    const effectData = particle.effectData as ITrailData | undefined,
+      container = this._container;
 
     particle.trailFade = effectData?.fade ?? true;
     particle.trailLength = getRangeValue(effectData?.length ?? defaultLength) * container.retina.pixelRatio;
