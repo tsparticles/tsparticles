@@ -610,7 +610,7 @@ export class Particle {
     /* animation - velocity for speed */
     this.initialVelocity = this._calculateVelocity();
     this.velocity = this.initialVelocity.copy();
-    this.currentZIndex = Math.round(this.position.z);
+    this.currentZIndex = Math.floor(this.position.z);
 
     // Scale z-index factor
     this.zIndexFactor = this.position.z / zLayers;
@@ -848,7 +848,7 @@ export class Particle {
     position,
     zLayers,
   ) => {
-    const zIndexValue = Math.round(getRangeValue(this.options.zIndex.value)),
+    const zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value)),
       initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, zLayers));
 
     if (!initialPosition) {
