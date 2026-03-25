@@ -24,7 +24,6 @@ export interface IParticleInitData {
   particlesOptions: ParticlesOptions;
   pixelRatio: number;
   position?: ICoordinates;
-  setLastZIndex: (zIndex: number) => void;
   shapeDrawers: Map<string, IShapeDrawer>;
   updaters: IParticleUpdater[];
   zLayers: number;

@@ -496,7 +496,6 @@ export class Particle {
       particlePositionPlugins,
       particlesOptions,
       pixelRatio,
-      setLastZIndex,
       shapeDrawers,
       updaters,
       zLayers,
@@ -611,11 +610,7 @@ export class Particle {
     /* animation - velocity for speed */
     this.initialVelocity = this._calculateVelocity();
     this.velocity = this.initialVelocity.copy();
-
-    setLastZIndex(this.position.z);
-
-    // AGGIUNTA LOGICA: Inizializzazione bucket Z
-    this.currentZIndex = Math.floor(this.position.z);
+    this.currentZIndex = Math.round(this.position.z);
 
     // Scale z-index factor
     this.zIndexFactor = this.position.z / zLayers;

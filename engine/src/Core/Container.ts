@@ -184,12 +184,19 @@ export class Container {
     this._initialSourceOptions = sourceOptions;
     this.retina = new Retina(this);
     this.canvas = new Canvas(this._engine, this);
-    this.particles = new Particles(this);
+    this.particles = new Particles();
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.particles.setLoadParticlesOptions(source => loadParticlesOptions(this._engine, this.id, source));
     this.particles.setCanvasSize(this.canvas.size);
+    this.particles.setZLayers(this.zLayers);
+    this.particles.setDispatchEventCallback((type, data) => {
+      this.dispatchEvent(type, data);
+    });
+    this.particles.setInitRetinaCallback(particle => {
+      this.retina.initParticle(particle);
+    });
     this.particles.setDrawParticleCallback((particle, delta) => {
       const canvas = this.canvas;
 
@@ -348,6 +355,10 @@ export class Container {
 
     await this.initDrawersAndUpdaters();
 
+    this.particles.setEffectDrawers(this.effectDrawers);
+    this.particles.setShapeDrawers(this.shapeDrawers);
+    this.particles.setUpdaters(this.updaters);
+
     /* options settings */
     this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
     this.actualOptions = loadContainerOptions(this._engine, this, this._options);
@@ -361,6 +372,11 @@ export class Container {
 
       this.plugins.push(containerPlugin);
     }
+
+    this.particles.setActualOptions(this.actualOptions);
+    this.particles.setPlugins(this.plugins);
+    this.particles.setPixelRatio(this.retina.pixelRatio);
+    this.particles.setZLayers(this.zLayers);
 
     /* init canvas + particles */
     this.retina.init();
