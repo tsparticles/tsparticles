@@ -9,7 +9,6 @@ import {
   squareExp,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
@@ -23,10 +22,10 @@ import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOpt
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 const empty = 0,
-  startIndex = 0;
+  startIndex = 0,
+  groupIncrement = 1;
 
 /**
  * Particles manager object
@@ -43,10 +42,11 @@ export class Particles {
   private readonly _container: Container;
   private _count: number;
   private _drawParticleCallback?: (particle: Particle, delta: IDelta) => void;
-  private readonly _engine;
-  private readonly _groupLimits: Map<string, number>;
+  private readonly _groupCounts;
+  private readonly _groupLimits;
   private _head?: Particle;
   private _limit;
+  private _loadParticlesOptions?: (source?: RecursivePartial<IParticlesOptions>) => ParticlesOptions;
   private _nextId;
   private readonly _particleResetPlugins: IContainerPlugin[];
   private readonly _particleUpdatePlugins: IContainerPlugin[];
@@ -61,16 +61,14 @@ export class Particles {
   private readonly _zLayers: Map<number, Set<Particle>>;
 
   /**
-   *
-   * @param engine -
    * @param container -
    */
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(container: Container) {
     this._container = container;
     this._nextId = 0;
     this._count = 0;
     this._limit = 0;
+    this._groupCounts = new Map<string, number>();
     this._groupLimits = new Map<string, number>();
 
     this._zLayers = new Map<number, Set<Particle>>();
@@ -94,8 +92,10 @@ export class Particles {
 
   *[Symbol.iterator](): Generator<Particle, void, unknown> {
     let current = this._head;
+
     while (current) {
       yield current;
+
       current = current.next;
     }
   }
@@ -106,6 +106,12 @@ export class Particles {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
+    const loadParticlesOptions = this._loadParticlesOptions;
+
+    if (!loadParticlesOptions) {
+      return;
+    }
+
     const canvasSize = this._canvasSize;
 
     if (!canvasSize) {
@@ -152,7 +158,7 @@ export class Particles {
         particle = new Particle();
       }
 
-      const particlesOptions = loadParticlesOptions(this._engine, container.id, container.actualOptions.particles);
+      const particlesOptions = loadParticlesOptions(container.actualOptions.particles);
 
       particle.init({
         canvasSize,
@@ -249,34 +255,6 @@ export class Particles {
         }
       }
     }
-  }
-
-  filter(condition: (particle: Particle) => boolean): Particle[] {
-    const result: Particle[] = [];
-    for (const particle of this) {
-      if (condition(particle)) {
-        result.push(particle);
-      }
-    }
-    return result;
-  }
-
-  find(condition: (particle: Particle) => boolean): Particle | undefined {
-    for (const particle of this) {
-      if (condition(particle)) {
-        return particle;
-      }
-    }
-    return undefined;
-  }
-
-  get(index: number): Particle | undefined {
-    let i = 0;
-    for (const particle of this) {
-      if (i === index) return particle;
-      i++;
-    }
-    return undefined;
   }
 
   /* --------- tsParticles functions - particles ----------- */
@@ -437,6 +415,12 @@ export class Particles {
   }
 
   setDensity(pixelRatio: number): void {
+    const loadParticlesOptions = this._loadParticlesOptions;
+
+    if (!loadParticlesOptions) {
+      return;
+    }
+
     const options = this._container.actualOptions,
       groups = options.particles.groups;
 
@@ -455,7 +439,7 @@ export class Particles {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._engine, this._container.id, groupData);
+      const groupDataOptions = loadParticlesOptions(groupData);
 
       this._applyDensity(groupDataOptions, pixelRatio, pluginsCount, group);
     }
@@ -465,6 +449,10 @@ export class Particles {
 
   setDrawParticleCallback(callback: (particle: Particle, delta: IDelta) => void): void {
     this._drawParticleCallback = callback;
+  }
+
+  setLoadParticlesOptions(fn: (source?: RecursivePartial<IParticlesOptions>) => ParticlesOptions): void {
+    this._loadParticlesOptions = fn;
   }
 
   setRedrawCallback(callback: (delta: IDelta) => void): void {
@@ -523,7 +511,6 @@ export class Particles {
       plugin.postUpdate?.(delta);
     }
 
-    // Secondo passaggio per updaters e post-update
     for (const particle of this) {
       for (const updater of this._container.updaters) {
         updater.update(particle, delta);
@@ -592,7 +579,7 @@ export class Particles {
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
-      particlesCount = group === undefined ? this.count : this.filter(t => t.group === group).length;
+      particlesCount = group === undefined ? this.count : (this._groupCounts.get(group) ?? empty);
 
     if (group === undefined) {
       this._limit = numberOptions.limit.value * densityFactor;
@@ -641,6 +628,10 @@ export class Particles {
     }
 
     this._count++;
+
+    if (particle.group !== undefined) {
+      this._groupCounts.set(particle.group, (this._groupCounts.get(particle.group) ?? empty) + groupIncrement);
+    }
   }
 
   /**
@@ -676,6 +667,12 @@ export class Particles {
       particle.next.prev = particle.prev;
     } else {
       this._tail = particle.prev;
+    }
+
+    if (particle.group !== undefined) {
+      const c = this._groupCounts.get(particle.group) ?? groupIncrement;
+
+      this._groupCounts.set(particle.group, c - groupIncrement);
     }
 
     this._removeFromZLayer(particle);

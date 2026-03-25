@@ -7,6 +7,7 @@ import {
   removeDeleteCount,
   removeMinIndex,
 } from "./Utils/Constants.js";
+import { loadOptions, loadParticlesOptions } from "../Utils/OptionsUtils.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
@@ -22,7 +23,6 @@ import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadOptions } from "../Utils/OptionsUtils.js";
 
 /**
  * Checks if the container is still usable
@@ -184,10 +184,11 @@ export class Container {
     this._initialSourceOptions = sourceOptions;
     this.retina = new Retina(this);
     this.canvas = new Canvas(this._engine, this);
-    this.particles = new Particles(this._engine, this);
+    this.particles = new Particles(this);
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
+    this.particles.setLoadParticlesOptions(source => loadParticlesOptions(this._engine, this.id, source));
     this.particles.setCanvasSize(this.canvas.size);
     this.particles.setDrawParticleCallback((particle, delta) => {
       const canvas = this.canvas;
