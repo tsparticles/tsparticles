@@ -31,7 +31,11 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
   }
 
   interact(interactivityData: IInteractivityData): void {
-    for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
+    for (const particle of this.container.particles) {
+      if (!this.isEnabled(interactivityData, particle)) {
+        continue;
+      }
+
       this._parallaxInteract(interactivityData, particle);
     }
   }

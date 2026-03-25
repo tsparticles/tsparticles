@@ -853,7 +853,7 @@ export class Particle {
     position,
     zLayers,
   ) => {
-    const zIndexValue = getRangeValue(this.options.zIndex.value),
+    const zIndexValue = Math.round(getRangeValue(this.options.zIndex.value)),
       initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, zLayers));
 
     if (!initialPosition) {
