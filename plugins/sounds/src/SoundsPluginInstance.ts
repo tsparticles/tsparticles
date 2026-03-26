@@ -1,6 +1,6 @@
 import {
   type CustomEventArgs,
-  type Engine,
+  type EventDispatcher,
   type IContainerPlugin,
   clamp,
   executeOnSingleOrMultiple,
@@ -103,7 +103,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
   private _audioMap: Map<string, AudioBuffer>;
   private readonly _audioSources: AudioScheduledSourceNode[];
   private readonly _container;
-  private readonly _engine;
+  private readonly _eventDispatcher;
   private _gain?: GainNode;
   private _muteImg?: HTMLImageElement;
   private _unmuteImg?: HTMLImageElement;
@@ -111,9 +111,9 @@ export class SoundsPluginInstance implements IContainerPlugin {
   private _volumeDownImg?: HTMLImageElement;
   private _volumeUpImg?: HTMLImageElement;
 
-  constructor(container: SoundsContainer, engine: Engine) {
+  constructor(container: SoundsContainer, eventDispatcher: EventDispatcher) {
+    this._eventDispatcher = eventDispatcher;
     this._container = container;
-    this._engine = engine;
     this._volume = 0;
     this._audioSources = [];
     this._audioMap = new Map<string, AudioBuffer>();
@@ -367,7 +367,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
           if (!!this._container.muted || this._container.destroyed) {
             executeOnSingleOrMultiple(event.event, item => {
-              this._engine.removeEventListener(item, cb);
+              this._eventDispatcher.removeEventListener(item, cb);
             });
 
             return;
@@ -414,7 +414,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
       };
 
       executeOnSingleOrMultiple(event.event, item => {
-        this._engine.addEventListener(item, cb);
+        this._eventDispatcher.addEventListener(item, cb);
       });
     }
   };
@@ -435,7 +435,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
     container.audioContext = undefined;
 
-    this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
+    this._eventDispatcher.dispatchEvent(SoundsEventType.mute, { container: this._container });
   };
 
   private readonly _playBuffer: (audio: SoundsAudio) => void = audio => {
@@ -604,7 +604,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
     this._initEvents();
 
-    this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
+    this._eventDispatcher.dispatchEvent(SoundsEventType.unmute, { container: this._container });
   };
 
   private readonly _updateMuteIcons: () => void = () => {

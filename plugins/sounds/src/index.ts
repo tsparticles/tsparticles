@@ -11,6 +11,6 @@ export async function loadSoundsPlugin(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { SoundsPlugin } = await import("./SoundsPlugin.js");
 
-    e.pluginManager.addPlugin(new SoundsPlugin(engine));
+    e.pluginManager.addPlugin(new SoundsPlugin(e.eventDispatcher));
   });
 }

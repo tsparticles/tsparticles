@@ -3,10 +3,8 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import { getCanvasFromContainer, getDataFromUrl, getDomContainer } from "./Utils/LoadUtils.js";
-import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount } from "./Utils/Constants.js";
+import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
-import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import { PluginManager } from "./Utils/PluginManager.js";
@@ -25,6 +23,7 @@ declare global {
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
+  readonly eventDispatcher = new EventDispatcher();
   readonly pluginManager = new PluginManager(this);
 
   /**
@@ -32,23 +31,12 @@ export class Engine {
    */
   private readonly _domArray: Container[] = [];
 
-  private readonly _eventDispatcher = new EventDispatcher();
-
   get items(): Container[] {
     return this._domArray;
   }
 
   get version(): string {
     return __VERSION__;
-  }
-
-  /**
-   * Adds a listener to the specified event
-   * @param type - The event to listen to
-   * @param listener - The listener of the specified event
-   */
-  addEventListener(type: string, listener: CustomEventListener): void {
-    this._eventDispatcher.addEventListener(type, listener);
   }
 
   /**
@@ -65,19 +53,11 @@ export class Engine {
   }
 
   /**
-   * Dispatches an event that will be listened from listeners
-   * @param type - The event to dispatch
-   * @param args - The event parameters
-   */
-  dispatchEvent(type: string, args?: CustomEventArgs): void {
-    this._eventDispatcher.dispatchEvent(type, args);
-  }
-
-  /**
    * init method, used by imports
+   * @returns the promise
    */
-  async init(): Promise<void> {
-    await this.pluginManager.init();
+  init(): Promise<void> {
+    return this.pluginManager.init();
   }
 
   /**
@@ -114,7 +94,22 @@ export class Engine {
       currentOptions = itemFromSingleOrMultiple(options, index),
       { items } = this,
       oldIndex = items.findIndex(v => v.id.description === id),
-      newItem = new Container(this, id, currentOptions);
+      newItem = new Container(this.eventDispatcher, this.pluginManager, id, currentOptions);
+
+    newItem.setOnDestroyCallback(remove => {
+      if (!remove) {
+        return;
+      }
+
+      const mainArr = this.items,
+        idx = mainArr.indexOf(newItem);
+
+      if (idx < removeMinIndex) {
+        return;
+      }
+
+      mainArr.splice(idx, removeDeleteCount);
+    });
 
     if (oldIndex >= loadMinIndex) {
       const old = this.item(oldIndex),
@@ -150,14 +145,5 @@ export class Engine {
     }
 
     await Promise.all(this.items.map(t => t.refresh()));
-  }
-
-  /**
-   * Removes a listener from the specified event
-   * @param type - The event to stop listening to
-   * @param listener - The listener of the specified event
-   */
-  removeEventListener(type: string, listener: CustomEventListener): void {
-    this._eventDispatcher.removeEventListener(type, listener);
   }
 }

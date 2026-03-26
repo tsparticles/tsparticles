@@ -87,6 +87,7 @@ export type * from "./Types/RecursivePartial.js";
 export type * from "./Types/ShapeData.js";
 export type * from "./Types/SingleOrMultiple.js";
 
+export type { EventDispatcher } from "./Utils/EventDispatcher.js";
 export type { EventListeners } from "./Core/Utils/EventListeners.js";
 export type { PluginManager } from "./Core/Utils/PluginManager.js";
 export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
