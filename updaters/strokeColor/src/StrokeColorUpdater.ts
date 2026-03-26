@@ -1,9 +1,9 @@
 import {
   type Container,
-  type Engine,
   type IDelta,
   type IParticleUpdater,
   type Particle,
+  type PluginManager,
   getHslAnimationFromHsl,
   getRangeValue,
   itemFromSingleOrMultiple,
@@ -16,11 +16,11 @@ const defaultOpacity = 1;
 
 export class StrokeColorUpdater implements IParticleUpdater {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
+  constructor(pluginManager: PluginManager, container: Container) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   init(particle: StrokeParticle): void {
@@ -37,7 +37,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
     particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
     particle.strokeAnimation = stroke.color?.animation;
 
-    const strokeHslColor = rangeColorToHsl(this._engine, stroke.color) ?? particle.getFillColor();
+    const strokeHslColor = rangeColorToHsl(this._pluginManager, stroke.color) ?? particle.getFillColor();
 
     if (strokeHslColor) {
       particle.strokeColor = getHslAnimationFromHsl(

@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadFullCardsShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(["card"], async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(["card"], async () => {
       const { CardDrawer } = await import("./CardDrawer.js");
 
       return new CardDrawer();

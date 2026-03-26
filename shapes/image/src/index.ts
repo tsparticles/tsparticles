@@ -88,13 +88,13 @@ declare const __VERSION__: string;
 export async function loadImageShape(engine: ImageEngine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ImagePreloaderPlugin } = await import("./ImagePreloader.js");
 
     addLoadImageToEngine(e);
 
-    e.addPlugin(new ImagePreloaderPlugin(e));
-    e.addShape(shapeTypes, async container => {
+    e.pluginManager.addPlugin(new ImagePreloaderPlugin(e));
+    e.pluginManager.addShape(shapeTypes, async container => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 
       return new ImageDrawer(e, container);

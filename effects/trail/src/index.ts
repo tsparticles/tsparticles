@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadTrailEffect(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addEffect("trail", async container => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addEffect("trail", async container => {
       const { TrailDrawer } = await import("./TrailDrawer.js");
 
       return new TrailDrawer(container);

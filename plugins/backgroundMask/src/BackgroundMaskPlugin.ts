@@ -1,5 +1,5 @@
 import type { BackgroundMaskOptions, IBackgroundMaskOptions } from "./types.js";
-import type { Container, Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, PluginManager, RecursivePartial } from "@tsparticles/engine";
 import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 
 /**
@@ -7,16 +7,16 @@ import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 export class BackgroundMaskPlugin implements IPlugin {
   readonly id = "background-mask";
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager) {
+    this._pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
 
-    return new BackgroundMaskPluginInstance(container, this._engine);
+    return new BackgroundMaskPluginInstance(container, this._pluginManager);
   }
 
   loadOptions(

@@ -29,7 +29,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   private _draggingAbsorber: AbsorberInstance | undefined;
   private readonly _instancesManager;
 
-  constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
+  constructor(instancesManager: AbsorbersInstancesManager, container: AbsorberContainer) {
     super(container);
 
     this.maxDistance = 0;

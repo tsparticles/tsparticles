@@ -21,6 +21,7 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 
@@ -45,17 +46,17 @@ function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param sourceOptionsArr -
  * @returns the options loaded
  */
 function loadContainerOptions(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: Container,
   ...sourceOptionsArr: (ISourceOptions | undefined)[]
 ): Options {
-  const options = new Options(engine, container.id);
+  const options = new Options(pluginManager, container.id);
 
   loadOptions(options, ...sourceOptionsArr);
 
@@ -183,12 +184,12 @@ export class Container {
     this._sourceOptions = sourceOptions;
     this._initialSourceOptions = sourceOptions;
     this.retina = new Retina(this);
-    this.canvas = new Canvas(this._engine, this);
+    this.canvas = new Canvas(this._engine.pluginManager, this);
     this.particles = new Particles();
     this.effectDrawers = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
-    this.particles.setLoadParticlesOptions(source => loadParticlesOptions(this._engine, this.id, source));
+    this.particles.setLoadParticlesOptions(source => loadParticlesOptions(this._engine.pluginManager, this.id, source));
     this.particles.setCanvasSize(this.canvas.size);
     this.particles.setZLayers(this.zLayers);
     this.particles.setDispatchEventCallback((type, data) => {
@@ -208,8 +209,8 @@ export class Container {
     });
     this.plugins = [];
     /* tsParticles variables with default values */
-    this._options = loadContainerOptions(this._engine, this);
-    this.actualOptions = loadContainerOptions(this._engine, this);
+    this._options = loadContainerOptions(this._engine.pluginManager, this);
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this);
 
     /* ---------- tsParticles - start ------------ */
     this._eventListeners = new EventListeners(this);
@@ -268,7 +269,7 @@ export class Container {
 
     this.plugins.length = 0;
 
-    this._engine.clearPluginsById(this.id);
+    this._engine.pluginManager.clearPluginsById(this.id);
 
     this.destroyed = true;
 
@@ -343,7 +344,7 @@ export class Container {
 
     const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
 
-    for (const plugin of this._engine.plugins) {
+    for (const plugin of this._engine.pluginManager.plugins) {
       const containerPlugin = await plugin.getPlugin(this);
 
       if (containerPlugin.preInit) {
@@ -360,8 +361,13 @@ export class Container {
     this.particles.setUpdaters(this.updaters);
 
     /* options settings */
-    this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
-    this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+    this._options = loadContainerOptions(
+      this._engine.pluginManager,
+      this,
+      this._initialSourceOptions,
+      this.sourceOptions,
+    );
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
 
     this.plugins.length = 0;
 
@@ -418,9 +424,11 @@ export class Container {
    * Initializes the effect drawers, shape drawers and updaters for the container
    */
   async initDrawersAndUpdaters(): Promise<void> {
-    this.effectDrawers = await this._engine.getEffectDrawers(this, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(this, true);
-    this.updaters = await this._engine.getUpdaters(this, true);
+    const pluginManager = this._engine.pluginManager;
+
+    this.effectDrawers = await pluginManager.getEffectDrawers(this, true);
+    this.shapeDrawers = await pluginManager.getShapeDrawers(this, true);
+    this.updaters = await pluginManager.getUpdaters(this, true);
   }
 
   /**
@@ -508,8 +516,13 @@ export class Container {
 
     this._initialSourceOptions = sourceOptions;
     this._sourceOptions = sourceOptions;
-    this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
-    this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+    this._options = loadContainerOptions(
+      this._engine.pluginManager,
+      this,
+      this._initialSourceOptions,
+      this.sourceOptions,
+    );
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
 
     return this.refresh();
   }

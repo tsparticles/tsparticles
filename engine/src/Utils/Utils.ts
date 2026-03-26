@@ -16,7 +16,7 @@ import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { Container } from "../Core/Container.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
-import type { GenericInitializer } from "../Types/EngineInitializers.js";
+import type { GenericInitializer } from "../Types/PluginsInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
@@ -876,11 +876,11 @@ export async function getItemMapFromInitializer<TItem, TInitializer extends Gene
 }
 
 /**
- *
- * @param container
- * @param map
- * @param force
- * @param initializer
+ * @param container -
+ * @param map -
+ * @param force -
+ * @param initializer -
+ * @returns -
  */
 async function getContainerScopedValue<T>(
   container: Container,

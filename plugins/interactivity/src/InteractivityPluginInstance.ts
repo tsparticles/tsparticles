@@ -1,5 +1,5 @@
 import { type IContainerPlugin, type IDelta, type Particle } from "@tsparticles/engine";
-import type { InteractivityContainer, InteractivityEngine, InteractivityParticle } from "./types.js";
+import type { InteractivityContainer, InteractivityParticle, InteractivityPluginManager } from "./types.js";
 import { InteractionManager } from "./InteractionManager.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";
 
@@ -7,12 +7,12 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   readonly interactionManager: InteractionManager;
 
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: InteractivityEngine, container: InteractivityContainer) {
+  constructor(pluginManager: InteractivityPluginManager, container: InteractivityContainer) {
     this._container = container;
-    this._engine = engine;
-    this.interactionManager = new InteractionManager(engine, container);
+    this._pluginManager = pluginManager;
+    this.interactionManager = new InteractionManager(pluginManager, container);
 
     this._container.addClickHandler = (callback: (evt: Event, particles?: Particle[]) => void): void => {
       this.interactionManager.addClickHandler(callback);
@@ -34,12 +34,12 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   destroy(): void {
     this.clearClickHandlers();
 
-    this._engine.interactors?.delete(this._container.id);
+    this._pluginManager.interactors?.delete(this._container.id);
   }
 
   particleCreated(particle: Particle): void {
     const interactivityParticle = particle as InteractivityParticle,
-      interactivity = new Interactivity(this._engine, this._container.id);
+      interactivity = new Interactivity(this._pluginManager, this._container.id);
 
     interactivity.load(this._container.actualOptions.interactivity);
     interactivity.load(interactivityParticle.options.interactivity);

@@ -9,12 +9,12 @@ declare const __VERSION__: string;
 export async function loadExternalRemoveInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalRemove", async container => {
+    e.pluginManager.addInteractor?.("externalRemove", async container => {
       const { Remover } = await import("./Remover.js");
 
       return new Remover(container);

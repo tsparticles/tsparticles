@@ -1,19 +1,19 @@
 import type { Container, IContainerPlugin, IPlugin } from "@tsparticles/engine";
-import type { MoveEngine } from "./Types.js";
+import type { MovePluginManager } from "./Types.js";
 
 export class MovePlugin implements IPlugin {
   id = "move";
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: MoveEngine) {
-    this._engine = engine;
+  constructor(pluginManager: MovePluginManager) {
+    this._pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { MovePluginInstance } = await import("./MovePluginInstance.js");
 
-    return new MovePluginInstance(this._engine, container);
+    return new MovePluginInstance(this._pluginManager, container);
   }
 
   loadOptions(): void {

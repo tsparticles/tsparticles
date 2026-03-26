@@ -9,9 +9,9 @@ declare const __VERSION__: string;
 export async function loadOklchColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { OklchColorManager } = await import("./OklchColorManager.js");
 
-    e.addColorManager("oklch", new OklchColorManager());
+    e.pluginManager.addColorManager("oklch", new OklchColorManager());
   });
 }

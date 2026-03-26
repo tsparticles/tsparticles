@@ -1,5 +1,4 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
-import { type Engine, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
 import {
   ExternalInteractorBase,
   type IInteractivityData,
@@ -8,6 +7,7 @@ import {
   type Modes,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
+import { type PluginManager, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
 import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
 
@@ -19,13 +19,13 @@ const attractMode = "attract";
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-  private readonly _engine;
   private _maxDistance;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: AttractContainer) {
+  constructor(pluginManager: PluginManager, container: AttractContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._maxDistance = 0;
 
     container.attract ??= { particles: [] };
@@ -101,9 +101,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
       { enable: clickEnabled, mode: clickMode } = events.onClick;
 
     if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-      hoverAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
+      hoverAttract(this._pluginManager, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
     } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-      clickAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
+      clickAttract(this._pluginManager, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
     }
   }
 

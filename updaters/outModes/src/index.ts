@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadOutModesUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addParticleUpdater("outModes", async container => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addParticleUpdater("outModes", async container => {
       const { OutOfCanvasUpdater } = await import("./OutOfCanvasUpdater.js");
 
       return new OutOfCanvasUpdater(container);

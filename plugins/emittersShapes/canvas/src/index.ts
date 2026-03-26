@@ -9,13 +9,13 @@ declare const __VERSION__: string;
 export async function loadEmittersShapeCanvas(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: EmittersEngine) => {
+  await engine.pluginManager.register(async (e: EmittersEngine) => {
     const { ensureEmittersPluginLoaded } = await import("@tsparticles/plugin-emitters");
 
     ensureEmittersPluginLoaded(e);
 
     const { EmittersCanvasShapeGenerator } = await import("./EmittersCanvasShapeGenerator.js");
 
-    e.addEmitterShapeGenerator?.("canvas", new EmittersCanvasShapeGenerator());
+    e.pluginManager.addEmitterShapeGenerator?.("canvas", new EmittersCanvasShapeGenerator());
   });
 }

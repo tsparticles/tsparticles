@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadThemesPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ThemesPlugin } = await import("./ThemesPlugin.js");
 
-    e.addPlugin(new ThemesPlugin());
+    e.pluginManager.addPlugin(new ThemesPlugin());
   });
 }

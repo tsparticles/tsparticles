@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadBlendPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { BlendPlugin } = await import("./BlendPlugin.js");
 
-    e.addPlugin(new BlendPlugin());
+    e.pluginManager.addPlugin(new BlendPlugin());
   });
 }

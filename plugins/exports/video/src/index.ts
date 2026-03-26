@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadExportVideoPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ExportVideoPlugin } = await import("./ExportVideoPlugin.js");
 
-    e.addPlugin(new ExportVideoPlugin());
+    e.pluginManager.addPlugin(new ExportVideoPlugin());
   });
 }

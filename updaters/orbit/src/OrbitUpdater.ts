@@ -1,7 +1,7 @@
 import {
-  type Engine,
   type IDelta,
   type IParticleUpdater,
+  type PluginManager,
   type RecursivePartial,
   defaultOpacity,
   doublePI,
@@ -23,10 +23,10 @@ const defaultOrbitSpeed = 0,
 
 export class OrbitUpdater implements IParticleUpdater {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: OrbitContainer) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: OrbitContainer) {
+    this._pluginManager = pluginManager;
     this._container = container;
   }
 
@@ -92,7 +92,7 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-    particle.orbitColor = rangeColorToHsl(this._engine, orbitOptions.color);
+    particle.orbitColor = rangeColorToHsl(this._pluginManager, orbitOptions.color);
     particle.retina.orbitRadius =
       orbitOptions.radius !== undefined ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio : undefined;
     container.retina.orbitRadius = particle.retina.orbitRadius;

@@ -1,10 +1,10 @@
 import {
   type Container,
-  type Engine,
   type ICoordinates,
   type IDelta,
   type IRgb,
   type Particle,
+  type PluginManager,
   type RecursivePartial,
   RotateDirection,
   Vector,
@@ -107,23 +107,28 @@ export class AbsorberInstance {
   private _currentDuration;
   private _currentSpawnDelay;
   private _duration?: number;
-  private readonly _engine;
   private _firstSpawn;
   private readonly _immortal;
   private _lifeCount;
+  private readonly _pluginManager;
   private _spawnDelay?: number;
   private readonly initialPosition?: Vector;
 
   /**
    * The absorber constructor, initializes the absorber based on the given options and position
-   * @param engine - the Engine instance that will be used for calculating the Absorber interactions
+   * @param pluginManager - the plugin manager instance that will be used for calculating the Absorber interactions
    * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
    * @param options - the Absorber source options
    * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
    */
-  constructor(engine: Engine, container: Container, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
+  constructor(
+    pluginManager: PluginManager,
+    container: Container,
+    options: RecursivePartial<IAbsorber>,
+    position?: ICoordinates,
+  ) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
 
     this._currentDuration = 0;
     this._currentSpawnDelay = 0;
@@ -149,7 +154,7 @@ export class AbsorberInstance {
       mass: limit.mass,
     };
 
-    this.color = rangeColorToRgb(this._engine, this.options.color) ?? {
+    this.color = rangeColorToRgb(this._pluginManager, this.options.color) ?? {
       b: 0,
       g: 0,
       r: 0,

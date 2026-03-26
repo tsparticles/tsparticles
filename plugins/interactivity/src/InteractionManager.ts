@@ -16,8 +16,8 @@ import type { IExternalInteractor } from "./Interfaces/IExternalInteractor.js";
 import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
-import type { InteractivityEngine } from "./types.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
+import type { InteractivityPluginManager } from "./types.js";
 import { InteractorType } from "./Enums/InteractorType.js";
 
 const clickRadius = 1,
@@ -32,12 +32,6 @@ export class InteractionManager {
   private readonly _clickHandlers;
 
   private readonly _container;
-
-  /**
-   * The engine used for registering the interactions managers
-   * @internal
-   */
-  private readonly _engine;
 
   private readonly _eventListeners;
 
@@ -61,13 +55,15 @@ export class InteractionManager {
    */
   private _particleInteractors: IParticlesInteractor[];
 
+  private readonly _pluginManager;
+
   /**
    * The constructor of the interaction manager
-   * @param engine - the parent engine
+   * @param pluginManager - the plugin manager
    * @param container - the parent container
    */
-  constructor(engine: InteractivityEngine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: InteractivityPluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
     this._interactors = [];
     this._externalInteractors = [];
@@ -256,7 +252,7 @@ export class InteractionManager {
   }
 
   async initInteractors(): Promise<void> {
-    const interactors = await this._engine.getInteractors?.(this._container, true);
+    const interactors = await this._pluginManager.getInteractors?.(this._container, true);
 
     if (!interactors) {
       return;

@@ -8,9 +8,9 @@ import {
 import type {
   IInteractivityOptions,
   IInteractivityParticlesOptions,
-  InteractivityEngine,
   InteractivityOptions,
   InteractivityParticlesOptions,
+  InteractivityPluginManager,
 } from "./types.js";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
 import type { IParticleInteractorBase } from "./Interfaces/IParticleInteractorBase.js";
@@ -21,16 +21,16 @@ import { Interactivity } from "./Options/Classes/Interactivity.js";
 export class InteractivityPlugin implements IPlugin {
   readonly id = "interactivity";
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: InteractivityEngine) {
-    this._engine = engine;
+  constructor(pluginManager: InteractivityPluginManager) {
+    this._pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { InteractivityPluginInstance } = await import("./InteractivityPluginInstance.js");
 
-    return new InteractivityPluginInstance(this._engine, container);
+    return new InteractivityPluginInstance(this._pluginManager, container);
   }
 
   loadOptions(
@@ -45,12 +45,12 @@ export class InteractivityPlugin implements IPlugin {
     let interactivityOptions = options.interactivity;
 
     if (!interactivityOptions?.load) {
-      options.interactivity = interactivityOptions = new Interactivity(this._engine, containerId);
+      options.interactivity = interactivityOptions = new Interactivity(this._pluginManager, containerId);
     }
 
     interactivityOptions.load(source?.interactivity);
 
-    const interactors = this._engine.interactors?.get(containerId);
+    const interactors = this._pluginManager.interactors?.get(containerId);
 
     if (!interactors) {
       return;
@@ -72,7 +72,7 @@ export class InteractivityPlugin implements IPlugin {
       options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    const interactors = this._engine.interactors?.get(containerId) as IParticleInteractorBase[] | undefined;
+    const interactors = this._pluginManager.interactors?.get(containerId) as IParticleInteractorBase[] | undefined;
 
     if (!interactors) {
       return;

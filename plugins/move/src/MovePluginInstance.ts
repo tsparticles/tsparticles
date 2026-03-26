@@ -7,7 +7,7 @@ import {
   getRangeValue,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
-import type { MoveEngine, MoveParticle } from "./Types.js";
+import type { MoveParticle, MovePluginManager } from "./Types.js";
 import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
@@ -20,10 +20,10 @@ export class MovePluginInstance implements IContainerPlugin {
   pathGenerators: Map<string, IMovePathGenerator>;
 
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: MoveEngine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: MovePluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
 
     this.availablePathGenerators = new Map();
@@ -137,7 +137,7 @@ export class MovePluginInstance implements IContainerPlugin {
   }
 
   private async _init(): Promise<void> {
-    const availablePathGenerators = await this._engine.getPathGenerators?.(this._container, true);
+    const availablePathGenerators = await this._pluginManager.getPathGenerators?.(this._container, true);
 
     if (!availablePathGenerators) {
       return;

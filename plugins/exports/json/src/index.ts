@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadExportJSONPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ExportJSONPlugin } = await import("./ExportJSONPlugin.js");
 
-    e.addPlugin(new ExportJSONPlugin());
+    e.pluginManager.addPlugin(new ExportJSONPlugin());
   });
 }

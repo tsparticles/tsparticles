@@ -1,6 +1,5 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { Effect } from "./Effect/Effect.js";
-import type { Engine } from "../../../Core/Engine.js";
 import { Fill } from "./Fill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
@@ -9,6 +8,7 @@ import { Opacity } from "./Opacity/Opacity.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
+import type { PluginManager } from "../../../Core/Utils/PluginManager.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
@@ -37,10 +37,10 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   readonly zIndex;
 
   private readonly _containerId?: symbol;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, containerId?: symbol) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, containerId?: symbol) {
+    this._pluginManager = pluginManager;
     this._containerId = containerId;
 
     this.bounce = new ParticlesBounce();
@@ -114,13 +114,13 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     if (this._containerId) {
-      for (const plugin of this._engine.plugins) {
+      for (const plugin of this._pluginManager.plugins) {
         if (plugin.loadParticlesOptions) {
           plugin.loadParticlesOptions(this._containerId, this, data);
         }
       }
 
-      const updaters = this._engine.updaters.get(this._containerId);
+      const updaters = this._pluginManager.updaters.get(this._containerId);
 
       if (updaters) {
         for (const updater of updaters) {

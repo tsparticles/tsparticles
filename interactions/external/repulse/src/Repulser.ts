@@ -1,8 +1,8 @@
 import {
   type BaseRange,
   Circle,
-  type Engine,
   type ICoordinates,
+  type PluginManager,
   Rectangle,
   type RecursivePartial,
   Vector,
@@ -46,14 +46,14 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private readonly _clickVec: Vector;
-  private readonly _engine;
   private _maxDistance;
   private readonly _normVec: Vector;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: RepulseContainer) {
+  constructor(pluginManager: PluginManager, container: RepulseContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._maxDistance = 0;
     this._normVec = Vector.origin;
     this._clickVec = Vector.origin;
@@ -276,7 +276,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
 
     const { easing, speed, factor, maxSpeed } = repulseOptions,
-      easingFunc = this._engine.getEasing(easing),
+      easingFunc = this._pluginManager.getEasing(easing),
       velocity = (divRepulse?.speed ?? speed) * factor;
 
     for (const particle of query) {

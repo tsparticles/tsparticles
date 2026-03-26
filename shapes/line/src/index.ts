@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadLineShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(["line"], async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(["line"], async () => {
       const { LineDrawer } = await import("./LineDrawer.js");
 
       return new LineDrawer();

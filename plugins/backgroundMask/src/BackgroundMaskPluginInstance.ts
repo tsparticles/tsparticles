@@ -1,6 +1,6 @@
 import {
-  type Engine,
   type IContainerPlugin,
+  type PluginManager,
   getStyleFromRgb,
   rangeColorToRgb,
   safeDocument,
@@ -12,11 +12,11 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
   private _coverColorStyle?: string;
   private _coverImage?: { image: HTMLImageElement; opacity: number };
   private _defaultCompositeValue?: GlobalCompositeOperation;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(container: BackgroundMaskContainer, engine: Engine) {
+  constructor(container: BackgroundMaskContainer, pluginManager: PluginManager) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   canvasClear(): boolean {
@@ -74,7 +74,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       color = cover?.color;
 
     if (color) {
-      const coverRgb = rangeColorToRgb(this._engine, color);
+      const coverRgb = rangeColorToRgb(this._pluginManager, color);
 
       if (coverRgb) {
         const coverColor = {

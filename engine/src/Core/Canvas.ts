@@ -11,7 +11,6 @@ import {
 } from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
@@ -21,6 +20,7 @@ import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { Particle } from "./Particle.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 
 const fColorIndex = 0,
   sColorIndex = 1;
@@ -125,11 +125,11 @@ export class Canvas {
   private _drawPlugins: IContainerPlugin[];
   private _drawSettingsCleanupPlugins: IContainerPlugin[];
   private _drawSettingsSetupPlugins: IContainerPlugin[];
-  private readonly _engine;
   private _generated;
   private _mutationObserver?: MutationObserver;
   private _offscreen?: OffscreenCanvas;
   private _originalStyle?: CSSStyleDeclaration;
+  private readonly _pluginManager;
   private _pointerEvents: string;
   private _postDrawUpdaters: IParticleUpdater[];
   private _preDrawUpdaters: IParticleUpdater[];
@@ -146,11 +146,11 @@ export class Canvas {
 
   /**
    * Constructor of canvas manager
-   * @param engine - the engine managing the whole library
+   * @param pluginManager - the plugin manager
    * @param container - the parent container
    */
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
     this._standardSize = {
       height: 0,
@@ -438,7 +438,7 @@ export class Canvas {
     }
 
     const elementStyle = element.style,
-      color = rangeColorToRgb(this._engine, background.color);
+      color = rangeColorToRgb(this._pluginManager, background.color);
 
     if (color) {
       elementStyle.backgroundColor = getStyleFromRgb(color, container.hdr, background.opacity);
@@ -811,11 +811,11 @@ export class Canvas {
 
     for (const plugin of this._colorPlugins) {
       if (!fColor && plugin.particleFillColor) {
-        fColor = rangeColorToHsl(this._engine, plugin.particleFillColor(particle));
+        fColor = rangeColorToHsl(this._pluginManager, plugin.particleFillColor(particle));
       }
 
       if (!sColor && plugin.particleStrokeColor) {
-        sColor = rangeColorToHsl(this._engine, plugin.particleStrokeColor(particle));
+        sColor = rangeColorToHsl(this._pluginManager, plugin.particleStrokeColor(particle));
       }
 
       if (fColor && sColor) {

@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadStarShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(["star"], async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(["star"], async () => {
       const { StarDrawer } = await import("./StarDrawer.js");
 
       return new StarDrawer();

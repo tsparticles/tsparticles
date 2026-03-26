@@ -1,7 +1,7 @@
 import {
-  type Engine,
   type IOptionLoader,
   OptionsColor,
+  type PluginManager,
   type RecursivePartial,
   isNull,
   isString,
@@ -16,10 +16,10 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
   opacity;
   width;
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager) {
+    this._pluginManager = pluginManager;
     this.color = new OptionsColor();
     this.width = 0.5;
     this.opacity = 1;
@@ -33,7 +33,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
     this.color = OptionsColor.create(this.color, data.color);
 
     if (isString(this.color.value)) {
-      this.opacity = stringToAlpha(this._engine, this.color.value) ?? this.opacity;
+      this.opacity = stringToAlpha(this._pluginManager, this.color.value) ?? this.opacity;
     }
 
     if (data.opacity !== undefined) {

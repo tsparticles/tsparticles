@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadResponsivePlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ResponsivePlugin } = await import("./ResponsivePlugin.js");
 
-    e.addPlugin(new ResponsivePlugin());
+    e.pluginManager.addPlugin(new ResponsivePlugin());
   });
 }

@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const [
       { ensureInteractivityPluginLoaded },
       { LinksPlugin },
@@ -21,12 +21,12 @@ export async function loadParticlesLinksInteraction(engine: Engine): Promise<voi
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addPlugin(new LinksPlugin(e));
+    e.pluginManager.addPlugin(new LinksPlugin(e.pluginManager));
 
-    e.addInteractor?.("particlesLinks", async container => {
+    e.pluginManager.addInteractor?.("particlesLinks", async container => {
       const { Linker } = await import("./Linker.js");
 
-      return new Linker(container as LinkContainer, e);
+      return new Linker(e.pluginManager, container as LinkContainer);
     });
   });
 }

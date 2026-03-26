@@ -8,7 +8,7 @@ declare const __VERSION__: string;
 export async function loadCardSuitsShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadClubsSuitShape },
       { loadDiamondsSuitShape },
@@ -36,7 +36,7 @@ export async function loadCardSuitsShape(engine: Engine): Promise<void> {
 export async function loadCardsShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { loadFullCardsShape } = await import("./cards/index.js");
 
     await Promise.all([

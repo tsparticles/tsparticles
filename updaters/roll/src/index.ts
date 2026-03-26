@@ -8,11 +8,11 @@ declare const __VERSION__: string;
 export async function loadRollUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addParticleUpdater("roll", async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addParticleUpdater("roll", async () => {
       const { RollUpdater } = await import("./RollUpdater.js");
 
-      return new RollUpdater(e);
+      return new RollUpdater(e.pluginManager);
     });
   });
 }

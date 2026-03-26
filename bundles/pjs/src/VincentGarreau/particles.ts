@@ -309,7 +309,7 @@ const defaultMinOpacity = 0,
      */
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
-      engine.setOnClickHandler?.(callback);
+      engine.pluginManager.setOnClickHandler?.(callback);
     };
 
     /**

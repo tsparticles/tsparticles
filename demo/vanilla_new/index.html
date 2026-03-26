@@ -195,7 +195,7 @@
         const loadPreset = async (preset) => {
             await tsParticles.load({
                 id: "tsparticles",
-                options: tsParticles.configs[preset]
+                options: tsParticles.pluginManager.configs[preset]
             });
         };
 

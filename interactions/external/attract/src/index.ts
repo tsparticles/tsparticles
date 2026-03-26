@@ -9,15 +9,15 @@ declare const __VERSION__: string;
 export async function loadExternalAttractInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalAttract", async container => {
+    e.pluginManager.addInteractor?.("externalAttract", async container => {
       const { Attractor } = await import("./Attractor.js");
 
-      return new Attractor(e, container);
+      return new Attractor(e.pluginManager, container);
     });
   });
 }

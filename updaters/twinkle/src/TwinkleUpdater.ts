@@ -1,9 +1,9 @@
 import {
   type Container,
-  type Engine,
   type IParticleColorStyle,
   type IParticleUpdater,
   type Particle,
+  type PluginManager,
   type RecursivePartial,
   getRandom,
   getRangeValue,
@@ -15,10 +15,10 @@ import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 export class TwinkleUpdater implements IParticleUpdater {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
   }
 
@@ -42,8 +42,8 @@ export class TwinkleUpdater implements IParticleUpdater {
       zOffset = 1,
       zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
       twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-      twinkleFillRgb = rangeColorToHsl(this._engine, twinkle.fillColor),
-      twinkleStrokeRgb = rangeColorToHsl(this._engine, twinkle.strokeColor),
+      twinkleFillRgb = rangeColorToHsl(this._pluginManager, twinkle.fillColor),
+      twinkleStrokeRgb = rangeColorToHsl(this._pluginManager, twinkle.strokeColor),
       getTwinkleFillStyle = (): string | undefined => {
         if (!twinkleFillRgb) {
           return undefined;

@@ -62,7 +62,7 @@ export interface IOptions {
   hdr: boolean;
 
   /**
-   * The key used to store the options in the {@link Engine.configs} collection
+   * The key used to store the options in the {@link PluginManager.configs} collection
    */
   key?: string;
 
