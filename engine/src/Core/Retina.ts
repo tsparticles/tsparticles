@@ -26,22 +26,21 @@ export class Retina {
     const container = this._container,
       options = container.actualOptions;
 
-    this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;
     this.reduceFactor = defaultReduceFactor;
+    this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;
 
     const ratio = this.pixelRatio,
-      canvas = container.canvas;
+      canvas = container.canvas,
+      particles = options.particles,
+      moveOptions = particles.move;
+
+    this.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
+    this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
 
     if (canvas.domElement) {
       canvas.size.width = canvas.domElement.offsetWidth * ratio;
       canvas.size.height = canvas.domElement.offsetHeight * ratio;
     }
-
-    const particles = options.particles,
-      moveOptions = particles.move;
-
-    this.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
-    this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
   }
 
   initParticle(particle: Particle): void {
@@ -49,17 +48,15 @@ export class Retina {
       ratio = this.pixelRatio,
       moveOptions = options.move,
       moveDistance = moveOptions.distance,
-      props = particle.retina;
+      props = particle.retina,
+      maxDistance = props.maxDistance;
 
     props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
     props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
+    props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
     props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
-
-    const maxDistance = props.maxDistance;
 
     maxDistance.horizontal = moveDistance.horizontal === undefined ? undefined : moveDistance.horizontal * ratio;
     maxDistance.vertical = moveDistance.vertical === undefined ? undefined : moveDistance.vertical * ratio;
-
-    props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
   }
 }
