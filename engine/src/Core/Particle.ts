@@ -30,6 +30,7 @@ import {
   half,
   identity,
   minZ,
+  none,
   randomColorValue,
   squareExp,
   triple,
@@ -375,6 +376,7 @@ export class Particle {
 
   private _effectDrawer?: IEffectDrawer;
 
+  private _onDestroyCallback?: () => void;
   private _particleCheckPositionPlugins!: IContainerPlugin[];
   private _particleCreatedPlugins!: IContainerPlugin[];
   private _particleDestroyedPlugins!: IContainerPlugin[];
@@ -406,6 +408,8 @@ export class Particle {
     }
 
     this._updaters = [];
+
+    this._onDestroyCallback?.();
 
     this._dispatchEvent(EventType.particleDestroyed, {
       particle: this,
@@ -488,6 +492,7 @@ export class Particle {
       group,
       id,
       initRetina,
+      onDestroyCallback,
       overrideOptions,
       position,
       particleCheckPositionPlugins,
@@ -502,6 +507,7 @@ export class Particle {
     } = data;
 
     this._dispatchEvent = dispatchEvent;
+    this._onDestroyCallback = onDestroyCallback;
     this._particleCheckPositionPlugins = particleCheckPositionPlugins;
     this._particleCreatedPlugins = particleCreatedPlugins;
     this._particleDestroyedPlugins = particleDestroyedPlugins;
@@ -520,6 +526,10 @@ export class Particle {
     this.misplaced = false;
     this.retina = {
       maxDistance: {},
+      maxSpeed: none,
+      moveSpeed: none,
+      moveDrift: none,
+      sizeAnimationSpeed: none,
     };
     this.outType = ParticleOutType.normal;
     this.ignoresResizeRatio = true;
@@ -591,7 +601,7 @@ export class Particle {
     this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
     this.options = particlesOptions;
 
-    initRetina(this);
+    initRetina();
 
     /* size */
     this.size = initParticleNumericAnimationValue(this.options.size, pixelRatio);

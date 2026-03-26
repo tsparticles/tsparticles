@@ -24,8 +24,7 @@ export class SizeUpdater implements IParticleUpdater {
 
     if (sizeAnimation.enable) {
       particle.size.velocity =
-        ((particle.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / percentDenominator) *
-        container.retina.reduceFactor;
+        (particle.retina.sizeAnimationSpeed / percentDenominator) * container.retina.reduceFactor;
 
       if (!sizeAnimation.sync) {
         particle.size.velocity *= getRandom();

@@ -98,12 +98,8 @@ export class MovePluginInstance implements IContainerPlugin {
     }
 
     const container = this._container,
-      pxRatio = container.retina.pixelRatio;
-
-    particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * pxRatio;
-    particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio;
-
-    const slowFactor = getProximitySpeedFactor(particle),
+      pxRatio = container.retina.pixelRatio,
+      slowFactor = getProximitySpeedFactor(particle),
       reduceFactor = container.retina.reduceFactor,
       baseSpeed = particle.retina.moveSpeed,
       moveDrift = particle.retina.moveDrift,
@@ -111,7 +107,7 @@ export class MovePluginInstance implements IContainerPlugin {
       sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
       deltaFactor = delta.factor || defaultDeltaFactor,
       moveSpeed = (baseSpeed * sizeFactor * slowFactor * deltaFactor) / diffFactor,
-      maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
+      maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
       spin(container, particle, moveSpeed, reduceFactor);

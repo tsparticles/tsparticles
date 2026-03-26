@@ -608,7 +608,9 @@ export class Canvas {
       obs.disconnect();
     });
 
-    container.retina.init();
+    container.retina.init(container.actualOptions.detectRetina);
+
+    this.resize();
 
     this.initBackground();
 

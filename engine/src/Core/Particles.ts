@@ -161,8 +161,37 @@ export class Particles {
         effectDrawers: this._effectDrawers ?? new Map<string, IEffectDrawer>(),
         group,
         id: this._nextId,
-        initRetina: particle => {
+        initRetina: () => {
           this._initRetinaCallback?.(particle);
+        },
+        onDestroyCallback: () => {
+          if (particle.prev) {
+            particle.prev.next = particle.next;
+          } else {
+            this._head = particle.next;
+          }
+
+          if (particle.next) {
+            particle.next.prev = particle.prev;
+          } else {
+            this._tail = particle.prev;
+          }
+
+          if (particle.group !== undefined) {
+            const c = this._groupCounts.get(particle.group) ?? groupIncrement;
+
+            this._groupCounts.set(particle.group, c - groupIncrement);
+          }
+
+          this._removeFromZLayer(particle);
+
+          this._count--;
+
+          this._dispatchEventCallback?.(EventType.particleRemoved, {
+            particle: particle,
+          });
+
+          this._addToPool(particle);
         },
         overrideOptions,
         particleCheckPositionPlugins: this.particleCheckPositionPlugins,
@@ -694,35 +723,7 @@ export class Particles {
    * @param override -
    */
   private _removeNode(particle: Particle, override?: boolean): void {
-    if (particle.prev) {
-      particle.prev.next = particle.next;
-    } else {
-      this._head = particle.next;
-    }
-
-    if (particle.next) {
-      particle.next.prev = particle.prev;
-    } else {
-      this._tail = particle.prev;
-    }
-
-    if (particle.group !== undefined) {
-      const c = this._groupCounts.get(particle.group) ?? groupIncrement;
-
-      this._groupCounts.set(particle.group, c - groupIncrement);
-    }
-
-    this._removeFromZLayer(particle);
-
     particle.destroy(override);
-
-    this._count--;
-
-    this._dispatchEventCallback?.(EventType.particleRemoved, {
-      particle: particle,
-    });
-
-    this._addToPool(particle);
   }
 
   /**

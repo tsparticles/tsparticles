@@ -185,7 +185,7 @@ export class Container {
     this.pageHidden = false;
     this._sourceOptions = sourceOptions;
     this._initialSourceOptions = sourceOptions;
-    this.retina = new Retina(this);
+    this.retina = new Retina();
     this.canvas = new Canvas(this._pluginManager, this);
     this.particles = new Particles();
     this.effectDrawers = new Map();
@@ -375,7 +375,7 @@ export class Container {
     this.particles.setZLayers(this.zLayers);
 
     /* init canvas + particles */
-    this.retina.init();
+    this.retina.init(this.actualOptions.detectRetina);
     this.canvas.init();
 
     this.updateActualOptions();
