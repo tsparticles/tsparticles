@@ -1,9 +1,7 @@
 import {
   countOffset,
   defaultDensityFactor,
-  defaultRemoveQuantity,
   minCount,
-  minIndex,
   minLimit,
   spatialHashGridCellSize,
   squareExp,
@@ -27,7 +25,6 @@ import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 
 const empty = 0,
-  startIndex = 0,
   groupIncrement = 1,
   defaultZLayers = 100,
   defaultPixelRatio = 1;
@@ -404,33 +401,25 @@ export class Particles {
     if (group && particle.group !== group) {
       return;
     }
+
     this._removeNode(particle, override);
   }
 
-  removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
+  removeQuantity(quantity: number, group?: string, override?: boolean): void {
     let current = this._head,
-      i = startIndex;
-
-    while (current && i < index) {
-      current = current.next;
-
-      i++;
-    }
-
-    let deleted = 0;
+      deleted = 0;
 
     while (current && deleted < quantity) {
       const next = current.next;
+
       if (!group || current.group === group) {
         this._removeNode(current, override);
+
         deleted++;
       }
+
       current = next;
     }
-  }
-
-  removeQuantity(quantity: number, group?: string): void {
-    this.removeAt(minIndex, quantity, group);
   }
 
   setActualOptions(options: Options): void {
@@ -565,6 +554,7 @@ export class Particles {
         this._removeNode(current);
       } else {
         this._updateZLayer(current);
+
         this.grid.insert(current);
       }
 

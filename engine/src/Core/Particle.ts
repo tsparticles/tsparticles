@@ -388,6 +388,8 @@ export class Particle {
 
   destroy(override?: boolean): void {
     if (this.unbreakable || this.destroyed) {
+      this._onDestroyCallback?.();
+
       return;
     }
 

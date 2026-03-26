@@ -81,54 +81,6 @@ describe("Particles", async () => {
     expect(container.particles.count).to.equal(3);
   });
 
-  it("should remove particles at specified indices", async () => {
-    await container.reset(numParticlesOptions);
-
-    let arr = Array.from(container.particles);
-
-    const particle1 = arr[0],
-      particle3 = arr[2],
-      particle4 = arr[3],
-      particle5 = arr[4];
-
-    container.particles.removeAt(1);
-
-    arr = Array.from(container.particles);
-
-    expect(arr).to.eql([particle1, particle3, particle4, particle5]);
-    expect(arr).to.not.eql([particle5, particle4, particle3, particle1]);
-
-    container.particles.removeAt(2);
-
-    arr = Array.from(container.particles);
-
-    expect(arr).to.eql([particle1, particle3, particle5]);
-    expect(arr).to.not.eql([particle5, particle3, particle1]);
-  });
-
-  it("should remove specified quantity of indices, starting at the specified index", async () => {
-    await container.reset(numParticlesOptions);
-
-    let arr = Array.from(container.particles);
-
-    const particle1 = arr[0],
-      particle4 = arr[3],
-      particle5 = arr[4];
-
-    container.particles.removeAt(1, 2);
-
-    arr = Array.from(container.particles);
-
-    expect(arr).to.eql([particle1, particle4, particle5]);
-    expect(arr).to.not.eql([particle5, particle4, particle1]);
-
-    container.particles.removeAt(0, 2);
-
-    arr = Array.from(container.particles);
-
-    expect(arr).to.eql([particle5]);
-  });
-
   it("should remove specified number of particles", async () => {
     await container.reset(enableParticleMoveOptions);
 
