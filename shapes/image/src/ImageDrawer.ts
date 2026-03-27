@@ -28,7 +28,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param data - the shape draw data
    */
   draw(data: IShapeDrawData<ImageParticle>): void {
-    const { container, context, radius, particle, opacity } = data,
+    const { context, radius, particle, opacity } = data,
+      container = this._container,
       image = particle.image,
       element = image?.element;
 

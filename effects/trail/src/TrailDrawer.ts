@@ -65,7 +65,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   }
 
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
-    const { container, context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
+    const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
+      container = this._container,
       diameter = drawRadius * double,
       pxRatio = container.retina.pixelRatio,
       trail = particle.trail;

@@ -1,4 +1,5 @@
 import {
+  type Container,
   type ICoordinates,
   type IEffectDrawer,
   type IOptionsColor,
@@ -29,9 +30,11 @@ type ShadowParticle = Particle & {
 };
 
 export class ShadowDrawer implements IEffectDrawer {
+  private readonly _container;
   private readonly _pluginManager;
 
-  constructor(pluginManager: PluginManager) {
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._container = container;
     this._pluginManager = pluginManager;
   }
 
@@ -45,7 +48,8 @@ export class ShadowDrawer implements IEffectDrawer {
   }
 
   drawBefore(data: IShapeDrawData): void {
-    const { container, particle, context } = data,
+    const { particle, context } = data,
+      container = this._container,
       shadowParticle = particle as ShadowParticle,
       shadowColor = shadowParticle.shadowColor,
       shadowOffset = shadowParticle.shadowOffset;

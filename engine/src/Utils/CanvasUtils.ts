@@ -91,7 +91,6 @@ export function drawParticle(data: IDrawParticleParams): void {
   }
 
   const drawData: IShapeDrawData = {
-    container,
     context,
     particle,
     radius,
