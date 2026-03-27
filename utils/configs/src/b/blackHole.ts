@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Black Hole",
   particles: {
     number: {
-      value: 1000,
+      value: 2000,
       density: {
         enable: true,
       },
