@@ -1,5 +1,4 @@
-import { type IShapeDrawData, type IShapeDrawer, type Particle, getRangeValue } from "@tsparticles/engine";
-import type { IStarShape } from "./IStarShape.js";
+import { type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { StarParticle } from "./StarParticle.js";
 import { drawStar } from "./Utils.js";
 
@@ -13,14 +12,14 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
     drawStar(data);
   }
 
-  getSidesCount(particle: Particle): number {
-    const star = particle.shapeData as IStarShape | undefined;
+  getSidesCount(particle: StarParticle): number {
+    const star = particle.shapeData;
 
     return Math.round(getRangeValue(star?.sides ?? defaultSides));
   }
 
   particleInit(particle: StarParticle): void {
-    const star = particle.shapeData as IStarShape | undefined;
+    const star = particle.shapeData;
 
     particle.starInset = getRangeValue(star?.inset ?? defaultInset);
   }

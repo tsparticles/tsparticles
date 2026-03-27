@@ -2,8 +2,8 @@ import type { IShapeValues, RangeValue } from "@tsparticles/engine";
 
 /**
  */
-export interface IStarShape extends IShapeValues {
-  inset: RangeValue;
+export type IStarShape = IShapeValues & {
+  inset?: RangeValue;
 
-  sides: RangeValue;
-}
+  sides?: RangeValue;
+};
