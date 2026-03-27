@@ -5,14 +5,14 @@ import {
   decayOffset,
   getRangeMax,
   getRangeValue,
+  half,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
 import type { MoveParticle, MovePluginManager } from "./Types.js";
 import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
-const diffFactor = 2,
-  defaultSizeFactor = 1,
+const defaultSizeFactor = 1,
   defaultDeltaFactor = 1;
 
 export class MovePluginInstance implements IContainerPlugin {
@@ -106,7 +106,7 @@ export class MovePluginInstance implements IContainerPlugin {
       maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
       sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
       deltaFactor = delta.factor || defaultDeltaFactor,
-      moveSpeed = (baseSpeed * sizeFactor * slowFactor * deltaFactor) / diffFactor,
+      moveSpeed = baseSpeed * sizeFactor * slowFactor * deltaFactor * half,
       maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
