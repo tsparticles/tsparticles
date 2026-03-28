@@ -15,6 +15,12 @@ const defaultSides = 5,
 /**
  */
 export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data;
 
@@ -27,9 +33,10 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
     return Math.round(getRangeValue(roundedPolygon?.sides ?? defaultSides));
   }
 
-  particleInit(container: Container, particle: RoundedParticle): void {
+  particleInit(particle: RoundedParticle): void {
     const shapeData = particle.shapeData as IRoundedPolygonShape | undefined;
 
-    particle.borderRadius = Math.round(getRangeValue(shapeData?.radius ?? defaultSides)) * container.retina.pixelRatio;
+    particle.borderRadius =
+      Math.round(getRangeValue(shapeData?.radius ?? defaultSides)) * this._container.retina.pixelRatio;
   }
 }

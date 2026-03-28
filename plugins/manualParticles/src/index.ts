@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadManualParticlesPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ManualParticlesPlugin } = await import("./ManualParticlesPlugin.js");
 
-    e.addPlugin(new ManualParticlesPlugin());
+    e.pluginManager.addPlugin(new ManualParticlesPlugin());
   });
 }

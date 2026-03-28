@@ -1,4 +1,4 @@
-import type { Container, Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, PluginManager, RecursivePartial } from "@tsparticles/engine";
 import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types.js";
 import { PolygonMask } from "./Options/Classes/PolygonMask.js";
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
@@ -8,23 +8,19 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 export class PolygonMaskPlugin implements IPlugin {
   readonly id = "polygon-mask";
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(engine: PluginManager) {
+    this._pluginManager = engine;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { PolygonMaskInstance } = await import("./PolygonMaskInstance.js");
 
-    return new PolygonMaskInstance(container, this._engine);
+    return new PolygonMaskInstance(this._pluginManager, container);
   }
 
-  loadOptions(
-    _container: Container,
-    options: PolygonMaskOptions,
-    source?: RecursivePartial<IPolygonMaskOptions>,
-  ): void {
+  loadOptions(_containerId: symbol, options: PolygonMaskOptions, source?: RecursivePartial<IPolygonMaskOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }
@@ -32,7 +28,7 @@ export class PolygonMaskPlugin implements IPlugin {
     let polygonOptions = options.polygon;
 
     if (polygonOptions?.load === undefined) {
-      options.polygon = polygonOptions = new PolygonMask(this._engine);
+      options.polygon = polygonOptions = new PolygonMask(this._pluginManager);
     }
 
     polygonOptions.load(source?.polygon);

@@ -19,14 +19,14 @@ const maxAngle = 360,
  * The Wobble updater plugin
  */
 export class WobbleUpdater implements IParticleUpdater {
-  private readonly container;
+  private readonly _container;
 
   /**
    * The Wobble updater plugin constructor, assigns the container using the plugin
    * @param container - the container using the plugin
    */
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
   }
 
   /**
@@ -51,7 +51,7 @@ export class WobbleUpdater implements IParticleUpdater {
     }
 
     particle.retina.wobbleDistance =
-      getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.container.retina.pixelRatio;
+      getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this._container.retina.pixelRatio;
   }
 
   /**
@@ -84,6 +84,6 @@ export class WobbleUpdater implements IParticleUpdater {
       return;
     }
 
-    updateWobble(particle, delta);
+    updateWobble(this._container, particle, delta);
   }
 }

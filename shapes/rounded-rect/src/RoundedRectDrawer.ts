@@ -6,6 +6,12 @@ import { drawRoundedRect } from "./Utils.js";
 const defaultRadius = 5;
 
 export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data,
       fixedRadius = radius * Math.SQRT1_2,
@@ -19,9 +25,9 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     }
   }
 
-  particleInit(container: Container, particle: RoundedParticle): void {
+  particleInit(particle: RoundedParticle): void {
     const shapeData = particle.shapeData as IRoundedRectData | undefined;
 
-    particle.borderRadius = getRangeValue(shapeData?.radius ?? defaultRadius) * container.retina.pixelRatio;
+    particle.borderRadius = getRangeValue(shapeData?.radius ?? defaultRadius) * this._container.retina.pixelRatio;
   }
 }

@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const [
         { ensureInteractivityPluginLoaded },
         { AbsorbersInstancesManager },
@@ -20,16 +20,16 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
         import("./AbsorbersInstancesManager.js"),
         import("./AbsorbersPlugin.js"),
       ]),
-      instancesManager = new AbsorbersInstancesManager(e);
+      instancesManager = new AbsorbersInstancesManager(e.pluginManager);
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addPlugin(new AbsorbersPlugin(instancesManager));
+    e.pluginManager.addPlugin(new AbsorbersPlugin(instancesManager));
 
-    e.addInteractor?.("externalAbsorbers", async container => {
+    e.pluginManager.addInteractor?.("externalAbsorbers", async container => {
       const { AbsorbersInteractor } = await import("./AbsorbersInteractor.js");
 
-      return new AbsorbersInteractor(container as AbsorberContainer, instancesManager);
+      return new AbsorbersInteractor(instancesManager, container as AbsorberContainer);
     });
   });
 }

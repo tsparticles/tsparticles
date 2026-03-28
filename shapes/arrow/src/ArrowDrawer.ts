@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { ArrowParticle } from "./ArrowParticle.js";
 import type { IArrowData } from "./IArrowData.js";
 import { drawArrow } from "./Utils.js";
@@ -12,7 +12,7 @@ export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
     drawArrow(data);
   }
 
-  particleInit(_container: Container, particle: ArrowParticle): void {
+  particleInit(particle: ArrowParticle): void {
     const shapeData = particle.shapeData as IArrowData | undefined;
 
     particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);

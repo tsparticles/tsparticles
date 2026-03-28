@@ -1,17 +1,11 @@
 import {
   countOffset,
   defaultDensityFactor,
-  defaultRemoveQuantity,
-  deleteCount,
-  lengthOffset,
   minCount,
-  minIndex,
   minLimit,
   spatialHashGridCellSize,
   squareExp,
 } from "./Utils/Constants.js";
-import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
@@ -23,79 +17,77 @@ import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/I
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
+import type { Options } from "../Options/Classes/Options.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+
+const empty = 0,
+  groupIncrement = 1,
+  defaultZLayers = 100,
+  defaultPixelRatio = 1;
 
 /**
  * Particles manager object
  */
 export class Particles {
-  checkParticlePositionPlugins: IContainerPlugin[];
+  grid = new SpatialHashGrid(spatialHashGridCellSize);
 
-  effectDrawers: Map<string, IEffectDrawer>;
+  readonly particleCheckPositionPlugins: IContainerPlugin[] = [];
+  readonly particleCreatedPlugins: IContainerPlugin[] = [];
+  readonly particleDestroyedPlugins: IContainerPlugin[] = [];
+  readonly particlePositionPlugins: IContainerPlugin[] = [];
 
-  grid;
-
-  shapeDrawers: Map<string, IShapeDrawer>;
-
-  updaters: IParticleUpdater[];
-
-  /**
-   * All the particles used in canvas
-   */
-  private _array: Particle[];
-  private readonly _container: Container;
-  private readonly _engine;
-  private readonly _groupLimits: Map<string, number>;
+  private _actualOptions?: Options;
+  private _canvasSize?: Readonly<IDimension>;
+  private _count: number;
+  private _dispatchEventCallback?: (type: string, data?: unknown) => void;
+  private _drawParticleCallback?: (particle: Particle, delta: IDelta) => void;
+  private _effectDrawers?: Map<string, IEffectDrawer>;
+  private readonly _groupCounts = new Map<string, number>();
+  private readonly _groupLimits = new Map<string, number>();
+  private _head?: Particle;
+  private _initRetinaCallback?: (particle: Particle) => void;
   private _limit;
-  private _maxZIndex;
-  private _minZIndex;
-  private _needsSort;
+  private _loadParticlesOptions?: (source?: RecursivePartial<IParticlesOptions>) => ParticlesOptions;
   private _nextId;
-  private _particleResetPlugins: IContainerPlugin[];
-  private _particleUpdatePlugins: IContainerPlugin[];
-  private readonly _pool: Particle[];
-  private _postParticleUpdatePlugins: IContainerPlugin[];
-  private _postUpdatePlugins: IContainerPlugin[];
+  private readonly _particleResetPlugins: IContainerPlugin[] = [];
+  private readonly _particleUpdatePlugins: IContainerPlugin[] = [];
+  private _pixelRatio = defaultPixelRatio;
+  private _plugins: IContainerPlugin[] = [];
+  private _poolHead?: Particle;
+  private readonly _postParticleUpdatePlugins: IContainerPlugin[] = [];
+  private readonly _postUpdatePlugins: IContainerPlugin[] = [];
+  private _redrawCallback?: (delta: IDelta) => void;
   private _resizeFactor?: IDimension;
-  private _updatePlugins: IContainerPlugin[];
-  private _zArray: Particle[];
+  private _shapeDrawers?: Map<string, IShapeDrawer>;
+  private _sortedZKeys: number[] = [];
+  private _tail?: Particle;
+  private readonly _updatePlugins: IContainerPlugin[] = [];
+  private _updaters?: IParticleUpdater[];
+  private _zLayers = defaultZLayers;
+  private readonly _zLayersData = new Map<number, Set<Particle>>();
 
-  /**
-   *
-   * @param engine -
-   * @param container -
-   */
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
-    this._container = container;
+  constructor() {
     this._nextId = 0;
-    this._array = [];
-    this._zArray = [];
-    this._pool = [];
+    this._count = 0;
     this._limit = 0;
-    this._groupLimits = new Map<string, number>();
-    this._needsSort = false;
-    this._minZIndex = 0;
-    this._maxZIndex = 0;
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize);
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
-    this.checkParticlePositionPlugins = [];
-    this._particleResetPlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._updatePlugins = [];
   }
 
   get count(): number {
-    return this._array.length;
+    return this._count;
+  }
+
+  *[Symbol.iterator](): Generator<Particle, void, unknown> {
+    let current = this._head;
+
+    while (current) {
+      yield current;
+
+      current = current.next;
+    }
   }
 
   addParticle(
@@ -104,7 +96,20 @@ export class Particles {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
-    const limitMode = this._container.actualOptions.particles.number.limit.mode,
+    const loadParticlesOptions = this._loadParticlesOptions,
+      actualOptions = this._actualOptions;
+
+    if (!loadParticlesOptions || !actualOptions) {
+      return;
+    }
+
+    const canvasSize = this._canvasSize;
+
+    if (!canvasSize) {
+      return;
+    }
+
+    const limitMode = actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
       currentCount = this.count;
 
@@ -132,9 +137,71 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+      let particle: Particle;
 
-      particle.init(this._nextId, position, overrideOptions, group);
+      if (this._poolHead) {
+        particle = this._poolHead;
+        this._poolHead = particle.next;
+        particle.next = undefined;
+        particle.prev = undefined;
+      } else {
+        particle = new Particle();
+      }
+
+      const particlesOptions = loadParticlesOptions(this._actualOptions?.particles);
+
+      particle.init({
+        canvasSize,
+        dispatchEvent: (type, data) => {
+          this._dispatchEventCallback?.(type, data);
+        },
+        effectDrawers: this._effectDrawers ?? new Map<string, IEffectDrawer>(),
+        group,
+        id: this._nextId,
+        initRetina: () => {
+          this._initRetinaCallback?.(particle);
+        },
+        onDestroyCallback: () => {
+          if (particle.prev) {
+            particle.prev.next = particle.next;
+          } else {
+            this._head = particle.next;
+          }
+
+          if (particle.next) {
+            particle.next.prev = particle.prev;
+          } else {
+            this._tail = particle.prev;
+          }
+
+          if (particle.group !== undefined) {
+            const c = this._groupCounts.get(particle.group) ?? groupIncrement;
+
+            this._groupCounts.set(particle.group, c - groupIncrement);
+          }
+
+          this._removeFromZLayer(particle);
+
+          this._count--;
+
+          this._dispatchEventCallback?.(EventType.particleRemoved, {
+            particle: particle,
+          });
+
+          this._addToPool(particle);
+        },
+        overrideOptions,
+        particleCheckPositionPlugins: this.particleCheckPositionPlugins,
+        particleCreatedPlugins: this.particleCreatedPlugins,
+        particleDestroyedPlugins: this.particleDestroyedPlugins,
+        particlePositionPlugins: this.particlePositionPlugins,
+        particlesOptions,
+        position,
+        pixelRatio: this._pixelRatio,
+        shapeDrawers: this._shapeDrawers ?? new Map<string, IShapeDrawer>(),
+        updaters: this._updaters ?? [],
+        zLayers: this._zLayers,
+      });
 
       let canAdd = true;
 
@@ -143,21 +210,17 @@ export class Particles {
       }
 
       if (!canAdd) {
-        this._pool.push(particle);
-
+        this._addToPool(particle);
         return;
       }
 
-      this._array.push(particle);
-      this._zArray.push(particle);
+      this._pushActive(particle);
+      this._addToZLayer(particle);
 
       this._nextId++;
 
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
+      this._dispatchEventCallback?.(EventType.particleAdded, {
+        particle,
       });
 
       return particle;
@@ -172,77 +235,83 @@ export class Particles {
    * Removes all particles from the array
    */
   clear(): void {
-    this._array = [];
-    this._zArray = [];
+    this._head = undefined;
+    this._tail = undefined;
+    this._count = 0;
+    this._zLayersData.clear();
+    this._sortedZKeys = [];
   }
 
   destroy(): void {
-    const container = this._container;
-
-    for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.(container);
-    }
-
-    for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.(container);
-    }
-
-    this._array = [];
-    this._pool.length = 0;
-    this._zArray = [];
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
-    this.checkParticlePositionPlugins = [];
-    this._particleResetPlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._updatePlugins = [];
+    this.clear();
+    this._poolHead = undefined;
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
+    this.particleCheckPositionPlugins.length = 0;
+    this._particleResetPlugins.length = 0;
+    this._particleUpdatePlugins.length = 0;
+    this._postUpdatePlugins.length = 0;
+    this._postParticleUpdatePlugins.length = 0;
+    this._updatePlugins.length = 0;
   }
 
   drawParticles(delta: IDelta): void {
-    for (const particle of this._zArray) {
-      particle.draw(delta);
+    const drawParticleCallback = this._drawParticleCallback;
+
+    if (!drawParticleCallback) {
+      return;
     }
-  }
 
-  filter(condition: (particle: Particle) => boolean): Particle[] {
-    return this._array.filter(condition);
-  }
-
-  find(condition: (particle: Particle) => boolean): Particle | undefined {
-    return this._array.find(condition);
-  }
-
-  get(index: number): Particle | undefined {
-    return this._array[index];
+    for (const z of this._sortedZKeys) {
+      const layer = this._zLayersData.get(z);
+      if (layer) {
+        for (const particle of layer) {
+          drawParticleCallback(particle, delta);
+        }
+      }
+    }
   }
 
   /* --------- tsParticles functions - particles ----------- */
   async init(): Promise<void> {
-    const container = this._container,
-      options = container.actualOptions;
+    const options = this._actualOptions;
 
-    this._minZIndex = 0;
-    this._maxZIndex = 0;
-    this._needsSort = false;
-    this.checkParticlePositionPlugins = [];
-    this._updatePlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._particleResetPlugins = [];
-    this._postParticleUpdatePlugins = [];
+    if (!options) {
+      return;
+    }
 
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
+    this.particleCheckPositionPlugins.length = 0;
+    this._updatePlugins.length = 0;
+    this._particleUpdatePlugins.length = 0;
+    this._postUpdatePlugins.length = 0;
+    this._particleResetPlugins.length = 0;
+    this._postParticleUpdatePlugins.length = 0;
 
-    for (const plugin of container.plugins) {
+    this.grid = new SpatialHashGrid(spatialHashGridCellSize * this._pixelRatio);
+
+    for (const plugin of this._plugins) {
       if (plugin.redrawInit) {
         await plugin.redrawInit();
       }
 
+      if (plugin.particleCreated) {
+        this.particleCreatedPlugins.push(plugin);
+      }
+
+      if (plugin.particleDestroyed) {
+        this.particleDestroyedPlugins.push(plugin);
+      }
+
+      if (plugin.particlePosition) {
+        this.particlePositionPlugins.push(plugin);
+      }
+
       if (plugin.checkParticlePosition) {
-        this.checkParticlePositionPlugins.push(plugin);
+        this.particleCheckPositionPlugins.push(plugin);
       }
 
       if (plugin.update) {
@@ -266,19 +335,20 @@ export class Particles {
       }
     }
 
-    await this.initPlugins();
+    this._effectDrawers ??= new Map<string, IEffectDrawer>();
+    this._shapeDrawers ??= new Map<string, IShapeDrawer>();
 
-    for (const drawer of this.effectDrawers.values()) {
-      await drawer.init?.(container);
+    for (const drawer of this._effectDrawers.values()) {
+      await drawer.init?.();
     }
 
-    for (const drawer of this.shapeDrawers.values()) {
-      await drawer.init?.(container);
+    for (const drawer of this._shapeDrawers.values()) {
+      await drawer.init?.();
     }
 
     let handled = false;
 
-    for (const plugin of container.plugins) {
+    for (const plugin of this._plugins) {
       handled = plugin.particlesInitialization?.() ?? handled;
 
       if (handled) {
@@ -308,14 +378,6 @@ export class Particles {
     }
   }
 
-  async initPlugins(): Promise<void> {
-    const container = this._container;
-
-    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
-    this.updaters = await this._engine.getUpdaters(container, true);
-  }
-
   push(
     nb: number,
     position?: ICoordinates,
@@ -327,43 +389,65 @@ export class Particles {
     }
   }
 
-  async redraw(): Promise<void> {
+  async redraw(pixelRatio: number): Promise<void> {
     this.clear();
     await this.init();
 
-    this._container.canvas.drawParticles({ value: 0, factor: 0 });
+    this.setDensity(pixelRatio);
+    this._redrawCallback?.({ value: 0, factor: 0 });
   }
 
   remove(particle: Particle, group?: string, override?: boolean): void {
-    this.removeAt(this._array.indexOf(particle), undefined, group, override);
-  }
-
-  removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
-    if (index < minIndex || index > this.count) {
+    if (group && particle.group !== group) {
       return;
     }
 
-    let deleted = 0;
+    this._removeNode(particle, override);
+  }
 
-    for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this._removeParticle(i, group, override)) {
-        i--;
+  removeQuantity(quantity: number, group?: string, override?: boolean): void {
+    let current = this._head,
+      deleted = 0;
+
+    while (current && deleted < quantity) {
+      const next = current.next;
+
+      if (!group || current.group === group) {
+        this._removeNode(current, override);
+
         deleted++;
       }
+
+      current = next;
     }
   }
 
-  removeQuantity(quantity: number, group?: string): void {
-    this.removeAt(minIndex, quantity, group);
+  setActualOptions(options: Options): void {
+    this._actualOptions = options;
   }
 
-  setDensity(): void {
-    const options = this._container.actualOptions,
-      groups = options.particles.groups;
+  setCanvasSize(size: IDimension): void {
+    this._canvasSize = size;
+  }
+
+  setDensity(pixelRatio: number): void {
+    const loadParticlesOptions = this._loadParticlesOptions;
+
+    if (!loadParticlesOptions) {
+      return;
+    }
+
+    const options = this._actualOptions;
+
+    if (!options) {
+      return;
+    }
+
+    const groups = options.particles.groups;
 
     let pluginsCount = 0;
 
-    for (const plugin of this._container.plugins) {
+    for (const plugin of this._plugins) {
       if (plugin.particlesDensityCount) {
         pluginsCount += plugin.particlesDensityCount();
       }
@@ -376,25 +460,63 @@ export class Particles {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+      const groupDataOptions = loadParticlesOptions(groupData);
 
-      this._applyDensity(groupDataOptions, pluginsCount, group);
+      this._applyDensity(groupDataOptions, pixelRatio, pluginsCount, group);
     }
 
-    this._applyDensity(options.particles, pluginsCount);
+    this._applyDensity(options.particles, pixelRatio, pluginsCount);
   }
 
-  setLastZIndex(zIndex: number): void {
-    this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
+  setDispatchEventCallback(cb: (type: string, data?: unknown) => void): void {
+    this._dispatchEventCallback = cb;
+  }
+
+  setDrawParticleCallback(callback: (particle: Particle, delta: IDelta) => void): void {
+    this._drawParticleCallback = callback;
+  }
+
+  setEffectDrawers(drawers: Map<string, IEffectDrawer>): void {
+    this._effectDrawers = drawers;
+  }
+
+  setInitRetinaCallback(cb: (particle: Particle) => void): void {
+    this._initRetinaCallback = cb;
+  }
+
+  setLoadParticlesOptions(fn: (source?: RecursivePartial<IParticlesOptions>) => ParticlesOptions): void {
+    this._loadParticlesOptions = fn;
+  }
+
+  setPixelRatio(ratio: number): void {
+    this._pixelRatio = ratio;
+  }
+
+  setPlugins(plugins: IContainerPlugin[]): void {
+    this._plugins = plugins; // reference diretta, stessa reference che ha Container
+  }
+
+  setRedrawCallback(callback: (delta: IDelta) => void): void {
+    this._redrawCallback = callback;
   }
 
   setResizeFactor(factor: IDimension): void {
     this._resizeFactor = factor;
   }
 
-  update(delta: IDelta): void {
-    const particlesToDelete = new Set<Particle>();
+  setShapeDrawers(drawers: Map<string, IShapeDrawer>): void {
+    this._shapeDrawers = drawers;
+  }
 
+  setUpdaters(updaters: IParticleUpdater[]): void {
+    this._updaters = updaters;
+  }
+
+  setZLayers(zLayers: number): void {
+    this._zLayers = zLayers;
+  }
+
+  update(delta: IDelta): void {
     this.grid.clear();
 
     for (const plugin of this._updatePlugins) {
@@ -402,63 +524,51 @@ export class Particles {
     }
 
     const resizeFactor = this._resizeFactor;
+    let current = this._head;
 
-    for (const particle of this._array) {
-      if (resizeFactor && !particle.ignoresResizeRatio) {
-        particle.position.x *= resizeFactor.width;
-        particle.position.y *= resizeFactor.height;
-        particle.initialPosition.x *= resizeFactor.width;
-        particle.initialPosition.y *= resizeFactor.height;
+    while (current) {
+      const next = current.next; // Referenza sicura al prossimo prima di eventuali modifiche
+
+      if (resizeFactor && !current.ignoresResizeRatio) {
+        current.position.x *= resizeFactor.width;
+        current.position.y *= resizeFactor.height;
+        current.initialPosition.x *= resizeFactor.width;
+        current.initialPosition.y *= resizeFactor.height;
       }
 
-      particle.ignoresResizeRatio = false;
+      current.ignoresResizeRatio = false;
 
       for (const plugin of this._particleResetPlugins) {
-        plugin.particleReset?.(particle);
+        plugin.particleReset?.(current);
       }
 
       for (const plugin of this._particleUpdatePlugins) {
-        if (particle.destroyed) {
+        if (current.destroyed) {
           break;
         }
 
-        plugin.particleUpdate?.(particle, delta);
+        plugin.particleUpdate?.(current, delta);
       }
 
-      if (particle.destroyed) {
-        particlesToDelete.add(particle);
+      if (current.destroyed) {
+        this._removeNode(current);
+      } else {
+        this._updateZLayer(current);
 
-        continue;
+        this.grid.insert(current);
       }
 
-      this.grid.insert(particle);
-    }
-
-    if (particlesToDelete.size) {
-      const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
-
-      this._array = this.filter(checkDelete);
-      this._zArray = this._zArray.filter(checkDelete);
-
-      for (const particle of particlesToDelete) {
-        this._engine.dispatchEvent(EventType.particleRemoved, {
-          container: this._container,
-          data: {
-            particle,
-          },
-        });
-      }
-
-      this._addToPool(...particlesToDelete);
+      current = next;
     }
 
     for (const plugin of this._postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
-    // this loop is required to be done after mouse interactions
-    for (const particle of this._array) {
-      for (const updater of this.updaters) {
+    this._updaters ??= [];
+
+    for (const particle of this) {
+      for (const updater of this._updaters) {
         updater.update(particle, delta);
       }
 
@@ -470,31 +580,41 @@ export class Particles {
     }
 
     delete this._resizeFactor;
-
-    if (this._needsSort) {
-      const zArray = this._zArray;
-
-      zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
-
-      const firstItem = zArray[minIndex],
-        lastItem = zArray[zArray.length - lengthOffset];
-
-      if (!firstItem || !lastItem) {
-        return;
-      }
-
-      this._maxZIndex = firstItem.position.z;
-      this._minZIndex = lastItem.position.z;
-      this._needsSort = false;
-    }
   }
 
   private readonly _addToPool = (...particles: Particle[]): void => {
-    this._pool.push(...particles);
+    for (const p of particles) {
+      p.next = this._poolHead;
+      p.prev = undefined;
+
+      this._poolHead = p;
+    }
   };
+
+  /**
+   * @param particle -
+   */
+  private _addToZLayer(particle: Particle): void {
+    const z = Math.floor(particle.position.z);
+
+    let layer = this._zLayersData.get(z);
+
+    if (!layer) {
+      layer = new Set<Particle>();
+
+      this._zLayersData.set(z, layer);
+      this._sortedZKeys.push(z);
+      this._sortedZKeys.sort((a, b) => b - a); // Ordine decrescente per il rendering
+    }
+
+    layer.add(particle);
+
+    particle.currentZIndex = z;
+  }
 
   private readonly _applyDensity = (
     options: ParticlesOptions,
+    pixelRatio: number,
     pluginsCount: number,
     group?: string,
     groupOptions?: ParticlesOptions,
@@ -511,11 +631,11 @@ export class Particles {
       return;
     }
 
-    const densityFactor = this._initDensityFactor(numberOptions.density),
+    const densityFactor = this._initDensityFactor(numberOptions.density, pixelRatio),
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
-      particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
+      particlesCount = group === undefined ? this.count : (this._groupCounts.get(group) ?? empty);
 
     if (group === undefined) {
       this._limit = numberOptions.limit.value * densityFactor;
@@ -530,46 +650,83 @@ export class Particles {
     }
   };
 
-  private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = densityOptions => {
-    const container = this._container;
-
-    if (!container.canvas.element || !densityOptions.enable) {
+  private readonly _initDensityFactor: (densityOptions: IParticlesDensity, pixelRatio: number) => number = (
+    densityOptions,
+    pixelRatio,
+  ) => {
+    if (!densityOptions.enable) {
       return defaultDensityFactor;
     }
 
-    const canvas = container.canvas.element,
-      pxRatio = container.retina.pixelRatio;
+    const canvasSize = this._canvasSize;
 
-    return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
+    if (!canvasSize) {
+      return defaultDensityFactor;
+    }
+
+    return (
+      (canvasSize.width * canvasSize.height) / (densityOptions.height * densityOptions.width * pixelRatio ** squareExp)
+    );
   };
 
-  private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
-    const particle = this._array[index];
+  /**
+   * @param particle -
+   */
+  private _pushActive(particle: Particle): void {
+    if (this._tail) {
+      particle.prev = this._tail;
 
-    if (!particle) {
-      return false;
+      this._tail.next = particle;
+      this._tail = particle;
+    } else {
+      this._head = particle;
+      this._tail = particle;
     }
 
-    if (particle.group !== group) {
-      return false;
+    this._count++;
+
+    if (particle.group !== undefined) {
+      this._groupCounts.set(particle.group, (this._groupCounts.get(particle.group) ?? empty) + groupIncrement);
+    }
+  }
+
+  /**
+   * @param particle -
+   */
+  private _removeFromZLayer(particle: Particle): void {
+    const layer = this._zLayersData.get(particle.currentZIndex);
+
+    if (!layer) {
+      return;
     }
 
-    const zIdx = this._zArray.indexOf(particle);
+    layer.delete(particle);
 
-    this._array.splice(index, deleteCount);
-    this._zArray.splice(zIdx, deleteCount);
+    if (layer.size === empty) {
+      this._zLayersData.delete(particle.currentZIndex);
+      this._sortedZKeys = this._sortedZKeys.filter(z => z !== particle.currentZIndex);
+    }
+  }
 
+  /**
+   * @param particle -
+   * @param override -
+   */
+  private _removeNode(particle: Particle, override?: boolean): void {
     particle.destroy(override);
+  }
 
-    this._engine.dispatchEvent(EventType.particleRemoved, {
-      container: this._container,
-      data: {
-        particle,
-      },
-    });
+  /**
+   * @param particle -
+   */
+  private _updateZLayer(particle: Particle): void {
+    const z = Math.floor(particle.position.z);
 
-    this._addToPool(particle);
+    if (z === particle.currentZIndex) {
+      return;
+    }
 
-    return true;
-  };
+    this._removeFromZLayer(particle);
+    this._addToZLayer(particle);
+  }
 }

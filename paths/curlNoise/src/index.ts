@@ -11,12 +11,12 @@ export const curlNoisePathName = "curlNoise";
 export async function loadCurlNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: MoveEngine) => {
+  await engine.pluginManager.register(async (e: MoveEngine) => {
     const { ensureBaseMoverLoaded } = await import("@tsparticles/plugin-move");
 
     ensureBaseMoverLoaded(e);
 
-    e.addPathGenerator?.(curlNoisePathName, async container => {
+    e.pluginManager.addPathGenerator?.(curlNoisePathName, async container => {
       const { CurlNoiseGenerator } = await import("./CurlNoiseGenerator.js");
 
       return new CurlNoiseGenerator(container);

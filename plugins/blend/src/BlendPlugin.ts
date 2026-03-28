@@ -13,7 +13,7 @@ export class BlendPlugin implements IPlugin {
     return new BlendPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: BlendOptions, source?: RecursivePartial<IBlendOptions>): void {
+  loadOptions(_containerId: symbol, options: BlendOptions, source?: RecursivePartial<IBlendOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }
@@ -28,7 +28,7 @@ export class BlendPlugin implements IPlugin {
   }
 
   loadParticlesOptions(
-    _container: Container,
+    _containerId: symbol,
     options: BlendParticlesOptions,
     source?: RecursivePartial<IBlendParticlesOptions>,
   ): void {

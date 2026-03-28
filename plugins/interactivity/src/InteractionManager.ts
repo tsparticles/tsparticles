@@ -16,8 +16,8 @@ import type { IExternalInteractor } from "./Interfaces/IExternalInteractor.js";
 import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
-import type { InteractivityEngine } from "./types.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
+import type { InteractivityPluginManager } from "./types.js";
 import { InteractorType } from "./Enums/InteractorType.js";
 
 const clickRadius = 1,
@@ -31,11 +31,7 @@ export class InteractionManager {
 
   private readonly _clickHandlers;
 
-  /**
-   * The engine used for registering the interactions managers
-   * @internal
-   */
-  private readonly _engine;
+  private readonly _container;
 
   private readonly _eventListeners;
 
@@ -59,21 +55,21 @@ export class InteractionManager {
    */
   private _particleInteractors: IParticlesInteractor[];
 
+  private readonly _pluginManager;
+
   /**
    * The constructor of the interaction manager
-   * @param engine - the parent engine
+   * @param pluginManager - the plugin manager
    * @param container - the parent container
    */
-  constructor(
-    engine: InteractivityEngine,
-    private readonly container: Container,
-  ) {
-    this._engine = engine;
+  constructor(pluginManager: InteractivityPluginManager, container: Container) {
+    this._pluginManager = pluginManager;
+    this._container = container;
     this._interactors = [];
     this._externalInteractors = [];
     this._particleInteractors = [];
     this._clickHandlers = new Map<string, ContainerClickHandler>();
-    this._eventListeners = new InteractivityEventListeners(container, this);
+    this._eventListeners = new InteractivityEventListeners(this._container, this);
     this.interactivityData = {
       mouse: {
         clicking: false,
@@ -86,9 +82,9 @@ export class InteractionManager {
   }
 
   addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-    const { container, interactivityData } = this;
+    const { _container, interactivityData } = this;
 
-    if (container.destroyed) {
+    if (_container.destroyed) {
       return;
     }
 
@@ -99,21 +95,21 @@ export class InteractionManager {
     }
 
     const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
-        const pxRatio = container.retina.pixelRatio,
+        const pxRatio = _container.retina.pixelRatio,
           posRetina = {
             x: pos.x * pxRatio,
             y: pos.y * pxRatio,
           },
-          particles = container.particles.grid.queryCircle(posRetina, radius * pxRatio);
+          particles = _container.particles.grid.queryCircle(posRetina, radius * pxRatio);
 
         callback(e, particles);
       },
       clickHandler = (e: Event): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
@@ -126,7 +122,7 @@ export class InteractionManager {
         clickOrTouchHandler(e, pos, clickRadius);
       },
       touchStartHandler = (): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
@@ -134,14 +130,14 @@ export class InteractionManager {
         touchMoved = false;
       },
       touchMoveHandler = (): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
         touchMoved = true;
       },
       touchEndHandler = (e: Event): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
@@ -153,7 +149,7 @@ export class InteractionManager {
             return;
           }
 
-          const element = container.canvas.element,
+          const element = _container.canvas.domElement,
             canvasRect = element ? element.getBoundingClientRect() : undefined,
             pos = {
               x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
@@ -167,7 +163,7 @@ export class InteractionManager {
         touchMoved = false;
       },
       touchCancelHandler = (): void => {
-        if (container.destroyed) {
+        if (_container.destroyed) {
           return;
         }
 
@@ -194,9 +190,9 @@ export class InteractionManager {
   }
 
   clearClickHandlers(): void {
-    const { container, interactivityData } = this;
+    const { _container, interactivityData } = this;
 
-    if (container.destroyed) {
+    if (_container.destroyed) {
       return;
     }
 
@@ -222,7 +218,7 @@ export class InteractionManager {
   }
 
   handleClickMode(mode: string): void {
-    if (this.container.destroyed) {
+    if (this._container.destroyed) {
       return;
     }
 
@@ -256,7 +252,7 @@ export class InteractionManager {
   }
 
   async initInteractors(): Promise<void> {
-    const interactors = await this._engine.getInteractors?.(this.container, true);
+    const interactors = await this._pluginManager.getInteractors?.(this._container, true);
 
     if (!interactors) {
       return;
@@ -336,15 +332,15 @@ export class InteractionManager {
       }
     }
 
-    const container = this.container;
+    const container = this._container;
 
     container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
   private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
-    const { container } = this;
+    const { _container } = this;
 
-    if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
+    if (_container.destroyed || !_container.actualOptions.pauseOnOutsideViewport) {
       return;
     }
 
@@ -354,9 +350,9 @@ export class InteractionManager {
       }
 
       if (entry.isIntersecting) {
-        container.play();
+        _container.play();
       } else {
-        container.pause();
+        _container.pause();
       }
     }
   };

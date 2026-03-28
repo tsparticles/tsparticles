@@ -13,14 +13,14 @@ export interface IPlugin {
   readonly id: string;
 
   loadParticlesOptions?: (
-    container: Container,
+    containerId: symbol,
     options: ParticlesOptions,
     source?: RecursivePartial<IParticlesOptions>,
   ) => void;
 
   getPlugin(container: Container): Promise<IContainerPlugin>;
 
-  loadOptions(container: Container, options: Options, source?: ISourceOptions): void;
+  loadOptions(containerId: symbol, options: Options, source?: ISourceOptions): void;
 
   needsPlugin(options?: ISourceOptions): boolean;
 }

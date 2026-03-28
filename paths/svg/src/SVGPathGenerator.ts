@@ -23,8 +23,7 @@ enum SVGPathDirection {
   reverse,
 }
 
-const defaultSpeed = 1,
-  minStep = 0,
+const minStep = 0,
   minIndex = 0,
   minWidth = 0,
   minScale = 1;
@@ -77,7 +76,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
     particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
     particle.svgPathIndex ??= Math.floor(getRandom() * this._paths.length);
-    particle.svgSpeed ??= particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
+    particle.svgSpeed ??= particle.velocity.mult(particle.retina.moveSpeed * half).length;
     particle.svgStep ??= randomInRangeValue({ min: 0, max: this._paths[particle.svgPathIndex]!.length }) * pxRatio;
     particle.svgOffset ??= {
       width: randomInRangeValue({ min: -this._width * half, max: this._width * half }) * pxRatio,

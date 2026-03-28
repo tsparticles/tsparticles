@@ -22,10 +22,10 @@ import { TiltDirection } from "./TiltDirection.js";
 const maxAngle = 360;
 
 export class TiltUpdater implements IParticleUpdater {
-  private readonly container;
+  private readonly _container;
 
   constructor(container: Container) {
-    this.container = container;
+    this._container = container;
   }
 
   getTransformValues(particle: TiltParticle): Partial<IParticleTransformValues> {
@@ -79,7 +79,7 @@ export class TiltUpdater implements IParticleUpdater {
 
     if (tiltAnimation?.enable) {
       particle.tilt.decay = identity - getRangeValue(tiltAnimation.decay);
-      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this.container.retina.reduceFactor;
+      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this._container.retina.reduceFactor;
 
       if (!tiltAnimation.sync) {
         particle.tilt.velocity *= getRandom();

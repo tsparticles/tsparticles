@@ -11,6 +11,6 @@ export class ImagePreloaderInstance implements IContainerPlugin {
   }
 
   destroy(): void {
-    this._engine.images?.delete(this._container);
+    this._engine.images?.delete(this._container.id);
   }
 }

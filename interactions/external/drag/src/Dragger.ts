@@ -205,7 +205,10 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
       return;
     }
 
-    const candidates = this.container.particles.filter(p => this.isEnabled(interactivityData, p));
+    const { container } = this,
+      candidates = container.particles.grid.queryCircle(mousePos, container.retina.pixelRatio, p =>
+        this.isEnabled(interactivityData, p),
+      );
 
     let closest: Particle | undefined,
       closestDist = Infinity;

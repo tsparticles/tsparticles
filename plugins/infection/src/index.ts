@@ -9,7 +9,7 @@ declare const __VERSION__: string;
 export async function loadInfectionPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const [
       { ensureInteractivityPluginLoaded },
       { InfectionPlugin },
@@ -20,9 +20,9 @@ export async function loadInfectionPlugin(engine: Engine): Promise<void> {
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addPlugin(new InfectionPlugin());
+    e.pluginManager.addPlugin(new InfectionPlugin());
 
-    e.addInteractor?.("particlesInfection", async container => {
+    e.pluginManager.addInteractor?.("particlesInfection", async container => {
       const { ParticlesInfecter } = await import("./ParticlesInfecter.js");
 
       return new ParticlesInfecter(container);

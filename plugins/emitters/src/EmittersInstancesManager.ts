@@ -2,18 +2,18 @@ import { type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
-import type { EmittersEngine } from "./EmittersEngine.js";
+import type { EmittersPluginManager } from "./EmittersPluginManager.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 const defaultIndex = 0;
 
 export class EmittersInstancesManager {
   private readonly _containerArrays;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: EmittersEngine) {
-    this._containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
-    this._engine = engine;
+  constructor(pluginManager: EmittersPluginManager) {
+    this._containerArrays = new Map<symbol, EmitterInstance[]>();
+    this._pluginManager = pluginManager;
   }
 
   async addEmitter(
@@ -27,7 +27,7 @@ export class EmittersInstancesManager {
 
     const { EmitterInstance } = await import("./EmitterInstance.js"),
       emitter = new EmitterInstance(
-        this._engine,
+        this._pluginManager,
         container,
         (emitter: EmitterInstance) => {
           this.removeEmitter(container, emitter);
@@ -46,29 +46,29 @@ export class EmittersInstancesManager {
   clear(container: EmitterContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
   }
 
   getArray(container: EmitterContainer): EmitterInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this._containerArrays.get(container.id);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this._containerArrays.set(container.id, array);
     }
 
     return array;
   }
 
   initContainer(container: EmitterContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this._containerArrays.has(container.id)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
 
     container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined => {
       const array = this.getArray(container);
@@ -106,6 +106,10 @@ export class EmittersInstancesManager {
         emitter.externalPause();
       }
     };
+  }
+
+  removeContainer(container: EmitterContainer): void {
+    this._containerArrays.delete(container.id);
   }
 
   removeEmitter(container: EmitterContainer, emitter: EmitterInstance): void {

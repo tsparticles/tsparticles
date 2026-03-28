@@ -1,5 +1,6 @@
 import type {
   Container,
+  ContainerScopedMap,
   Engine,
   GenericInitializer,
   IOptions,
@@ -7,6 +8,7 @@ import type {
   Options,
   Particle,
   ParticlesOptions,
+  PluginManager,
   RecursivePartial,
 } from "@tsparticles/engine";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
@@ -45,7 +47,7 @@ export type InteractivityParticlesOptions = RecursivePartial<ParticlesOptions> &
  */
 export type InteractorInitializer = GenericInitializer<IInteractor>;
 
-export type InteractivityEngine = Engine & {
+export type InteractivityPluginManager = PluginManager & {
   addInteractor?: (name: string, interactorInitializer: InteractorInitializer) => void;
 
   getInteractors?: (container: Container, force?: boolean) => Promise<IInteractor[]>;
@@ -54,7 +56,11 @@ export type InteractivityEngine = Engine & {
     interactors?: Map<string, InteractorInitializer>;
   };
 
-  interactors?: Map<Container, IInteractor[]>;
+  interactors?: ContainerScopedMap<IInteractor[]>;
 
   setOnClickHandler?: (callback: (e: Event, particles?: Particle[]) => void) => void;
+};
+
+export type InteractivityEngine = Engine & {
+  pluginManager: InteractivityPluginManager;
 };

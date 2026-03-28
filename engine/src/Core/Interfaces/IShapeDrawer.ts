@@ -1,4 +1,3 @@
-import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particle.js";
 
@@ -19,9 +18,8 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
 
   /**
    * Shape destroy function
-   * @param container - the container initializing the shape
    */
-  destroy?: (container: Container) => void;
+  destroy?: () => void;
 
   /**
    * Shape draw function
@@ -38,9 +36,8 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
 
   /**
    * Shape init function
-   * @param container - the container initializing the shape
    */
-  init?: (container: Container) => Promise<void>;
+  init?: () => Promise<void>;
 
   /**
    * Shape load function
@@ -56,8 +53,7 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
 
   /**
    * Shape particle init function
-   * @param container - the container containing the shape
    * @param particle - the particle using the shape
    */
-  particleInit?: (container: Container, particle: TParticle) => void;
+  particleInit?: (particle: TParticle) => void;
 }

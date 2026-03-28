@@ -38,9 +38,15 @@ type ParticlesParticle = Particle & {
 };
 
 export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
     const { particle } = data,
-      { container } = particle;
+      container = this._container;
 
     if (!particle.particlesNextSpawn) {
       return;
@@ -64,7 +70,7 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
   }
 
-  particleInit(_container: Container, particle: ParticlesParticle): void {
+  particleInit(particle: ParticlesParticle): void {
     const effectData = particle.effectData as IParticlesData | undefined,
       spawnRate = getRangeValue(effectData?.spawn?.rate?.delay ?? defaultSpawnRate);
 

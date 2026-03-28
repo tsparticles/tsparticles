@@ -1,6 +1,6 @@
 import {
   type Container,
-  type Engine,
+  type EventDispatcher,
   type IContainerPlugin,
   type IPlugin,
   type RecursivePartial,
@@ -22,10 +22,10 @@ const generalFirstClickHandler = (): void => {
 export class SoundsPlugin implements IPlugin {
   readonly id = "sounds";
 
-  private readonly _engine;
+  private readonly _eventDispatcher;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(eventDispatcher: EventDispatcher) {
+    this._eventDispatcher = eventDispatcher;
 
     const listenerOptions = {
       capture: true,
@@ -39,10 +39,10 @@ export class SoundsPlugin implements IPlugin {
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { SoundsPluginInstance } = await import("./SoundsPluginInstance.js");
 
-    return new SoundsPluginInstance(container, this._engine);
+    return new SoundsPluginInstance(container, this._eventDispatcher);
   }
 
-  loadOptions(_container: Container, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
+  loadOptions(_containerId: symbol, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

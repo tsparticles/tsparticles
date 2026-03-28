@@ -13,7 +13,7 @@ export class InfectionPlugin implements IPlugin {
     return new InfectionPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
+  loadOptions(_containerId: symbol, options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

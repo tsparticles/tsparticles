@@ -16,7 +16,7 @@ export interface IDrawParticleParams {
   /**
    * The canvas context to draw on
    */
-  context: CanvasRenderingContext2D;
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
   /**
    * This variable contains the delta between the current frame and the previous frame
    */

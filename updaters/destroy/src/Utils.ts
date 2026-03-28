@@ -1,10 +1,10 @@
 import {
   AnimatableColor,
   type Container,
-  type Engine,
   type IParticlesOptions,
   type Particle,
   PixelMode,
+  type PluginManager,
   type RecursivePartial,
   getRangeValue,
   identity,
@@ -24,14 +24,14 @@ const defaultOffset = 0,
   minSplitCount = 0;
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param parent -
  * @param splitParticlesOptions -
  * @returns the added particle if any
  */
 function addSplitParticle(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: Container,
   parent: DestroyParticle,
   splitParticlesOptions?: RecursivePartial<IParticlesOptions>,
@@ -43,7 +43,7 @@ function addSplitParticle(
   }
 
   const splitOptions = destroyOptions.split,
-    options = loadParticlesOptions(engine, container, parent.options),
+    options = loadParticlesOptions(pluginManager, container.id, parent.options),
     fillOptions = itemFromSingleOrMultiple(options.fill),
     strokeOptions = itemFromSingleOrMultiple(options.stroke);
 
@@ -138,11 +138,11 @@ function addSplitParticle(
 
 /**
  *
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param particle -
  */
-export function split(engine: Engine, container: Container, particle: DestroyParticle): void {
+export function split(pluginManager: PluginManager, container: Container, particle: DestroyParticle): void {
   const destroyOptions = particle.options.destroy;
 
   if (!destroyOptions) {
@@ -163,6 +163,6 @@ export function split(engine: Engine, container: Container, particle: DestroyPar
     particlesSplitOptions = itemFromSingleOrMultiple(splitOptions.particles);
 
   for (let i = 0; i < rate; i++) {
-    addSplitParticle(engine, container, particle, particlesSplitOptions);
+    addSplitParticle(pluginManager, container, particle, particlesSplitOptions);
   }
 }

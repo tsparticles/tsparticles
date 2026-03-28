@@ -29,7 +29,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   private _draggingAbsorber: AbsorberInstance | undefined;
   private readonly _instancesManager;
 
-  constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
+  constructor(instancesManager: AbsorbersInstancesManager, container: AbsorberContainer) {
     super(container);
 
     this.maxDistance = 0;
@@ -73,7 +73,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   }
 
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
-    for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
+    for (const particle of this.container.particles) {
+      if (!this.isEnabled(interactivityData, particle)) {
+        continue;
+      }
+
       for (const absorber of this._instancesManager.getArray(this.container)) {
         if (absorber.options.draggable) {
           const mouse = interactivityData.mouse;

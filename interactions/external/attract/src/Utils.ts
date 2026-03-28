@@ -1,9 +1,9 @@
 import {
   type BaseRange,
   Circle,
-  type Engine,
   type ICoordinates,
   type Particle,
+  type PluginManager,
   Vector,
   clamp,
   getDistances,
@@ -18,7 +18,7 @@ const minFactor = 1,
 
 /**
  *
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param position -
  * @param attractRadius -
@@ -26,7 +26,7 @@ const minFactor = 1,
  * @param queryCb -
  */
 function processAttract(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: AttractContainer,
   position: ICoordinates,
   attractRadius: number,
@@ -45,7 +45,7 @@ function processAttract(
     const { dx, dy, distance } = getDistances(particle.position, position),
       velocity = attractOptions.speed * attractOptions.factor,
       attractFactor = clamp(
-        engine.getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
+        pluginManager.getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
         minFactor,
         attractOptions.maxSpeed,
       );
@@ -58,13 +58,13 @@ function processAttract(
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param interactivityData -
  * @param enabledCb -
  */
 export function clickAttract(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: AttractContainer,
   interactivityData: IInteractivityData,
   enabledCb: (particle: Particle) => boolean,
@@ -91,7 +91,7 @@ export function clickAttract(
     }
 
     processAttract(
-      engine,
+      pluginManager,
       container,
       mousePos,
       attractRadius,
@@ -104,13 +104,13 @@ export function clickAttract(
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param interactivityData -
  * @param enabledCb -
  */
 export function hoverAttract(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: AttractContainer,
   interactivityData: IInteractivityData,
   enabledCb: (particle: Particle) => boolean,
@@ -123,7 +123,7 @@ export function hoverAttract(
   }
 
   processAttract(
-    engine,
+    pluginManager,
     container,
     mousePos,
     attractRadius,

@@ -15,6 +15,7 @@ const gradientMin = 0,
 
 /**
  * Creates a gradient using two particles colors and opacity.
+ * @param container - The container.
  * @param context - The canvas context to draw on.
  * @param p1 - The first particle.
  * @param p2 - The second particle.
@@ -22,7 +23,8 @@ const gradientMin = 0,
  * @returns The gradient.
  */
 export function gradient(
-  context: CanvasRenderingContext2D,
+  container: ConnectContainer,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   p1: Particle,
   p2: Particle,
   opacity: number,
@@ -35,8 +37,7 @@ export function gradient(
     return;
   }
 
-  const { container } = p1,
-    sourcePos = p1.getPosition(),
+  const sourcePos = p1.getPosition(),
     destPos = p2.getPosition(),
     midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
     grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
@@ -56,7 +57,7 @@ export function gradient(
  * @param end -
  */
 export function drawConnectLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   width: number,
   lineStyle: CanvasGradient,
   begin: ICoordinates,
@@ -78,7 +79,7 @@ export function drawConnectLine(
  */
 export function lineStyle(
   container: ConnectContainer,
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   p1: Particle,
   p2: Particle,
 ): CanvasGradient | undefined {
@@ -89,7 +90,7 @@ export function lineStyle(
     return;
   }
 
-  return gradient(ctx, p1, p2, connectOptions.links.opacity);
+  return gradient(container, ctx, p1, p2, connectOptions.links.opacity);
 }
 
 /**

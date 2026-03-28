@@ -1,4 +1,4 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom } from "@tsparticles/engine";
+import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -37,32 +37,33 @@ const originCoordinate = 0,
   };
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
-  readonly container: Container;
-  field: Vector[][][];
-  readonly noiseGen: INoiseGenerator;
-  noiseW: number;
-  readonly options: INoiseFieldOptions;
+  private readonly _container: Container;
+  private _field: Vector[][][];
+  private readonly _noiseGen: INoiseGenerator;
+  private _noiseW: number;
+  private readonly _options: INoiseFieldOptions;
   private readonly _res: Vector;
 
   protected constructor(container: Container, noiseGen: INoiseGenerator) {
-    this.container = container;
-    this.noiseGen = noiseGen;
-    this.field = [];
-    this.noiseW = 0;
+    this._container = container;
+    this._noiseGen = noiseGen;
+    this._field = [];
+    this._noiseW = 0;
     this._res = Vector.origin;
-    this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
+    this._options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
   }
 
   generate(particle: Particle): Vector {
     const pos = particle.getPosition(),
-      { size } = this.options,
+      { size } = this._options,
+      sizeFactor = identity / size,
       point = {
-        x: Math.max(Math.floor(pos.x / size), originCoordinate),
-        y: Math.max(Math.floor(pos.y / size), originCoordinate),
-        z: Math.max(Math.floor(pos.z / size), originCoordinate),
+        x: Math.max(Math.floor(pos.x * sizeFactor), originCoordinate),
+        y: Math.max(Math.floor(pos.y * sizeFactor), originCoordinate),
+        z: Math.max(Math.floor(pos.z * sizeFactor), originCoordinate),
       },
-      { field } = this,
-      fieldPoint = field[point.x]?.[point.y]?.[point.z];
+      { _field } = this,
+      fieldPoint = _field[point.x]?.[point.y]?.[point.z];
 
     if (fieldPoint) {
       this._res.x = fieldPoint.x;
@@ -86,66 +87,66 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   update(): void {
     this._calculateField();
 
-    this.noiseW += this.options.increment;
+    this._noiseW += this._options.increment;
 
-    if (!this.options.draw) {
+    if (!this._options.draw) {
       return;
     }
 
-    this.container.canvas.draw(ctx => {
+    this._container.canvas.draw(ctx => {
       this._drawField(ctx);
     });
   }
 
   private _calculateField(): void {
-    const { field, noiseGen, options, noiseW } = this,
-      lengthFactor = options.factor.length,
-      angleFactor = options.factor.angle;
+    const { _field, _noiseGen, _options, _noiseW } = this,
+      lengthFactor = _options.factor.length,
+      angleFactor = _options.factor.angle;
 
-    for (let x = 0; x < options.columns; x++) {
-      const xColumn = field[x];
+    for (let x = 0; x < _options.columns; x++) {
+      const xColumn = _field[x];
 
       if (!xColumn) {
         continue;
       }
 
-      for (let y = 0; y < options.rows; y++) {
+      for (let y = 0; y < _options.rows; y++) {
         const yColumn = xColumn[y];
 
         if (!yColumn) {
           continue;
         }
 
-        for (let z = 0; z < options.layers; z++) {
+        for (let z = 0; z < _options.layers; z++) {
           const cell = yColumn[z];
 
           if (!cell) {
             continue;
           }
 
-          cell.length = noiseGen.noise4d(
-            x * lengthFactor + options.offset.x,
-            y * lengthFactor + options.offset.y,
-            z * lengthFactor + options.offset.z,
-            noiseW,
+          cell.length = _noiseGen.noise4d(
+            x * lengthFactor + _options.offset.x,
+            y * lengthFactor + _options.offset.y,
+            z * lengthFactor + _options.offset.z,
+            _noiseW,
           );
-          cell.angle = noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * doublePI;
+          cell.angle = _noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, _noiseW) * doublePI;
         }
       }
     }
   }
 
-  private _drawField(ctx: CanvasRenderingContext2D): void {
-    const { field, options } = this;
+  private _drawField(ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D): void {
+    const { _field, _options } = this;
 
-    for (let x = 0; x < options.columns; x++) {
-      const xColumn = field[x];
+    for (let x = 0; x < _options.columns; x++) {
+      const xColumn = _field[x];
 
       if (!xColumn) {
         continue;
       }
 
-      for (let y = 0; y < options.rows; y++) {
+      for (let y = 0; y < _options.rows; y++) {
         const yColumn = xColumn[y];
 
         if (!yColumn) {
@@ -165,14 +166,14 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
           transformDefaultValues.b,
           transformDefaultValues.c,
           transformDefaultValues.d,
-          x * this.options.size,
-          y * this.options.size,
+          x * this._options.size,
+          y * this._options.size,
         );
         ctx.rotate(angle);
         ctx.strokeStyle = "white";
         ctx.beginPath();
         ctx.moveTo(originCoordinate, originCoordinate);
-        ctx.lineTo(originCoordinate, this.options.size * length);
+        ctx.lineTo(originCoordinate, this._options.size * length);
         ctx.stroke();
         ctx.setTransform(
           transformDefaultValues.a,
@@ -187,9 +188,9 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   }
 
   private _initField(): void {
-    const { columns, rows, layers } = this.options;
+    const { columns, rows, layers } = this._options;
 
-    this.field = new Array<Vector[][]>(columns);
+    this._field = new Array<Vector[][]>(columns);
 
     for (let x = 0; x < columns; x++) {
       const newX = new Array<Vector[]>(rows);
@@ -204,49 +205,47 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
         newX[y] = newY;
       }
 
-      this.field[x] = newX;
+      this._field[x] = newX;
     }
   }
 
   private _resetField(): void {
-    const container = this.container,
+    const container = this._container,
       sourceOptions = container.actualOptions.particles.move.path.options,
-      { options } = this;
+      { _options } = this;
 
-    options.width = container.canvas.size.width;
-    options.height = container.canvas.size.height;
-
-    options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
-    options.increment =
+    _options.width = container.canvas.size.width;
+    _options.height = container.canvas.size.height;
+    _options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
+    _options.increment =
       (sourceOptions["increment"] as number) > empty
         ? (sourceOptions["increment"] as number)
         : defaultOptions.increment;
-    options.draw = !!sourceOptions["draw"];
+    _options.draw = !!sourceOptions["draw"];
 
     const offset = sourceOptions["offset"] as IOffsetValues | undefined;
 
-    options.offset.x = offset?.x ?? defaultOptions.offset.x;
-    options.offset.y = offset?.y ?? defaultOptions.offset.y;
-    options.offset.z = offset?.z ?? defaultOptions.offset.z;
+    _options.offset.x = offset?.x ?? defaultOptions.offset.x;
+    _options.offset.y = offset?.y ?? defaultOptions.offset.y;
+    _options.offset.z = offset?.z ?? defaultOptions.offset.z;
 
     const factor = sourceOptions["factor"] as IFactorValues | undefined;
 
-    options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
-    options.factor.length = factor?.length ?? defaultOptions.factor.length;
+    _options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
+    _options.factor.length = factor?.length ?? defaultOptions.factor.length;
+    _options.seed = sourceOptions["seed"] as number | undefined;
 
-    options.seed = sourceOptions["seed"] as number | undefined;
+    this._noiseGen.seed(_options.seed ?? getRandom());
 
-    this.noiseGen.seed(options.seed ?? getRandom());
-
-    options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
-    options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
-    options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
+    _options.columns = Math.floor(_options.width / _options.size) + optionsSizeOffset;
+    _options.rows = Math.floor(_options.height / _options.size) + optionsSizeOffset;
+    _options.layers = Math.floor(container.zLayers / _options.size) + optionsSizeOffset;
 
     this._initField();
   }
 
   private _setup(): void {
-    this.noiseW = 0;
+    this._noiseW = 0;
 
     this._resetField();
 

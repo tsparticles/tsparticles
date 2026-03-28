@@ -25,7 +25,7 @@ export class ExportImagePluginInstance implements IContainerPlugin {
   }
 
   private readonly _exportImage: (data: IExportImageData) => Promise<Blob | undefined> = async data => {
-    const element = this._container.canvas.element;
+    const element = this._container.canvas.domElement;
 
     if (!element) {
       return;

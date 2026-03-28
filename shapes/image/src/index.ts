@@ -12,12 +12,12 @@ function addLoadImageToEngine(engine: ImageEngine): void {
   engine.getImages ??= (container: ImageContainer): IImage[] => {
     engine.images ??= new Map();
 
-    let images = engine.images.get(container);
+    let images = engine.images.get(container.id);
 
     if (!images) {
       images = [];
 
-      engine.images.set(container, images);
+      engine.images.set(container.id, images);
     }
 
     return images;
@@ -54,7 +54,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       containerImages.push(image);
 
-      engine.images.set(container, containerImages);
+      engine.images.set(container.id, containerImages);
 
       let imageFunc: (image: IImage) => Promise<void>;
 
@@ -88,16 +88,16 @@ declare const __VERSION__: string;
 export async function loadImageShape(engine: ImageEngine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { ImagePreloaderPlugin } = await import("./ImagePreloader.js");
 
     addLoadImageToEngine(e);
 
-    e.addPlugin(new ImagePreloaderPlugin(e));
-    e.addShape(shapeTypes, async () => {
+    e.pluginManager.addPlugin(new ImagePreloaderPlugin(e));
+    e.pluginManager.addShape(shapeTypes, async container => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 
-      return new ImageDrawer(e);
+      return new ImageDrawer(e, container);
     });
   });
 }

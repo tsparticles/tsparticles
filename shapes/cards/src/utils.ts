@@ -41,7 +41,7 @@ const cardWidthRatio = (double * double) / triple,
  * @param canvasSettings -
  */
 export function drawRoundedCard(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   radius: number,
   cardData: ICardData,
   hdr: boolean,

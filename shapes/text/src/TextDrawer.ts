@@ -19,12 +19,19 @@ const firstIndex = 0,
  * Multiline text drawer
  */
 export class TextDrawer implements IShapeDrawer<TextParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   draw(data: IShapeDrawData<TextParticle>): void {
     drawText(data);
   }
 
-  async init(container: Container): Promise<void> {
-    const options = container.actualOptions;
+  async init(): Promise<void> {
+    const container = this._container,
+      options = container.actualOptions;
 
     if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
       const shapeOptions = validTypes
@@ -42,10 +49,9 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
 
   /**
    * Loads the text shape to the given particle
-   * @param _container - the particles container
    * @param particle - the particle loading the text shape
    */
-  particleInit(_container: Container, particle: TextParticle): void {
+  particleInit(particle: TextParticle): void {
     if (!particle.shape || !validTypes.includes(particle.shape)) {
       return;
     }

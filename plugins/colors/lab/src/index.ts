@@ -9,9 +9,9 @@ declare const __VERSION__: string;
 export async function loadLabColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { LabColorManager } = await import("./LabColorManager.js");
 
-    e.addColorManager("lab", new LabColorManager());
+    e.pluginManager.addColorManager("lab", new LabColorManager());
   });
 }

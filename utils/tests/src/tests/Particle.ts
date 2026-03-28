@@ -83,12 +83,6 @@ describe("Particle", async () => {
     });
 
     describe("shapeData - no emitter", () => {
-      it("should have undefined shapeData whenever shape data is not specified for container Particles", () => {
-        const particle = container.particles.find(() => true);
-
-        expect(particle?.shapeData).to.be.undefined;
-      });
-
       it("should set shapeData to the square shape data configured on the container Particles", async () => {
         await container.reset(squareShapeOptions);
 

@@ -10,7 +10,7 @@ declare const __VERSION__: string;
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: EmittersEngine) => {
+  await engine.pluginManager.register(async (e: EmittersEngine) => {
     const [
         { ensureInteractivityPluginLoaded },
         { ShapeManager },
@@ -22,18 +22,18 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
         import("./EmittersInstancesManager.js"),
         import("./EmittersPlugin.js"),
       ]),
-      instancesManager = new EmittersInstancesManager(e);
+      instancesManager = new EmittersInstancesManager(e.pluginManager);
 
     ensureInteractivityPluginLoaded(e);
 
-    e.emitterShapeManager ??= new ShapeManager();
-    e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
-      e.emitterShapeManager?.addShapeGenerator(name, generator);
+    e.pluginManager.emitterShapeManager ??= new ShapeManager();
+    e.pluginManager.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
+      e.pluginManager.emitterShapeManager?.addShapeGenerator(name, generator);
     };
 
-    e.addPlugin(new EmittersPlugin(instancesManager));
+    e.pluginManager.addPlugin(new EmittersPlugin(instancesManager));
 
-    e.addInteractor?.("externalEmitters", async container => {
+    e.pluginManager.addInteractor?.("externalEmitters", async container => {
       const { EmittersInteractor } = await import("./EmittersInteractor.js");
 
       return new EmittersInteractor(instancesManager, container as EmitterContainer);
@@ -45,7 +45,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
  * @param e -
  */
 export function ensureEmittersPluginLoaded(e: EmittersEngine): void {
-  if (!e.addEmitterShapeGenerator) {
+  if (!e.pluginManager.addEmitterShapeGenerator) {
     throw new Error("tsParticles Emitters Plugin is not loaded");
   }
 }

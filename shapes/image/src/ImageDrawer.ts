@@ -1,12 +1,5 @@
-import {
-  type Container,
-  type IShapeDrawData,
-  type IShapeDrawer,
-  defaultAlpha,
-  defaultRatio,
-  double,
-} from "@tsparticles/engine";
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
+import { type IShapeDrawData, type IShapeDrawer, defaultAlpha, defaultRatio, double } from "@tsparticles/engine";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 import { drawGif } from "./GifUtils/Utils.js";
@@ -17,14 +10,17 @@ const sides = 12;
  * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer<ImageParticle> {
-  private readonly _engine: ImageEngine;
+  private readonly _container;
+  private readonly _engine;
 
   /**
    * Image drawer constructor, initializing the image set collection
    * @param engine -
+   * @param container -
    */
-  constructor(engine: ImageEngine) {
+  constructor(engine: ImageEngine, container: ImageContainer) {
     this._engine = engine;
+    this._container = container;
   }
 
   /**
@@ -33,6 +29,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    */
   draw(data: IShapeDrawData<ImageParticle>): void {
     const { context, radius, particle, opacity } = data,
+      container = this._container,
       image = particle.image,
       element = image?.element;
 
@@ -43,7 +40,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data, particle.container.canvas.settings);
+      drawGif(data, container.canvas.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {
@@ -67,8 +64,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     return sides;
   }
 
-  async init(container: ImageContainer): Promise<void> {
-    const options = container.actualOptions;
+  async init(): Promise<void> {
+    const container = this._container,
+      options = container.actualOptions;
 
     if (!options.preload || !this._engine.loadImage) {
       return;
@@ -84,8 +82,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
   }
 
   loadShape(particle: ImageParticle): void {
-    const { container } = particle;
-
     if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;
     }
@@ -96,7 +92,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const images = this._engine.getImages?.(container),
+    const container = this._container,
+      images = this._engine.getImages?.(container),
       image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (image) {
@@ -110,15 +107,15 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
   /**
    * Loads the image shape to the given particle
-   * @param container - the particles container
    * @param particle - the particle loading the image shape
    */
-  particleInit(container: Container, particle: ImageParticle): void {
+  particleInit(particle: ImageParticle): void {
     if (particle.shape !== "image" && particle.shape !== "images") {
       return;
     }
 
-    const images = this._engine.getImages?.(container),
+    const container = this._container,
+      images = this._engine.getImages?.(container),
       imageData = particle.shapeData as IImageShape | undefined;
 
     if (!imageData) {
@@ -136,7 +133,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
     if (image.loading) {
       setTimeout((): void => {
-        this.particleInit(container, particle);
+        this.particleInit(particle);
       });
 
       return;

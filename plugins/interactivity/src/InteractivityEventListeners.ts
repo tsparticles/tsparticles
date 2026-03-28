@@ -3,7 +3,6 @@ import {
   type ICoordinates,
   double,
   executeOnSingleOrMultiple,
-  lengthOffset,
   manageListener,
   visibilityChangeEvent,
 } from "@tsparticles/engine";
@@ -22,7 +21,8 @@ import type { InteractionManager } from "./InteractionManager.js";
 import type { InteractivityContainer } from "./types.js";
 import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
-const touchDelay = 500;
+const touchDelay = 500,
+  lengthOffset = 1;
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;
@@ -218,7 +218,7 @@ export class InteractivityEventListeners {
       interactionManager = this._interactionManager,
       options = container.actualOptions,
       detectType = options.interactivity?.detectsOn,
-      canvasEl = container.canvas.element;
+      canvasEl = container.canvas.domElement;
 
     let mouseLeaveTmpEvent = mouseLeaveEvent;
 
@@ -311,7 +311,7 @@ export class InteractivityEventListeners {
       interactionManager = this._interactionManager,
       options = container.actualOptions,
       interactivity = interactionManager.interactivityData,
-      canvasEl = container.canvas.element;
+      canvasEl = container.canvas.domElement;
 
     if (!interactivity.element) {
       return;

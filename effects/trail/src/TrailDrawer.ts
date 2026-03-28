@@ -58,10 +58,17 @@ const defaultTransform = {
 };
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
     const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
+      container = this._container,
       diameter = drawRadius * double,
-      pxRatio = particle.container.retina.pixelRatio,
+      pxRatio = container.retina.pixelRatio,
       trail = particle.trail;
 
     if (!trail || !particle.trailLength) {
@@ -92,8 +99,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     const trailLength = Math.min(trail.length, pathLength),
       canvasSize = {
-        width: particle.container.canvas.size.width * drawScale + diameter,
-        height: particle.container.canvas.size.height * drawScale + diameter,
+        width: container.canvas.size.width * drawScale + diameter,
+        height: container.canvas.size.height * drawScale + diameter,
       };
 
     context.save();
@@ -163,10 +170,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     context.restore();
   }
 
-  particleInit(container: Container, particle: TrailParticle): void {
+  particleInit(particle: TrailParticle): void {
     particle.trail = [];
 
-    const effectData = particle.effectData as ITrailData | undefined;
+    const effectData = particle.effectData as ITrailData | undefined,
+      container = this._container;
 
     particle.trailFade = effectData?.fade ?? true;
     particle.trailLength = getRangeValue(effectData?.length ?? defaultLength) * container.retina.pixelRatio;

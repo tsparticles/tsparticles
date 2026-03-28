@@ -10,24 +10,22 @@ declare const __VERSION__: string;
 export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const interactivityEngine = e as InteractivityEngine,
-      { InteractivityPlugin } = await import("./InteractivityPlugin.js");
+      pluginManager = interactivityEngine.pluginManager;
 
-    interactivityEngine.addPlugin(new InteractivityPlugin(interactivityEngine));
-
-    interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
-    interactivityEngine.interactors ??= new Map<Container, IInteractor[]>();
+    pluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
+    pluginManager.interactors ??= new Map();
 
     /**
      * Adds an interaction manager to the current collection
      * @param name - the interaction manager name
      * @param interactorInitializer - the interaction manager initializer
      */
-    interactivityEngine.addInteractor = (name: string, interactorInitializer: InteractorInitializer): void => {
-      interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
+    pluginManager.addInteractor = (name: string, interactorInitializer: InteractorInitializer): void => {
+      pluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
 
-      interactivityEngine.initializers.interactors.set(name, interactorInitializer);
+      pluginManager.initializers.interactors.set(name, interactorInitializer);
     };
 
     /**
@@ -36,14 +34,14 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
      * @param force - if true reloads the interaction managers collection for the given container
      * @returns the array of interaction managers for the given container
      */
-    interactivityEngine.getInteractors = async (container: Container, force = false): Promise<IInteractor[]> => {
-      interactivityEngine.interactors ??= new Map<Container, IInteractor[]>();
-      interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
+    pluginManager.getInteractors = async (container: Container, force = false): Promise<IInteractor[]> => {
+      pluginManager.interactors ??= new Map();
+      pluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
 
       return getItemsFromInitializer(
         container,
-        interactivityEngine.interactors,
-        interactivityEngine.initializers.interactors,
+        pluginManager.interactors,
+        pluginManager.initializers.interactors,
         force,
       );
     };
@@ -52,7 +50,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
      * Adds another click handler to all the loaded {@link Container} objects.
      * @param callback - The function called after the click event is fired
      */
-    interactivityEngine.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
+    pluginManager.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
       const { items } = interactivityEngine;
 
       if (!items.length) {
@@ -65,6 +63,10 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
         interactivityContainer.addClickHandler?.(callback);
       });
     };
+
+    const { InteractivityPlugin } = await import("./InteractivityPlugin.js");
+
+    pluginManager.addPlugin(new InteractivityPlugin(pluginManager));
   });
 }
 
@@ -72,7 +74,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
  * @param e -
  */
 export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
-  if (!e.addInteractor) {
+  if (!e.pluginManager.addInteractor) {
     throw new Error("tsParticles Interactivity Plugin is not loaded");
   }
 }

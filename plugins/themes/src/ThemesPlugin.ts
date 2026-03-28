@@ -1,10 +1,4 @@
-import {
-  type Container,
-  type IContainerPlugin,
-  type IPlugin,
-  type RecursivePartial,
-  safeMatchMedia,
-} from "@tsparticles/engine";
+import { type IContainerPlugin, type IPlugin, type RecursivePartial, safeMatchMedia } from "@tsparticles/engine";
 import type { IThemesOptions, ThemesContainer, ThemesOptions } from "./types.js";
 import { Theme } from "./Options/Classes/Theme.js";
 import { ThemeMode } from "./ThemeMode.js";
@@ -20,7 +14,7 @@ export class ThemesPlugin implements IPlugin {
     return new ThemesPluginInstance(container);
   }
 
-  loadOptions(_container: Container, options: ThemesOptions, source?: RecursivePartial<IThemesOptions>): void {
+  loadOptions(_containerId: symbol, options: ThemesOptions, source?: RecursivePartial<IThemesOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

@@ -1,9 +1,9 @@
 import {
   Circle,
-  type Engine,
   type ICoordinates,
   type IDimension,
   type IRgb,
+  type PluginManager,
   type RecursivePartial,
   getDistances,
   getLinkColor,
@@ -38,13 +38,13 @@ function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDi
 }
 
 export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
-  private readonly _engine;
   private _maxDistance;
+  private readonly _pluginManager;
 
-  constructor(container: LinkContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: LinkContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._maxDistance = 0;
   }
 
@@ -57,8 +57,10 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
   }
 
   init(): void {
-    this.container.particles.linksColor = undefined;
-    this.container.particles.linksColors = new Map();
+    const { particles } = this.container;
+
+    particles.linksColor = undefined;
+    particles.linksColors = new Map();
   }
 
   interact(p1: LinkParticle): void {
@@ -183,7 +185,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       return;
     }
 
-    linkColor = getLinkRandomColor(this._engine, linksOptions.color, linksOptions.blink, linksOptions.consent);
+    linkColor = getLinkRandomColor(this._pluginManager, linksOptions.color, linksOptions.blink, linksOptions.consent);
 
     if (linksOptions.id === undefined) {
       container.particles.linksColor = linkColor;

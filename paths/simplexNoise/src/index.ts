@@ -11,12 +11,12 @@ export const simplexNoisePathName = "simplexNoise";
 export async function loadSimplexNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: MoveEngine) => {
+  await engine.pluginManager.register(async (e: MoveEngine) => {
     const { ensureBaseMoverLoaded } = await import("@tsparticles/plugin-move");
 
     ensureBaseMoverLoaded(e);
 
-    e.addPathGenerator?.(simplexNoisePathName, async container => {
+    e.pluginManager.addPathGenerator?.(simplexNoisePathName, async container => {
       const { SimplexNoiseGenerator } = await import("./SimplexNoiseGenerator.js");
 
       return new SimplexNoiseGenerator(container);

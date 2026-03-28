@@ -64,7 +64,7 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
  * @param stroke -
  */
 function drawTextLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   line: string,
   size: number,
   index: number,

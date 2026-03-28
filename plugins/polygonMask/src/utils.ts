@@ -1,6 +1,6 @@
 import {
-  type Engine,
   type ICoordinates,
+  type PluginManager,
   Vector,
   double,
   getDistances,
@@ -25,20 +25,20 @@ const squareExp = 2,
   };
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param context -
  * @param rawData -
  * @param stroke -
  * @param hdr -
  */
 export function drawPolygonMask(
-  engine: Engine,
-  context: CanvasRenderingContext2D,
+  pluginManager: PluginManager,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   rawData: ICoordinates[],
   stroke: IPolygonMaskDrawStroke,
   hdr = false,
 ): void {
-  const color = rangeColorToRgb(engine, stroke.color);
+  const color = rangeColorToRgb(pluginManager, stroke.color);
 
   if (!color) {
     return;
@@ -65,7 +65,7 @@ export function drawPolygonMask(
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param context -
  * @param path -
  * @param stroke -
@@ -73,8 +73,8 @@ export function drawPolygonMask(
  * @param hdr -
  */
 export function drawPolygonMaskPath(
-  engine: Engine,
-  context: CanvasRenderingContext2D,
+  pluginManager: PluginManager,
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   path: Path2D,
   stroke: IPolygonMaskDrawStroke,
   position: ICoordinates,
@@ -96,7 +96,7 @@ export function drawPolygonMaskPath(
     position.y,
   );
 
-  const color = rangeColorToRgb(engine, stroke.color);
+  const color = rangeColorToRgb(pluginManager, stroke.color);
 
   if (!color) {
     return;

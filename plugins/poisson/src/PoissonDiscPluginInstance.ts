@@ -54,7 +54,7 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
 
         await this._initData();
 
-        await container.particles.redraw();
+        await container.particles.redraw(container.retina.pixelRatio);
       })();
     }, timeout);
   }

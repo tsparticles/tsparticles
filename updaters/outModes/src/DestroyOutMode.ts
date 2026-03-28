@@ -15,8 +15,10 @@ const minVelocity = 0;
 
 export class DestroyOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
+  private readonly _container;
 
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this._container = container;
     this.modes = [OutMode.destroy];
   }
 
@@ -30,7 +32,7 @@ export class DestroyOutMode implements IOutModeManager {
       return;
     }
 
-    const container = this.container;
+    const container = this._container;
 
     switch (particle.outType) {
       case ParticleOutType.normal:

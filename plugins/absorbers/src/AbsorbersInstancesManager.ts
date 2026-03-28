@@ -1,4 +1,4 @@
-import { type Engine, type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type PluginManager, type RecursivePartial, isNumber } from "@tsparticles/engine";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -7,11 +7,11 @@ const defaultIndex = 0;
 
 export class AbsorbersInstancesManager {
   private readonly _containerArrays;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
-    this._engine = engine;
+  constructor(pluginManager: PluginManager) {
+    this._containerArrays = new Map<symbol, AbsorberInstance[]>();
+    this._pluginManager = pluginManager;
   }
 
   async addAbsorber(
@@ -20,7 +20,7 @@ export class AbsorbersInstancesManager {
     position?: ICoordinates,
   ): Promise<AbsorberInstance> {
     const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-      absorber = new AbsorberInstance(this._engine, container, options, position),
+      absorber = new AbsorberInstance(this._pluginManager, container, options, position),
       array = this.getArray(container);
 
     array.push(absorber);
@@ -31,29 +31,29 @@ export class AbsorbersInstancesManager {
   clear(container: AbsorberContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
   }
 
   getArray(container: AbsorberContainer): AbsorberInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this._containerArrays.get(container.id);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this._containerArrays.set(container.id, array);
     }
 
     return array;
   }
 
   initContainer(container: AbsorberContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this._containerArrays.has(container.id)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this._containerArrays.set(container.id, []);
 
     container.getAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined => {
       const array = this.getArray(container);
@@ -78,5 +78,9 @@ export class AbsorbersInstancesManager {
     if (index >= defaultIndex) {
       this.getArray(container).splice(index, deleteCount);
     }
+  }
+
+  removeContainer(container: AbsorberContainer): void {
+    this._containerArrays.delete(container.id);
   }
 }

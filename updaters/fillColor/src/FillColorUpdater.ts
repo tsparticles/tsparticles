@@ -1,9 +1,9 @@
 import {
   type Container,
-  type Engine,
   type IDelta,
   type IParticleUpdater,
   type Particle,
+  type PluginManager,
   getHslAnimationFromHsl,
   getRangeValue,
   itemFromSingleOrMultiple,
@@ -14,11 +14,11 @@ import type { FillParticle } from "./Types.js";
 
 export class FillColorUpdater implements IParticleUpdater {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
+  constructor(pluginManager: PluginManager, container: Container) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   init(particle: FillParticle): void {
@@ -35,7 +35,7 @@ export class FillColorUpdater implements IParticleUpdater {
     particle.fillOpacity = getRangeValue(fill.opacity);
     particle.fillAnimation = fill.color.animation;
 
-    const fillHslColor = rangeColorToHsl(this._engine, fill.color);
+    const fillHslColor = rangeColorToHsl(this._pluginManager, fill.color);
 
     if (fillHslColor) {
       particle.fillColor = getHslAnimationFromHsl(fillHslColor, particle.fillAnimation, container.retina.reduceFactor);

@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadPoissonDiscPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { PoissonDiscPlugin } = await import("./PoissonDiscPlugin.js");
 
-    e.addPlugin(new PoissonDiscPlugin());
+    e.pluginManager.addPlugin(new PoissonDiscPlugin());
   });
 }

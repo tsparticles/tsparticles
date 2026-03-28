@@ -1,7 +1,5 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
-import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
-import type { Engine } from "../../../Core/Engine.js";
 import { Fill } from "./Fill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
@@ -10,6 +8,7 @@ import { Opacity } from "./Opacity/Opacity.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
+import type { PluginManager } from "../../../Core/Utils/PluginManager.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
@@ -37,12 +36,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   stroke: SingleOrMultiple<Stroke>;
   readonly zIndex;
 
-  private readonly _container;
-  private readonly _engine;
+  private readonly _containerId?: symbol;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container?: Container) {
-    this._engine = engine;
-    this._container = container;
+  constructor(pluginManager: PluginManager, containerId?: symbol) {
+    this._pluginManager = pluginManager;
+    this._containerId = containerId;
 
     this.bounce = new ParticlesBounce();
     this.effect = new Effect();
@@ -114,14 +113,14 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
       });
     }
 
-    if (this._container) {
-      for (const plugin of this._engine.plugins) {
+    if (this._containerId) {
+      for (const plugin of this._pluginManager.plugins) {
         if (plugin.loadParticlesOptions) {
-          plugin.loadParticlesOptions(this._container, this, data);
+          plugin.loadParticlesOptions(this._containerId, this, data);
         }
       }
 
-      const updaters = this._engine.updaters.get(this._container);
+      const updaters = this._pluginManager.updaters.get(this._containerId);
 
       if (updaters) {
         for (const updater of updaters) {

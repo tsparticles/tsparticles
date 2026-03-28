@@ -1,8 +1,7 @@
-import type { Container } from "../Core/Container.js";
-import type { Engine } from "../Core/Engine.js";
 import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 
 /**
@@ -19,17 +18,17 @@ export function loadOptions<T>(
 }
 
 /**
- * @param engine -
- * @param container -
+ * @param pluginManager -
+ * @param containerId -
  * @param sourceOptionsArr -
  * @returns the newly created {@link ParticlesOptions} object
  */
 export function loadParticlesOptions(
-  engine: Engine,
-  container: Container,
+  pluginManager: PluginManager,
+  containerId: symbol,
   ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
 ): ParticlesOptions {
-  const options = new ParticlesOptions(engine, container);
+  const options = new ParticlesOptions(pluginManager, containerId);
 
   loadOptions(options, ...sourceOptionsArr);
 

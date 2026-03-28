@@ -1,5 +1,5 @@
+import type { EmitterOptions, IEmitterOptions } from "./types.js";
 import {
-  type Container,
   type IContainerPlugin,
   type IOptions,
   type IPlugin,
@@ -7,7 +7,6 @@ import {
   executeOnSingleOrMultiple,
   isArray,
 } from "@tsparticles/engine";
-import type { EmitterOptions, IEmitterOptions } from "./types.js";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
@@ -29,7 +28,7 @@ export class EmittersPlugin implements IPlugin {
     return new EmittersPluginInstance(this._instancesManager, container);
   }
 
-  loadOptions(_container: Container, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
+  loadOptions(_containerId: symbol, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
     if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
       return;
     }

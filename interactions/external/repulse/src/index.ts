@@ -9,15 +9,15 @@ declare const __VERSION__: string;
 export async function loadExternalRepulseInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalRepulse", async container => {
+    e.pluginManager.addInteractor?.("externalRepulse", async container => {
       const { Repulser } = await import("./Repulser.js");
 
-      return new Repulser(engine, container);
+      return new Repulser(e.pluginManager, container);
     });
   });
 }

@@ -1,12 +1,11 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
-import type { Container } from "../../Core/Container.js";
-import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import type { PluginManager } from "../../Core/Utils/PluginManager.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
@@ -47,12 +46,12 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   style: RecursivePartial<CSSStyleDeclaration>;
   zLayers;
 
-  private readonly _container;
-  private readonly _engine;
+  private readonly _containerId: symbol;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
-    this._container = container;
+  constructor(pluginManager: PluginManager, containerId: symbol) {
+    this._pluginManager = pluginManager;
+    this._containerId = containerId;
     this.autoPlay = true;
     this.background = new Background();
     this.clear = true;
@@ -63,7 +62,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.duration = 0;
     this.fpsLimit = 120;
     this.hdr = true;
-    this.particles = loadParticlesOptions(this._engine, this._container);
+    this.particles = loadParticlesOptions(this._pluginManager, this._containerId);
     this.pauseOnBlur = true;
     this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
@@ -167,13 +166,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       this.smooth = data.smooth;
     }
 
-    this._engine.plugins.forEach(plugin => {
-      plugin.loadOptions(this._container, this, data);
+    this._pluginManager.plugins.forEach(plugin => {
+      plugin.loadOptions(this._containerId, this, data);
     });
   }
 
   private readonly _importPalette: (palette: string) => void = palette => {
-    const paletteData = this._engine.getPalette(palette);
+    const paletteData = this._pluginManager.getPalette(palette);
 
     if (!paletteData) {
       return;
@@ -196,17 +195,17 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             : undefined,
           enable: paletteData.fill,
         },
-        stroke: !paletteData.fill
-          ? paletteData.colors.map(color => ({
+        stroke: paletteData.fill
+          ? undefined
+          : paletteData.colors.map(color => ({
               color: { value: color },
               width: 1,
-            }))
-          : undefined,
+            })),
       },
     });
   };
 
   private readonly _importPreset: (preset: string) => void = preset => {
-    this.load(this._engine.getPreset(preset));
+    this.load(this._pluginManager.getPreset(preset));
   };
 }

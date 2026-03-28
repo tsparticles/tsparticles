@@ -1,7 +1,7 @@
 import {
-  type Engine,
   type IContainerPlugin,
   type IRgb,
+  type PluginManager,
   getLinkColor as engineGetLinkColor,
   getRandom,
   getRangeValue,
@@ -23,16 +23,16 @@ const minOpacity = 0,
 export class LinkInstance implements IContainerPlugin {
   private readonly _colorCache = new Map<string, string>();
   private readonly _container: LinkContainer;
-  private readonly _engine: Engine;
   private readonly _freqs: IParticlesFrequencies;
+  private readonly _pluginManager;
 
-  constructor(container: LinkContainer, engine: Engine) {
+  constructor(container: LinkContainer, pluginManager: PluginManager) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._freqs = { links: new Map(), triangles: new Map() };
   }
 
-  drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
+  drawParticle(context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, particle: LinkParticle): void {
     const { links, options } = particle;
 
     if (!links?.length || !options.links) {
@@ -86,7 +86,9 @@ export class LinkInstance implements IContainerPlugin {
         colorLine = link.color;
 
       const twinkleRgb =
-        twinkle?.enable && getRandom() < twinkle.frequency ? rangeColorToRgb(this._engine, twinkle.color) : undefined;
+        twinkle?.enable && getRandom() < twinkle.frequency
+          ? rangeColorToRgb(this._pluginManager, twinkle.color)
+          : undefined;
 
       if (twinkle && twinkleRgb) {
         colorLine = twinkleRgb;
@@ -189,7 +191,7 @@ export class LinkInstance implements IContainerPlugin {
     p1Destinations: Set<number>,
     pos1: ReturnType<LinkParticle["getPosition"]>,
     pos2: ReturnType<LinkParticle["getPosition"]>,
-    context: CanvasRenderingContext2D,
+    context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
   ): void {
     const p2 = link.destination,
       triangleOptions = options.links?.triangles;
@@ -220,7 +222,7 @@ export class LinkInstance implements IContainerPlugin {
       }
 
       const opacityTriangle = triangleOptions.opacity ?? (link.opacity + vertex.opacity) * half,
-        colorTriangle = rangeColorToRgb(this._engine, triangleOptions.color) ?? link.color;
+        colorTriangle = rangeColorToRgb(this._pluginManager, triangleOptions.color) ?? link.color;
 
       if (!colorTriangle || opacityTriangle <= minOpacity) {
         continue;
