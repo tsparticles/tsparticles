@@ -391,7 +391,7 @@ export class Particle {
     this.slow.inRange = false;
 
     const container = this._container,
-      shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
+      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
 
@@ -399,7 +399,7 @@ export class Particle {
       plugin.particleDestroyed?.(this, override);
     }
 
-    for (const updater of container.particles.updaters) {
+    for (const updater of container.particleUpdaters) {
       updater.particleDestroyed?.(this, override);
     }
 
@@ -551,13 +551,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this._container.particles.effectDrawers.keys()];
+      const availableEffects = [...this._container.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this._container.particles.shapeDrawers.keys()];
+      const availableShapes = [...this._container.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -614,7 +614,7 @@ export class Particle {
     let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
 
     if (this.effect) {
-      effectDrawer = container.particles.effectDrawers.get(this.effect);
+      effectDrawer = container.effectDrawers.get(this.effect);
     }
 
     if (effectDrawer?.loadEffect) {
@@ -622,7 +622,7 @@ export class Particle {
     }
 
     if (this.shape) {
-      shapeDrawer = container.particles.shapeDrawers.get(this.shape);
+      shapeDrawer = container.shapeDrawers.get(this.shape);
     }
 
     if (shapeDrawer?.loadShape) {
@@ -637,7 +637,7 @@ export class Particle {
 
     this.spawning = false;
 
-    for (const updater of particles.updaters) {
+    for (const updater of container.particleUpdaters) {
       updater.init(this);
     }
 
@@ -701,7 +701,7 @@ export class Particle {
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
-    for (const updater of this._container.particles.updaters) {
+    for (const updater of this._container.particleUpdaters) {
       updater.reset?.(this);
     }
   }

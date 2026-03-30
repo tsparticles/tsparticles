@@ -17,11 +17,8 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -36,13 +33,7 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 export class Particles {
   checkParticlePositionPlugins: IContainerPlugin[];
 
-  effectDrawers: Map<string, IEffectDrawer>;
-
   grid;
-
-  shapeDrawers: Map<string, IShapeDrawer>;
-
-  updaters: IParticleUpdater[];
 
   /**
    * All the particles used in canvas
@@ -83,9 +74,6 @@ export class Particles {
     this._minZIndex = 0;
     this._maxZIndex = 0;
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
@@ -174,22 +162,9 @@ export class Particles {
   }
 
   destroy(): void {
-    const container = this._container;
-
-    for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.(container);
-    }
-
-    for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.(container);
-    }
-
     this._array = [];
     this._pool.length = 0;
     this._zArray = [];
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
@@ -263,13 +238,13 @@ export class Particles {
       }
     }
 
-    await this.initPlugins();
+    await this._container.initDrawersAndUpdaters();
 
-    for (const drawer of this.effectDrawers.values()) {
+    for (const drawer of this._container.effectDrawers.values()) {
       await drawer.init?.(container);
     }
 
-    for (const drawer of this.shapeDrawers.values()) {
+    for (const drawer of this._container.shapeDrawers.values()) {
       await drawer.init?.(container);
     }
 
@@ -303,14 +278,6 @@ export class Particles {
         this.addParticle();
       }
     }
-  }
-
-  async initPlugins(): Promise<void> {
-    const container = this._container;
-
-    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
-    this.updaters = await this._engine.getUpdaters(container, true);
   }
 
   push(
@@ -443,7 +410,7 @@ export class Particles {
         continue;
       }
 
-      for (const updater of this.updaters) {
+      for (const updater of this._container.particleUpdaters) {
         updater.update(particle, delta);
       }
 

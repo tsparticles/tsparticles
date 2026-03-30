@@ -13,7 +13,10 @@ import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
+import { type IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import { type IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
+import { type IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
@@ -79,6 +82,8 @@ export class Container {
    */
   destroyed;
 
+  effectDrawers: Map<string, IEffectDrawer>;
+
   /**
    * The container fps limit, coming from options
    */
@@ -100,6 +105,8 @@ export class Container {
   readonly particleDestroyedPlugins: IContainerPlugin[];
   readonly particlePositionPlugins: IContainerPlugin[];
 
+  particleUpdaters: IParticleUpdater[];
+
   /**
    * The particles manager
    */
@@ -111,6 +118,8 @@ export class Container {
   readonly plugins: IContainerPlugin[];
 
   readonly retina;
+
+  shapeDrawers: Map<string, IShapeDrawer>;
 
   /**
    * Check if the particles container is started
@@ -168,6 +177,9 @@ export class Container {
     this.pageHidden = false;
     this._sourceOptions = sourceOptions;
     this._initialSourceOptions = sourceOptions;
+    this.effectDrawers = new Map();
+    this.shapeDrawers = new Map();
+    this.particleUpdaters = [];
     this.retina = new Retina(this);
     this.canvas = new Canvas(this, this._engine);
     this.particles = new Particles(this._engine, this);
@@ -230,10 +242,21 @@ export class Container {
     this.particles.destroy();
     this.canvas.destroy();
 
+    for (const [, effectDrawer] of this.effectDrawers) {
+      effectDrawer.destroy?.(this);
+    }
+
+    for (const [, shapeDrawer] of this.shapeDrawers) {
+      shapeDrawer.destroy?.(this);
+    }
+
     for (const plugin of this.plugins) {
       plugin.destroy?.();
     }
 
+    this.effectDrawers = new Map();
+    this.shapeDrawers = new Map();
+    this.particleUpdaters = [];
     this.plugins.length = 0;
 
     this._engine.clearPlugins(this);
@@ -321,7 +344,7 @@ export class Container {
       allContainerPlugins.set(plugin, containerPlugin);
     }
 
-    await this.particles.initPlugins();
+    await this.initDrawersAndUpdaters();
 
     /* options settings */
     this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
@@ -384,6 +407,12 @@ export class Container {
     }
 
     this.dispatchEvent(EventType.particlesSetup);
+  }
+
+  async initDrawersAndUpdaters(): Promise<void> {
+    this.effectDrawers = await this._engine.getEffectDrawers(this, true);
+    this.shapeDrawers = await this._engine.getShapeDrawers(this, true);
+    this.particleUpdaters = await this._engine.getUpdaters(this, true);
   }
 
   /**
