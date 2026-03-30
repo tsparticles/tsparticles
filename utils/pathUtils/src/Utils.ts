@@ -1,3 +1,4 @@
+import type { CanvasContextType } from "@tsparticles/engine";
 import type { IPathData } from "./IPathData.js";
 import { SegmentType } from "./SegmentType.js";
 
@@ -11,11 +12,7 @@ const firstIndex = 0,
  * @param radius -
  * @param path -
  */
-export function drawPath(
-  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
-  radius: number,
-  path: IPathData,
-): void {
+export function drawPath(ctx: CanvasContextType, radius: number, path: IPathData): void {
   const firstSegment = path.segments[firstIndex];
 
   if (!firstSegment) {

@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type IContainerPlugin,
   type IRgb,
   type PluginManager,
@@ -32,7 +33,7 @@ export class LinkInstance implements IContainerPlugin {
     this._freqs = { links: new Map(), triangles: new Map() };
   }
 
-  drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
+  drawParticle(context: CanvasContextType, particle: LinkParticle): void {
     const { links, options } = particle;
 
     if (!links?.length || !options.links) {
@@ -191,7 +192,7 @@ export class LinkInstance implements IContainerPlugin {
     p1Destinations: Set<number>,
     pos1: ReturnType<LinkParticle["getPosition"]>,
     pos2: ReturnType<LinkParticle["getPosition"]>,
-    context: CanvasRenderingContext2D,
+    context: CanvasContextType,
   ): void {
     const p2 = link.destination,
       triangleOptions = options.links?.triangles;

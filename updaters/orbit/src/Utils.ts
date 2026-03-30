@@ -1,4 +1,12 @@
-import { type IHsl, type Particle, degToRad, double, getStyleFromHsl, half } from "@tsparticles/engine";
+import {
+  type CanvasContextType,
+  type IHsl,
+  type Particle,
+  degToRad,
+  double,
+  getStyleFromHsl,
+  half,
+} from "@tsparticles/engine";
 import type { OrbitContainer } from "./Types.js";
 
 const minWidth = 0;
@@ -18,7 +26,7 @@ const minWidth = 0;
  */
 export function drawEllipse(
   container: OrbitContainer,
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   particle: Particle,
   fillColorValue: IHsl | undefined,
   radius: number,

@@ -1,4 +1,13 @@
-import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
+import {
+  type CanvasContextType,
+  type Container,
+  type Particle,
+  Vector,
+  deepExtend,
+  doublePI,
+  getRandom,
+  identity,
+} from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
@@ -136,7 +145,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
   }
 
-  private _drawField(ctx: CanvasRenderingContext2D): void {
+  private _drawField(ctx: CanvasContextType): void {
     const { field, options } = this;
 
     for (let x = 0; x < options.columns; x++) {

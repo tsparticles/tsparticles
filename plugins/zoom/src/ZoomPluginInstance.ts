@@ -1,4 +1,4 @@
-import { type IContainerPlugin, type IShapeDrawData, defaultZoom } from "@tsparticles/engine";
+import { type CanvasContextType, type IContainerPlugin, type IShapeDrawData, defaultZoom } from "@tsparticles/engine";
 import type { ZoomContainer } from "./types.js";
 import { ZoomEventListeners } from "./ZoomEventListeners.js";
 
@@ -43,7 +43,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
     );
   }
 
-  drawSettingsCleanup(context: CanvasRenderingContext2D): void {
+  drawSettingsCleanup(context: CanvasContextType): void {
     const zoom = this._container.canvas.zoom;
 
     if (zoom === defaultZoom) {
@@ -53,7 +53,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
     context.restore();
   }
 
-  drawSettingsSetup(context: CanvasRenderingContext2D): void {
+  drawSettingsSetup(context: CanvasContextType): void {
     const zoom = this._container.canvas.zoom;
 
     if (zoom === defaultZoom) {

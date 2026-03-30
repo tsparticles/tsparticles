@@ -1,6 +1,7 @@
 import { clear, drawParticle, drawParticlePlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { defaultCompositeValue, defaultTransformValue, minimumSize, zIndexFactorOffset } from "./Utils/Constants.js";
 import { getStyleFromHsl, rangeColorToHsl } from "../Utils/ColorUtils.js";
+import type { CanvasContextType } from "../Types/CanvasContextType.js";
 import type { CanvasManager } from "./CanvasManager.js";
 import type { Container } from "./Container.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -45,7 +46,7 @@ export class RenderManager {
   /**
    * The particles canvas context
    */
-  private _context: CanvasRenderingContext2D | null;
+  private _context: CanvasContextType | null;
   private _contextSettings?: CanvasRenderingContext2DSettings;
   private _drawParticlePlugins: IContainerPlugin[];
   private _drawParticlesCleanupPlugins: IContainerPlugin[];
@@ -145,7 +146,7 @@ export class RenderManager {
    * @param cb -
    * @returns the result of the callback
    */
-  draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
+  draw<T>(cb: (context: CanvasContextType) => T): T | undefined {
     const ctx = this._context;
 
     if (!ctx) {
@@ -383,7 +384,7 @@ export class RenderManager {
     });
   }
 
-  setContext(context: CanvasRenderingContext2D | null): void {
+  setContext(context: CanvasContextType | null): void {
     this._context = context;
 
     if (this._context) {
@@ -408,7 +409,7 @@ export class RenderManager {
   };
 
   private readonly _applyPreDrawUpdaters: (
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasContextType,
     particle: Particle,
     radius: number,
     zOpacity: number,

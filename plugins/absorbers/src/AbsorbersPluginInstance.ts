@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type IContainerPlugin,
   type IDelta,
   type Particle,
@@ -21,7 +22,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     this._instancesManager.initContainer(container);
   }
 
-  draw(context: CanvasRenderingContext2D): void {
+  draw(context: CanvasContextType): void {
     for (const absorber of this._instancesManager.getArray(this._container)) {
       absorber.draw(context);
     }

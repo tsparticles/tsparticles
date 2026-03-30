@@ -1,3 +1,4 @@
+import type { CanvasContextType } from "../../Types/CanvasContextType.js";
 import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
@@ -6,7 +7,7 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
   /**
    * the canvas context for drawing
    */
-  context: CanvasRenderingContext2D;
+  context: CanvasContextType;
 
   /**
    * this variable contains the delta between the current frame and the previous frame

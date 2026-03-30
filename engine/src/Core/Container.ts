@@ -1,14 +1,7 @@
 import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
-import {
-  defaultFps,
-  defaultFpsLimit,
-  millisecondsToSeconds,
-  minFpsLimit,
-  removeDeleteCount,
-  removeMinIndex,
-} from "./Utils/Constants.js";
+import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "./Utils/Constants.js";
 import { CanvasManager } from "./CanvasManager.js";
-import type { Engine } from "./Engine.js";
+import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -24,6 +17,14 @@ import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
+
+interface ContainerParams {
+  dispatchCallback: (eventType: string, args?: CustomEventArgs) => void;
+  id: string;
+  onDestroy: (remove: boolean) => void;
+  pluginManager: PluginManager;
+  sourceOptions?: ISourceOptions;
+}
 
 /**
  * Checks if the container is still usable
@@ -132,12 +133,12 @@ export class Container {
   private _delay: number;
   private _delayTimeout?: number | NodeJS.Timeout;
   private readonly _delta: IDelta = { value: 0, factor: 0 };
+  private readonly _dispatchCallback;
   private _drawAnimationFrame?: number;
   /**
    * The container duration
    */
   private _duration;
-  private readonly _engine;
   private readonly _eventListeners;
   private _firstStart;
   private _initialSourceOptions;
@@ -149,19 +150,23 @@ export class Container {
    * The container lifetime
    */
   private _lifeTime;
+  private readonly _onDestroy;
   private _options;
   private _paused;
+  private readonly _pluginManager;
   private _smooth;
   private _sourceOptions;
 
   /**
    * This is the core class, create an instance to have a new working particles manager
-   * @param engine - the engine used by container
-   * @param id - the id to identify this instance
-   * @param sourceOptions - the options to load
+   * @param params -
    */
-  constructor(engine: Engine, id: string, sourceOptions?: ISourceOptions) {
-    this._engine = engine;
+  constructor(params: ContainerParams) {
+    const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
+
+    this._pluginManager = pluginManager;
+    this._dispatchCallback = dispatchCallback;
+    this._onDestroy = onDestroy;
     this.id = Symbol(id);
     this.fpsLimit = 120;
     this.hdr = false;
@@ -182,15 +187,15 @@ export class Container {
     this.shapeDrawers = new Map();
     this.particleUpdaters = [];
     this.retina = new Retina(this);
-    this.canvas = new CanvasManager(this._engine.pluginManager, this);
-    this.particles = new ParticlesManager(this._engine.pluginManager, this);
+    this.canvas = new CanvasManager(this._pluginManager, this);
+    this.particles = new ParticlesManager(this._pluginManager, this);
     this.plugins = [];
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
     this.particlePositionPlugins = [];
     /* tsParticles variables with default values */
-    this._options = loadContainerOptions(this._engine.pluginManager, this);
-    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this);
+    this._options = loadContainerOptions(this._pluginManager, this);
+    this.actualOptions = loadContainerOptions(this._pluginManager, this);
 
     /* ---------- tsParticles - start ------------ */
     this._eventListeners = new EventListeners(this);
@@ -260,24 +265,17 @@ export class Container {
     this.particleUpdaters = [];
     this.plugins.length = 0;
 
-    this._engine.pluginManager.clearPlugins(this);
+    this._pluginManager.clearPlugins(this);
 
     this.destroyed = true;
 
-    if (remove) {
-      const mainArr = this._engine.items,
-        idx = mainArr.indexOf(this);
-
-      if (idx >= removeMinIndex) {
-        mainArr.splice(idx, removeDeleteCount);
-      }
-    }
+    this._onDestroy(remove);
 
     this.dispatchEvent(EventType.containerDestroyed);
   }
 
   dispatchEvent(type: string, data?: unknown): void {
-    this._engine.dispatchEvent(type, {
+    this._dispatchCallback(type, {
       container: this,
       data,
     });
@@ -335,7 +333,7 @@ export class Container {
 
     const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
 
-    for (const plugin of this._engine.pluginManager.plugins) {
+    for (const plugin of this._pluginManager.plugins) {
       const containerPlugin = await plugin.getPlugin(this);
 
       if (containerPlugin.preInit) {
@@ -348,13 +346,8 @@ export class Container {
     await this.initDrawersAndUpdaters();
 
     /* options settings */
-    this._options = loadContainerOptions(
-      this._engine.pluginManager,
-      this,
-      this._initialSourceOptions,
-      this.sourceOptions,
-    );
-    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
+    this._options = loadContainerOptions(this._pluginManager, this, this._initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this._pluginManager, this, this._options);
 
     this.plugins.length = 0;
     this.particleDestroyedPlugins.length = 0;
@@ -416,7 +409,7 @@ export class Container {
   }
 
   async initDrawersAndUpdaters(): Promise<void> {
-    const pluginManager = this._engine.pluginManager;
+    const pluginManager = this._pluginManager;
 
     this.effectDrawers = await pluginManager.getEffectDrawers(this, true);
     this.shapeDrawers = await pluginManager.getShapeDrawers(this, true);
@@ -508,13 +501,8 @@ export class Container {
 
     this._initialSourceOptions = sourceOptions;
     this._sourceOptions = sourceOptions;
-    this._options = loadContainerOptions(
-      this._engine.pluginManager,
-      this,
-      this._initialSourceOptions,
-      this.sourceOptions,
-    );
-    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
+    this._options = loadContainerOptions(this._pluginManager, this, this._initialSourceOptions, this.sourceOptions);
+    this.actualOptions = loadContainerOptions(this._pluginManager, this, this._options);
 
     return this.refresh();
   }

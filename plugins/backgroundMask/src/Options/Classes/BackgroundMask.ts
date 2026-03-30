@@ -9,7 +9,7 @@ import type { IBackgroundMaskCover } from "../Interfaces/IBackgroundMaskCover.js
 export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroundMask> {
   /**
    * Canvas composite operation
-   * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+   * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasContextType/globalCompositeOperation
    */
   composite: GlobalCompositeOperation;
 

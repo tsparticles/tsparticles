@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type Container,
   type IShapeDrawData,
   type IShapeDrawer,
@@ -113,8 +114,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       fullSize = maxSize + padding,
       canvasSize = fullSize * double;
 
-    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
-      context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
+    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas, context: CanvasContextType | null;
 
     if (typeof OffscreenCanvas === "undefined") {
       const canvas = safeDocument().createElement("canvas");

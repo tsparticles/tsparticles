@@ -13,6 +13,7 @@ import {
   none,
   one,
   removeDeleteCount,
+  removeMinIndex,
 } from "./Utils/Constants.js";
 import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
@@ -56,7 +57,7 @@ async function getDataFromUrl(
   const response = await fetch(url);
 
   if (response.ok) {
-    return (await response.json()) as SingleOrMultiple<ISourceOptions>;
+    return (await response.json()) as SingleOrMultiple<Readonly<ISourceOptions>>;
   }
 
   getLogger().error(`${response.status.toString()} while retrieving config file`);
@@ -107,7 +108,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
       return domContainer;
     }
 
-    domContainer = documentSafe.createElement("div");
+    domContainer = documentSafe.createElement("canvas");
 
     domContainer.id = id;
     domContainer.dataset[generatedAttribute] = generatedTrue;
@@ -222,7 +223,26 @@ export class Engine {
       currentOptions = itemFromSingleOrMultiple(options, index),
       { items } = this,
       oldIndex = items.findIndex(v => v.id.description === id),
-      newItem = new Container(this, id, currentOptions);
+      newItem = new Container({
+        dispatchCallback: (eventType, args): void => {
+          this.dispatchEvent(eventType, args);
+        },
+        id,
+        onDestroy: (remove): void => {
+          if (!remove) {
+            return;
+          }
+
+          const mainArr = this.items,
+            idx = mainArr.indexOf(newItem);
+
+          if (idx >= removeMinIndex) {
+            mainArr.splice(idx, removeDeleteCount);
+          }
+        },
+        pluginManager: this.pluginManager,
+        sourceOptions: currentOptions,
+      });
 
     if (oldIndex >= loadMinIndex) {
       const old = this.item(oldIndex),

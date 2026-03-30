@@ -1,4 +1,4 @@
-import { type ICoordinates, type IDimension, getRandom, half } from "@tsparticles/engine";
+import { type CanvasContextType, type ICoordinates, type IDimension, getRandom, half } from "@tsparticles/engine";
 
 const maxAttempts = 100;
 
@@ -11,7 +11,7 @@ const maxAttempts = 100;
  * @returns the random point within the path
  */
 export function generateRandomPointWithinPath(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   path: Path2D,
   center: ICoordinates,
   size: IDimension,
@@ -43,7 +43,7 @@ export function generateRandomPointWithinPath(
  * @returns the random point on the perimeter of the path
  */
 export function generateRandomPointOnPathPerimeter(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   path: Path2D,
   center: ICoordinates,
   size: IDimension,

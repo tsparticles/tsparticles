@@ -1,4 +1,11 @@
-import { type ICoordinates, doublePI, getStyleFromRgb, half, quarter } from "@tsparticles/engine";
+import {
+  type CanvasContextType,
+  type ICoordinates,
+  doublePI,
+  getStyleFromRgb,
+  half,
+  quarter,
+} from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
 
 const gradientPos = {
@@ -16,7 +23,7 @@ export const lightMode = "light";
  * @param context -
  * @param mousePos -
  */
-export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+export function drawLight(container: LightContainer, context: CanvasContextType, mousePos: ICoordinates): void {
   const lightOptions = container.actualOptions.interactivity?.modes.light?.area;
 
   if (!lightOptions) {
@@ -55,7 +62,7 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
  */
 export function drawParticleShadow(
   container: LightContainer,
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   particle: LightParticle,
   mousePos: ICoordinates,
 ): void {

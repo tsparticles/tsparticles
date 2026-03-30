@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type ICoordinates,
   type PluginManager,
   Vector,
@@ -33,7 +34,7 @@ const squareExp = 2,
  */
 export function drawPolygonMask(
   pluginManager: PluginManager,
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   rawData: ICoordinates[],
   stroke: IPolygonMaskDrawStroke,
   hdr = false,
@@ -74,7 +75,7 @@ export function drawPolygonMask(
  */
 export function drawPolygonMaskPath(
   pluginManager: PluginManager,
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   path: Path2D,
   stroke: IPolygonMaskDrawStroke,
   position: ICoordinates,

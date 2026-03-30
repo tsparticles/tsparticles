@@ -73,6 +73,7 @@ export type * from "./Options/Interfaces/Particles/Size/ISizeAnimation.js";
 
 export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
+export type * from "./Types/CanvasContextType.js";
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";
 export type * from "./Types/EasingFunction.js";

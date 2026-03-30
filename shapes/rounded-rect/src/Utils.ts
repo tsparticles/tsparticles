@@ -1,3 +1,4 @@
+import type { CanvasContextType } from "@tsparticles/engine";
 import type { RadiusInfo } from "./RadiusInfo.js";
 import type { RectInfo } from "./RectInfo.js";
 
@@ -9,7 +10,7 @@ import type { RectInfo } from "./RectInfo.js";
  * @param borderRadius -
  */
 export function drawRoundedRect(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   fixedRadius: number,
   fixedDiameter: number,
   borderRadius: number,

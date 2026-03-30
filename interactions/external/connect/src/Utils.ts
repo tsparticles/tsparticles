@@ -1,5 +1,5 @@
-import type { ConnectContainer, LinkParticle } from "./Types.js";
 import {
+  type CanvasContextType,
   type ICoordinates,
   type Particle,
   clamp,
@@ -7,6 +7,7 @@ import {
   getStyleFromHsl,
   getStyleFromRgb,
 } from "@tsparticles/engine";
+import type { ConnectContainer, LinkParticle } from "./Types.js";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const gradientMin = 0,
@@ -24,7 +25,7 @@ const gradientMin = 0,
  */
 export function gradient(
   container: ConnectContainer,
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   p1: Particle,
   p2: Particle,
   opacity: number,
@@ -57,7 +58,7 @@ export function gradient(
  * @param end -
  */
 export function drawConnectLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   width: number,
   lineStyle: CanvasGradient,
   begin: ICoordinates,
@@ -79,7 +80,7 @@ export function drawConnectLine(
  */
 export function lineStyle(
   container: ConnectContainer,
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   p1: Particle,
   p2: Particle,
 ): CanvasGradient | undefined {
