@@ -93,7 +93,10 @@
             });
         }
 
-        const particles = await tsParticles.load({ id: "tsparticles", options: tsParticles.configs[presetId] });
+        const particles = await tsParticles.load({
+          id: "tsparticles",
+          options: tsParticles.pluginManager.configs[presetId],
+        });
 
         localStorage.presetId = presetId;
 
@@ -165,14 +168,14 @@
     document.addEventListener("DOMContentLoaded", async () => {
         await initParticles(tsParticles);
 
-        for (const presetId in tsParticles.configs) {
-            const preset = tsParticles.configs[presetId];
+        for (const presetId in tsParticles.pluginManager.configs) {
+          const preset = tsParticles.pluginManager.configs[presetId];
 
-            const option = document.createElement("option");
-            option.value = presetId;
-            option.text = preset.name || presetId;
+          const option = document.createElement("option");
+          option.value = presetId;
+          option.text = preset.name || presetId;
 
-            document.getElementById("presets").appendChild(option);
+          document.getElementById("presets").appendChild(option);
         }
 
         const element = document.getElementById("editor"), options = {
