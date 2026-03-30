@@ -53,7 +53,7 @@ export class NoneOutMode implements IOutModeManager {
       }
 
       if (!isPointInside(particle.position, container.canvas.size, originPoint, pRadius, direction)) {
-        container.particles.remove(particle);
+        particle.destroy();
       }
     } else {
       const position = particle.position;
@@ -64,7 +64,7 @@ export class NoneOutMode implements IOutModeManager {
           direction === OutModeDirection.bottom) ||
         (gravityOptions.inverse && position.y < -pRadius && direction === OutModeDirection.top)
       ) {
-        container.particles.remove(particle);
+        particle.destroy();
       }
     }
   }

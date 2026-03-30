@@ -38,7 +38,8 @@ export class SizeUpdater implements IParticleUpdater {
   }
 
   reset(particle: Particle): void {
-    particle.size.loops = minLoops;
+    particle.size.time = 0;
+    particle.size.loops = 0;
   }
 
   update(particle: Particle, delta: IDelta): void {

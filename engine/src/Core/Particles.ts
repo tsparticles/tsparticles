@@ -434,38 +434,38 @@ export class Particles {
       this.grid.insert(particle);
     }
 
-    if (particlesToDelete.size) {
-      const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
-
-      this._array = this.filter(checkDelete);
-      this._zArray = this._zArray.filter(checkDelete);
-
-      for (const particle of particlesToDelete) {
-        this._engine.dispatchEvent(EventType.particleRemoved, {
-          container: this._container,
-          data: {
-            particle,
-          },
-        });
-      }
-
-      this._addToPool(...particlesToDelete);
-    }
-
     for (const plugin of this._postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
     // this loop is required to be done after mouse interactions
     for (const particle of this._array) {
+      if (particle.destroyed) {
+        particlesToDelete.add(particle);
+
+        continue;
+      }
+
       for (const updater of this.updaters) {
         updater.update(particle, delta);
       }
 
+      // particle.destroyed can be set to true in updater.update
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!particle.destroyed && !particle.spawning) {
         for (const plugin of this._postParticleUpdatePlugins) {
           plugin.postParticleUpdate?.(particle, delta);
         }
+
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      } else if (particle.destroyed) {
+        particlesToDelete.add(particle);
+      }
+    }
+
+    if (particlesToDelete.size) {
+      for (const particle of particlesToDelete) {
+        this.remove(particle);
       }
     }
 

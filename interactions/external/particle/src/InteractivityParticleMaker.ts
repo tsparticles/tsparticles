@@ -95,7 +95,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
           }
         }
 
-        this.container.particles.remove(this._particle, undefined, true);
+        this._particle.destroy(true);
 
         delete this._particle;
       }, clearDelay);

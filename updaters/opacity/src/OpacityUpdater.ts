@@ -71,10 +71,12 @@ export class OpacityUpdater implements IParticleUpdater {
    * @param particle -
    */
   reset(particle: Particle): void {
-    if (particle.opacity) {
-      particle.opacity.time = 0;
-      particle.opacity.loops = 0;
+    if (!particle.opacity) {
+      return;
     }
+
+    particle.opacity.time = 0;
+    particle.opacity.loops = 0;
   }
 
   /**
