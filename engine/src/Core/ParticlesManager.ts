@@ -30,7 +30,7 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 /**
  * Particles manager object
  */
-export class Particles {
+export class ParticlesManager {
   checkParticlePositionPlugins: IContainerPlugin[];
 
   grid;
@@ -295,7 +295,7 @@ export class Particles {
     this.clear();
     await this.init();
 
-    this._container.canvas.drawParticles({ value: 0, factor: 0 });
+    this._container.canvas.render.drawParticles({ value: 0, factor: 0 });
   }
 
   remove(particle: Particle, group?: string, override?: boolean): void {

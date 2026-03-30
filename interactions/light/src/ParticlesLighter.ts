@@ -37,7 +37,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
       return;
     }
 
-    container.canvas.draw(ctx => {
+    container.canvas.render.draw(ctx => {
       drawParticleShadow(container, ctx, particle, mousePos);
     });
   }

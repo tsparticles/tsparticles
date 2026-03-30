@@ -81,7 +81,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return;
       }
 
-      pixelData = await getImageData(url, offset, this._container.canvas.settings);
+      pixelData = await getImageData(url, offset, this._container.canvas.render.settings);
     } else if (element ?? selector) {
       const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
@@ -89,7 +89,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return;
       }
 
-      const context = canvas.getContext("2d", this._container.canvas.settings);
+      const context = canvas.getContext("2d", this._container.canvas.render.settings);
 
       if (!context) {
         return;
@@ -97,7 +97,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
       pixelData = getCanvasImageData(context, canvas, offset);
     } else {
-      const data = getTextData(text, offset, this.fill, this._container.canvas.settings);
+      const data = getTextData(text, offset, this.fill, this._container.canvas.render.settings);
 
       if (isNull(data)) {
         return;

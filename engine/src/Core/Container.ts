@@ -7,7 +7,7 @@ import {
   removeDeleteCount,
   removeMinIndex,
 } from "./Utils/Constants.js";
-import { Canvas } from "./Canvas.js";
+import { CanvasManager } from "./CanvasManager.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -19,7 +19,7 @@ import type { IPlugin } from "./Interfaces/IPlugin.js";
 import { type IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
-import { Particles } from "./Particles.js";
+import { ParticlesManager } from "./ParticlesManager.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
@@ -182,8 +182,8 @@ export class Container {
     this.shapeDrawers = new Map();
     this.particleUpdaters = [];
     this.retina = new Retina(this);
-    this.canvas = new Canvas(this._engine.pluginManager, this);
-    this.particles = new Particles(this._engine.pluginManager, this);
+    this.canvas = new CanvasManager(this._engine.pluginManager, this);
+    this.particles = new ParticlesManager(this._engine.pluginManager, this);
     this.plugins = [];
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
@@ -625,7 +625,7 @@ export class Container {
         return;
       }
 
-      this.canvas.drawParticles(this._delta);
+      this.canvas.render.drawParticles(this._delta);
 
       if (!this.alive()) {
         this.destroy();

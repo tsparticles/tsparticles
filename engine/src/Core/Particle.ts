@@ -410,10 +410,10 @@ export class Particle {
 
   draw(delta: IDelta): void {
     const container = this._container,
-      canvas = container.canvas;
+      render = container.canvas.render;
 
-    canvas.drawParticlePlugins(this, delta);
-    canvas.drawParticle(this, delta);
+    render.drawParticlePlugins(this, delta);
+    render.drawParticle(this, delta);
   }
 
   getAngle(): number {

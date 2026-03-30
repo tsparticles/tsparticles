@@ -44,7 +44,7 @@ export function drawGrab(
   opacity: number,
   mousePos: ICoordinates,
 ): void {
-  container.canvas.draw(ctx => {
+  container.canvas.render.draw(ctx => {
     const beginPos = particle.getPosition();
 
     drawGrabLine(

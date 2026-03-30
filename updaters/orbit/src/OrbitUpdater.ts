@@ -65,7 +65,7 @@ export class OrbitUpdater implements IParticleUpdater {
         end = doublePI;
     }
 
-    container.canvas.draw(ctx => {
+    container.canvas.render.draw(ctx => {
       drawEllipse(
         container,
         ctx,

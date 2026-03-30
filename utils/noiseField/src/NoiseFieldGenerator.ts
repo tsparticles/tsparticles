@@ -93,7 +93,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
       return;
     }
 
-    this.container.canvas.draw(ctx => {
+    this.container.canvas.render.draw(ctx => {
       this._drawField(ctx);
     });
   }

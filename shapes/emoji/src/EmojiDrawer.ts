@@ -122,11 +122,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       canvas.width = canvasSize;
       canvas.height = canvasSize;
 
-      context = canvas.getContext("2d", container.canvas.settings);
+      context = canvas.getContext("2d", container.canvas.render.settings);
       cacheCanvas = canvas;
     } else {
       cacheCanvas = new OffscreenCanvas(canvasSize, canvasSize);
-      context = cacheCanvas.getContext("2d", container.canvas.settings);
+      context = cacheCanvas.getContext("2d", container.canvas.render.settings);
     }
 
     if (!context) {

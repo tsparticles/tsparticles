@@ -24,7 +24,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
   ) {
     super(position, size, fill, options);
 
-    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.settings);
+    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.render.settings);
 
     if (!ctx) {
       throw new Error(`No 2d context available`);

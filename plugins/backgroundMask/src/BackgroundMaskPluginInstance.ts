@@ -36,12 +36,12 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
     const canvas = this._container.canvas;
 
-    canvas.canvasClear();
+    canvas.render.canvasClear();
 
     if (this._coverImage) {
-      canvas.paintImage(this._coverImage.image, this._coverImage.opacity);
+      canvas.render.paintImage(this._coverImage.image, this._coverImage.opacity);
     } else {
-      canvas.paintBase(this._coverColorStyle);
+      canvas.render.paintBase(this._coverColorStyle);
     }
 
     return true;
