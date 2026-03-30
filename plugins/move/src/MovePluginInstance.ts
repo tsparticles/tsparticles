@@ -77,7 +77,7 @@ export class MovePluginInstance implements IContainerPlugin {
       inverse: gravityOptions.inverse,
     };
 
-    initSpin(particle);
+    initSpin(this._container, particle);
   }
 
   particleDestroyed(particle: MoveParticle): void {
@@ -98,7 +98,7 @@ export class MovePluginInstance implements IContainerPlugin {
       return;
     }
 
-    const container = particle.container,
+    const container = this._container,
       pxRatio = container.retina.pixelRatio,
       slowFactor = getProximitySpeedFactor(particle),
       reduceFactor = container.retina.reduceFactor,
@@ -111,7 +111,7 @@ export class MovePluginInstance implements IContainerPlugin {
       maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
-      spin(particle, moveSpeed, reduceFactor);
+      spin(container, particle, moveSpeed, reduceFactor);
     } else {
       move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, reduceFactor, delta);
     }

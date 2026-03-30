@@ -30,10 +30,12 @@ type ShadowParticle = Particle & {
 };
 
 export class ShadowDrawer implements IEffectDrawer {
-  private readonly _engine: Engine;
+  private readonly _container;
+  private readonly _engine;
 
-  constructor(engine: Engine) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
   }
 
   drawAfter(data: IShapeDrawData): void {
@@ -47,7 +49,7 @@ export class ShadowDrawer implements IEffectDrawer {
 
   drawBefore(data: IShapeDrawData): void {
     const { particle, context } = data,
-      { container } = particle,
+      { _container: container } = this,
       shadowParticle = particle as ShadowParticle,
       shadowColor = shadowParticle.shadowColor,
       shadowOffset = shadowParticle.shadowOffset;

@@ -454,9 +454,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     this._createPath2D();
 
-    this._engine.dispatchEvent("polygonMaskLoaded", {
-      container: this._container,
-    });
+    this._container.dispatchEvent("polygonMaskLoaded");
   };
 
   private readonly _parseSvgPath = (xml: string, force?: boolean): ICoordinates[] | undefined => {

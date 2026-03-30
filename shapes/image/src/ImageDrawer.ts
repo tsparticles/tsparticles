@@ -17,14 +17,17 @@ const sides = 12;
  * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer<ImageParticle> {
-  private readonly _engine: ImageEngine;
+  private readonly _container;
+  private readonly _engine;
 
   /**
    * Image drawer constructor, initializing the image set collection
    * @param engine -
+   * @param container -
    */
-  constructor(engine: ImageEngine) {
+  constructor(engine: ImageEngine, container: ImageContainer) {
     this._engine = engine;
+    this._container = container;
   }
 
   /**
@@ -43,7 +46,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data, particle.container.canvas.settings);
+      drawGif(data, this._container.canvas.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {
@@ -84,7 +87,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
   }
 
   loadShape(particle: ImageParticle): void {
-    const { container } = particle;
+    const { _container: container } = this;
 
     if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;

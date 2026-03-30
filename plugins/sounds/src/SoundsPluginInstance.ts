@@ -435,7 +435,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
     container.audioContext = undefined;
 
-    this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
+    this._container.dispatchEvent(SoundsEventType.mute);
   };
 
   private readonly _playBuffer: (audio: SoundsAudio) => void = audio => {
@@ -604,7 +604,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
     this._initEvents();
 
-    this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
+    this._container.dispatchEvent(SoundsEventType.unmute);
   };
 
   private readonly _updateMuteIcons: () => void = () => {

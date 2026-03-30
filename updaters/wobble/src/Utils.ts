@@ -1,4 +1,4 @@
-import { type IDelta, doublePI, millisecondsToSeconds } from "@tsparticles/engine";
+import { type Container, type IDelta, doublePI, millisecondsToSeconds } from "@tsparticles/engine";
 import type { WobbleParticle } from "./Types.js";
 
 const defaultDistance = 0,
@@ -6,12 +6,13 @@ const defaultDistance = 0,
 
 /**
  * Updates particle wobbling values
+ * @param container - the particles container
  * @param particle - the particle to update
  * @param delta - this variable contains the delta between the current frame and the previous frame
  */
-export function updateWobble(particle: WobbleParticle, delta: IDelta): void {
+export function updateWobble(container: Container, particle: WobbleParticle, delta: IDelta): void {
   const { wobble: wobbleOptions } = particle.options,
-    { container, wobble } = particle;
+    { wobble } = particle;
 
   if (!wobbleOptions?.enable || !wobble) {
     return;

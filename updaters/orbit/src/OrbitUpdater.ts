@@ -67,6 +67,7 @@ export class OrbitUpdater implements IParticleUpdater {
 
     container.canvas.draw(ctx => {
       drawEllipse(
+        container,
         ctx,
         particle,
         particle.orbitColor ?? particle.getFillColor(),

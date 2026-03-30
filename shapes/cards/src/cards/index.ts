@@ -9,10 +9,10 @@ export async function loadFullCardsShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addShape(["card"], async () => {
+    e.addShape(["card"], async container => {
       const { CardDrawer } = await import("./CardDrawer.js");
 
-      return new CardDrawer();
+      return new CardDrawer(container);
     });
   });
 }

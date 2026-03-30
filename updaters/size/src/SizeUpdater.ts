@@ -1,4 +1,5 @@
 import {
+  type Container,
   type IDelta,
   type IParticleUpdater,
   type Particle,
@@ -10,8 +11,14 @@ import {
 const minLoops = 0;
 
 export class SizeUpdater implements IParticleUpdater {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   init(particle: Particle): void {
-    const container = particle.container,
+    const container = this._container,
       sizeOptions = particle.options.size,
       sizeAnimation = sizeOptions.animation;
 

@@ -153,11 +153,8 @@ export class Particles {
 
       this._nextId++;
 
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
+      this._container.dispatchEvent(EventType.particleAdded, {
+        particle,
       });
 
       return particle;
@@ -561,11 +558,8 @@ export class Particles {
 
     particle.destroy(override);
 
-    this._engine.dispatchEvent(EventType.particleRemoved, {
-      container: this._container,
-      data: {
-        particle,
-      },
+    this._container.dispatchEvent(EventType.particleRemoved, {
+      particle,
     });
 
     this._addToPool(particle);

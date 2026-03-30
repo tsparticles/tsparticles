@@ -368,17 +368,17 @@ export class Particle {
     d: 1,
   };
 
+  private readonly _container;
+
   /**
    * Gets the particle containing engine instance
    * @internal
    */
   private readonly _engine;
 
-  constructor(
-    engine: Engine,
-    readonly container: Container,
-  ) {
+  constructor(engine: Engine, container: Container) {
     this._engine = engine;
+    this._container = container;
   }
 
   destroy(override?: boolean): void {
@@ -390,7 +390,7 @@ export class Particle {
     this.bubble.inRange = false;
     this.slow.inRange = false;
 
-    const container = this.container,
+    const container = this._container,
       shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
@@ -403,16 +403,13 @@ export class Particle {
       updater.particleDestroyed?.(this, override);
     }
 
-    this._engine.dispatchEvent(EventType.particleDestroyed, {
-      container: this.container,
-      data: {
-        particle: this,
-      },
+    this._container.dispatchEvent(EventType.particleDestroyed, {
+      particle: this,
     });
   }
 
   draw(delta: IDelta): void {
-    const container = this.container,
+    const container = this._container,
       canvas = container.canvas;
 
     canvas.drawParticlePlugins(this, delta);
@@ -493,7 +490,7 @@ export class Particle {
     overrideOptions?: RecursivePartial<IParticlesOptions>,
     group?: string,
   ): void {
-    const container = this.container;
+    const container = this._container;
 
     this.id = id;
     this.group = group;
@@ -554,13 +551,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this.container.particles.effectDrawers.keys()];
+      const availableEffects = [...this._container.particles.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this.container.particles.shapeDrawers.keys()];
+      const availableShapes = [...this._container.particles.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -654,7 +651,7 @@ export class Particle {
 
   isInsideCanvas(): boolean {
     const radius = this.getRadius(),
-      canvasSize = this.container.canvas.size,
+      canvasSize = this._container.canvas.size,
       position = this.position;
 
     return (
@@ -704,7 +701,7 @@ export class Particle {
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
-    for (const updater of this.container.particles.updaters) {
+    for (const updater of this._container.particles.updaters) {
       updater.reset?.(this);
     }
   }
@@ -716,7 +713,7 @@ export class Particle {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-    const container = this.container,
+    const container = this._container,
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
@@ -803,7 +800,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.x,
-      maxCoord: this.container.canvas.size.width,
+      maxCoord: this._container.canvas.size.width,
       setCb: (value: number) => (pos.x += value),
       radius,
     });
@@ -818,7 +815,7 @@ export class Particle {
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.y,
-      maxCoord: this.container.canvas.size.height,
+      maxCoord: this._container.canvas.size.height,
       setCb: (value: number) => (pos.y += value),
       radius,
     });
@@ -845,7 +842,7 @@ export class Particle {
   };
 
   private readonly _initPosition: (position?: ICoordinates) => void = position => {
-    const container = this.container,
+    const container = this._container,
       zIndexValue = getRangeValue(this.options.zIndex.value),
       initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 

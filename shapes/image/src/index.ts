@@ -94,10 +94,10 @@ export async function loadImageShape(engine: ImageEngine): Promise<void> {
     addLoadImageToEngine(e);
 
     e.addPlugin(new ImagePreloaderPlugin(e));
-    e.addShape(shapeTypes, async () => {
+    e.addShape(shapeTypes, async container => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 
-      return new ImageDrawer(e);
+      return new ImageDrawer(e, container);
     });
   });
 }
