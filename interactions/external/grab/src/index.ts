@@ -9,15 +9,15 @@ declare const __VERSION__: string;
 export async function loadExternalGrabInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalGrab", async container => {
+    e.pluginManager.addInteractor?.("externalGrab", async container => {
       const { Grabber } = await import("./Grabber.js");
 
-      return new Grabber(container, engine);
+      return new Grabber(e.pluginManager, container);
     });
   });
 }

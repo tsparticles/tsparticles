@@ -8,11 +8,11 @@ declare const __VERSION__: string;
 export async function loadEasingGaussianPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { easingsFunctions } = await import("./easingsFunctions.js");
 
     for (const [easing, easingFn] of easingsFunctions) {
-      e.addEasing(easing, easingFn);
+      e.pluginManager.addEasing(easing, easingFn);
     }
   });
 }

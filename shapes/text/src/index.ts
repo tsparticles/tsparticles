@@ -9,8 +9,8 @@ declare const __VERSION__: string;
 export async function loadTextShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(validTypes, async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(validTypes, async () => {
       const { TextDrawer } = await import("./TextDrawer.js");
 
       return new TextDrawer();

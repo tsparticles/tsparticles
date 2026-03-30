@@ -16,12 +16,12 @@ declare const __VERSION__: string;
 export async function loadExternalDragInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalDrag", async container => {
+    e.pluginManager.addInteractor?.("externalDrag", async container => {
       const { Dragger } = await import("./Dragger.js");
 
       return new Dragger(container);

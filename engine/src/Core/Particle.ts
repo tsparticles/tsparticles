@@ -36,7 +36,6 @@ import {
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
@@ -59,6 +58,7 @@ import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
@@ -374,10 +374,10 @@ export class Particle {
    * Gets the particle containing engine instance
    * @internal
    */
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
   }
 
@@ -515,7 +515,7 @@ export class Particle {
 
     const pxRatio = container.retina.pixelRatio,
       mainOptions = container.actualOptions,
-      particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
+      particlesOptions = loadParticlesOptions(this._pluginManager, container, mainOptions.particles),
       reduceDuplicates = particlesOptions.reduceDuplicates,
       effectType = particlesOptions.effect.type,
       shapeType = particlesOptions.shape.type;

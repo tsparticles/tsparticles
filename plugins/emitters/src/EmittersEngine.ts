@@ -1,8 +1,12 @@
+import type { InteractivityEngine, InteractivityPluginManager } from "@tsparticles/plugin-interactivity";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
-import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 import type { ShapeManager } from "./ShapeManager.js";
 
-export type EmittersEngine = InteractivityEngine & {
+export type EmittersPluginManager = InteractivityPluginManager & {
   addEmitterShapeGenerator?: (name: string, shape: IEmitterShapeGenerator) => void;
   emitterShapeManager?: ShapeManager;
+};
+
+export type EmittersEngine = InteractivityEngine & {
+  pluginManager: EmittersPluginManager;
 };

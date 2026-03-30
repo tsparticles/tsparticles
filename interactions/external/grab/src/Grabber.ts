@@ -1,12 +1,4 @@
 import {
-  type Engine,
-  type RecursivePartial,
-  getDistance,
-  getLinkColor,
-  getLinkRandomColor,
-  isInArray,
-} from "@tsparticles/engine";
-import {
   ExternalInteractorBase,
   type IInteractivityData,
   type IModes,
@@ -15,6 +7,14 @@ import {
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
 import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
+import {
+  type PluginManager,
+  type RecursivePartial,
+  getDistance,
+  getLinkColor,
+  getLinkRandomColor,
+  isInArray,
+} from "@tsparticles/engine";
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
 
@@ -26,13 +26,13 @@ const grabMode = "grab",
  * Particle grab manager
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
-  private readonly _engine;
   private _maxDistance;
+  private readonly _pluginManager;
 
-  constructor(container: GrabContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: GrabContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._maxDistance = 0;
   }
 
@@ -112,7 +112,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         const linksOptions = interactivity.modes.grab.links;
 
         container.particles.grabLineColor = getLinkRandomColor(
-          this._engine,
+          this._pluginManager,
           optColor,
           linksOptions.blink,
           linksOptions.consent,

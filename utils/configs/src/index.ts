@@ -34,7 +34,7 @@ for (const key of Object.keys(palettes)) {
     continue;
   }
 
-  tsParticles.addPalette(key, palette);
+  tsParticles.pluginManager.addPalette(key, palette);
 }
 
 const configs = {
@@ -73,7 +73,7 @@ for (const key of Object.keys(configs)) {
     continue;
   }
 
-  tsParticles.addConfig(config);
+  tsParticles.pluginManager.addConfig(config);
 }
 
 export default configs;

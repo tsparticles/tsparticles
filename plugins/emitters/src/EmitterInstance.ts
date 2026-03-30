@@ -32,7 +32,7 @@ import {
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
-import type { EmittersEngine } from "./EmittersEngine.js";
+import type { EmittersPluginManager } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
@@ -105,7 +105,6 @@ export class EmitterInstance {
   private _currentSpawnDelay;
   private _duration?: number;
   private _emitDelay?: number;
-  private readonly _engine;
   private _firstSpawn;
   private readonly _immortal;
   private readonly _initialPosition?: ICoordinates;
@@ -113,6 +112,7 @@ export class EmitterInstance {
   private _mutationObserver?: MutationObserver;
   private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
   private _paused;
+  private readonly _pluginManager;
   private readonly _removeCallback;
   private _resizeObserver?: ResizeObserver;
   private readonly _shape?: IEmitterShape;
@@ -121,13 +121,13 @@ export class EmitterInstance {
   private _startParticlesAdded;
 
   constructor(
-    engine: EmittersEngine,
+    pluginManager: EmittersPluginManager,
     container: Container,
     removeCallback: (emitter: EmitterInstance) => void,
     options: Emitter | RecursivePartial<IEmitter>,
     position?: ICoordinates,
   ) {
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._container = container;
     this._removeCallback = removeCallback;
     this._currentDuration = 0;
@@ -160,11 +160,11 @@ export class EmitterInstance {
     particlesOptions.move.direction ??= this.options.direction;
 
     if (this.options.spawn.fill?.color) {
-      this.spawnFillColor = rangeColorToHsl(this._engine, this.options.spawn.fill.color);
+      this.spawnFillColor = rangeColorToHsl(this._pluginManager, this.options.spawn.fill.color);
     }
 
     if (this.options.spawn.stroke?.color) {
-      this.spawnStrokeColor = rangeColorToHsl(this._engine, this.options.spawn.stroke.color);
+      this.spawnStrokeColor = rangeColorToHsl(this._pluginManager, this.options.spawn.stroke.color);
     }
 
     this._paused = !this.options.autoPlay;
@@ -195,7 +195,7 @@ export class EmitterInstance {
     }
 
     const shapeOptions = this.options.shape,
-      shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+      shapeGenerator = this._pluginManager.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
 
     if (shapeGenerator) {
       this._shape = shapeGenerator.generate(this._container, this.position, this.size, this.fill, shapeOptions.options);

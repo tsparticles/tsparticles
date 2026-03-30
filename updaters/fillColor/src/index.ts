@@ -8,11 +8,11 @@ declare const __VERSION__: string;
 export async function loadFillColorUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addParticleUpdater("color", async container => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addParticleUpdater("color", async container => {
       const { FillColorUpdater } = await import("./FillColorUpdater.js");
 
-      return new FillColorUpdater(e, container);
+      return new FillColorUpdater(e.pluginManager, container);
     });
   });
 }

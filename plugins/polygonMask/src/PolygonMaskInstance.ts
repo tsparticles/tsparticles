@@ -1,12 +1,12 @@
 import "./pathseg.js";
 import {
-  type Engine,
   type IContainerPlugin,
   type ICoordinates,
   type IDelta,
   type IDimension,
   OutModeDirection,
   type Particle,
+  type PluginManager,
   deepExtend,
   double,
   getDistance,
@@ -40,13 +40,13 @@ export class PolygonMaskInstance implements IContainerPlugin {
   redrawTimeout?: number | NodeJS.Timeout;
 
   private readonly _container;
-  private readonly _engine;
   private _moveRadius;
+  private readonly _pluginManager;
   private _scale;
 
-  constructor(container: PolygonMaskContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: PolygonMaskContainer) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this.dimension = {
       height: 0,
       width: 0,
@@ -89,9 +89,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
       const path2d = path.path2d;
 
       if (path2d && this.offset) {
-        drawPolygonMaskPath(this._engine, context, path2d, polygonDraw.stroke, this.offset, this._container.hdr);
+        drawPolygonMaskPath(this._pluginManager, context, path2d, polygonDraw.stroke, this.offset, this._container.hdr);
       } else if (rawData) {
-        drawPolygonMask(this._engine, context, rawData, polygonDraw.stroke, this._container.hdr);
+        drawPolygonMask(this._pluginManager, context, rawData, polygonDraw.stroke, this._container.hdr);
       }
     }
   }

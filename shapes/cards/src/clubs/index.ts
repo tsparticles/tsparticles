@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadClubsSuitShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(["club", "clubs"], async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(["club", "clubs"], async () => {
       const { ClubDrawer } = await import("./ClubDrawer.js");
 
       return new ClubDrawer();

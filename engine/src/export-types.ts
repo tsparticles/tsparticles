@@ -94,3 +94,4 @@ export type { Particle } from "./Core/Particle.js";
 export type { Particles } from "./Core/Particles.js";
 export type { Retina } from "./Core/Retina.js";
 export type { Engine } from "./Core/Engine.js";
+export type { PluginManager } from "./Core/Utils/PluginManager.js";

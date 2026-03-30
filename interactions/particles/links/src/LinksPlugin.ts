@@ -1,19 +1,19 @@
-import { type Engine, type IPlugin } from "@tsparticles/engine";
+import { type IPlugin, type PluginManager } from "@tsparticles/engine";
 import type { LinkContainer } from "./Types.js";
 import type { LinkInstance } from "./LinkInstance.js";
 
 export class LinksPlugin implements IPlugin {
   readonly id = "links";
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager) {
+    this._pluginManager = pluginManager;
   }
 
   async getPlugin(container: LinkContainer): Promise<LinkInstance> {
     const { LinkInstance } = await import("./LinkInstance.js");
 
-    return new LinkInstance(container, this._engine);
+    return new LinkInstance(this._pluginManager, container);
   }
 
   loadOptions(): void {

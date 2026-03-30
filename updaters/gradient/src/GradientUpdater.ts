@@ -1,12 +1,12 @@
 import {
   AnimationStatus,
   type Container,
-  type Engine,
   GradientType,
   type ICoordinates,
   type IDelta,
   type IParticleColorStyle,
   type IParticleUpdater,
+  type PluginManager,
   type RecursivePartial,
   RotateDirection,
   StartValueType,
@@ -31,10 +31,10 @@ import { updateGradient } from "./Utils.js";
 
 export class GradientUpdater implements IParticleUpdater {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
   }
 
@@ -126,7 +126,7 @@ export class GradientUpdater implements IParticleUpdater {
     const reduceDuplicates = particle.options.reduceDuplicates;
 
     for (const grColor of gradient.colors) {
-      const grHslColor = rangeColorToHsl(this._engine, grColor.value, particle.id, reduceDuplicates);
+      const grHslColor = rangeColorToHsl(this._pluginManager, grColor.value, particle.id, reduceDuplicates);
 
       if (!grHslColor) {
         continue;

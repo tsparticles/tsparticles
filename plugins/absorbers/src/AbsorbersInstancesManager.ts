@@ -1,4 +1,4 @@
-import { type Engine, type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type PluginManager, type RecursivePartial, isNumber } from "@tsparticles/engine";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
@@ -7,11 +7,11 @@ const defaultIndex = 0;
 
 export class AbsorbersInstancesManager {
   private readonly _containerArrays;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
+  constructor(pluginManager: PluginManager) {
+    this._pluginManager = pluginManager;
     this._containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
-    this._engine = engine;
   }
 
   async addAbsorber(
@@ -20,7 +20,7 @@ export class AbsorbersInstancesManager {
     position?: ICoordinates,
   ): Promise<AbsorberInstance> {
     const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-      absorber = new AbsorberInstance(this._engine, container, options, position),
+      absorber = new AbsorberInstance(this._pluginManager, container, options, position),
       array = this.getArray(container);
 
     array.push(absorber);

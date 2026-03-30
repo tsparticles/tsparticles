@@ -9,20 +9,20 @@ declare const __VERSION__: string;
 export async function loadLightInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalLight", async container => {
+    e.pluginManager.addInteractor?.("externalLight", async container => {
       const { ExternalLighter } = await import("./ExternalLighter.js");
 
-      return new ExternalLighter(container, engine);
+      return new ExternalLighter(e.pluginManager, container);
     });
-    e.addInteractor?.("particlesLight", async container => {
+    e.pluginManager.addInteractor?.("particlesLight", async container => {
       const { ParticlesLighter } = await import("./ParticlesLighter.js");
 
-      return new ParticlesLighter(container, engine);
+      return new ParticlesLighter(e.pluginManager, container);
     });
   });
 }

@@ -11,7 +11,6 @@ import {
   squareExp,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
@@ -22,6 +21,7 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
@@ -40,7 +40,6 @@ export class Particles {
    */
   private _array: Particle[];
   private readonly _container: Container;
-  private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
   private _limit;
   private _maxZIndex;
@@ -49,6 +48,7 @@ export class Particles {
   private _nextId;
   private _particleResetPlugins: IContainerPlugin[];
   private _particleUpdatePlugins: IContainerPlugin[];
+  private readonly _pluginManager;
   private readonly _pool: Particle[];
   private _postParticleUpdatePlugins: IContainerPlugin[];
   private _postUpdatePlugins: IContainerPlugin[];
@@ -58,11 +58,11 @@ export class Particles {
 
   /**
    *
-   * @param engine -
+   * @param pluginManager -
    * @param container -
    */
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
     this._nextId = 0;
     this._array = [];
@@ -120,7 +120,7 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+      const particle = this._pool.pop() ?? new Particle(this._pluginManager, this._container);
 
       particle.init(this._nextId, position, overrideOptions, group);
 
@@ -340,7 +340,7 @@ export class Particles {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+      const groupDataOptions = loadParticlesOptions(this._pluginManager, this._container, groupData);
 
       this._applyDensity(groupDataOptions, pluginsCount, group);
     }

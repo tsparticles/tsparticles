@@ -20,6 +20,7 @@ import { type IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
@@ -45,17 +46,17 @@ function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param container -
  * @param sourceOptionsArr -
  * @returns the options loaded
  */
 function loadContainerOptions(
-  engine: Engine,
+  pluginManager: PluginManager,
   container: Container,
   ...sourceOptionsArr: (ISourceOptions | undefined)[]
 ): Options {
-  const options = new Options(engine, container);
+  const options = new Options(pluginManager, container);
 
   loadOptions(options, ...sourceOptionsArr);
 
@@ -181,15 +182,15 @@ export class Container {
     this.shapeDrawers = new Map();
     this.particleUpdaters = [];
     this.retina = new Retina(this);
-    this.canvas = new Canvas(this, this._engine);
-    this.particles = new Particles(this._engine, this);
+    this.canvas = new Canvas(this._engine.pluginManager, this);
+    this.particles = new Particles(this._engine.pluginManager, this);
     this.plugins = [];
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
     this.particlePositionPlugins = [];
     /* tsParticles variables with default values */
-    this._options = loadContainerOptions(this._engine, this);
-    this.actualOptions = loadContainerOptions(this._engine, this);
+    this._options = loadContainerOptions(this._engine.pluginManager, this);
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this);
 
     /* ---------- tsParticles - start ------------ */
     this._eventListeners = new EventListeners(this);
@@ -259,7 +260,7 @@ export class Container {
     this.particleUpdaters = [];
     this.plugins.length = 0;
 
-    this._engine.clearPlugins(this);
+    this._engine.pluginManager.clearPlugins(this);
 
     this.destroyed = true;
 
@@ -334,7 +335,7 @@ export class Container {
 
     const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
 
-    for (const plugin of this._engine.plugins) {
+    for (const plugin of this._engine.pluginManager.plugins) {
       const containerPlugin = await plugin.getPlugin(this);
 
       if (containerPlugin.preInit) {
@@ -347,8 +348,13 @@ export class Container {
     await this.initDrawersAndUpdaters();
 
     /* options settings */
-    this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
-    this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+    this._options = loadContainerOptions(
+      this._engine.pluginManager,
+      this,
+      this._initialSourceOptions,
+      this.sourceOptions,
+    );
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
 
     this.plugins.length = 0;
     this.particleDestroyedPlugins.length = 0;
@@ -410,9 +416,11 @@ export class Container {
   }
 
   async initDrawersAndUpdaters(): Promise<void> {
-    this.effectDrawers = await this._engine.getEffectDrawers(this, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(this, true);
-    this.particleUpdaters = await this._engine.getUpdaters(this, true);
+    const pluginManager = this._engine.pluginManager;
+
+    this.effectDrawers = await pluginManager.getEffectDrawers(this, true);
+    this.shapeDrawers = await pluginManager.getShapeDrawers(this, true);
+    this.particleUpdaters = await pluginManager.getUpdaters(this, true);
   }
 
   /**
@@ -500,8 +508,13 @@ export class Container {
 
     this._initialSourceOptions = sourceOptions;
     this._sourceOptions = sourceOptions;
-    this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
-    this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+    this._options = loadContainerOptions(
+      this._engine.pluginManager,
+      this,
+      this._initialSourceOptions,
+      this.sourceOptions,
+    );
+    this.actualOptions = loadContainerOptions(this._engine.pluginManager, this, this._options);
 
     return this.refresh();
   }

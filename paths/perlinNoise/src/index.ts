@@ -11,12 +11,12 @@ export const perlinNoisePathName = "perlinNoise";
 export async function loadPerlinNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: MoveEngine) => {
+  await engine.pluginManager.register(async (e: MoveEngine) => {
     const { ensureBaseMoverLoaded } = await import("@tsparticles/plugin-move");
 
     ensureBaseMoverLoaded(e);
 
-    e.addPathGenerator?.(perlinNoisePathName, async container => {
+    e.pluginManager.addPathGenerator?.(perlinNoisePathName, async container => {
       const { PerlinNoiseGenerator } = await import("./PerlinNoiseGenerator.js");
 
       return new PerlinNoiseGenerator(container);

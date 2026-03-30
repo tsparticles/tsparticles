@@ -1,17 +1,17 @@
-import { type Engine, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { LightContainer, LightParticle } from "./Types.js";
+import { type PluginManager, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
   readonly maxDistance;
 
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(container: LightContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: LightContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this.maxDistance = 0;
   }
 
@@ -56,7 +56,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     if (res && interactivity.modes.light) {
       const shadowOptions = interactivity.modes.light.shadow;
 
-      particle.lightShadow = rangeColorToRgb(this._engine, shadowOptions.color);
+      particle.lightShadow = rangeColorToRgb(this._pluginManager, shadowOptions.color);
     }
 
     return res;

@@ -11,7 +11,6 @@ import {
 } from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
@@ -21,6 +20,7 @@ import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { Particle } from "./Particle.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 
 const fColorIndex = 0,
   sColorIndex = 1;
@@ -112,6 +112,7 @@ export class Canvas {
   private _canvasSettings?: CanvasRenderingContext2DSettings;
   private _clearDrawPlugins: IContainerPlugin[];
   private _colorPlugins: IContainerPlugin[];
+  private readonly _container;
   /**
    * The particles canvas context
    */
@@ -122,10 +123,10 @@ export class Canvas {
   private _drawPlugins: IContainerPlugin[];
   private _drawSettingsCleanupPlugins: IContainerPlugin[];
   private _drawSettingsSetupPlugins: IContainerPlugin[];
-  private readonly _engine;
   private _generated;
   private _mutationObserver?: MutationObserver;
   private _originalStyle?: CSSStyleDeclaration;
+  private readonly _pluginManager;
   private _pointerEvents: string;
   private _postDrawUpdaters: IParticleUpdater[];
   private _preDrawUpdaters: IParticleUpdater[];
@@ -142,14 +143,12 @@ export class Canvas {
 
   /**
    * Constructor of canvas manager
+   * @param pluginManager - the engine managing the whole library
    * @param container - the parent container
-   * @param engine - the engine managing the whole library
    */
-  constructor(
-    private readonly container: Container,
-    engine: Engine,
-  ) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
+    this._container = container;
     this._standardSize = {
       height: 0,
       width: 0,
@@ -186,11 +185,11 @@ export class Canvas {
   }
 
   private get _fullScreen(): boolean {
-    return this.container.actualOptions.fullScreen.enable;
+    return this._container.actualOptions.fullScreen.enable;
   }
 
   canvasClear(): void {
-    if (!this.container.actualOptions.clear) {
+    if (!this._container.actualOptions.clear) {
       return;
     }
 
@@ -294,7 +293,7 @@ export class Canvas {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       zIndexOptions = particle.options.zIndex,
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
@@ -348,7 +347,7 @@ export class Canvas {
   }
 
   drawParticles(delta: IDelta): void {
-    const { particles } = this.container;
+    const { particles } = this._container;
 
     this.clear();
 
@@ -377,7 +376,7 @@ export class Canvas {
   }
 
   getZoomCenter(): ICoordinates {
-    const pxRatio = this.container.retina.pixelRatio,
+    const pxRatio = this._container.retina.pixelRatio,
       { width, height } = this.size;
 
     if (this._zoomCenter) {
@@ -424,8 +423,8 @@ export class Canvas {
    * Initializes the canvas background
    */
   initBackground(): void {
-    const { container } = this,
-      options = container.actualOptions,
+    const { _container } = this,
+      options = _container.actualOptions,
       background = options.background,
       element = this.element;
 
@@ -434,10 +433,10 @@ export class Canvas {
     }
 
     const elementStyle = element.style,
-      color = rangeColorToRgb(this._engine, background.color);
+      color = rangeColorToRgb(this._pluginManager, background.color);
 
     if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, container.hdr, background.opacity);
+      elementStyle.backgroundColor = getStyleFromRgb(color, _container.hdr, background.opacity);
     } else {
       elementStyle.backgroundColor = "";
     }
@@ -464,7 +463,7 @@ export class Canvas {
     this._drawSettingsSetupPlugins = [];
     this._drawSettingsCleanupPlugins = [];
 
-    for (const plugin of this.container.plugins) {
+    for (const plugin of this._container.plugins) {
       if (plugin.resize) {
         this._resizePlugins.push(plugin);
       }
@@ -518,7 +517,7 @@ export class Canvas {
     this._preDrawUpdaters = [];
     this._postDrawUpdaters = [];
 
-    for (const updater of this.container.particleUpdaters) {
+    for (const updater of this._container.particleUpdaters) {
       if (updater.afterDraw) {
         this._postDrawUpdaters.push(updater);
       }
@@ -538,7 +537,7 @@ export class Canvas {
       this.element.remove();
     }
 
-    const container = this.container;
+    const container = this._container;
 
     this._generated =
       generatedAttribute in canvas.dataset ? canvas.dataset[generatedAttribute] === "true" : this._generated;
@@ -551,7 +550,7 @@ export class Canvas {
     standardSize.height = canvas.offsetHeight;
     standardSize.width = canvas.offsetWidth;
 
-    const pxRatio = this.container.retina.pixelRatio,
+    const pxRatio = this._container.retina.pixelRatio,
       retinaSize = this.size;
 
     canvas.height = retinaSize.height = standardSize.height * pxRatio;
@@ -629,7 +628,7 @@ export class Canvas {
       return false;
     }
 
-    const container = this.container,
+    const container = this._container,
       currentSize = container.canvas._standardSize,
       newSize = {
         width: this.element.offsetWidth,
@@ -660,7 +659,7 @@ export class Canvas {
     this.element.width = canvasSize.width = retinaSize.width;
     this.element.height = canvasSize.height = retinaSize.height;
 
-    if (this.container.started) {
+    if (this._container.started) {
       container.particles.setResizeFactor({
         width: currentSize.width / oldSize.width,
         height: currentSize.height / oldSize.height,
@@ -711,7 +710,7 @@ export class Canvas {
       return;
     }
 
-    const container = this.container,
+    const container = this._container,
       needsRefresh = container.updateActualOptions();
 
     /* density particles enabled */
@@ -774,11 +773,11 @@ export class Canvas {
 
     for (const plugin of this._colorPlugins) {
       if (!fColor && plugin.particleFillColor) {
-        fColor = rangeColorToHsl(this._engine, plugin.particleFillColor(particle));
+        fColor = rangeColorToHsl(this._pluginManager, plugin.particleFillColor(particle));
       }
 
       if (!sColor && plugin.particleStrokeColor) {
-        sColor = rangeColorToHsl(this._engine, plugin.particleStrokeColor(particle));
+        sColor = rangeColorToHsl(this._pluginManager, plugin.particleStrokeColor(particle));
       }
 
       if (fColor && sColor) {
@@ -794,7 +793,7 @@ export class Canvas {
 
   private readonly _initStyle: () => void = () => {
     const element = this.element,
-      options = this.container.actualOptions;
+      options = this._container.actualOptions;
 
     if (!element) {
       return;
@@ -874,6 +873,6 @@ export class Canvas {
       return;
     }
 
-    setStyle(element, getFullScreenStyle(this.container.actualOptions.fullScreen.zIndex), true);
+    setStyle(element, getFullScreenStyle(this._container.actualOptions.fullScreen.zIndex), true);
   };
 }

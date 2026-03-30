@@ -2,18 +2,18 @@ import { type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
-import type { EmittersEngine } from "./EmittersEngine.js";
+import type { EmittersPluginManager } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 const defaultIndex = 0;
 
 export class EmittersInstancesManager {
   private readonly _containerArrays;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: EmittersEngine) {
+  constructor(pluginManager: EmittersPluginManager) {
     this._containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   async addEmitter(
@@ -27,7 +27,7 @@ export class EmittersInstancesManager {
 
     const { EmitterInstance } = await import("./EmitterInstance.js"),
       emitter = new EmitterInstance(
-        this._engine,
+        this._pluginManager,
         container,
         (emitter: EmitterInstance) => {
           this.removeEmitter(container, emitter);

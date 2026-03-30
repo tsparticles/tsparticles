@@ -1,7 +1,7 @@
 import {
-  type Engine,
   type IContainerPlugin,
   type IRgb,
+  type PluginManager,
   getLogger,
   getStyleFromRgb,
   inverseFactorNumerator,
@@ -20,12 +20,12 @@ interface ITrailFillData {
 
 export class TrailPluginInstance implements IContainerPlugin {
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
   private _trailFill?: ITrailFillData;
 
-  constructor(container: TrailContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: TrailContainer) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   canvasClear(): boolean {
@@ -74,7 +74,7 @@ export class TrailPluginInstance implements IContainerPlugin {
       opacity = inverseFactorNumerator / trail.length;
 
     if (trailFill.color) {
-      const fillColor = rangeColorToRgb(this._engine, trailFill.color);
+      const fillColor = rangeColorToRgb(this._pluginManager, trailFill.color);
 
       if (!fillColor) {
         return;

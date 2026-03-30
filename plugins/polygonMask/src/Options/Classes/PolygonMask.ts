@@ -1,7 +1,7 @@
 import {
-  type Engine,
   type ICoordinates,
   type IOptionLoader,
+  type PluginManager,
   type RecursivePartial,
   deepExtend,
   isNull,
@@ -28,8 +28,8 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
   type;
   url?: string;
 
-  constructor(engine: Engine) {
-    this.draw = new PolygonMaskDraw(engine);
+  constructor(pluginManager: PluginManager) {
+    this.draw = new PolygonMaskDraw(pluginManager);
     this.enable = false;
     this.inline = new PolygonMaskInline();
     this.move = new PolygonMaskMove();

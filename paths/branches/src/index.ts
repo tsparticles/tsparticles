@@ -11,12 +11,12 @@ export const branchingPathName = "branchesPathGenerator";
 export async function loadBranchesPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: MoveEngine) => {
+  await engine.pluginManager.register(async (e: MoveEngine) => {
     const { ensureBaseMoverLoaded } = await import("@tsparticles/plugin-move");
 
     ensureBaseMoverLoaded(e);
 
-    e.addPathGenerator?.(branchingPathName, async container => {
+    e.pluginManager.addPathGenerator?.(branchingPathName, async container => {
       const { BranchesPathGenerator } = await import("./BranchesPathGenerator.js");
 
       return new BranchesPathGenerator(container);

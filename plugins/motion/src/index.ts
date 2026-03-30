@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadMotionPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { MotionPlugin } = await import("./MotionPlugin.js");
 
-    e.addPlugin(new MotionPlugin());
+    e.pluginManager.addPlugin(new MotionPlugin());
   });
 }

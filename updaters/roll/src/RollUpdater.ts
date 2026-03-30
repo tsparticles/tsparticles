@@ -1,9 +1,9 @@
 import {
-  type Engine,
   type IDelta,
   type IParticleTransformValues,
   type IParticleUpdater,
   type Particle,
+  type PluginManager,
   type RecursivePartial,
 } from "@tsparticles/engine";
 import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types.js";
@@ -11,10 +11,10 @@ import { initParticle, updateRoll } from "./Utils.js";
 import { Roll } from "./Options/Classes/Roll.js";
 
 export class RollUpdater implements IParticleUpdater {
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager) {
+    this._pluginManager = pluginManager;
   }
 
   getTransformValues(particle: Particle): Partial<IParticleTransformValues> {
@@ -29,7 +29,7 @@ export class RollUpdater implements IParticleUpdater {
   }
 
   init(particle: RollParticle): void {
-    initParticle(this._engine, particle);
+    initParticle(this._pluginManager, particle);
   }
 
   isEnabled(particle: RollParticle): boolean {

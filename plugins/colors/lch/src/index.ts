@@ -9,9 +9,9 @@ declare const __VERSION__: string;
 export async function loadLchColorPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { LchColorManager } = await import("./LchColorManager.js");
 
-    e.addColorManager("lch", new LchColorManager());
+    e.pluginManager.addColorManager("lch", new LchColorManager());
   });
 }
