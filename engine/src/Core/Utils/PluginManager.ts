@@ -31,11 +31,6 @@ type LoadPluginFunction =
   | AsyncLoadPluginNoEngine
   | SyncLoadPluginNoEngine;
 
-/**
- * Engine class for creating the singleton on globalThis.
- * It's a singleton class for initializing {@link Container} instances,
- * and for Plugins class responsible for every external feature
- */
 export class PluginManager {
   readonly colorManagers = new Map<string, IColorManager>();
 
