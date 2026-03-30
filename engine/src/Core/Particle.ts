@@ -508,6 +508,10 @@ export class Particle {
     this.misplaced = false;
     this.retina = {
       maxDistance: {},
+      maxSpeed: 0,
+      moveDrift: 0,
+      moveSpeed: 0,
+      sizeAnimationSpeed: 0,
     };
     this.outType = ParticleOutType.normal;
     this.ignoresResizeRatio = true;
