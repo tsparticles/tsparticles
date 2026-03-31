@@ -25,10 +25,16 @@ export async function loadHyperspacePreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    await Promise.all([loadEmittersPlugin(e), loadTrailPlugin(e), loadLifeUpdater(e)]);
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+      loadLifeUpdater(e),
+    ]);
 
     await loadEmittersShapeSquare(e);
 

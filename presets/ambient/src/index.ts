@@ -13,8 +13,10 @@ export async function loadAmbientPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadStrokeColorUpdater(e);
+    await Promise.all([
+      loadBasic(e),
+      loadStrokeColorUpdater(e),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

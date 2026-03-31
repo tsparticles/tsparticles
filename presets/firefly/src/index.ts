@@ -21,10 +21,15 @@ export async function loadFireflyPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      loadLifeUpdater(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    await Promise.all([loadLifeUpdater(e), loadExternalTrailInteraction(e)]);
+        await loadExternalTrailInteraction(e);
+      })(),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

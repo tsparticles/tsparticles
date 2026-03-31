@@ -101,6 +101,7 @@
   "dependencies": {
     "@tsparticles/basic": "^4.0.0-beta.1",
     "@tsparticles/engine": "^4.0.0-beta.1",
+    "@tsparticles/palette-confetti": "^4.0.0-alpha.4",
     "@tsparticles/plugin-emitters": "^4.0.0-beta.1",
     "@tsparticles/plugin-interactivity": "^4.0.0-beta.1",
     "@tsparticles/plugin-motion": "^4.0.0-beta.1",

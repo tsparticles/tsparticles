@@ -14,9 +14,14 @@ export async function loadBubblesPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
-    await loadEmittersPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadEmittersPlugin(e);
+      })(),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

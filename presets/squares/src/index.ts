@@ -27,11 +27,13 @@ export async function loadSquaresPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadInteractivityPlugin(e);
-
     await Promise.all([
       loadHexColorPlugin(e),
-      loadEmittersPlugin(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadEmittersPlugin(e);
+      })(),
       loadSquareShape(e),
       loadRotateUpdater(e),
       loadSizeUpdater(e),

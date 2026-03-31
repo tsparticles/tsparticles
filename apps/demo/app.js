@@ -46,12 +46,9 @@ const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
     .map(entry => entry.name)
     .sort((a, b) => a.localeCompare(b))
     .map(folder => {
-      const slug = camelToKebab(folder),
-        packageName = `@tsparticles/${prefix}-${slug}`,
-        title =
-          mode === "palette"
-            ? parsePaletteName(folder)
-            : toTitleCase(slug.replaceAll("-", " ")),
+      const slug = mode === "palette" ? camelToKebab(folder) : folder,
+        packageName = `@tsparticles/${prefix}-${camelToKebab(slug)}`,
+        title = mode === "palette" ? parsePaletteName(folder) : toTitleCase(slug.replaceAll("-", " ")),
         loader = `load${toPascal(folder)}${loaderSuffix}`;
 
       return {
@@ -63,7 +60,9 @@ const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
         route: `/${mode === "palette" ? "palettes" : "presets"}/${folder}`,
         image: `/images/${mode === "palette" ? "palettes" : "presets"}/${folder}.png`,
         scriptFile:
-          mode === "palette" ? `tsparticles.palette.palette-${slug}.min.js` : `tsparticles.preset.${slug}.bundle.min.js`,
+          mode === "palette"
+            ? `tsparticles.palette.palette-${slug}.min.js`
+            : `tsparticles.preset.${slug}.bundle.min.js`,
         loader,
         optionValue: slug,
         description: `${title} ${mode} demo`,

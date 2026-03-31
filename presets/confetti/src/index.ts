@@ -18,6 +18,7 @@ export async function loadConfettiPreset(engine: Engine): Promise<void> {
       { loadWobbleUpdater },
       { loadLifeUpdater },
       { loadRollUpdater },
+      { loadConfettiPalette },
       { options },
     ] = await Promise.all([
       import("@tsparticles/basic"),
@@ -30,15 +31,18 @@ export async function loadConfettiPreset(engine: Engine): Promise<void> {
       import("@tsparticles/updater-wobble"),
       import("@tsparticles/updater-life"),
       import("@tsparticles/updater-roll"),
+      import("@tsparticles/palette-confetti"),
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
-
     await Promise.all([
+      loadBasic(e),
+      loadConfettiPalette(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+        await loadEmittersPlugin(e);
+      })(),
       loadSquareShape(e),
-      loadEmittersPlugin(e),
       loadMotionPlugin(e),
       loadWobbleUpdater(e),
       loadRollUpdater(e),

@@ -23,10 +23,19 @@ export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
+    await Promise.all([
+      (async (): Promise<void> => {
+        await loadBasic(e);
 
-    await Promise.all([loadEmittersPlugin(e), loadTrailPlugin(e), loadCurvesPath(e)]);
+        await loadCurvesPath(e);
+      })(),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

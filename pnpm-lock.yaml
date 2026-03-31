@@ -1156,6 +1156,9 @@ importers:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.1
         version: 4.0.0-beta.1
+      '@tsparticles/palette-confetti':
+        specifier: workspace:^4.0.0-alpha.4
+        version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-emitters':
         specifier: ^4.0.0-beta.1
         version: 4.0.0-beta.1

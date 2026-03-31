@@ -23,10 +23,16 @@ export async function loadFountainPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      loadDestroyUpdater(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    await Promise.all([loadDestroyUpdater(e), loadEmittersPlugin(e), loadTrailPlugin(e)]);
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

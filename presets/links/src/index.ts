@@ -15,9 +15,13 @@ export async function loadLinksPreset(engine: Engine): Promise<void> {
         import("./options.js"),
       ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
-    await loadParticlesLinksInteraction(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+        await loadParticlesLinksInteraction(e);
+      })(),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

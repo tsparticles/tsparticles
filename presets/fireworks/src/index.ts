@@ -13,9 +13,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       { loadInteractivityPlugin },
       { loadTrailEffect },
       { loadEmittersShapeSquare },
-      { loadHexColorPlugin },
-      { loadHslColorPlugin },
-      { loadRgbColorPlugin },
       { loadSoundsPlugin },
       { loadLineShape },
       { loadRotateUpdater },
@@ -29,9 +26,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-interactivity"),
       import("@tsparticles/effect-trail"),
       import("@tsparticles/plugin-emitters-shape-square"),
-      import("@tsparticles/plugin-hex-color"),
-      import("@tsparticles/plugin-hsl-color"),
-      import("@tsparticles/plugin-rgb-color"),
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/shape-line"),
       import("@tsparticles/updater-rotate"),
@@ -41,14 +35,12 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
-
     await Promise.all([
-      loadHexColorPlugin(e),
-      loadHslColorPlugin(e),
-      loadRgbColorPlugin(e),
-      loadEmittersPlugin(e),
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+        await loadEmittersPlugin(e);
+      })(),
       loadTrailEffect(e),
       loadSoundsPlugin(e),
       loadLineShape(e),

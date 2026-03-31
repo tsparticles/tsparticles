@@ -13,8 +13,7 @@ export async function loadSnowPreset(engine: Engine): Promise<void> {
       import("./options.js"),
     ]);
 
-    await loadBasic(e);
-    await loadWobbleUpdater(e);
+    await Promise.all([loadBasic(e), loadWobbleUpdater(e)]);
 
     e.pluginManager.addPreset(presetName, options);
   });

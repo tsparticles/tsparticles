@@ -15,9 +15,14 @@ export async function loadFirePreset(engine: Engine): Promise<void> {
         import("./options.js"),
       ]);
 
-    await loadBasic(e);
-    await loadInteractivityPlugin(e);
-    await loadExternalPushInteraction(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadExternalPushInteraction(e);
+      })(),
+    ]);
 
     e.pluginManager.addPreset(presetName, options);
   });

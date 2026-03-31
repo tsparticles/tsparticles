@@ -5,6 +5,7 @@ const lifeDurationNum = 10,
   lifeDuration = lifeDurationNum / lifeDurationFactor;
 
 export const options: ISourceOptions = {
+  palette: "confetti",
   fullScreen: {
     enable: true,
     zIndex: 100,
@@ -13,12 +14,6 @@ export const options: ISourceOptions = {
   particles: {
     number: {
       value: 0,
-    },
-    fill: {
-      color: {
-        value: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
-      },
-      enable: true,
     },
     shape: {
       type: ["square", "circle"],
