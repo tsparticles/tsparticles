@@ -1,9 +1,13 @@
+linkWorkspacePackages: deep
+
 packages:
   - apps/*
   - presets/*
+  - palettes/*
 
 onlyBuiltDependencies:
   - '@swc/core'
   - '@tsparticles/engine'
+  - canvas
   - esbuild
   - nx

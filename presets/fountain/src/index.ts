@@ -6,18 +6,34 @@ const presetName = "fountain";
  * @param engine -
  */
 export async function loadFountainPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [
+      { loadBasic },
+      { loadDestroyUpdater },
+      { loadEmittersPlugin },
+      { loadInteractivityPlugin },
+      { loadTrailPlugin },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/updater-destroy"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-trail"),
+      import("./options.js"),
+    ]);
 
-    await loadBasic(e);
-    await loadDestroyUpdater(e);
-    await loadEmittersPlugin(e);
-    await loadTrailPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      loadDestroyUpdater(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    e.addPreset(presetName, options);
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+    ]);
+
+    e.pluginManager.addPreset(presetName, options);
   });
 }

@@ -6,16 +6,31 @@ const presetName = "firefly";
  * @param engine -
  */
 export async function loadFireflyPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-      { loadExternalTrailInteraction } = await import("@tsparticles/interaction-external-trail"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [
+      { loadBasic },
+      { loadInteractivityPlugin },
+      { loadLifeUpdater },
+      { loadExternalTrailInteraction },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/updater-life"),
+      import("@tsparticles/interaction-external-trail"),
+      import("./options.js"),
+    ]);
 
-    await loadBasic(e);
-    await loadLifeUpdater(e);
-    await loadExternalTrailInteraction(e);
+    await Promise.all([
+      loadBasic(e),
+      loadLifeUpdater(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    e.addPreset(presetName, options);
+        await loadExternalTrailInteraction(e);
+      })(),
+    ]);
+
+    e.pluginManager.addPreset(presetName, options);
   });
 }

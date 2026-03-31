@@ -72,11 +72,18 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
-subgraph pl [Plugins]
-ple[Emitters]
+subgraph b [Bundles]
+bb[tsParticles Basic]
 end
 
-bb[tsParticles Basic] --> pl
+subgraph pl [Plugins]
+ple[Emitters]
+ples[Emitters Shape Square]
+pli[Interactivity]
+plt[Trail]
+end
+
+bb --> pl
 
 subgraph u [Updaters]
 ul[Life]
@@ -88,5 +95,5 @@ subgraph pr [Presets]
 prhs[Hyperspace]
 end
 
-bb & ple & ul --> prhs
+bb & ple & ples & pli & plt & ul --> prhs
 ```

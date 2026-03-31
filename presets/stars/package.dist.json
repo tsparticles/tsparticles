@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-stars",
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,8 +99,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.14",
-    "@tsparticles/engine": "^4.0.0-alpha.14"
+    "@tsparticles/basic": "^4.0.0-beta.1",
+    "@tsparticles/engine": "^4.0.0-beta.1"
   },
   "publishConfig": {
     "access": "public"

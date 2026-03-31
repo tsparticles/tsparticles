@@ -6,14 +6,24 @@ const presetName = "triangles";
  * @param engine -
  */
 export async function loadTrianglesPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadParticlesLinksInteraction } = await import("@tsparticles/interaction-particles-links"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [{ loadBasic }, { loadParticlesLinksInteraction }, { loadInteractivityPlugin }, { options }] =
+      await Promise.all([
+        import("@tsparticles/basic"),
+        import("@tsparticles/interaction-particles-links"),
+        import("@tsparticles/plugin-interactivity"),
+        import("./options.js"),
+      ]);
 
-    await loadBasic(e);
-    await loadParticlesLinksInteraction(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
 
-    e.addPreset(presetName, options);
+        await loadParticlesLinksInteraction(e);
+      })(),
+    ]);
+
+    e.pluginManager.addPreset(presetName, options);
   });
 }

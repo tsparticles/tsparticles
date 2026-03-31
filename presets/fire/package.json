@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fire",
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -110,9 +110,10 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.14",
-    "@tsparticles/engine": "^4.0.0-alpha.14",
-    "@tsparticles/interaction-external-push": "^4.0.0-alpha.14"
+    "@tsparticles/basic": "^4.0.0-beta.1",
+    "@tsparticles/engine": "^4.0.0-beta.1",
+    "@tsparticles/interaction-external-push": "^4.0.0-beta.1",
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.1"
   },
   "type": "module"
 }

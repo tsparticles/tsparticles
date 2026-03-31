@@ -71,12 +71,27 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
+subgraph b [Bundles]
+bb[tsParticles Basic]
+end
+
 subgraph pl [Plugins]
 ple[Emitters]
+plis[Emitters Shape Square]
+plh[Hex Color]
+plhs[HSL Color]
+pli[Interactivity]
+plr[RGB Color]
 pls[Sounds]
 end
 
-bb[tsParticles Basic] --> pl
+bb --> pl
+
+subgraph ef [Effects]
+eft[Trail]
+end
+
+bb --> ef
 
 subgraph s [Shapes]
 sl[Line]
@@ -97,5 +112,5 @@ subgraph pr [Presets]
 prfw[Fireworks]
 end
 
-bb & ple & pls & sl & ud & ul & ur & ust --> prfw
+bb & ple & plis & plh & plhs & pli & plr & pls & eft & sl & ud & ul & ur & ust --> prfw
 ```

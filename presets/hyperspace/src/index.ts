@@ -6,20 +6,38 @@ const presetName = "hyperspace";
  * @param engine -
  */
 export async function loadHyperspacePreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
-      { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
-      { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [
+      { loadBasic },
+      { loadEmittersPlugin },
+      { loadEmittersShapeSquare },
+      { loadInteractivityPlugin },
+      { loadTrailPlugin },
+      { loadLifeUpdater },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters-shape-square"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-trail"),
+      import("@tsparticles/updater-life"),
+      import("./options.js"),
+    ]);
 
-    await loadBasic(e);
-    await loadEmittersPlugin(e);
+    await Promise.all([
+      loadBasic(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+      loadLifeUpdater(e),
+    ]);
+
     await loadEmittersShapeSquare(e);
-    await loadTrailPlugin(e);
-    await loadLifeUpdater(e);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }

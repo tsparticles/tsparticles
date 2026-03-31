@@ -1,0 +1,15 @@
+{
+    "includes": "./markdown",
+    "entryPoints": [
+        "./src/"
+    ],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles Lo Fi Warm Palette",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}

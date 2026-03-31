@@ -73,6 +73,10 @@ The options shown above are valid for all the component libraries.
 ```mermaid
 flowchart TD
 
+subgraph b [Bundles]
+bb[tsParticles Basic]
+end
+
 subgraph i [Interactions]
 
 subgraph ip [Particles]
@@ -81,11 +85,17 @@ end
 
 end
 
-bb[tsParticles Basic] --> i
+bb --> i
+
+subgraph pl [Plugins]
+pli[Interactivity]
+end
+
+bb --> pl
 
 subgraph pr [Presets]
 prt[Triangles]
 end
 
-bb & ipl --> prt
+bb & ipl & pli --> prt
 ```

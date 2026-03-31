@@ -6,18 +6,37 @@ const presetName = "seaAnemone";
  * @param engine -
  */
 export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
-      { loadCurvesPath } = await import("@tsparticles/path-curves"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [
+      { loadBasic },
+      { loadEmittersPlugin },
+      { loadInteractivityPlugin },
+      { loadTrailPlugin },
+      { loadCurvesPath },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-trail"),
+      import("@tsparticles/path-curves"),
+      import("./options.js"),
+    ]);
 
-    await loadBasic(e);
-    await loadEmittersPlugin(e);
-    await loadTrailPlugin(e);
-    await loadCurvesPath(e);
+    await Promise.all([
+      (async (): Promise<void> => {
+        await loadBasic(e);
 
-    e.addPreset(presetName, options);
+        await loadCurvesPath(e);
+      })(),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+
+        await loadEmittersPlugin(e);
+      })(),
+      loadTrailPlugin(e),
+    ]);
+
+    e.pluginManager.addPreset(presetName, options);
   });
 }

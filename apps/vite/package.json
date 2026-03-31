@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vite-demo",
   "private": true,
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tsparticles/engine": "^4.0.0-alpha.14",
+    "@tsparticles/engine": "^4.0.0-beta.1",
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
     "@tsparticles/preset-confetti": "workspace:^",
@@ -25,6 +25,6 @@
     "@tsparticles/preset-stars": "workspace:^",
     "@tsparticles/preset-triangles": "workspace:^",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^8.0.0"
   }
 }

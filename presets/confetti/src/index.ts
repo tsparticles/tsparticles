@@ -6,28 +6,51 @@ const presetName = "confetti";
  * @param engine -
  */
 export async function loadConfettiPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
-      { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-      { loadSquareShape } = await import("@tsparticles/shape-square"),
-      { loadTiltUpdater } = await import("@tsparticles/updater-tilt"),
-      { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
-      { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-      { loadRollUpdater } = await import("@tsparticles/updater-roll"),
-      { options } = await import("./options.js");
+  await engine.pluginManager.register(async e => {
+    const [
+      { loadBasic },
+      { loadEmittersPlugin },
+      { loadInteractivityPlugin },
+      { loadMotionPlugin },
+      { loadRotateUpdater },
+      { loadSquareShape },
+      { loadTiltUpdater },
+      { loadWobbleUpdater },
+      { loadLifeUpdater },
+      { loadRollUpdater },
+      { loadConfettiPalette },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-motion"),
+      import("@tsparticles/updater-rotate"),
+      import("@tsparticles/shape-square"),
+      import("@tsparticles/updater-tilt"),
+      import("@tsparticles/updater-wobble"),
+      import("@tsparticles/updater-life"),
+      import("@tsparticles/updater-roll"),
+      import("@tsparticles/palette-confetti"),
+      import("./options.js"),
+    ]);
 
-    await loadBasic(e);
-    await loadSquareShape(e);
-    await loadEmittersPlugin(e);
-    await loadMotionPlugin(e);
-    await loadWobbleUpdater(e);
-    await loadRollUpdater(e);
-    await loadRotateUpdater(e);
-    await loadTiltUpdater(e);
-    await loadLifeUpdater(e);
+    await Promise.all([
+      loadBasic(e),
+      loadConfettiPalette(e),
+      (async (): Promise<void> => {
+        await loadInteractivityPlugin(e);
+        await loadEmittersPlugin(e);
+      })(),
+      loadSquareShape(e),
+      loadMotionPlugin(e),
+      loadWobbleUpdater(e),
+      loadRollUpdater(e),
+      loadRotateUpdater(e),
+      loadTiltUpdater(e),
+      loadLifeUpdater(e),
+    ]);
 
-    e.addPreset(presetName, options, false);
+    e.pluginManager.addPreset(presetName, options, false);
   });
 }
