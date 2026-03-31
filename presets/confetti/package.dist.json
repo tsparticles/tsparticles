@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti",
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -101,7 +101,7 @@
   "dependencies": {
     "@tsparticles/basic": "^4.0.0-beta.1",
     "@tsparticles/engine": "^4.0.0-beta.1",
-    "@tsparticles/palette-confetti": "^4.0.0-alpha.4",
+    "@tsparticles/palette-confetti": "^4.0.0-alpha.5",
     "@tsparticles/plugin-emitters": "^4.0.0-beta.1",
     "@tsparticles/plugin-interactivity": "^4.0.0-beta.1",
     "@tsparticles/plugin-motion": "^4.0.0-beta.1",
