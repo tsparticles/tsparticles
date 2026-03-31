@@ -6,7 +6,7 @@ const presetName = "firefly";
  * @param engine -
  */
 export async function loadFireflyPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
       { loadInteractivityPlugin },
@@ -26,6 +26,6 @@ export async function loadFireflyPreset(engine: Engine): Promise<void> {
 
     await Promise.all([loadLifeUpdater(e), loadExternalTrailInteraction(e)]);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }

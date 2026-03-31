@@ -6,7 +6,7 @@ const presetName = "fireworks";
  * @param engine -
  */
 export async function loadFireworksPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
       { loadEmittersPlugin },
@@ -60,6 +60,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
 
     await loadEmittersShapeSquare(e);
 
-    e.addPreset(presetName, initOptions(), false);
+    e.pluginManager.addPreset(presetName, initOptions(), false);
   });
 }

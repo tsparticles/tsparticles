@@ -6,7 +6,7 @@ const presetName = "ambient";
  * @param engine -
  */
 export async function loadAmbientPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [{ loadBasic }, { loadStrokeColorUpdater }, { options }] = await Promise.all([
       import("@tsparticles/basic"),
       import("@tsparticles/updater-stroke-color"),
@@ -16,6 +16,6 @@ export async function loadAmbientPreset(engine: Engine): Promise<void> {
     await loadBasic(e);
     await loadStrokeColorUpdater(e);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }

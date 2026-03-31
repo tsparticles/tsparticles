@@ -6,7 +6,7 @@ const presetName = "seaAnemone";
  * @param engine -
  */
 export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
       { loadEmittersPlugin },
@@ -28,6 +28,6 @@ export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
 
     await Promise.all([loadEmittersPlugin(e), loadTrailPlugin(e), loadCurvesPath(e)]);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }

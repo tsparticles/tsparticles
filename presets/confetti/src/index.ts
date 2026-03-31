@@ -6,7 +6,7 @@ const presetName = "confetti";
  * @param engine -
  */
 export async function loadConfettiPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
       { loadEmittersPlugin },
@@ -47,6 +47,6 @@ export async function loadConfettiPreset(engine: Engine): Promise<void> {
       loadLifeUpdater(e),
     ]);
 
-    e.addPreset(presetName, options, false);
+    e.pluginManager.addPreset(presetName, options, false);
   });
 }

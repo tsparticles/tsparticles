@@ -6,7 +6,7 @@ const presetName = "squares";
  * @param engine - the engine instance to load the preset into
  */
 export async function loadSquaresPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadHexColorPlugin },
       { loadEmittersPlugin },
@@ -38,6 +38,6 @@ export async function loadSquaresPreset(engine: Engine): Promise<void> {
       loadStrokeColorUpdater(e),
     ]);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }

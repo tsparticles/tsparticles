@@ -6,7 +6,7 @@ const presetName = "fountain";
  * @param engine -
  */
 export async function loadFountainPreset(engine: Engine): Promise<void> {
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
       { loadDestroyUpdater },
@@ -28,6 +28,6 @@ export async function loadFountainPreset(engine: Engine): Promise<void> {
 
     await Promise.all([loadDestroyUpdater(e), loadEmittersPlugin(e), loadTrailPlugin(e)]);
 
-    e.addPreset(presetName, options);
+    e.pluginManager.addPreset(presetName, options);
   });
 }
