@@ -202,45 +202,35 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * Rendered directly on the container canvas context.
    */
   private _drawVector(): void {
-    const canvas = this.container.canvas.element;
+    this.container.canvas.render.draw(ctx => {
+      const opts = this._cannonOptions(),
+        { origin, current } = this._gesture,
+        pxRatio = this.container.retina.pixelRatio,
+        dragDist = getDistance(origin, current),
+        // Clamp to maxDragDistance so visual feedback matches actual force
+        clampedDist = Math.min(dragDist, opts.maxDragDistance),
+        clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
+        clampedX = origin.x + (current.x - origin.x) * clampRatio,
+        clampedY = origin.y + (current.y - origin.y) * clampRatio;
 
-    if (!canvas) {
-      return;
-    }
+      ctx.save();
+      ctx.strokeStyle = opts.vectorColor;
+      ctx.lineWidth = double * pxRatio;
+      ctx.beginPath();
+      ctx.moveTo(origin.x, origin.y);
+      ctx.lineTo(clampedX, clampedY);
+      ctx.stroke();
 
-    const ctx = canvas.getContext("2d");
+      // Power circle at origin — radius reflects clamped force
+      const radius = Math.max(powerRadiusMin, clampedDist * powerRadiusMaxFactor) * pxRatio;
 
-    if (!ctx) {
-      return;
-    }
-
-    const opts = this._cannonOptions(),
-      { origin, current } = this._gesture,
-      pxRatio = this.container.retina.pixelRatio,
-      dragDist = getDistance(origin, current),
-      // Clamp to maxDragDistance so visual feedback matches actual force
-      clampedDist = Math.min(dragDist, opts.maxDragDistance),
-      clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
-      clampedX = origin.x + (current.x - origin.x) * clampRatio,
-      clampedY = origin.y + (current.y - origin.y) * clampRatio;
-
-    ctx.save();
-    ctx.strokeStyle = opts.vectorColor;
-    ctx.lineWidth = double * pxRatio;
-    ctx.beginPath();
-    ctx.moveTo(origin.x, origin.y);
-    ctx.lineTo(clampedX, clampedY);
-    ctx.stroke();
-
-    // Power circle at origin — radius reflects clamped force
-    const radius = Math.max(powerRadiusMin, clampedDist * powerRadiusMaxFactor) * pxRatio;
-
-    ctx.beginPath();
-    ctx.arc(origin.x, origin.y, radius, minAngle, doublePI);
-    ctx.strokeStyle = opts.vectorColor;
-    ctx.lineWidth = double * pxRatio;
-    ctx.stroke();
-    ctx.restore();
+      ctx.beginPath();
+      ctx.arc(origin.x, origin.y, radius, minAngle, doublePI);
+      ctx.strokeStyle = opts.vectorColor;
+      ctx.lineWidth = double * pxRatio;
+      ctx.stroke();
+      ctx.restore();
+    });
   }
 
   /**
