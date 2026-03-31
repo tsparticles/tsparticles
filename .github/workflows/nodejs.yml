@@ -1,17 +1,17 @@
 name: Node.js CI
 on:
   push:
-    branches:
-      - main
-      - dev
+    branches: [main, dev]
   pull_request:
-    branches:
-      - main
-      - dev
+    branches: [main, dev]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  NX_VERBOSE_LOGGING: true
+  NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
 
 jobs:
   build-and-deploy:
@@ -24,18 +24,15 @@ jobs:
           fetch-depth: 0
 
       - name: Derive SHAs for nx affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: "24"
 
-      - uses: pnpm/action-setup@v4.2.0
+      - uses: pnpm/action-setup@v5.0.0
         with:
           run_install: false
-
-      - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -53,9 +50,56 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Initialize Nx Cloud or fall back to local
+        run: |
+          if [ -z "$NX_CLOUD_ACCESS_TOKEN" ]; then
+            echo "NX Cloud token missing — using local nx execution"
+            echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
+            echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
+            exit 0
+          fi
+
+          echo "NX Cloud token present — attempting distributed execution"
+          npx nx-cloud --version || echo "nx-cloud --version not available"
+
+          retries=0
+          max_retries=3
+          nx_cloud_started=false
+
+          until [ "$retries" -ge "$max_retries" ]; do
+            output=$(npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" 2>&1)
+            exit_code=$?
+
+            if echo "$output" | grep -q "401\|sufficient access\|unauthorized\|Unauthorized"; then
+              echo "NX Cloud auth failed (401) — falling back to local nx immediately"
+              echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
+              echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
+              exit 0
+            fi
+
+            if [ "$exit_code" -eq 0 ]; then
+              nx_cloud_started=true
+              break
+            fi
+
+            echo "nx-cloud start failed (attempt $((retries + 1))/${max_retries}). Retrying in $((2 ** retries))s..."
+            sleep $((2 ** retries))
+            retries=$((retries + 1))
+          done
+
+          if [ "$nx_cloud_started" = true ]; then
+            echo "NX_CLOUD_DISTRIBUTED_EXECUTION=true" >> $GITHUB_ENV
+            echo "NX_CLOUD_STARTED=true" >> $GITHUB_ENV
+          else
+            echo "nx-cloud start failed after ${max_retries} attempts — falling back to local nx"
+            echo "NX_NO_CLOUD=true" >> $GITHUB_ENV
+            echo "NX_CLOUD_STARTED=false" >> $GITHUB_ENV
+          fi
+
       - name: Build packages
         run: npx nx affected -t build:ci
 
-      - name: Stop Nx Cloud Session
-        run: npx nx fix-ci
-        if: always()
+      - name: Stop Nx Cloud session
+        if: always() && env.NX_CLOUD_STARTED == 'true'
+        continue-on-error: true
+        run: npx nx-cloud stop-all-agents || echo "nx-cloud stop failed — ignoring"
