@@ -17,6 +17,7 @@ import {
   getDistance,
   getRandomInRange,
   identity,
+  none,
 } from "@tsparticles/engine";
 import { Cannon } from "./Options/Classes/Cannon.js";
 
@@ -206,7 +207,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
-        clampedDist = Math.min(dragDist, opts.maxDragDistance * pxRatio),
+        clampedDist = opts.maxDragDistance > none ? Math.min(dragDist, opts.maxDragDistance * pxRatio) : pxRatio,
         clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
         clampedX = origin.x + (current.x - origin.x) * clampRatio,
         clampedY = origin.y + (current.y - origin.y) * clampRatio;
@@ -243,7 +244,8 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
 
     const { origin, current } = this._gesture,
       pxRatio = this.container.retina.pixelRatio,
-      dragLength = Math.min(getDistance(origin, current), opts.maxDragDistance * pxRatio);
+      dist = getDistance(origin, current),
+      dragLength = opts.maxDragDistance > none ? Math.min(dist, opts.maxDragDistance * pxRatio) : dist;
 
     if (dragLength < minTapsLength) {
       // Ignore accidental taps

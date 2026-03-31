@@ -5,13 +5,13 @@ import {
   executeOnSingleOrMultiple,
   lengthOffset,
   manageListener,
+  safeDocument,
   visibilityChangeEvent,
 } from "@tsparticles/engine";
 import {
   mouseDownEvent,
   mouseLeaveEvent,
   mouseMoveEvent,
-  mouseOutEvent,
   mouseUpEvent,
   touchCancelEvent,
   touchEndEvent,
@@ -160,10 +160,7 @@ export class InteractivityEventListeners {
     this._mouseTouchFinish();
   };
 
-  private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
-    mouseLeaveTmpEvent,
-    add,
-  ) => {
+  private readonly _manageInteractivityListeners: (add: boolean) => void = add => {
     const handlers = this._handlers,
       container = this._container,
       interactionManager = this._interactionManager,
@@ -204,7 +201,7 @@ export class InteractivityEventListeners {
       manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
     }
 
-    manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
+    manageListener(interactivityEl, mouseLeaveEvent, handlers.mouseLeave, add);
     manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
   };
 
@@ -220,20 +217,16 @@ export class InteractivityEventListeners {
       detectType = options.interactivity?.detectsOn,
       canvasEl = container.canvas.element;
 
-    let mouseLeaveTmpEvent = mouseLeaveEvent;
-
     /* events target element */
     if (detectType === InteractivityDetect.window) {
-      interactionManager.interactivityData.element = globalThis;
-
-      mouseLeaveTmpEvent = mouseOutEvent;
+      interactionManager.interactivityData.element = safeDocument();
     } else if (detectType === InteractivityDetect.parent && canvasEl) {
       interactionManager.interactivityData.element = canvasEl.parentElement ?? canvasEl.parentNode;
     } else {
       interactionManager.interactivityData.element = canvasEl;
     }
 
-    this._manageInteractivityListeners(mouseLeaveTmpEvent, add);
+    this._manageInteractivityListeners(add);
 
     manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
   };
@@ -326,7 +319,7 @@ export class InteractivityEventListeners {
 
       const mouseEvent = e as MouseEvent;
 
-      if (interactivity.element === globalThis) {
+      if (interactivity.element === safeDocument()) {
         if (canvasEl) {
           const clientRect = canvasEl.getBoundingClientRect();
 

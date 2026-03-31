@@ -84,10 +84,10 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         }
 
         if (interactivityParticleOptions.replaceCursor) {
-          const element = interactivityData.element as HTMLElement | Window | undefined;
+          const element = interactivityData.element as HTMLElement | Window | Document | undefined;
 
           if (element) {
-            if (element instanceof Window) {
+            if (element instanceof Window || element instanceof Document) {
               safeDocument().body.style.cursor = "";
             } else {
               element.style.cursor = "";
@@ -119,10 +119,10 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
       this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
 
       if (interactivityParticleOptions.replaceCursor) {
-        const element = interactivityData.element as HTMLElement | Window | undefined;
+        const element = interactivityData.element as HTMLElement | Window | Document | undefined;
 
         if (element) {
-          if (element instanceof Window) {
+          if (element instanceof Window || element instanceof Document) {
             safeDocument().body.style.cursor = "none";
           } else {
             element.style.cursor = "none";
