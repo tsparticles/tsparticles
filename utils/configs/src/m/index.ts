@@ -4,6 +4,7 @@ import motionDisable from "./motionDisable.js";
 import motionReduce from "./motionReduce.js";
 import mouseAttract from "./mouseAttract.js";
 import mouseBounce from "./mouseBounce.js";
+import mouseCannon from "./mouseCannon.js";
 import mouseDrag from "./mouseDrag.js";
 import mouseDragMomentum from "./mouseDragMomentum.js";
 import mouseFollow from "./mouseFollow.js";
@@ -25,6 +26,7 @@ export default {
   motionReduce,
   mouseAttract,
   mouseBounce,
+  mouseCannon,
   mouseDrag,
   mouseDragMomentum,
   mouseFollow,

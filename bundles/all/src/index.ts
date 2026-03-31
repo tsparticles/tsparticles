@@ -57,6 +57,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadExportJSONPlugin },
       { loadExportVideoPlugin },
 
+      { loadExternalCannonInteraction },
       { loadExternalParticleInteraction },
       { loadExternalPopInteraction },
       { loadLightInteraction },
@@ -143,6 +144,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-export-json"),
       import("@tsparticles/plugin-export-video"),
 
+      import("@tsparticles/interaction-external-cannon"),
       import("@tsparticles/interaction-external-particle"),
       import("@tsparticles/interaction-external-pop"),
       import("@tsparticles/interaction-light"),
@@ -193,6 +195,7 @@ export async function loadAll(engine: Engine): Promise<void> {
         await loadFull(e);
 
         await Promise.all([
+          loadExternalCannonInteraction(e),
           loadExternalParticleInteraction(e),
           loadExternalPopInteraction(e),
           loadLightInteraction(e),

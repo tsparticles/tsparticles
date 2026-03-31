@@ -188,6 +188,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.0
         version: link:../../engine/dist
+      '@tsparticles/interaction-external-cannon':
+        specifier: workspace:4.0.0-beta.0
+        version: link:../../interactions/external/cannon/dist
       '@tsparticles/interaction-external-particle':
         specifier: workspace:4.0.0-beta.0
         version: link:../../interactions/external/particle/dist
@@ -731,6 +734,9 @@ importers:
       '@tsparticles/interaction-external-bubble':
         specifier: workspace:4.0.0-beta.0
         version: link:../../interactions/external/bubble/dist
+      '@tsparticles/interaction-external-cannon':
+        specifier: workspace:4.0.0-beta.0
+        version: link:../../interactions/external/cannon/dist
       '@tsparticles/interaction-external-connect':
         specifier: workspace:4.0.0-beta.0
         version: link:../../interactions/external/connect/dist
@@ -1291,6 +1297,16 @@ importers:
     publishDirectory: dist
 
   interactions/external/bubble:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-beta.0
+        version: link:../../../engine/dist
+      '@tsparticles/plugin-interactivity':
+        specifier: workspace:4.0.0-beta.0
+        version: link:../../../plugins/interactivity/dist
+    publishDirectory: dist
+
+  interactions/external/cannon:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.0

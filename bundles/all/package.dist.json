@@ -104,6 +104,7 @@
     "@tsparticles/effect-shadow": "4.0.0-beta.0",
     "@tsparticles/effect-trail": "4.0.0-beta.0",
     "@tsparticles/engine": "4.0.0-beta.0",
+    "@tsparticles/interaction-external-cannon": "4.0.0-beta.0",
     "@tsparticles/interaction-external-particle": "4.0.0-beta.0",
     "@tsparticles/interaction-external-pop": "4.0.0-beta.0",
     "@tsparticles/interaction-light": "4.0.0-beta.0",

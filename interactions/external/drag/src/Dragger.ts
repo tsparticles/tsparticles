@@ -7,6 +7,7 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import {
+  type ICoordinates,
   type IDelta,
   type Particle,
   type RecursivePartial,
@@ -48,11 +49,11 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
   private _dragStartClickTime?: number;
   private _dragStartClickingFalseTime?: number;
   private _draggedParticle?: Particle;
-  private _grabOffset?: { x: number; y: number };
-  private _lastMousePosition?: { x: number; y: number };
+  private _grabOffset?: ICoordinates;
+  private _lastMousePosition?: ICoordinates;
   private _momentumSamples: MomentumSample[] = [];
   private _mouseDownHandled = false;
-  private _savedVelocity?: { x: number; y: number };
+  private _savedVelocity?: ICoordinates;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: DragContainer) {

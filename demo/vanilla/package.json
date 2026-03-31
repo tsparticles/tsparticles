@@ -65,6 +65,7 @@
     "@tsparticles/interaction-external-attract": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-bounce": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-bubble": "workspace:4.0.0-beta.0",
+    "@tsparticles/interaction-external-cannon": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-connect": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-drag": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-grab": "workspace:4.0.0-beta.0",

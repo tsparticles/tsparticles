@@ -112,6 +112,7 @@
     "@tsparticles/effect-shadow": "workspace:4.0.0-beta.0",
     "@tsparticles/effect-trail": "workspace:4.0.0-beta.0",
     "@tsparticles/engine": "workspace:4.0.0-beta.0",
+    "@tsparticles/interaction-external-cannon": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-particle": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-external-pop": "workspace:4.0.0-beta.0",
     "@tsparticles/interaction-light": "workspace:4.0.0-beta.0",
