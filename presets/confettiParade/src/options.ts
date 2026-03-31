@@ -1,8 +1,11 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const lifeDurationNum = 10,
-  lifeDurationFactor = 3,
-  lifeDuration = lifeDurationNum / lifeDurationFactor;
+  percent = 100,
+  identity = 1,
+  thirdFactor = 3,
+  third = identity / thirdFactor,
+  lifeDuration = lifeDurationNum * third;
 
 export const options: ISourceOptions = {
   palette: "confetti",
@@ -55,9 +58,8 @@ export const options: ISourceOptions = {
         enable: true,
         acceleration: 9.81,
       },
-      speed: 45,
+      speed: 90,
       decay: 0.1,
-      direction: -90,
       random: true,
       straight: false,
       outModes: {
@@ -111,24 +113,56 @@ export const options: ISourceOptions = {
   motion: {
     disable: true,
   },
-  emitters: {
-    name: "confetti",
-    startCount: 50,
-    position: {
-      x: 50,
-      y: 50,
+  emitters: [
+    {
+      name: "confetti-left",
+      startCount: 50,
+      position: {
+        x: 0,
+        y: third * percent,
+      },
+      size: {
+        width: 0,
+        height: 0,
+      },
+      rate: {
+        delay: 0.1,
+        quantity: 10,
+      },
+      life: {
+        duration: 10,
+        count: 1,
+      },
+      particles: {
+        move: {
+          direction: "top-right",
+        },
+      },
     },
-    size: {
-      width: 0,
-      height: 0,
+    {
+      name: "confetti-right",
+      startCount: 50,
+      position: {
+        x: 100,
+        y: third * percent,
+      },
+      size: {
+        width: 0,
+        height: 0,
+      },
+      rate: {
+        delay: 0.1,
+        quantity: 10,
+      },
+      life: {
+        duration: 10,
+        count: 1,
+      },
+      particles: {
+        move: {
+          direction: "top-left",
+        },
+      },
     },
-    rate: {
-      delay: 0,
-      quantity: 0,
-    },
-    life: {
-      duration: 0.1,
-      count: 1,
-    },
-  },
+  ],
 };

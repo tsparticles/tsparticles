@@ -1,9 +1,5 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
-const lifeDurationNum = 10,
-  lifeDurationFactor = 3,
-  lifeDuration = lifeDurationNum / lifeDurationFactor;
-
 export const options: ISourceOptions = {
   palette: "confetti",
   background: {
@@ -18,48 +14,35 @@ export const options: ISourceOptions = {
   particles: {
     number: {
       value: 0,
+      density: {
+        enable: true,
+      },
     },
     shape: {
       type: ["square", "circle"],
+    },
+    size: {
+      value: {
+        min: 3,
+        max: 5,
+      },
     },
     opacity: {
       value: { min: 0, max: 1 },
       animation: {
         enable: true,
-        speed: 0.5,
         startValue: "max",
         destroy: "min",
+        speed: 0.1,
       },
-    },
-    size: {
-      value: 5,
-    },
-    links: {
-      enable: false,
-    },
-    life: {
-      duration: {
-        sync: true,
-        value: lifeDuration,
-      },
-      count: 1,
     },
     move: {
-      angle: {
-        value: 45,
-        offset: 0,
-      },
-      drift: 0,
       enable: true,
+      speed: 1,
+      decay: 0.1,
       gravity: {
         enable: true,
-        acceleration: 9.81,
       },
-      speed: 45,
-      decay: 0.1,
-      direction: -90,
-      random: true,
-      straight: false,
       outModes: {
         default: "destroy",
         top: "none",
@@ -71,6 +54,7 @@ export const options: ISourceOptions = {
         max: 360,
       },
       direction: "random",
+      move: true,
       animation: {
         enable: true,
         speed: 60,
@@ -91,9 +75,14 @@ export const options: ISourceOptions = {
     roll: {
       darken: {
         enable: true,
-        value: 25,
+        value: 30,
+      },
+      enlighten: {
+        enable: true,
+        value: 30,
       },
       enable: true,
+      mode: "both",
       speed: {
         min: 15,
         max: 25,
@@ -102,33 +91,22 @@ export const options: ISourceOptions = {
     wobble: {
       distance: 30,
       enable: true,
+      move: true,
       speed: {
         min: -15,
         max: 15,
       },
     },
   },
+  interactivity: {
+    events: {
+      onClick: {
+        enable: true,
+        mode: "cannon",
+      },
+    },
+  },
   motion: {
     disable: true,
-  },
-  emitters: {
-    name: "confetti",
-    startCount: 50,
-    position: {
-      x: 50,
-      y: 50,
-    },
-    size: {
-      width: 0,
-      height: 0,
-    },
-    rate: {
-      delay: 0,
-      quantity: 0,
-    },
-    life: {
-      duration: 0.1,
-      count: 1,
-    },
   },
 };

@@ -44,7 +44,7 @@ tsParticles.load({
   options: {
     particles: {
       color: {
-        value: ["#0000ff", "#00ff00"],
+        value: ["#ff0000", "#0000ff", "#00ff00", "#ffffff"],
       },
     },
     preset: "confetti",
@@ -52,14 +52,14 @@ tsParticles.load({
 });
 ```
 
-Like in the sample above, the white and red colors will be replaced by blue and lime.
+Like in the sample above, the default colors will be replaced by red, blue, lime and white.
 
-#### Cannons
+#### Explosion
 
-The preset has a single life cannon, with a short duration. The effect is immediate and ends few seconds after, but this
+The preset has a single life explosion, with a short duration. The effect is immediate and ends few seconds after, but this
 can be customized too.
 
-The confetti cannons are made using the _Emitter_ plugin, which is already
+The confetti explosion is made using the _Emitter_ plugin, which is already
 documented [here](https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html).
 
 These are the default cannon (emitter) options:
@@ -120,9 +120,9 @@ tsParticles.load({
 
 This will create an infinite cannon shooting confetti from the center of the canvas.
 
-##### Immortal Cannon - Fireworks
+##### Immortal Explosion - Fireworks
 
-To create a fireworks effect, or an immortal cannon, the emitter life options, again, need some changes.
+To create a fireworks effect, or an immortal explosion, the emitter life options, again, need some changes.
 
 The `life.duration` can be kept to the default short value, but the `life.count` is what we need to change.
 
@@ -157,13 +157,13 @@ tsParticles.load({
 });
 ```
 
-###### Multiple Cannons
+###### Multiple Explosions
 
 Now that we have played with a single cannon, what about multiple ones?
 
-This needs more customization since the cannons array will overwrite the existing options.
+This needs more customization since the explosions array will overwrite the existing options.
 
-First let's start overriding the emitters (cannons) options placing an array instead of an object.
+First let's start overriding the emitters (explosions) options placing an array instead of an object.
 
 Like this:
 
@@ -224,7 +224,7 @@ tsParticles.load({
 });
 ```
 
-This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
+This samples creates two explosions, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
 in opposite directions.
 
 ### Frameworks with a tsParticles component library
