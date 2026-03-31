@@ -5,14 +5,14 @@ import {
   decayOffset,
   getRangeMax,
   getRangeValue,
+  half,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
-import type { MoveEngine, MoveParticle } from "./Types.js";
+import type { MoveParticle, MovePluginManager } from "./Types.js";
 import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
-const diffFactor = 2,
-  defaultSizeFactor = 1,
+const defaultSizeFactor = 1,
   defaultDeltaFactor = 1;
 
 export class MovePluginInstance implements IContainerPlugin {
@@ -20,10 +20,10 @@ export class MovePluginInstance implements IContainerPlugin {
   pathGenerators: Map<string, IMovePathGenerator>;
 
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: MoveEngine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: MovePluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
 
     this.availablePathGenerators = new Map();
@@ -48,10 +48,11 @@ export class MovePluginInstance implements IContainerPlugin {
    */
   particleCreated(particle: MoveParticle): void {
     const options = particle.options,
-      gravityOptions = options.move.gravity,
-      pathOptions = options.move.path;
+      moveOptions = options.move,
+      gravityOptions = moveOptions.gravity,
+      pathOptions = moveOptions.path;
 
-    particle.moveDecay = decayOffset - getRangeValue(options.move.decay);
+    particle.moveDecay = decayOffset - getRangeValue(moveOptions.decay);
     particle.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
@@ -76,7 +77,7 @@ export class MovePluginInstance implements IContainerPlugin {
       inverse: gravityOptions.inverse,
     };
 
-    initSpin(particle);
+    initSpin(this._container, particle);
   }
 
   particleDestroyed(particle: MoveParticle): void {
@@ -97,24 +98,20 @@ export class MovePluginInstance implements IContainerPlugin {
       return;
     }
 
-    const container = particle.container,
-      pxRatio = container.retina.pixelRatio;
-
-    particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * pxRatio;
-    particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio;
-
-    const slowFactor = getProximitySpeedFactor(particle),
+    const container = this._container,
+      pxRatio = container.retina.pixelRatio,
+      slowFactor = getProximitySpeedFactor(particle),
       reduceFactor = container.retina.reduceFactor,
       baseSpeed = particle.retina.moveSpeed,
       moveDrift = particle.retina.moveDrift,
       maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
       sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
       deltaFactor = delta.factor || defaultDeltaFactor,
-      moveSpeed = (baseSpeed * sizeFactor * slowFactor * deltaFactor) / diffFactor,
-      maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
+      moveSpeed = baseSpeed * sizeFactor * slowFactor * deltaFactor * half,
+      maxSpeed = particle.retina.maxSpeed;
 
     if (moveOptions.spin.enable) {
-      spin(particle, moveSpeed, reduceFactor);
+      spin(container, particle, moveSpeed, reduceFactor);
     } else {
       move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, reduceFactor, delta);
     }
@@ -137,7 +134,7 @@ export class MovePluginInstance implements IContainerPlugin {
   }
 
   private async _init(): Promise<void> {
-    const availablePathGenerators = await this._engine.getPathGenerators?.(this._container, true);
+    const availablePathGenerators = await this._pluginManager.getPathGenerators?.(this._container, true);
 
     if (!availablePathGenerators) {
       return;

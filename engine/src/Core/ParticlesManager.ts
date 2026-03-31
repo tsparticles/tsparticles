@@ -11,20 +11,17 @@ import {
   squareExp,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
@@ -33,23 +30,16 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 /**
  * Particles manager object
  */
-export class Particles {
+export class ParticlesManager {
   checkParticlePositionPlugins: IContainerPlugin[];
 
-  effectDrawers: Map<string, IEffectDrawer>;
-
   grid;
-
-  shapeDrawers: Map<string, IShapeDrawer>;
-
-  updaters: IParticleUpdater[];
 
   /**
    * All the particles used in canvas
    */
   private _array: Particle[];
   private readonly _container: Container;
-  private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
   private _limit;
   private _maxZIndex;
@@ -58,6 +48,7 @@ export class Particles {
   private _nextId;
   private _particleResetPlugins: IContainerPlugin[];
   private _particleUpdatePlugins: IContainerPlugin[];
+  private readonly _pluginManager;
   private readonly _pool: Particle[];
   private _postParticleUpdatePlugins: IContainerPlugin[];
   private _postUpdatePlugins: IContainerPlugin[];
@@ -67,11 +58,11 @@ export class Particles {
 
   /**
    *
-   * @param engine -
+   * @param pluginManager -
    * @param container -
    */
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
     this._nextId = 0;
     this._array = [];
@@ -83,9 +74,6 @@ export class Particles {
     this._minZIndex = 0;
     this._maxZIndex = 0;
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
@@ -132,7 +120,7 @@ export class Particles {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+      const particle = this._pool.pop() ?? new Particle(this._pluginManager, this._container);
 
       particle.init(this._nextId, position, overrideOptions, group);
 
@@ -153,11 +141,8 @@ export class Particles {
 
       this._nextId++;
 
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
+      this._container.dispatchEvent(EventType.particleAdded, {
+        particle,
       });
 
       return particle;
@@ -177,22 +162,9 @@ export class Particles {
   }
 
   destroy(): void {
-    const container = this._container;
-
-    for (const [, effectDrawer] of this.effectDrawers) {
-      effectDrawer.destroy?.(container);
-    }
-
-    for (const [, shapeDrawer] of this.shapeDrawers) {
-      shapeDrawer.destroy?.(container);
-    }
-
     this._array = [];
     this._pool.length = 0;
     this._zArray = [];
-    this.effectDrawers = new Map();
-    this.shapeDrawers = new Map();
-    this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
@@ -266,13 +238,13 @@ export class Particles {
       }
     }
 
-    await this.initPlugins();
+    await this._container.initDrawersAndUpdaters();
 
-    for (const drawer of this.effectDrawers.values()) {
+    for (const drawer of this._container.effectDrawers.values()) {
       await drawer.init?.(container);
     }
 
-    for (const drawer of this.shapeDrawers.values()) {
+    for (const drawer of this._container.shapeDrawers.values()) {
       await drawer.init?.(container);
     }
 
@@ -308,14 +280,6 @@ export class Particles {
     }
   }
 
-  async initPlugins(): Promise<void> {
-    const container = this._container;
-
-    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
-    this.updaters = await this._engine.getUpdaters(container, true);
-  }
-
   push(
     nb: number,
     position?: ICoordinates,
@@ -331,7 +295,7 @@ export class Particles {
     this.clear();
     await this.init();
 
-    this._container.canvas.drawParticles({ value: 0, factor: 0 });
+    this._container.canvas.render.drawParticles({ value: 0, factor: 0 });
   }
 
   remove(particle: Particle, group?: string, override?: boolean): void {
@@ -376,7 +340,7 @@ export class Particles {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+      const groupDataOptions = loadParticlesOptions(this._pluginManager, this._container, groupData);
 
       this._applyDensity(groupDataOptions, pluginsCount, group);
     }
@@ -434,38 +398,38 @@ export class Particles {
       this.grid.insert(particle);
     }
 
-    if (particlesToDelete.size) {
-      const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
-
-      this._array = this.filter(checkDelete);
-      this._zArray = this._zArray.filter(checkDelete);
-
-      for (const particle of particlesToDelete) {
-        this._engine.dispatchEvent(EventType.particleRemoved, {
-          container: this._container,
-          data: {
-            particle,
-          },
-        });
-      }
-
-      this._addToPool(...particlesToDelete);
-    }
-
     for (const plugin of this._postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
     // this loop is required to be done after mouse interactions
     for (const particle of this._array) {
-      for (const updater of this.updaters) {
+      if (particle.destroyed) {
+        particlesToDelete.add(particle);
+
+        continue;
+      }
+
+      for (const updater of this._container.particleUpdaters) {
         updater.update(particle, delta);
       }
 
+      // particle.destroyed can be set to true in updater.update
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!particle.destroyed && !particle.spawning) {
         for (const plugin of this._postParticleUpdatePlugins) {
           plugin.postParticleUpdate?.(particle, delta);
         }
+
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      } else if (particle.destroyed) {
+        particlesToDelete.add(particle);
+      }
+    }
+
+    if (particlesToDelete.size) {
+      for (const particle of particlesToDelete) {
+        this.remove(particle);
       }
     }
 
@@ -561,11 +525,8 @@ export class Particles {
 
     particle.destroy(override);
 
-    this._engine.dispatchEvent(EventType.particleRemoved, {
-      container: this._container,
-      data: {
-        particle,
-      },
+    this._container.dispatchEvent(EventType.particleRemoved, {
+      particle,
     });
 
     this._addToPool(particle);

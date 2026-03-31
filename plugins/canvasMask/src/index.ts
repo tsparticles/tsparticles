@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadCanvasMaskPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { CanvasMaskPlugin } = await import("./CanvasMaskPlugin.js");
 
-    e.addPlugin(new CanvasMaskPlugin());
+    e.pluginManager.addPlugin(new CanvasMaskPlugin());
   });
 }

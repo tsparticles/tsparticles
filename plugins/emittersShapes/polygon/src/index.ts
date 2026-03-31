@@ -9,13 +9,13 @@ declare const __VERSION__: string;
 export async function loadEmittersShapePolygon(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: EmittersEngine) => {
+  await engine.pluginManager.register(async (e: EmittersEngine) => {
     const { ensureEmittersPluginLoaded } = await import("@tsparticles/plugin-emitters");
 
     ensureEmittersPluginLoaded(e);
 
     const { EmittersPolygonShapeGenerator } = await import("./EmittersPolygonShapeGenerator.js");
 
-    e.addEmitterShapeGenerator?.("polygon", new EmittersPolygonShapeGenerator());
+    e.pluginManager.addEmitterShapeGenerator?.("polygon", new EmittersPolygonShapeGenerator());
   });
 }

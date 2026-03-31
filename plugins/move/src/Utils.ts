@@ -1,4 +1,5 @@
 import {
+  type Container,
   type IDelta,
   type Move,
   type Particle,
@@ -141,13 +142,12 @@ export function move(
 }
 
 /**
+ * @param container -
  * @param particle -
  * @param moveSpeed -
  * @param reduceFactor -
  */
-export function spin(particle: MoveParticle, moveSpeed: number, reduceFactor: number): void {
-  const container = particle.container;
-
+export function spin(container: Container, particle: MoveParticle, moveSpeed: number, reduceFactor: number): void {
   if (!particle.spin) {
     return;
   }
@@ -222,11 +222,11 @@ export function getProximitySpeedFactor(particle: Particle): number {
 }
 
 /**
+ * @param container -
  * @param particle -
  */
-export function initSpin(particle: MoveParticle): void {
-  const container = particle.container,
-    options = particle.options,
+export function initSpin(container: Container, particle: MoveParticle): void {
+  const options = particle.options,
     spinOptions = options.move.spin;
 
   if (!spinOptions.enable) {

@@ -1,6 +1,5 @@
 import {
   type Container,
-  type Engine,
   type ICoordinates,
   type IEffectDrawer,
   type IOptionsColor,
@@ -9,6 +8,7 @@ import {
   type IShapeValues,
   OptionsColor,
   type Particle,
+  type PluginManager,
   getStyleFromRgb,
   originPoint,
   rangeColorToRgb,
@@ -30,10 +30,12 @@ type ShadowParticle = Particle & {
 };
 
 export class ShadowDrawer implements IEffectDrawer {
-  private readonly _engine: Engine;
+  private readonly _container;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
+    this._container = container;
   }
 
   drawAfter(data: IShapeDrawData): void {
@@ -47,7 +49,7 @@ export class ShadowDrawer implements IEffectDrawer {
 
   drawBefore(data: IShapeDrawData): void {
     const { particle, context } = data,
-      { container } = particle,
+      { _container: container } = this,
       shadowParticle = particle as ShadowParticle,
       shadowColor = shadowParticle.shadowColor,
       shadowOffset = shadowParticle.shadowOffset;
@@ -66,7 +68,7 @@ export class ShadowDrawer implements IEffectDrawer {
     const effectData = particle.effectData as IShadowData | undefined,
       shadowColor = OptionsColor.create(new OptionsColor(), effectData?.color);
 
-    particle.shadowColor = rangeColorToRgb(this._engine, shadowColor);
+    particle.shadowColor = rangeColorToRgb(this._pluginManager, shadowColor);
     particle.shadowBlur = effectData?.blur ?? defaultShadowBlur;
     particle.shadowOffset = effectData?.offset ?? originPoint;
   }

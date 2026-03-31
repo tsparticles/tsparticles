@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type Container,
   type IShapeDrawData,
   type IShapeDrawer,
@@ -113,8 +114,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       fullSize = maxSize + padding,
       canvasSize = fullSize * double;
 
-    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
-      context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
+    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas, context: CanvasContextType | null;
 
     if (typeof OffscreenCanvas === "undefined") {
       const canvas = safeDocument().createElement("canvas");
@@ -122,11 +122,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       canvas.width = canvasSize;
       canvas.height = canvasSize;
 
-      context = canvas.getContext("2d", container.canvas.settings);
+      context = canvas.getContext("2d", container.canvas.render.settings);
       cacheCanvas = canvas;
     } else {
       cacheCanvas = new OffscreenCanvas(canvasSize, canvasSize);
-      context = cacheCanvas.getContext("2d", container.canvas.settings);
+      context = cacheCanvas.getContext("2d", container.canvas.render.settings);
     }
 
     if (!context) {

@@ -15,6 +15,9 @@ interface ILogger {
   log(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  trace(this: void, ...data: unknown[]): void;
+
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   verbose(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -29,6 +32,7 @@ const _logger: ILogger = {
   },
   info: console.info,
   log: console.log,
+  trace: console.trace,
   verbose: console.log,
   warning: console.warn,
 };

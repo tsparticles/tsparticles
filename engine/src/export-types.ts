@@ -73,6 +73,7 @@ export type * from "./Options/Interfaces/Particles/Size/ISizeAnimation.js";
 
 export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
+export type * from "./Types/CanvasContextType.js";
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";
 export type * from "./Types/EasingFunction.js";
@@ -88,9 +89,10 @@ export type * from "./Types/SingleOrMultiple.js";
 
 export type { EventListeners } from "./Core/Utils/EventListeners.js";
 export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
-export type { Canvas } from "./Core/Canvas.js";
+export type { CanvasManager } from "./Core/CanvasManager.js";
 export type { Container } from "./Core/Container.js";
 export type { Particle } from "./Core/Particle.js";
-export type { Particles } from "./Core/Particles.js";
+export type { ParticlesManager } from "./Core/ParticlesManager.js";
 export type { Retina } from "./Core/Retina.js";
 export type { Engine } from "./Core/Engine.js";
+export type { PluginManager } from "./Core/Utils/PluginManager.js";

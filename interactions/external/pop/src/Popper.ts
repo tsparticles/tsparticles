@@ -39,7 +39,7 @@ export class Popper extends ExternalInteractorBase {
       }
 
       for (const particle of poppedParticles) {
-        container.particles.remove(particle);
+        particle.destroy();
       }
     };
   }

@@ -1,4 +1,5 @@
 import {
+  type Container,
   type IDelta,
   type IParticleUpdater,
   type Particle,
@@ -10,15 +11,20 @@ import {
 const minLoops = 0;
 
 export class SizeUpdater implements IParticleUpdater {
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+  }
+
   init(particle: Particle): void {
-    const container = particle.container,
+    const container = this._container,
       sizeOptions = particle.options.size,
       sizeAnimation = sizeOptions.animation;
 
     if (sizeAnimation.enable) {
       particle.size.velocity =
-        ((particle.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / percentDenominator) *
-        container.retina.reduceFactor;
+        (particle.retina.sizeAnimationSpeed / percentDenominator) * container.retina.reduceFactor;
 
       if (!sizeAnimation.sync) {
         particle.size.velocity *= getRandom();
@@ -38,7 +44,8 @@ export class SizeUpdater implements IParticleUpdater {
   }
 
   reset(particle: Particle): void {
-    particle.size.loops = minLoops;
+    particle.size.time = 0;
+    particle.size.loops = 0;
   }
 
   update(particle: Particle, delta: IDelta): void {

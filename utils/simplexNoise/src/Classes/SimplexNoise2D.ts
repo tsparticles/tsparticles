@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import type { Contribution2D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
+
+const half = 0.5;
 
 export class SimplexNoise2D {
   private readonly _NORM_2D;
@@ -18,9 +19,9 @@ export class SimplexNoise2D {
   private _perm2D: Uint8Array;
 
   constructor() {
-    this._NORM_2D = 1.0 / 47.0;
-    this._SQUISH_2D = (Math.sqrt(2 + 1) - 1) / 2;
-    this._STRETCH_2D = (1 / Math.sqrt(2 + 1) - 1) / 2;
+    this._NORM_2D = 1 / 47;
+    this._SQUISH_2D = (Math.sqrt(2 + 1) - 1) * half;
+    this._STRETCH_2D = (1 / Math.sqrt(2 + 1) - 1) * half;
     this._base2D = [
       [1, 1, 0, 1, 0, 1, 0, 0, 0],
       [1, 1, 0, 1, 0, 1, 2, 1, 1],
@@ -122,15 +123,17 @@ export class SimplexNoise2D {
         dy = dy0 + c.dy,
         attn = 2 - dx * dx - dy * dy;
 
-      if (attn > 0) {
-        const px = xsb + c.xsb,
-          py = ysb + c.ysb,
-          indexPartA = _perm[px & 0xff]!,
-          index = _perm2D[(indexPartA + py) & 0xff]!,
-          valuePart = _gradients2D[index]! * dx + _gradients2D[index + 1]! * dy;
-
-        value += attn * attn * attn * attn * valuePart;
+      if (attn <= 0) {
+        continue;
       }
+
+      const px = xsb + c.xsb,
+        py = ysb + c.ysb,
+        indexPartA = _perm[px & 0xff]!,
+        index = _perm2D[(indexPartA + py) & 0xff]!,
+        valuePart = _gradients2D[index]! * dx + _gradients2D[index + 1]! * dy;
+
+      value += attn * attn * attn * attn * valuePart;
     }
 
     return value * _NORM_2D;
@@ -196,6 +199,7 @@ export class SimplexNoise2D {
 
       this._perm[i] = source[r[0]]!;
       this._perm2D[i] = this._perm[i]! & 0x0e;
+
       source[r[0]] = source[i]!;
     }
   }

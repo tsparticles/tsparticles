@@ -13,7 +13,7 @@ export interface IBlend {
    * This property is used to choose the composition mode for the blend effect.
    *
    * The default value is `destination-out`, which unveils the background below using drawn elements, any other valid value
-   * can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
+   * can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasContextType/globalCompositeOperation)
    */
   mode: GlobalCompositeOperation;
 }

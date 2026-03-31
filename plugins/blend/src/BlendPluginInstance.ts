@@ -1,5 +1,5 @@
 import type { BlendContainer, BlendParticle } from "./types.js";
-import { type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
+import { type CanvasContextType, type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
 
 export class BlendPluginInstance implements IContainerPlugin {
   private readonly _container;
@@ -9,7 +9,7 @@ export class BlendPluginInstance implements IContainerPlugin {
     this._container = container;
   }
 
-  drawParticleCleanup(context: CanvasRenderingContext2D, particle: BlendParticle): void {
+  drawParticleCleanup(context: CanvasContextType, particle: BlendParticle): void {
     if (!particle.options.blend?.enable) {
       return;
     }
@@ -19,7 +19,7 @@ export class BlendPluginInstance implements IContainerPlugin {
     particle.originalBlendMode = undefined;
   }
 
-  drawParticleSetup(context: CanvasRenderingContext2D, particle: BlendParticle): void {
+  drawParticleSetup(context: CanvasContextType, particle: BlendParticle): void {
     if (!particle.options.blend?.enable) {
       return;
     }
@@ -29,7 +29,7 @@ export class BlendPluginInstance implements IContainerPlugin {
     context.globalCompositeOperation = particle.options.blend.mode;
   }
 
-  drawSettingsCleanup(context: CanvasRenderingContext2D): void {
+  drawSettingsCleanup(context: CanvasContextType): void {
     if (!this._defaultCompositeValue) {
       return;
     }
@@ -37,7 +37,7 @@ export class BlendPluginInstance implements IContainerPlugin {
     context.globalCompositeOperation = this._defaultCompositeValue;
   }
 
-  drawSettingsSetup(context: CanvasRenderingContext2D): void {
+  drawSettingsSetup(context: CanvasContextType): void {
     const previousComposite = context.globalCompositeOperation,
       blend = this._container.actualOptions.blend;
 

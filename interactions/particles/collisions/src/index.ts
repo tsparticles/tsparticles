@@ -9,7 +9,7 @@ declare const __VERSION__: string;
 export async function loadParticlesCollisionsInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const [
       { ensureInteractivityPluginLoaded },
       { OverlapPlugin },
@@ -20,9 +20,9 @@ export async function loadParticlesCollisionsInteraction(engine: Engine): Promis
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addPlugin(new OverlapPlugin());
+    e.pluginManager.addPlugin(new OverlapPlugin());
 
-    e.addInteractor?.("particlesCollisions", async container => {
+    e.pluginManager.addInteractor?.("particlesCollisions", async container => {
       const { Collider } = await import("./Collider.js");
 
       return new Collider(container);

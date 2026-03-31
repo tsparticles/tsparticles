@@ -1,16 +1,26 @@
-import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
 import {
+  type CanvasContextType,
   type ICoordinates,
   type IDimension,
   type IRgba,
   defaultAlpha,
   defaultRgbMin,
+  identity,
   isNumber,
   originPoint,
   safeDocument,
 } from "@tsparticles/engine";
+import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
 
-const defaultWidth = 0;
+const defaultWidth = 0,
+  indexesOffset = {
+    r: 0,
+    g: 1,
+    b: 2,
+    a: 3,
+  },
+  alphaMax = 255,
+  alphaFactor = identity / alphaMax;
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -18,7 +28,7 @@ const defaultWidth = 0;
  * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
-export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+export function drawLine(context: CanvasContextType, begin: ICoordinates, end: ICoordinates): void {
   context.beginPath();
   context.moveTo(begin.x, begin.y);
   context.lineTo(end.x, end.y);
@@ -33,7 +43,7 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
  * @returns the canvas pixel data
  */
 export function getCanvasImageData(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   size: IDimension,
   offset: number,
   clear = true,
@@ -55,14 +65,7 @@ export function getCanvasImageData(
 
     pixels[pos.y] ??= [];
 
-    const indexesOffset = {
-        r: 0,
-        g: 1,
-        b: 2,
-        a: 3,
-      },
-      alphaFactor = 255,
-      row = pixels[pos.y];
+    const row = pixels[pos.y];
 
     if (!row) {
       continue;
@@ -72,7 +75,7 @@ export function getCanvasImageData(
       r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
       g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
       b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
+      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) * alphaFactor,
     };
   }
 
@@ -110,6 +113,7 @@ export function getImageData(
 
       if (!context) {
         reject(new Error("Could not get canvas context"));
+
         return;
       }
 

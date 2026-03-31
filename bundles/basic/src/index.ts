@@ -13,7 +13,7 @@ declare const __VERSION__: string;
 export async function loadBasic(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const [
       { loadHexColorPlugin },
       { loadHslColorPlugin },

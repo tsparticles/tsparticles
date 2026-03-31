@@ -237,7 +237,7 @@ export class PoissonDisc {
       return;
     }
 
-    // La cella è già occupata
+    // The cell is already occupied
     if (cellValue >= gridMinValue) {
       return;
     }

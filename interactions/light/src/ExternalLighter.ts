@@ -1,4 +1,3 @@
-import { type Engine, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import {
   ExternalInteractorBase,
   type IInteractivityData,
@@ -6,17 +5,18 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
+import { type PluginManager, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
   readonly maxDistance = 0;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(container: LightContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: LightContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
   }
 
   clear(): void {
@@ -42,7 +42,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
       return;
     }
 
-    container.canvas.draw(ctx => {
+    container.canvas.render.draw(ctx => {
       drawLight(container, ctx, mousePos);
     });
   }
@@ -63,8 +63,8 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
       const lightGradient = interactivity.modes.light.area.gradient;
 
       container.canvas.mouseLight = {
-        start: rangeColorToRgb(this._engine, lightGradient.start),
-        stop: rangeColorToRgb(this._engine, lightGradient.stop),
+        start: rangeColorToRgb(this._pluginManager, lightGradient.start),
+        stop: rangeColorToRgb(this._pluginManager, lightGradient.stop),
       };
     }
 

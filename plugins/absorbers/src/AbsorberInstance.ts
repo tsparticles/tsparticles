@@ -1,10 +1,11 @@
 import {
+  type CanvasContextType,
   type Container,
-  type Engine,
   type ICoordinates,
   type IDelta,
   type IRgb,
   type Particle,
+  type PluginManager,
   type RecursivePartial,
   RotateDirection,
   Vector,
@@ -14,12 +15,14 @@ import {
   getDistance,
   getDistances,
   getRandom,
+  getRangeMax,
   getRangeValue,
   getStyleFromRgb,
+  half,
+  identity,
   isPointInside,
   millisecondsToSeconds,
   originPoint,
-  percentDenominator,
   rangeColorToRgb,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
@@ -33,6 +36,8 @@ const squareExp = 2,
   minMass = 0,
   minAngle = 0,
   maxAngle = doublePI,
+  maxDegreeAngle = 360,
+  angleIncrementFactor = identity / maxDegreeAngle,
   minVelocity = 0,
   defaultLifeDelay = 0,
   minLifeCount = 0,
@@ -107,23 +112,28 @@ export class AbsorberInstance {
   private _currentDuration;
   private _currentSpawnDelay;
   private _duration?: number;
-  private readonly _engine;
   private _firstSpawn;
   private readonly _immortal;
   private _lifeCount;
+  private readonly _pluginManager;
   private _spawnDelay?: number;
   private readonly initialPosition?: Vector;
 
   /**
    * The absorber constructor, initializes the absorber based on the given options and position
-   * @param engine - the Engine instance that will be used for calculating the Absorber interactions
+   * @param pluginManager - the plugin manager
    * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
    * @param options - the Absorber source options
    * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
    */
-  constructor(engine: Engine, container: Container, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
+  constructor(
+    pluginManager: PluginManager,
+    container: Container,
+    options: RecursivePartial<IAbsorber>,
+    position?: ICoordinates,
+  ) {
     this._container = container;
-    this._engine = engine;
+    this._pluginManager = pluginManager;
 
     this._currentDuration = 0;
     this._currentSpawnDelay = 0;
@@ -149,7 +159,7 @@ export class AbsorberInstance {
       mass: limit.mass,
     };
 
-    this.color = rangeColorToRgb(this._engine, this.options.color) ?? {
+    this.color = rangeColorToRgb(this._pluginManager, this.options.color) ?? {
       b: 0,
       g: 0,
       r: 0,
@@ -192,14 +202,14 @@ export class AbsorberInstance {
         } else {
           particle.needsNewPosition = true;
 
-          this._updateParticlePosition(particle, v);
+          this._updateParticlePosition(particle, delta, v);
         }
       } else {
         if (options.destroy) {
           particle.size.value -= sizeFactor;
         }
 
-        this._updateParticlePosition(particle, v);
+        this._updateParticlePosition(particle, delta, v);
       }
 
       if (this.limit.radius <= minRadius || this.size < this.limit.radius) {
@@ -210,7 +220,7 @@ export class AbsorberInstance {
         this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
       }
     } else {
-      this._updateParticlePosition(particle, v);
+      this._updateParticlePosition(particle, delta, v);
     }
   }
 
@@ -218,7 +228,7 @@ export class AbsorberInstance {
    * The draw method, for drawing the absorber in the canvas
    * @param context - the canvas 2d context used for drawing
    */
-  draw(context: CanvasRenderingContext2D): void {
+  draw(context: CanvasContextType): void {
     context.translate(this.position.x, this.position.y);
     context.beginPath();
     context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
@@ -316,10 +326,15 @@ export class AbsorberInstance {
   /**
    * Updates the particle position, if the particle needs a new position
    * @param particle - the particle to update
+   * @param delta - the delta
    * @param v - the vector used for calculating the distance between the Absorber and the particle
    * @internal
    */
-  private readonly _updateParticlePosition: (particle: OrbitingParticle, v: Vector) => void = (particle, v) => {
+  private readonly _updateParticlePosition: (particle: OrbitingParticle, delta: IDelta, v: Vector) => void = (
+    particle,
+    delta,
+    v,
+  ) => {
     if (particle.destroyed) {
       return;
     }
@@ -361,25 +376,21 @@ export class AbsorberInstance {
 
       particle.velocity.setTo(Vector.origin);
 
-      const updateFunc = {
-        x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
-        y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
-      };
+      const maxSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
+        sizeFactor = particle.options.move.size ? particle.getRadius() / maxSize : identity,
+        deltaFactor = delta.factor || identity,
+        baseSpeed = particle.retina.moveSpeed,
+        moveSpeed = baseSpeed * sizeFactor * deltaFactor * half;
 
-      particle.position.x = this.position.x + orbitRadius * updateFunc.x(orbitAngle);
-      particle.position.y = this.position.y + orbitRadius * updateFunc.y(orbitAngle);
+      particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
+      particle.position.y =
+        this.position.y +
+        orbitRadius * (orbitDirection === RotateDirection.clockwise ? identity : -identity) * Math.sin(orbitAngle);
 
-      particle.absorberOrbit.length -= v.length;
-      particle.absorberOrbit.angle +=
-        (((particle.retina.moveSpeed ?? minVelocity) * container.retina.pixelRatio) / percentDenominator) *
-        container.retina.reduceFactor;
+      particle.absorberOrbit.length = Math.max(minOrbitLength, particle.absorberOrbit.length - v.length);
+      particle.absorberOrbit.angle += moveSpeed * angleIncrementFactor * container.retina.reduceFactor;
     } else {
-      const addV = Vector.origin;
-
-      addV.length = v.length;
-      addV.angle = v.angle;
-
-      particle.velocity.addTo(addV);
+      particle.velocity.addTo(v);
     }
   };
 

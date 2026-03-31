@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type Container,
   type ICoordinates,
   type IDimension,
@@ -11,7 +12,7 @@ import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } fro
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
 export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
-  checkContext: CanvasRenderingContext2D;
+  checkContext: CanvasContextType;
   path: Path2D;
   points: ICoordinates[];
 
@@ -24,7 +25,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
   ) {
     super(position, size, fill, options);
 
-    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.settings);
+    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.render.settings);
 
     if (!ctx) {
       throw new Error(`No 2d context available`);

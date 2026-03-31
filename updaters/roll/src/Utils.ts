@@ -1,7 +1,7 @@
 import {
   AlterType,
-  type Engine,
   type IDelta,
+  type PluginManager,
   doublePI,
   getRandom,
   getRangeValue,
@@ -14,10 +14,10 @@ import type { RollParticle } from "./Types.js";
 const maxAngle = 360;
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param particle -
  */
-export function initParticle(engine: Engine, particle: RollParticle): void {
+export function initParticle(pluginManager: PluginManager, particle: RollParticle): void {
   const rollOpt = particle.options.roll;
 
   if (!rollOpt?.enable) {
@@ -41,7 +41,7 @@ export function initParticle(engine: Engine, particle: RollParticle): void {
   };
 
   if (rollOpt.backColor) {
-    particle.backColor = rangeColorToHsl(engine, rollOpt.backColor);
+    particle.backColor = rangeColorToHsl(pluginManager, rollOpt.backColor);
   } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
     const alterType = getRandom() >= half ? AlterType.darken : AlterType.enlighten;
 

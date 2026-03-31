@@ -8,9 +8,9 @@ declare const __VERSION__: string;
 export async function loadTrailPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
+  await engine.pluginManager.register(async e => {
     const { TrailPlugin } = await import("./TrailPlugin.js");
 
-    e.addPlugin(new TrailPlugin(engine));
+    e.pluginManager.addPlugin(new TrailPlugin(e.pluginManager));
   });
 }

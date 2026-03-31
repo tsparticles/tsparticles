@@ -20,8 +20,8 @@ import {
   ExternalInteractorBase,
   type IInteractivityData,
   type IModes,
-  type InteractivityEngine,
   type InteractivityParticle,
+  type InteractivityPluginManager,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types.js";
@@ -36,12 +36,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
   readonly maxDistance = 0;
 
   private _delay: number;
-  private readonly _engine;
   private _lastPosition?: ICoordinates;
+  private readonly _pluginManager;
 
-  constructor(engine: InteractivityEngine, container: TrailContainer) {
+  constructor(pluginManager: InteractivityPluginManager, container: TrailContainer) {
     super(container);
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._delay = 0;
   }
 
@@ -117,7 +117,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
           // Safe conversion of the particle color option to HSL structure
           // This handles strings, RGB, and existing HSL objects correctly
           baseHsl = fillData
-            ? rangeColorToHsl(this._engine, AnimatableColor.create(undefined, fillData.color))
+            ? rangeColorToHsl(this._pluginManager, AnimatableColor.create(undefined, fillData.color))
             : undefined,
           h = calculateValue(colorCoords.h, baseHsl?.h, hMax),
           s = calculateValue(colorCoords.s, baseHsl?.s, sMax),

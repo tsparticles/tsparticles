@@ -11,12 +11,12 @@ export const curvesPathName = "curvesPathGenerator";
 export async function loadCurvesPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: MoveEngine) => {
+  await engine.pluginManager.register(async (e: MoveEngine) => {
     const { ensureBaseMoverLoaded } = await import("@tsparticles/plugin-move");
 
     ensureBaseMoverLoaded(e);
 
-    e.addPathGenerator?.(curvesPathName, async container => {
+    e.pluginManager.addPathGenerator?.(curvesPathName, async container => {
       const { CurvesPathGenerator } = await import("./CurvesPathGenerator.js");
 
       return new CurvesPathGenerator(container);

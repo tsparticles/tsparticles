@@ -98,8 +98,6 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 - [Migrating from Particles.js](#migrating-from-particlesjs)
 - [Plugins/Customizations](#pluginscustomizations)
 - [Dependency Graph](#dependency-graph)
-- [Sponsors](#sponsors)
-- [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -989,22 +987,3 @@ flowchart TD
 
   bundle-full --> bundle-all
 ```
-
----
-
-<p>  
-    <a href="https://www.jetbrains.com/?from=tsParticles">  
-        <img src="https://raw.githubusercontent.com/tsparticles/tsparticles/gh-pages/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
-    </a>  
-    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
-        <img src="https://raw.githubusercontent.com/tsparticles/tsparticles/gh-pages/images/jetbrains-logos/logo.png" height="150" alt="JetBrains" />  
-    </a>  
-</p>
-
-## Sponsors
-
-### JetBrains
-
-Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
-
-[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.

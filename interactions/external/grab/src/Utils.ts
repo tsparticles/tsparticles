@@ -1,5 +1,5 @@
+import { type CanvasContextType, type ICoordinates, type IRgb, getStyleFromRgb } from "@tsparticles/engine";
 import type { GrabContainer, LinkParticle } from "./Types.js";
-import { type ICoordinates, type IRgb, getStyleFromRgb } from "@tsparticles/engine";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const defaultWidth = 0;
@@ -15,7 +15,7 @@ const defaultWidth = 0;
  * @param hdr - Whether the line should be drawn in HDR mode or not.
  */
 export function drawGrabLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   width: number,
   begin: ICoordinates,
   end: ICoordinates,
@@ -44,7 +44,7 @@ export function drawGrab(
   opacity: number,
   mousePos: ICoordinates,
 ): void {
-  container.canvas.draw(ctx => {
+  container.canvas.render.draw(ctx => {
     const beginPos = particle.getPosition();
 
     drawGrabLine(

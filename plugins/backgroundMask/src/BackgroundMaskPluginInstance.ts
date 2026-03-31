@@ -1,6 +1,7 @@
 import {
-  type Engine,
+  type CanvasContextType,
   type IContainerPlugin,
+  type PluginManager,
   getStyleFromRgb,
   rangeColorToRgb,
   safeDocument,
@@ -12,11 +13,11 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
   private _coverColorStyle?: string;
   private _coverImage?: { image: HTMLImageElement; opacity: number };
   private _defaultCompositeValue?: GlobalCompositeOperation;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(container: BackgroundMaskContainer, engine: Engine) {
+  constructor(pluginManager: PluginManager, container: BackgroundMaskContainer) {
+    this._pluginManager = pluginManager;
     this._container = container;
-    this._engine = engine;
   }
 
   canvasClear(): boolean {
@@ -36,18 +37,18 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
 
     const canvas = this._container.canvas;
 
-    canvas.canvasClear();
+    canvas.render.canvasClear();
 
     if (this._coverImage) {
-      canvas.paintImage(this._coverImage.image, this._coverImage.opacity);
+      canvas.render.paintImage(this._coverImage.image, this._coverImage.opacity);
     } else {
-      canvas.paintBase(this._coverColorStyle);
+      canvas.render.paintBase(this._coverColorStyle);
     }
 
     return true;
   }
 
-  drawSettingsCleanup(context: CanvasRenderingContext2D): void {
+  drawSettingsCleanup(context: CanvasContextType): void {
     if (!this._defaultCompositeValue) {
       return;
     }
@@ -55,7 +56,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     context.globalCompositeOperation = this._defaultCompositeValue;
   }
 
-  drawSettingsSetup(context: CanvasRenderingContext2D): void {
+  drawSettingsSetup(context: CanvasContextType): void {
     const previousComposite = context.globalCompositeOperation,
       backgroundMask = this._container.actualOptions.backgroundMask;
 
@@ -74,7 +75,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       color = cover?.color;
 
     if (color) {
-      const coverRgb = rangeColorToRgb(this._engine, color);
+      const coverRgb = rangeColorToRgb(this._pluginManager, color);
 
       if (coverRgb) {
         const coverColor = {

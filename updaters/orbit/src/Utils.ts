@@ -1,9 +1,19 @@
-import { type IHsl, type Particle, degToRad, double, getStyleFromHsl, half } from "@tsparticles/engine";
+import {
+  type CanvasContextType,
+  type IHsl,
+  type Particle,
+  degToRad,
+  double,
+  getStyleFromHsl,
+  half,
+} from "@tsparticles/engine";
+import type { OrbitContainer } from "./Types.js";
 
 const minWidth = 0;
 
 /**
  * Draws an ellipse for the given particle.
+ * @param container - The container
  * @param context - The canvas context.
  * @param particle - The particle to draw.
  * @param fillColorValue - The particle fill color.
@@ -15,7 +25,8 @@ const minWidth = 0;
  * @param end - The end angle of the particle.
  */
 export function drawEllipse(
-  context: CanvasRenderingContext2D,
+  container: OrbitContainer,
+  context: CanvasContextType,
   particle: Particle,
   fillColorValue: IHsl | undefined,
   radius: number,
@@ -29,8 +40,7 @@ export function drawEllipse(
     return;
   }
 
-  const pos = particle.getPosition(),
-    { container } = particle;
+  const pos = particle.getPosition();
 
   if (fillColorValue) {
     context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);

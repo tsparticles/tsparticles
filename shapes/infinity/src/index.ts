@@ -8,8 +8,8 @@ declare const __VERSION__: string;
 export async function loadInfinityShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
-    e.addShape(["infinity"], async () => {
+  await engine.pluginManager.register(e => {
+    e.pluginManager.addShape(["infinity"], async () => {
       const { InfinityDrawer } = await import("./InfinityDrawer.js");
 
       return new InfinityDrawer();

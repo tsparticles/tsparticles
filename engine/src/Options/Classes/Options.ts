@@ -2,11 +2,11 @@ import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
-import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import type { PluginManager } from "../../Core/Utils/PluginManager.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
@@ -48,10 +48,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   zLayers;
 
   private readonly _container;
-  private readonly _engine;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: Container) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
     this._container = container;
     this.autoPlay = true;
     this.background = new Background();
@@ -63,7 +63,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.duration = 0;
     this.fpsLimit = 120;
     this.hdr = true;
-    this.particles = loadParticlesOptions(this._engine, this._container);
+    this.particles = loadParticlesOptions(this._pluginManager, this._container);
     this.pauseOnBlur = true;
     this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
@@ -167,13 +167,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       this.smooth = data.smooth;
     }
 
-    this._engine.plugins.forEach(plugin => {
+    this._pluginManager.plugins.forEach(plugin => {
       plugin.loadOptions(this._container, this, data);
     });
   }
 
   private readonly _importPalette: (palette: string) => void = palette => {
-    const paletteData = this._engine.getPalette(palette);
+    const paletteData = this._pluginManager.getPalette(palette);
 
     if (!paletteData) {
       return;
@@ -207,6 +207,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   };
 
   private readonly _importPreset: (preset: string) => void = preset => {
-    this.load(this._engine.getPreset(preset));
+    this.load(this._pluginManager.getPreset(preset));
   };
 }

@@ -9,15 +9,15 @@ declare const __VERSION__: string;
 export async function loadExternalBubbleInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalBubble", async container => {
+    e.pluginManager.addInteractor?.("externalBubble", async container => {
       const { Bubbler } = await import("./Bubbler.js");
 
-      return new Bubbler(e, container);
+      return new Bubbler(e.pluginManager, container);
     });
   });
 }

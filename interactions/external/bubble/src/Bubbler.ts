@@ -1,9 +1,9 @@
 import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
   Circle,
-  type Engine,
   type IDelta,
   type Particle,
+  type PluginManager,
   Rectangle,
   type RecursivePartial,
   colorMix,
@@ -53,13 +53,13 @@ const bubbleMode = "bubble",
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-  private readonly _engine;
   private _maxDistance;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine, container: BubbleContainer) {
+  constructor(pluginManager: PluginManager, container: BubbleContainer) {
     super(container);
 
-    this._engine = engine;
+    this._pluginManager = pluginManager;
     this._maxDistance = 0;
 
     container.bubble ??= {};
@@ -313,7 +313,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
       const bubbleColor = itemFromSingleOrMultiple(modeColor);
 
-      particle.bubble.finalColor = rangeColorToHsl(this._engine, bubbleColor);
+      particle.bubble.finalColor = rangeColorToHsl(this._pluginManager, bubbleColor);
     }
 
     if (!particle.bubble.finalColor) {

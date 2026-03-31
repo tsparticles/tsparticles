@@ -39,7 +39,6 @@ import {
 import { isArray, isString } from "./TypeUtils.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
-import type { Engine } from "../Core/Engine.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
@@ -47,6 +46,7 @@ import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
 import type { Particle } from "../Core/Particle.js";
+import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
@@ -81,16 +81,16 @@ function getCachedStyle(key: string, generator: () => string): string {
 
 /**
  * Converts a string to a RGBA color.
- * @param engine - The engine managing the current parameters.
+ * @param pluginManager - The plugin manager
  * @param input - A string that represents a color.
  * @returns the converted color from string to {@link IRgba} interfaec
  */
-function stringToRgba(engine: Engine, input: string): IRgba | undefined {
+function stringToRgba(pluginManager: PluginManager, input: string): IRgba | undefined {
   if (!input) {
     return;
   }
 
-  for (const manager of engine.colorManagers.values()) {
+  for (const manager of pluginManager.colorManagers.values()) {
     if (manager.accepts(input)) {
       return manager.parseString(input);
     }
@@ -101,14 +101,14 @@ function stringToRgba(engine: Engine, input: string): IRgba | undefined {
 
 /**
  * Gets the particles color
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false for ignoring the index parameter
  * @returns returns a RGB color in the given range
  */
 export function rangeColorToRgb(
-  engine: Engine,
+  pluginManager: PluginManager,
   input?: string | IRangeColor,
   index?: number,
   useIndex = true,
@@ -120,7 +120,7 @@ export function rangeColorToRgb(
   const color = isString(input) ? { value: input } : input;
 
   if (isString(color.value)) {
-    return colorToRgb(engine, color.value, index, useIndex);
+    return colorToRgb(pluginManager, color.value, index, useIndex);
   }
 
   if (isArray(color.value)) {
@@ -130,12 +130,12 @@ export function rangeColorToRgb(
       return;
     }
 
-    return rangeColorToRgb(engine, {
+    return rangeColorToRgb(pluginManager, {
       value,
     });
   }
 
-  for (const manager of engine.colorManagers.values()) {
+  for (const manager of pluginManager.colorManagers.values()) {
     const res = manager.handleRangeColor(color);
 
     if (res) {
@@ -148,13 +148,18 @@ export function rangeColorToRgb(
 
 /**
  * Gets the particles color
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns returns an RGB color taken from a {@link IColor} object
  */
-export function colorToRgb(engine: Engine, input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
+export function colorToRgb(
+  pluginManager: PluginManager,
+  input?: string | IColor,
+  index?: number,
+  useIndex = true,
+): IRgb | undefined {
   if (!input) {
     return;
   }
@@ -162,7 +167,7 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
   const color = isString(input) ? { value: input } : input;
 
   if (isString(color.value)) {
-    return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(engine, color.value);
+    return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(pluginManager, color.value);
   }
 
   if (isArray(color.value)) {
@@ -172,12 +177,12 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
       return;
     }
 
-    return colorToRgb(engine, {
+    return colorToRgb(pluginManager, {
       value,
     });
   }
 
-  for (const manager of engine.colorManagers.values()) {
+  for (const manager of pluginManager.colorManagers.values()) {
     const res = manager.handleColor(color);
 
     if (res) {
@@ -190,38 +195,38 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
 
 /**
  * Gets the particles color
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param color - the input color to convert in {@link IHsl} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
 export function colorToHsl(
-  engine: Engine,
+  pluginManager: PluginManager,
   color: string | IColor | undefined,
   index?: number,
   useIndex = true,
 ): IHsl | undefined {
-  const rgb = colorToRgb(engine, color, index, useIndex);
+  const rgb = colorToRgb(pluginManager, color, index, useIndex);
 
   return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**
  * Gets the particles color
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param color - the input color to convert in {@link IHsl} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
 export function rangeColorToHsl(
-  engine: Engine,
+  pluginManager: PluginManager,
   color: string | IRangeColor | undefined,
   index?: number,
   useIndex = true,
 ): IHsl | undefined {
-  const rgb = rangeColorToRgb(engine, color, index, useIndex);
+  const rgb = rangeColorToRgb(pluginManager, color, index, useIndex);
 
   return rgb ? rgbToHsl(rgb) : undefined;
 }
@@ -274,22 +279,22 @@ export function rgbToHsl(color: IRgb): IHsl {
 
 /**
  * Gets alpha value from string color
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param input - the input color to convert in alpha value
  * @returns the alpha value
  */
-export function stringToAlpha(engine: Engine, input: string): number | undefined {
-  return stringToRgba(engine, input)?.a;
+export function stringToAlpha(pluginManager: PluginManager, input: string): number | undefined {
+  return stringToRgba(pluginManager, input)?.a;
 }
 
 /**
  * Converts hexadecimal string (HTML color code) in a {@link IRgb} object
- * @param engine - the engine managing the current parameters
+ * @param pluginManager - the plugin manager
  * @param input - the hexadecimal string (#f70 or #ff7700)
  * @returns the {@link IRgb} object
  */
-export function stringToRgb(engine: Engine, input: string): IRgb | undefined {
-  return stringToRgba(engine, input);
+export function stringToRgb(pluginManager: PluginManager, input: string): IRgb | undefined {
+  return stringToRgba(pluginManager, input);
 }
 
 /**
@@ -512,14 +517,14 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
 }
 
 /**
- * @param engine -
+ * @param pluginManager -
  * @param optColor -
  * @param blink -
  * @param consent -
  * @returns returns a link random color, if needed
  */
 export function getLinkRandomColor(
-  engine: Engine,
+  pluginManager: PluginManager,
   optColor: string | IOptionsColor,
   blink: boolean,
   consent: boolean,
@@ -528,7 +533,7 @@ export function getLinkRandomColor(
 
   if (color === randomColorValue) {
     if (consent) {
-      return rangeColorToRgb(engine, {
+      return rangeColorToRgb(pluginManager, {
         value: color,
       });
     }
@@ -541,7 +546,7 @@ export function getLinkRandomColor(
   } else if (color === midColorValue) {
     return midColorValue;
   } else {
-    return rangeColorToRgb(engine, {
+    return rangeColorToRgb(pluginManager, {
       value: color,
     });
   }

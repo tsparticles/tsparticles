@@ -1,4 +1,5 @@
 import {
+  type CanvasContextType,
   type IRgb,
   double,
   doublePI,
@@ -41,7 +42,7 @@ const cardWidthRatio = (double * double) / triple,
  * @param canvasSettings -
  */
 export function drawRoundedCard(
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   radius: number,
   cardData: ICardData,
   hdr: boolean,
@@ -60,8 +61,7 @@ export function drawRoundedCard(
     let cachedData = cardsCache.get(cacheKey);
 
     if (!cachedData) {
-      let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
-        cacheCtx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
+      let cacheCanvas: HTMLCanvasElement | OffscreenCanvas, cacheCtx: CanvasContextType | null;
 
       if (typeof OffscreenCanvas === "undefined") {
         cacheCanvas = safeDocument().createElement("canvas");
@@ -108,7 +108,7 @@ function getCacheKey(radius: number, hdr: boolean, cardData: ICardData): string 
  * @param ctx -
  * @param radius -
  */
-function drawRoundedCardBack(ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, radius: number): void {
+function drawRoundedCardBack(ctx: CanvasContextType, radius: number): void {
   drawCardBody(ctx, radius);
 }
 
@@ -118,12 +118,7 @@ function drawRoundedCardBack(ctx: CanvasRenderingContext2D | OffscreenCanvasRend
  * @param cardData -
  * @param hdr -
  */
-function drawRoundedCardFront(
-  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
-  radius: number,
-  cardData: ICardData,
-  hdr: boolean,
-): void {
+function drawRoundedCardFront(ctx: CanvasContextType, radius: number, cardData: ICardData, hdr: boolean): void {
   const { suit, value } = cardData,
     cardWidth = radius * cardWidthRatio,
     cardHeight = radius * cardHeightRatio,
@@ -207,7 +202,7 @@ function drawRoundedCardFront(
  * @param ctx -
  * @param radius -
  */
-function drawCardBody(ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, radius: number): void {
+function drawCardBody(ctx: CanvasContextType, radius: number): void {
   const cardWidth = radius * cardWidthRatio,
     cardHeight = radius * cardHeightRatio,
     halfWidth = cardWidth * half,

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import type { Contribution3D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
+
+const third = 1 / 3;
 
 export class SimplexNoise3D {
   private readonly _NORM_3D;
@@ -18,9 +19,9 @@ export class SimplexNoise3D {
   private _perm3D: Uint8Array;
 
   constructor() {
-    this._NORM_3D = 1.0 / 103.0;
-    this._SQUISH_3D = (Math.sqrt(3 + 1) - 1) / 3;
-    this._STRETCH_3D = (1 / Math.sqrt(3 + 1) - 1) / 3;
+    this._NORM_3D = 1 / 103;
+    this._SQUISH_3D = (Math.sqrt(3 + 1) - 1) * third;
+    this._STRETCH_3D = (1 / Math.sqrt(3 + 1) - 1) * third;
 
     this._base3D = [
       [0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1],
@@ -580,6 +581,7 @@ export class SimplexNoise3D {
 
       this._perm[i] = source[r[0]]!;
       this._perm3D[i] = (this._perm[i]! % 24) * 3;
+
       source[r[0]] = source[i]!;
     }
   }

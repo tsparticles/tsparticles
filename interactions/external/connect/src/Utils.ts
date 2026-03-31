@@ -1,5 +1,5 @@
-import type { ConnectContainer, LinkParticle } from "./Types.js";
 import {
+  type CanvasContextType,
   type ICoordinates,
   type Particle,
   clamp,
@@ -7,6 +7,7 @@ import {
   getStyleFromHsl,
   getStyleFromRgb,
 } from "@tsparticles/engine";
+import type { ConnectContainer, LinkParticle } from "./Types.js";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const gradientMin = 0,
@@ -15,6 +16,7 @@ const gradientMin = 0,
 
 /**
  * Creates a gradient using two particles colors and opacity.
+ * @param container - The particles container
  * @param context - The canvas context to draw on.
  * @param p1 - The first particle.
  * @param p2 - The second particle.
@@ -22,7 +24,8 @@ const gradientMin = 0,
  * @returns The gradient.
  */
 export function gradient(
-  context: CanvasRenderingContext2D,
+  container: ConnectContainer,
+  context: CanvasContextType,
   p1: Particle,
   p2: Particle,
   opacity: number,
@@ -35,8 +38,7 @@ export function gradient(
     return;
   }
 
-  const { container } = p1,
-    sourcePos = p1.getPosition(),
+  const sourcePos = p1.getPosition(),
     destPos = p2.getPosition(),
     midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
     grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
@@ -56,7 +58,7 @@ export function gradient(
  * @param end -
  */
 export function drawConnectLine(
-  context: CanvasRenderingContext2D,
+  context: CanvasContextType,
   width: number,
   lineStyle: CanvasGradient,
   begin: ICoordinates,
@@ -78,7 +80,7 @@ export function drawConnectLine(
  */
 export function lineStyle(
   container: ConnectContainer,
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasContextType,
   p1: Particle,
   p2: Particle,
 ): CanvasGradient | undefined {
@@ -89,7 +91,7 @@ export function lineStyle(
     return;
   }
 
-  return gradient(ctx, p1, p2, connectOptions.links.opacity);
+  return gradient(container, ctx, p1, p2, connectOptions.links.opacity);
 }
 
 /**
@@ -98,7 +100,7 @@ export function lineStyle(
  * @param p2 -
  */
 export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
-  container.canvas.draw(ctx => {
+  container.canvas.render.draw(ctx => {
     const ls = lineStyle(container, ctx, p1, p2);
 
     if (!ls) {

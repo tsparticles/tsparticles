@@ -9,15 +9,15 @@ declare const __VERSION__: string;
 export async function loadExternalTrailInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async (e: InteractivityEngine) => {
+  await engine.pluginManager.register(async (e: InteractivityEngine) => {
     const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
     ensureInteractivityPluginLoaded(e);
 
-    e.addInteractor?.("externalTrail", async container => {
+    e.pluginManager.addInteractor?.("externalTrail", async container => {
       const { TrailMaker } = await import("./TrailMaker.js");
 
-      return new TrailMaker(e, container);
+      return new TrailMaker(e.pluginManager, container);
     });
   });
 }

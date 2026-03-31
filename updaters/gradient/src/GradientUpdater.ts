@@ -1,11 +1,13 @@
 import {
   AnimationStatus,
-  type Engine,
+  type CanvasContextType,
+  type Container,
   GradientType,
   type ICoordinates,
   type IDelta,
   type IParticleColorStyle,
   type IParticleUpdater,
+  type PluginManager,
   type RecursivePartial,
   RotateDirection,
   StartValueType,
@@ -29,15 +31,17 @@ import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
 
 export class GradientUpdater implements IParticleUpdater {
-  private readonly _engine;
+  private readonly _container;
+  private readonly _pluginManager;
 
-  constructor(engine: Engine) {
-    this._engine = engine;
+  constructor(pluginManager: PluginManager, container: Container) {
+    this._pluginManager = pluginManager;
+    this._container = container;
   }
 
   getColorStyles(
     particle: GradientParticle,
-    context: CanvasRenderingContext2D,
+    context: CanvasContextType,
     radius: number,
     opacity: number,
   ): IParticleColorStyle {
@@ -47,7 +51,7 @@ export class GradientUpdater implements IParticleUpdater {
       return {};
     }
 
-    const { container } = particle,
+    const { _container: container } = this,
       gradientAngle = gradient.angle.value,
       origin: ICoordinates = { x: 0, y: 0 },
       minRadius = 0,
@@ -81,7 +85,8 @@ export class GradientUpdater implements IParticleUpdater {
       return;
     }
 
-    const { angle } = gradient,
+    const container = this._container,
+      { angle } = gradient,
       speedFactor = 360,
       delayOffset = 1;
 
@@ -89,7 +94,7 @@ export class GradientUpdater implements IParticleUpdater {
       angle: {
         value: getRangeValue(angle.value),
         enable: angle.animation.enable,
-        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * particle.container.retina.reduceFactor,
+        velocity: (getRangeValue(angle.animation.speed) / speedFactor) * container.retina.reduceFactor,
         decay: delayOffset - getRangeValue(angle.animation.decay),
         delayTime: getRangeValue(angle.animation.delay) * millisecondsToSeconds,
         max: doublePI,
@@ -122,17 +127,13 @@ export class GradientUpdater implements IParticleUpdater {
     const reduceDuplicates = particle.options.reduceDuplicates;
 
     for (const grColor of gradient.colors) {
-      const grHslColor = rangeColorToHsl(this._engine, grColor.value, particle.id, reduceDuplicates);
+      const grHslColor = rangeColorToHsl(this._pluginManager, grColor.value, particle.id, reduceDuplicates);
 
       if (!grHslColor) {
         continue;
       }
 
-      const grHslAnimation = getHslAnimationFromHsl(
-          grHslColor,
-          grColor.value.animation,
-          particle.container.retina.reduceFactor,
-        ),
+      const grHslAnimation = getHslAnimationFromHsl(grHslColor, grColor.value.animation, container.retina.reduceFactor),
         addColor = {
           stop: grColor.stop,
           value: grHslAnimation,
@@ -144,8 +145,7 @@ export class GradientUpdater implements IParticleUpdater {
                 status: AnimationStatus.increasing,
                 value: getRangeValue(grColor.opacity.value),
                 velocity:
-                  (getRangeValue(grColor.opacity.animation.speed) / percentDenominator) *
-                  particle.container.retina.reduceFactor,
+                  (getRangeValue(grColor.opacity.animation.speed) / percentDenominator) * container.retina.reduceFactor,
                 decay: delayOffset - getRangeValue(grColor.opacity.animation.decay),
                 delayTime: getRangeValue(grColor.opacity.animation.delay) * millisecondsToSeconds,
                 time: 0,

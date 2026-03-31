@@ -28,16 +28,9 @@ const options: ISourceOptions = {
         max: 10,
       },
     },
-    links: {
-      enable: false,
-      distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1,
-    },
     move: {
       enable: true,
-      speed: 0.5,
+      speed: { max: 2, min: 0 },
       warp: true,
     },
   },
