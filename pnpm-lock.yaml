@@ -467,6 +467,9 @@ importers:
       '@tsparticles/preset-triangles':
         specifier: workspace:^
         version: link:../../presets/triangles/dist
+      '@tsparticles/updater-stroke-color':
+        specifier: ^4.0.0-beta.1
+        version: 4.0.0-beta.1
     devDependencies:
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0

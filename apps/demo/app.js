@@ -114,6 +114,7 @@ app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/popper.js", express.static("./node_modules/@popperjs/core/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic/"));
+app.use("/tsparticles-updater-stroke-color", express.static("./node_modules/@tsparticles/updater-stroke-color/"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 
