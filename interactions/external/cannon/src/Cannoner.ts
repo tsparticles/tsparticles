@@ -89,6 +89,7 @@ interface CannonGesture {
 export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   readonly maxDistance = 0;
 
+  private _data?: CannonData;
   private _gesture: CannonGesture = {
     origin: Vector.origin,
     current: Vector.origin,
@@ -108,7 +109,18 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   }
 
   init(): void {
-    // nothing to initialize
+    const options = this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
+
+    this._data = {
+      spread: degToRad(options.spread),
+      maxDragDistance: options.maxDragDistance,
+      velocityFactor: options.velocityFactor,
+      particleFactor: options.particleFactor,
+      minParticles: options.minParticles,
+      maxParticles: options.maxParticles,
+      drawVector: options.drawVector,
+      vectorColor: options.vectorColor,
+    };
   }
 
   interact(interactivityData: IInteractivityData, _delta: IDelta): void {
@@ -179,36 +191,22 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
 
   // ── Private helpers ────────────────────────────────────────────────────────
   /**
-   * Resolves cannon options with defaults.
-   * @returns -
-   */
-  private _cannonOptions(): CannonData {
-    const raw = (this.container.actualOptions.interactivity?.modes as CannonMode | undefined)?.cannon ?? new Cannon();
-
-    return {
-      spread: degToRad(raw.spread),
-      maxDragDistance: raw.maxDragDistance * this.container.retina.pixelRatio,
-      velocityFactor: raw.velocityFactor,
-      particleFactor: raw.particleFactor,
-      minParticles: raw.minParticles,
-      maxParticles: raw.maxParticles,
-      drawVector: raw.drawVector,
-      vectorColor: raw.vectorColor,
-    };
-  }
-
-  /**
    * Draws the aiming line and power circle on the canvas.
    * Rendered directly on the container canvas context.
    */
   private _drawVector(): void {
     this.container.canvas.render.draw(ctx => {
-      const opts = this._cannonOptions(),
-        { origin, current } = this._gesture,
+      const opts = this._data;
+
+      if (!opts) {
+        return;
+      }
+
+      const { origin, current } = this._gesture,
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
-        clampedDist = Math.min(dragDist, opts.maxDragDistance),
+        clampedDist = Math.min(dragDist, opts.maxDragDistance * pxRatio),
         clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
         clampedX = origin.x + (current.x - origin.x) * clampRatio,
         clampedY = origin.y + (current.y - origin.y) * clampRatio;
@@ -237,17 +235,22 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * Fires a burst of particles based on the completed drag gesture.
    */
   private _fire(): void {
-    const opts = this._cannonOptions(),
-      { origin, current } = this._gesture,
-      dragLength = Math.min(getDistance(origin, current), opts.maxDragDistance);
+    const opts = this._data;
+
+    if (!opts) {
+      return;
+    }
+
+    const { origin, current } = this._gesture,
+      pxRatio = this.container.retina.pixelRatio,
+      dragLength = Math.min(getDistance(origin, current), opts.maxDragDistance * pxRatio);
 
     if (dragLength < minTapsLength) {
       // Ignore accidental taps
       return;
     }
 
-    const pxRatio = this.container.retina.pixelRatio,
-      pxRatioFactor = identity / pxRatio,
+    const pxRatioFactor = identity / pxRatio,
       // Reverse the drag vector to get launch angle (already in radians)
       launchAngle = angleRad(current.x, current.y, origin.x, origin.y),
       velocity = dragLength * pxRatioFactor * opts.velocityFactor,
