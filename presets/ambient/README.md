@@ -33,7 +33,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
   await tsParticles.load({
     id: "tsparticles",
     options: {
-      preset: "ambient", // also "ambient" is accepted
+      preset: "ambient",
     },
   });
 })();
@@ -53,7 +53,7 @@ tsParticles.load({
         type: "square", // starting from v2, this require the square shape script
       },
     },
-    preset: "ambient", // also "ambient" is accepted
+    preset: "ambient",
   },
 });
 ```
