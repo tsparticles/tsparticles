@@ -528,6 +528,18 @@ importers:
       '@tsparticles/preset-confetti':
         specifier: workspace:^
         version: link:../../presets/confetti/dist
+      '@tsparticles/preset-confetti-cannon':
+        specifier: workspace:^
+        version: link:../../presets/confettiCannon/dist
+      '@tsparticles/preset-confetti-explosions':
+        specifier: workspace:^
+        version: link:../../presets/confettiExplosions/dist
+      '@tsparticles/preset-confetti-falling':
+        specifier: workspace:^
+        version: link:../../presets/confettiFalling/dist
+      '@tsparticles/preset-confetti-parade':
+        specifier: workspace:^
+        version: link:../../presets/confettiParade/dist
       '@tsparticles/preset-fire':
         specifier: workspace:^
         version: link:../../presets/fire/dist
@@ -565,7 +577,7 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       vite:
-        specifier: ^8.0.0
+        specifier: ^8.0.3
         version: 8.0.3(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(@types/node@25.5.0)(esbuild@0.27.2)(jiti@2.6.1)(stylus@0.64.0)(terser@5.44.1)(yaml@2.8.2)
 
   palettes/acidPair:
@@ -10803,7 +10815,7 @@ snapshots:
       proc-log: 6.1.0
       semver: 7.7.4
       tar: 7.5.11
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.15
       which: 6.0.0
     transitivePeerDependencies:
       - supports-color

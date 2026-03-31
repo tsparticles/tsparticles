@@ -13,6 +13,10 @@
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
     "@tsparticles/preset-confetti": "workspace:^",
+    "@tsparticles/preset-confetti-cannon": "workspace:^",
+    "@tsparticles/preset-confetti-explosions": "workspace:^",
+    "@tsparticles/preset-confetti-falling": "workspace:^",
+    "@tsparticles/preset-confetti-parade": "workspace:^",
     "@tsparticles/preset-fire": "workspace:^",
     "@tsparticles/preset-firefly": "workspace:^",
     "@tsparticles/preset-fireworks": "workspace:^",
@@ -25,6 +29,6 @@
     "@tsparticles/preset-stars": "workspace:^",
     "@tsparticles/preset-triangles": "workspace:^",
     "typescript": "^5.9.3",
-    "vite": "^8.0.0"
+    "vite": "^8.0.3"
   }
 }
