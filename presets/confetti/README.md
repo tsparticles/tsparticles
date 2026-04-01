@@ -90,7 +90,7 @@ The default emitter options are these:
 
 Let's see how to create the most common types of explosion animations:
 
-##### Long lasting Explosion
+##### Long-lasting Explosion
 
 To create a long-lasting explosion, the emitter life options need some changes.
 
@@ -118,7 +118,7 @@ tsParticles.load({
 });
 ```
 
-This will create an infinite explosiojn shooting confetti from the center of the canvas.
+This will create an infinite explosion shooting confetti from the center of the canvas.
 
 ##### Immortal Explosion - Fireworks
 
