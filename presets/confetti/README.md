@@ -62,7 +62,7 @@ can be customized too.
 The confetti explosion is made using the _Emitter_ plugin, which is already
 documented [here](https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html).
 
-These are the default cannon (emitter) options:
+These are the default explosion (emitter) options:
 
 The default emitter options are these:
 
@@ -88,15 +88,15 @@ The default emitter options are these:
 }
 ```
 
-Let's see how to create the most common types of cannon animations:
+Let's see how to create the most common types of explosion animations:
 
-##### Long lasting Cannon
+##### Long lasting Explosion
 
-To create a long-lasting cannon, the emitter life options need some changes.
+To create a long-lasting explosion, the emitter life options need some changes.
 
 The `life.duration` needs to be increased, the value is in `seconds`, so actually it lasts one tenth of a second.
 
-If `life.duration` is set to `0`, the cannon will last forever.
+If `life.duration` is set to `0`, the explosion will last forever.
 
 The `life.count` parameter instead can be changed as well, but the animation will last for the specified
 duration, `life.count` times, if the `life.duration` is set to `0`, the `life.count` is ignored since its first life
@@ -118,7 +118,7 @@ tsParticles.load({
 });
 ```
 
-This will create an infinite cannon shooting confetti from the center of the canvas.
+This will create an infinite explosiojn shooting confetti from the center of the canvas.
 
 ##### Immortal Explosion - Fireworks
 
@@ -126,7 +126,7 @@ To create a fireworks effect, or an immortal explosion, the emitter life options
 
 The `life.duration` can be kept to the default short value, but the `life.count` is what we need to change.
 
-For an immortal cannon we can change `life.count` to `0` and the emitter will continue respawning every `life.delay`
+For an immortal explosion we can change `life.count` to `0` and the emitter will continue respawning every `life.delay`
 seconds. Actually is not specified, if you want some delay between "explosions", set this value to something greater
 than `0`.
 
@@ -147,7 +147,7 @@ tsParticles.load({
         // to have explosions on the x or y axis
         // centered on the other one
         // if everything is kept commented,
-        // random positions will be used everytime the cannon fires
+        // random positions will be used everytime the explosion fires
         // x: 50,
         // y: 50
       },
@@ -159,7 +159,7 @@ tsParticles.load({
 
 ###### Multiple Explosions
 
-Now that we have played with a single cannon, what about multiple ones?
+Now that we have played with a single explosion, what about multiple ones?
 
 This needs more customization since the explosions array will overwrite the existing options.
 
