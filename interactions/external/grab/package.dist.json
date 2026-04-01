@@ -86,7 +86,7 @@
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
+  "peerDepdendencies": {
     "@tsparticles/canvas-utils": "4.0.0-beta.1",
     "@tsparticles/engine": "4.0.0-beta.1",
     "@tsparticles/plugin-interactivity": "4.0.0-beta.1"
@@ -94,5 +94,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module"
+  "type": "module",
+  "peerDependencies": {
+    "@tsparticles/canvas-utils": "4.0.0-beta.1",
+    "@tsparticles/engine": "4.0.0-beta.1",
+    "@tsparticles/plugin-interactivity": "4.0.0-beta.1"
+  }
 }

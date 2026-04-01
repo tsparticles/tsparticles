@@ -91,7 +91,7 @@
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/smooth-value-noise": "4.0.0-beta.1"
   },
   "exports": {

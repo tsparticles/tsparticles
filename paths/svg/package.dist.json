@@ -100,7 +100,7 @@
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "4.0.0-beta.1",
     "@tsparticles/plugin-move": "4.0.0-beta.1"
   },

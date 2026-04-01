@@ -77,7 +77,10 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "prettier": "@tsparticles/prettier-config",
-  "dependencies": {
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:4.0.0-beta.1"
+  },
+  "devDependencies": {
     "@tsparticles/engine": "workspace:4.0.0-beta.1"
   },
   "publishConfig": {

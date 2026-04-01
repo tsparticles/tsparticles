@@ -107,7 +107,12 @@
     },
     "./package.json": "./dist/package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.1",
+    "@tsparticles/engine": "workspace:4.0.0-beta.1",
+    "@tsparticles/plugin-emitters": "workspace:4.0.0-beta.1"
+  },
+  "devDependencies": {
     "@tsparticles/canvas-utils": "workspace:4.0.0-beta.1",
     "@tsparticles/engine": "workspace:4.0.0-beta.1",
     "@tsparticles/plugin-emitters": "workspace:4.0.0-beta.1"

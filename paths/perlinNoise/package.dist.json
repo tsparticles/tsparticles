@@ -103,7 +103,7 @@
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "4.0.0-beta.1",
     "@tsparticles/noise-field": "4.0.0-beta.1",
     "@tsparticles/perlin-noise": "4.0.0-beta.1",

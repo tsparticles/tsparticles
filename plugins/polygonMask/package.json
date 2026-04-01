@@ -80,7 +80,10 @@
   "sideEffects": [
     "dist/**/pathseg.js"
   ],
-  "dependencies": {
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:4.0.0-beta.1"
+  },
+  "devDependencies": {
     "@tsparticles/engine": "workspace:4.0.0-beta.1"
   },
   "publishConfig": {

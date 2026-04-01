@@ -1246,28 +1246,28 @@ importers:
         version: 7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.98.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3)
 
   effects/bubble:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   effects/particles:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   effects/shadow:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   effects/trail:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1277,7 +1277,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/attract:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1287,7 +1287,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/bounce:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1297,7 +1297,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/bubble:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1307,7 +1307,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/cannon:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1317,7 +1317,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/connect:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../utils/canvasUtils/dist
@@ -1330,7 +1330,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/drag:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1340,7 +1340,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/grab:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../utils/canvasUtils/dist
@@ -1353,7 +1353,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/parallax:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1363,7 +1363,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/particle:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1373,7 +1373,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/pause:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1383,7 +1383,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/pop:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1393,7 +1393,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/push:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1403,7 +1403,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/remove:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1413,7 +1413,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/repulse:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1423,7 +1423,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/slow:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1433,7 +1433,7 @@ importers:
     publishDirectory: dist
 
   interactions/external/trail:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1443,7 +1443,7 @@ importers:
     publishDirectory: dist
 
   interactions/light:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1453,7 +1453,7 @@ importers:
     publishDirectory: dist
 
   interactions/particles/attract:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1463,7 +1463,7 @@ importers:
     publishDirectory: dist
 
   interactions/particles/collisions:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1473,7 +1473,7 @@ importers:
     publishDirectory: dist
 
   interactions/particles/links:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../utils/canvasUtils/dist
@@ -1486,7 +1486,7 @@ importers:
     publishDirectory: dist
 
   interactions/particles/repulse:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1496,7 +1496,7 @@ importers:
     publishDirectory: dist
 
   paths/branches:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1506,7 +1506,7 @@ importers:
     publishDirectory: dist
 
   paths/brownian:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1516,7 +1516,7 @@ importers:
     publishDirectory: dist
 
   paths/curlNoise:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1529,7 +1529,7 @@ importers:
     publishDirectory: dist
 
   paths/curves:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1539,7 +1539,7 @@ importers:
     publishDirectory: dist
 
   paths/fractalNoise:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1555,7 +1555,7 @@ importers:
     publishDirectory: dist
 
   paths/grid:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1565,7 +1565,7 @@ importers:
     publishDirectory: dist
 
   paths/levy:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1575,7 +1575,7 @@ importers:
     publishDirectory: dist
 
   paths/perlinNoise:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1591,7 +1591,7 @@ importers:
     publishDirectory: dist
 
   paths/polygon:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1601,7 +1601,7 @@ importers:
     publishDirectory: dist
 
   paths/random:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1611,7 +1611,7 @@ importers:
     publishDirectory: dist
 
   paths/simplexNoise:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1627,7 +1627,7 @@ importers:
     publishDirectory: dist
 
   paths/spiral:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1637,7 +1637,7 @@ importers:
     publishDirectory: dist
 
   paths/svg:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1647,7 +1647,7 @@ importers:
     publishDirectory: dist
 
   paths/zigzag:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1657,7 +1657,7 @@ importers:
     publishDirectory: dist
 
   plugins/absorbers:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1667,21 +1667,21 @@ importers:
     publishDirectory: dist
 
   plugins/backgroundMask:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/blend:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/canvasMask:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../utils/canvasUtils/dist
@@ -1691,112 +1691,112 @@ importers:
     publishDirectory: dist
 
   plugins/colors/hex:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hsl:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hsv:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hwb:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/lab:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/lch:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/named:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/oklab:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/oklch:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/rgb:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/back:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/bounce:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/circ:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/cubic:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/elastic:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/expo:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1824,42 +1824,42 @@ importers:
     publishDirectory: dist
 
   plugins/easings/quart:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quint:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/sigmoid:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/sine:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/smoothstep:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/emitters:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1869,7 +1869,7 @@ importers:
     publishDirectory: dist
 
   plugins/emittersShapes/canvas:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../utils/canvasUtils/dist
@@ -1882,7 +1882,7 @@ importers:
     publishDirectory: dist
 
   plugins/emittersShapes/circle:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1892,7 +1892,7 @@ importers:
     publishDirectory: dist
 
   plugins/emittersShapes/path:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1902,7 +1902,7 @@ importers:
     publishDirectory: dist
 
   plugins/emittersShapes/polygon:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1912,7 +1912,7 @@ importers:
     publishDirectory: dist
 
   plugins/emittersShapes/square:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
@@ -1922,28 +1922,28 @@ importers:
     publishDirectory: dist
 
   plugins/exports/image:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/json:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/video:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/infection:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -1953,91 +1953,91 @@ importers:
     publishDirectory: dist
 
   plugins/interactivity:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/manualParticles:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/motion:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/move:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/poisson:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/polygonMask:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/responsive:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/sounds:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/themes:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/trail:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/zoom:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/arrow:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cards:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -2047,21 +2047,21 @@ importers:
     publishDirectory: dist
 
   shapes/circle:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cog:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/emoji:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../utils/canvasUtils/dist
@@ -2071,42 +2071,42 @@ importers:
     publishDirectory: dist
 
   shapes/heart:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/image:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/infinity:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/line:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/matrix:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/path:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -2116,56 +2116,56 @@ importers:
     publishDirectory: dist
 
   shapes/polygon:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-polygon:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-rect:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/spiral:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/square:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/squircle:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/star:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/text:
-    dependencies:
+    devDependencies:
       '@tsparticles/canvas-utils':
         specifier: workspace:4.0.0-beta.1
         version: link:../../utils/canvasUtils/dist
@@ -2175,126 +2175,126 @@ importers:
     publishDirectory: dist
 
   updaters/destroy:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/fillColor:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/gradient:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/life:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/opacity:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/orbit:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/outModes:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/roll:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/rotate:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/size:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/strokeColor:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/tilt:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/twinkle:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/wobble:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/canvasUtils:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/configs:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/fractalNoise:
-    dependencies:
+    devDependencies:
       '@tsparticles/smooth-value-noise':
         specifier: workspace:4.0.0-beta.1
         version: link:../smoothValueNoise/dist
     publishDirectory: dist
 
   utils/noiseField:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
@@ -2304,7 +2304,7 @@ importers:
     publishDirectory: dist
 
   utils/pathUtils:
-    dependencies:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-beta.1
         version: link:../../engine/dist
