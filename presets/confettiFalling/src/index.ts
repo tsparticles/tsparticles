@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
 
-const presetNames = ["confettiFalling", "confett-falling"];
+const presetNames = ["confettiFalling", "confetti-falling"];
 
 /**
  * @param engine -
