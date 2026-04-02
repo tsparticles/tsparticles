@@ -1,38 +1,6 @@
-import {
-  type Container,
-  type IEffectDrawer,
-  type IShapeDrawData,
-  type IShapeValues,
-  type Particle,
-} from "@tsparticles/engine";
-
-interface IFilterData extends IShapeValues {
-  blur?: number | string;
-  brightness?: number;
-  contrast?: number;
-  dropShadow?: string;
-  grayscale?: number;
-  hueRotate?: number | string;
-  invert?: number;
-  opacity?: number;
-  saturate?: number;
-  sepia?: number;
-  url?: string;
-}
-
-type FilterParticle = Particle & {
-  filterBlur?: number | string;
-  filterBrightness?: number;
-  filterContrast?: number;
-  filterDropShadow?: boolean;
-  filterGrayscale?: number;
-  filterHueRotate?: number | string;
-  filterInvert?: number;
-  filterOpacity?: number;
-  filterSaturate?: number;
-  filterSepia?: number;
-  filterUrl?: string;
-};
+import { type Container, type IEffectDrawer, type IShapeDrawData } from "@tsparticles/engine";
+import type { FilterParticle } from "./FilterParticle.js";
+import type { IFilterData } from "./IFilterData.js";
 
 export class FilterDrawer implements IEffectDrawer<FilterParticle> {
   drawAfter(data: IShapeDrawData<FilterParticle>): void {
@@ -84,7 +52,7 @@ export class FilterDrawer implements IEffectDrawer<FilterParticle> {
     particle.filterBlur = effectData.blur;
     particle.filterBrightness = effectData.brightness;
     particle.filterContrast = effectData.contrast;
-    particle.filterDropShadow = !!effectData.dropShadow;
+    particle.filterDropShadow = effectData.dropShadow;
     particle.filterGrayscale = effectData.grayscale;
     particle.filterHueRotate = effectData.hueRotate;
     particle.filterInvert = effectData.invert;
