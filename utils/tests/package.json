@@ -16,11 +16,11 @@
     "test:ci": "NODE_ENV=test vitest run --maxConcurrency=2"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-hex-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-hsl-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-hsv-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-rgb-color": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-hex-color": "workspace:*",
+    "@tsparticles/plugin-hsl-color": "workspace:*",
+    "@tsparticles/plugin-hsv-color": "workspace:*",
+    "@tsparticles/plugin-rgb-color": "workspace:*"
   },
   "devDependencies": {
     "@types/jsdom": "^28.0.1",

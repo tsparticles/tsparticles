@@ -94,14 +94,14 @@
     "./package.json": "./dist/package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.1",
-    "@tsparticles/plugin-move": "workspace:4.0.0-beta.1",
-    "@tsparticles/simplex-noise": "workspace:4.0.0-beta.1"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-move": "workspace:*",
+    "@tsparticles/simplex-noise": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-move": "workspace:4.0.0-beta.3",
-    "@tsparticles/simplex-noise": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-move": "workspace:*",
+    "@tsparticles/simplex-noise": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

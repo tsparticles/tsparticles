@@ -141,8 +141,8 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.1",
-    "@tsparticles/path-utils": "4.0.0-beta.1"
+    "@tsparticles/engine": "4.0.0-beta.3",
+    "@tsparticles/path-utils": "4.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public"

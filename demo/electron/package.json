@@ -14,9 +14,9 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "dependencies": {
-    "@tsparticles/configs": "workspace:4.0.0-beta.3",
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "tsparticles": "workspace:4.0.0-beta.3"
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
     "electron": "^41.1.1"

@@ -95,8 +95,8 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@tsparticles/canvas-utils": "4.0.0-beta.1",
-    "@tsparticles/engine": "4.0.0-beta.1",
-    "@tsparticles/plugin-interactivity": "4.0.0-beta.1"
+    "@tsparticles/canvas-utils": "4.0.0-beta.3",
+    "@tsparticles/engine": "4.0.0-beta.3",
+    "@tsparticles/plugin-interactivity": "4.0.0-beta.3"
   }
 }

@@ -106,16 +106,16 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-hex-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-hsl-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-move": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-rgb-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/shape-circle": "workspace:4.0.0-beta.3",
-    "@tsparticles/updater-fill-color": "workspace:4.0.0-beta.3",
-    "@tsparticles/updater-opacity": "workspace:4.0.0-beta.3",
-    "@tsparticles/updater-out-modes": "workspace:4.0.0-beta.3",
-    "@tsparticles/updater-size": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-hex-color": "workspace:*",
+    "@tsparticles/plugin-hsl-color": "workspace:*",
+    "@tsparticles/plugin-move": "workspace:*",
+    "@tsparticles/plugin-rgb-color": "workspace:*",
+    "@tsparticles/shape-circle": "workspace:*",
+    "@tsparticles/updater-fill-color": "workspace:*",
+    "@tsparticles/updater-opacity": "workspace:*",
+    "@tsparticles/updater-out-modes": "workspace:*",
+    "@tsparticles/updater-size": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

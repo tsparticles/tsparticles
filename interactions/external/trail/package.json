@@ -66,12 +66,12 @@
     "./package.json": "./dist/package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.1",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

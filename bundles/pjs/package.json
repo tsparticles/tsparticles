@@ -106,12 +106,12 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-responsive": "workspace:4.0.0-beta.3",
-    "tsparticles": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-responsive": "workspace:*",
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.3"
+    "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

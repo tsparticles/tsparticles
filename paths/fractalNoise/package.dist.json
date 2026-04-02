@@ -103,10 +103,10 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.1",
-    "@tsparticles/fractal-noise": "4.0.0-beta.1",
-    "@tsparticles/noise-field": "4.0.0-beta.1",
-    "@tsparticles/plugin-move": "4.0.0-beta.1"
+    "@tsparticles/engine": "4.0.0-beta.3",
+    "@tsparticles/fractal-noise": "4.0.0-beta.3",
+    "@tsparticles/noise-field": "4.0.0-beta.3",
+    "@tsparticles/plugin-move": "4.0.0-beta.3"
   },
   "type": "module"
 }

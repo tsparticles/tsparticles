@@ -108,16 +108,16 @@
     "./package.json": "./dist/package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.1",
-    "@tsparticles/fractal-noise": "workspace:4.0.0-beta.1",
-    "@tsparticles/noise-field": "workspace:4.0.0-beta.1",
-    "@tsparticles/plugin-move": "workspace:4.0.0-beta.1"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/fractal-noise": "workspace:*",
+    "@tsparticles/noise-field": "workspace:*",
+    "@tsparticles/plugin-move": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/fractal-noise": "workspace:4.0.0-beta.3",
-    "@tsparticles/noise-field": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-move": "workspace:4.0.0-beta.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/fractal-noise": "workspace:*",
+    "@tsparticles/noise-field": "workspace:*",
+    "@tsparticles/plugin-move": "workspace:*"
   },
   "publishConfig": {
     "access": "public",
