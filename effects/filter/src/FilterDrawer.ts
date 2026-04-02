@@ -1,4 +1,4 @@
-import { type Container, type IEffectDrawer, type IShapeDrawData } from "@tsparticles/engine";
+import { type Container, type IEffectDrawer, type IShapeDrawData, isNull } from "@tsparticles/engine";
 import type { FilterParticle } from "./FilterParticle.js";
 import type { IFilterData } from "./IFilterData.js";
 
@@ -15,27 +15,27 @@ export class FilterDrawer implements IEffectDrawer<FilterParticle> {
     context.save();
 
     const blurValue = typeof particle.filterBlur === "number" ? `${particle.filterBlur}px` : particle.filterBlur,
-      blurString = blurValue ? `blur(${blurValue})` : "",
       brightnessValue = particle.filterBrightness,
-      brightnessString = brightnessValue ? `brightness(${brightnessValue})` : "",
       contrastValue = particle.filterContrast,
-      contrastString = contrastValue ? `contrast(${contrastValue})` : "",
       dropShadowValue = particle.filterDropShadow,
-      dropShadowString = dropShadowValue ? "drop-shadow(dropShadowValue)" : "",
       grayscaleValue = particle.filterGrayscale,
-      grayscaleString = grayscaleValue ? `grayscale(${grayscaleValue})` : "",
       hueRotateValue =
         typeof particle.filterHueRotate === "number" ? `${particle.filterHueRotate}deg` : particle.filterHueRotate,
-      hueRotateString = hueRotateValue ? `hue-rotate(${hueRotateValue})` : "",
       invertValue = particle.filterInvert,
-      invertString = invertValue ? `invert(${invertValue})` : "",
       opacityValue = particle.filterOpacity,
-      opacityString = opacityValue ? `opacity(${opacityValue})` : "",
       saturateValue = particle.filterSaturate,
-      saturateString = saturateValue ? `saturate(${saturateValue})` : "",
       sepiaValue = particle.filterSepia,
-      sepiaString = sepiaValue ? `sepia(${sepiaValue})` : "",
       urlValue = particle.filterUrl,
+      blurString = blurValue ? `blur(${blurValue})` : "",
+      brightnessString = isNull(brightnessValue) ? "" : `brightness(${brightnessValue})`,
+      contrastString = isNull(contrastValue) ? "" : `contrast(${contrastValue})`,
+      dropShadowString = dropShadowValue ? `drop-shadow(${dropShadowValue})` : "",
+      grayscaleString = isNull(grayscaleValue) ? "" : `grayscale(${grayscaleValue})`,
+      hueRotateString = isNull(hueRotateValue) ? "" : `hue-rotate(${hueRotateValue})`,
+      invertString = isNull(invertValue) ? "" : `invert(${invertValue})`,
+      opacityString = isNull(opacityValue) ? "" : `opacity(${opacityValue})`,
+      saturateString = isNull(saturateValue) ? "" : `saturate(${saturateValue})`,
+      sepiaString = isNull(sepiaValue) ? "" : `sepia(${sepiaValue})`,
       urlString = urlValue ? `url(${urlValue})` : "";
 
     context.filter =
