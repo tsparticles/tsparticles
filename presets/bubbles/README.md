@@ -15,6 +15,12 @@ screen on a white background.
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadBubblesPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "bubbles"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -66,6 +72,18 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadBubblesPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadBubblesPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- The preset uses a white background by default; override `background.color` to blend with your page
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

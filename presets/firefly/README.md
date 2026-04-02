@@ -15,6 +15,12 @@ little fireflies.
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadFireflyPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "firefly"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -66,6 +72,18 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadFireflyPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadFireflyPreset(tsParticles)`
+- The effect relies on mouse movement; on touch-only devices it may not appear without additional interaction setup
+- The preset uses a transparent background; set `background.color` if you need a solid backdrop
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Interactivity options: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

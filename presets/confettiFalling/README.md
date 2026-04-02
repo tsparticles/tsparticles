@@ -15,6 +15,12 @@ the [confetti palette](https://github.com/tsparticles/presets/tree/main/palettes
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiFalling/images/sample.png)](https://particles.js.org/samples/presets/confettiFalling)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadConfettiFallingPreset(engine)` **before** `tsParticles.load(...)`
+3. Set `preset: "confettiFalling"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -63,6 +69,18 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadConfettiFallingPreset(engine)`
+- The effect uses a transparent background; set `background.color` if you need a solid backdrop
+- Overriding `move.direction` without checking that the particles still fall as expected
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

@@ -15,6 +15,12 @@ particles spawned in the canvas center.
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadSeaAnemonePreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "seaAnemone"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -67,6 +73,18 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSeaAnemonePreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- Particles spawn from the canvas center by default; override `emitters.position` to change the origin
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

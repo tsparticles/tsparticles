@@ -14,6 +14,12 @@
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadSquaresPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "squares"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -66,6 +72,18 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSquaresPreset(tsParticles)`
+- The square shape is part of the bundle; when using engine-only builds, load the shape package separately
+- The preset uses a transparent background by default; set `background.color` if you need a solid backdrop
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

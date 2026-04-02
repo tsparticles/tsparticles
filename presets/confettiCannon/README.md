@@ -15,6 +15,12 @@ the [confetti palette](https://github.com/tsparticles/presets/tree/main/palettes
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiCannon/images/sample.png)](https://particles.js.org/samples/presets/confettiCannon)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadConfettiCannonPreset(engine)` **before** `tsParticles.load(...)`
+3. Set `preset: "confettiCannon"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -63,6 +69,18 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadConfettiCannonPreset(engine)`
+- Overriding `emitters` with an empty array and expecting default cannon behavior
+- Combining multiple emitter changes at once without testing incrementally
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

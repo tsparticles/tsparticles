@@ -15,6 +15,12 @@ between them.
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadLinksPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "links"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -66,6 +72,18 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadLinksPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadLinksPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- Links are rendered between nearby particles; with very few particles or a large `links.distance` value, no lines may appear
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Interactivity options: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

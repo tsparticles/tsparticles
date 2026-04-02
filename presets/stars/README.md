@@ -14,6 +14,12 @@
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
+## Quick checklist
+
+1. Load `@tsparticles/engine`
+2. Call `loadStarsPreset(tsParticles)` before `tsParticles.load(...)`
+3. Use `preset: "stars"` in your options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -60,12 +66,22 @@ tsParticles.load({
 
 Like in the sample above, the circles will be replaced by squares.
 
+### Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadStarsPreset(tsParticles)`
+- Changing shape type without loading required shape package
+
 ### Frameworks with a tsParticles component library
 
 Checkout the documentation in the component library repository and call the `loadStarsPreset` function instead
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Related docs
+
+- Root presets catalog: <https://github.com/tsparticles/presets>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

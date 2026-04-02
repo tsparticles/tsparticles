@@ -15,6 +15,12 @@ center on a transparent background.
 
 [![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
+## Quick checklist
+
+1. Load `@tsparticles/engine`
+2. Call `loadConfettiPreset(tsParticles)` (or use the confetti bundle)
+3. Set `preset: "confetti"` in options
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -232,6 +238,18 @@ in opposite directions.
 Checkout the documentation in the component library repository and call the `loadConfettiPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+### Common pitfalls
+
+- Forgetting to load the preset before using `preset: "confetti"`
+- Overriding `emitters` with an empty array and expecting default explosion behavior
+- Combining many emitter changes at once without validating one step at a time
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 
