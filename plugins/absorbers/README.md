@@ -17,7 +17,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 Including the `tsparticles.plugin.absorbers.min.js` file will export the function to load the plugin:
 
 ```javascript
-loadAbsorbersPlugin;
+loadAbsorbersPluginSimple;
 ```
 
 ### Usage
@@ -27,7 +27,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 ```javascript
 (async () => {
   await loadInteractivityPlugin(tsParticles);
-  await loadAbsorbersPlugin(tsParticles);
+  await loadAbsorbersPluginSimple(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",

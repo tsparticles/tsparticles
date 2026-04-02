@@ -1,5 +1,3 @@
-linkWorkspacePackages: deep
-
 packages:
   - bundles/*
   - demo/*
@@ -17,6 +15,7 @@ packages:
   - shapes/*
   - updaters/*
   - utils/*
+linkWorkspacePackages: deep
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

@@ -80,7 +80,7 @@ async function initPlugins(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
-      { loadEmittersPlugin },
+      { loadEmittersPluginSimple },
       { loadEmittersShapeSquare },
       { loadSoundsPlugin },
       { loadRotateUpdater },
@@ -89,7 +89,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadTrailEffect },
     ] = await Promise.all([
       import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-emitters-shape-square"),
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/updater-rotate"),
@@ -100,15 +100,17 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     await Promise.all([
       loadBasic(e),
-      loadEmittersPlugin(e),
+      (async (): Promise<void> => {
+        await loadEmittersPluginSimple(e);
+
+        await loadEmittersShapeSquare(e);
+      })(),
       loadSoundsPlugin(e),
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
       loadTrailEffect(e),
     ]);
-
-    await loadEmittersShapeSquare(e);
   });
 
   initializing = false;

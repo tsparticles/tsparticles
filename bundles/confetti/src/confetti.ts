@@ -102,7 +102,7 @@ async function initPlugins(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
-      { loadEmittersPlugin },
+      { loadEmittersPluginSimple },
       { loadMotionPlugin },
 
       { loadCardSuitsShape },
@@ -120,10 +120,10 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadWobbleUpdater },
     ] = await Promise.all([
       import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-motion"),
 
-      import("@tsparticles/shape-cards"),
+      import("@tsparticles/shape-cards/suits"),
       import("@tsparticles/shape-heart"),
       import("@tsparticles/shape-image"),
       import("@tsparticles/shape-polygon"),
@@ -141,7 +141,7 @@ async function initPlugins(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
       loadMotionPlugin(e),
-      loadEmittersPlugin(e),
+      loadEmittersPluginSimple(e),
       loadCardSuitsShape(e),
       loadHeartShape(e),
       loadImageShape(e),
