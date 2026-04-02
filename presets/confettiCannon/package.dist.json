@@ -99,18 +99,18 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.5",
-    "@tsparticles/engine": "^4.0.0-beta.5",
-    "@tsparticles/interaction-external-cannon": "^4.0.0-beta.5",
+    "@tsparticles/basic": "^4.0.0-beta.6",
+    "@tsparticles/engine": "^4.0.0-beta.6",
+    "@tsparticles/interaction-external-cannon": "^4.0.0-beta.6",
     "@tsparticles/palette-confetti": "^4.0.0-alpha.5",
-    "@tsparticles/plugin-interactivity": "^4.0.0-beta.5",
-    "@tsparticles/plugin-motion": "^4.0.0-beta.5",
-    "@tsparticles/shape-square": "^4.0.0-beta.5",
-    "@tsparticles/updater-life": "^4.0.0-beta.5",
-    "@tsparticles/updater-roll": "^4.0.0-beta.5",
-    "@tsparticles/updater-rotate": "^4.0.0-beta.5",
-    "@tsparticles/updater-tilt": "^4.0.0-beta.5",
-    "@tsparticles/updater-wobble": "^4.0.0-beta.5"
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.6",
+    "@tsparticles/plugin-motion": "^4.0.0-beta.6",
+    "@tsparticles/shape-square": "^4.0.0-beta.6",
+    "@tsparticles/updater-life": "^4.0.0-beta.6",
+    "@tsparticles/updater-roll": "^4.0.0-beta.6",
+    "@tsparticles/updater-rotate": "^4.0.0-beta.6",
+    "@tsparticles/updater-tilt": "^4.0.0-beta.6",
+    "@tsparticles/updater-wobble": "^4.0.0-beta.6"
   },
   "publishConfig": {
     "access": "public"
