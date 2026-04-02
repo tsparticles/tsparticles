@@ -34,7 +34,7 @@
   },
   "homepage": "https://particles.js.org",
   "devDependencies": {
-    "@swc/core": "^1.15.18",
+    "@swc/core": "^1.15.21",
     "fs-extra": "^11.3.4",
     "minify": "^15.2.0",
     "sass": "^1.98.0"
