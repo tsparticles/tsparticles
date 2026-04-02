@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.6](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2026-04-02)
+
+### Features
+
+- added filter effect ([29f8f68](https://github.com/tsparticles/tsparticles/commit/29f8f688a8a0397bb279bb7e92d367e20b00cd29))
+
 # [4.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2026-04-02)
 
 **Note:** Version bump only for package @tsparticles/configs

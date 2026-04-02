@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-utils",
-  "version": "4.0.0-beta.5",
+  "version": "4.0.0-beta.6",
   "description": "tsParticles path utils path",
   "homepage": "https://particles.js.org",
   "scripts": {

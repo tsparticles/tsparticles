@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-infection",
-  "version": "4.0.0-beta.5",
+  "version": "4.0.0-beta.6",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
