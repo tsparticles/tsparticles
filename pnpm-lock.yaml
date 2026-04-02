@@ -1168,9 +1168,6 @@ importers:
       '@swc/core':
         specifier: ^1.15.21
         version: 1.15.21
-      fs-extra:
-        specifier: ^11.3.4
-        version: 11.3.4
       minify:
         specifier: ^15.2.0
         version: 15.2.0
