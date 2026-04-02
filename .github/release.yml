@@ -1,0 +1,49 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - duplicate
+      - invalid
+
+  categories:
+    - title: 🚀 Features
+      labels:
+        - feat
+        - feature
+
+    - title: 🐛 Bug Fixes
+      labels:
+        - fix
+        - bug
+
+    - title: ⚡ Performance
+      labels:
+        - perf
+
+    - title: ♻️ Refactoring
+      labels:
+        - refactor
+
+    - title: 🧪 Tests
+      labels:
+        - test
+
+    - title: 🧰 Maintenance
+      labels:
+        - chore
+        - build
+        - ci
+        - dependencies
+
+    - title: 📦 Dependencies
+      labels:
+        - deps
+        - dependencies
+
+    - title: 📚 Documentation
+      labels:
+        - docs
+
+    - title: 🔧 Other Changes
+      labels:
+        - "*"
