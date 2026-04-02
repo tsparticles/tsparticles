@@ -134,9 +134,6 @@ importers:
       typescript-eslint:
         specifier: ^8.58.0
         version: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
-      undici-types:
-        specifier: ^7.24.7
-        version: 7.24.7
       webpack:
         specifier: ^5.105.4
         version: 5.105.4(@swc/core@1.15.21)(webpack-cli@7.0.2)
