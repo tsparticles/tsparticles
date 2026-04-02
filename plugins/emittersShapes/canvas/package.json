@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-canvas",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "description": "tsParticles emitters shape canvas plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -112,9 +112,9 @@
     "@tsparticles/plugin-emitters": "workspace:4.0.0-beta.1"
   },
   "devDependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.2",
-    "@tsparticles/engine": "workspace:4.0.0-beta.2",
-    "@tsparticles/plugin-emitters": "workspace:4.0.0-beta.2"
+    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.3",
+    "@tsparticles/engine": "workspace:4.0.0-beta.3",
+    "@tsparticles/plugin-emitters": "workspace:4.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public",

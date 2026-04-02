@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-connect",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "description": "tsParticles connect external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -99,9 +99,9 @@
     "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
   },
   "devDependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.2",
-    "@tsparticles/engine": "workspace:4.0.0-beta.2",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.2"
+    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.3",
+    "@tsparticles/engine": "workspace:4.0.0-beta.3",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public",

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-fill-color",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "description": "tsParticles particles fill color updater",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -99,7 +99,7 @@
     "@tsparticles/engine": "workspace:4.0.0-beta.1"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.2"
+    "@tsparticles/engine": "workspace:4.0.0-beta.3"
   },
   "type": "module"
 }
