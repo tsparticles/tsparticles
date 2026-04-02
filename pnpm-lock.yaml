@@ -1158,42 +1158,12 @@ importers:
 
   demo/vanilla_new:
     dependencies:
+      '@tsparticles/all':
+        specifier: workspace:*
+        version: link:../../bundles/all/dist
       '@tsparticles/configs':
         specifier: workspace:*
         version: link:../../utils/configs/dist
-      '@tsparticles/engine':
-        specifier: workspace:*
-        version: link:../../engine/dist
-      '@tsparticles/interaction-light':
-        specifier: workspace:*
-        version: link:../../interactions/light/dist
-      '@tsparticles/interaction-particles-repulse':
-        specifier: workspace:*
-        version: link:../../interactions/particles/repulse/dist
-      '@tsparticles/path-curves':
-        specifier: workspace:*
-        version: link:../../paths/curves/dist
-      '@tsparticles/path-perlin-noise':
-        specifier: workspace:*
-        version: link:../../paths/perlinNoise/dist
-      '@tsparticles/path-polygon':
-        specifier: workspace:*
-        version: link:../../paths/polygon/dist
-      '@tsparticles/path-simplex-noise':
-        specifier: workspace:*
-        version: link:../../paths/simplexNoise/dist
-      '@tsparticles/plugin-infection':
-        specifier: workspace:*
-        version: link:../../plugins/infection/dist
-      '@tsparticles/updater-gradient':
-        specifier: workspace:*
-        version: link:../../updaters/gradient/dist
-      '@tsparticles/updater-orbit':
-        specifier: workspace:*
-        version: link:../../updaters/orbit/dist
-      tsparticles:
-        specifier: workspace:*
-        version: link:../../bundles/full/dist
     devDependencies:
       '@swc/core':
         specifier: ^1.15.21
