@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-links",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "tsParticles links particles interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -94,14 +94,14 @@
     "./package.json": "./dist/package.json"
   },
   "peerDependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.1",
-    "@tsparticles/engine": "workspace:4.0.0-beta.1",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
+    "@tsparticles/canvas-utils": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-beta.3",
-    "@tsparticles/engine": "workspace:4.0.0-beta.3",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.3"
+    "@tsparticles/canvas-utils": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "publishConfig": {
     "access": "public",
