@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-path",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles emitters shape path plugin",
   "homepage": "https://particles.js.org",
   "repository": {

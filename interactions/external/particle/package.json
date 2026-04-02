@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-particle",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles particle external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -70,8 +70,8 @@
     "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-beta.1",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
+    "@tsparticles/engine": "workspace:4.0.0-beta.2",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.2"
   },
   "publishConfig": {
     "access": "public",

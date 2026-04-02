@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-export-json",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles export json plugin",
   "homepage": "https://particles.js.org",
   "repository": {
