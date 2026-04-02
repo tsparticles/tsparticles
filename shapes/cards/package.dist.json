@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles cards shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -94,12 +94,53 @@
       "browser": "./browser/index.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
-      "umd": "./umd/index.js",
-      "default": "./cjs/index.js"
+      "default": "./esm/index.js"
+    },
+    "./cards": {
+      "types": "./types/cards/index.d.ts",
+      "browser": "./browser/cards/index.js",
+      "import": "./esm/cards/index.js",
+      "require": "./cjs/cards/index.js",
+      "default": "./esm/cards/index.js"
+    },
+    "./clubs": {
+      "types": "./types/clubs/index.d.ts",
+      "browser": "./browser/clubs/index.js",
+      "import": "./esm/clubs/index.js",
+      "require": "./cjs/clubs/index.js",
+      "default": "./esm/clubs/index.js"
+    },
+    "./diamons": {
+      "types": "./types/diamons/index.d.ts",
+      "browser": "./browser/diamons/index.js",
+      "import": "./esm/diamons/index.js",
+      "require": "./cjs/diamons/index.js",
+      "default": "./esm/diamons/index.js"
+    },
+    "./hearts": {
+      "types": "./types/hearts/index.d.ts",
+      "browser": "./browser/hearts/index.js",
+      "import": "./esm/hearts/index.js",
+      "require": "./cjs/hearts/index.js",
+      "default": "./esm/hearts/index.js"
+    },
+    "./spades": {
+      "types": "./types/spades/index.d.ts",
+      "browser": "./browser/spades/index.js",
+      "import": "./esm/spades/index.js",
+      "require": "./cjs/spades/index.js",
+      "default": "./esm/spades/index.js"
+    },
+    "./suits": {
+      "types": "./types/suits.d.ts",
+      "browser": "./browser/suits.js",
+      "import": "./esm/suits.js",
+      "require": "./cjs/suits.js",
+      "default": "./esm/suits.js"
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "4.0.0-beta.1",
     "@tsparticles/path-utils": "4.0.0-beta.1"
   },

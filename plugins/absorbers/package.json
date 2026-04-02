@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-absorbers",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -88,14 +88,36 @@
       "browser": "./dist/browser/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "default": "./dist/esm/index.js"
+    },
+    "./interaction": {
+      "types": "./dist/types/interaction.d.ts",
+      "browser": "./dist/browser/interaction.js",
+      "import": "./dist/esm/interaction.js",
+      "require": "./dist/cjs/interaction.js",
+      "default": "./dist/esm/interaction.js"
+    },
+    "./plugin": {
+      "types": "./dist/types/plugin.d.ts",
+      "browser": "./dist/browser/plugin.js",
+      "import": "./dist/esm/plugin.js",
+      "require": "./dist/cjs/plugin.js",
+      "default": "./dist/esm/plugin.js"
     },
     "./package.json": "./dist/package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "workspace:4.0.0-beta.1",
     "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.1"
+  },
+  "devDependencies": {
+    "@tsparticles/engine": "workspace:4.0.0-beta.2",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-beta.2"
+  },
+  "peerDependenciesMeta": {
+    "@tsparticles/plugin-interactivity": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public",

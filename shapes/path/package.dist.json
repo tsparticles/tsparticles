@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-path",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles path shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -94,12 +94,11 @@
       "browser": "./browser/index.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
-      "umd": "./umd/index.js",
-      "default": "./cjs/index.js"
+      "default": "./esm/index.js"
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "4.0.0-beta.1",
     "@tsparticles/path-utils": "4.0.0-beta.1"
   },

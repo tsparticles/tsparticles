@@ -131,7 +131,7 @@ export class Container {
   zLayers;
 
   private _delay: number;
-  private _delayTimeout?: number | NodeJS.Timeout;
+  private _delayTimeout?: number;
   private readonly _delta: IDelta = { value: 0, factor: 0 };
   private readonly _dispatchCallback;
   private _drawAnimationFrame?: number;

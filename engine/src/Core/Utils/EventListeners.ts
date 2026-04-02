@@ -13,7 +13,7 @@ interface EventListenersHandlers {
 export class EventListeners {
   private readonly _handlers: EventListenersHandlers;
   private _resizeObserver?: ResizeObserver;
-  private _resizeTimeout?: NodeJS.Timeout;
+  private _resizeTimeout?: number;
 
   /**
    * Events listener constructor

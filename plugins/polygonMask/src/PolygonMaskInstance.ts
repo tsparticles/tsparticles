@@ -38,7 +38,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
   offset?: ICoordinates;
   paths?: ISvgPath[];
   raw?: ICoordinates[];
-  redrawTimeout?: number | NodeJS.Timeout;
+  redrawTimeout?: number;
 
   private readonly _container;
   private _moveRadius;

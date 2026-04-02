@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles cards shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -102,14 +102,59 @@
       "browser": "./dist/browser/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "default": "./dist/esm/index.js"
+    },
+    "./cards": {
+      "types": "./dist/types/cards/index.d.ts",
+      "browser": "./dist/browser/cards/index.js",
+      "import": "./dist/esm/cards/index.js",
+      "require": "./dist/cjs/cards/index.js",
+      "default": "./dist/esm/cards/index.js"
+    },
+    "./clubs": {
+      "types": "./dist/types/clubs/index.d.ts",
+      "browser": "./dist/browser/clubs/index.js",
+      "import": "./dist/esm/clubs/index.js",
+      "require": "./dist/cjs/clubs/index.js",
+      "default": "./dist/esm/clubs/index.js"
+    },
+    "./diamons": {
+      "types": "./dist/types/diamons/index.d.ts",
+      "browser": "./dist/browser/diamons/index.js",
+      "import": "./dist/esm/diamons/index.js",
+      "require": "./dist/cjs/diamons/index.js",
+      "default": "./dist/esm/diamons/index.js"
+    },
+    "./hearts": {
+      "types": "./dist/types/hearts/index.d.ts",
+      "browser": "./dist/browser/hearts/index.js",
+      "import": "./dist/esm/hearts/index.js",
+      "require": "./dist/cjs/hearts/index.js",
+      "default": "./dist/esm/hearts/index.js"
+    },
+    "./spades": {
+      "types": "./dist/types/spades/index.d.ts",
+      "browser": "./dist/browser/spades/index.js",
+      "import": "./dist/esm/spades/index.js",
+      "require": "./dist/cjs/spades/index.js",
+      "default": "./dist/esm/spades/index.js"
+    },
+    "./suits": {
+      "types": "./dist/types/suits.d.ts",
+      "browser": "./dist/browser/suits.js",
+      "import": "./dist/esm/suits.js",
+      "require": "./dist/cjs/suits.js",
+      "default": "./dist/esm/suits.js"
     },
     "./package.json": "./dist/package.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tsparticles/engine": "workspace:4.0.0-beta.1",
     "@tsparticles/path-utils": "workspace:4.0.0-beta.1"
+  },
+  "devDependencies": {
+    "@tsparticles/engine": "workspace:4.0.0-beta.2",
+    "@tsparticles/path-utils": "workspace:4.0.0-beta.2"
   },
   "publishConfig": {
     "access": "public",

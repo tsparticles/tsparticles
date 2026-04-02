@@ -1,6 +1,6 @@
-import type { AbsorberContainer } from "./AbsorberContainer.js";
 import { type Engine } from "@tsparticles/engine";
-import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
+import { loadAbsorbersInteraction } from "./interaction.js";
+import { loadAbsorbersPluginSimple } from "./plugin.js";
 
 declare const __VERSION__: string;
 
@@ -8,31 +8,8 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
-  engine.checkVersion(__VERSION__);
-
-  await engine.pluginManager.register(async (e: InteractivityEngine) => {
-    const [
-        { ensureInteractivityPluginLoaded },
-        { AbsorbersInstancesManager },
-        { AbsorbersPlugin },
-      ] = await Promise.all([
-        import("@tsparticles/plugin-interactivity"),
-        import("./AbsorbersInstancesManager.js"),
-        import("./AbsorbersPlugin.js"),
-      ]),
-      pluginManager = e.pluginManager,
-      instancesManager = new AbsorbersInstancesManager(pluginManager);
-
-    ensureInteractivityPluginLoaded(e);
-
-    pluginManager.addPlugin(new AbsorbersPlugin(instancesManager));
-
-    pluginManager.addInteractor?.("externalAbsorbers", async container => {
-      const { AbsorbersInteractor } = await import("./AbsorbersInteractor.js");
-
-      return new AbsorbersInteractor(container as AbsorberContainer, instancesManager);
-    });
-  });
+  await loadAbsorbersPluginSimple(engine);
+  await loadAbsorbersInteraction(engine);
 }
 
 export type * from "./AbsorberContainer.js";

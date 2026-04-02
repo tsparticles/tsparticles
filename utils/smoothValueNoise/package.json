@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/smooth-value-noise",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "tsParticles smooth value noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -102,8 +102,7 @@
       "browser": "./dist/browser/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "default": "./dist/esm/index.js"
     },
     "./package.json": "./dist/package.json"
   },
