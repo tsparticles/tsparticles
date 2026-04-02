@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-named-color",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "tsParticles named color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

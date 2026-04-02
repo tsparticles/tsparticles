@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-simplex-noise",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
