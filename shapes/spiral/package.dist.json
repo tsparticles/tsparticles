@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-spiral",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.6",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,7 +99,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.4"
+    "@tsparticles/engine": "4.0.0-beta.6"
   },
   "publishConfig": {
     "access": "public"

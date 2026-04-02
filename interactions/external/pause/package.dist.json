@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-pause",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.6",
   "description": "tsParticles pause external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -94,7 +94,7 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.4",
-    "@tsparticles/plugin-interactivity": "4.0.0-beta.4"
+    "@tsparticles/engine": "4.0.0-beta.6",
+    "@tsparticles/plugin-interactivity": "4.0.0-beta.6"
   }
 }
