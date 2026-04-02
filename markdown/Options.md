@@ -1,30 +1,94 @@
-# **_Options_**
+# Options
 
-| property                 | option type          | example                                   | notes                                                                                                                                                                                                  |
-| ------------------------ | -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `autoPlay`               | `boolean`            | `true` / `false`                          |                                                                                                                                                                                                        |
-| `background`             | `object`             |                                           | See Background options here {@link IBackground}                                                                                                                                                        |
-| `backgroundMask`         | `object`             |                                           | See Background Mask options here {@link IBackgroundMask}                                                                                                                                               |
-| `detectRetina`           | `boolean`            | `true` / `false`                          | Replaces the old `retina_detect` property                                                                                                                                                              |
-| `duration`               | `number` / `range`   | `60` / `{ min: 30, max: 90 }`             | The particles effect duration in seconds                                                                                                                                                               |
-| `fpsLimit`               | `number`             | `60`                                      | _Defaults to `60`_, replaces the old `fps_limit` property                                                                                                                                              |
-| `fullScreen`             | `object` / `boolean` | {@link IFullScreen} or `true` / `false`   | See Full Screen options here {@link IFullScreen}                                                                                                                                                       |
-| `interactivity`          | `object`             |                                           | See Interactivity options here {@link IInteractivity}                                                                                                                                                  |
-| `manualParticles`        | `array`              |                                           | An array of Manual Particles object. See Manual Particles documentation here {@link IManualParticle }                                                                                                  |
-| `motion`                 | `object`             |                                           | See Motion options here {@link IMotion here}                                                                                                                                                           |
-| `particles`              | `object`             |                                           | See Particles options here {@link IParticlesOptions}                                                                                                                                                   |
-| `pauseOnBlur`            | `boolean`            | `true` / `false`                          | Pauses the animations when the page isn't on foreground                                                                                                                                                |
-| `pauseOnOutsideViewport` | `boolean`            | `true` / `false`                          | Pauses the animations when the element is out of the viewport                                                                                                                                          |
-| `preset`                 | `string` / `array`   | `"basic"`<br /> `[ "links", "confetti" ]` | You can use this property to load one or more presets for focusing on important properties and not all config. You can find presets on `npm` [here](https://www.npmjs.com/search?q=tsparticles-preset) |
-| `responsive`             | `array`              |                                           | See Responsive options here {@link IResponsive}                                                                                                                                                        |
-| `themes`                 | `array`              |                                           | It's an array of Theme object, you can see the structure here {@link ITheme}                                                                                                                           |
+This page is a quick map of root options. For full type details, use the API reference too:
 
-## Plugins
+- <https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html>
 
-These options are not part of the slim bundle
+## Minimal complete example
 
-| property      | option type        | example | notes                                           |
-| ------------- | ------------------ | ------- | ----------------------------------------------- |
-| `absorbers`   | `object` / `array` |         | See Absorbers options here {@link IAbsorber}    |
-| `emitters`    | `object` / `array` |         | See Emitter options here {@link IEmitter}       |
-| `polygonMask` | `object`           |         | See Particles options here {@link IPolygonMask} |
+```json
+{
+  "background": {
+    "color": "#0f172a"
+  },
+  "fpsLimit": 60,
+  "detectRetina": true,
+  "interactivity": {
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "repulse"
+      }
+    }
+  },
+  "particles": {
+    "links": {
+      "enable": true
+    },
+    "move": {
+      "enable": true
+    },
+    "number": {
+      "value": 80
+    }
+  }
+}
+```
+
+## Choose your configuration path
+
+- **I want a fast visual result**: start with `preset` and then override only key fields
+- **I want full control**: define `particles`, `interactivity`, and `background` manually
+- **I need responsive behavior**: add `responsive` rules after your base config is stable
+
+## Most-used root options
+
+| Property                 | Type                 | Example                             | Notes                                  |
+| ------------------------ | -------------------- | ----------------------------------- | -------------------------------------- |
+| `autoPlay`               | `boolean`            | `true` / `false`                    | Starts animation automatically         |
+| `background`             | `object`             | `{ color: "#111" }`                 | See {@link IBackground}                |
+| `backgroundMask`         | `object`             |                                     | See {@link IBackgroundMask}            |
+| `detectRetina`           | `boolean`            | `true` / `false`                    | Replaces `retina_detect`               |
+| `duration`               | `number` / `range`   | `60` / `{ min: 30, max: 90 }`       | Effect duration in seconds             |
+| `fpsLimit`               | `number`             | `60`                                | Default: `60`; replaces `fps_limit`    |
+| `fullScreen`             | `object` / `boolean` | `true` / `false`                    | See {@link IFullScreen}                |
+| `interactivity`          | `object`             |                                     | See {@link IInteractivity}             |
+| `manualParticles`        | `array`              |                                     | See {@link IManualParticle}            |
+| `motion`                 | `object`             |                                     | See {@link IMotion}                    |
+| `particles`              | `object`             |                                     | See {@link IParticlesOptions}          |
+| `pauseOnBlur`            | `boolean`            | `true` / `false`                    | Pauses when the tab loses focus        |
+| `pauseOnOutsideViewport` | `boolean`            | `true` / `false`                    | Pauses when canvas is outside viewport |
+| `preset`                 | `string` / `array`   | `"links"` / `["links", "confetti"]` | Loads official or custom presets       |
+| `responsive`             | `array`              |                                     | See {@link IResponsive}                |
+| `themes`                 | `array`              |                                     | See {@link ITheme}                     |
+
+## Plugin options (not included in slim)
+
+| Property      | Type               | Example | Notes                    |
+| ------------- | ------------------ | ------- | ------------------------ |
+| `absorbers`   | `object` / `array` |         | See {@link IAbsorber}    |
+| `emitters`    | `object` / `array` |         | See {@link IEmitter}     |
+| `polygonMask` | `object`           |         | See {@link IPolygonMask} |
+
+## Deep links for option groups
+
+- Background: [Options/Background](./Options/Background.md)
+- Background Mask: [Options/BackgroundMask](./Options/BackgroundMask.md)
+- Full Screen: [Options/FullScreen](./Options/FullScreen.md)
+- Interactivity: [Options/Interactivity](./Options/Interactivity.md)
+- Motion: [Options/Motion](./Options/Motion.md)
+- Particles: [Options/Particles](./Options/Particles.md)
+- Themes: [Options/Themes](./Options/Themes.md)
+
+## Common pitfalls
+
+- Enabling plugin options (`emitters`, `absorbers`, `polygonMask`) without loading their packages
+- Setting very high particle counts before validating performance
+- Mutating runtime options without a container refresh
+- Migrating old configs without converting snake_case keys
+
+## Next steps
+
+- Color values and formats: [Color](./Color.md)
+- Runtime container management: [Container](./Container.md)
+- Official presets: <https://github.com/tsparticles/presets>

@@ -31,6 +31,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
   - [Table of Contents](#table-of-contents)
   - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+  - [Start here in 2 minutes](#start-here-in-2-minutes)
   - [**_Library installation_**](#library-installation)
     - [**_Hosting / CDN_**](#hosting--cdn)
       - [jsDelivr](#jsdelivr)
@@ -122,6 +123,57 @@ files splitted for `import` syntax.
 **If you are interested** there are some _simple instructions_
 just [below](https://github.com/tsparticles/tsparticles/blob/main/README.md#library-installation) to guide you to
 migrate from the old particles.js library.
+
+## Start here in 2 minutes
+
+If you are new to tsParticles, this path is usually the fastest:
+
+1. Install `@tsparticles/engine` and `@tsparticles/slim`
+2. Load the slim bundle once
+3. Start with a small config and iterate
+
+```javascript
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+await loadSlim(tsParticles);
+
+await tsParticles.load({
+  id: "tsparticles",
+  options: {
+    background: {
+      color: "#0d1117",
+    },
+    particles: {
+      move: {
+        enable: true,
+      },
+      number: {
+        value: 60,
+      },
+    },
+  },
+});
+```
+
+Useful docs for the next step:
+
+- Docs home: <https://particles.js.org/docs/>
+- Options guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md>
+- Migration guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md>
+- Presets catalog: <https://github.com/tsparticles/presets>
+
+Choose your quick-start path:
+
+- **I want fewer dependencies**: use `@tsparticles/engine` + only needed feature packages
+- **I want the easiest default**: use `@tsparticles/slim`
+- **I need everything enabled**: use `@tsparticles/all`
+
+Common pitfalls:
+
+- Loading options that require plugins before loading those plugin packages
+- Starting with very high particle counts before checking FPS
+- Mixing legacy snake_case keys with modern camelCase options
 
 ## **_Library installation_**
 
@@ -629,6 +681,12 @@ You can find all options
 available [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html)
 📖
 
+If you want a practical map with examples, check these markdown docs too:
+
+- Root options: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md>
+- Colors: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Container API: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Container.md>
+
 ## Want to see it in action and try it?
 
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can check out
@@ -669,6 +727,10 @@ switch? [Read here](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-
 
 _Below you can find all the information you need to install tsParticles and its new syntax._
 
+Migration quick guide in this repository:
+
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md>
+
 ---
 
 ## Plugins/Customizations
@@ -678,6 +740,10 @@ tsParticles now supports some customizations 🥳.
 **You can create your own plugins**
 
 _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
+
+Practical customization guide (shape + preset examples):
+
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Plugins.md>
 
 ---
 
