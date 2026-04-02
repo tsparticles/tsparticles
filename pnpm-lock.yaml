@@ -135,8 +135,8 @@ importers:
         specifier: ^8.58.0
         version: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       undici-types:
-        specifier: ^7.24.7
-        version: 7.24.7
+        specifier: ^8.0.0
+        version: 8.0.0
       webpack:
         specifier: ^5.105.4
         version: 5.105.4(@swc/core@1.15.21)(webpack-cli@7.0.2)
@@ -7895,6 +7895,9 @@ packages:
   undici-types@7.24.7:
     resolution: {integrity: sha512-XA+gOBkzYD3C74sZowtCLTpgtaCdqZhqCvR6y9LXvrKTt/IVU6bz49T4D+BPi475scshCCkb0IklJRw6T1ZlgQ==}
 
+  undici-types@8.0.0:
+    resolution: {integrity: sha512-qsgbPOxAPkJq6rpQX7HmlRrGdeqVxvA6WXNk2S72g/V0VuRFnp193p5ydeudMbVdzAcFQB0gRP2ZC1omvWXPJQ==}
+
   undici@7.24.6:
     resolution: {integrity: sha512-Xi4agocCbRzt0yYMZGMA6ApD7gvtUFaxm4ZmeacWI4cZxaF6C+8I8QfofC20NAePiB/IcvZmzkJ7XPa471AEtA==}
     engines: {node: '>=20.18.1'}
@@ -14157,6 +14160,8 @@ snapshots:
   undici-types@7.18.2: {}
 
   undici-types@7.24.7: {}
+
+  undici-types@8.0.0: {}
 
   undici@7.24.6: {}
 
