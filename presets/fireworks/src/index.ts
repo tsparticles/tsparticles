@@ -9,8 +9,7 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
-      { loadEmittersPlugin },
-      { loadInteractivityPlugin },
+      { loadEmittersPluginSimple },
       { loadTrailEffect },
       { loadEmittersShapeSquare },
       { loadSoundsPlugin },
@@ -22,8 +21,7 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       { initOptions },
     ] = await Promise.all([
       import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/effect-trail"),
       import("@tsparticles/plugin-emitters-shape-square"),
       import("@tsparticles/plugin-sounds"),
@@ -38,8 +36,9 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
       (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
-        await loadEmittersPlugin(e);
+        await loadEmittersPluginSimple(e);
+
+        await loadEmittersShapeSquare(e);
       })(),
       loadTrailEffect(e),
       loadSoundsPlugin(e),
@@ -49,8 +48,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       loadLifeUpdater(e),
       loadStrokeColorUpdater(e),
     ]);
-
-    await loadEmittersShapeSquare(e);
 
     e.pluginManager.addPreset(presetName, initOptions(), false);
   });

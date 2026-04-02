@@ -9,15 +9,13 @@ export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
-      { loadEmittersPlugin },
-      { loadInteractivityPlugin },
+      { loadEmittersPluginSimple },
       { loadTrailPlugin },
       { loadCurvesPath },
       { options },
     ] = await Promise.all([
       import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-trail"),
       import("@tsparticles/path-curves"),
       import("./options.js"),
@@ -29,11 +27,7 @@ export async function loadSeaAnemonePreset(engine: Engine): Promise<void> {
 
         await loadCurvesPath(e);
       })(),
-      (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
-
-        await loadEmittersPlugin(e);
-      })(),
+      loadEmittersPluginSimple(e),
       loadTrailPlugin(e),
     ]);
 

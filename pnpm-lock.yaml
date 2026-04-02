@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.5.0
-        version: 20.5.0(@types/node@25.5.0)(conventional-commits-parser@6.3.0)(typescript@5.9.3)
+        version: 20.5.0(@types/node@25.5.0)(conventional-commits-parser@6.3.0)(typescript@6.0.2)
       '@commitlint/config-conventional':
         specifier: ^20.5.0
         version: 20.5.0
@@ -18,23 +18,23 @@ importers:
         specifier: ^1.15.21
         version: 1.15.21
       '@tsparticles/cli':
-        specifier: ^3.3.8
-        version: 3.3.8(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)(webpack-cli@7.0.2)
+        specifier: ^3.4.4
+        version: 3.4.4(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)(webpack-cli@7.0.2)
       '@tsparticles/depcruise-config':
-        specifier: ^3.3.5
-        version: 3.3.5(dependency-cruiser@17.3.9)
+        specifier: ^3.4.5
+        version: 3.4.5(dependency-cruiser@17.3.10)
       '@tsparticles/eslint-config':
-        specifier: ^3.3.5
-        version: 3.3.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
+        specifier: ^3.4.5
+        version: 3.4.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
       '@tsparticles/prettier-config':
-        specifier: ^3.3.5
-        version: 3.3.5(prettier@3.8.1)
+        specifier: ^3.4.5
+        version: 3.4.5(prettier@3.8.1)
       '@tsparticles/tsconfig':
-        specifier: ^3.3.5
-        version: 3.3.5(typescript@5.9.3)
+        specifier: ^3.4.5
+        version: 3.4.5(typescript@6.0.2)
       '@tsparticles/webpack-plugin':
-        specifier: ^3.3.5
-        version: 3.3.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)
+        specifier: ^3.4.5
+        version: 3.4.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)
       '@types/jsdom':
         specifier: ^28.0.1
         version: 28.0.1
@@ -51,7 +51,7 @@ importers:
         specifier: ^4.1.2
         version: 4.1.2(vitest@4.1.2)
       browserslist:
-        specifier: ^4.28.1
+        specifier: ^4.28.2
         version: 4.28.2
       copyfiles:
         specifier: ^2.4.1
@@ -66,14 +66,14 @@ importers:
         specifier: ^10.1.8
         version: 10.1.8(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-jsdoc:
-        specifier: ^62.8.1
-        version: 62.8.1(eslint@10.1.0(jiti@2.6.1))
+        specifier: ^62.9.0
+        version: 62.9.0(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-prettier:
         specifier: ^5.5.5
         version: 5.5.5(@types/eslint@8.56.7)(eslint-config-prettier@10.1.8(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
-        version: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+        version: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       fs-extra:
         specifier: ^11.3.4
         version: 11.3.4
@@ -93,11 +93,11 @@ importers:
         specifier: ^9.0.7
         version: 9.0.7(@swc/core@1.15.21)(@types/node@25.5.0)
       nx:
-        specifier: ^22.6.3
-        version: 22.6.3(@swc/core@1.15.21)
+        specifier: ^22.6.4
+        version: 22.6.4(@swc/core@1.15.21)
       nx-cloud:
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.1.3
+        version: 19.1.3
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -121,34 +121,34 @@ importers:
         version: 2.9.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.15.21)(@types/node@25.5.0)(typescript@5.9.3)
+        version: 10.9.2(@swc/core@1.15.21)(@types/node@25.5.0)(typescript@6.0.2)
       typedoc:
         specifier: ^0.28.18
-        version: 0.28.18(typescript@5.9.3)
+        version: 0.28.18(typescript@6.0.2)
       typedoc-plugin-clarity:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.18(typescript@5.9.3))
+        version: 1.6.0(typedoc@0.28.18(typescript@6.0.2))
       typedoc-plugin-coverage:
         specifier: ^4.0.2
-        version: 4.0.2(typedoc@0.28.18(typescript@5.9.3))
+        version: 4.0.2(typedoc@0.28.18(typescript@6.0.2))
       typedoc-plugin-google-ads:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.18(typescript@5.9.3))
+        version: 1.6.0(typedoc@0.28.18(typescript@6.0.2))
       typedoc-plugin-keywords:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.18(typescript@5.9.3))
+        version: 1.6.0(typedoc@0.28.18(typescript@6.0.2))
       typedoc-plugin-mdn-links:
         specifier: ^5.1.1
-        version: 5.1.1(typedoc@0.28.18(typescript@5.9.3))
+        version: 5.1.1(typedoc@0.28.18(typescript@6.0.2))
       typedoc-plugin-missing-exports:
         specifier: ^4.1.2
-        version: 4.1.2(typedoc@0.28.18(typescript@5.9.3))
+        version: 4.1.2(typedoc@0.28.18(typescript@6.0.2))
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.2
+        version: 6.0.2
       typescript-eslint:
-        specifier: ^8.57.0
-        version: 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+        specifier: ^8.58.0
+        version: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       typescript-json-schema:
         specifier: ^0.67.1
         version: 0.67.1(@swc/core@1.15.21)
@@ -171,8 +171,8 @@ importers:
   apps/demo:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/palette-acid-pair':
         specifier: workspace:^
         version: link:../../palettes/acidPair/dist
@@ -468,8 +468,8 @@ importers:
         specifier: workspace:^
         version: link:../../presets/triangles/dist
       '@tsparticles/updater-stroke-color':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     devDependencies:
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0
@@ -496,14 +496,14 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       jsoneditor:
-        specifier: ^10.4.2
-        version: 10.4.2
+        specifier: ^10.4.3
+        version: 10.4.3
       livereload:
         specifier: ^0.10.3
         version: 0.10.3
       lodash:
-        specifier: ^4.17.23
-        version: 4.17.23
+        specifier: ^4.18.1
+        version: 4.18.1
       nodemon:
         specifier: ^3.1.14
         version: 3.1.14
@@ -520,8 +520,8 @@ importers:
   apps/vite:
     devDependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/preset-big-circles':
         specifier: workspace:^
         version: link:../../presets/bigCircles/dist
@@ -577,8 +577,8 @@ importers:
         specifier: workspace:^
         version: link:../../presets/triangles/dist
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.2
+        version: 6.0.2
       vite:
         specifier: ^8.0.3
         version: 8.0.3(@emnapi/core@1.8.1)(@emnapi/runtime@1.8.1)(@types/node@25.5.0)(esbuild@0.27.2)(jiti@2.6.1)(stylus@0.64.0)(terser@5.44.1)(yaml@2.8.2)
@@ -586,1008 +586,984 @@ importers:
   palettes/acidPair:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/auroraBorealis:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/autumnLeaves:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/bioluminescence:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/bloodAndGore:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/candlelight:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/caustics:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/cherryBlossom:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/cmySecondaries:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/coloredSmokeMagenta:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/coloredSmokeTeal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/confetti:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/cosmicRadiation:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/crtPhosphor:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/dandelionSeeds:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/darkMatter:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/deepOcean:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/desertSand:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/dualityBlueYellow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/dualityGreenMagenta:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/dualityRedCyan:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/embersAndAsh:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/explosionDebris:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fairyDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fire:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fireSeed:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fireflies:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fireworksGold:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fireworksMulticolor:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/foamAndBubbles:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fogCoastal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fullFireGradient:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/fullSpectrum:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/galaxyDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/glitch:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/heatDuality:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/heatHaze:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/hologram:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/holyLight:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/iceMagic:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/iceTriad:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/inkInWater:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/jellyfishGlow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/lavaLamp:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/lensFlareDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/lightning:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/lofiWarm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/matrixRain:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/metalSparks:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/moltenMetal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/mudAndDirt:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/neonCity:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/networkNodes:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/oilSlick:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/plasmaArc:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/poisonAndVenom:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/pollenAndSpores:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/portal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/prismScatter:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/pulsar:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/rain:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/rainbow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/rgbPrimaries:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/risingBubbles:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/rockAndGravel:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/rustAndCorrosion:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/shockwave:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/skinAndOrganic:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/smokeCold:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/smokeWarm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/snowfall:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/solarWind:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/sunsetBinary:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/supernova:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/thermalMap:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/thunderstorm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/vaporwave:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/water:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   palettes/waterSplash:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   presets/ambient:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/updater-stroke-color':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/bigCircles:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   presets/bubbles:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
     publishDirectory: dist
 
   presets/confetti:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/palette-confetti':
         specifier: workspace:^4.0.0-alpha.5
         version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-motion':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-roll':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-tilt':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/confettiCannon:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/interaction-external-cannon':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/palette-confetti':
         specifier: workspace:^4.0.0-alpha.5
         version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/plugin-motion':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-roll':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-tilt':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/confettiExplosions:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/palette-confetti':
         specifier: workspace:^4.0.0-alpha.5
         version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-motion':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-roll':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-tilt':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/confettiFalling:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/palette-confetti':
         specifier: workspace:^4.0.0-alpha.5
         version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-motion':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-roll':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-tilt':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/confettiParade:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/palette-confetti':
         specifier: workspace:^4.0.0-alpha.5
         version: link:../../palettes/confetti/dist
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-motion':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-roll':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-tilt':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/fire:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/interaction-external-push':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/firefly:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/interaction-external-trail':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/fireworks:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/effect-trail':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-emitters-shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-emitters@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)))
       '@tsparticles/plugin-sounds':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-line':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-destroy':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-stroke-color':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/fountain:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-trail':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-destroy':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/hyperspace:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-emitters-shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-emitters@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)))
       '@tsparticles/plugin-trail':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/links:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/interaction-particles-links':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/canvas-utils@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/seaAnemone:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/path-curves':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-move@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/plugin-trail':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/snow:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/updater-wobble':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/squares:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/plugin-emitters':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-hex-color':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/shape-square':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-rotate':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-size':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
       '@tsparticles/updater-stroke-color':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
   presets/stars:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
     publishDirectory: dist
 
   presets/triangles:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5
       '@tsparticles/interaction-particles-links':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/canvas-utils@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
       '@tsparticles/plugin-interactivity':
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: ^4.0.0-beta.5
+        version: 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
     publishDirectory: dist
 
 packages:
@@ -1796,8 +1772,8 @@ packages:
   '@epic-web/invariant@1.0.0':
     resolution: {integrity: sha512-lrTPqgvfFQtR/eY/qkIzp98OGdNJu0m5ji3q/nJI8v3SXkRKEnWiOxMmbvcSoAIzv/cGiuvRy57k4suKQSAdwA==}
 
-  '@es-joy/jsdoccomment@0.84.0':
-    resolution: {integrity: sha512-0xew1CxOam0gV5OMjh2KjFQZsKL2bByX1+q4j3E73MpYIdyUxcZb/xQct9ccUb+ve5KGUYbCUxyPnYB7RbuP+w==}
+  '@es-joy/jsdoccomment@0.86.0':
+    resolution: {integrity: sha512-ukZmRQ81WiTpDWO6D/cTBM7XbrNtutHKvAVnZN/8pldAwLoJArGOvkNyxPTBGsPjsoaQBJxlH+tE2TNA/92Qgw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   '@es-joy/resolve.exports@1.2.0':
@@ -2324,65 +2300,62 @@ packages:
     resolution: {integrity: sha512-ER2N6itRkzWbbtVmZ9WKaWxVlKlOeBFF1/7xx+KA5J1xKa4JjUwBdb6tDpk0v1qA+d+VDwHI9qmLcXSWcmi+Rw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@nrwl/nx-cloud@19.1.0':
-    resolution: {integrity: sha512-krngXVPfX0Zf6+zJDtcI59/Pt3JfcMPMZ9C/+/x6rvz4WGgyv1s0MI4crEUM0Lx5ZpS4QI0WNDCFVQSfGEBXUg==}
-
   '@nx/devkit@22.3.3':
     resolution: {integrity: sha512-/hxcdhE+QDalsWEbJurHtZh9aY27taHeImbCVJnogwv85H3RbAE+0YuKXGInutfLszAs7phwzli71yq+d2P45Q==}
     peerDependencies:
       nx: '>= 21 <= 23 || ^22.0.0-0'
 
-  '@nx/nx-darwin-arm64@22.6.3':
-    resolution: {integrity: sha512-m8hEp2WufqUJzrl2uI5OItkPqIo8+0lbOBEKI7yZN9uoL6FKzP5LF6WlMFPJ8FlajtjBzQqaoDwp04+bkuXeaw==}
+  '@nx/nx-darwin-arm64@22.6.4':
+    resolution: {integrity: sha512-KuUQ9t8pxIO+Px1kbjA0XDLOU6XoAsijl0ssIMRYN1w5ly+0k/KglWt7qgwDockkaLRHkQ3YSR8I2LJXJE+Vig==}
     cpu: [arm64]
     os: [darwin]
 
-  '@nx/nx-darwin-x64@22.6.3':
-    resolution: {integrity: sha512-biPybnU2qlNuP7ytBYmRuusrU5TWXqVKMHr7Kxrqlin87iJR5MosXSZ+Pjr8H+0zFrB4rGf/9yro3s/dYG40Yw==}
+  '@nx/nx-darwin-x64@22.6.4':
+    resolution: {integrity: sha512-FB2XL2+ixbRI1fddz4oW+9MhoJASoTD8Ai4q5+B1OUPftgarIPLxaqI8TWba30Bos2AiYDofMJPf9uhBmLDH5Q==}
     cpu: [x64]
     os: [darwin]
 
-  '@nx/nx-freebsd-x64@22.6.3':
-    resolution: {integrity: sha512-8C6hhvVuqPwnvjHMPAA77DeEZ/WSY6AxuuIiyRje9uKF2B5F26sV89lRjBoEiWnV1dmLdy5YY5HJZEjwqjifAQ==}
+  '@nx/nx-freebsd-x64@22.6.4':
+    resolution: {integrity: sha512-qNsXhlflc77afjcRKCn7bqI8l/HPEjKhQRFs8wfKbAfNw3XEASc0EZtBV/TStLGV6PEZQldVBaId5FBMp8GW6Q==}
     cpu: [x64]
     os: [freebsd]
 
-  '@nx/nx-linux-arm-gnueabihf@22.6.3':
-    resolution: {integrity: sha512-8gWDhe4lY3pegmKx5/z7z/h4adlmL+3wuPXMUlBtMkhJ5TX1z94PkVtHRprEsHuQHO7PsSFaOJdsIZbr/sx7SQ==}
+  '@nx/nx-linux-arm-gnueabihf@22.6.4':
+    resolution: {integrity: sha512-rjfnii0xGe8SQqsO/DDHeJSjbqp2H5fOEgZlaYXDGOwQeLZ1TQplEdx8hyI/ErAUwVO3YHnzoMtmachBQOlspw==}
     cpu: [arm]
     os: [linux]
 
-  '@nx/nx-linux-arm64-gnu@22.6.3':
-    resolution: {integrity: sha512-ZRP5qf4lsk0HFuvhhSJc+t3a0NKc+WXElKPXTEK9DGOluY327lUogeZrSSJfxGf+dBTtpuRIO8rOIrnZOf5Xww==}
+  '@nx/nx-linux-arm64-gnu@22.6.4':
+    resolution: {integrity: sha512-x6Zim1STewCXuHBCgoy2TO0586UlwH4RNCobn0mTiPd1jt7nU+fNqo3SpY8RzY1KmBfgcO48BBrfykPE9YWMpg==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@nx/nx-linux-arm64-musl@22.6.3':
-    resolution: {integrity: sha512-AcOf/5UJD7Fyc2ujHYajxLw+ajJ8C1IhHoCQyLwBpd/15lu3pii9Z9G4cNBm0ejKnnzofzRmhv2xka9qqCtpXQ==}
+  '@nx/nx-linux-arm64-musl@22.6.4':
+    resolution: {integrity: sha512-vYOqdgXIhtHFWdtnonp/jFfmfkyNPTu1JEdXuJpSxwUQdV2dWqS/l3HVPVWHXDrVKofPafK3M72jMvoWoaOQ6g==}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@nx/nx-linux-x64-gnu@22.6.3':
-    resolution: {integrity: sha512-KxSdUCGOt2GGXzgggp9sSLJacWj7AAI410UPOEGw5F6GS5148e+kiy3piULF/0NE5/q40IK7gyS43HY99qgAqQ==}
+  '@nx/nx-linux-x64-gnu@22.6.4':
+    resolution: {integrity: sha512-UfWUDlOzlvQNVa1mnqOFxzvUwoGfM2o9ruhwYRoFm3XJbVYnjINyQsdcHwwDJItJP04LZzLPxA1+O8sU+Oqg6A==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@nx/nx-linux-x64-musl@22.6.3':
-    resolution: {integrity: sha512-Tvlw6XvTj+5IQRkprV3AdCKnlQFYh2OJYn0wgHrvQWeV1Eks/RaCoRChfHXdAyE4S64YrBA6NAOxfXANh3yLTg==}
+  '@nx/nx-linux-x64-musl@22.6.4':
+    resolution: {integrity: sha512-dwXpcyin4ScD5gH9FdhiNnOqFXclXLFBDTyRCEOlRUbOPayF9YEcH0PPIf9uWmwP3tshhAdr5sg9DLN+r7M3xg==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@nx/nx-win32-arm64-msvc@22.6.3':
-    resolution: {integrity: sha512-9yRRuoVeQdV52GJtHo+vH6+es2PNF8skWlUa74jyWRsoZM9Ew8JmRZruRfhkUmhjJTrguqJLj9koa/NXgS0yeg==}
+  '@nx/nx-win32-arm64-msvc@22.6.4':
+    resolution: {integrity: sha512-KqjJbFWhKJaKjET3Ep8hltXPizO0EstF4yfmp3oepWVn11poagc2MT1pf/tnRf6cdD88wd0bmw/83Ng6WUQ3Uw==}
     cpu: [arm64]
     os: [win32]
 
-  '@nx/nx-win32-x64-msvc@22.6.3':
-    resolution: {integrity: sha512-21wjiUSV5hMa1oj8UfpfMTxpROksWrr/minAv8ejmGFwUSoztSzAkNf5i4PESPsbYNytjKooDzzAiQMLo6b0kg==}
+  '@nx/nx-win32-x64-msvc@22.6.4':
+    resolution: {integrity: sha512-CIL9m6uilGGr/eU+41/+aVWUnEcq+j1EDynUX2A4InLTbAN0ylte4Af+72mvipNiqJgDkjKaNzOCQDnp8QBjEQ==}
     cpu: [x64]
     os: [win32]
 
@@ -2727,131 +2700,204 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@tsparticles/basic@4.0.0-beta.1':
-    resolution: {integrity: sha512-gprZxzqfiRTEZchRDuItIa/O1nwmwlPazUEIkuQ3IU+Hs0XnIbIY8X01CtrV8EdP6ykXvftqPg00Xid0g9jrJg==}
+  '@tsparticles/basic@4.0.0-beta.5':
+    resolution: {integrity: sha512-CtBvpb73qXICyv/Dm2Y7CdZTNFJUANr1yvGDgVfbegvjONrIlOuOtj9WygYoaNmA0OyuMaslwNsorsANEM6YFQ==}
 
-  '@tsparticles/canvas-utils@4.0.0-beta.1':
-    resolution: {integrity: sha512-K3TUVV5z3SXiaktt0RLVoulgkCf08N20zo2K8rqpxpbE9ozotW/8pTeO/dcm1Y6YRbL5Wex8jxsjuxlXK8bbdQ==}
+  '@tsparticles/canvas-utils@4.0.0-beta.5':
+    resolution: {integrity: sha512-EIoZNQCGrlCHokMs5HVOa+mkrxc/P9vs7n3r56DQ5zzDFCg2RQkAu2H9JceUE8MpxMoxEhw4Y1uquG2aCgbpuQ==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/cli@3.3.8':
-    resolution: {integrity: sha512-LNOGKvSeD34mTCWr62WCo6kVZqzZmllDH+OMDzCRzz1Dg6RzmJSx1qi1/sdqveIdtRP+YxEZPva6XswUBw3zRw==}
+  '@tsparticles/cli@3.4.4':
+    resolution: {integrity: sha512-Vj6kOVkvL7fVrdlVAM2Eth7GmbMDi4/U1CnNJ1jVyJ1BROY2LpqUgR9sBk/x40lqwi0fk+2yXkwRlEP1xAP1hQ==}
     hasBin: true
 
-  '@tsparticles/depcruise-config@3.3.5':
-    resolution: {integrity: sha512-Hp/OMURkE521nn9/c8ccYr707zcgMgQ4XRHLvLPPRIQOfri9iRMWuppoXUYD1v/iBBW2JDee7vtjGEST/rLDDg==}
+  '@tsparticles/depcruise-config@3.4.5':
+    resolution: {integrity: sha512-jygXu1pMK1sHS/yKS7PRa0Arl655996A+x2IxJ9IwVzyqJRNfCUlwtbxsrzImVTzy56SU7GKxQLMupeS9XGv8w==}
     peerDependencies:
       dependency-cruiser: ^17
 
-  '@tsparticles/effect-trail@4.0.0-beta.1':
-    resolution: {integrity: sha512-CBtbFZsulu8uTgk5XtfaU6EMjNVSsXYGnkpUbL0bZ4V0xDS4RE5BZoVXfeUGVDXGszv12ZJM4p0tiWM64jDRYA==}
+  '@tsparticles/effect-trail@4.0.0-beta.5':
+    resolution: {integrity: sha512-F3MLnVlzWIlGV/GSEWwyv/CbayFbzPsMG9s6oKCc6p3ZuwcHgKAh6qWZL3/A7xIKgyYiR4EKmo1Ky+UvrsULTA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/engine@4.0.0-beta.1':
-    resolution: {integrity: sha512-HI3sCkjYfg3ZVd8oNxw+rLZfac/obQt5i7uTblQoKU4g4ek29ZOe7gNH0VmBfMzD5YkCF7nZLZHYI0K/uniKEQ==}
+  '@tsparticles/engine@4.0.0-beta.5':
+    resolution: {integrity: sha512-9e8p/I/E7veyVkiNsxZVe9Hip6uvFIo828gH4QeyF8pIHojc8Zc7JGLO09/NZtdUWn1Mm4gIRKjZ++KMGK4gUQ==}
 
-  '@tsparticles/eslint-config@3.3.5':
-    resolution: {integrity: sha512-Uad/9ncxgj/xjg9aX+zuXz91/IivSpWLuIcyrU83qa5RXJE6hFp7kbwQaM2qEqzQBVtyguWBC8ib9PX32+6SIA==}
+  '@tsparticles/eslint-config@3.4.5':
+    resolution: {integrity: sha512-un2WU844uQqHRzeWbkml3pMeLBec+fdhgKnbeUEQoJuT2hyeK6qgDgvR74TelzMkoPI4Ffktq8qrAO+g08MRVg==}
     peerDependencies:
       eslint: ^10
 
-  '@tsparticles/interaction-external-cannon@4.0.0-beta.1':
-    resolution: {integrity: sha512-eN50N1lksPWnZJz5y1Xxn8/3tNOD8isnEX0mo0LoXpRMqU0N/YYwWdNzRIibA4g/FrYw4PzmLrYxb/ZrmUdg/w==}
+  '@tsparticles/interaction-external-cannon@4.0.0-beta.5':
+    resolution: {integrity: sha512-OBLRg6H0T8xHrYlrosMSwIXKxKqtwTnBHvaFXs4qFBtlGPNSva2Uda8Xl8fHSNHEHAZn2PSP/KpP8pkeNoOcDQ==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5
 
-  '@tsparticles/interaction-external-push@4.0.0-beta.1':
-    resolution: {integrity: sha512-ad0X9DGEKnhu3SuvnP/y53tOprYijPrktfF1mm9zuEAGDGhxJmAERUFu09b0WiobpIOdlBaqTbsj00AEOZIwFw==}
+  '@tsparticles/interaction-external-push@4.0.0-beta.5':
+    resolution: {integrity: sha512-IWSnSQgpo2jsXzP+xBFrXel0TOVI//DsOC0Josfn2Ue3RlnsiUI3XuQCZLiHf8RNjSASmFOLIoylSQft3I8A2A==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5
 
-  '@tsparticles/interaction-external-trail@4.0.0-beta.1':
-    resolution: {integrity: sha512-XG9CU6o9c1xemflwGZZ0d6Xo0N1n+ZMoI10gCNwwpVWc4OBIXnmh7OJUMlWJw1yXdMNU3yFJIF8V9vw4nsQKYA==}
+  '@tsparticles/interaction-external-trail@4.0.0-beta.5':
+    resolution: {integrity: sha512-dh3NKYgob3oOey1rt9ltGZmcINgyr5ozRcgUexfSaFD0hhqBN/fJaVUvFWnkK0zJbX4BiwzdbLW0nUiNWgLA8A==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5
 
-  '@tsparticles/interaction-particles-links@4.0.0-beta.1':
-    resolution: {integrity: sha512-DnYX1Z2NWpnuBvf/HIb1tjEqf29/aGs46TlWvsge7G1J7sVgiYweHqfQ3RHx/ouySGQfgfvy3xwm4Gv5icAVCw==}
+  '@tsparticles/interaction-particles-links@4.0.0-beta.5':
+    resolution: {integrity: sha512-PDtE497Qg+iEKmfpiKlTVOvmT2aSB8DDvd6pcbSYKpVmbAEeIGN2zdZCZephrxpWT+rFt/vkxcielX3KyqmEWw==}
+    peerDependencies:
+      '@tsparticles/canvas-utils': 4.0.0-beta.5
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5
 
-  '@tsparticles/path-curves@4.0.0-beta.1':
-    resolution: {integrity: sha512-8ticTuVhJhuLF+lmFBq4Zq7eLqzB8fGFY11FtNW+UVAEE/qFGyKBn9a1bSKL9R+2YjKhNXDR/9IIiQ3xyX2HMw==}
+  '@tsparticles/path-curves@4.0.0-beta.5':
+    resolution: {integrity: sha512-2TbgpbsY7TxXcAbHdKnrtQuog7Ptr4ekscrU8kCGh9SzNBqMnEjJf50v1+56r53UB0u0Wot+V5IHR38vPU7CuA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-move': 4.0.0-beta.5
 
-  '@tsparticles/plugin-emitters-shape-square@4.0.0-beta.1':
-    resolution: {integrity: sha512-sQdIPYiyVoPoZwF0EVYGiQmrEwzf8Cr4fQlGcBZJOi/0vGPNxe6wWMxgS4R8P2XcVIXSWxR9OXWHFsDZhBPXng==}
+  '@tsparticles/plugin-emitters-shape-square@4.0.0-beta.5':
+    resolution: {integrity: sha512-vMgH7wi/EAk8gynGdCqOUp/xK0CbHUko7Ip3CE3HclxkIe+zM8vWF7ScktKcmF1wcZzS2sl3yQVXdAEgtYX5ag==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-emitters': 4.0.0-beta.5
 
-  '@tsparticles/plugin-emitters@4.0.0-beta.1':
-    resolution: {integrity: sha512-NxV5sVV2YODI693hCZ1YJNXrRR1zzfDcj5toaSWKEnwUJakCAoLWSFadnmWp/QepzSoCpW13qugQsPk1wvXXiA==}
+  '@tsparticles/plugin-emitters@4.0.0-beta.5':
+    resolution: {integrity: sha512-ljgXLUEWZZ99scuNnVMvZcc2JSAoDPjbWMGEEwrMoNv0Cd5w5GPivaZNXRF/5Ol4QVHfalqr1NkkAwsJA6ByBw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5
+    peerDependenciesMeta:
+      '@tsparticles/plugin-interactivity':
+        optional: true
 
-  '@tsparticles/plugin-hex-color@4.0.0-beta.1':
-    resolution: {integrity: sha512-Y2BXGOqUAqa9VSgeEr080WbwOlqf2MtrUGedWfWaXtQw5nG7ypROcnuDQ7E2eQz7abHA5QA5nFMHIMbzpO+VQA==}
+  '@tsparticles/plugin-hex-color@4.0.0-beta.5':
+    resolution: {integrity: sha512-7FAE1mya3b3uP6j6wReskQJAAY7wrTz6joEyqPdLcXiYBPHnny4EZaAwydOBik2ZYTIGPSTP0TGAUS2QlKYUoA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-hsl-color@4.0.0-beta.1':
-    resolution: {integrity: sha512-O/lqnMpyt498VPQ6jaeaaaQEKzm6sjbvLw215Is6vcnw/cGFDGpoyQ6KzupQ948bCfobc0fUYdJHC0ZuImclpw==}
+  '@tsparticles/plugin-hsl-color@4.0.0-beta.5':
+    resolution: {integrity: sha512-cMUII9QZLiBHmq2t1sdeznTkqKXnZ+YanR9W8XDOE1+0B50gr3FjbYWaTEqIArXP60SLcILHOHA+uBTMITBJ6g==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-interactivity@4.0.0-beta.1':
-    resolution: {integrity: sha512-FB6dv/fsvUwb24NAxeysx/p3ra5z1xYQ9pORPLnyQwKrWqjJtwENenUSBsX5owAHI7s/2na5tRIDbZKI+SM4jg==}
+  '@tsparticles/plugin-interactivity@4.0.0-beta.5':
+    resolution: {integrity: sha512-spVuU8erYW2BcC5AwHLKFKpx78FMNvMzR82b4+K4Gw6fvVmuX3zQUBfFIXv32Sdydg0IoVk7otBl7eMTa9qrnw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-motion@4.0.0-beta.1':
-    resolution: {integrity: sha512-A/SfgnqTRXD2+if8UisijKW2anE1HFAhmZ8C73E0ZR++Am5/3nLiLzXMFifl1D6FXvDGzX7/oubph+8nVyMn5g==}
+  '@tsparticles/plugin-motion@4.0.0-beta.5':
+    resolution: {integrity: sha512-PSTYxzKP8vdOXuo9GOZIW3v/IU6CyI8pu/emVd4KGjVMPTSdw6U+CkTPCraQDziCU7w+WNAODnqLTsGC3TugJw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-move@4.0.0-beta.1':
-    resolution: {integrity: sha512-XgH8HyI2aBCcEwLLiAGzmcffhxJ8nnWjrfZg9uQ4nEBLoRp+T79XjDf0xwt2yCt5juXN+vFKdzJ0GXtWHdzuyw==}
+  '@tsparticles/plugin-move@4.0.0-beta.5':
+    resolution: {integrity: sha512-vOGAPPID8AwqwJiCYQ0qKUNTDU4B/0AAoS6Vyi1xIP14HWupSfDCg2rx40Y6spgFGzEu6x8OZSZPK+s+Hi14gA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-rgb-color@4.0.0-beta.1':
-    resolution: {integrity: sha512-xVQS8zbNKiVl5AZ0nwjMafN7CnxTseWTyHvAml9AQ3Qnq5+KXKnhx679r/YUi6LzgDRy7ZJ4tMdynzWXq5TS3g==}
+  '@tsparticles/plugin-rgb-color@4.0.0-beta.5':
+    resolution: {integrity: sha512-IUL1nR5TEzvFHxcAOAxxjdp7ZrVRwydR+8zgShDyV4vWb8Ubl/fQEpOk1GUVrvianZSzBKBhR0f60np07G6Xqg==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-sounds@4.0.0-beta.1':
-    resolution: {integrity: sha512-V0BtAtFEbVXgfM8jnOZCq9sJLQhlvNs15xwIIhi1bgrD8qSMSblg/V+AaeX7jBus/L/PVrp42Wot9ejcqL6CCA==}
+  '@tsparticles/plugin-sounds@4.0.0-beta.5':
+    resolution: {integrity: sha512-vFhrUY1x9f50OuLoiU4/AfX5I0MkdpW5gx6XeEQ1SeYVvkOGpXh8FB7HInx9anDwXN/RNlIjPggjOQmrUl98Jg==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-trail@4.0.0-beta.1':
-    resolution: {integrity: sha512-jiK70L6CmT7ttwhFw0UMpYMPPVokG4RwDVQVC4gOsOopTlw4hx1XhOxnFPS4i9nUJjxnKKiOlN0tdCpwMceW8w==}
+  '@tsparticles/plugin-trail@4.0.0-beta.5':
+    resolution: {integrity: sha512-F9nUL8bRaRAI0lVMvwtpUvoDaXxxM/KM5O47Vr2ti/cy1Xz0GMvriCVgXgwc5/FOl9UNbS5MYrRItfoBTBNCXA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/prettier-config@3.3.5':
-    resolution: {integrity: sha512-YS5Cn8PrsDwXAoJHVC+NLJozKx3el7zfxC0HgIpVe/f8kSlmgatH+p4KJKury2xUCpvhQF2R9cjzbZlTF8PrCQ==}
+  '@tsparticles/prettier-config@3.4.5':
+    resolution: {integrity: sha512-GHLbJn3Wnm69LB+6oEICjH87QF8aLz8ROQw5mkDrTGgIDsm1kI1bZ3vYbOomO/hgWfZAxg/ReMJuK5FkmIqMVA==}
     peerDependencies:
       prettier: ^3
 
-  '@tsparticles/shape-circle@4.0.0-beta.1':
-    resolution: {integrity: sha512-KzqkTcXCnsSAE7JdZqqT4ToUYqODbDZDwiqG9XwCjtbrGv/zBZfWoYEeO+OffU61Ee93Cx7xtxPlCKYkZbujhQ==}
-
-  '@tsparticles/shape-line@4.0.0-beta.1':
-    resolution: {integrity: sha512-MXPbupt8EF1jor1ScUo/0Luu/7L2lgg9XkhYBavw3fOJru2HaNDcD/qN+qY+f9U2lGeCGLEuJltGpEfbwKt9jg==}
-
-  '@tsparticles/shape-square@4.0.0-beta.1':
-    resolution: {integrity: sha512-dLnNcevna0aMdbbGDTG97BkFCvSrjLA9pFqjauGQFjar9HbLupq+V5WlsjDoTjoYjJILTmbvF8l/h5QYseO9Hg==}
-
-  '@tsparticles/tsconfig@3.3.5':
-    resolution: {integrity: sha512-DJ/5FBwyj4MubMDNuRfMyeesAlshtzyMex04NFFyLtTixIVr4h4ZewBwC92YKEyyWvoE2cp7HDB4jkThtxSg+g==}
+  '@tsparticles/shape-circle@4.0.0-beta.5':
+    resolution: {integrity: sha512-YbEFBYKgKiBIQXW+7pfLmm8hgcGpewtjk5qMxLhcE1uksD3A2dl0YFRdSIFpH4wdxu48mEkqJNG2iZOCIRtYLw==}
     peerDependencies:
-      typescript: ^5
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-destroy@4.0.0-beta.1':
-    resolution: {integrity: sha512-EeHPd6J6AUOGiUaEUkPuJnI26LX78B5t124KXpaL6CgmgzviI9lE15B+JatY38/C4VnQ+v6RlQNU8eh6+LWE4A==}
+  '@tsparticles/shape-line@4.0.0-beta.5':
+    resolution: {integrity: sha512-kkgfvX1z7bGJ1vSFUH/UEoh8DeFkcyBekLXO2aaQBbn3QE8aNjP4LGvePbn04vbr+fgpHvtknrfr/iNZIKEJJA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-fill-color@4.0.0-beta.1':
-    resolution: {integrity: sha512-FN0+SMNKd+M86AThcraVlplclFIDSpVKndY4Q1Zri1dLTJO7CsjWiqB2+m+wozDw9owJF2NLHzLuUYpW6wfpBw==}
+  '@tsparticles/shape-square@4.0.0-beta.5':
+    resolution: {integrity: sha512-x3CIrOkI6eOxA9vUhyX+m3pbKrKU54Z1gbTQUiW1Y6erSWu6nBYDxu2vmAqtjla1bZTD1jJYyS8gDUv0VuBbXg==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-life@4.0.0-beta.1':
-    resolution: {integrity: sha512-7fSpeEBGWw0fbTyc7oYakreiCEk6B7cK7UhIefN4h4XyTh8S8cdpQ92SHTVnTpWA4lJjFxt0FynDzDYXiK4Z3g==}
+  '@tsparticles/tsconfig@3.4.5':
+    resolution: {integrity: sha512-84mKRB3x3c55D5CC4MQmXT1u8V0iBJOQMA2uB6yil+8434K06HXh6L99AVR/k4m41D9h99ywuBFqgo3w1NzAdg==}
+    peerDependencies:
+      typescript: ^6
 
-  '@tsparticles/updater-opacity@4.0.0-beta.1':
-    resolution: {integrity: sha512-dMbVMB1JyidLCygoE7V5oC823hBmXtdxvo1SaG2CnF2Kg0XmslmDBI5bbXviTpTMHwWJfqTNtbl+7fgzQX+i5Q==}
+  '@tsparticles/updater-destroy@4.0.0-beta.5':
+    resolution: {integrity: sha512-dLTyGmlywavJjmaFVXyOmA4wwjHdo/V8R87cxfU9mMcvuJ9ggTiZN2eLCcYrujaRQcPlzdm7G4Za5K30ocKt5w==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-out-modes@4.0.0-beta.1':
-    resolution: {integrity: sha512-b5igqTPMmr2Nj0xPAmP4p/jrPgXdwG8PZgXX07PyToPNNj7bOjEbhUjxdFM9x5jFxZOLIfoheseMystGrQFElQ==}
+  '@tsparticles/updater-fill-color@4.0.0-beta.5':
+    resolution: {integrity: sha512-dzVQeONVE2RJZanCzBQXYmbrq2v3ShwuUTcFquzXp6H7UKzD/MJkK0pIKtaQ9hza3MeJy40yhf5Sp+D6eJqOYw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-roll@4.0.0-beta.1':
-    resolution: {integrity: sha512-KT4BNIWuD2P9LDGR6xumysqqRnt5vWeBb1lEYLpOSi+ZrZn0HXUsSeTJIFdVTAvKQIHjX1ma1KteXIyHF0vx5A==}
+  '@tsparticles/updater-life@4.0.0-beta.5':
+    resolution: {integrity: sha512-U09XRnVGYcodyWGN3x5le/EWXY5lz4pFdFGSqaUSWApqRRQQ0rkXHSUmOOkL0VjkLOsySz16w4Gy1AfSYj0cGA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-rotate@4.0.0-beta.1':
-    resolution: {integrity: sha512-EIByVdwGC+1iKfz63EkzCM6U4M1tAApcnNH1TIs/vr7JkRgHW+PJN4gnoP6DT5pZG++VDMtKgtqAQUvY6kNU1w==}
+  '@tsparticles/updater-opacity@4.0.0-beta.5':
+    resolution: {integrity: sha512-XRWtZqwpY2Bu6FH0WnCPF2VeIQPnxXxt40m5pRM8/DnSIhKzyIxbBXkOe0aKVOUp/fvCSfdIzeGp2P+3hj+tJg==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-size@4.0.0-beta.1':
-    resolution: {integrity: sha512-MS6F7cJZ9DCzG5ZcgzvgTeniZOsyMhyKEGSH4TppbgL2WC3aZq+QiSLu18bPUxCQ3LEQ2KqjV4upWcIM9Ml7Gw==}
+  '@tsparticles/updater-out-modes@4.0.0-beta.5':
+    resolution: {integrity: sha512-11Htj+ZyUq8WgCCMQSd5czHjsi3mukYfp3alSSvEuPKesL65k8Rrfl2jwg3kd2YDhOpKqa4lJd7oWvYIso7TaQ==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-stroke-color@4.0.0-beta.1':
-    resolution: {integrity: sha512-sC26Wv4B1EJoHqp7YGaIRopThX+xViC691whTBUqyFEUYAaCSXQC68/DqqKjiCDXpj2vC6Kro3yCWBoSIT7rZQ==}
+  '@tsparticles/updater-roll@4.0.0-beta.5':
+    resolution: {integrity: sha512-rx2YZaQ0ZzoLGrb6mBdiGY4ukt5ycQ5xIknOHPCcGEgp38sQ5mnhB9kT5gj4LhNCzvlSZCVvdVuiY09Ffpo7Tw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-tilt@4.0.0-beta.1':
-    resolution: {integrity: sha512-ZGbudLQJqXfSmU3hMu8y0PZbJZTntOxy+86iGzsv2nPqPSpV3HcXG3ky2BuFAQbD3syhC9C6DMb2wzTO4/5F3Q==}
+  '@tsparticles/updater-rotate@4.0.0-beta.5':
+    resolution: {integrity: sha512-ROYWyT+YyR7LBFEA4YUCdUFVFhNAquO95UZ3jzA83ZZw9JkSV7VyM6GmErkzokOnI4nO7THyIw136YDzRjh95w==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-wobble@4.0.0-beta.1':
-    resolution: {integrity: sha512-qD08dMJWm6pgiU63s+mUWMP3mzQ6/Fiuel61Rgm2LqSSkZHjtXP4lrag7IfTXoB+5V5o9whmgoK5gPx3fhNn7A==}
+  '@tsparticles/updater-size@4.0.0-beta.5':
+    resolution: {integrity: sha512-VFkGMd/xwb7t5463+jZ7XkEll+sEBgP9gaYiekeQOX/IBufCMAHh27aeCrKxXNuXeuer4HBZtNNoODl45y1Qog==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/webpack-plugin@3.3.5':
-    resolution: {integrity: sha512-Cvw6tdrDIoi7cb4xZaP3z4od3OMQS6xx7CuWMJGEzx9iZUfJUnf/RrLmLxpGpskTCSEW5DbaKpeAKAGETdMYNw==}
+  '@tsparticles/updater-stroke-color@4.0.0-beta.5':
+    resolution: {integrity: sha512-lWxkjzWMU2EzJP2gEN/wmeiUOSc8nJCcNjI7IbGEQNU7+hqxEmnSS0/DaM8XiqK8M7GOdIPNuTWp0EO9NQkUVQ==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+
+  '@tsparticles/updater-tilt@4.0.0-beta.5':
+    resolution: {integrity: sha512-tjwLh8RnNVGCydcSGoPWx2wjjdMJERqe2xgGePcnnVNreM+MMQwt5SLn20YrCtHJ2mowdYBHiKBM3uMWiEUTtA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+
+  '@tsparticles/updater-wobble@4.0.0-beta.5':
+    resolution: {integrity: sha512-IpfyXK0v5CJ89Ozz8TPBH1K+TgbGHIzxx6ZbyaoCej4R8av/NIk/2abwxu/5uLFYSMjlQtCm1CCs5AfC3hP9tA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.5
+
+  '@tsparticles/webpack-plugin@3.4.5':
+    resolution: {integrity: sha512-Tc7Bh2lpju9zLD/l0yMhYDwSisOVW2l6pdmxyekOG+RhvYJT3gGL2JlVrCLZXrRDh6yWe/ns4rp8wJZlrzM7zw==}
 
   '@tufjs/canonical-json@2.0.0':
     resolution: {integrity: sha512-yVtV8zsdo8qFHe+/3kw81dSLyF7D576A5cCFCi4X7B39tWT7SekaEFUnvnWJHz+9qO7qJTah1JbrDjWKqFtdWA==}
@@ -2918,14 +2964,6 @@ packages:
   '@types/webpack-env@1.18.8':
     resolution: {integrity: sha512-G9eAoJRMLjcvN4I08wB5I7YofOb/kaJNd5uoCMX+LbKXTPCF+ZIHuqTnFaK9Jz1rgs035f9JUPUhNFtqgucy/A==}
 
-  '@typescript-eslint/eslint-plugin@8.57.0':
-    resolution: {integrity: sha512-qeu4rTHR3/IaFORbD16gmjq9+rEs9fGKdX0kF6BKSfi+gCuG3RCKLlSBYzn/bGsY9Tj7KE/DAQStbp8AHJGHEQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      '@typescript-eslint/parser': ^8.57.0
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.0.0'
-
   '@typescript-eslint/eslint-plugin@8.58.0':
     resolution: {integrity: sha512-RLkVSiNuUP1C2ROIWfqX+YcUfLaSnxGE/8M+Y57lopVwg9VTYYfhuz15Yf1IzCKgZj6/rIbYTmJCUSqr76r0Wg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2933,13 +2971,6 @@ packages:
       '@typescript-eslint/parser': ^8.58.0
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/parser@8.57.0':
-    resolution: {integrity: sha512-XZzOmihLIr8AD1b9hL9ccNMzEMWt/dE2u7NyTY9jJG6YNiNthaD5XtUHVF2uCXZ15ng+z2hT3MVuxnUYhq6k1g==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.0.0'
 
   '@typescript-eslint/parser@8.58.0':
     resolution: {integrity: sha512-rLoGZIf9afaRBYsPUMtvkDWykwXwUPL60HebR4JgTI8mxfFe2cQTu3AGitANp4b9B2QlVru6WzjgB2IzJKiCSA==}
@@ -2954,12 +2985,6 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
 
-  '@typescript-eslint/project-service@8.57.0':
-    resolution: {integrity: sha512-pR+dK0BlxCLxtWfaKQWtYr7MhKmzqZxuii+ZjuFlZlIGRZm22HnXFqa2eY+90MUz8/i80YJmzFGDUsi8dMOV5w==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.0.0'
-
   '@typescript-eslint/project-service@8.58.0':
     resolution: {integrity: sha512-8Q/wBPWLQP1j16NxoPNIKpDZFMaxl7yWIoqXWYeWO+Bbd2mjgvoF0dxP2jKZg5+x49rgKdf7Ck473M8PC3V9lg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2968,10 +2993,6 @@ packages:
 
   '@typescript-eslint/scope-manager@8.56.1':
     resolution: {integrity: sha512-YAi4VDKcIZp0O4tz/haYKhmIDZFEUPOreKbfdAN3SzUDMcPhJ8QI99xQXqX+HoUVq8cs85eRKnD+rne2UAnj2w==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/scope-manager@8.57.0':
-    resolution: {integrity: sha512-nvExQqAHF01lUM66MskSaZulpPL5pgy5hI5RfrxviLgzZVffB5yYzw27uK/ft8QnKXI2X0LBrHJFr1TaZtAibw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/scope-manager@8.58.0':
@@ -2984,24 +3005,11 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
 
-  '@typescript-eslint/tsconfig-utils@8.57.0':
-    resolution: {integrity: sha512-LtXRihc5ytjJIQEH+xqjB0+YgsV4/tW35XKX3GTZHpWtcC8SPkT/d4tqdf1cKtesryHm2bgp6l555NYcT2NLvA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.0.0'
-
   '@typescript-eslint/tsconfig-utils@8.58.0':
     resolution: {integrity: sha512-doNSZEVJsWEu4htiVC+PR6NpM+pa+a4ClH9INRWOWCUzMst/VA9c4gXq92F8GUD1rwhNvRLkgjfYtFXegXQF7A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/type-utils@8.57.0':
-    resolution: {integrity: sha512-yjgh7gmDcJ1+TcEg8x3uWQmn8ifvSupnPfjP21twPKrDP/pTHlEQgmKcitzF/rzPSmv7QjJ90vRpN4U+zoUjwQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.0.0'
 
   '@typescript-eslint/type-utils@8.58.0':
     resolution: {integrity: sha512-aGsCQImkDIqMyx1u4PrVlbi/krmDsQUs4zAcCV6M7yPcPev+RqVlndsJy9kJ8TLihW9TZ0kbDAzctpLn5o+lOg==}
@@ -3014,22 +3022,12 @@ packages:
     resolution: {integrity: sha512-dbMkdIUkIkchgGDIv7KLUpa0Mda4IYjo4IAMJUZ+3xNoUXxMsk9YtKpTHSChRS85o+H9ftm51gsK1dZReY9CVw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/types@8.57.0':
-    resolution: {integrity: sha512-dTLI8PEXhjUC7B9Kre+u0XznO696BhXcTlOn0/6kf1fHaQW8+VjJAVHJ3eTI14ZapTxdkOmc80HblPQLaEeJdg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@typescript-eslint/types@8.58.0':
     resolution: {integrity: sha512-O9CjxypDT89fbHxRfETNoAnHj/i6IpRK0CvbVN3qibxlLdo5p5hcLmUuCCrHMpxiWSwKyI8mCP7qRNYuOJ0Uww==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@8.56.1':
     resolution: {integrity: sha512-qzUL1qgalIvKWAf9C1HpvBjif+Vm6rcT5wZd4VoMb9+Km3iS3Cv9DY6dMRMDtPnwRAFyAi7YXJpTIEXLvdfPxg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.0.0'
-
-  '@typescript-eslint/typescript-estree@8.57.0':
-    resolution: {integrity: sha512-m7faHcyVg0BT3VdYTlX8GdJEM7COexXxS6KqGopxdtkQRvBanK377QDHr4W/vIPAR+ah9+B/RclSW5ldVniO1Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
@@ -3047,13 +3045,6 @@ packages:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.0.0'
 
-  '@typescript-eslint/utils@8.57.0':
-    resolution: {integrity: sha512-5iIHvpD3CZe06riAsbNxxreP+MuYgVUsV0n4bwLH//VJmgtt54sQeY2GszntJ4BjYCpMzrfVh2SBnUQTtys2lQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.0.0'
-
   '@typescript-eslint/utils@8.58.0':
     resolution: {integrity: sha512-RfeSqcFeHMHlAWzt4TBjWOAtoW9lnsAGiP3GbaX9uVgTYYrMbVnGONEfUCiSss+xMHFl+eHZiipmA8WkQ7FuNA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -3063,10 +3054,6 @@ packages:
 
   '@typescript-eslint/visitor-keys@8.56.1':
     resolution: {integrity: sha512-KiROIzYdEV85YygXw6BI/Dx4fnBlFQu6Mq4QE4MOH9fFnhohw6wX/OAvDY2/C+ut0I3RSPKenvZJIVYqJNkhEw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/visitor-keys@8.57.0':
-    resolution: {integrity: sha512-zm6xx8UT/Xy2oSr2ZXD0pZo7Jx2XsCoID2IUh9YSTFRu7z+WdwYTRk6LhUftm1crwqbuoF6I8zAFeCMw0YjwDg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/visitor-keys@8.58.0':
@@ -3265,9 +3252,6 @@ packages:
     peerDependencies:
       ajv: ^8.8.2
 
-  ajv@6.12.6:
-    resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
-
   ajv@6.14.0:
     resolution: {integrity: sha512-IWrosm/yrn43eiKqkfkHis7QioDleaXQHdDVPKg0FSwwd/DuvyX79TZnFOnYpB7dcsFAMmtFztZuXPDvSePkFw==}
 
@@ -3348,8 +3332,19 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.13.2:
-    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
+  axios@1.12.0:
+    resolution: {integrity: sha512-oXTDccv8PcfjZmPGlWsPSwtOJCZ/b6W5jAMCNcfwJbCzDckwG0jrYJFaWH1yvivfCXjVzV/SPDEhMB3Q+DSurg==}
+
+  axios@1.13.6:
+    resolution: {integrity: sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==}
+
+  b4a@1.8.0:
+    resolution: {integrity: sha512-qRuSmNSkGQaHwNbM7J78Wwy+ghLEYF1zNrSeMxj4Kgw6y33O3mXcQ6Ie9fRvfU/YnxWkOchPXbaLb73TkIsfdg==}
+    peerDependencies:
+      react-native-b4a: '*'
+    peerDependenciesMeta:
+      react-native-b4a:
+        optional: true
 
   babel-walk@3.0.0-canary-5:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
@@ -3361,6 +3356,47 @@ packages:
   balanced-match@4.0.3:
     resolution: {integrity: sha512-1pHv8LX9CpKut1Zp4EXey7Z8OfH11ONNH6Dhi2WDUt31VVZFXZzKwXcysBgqSumFCmR+0dqjMK5v5JiFHzi0+g==}
     engines: {node: 20 || >=22}
+
+  bare-events@2.8.2:
+    resolution: {integrity: sha512-riJjyv1/mHLIPX4RwiK+oW9/4c3TEUeORHKefKAKnZ5kyslbN+HXowtbaVEqt4IMUB7OXlfixcs6gsFeo/jhiQ==}
+    peerDependencies:
+      bare-abort-controller: '*'
+    peerDependenciesMeta:
+      bare-abort-controller:
+        optional: true
+
+  bare-fs@4.5.6:
+    resolution: {integrity: sha512-1QovqDrR80Pmt5HPAsMsXTCFcDYr+NSUKW6nd6WO5v0JBmnItc/irNRzm2KOQ5oZ69P37y+AMujNyNtG+1Rggw==}
+    engines: {bare: '>=1.16.0'}
+    peerDependencies:
+      bare-buffer: '*'
+    peerDependenciesMeta:
+      bare-buffer:
+        optional: true
+
+  bare-os@3.8.6:
+    resolution: {integrity: sha512-l8xaNWWb/bXuzgsrlF5jaa5QYDJ9S0ddd54cP6CH+081+5iPrbJiCfBWQqrWYzmUhCbsH+WR6qxo9MeHVCr0MQ==}
+    engines: {bare: '>=1.14.0'}
+
+  bare-path@3.0.0:
+    resolution: {integrity: sha512-tyfW2cQcB5NN8Saijrhqn0Zh7AnFNsnczRcuWODH0eYAXBsJ5gVxAUuNr7tsHSC6IZ77cA0SitzT+s47kot8Mw==}
+
+  bare-stream@2.12.0:
+    resolution: {integrity: sha512-w28i8lkBgREV3rPXGbgK+BO66q+ZpKqRWrZLiCdmmUlLPrQ45CzkvRhN+7lnv00Gpi2zy5naRxnUFAxCECDm9g==}
+    peerDependencies:
+      bare-abort-controller: '*'
+      bare-buffer: '*'
+      bare-events: '*'
+    peerDependenciesMeta:
+      bare-abort-controller:
+        optional: true
+      bare-buffer:
+        optional: true
+      bare-events:
+        optional: true
+
+  bare-url@2.4.0:
+    resolution: {integrity: sha512-NSTU5WN+fy/L0DDenfE8SXQna4voXuW0FHM7wH8i3/q9khUSchfPbPezO4zSFMnDGIf9YE+mt/RWhZgNRKRIXA==}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -3496,10 +3532,6 @@ packages:
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
-  chownr@2.0.0:
-    resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
-    engines: {node: '>=10'}
-
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
@@ -3593,8 +3625,8 @@ packages:
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
-  comment-parser@1.4.5:
-    resolution: {integrity: sha512-aRDkn3uyIlCFfk5NUA+VdwMmMsh8JGhc4hapfV4yxymHGQ3BVskMQfoXGpCo5IoBuQ9tS5iiVKhCpTcB4pW4qw==}
+  comment-parser@1.4.6:
+    resolution: {integrity: sha512-ObxuY6vnbWTN6Od72xfwN9DbzC7Y2vv8u1Soi9ahRKL37gb6y1qk6/dgjs+3JWuXJHWvsg3BXIwzd/rkmAwavg==}
     engines: {node: '>= 12.0.0'}
 
   common-ancestor-path@1.0.1:
@@ -3816,8 +3848,8 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
-  dependency-cruiser@17.3.9:
-    resolution: {integrity: sha512-LwaotlB9bZ8zhdFGGYf/g2oYkYj7YNxlqx1btL/XIYGob/aKRArsSwkLKo+ZrHiegsEArQVg4ZQ3NhAh8uk+hg==}
+  dependency-cruiser@17.3.10:
+    resolution: {integrity: sha512-jF5WaIb+O+wLabXrQE7iBY2zYBEW8VlnuuL0+iZPvZHGhTaAYdLk31DI0zkwhcGE8CiHcDwGhMnn3PfOAYnVdQ==}
     engines: {node: ^20.12||^22||>=24}
     hasBin: true
 
@@ -3896,14 +3928,15 @@ packages:
   encoding@0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
 
-  end-of-stream@1.4.4:
-    resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
-
   end-of-stream@1.4.5:
     resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
 
   enhanced-resolve@5.20.0:
     resolution: {integrity: sha512-/ce7+jQ1PQ6rVXwe+jKEg5hW5ciicHwIQUagZkp6IufBoY3YDgdTTY1azVs0qoRgVmvsNB+rbjLJxDAeHHtwsQ==}
+    engines: {node: '>=10.13.0'}
+
+  enhanced-resolve@5.20.1:
+    resolution: {integrity: sha512-Qohcme7V1inbAfvjItgw0EaxVX5q2rdVEZHRBrEQdRZTssLDGsL8Lwrznl8oQ/6kuTJONLaDcGjkNP247XEhcA==}
     engines: {node: '>=10.13.0'}
 
   enquirer@2.3.6:
@@ -3991,8 +4024,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-jsdoc@62.8.1:
-    resolution: {integrity: sha512-e9358PdHgvcMF98foNd3L7hVCw70Lt+YcSL7JzlJebB8eT5oRJtW6bHMQKoAwJtw6q0q0w/fRIr2kwnHdFDI6A==}
+  eslint-plugin-jsdoc@62.9.0:
+    resolution: {integrity: sha512-PY7/X4jrVgoIDncUmITlUqK546Ltmx/Pd4Hdsu4CvSjryQZJI2mEV4vrdMufyTetMiZ5taNSqvK//BTgVUlNkA==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
@@ -4029,10 +4062,6 @@ packages:
   eslint-visitor-keys@4.2.1:
     resolution: {integrity: sha512-Uhdk5sfqcee/9H/rCOJikYz67o0a2Tw2hGRPOG2Y1R2dg7brRe1uG0yaNQDHu+TO/uQPF/5eCapvYSmHUjt7JQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  eslint-visitor-keys@5.0.0:
-    resolution: {integrity: sha512-A0XeIi7CXU7nPlfHS9loMYEKxUaONu/hTEzHTGba9Huu94Cq1hPivf+DE5erJozZOky0LfvXAyrV/tcswpLI0Q==}
-    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   eslint-visitor-keys@5.0.1:
     resolution: {integrity: sha512-tD40eHxA35h0PEIZNeIjkHoDR4YjjJp34biM0mDvplBe//mB+IHCqHDGV7pxF+7MklTvighcCPPZC7ynWyjdTA==}
@@ -4091,6 +4120,9 @@ packages:
   eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
 
+  events-universal@1.0.1:
+    resolution: {integrity: sha512-LUd5euvbMLpwOF8m6ivPCbhQeSiYVNb8Vs0fQ8QjXo0JTkEHpz8pxdQf0gStltaPpw0Cca8b39KxvK9cfKRiAw==}
+
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
@@ -4125,6 +4157,9 @@ packages:
 
   fast-diff@1.3.0:
     resolution: {integrity: sha512-VxPP4NqbUjj6MaAOafWeUn2cXWLcCtljklUtZf0Ind4XQ+QPtmA0b18zZy0jIQx+ExRVCR/ZQpBmik5lXshNsw==}
+
+  fast-fifo@1.3.2:
+    resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
 
   fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
@@ -4249,10 +4284,6 @@ packages:
   fs-extra@11.3.4:
     resolution: {integrity: sha512-CTXd6rk/M3/ULNQj8FBqBWHYBVYybQ3VPBw0xGKFe3tuH7ytT6ACnvzpIQ3UZtB8yvUKC2cXn1a+x+5EVQLovA==}
     engines: {node: '>=14.14'}
-
-  fs-minipass@2.1.0:
-    resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
-    engines: {node: '>= 8'}
 
   fs-minipass@3.0.3:
     resolution: {integrity: sha512-XUBA9XClHbnJWSfBzjkm6RvPsyg3sryZt06BEQoXcF7EK/xpGaQYJgQKDJSUH5SGZ76Y7pFx1QBnXz09rU5Fbw==}
@@ -4751,8 +4782,8 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
-  jsdoc-type-pratt-parser@7.1.1:
-    resolution: {integrity: sha512-/2uqY7x6bsrpi3i9LVU6J89352C0rpMk0as8trXxCtvd4kPk1ke/Eyif6wqfSLvoNJqcDG9Vk4UsXgygzCt2xA==}
+  jsdoc-type-pratt-parser@7.2.0:
+    resolution: {integrity: sha512-dh140MMgjyg3JhJZY/+iEzW+NO5xR2gpbDFKHqotCmexElVntw7GjWjt511+C/Ef02RU5TKYrJo/Xlzk+OLaTw==}
     engines: {node: '>=20.0.0'}
 
   jsdom-global@3.0.2:
@@ -4812,8 +4843,8 @@ packages:
   jsonc-parser@3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
 
-  jsoneditor@10.4.2:
-    resolution: {integrity: sha512-SQPCXlanU4PqdVsYuj2X7yfbLiiJYjklbksGfMKPsuwLhAIPxDlG43jYfXieGXvxpuq1fkw08YoRbkKXKabcLA==}
+  jsoneditor@10.4.3:
+    resolution: {integrity: sha512-XBVYLkhgiHySC0PkGlac/Mbk738EpNnqBnxCJD4ttKKJ1JRIRngV8bf2zgw/J025jp4AqxOf2G3uDs/27cWHTQ==}
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
@@ -5004,8 +5035,8 @@ packages:
   lodash.upperfirst@4.3.1:
     resolution: {integrity: sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==}
 
-  lodash@4.17.23:
-    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
@@ -5019,10 +5050,6 @@ packages:
   lru-cache@10.2.0:
     resolution: {integrity: sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==}
     engines: {node: 14 || >=16.14}
-
-  lru-cache@11.2.6:
-    resolution: {integrity: sha512-ESL2CrkS/2wTPfuend7Zhkzo2u0daGJ/A2VucJOgQ/C48S/zB8MMeMHSGKYpXhIjbPxfuezITkaBH1wqv00DDQ==}
-    engines: {node: 20 || >=22}
 
   lru-cache@11.2.7:
     resolution: {integrity: sha512-aY/R+aEsRelme17KGQa/1ZSIpLpNYYrhcrepKTZgE+W3WM16YMCaPwOHLHsmopZHELU0Ojin1lPVxKR0MihncA==}
@@ -5202,21 +5229,9 @@ packages:
     resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
     engines: {node: '>=8'}
 
-  minipass@5.0.0:
-    resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
-    engines: {node: '>=8'}
-
-  minipass@7.1.2:
-    resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
-    engines: {node: '>=16 || 14 >=14.17'}
-
   minipass@7.1.3:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
     engines: {node: '>=16 || 14 >=14.17'}
-
-  minizlib@2.1.2:
-    resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
-    engines: {node: '>= 8'}
 
   minizlib@3.1.0:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
@@ -5366,12 +5381,12 @@ packages:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
 
-  nx-cloud@19.1.0:
-    resolution: {integrity: sha512-f24vd5/57/MFSXNMfkerdDiK0EvScGOKO71iOWgJNgI1xVweDRmOA/EfjnPMRd5m+pnoPs/4A7DzuwSW0jZVyw==}
+  nx-cloud@19.1.3:
+    resolution: {integrity: sha512-fY0MnE4tJOERMq6HnAD/ILI2w1r1z3BNMXyEszr4kg+py2bFtpM211cP9WLhJKwTMg3Mv/ut89g37EZY9IOKgg==}
     hasBin: true
 
-  nx@22.6.3:
-    resolution: {integrity: sha512-8eIkEAlvkTvR2zY+yjhuTxMD6z4AtM1SumSBbwMmUMEXMtXE88fH0RL59T5V6MLjaov1exUM3lhUqPE3IyuBPg==}
+  nx@22.6.4:
+    resolution: {integrity: sha512-WEaCnLKeO9RhQAOBMfXgYO/Lx5wL4ARCtRGiYCjJtAJIZ5kcVn4uPKL2Xz1xekpF7ef/+YNrUQSrblx47Ms9Rg==}
     hasBin: true
     peerDependencies:
       '@swc-node/register': ^1.11.1
@@ -6118,6 +6133,9 @@ packages:
   std-env@4.0.0:
     resolution: {integrity: sha512-zUMPtQ/HBY3/50VbpkupYHbRroTRZJPRLvreamgErJVys0ceuzMkD44J/QjqhHjOzK42GQ3QZIeFG1OYfOtKqQ==}
 
+  streamx@2.25.0:
+    resolution: {integrity: sha512-0nQuG6jf1w+wddNEEXCF4nTg3LtufWINB5eFEN+5TNZW7KWJp6x87+JFL43vaAUPyCfH1wID+mNVyW6OHtFamg==}
+
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -6220,14 +6238,15 @@ packages:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
 
-  tar@6.2.1:
-    resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
-    engines: {node: '>=10'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+  tar-stream@3.1.8:
+    resolution: {integrity: sha512-U6QpVRyCGHva435KoNWy9PRoi2IFYCgtEhq9nmrPPpbRacPs9IH4aJ3gbrFC8dPcXvdSZ4XXfXT5Fshbp2MtlQ==}
 
   tar@7.5.11:
     resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
     engines: {node: '>=18'}
+
+  teex@1.0.1:
+    resolution: {integrity: sha512-eYE6iEI62Ni1H8oIa7KlDU6uQBtqr4Eajni3wX7rpfXD8ysFx8z0+dri+KWEPWpBsxXfxu58x/0jvTVT1ekOSg==}
 
   terser-webpack-plugin@5.4.0:
     resolution: {integrity: sha512-Bn5vxm48flOIfkdl5CaD2+1CiUVbonWQ3KQPyP7/EuIl9Gbzq/gQFOzaMFUEgVjB1396tcK0SG8XcNJ/2kDH8g==}
@@ -6249,6 +6268,9 @@ packages:
     resolution: {integrity: sha512-t/R3R/n0MSwnnazuPpPNVO60LX0SKL45pyl9YlvxIdkH0Of7D5qM2EVe+yASRIlY5pZ73nclYJfNANGWPwFDZw==}
     engines: {node: '>=10'}
     hasBin: true
+
+  text-decoder@1.2.7:
+    resolution: {integrity: sha512-vlLytXkeP4xvEq2otHeJfSQIRyWxo/oZGEbXrtEEF9Hnmrdly59sUbzZ/QgyWuLYHctCHxFF4tRQZNQ9k60ExQ==}
 
   text-extensions@1.9.0:
     resolution: {integrity: sha512-wiBrwC1EhBelW12Zy26JeOUkQ5mRu+5o8rpsJk5+2t+Y5vE7e842qtZDQ2g1NpX/29HdyFeJ4nSIhI47ENSxlQ==}
@@ -6336,12 +6358,6 @@ packages:
   trim-repeated@1.0.0:
     resolution: {integrity: sha512-pkonvlKk8/ZuR0D5tLW8ljt5I8kmxp2XKymhepUeOdCEfKpZaktSArkLHZt76OB1ZvO9bssUsDty4SWhLvZpLg==}
     engines: {node: '>=0.10.0'}
-
-  ts-api-utils@2.4.0:
-    resolution: {integrity: sha512-3TaVTaAv2gTiMB35i3FiGJaRfwb3Pyn/j3m/bfAvGe8FB7CF6u+LMYqYlDh7reQf7UNvoTvdfAqHGmPGOSsPmA==}
-    engines: {node: '>=18.12'}
-    peerDependencies:
-      typescript: '>=4.8.4'
 
   ts-api-utils@2.5.0:
     resolution: {integrity: sha512-OJ/ibxhPlqrMM0UiNHJ/0CKQkoKF243/AEmplt3qpRgkW8VG7IfOS41h7V8TjITqdByHzrjcS/2si+y4lIh8NA==}
@@ -6455,13 +6471,6 @@ packages:
     peerDependencies:
       typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x || 5.9.x || 6.0.x
 
-  typescript-eslint@8.57.0:
-    resolution: {integrity: sha512-W8GcigEMEeB07xEZol8oJ26rigm3+bfPHxHvwbYUlu1fUDsGuQ7Hiskx5xGW/xM4USc9Ephe3jtv7ZYPQntHeA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.0.0'
-
   typescript-eslint@8.58.0:
     resolution: {integrity: sha512-e2TQzKfaI85fO+F3QywtX+tCTsu/D3WW5LVU6nz8hTFKFZ8yBJ6mSYRpXqdR3mFjPWmO0eWsTa5f+UpAOe/FMA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -6480,6 +6489,11 @@ packages:
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -6930,11 +6944,11 @@ snapshots:
     dependencies:
       css-tree: 3.2.1
 
-  '@commitlint/cli@20.5.0(@types/node@25.5.0)(conventional-commits-parser@6.3.0)(typescript@5.9.3)':
+  '@commitlint/cli@20.5.0(@types/node@25.5.0)(conventional-commits-parser@6.3.0)(typescript@6.0.2)':
     dependencies:
       '@commitlint/format': 20.5.0
       '@commitlint/lint': 20.5.0
-      '@commitlint/load': 20.5.0(@types/node@25.5.0)(typescript@5.9.3)
+      '@commitlint/load': 20.5.0(@types/node@25.5.0)(typescript@6.0.2)
       '@commitlint/read': 20.5.0(conventional-commits-parser@6.3.0)
       '@commitlint/types': 20.5.0
       tinyexec: 1.0.2
@@ -6983,14 +6997,14 @@ snapshots:
       '@commitlint/rules': 20.5.0
       '@commitlint/types': 20.5.0
 
-  '@commitlint/load@20.5.0(@types/node@25.5.0)(typescript@5.9.3)':
+  '@commitlint/load@20.5.0(@types/node@25.5.0)(typescript@6.0.2)':
     dependencies:
       '@commitlint/config-validator': 20.5.0
       '@commitlint/execute-rule': 20.0.0
       '@commitlint/resolve-extends': 20.5.0
       '@commitlint/types': 20.5.0
-      cosmiconfig: 9.0.1(typescript@5.9.3)
-      cosmiconfig-typescript-loader: 6.2.0(@types/node@25.5.0)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3)
+      cosmiconfig: 9.0.1(typescript@6.0.2)
+      cosmiconfig-typescript-loader: 6.2.0(@types/node@25.5.0)(cosmiconfig@9.0.1(typescript@6.0.2))(typescript@6.0.2)
       is-plain-obj: 4.1.0
       lodash.mergewith: 4.6.2
       picocolors: 1.1.1
@@ -7105,13 +7119,13 @@ snapshots:
 
   '@epic-web/invariant@1.0.0': {}
 
-  '@es-joy/jsdoccomment@0.84.0':
+  '@es-joy/jsdoccomment@0.86.0':
     dependencies:
       '@types/estree': 1.0.8
-      '@typescript-eslint/types': 8.57.0
-      comment-parser: 1.4.5
+      '@typescript-eslint/types': 8.58.0
+      comment-parser: 1.4.6
       esquery: 1.7.0
-      jsdoc-type-pratt-parser: 7.1.1
+      jsdoc-type-pratt-parser: 7.2.0
 
   '@es-joy/resolve.exports@1.2.0': {}
 
@@ -7465,7 +7479,7 @@ snapshots:
       agent-base: 7.1.4
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color
@@ -7488,7 +7502,7 @@ snapshots:
       common-ancestor-path: 1.0.1
       hosted-git-info: 9.0.2
       json-stringify-nice: 1.1.4
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
       minimatch: 10.2.4
       nopt: 8.1.0
       npm-install-checks: 7.1.2
@@ -7531,7 +7545,7 @@ snapshots:
     dependencies:
       '@npmcli/promise-spawn': 9.0.1
       ini: 6.0.0
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
       npm-pick-manifest: 11.0.3
       proc-log: 6.1.0
       promise-retry: 2.0.1
@@ -7608,51 +7622,45 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nrwl/nx-cloud@19.1.0':
-    dependencies:
-      nx-cloud: 19.1.0
-    transitivePeerDependencies:
-      - debug
-
-  '@nx/devkit@22.3.3(nx@22.6.3(@swc/core@1.15.21))':
+  '@nx/devkit@22.3.3(nx@22.6.4(@swc/core@1.15.21))':
     dependencies:
       '@zkochan/js-yaml': 0.0.7
       ejs: 3.1.9
       enquirer: 2.3.6
       minimatch: 9.0.3
-      nx: 22.6.3(@swc/core@1.15.21)
+      nx: 22.6.4(@swc/core@1.15.21)
       semver: 7.7.4
       tslib: 2.8.1
       yargs-parser: 21.1.1
 
-  '@nx/nx-darwin-arm64@22.6.3':
+  '@nx/nx-darwin-arm64@22.6.4':
     optional: true
 
-  '@nx/nx-darwin-x64@22.6.3':
+  '@nx/nx-darwin-x64@22.6.4':
     optional: true
 
-  '@nx/nx-freebsd-x64@22.6.3':
+  '@nx/nx-freebsd-x64@22.6.4':
     optional: true
 
-  '@nx/nx-linux-arm-gnueabihf@22.6.3':
+  '@nx/nx-linux-arm-gnueabihf@22.6.4':
     optional: true
 
-  '@nx/nx-linux-arm64-gnu@22.6.3':
+  '@nx/nx-linux-arm64-gnu@22.6.4':
     optional: true
 
-  '@nx/nx-linux-arm64-musl@22.6.3':
+  '@nx/nx-linux-arm64-musl@22.6.4':
     optional: true
 
-  '@nx/nx-linux-x64-gnu@22.6.3':
+  '@nx/nx-linux-x64-gnu@22.6.4':
     optional: true
 
-  '@nx/nx-linux-x64-musl@22.6.3':
+  '@nx/nx-linux-x64-musl@22.6.4':
     optional: true
 
-  '@nx/nx-win32-arm64-msvc@22.6.3':
+  '@nx/nx-win32-arm64-msvc@22.6.4':
     optional: true
 
-  '@nx/nx-win32-x64-msvc@22.6.3':
+  '@nx/nx-win32-x64-msvc@22.6.4':
     optional: true
 
   '@octokit/auth-token@4.0.0': {}
@@ -7852,12 +7860,12 @@ snapshots:
   '@stylistic/eslint-plugin@5.10.0(eslint@10.1.0(jiti@2.6.1))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.1.0(jiti@2.6.1))
-      '@typescript-eslint/types': 8.57.0
+      '@typescript-eslint/types': 8.58.0
       eslint: 10.1.0(jiti@2.6.1)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
       estraverse: 5.3.0
-      picomatch: 4.0.3
+      picomatch: 4.0.4
 
   '@swc/core-darwin-arm64@1.15.21':
     optional: true
@@ -7927,38 +7935,38 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/basic@4.0.0-beta.1':
+  '@tsparticles/basic@4.0.0-beta.5':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-hex-color': 4.0.0-beta.1
-      '@tsparticles/plugin-hsl-color': 4.0.0-beta.1
-      '@tsparticles/plugin-move': 4.0.0-beta.1
-      '@tsparticles/plugin-rgb-color': 4.0.0-beta.1
-      '@tsparticles/shape-circle': 4.0.0-beta.1
-      '@tsparticles/updater-fill-color': 4.0.0-beta.1
-      '@tsparticles/updater-opacity': 4.0.0-beta.1
-      '@tsparticles/updater-out-modes': 4.0.0-beta.1
-      '@tsparticles/updater-size': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-hex-color': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/plugin-hsl-color': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/plugin-move': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/plugin-rgb-color': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/shape-circle': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/updater-fill-color': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/updater-opacity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/updater-out-modes': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/updater-size': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/canvas-utils@4.0.0-beta.1':
+  '@tsparticles/canvas-utils@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/cli@3.3.8(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)(webpack-cli@7.0.2)':
+  '@tsparticles/cli@3.4.4(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)(webpack-cli@7.0.2)':
     dependencies:
       '@swc/core': 1.15.21
-      '@tsparticles/depcruise-config': 3.3.5(dependency-cruiser@17.3.9)
-      '@tsparticles/eslint-config': 3.3.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.5(prettier@3.8.1)
-      '@tsparticles/tsconfig': 3.3.5(typescript@5.9.3)
-      '@tsparticles/webpack-plugin': 3.3.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)
+      '@tsparticles/depcruise-config': 3.4.5(dependency-cruiser@17.3.10)
+      '@tsparticles/eslint-config': 3.4.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
+      '@tsparticles/prettier-config': 3.4.5(prettier@3.8.1)
+      '@tsparticles/tsconfig': 3.4.5(typescript@6.0.2)
+      '@tsparticles/webpack-plugin': 3.4.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)
       commander: 14.0.3
-      dependency-cruiser: 17.3.9
+      dependency-cruiser: 17.3.10
       eslint: 10.1.0(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.1.0(jiti@2.6.1))
-      eslint-plugin-jsdoc: 62.8.1(eslint@10.1.0(jiti@2.6.1))
+      eslint-plugin-jsdoc: 62.9.0(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-prettier: 5.5.5(@types/eslint@8.56.7)(eslint-config-prettier@10.1.8(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))(prettier@3.8.1)
-      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       klaw: 4.1.0
       lookpath: 1.2.3
       path-scurry: 2.0.2
@@ -7967,8 +7975,8 @@ snapshots:
       prompts: 2.4.2
       rimraf: 6.1.3
       swc-loader: 0.2.7(@swc/core@1.15.21)(webpack@5.105.4)
-      typescript: 5.9.3
-      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      typescript: 6.0.2
+      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       webpack: 5.105.4(@swc/core@1.15.21)(esbuild@0.27.2)(webpack-cli@7.0.2)
     transitivePeerDependencies:
       - '@swc/helpers'
@@ -7982,185 +7990,186 @@ snapshots:
       - webpack-cli
       - webpack-dev-server
 
-  '@tsparticles/depcruise-config@3.3.5(dependency-cruiser@17.3.9)':
+  '@tsparticles/depcruise-config@3.4.5(dependency-cruiser@17.3.10)':
     dependencies:
-      dependency-cruiser: 17.3.9
+      dependency-cruiser: 17.3.10
 
-  '@tsparticles/effect-trail@4.0.0-beta.1':
+  '@tsparticles/effect-trail@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/engine@4.0.0-beta.1': {}
+  '@tsparticles/engine@4.0.0-beta.5': {}
 
-  '@tsparticles/eslint-config@3.3.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))':
+  '@tsparticles/eslint-config@3.4.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.1.0(jiti@2.6.1))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.1.0(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.5(prettier@3.8.1)
+      '@tsparticles/prettier-config': 3.4.5(prettier@3.8.1)
       eslint: 10.1.0(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.1.0(jiti@2.6.1))
-      eslint-plugin-jsdoc: 62.8.1(eslint@10.1.0(jiti@2.6.1))
+      eslint-plugin-jsdoc: 62.9.0(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-prettier: 5.5.5(@types/eslint@8.56.7)(eslint-config-prettier@10.1.8(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))(prettier@3.8.1)
-      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       jiti: 2.6.1
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.5(prettier@3.8.1)
-      typescript: 5.9.3
-      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      typescript: 6.0.2
+      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
     transitivePeerDependencies:
       - '@types/eslint'
       - supports-color
 
-  '@tsparticles/interaction-external-cannon@4.0.0-beta.1':
+  '@tsparticles/interaction-external-cannon@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/interaction-external-push@4.0.0-beta.1':
+  '@tsparticles/interaction-external-push@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/interaction-external-trail@4.0.0-beta.1':
+  '@tsparticles/interaction-external-trail@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/interaction-particles-links@4.0.0-beta.1':
+  '@tsparticles/interaction-particles-links@4.0.0-beta.5(@tsparticles/canvas-utils@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/canvas-utils': 4.0.0-beta.1
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity': 4.0.0-beta.1
+      '@tsparticles/canvas-utils': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/path-curves@4.0.0-beta.1':
+  '@tsparticles/path-curves@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-move@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-move': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-move': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/plugin-emitters-shape-square@4.0.0-beta.1':
+  '@tsparticles/plugin-emitters-shape-square@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-emitters@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-emitters': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+      '@tsparticles/plugin-emitters': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))
 
-  '@tsparticles/plugin-emitters@4.0.0-beta.1':
+  '@tsparticles/plugin-emitters@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)(@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5))':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
-      '@tsparticles/plugin-interactivity': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
+    optionalDependencies:
+      '@tsparticles/plugin-interactivity': 4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)
 
-  '@tsparticles/plugin-hex-color@4.0.0-beta.1':
+  '@tsparticles/plugin-hex-color@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-hsl-color@4.0.0-beta.1':
+  '@tsparticles/plugin-hsl-color@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-interactivity@4.0.0-beta.1':
+  '@tsparticles/plugin-interactivity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-motion@4.0.0-beta.1':
+  '@tsparticles/plugin-motion@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-move@4.0.0-beta.1':
+  '@tsparticles/plugin-move@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-rgb-color@4.0.0-beta.1':
+  '@tsparticles/plugin-rgb-color@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-sounds@4.0.0-beta.1':
+  '@tsparticles/plugin-sounds@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/plugin-trail@4.0.0-beta.1':
+  '@tsparticles/plugin-trail@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/prettier-config@3.3.5(prettier@3.8.1)':
+  '@tsparticles/prettier-config@3.4.5(prettier@3.8.1)':
     dependencies:
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.5(prettier@3.8.1)
 
-  '@tsparticles/shape-circle@4.0.0-beta.1':
+  '@tsparticles/shape-circle@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/shape-line@4.0.0-beta.1':
+  '@tsparticles/shape-line@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/shape-square@4.0.0-beta.1':
+  '@tsparticles/shape-square@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/tsconfig@3.3.5(typescript@5.9.3)':
+  '@tsparticles/tsconfig@3.4.5(typescript@6.0.2)':
     dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
-  '@tsparticles/updater-destroy@4.0.0-beta.1':
+  '@tsparticles/updater-destroy@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-fill-color@4.0.0-beta.1':
+  '@tsparticles/updater-fill-color@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-life@4.0.0-beta.1':
+  '@tsparticles/updater-life@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-opacity@4.0.0-beta.1':
+  '@tsparticles/updater-opacity@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-out-modes@4.0.0-beta.1':
+  '@tsparticles/updater-out-modes@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-roll@4.0.0-beta.1':
+  '@tsparticles/updater-roll@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-rotate@4.0.0-beta.1':
+  '@tsparticles/updater-rotate@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-size@4.0.0-beta.1':
+  '@tsparticles/updater-size@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-stroke-color@4.0.0-beta.1':
+  '@tsparticles/updater-stroke-color@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-tilt@4.0.0-beta.1':
+  '@tsparticles/updater-tilt@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/updater-wobble@4.0.0-beta.1':
+  '@tsparticles/updater-wobble@4.0.0-beta.5(@tsparticles/engine@4.0.0-beta.5)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.1
+      '@tsparticles/engine': 4.0.0-beta.5
 
-  '@tsparticles/webpack-plugin@3.3.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)':
+  '@tsparticles/webpack-plugin@3.4.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)':
     dependencies:
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.1.0(jiti@2.6.1))
       '@swc/core': 1.15.21
-      '@tsparticles/eslint-config': 3.3.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
-      '@tsparticles/prettier-config': 3.3.5(prettier@3.8.1)
+      '@tsparticles/eslint-config': 3.4.5(@types/eslint@8.56.7)(eslint@10.1.0(jiti@2.6.1))
+      '@tsparticles/prettier-config': 3.4.5(prettier@3.8.1)
       browserslist: 4.28.2
       eslint: 10.1.0(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.1.0(jiti@2.6.1))
-      eslint-plugin-jsdoc: 62.8.1(eslint@10.1.0(jiti@2.6.1))
-      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      eslint-plugin-jsdoc: 62.9.0(eslint@10.1.0(jiti@2.6.1))
+      eslint-plugin-tsdoc: 0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.5(prettier@3.8.1)
       swc-loader: 0.2.7(@swc/core@1.15.21)(webpack@5.105.4)
       terser-webpack-plugin: 5.4.0(@swc/core@1.15.21)(esbuild@0.27.2)(webpack@5.105.4)
-      typescript: 5.9.3
-      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      typescript: 6.0.2
+      typescript-eslint: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       webpack: 5.105.4(@swc/core@1.15.21)(esbuild@0.27.2)(webpack-cli@7.0.2)
       webpack-bundle-analyzer: 5.3.0
       webpack-cli: 7.0.2(webpack-bundle-analyzer@5.3.0)(webpack@5.105.4)
@@ -8245,86 +8254,49 @@ snapshots:
 
   '@types/webpack-env@1.18.8': {}
 
-  '@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/scope-manager': 8.57.0
-      '@typescript-eslint/type-utils': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/visitor-keys': 8.57.0
-      eslint: 10.1.0(jiti@2.6.1)
-      ignore: 7.0.5
-      natural-compare: 1.4.0
-      ts-api-utils: 2.4.0(typescript@5.9.3)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
-    dependencies:
-      '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       '@typescript-eslint/scope-manager': 8.58.0
-      '@typescript-eslint/type-utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
+      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       '@typescript-eslint/visitor-keys': 8.58.0
       eslint: 10.1.0(jiti@2.6.1)
       ignore: 7.0.5
       natural-compare: 1.4.0
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.2)
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
-    dependencies:
-      '@typescript-eslint/scope-manager': 8.57.0
-      '@typescript-eslint/types': 8.57.0
-      '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/visitor-keys': 8.57.0
-      debug: 4.4.3(supports-color@5.5.0)
-      eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.58.0
       '@typescript-eslint/types': 8.58.0
-      '@typescript-eslint/typescript-estree': 8.58.0(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.58.0(typescript@6.0.2)
       '@typescript-eslint/visitor-keys': 8.58.0
       debug: 4.4.3(supports-color@5.5.0)
       eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.56.1(typescript@5.9.3)':
+  '@typescript-eslint/project-service@8.56.1(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.56.1
-      debug: 4.4.3(supports-color@5.5.0)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/project-service@8.57.0(typescript@5.9.3)':
-    dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/types': 8.57.0
-      debug: 4.4.3(supports-color@5.5.0)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/project-service@8.58.0(typescript@5.9.3)':
-    dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@5.9.3)
+      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@6.0.2)
       '@typescript-eslint/types': 8.58.0
       debug: 4.4.3(supports-color@5.5.0)
-      typescript: 5.9.3
+      typescript: 6.0.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/project-service@8.58.0(typescript@6.0.2)':
+    dependencies:
+      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@6.0.2)
+      '@typescript-eslint/types': 8.58.0
+      debug: 4.4.3(supports-color@5.5.0)
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
@@ -8333,145 +8305,91 @@ snapshots:
       '@typescript-eslint/types': 8.56.1
       '@typescript-eslint/visitor-keys': 8.56.1
 
-  '@typescript-eslint/scope-manager@8.57.0':
-    dependencies:
-      '@typescript-eslint/types': 8.57.0
-      '@typescript-eslint/visitor-keys': 8.57.0
-
   '@typescript-eslint/scope-manager@8.58.0':
     dependencies:
       '@typescript-eslint/types': 8.58.0
       '@typescript-eslint/visitor-keys': 8.58.0
 
-  '@typescript-eslint/tsconfig-utils@8.56.1(typescript@5.9.3)':
+  '@typescript-eslint/tsconfig-utils@8.56.1(typescript@6.0.2)':
     dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
-  '@typescript-eslint/tsconfig-utils@8.57.0(typescript@5.9.3)':
+  '@typescript-eslint/tsconfig-utils@8.58.0(typescript@6.0.2)':
     dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
-  '@typescript-eslint/tsconfig-utils@8.58.0(typescript@5.9.3)':
-    dependencies:
-      typescript: 5.9.3
-
-  '@typescript-eslint/type-utils@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
-    dependencies:
-      '@typescript-eslint/types': 8.57.0
-      '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      debug: 4.4.3(supports-color@5.5.0)
-      eslint: 10.1.0(jiti@2.6.1)
-      ts-api-utils: 2.4.0(typescript@5.9.3)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/type-utils@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)':
     dependencies:
       '@typescript-eslint/types': 8.58.0
-      '@typescript-eslint/typescript-estree': 8.58.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.58.0(typescript@6.0.2)
+      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       debug: 4.4.3(supports-color@5.5.0)
       eslint: 10.1.0(jiti@2.6.1)
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.2)
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
   '@typescript-eslint/types@8.56.1': {}
 
-  '@typescript-eslint/types@8.57.0': {}
-
   '@typescript-eslint/types@8.58.0': {}
 
-  '@typescript-eslint/typescript-estree@8.56.1(typescript@5.9.3)':
+  '@typescript-eslint/typescript-estree@8.56.1(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/project-service': 8.56.1(typescript@5.9.3)
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@5.9.3)
+      '@typescript-eslint/project-service': 8.56.1(typescript@6.0.2)
+      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.2)
       '@typescript-eslint/types': 8.56.1
       '@typescript-eslint/visitor-keys': 8.56.1
       debug: 4.4.3(supports-color@5.5.0)
-      minimatch: 10.2.2
+      minimatch: 10.2.4
       semver: 7.7.4
       tinyglobby: 0.2.15
-      ts-api-utils: 2.4.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.2)
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/typescript-estree@8.57.0(typescript@5.9.3)':
+  '@typescript-eslint/typescript-estree@8.58.0(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/project-service': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/tsconfig-utils': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/types': 8.57.0
-      '@typescript-eslint/visitor-keys': 8.57.0
-      debug: 4.4.3(supports-color@5.5.0)
-      minimatch: 10.2.2
-      semver: 7.7.4
-      tinyglobby: 0.2.15
-      ts-api-utils: 2.4.0(typescript@5.9.3)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/typescript-estree@8.58.0(typescript@5.9.3)':
-    dependencies:
-      '@typescript-eslint/project-service': 8.58.0(typescript@5.9.3)
-      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@5.9.3)
+      '@typescript-eslint/project-service': 8.58.0(typescript@6.0.2)
+      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@6.0.2)
       '@typescript-eslint/types': 8.58.0
       '@typescript-eslint/visitor-keys': 8.58.0
       debug: 4.4.3(supports-color@5.5.0)
       minimatch: 10.2.4
       semver: 7.7.4
       tinyglobby: 0.2.15
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.2)
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.56.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.56.1(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.1.0(jiti@2.6.1))
       '@typescript-eslint/scope-manager': 8.56.1
       '@typescript-eslint/types': 8.56.1
-      '@typescript-eslint/typescript-estree': 8.56.1(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.56.1(typescript@6.0.2)
       eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
-    dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.1.0(jiti@2.6.1))
-      '@typescript-eslint/scope-manager': 8.57.0
-      '@typescript-eslint/types': 8.57.0
-      '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
-      eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript-eslint/utils@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.1.0(jiti@2.6.1))
       '@typescript-eslint/scope-manager': 8.58.0
       '@typescript-eslint/types': 8.58.0
-      '@typescript-eslint/typescript-estree': 8.58.0(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.58.0(typescript@6.0.2)
       eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
   '@typescript-eslint/visitor-keys@8.56.1':
     dependencies:
       '@typescript-eslint/types': 8.56.1
-      eslint-visitor-keys: 5.0.0
-
-  '@typescript-eslint/visitor-keys@8.57.0':
-    dependencies:
-      '@typescript-eslint/types': 8.57.0
-      eslint-visitor-keys: 5.0.0
+      eslint-visitor-keys: 5.0.1
 
   '@typescript-eslint/visitor-keys@8.58.0':
     dependencies:
@@ -8669,7 +8587,7 @@ snapshots:
 
   acorn-walk@8.3.4:
     dependencies:
-      acorn: 8.15.0
+      acorn: 8.16.0
 
   acorn-walk@8.3.5:
     dependencies:
@@ -8698,13 +8616,6 @@ snapshots:
     dependencies:
       ajv: 8.18.0
       fast-deep-equal: 3.1.3
-
-  ajv@6.12.6:
-    dependencies:
-      fast-deep-equal: 3.1.3
-      fast-json-stable-stringify: 2.1.0
-      json-schema-traverse: 0.4.1
-      uri-js: 4.4.1
 
   ajv@6.14.0:
     dependencies:
@@ -8773,13 +8684,23 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.13.2:
+  axios@1.12.0:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
+
+  axios@1.13.6:
+    dependencies:
+      follow-redirects: 1.15.11
+      form-data: 4.0.5
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
+  b4a@1.8.0: {}
 
   babel-walk@3.0.0-canary-5:
     dependencies:
@@ -8788,6 +8709,38 @@ snapshots:
   balanced-match@1.0.2: {}
 
   balanced-match@4.0.3: {}
+
+  bare-events@2.8.2: {}
+
+  bare-fs@4.5.6:
+    dependencies:
+      bare-events: 2.8.2
+      bare-path: 3.0.0
+      bare-stream: 2.12.0(bare-events@2.8.2)
+      bare-url: 2.4.0
+      fast-fifo: 1.3.2
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - react-native-b4a
+
+  bare-os@3.8.6: {}
+
+  bare-path@3.0.0:
+    dependencies:
+      bare-os: 3.8.6
+
+  bare-stream@2.12.0(bare-events@2.8.2):
+    dependencies:
+      streamx: 2.25.0
+      teex: 1.0.1
+    optionalDependencies:
+      bare-events: 2.8.2
+    transitivePeerDependencies:
+      - react-native-b4a
+
+  bare-url@2.4.0:
+    dependencies:
+      bare-path: 3.0.0
 
   base64-js@1.5.1: {}
 
@@ -8876,7 +8829,7 @@ snapshots:
       '@npmcli/fs': 5.0.0
       fs-minipass: 3.0.3
       glob: 13.0.6
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
       minipass: 7.1.3
       minipass-collect: 2.0.1
       minipass-flush: 1.0.5
@@ -8958,8 +8911,6 @@ snapshots:
   chownr@1.1.4:
     optional: true
 
-  chownr@2.0.0: {}
-
   chownr@3.0.0: {}
 
   chrome-trace-event@1.0.3: {}
@@ -9033,7 +8984,7 @@ snapshots:
 
   commander@2.20.3: {}
 
-  comment-parser@1.4.5: {}
+  comment-parser@1.4.6: {}
 
   common-ancestor-path@1.0.1: {}
 
@@ -9149,12 +9100,12 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.2.0(@types/node@25.5.0)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3):
+  cosmiconfig-typescript-loader@6.2.0(@types/node@25.5.0)(cosmiconfig@9.0.1(typescript@6.0.2))(typescript@6.0.2):
     dependencies:
       '@types/node': 25.5.0
-      cosmiconfig: 9.0.1(typescript@5.9.3)
+      cosmiconfig: 9.0.1(typescript@6.0.2)
       jiti: 2.6.1
-      typescript: 5.9.3
+      typescript: 6.0.2
 
   cosmiconfig@9.0.0(typescript@5.9.3):
     dependencies:
@@ -9165,14 +9116,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
-  cosmiconfig@9.0.1(typescript@5.9.3):
+  cosmiconfig@9.0.1(typescript@6.0.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
   create-require@1.1.1: {}
 
@@ -9252,7 +9203,7 @@ snapshots:
 
   depd@2.0.0: {}
 
-  dependency-cruiser@17.3.9:
+  dependency-cruiser@17.3.10:
     dependencies:
       acorn: 8.16.0
       acorn-jsx: 5.3.2(acorn@8.16.0)
@@ -9260,12 +9211,12 @@ snapshots:
       acorn-loose: 8.5.2
       acorn-walk: 8.3.5
       commander: 14.0.3
-      enhanced-resolve: 5.20.0
+      enhanced-resolve: 5.20.1
       ignore: 7.0.5
       interpret: 3.1.1
       is-installed-globally: 1.0.0
       json5: 2.2.3
-      picomatch: 4.0.3
+      picomatch: 4.0.4
       prompts: 2.4.2
       rechoir: 0.8.0
       safe-regex: 2.1.1
@@ -9330,16 +9281,16 @@ snapshots:
       iconv-lite: 0.6.3
     optional: true
 
-  end-of-stream@1.4.4:
-    dependencies:
-      once: 1.4.0
-
   end-of-stream@1.4.5:
     dependencies:
       once: 1.4.0
-    optional: true
 
   enhanced-resolve@5.20.0:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.3.0
+
+  enhanced-resolve@5.20.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.0
@@ -9427,12 +9378,12 @@ snapshots:
     dependencies:
       eslint: 10.1.0(jiti@2.6.1)
 
-  eslint-plugin-jsdoc@62.8.1(eslint@10.1.0(jiti@2.6.1)):
+  eslint-plugin-jsdoc@62.9.0(eslint@10.1.0(jiti@2.6.1)):
     dependencies:
-      '@es-joy/jsdoccomment': 0.84.0
+      '@es-joy/jsdoccomment': 0.86.0
       '@es-joy/resolve.exports': 1.2.0
       are-docs-informative: 0.0.2
-      comment-parser: 1.4.5
+      comment-parser: 1.4.6
       debug: 4.4.3(supports-color@5.5.0)
       escape-string-regexp: 4.0.0
       eslint: 10.1.0(jiti@2.6.1)
@@ -9457,11 +9408,11 @@ snapshots:
       '@types/eslint': 8.56.7
       eslint-config-prettier: 10.1.8(eslint@10.1.0(jiti@2.6.1))
 
-  eslint-plugin-tsdoc@0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3):
+  eslint-plugin-tsdoc@0.5.2(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2):
     dependencies:
       '@microsoft/tsdoc': 0.16.0
       '@microsoft/tsdoc-config': 0.18.1
-      '@typescript-eslint/utils': 8.56.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.56.1(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -9482,8 +9433,6 @@ snapshots:
   eslint-visitor-keys@3.4.3: {}
 
   eslint-visitor-keys@4.2.1: {}
-
-  eslint-visitor-keys@5.0.0: {}
 
   eslint-visitor-keys@5.0.1: {}
 
@@ -9560,6 +9509,12 @@ snapshots:
 
   eventemitter3@4.0.7: {}
 
+  events-universal@1.0.1:
+    dependencies:
+      bare-events: 2.8.2
+    transitivePeerDependencies:
+      - bare-abort-controller
+
   events@3.3.0: {}
 
   execa@5.0.0:
@@ -9622,6 +9577,8 @@ snapshots:
   fast-deep-equal@3.1.3: {}
 
   fast-diff@1.3.0: {}
+
+  fast-fifo@1.3.2: {}
 
   fast-glob@3.3.2:
     dependencies:
@@ -9746,10 +9703,6 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.1
 
-  fs-minipass@2.1.0:
-    dependencies:
-      minipass: 3.3.6
-
   fs-minipass@3.0.3:
     dependencies:
       minipass: 7.1.3
@@ -9857,7 +9810,7 @@ snapshots:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
       minimatch: 9.0.5
-      minipass: 7.1.2
+      minipass: 7.1.3
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
@@ -9947,7 +9900,7 @@ snapshots:
 
   hosted-git-info@9.0.2:
     dependencies:
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
 
   html-encoding-sniffer@6.0.0:
     dependencies:
@@ -10234,7 +10187,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdoc-type-pratt-parser@7.1.1: {}
+  jsdoc-type-pratt-parser@7.2.0: {}
 
   jsdom-global@3.0.2(jsdom@29.0.1(canvas@3.2.1)):
     dependencies:
@@ -10294,10 +10247,10 @@ snapshots:
 
   jsonc-parser@3.2.0: {}
 
-  jsoneditor@10.4.2:
+  jsoneditor@10.4.3:
     dependencies:
       ace-builds: 1.43.5
-      ajv: 6.12.6
+      ajv: 6.14.0
       javascript-natural-sort: 0.7.1
       jmespath: 0.16.0
       json-source-map: 0.6.1
@@ -10339,7 +10292,7 @@ snapshots:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
       '@npmcli/run-script': 10.0.3
-      '@nx/devkit': 22.3.3(nx@22.6.3(@swc/core@1.15.21))
+      '@nx/devkit': 22.3.3(nx@22.6.4(@swc/core@1.15.21))
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 20.1.2
       aproba: 2.0.0
@@ -10377,7 +10330,7 @@ snapshots:
       npm-package-arg: 13.0.1
       npm-packlist: 10.0.3
       npm-registry-fetch: 19.1.0
-      nx: 22.6.3(@swc/core@1.15.21)
+      nx: 22.6.4(@swc/core@1.15.21)
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-pipe: 3.1.0
@@ -10547,7 +10500,7 @@ snapshots:
 
   lodash.upperfirst@4.3.1: {}
 
-  lodash@4.17.23: {}
+  lodash@4.18.1: {}
 
   log-symbols@4.1.0:
     dependencies:
@@ -10557,8 +10510,6 @@ snapshots:
   lookpath@1.2.3: {}
 
   lru-cache@10.2.0: {}
-
-  lru-cache@11.2.6: {}
 
   lru-cache@11.2.7: {}
 
@@ -10761,16 +10712,7 @@ snapshots:
     dependencies:
       yallist: 4.0.0
 
-  minipass@5.0.0: {}
-
-  minipass@7.1.2: {}
-
   minipass@7.1.3: {}
-
-  minizlib@2.1.2:
-    dependencies:
-      minipass: 3.3.6
-      yallist: 4.0.0
 
   minizlib@3.1.0:
     dependencies:
@@ -10943,29 +10885,31 @@ snapshots:
     dependencies:
       path-key: 3.1.1
 
-  nx-cloud@19.1.0:
+  nx-cloud@19.1.3:
     dependencies:
-      '@nrwl/nx-cloud': 19.1.0
-      axios: 1.13.2
+      axios: 1.13.6
       chalk: 4.1.2
       dotenv: 10.0.0
       fs-extra: 11.3.4
       ini: 4.1.3
       node-machine-id: 1.1.12
       open: 8.4.2
-      tar: 6.2.1
+      tar-stream: 3.1.8
       yargs-parser: 21.1.1
     transitivePeerDependencies:
+      - bare-abort-controller
+      - bare-buffer
       - debug
+      - react-native-b4a
 
-  nx@22.6.3(@swc/core@1.15.21):
+  nx@22.6.4(@swc/core@1.15.21):
     dependencies:
       '@ltd/j-toml': 1.38.0
       '@napi-rs/wasm-runtime': 0.2.4
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.13.2
+      axios: 1.12.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       cliui: 8.0.1
@@ -10997,16 +10941,16 @@ snapshots:
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@nx/nx-darwin-arm64': 22.6.3
-      '@nx/nx-darwin-x64': 22.6.3
-      '@nx/nx-freebsd-x64': 22.6.3
-      '@nx/nx-linux-arm-gnueabihf': 22.6.3
-      '@nx/nx-linux-arm64-gnu': 22.6.3
-      '@nx/nx-linux-arm64-musl': 22.6.3
-      '@nx/nx-linux-x64-gnu': 22.6.3
-      '@nx/nx-linux-x64-musl': 22.6.3
-      '@nx/nx-win32-arm64-msvc': 22.6.3
-      '@nx/nx-win32-x64-msvc': 22.6.3
+      '@nx/nx-darwin-arm64': 22.6.4
+      '@nx/nx-darwin-x64': 22.6.4
+      '@nx/nx-freebsd-x64': 22.6.4
+      '@nx/nx-linux-arm-gnueabihf': 22.6.4
+      '@nx/nx-linux-arm64-gnu': 22.6.4
+      '@nx/nx-linux-arm64-musl': 22.6.4
+      '@nx/nx-linux-x64-gnu': 22.6.4
+      '@nx/nx-linux-x64-musl': 22.6.4
+      '@nx/nx-win32-arm64-msvc': 22.6.4
+      '@nx/nx-win32-x64-msvc': 22.6.4
       '@swc/core': 1.15.21
     transitivePeerDependencies:
       - debug
@@ -11227,7 +11171,7 @@ snapshots:
 
   path-scurry@2.0.2:
     dependencies:
-      lru-cache: 11.2.6
+      lru-cache: 11.2.7
       minipass: 7.1.3
 
   path-to-regexp@8.3.0: {}
@@ -11835,6 +11779,15 @@ snapshots:
 
   std-env@4.0.0: {}
 
+  streamx@2.25.0:
+    dependencies:
+      events-universal: 1.0.1
+      fast-fifo: 1.3.2
+      text-decoder: 1.2.7
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - react-native-b4a
+
   string-width@4.2.3:
     dependencies:
       emoji-regex: 8.0.0
@@ -11939,19 +11892,21 @@ snapshots:
   tar-stream@2.2.0:
     dependencies:
       bl: 4.1.0
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  tar@6.2.1:
+  tar-stream@3.1.8:
     dependencies:
-      chownr: 2.0.0
-      fs-minipass: 2.1.0
-      minipass: 5.0.0
-      minizlib: 2.1.2
-      mkdirp: 1.0.4
-      yallist: 4.0.0
+      b4a: 1.8.0
+      bare-fs: 4.5.6
+      fast-fifo: 1.3.2
+      streamx: 2.25.0
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - bare-buffer
+      - react-native-b4a
 
   tar@7.5.11:
     dependencies:
@@ -11960,6 +11915,13 @@ snapshots:
       minipass: 7.1.3
       minizlib: 3.1.0
       yallist: 5.0.0
+
+  teex@1.0.1:
+    dependencies:
+      streamx: 2.25.0
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - react-native-b4a
 
   terser-webpack-plugin@5.4.0(@swc/core@1.15.21)(esbuild@0.27.2)(webpack@5.105.4):
     dependencies:
@@ -11978,6 +11940,12 @@ snapshots:
       acorn: 8.16.0
       commander: 2.20.3
       source-map-support: 0.5.21
+
+  text-decoder@1.2.7:
+    dependencies:
+      b4a: 1.8.0
+    transitivePeerDependencies:
+      - react-native-b4a
 
   text-extensions@1.9.0: {}
 
@@ -12051,13 +12019,9 @@ snapshots:
     dependencies:
       escape-string-regexp: 1.0.5
 
-  ts-api-utils@2.4.0(typescript@5.9.3):
+  ts-api-utils@2.5.0(typescript@6.0.2):
     dependencies:
-      typescript: 5.9.3
-
-  ts-api-utils@2.5.0(typescript@5.9.3):
-    dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.2
 
   ts-json-schema-generator@2.9.0:
     dependencies:
@@ -12090,7 +12054,7 @@ snapshots:
     optionalDependencies:
       '@swc/core': 1.15.21
 
-  ts-node@10.9.2(@swc/core@1.15.21)(@types/node@25.5.0)(typescript@5.9.3):
+  ts-node@10.9.2(@swc/core@1.15.21)(@types/node@25.5.0)(typescript@6.0.2):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
@@ -12104,7 +12068,7 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.4
       make-error: 1.3.6
-      typescript: 5.9.3
+      typescript: 6.0.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     optionalDependencies:
@@ -12113,7 +12077,7 @@ snapshots:
   tsconfig-paths-webpack-plugin@4.2.0:
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.20.0
+      enhanced-resolve: 5.20.1
       tapable: 2.3.0
       tsconfig-paths: 4.2.0
 
@@ -12166,61 +12130,50 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-clarity@1.6.0(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-clarity@1.6.0(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
       typescript: 5.9.3
 
-  typedoc-plugin-coverage@4.0.2(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-coverage@4.0.2(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
 
-  typedoc-plugin-google-ads@1.6.0(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-google-ads@1.6.0(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
       typescript: 5.9.3
 
-  typedoc-plugin-keywords@1.6.0(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-keywords@1.6.0(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
       typescript: 5.9.3
 
-  typedoc-plugin-mdn-links@5.1.1(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-mdn-links@5.1.1(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
 
-  typedoc-plugin-missing-exports@4.1.2(typedoc@0.28.18(typescript@5.9.3)):
+  typedoc-plugin-missing-exports@4.1.2(typedoc@0.28.18(typescript@6.0.2)):
     dependencies:
-      typedoc: 0.28.18(typescript@5.9.3)
+      typedoc: 0.28.18(typescript@6.0.2)
 
-  typedoc@0.28.18(typescript@5.9.3):
+  typedoc@0.28.18(typescript@6.0.2):
     dependencies:
       '@gerrit0/mini-shiki': 3.23.0
       lunr: 2.3.9
       markdown-it: 14.1.1
       minimatch: 10.2.4
-      typescript: 5.9.3
+      typescript: 6.0.2
       yaml: 2.8.2
 
-  typescript-eslint@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3):
+  typescript-eslint@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.57.0(@typescript-eslint/parser@8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.57.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/eslint-plugin': 8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
+      '@typescript-eslint/parser': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
+      '@typescript-eslint/typescript-estree': 8.58.0(typescript@6.0.2)
+      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
       eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - supports-color
-
-  typescript-eslint@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3):
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/typescript-estree': 8.58.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3)
-      eslint: 10.1.0(jiti@2.6.1)
-      typescript: 5.9.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
@@ -12242,6 +12195,8 @@ snapshots:
   typescript@5.5.4: {}
 
   typescript@5.9.3: {}
+
+  typescript@6.0.2: {}
 
   uc.micro@2.1.0: {}
 

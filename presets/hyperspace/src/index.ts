@@ -9,17 +9,15 @@ export async function loadHyperspacePreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
-      { loadEmittersPlugin },
+      { loadEmittersPluginSimple },
       { loadEmittersShapeSquare },
-      { loadInteractivityPlugin },
       { loadTrailPlugin },
       { loadLifeUpdater },
       { options },
     ] = await Promise.all([
       import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-emitters-shape-square"),
-      import("@tsparticles/plugin-interactivity"),
       import("@tsparticles/plugin-trail"),
       import("@tsparticles/updater-life"),
       import("./options.js"),
@@ -28,15 +26,13 @@ export async function loadHyperspacePreset(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
       (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
+        await loadEmittersPluginSimple(e);
 
-        await loadEmittersPlugin(e);
+        await loadEmittersShapeSquare(e);
       })(),
       loadTrailPlugin(e),
       loadLifeUpdater(e),
     ]);
-
-    await loadEmittersShapeSquare(e);
 
     e.pluginManager.addPreset(presetName, options);
   });
