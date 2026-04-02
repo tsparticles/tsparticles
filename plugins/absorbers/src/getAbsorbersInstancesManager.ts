@@ -4,10 +4,10 @@ import type { Engine } from "@tsparticles/engine";
 const instancesManagers = new WeakMap<object, Promise<AbsorbersInstancesManager>>();
 
 /**
- * @param e -
- * @returns -
+ * @param e - The engine instance whose plugin manager will be used to resolve the absorbers manager.
+ * @returns A promise that resolves to the absorbers instances manager for the given engine.
  */
-export async function getAbsorbersInstancesManager(e: Engine): Promise<AbsorbersInstancesManager> {
+export function getAbsorbersInstancesManager(e: Engine): Promise<AbsorbersInstancesManager> {
   const pluginManager = e.pluginManager;
 
   let manager = instancesManagers.get(pluginManager);
@@ -23,5 +23,5 @@ export async function getAbsorbersInstancesManager(e: Engine): Promise<Absorbers
     instancesManagers.set(pluginManager, manager);
   }
 
-  return await manager;
+  return manager;
 }
