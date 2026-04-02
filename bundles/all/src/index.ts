@@ -82,6 +82,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadSimplexNoisePath },
 
       { loadBubbleEffect },
+      { loadFilterEffect },
       { loadParticlesEffect },
       { loadShadowEffect },
       { loadTrailEffect },
@@ -169,6 +170,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/path-simplex-noise"),
 
       import("@tsparticles/effect-bubble"),
+      import("@tsparticles/effect-filter"),
       import("@tsparticles/effect-particles"),
       import("@tsparticles/effect-shadow"),
       import("@tsparticles/effect-trail"),
@@ -267,6 +269,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadOrbitUpdater(e),
 
       loadBubbleEffect(e),
+      loadFilterEffect(e),
       loadParticlesEffect(e),
       loadShadowEffect(e),
       loadTrailEffect(e),

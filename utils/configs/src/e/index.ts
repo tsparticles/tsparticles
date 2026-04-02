@@ -1,4 +1,5 @@
 import effectBubble from "./effectBubble.js";
+import effectFilter from "./effectFilter.js";
 import effectParticles from "./effectParticles.js";
 import effectTrail from "./effectTrail.js";
 import effectTrailTransform from "./effectTrailTransform.js";
@@ -15,6 +16,7 @@ import emitterTextStrokeShape from "./emitterTextStrokeShape.js";
 
 export default {
   effectBubble,
+  effectFilter,
   effectParticles,
   effectTrail,
   effectTrailTransform,

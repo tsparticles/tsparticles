@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "@tsparticles/effect-bubble": "workspace:*",
+    "@tsparticles/effect-filter": "workspace:*",
     "@tsparticles/effect-particles": "workspace:*",
     "@tsparticles/effect-shadow": "workspace:*",
     "@tsparticles/effect-trail": "workspace:*",

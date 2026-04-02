@@ -41,10 +41,7 @@ export class ShadowDrawer implements IEffectDrawer {
   drawAfter(data: IShapeDrawData): void {
     const { context } = data;
 
-    context.shadowBlur = 0;
-    context.shadowColor = "transparent";
-    context.shadowOffsetX = 0;
-    context.shadowOffsetY = 0;
+    context.restore();
   }
 
   drawBefore(data: IShapeDrawData): void {
@@ -57,6 +54,8 @@ export class ShadowDrawer implements IEffectDrawer {
     if (!shadowColor) {
       return;
     }
+
+    context.save();
 
     context.shadowBlur = shadowParticle.shadowBlur ?? defaultShadowBlur;
     context.shadowColor = getStyleFromRgb(shadowColor, container.hdr);
