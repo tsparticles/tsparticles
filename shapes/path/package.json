@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-path",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.5",
   "description": "tsParticles path shape",
   "homepage": "https://particles.js.org",
   "scripts": {

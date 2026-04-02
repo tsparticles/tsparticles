@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-attract",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.5",
   "description": "tsParticles attract particles interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -86,8 +86,8 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.4",
-    "@tsparticles/plugin-interactivity": "4.0.0-beta.4"
+    "@tsparticles/engine": "4.0.0-beta.5",
+    "@tsparticles/plugin-interactivity": "4.0.0-beta.5"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/noise-field",
-  "version": "4.0.0-beta.4",
+  "version": "4.0.0-beta.5",
   "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
   "scripts": {
