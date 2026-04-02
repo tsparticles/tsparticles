@@ -1,11 +1,11 @@
 import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 import type { Engine } from "@tsparticles/engine";
 
-const instancesManagers = new WeakMap<object, EmittersInstancesManager>();
+const instancesManagers = new WeakMap<object, Promise<EmittersInstancesManager>>();
 
 /**
- *
- * @param e
+ * @param e -
+ * @returns -
  */
 export async function getEmittersInstancesManager(e: Engine): Promise<EmittersInstancesManager> {
   const pluginManager = e.pluginManager;
@@ -13,12 +13,15 @@ export async function getEmittersInstancesManager(e: Engine): Promise<EmittersIn
   let manager = instancesManagers.get(pluginManager);
 
   if (!manager) {
-    const { EmittersInstancesManager } = await import("./EmittersInstancesManager.js");
-
-    manager = new EmittersInstancesManager(pluginManager);
+    manager = import("./EmittersInstancesManager.js")
+      .then(({ EmittersInstancesManager }) => new EmittersInstancesManager(pluginManager))
+      .catch((error: unknown) => {
+        instancesManagers.delete(pluginManager);
+        throw error;
+      });
 
     instancesManagers.set(pluginManager, manager);
   }
 
-  return manager;
+  return await manager;
 }
