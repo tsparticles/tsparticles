@@ -7,7 +7,7 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,6 +16,7 @@ concurrency:
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
 
 jobs:
   publish:
@@ -43,8 +44,7 @@ jobs:
 
       - name: Get pnpm store directory
         id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v5
         name: Setup pnpm cache
@@ -62,10 +62,15 @@ jobs:
         env:
           CI: true
 
+      # 📦 ZIP artifacts (solo stable)
+      - name: Generate zip artifacts
+        if: env.IS_STABLE == 'true'
+        run: node scripts/package-zips.js
+
+      # 🚀 Publish npm
       - name: Publish to NPM (OIDC Auth)
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          
           BASE_CMD="npx lerna publish from-package --ignore-scripts"
 
           echo "Publishing tag: $TAG via OIDC"
@@ -83,6 +88,30 @@ jobs:
           else
             $BASE_CMD
           fi
+
+      # 🧠 Create release (raw GitHub notes)
+      - name: Create Release (raw)
+        if: env.IS_STABLE == 'true'
+        id: release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          generate_release_notes: true
+
+      # ✨ Prettify changelog → per package
+      - name: Prettify changelog
+        if: env.IS_STABLE == 'true'
+        run: |
+          echo "${{ steps.release.outputs.body }}" > RAW_RELEASE.md
+          node scripts/prettify-changelog.js
+
+      # 🔁 Update release con changelog finale
+      - name: Update Release Notes
+        if: env.IS_STABLE == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          body_path: RELEASE_NOTES.md
 
       - name: Stop Nx Cloud Session
         run: npx nx fix-ci
