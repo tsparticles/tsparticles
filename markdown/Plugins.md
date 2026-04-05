@@ -4,11 +4,18 @@ tsParticles can be extended with plugins, custom shapes, and custom presets.
 
 This page provides a practical flow to build extensions that users can reuse easily.
 
+## Choose your extension path
+
+- **Custom shape**: when you need a new particle drawing primitive
+- **Custom preset**: when you want to reuse the same effect across many projects
+- **Plugin**: when you need new runtime behavior, interactions, or rendering logic
+
 ## Before you start
 
 - Register shape/preset before calling `tsParticles.load(...)`
 - Use a unique name (for example, with a project prefix)
 - Always document a minimal configuration example
+- If you are starting from an existing demo object, keep that config as a fixture while developing your extension
 
 ## Create a custom shape
 
@@ -111,8 +118,16 @@ Preset usage:
 - For presets: use the `tsparticles-preset` tag
 - Include in README: installation, registration snippet, config snippet
 
+## Reuse strategy
+
+- Start from `@tsparticles/configs` if you need a concrete object to evolve into a preset
+- Start from the official presets repository if you need a ready effect close to your target result
+- Use palettes when behavior is already correct and only the color identity should change
+
 ## Related resources
 
 - Official presets: <https://github.com/tsparticles/presets>
+- Official palettes: <https://github.com/tsparticles/presets/tree/main/palettes>
+- Demo configs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
 - Root options: [Options](./Options.md)
 - Docs introduction: [Pages/index](./Pages/index.md)
