@@ -91,13 +91,13 @@ import { loadLightInteraction } from "@tsparticles/interaction-light";
 
 ### `interactivity.modes.light` properties
 
-| Key | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `area.radius` | `number` | `1000` | Light interaction radius |
-| `area.gradient.start` | `color` | | Gradient start color |
-| `area.gradient.stop` | `color` | | Gradient stop color |
-| `shadow.color` | `color` | `"#000000"` | Shadow/tint color |
-| `shadow.length` | `number` | `2000` | Shadow projection length |
+| Key                   | Type     | Default     | Notes                    |
+| --------------------- | -------- | ----------- | ------------------------ |
+| `area.radius`         | `number` | `1000`      | Light interaction radius |
+| `area.gradient.start` | `color`  |             | Gradient start color     |
+| `area.gradient.stop`  | `color`  |             | Gradient stop color      |
+| `shadow.color`        | `color`  | `"#000000"` | Shadow/tint color        |
+| `shadow.length`       | `number` | `2000`      | Shadow projection length |
 
 ```json
 {
