@@ -70,6 +70,12 @@ bc --> s
 bc --> u
 ```
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -200,3 +206,14 @@ options object without the id, which will be `confetti` by default. The `options
 
 And for those asking, yes you can paste your canvas-confetti code and migrate to tsParticles Confetti without changing a
 thing
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `package loader(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

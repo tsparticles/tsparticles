@@ -1,117 +1,52 @@
 # Background
 
-- [`color`](#color)
-- [`opacity`](#opacity)
-- [`image`](#image)
-- [`position`](#position)
-- [`repeat`](#repeat)
-- [`size`](#size)
+Controls the canvas background layer rendered behind particles.
 
-## Color
+## Properties
 
-The `color` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used in `particles.color`
-options.
+| Key        | Type                | Example                                                    | Notes                                     |
+| ---------- | ------------------- | ---------------------------------------------------------- | ----------------------------------------- |
+| `color`    | `string` / `object` | `"#bada55"` / `{ "value": "#bada55" }`                     | Background color, supports {@link IColor} |
+| `opacity`  | `number`            | `1` / `0.5`                                                | Background color alpha, from `0` to `1`   |
+| `image`    | `string`            | `"url('https://particles.js.org/images/background3.jpg')"` | CSS `background-image` value              |
+| `position` | `string`            | `"50% 50%"`                                                | CSS `background-position` value           |
+| `repeat`   | `string`            | `"no-repeat"`                                              | CSS `background-repeat` value             |
+| `size`     | `string`            | `"cover"`                                                  | CSS `background-size` value               |
 
-This color is set to canvas style `background-color` property, if this property is not set the background will be
-transparent.
+## Quick examples
 
-### Samples
-
-<table>
-<tr>
-<td>
-HEX sample
+### Solid color
 
 ```json
 {
-  "color": "#bada55"
-}
-```
-
-</td>
-<td>
-HEX IColor sample
-
-```json
-{
-  "color": {
-    "value": "#bada55"
+  "background": {
+    "color": "#0f172a"
   }
 }
 ```
 
-</td>
-<td>
-Rgb sample
+### Semi-transparent color
 
 ```json
 {
-  "color": {
-    "value": {
-      "r": 255,
-      "g": 127,
-      "b": 0
-    }
+  "background": {
+    "color": {
+      "value": "#0ea5e9"
+    },
+    "opacity": 0.2
   }
 }
 ```
 
-</td>
-<td>
-Hsl sample
+### Background image
 
 ```json
 {
-  "color": {
-    "h": 180,
-    "s": 100,
-    "l": 50
+  "background": {
+    "image": "url('https://particles.js.org/images/background3.jpg')",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
   }
 }
 ```
-
-</td>
-</tr>
-</table>
-
-## Opacity
-
-The `opacity` property sets the `color` property opacity, so you can set a semi-transparent background.
-
-This value is by default to `1` and it accepts any value between `0` and `1` included.
-
-## Image
-
-The `image` property sets the canvas style `background-image` property.
-
-This property doesn't have a default value, anyway if you need a background image you need to specify the same CSS
-syntax with the `url()` function.
-
-### Samples
-
-```json
-{
-  "image": "url('https://particles.js.org/images/background3.jpg')"
-}
-```
-
-## Position
-
-The `position` property sets the canvas style `background-position` property.
-
-This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position) can be useful to set the right value
-to this property.
-
-## Repeat
-
-The `repeat` property sets the canvas style `background-repeat` property.
-
-This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat) can be useful to set the right value to
-this property.
-
-## Size
-
-The `size` property sets the canvas style `background-size` property.
-
-This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size) can be useful to set the right value to
-this property.

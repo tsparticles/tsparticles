@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional spiral shape.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -73,3 +79,32 @@ import { loadSpiralShape } from "@tsparticles/shape-spiral";
   await loadSpiralShape(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.shape.type: "spiral"`
+- Shape-specific options key: `particles.shape.options.spiral`
+
+```json
+{
+  "particles": {
+    "shape": {
+      "type": "spiral",
+      "options": {
+        "spiral": {}
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSpiralShape(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

@@ -1,21 +1,43 @@
 # Particles Life
 
-| key        | option type | example | notes |
-| ---------- | ----------- | ------- | ----- |
-| `count`    | `number`    | `0`     |       |
-| `delay`    | `object`    |         |       |
-| `duration` | `object`    |         |       |
+Controls particle lifespan and respawn timing.
 
-## Particles Life Delay
+## Properties
 
-| key     | option type        | example                    | notes                                                                                                                                                          |
-| ------- | ------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` |                                                                                                                                                                |
-| `sync`  | `boolean`          | `true` / `false`           | When `true`, all particles appear at the same time when the browser loads <br> the page. When `false`, particles appear with the `life.delay` value specified. |
+| Key        | Type     | Example | Notes                                      |
+| ---------- | -------- | ------- | ------------------------------------------ |
+| `count`    | `number` | `0`     | Number of life cycles (`0` means infinite) |
+| `delay`    | `object` |         | Delay before each life starts              |
+| `duration` | `object` |         | Active lifetime duration                   |
 
-## Particles Life Duration
+## Delay
 
-| key     | option type        | example                    | notes                                                                                                                                               |
-| ------- | ------------------ | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` |                                                                                                                                                     |
-| `sync`  | `boolean`          | `true` / `false`           | When `true`, the particle durations will be coordinated with one another. <br> In other words, they will all appear and disappear at the same time. |
+| Key     | Type               | Example                    | Notes                                                       |
+| ------- | ------------------ | -------------------------- | ----------------------------------------------------------- |
+| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` | Delay in seconds                                            |
+| `sync`  | `boolean`          | `true` / `false`           | `true`: particles start together, `false`: staggered starts |
+
+## Duration
+
+| Key     | Type               | Example                    | Notes                                                       |
+| ------- | ------------------ | -------------------------- | ----------------------------------------------------------- |
+| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` | Duration in seconds                                         |
+| `sync`  | `boolean`          | `true` / `false`           | `true`: particles end together, `false`: independent timing |
+
+## Quick example
+
+```json
+{
+  "life": {
+    "count": 3,
+    "delay": {
+      "value": { "min": 0.5, "max": 2 },
+      "sync": false
+    },
+    "duration": {
+      "value": { "min": 2, "max": 4 },
+      "sync": false
+    }
+  }
+}
+```

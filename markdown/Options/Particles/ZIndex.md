@@ -1,8 +1,28 @@
 # Particles zIndex
 
-| key            | option type         | example                            | notes                                                           |
-| -------------- | ------------------- | ---------------------------------- | --------------------------------------------------------------- |
-| `value`        | `number` / `object` | `0...100` / `{ min: 0, max: 100 }` | Defaults to 0.                                                  |
-| `opacityRate`  | `number`            | `2`                                | The rate with which the z-index alters the particle's opacity.  |
-| `velocityRate` | `number`            | `-10`                              | The rate with which the z-index alters the particle's velocity. |
-| `sizeRate`     | `number`            | `5`                                | The rate with which the z-index alters the particle's size.     |
+Controls how particle layering affects opacity, velocity, and size.
+
+## Properties
+
+| Key            | Type               | Example                            | Notes                                    |
+| -------------- | ------------------ | ---------------------------------- | ---------------------------------------- |
+| `value`        | `number` / `range` | `0...100` / `{ min: 0, max: 100 }` | Base z-layer value                       |
+| `opacityRate`  | `number`           | `2`                                | Multiplier applied to opacity by zIndex  |
+| `velocityRate` | `number`           | `-10`                              | Multiplier applied to velocity by zIndex |
+| `sizeRate`     | `number`           | `5`                                | Multiplier applied to size by zIndex     |
+
+## Quick example
+
+```json
+{
+  "zIndex": {
+    "value": {
+      "min": 0,
+      "max": 50
+    },
+    "opacityRate": 1,
+    "velocityRate": -2,
+    "sizeRate": 2
+  }
+}
+```

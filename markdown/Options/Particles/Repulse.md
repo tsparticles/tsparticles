@@ -1,10 +1,29 @@
 # Particles Repulse
 
-| key        | option type         | example                       | notes                                                                                                                                                                             |
-| ---------- | ------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enable`   | `boolean`           | `true` / `false`              |                                                                                                                                                                                   |
-| `distance` | `number`            | `100`                         |                                                                                                                                                                                   |
-| `duration` | `number`            | `2`                           |                                                                                                                                                                                   |
-| `factor`   | `number`            | `1`                           |                                                                                                                                                                                   |
-| `speed`    | `number`            | `100`                         | The rate in seconds at which a particle will disperse <br>from around the cursor at any given time. A <br> `repulse` speed of `0` will result in no effect <br> on the particles. |
-| `value`    | `number` / `object` | `50` / `{ min: 10, max: 50 }` |                                                                                                                                                                                   |
+Configures particle-to-particle repulsion behavior.
+
+## Properties
+
+| Key        | Type               | Example                       | Notes                      |
+| ---------- | ------------------ | ----------------------------- | -------------------------- |
+| `enable`   | `boolean`          | `true` / `false`              | Enables repulse behavior   |
+| `distance` | `number`           | `100`                         | Repulse distance           |
+| `duration` | `number`           | `2`                           | Effect duration in seconds |
+| `factor`   | `number`           | `1`                           | Repulse force multiplier   |
+| `speed`    | `number`           | `100`                         | Displacement speed         |
+| `value`    | `number` / `range` | `50` / `{ min: 10, max: 50 }` | Base repulse intensity     |
+
+## Quick example
+
+```json
+{
+  "repulse": {
+    "enable": true,
+    "distance": 120,
+    "duration": 1.5,
+    "factor": 1,
+    "speed": 80,
+    "value": { "min": 20, "max": 60 }
+  }
+}
+```

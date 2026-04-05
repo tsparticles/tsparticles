@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional line shape.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -73,3 +79,32 @@ import { loadLineShape } from "@tsparticles/shape-line";
   await loadLineShape(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.shape.type: "line"`
+- Shape-specific options key: `particles.shape.options.line`
+
+```json
+{
+  "particles": {
+    "shape": {
+      "type": "line",
+      "options": {
+        "line": {}
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadLineShape(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

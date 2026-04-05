@@ -73,16 +73,23 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
       - [`@tsparticles/wordpress`](#@tsparticles/wordpress)
     - [Elementor](#elementor)
   - [Presets](#presets)
+    - [Ambient](#ambient)
     - [Big Circles](#big-circles)
     - [Bubbles](#bubbles)
     - [Confetti](#confetti)
+    - [Confetti Cannon](#confetti-cannon)
+    - [Confetti Explosions](#confetti-explosions)
+    - [Confetti Falling](#confetti-falling)
+    - [Confetti Parade](#confetti-parade)
     - [Fire](#fire)
     - [Firefly](#firefly)
     - [Fireworks](#fireworks)
     - [Fountain](#fountain)
+    - [Hyperspace](#hyperspace)
     - [Links](#links)
     - [Sea Anemone](#sea-anemone)
     - [Snow](#snow)
+    - [Squares](#squares)
     - [Stars](#stars)
     - [Triangles](#triangles)
   - [Templates and Resources](#templates-and-resources)
@@ -163,17 +170,29 @@ Useful docs for the next step:
 - Migration guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md>
 - Presets catalog: <https://github.com/tsparticles/presets>
 
-Choose your quick-start path:
+## Quick checklist
+
+- Install `@tsparticles/engine` and one bundle (`@tsparticles/slim` is the common default)
+- Load the bundle before calling `tsParticles.load(...)`
+- Start from a small config, then extend incrementally
+
+## Choose your quick-start path
 
 - **I want fewer dependencies**: use `@tsparticles/engine` + only needed feature packages
 - **I want the easiest default**: use `@tsparticles/slim`
 - **I need everything enabled**: use `@tsparticles/all`
 
-Common pitfalls:
+## Common pitfalls
 
 - Loading options that require plugins before loading those plugin packages
 - Starting with very high particle counts before checking FPS
 - Mixing legacy snake_case keys with modern camelCase options
+
+## Related docs
+
+- Main docs: <https://particles.js.org/docs/>
+- Root options guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md>
+- Migration guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md>
 
 ## **_Library installation_**
 
@@ -492,6 +511,16 @@ the `Premium Addons for Elementor` plugin collection.
 There are some presets ready to be used in [this repository](https://github.com/tsparticles/presets), and they also have a bundle file that contains everything
 needed to run.
 
+### Ambient
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-ambient/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-ambient) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-ambient.svg)](https://www.npmjs.com/package/@tsparticles/preset-ambient) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-ambient)](https://www.npmjs.com/package/@tsparticles/preset-ambient)
+
+This preset loads ambient circles on a dark background.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/ambient/images/sample.png)](https://particles.js.org/samples/presets/ambient)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/ambient#readme)
+
 ### Big Circles
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-big-circles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-big-circles.svg)](https://www.npmjs.com/package/@tsparticles/preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-big-circles)](https://www.npmjs.com/package/@tsparticles/preset-big-circles)
@@ -522,6 +551,46 @@ This preset loads white and red confetti launched from the screen center on a tr
 
 You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confetti#readme)
 
+### Confetti Cannon
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-cannon/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-cannon) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-cannon.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-cannon) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-cannon)](https://www.npmjs.com/package/@tsparticles/preset-confetti-cannon)
+
+This preset loads confetti launched from a draggable cannon.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/confettiCannon/images/sample.png)](https://particles.js.org/samples/presets/confettiCannon)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confettiCannon#readme)
+
+### Confetti Explosions
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-explosions/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-explosions) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-explosions.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-explosions) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-explosions)](https://www.npmjs.com/package/@tsparticles/preset-confetti-explosions)
+
+This preset loads confetti bursts at multiple points on the screen.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/confettiExplosions/images/sample.png)](https://particles.js.org/samples/presets/confettiExplosions)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confettiExplosions#readme)
+
+### Confetti Falling
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-falling/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-falling) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-falling.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-falling) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-falling)](https://www.npmjs.com/package/@tsparticles/preset-confetti-falling)
+
+This preset loads slowly falling confetti particles.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/confettiFalling/images/sample.png)](https://particles.js.org/samples/presets/confettiFalling)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confettiFalling#readme)
+
+### Confetti Parade
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-parade/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-parade) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-parade.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-parade) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-parade)](https://www.npmjs.com/package/@tsparticles/preset-confetti-parade)
+
+This preset loads confetti moving horizontally across the screen like a parade.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/confettiParade/images/sample.png)](https://particles.js.org/samples/presets/confettiParade)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confettiParade#readme)
+
 ### Fire
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-fire/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-fire) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-fire.svg)](https://www.npmjs.com/package/@tsparticles/preset-fire) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-fire)](https://www.npmjs.com/package/@tsparticles/preset-fire)
@@ -551,6 +620,16 @@ This preset loads a beautiful fireworks effect.
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
 You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fireworks#readme)
+
+### Hyperspace
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-hyperspace/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-hyperspace) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-hyperspace.svg)](https://www.npmjs.com/package/@tsparticles/preset-hyperspace) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-hyperspace)](https://www.npmjs.com/package/@tsparticles/preset-hyperspace)
+
+This preset loads a hyperspace tunnel effect with fast-moving particles.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/hyperspace/images/sample.png)](https://particles.js.org/samples/presets/hyperspace)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/hyperspace#readme)
 
 ### Fountain
 
@@ -583,6 +662,14 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
 You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/snow#readme)
+
+### Squares
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-squares/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-squares) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-squares.svg)](https://www.npmjs.com/package/@tsparticles/preset-squares) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-squares)](https://www.npmjs.com/package/@tsparticles/preset-squares)
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/squares#readme)
 
 ### Stars
 

@@ -1,99 +1,47 @@
 # Background Mask
 
-- [`composite`](#composite)
-- [`cover`](#cover)
-- [`enable`](#enable)
+Configures masking between particles and the background/cover layer.
 
-## Composite
+## Properties
 
-This property is used to choose the composition mode for the background mask effect.
+| Key         | Type                | Example             | Notes                                                     |
+| ----------- | ------------------- | ------------------- | --------------------------------------------------------- |
+| `enable`    | `boolean`           | `true` / `false`    | Enables background mask mode                              |
+| `composite` | `string`            | `"destination-out"` | Canvas composite operation                                |
+| `cover`     | `string` / `object` | `"#000000"`         | Cover color config, supports {@link IBackgroundMaskCover} |
 
-The default value is `destination-out`, which unveils the background below using drawn elements, any other valid value
-can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
+## Cover properties
 
-## Cover
+| Key       | Type                | Example                                | Notes                                |
+| --------- | ------------------- | -------------------------------------- | ------------------------------------ |
+| `color`   | `string` / `object` | `"#bada55"` / `{ "value": "#bada55" }` | Cover color, supports {@link IColor} |
+| `opacity` | `number`            | `1` / `0.5`                            | Cover alpha, from `0` to `1`         |
 
-The `cover` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used
-in `particles.color` options.
+## Quick examples
 
-The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
-
-- [`color`](#color)
-- [`opacity`](#opacity)
-
-### Color
-
-The `color` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used
-in `particles.color` options.
-
-This color is used to cover the background set in the `background` section on in a below element, if this property is
-not set the cover will be transparent.
-
-#### Samples
-
-<table>
-<tr>
-<td>
-HEX sample
+### Enable default mask behavior
 
 ```json
 {
-  "color": "#bada55"
-}
-```
-
-</td>
-<td>
-HEX IColor sample
-
-```json
-{
-  "color": {
-    "value": "#bada55"
+  "backgroundMask": {
+    "enable": true
   }
 }
 ```
 
-</td>
-<td>
-Rgb sample
+### Custom composite and cover
 
 ```json
 {
-  "color": {
-    "value": {
-      "r": 255,
-      "g": 127,
-      "b": 0
+  "backgroundMask": {
+    "enable": true,
+    "composite": "destination-out",
+    "cover": {
+      "color": {
+        "value": "#111827"
+      },
+      "opacity": 0.9
     }
   }
 }
 ```
-
-</td>
-<td>
-Hsl sample
-
-```json
-{
-  "color": {
-    "h": 180,
-    "s": 100,
-    "l": 50
-  }
-}
-```
-
-</td>
-</tr>
-</table>
-
-### Opacity
-
-The `opacity` property sets the `color` property opacity, so you can set a semi-transparent cover.
-
-This value is by default to `1` and it accepts any value between `0` and `1` included.
-
-## Enable
-
-This property set the background mask mode, this mode enables the `composite` option to all elements drawn.

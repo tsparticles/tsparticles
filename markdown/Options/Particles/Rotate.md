@@ -1,10 +1,31 @@
 # Particles Rotate
 
-| key                | option type        | example                                          | notes                                                                                                                                                                                                                                                                                         |
-| ------------------ | ------------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `direction`        | `string`           | `"clockwise` / `counter-clockwise"` / `"random"` |                                                                                                                                                                                                                                                                                               |
-| `path`             | `boolean`          | `true` / `false`                                 |                                                                                                                                                                                                                                                                                               |
-| `value`            | `number` / `range` | `0` / `{ min: 90, max: 270 }`                    | angle in degrees                                                                                                                                                                                                                                                                              |
-| `animation.enable` | `boolean`          | `true` / `false`                                 |                                                                                                                                                                                                                                                                                               |
-| `animation.speed`  | `number`           | `5`                                              | Rate at which a particle turns expressed in degrees per second                                                                                                                                                                                                                                |
-| `animation.sync`   | `boolean`          | `true` / `false`                                 | When `sync` is toggled `true`, particles generated will rotate in <br> time with each other for their entire duration. However, when `sync` is <br> toggled `false`, particles generated begin turning at the set speed from <br> their time of appearance, but independently of one another. |
+Controls particle rotation angle and rotation animation.
+
+## Properties
+
+| Key                | Type               | Example                                            | Notes                                |
+| ------------------ | ------------------ | -------------------------------------------------- | ------------------------------------ |
+| `direction`        | `string`           | `"clockwise"` / `"counter-clockwise"` / `"random"` | Rotation direction                   |
+| `path`             | `boolean`          | `true` / `false`                                   | Rotates according to movement path   |
+| `value`            | `number` / `range` | `0` / `{ min: 90, max: 270 }`                      | Base angle in degrees                |
+| `animation.enable` | `boolean`          | `true` / `false`                                   | Enables continuous rotation          |
+| `animation.speed`  | `number`           | `5`                                                | Degrees per second                   |
+| `animation.sync`   | `boolean`          | `true` / `false`                                   | `true`: all particles rotate in sync |
+
+## Quick example
+
+```json
+{
+  "rotate": {
+    "value": { "min": 0, "max": 360 },
+    "direction": "random",
+    "path": false,
+    "animation": {
+      "enable": true,
+      "speed": 25,
+      "sync": false
+    }
+  }
+}
+```

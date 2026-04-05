@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) library for simplex noise movement.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -72,3 +78,14 @@ import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
   await loadSimplexNoisePath(tsParticles);
 })();
 ```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSimplexNoisePath(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

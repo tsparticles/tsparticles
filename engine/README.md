@@ -123,6 +123,30 @@ files splitted for `import` syntax.
 just [below](https://github.com/tsparticles/tsparticles/blob/main/README.md#library-installation) to guide you to
 migrate from the old particles.js library.
 
+## Quick checklist
+
+- Install `@tsparticles/engine` and one feature bundle (`@tsparticles/slim` in most projects)
+- Load the selected bundle before calling `tsParticles.load(...)`
+- Start from a minimal config and extend incrementally
+
+## Choose your quick-start path
+
+- **I want fewer dependencies**: use `@tsparticles/engine` + only the packages you need
+- **I want the easiest default**: use `@tsparticles/slim`
+- **I need every feature quickly**: use `@tsparticles/all`
+
+## Common pitfalls
+
+- Loading options requiring plugins before loading those plugin packages
+- Starting with very high particle counts before checking FPS/performance
+- Mixing legacy snake_case keys with modern camelCase options
+
+## Related docs
+
+- Main docs: <https://particles.js.org/docs/>
+- Root options guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md>
+- Migration guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md>
+
 ## **_Library installation_**
 
 ### **_Hosting / CDN_**
