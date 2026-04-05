@@ -72,7 +72,7 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadFireworksPreset(tsParticles)`
 - Changing particle shape to one not included in the bundle without importing the shape package

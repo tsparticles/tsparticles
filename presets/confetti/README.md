@@ -239,7 +239,7 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Forgetting to load the preset before using `preset: "confetti"`
 - Overriding `emitters` with an empty array and expecting default explosion behavior

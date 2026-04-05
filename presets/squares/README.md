@@ -73,7 +73,7 @@ of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadSquaresPreset(tsParticles)`
 - The square shape is part of the bundle; when using engine-only builds, load the shape package separately

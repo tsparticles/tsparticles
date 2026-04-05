@@ -42,6 +42,12 @@ await tsParticles.load({
 });
 ```
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` plus one bundle (`@tsparticles/slim` recommended)
+2. Register the preset loader before `tsParticles.load(...)`
+3. Start from one preset and then merge your custom options
+
 ## Choose your quick-start path
 
 - **I want the smallest setup first**: use `@tsparticles/slim` + one preset package
@@ -60,9 +66,14 @@ If you already have a config and only want a color direction, use a palette.
 
 | Preset | Package | Demo | README |
 | --- | --- | --- | --- |
+| Ambient | `@tsparticles/preset-ambient` | <https://particles.js.org/samples/presets/ambient> | <https://github.com/tsparticles/presets/blob/main/presets/ambient/README.md> |
 | Big Circles | `@tsparticles/preset-big-circles` | <https://particles.js.org/samples/presets/bigCircles> | <https://github.com/tsparticles/presets/blob/main/presets/bigCircles/README.md> |
 | Bubbles | `@tsparticles/preset-bubbles` | <https://particles.js.org/samples/presets/bubbles> | <https://github.com/tsparticles/presets/blob/main/presets/bubbles/README.md> |
 | Confetti | `@tsparticles/preset-confetti` | <https://particles.js.org/samples/presets/confetti> | <https://github.com/tsparticles/presets/blob/main/presets/confetti/README.md> |
+| Confetti Cannon | `@tsparticles/preset-confetti-cannon` | <https://particles.js.org/samples/presets/confettiCannon> | <https://github.com/tsparticles/presets/blob/main/presets/confettiCannon/README.md> |
+| Confetti Explosions | `@tsparticles/preset-confetti-explosions` | <https://particles.js.org/samples/presets/confettiExplosions> | <https://github.com/tsparticles/presets/blob/main/presets/confettiExplosions/README.md> |
+| Confetti Falling | `@tsparticles/preset-confetti-falling` | <https://particles.js.org/samples/presets/confettiFalling> | <https://github.com/tsparticles/presets/blob/main/presets/confettiFalling/README.md> |
+| Confetti Parade | `@tsparticles/preset-confetti-parade` | <https://particles.js.org/samples/presets/confettiParade> | <https://github.com/tsparticles/presets/blob/main/presets/confettiParade/README.md> |
 | Fire | `@tsparticles/preset-fire` | <https://particles.js.org/samples/presets/fire> | <https://github.com/tsparticles/presets/blob/main/presets/fire/README.md> |
 | Firefly | `@tsparticles/preset-firefly` | <https://particles.js.org/samples/presets/firefly> | <https://github.com/tsparticles/presets/blob/main/presets/firefly/README.md> |
 | Fireworks | `@tsparticles/preset-fireworks` | <https://particles.js.org/samples/presets/fireworks> | <https://github.com/tsparticles/presets/blob/main/presets/fireworks/README.md> |
@@ -70,8 +81,8 @@ If you already have a config and only want a color direction, use a palette.
 | Hyperspace | `@tsparticles/preset-hyperspace` | <https://particles.js.org/samples/presets/hyperspace> | <https://github.com/tsparticles/presets/blob/main/presets/hyperspace/README.md> |
 | Links | `@tsparticles/preset-links` | <https://particles.js.org/samples/presets/links> | <https://github.com/tsparticles/presets/blob/main/presets/links/README.md> |
 | Sea Anemone | `@tsparticles/preset-sea-anemone` | <https://particles.js.org/samples/presets/seaAnemone> | <https://github.com/tsparticles/presets/blob/main/presets/seaAnemone/README.md> |
-| Squares | `@tsparticles/preset-squares` | <https://particles.js.org/samples/presets/squares> | <https://github.com/tsparticles/presets/blob/main/presets/squares/README.md> |
 | Snow | `@tsparticles/preset-snow` | <https://particles.js.org/samples/presets/snow> | <https://github.com/tsparticles/presets/blob/main/presets/snow/README.md> |
+| Squares | `@tsparticles/preset-squares` | <https://particles.js.org/samples/presets/squares> | <https://github.com/tsparticles/presets/blob/main/presets/squares/README.md> |
 | Stars | `@tsparticles/preset-stars` | <https://particles.js.org/samples/presets/stars> | <https://github.com/tsparticles/presets/blob/main/presets/stars/README.md> |
 | Triangles | `@tsparticles/preset-triangles` | <https://particles.js.org/samples/presets/triangles> | <https://github.com/tsparticles/presets/blob/main/presets/triangles/README.md> |
 
@@ -97,6 +108,12 @@ General guides:
 - Use the same `id` value in your HTML container and load call
 - Do not assume every preset is included in every bundle; import the specific preset package
 - Start from a single preset, then merge custom options incrementally
+
+## Related docs
+
+- Main docs: <https://particles.js.org/docs/>
+- Main tsParticles repository: <https://github.com/tsparticles/tsparticles>
+- Presets samples: <https://particles.js.org/samples/presets/>
 
 ## Support
 

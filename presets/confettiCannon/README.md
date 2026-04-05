@@ -70,7 +70,7 @@ of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadConfettiCannonPreset(engine)`
 - Overriding `emitters` with an empty array and expecting default cannon behavior

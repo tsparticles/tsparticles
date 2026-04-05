@@ -2,7 +2,7 @@
 
 # tsParticles Sea Anemone Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-sea-anemone.svg)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-sea-anemone)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-sea-anemone) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-sea-anemone.svg)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-sea-anemone)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) preset for creating a beautiful sea anemone like effect with
 particles spawned in the canvas center.
@@ -74,7 +74,7 @@ of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadSeaAnemonePreset(tsParticles)`
 - Changing particle shape without loading the corresponding shape package

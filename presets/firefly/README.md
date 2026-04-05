@@ -73,7 +73,7 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
-### Common pitfalls
+## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadFireflyPreset(tsParticles)`
 - The effect relies on mouse movement; on touch-only devices it may not appear without additional interaction setup

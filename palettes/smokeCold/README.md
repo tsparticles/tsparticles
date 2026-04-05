@@ -12,6 +12,12 @@
 
 ## Colors
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -64,6 +70,16 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSmokeColdPalette(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- Presets and palettes catalog: <https://github.com/tsparticles/presets>
+- Main docs: <https://particles.js.org/docs/>
 ---
 
 ```mermaid
