@@ -10,6 +10,10 @@
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
+## Sample
+
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/palettes/shockwave/images/sample.png)](https://particles.js.org/samples/palettes/shockwave)
+
 ## Colors
 
 ## Quick checklist
