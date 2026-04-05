@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional rounded rectangle shape.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -73,3 +79,32 @@ import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
   await loadRoundedRectShape(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.shape.type: "rounded-rect"`
+- Shape-specific options key: `particles.shape.options.rounded-rect`
+
+```json
+{
+  "particles": {
+    "shape": {
+      "type": "rounded-rect",
+      "options": {
+        "rounded-rect": {}
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadRoundedRectShape(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

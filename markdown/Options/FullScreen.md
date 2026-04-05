@@ -1,17 +1,79 @@
 # Full Screen
 
-- [`enable`](#enable)
-- [`zIndex`](#Z-Index)
+Controls whether the particles canvas covers the full viewport and its stacking order.
 
-## Enable
+## Properties
 
-This property sets the canvas to a full window size acting like a background, the most common configuration. The default
-value is `true`, so the canvas will be full screen acting like an animated background.
+| Key      | Type      | Default | Notes                                                               |
+| -------- | --------- | ------- | ------------------------------------------------------------------- |
+| `enable` | `boolean` | `true`  | Sets canvas to full viewport size, acting as an animated background |
+| `zIndex` | `number`  | `0`     | CSS `z-index` applied to the canvas element                         |
 
-This is really helpful since there's no need to write CSS code to have a full size tsParticles instance.
+## enable
 
-## Z-Index
+When `true`, tsParticles sets the canvas `position`, `width`, and `height` automatically to cover the full window — no CSS needed.
 
-This is the CSS `z-index` property set to the canvas, the default value is `0`.
+```json
+{
+  "fullScreen": {
+    "enable": true
+  }
+}
+```
 
-If the `z-index` is less than `0` the mouse interactions works only with the `interactivity.detectsOn` set to `window`.
+Set to `false` when you want the canvas to stay inside a specific container element and inherit its dimensions.
+
+## zIndex
+
+Controls whether the canvas appears in front of or behind page content.
+
+```json
+{
+  "fullScreen": {
+    "enable": true,
+    "zIndex": -1
+  }
+}
+```
+
+With `zIndex: -1` the canvas is behind all page content.  
+If you use a negative `zIndex`, set `interactivity.detectsOn` to `"window"` so mouse events still reach the canvas.
+
+## Quick examples
+
+### Fullscreen background (most common)
+
+```json
+{
+  "fullScreen": {
+    "enable": true,
+    "zIndex": -1
+  },
+  "interactivity": {
+    "detectsOn": "window"
+  }
+}
+```
+
+### Contained canvas (inside a div)
+
+```json
+{
+  "fullScreen": {
+    "enable": false
+  }
+}
+```
+
+Then size and position the container `<div>` via CSS.
+
+## Common pitfalls
+
+- Setting `zIndex: -1` but keeping `detectsOn: "canvas"` — mouse events will not reach the canvas because it is behind other elements
+- Using `fullScreen: false` without giving the target element explicit dimensions — the canvas will have zero size
+- Using `fullScreen: true` inside a small container `<div>` — the canvas will still expand to full viewport
+
+## Related docs
+
+- Interactivity (detectsOn): [Interactivity](./Interactivity.md)
+- Options root: [Options](../Options.md)

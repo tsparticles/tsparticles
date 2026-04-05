@@ -3,6 +3,7 @@
   "name": "@tsparticles/workspace",
   "description": "tsParticles monorepository",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "slimbuild": "pnpm run prettify:readme && nx run-many -t build --parallel=50%",
     "slimbuild:ci": "pnpm run prettify:ci:readme && nx run-many -t build:ci",
@@ -23,6 +24,8 @@
     "publish:v3": "lerna publish from-package --dist-tag v3",
     "publish:v2": "lerna publish from-package --dist-tag v2",
     "publish:v1": "lerna publish from-package --dist-tag v1",
+    "release:zip-artifacts": "node scripts/package-zips.js",
+    "release:prettify-changelog": "node scripts/prettify-changelog.js",
     "deploy:docs:json": "node deploy.docs-json.js",
     "prepare": "husky"
   },

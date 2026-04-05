@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for repulse effect between particles.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -78,3 +84,28 @@ import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-partic
   await loadParticlesRepulseInteraction(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.repulse`
+
+```json
+{
+  "particles": {
+    "repulse": {
+      "enable": true
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadInteractivityPlugin(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

@@ -1,9 +1,33 @@
 # Particles Twinkle
 
-| key                   | option type    | example          | notes                                                                                                                          |
-| --------------------- | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `particles.enable`    | `boolean`      | `true` / `false` |                                                                                                                                |
-| `particles.color`     | `color object` |                  | This `color` object is the same described here {@link IColor}, this value is optional                                          |
-| `particles.frequency` | `number`       | `0...1`          | This value will be the comparison to `Math.random()` call, if the random value is greater the twinkle effect will be displayed |
-| `particles.opacity`   | `number`       | `0...1`          |                                                                                                                                |
-| `lines`               | `object`       |                  | The same values of `particles` but applied to linked lines                                                                     |
+Adds random blinking effects to particles and links.
+
+## Properties
+
+| Key                   | Type           | Example          | Notes                                            |
+| --------------------- | -------------- | ---------------- | ------------------------------------------------ |
+| `particles.enable`    | `boolean`      | `true` / `false` | Enables particle twinkle                         |
+| `particles.color`     | `color object` |                  | Optional twinkle color, see {@link IColor}       |
+| `particles.frequency` | `number`       | `0...1`          | Probability threshold for twinkle per frame      |
+| `particles.opacity`   | `number`       | `0...1`          | Twinkle opacity                                  |
+| `lines`               | `object`       |                  | Same properties as `particles`, applied to links |
+
+## Quick example
+
+```json
+{
+  "twinkle": {
+    "particles": {
+      "enable": true,
+      "frequency": 0.05,
+      "opacity": 1,
+      "color": {
+        "value": "#ffffff"
+      }
+    },
+    "lines": {
+      "enable": false
+    }
+  }
+}
+```

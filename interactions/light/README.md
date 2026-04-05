@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for light effect.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadInteractivityPlugin(tsParticles)` and `loadLightInteraction(tsParticles)` before `tsParticles.load(...)`
+3. Enable `"light"` in interactivity events and configure `interactivity.modes.light`
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -77,3 +83,57 @@ import { loadLightInteraction } from "@tsparticles/interaction-light";
   await loadLightInteraction(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Event mode key: `interactivity.events.onHover.mode` or `interactivity.events.onClick.mode` with value `"light"`
+- Mode options key: `interactivity.modes.light`
+
+### `interactivity.modes.light` properties
+
+| Key                   | Type     | Default     | Notes                    |
+| --------------------- | -------- | ----------- | ------------------------ |
+| `area.radius`         | `number` | `1000`      | Light interaction radius |
+| `area.gradient.start` | `color`  |             | Gradient start color     |
+| `area.gradient.stop`  | `color`  |             | Gradient stop color      |
+| `shadow.color`        | `color`  | `"#000000"` | Shadow/tint color        |
+| `shadow.length`       | `number` | `2000`      | Shadow projection length |
+
+```json
+{
+  "interactivity": {
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "light"
+      }
+    },
+    "modes": {
+      "light": {
+        "area": {
+          "radius": 700,
+          "gradient": {
+            "start": "#ffffff",
+            "stop": "#000000"
+          }
+        },
+        "shadow": {
+          "color": "#000000",
+          "length": 1400
+        }
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before both `loadInteractivityPlugin(...)` and `loadLightInteraction(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

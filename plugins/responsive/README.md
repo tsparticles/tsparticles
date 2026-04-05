@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) plugin for handling responsive feature.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -72,3 +78,24 @@ import { loadResponsivePlugin } from "@tsparticles/plugin-responsive";
   await loadResponsivePlugin(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `responsive`
+
+```json
+{
+  "responsive": {}
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadResponsivePlugin(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

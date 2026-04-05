@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional rounded polygon shape.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -74,3 +80,32 @@ import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
   await loadRoundedPolygonShape(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.shape.type: "rounded-polygon"`
+- Shape-specific options key: `particles.shape.options.rounded-polygon`
+
+```json
+{
+  "particles": {
+    "shape": {
+      "type": "rounded-polygon",
+      "options": {
+        "rounded-polygon": {}
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadRoundedPolygonShape(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

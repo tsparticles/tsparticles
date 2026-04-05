@@ -1,23 +1,64 @@
 # Interactivity
 
-- [detectsOn](#detects-on)
-- [events](#events)
-- [modes](#modes)
+Controls how tsParticles responds to mouse and touch interactions.
 
-## Detects On
+## Properties
 
-This property is used to determine which HTML element should catch mouse interaction.
+| Key         | Type     | Notes                                                                                           |
+| ----------- | -------- | ----------------------------------------------------------------------------------------------- |
+| `detectsOn` | `string` | Which element catches interactions; see below                                                   |
+| `events`    | `object` | Which events are enabled and which modes they trigger — see [Events](./Interactivity/Events.md) |
+| `modes`     | `object` | Fine-tuning parameters for each mode — see [Modes](./Interactivity/Modes.md)                    |
 
-The valid values are:
+## detectsOn
 
-- `"canvas"`: Only the particles canvas will be targeted
-- `"parent"`: Only the particles canvas parent will be targeted
-- `"window"`: The full window will be targeted, this will work perfectly with a negative z-index positioned canvas
+Determines which HTML element listens for mouse/touch events.
 
-## Events
+| Value      | Behavior                                                             |
+| ---------- | -------------------------------------------------------------------- |
+| `"canvas"` | Only the particles canvas is targeted                                |
+| `"parent"` | The canvas parent element is targeted                                |
+| `"window"` | The full window is targeted — works with negative `z-index` canvases |
 
-See Events documentation {@link IEvents | here}
+Use `"window"` when the canvas is positioned behind page content (e.g. as a background layer with `z-index: -1`).
 
-## Modes
+## Quick example
 
-See Modes documentation {@link IModes | here}
+```json
+{
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "onClick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "repulse": {
+        "distance": 150
+      },
+      "push": {
+        "quantity": 4
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Using `detectsOn: "canvas"` when the canvas is behind page content — hover/click events won't fire; use `"window"` instead
+- Enabling a mode in `events` but not configuring its options in `modes`
+- Forgetting to load interaction plugins (`@tsparticles/slim` or higher) for modes like `bubble`, `connect`, `grab`
+
+## Related docs
+
+- Events: [Events](./Interactivity/Events.md)
+- Modes: [Modes](./Interactivity/Modes.md)
+- Options root: [Options](../Options.md)

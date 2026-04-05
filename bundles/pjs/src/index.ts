@@ -10,17 +10,17 @@ declare const __VERSION__: string;
 
 declare global {
   /**
-   * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+   * @deprecated this method is obsolete, please use the new `tsParticles.load`
    * The particles.js compatibility object
    */
   var Particles: typeof MBParticles,
     /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
+     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
      * The particles.js compatibility dom array
      */
     pJSDom: Container[],
     /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+     * @deprecated this method is obsolete, please use the new `tsParticles.load`
      * The particles.js compatibility instance
      */
     particlesJS: IParticlesJS;

@@ -56,6 +56,12 @@ bf --> p
 bf --> u
 ```
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -137,3 +143,14 @@ The `fireworks` has only a single `options` object parameter, with the following
 - `sounds` Boolean: Whether to play sounds or not.
 - `speed` Number or { min: number; max: number; }: The speed of the fireworks particles.
 - `splitCount` Number or { min: number; max: number; }: The number of particles to split the emitter in.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `package loader(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

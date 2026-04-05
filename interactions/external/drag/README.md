@@ -9,6 +9,12 @@
 [tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for dragging particles across the canvas
 with the mouse/pointer.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -86,3 +92,35 @@ import { loadExternalDragInteraction } from "@tsparticles/interaction-external-d
   await loadExternalDragInteraction(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Event mode key: `interactivity.events.onHover.mode` or `interactivity.events.onClick.mode` with value `"drag"`
+- Mode options key: `interactivity.modes.drag`
+
+```json
+{
+  "interactivity": {
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "drag"
+      }
+    },
+    "modes": {
+      "drag": {}
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadInteractivityPlugin(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

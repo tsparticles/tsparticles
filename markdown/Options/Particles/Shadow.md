@@ -1,9 +1,31 @@
 # Particles Shadow
 
-| key        | option type    | example          | notes                                                          |
-| ---------- | -------------- | ---------------- | -------------------------------------------------------------- |
-| `blur`     | `number`       | `4`              |                                                                |
-| `color`    | `color object` |                  | This `color` object is the same described here {@links IColor} |
-| `enable`   | `boolean`      | `true` / `false` |                                                                |
-| `offset.x` | `number`       | `10`             |                                                                |
-| `offset.y` | `number`       | `10`             |                                                                |
+Adds a canvas shadow behind each particle.
+
+## Properties
+
+| Key        | Type           | Example          | Notes                            |
+| ---------- | -------------- | ---------------- | -------------------------------- |
+| `enable`   | `boolean`      | `true` / `false` | Enables particle shadow          |
+| `blur`     | `number`       | `4`              | Blur radius                      |
+| `color`    | `color object` |                  | Shadow color, see {@link IColor} |
+| `offset.x` | `number`       | `10`             | Horizontal offset                |
+| `offset.y` | `number`       | `10`             | Vertical offset                  |
+
+## Quick example
+
+```json
+{
+  "shadow": {
+    "enable": true,
+    "blur": 8,
+    "color": {
+      "value": "#60a5fa"
+    },
+    "offset": {
+      "x": 2,
+      "y": 2
+    }
+  }
+}
+```

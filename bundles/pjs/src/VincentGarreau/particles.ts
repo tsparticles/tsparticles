@@ -119,13 +119,13 @@ const defaultMinOpacity = 0,
     engine: InteractivityEngine,
   ): {
     /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
+     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
      * The particles.js compatibility dom array
      */
     pJSDom: Container[];
 
     /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+     * @deprecated this method is obsolete, please use the new `tsParticles.load`
      * The particles.js compatibility instance
      */
     particlesJS: IParticlesJS;
@@ -314,7 +314,7 @@ const defaultMinOpacity = 0,
 
     /**
      * All the {@link Container} objects loaded
-     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
+     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
      */
     const pJSDom = engine.items;
 

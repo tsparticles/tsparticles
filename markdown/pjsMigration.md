@@ -1,89 +1,72 @@
 # Migrating from Particles.js
 
-tsParticles is fully compatible with Particles.js and the migration is really easy to do.
+tsParticles is compatible with particles.js, and migration can be done in a few steps.
 
-Let's checkout your possible HTML code.
+## Quick checklist
 
-## Simple solution
+1. Replace `particles.min.js` with `tsparticles.min.js`
+2. Update canvas CSS class names (`particles-js` -> `tsparticles`)
+3. Replace `particlesJS(...)` APIs with `tsParticles.load(...)`
+4. Gradually migrate deprecated options (`snake_case` -> `camelCase`)
 
-You should have something like the following code
+## 1) Migrate script and CSS
 
 ```html
 <script src="particles.min.js"></script>
 ```
 
-Well to migrate from particles.js to tsParticles all you have to do is replace that to this
+becomes:
 
 ```html
 <script src="tsparticles.min.js"></script>
 ```
 
-If you have customized the css like this:
+If you had custom CSS on the canvas:
 
 ```css
 .particles-js-canvas-element {
-  /* your awesome CSS code */
+  /* custom CSS */
 }
 ```
 
-You have to change it like this
+becomes:
 
 ```css
 .tsparticles-canvas-element {
-  /* your awesome CSS code */
+  /* custom CSS */
 }
 ```
 
-And you're done. Easy isn't it?
+## 2) Migrate JavaScript API
 
-## Advanced solution
+### Quick mapping
 
-Probably you noticed some warnings in the console. Well yes, it's really easy doing the migration but new features requires new configs and bug fixes can mess up some things.
+| particles.js                               | tsParticles                                    |
+| ------------------------------------------ | ---------------------------------------------- |
+| `particlesJS("id", options)`               | `tsParticles.load({ id: "id", options })`      |
+| `particlesJS.load("id", "path", callback)` | `tsParticles.loadJSON("id", "path").then(...)` |
 
-If you're not familiar with Javascript don't worry, you can skip this part and keep the warnings, everything will work fine.
+### Practical example
 
-If you care about console warnings well you are in the right place.
+Before:
 
-The particlesJS identifier is now obsolete, well the library has a new name so it changed.
-
-Now let's checkout the Javascript code, you should have something like this
-
-```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load("particles-js", "assets/particles.json", function () {
+```js
+particlesJS.load("particles-js", "assets/particles.json", () => {
   console.log("callback - particles.js config loaded");
 });
 ```
 
-or something like this
+After:
 
-```javascript
-particlesJS("particles-js", {
-  /* your options here */
+```js
+tsParticles.loadJSON("tsparticles", "assets/particles.json").then(container => {
+  console.log("callback - tsParticles config loaded", container);
 });
 ```
 
-All you have to do to use the new identifiers it replacing the function
+Or with inline options:
 
-`particlesJS()` into `tsParticles.load()`
-
-or the function
-
-`particlesJS.load()` into `tsParticles.loadJSON()`
-
-**Warning here, the `loadJSON` doesn't have a third parameter, if you need a callback use the `then` function.**
-
-Still really simple.
-
-Let's convert the sample provided above to understand
-
-```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-tsParticles.loadJSON("particles-js", "assets/particles.json").then(function (p) {
-  // p is the loaded container, for using it later
-  console.log("callback - particles.js config loaded");
-});
-
+```js
 tsParticles.load({
   id: "tsparticles",
   options: {
@@ -92,16 +75,26 @@ tsParticles.load({
 });
 ```
 
-But probably you noticed that your warnings are still there, well the options are changed too but like the identifier this is not an issue.
+Note: `loadJSON` does not use callback as a third parameter; use `then(...)`.
 
-## Transforming Options
+## 3) Update options
 
-Let's checkout the options warning. They suggest you to change the old property in the newer one.
+Many legacy options still work, but updating them is recommended:
 
-The changed properties still continues to work, but they will be dropped probably for new features.
+- `line_linked` -> `links`
+- `retina_detect` -> `detectRetina`
+- in general, `snake_case` -> `camelCase`
 
-If you find a property with a `_` in the name, that property was renamed. We can take `line_linked` property as sample. It's renamed `lineLinked` now.
+If you see console warnings, use them as a guide to update your configuration file.
 
-Boom. Another warning gone!
+## Common migration pitfalls
 
-Checkout warnings for finding all other properties renamed.
+- Updating script names but keeping old DOM ids/classes in templates
+- Migrating API calls but forgetting to convert option keys to camelCase
+- Using `loadJSON` with a callback argument instead of `then(...)`
+- Applying too many config changes at once instead of migrating incrementally
+
+## 4) Next step
+
+- Root options and config structure: [Options](./Options.md)
+- Ready-to-use presets: <https://github.com/tsparticles/presets>

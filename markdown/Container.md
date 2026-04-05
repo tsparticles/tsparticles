@@ -1,30 +1,63 @@
 # Particles Container
 
-The {@link Container} class is the manager of the entire tsParticles instance. If you get the result of {@link Engine.load | tsParticles.load} the result it's this class, in the {@link Engine.loadJSON | tsParticles.loadJSON} is the `then` parameter.
+The {@link Container} class is the runtime manager of a single tsParticles instance.
 
-Otherwise you can retrieve any loaded instance using {@link Engine.items | tsParticles.items} or {@link Engine.item | tsParticles.item(index)}.
+You usually get a container from:
 
-## Properties
+- {@link Engine.load | tsParticles.load}
+- {@link Engine.loadJSON | tsParticles.loadJSON} (`then(container => ...)`)
 
-{@link Container.id}: the {@link Container} id, normally is the related DOM element {@link Container.id} attribute. It's set by {@link Engine.load | tsParticles.load()} and {@link Engine.loadJSON | tsParticles.loadJSON()}.
+You can also access loaded instances with:
 
-{@link Container.options}: Where to find the current options loaded. Changing this options while playing can result in an unexpected behavior. A {@link refresh | refresh()} after the change is the best thing to do.<br />
-{@link Container.sourceOptions}: The options used when the {@link Container} was created, these options will be used only in the constructor.
+- {@link Engine.items | tsParticles.items}
+- {@link Engine.item | tsParticles.item(index)}
 
-{@link Container.particles}: The particles manager, you can add/remove particles from here.
+## Quick runtime example
 
-## Methods
+```json
+{
+  "id": "tsparticles",
+  "options": {
+    "particles": {
+      "move": {
+        "enable": true
+      }
+    }
+  }
+}
+```
 
-{@link Container.play | play()}: Used to resume the animations, can be stopped using {@link pause | pause()}.<br />
-{@link Container.pause | pause()}: Used to pause the animations, can be restarted using {@link play | play()}.
+After loading this configuration, you can control the container with `pause()` and `play()`.
 
-{@link Container.destroy | destroy()}: Prepare the instance to destruction, you won't retrieve this instance anymore. Only if you have a variable set with it.
+## Main properties
 
-{@link Container.exportImage | exportImage(callback, type?, quality?)}: Exports an image of the canvas (without the background property if set), type and quality are optional and are the image output type and quality.<br />
-{@link Container.exportConfiguration | exportConfiguration()}: Exports the current configuration in JSON, returns a string
+- {@link Container.id}: container id, usually matching the target DOM element id
+- {@link Container.options}: current live options
+- {@link Container.sourceOptions}: original options used during construction
+- {@link Container.particles}: particles manager (add/remove and runtime operations)
 
-{@link Container.start | start()}: Starts the container, it's different from {@link play | play()}, this will reload everything.<br />
-{@link Container.stop | stop()}: Stops the container, it's different from {@link pause | pause()}, this will clean up what need to be reloaded.<br />
-{@link Container.refresh | refresh()}: Restarts the container, just a {@link stop | stop()}/{@link start | start()} shortcut.
+If you mutate `container.options` at runtime, call {@link Container.refresh | refresh()} to apply changes consistently.
 
-{@link Container.loadTheme | loadTheme(name)}: Sets the specified theme reloading options, if name is `undefined` the default theme will be used (if set)
+## Main methods
+
+- {@link Container.play | play()}: resume animation
+- {@link Container.pause | pause()}: pause animation
+- {@link Container.start | start()}: (re)start container with full initialization
+- {@link Container.stop | stop()}: stop and cleanup runtime resources
+- {@link Container.refresh | refresh()}: shortcut for `stop()` + `start()`
+- {@link Container.destroy | destroy()}: destroy instance and release resources
+
+## Export methods
+
+- {@link Container.exportImage | exportImage(callback, type?, quality?)}: export the canvas image (without configured background)
+- {@link Container.exportConfiguration | exportConfiguration()}: export current config as JSON string
+
+## Themes
+
+- {@link Container.loadTheme | loadTheme(name)}: apply a theme and reload options
+- If `name` is `undefined`, the default theme is used (if configured)
+
+## Related docs
+
+- Options reference map: [Options](./Options.md)
+- Color formats: [Color](./Color.md)

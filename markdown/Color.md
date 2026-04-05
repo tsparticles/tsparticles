@@ -1,122 +1,158 @@
 # Colors
 
-**tsParticles** colors can have a lot of values and every color (except {@link IParticlesOptions.color | particles color}) in options can accept all of these values.
+This page explains all color formats accepted by tsParticles options.
 
-All `color` properties accepts `string`s and `object`s. The color `object` has a single property: `value`.
+Most color fields accept either:
 
-Let's explore all valid values.
+- a `string`
+- an object with a `value` property
 
-## Strings
+Note: particle base color has additional behaviors, see {@link IParticlesOptions.color}.
 
-### hex short syntax
+## Quick examples
 
-```javascript
-color: "#fff";
-```
-
-### hex full syntax
-
-```javascript
-color: "#ffffff";
-```
-
-### rgb syntax
-
-_alpha will be ignored, there are `opacity` values for that_
-
-```javascript
-color: "rgb(255, 255, 255)";
-```
-
-### hsl syntax
-
-_alpha will be ignored, there are `opacity` values for that_
-
-```javascript
-color: "hsl(0, 100%, 100%)";
-```
-
-### hsv syntax
-
-_alpha will be ignored, there are `opacity` values for that_
-
-```javascript
-color: "hsv(0°, 100%, 100%)";
-```
-
-### random
-
-```javascript
-random: "random"; // a random color will be picked
-```
-
-That's the easier part, now we go deeper.
-
----
-
-## Color Object
-
-### strings, again
-
-```javascript
-color: {
-  value: "#fff"; // I won't repeat myself, all the string values above will be valid here too
-}
-```
-
-### rgb object
-
-```javascript
-color: {
-  value: {
-    r: 255,
-    g: 255,
-    b: 255
+```json
+{
+  "particles": {
+    "color": {
+      "value": "#ffffff"
+    },
+    "links": {
+      "color": "#4f46e5"
+    }
   }
 }
 ```
 
-### hsl object
-
-```javascript
-color: {
-  value: {
-    h: 0,
-    s: 100,
-    l: 100
+```json
+{
+  "background": {
+    "color": {
+      "value": "rgb(15, 23, 42)"
+    }
   }
 }
 ```
 
-### hsv object
+## String formats
 
-```javascript
-color: {
-  value: {
-    h: 0,
-    s: 100,
-    v: 100
+### Hex (short)
+
+```json
+"#fff"
+```
+
+### Hex (full)
+
+```json
+"#ffffff"
+```
+
+### RGB
+
+Alpha in color strings is ignored; use dedicated opacity options.
+
+```json
+"rgb(255, 255, 255)"
+```
+
+### HSL
+
+Alpha in color strings is ignored; use dedicated opacity options.
+
+```json
+"hsl(0, 100%, 100%)"
+```
+
+### HSV
+
+Alpha in color strings is ignored; use dedicated opacity options.
+
+```json
+"hsv(0, 100%, 100%)"
+```
+
+### Random
+
+```json
+"random"
+```
+
+## Object formats
+
+### String value
+
+```json
+{
+  "value": "#fff"
+}
+```
+
+### RGB object
+
+```json
+{
+  "value": {
+    "r": 255,
+    "g": 255,
+    "b": 255
   }
 }
 ```
 
-### rgb/hsl nested object
+### HSL object
 
-```javascript
-color: {
-  value: {
-    rgb: { r: 255, g: 255, b: 255 } // inlined for brevity, it's the same rgb object as above
-    hsl: { h: 0, s: 100, l: 100 } // inlined for brevity, it's the same hsl object as above
+```json
+{
+  "value": {
+    "h": 0,
+    "s": 100,
+    "l": 100
   }
 }
 ```
 
-_if `rgb` and `hsl` properties are set together only `rgb` will be used_
+### HSV object
 
----
+```json
+{
+  "value": {
+    "h": 0,
+    "s": 100,
+    "v": 100
+  }
+}
+```
+
+### Mixed object (`rgb` and `hsl`)
+
+```json
+{
+  "value": {
+    "rgb": {
+      "r": 255,
+      "g": 255,
+      "b": 255
+    },
+    "hsl": {
+      "h": 0,
+      "s": 100,
+      "l": 100
+    }
+  }
+}
+```
+
+If both `rgb` and `hsl` are provided, `rgb` is used.
 
 ## Multiple colors
 
-Every `color.value` property accepts a mixed array of its values, but be careful, the color will be random picked.
+`color.value` can be an array of mixed valid values; one is picked randomly.
 
-For some objects this behavior will work fine, other objects like `links` are runtime generated and will have a different color every frame.
+This works well for most elements, but runtime-generated entities (like some `links`) can produce frequent color
+changes.
+
+## Related docs
+
+- Root options: [Options](./Options.md)
+- Container runtime API: [Container](./Container.md)

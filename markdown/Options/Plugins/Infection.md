@@ -1,19 +1,47 @@
 # Infection
 
-| key          | option type | example          | notes                                                                               |
-| ------------ | ----------- | ---------------- | ----------------------------------------------------------------------------------- |
-| `cure`       | `boolean`   | `true` / `false` | if the infection can be cured, bringing back the particle to its normal state       |
-| `delay`      | `number`    | `1`              | the "symptoms" delay, after how many seconds the infected particle change its state |
-| `enable`     | `boolean`   | `true` / `false` |                                                                                     |
-| `infections` | `number`    | `1`              | how many particles are infected at startup                                          |
-| `stages`     | `array`     |                  |                                                                                     |
+Configures infection-like propagation between particles.
 
-## Infection Stage
+## Properties
 
-| key             | option type    | example | notes                                                                               |
-| --------------- | -------------- | ------- | ----------------------------------------------------------------------------------- |
-| `color`         | `color object` |         | This `color` object is the same described here {@link IColor}                       |
-| `radius`        | `number`       | `1`     | an outer radius for spreading the infection without touch                           |
-| `rate`          | `number`       | `1`     | chances of infecting other particles                                                |
-| `duration`      | `number`       | `1`     | how many seconds does the stage should last                                         |
-| `infectedStage` | `number`       | `0`     | which stage should be set when a particle will be infected by another at this stage |
+| Key          | Type      | Example          | Notes                                   |
+| ------------ | --------- | ---------------- | --------------------------------------- |
+| `enable`     | `boolean` | `true` / `false` | Enables infection mode                  |
+| `infections` | `number`  | `1`              | Number of particles infected at startup |
+| `delay`      | `number`  | `1`              | Delay in seconds before symptoms apply  |
+| `cure`       | `boolean` | `true` / `false` | If infected particles can recover       |
+| `stages`     | `array`   |                  | Infection stages sequence               |
+
+## Infection stage properties
+
+| Key             | Type           | Example | Notes                                   |
+| --------------- | -------------- | ------- | --------------------------------------- |
+| `color`         | `color object` |         | Stage color, see {@link IColor}         |
+| `radius`        | `number`       | `1`     | Infection spread radius                 |
+| `rate`          | `number`       | `1`     | Infection chance multiplier             |
+| `duration`      | `number`       | `1`     | Stage duration in seconds               |
+| `infectedStage` | `number`       | `0`     | Next stage index for infected particles |
+
+## Quick example
+
+```json
+{
+  "infection": {
+    "enable": true,
+    "infections": 2,
+    "delay": 0.5,
+    "cure": true,
+    "stages": [
+      {
+        "color": {
+          "value": "#22c55e"
+        },
+        "radius": 1,
+        "rate": 0.3,
+        "duration": 2,
+        "infectedStage": 0
+      }
+    ]
+  }
+}
+```

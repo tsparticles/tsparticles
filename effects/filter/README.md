@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional filter effect.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -80,3 +86,20 @@ As specified in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/
 filter is not enabled by default in Safari (and Safari for iOS).
 
 It can be enabled in the browser settings, so be careful with this effect if the target user could use Apple Devices.
+
+## Option mapping
+
+- Effects are usually enabled through dedicated package loaders and effect-specific options.
+- Package scope: `filter`
+- Start from the usage snippet in this README, then merge with your main options object incrementally.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadFilterEffect(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>

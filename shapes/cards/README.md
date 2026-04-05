@@ -8,6 +8,12 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) additional cards shape.
 
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call the package loader function(s) before `tsParticles.load(...)`
+3. Apply the package options in your `tsParticles.load(...)` config
+
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
@@ -74,3 +80,32 @@ import { loadCardsShape } from "@tsparticles/shape-cards";
   await loadCardsShape(tsParticles);
 })();
 ```
+
+## Option mapping
+
+- Primary options key: `particles.shape.type: "cards"`
+- Shape-specific options key: `particles.shape.options.cards`
+
+```json
+{
+  "particles": {
+    "shape": {
+      "type": "cards",
+      "options": {
+        "cards": {}
+      }
+    }
+  }
+}
+```
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadFullCardsShape(...)`
+- Verify required peer packages before enabling advanced options
+- Change one option group at a time to isolate regressions quickly
+
+## Related docs
+
+- All packages catalog: <https://github.com/tsparticles/tsparticles>
+- Main docs: <https://particles.js.org/docs/>
