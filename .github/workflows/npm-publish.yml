@@ -40,7 +40,7 @@ jobs:
           run_install: false
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+        run: pnpm nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -58,20 +58,20 @@ jobs:
         run: pnpm install
 
       - name: Build All Packages
-        run: npx nx run-many -t build:ci
+        run: pnpm nx run-many -t build:ci
         env:
           CI: true
 
       # 📦 ZIP artifacts (solo stable)
       - name: Generate zip artifacts
         if: env.IS_STABLE == 'true'
-        run: node scripts/package-zips.js
+        run: pnpm run release:zip-artifacts
 
       # 🚀 Publish npm
       - name: Publish to NPM (OIDC Auth)
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          BASE_CMD="npx lerna publish from-package --ignore-scripts"
+          BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
 
           echo "Publishing tag: $TAG via OIDC"
 
@@ -103,7 +103,7 @@ jobs:
         if: env.IS_STABLE == 'true'
         run: |
           echo "${{ steps.release.outputs.body }}" > RAW_RELEASE.md
-          node scripts/prettify-changelog.js
+          pnpm run release:prettify-changelog
 
       # 🔁 Update release con changelog finale
       - name: Update Release Notes
@@ -114,5 +114,5 @@ jobs:
           body_path: RELEASE_NOTES.md
 
       - name: Stop Nx Cloud Session
-        run: npx nx fix-ci
+        run: pnpm nx fix-ci
         if: always()

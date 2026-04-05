@@ -1,9 +1,11 @@
 import { execSync } from "node:child_process";
 import { readdirSync, existsSync, readFileSync, mkdirSync, rmSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = join(ROOT, "release-artifacts");
+const SKIPPED_PATH_PREFIXES = ["demo", "utils/tests"];
+const SKIPPED_DIR_NAMES = new Set([".git", "node_modules", "dist", "release-artifacts"]);
 
 // Clean output directory
 rmSync(OUTPUT_DIR, { recursive: true, force: true });
@@ -17,18 +19,30 @@ function findPackages(dir) {
   const packages = [];
 
   for (const entry of entries) {
-    const fullPath = join(dir, entry.name);
-
-    if (entry.isDirectory()) {
-      const packageJsonPath = join(fullPath, "package.json");
-
-      if (existsSync(packageJsonPath)) {
-        packages.push(fullPath);
-      }
-
-      // Continue searching nested folders
-      packages.push(...findPackages(fullPath));
+    if (!entry.isDirectory()) {
+      continue;
     }
+
+    if (SKIPPED_DIR_NAMES.has(entry.name)) {
+      continue;
+    }
+
+    const fullPath = join(dir, entry.name);
+    const relativePath = relative(ROOT, fullPath).replace(/\\/g, "/");
+
+    // Ignore excluded trees entirely (demo/** and utils/tests/**).
+    if (SKIPPED_PATH_PREFIXES.some((prefix) => relativePath === prefix || relativePath.startsWith(`${prefix}/`))) {
+      continue;
+    }
+
+    const packageJsonPath = join(fullPath, "package.json");
+
+    if (existsSync(packageJsonPath)) {
+      packages.push(fullPath);
+    }
+
+    // Continue searching nested folders
+    packages.push(...findPackages(fullPath));
   }
 
   return packages;
@@ -57,9 +71,11 @@ for (const pkgPath of allPackages) {
 
   const pkgJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
 
-  const name = pkgJson.name
+  const normalizedName = pkgJson.name
     .replace(/^@[^/]+\//, "") // remove scope if present
     .replace(/\//g, "-"); // safety
+
+  const name = normalizedName.startsWith("tsparticles") ? normalizedName : `tsparticles-${normalizedName}`;
 
   const version = pkgJson.version;
 
