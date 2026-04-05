@@ -13,7 +13,7 @@ that break when hitting the ground.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
 ## Quick checklist
 

@@ -13,7 +13,7 @@ hyperspace.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/hyperspace/images/sample.png)](https://particles.js.org/samples/presets/hyperspace)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/hyperspace/images/sample.png)](https://particles.js.org/samples/presets/hyperspace)
 
 ## Quick checklist
 

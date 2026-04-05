@@ -12,7 +12,7 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
 
 ## Quick checklist
 

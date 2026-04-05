@@ -12,7 +12,7 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
 ## Quick checklist
 

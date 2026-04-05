@@ -12,7 +12,7 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
 ## Quick checklist
 

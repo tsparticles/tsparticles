@@ -12,7 +12,7 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
 ## Quick checklist
 

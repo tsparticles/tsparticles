@@ -13,7 +13,7 @@ little fireflies.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
 ## Quick checklist
 

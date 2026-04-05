@@ -13,7 +13,7 @@ screen on a white background.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
 ## Quick checklist
 
