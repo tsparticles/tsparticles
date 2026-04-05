@@ -26,7 +26,7 @@
     "@types/jsdom": "^28.0.1",
     "@vitest/coverage-v8": "^4.1.2",
     "@vitest/ui": "^4.1.2",
-    "canvas": "^3.2.2",
+    "canvas": "^3.2.3",
     "jsdom": "^29.0.1",
     "jsdom-global": "^3.0.2",
     "vitest": "^4.1.2"
