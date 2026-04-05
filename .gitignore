@@ -373,6 +373,7 @@ size-plugin-ssr.json
 .angular/cache/
 
 docs
+release-artifacts/
 
 .nx/cache
 .nx/workspace-data

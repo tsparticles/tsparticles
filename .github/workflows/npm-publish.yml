@@ -7,11 +7,12 @@ on:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
 
 jobs:
   publish:
@@ -35,7 +36,7 @@ jobs:
           run_install: false
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+        run: pnpm nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -54,15 +55,19 @@ jobs:
         run: pnpm install
 
       - name: Build All Packages
-        run: npx nx run-many -t build:ci
+        run: pnpm nx run-many -t build:ci
         env:
           CI: true
+
+      - name: Generate zip artifacts
+        if: env.IS_STABLE == 'true'
+        run: pnpm run release:zip-artifacts
 
       - name: Publish to NPM (OIDC Auth)
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           
-          BASE_CMD="npx lerna publish from-package --ignore-scripts"
+          BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
             $BASE_CMD --pre-dist-tag alpha --preid alpha
@@ -72,6 +77,27 @@ jobs:
             $BASE_CMD
           fi
 
+      - name: Create Release (raw)
+        if: env.IS_STABLE == 'true'
+        id: release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          generate_release_notes: true
+
+      - name: Prettify changelog
+        if: env.IS_STABLE == 'true'
+        run: |
+          echo "${{ steps.release.outputs.body }}" > RAW_RELEASE.md
+          pnpm run release:prettify-changelog
+
+      - name: Update Release Notes
+        if: env.IS_STABLE == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          body_path: RELEASE_NOTES.md
+
       - name: Stop Nx Cloud Session
-        run: npx nx fix-ci
+        run: pnpm nx fix-ci
         if: always()

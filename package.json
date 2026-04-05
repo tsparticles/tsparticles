@@ -10,7 +10,9 @@
     "version:beta": "lerna version prerelease --preid beta",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha",
     "publish:beta": "lerna publish from-package --pre-dist-tag beta",
-    "publish:next": "lerna publish from-package --dist-tag next"
+    "publish:next": "lerna publish from-package --dist-tag next",
+    "release:zip-artifacts": "node scripts/package-zips.js",
+    "release:prettify-changelog": "node scripts/prettify-changelog.js"
   },
   "license": "MIT",
   "prettier": "@tsparticles/prettier-config",
