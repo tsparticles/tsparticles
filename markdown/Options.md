@@ -1,8 +1,17 @@
 # Options
 
-This page is a quick map of root options. For full type details, use the API reference too:
+This page is the main map for root options.
+
+Use it to choose where to start, then jump to the detailed guides for each option group. For full type details, use the API reference too:
 
 - <https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html>
+
+## Choose your configuration path
+
+- **I want full manual control**: define `particles`, `interactivity`, and `background` yourself
+- **I want a quick object to inspect and edit**: start from `@tsparticles/configs`
+- **I want a ready effect first**: use a `preset` and then override only the fields you care about
+- **I need responsive behavior**: add `responsive` rules after your base config is stable
 
 ## Minimal complete example
 
@@ -34,12 +43,6 @@ This page is a quick map of root options. For full type details, use the API ref
   }
 }
 ```
-
-## Choose your configuration path
-
-- **I want a fast visual result**: start with `preset` and then override only key fields
-- **I want full control**: define `particles`, `interactivity`, and `background` manually
-- **I need responsive behavior**: add `responsive` rules after your base config is stable
 
 ## Most-used root options
 
@@ -80,6 +83,46 @@ This page is a quick map of root options. For full type details, use the API ref
 - Particles: [Options/Particles](./Options/Particles.md)
 - Themes: [Options/Themes](./Options/Themes.md)
 
+## Detailed guides for the most updated sections
+
+### Interactivity
+
+- [Click](./Options/Interactivity/Click.md)
+- [Hover](./Options/Interactivity/Hover.md)
+- [Div](./Options/Interactivity/Div.md)
+
+### Particle visuals and behavior
+
+- [Color](./Options/Particles/Color.md)
+- [Bounce](./Options/Particles/Bounce.md)
+- [Collisions](./Options/Particles/Collisions.md)
+- [Destroy](./Options/Particles/Destroy.md)
+- [Group](./Options/Particles/Group.md)
+- [Life](./Options/Particles/Life.md)
+- [Orbit](./Options/Particles/Orbit.md)
+- [Repulse](./Options/Particles/Repulse.md)
+- [Roll](./Options/Particles/Roll.md)
+- [Rotate](./Options/Particles/Rotate.md)
+- [Shadow](./Options/Particles/Shadow.md)
+- [Stroke](./Options/Particles/Stroke.md)
+- [Tilt](./Options/Particles/Tilt.md)
+- [Twinkle](./Options/Particles/Twinkle.md)
+- [Wobble](./Options/Particles/Wobble.md)
+- [ZIndex](./Options/Particles/ZIndex.md)
+
+### Plugin-powered options
+
+- [Absorbers](./Options/Plugins/Absorbers.md)
+- [Emitters](./Options/Plugins/Emitters.md)
+- [Infection](./Options/Plugins/Infection.md)
+- [Polygon Mask](./Options/Plugins/PolygonMask.md)
+
+## Recommended starting sources
+
+- Config objects: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
+- Official presets and palettes: <https://github.com/tsparticles/presets>
+- Main getting-started guide: [Pages/index](./Pages/index.md)
+
 ## Common pitfalls
 
 - Enabling plugin options (`emitters`, `absorbers`, `polygonMask`) without loading their packages
@@ -92,3 +135,4 @@ This page is a quick map of root options. For full type details, use the API ref
 - Color values and formats: [Color](./Color.md)
 - Runtime container management: [Container](./Container.md)
 - Official presets: <https://github.com/tsparticles/presets>
+- Config package: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>

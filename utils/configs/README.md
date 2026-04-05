@@ -74,4 +74,3 @@ This library contains only the config files, the plugins must be installed separ
 - Main docs: <https://particles.js.org/docs/>
 - Root options guide: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md>
 - Repository README: <https://github.com/tsparticles/tsparticles/blob/main/README.md>
-
