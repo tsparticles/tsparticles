@@ -80,6 +80,7 @@ The options shown above are valid for all the component libraries.
 
 - Presets and palettes catalog: <https://github.com/tsparticles/presets>
 - Main docs: <https://particles.js.org/docs/>
+
 ---
 
 ```mermaid
