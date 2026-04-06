@@ -190,7 +190,11 @@ const options: ISourceOptions = {
     events: [
       {
         event: EventType.particleRemoved,
-        filter: (args: { data: { particle: Particle } }) => args.data.particle.options.move.gravity.inverse,
+        filter: (args: unknown): boolean => {
+          const data = (args as { data?: { particle?: Particle } }).data;
+
+          return data?.particle?.options.move.gravity.inverse ?? false;
+        },
         audio: [
           "https://particles.js.org/audio/explosion0.mp3",
           "https://particles.js.org/audio/explosion1.mp3",

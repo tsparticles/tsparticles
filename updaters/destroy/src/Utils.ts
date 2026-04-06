@@ -4,6 +4,7 @@ import {
   type IHsl,
   type IParticlesOptions,
   type IRangeHsl,
+  type OptionsColor,
   type Particle,
   PixelMode,
   type PluginManager,
@@ -30,7 +31,7 @@ const defaultOffset = 0,
   minLightness = 0,
   maxLightness = 100;
 
-type SplitColorData = string | RecursivePartial<AnimatableColor>;
+type SplitColorData = string | RecursivePartial<OptionsColor>;
 
 /**
  * @param parentColor -
@@ -117,8 +118,8 @@ function addSplitParticle(
 
   const splitOptions = destroyOptions.split,
     splitParticleOptions = loadParticlesOptions(pluginManager, container, parent.options),
-    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor) as SplitColorData | undefined,
-    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor) as SplitColorData | undefined,
+    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor),
+    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor),
     parentFillColor = parent.getFillColor(),
     parentStrokeColor = parent.getStrokeColor();
 
