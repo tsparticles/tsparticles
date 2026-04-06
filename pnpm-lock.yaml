@@ -476,12 +476,12 @@ importers:
       '@tsparticles/basic':
         specifier: workspace:*
         version: link:../basic/dist
-      '@tsparticles/effect-trail':
-        specifier: workspace:*
-        version: link:../../effects/trail/dist
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      '@tsparticles/plugin-blend':
+        specifier: workspace:*
+        version: link:../../plugins/blend/dist
       '@tsparticles/plugin-emitters':
         specifier: workspace:*
         version: link:../../plugins/emitters/dist
@@ -491,6 +491,9 @@ importers:
       '@tsparticles/plugin-sounds':
         specifier: workspace:*
         version: link:../../plugins/sounds/dist
+      '@tsparticles/shape-line':
+        specifier: workspace:*
+        version: link:../../shapes/line/dist
       '@tsparticles/updater-destroy':
         specifier: workspace:*
         version: link:../../updaters/destroy/dist
@@ -500,6 +503,9 @@ importers:
       '@tsparticles/updater-rotate':
         specifier: workspace:*
         version: link:../../updaters/rotate/dist
+      '@tsparticles/updater-stroke-color':
+        specifier: workspace:*
+        version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   bundles/full:

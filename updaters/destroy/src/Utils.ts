@@ -25,6 +25,7 @@ const defaultOffset = 0,
   increment = 1,
   unbreakableTime = 500,
   minSplitCount = 0,
+  minHue = 0,
   hueRange = 360,
   minSaturation = 0,
   maxSaturation = 100,
@@ -61,7 +62,7 @@ function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>): Anima
   return AnimatableColor.create(undefined, {
     value: {
       hsl: {
-        h: h < minSaturation ? h + hueRange : h,
+        h: h < minHue ? h + hueRange : h,
         s,
         l,
       },

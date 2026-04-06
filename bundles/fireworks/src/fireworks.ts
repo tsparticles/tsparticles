@@ -25,8 +25,6 @@ declare const __VERSION__: string;
 let initialized = false,
   initializing = false;
 
-const minSplitCount = 2;
-
 type FireworksFunc = ((
   idOrOptions: string | RecursivePartial<IFireworkOptions>,
   sourceOptions?: RecursivePartial<IFireworkOptions>,
@@ -46,9 +44,9 @@ declare global {
 }
 
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
-  const data = args.data as { particle: Particle & { splitCount?: number } };
+  const data = args.data as { particle: Particle };
 
-  return data.particle.shape === "circle" && !!data.particle.splitCount && data.particle.splitCount < minSplitCount;
+  return data.particle.options.move.gravity.inverse;
 };
 
 /**
@@ -80,26 +78,32 @@ async function initPlugins(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadBasic },
+      { loadLineShape },
+      { loadBlendPlugin },
       { loadEmittersPluginSimple },
       { loadEmittersShapeSquare },
       { loadSoundsPlugin },
       { loadRotateUpdater },
       { loadDestroyUpdater },
       { loadLifeUpdater },
-      { loadTrailEffect },
+      { loadStrokeColorUpdater },
     ] = await Promise.all([
       import("@tsparticles/basic"),
+      import("@tsparticles/shape-line"),
+      import("@tsparticles/plugin-blend"),
       import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-emitters-shape-square"),
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/updater-rotate"),
       import("@tsparticles/updater-destroy"),
       import("@tsparticles/updater-life"),
-      import("@tsparticles/effect-trail"),
+      import("@tsparticles/updater-stroke-color"),
     ]);
 
     await Promise.all([
       loadBasic(e),
+      loadLineShape(e),
+      loadBlendPlugin(e),
       (async (): Promise<void> => {
         await loadEmittersPluginSimple(e);
 
@@ -109,7 +113,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
-      loadTrailEffect(e),
+      loadStrokeColorUpdater(e),
     ]);
   });
 
@@ -131,8 +135,12 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
     background: {
       color: options.background,
     },
+    blend: {
+      enable: true,
+      mode: "lighter",
+    },
     fullScreen: {
-      enable: !!canvas,
+      enable: !canvas,
     },
     fpsLimit: 60,
     emitters: {
@@ -161,11 +169,11 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       number: {
         value: 0,
       },
-      fill: {
+      stroke: {
         color: {
-          value: "#fff",
+          value: options.colors,
         },
-        enable: true,
+        width: 2,
       },
       destroy: {
         mode: "split",
@@ -173,7 +181,6 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
           top: setRangeValue(options.minHeight),
         },
         split: {
-          sizeOffset: false,
           count: 1,
           factor: {
             value: 0.333333,
@@ -181,20 +188,11 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
           rate: {
             value: options.splitCount,
           },
-          fillColorOffset: {
+          strokeColorOffset: {
             s: options.saturation,
             l: options.brightness,
           },
           particles: {
-            fill: {
-              color: {
-                value: options.colors,
-              },
-              enable: true,
-            },
-            stroke: {
-              width: 0,
-            },
             number: {
               value: 0,
             },
@@ -205,57 +203,36 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
               },
               animation: {
                 enable: true,
-                speed: 1,
-                sync: false,
+                speed: { min: 2, max: 4 },
+                sync: true,
                 startValue: StartValueType.max,
                 destroy: DestroyType.min,
                 count: 1,
               },
             },
-            effect: {
-              type: "trail",
-              options: {
-                trail: {
-                  length: {
-                    min: 5,
-                    max: 10,
-                  },
-                },
-              },
-            },
-            shape: {
-              type: "circle",
-            },
             size: {
-              value: { min: 1, max: 2 },
-              animation: {
-                enable: true,
-                speed: 5,
-                count: 1,
-                sync: false,
-                startValue: StartValueType.min,
-                destroy: DestroyType.none,
-              },
+              value: { min: 5, max: 10 },
             },
             life: {
               count: 1,
               duration: {
                 value: {
-                  min: 0.25,
-                  max: 0.5,
+                  min: 0.5,
+                  max: 1,
                 },
               },
             },
             move: {
-              decay: { min: 0.05, max: 0.1 },
+              decay: 0.05,
               enable: true,
               gravity: {
-                enable: true,
-                inverse: false,
-                acceleration: setRangeValue(options.gravity),
+                enable: false,
               },
-              speed: setRangeValue(options.speed),
-              direction: "none",
+              speed: {
+                min: 10,
+                max: 25,
+              },
+              direction: "outside",
               outModes: OutMode.destroy,
             },
           },
@@ -264,27 +241,16 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       life: {
         count: 1,
       },
-      effect: {
-        type: "trail",
+      shape: {
+        type: "line",
         options: {
-          trail: {
-            length: {
-              min: 10,
-              max: 30,
-            },
-            minWidth: 1,
-            maxWidth: 1,
+          line: {
+            cap: "round",
           },
         },
       },
-      shape: {
-        type: "circle",
-      },
       size: {
-        value: 1,
-      },
-      opacity: {
-        value: 0.5,
+        value: { min: 10, max: 20 },
       },
       rotate: {
         path: true,
@@ -292,15 +258,12 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       move: {
         enable: true,
         gravity: {
-          acceleration: 15,
+          acceleration: setRangeValue(options.gravity),
           enable: true,
           inverse: true,
-          maxSpeed: 100,
+          maxSpeed: 150,
         },
-        speed: {
-          min: 10,
-          max: 20,
-        },
+        speed: setRangeValue(options.speed),
         outModes: {
           default: OutMode.destroy,
           top: OutMode.none,

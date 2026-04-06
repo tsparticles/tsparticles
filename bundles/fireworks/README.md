@@ -11,7 +11,7 @@ beautiful fireworks effects with ease.
 
 - [@tsparticles/basic (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/basic)
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
-- [@tsparticles/effect-trail](https://github.com/tsparticles/tsparticles/tree/main/effects/trail)
+- [@tsparticles/plugin-blend](https://github.com/tsparticles/tsparticles/tree/main/plugins/blend)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
 - [@tsparticles/plugin-emitters-shape-square](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters/shape/square)
 - [@tsparticles/plugin-sounds](https://github.com/tsparticles/tsparticles/tree/main/plugins/sounds)
@@ -33,11 +33,8 @@ subgraph c [Core]
   ce[tsparticles/engine]
 end
 
-subgraph e [Effects]
-  et[tsparticles/effect-trail]
-end
-
 subgraph p [Plugins]
+  pb[tsparticles/plugin-blend]
   pe[tsparticles/plugin-emitters]
   pess[tsparticles/plugin-emitters-shape-square]
   ps[tsparticles/plugin-sounds]
