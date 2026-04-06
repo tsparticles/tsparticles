@@ -1,7 +1,9 @@
 import {
   AnimatableColor,
   type Container,
+  type IHsl,
   type IParticlesOptions,
+  type IRangeHsl,
   type Particle,
   PixelMode,
   type PluginManager,
@@ -23,6 +25,65 @@ const defaultOffset = 0,
   unbreakableTime = 500,
   minSplitCount = 0;
 
+type SplitColorData = string | RecursivePartial<AnimatableColor>;
+
+/**
+ * @param parentColor -
+ * @returns the parent color as AnimatableColor
+ */
+function createParentColor(parentColor: IHsl): AnimatableColor {
+  return AnimatableColor.create(undefined, {
+    value: {
+      hsl: parentColor,
+    },
+  });
+}
+
+/**
+ * @param parentColor -
+ * @param offset -
+ * @returns the offset color as AnimatableColor
+ */
+function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>): AnimatableColor {
+  return AnimatableColor.create(undefined, {
+    value: {
+      hsl: {
+        h: parentColor.h + getRangeValue(offset.h ?? defaultOffset),
+        s: parentColor.s + getRangeValue(offset.s ?? defaultOffset),
+        l: parentColor.l + getRangeValue(offset.l ?? defaultOffset),
+      },
+    },
+  });
+}
+
+/**
+ * @param offset -
+ * @param splitColor -
+ * @param splitParticlesColor -
+ * @param parentColor -
+ * @returns the split color resolved using precedence rules
+ */
+function resolveSplitColor(
+  offset: Partial<IRangeHsl> | undefined,
+  splitColor: SplitColorData | undefined,
+  splitParticlesColor: SplitColorData | undefined,
+  parentColor: IHsl | undefined,
+): AnimatableColor | undefined {
+  if (offset && parentColor) {
+    return createOffsetColor(parentColor, offset);
+  }
+
+  if (splitColor) {
+    return AnimatableColor.create(undefined, splitColor);
+  }
+
+  if (splitParticlesColor) {
+    return AnimatableColor.create(undefined, splitParticlesColor);
+  }
+
+  return parentColor ? createParentColor(parentColor) : undefined;
+}
+
 /**
  * @param pluginManager -
  * @param container -
@@ -43,62 +104,13 @@ function addSplitParticle(
   }
 
   const splitOptions = destroyOptions.split,
-    parentOptions = loadParticlesOptions(pluginManager, container, parent.options),
-    splitParticlesResolvedOptions = loadParticlesOptions(pluginManager, container, splitParticlesOptions),
-    splitParticlesFill = itemFromSingleOrMultiple(splitParticlesResolvedOptions.fill),
-    splitParticlesStroke = itemFromSingleOrMultiple(splitParticlesResolvedOptions.stroke),
-    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor),
-    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor),
+    splitParticleOptions = loadParticlesOptions(pluginManager, container, parent.options),
+    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor) as SplitColorData | undefined,
+    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor) as SplitColorData | undefined,
     parentFillColor = parent.getFillColor(),
     parentStrokeColor = parent.getStrokeColor();
 
-  let fillColor = splitParticlesFill?.color ? AnimatableColor.create(undefined, splitParticlesFill.color) : undefined;
-
-  if (splitOptions.fillColorOffset && parentFillColor) {
-    fillColor = AnimatableColor.create(undefined, {
-      value: {
-        hsl: {
-          h: parentFillColor.h + getRangeValue(splitOptions.fillColorOffset.h ?? defaultOffset),
-          s: parentFillColor.s + getRangeValue(splitOptions.fillColorOffset.s ?? defaultOffset),
-          l: parentFillColor.l + getRangeValue(splitOptions.fillColorOffset.l ?? defaultOffset),
-        },
-      },
-    });
-  } else if (splitFillColor) {
-    fillColor = AnimatableColor.create(undefined, splitFillColor);
-  } else if (parentFillColor) {
-    fillColor = AnimatableColor.create(undefined, {
-      value: {
-        hsl: parentFillColor,
-      },
-    });
-  }
-
-  let strokeColor = splitParticlesStroke?.color
-    ? AnimatableColor.create(undefined, splitParticlesStroke.color)
-    : undefined;
-
-  if (splitOptions.strokeColorOffset && parentStrokeColor) {
-    strokeColor = AnimatableColor.create(undefined, {
-      value: {
-        hsl: {
-          h: parentStrokeColor.h + getRangeValue(splitOptions.strokeColorOffset.h ?? defaultOffset),
-          s: parentStrokeColor.s + getRangeValue(splitOptions.strokeColorOffset.s ?? defaultOffset),
-          l: parentStrokeColor.l + getRangeValue(splitOptions.strokeColorOffset.l ?? defaultOffset),
-        },
-      },
-    });
-  } else if (splitStrokeColor) {
-    strokeColor = AnimatableColor.create(undefined, splitStrokeColor);
-  } else if (parentStrokeColor) {
-    strokeColor = AnimatableColor.create(undefined, {
-      value: {
-        hsl: parentStrokeColor,
-      },
-    });
-  }
-
-  parentOptions.move.load({
+  splitParticleOptions.move.load({
     center: {
       x: parent.position.x,
       y: parent.position.y,
@@ -108,24 +120,36 @@ function addSplitParticle(
 
   const factor = identity / getRangeValue(splitOptions.factor.value);
 
-  if (isNumber(parentOptions.size.value)) {
-    parentOptions.size.value *= factor;
+  if (isNumber(splitParticleOptions.size.value)) {
+    splitParticleOptions.size.value *= factor;
   } else {
-    parentOptions.size.value.min *= factor;
-    parentOptions.size.value.max *= factor;
+    splitParticleOptions.size.value.min *= factor;
+    splitParticleOptions.size.value.max *= factor;
   }
 
-  parentOptions.load(splitParticlesOptions);
+  splitParticleOptions.load(splitParticlesOptions);
 
-  const parentFillOptions = itemFromSingleOrMultiple(parentOptions.fill),
-    parentStrokeOptions = itemFromSingleOrMultiple(parentOptions.stroke);
+  const splitParticleFillOptions = itemFromSingleOrMultiple(splitParticleOptions.fill),
+    splitParticleStrokeOptions = itemFromSingleOrMultiple(splitParticleOptions.stroke),
+    fillColor = resolveSplitColor(
+      splitOptions.fillColorOffset,
+      splitFillColor,
+      splitParticleFillOptions?.color,
+      parentFillColor,
+    ),
+    strokeColor = resolveSplitColor(
+      splitOptions.strokeColorOffset,
+      splitStrokeColor,
+      splitParticleStrokeOptions?.color,
+      parentStrokeColor,
+    );
 
-  if (fillColor && parentFillOptions) {
-    parentFillOptions.color = fillColor;
+  if (fillColor && splitParticleFillOptions) {
+    splitParticleFillOptions.color = fillColor;
   }
 
-  if (strokeColor && parentStrokeOptions) {
-    parentStrokeOptions.color = strokeColor;
+  if (strokeColor && splitParticleStrokeOptions) {
+    splitParticleStrokeOptions.color = strokeColor;
   }
 
   const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : defaultOffset,
@@ -134,7 +158,7 @@ function addSplitParticle(
       y: parent.position.y + randomInRangeValue(offset),
     };
 
-  return container.particles.addParticle(position, parentOptions, parent.group, (particle: DestroyParticle) => {
+  return container.particles.addParticle(position, splitParticleOptions, parent.group, (particle: DestroyParticle) => {
     if (particle.size.value < minDestroySize) {
       return false;
     }
