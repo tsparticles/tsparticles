@@ -43,61 +43,62 @@ function addSplitParticle(
   }
 
   const splitOptions = destroyOptions.split,
-    options = loadParticlesOptions(pluginManager, container, parent.options),
-    fillOptions = itemFromSingleOrMultiple(options.fill),
-    strokeOptions = itemFromSingleOrMultiple(options.stroke);
+    parentOptions = loadParticlesOptions(pluginManager, container, parent.options),
+    splitParticlesResolvedOptions = loadParticlesOptions(pluginManager, container, splitParticlesOptions),
+    splitParticlesFill = itemFromSingleOrMultiple(splitParticlesResolvedOptions.fill),
+    splitParticlesStroke = itemFromSingleOrMultiple(splitParticlesResolvedOptions.stroke),
+    splitFillColor = itemFromSingleOrMultiple(splitOptions.fillColor),
+    splitStrokeColor = itemFromSingleOrMultiple(splitOptions.strokeColor),
+    parentFillColor = parent.getFillColor(),
+    parentStrokeColor = parent.getStrokeColor();
 
-  if (fillOptions?.enable) {
-    const fillColor = AnimatableColor.create(undefined, fillOptions.color),
-      parentFillColor = parent.getFillColor();
+  let fillColor = splitParticlesFill?.color ? AnimatableColor.create(undefined, splitParticlesFill.color) : undefined;
 
-    if (fillColor.value) {
-      fillColor.load(splitOptions.fillColor);
-    } else if (splitOptions.fillColorOffset && parentFillColor) {
-      fillColor.load({
-        value: {
-          hsl: {
-            h: parentFillColor.h + getRangeValue(splitOptions.fillColorOffset.h ?? defaultOffset),
-            s: parentFillColor.s + getRangeValue(splitOptions.fillColorOffset.s ?? defaultOffset),
-            l: parentFillColor.l + getRangeValue(splitOptions.fillColorOffset.l ?? defaultOffset),
-          },
+  if (splitOptions.fillColorOffset && parentFillColor) {
+    fillColor = AnimatableColor.create(undefined, {
+      value: {
+        hsl: {
+          h: parentFillColor.h + getRangeValue(splitOptions.fillColorOffset.h ?? defaultOffset),
+          s: parentFillColor.s + getRangeValue(splitOptions.fillColorOffset.s ?? defaultOffset),
+          l: parentFillColor.l + getRangeValue(splitOptions.fillColorOffset.l ?? defaultOffset),
         },
-      });
-    } else {
-      fillColor.load({
-        value: {
-          hsl: parent.getFillColor(),
-        },
-      });
-    }
+      },
+    });
+  } else if (splitFillColor) {
+    fillColor = AnimatableColor.create(undefined, splitFillColor);
+  } else if (parentFillColor) {
+    fillColor = AnimatableColor.create(undefined, {
+      value: {
+        hsl: parentFillColor,
+      },
+    });
   }
 
-  if (strokeOptions?.width) {
-    const strokeColor = AnimatableColor.create(undefined, strokeOptions.color),
-      parentStrokeColor = parent.getStrokeColor();
+  let strokeColor = splitParticlesStroke?.color
+    ? AnimatableColor.create(undefined, splitParticlesStroke.color)
+    : undefined;
 
-    if (strokeColor.value) {
-      strokeColor.load(splitOptions.strokeColor);
-    } else if (splitOptions.strokeColorOffset && parentStrokeColor) {
-      strokeColor.load({
-        value: {
-          hsl: {
-            h: parentStrokeColor.h + getRangeValue(splitOptions.strokeColorOffset.h ?? defaultOffset),
-            s: parentStrokeColor.s + getRangeValue(splitOptions.strokeColorOffset.s ?? defaultOffset),
-            l: parentStrokeColor.l + getRangeValue(splitOptions.strokeColorOffset.l ?? defaultOffset),
-          },
+  if (splitOptions.strokeColorOffset && parentStrokeColor) {
+    strokeColor = AnimatableColor.create(undefined, {
+      value: {
+        hsl: {
+          h: parentStrokeColor.h + getRangeValue(splitOptions.strokeColorOffset.h ?? defaultOffset),
+          s: parentStrokeColor.s + getRangeValue(splitOptions.strokeColorOffset.s ?? defaultOffset),
+          l: parentStrokeColor.l + getRangeValue(splitOptions.strokeColorOffset.l ?? defaultOffset),
         },
-      });
-    } else {
-      strokeColor.load({
-        value: {
-          hsl: parent.getStrokeColor(),
-        },
-      });
-    }
+      },
+    });
+  } else if (splitStrokeColor) {
+    strokeColor = AnimatableColor.create(undefined, splitStrokeColor);
+  } else if (parentStrokeColor) {
+    strokeColor = AnimatableColor.create(undefined, {
+      value: {
+        hsl: parentStrokeColor,
+      },
+    });
   }
 
-  options.move.load({
+  parentOptions.move.load({
     center: {
       x: parent.position.x,
       y: parent.position.y,
@@ -107,14 +108,25 @@ function addSplitParticle(
 
   const factor = identity / getRangeValue(splitOptions.factor.value);
 
-  if (isNumber(options.size.value)) {
-    options.size.value *= factor;
+  if (isNumber(parentOptions.size.value)) {
+    parentOptions.size.value *= factor;
   } else {
-    options.size.value.min *= factor;
-    options.size.value.max *= factor;
+    parentOptions.size.value.min *= factor;
+    parentOptions.size.value.max *= factor;
   }
 
-  options.load(splitParticlesOptions);
+  parentOptions.load(splitParticlesOptions);
+
+  const parentFillOptions = itemFromSingleOrMultiple(parentOptions.fill),
+    parentStrokeOptions = itemFromSingleOrMultiple(parentOptions.stroke);
+
+  if (fillColor && parentFillOptions) {
+    parentFillOptions.color = fillColor;
+  }
+
+  if (strokeColor && parentStrokeOptions) {
+    parentStrokeOptions.color = strokeColor;
+  }
 
   const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : defaultOffset,
     position = {
@@ -122,7 +134,7 @@ function addSplitParticle(
       y: parent.position.y + randomInRangeValue(offset),
     };
 
-  return container.particles.addParticle(position, options, parent.group, (particle: DestroyParticle) => {
+  return container.particles.addParticle(position, parentOptions, parent.group, (particle: DestroyParticle) => {
     if (particle.size.value < minDestroySize) {
       return false;
     }
