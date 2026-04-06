@@ -58,6 +58,7 @@ const options: ISourceOptions = {
         destroy: "min",
         speed: 0.3,
         sync: true,
+        count: 1,
       },
     },
     tilt: {

@@ -23,7 +23,12 @@ const defaultOffset = 0,
   defaultSplitCount = 0,
   increment = 1,
   unbreakableTime = 500,
-  minSplitCount = 0;
+  minSplitCount = 0,
+  hueRange = 360,
+  minSaturation = 0,
+  maxSaturation = 100,
+  minLightness = 0,
+  maxLightness = 100;
 
 type SplitColorData = string | RecursivePartial<AnimatableColor>;
 
@@ -45,12 +50,19 @@ function createParentColor(parentColor: IHsl): AnimatableColor {
  * @returns the offset color as AnimatableColor
  */
 function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>): AnimatableColor {
+  const offsetH = getRangeValue(offset.h ?? defaultOffset),
+    offsetS = getRangeValue(offset.s ?? defaultOffset),
+    offsetL = getRangeValue(offset.l ?? defaultOffset),
+    h = (parentColor.h + offsetH) % hueRange,
+    s = Math.max(minSaturation, Math.min(maxSaturation, parentColor.s + offsetS)),
+    l = Math.max(minLightness, Math.min(maxLightness, parentColor.l + offsetL));
+
   return AnimatableColor.create(undefined, {
     value: {
       hsl: {
-        h: parentColor.h + getRangeValue(offset.h ?? defaultOffset),
-        s: parentColor.s + getRangeValue(offset.s ?? defaultOffset),
-        l: parentColor.l + getRangeValue(offset.l ?? defaultOffset),
+        h: h < minSaturation ? h + hueRange : h,
+        s,
+        l,
       },
     },
   });

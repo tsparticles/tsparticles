@@ -30,6 +30,7 @@ const options: ISourceOptions = {
         },
         startValue: "max",
         destroy: "min",
+        count: 1,
       },
     },
     opacity: {

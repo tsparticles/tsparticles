@@ -209,6 +209,7 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
                 sync: false,
                 startValue: StartValueType.max,
                 destroy: DestroyType.min,
+                count: 1,
               },
             },
             effect: {

@@ -115,6 +115,7 @@ const options: ISourceOptions = {
               sync: false,
               startValue: "max",
               destroy: "min",
+              count: 1,
             },
           },
           shape: {
@@ -170,6 +171,7 @@ const options: ISourceOptions = {
         speed: 90,
         startValue: "max",
         destroy: "min",
+        count: 1,
       },
     },
     stroke: {

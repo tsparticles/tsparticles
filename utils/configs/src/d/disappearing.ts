@@ -53,6 +53,7 @@ const options: ISourceOptions = {
         sync: true,
         startValue: "max",
         destroy: "min",
+        count: 1,
       },
     },
     move: {

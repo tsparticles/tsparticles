@@ -85,6 +85,7 @@ const options: ISourceOptions = {
         speed: 1,
         startValue: "max",
         destroy: "min",
+        count: 1,
       },
     },
     size: {
