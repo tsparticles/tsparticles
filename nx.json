@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "extends": "nx/presets/npm.json",
-  "nxCloudId": "6984f33d342a9b9bdf62bb9e",
   "defaultBase": "main",
   "targetDefaults": {
     "build": {
