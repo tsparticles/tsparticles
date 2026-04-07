@@ -16,6 +16,55 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFEEAA"><rect width="32" height="32" fill="#FFEEAA" /></svg><br />
+        <code>#FFEEAA</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFDD66"><rect width="32" height="32" fill="#FFDD66" /></svg><br />
+        <code>#FFDD66</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFAACC"><rect width="32" height="32" fill="#FFAACC" /></svg><br />
+        <code>#FFAACC</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FF88BB"><rect width="32" height="32" fill="#FF88BB" /></svg><br />
+        <code>#FF88BB</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFFFFF"><rect width="32" height="32" fill="#FFFFFF" /></svg><br />
+        <code>#FFFFFF</code>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#EEDDFF"><rect width="32" height="32" fill="#EEDDFF" /></svg><br />
+        <code>#EEDDFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#AA88FF"><rect width="32" height="32" fill="#AA88FF" /></svg><br />
+        <code>#AA88FF</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#08040f"><rect width="40" height="40" fill="#08040f" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#08040f</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <strong>Blend mode:</strong> <code>screen</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)

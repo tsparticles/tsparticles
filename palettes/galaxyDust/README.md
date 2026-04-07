@@ -16,6 +16,95 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFFFFF"><rect width="32" height="32" fill="#FFFFFF" /></svg><br />
+        <code>#FFFFFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FFEEFF"><rect width="32" height="32" fill="#FFEEFF" /></svg><br />
+        <code>#FFEEFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#DDEEFF"><rect width="32" height="32" fill="#DDEEFF" /></svg><br />
+        <code>#DDEEFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#AABBFF"><rect width="32" height="32" fill="#AABBFF" /></svg><br />
+        <code>#AABBFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#8899FF"><rect width="32" height="32" fill="#8899FF" /></svg><br />
+        <code>#8899FF</code>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#6677FF"><rect width="32" height="32" fill="#6677FF" /></svg><br />
+        <code>#6677FF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#5544FF"><rect width="32" height="32" fill="#5544FF" /></svg><br />
+        <code>#5544FF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#7700FF"><rect width="32" height="32" fill="#7700FF" /></svg><br />
+        <code>#7700FF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#AA00FF"><rect width="32" height="32" fill="#AA00FF" /></svg><br />
+        <code>#AA00FF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#CC44FF"><rect width="32" height="32" fill="#CC44FF" /></svg><br />
+        <code>#CC44FF</code>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FF44CC"><rect width="32" height="32" fill="#FF44CC" /></svg><br />
+        <code>#FF44CC</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FF6699"><rect width="32" height="32" fill="#FF6699" /></svg><br />
+        <code>#FF6699</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FF88AA"><rect width="32" height="32" fill="#FF88AA" /></svg><br />
+        <code>#FF88AA</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#00AAFF"><rect width="32" height="32" fill="#00AAFF" /></svg><br />
+        <code>#00AAFF</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#00DDFF"><rect width="32" height="32" fill="#00DDFF" /></svg><br />
+        <code>#00DDFF</code>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#00FFEE"><rect width="32" height="32" fill="#00FFEE" /></svg><br />
+        <code>#00FFEE</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#02010a"><rect width="40" height="40" fill="#02010a" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#02010a</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <strong>Blend mode:</strong> <code>screen</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)

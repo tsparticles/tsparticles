@@ -16,6 +16,45 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#111111"><rect width="32" height="32" fill="#111111" /></svg><br />
+        <code>#111111</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#1a1a1a"><rect width="32" height="32" fill="#1a1a1a" /></svg><br />
+        <code>#1a1a1a</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#002200"><rect width="32" height="32" fill="#002200" /></svg><br />
+        <code>#002200</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#00AA00"><rect width="32" height="32" fill="#00AA00" /></svg><br />
+        <code>#00AA00</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#00FF00"><rect width="32" height="32" fill="#00FF00" /></svg><br />
+        <code>#00FF00</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#060606"><rect width="40" height="40" fill="#060606" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#060606</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <strong>Blend mode:</strong> <code>screen</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)

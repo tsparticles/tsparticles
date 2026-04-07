@@ -16,6 +16,51 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#1A1000"><rect width="32" height="32" fill="#1A1000" /></svg><br />
+        <code>#1A1000</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#3D2200"><rect width="32" height="32" fill="#3D2200" /></svg><br />
+        <code>#3D2200</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#663300"><rect width="32" height="32" fill="#663300" /></svg><br />
+        <code>#663300</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#8B4513"><rect width="32" height="32" fill="#8B4513" /></svg><br />
+        <code>#8B4513</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#A0522D"><rect width="32" height="32" fill="#A0522D" /></svg><br />
+        <code>#A0522D</code>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#C67A3C"><rect width="32" height="32" fill="#C67A3C" /></svg><br />
+        <code>#C67A3C</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#0a0700"><rect width="40" height="40" fill="#0a0700" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#0a0700</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" align="center">
+        <strong>Blend mode:</strong> <code>source-over</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)

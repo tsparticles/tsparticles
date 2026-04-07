@@ -16,6 +16,33 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#0022AA"><rect width="32" height="32" fill="#0022AA" /></svg><br />
+        <code>#0022AA</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#FF4400"><rect width="32" height="32" fill="#FF4400" /></svg><br />
+        <code>#FF4400</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#0a0500"><rect width="40" height="40" fill="#0a0500" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#0a0500</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <strong>Blend mode:</strong> <code>source-over</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)

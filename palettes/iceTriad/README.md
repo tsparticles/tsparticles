@@ -16,6 +16,37 @@
 
 ## Colors
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#ffffff"><rect width="32" height="32" fill="#ffffff" /></svg><br />
+        <code>#ffffff</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#aaddff"><rect width="32" height="32" fill="#aaddff" /></svg><br />
+        <code>#aaddff</code>
+      </td>
+      <td align="center">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#88bbff"><rect width="32" height="32" fill="#88bbff" /></svg><br />
+        <code>#88bbff</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="#0a0d1a"><rect width="40" height="40" fill="#0a0d1a" /></svg><br />
+        <strong>Background</strong><br />
+        <code>#0a0d1a</code>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+        <strong>Blend mode:</strong> <code>source-over</code> | <strong>Fill:</strong> <code>true</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)
