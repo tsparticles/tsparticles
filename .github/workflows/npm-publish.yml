@@ -16,6 +16,7 @@ concurrency:
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  ZIP_CONCURRENCY: 5
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
 
 jobs:
@@ -39,9 +40,6 @@ jobs:
         with:
           run_install: false
 
-      - name: Initialize Nx Cloud
-        run: pnpm nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
-
       - name: Get pnpm store directory
         id: pnpm-cache
         run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
@@ -57,6 +55,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Initialize Nx Cloud
+        run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+
       - name: Build All Packages
         run: pnpm nx run-many -t build:ci
         env:
@@ -65,6 +66,8 @@ jobs:
       # 📦 ZIP artifacts (solo stable)
       - name: Generate zip artifacts
         if: env.IS_STABLE == 'true'
+        env:
+          ZIP_CONCURRENCY: ${{ env.ZIP_CONCURRENCY }}
         run: pnpm run release:zip-artifacts
 
       # 🚀 Publish npm
