@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-circle",
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.7",
   "description": "tsParticles circle shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -58,7 +58,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.6"
+    "@tsparticles/engine": "4.0.0-beta.7"
   },
   "publishConfig": {
     "access": "public"

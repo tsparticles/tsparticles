@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.7](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2026-04-07)
+
+**Note:** Version bump only for package @tsparticles/plugin-easing-circ
+
 # [4.0.0-beta.6](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2026-04-02)
 
 **Note:** Version bump only for package @tsparticles/plugin-easing-circ

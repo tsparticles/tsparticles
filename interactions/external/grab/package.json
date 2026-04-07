@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-grab",
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.7",
   "description": "tsParticles grab external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
