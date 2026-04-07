@@ -6,8 +6,8 @@ import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
 
-const liveReloadPort = 35730,
-  expressPort = 3015;
+const liveReloadPort = 35731,
+  expressPort = 3016;
 
 const app = express();
 
@@ -26,8 +26,8 @@ const camelToKebab = value =>
 
 const toPascal = value => `${value[0].toUpperCase()}${value.slice(1)}`;
 
-const parsePaletteName = folder => {
-  const optionsPath = join(palettesRoot, folder, "src", "options.ts");
+const parsePaletteName = (fullPath, folder) => {
+  const optionsPath = join(fullPath, "src", "options.ts");
 
   if (!existsSync(optionsPath)) {
     return toTitleCase(camelToKebab(folder).replaceAll("-", " "));
@@ -39,40 +39,63 @@ const parsePaletteName = folder => {
   return match?.[1] ?? toTitleCase(camelToKebab(folder).replaceAll("-", " "));
 };
 
-const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
-  readdirSync(root, { withFileTypes: true })
-    .filter(entry => entry.isDirectory())
-    .map(entry => entry.name)
-    .sort((a, b) => a.localeCompare(b))
-    .map(folder => {
-      const slug = mode === "palette" ? camelToKebab(folder) : folder,
-        packageName = `@tsparticles/${prefix}-${camelToKebab(slug)}`,
-        title = mode === "palette" ? parsePaletteName(folder) : toTitleCase(slug.replaceAll("-", " ")),
-        loader = `load${toPascal(folder)}${loaderSuffix}`;
+const hasPaletteOptions = path => existsSync(join(path, "src", "options.ts"));
 
-      return {
-        id: folder,
-        slug,
-        title,
-        packageName,
-        mountPath: `/${prefix}-${slug}`,
-        route: `/${mode === "palette" ? "palettes" : "presets"}/${folder}`,
-        image: `/images/${mode === "palette" ? "palettes" : "presets"}/${folder}.png`,
-        scriptFile:
-          mode === "palette"
-            ? `tsparticles.palette.palette-${slug}.min.js`
-            : `tsparticles.preset.${slug}.bundle.min.js`,
-        loader,
-        optionValue: slug,
-        description: `${title} ${mode} demo`,
-      };
-    });
+const isDirectoryEntry = entry => entry.isDirectory();
 
-const palettes = loadCatalog({
-  root: palettesRoot,
-  prefix: "palette",
-  loaderSuffix: "Palette",
-  mode: "palette",
+const toPaletteDir = (parentPath, entry) => ({
+  folder: entry.name,
+  fullPath: join(parentPath, entry.name),
+});
+
+const isPaletteDir = ({ fullPath }) => hasPaletteOptions(fullPath);
+
+// eslint-disable-next-line sonarjs/cognitive-complexity
+const collectNestedPaletteDirs = path =>
+  readdirSync(path, { withFileTypes: true })
+    .filter(isDirectoryEntry)
+    .map(entry => toPaletteDir(path, entry))
+    .filter(isPaletteDir);
+
+const getPaletteDirsFromEntry = (root, entry) => {
+  const fullPath = join(root, entry.name);
+
+  return hasPaletteOptions(fullPath)
+    ? [{ folder: entry.name, fullPath }]
+    : collectNestedPaletteDirs(fullPath);
+};
+
+/**
+ * Discovers all palette directories under `root`, supporting both:
+ *   - legacy flat layout:    palettes/<palette>/src/options.ts
+ *   - new category layout:   palettes/<category>/<palette>/src/options.ts
+ */
+const discoverPaletteDirs = root => {
+  return readdirSync(root, { withFileTypes: true })
+    .filter(isDirectoryEntry)
+    .flatMap(entry => getPaletteDirsFromEntry(root, entry))
+    .sort((a, b) => a.folder.localeCompare(b.folder));
+};
+
+const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) => {
+  const slug = camelToKebab(folder),
+    packageName = `@tsparticles/palette-${slug}`,
+    title = parsePaletteName(fullPath, folder),
+    loader = `load${toPascal(folder)}Palette`;
+
+  return {
+    id: folder,
+    slug,
+    title,
+    packageName,
+    mountPath: `/palette-${slug}`,
+    route: `/palettes/${folder}`,
+    image: `/images/palettes/${folder}.png`,
+    scriptFile: `tsparticles.palette.palette-${slug}.min.js`,
+    loader,
+    optionValue: slug,
+    description: `${title} palette demo`,
+  };
 });
 
 const paletteGroupDefinitions = [
@@ -80,7 +103,6 @@ const paletteGroupDefinitions = [
     title: "Accessible & High Contrast",
     slugs: [
       "okabe-ito-accessible",
-      "monochrome-noir",
       "rgb-primaries",
       "cmy-secondaries",
       "duality-blue-yellow",
@@ -89,6 +111,16 @@ const paletteGroupDefinitions = [
       "sunset-binary",
       "crt-phosphor",
       "network-nodes",
+    ],
+  },
+  {
+    title: "Monochromatic",
+    slugs: [
+      "monochrome-noir",
+      "monochrome-blues",
+      "monochrome-greens",
+      "monochrome-pinks",
+      "monochrome-purples",
     ],
   },
   {
@@ -102,6 +134,7 @@ const paletteGroupDefinitions = [
       "pollen-and-spores",
       "fireflies",
       "skin-and-organic",
+      "earthy-nature",
       "desert-sand",
       "mud-and-dirt",
       "rock-and-gravel",
@@ -183,11 +216,32 @@ const paletteGroupDefinitions = [
     ],
   },
   {
-    title: "Vivid & Celebration",
+    title: "Pastel",
+    slugs: [
+      "pastel-dream",
+      "pastel-warm",
+      "pastel-cool",
+      "pastel-mint",
+      "pastel-sunset",
+    ],
+  },
+  {
+    title: "Vibrant",
+    slugs: [
+      "vibrant",
+      "vibrant-neon",
+      "vibrant-retro",
+      "vibrant-tropical",
+      "vibrant-electric",
+    ],
+  },
+  {
+    title: "Celebration & Spectacle",
     slugs: [
       "confetti",
       "fireworks-gold",
       "fireworks-multicolor",
+      "explosion-debris",
       "rainbow",
       "full-spectrum",
       "acid-pair",

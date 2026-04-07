@@ -82,13 +82,7 @@ const buildColorsSection = (data) => {
 
 let updatedCount = 0;
 
-for (const entry of readdirSync(palettesRoot)) {
-  const paletteDir = join(palettesRoot, entry);
-
-  if (!statSync(paletteDir).isDirectory()) {
-    continue;
-  }
-
+const updatePaletteReadme = (paletteDir) => {
   const optionsPath = join(paletteDir, "src", "options.ts");
   const readmePath = join(paletteDir, "README.md");
 
@@ -99,13 +93,13 @@ for (const entry of readdirSync(palettesRoot)) {
     optionsContent = readFileSync(optionsPath, "utf8");
     readmeContent = readFileSync(readmePath, "utf8");
   } catch {
-    continue;
+    return;
   }
 
   const data = getPaletteData(optionsContent);
 
   if (!data || !colorsSectionPattern.test(readmeContent)) {
-    continue;
+    return;
   }
 
   const updatedReadmeContent = readmeContent.replace(colorsSectionPattern, buildColorsSection(data));
@@ -113,6 +107,28 @@ for (const entry of readdirSync(palettesRoot)) {
   if (updatedReadmeContent !== readmeContent) {
     writeFileSync(readmePath, updatedReadmeContent);
     updatedCount++;
+  }
+};
+
+for (const entry of readdirSync(palettesRoot)) {
+  const firstLevelDir = join(palettesRoot, entry);
+
+  if (!statSync(firstLevelDir).isDirectory()) {
+    continue;
+  }
+
+  // Legacy flat layout support: palettes/<palette>
+  updatePaletteReadme(firstLevelDir);
+
+  // New layout support: palettes/<category>/<palette>
+  for (const nestedEntry of readdirSync(firstLevelDir)) {
+    const paletteDir = join(firstLevelDir, nestedEntry);
+
+    if (!statSync(paletteDir).isDirectory()) {
+      continue;
+    }
+
+    updatePaletteReadme(paletteDir);
   }
 }
 

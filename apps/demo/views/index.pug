@@ -20,27 +20,45 @@ html(lang="en")
         link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
         link(href="/fontawesome/css/all.css" rel="stylesheet" type="text/css")
         link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
+        style.
+            .btn-link:not(.collapsed) .collapse-icon { transform: rotate(90deg); }
+            .collapse-icon { transform: rotate(0deg); }
 
     body
         .container-fluid.m-0.px-3.py-4
-            .row.mb-2
+            .row.mb-3
                 .col-12
                     h2 Palettes
-            each group in paletteGroups
-                .row.mt-3
-                    .col-12
-                        h4= group.title
-                .row
-                    each item in group.items
-                        .col-12.col-md-6.col-xl-4.mt-3
-                            .card.h-100
-                                img.card-img-top(src=item.image alt=item.title)
-                                .card-body
-                                    h5.card-title= item.title
-                                    p.card-text= item.description
-                                    a.btn.btn-primary(href=item.route target="_blank") See demo
+                    p.text-muted Click on a category to expand or collapse it.
+            .vstack.gap-2#palettesAccordion
+                each group, groupIndex in paletteGroups
+                    - const collapseId = `collapse-group-${groupIndex}`
+                    - const headingId = `heading-group-${groupIndex}`
+                    - const isFirst = groupIndex === 0
+                    .card.border
+                        .card-header.p-0(id=headingId)
+                            button(
+                                class=`btn btn-link text-start text-decoration-none w-100 px-3 py-3 d-flex align-items-center gap-2 ${isFirst ? '' : 'collapsed'}`
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target=`#${collapseId}`
+                                aria-expanded=isFirst ? "true" : "false"
+                                aria-controls=collapseId
+                            )
+                                i.fas.fa-chevron-right.collapse-icon.text-secondary(style="transition: transform .2s; font-size: .75rem;")
+                                span.fw-semibold.fs-5= group.title
+                                span.ms-auto.badge.bg-secondary.rounded-pill= group.items.length
+                        .collapse(class=isFirst ? 'show' : '' id=collapseId aria-labelledby=headingId)
+                            .card-body
+                                .row
+                                    each item in group.items
+                                        .col-12.col-md-6.col-xl-4.mt-3
+                                            .card.h-100
+                                                img.card-img-top(src=item.image alt=item.title)
+                                                .card-body
+                                                    h5.card-title= item.title
+                                                    p.card-text= item.description
+                                                    a.btn.btn-primary(href=item.route target="_blank") See demo
 
 
-        script(src="/jquery/jquery.slim.min.js")
-        script(src="/popper.js/umd/popper.min.js")
-        script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="/bootstrap/js/bootstrap.bundle.min.js")
