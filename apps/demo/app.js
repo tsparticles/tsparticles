@@ -83,6 +83,147 @@ const palettes = loadCatalog({
   mode: "palette",
 });
 
+const paletteGroupDefinitions = [
+  {
+    title: "Accessible & High Contrast",
+    slugs: [
+      "okabe-ito-accessible",
+      "monochrome-noir",
+      "rgb-primaries",
+      "cmy-secondaries",
+      "duality-blue-yellow",
+      "duality-green-magenta",
+      "duality-red-cyan",
+      "sunset-binary",
+      "crt-phosphor",
+      "network-nodes",
+    ],
+  },
+  {
+    title: "Nature & Organic",
+    slugs: [
+      "autumn-leaves",
+      "cherry-blossom",
+      "forest-canopy",
+      "spring-bloom",
+      "dandelion-seeds",
+      "pollen-and-spores",
+      "fireflies",
+      "skin-and-organic",
+      "desert-sand",
+      "mud-and-dirt",
+      "rock-and-gravel",
+      "rust-and-corrosion",
+      "poison-and-venom",
+    ],
+  },
+  {
+    title: "Water, Ice & Weather",
+    slugs: [
+      "water",
+      "water-splash",
+      "deep-ocean",
+      "caustics",
+      "foam-and-bubbles",
+      "rising-bubbles",
+      "rain",
+      "snowfall",
+      "thunderstorm",
+      "fog-coastal",
+      "ice-magic",
+      "ice-triad",
+    ],
+  },
+  {
+    title: "Fire, Heat & Energy",
+    slugs: [
+      "fire",
+      "fire-seed",
+      "full-fire-gradient",
+      "heat-duality",
+      "heat-haze",
+      "lava-lamp",
+      "molten-metal",
+      "embers-and-ash",
+      "explosion-debris",
+      "metal-sparks",
+      "shockwave",
+      "solar-wind",
+      "sunrise-gold",
+      "candlelight",
+      "holy-light",
+      "lightning",
+      "plasma-arc",
+      "thermal-map",
+    ],
+  },
+  {
+    title: "Cosmic, Neon & Digital",
+    slugs: [
+      "aurora-borealis",
+      "bioluminescence",
+      "cosmic-radiation",
+      "dark-matter",
+      "galaxy-dust",
+      "hologram",
+      "jellyfish-glow",
+      "lens-flare-dust",
+      "portal",
+      "prism-scatter",
+      "pulsar",
+      "supernova",
+      "vaporwave",
+      "neon-city",
+      "matrix-rain",
+      "glitch",
+    ],
+  },
+  {
+    title: "Smoke & Atmosphere",
+    slugs: [
+      "colored-smoke-magenta",
+      "colored-smoke-teal",
+      "smoke-cold",
+      "smoke-warm",
+      "ink-in-water",
+      "fairy-dust",
+      "lofi-warm",
+    ],
+  },
+  {
+    title: "Vivid & Celebration",
+    slugs: [
+      "confetti",
+      "fireworks-gold",
+      "fireworks-multicolor",
+      "rainbow",
+      "full-spectrum",
+      "acid-pair",
+      "oil-slick",
+      "blood-and-gore",
+    ],
+  },
+];
+
+const paletteBySlug = new Map(palettes.map(item => [item.slug, item]));
+
+const paletteGroups = paletteGroupDefinitions
+  .map(group => ({
+    ...group,
+    items: group.slugs.map(slug => paletteBySlug.get(slug)).filter(Boolean),
+  }))
+  .filter(group => group.items.length > 0);
+
+const groupedPaletteSlugs = new Set(paletteGroups.flatMap(group => group.items.map(item => item.slug)));
+const uncategorizedPalettes = palettes.filter(item => !groupedPaletteSlugs.has(item.slug));
+
+if (uncategorizedPalettes.length > 0) {
+  paletteGroups.push({
+    title: "Other",
+    items: uncategorizedPalettes,
+  });
+}
+
 const presetMap = new Map(presets.map(item => [item.id, item])),
   paletteMap = new Map(palettes.map(item => [item.id, item]));
 
@@ -123,7 +264,7 @@ for (const item of [...presets, ...palettes]) {
 }
 
 app.get("/", function (req, res) {
-  res.render("index", { presets, palettes });
+  res.render("index", { presets, paletteGroups });
 });
 
 app.get("/presets/:id", function (req, res) {

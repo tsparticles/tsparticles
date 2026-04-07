@@ -39,15 +39,19 @@ html(lang="en")
             .row.mb-2.mt-5
                 .col-12
                     h2 Palettes
-            .row
-                each item in palettes
-                    .col-12.col-md-6.col-xl-4.mt-3
-                        .card.h-100
-                            img.card-img-top(src=item.image alt=item.title)
-                            .card-body
-                                h5.card-title= item.title
-                                p.card-text= item.description
-                                a.btn.btn-primary(href=item.route target="_blank") See demo
+            each group in paletteGroups
+                .row.mt-3
+                    .col-12
+                        h4= group.title
+                .row
+                    each item in group.items
+                        .col-12.col-md-6.col-xl-4.mt-3
+                            .card.h-100
+                                img.card-img-top(src=item.image alt=item.title)
+                                .card-body
+                                    h5.card-title= item.title
+                                    p.card-text= item.description
+                                    a.btn.btn-primary(href=item.route target="_blank") See demo
 
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
