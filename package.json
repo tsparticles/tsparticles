@@ -12,7 +12,8 @@
     "publish:beta": "lerna publish from-package --pre-dist-tag beta",
     "publish:next": "lerna publish from-package --dist-tag next",
     "release:zip-artifacts": "node scripts/package-zips.js",
-    "release:prettify-changelog": "node scripts/prettify-changelog.js"
+    "release:prettify-changelog": "node scripts/prettify-changelog.js",
+    "update:palette-readmes": "node scripts/update-palette-readmes.js"
   },
   "license": "MIT",
   "prettier": "@tsparticles/prettier-config",
