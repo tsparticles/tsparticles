@@ -44,9 +44,9 @@ declare global {
 }
 
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
-  const data = args.data as { particle: Particle };
+  const data = args.data as { particle?: Particle } | undefined;
 
-  return data.particle.options.move.gravity.enable;
+  return data?.particle?.options.move.gravity.enable ?? false;
 };
 
 /**

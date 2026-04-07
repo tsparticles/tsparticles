@@ -1,4 +1,4 @@
-import { EventType, type ISourceOptions, type Particle, identity } from "@tsparticles/engine";
+import { type CustomEventArgs, EventType, type ISourceOptions, type Particle, identity } from "@tsparticles/engine";
 
 const thirdFactor = 3,
   third = identity / thirdFactor,
@@ -192,10 +192,10 @@ const thirdFactor = 3,
       events: [
         {
           event: EventType.particleRemoved,
-          filter: (args: unknown): boolean => {
-            const data = (args as { data?: { particle?: Particle } }).data;
+          filter: (args: CustomEventArgs): boolean => {
+            const particle = (args.data as { particle?: Particle } | undefined)?.particle;
 
-            return data?.particle?.options.move.gravity.enable ?? false;
+            return particle?.options.move.gravity.enable ?? false;
           },
           audio: [
             "https://particles.js.org/audio/explosion0.mp3",

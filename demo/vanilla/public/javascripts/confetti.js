@@ -20,7 +20,11 @@ async function frame() {
   ]);
 
   if (Date.now() < end) {
-    setTimeout(frame, 15);
+    setTimeout(() => {
+      frame().catch(error => {
+        console.error("Confetti frame error:", error);
+      });
+    }, 15);
   }
 }
 
@@ -28,4 +32,6 @@ async function frame() {
   await confetti.init();
 
   await frame();
-})();
+})().catch(error => {
+  console.error("Confetti initialization error:", error);
+});
