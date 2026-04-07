@@ -67,7 +67,7 @@ jobs:
           nx_cloud_started=false
 
           until [ "$retries" -ge "$max_retries" ]; do
-            output=$(npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" 2>&1)
+            output=$(npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" 2>&1)
             exit_code=$?
 
             if echo "$output" | grep -q "401\|sufficient access\|unauthorized\|Unauthorized"; then

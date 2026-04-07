@@ -52,7 +52,7 @@ jobs:
         run: pnpm install
 
       - name: Initialize Nx Cloud
-        run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+        run: pnpm exec nx-cloud start-ci-run --distribute-on="3 linux-medium-js"
 
       - name: Build All Packages
         run: pnpm nx run-many -t build:ci
