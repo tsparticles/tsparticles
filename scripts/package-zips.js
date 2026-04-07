@@ -1,11 +1,14 @@
-import { execSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import { readdirSync, existsSync, readFileSync, mkdirSync, rmSync } from "node:fs";
+import { availableParallelism } from "node:os";
 import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = join(ROOT, "release-artifacts");
 const SKIPPED_PATH_PREFIXES = ["demo", "utils/tests"];
 const SKIPPED_DIR_NAMES = new Set([".git", "node_modules", "dist", "release-artifacts"]);
+const DEFAULT_CONCURRENCY = Math.max(1, Math.min(8, availableParallelism()));
+const ZIP_CONCURRENCY = Math.max(1, Number.parseInt(process.env.ZIP_CONCURRENCY ?? "", 10) || DEFAULT_CONCURRENCY);
 
 // Clean output directory
 rmSync(OUTPUT_DIR, { recursive: true, force: true });
@@ -54,13 +57,51 @@ function findPackages(dir) {
 function createZip(distPath, outputZipPath) {
   console.log(`📦 Creating ${outputZipPath}`);
 
-  execSync(`cd "${distPath}" && zip -r "${outputZipPath}" .`, {
-    stdio: "inherit",
+  return new Promise((resolve, reject) => {
+    const child = spawn("zip", ["-r", outputZipPath, "."], {
+      cwd: distPath,
+      stdio: "inherit",
+    });
+
+    child.on("error", (error) => {
+      reject(error);
+    });
+
+    child.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+
+        return;
+      }
+
+      reject(new Error(`zip command failed with exit code ${code} for ${outputZipPath}`));
+    });
   });
+}
+
+async function runWithConcurrency(items, concurrency, worker) {
+  let index = 0;
+
+  async function runWorker() {
+    while (true) {
+      const currentIndex = index;
+
+      index += 1;
+
+      if (currentIndex >= items.length) {
+        return;
+      }
+
+      await worker(items[currentIndex]);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, () => runWorker()));
 }
 
 // 🔍 Find all packages in repo
 const allPackages = findPackages(ROOT);
+const zipJobs = [];
 
 for (const pkgPath of allPackages) {
   const distPath = join(pkgPath, "dist");
@@ -82,7 +123,14 @@ for (const pkgPath of allPackages) {
   const zipName = `${name}-${version}.zip`;
   const zipPath = join(OUTPUT_DIR, zipName);
 
-  createZip(distPath, zipPath);
+  zipJobs.push({
+    distPath,
+    zipPath,
+  });
 }
+
+console.log(`⚙️ Packaging ${zipJobs.length} artifacts with concurrency ${ZIP_CONCURRENCY}`);
+
+await runWithConcurrency(zipJobs, ZIP_CONCURRENCY, ({ distPath, zipPath }) => createZip(distPath, zipPath));
 
 console.log("✅ All package archives created successfully.");
