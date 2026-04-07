@@ -1,0 +1,15 @@
+{
+    "includes": "./markdown",
+    "entryPoints": [
+        "./src/"
+    ],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles Deep Ocean Palette",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}

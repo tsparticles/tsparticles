@@ -1,0 +1,12 @@
+linkWorkspacePackages: deep
+
+packages:
+  - apps/*
+  - palettes/*
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - '@tsparticles/engine'
+  - canvas
+  - esbuild
+  - nx

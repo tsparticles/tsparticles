@@ -1,0 +1,15 @@
+{
+    "includes": "./markdown",
+    "entryPoints": [
+        "./src/"
+    ],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles RGB Primaries Palette",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}
