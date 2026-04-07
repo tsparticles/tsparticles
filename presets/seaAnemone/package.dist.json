@@ -99,12 +99,12 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.6",
-    "@tsparticles/engine": "^4.0.0-beta.6",
-    "@tsparticles/path-curves": "^4.0.0-beta.6",
-    "@tsparticles/plugin-emitters": "^4.0.0-beta.6",
-    "@tsparticles/plugin-interactivity": "^4.0.0-beta.6",
-    "@tsparticles/plugin-trail": "^4.0.0-beta.6"
+    "@tsparticles/basic": "^4.0.0-beta.8",
+    "@tsparticles/engine": "^4.0.0-beta.8",
+    "@tsparticles/path-curves": "^4.0.0-beta.8",
+    "@tsparticles/plugin-emitters": "^4.0.0-beta.8",
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.8",
+    "@tsparticles/plugin-trail": "^4.0.0-beta.8"
   },
   "publishConfig": {
     "access": "public"

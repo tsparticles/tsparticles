@@ -110,15 +110,15 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.6",
-    "@tsparticles/engine": "^4.0.0-beta.6",
+    "@tsparticles/basic": "^4.0.0-beta.8",
+    "@tsparticles/engine": "^4.0.0-beta.8",
     "@tsparticles/palette-confetti": "workspace:^4.0.0-alpha.5",
-    "@tsparticles/plugin-motion": "^4.0.0-beta.6",
-    "@tsparticles/shape-square": "^4.0.0-beta.6",
-    "@tsparticles/updater-roll": "^4.0.0-beta.6",
-    "@tsparticles/updater-rotate": "^4.0.0-beta.6",
-    "@tsparticles/updater-tilt": "^4.0.0-beta.6",
-    "@tsparticles/updater-wobble": "^4.0.0-beta.6"
+    "@tsparticles/plugin-motion": "^4.0.0-beta.8",
+    "@tsparticles/shape-square": "^4.0.0-beta.8",
+    "@tsparticles/updater-roll": "^4.0.0-beta.8",
+    "@tsparticles/updater-rotate": "^4.0.0-beta.8",
+    "@tsparticles/updater-tilt": "^4.0.0-beta.8",
+    "@tsparticles/updater-wobble": "^4.0.0-beta.8"
   },
   "type": "module"
 }
