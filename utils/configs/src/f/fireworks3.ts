@@ -195,7 +195,7 @@ const thirdFactor = 3,
           filter: (args: unknown): boolean => {
             const data = (args as { data?: { particle?: Particle } }).data;
 
-            return data?.particle?.options.move.gravity.inverse ?? false;
+            return data?.particle?.options.move.gravity.enable ?? false;
           },
           audio: [
             "https://particles.js.org/audio/explosion0.mp3",

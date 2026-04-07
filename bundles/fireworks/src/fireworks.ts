@@ -46,7 +46,7 @@ declare global {
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
   const data = args.data as { particle: Particle };
 
-  return data.particle.options.move.gravity.inverse;
+  return data.particle.options.move.gravity.enable;
 };
 
 /**
@@ -193,6 +193,7 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
             l: options.brightness,
           },
           particles: {
+            group: "split",
             number: {
               value: 0,
             },
