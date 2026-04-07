@@ -6,8 +6,8 @@ import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
 
-const liveReloadPort = 35730,
-  expressPort = 3015;
+const liveReloadPort = 35731,
+  expressPort = 3016;
 
 const app = express();
 
