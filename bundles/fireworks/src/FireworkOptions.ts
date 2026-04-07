@@ -27,8 +27,45 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
       min: -30,
       max: 30,
     };
-    this.colors = ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"];
-    this.gravity = 5;
+    this.colors = [
+      "#FF0000",
+      "#FF2A00",
+      "#FF5500",
+      "#FF8000",
+      "#FFAA00",
+      "#FFD400",
+      "#FFFF00",
+      "#D4FF00",
+      "#AAFF00",
+      "#80FF00",
+      "#55FF00",
+      "#2AFF00",
+      "#00FF00",
+      "#00FF2A",
+      "#00FF55",
+      "#00FF80",
+      "#00FFAA",
+      "#00FFD4",
+      "#00FFFF",
+      "#00D4FF",
+      "#00AAFF",
+      "#0080FF",
+      "#0055FF",
+      "#002AFF",
+      "#0000FF",
+      "#2A00FF",
+      "#5500FF",
+      "#8000FF",
+      "#AA00FF",
+      "#D400FF",
+      "#FF00FF",
+      "#FF00D4",
+      "#FF00AA",
+      "#FF0080",
+      "#FF0055",
+      "#FF002A",
+    ];
+    this.gravity = 30;
     this.minHeight = {
       min: 10,
       max: 30,
@@ -39,11 +76,8 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
       max: 30,
     };
     this.sounds = true;
-    this.speed = { min: 5, max: 15 };
-    this.splitCount = {
-      min: 75,
-      max: 150,
-    };
+    this.speed = { min: 20, max: 40 };
+    this.splitCount = 100;
   }
 
   load(data?: RecursivePartial<IFireworkOptions>): void {

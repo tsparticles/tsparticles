@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.7](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2026-04-07)
+
+### Bug Fixes
+
+- improved split color management and offset handling, and updateAnimation function ([754dd9e](https://github.com/tsparticles/tsparticles/commit/754dd9e91a63ce330816350765e9ec8c146aaf6a))
+
 # [4.0.0-beta.6](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2026-04-02)
 
 **Note:** Version bump only for package @tsparticles/confetti

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-quad",
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.7",
   "description": "tsParticles easing quad plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -221,6 +221,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 speed: opacitySpeed,
                 startValue: "max",
                 destroy: "min",
+                count: 1,
               },
             },
             size: {
@@ -324,6 +325,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
           speed: opacitySpeed,
           startValue: "max",
           destroy: "min",
+          count: 1,
         },
       },
       size: {

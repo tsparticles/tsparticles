@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/tests",
   "private": true,
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.7",
   "scripts": {
     "prettify:ci": "prettier --check ./src",
     "prettify": "prettier --write ./src",
@@ -26,7 +26,7 @@
     "@types/jsdom": "^28.0.1",
     "@vitest/coverage-v8": "^4.1.2",
     "@vitest/ui": "^4.1.2",
-    "canvas": "^3.2.2",
+    "canvas": "^3.2.3",
     "jsdom": "^29.0.1",
     "jsdom-global": "^3.0.2",
     "vitest": "^4.1.2"

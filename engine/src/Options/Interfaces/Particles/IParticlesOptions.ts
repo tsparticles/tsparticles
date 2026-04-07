@@ -55,6 +55,8 @@ export interface IParticlesOptions {
    */
   opacity: IOpacity;
 
+  palette?: string;
+
   /**
    * Particles options for reducing the randomization of duplicate particles, the index will be used for choosing the array values
    */

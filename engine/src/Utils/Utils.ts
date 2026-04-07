@@ -687,6 +687,25 @@ export function updateAnimation(
     return;
   }
 
+  // Update value based on current status
+  switch (data.status) {
+    case AnimationStatus.increasing:
+      data.value += velocity;
+      break;
+    case AnimationStatus.decreasing:
+      data.value -= velocity;
+      break;
+    default:
+      // no-op
+      break;
+  }
+
+  // Apply decay to velocity
+  if (data.velocity && decay !== identity) {
+    data.velocity *= decay;
+  }
+
+  // Handle animation state and manage loop count
   switch (data.status) {
     case AnimationStatus.increasing:
       if (data.value >= maxValue) {
@@ -698,10 +717,7 @@ export function updateAnimation(
 
         data.loops ??= minLoops;
         data.loops++;
-      } else {
-        data.value += velocity;
       }
-
       break;
     case AnimationStatus.decreasing:
       if (data.value <= minValue) {
@@ -713,23 +729,21 @@ export function updateAnimation(
 
         data.loops ??= minLoops;
         data.loops++;
-      } else {
-        data.value -= velocity;
       }
-
       break;
     default:
       // no-op
       break;
   }
 
-  if (data.velocity && decay !== identity) {
-    data.velocity *= decay;
-  }
-
+  // Check if particle should be destroyed based on destroyType (before clamping)
   checkDestroy(particle, destroyType, data.value, minValue, maxValue);
 
-  data.value = clamp(data.value, minValue, maxValue);
+  // Clamp value only if particle is still alive
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!particle.destroyed) {
+    data.value = clamp(data.value, minValue, maxValue);
+  }
 }
 
 /**

@@ -48,6 +48,7 @@ const options: ISourceOptions = {
         sync: true,
         startValue: "min",
         destroy: "max",
+        count: 1,
       },
     },
     links: {

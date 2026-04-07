@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.7",
   "npmClient": "pnpm",
   "conventionalCommits": true,
   "command": {

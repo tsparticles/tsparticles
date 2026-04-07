@@ -31,6 +31,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   readonly move;
   readonly number;
   readonly opacity;
+  palette?: string;
   reduceDuplicates;
   readonly shape;
   readonly size;
@@ -61,6 +62,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   load(data?: RecursivePartial<IParticlesOptions>): void {
     if (isNull(data)) {
       return;
+    }
+
+    if (data.palette) {
+      this.palette = data.palette;
+
+      this._importPalette(this.palette);
     }
 
     if (data.groups !== undefined) {
@@ -132,4 +139,33 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
       }
     }
   }
+
+  private readonly _importPalette = (palette: string): void => {
+    const paletteData = this._pluginManager.getPalette(palette);
+
+    if (!paletteData) {
+      return;
+    }
+
+    this.load({
+      fill: {
+        color: paletteData.fill
+          ? {
+              value: paletteData.colors,
+            }
+          : undefined,
+        enable: paletteData.fill,
+      },
+      stroke: paletteData.fill
+        ? undefined
+        : paletteData.colors.map(color => ({
+            color: { value: color },
+            width: 1,
+          })),
+      blend: {
+        enable: true,
+        mode: paletteData.blendMode,
+      },
+    });
+  };
 }

@@ -42,6 +42,7 @@ const options: ISourceOptions = {
         enable: true,
         speed: 2,
         destroy: "max",
+        count: 1,
         sync: true,
       },
     },

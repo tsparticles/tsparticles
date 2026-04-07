@@ -93,6 +93,7 @@ const options: ISourceOptions = {
               sync: false,
               startValue: "max",
               destroy: "min",
+              count: 1,
             },
           },
           effect: {
