@@ -86,117 +86,14 @@ If you already have a config and only want a color direction, use a palette.
 | Stars               | `@tsparticles/preset-stars`               | <https://particles.js.org/samples/presets/stars>              | <https://github.com/tsparticles/presets/blob/main/presets/stars/README.md>              |
 | Triangles           | `@tsparticles/preset-triangles`           | <https://particles.js.org/samples/presets/triangles>          | <https://github.com/tsparticles/presets/blob/main/presets/triangles/README.md>          |
 
-## Available palettes
+## Palettes repository
 
-Palettes are available in `palettes/` and can be used to apply a visual color identity across configurations.
+Palettes are now maintained in a dedicated repository:
 
-- Directory: <https://github.com/tsparticles/presets/tree/main/palettes>
-- Global demos: <https://particles.js.org/samples/presets/>
+- Repository: <https://github.com/tsparticles/palettes>
+- Samples: <https://particles.js.org/samples/palettes/>
 
-### Accessible & High Contrast
-
-- `@tsparticles/palette-okabe-ito-accessible`
-- `@tsparticles/palette-monochrome-noir`
-- `@tsparticles/palette-rgb-primaries`
-- `@tsparticles/palette-cmy-secondaries`
-- `@tsparticles/palette-duality-blue-yellow`
-- `@tsparticles/palette-duality-green-magenta`
-- `@tsparticles/palette-duality-red-cyan`
-- `@tsparticles/palette-sunset-binary`
-- `@tsparticles/palette-crt-phosphor`
-- `@tsparticles/palette-network-nodes`
-
-### Nature & Organic
-
-- `@tsparticles/palette-autumn-leaves`
-- `@tsparticles/palette-cherry-blossom`
-- `@tsparticles/palette-forest-canopy`
-- `@tsparticles/palette-spring-bloom`
-- `@tsparticles/palette-dandelion-seeds`
-- `@tsparticles/palette-pollen-and-spores`
-- `@tsparticles/palette-fireflies`
-- `@tsparticles/palette-skin-and-organic`
-- `@tsparticles/palette-desert-sand`
-- `@tsparticles/palette-mud-and-dirt`
-- `@tsparticles/palette-rock-and-gravel`
-- `@tsparticles/palette-rust-and-corrosion`
-- `@tsparticles/palette-poison-and-venom`
-
-### Water, Ice & Weather
-
-- `@tsparticles/palette-water`
-- `@tsparticles/palette-water-splash`
-- `@tsparticles/palette-deep-ocean`
-- `@tsparticles/palette-caustics`
-- `@tsparticles/palette-foam-and-bubbles`
-- `@tsparticles/palette-rising-bubbles`
-- `@tsparticles/palette-rain`
-- `@tsparticles/palette-snowfall`
-- `@tsparticles/palette-thunderstorm`
-- `@tsparticles/palette-fog-coastal`
-- `@tsparticles/palette-ice-magic`
-- `@tsparticles/palette-ice-triad`
-
-### Fire, Heat & Energy
-
-- `@tsparticles/palette-fire`
-- `@tsparticles/palette-fire-seed`
-- `@tsparticles/palette-full-fire-gradient`
-- `@tsparticles/palette-heat-duality`
-- `@tsparticles/palette-heat-haze`
-- `@tsparticles/palette-lava-lamp`
-- `@tsparticles/palette-molten-metal`
-- `@tsparticles/palette-embers-and-ash`
-- `@tsparticles/palette-explosion-debris`
-- `@tsparticles/palette-metal-sparks`
-- `@tsparticles/palette-shockwave`
-- `@tsparticles/palette-solar-wind`
-- `@tsparticles/palette-sunrise-gold`
-- `@tsparticles/palette-candlelight`
-- `@tsparticles/palette-holy-light`
-- `@tsparticles/palette-lightning`
-- `@tsparticles/palette-plasma-arc`
-- `@tsparticles/palette-thermal-map`
-
-### Cosmic, Neon & Digital
-
-- `@tsparticles/palette-aurora-borealis`
-- `@tsparticles/palette-bioluminescence`
-- `@tsparticles/palette-cosmic-radiation`
-- `@tsparticles/palette-dark-matter`
-- `@tsparticles/palette-galaxy-dust`
-- `@tsparticles/palette-hologram`
-- `@tsparticles/palette-jellyfish-glow`
-- `@tsparticles/palette-lens-flare-dust`
-- `@tsparticles/palette-portal`
-- `@tsparticles/palette-prism-scatter`
-- `@tsparticles/palette-pulsar`
-- `@tsparticles/palette-supernova`
-- `@tsparticles/palette-vaporwave`
-- `@tsparticles/palette-neon-city`
-- `@tsparticles/palette-matrix-rain`
-- `@tsparticles/palette-glitch`
-
-### Smoke & Atmosphere
-
-- `@tsparticles/palette-colored-smoke-magenta`
-- `@tsparticles/palette-colored-smoke-teal`
-- `@tsparticles/palette-smoke-cold`
-- `@tsparticles/palette-smoke-warm`
-- `@tsparticles/palette-ink-in-water`
-- `@tsparticles/palette-fairy-dust`
-- `@tsparticles/palette-lofi-warm`
-
-### Vivid & Celebration
-
-- `@tsparticles/palette-confetti`
-- `@tsparticles/palette-fireworks-gold`
-- `@tsparticles/palette-fireworks-multicolor`
-- `@tsparticles/palette-rainbow`
-- `@tsparticles/palette-full-spectrum`
-- `@tsparticles/palette-acid-pair`
-- `@tsparticles/palette-oil-slick`
-- `@tsparticles/palette-blood-and-gore`
+Use this repository for preset packages only.
 
 ## Framework integration
 

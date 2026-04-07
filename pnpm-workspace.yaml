@@ -3,7 +3,6 @@ linkWorkspacePackages: deep
 packages:
   - apps/*
   - presets/*
-  - palettes/*
 
 onlyBuiltDependencies:
   - '@swc/core'

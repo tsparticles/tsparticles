@@ -5,7 +5,7 @@
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-explosions/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-explosions) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-explosions.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-explosions) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-explosions)](https://www.npmjs.com/package/@tsparticles/preset-confetti-explosions) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) preset for draggable confetti explosions, using
-the [confetti palette](https://github.com/tsparticles/presets/tree/main/palettes/confetti#readme).
+the [confetti palette](https://github.com/tsparticles/palettes/tree/main/palettes/confetti#readme).
 
 [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 

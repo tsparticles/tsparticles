@@ -1,6 +1,6 @@
 import express from "express";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { readdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import stylus from "stylus";
 import livereload from "livereload";
@@ -14,8 +14,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url),
   __dirname = dirname(__filename),
   workspaceRoot = resolve(__dirname, "../.."),
-  presetsRoot = resolve(workspaceRoot, "presets"),
-  palettesRoot = resolve(workspaceRoot, "palettes");
+  presetsRoot = resolve(workspaceRoot, "presets");
 
 const toTitleCase = value => value.replaceAll(/\b\w/g, char => char.toUpperCase());
 
@@ -27,19 +26,6 @@ const camelToKebab = value =>
 
 const toPascal = value => `${value[0].toUpperCase()}${value.slice(1)}`;
 
-const parsePaletteName = folder => {
-  const optionsPath = join(palettesRoot, folder, "src", "options.ts");
-
-  if (!existsSync(optionsPath)) {
-    return toTitleCase(camelToKebab(folder).replaceAll("-", " "));
-  }
-
-  const optionsContent = readFileSync(optionsPath, "utf8"),
-    match = optionsContent.match(/name:\s*"([^"]+)"/);
-
-  return match?.[1] ?? toTitleCase(camelToKebab(folder).replaceAll("-", " "));
-};
-
 const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
   readdirSync(root, { withFileTypes: true })
     .filter(entry => entry.isDirectory())
@@ -48,7 +34,7 @@ const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
     .map(folder => {
       const slug = mode === "palette" ? camelToKebab(folder) : folder,
         packageName = `@tsparticles/${prefix}-${camelToKebab(slug)}`,
-        title = mode === "palette" ? parsePaletteName(folder) : toTitleCase(slug.replaceAll("-", " ")),
+        title = toTitleCase(slug.replaceAll("-", " ")),
         loader = `load${toPascal(folder)}${loaderSuffix}`;
 
       return {
@@ -57,12 +43,9 @@ const loadCatalog = ({ root, prefix, loaderSuffix, mode }) =>
         title,
         packageName,
         mountPath: `/${prefix}-${slug}`,
-        route: `/${mode === "palette" ? "palettes" : "presets"}/${folder}`,
-        image: `/images/${mode === "palette" ? "palettes" : "presets"}/${folder}.png`,
-        scriptFile:
-          mode === "palette"
-            ? `tsparticles.palette.palette-${slug}.min.js`
-            : `tsparticles.preset.${slug}.bundle.min.js`,
+        route: `/presets/${folder}`,
+        image: `/images/presets/${folder}.png`,
+        scriptFile: `tsparticles.preset.${slug}.bundle.min.js`,
         loader,
         optionValue: slug,
         description: `${title} ${mode} demo`,
@@ -76,156 +59,7 @@ const presets = loadCatalog({
   mode: "preset",
 });
 
-const palettes = loadCatalog({
-  root: palettesRoot,
-  prefix: "palette",
-  loaderSuffix: "Palette",
-  mode: "palette",
-});
-
-const paletteGroupDefinitions = [
-  {
-    title: "Accessible & High Contrast",
-    slugs: [
-      "okabe-ito-accessible",
-      "monochrome-noir",
-      "rgb-primaries",
-      "cmy-secondaries",
-      "duality-blue-yellow",
-      "duality-green-magenta",
-      "duality-red-cyan",
-      "sunset-binary",
-      "crt-phosphor",
-      "network-nodes",
-    ],
-  },
-  {
-    title: "Nature & Organic",
-    slugs: [
-      "autumn-leaves",
-      "cherry-blossom",
-      "forest-canopy",
-      "spring-bloom",
-      "dandelion-seeds",
-      "pollen-and-spores",
-      "fireflies",
-      "skin-and-organic",
-      "desert-sand",
-      "mud-and-dirt",
-      "rock-and-gravel",
-      "rust-and-corrosion",
-      "poison-and-venom",
-    ],
-  },
-  {
-    title: "Water, Ice & Weather",
-    slugs: [
-      "water",
-      "water-splash",
-      "deep-ocean",
-      "caustics",
-      "foam-and-bubbles",
-      "rising-bubbles",
-      "rain",
-      "snowfall",
-      "thunderstorm",
-      "fog-coastal",
-      "ice-magic",
-      "ice-triad",
-    ],
-  },
-  {
-    title: "Fire, Heat & Energy",
-    slugs: [
-      "fire",
-      "fire-seed",
-      "full-fire-gradient",
-      "heat-duality",
-      "heat-haze",
-      "lava-lamp",
-      "molten-metal",
-      "embers-and-ash",
-      "explosion-debris",
-      "metal-sparks",
-      "shockwave",
-      "solar-wind",
-      "sunrise-gold",
-      "candlelight",
-      "holy-light",
-      "lightning",
-      "plasma-arc",
-      "thermal-map",
-    ],
-  },
-  {
-    title: "Cosmic, Neon & Digital",
-    slugs: [
-      "aurora-borealis",
-      "bioluminescence",
-      "cosmic-radiation",
-      "dark-matter",
-      "galaxy-dust",
-      "hologram",
-      "jellyfish-glow",
-      "lens-flare-dust",
-      "portal",
-      "prism-scatter",
-      "pulsar",
-      "supernova",
-      "vaporwave",
-      "neon-city",
-      "matrix-rain",
-      "glitch",
-    ],
-  },
-  {
-    title: "Smoke & Atmosphere",
-    slugs: [
-      "colored-smoke-magenta",
-      "colored-smoke-teal",
-      "smoke-cold",
-      "smoke-warm",
-      "ink-in-water",
-      "fairy-dust",
-      "lofi-warm",
-    ],
-  },
-  {
-    title: "Vivid & Celebration",
-    slugs: [
-      "confetti",
-      "fireworks-gold",
-      "fireworks-multicolor",
-      "rainbow",
-      "full-spectrum",
-      "acid-pair",
-      "oil-slick",
-      "blood-and-gore",
-    ],
-  },
-];
-
-const paletteBySlug = new Map(palettes.map(item => [item.slug, item]));
-
-const paletteGroups = paletteGroupDefinitions
-  .map(group => ({
-    ...group,
-    items: group.slugs.map(slug => paletteBySlug.get(slug)).filter(Boolean),
-  }))
-  .filter(group => group.items.length > 0);
-
-const groupedPaletteSlugs = new Set(paletteGroups.flatMap(group => group.items.map(item => item.slug)));
-const uncategorizedPalettes = palettes.filter(item => !groupedPaletteSlugs.has(item.slug));
-
-if (uncategorizedPalettes.length > 0) {
-  paletteGroups.push({
-    title: "Other",
-    items: uncategorizedPalettes,
-  });
-}
-
-const presetMap = new Map(presets.map(item => [item.id, item])),
-  paletteMap = new Map(palettes.map(item => [item.id, item]));
+const presetMap = new Map(presets.map(item => [item.id, item]));
 
 const liveReloadServer = livereload.createServer({
   port: liveReloadPort,
@@ -259,12 +93,12 @@ app.use("/tsparticles-updater-stroke-color", express.static("./node_modules/@tsp
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 
-for (const item of [...presets, ...palettes]) {
+for (const item of presets) {
   app.use(item.mountPath, express.static(`./node_modules/${item.packageName}`));
 }
 
 app.get("/", function (req, res) {
-  res.render("index", { presets, paletteGroups });
+  res.render("index", { presets });
 });
 
 app.get("/presets/:id", function (req, res) {
@@ -279,17 +113,6 @@ app.get("/presets/:id", function (req, res) {
   res.render("preset", { item });
 });
 
-app.get("/palettes/:id", function (req, res) {
-  const item = paletteMap.get(req.params.id);
-
-  if (!item) {
-    res.status(404).send("Palette not found");
-
-    return;
-  }
-
-  res.render("palette", { item });
-});
 
 for (const item of presets) {
   app.get(`/${item.id}`, function (req, res) {

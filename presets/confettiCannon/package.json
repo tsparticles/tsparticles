@@ -113,7 +113,7 @@
     "@tsparticles/basic": "^4.0.0-beta.8",
     "@tsparticles/engine": "^4.0.0-beta.8",
     "@tsparticles/interaction-external-cannon": "^4.0.0-beta.8",
-    "@tsparticles/palette-confetti": "workspace:^4.0.0-alpha.5",
+    "@tsparticles/palette-confetti": "^4.0.0-alpha.5",
     "@tsparticles/plugin-interactivity": "^4.0.0-beta.8",
     "@tsparticles/plugin-motion": "^4.0.0-beta.8",
     "@tsparticles/shape-square": "^4.0.0-beta.8",

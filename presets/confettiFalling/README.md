@@ -5,7 +5,7 @@
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti-falling/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti-falling) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti-falling.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti-falling) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti-falling)](https://www.npmjs.com/package/@tsparticles/preset-confetti-falling) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) preset for draggable falling confetti, using
-the [confetti palette](https://github.com/tsparticles/presets/tree/main/palettes/confetti#readme).
+the [confetti palette](https://github.com/tsparticles/palettes/tree/main/palettes/confetti#readme).
 
 [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
