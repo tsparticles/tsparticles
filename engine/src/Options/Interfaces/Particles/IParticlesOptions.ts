@@ -55,6 +55,9 @@ export interface IParticlesOptions {
    */
   opacity: IOpacity;
 
+  /**
+   * Registered palette id to import particle fill/stroke/blend defaults
+   */
   palette?: string;
 
   /**

@@ -20,6 +20,7 @@ Use the links below to navigate to the detailed page for each sub-option.
 | `number`           | How many particles exist and density rules                                  | [Number](./Particles/Number.md)         |
 | `opacity`          | Transparency and animated fading                                            | [Opacity](./Particles/Opacity.md)       |
 | `orbit`            | Orbital rotation around a center point                                      | {@link IOrbit}                          |
+| `palette`          | Imports a named palette and applies fill/stroke + blend defaults            | [Palette](./Particles/Palette.md)       |
 | `reduceDuplicates` | When `true`, picks particle configs sequentially instead of randomly        | —                                       |
 | `repulse`          | Mutual repulsion between particles                                          | {@link IParticlesRepulse}               |
 | `roll`             | 3D-like rolling effect                                                      | [Roll](./Particles/Roll.md)             |
@@ -95,6 +96,30 @@ Particle groups let you define subsets of particles with different configs appli
 }
 ```
 
+## palette
+
+`particles.palette` loads a registered palette by id and automatically applies particle colors.
+
+When a palette is found, tsParticles imports these defaults:
+
+- `fill`: enabled/disabled according to palette settings
+- `fill.color.value`: palette color list when fill mode is enabled
+- `stroke`: one stroke per palette color when fill mode is disabled
+- `blend`: enabled with the palette blend mode
+
+```json
+{
+  "particles": {
+    "palette": "ocean",
+    "shape": {
+      "type": "circle"
+    }
+  }
+}
+```
+
+If you set `fill`, `stroke`, or `blend` explicitly after `palette`, those values override imported defaults.
+
 ## reduceDuplicates
 
 When `true`, particles cycle through configs sequentially instead of picking randomly — useful for guaranteed even distribution.
@@ -112,4 +137,5 @@ When `true`, particles cycle through configs sequentially instead of picking ran
 - Number: [Number](./Particles/Number.md)
 - Move: [Move](./Particles/Move.md)
 - Links: [Links](./Particles/Links.md)
+- Palette: [Palette](./Particles/Palette.md)
 - Shape: [Shape](./Particles/Shape.md)
