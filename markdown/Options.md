@@ -100,6 +100,7 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 - [Group](./Options/Particles/Group.md)
 - [Life](./Options/Particles/Life.md)
 - [Orbit](./Options/Particles/Orbit.md)
+- [Palette](./Options/Particles/Palette.md)
 - [Repulse](./Options/Particles/Repulse.md)
 - [Roll](./Options/Particles/Roll.md)
 - [Rotate](./Options/Particles/Rotate.md)
