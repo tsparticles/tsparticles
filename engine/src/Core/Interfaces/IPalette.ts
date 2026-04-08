@@ -1,3 +1,4 @@
+import type { RangeValue } from "../../Types/RangeValue.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 export interface IPaletteColorsFill {
@@ -7,7 +8,7 @@ export interface IPaletteColorsFill {
 
 export interface IPaletteColorsStroke {
   value: SingleOrMultiple<string>;
-  width: number;
+  width: RangeValue;
 }
 
 export interface IPaletteColors {
