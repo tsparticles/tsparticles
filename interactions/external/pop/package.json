@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-pop",
-  "version": "4.0.0-beta.10",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles pop external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {

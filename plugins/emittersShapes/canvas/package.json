@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-canvas",
-  "version": "4.0.0-beta.10",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles emitters shape canvas plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

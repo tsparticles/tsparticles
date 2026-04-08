@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-simplex-noise",
-  "version": "4.0.0-beta.10",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -103,10 +103,10 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.10",
-    "@tsparticles/noise-field": "4.0.0-beta.10",
-    "@tsparticles/plugin-move": "4.0.0-beta.10",
-    "@tsparticles/simplex-noise": "4.0.0-beta.10"
+    "@tsparticles/engine": "4.0.0-beta.11",
+    "@tsparticles/noise-field": "4.0.0-beta.11",
+    "@tsparticles/plugin-move": "4.0.0-beta.11",
+    "@tsparticles/simplex-noise": "4.0.0-beta.11"
   },
   "type": "module"
 }
