@@ -134,42 +134,49 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     const paletteColors = paletteData.colors,
-      paletteFill = paletteColors.fill,
-      paletteStroke = paletteColors.stroke,
-      defaultPaintStrokeIndex = 0,
       defaultPaintStrokeWidth = 0,
-      palettePaint: IPaint = {
-        fill: paletteFill
-          ? {
-              color: {
-                value: paletteFill.value,
-              },
-              enable: paletteFill.enable,
-            }
-          : undefined,
-      };
+      defaultPaintVariantsLength = 1,
+      firstPaintVariantIndex = 0,
+      defaultPalettePaintVariant: IPaint = {},
+      colorVariants = isArray(paletteColors) ? paletteColors : [paletteColors],
+      palettePaintVariants = colorVariants.flatMap<IPaint>(variant => {
+        const paletteFill = variant.fill,
+          paletteStroke = variant.stroke,
+          fillPart: IPaint["fill"] = paletteFill
+            ? {
+                color: {
+                  value: paletteFill.value,
+                },
+                enable: paletteFill.enable,
+                opacity: paletteFill.opacity,
+              }
+            : undefined;
 
-    if (paletteStroke) {
-      if (isArray(paletteStroke)) {
-        const firstStroke = paletteStroke[defaultPaintStrokeIndex];
-
-        if (firstStroke) {
-          palettePaint.stroke = {
-            color: {
-              value: firstStroke.value,
+        if (!paletteStroke) {
+          return [
+            {
+              fill: fillPart,
             },
-            width: firstStroke.width || defaultPaintStrokeWidth,
-          };
+          ];
         }
-      } else {
-        palettePaint.stroke = {
-          color: {
-            value: paletteStroke.value,
+
+        return [
+          {
+            fill: fillPart,
+            stroke: {
+              color: {
+                value: paletteStroke.value,
+              },
+              opacity: paletteStroke.opacity,
+              width: paletteStroke.width || defaultPaintStrokeWidth,
+            },
           },
-          width: paletteStroke.width,
-        };
-      }
-    }
+        ];
+      }),
+      palettePaint: SingleOrMultiple<IPaint> =
+        palettePaintVariants.length > defaultPaintVariantsLength
+          ? palettePaintVariants
+          : (palettePaintVariants[firstPaintVariantIndex] ?? defaultPalettePaintVariant);
 
     this.load({
       paint: palettePaint,

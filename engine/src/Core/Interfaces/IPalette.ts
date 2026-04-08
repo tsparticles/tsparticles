@@ -3,22 +3,24 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 export interface IPaletteColorsFill {
   enable: boolean;
+  opacity?: RangeValue;
   value: SingleOrMultiple<string>;
 }
 
 export interface IPaletteColorsStroke {
+  opacity?: RangeValue;
   value: SingleOrMultiple<string>;
   width: RangeValue;
 }
 
 export interface IPaletteColors {
   fill?: IPaletteColorsFill;
-  stroke?: SingleOrMultiple<IPaletteColorsStroke>;
+  stroke?: IPaletteColorsStroke;
 }
 
 export interface IPalette {
   background: string;
   blendMode: GlobalCompositeOperation;
-  colors: IPaletteColors;
+  colors: SingleOrMultiple<IPaletteColors>;
   name: string;
 }
