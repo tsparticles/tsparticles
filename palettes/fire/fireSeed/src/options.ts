@@ -4,6 +4,14 @@ export const options: IPalette = {
   name: "Fire Seed",
   background: "#000000",
   blendMode: "screen",
-  colors: ["#ff0000", "#ff8800", "#ffff00"],
-  fill: true,
+  colors: {
+    fill: {
+      enable: true,
+      value: [
+        "#ff0000",
+        "#ff8800",
+        "#ffff00",
+      ],
+    },
+  },
 };

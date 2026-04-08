@@ -2,13 +2,24 @@ import { type IPalette } from "@tsparticles/engine";
 
 export const options: IPalette = {
   name: "Rising Bubbles",
-  blendMode: "source-over",
   background: "#011428",
-  fill: false,
-  colors: [
-    "#FFFFFF",
-    "#CCEEFF",
-    "#88CCEE",
-    "#44AACC",
-  ],
+  blendMode: "source-over",
+  colors: {
+    stroke: [
+      {
+        value: ["#FFFFFF", "#CCEEFF", "#E2F7FF"],
+        width: {
+          min: 0.4,
+          max: 1.1,
+        },
+      },
+      {
+        value: ["#88CCEE", "#44AACC"],
+        width: {
+          min: 1.3,
+          max: 2.7,
+        },
+      },
+    ],
+  },
 };

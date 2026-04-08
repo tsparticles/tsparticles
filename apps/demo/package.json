@@ -39,7 +39,7 @@
     "stylus": "^0.64.0"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.8",
+    "@tsparticles/basic": "^4.0.0-beta.9",
     "@tsparticles/palette-acid-pair": "workspace:^",
     "@tsparticles/palette-aurora-borealis": "workspace:^",
     "@tsparticles/palette-autumn-leaves": "workspace:^",
@@ -139,7 +139,7 @@
     "@tsparticles/palette-vaporwave": "workspace:^",
     "@tsparticles/palette-water": "workspace:^",
     "@tsparticles/palette-water-splash": "workspace:^",
-    "@tsparticles/updater-stroke-color": "^4.0.0-beta.8"
+    "@tsparticles/updater-stroke-color": "^4.0.0-beta.9"
   },
   "type": "module"
 }

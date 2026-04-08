@@ -159,8 +159,8 @@ importers:
   apps/demo:
     dependencies:
       '@tsparticles/basic':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
       '@tsparticles/palette-acid-pair':
         specifier: workspace:^
         version: link:../../palettes/spectrum/acidPair/dist
@@ -459,8 +459,8 @@ importers:
         specifier: workspace:^
         version: link:../../palettes/water/waterSplash/dist
       '@tsparticles/updater-stroke-color':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
     devDependencies:
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0
@@ -511,8 +511,8 @@ importers:
   apps/vite:
     devDependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
       '@tsparticles/palette-confetti':
         specifier: workspace:^
         version: link:../../palettes/celebration/confetti/dist
@@ -526,694 +526,694 @@ importers:
   palettes/atmosphere/coloredSmokeMagenta:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmosphere/coloredSmokeTeal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/heatDuality:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/heatHaze:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/lightning:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/shockwave:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/smokeCold:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/smokeWarm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/sunriseGold:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/sunsetBinary:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/thermalMap:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/atmospheric/thunderstorm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/celebration/confetti:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/celebration/fireworksGold:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/celebration/fireworksMulticolor:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/caustics:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/desertSand:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/mudAndDirt:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/oilSlick:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/rockAndGravel:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/rustAndCorrosion:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/earth/skinAndOrganic:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/bioluminescence:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/bloodAndGore:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/fairyDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/holyLight:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/iceMagic:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/iceTriad:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/jellyfishGlow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fantasy/poisonAndVenom:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/candlelight:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/embersAndAsh:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/fire:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/fireSeed:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/fullFireGradient:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/lavaLamp:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/metalSparks:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/fire/moltenMetal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/impact/explosionDebris:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/monochromatic/monochromeBlues:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/monochromatic/monochromeGreens:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/monochromatic/monochromeNoir:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/monochromatic/monochromePinks:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/monochromatic/monochromePurples:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/autumnLeaves:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/cherryBlossom:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/dandelionSeeds:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/earthyNature:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/fireflies:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/forestCanopy:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/pollenAndSpores:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/snowfall:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/nature/springBloom:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/optics/lensFlareDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/pastel/pastelCool:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/pastel/pastelDream:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/pastel/pastelMint:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/pastel/pastelSunset:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/pastel/pastelWarm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/auroraBorealis:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/cosmicRadiation:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/darkMatter:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/galaxyDust:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/portal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/pulsar:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/solarWind:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/space/supernova:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/acidPair:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/cmySecondaries:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/dualityBlueYellow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/dualityGreenMagenta:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/dualityRedCyan:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/fullSpectrum:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/okabeItoAccessible:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/prismScatter:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/rainbow:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/spectrum/rgbPrimaries:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/crtPhosphor:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/glitch:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/hologram:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/lofiWarm:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/matrixRain:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/neonCity:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/networkNodes:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/plasmaArc:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/tech/vaporwave:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/vibrant/vibrant:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/vibrant/vibrantElectric:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/vibrant/vibrantNeon:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/vibrant/vibrantRetro:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/vibrant/vibrantTropical:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/deepOcean:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/foamAndBubbles:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/fogCoastal:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/inkInWater:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/rain:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/risingBubbles:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/water:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
   palettes/water/waterSplash:
     dependencies:
       '@tsparticles/engine':
-        specifier: ^4.0.0-beta.8
-        version: 4.0.0-beta.8
+        specifier: ^4.0.0-beta.9
+        version: 4.0.0-beta.9
     publishDirectory: dist
 
 packages:
@@ -2359,8 +2359,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@tsparticles/basic@4.0.0-beta.8':
-    resolution: {integrity: sha512-Ntg+JyelQclHqUcpBIMMADXDX3IbY+XxIQ6m/s8ICfdwKwee4WUYFx1Lwa3emooso3hnxVob8rdCo1D5O9lYpQ==}
+  '@tsparticles/basic@4.0.0-beta.9':
+    resolution: {integrity: sha512-0aYvovd32NTfL0AKECK1he3dpPNxkhqLB/wJOJOzl9JhJudNWa4nDqz+CrkoEalcNFQvaSEhwDCxUa+6DYI2tA==}
 
   '@tsparticles/cli@3.4.5':
     resolution: {integrity: sha512-f8Uar8TOWsJyAXjGZp0Mmh0YqXtKrdQmj8Hph6kD5ROReBi4qdP5d/JlfWFBeaZlFbBJcjfLMKw+CHWXE3JCKg==}
@@ -2371,73 +2371,73 @@ packages:
     peerDependencies:
       dependency-cruiser: ^17
 
-  '@tsparticles/engine@4.0.0-beta.8':
-    resolution: {integrity: sha512-sdUFjLvISgNIlHnhdBlf3QmcgJwVLnPZd8inRl1BiMVFuxER/clCon1Ou5Op9SMeDzdTtCs+kiu6wS+A9rWEAQ==}
+  '@tsparticles/engine@4.0.0-beta.9':
+    resolution: {integrity: sha512-USNv1RDUE2I6fu3ViwonDMkQ+nY14zxGAlsMECz7Wl/oIYdToqHTLd8U8r5ZvKuYLzArOm0VKE1/kAYCpGT/TQ==}
 
   '@tsparticles/eslint-config@3.4.6':
     resolution: {integrity: sha512-ac1Wa1OsDaapzP2bHhUpQOPn7N+R1Zp+bwl6jPof8pEY938r5LyCngZCaTs6dio9WgrwrzaKUPR1dozUo/xFKw==}
     peerDependencies:
       eslint: ^10
 
-  '@tsparticles/plugin-hex-color@4.0.0-beta.8':
-    resolution: {integrity: sha512-xnXap31doW5jTer0rgQtQjI6RoLZDKwdhBbRpcA60iRNahIEuajmuc1t1h0PNctnZDgpfNaAcExVmUFyIEUZwQ==}
+  '@tsparticles/plugin-hex-color@4.0.0-beta.9':
+    resolution: {integrity: sha512-PrkmKMiGV9Tu2zz+9cfLGpPwOhz+B8s4MQVdbVQPyrO6TPn9U1e++iShuT69WaVyQnKVbrPytdu4+J1DkuObZw==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-hsl-color@4.0.0-beta.8':
-    resolution: {integrity: sha512-XQVmfI/2OX1nfBWCLs5FgoJgJ+SCit2GC6Fi0QbefKmLLbn3qKF1LR4EyFxamFTZNG5MDi1/wKtHNEUSKqALuQ==}
+  '@tsparticles/plugin-hsl-color@4.0.0-beta.9':
+    resolution: {integrity: sha512-eaGxfUhqzk7kv6OOh/NXbjD892oOL3rBB67l2m/d2E8siDd9ymwQVjzAnILV2YovfvGcaImhM2NkWcyEzrxHhw==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-move@4.0.0-beta.8':
-    resolution: {integrity: sha512-R8RHp5zCD4H4Uno4uSmi5uULQCs1BHagUJsLB1a/0CFFUiVoPbY4rg45dee2mDe2y8XbBhvS85OlGbowaLWRTw==}
+  '@tsparticles/plugin-move@4.0.0-beta.9':
+    resolution: {integrity: sha512-CHGwJIo5XmJFviL4ciPfkEQ7l7XZMHyfN4m5GESn9o86FG/PiB2J6zuMFPlJ8TUFQ5MubFI0sAeHOzaC4Ms7Ow==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-rgb-color@4.0.0-beta.8':
-    resolution: {integrity: sha512-2Fz21WxkLQeup5q/cabb1I4b7jwBPU882ahnuriQGdeBKTsxEj22sNRSM9gzPncIbprStgXdNdHV82jH6OV1qg==}
+  '@tsparticles/plugin-rgb-color@4.0.0-beta.9':
+    resolution: {integrity: sha512-3U/MnbaJ0oIYILGP4/+ZbvXbLJzkEInSV9wECFApG6Ws0GOm6Fo4YMguF/jFN+ZYcWz9bg2bMohr0ZrhmsLLtw==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/prettier-config@3.4.6':
     resolution: {integrity: sha512-V/TWCXHsRCkDZL/+lYgGxja79m9pLoLIhbHeEDLrAK3jbJdkcdY+xLMXgkrgHp1JPv9EADI4OTO0Orwn4nMlyg==}
     peerDependencies:
       prettier: ^3
 
-  '@tsparticles/shape-circle@4.0.0-beta.8':
-    resolution: {integrity: sha512-IQdA1P3cpr+KmV5v3k7Dja1/d5pxLD9TcdFLYyzKLCv4QBSgH6/WEXq3TqJwbCniAqKyM/wEfjewVMu3KsXOJw==}
+  '@tsparticles/shape-circle@4.0.0-beta.9':
+    resolution: {integrity: sha512-x6ilkYPoKxjVE0Z56TmyCK4KIow2gsci10sivuzTWtn1a2xcl/aCxbR9JrZHVcNhqyuWNyyaOHaVL6scmWIWBA==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/tsconfig@3.4.6':
     resolution: {integrity: sha512-cD0E+YRk6iD3bPMTnUKfwtjjsizy0iBf4xb/ySWxWmCB5ZVOGoHgaHz69GNRXQgFUnHp/bKNkHMIL66xueOA/Q==}
     peerDependencies:
       typescript: ^6
 
-  '@tsparticles/updater-fill-color@4.0.0-beta.8':
-    resolution: {integrity: sha512-gmZX418psbGwtlP6NWEuYJIFyDLre7n9a6a1atJqhaeFGS324HAGa5AoxKgSQDtM2rGqarIwXLwJWC7FnuWDHQ==}
+  '@tsparticles/updater-fill-color@4.0.0-beta.9':
+    resolution: {integrity: sha512-ywtHB3Pvy4/pbFCvbS4wISuSjtRSjAgyUGiErrq7GFGY3hSUdxXUYanlcPn5THlOznR5Z3xQmvOZYDiI7CYxwg==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-opacity@4.0.0-beta.8':
-    resolution: {integrity: sha512-msbQQc2EoG6Sg7XT7ZiQd0+tZrMwhqak3kWQWLE3sPE6MYpZhXbB1SWCXQxHYPlukVqfXUaHUy8gIrBWas8r3Q==}
+  '@tsparticles/updater-opacity@4.0.0-beta.9':
+    resolution: {integrity: sha512-H9iZuq+6Tb7AZ2ChbYvAlb0mgU0uDhq9Ff5JtfCqFfaXVIu6lf6EsEdGw+I5IF4Rz1ZnNR1tyLDQZ6q5bfBzMA==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-out-modes@4.0.0-beta.8':
-    resolution: {integrity: sha512-S83sdW6fo0xMYhP0GKFDCIZcrA3F3utyqF8cP6AwHMf+D5yzfV9LgCJzhJa1O2a9VmUjKqeuiPTPkH2KXkBqAA==}
+  '@tsparticles/updater-out-modes@4.0.0-beta.9':
+    resolution: {integrity: sha512-de0PaMCQyVDRNPSfgHN+NieSDxblrZukUANNTxjex8SkVwyySTdJ3xo8GP/qtl4wjft3HCgcDm+C3oqAKoFY6A==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-size@4.0.0-beta.8':
-    resolution: {integrity: sha512-B4oC/TqVoCupWLR4j2BAeyafGi8f9jbLspTJ070yMw/l7Nic6Ha7aWUV6596xrw9gzRN+iEMTp/skcGxZ4kP8g==}
+  '@tsparticles/updater-size@4.0.0-beta.9':
+    resolution: {integrity: sha512-V3BGaxtIvx2nUYGJWRpHxYmHNmnuqAwNzCCBTQUALxMK+IKD0OOL8D2FcchtS6O+FZEC22w3pEaGgZeYi0a6dg==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-stroke-color@4.0.0-beta.8':
-    resolution: {integrity: sha512-OeoZazJr57sBik81U3wFSnxGL+0JMpCgHGKf0LFHaAiXv50NdzlZuB83EKV7L911oWKa7Y1yugKBuZiopBHFDw==}
+  '@tsparticles/updater-stroke-color@4.0.0-beta.9':
+    resolution: {integrity: sha512-G0qWeMHcyUaU+m2hNpizctCkRwFC+mpIkhyqnxyltihpqknamYc375OPmJnBmhdbIG1wwiZrNXWPXp2puf4FxA==}
     peerDependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/webpack-plugin@3.4.6':
     resolution: {integrity: sha512-MnsL2hxTHZwpupDNfgQmgz2l06RiZK63H0QEj7L0aS/VZjvUdr7mMDrVekrzEr7A6xJHb4I6N9snyuPZjmTIug==}
@@ -7476,18 +7476,18 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/basic@4.0.0-beta.8':
+  '@tsparticles/basic@4.0.0-beta.9':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
-      '@tsparticles/plugin-hex-color': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/plugin-hsl-color': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/plugin-move': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/plugin-rgb-color': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/shape-circle': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/updater-fill-color': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/updater-opacity': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/updater-out-modes': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
-      '@tsparticles/updater-size': 4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)
+      '@tsparticles/engine': 4.0.0-beta.9
+      '@tsparticles/plugin-hex-color': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/plugin-hsl-color': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/plugin-move': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/plugin-rgb-color': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/shape-circle': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/updater-fill-color': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/updater-opacity': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/updater-out-modes': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
+      '@tsparticles/updater-size': 4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)
 
   '@tsparticles/cli@3.4.5(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)(webpack-cli@7.0.2)':
     dependencies:
@@ -7531,7 +7531,7 @@ snapshots:
     dependencies:
       dependency-cruiser: 17.3.10
 
-  '@tsparticles/engine@4.0.0-beta.8': {}
+  '@tsparticles/engine@4.0.0-beta.9': {}
 
   '@tsparticles/eslint-config@3.4.6(@types/eslint@8.56.7)(eslint@10.2.0(jiti@2.6.1))':
     dependencies:
@@ -7552,54 +7552,54 @@ snapshots:
       - '@types/eslint'
       - supports-color
 
-  '@tsparticles/plugin-hex-color@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/plugin-hex-color@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-hsl-color@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/plugin-hsl-color@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-move@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/plugin-move@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/plugin-rgb-color@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/plugin-rgb-color@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/prettier-config@3.4.6(prettier@3.8.1)':
     dependencies:
       prettier: 3.8.1
       prettier-plugin-multiline-arrays: 4.1.5(prettier@3.8.1)
 
-  '@tsparticles/shape-circle@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/shape-circle@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/tsconfig@3.4.6(typescript@6.0.2)':
     dependencies:
       typescript: 6.0.2
 
-  '@tsparticles/updater-fill-color@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/updater-fill-color@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-opacity@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/updater-opacity@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-out-modes@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/updater-out-modes@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-size@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/updater-size@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
-  '@tsparticles/updater-stroke-color@4.0.0-beta.8(@tsparticles/engine@4.0.0-beta.8)':
+  '@tsparticles/updater-stroke-color@4.0.0-beta.9(@tsparticles/engine@4.0.0-beta.9)':
     dependencies:
-      '@tsparticles/engine': 4.0.0-beta.8
+      '@tsparticles/engine': 4.0.0-beta.9
 
   '@tsparticles/webpack-plugin@3.4.6(@types/eslint@8.56.7)(esbuild@0.27.2)(jiti@2.6.1)':
     dependencies:

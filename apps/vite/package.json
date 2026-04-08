@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tsparticles/engine": "^4.0.0-beta.8",
+    "@tsparticles/engine": "^4.0.0-beta.9",
     "@tsparticles/palette-confetti": "workspace:^",
     "typescript": "^6.0.2",
     "vite": "^8.0.5"
