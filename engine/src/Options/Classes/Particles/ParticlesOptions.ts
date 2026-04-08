@@ -1,9 +1,12 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
+import { isArray, isNull } from "../../../Utils/TypeUtils.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import { Fill } from "./Fill.js";
+import type { IFill } from "../../Interfaces/Particles/IFill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
+import type { IStroke } from "../../Interfaces/Particles/IStroke.js";
 import { Move } from "./Move/Move.js";
 import { Opacity } from "./Opacity/Opacity.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
@@ -16,7 +19,6 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { Size } from "./Size/Size.js";
 import { Stroke } from "./Stroke.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
@@ -147,21 +149,44 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
       return;
     }
 
+    const paletteColors = paletteData.colors,
+      paletteFill = paletteColors.fill,
+      paletteStroke = paletteColors.stroke;
+
+    let paletteFillObj: IFill | undefined = undefined;
+
+    if (paletteFill) {
+      paletteFillObj = {
+        color: {
+          value: paletteFill.value,
+        },
+        enable: paletteFill.enable,
+      };
+    }
+
+    let paletteStrokeObj: SingleOrMultiple<IStroke> | undefined = undefined;
+
+    if (paletteStroke) {
+      if (isArray(paletteStroke)) {
+        paletteStrokeObj = paletteStroke.map(s => ({
+          color: {
+            value: s.value,
+          },
+          width: s.width,
+        }));
+      } else {
+        paletteStrokeObj = {
+          color: {
+            value: paletteStroke.value,
+          },
+          width: paletteStroke.width,
+        };
+      }
+    }
+
     this.load({
-      fill: {
-        color: paletteData.fill
-          ? {
-              value: paletteData.colors,
-            }
-          : undefined,
-        enable: paletteData.fill,
-      },
-      stroke: paletteData.fill
-        ? undefined
-        : paletteData.colors.map(color => ({
-            color: { value: color },
-            width: 1,
-          })),
+      fill: paletteFillObj,
+      stroke: paletteStrokeObj,
       blend: {
         enable: true,
         mode: paletteData.blendMode,
