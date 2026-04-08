@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-bokeh-cold",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles bokeh cold optics palette",
   "homepage": "https://particles.js.org",
   "repository": {

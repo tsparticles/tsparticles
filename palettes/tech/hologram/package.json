@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-hologram",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles hologram palette",
   "homepage": "https://particles.js.org",
   "scripts": {

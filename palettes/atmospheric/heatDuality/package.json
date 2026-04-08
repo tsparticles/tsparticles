@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-heat-duality",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles heat duality palette",
   "homepage": "https://particles.js.org",
   "scripts": {

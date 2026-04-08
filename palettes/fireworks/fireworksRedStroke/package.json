@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-fireworks-red-stroke",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles fireworks red stroke palette",
   "homepage": "https://particles.js.org",
   "scripts": {
