@@ -4,9 +4,9 @@ export const options: IPalette = {
   name: "Foam & Bubbles",
   background: "#0a1f3c",
   blendMode: "source-over",
-  colors: {
-    stroke: [
-      {
+  colors: [
+    {
+      stroke: {
         value: [
           "#FFFFFF",
           "#F0F8FF",
@@ -17,7 +17,9 @@ export const options: IPalette = {
           max: 1,
         },
       },
-      {
+    },
+    {
+      stroke: {
         value: [
           "#D0EEFF",
           "#C8F0FF",
@@ -29,6 +31,6 @@ export const options: IPalette = {
           max: 2.6,
         },
       },
-    ],
-  },
+    },
+  ],
 };

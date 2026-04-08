@@ -4,18 +4,18 @@ export const options: IPalette = {
   name: "Glitch - Full RGB Shift",
   background: "#000000",
   blendMode: "screen",
-  colors: {
-    fill: {
-      enable: true,
-      value: [
-        "#FF0033",
-        "#00FF66",
-        "#0099FF",
-        "#FFFFFF",
-      ],
-    },
-    stroke: [
-      {
+  colors: [
+    {
+      fill: {
+        enable: true,
+        value: [
+          "#FF0033",
+          "#00FF66",
+          "#0099FF",
+          "#FFFFFF",
+        ],
+      },
+      stroke: {
         value: [
           "#FF0033",
           "#00FF66",
@@ -28,7 +28,18 @@ export const options: IPalette = {
           max: 1.1,
         },
       },
-      {
+    },
+    {
+      fill: {
+        enable: true,
+        value: [
+          "#FF0033",
+          "#00FF66",
+          "#0099FF",
+          "#FFFFFF",
+        ],
+      },
+      stroke: {
         value: [
           "#00FFFF",
           "#FF00FF",
@@ -39,6 +50,6 @@ export const options: IPalette = {
           max: 3,
         },
       },
-    ],
-  },
+    },
+  ],
 };
