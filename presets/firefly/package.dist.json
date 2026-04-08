@@ -99,11 +99,11 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.10",
-    "@tsparticles/engine": "^4.0.0-beta.10",
-    "@tsparticles/interaction-external-trail": "^4.0.0-beta.10",
-    "@tsparticles/plugin-interactivity": "^4.0.0-beta.10",
-    "@tsparticles/updater-life": "^4.0.0-beta.10"
+    "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/engine": "^4.0.0-beta.11",
+    "@tsparticles/interaction-external-trail": "^4.0.0-beta.11",
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.11",
+    "@tsparticles/updater-life": "^4.0.0-beta.11"
   },
   "publishConfig": {
     "access": "public"

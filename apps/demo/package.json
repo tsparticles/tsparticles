@@ -39,7 +39,7 @@
     "stylus": "^0.64.0"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.10",
+    "@tsparticles/basic": "^4.0.0-beta.11",
     "@tsparticles/preset-ambient": "workspace:^",
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
@@ -59,7 +59,7 @@
     "@tsparticles/preset-squares": "workspace:^",
     "@tsparticles/preset-stars": "workspace:^",
     "@tsparticles/preset-triangles": "workspace:^",
-    "@tsparticles/updater-paint": "^4.0.0-beta.10"
+    "@tsparticles/updater-paint": "^4.0.0-beta.11"
   },
   "type": "module"
 }

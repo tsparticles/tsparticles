@@ -99,12 +99,12 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.10",
-    "@tsparticles/engine": "^4.0.0-beta.10",
-    "@tsparticles/plugin-emitters": "^4.0.0-beta.10",
-    "@tsparticles/plugin-emitters-shape-square": "^4.0.0-beta.10",
-    "@tsparticles/plugin-trail": "^4.0.0-beta.10",
-    "@tsparticles/updater-life": "^4.0.0-beta.10"
+    "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/engine": "^4.0.0-beta.11",
+    "@tsparticles/plugin-emitters": "^4.0.0-beta.11",
+    "@tsparticles/plugin-emitters-shape-square": "^4.0.0-beta.11",
+    "@tsparticles/plugin-trail": "^4.0.0-beta.11",
+    "@tsparticles/updater-life": "^4.0.0-beta.11"
   },
   "publishConfig": {
     "access": "public"
