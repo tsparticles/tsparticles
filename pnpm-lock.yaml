@@ -179,6 +179,18 @@ importers:
       '@tsparticles/palette-blood-and-gore':
         specifier: workspace:^
         version: link:../../palettes/fantasy/bloodAndGore/dist
+      '@tsparticles/palette-bokeh-cold':
+        specifier: workspace:^
+        version: link:../../palettes/optics/bokehCold/dist
+      '@tsparticles/palette-bokeh-gold':
+        specifier: workspace:^
+        version: link:../../palettes/optics/bokehGold/dist
+      '@tsparticles/palette-bokeh-pastel':
+        specifier: workspace:^
+        version: link:../../palettes/optics/bokehPastel/dist
+      '@tsparticles/palette-bullet-hit':
+        specifier: workspace:^
+        version: link:../../palettes/impact/bulletHit/dist
       '@tsparticles/palette-candlelight':
         specifier: workspace:^
         version: link:../../palettes/fire/candlelight/dist
@@ -191,15 +203,57 @@ importers:
       '@tsparticles/palette-cmy-secondaries':
         specifier: workspace:^
         version: link:../../palettes/spectrum/cmySecondaries/dist
+      '@tsparticles/palette-colored-smoke-blue':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/coloredSmokeBlue/dist
+      '@tsparticles/palette-colored-smoke-green':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/coloredSmokeGreen/dist
       '@tsparticles/palette-colored-smoke-magenta':
         specifier: workspace:^
         version: link:../../palettes/atmosphere/coloredSmokeMagenta/dist
+      '@tsparticles/palette-colored-smoke-orange':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/coloredSmokeOrange/dist
+      '@tsparticles/palette-colored-smoke-purple':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/coloredSmokePurple/dist
+      '@tsparticles/palette-colored-smoke-rainbow':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/coloredSmokeRainbow/dist
       '@tsparticles/palette-colored-smoke-teal':
         specifier: workspace:^
         version: link:../../palettes/atmosphere/coloredSmokeTeal/dist
       '@tsparticles/palette-confetti':
         specifier: workspace:^
-        version: link:../../palettes/celebration/confetti/dist
+        version: link:../../palettes/confetti/confetti/dist
+      '@tsparticles/palette-confetti-gold':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiGold/dist
+      '@tsparticles/palette-confetti-monochrome-blue':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiMonochromeBlue/dist
+      '@tsparticles/palette-confetti-monochrome-green':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiMonochromeGreen/dist
+      '@tsparticles/palette-confetti-monochrome-pink':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiMonochromePink/dist
+      '@tsparticles/palette-confetti-neon':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiNeon/dist
+      '@tsparticles/palette-confetti-pastel':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiPastel/dist
+      '@tsparticles/palette-confetti-patriotic':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiPatriotic/dist
+      '@tsparticles/palette-confetti-rainbow':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiRainbow/dist
+      '@tsparticles/palette-confetti-winter':
+        specifier: workspace:^
+        version: link:../../palettes/confetti/confettiWinter/dist
       '@tsparticles/palette-cosmic-radiation':
         specifier: workspace:^
         version: link:../../palettes/space/cosmicRadiation/dist
@@ -227,6 +281,9 @@ importers:
       '@tsparticles/palette-duality-red-cyan':
         specifier: workspace:^
         version: link:../../palettes/spectrum/dualityRedCyan/dist
+      '@tsparticles/palette-dust-haze':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/dustHaze/dist
       '@tsparticles/palette-earthy-nature':
         specifier: workspace:^
         version: link:../../palettes/nature/earthyNature/dist
@@ -248,24 +305,84 @@ importers:
       '@tsparticles/palette-fireflies':
         specifier: workspace:^
         version: link:../../palettes/nature/fireflies/dist
+      '@tsparticles/palette-fireworks-blue':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksBlue/dist
+      '@tsparticles/palette-fireworks-blue-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksBlueStroke/dist
+      '@tsparticles/palette-fireworks-copper':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksCopper/dist
+      '@tsparticles/palette-fireworks-copper-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksCopperStroke/dist
       '@tsparticles/palette-fireworks-gold':
         specifier: workspace:^
-        version: link:../../palettes/celebration/fireworksGold/dist
+        version: link:../../palettes/fireworks/fireworksGold/dist
       '@tsparticles/palette-fireworks-gold-stroke':
         specifier: workspace:^
-        version: link:../../palettes/celebration/fireworksGoldStroke/dist
+        version: link:../../palettes/fireworks/fireworksGoldStroke/dist
+      '@tsparticles/palette-fireworks-green':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksGreen/dist
+      '@tsparticles/palette-fireworks-green-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksGreenStroke/dist
+      '@tsparticles/palette-fireworks-ice':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksIce/dist
+      '@tsparticles/palette-fireworks-ice-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksIceStroke/dist
       '@tsparticles/palette-fireworks-multicolor':
         specifier: workspace:^
-        version: link:../../palettes/celebration/fireworksMulticolor/dist
+        version: link:../../palettes/fireworks/fireworksMulticolor/dist
       '@tsparticles/palette-fireworks-multicolor-stroke':
         specifier: workspace:^
-        version: link:../../palettes/celebration/fireworksMulticolorStroke/dist
+        version: link:../../palettes/fireworks/fireworksMulticolorStroke/dist
+      '@tsparticles/palette-fireworks-neon':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksNeon/dist
+      '@tsparticles/palette-fireworks-neon-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksNeonStroke/dist
+      '@tsparticles/palette-fireworks-pastel':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksPastel/dist
+      '@tsparticles/palette-fireworks-pastel-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksPastelStroke/dist
+      '@tsparticles/palette-fireworks-purple':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksPurple/dist
+      '@tsparticles/palette-fireworks-purple-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksPurpleStroke/dist
+      '@tsparticles/palette-fireworks-rainbow-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksRainbowStroke/dist
+      '@tsparticles/palette-fireworks-red':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksRed/dist
+      '@tsparticles/palette-fireworks-red-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksRedStroke/dist
+      '@tsparticles/palette-fireworks-silver':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksSilver/dist
+      '@tsparticles/palette-fireworks-silver-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/fireworks/fireworksSilverStroke/dist
       '@tsparticles/palette-foam-and-bubbles':
         specifier: workspace:^
         version: link:../../palettes/water/foamAndBubbles/dist
       '@tsparticles/palette-fog-coastal':
         specifier: workspace:^
         version: link:../../palettes/water/fogCoastal/dist
+      '@tsparticles/palette-fog-morning':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/fogMorning/dist
       '@tsparticles/palette-forest-canopy':
         specifier: workspace:^
         version: link:../../palettes/nature/forestCanopy/dist
@@ -278,6 +395,9 @@ importers:
       '@tsparticles/palette-galaxy-dust':
         specifier: workspace:^
         version: link:../../palettes/space/galaxyDust/dist
+      '@tsparticles/palette-glass-burst':
+        specifier: workspace:^
+        version: link:../../palettes/impact/glassBurst/dist
       '@tsparticles/palette-glitch':
         specifier: workspace:^
         version: link:../../palettes/tech/glitch/dist
@@ -290,6 +410,9 @@ importers:
       '@tsparticles/palette-hologram':
         specifier: workspace:^
         version: link:../../palettes/tech/hologram/dist
+      '@tsparticles/palette-holographic-shimmer':
+        specifier: workspace:^
+        version: link:../../palettes/optics/holographicShimmer/dist
       '@tsparticles/palette-holy-light':
         specifier: workspace:^
         version: link:../../palettes/fantasy/holyLight/dist
@@ -305,6 +428,9 @@ importers:
       '@tsparticles/palette-jellyfish-glow':
         specifier: workspace:^
         version: link:../../palettes/fantasy/jellyfishGlow/dist
+      '@tsparticles/palette-laser-scatter':
+        specifier: workspace:^
+        version: link:../../palettes/optics/laserScatter/dist
       '@tsparticles/palette-lava-lamp':
         specifier: workspace:^
         version: link:../../palettes/fire/lavaLamp/dist
@@ -323,24 +449,51 @@ importers:
       '@tsparticles/palette-metal-sparks':
         specifier: workspace:^
         version: link:../../palettes/fire/metalSparks/dist
+      '@tsparticles/palette-meteor-impact':
+        specifier: workspace:^
+        version: link:../../palettes/impact/meteorImpact/dist
       '@tsparticles/palette-molten-metal':
         specifier: workspace:^
         version: link:../../palettes/fire/moltenMetal/dist
       '@tsparticles/palette-monochrome-blues':
         specifier: workspace:^
         version: link:../../palettes/monochromatic/monochromeBlues/dist
+      '@tsparticles/palette-monochrome-brown':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeBrown/dist
+      '@tsparticles/palette-monochrome-cyan':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeCyan/dist
+      '@tsparticles/palette-monochrome-gold':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeGold/dist
       '@tsparticles/palette-monochrome-greens':
         specifier: workspace:^
         version: link:../../palettes/monochromatic/monochromeGreens/dist
       '@tsparticles/palette-monochrome-noir':
         specifier: workspace:^
         version: link:../../palettes/monochromatic/monochromeNoir/dist
+      '@tsparticles/palette-monochrome-oranges':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeOranges/dist
       '@tsparticles/palette-monochrome-pinks':
         specifier: workspace:^
         version: link:../../palettes/monochromatic/monochromePinks/dist
       '@tsparticles/palette-monochrome-purples':
         specifier: workspace:^
         version: link:../../palettes/monochromatic/monochromePurples/dist
+      '@tsparticles/palette-monochrome-reds':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeReds/dist
+      '@tsparticles/palette-monochrome-teal':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeTeal/dist
+      '@tsparticles/palette-monochrome-white':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeWhite/dist
+      '@tsparticles/palette-monochrome-yellows':
+        specifier: workspace:^
+        version: link:../../palettes/monochromatic/monochromeYellows/dist
       '@tsparticles/palette-mud-and-dirt':
         specifier: workspace:^
         version: link:../../palettes/earth/mudAndDirt/dist
@@ -350,6 +503,9 @@ importers:
       '@tsparticles/palette-network-nodes':
         specifier: workspace:^
         version: link:../../palettes/tech/networkNodes/dist
+      '@tsparticles/palette-nuclear-glow':
+        specifier: workspace:^
+        version: link:../../palettes/impact/nuclearGlow/dist
       '@tsparticles/palette-oil-slick':
         specifier: workspace:^
         version: link:../../palettes/earth/oilSlick/dist
@@ -386,6 +542,9 @@ importers:
       '@tsparticles/palette-prism-scatter':
         specifier: workspace:^
         version: link:../../palettes/spectrum/prismScatter/dist
+      '@tsparticles/palette-prism-spectrum':
+        specifier: workspace:^
+        version: link:../../palettes/optics/prismSpectrum/dist
       '@tsparticles/palette-pulsar':
         specifier: workspace:^
         version: link:../../palettes/space/pulsar/dist
@@ -410,6 +569,9 @@ importers:
       '@tsparticles/palette-shockwave':
         specifier: workspace:^
         version: link:../../palettes/atmospheric/shockwave/dist
+      '@tsparticles/palette-shockwave-blast':
+        specifier: workspace:^
+        version: link:../../palettes/impact/shockwaveBlast/dist
       '@tsparticles/palette-skin-and-organic':
         specifier: workspace:^
         version: link:../../palettes/earth/skinAndOrganic/dist
@@ -425,6 +587,9 @@ importers:
       '@tsparticles/palette-solar-wind':
         specifier: workspace:^
         version: link:../../palettes/space/solarWind/dist
+      '@tsparticles/palette-splatter-dark':
+        specifier: workspace:^
+        version: link:../../palettes/impact/splatterDark/dist
       '@tsparticles/palette-spring-bloom':
         specifier: workspace:^
         version: link:../../palettes/nature/springBloom/dist
@@ -461,15 +626,15 @@ importers:
       '@tsparticles/palette-vibrant-tropical':
         specifier: workspace:^
         version: link:../../palettes/vibrant/vibrantTropical/dist
+      '@tsparticles/palette-volcanic-ash':
+        specifier: workspace:^
+        version: link:../../palettes/atmosphere/volcanicAsh/dist
       '@tsparticles/palette-water':
         specifier: workspace:^
         version: link:../../palettes/water/water/dist
       '@tsparticles/palette-water-splash':
         specifier: workspace:^
         version: link:../../palettes/water/waterSplash/dist
-      '@tsparticles/updater-paint':
-        specifier: ^4.0.0-beta.11
-        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
     devDependencies:
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0
@@ -524,13 +689,27 @@ importers:
         version: 4.0.0-beta.11
       '@tsparticles/palette-confetti':
         specifier: workspace:^
-        version: link:../../palettes/celebration/confetti/dist
+        version: link:../../palettes/confetti/confetti/dist
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
       vite:
         specifier: ^8.0.5
         version: 8.0.6(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(stylus@0.64.0)(terser@5.44.1)(yaml@2.8.2)
+
+  palettes/atmosphere/coloredSmokeBlue:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/coloredSmokeGreen:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
 
   palettes/atmosphere/coloredSmokeMagenta:
     dependencies:
@@ -539,7 +718,49 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/atmosphere/coloredSmokeOrange:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/coloredSmokePurple:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/coloredSmokeRainbow:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/atmosphere/coloredSmokeTeal:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/dustHaze:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/fogMorning:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/atmosphere/volcanicAsh:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
@@ -616,35 +837,70 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
-  palettes/celebration/confetti:
+  palettes/confetti/confetti:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
     publishDirectory: dist
 
-  palettes/celebration/fireworksGold:
+  palettes/confetti/confettiGold:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
     publishDirectory: dist
 
-  palettes/celebration/fireworksGoldStroke:
+  palettes/confetti/confettiMonochromeBlue:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
     publishDirectory: dist
 
-  palettes/celebration/fireworksMulticolor:
+  palettes/confetti/confettiMonochromeGreen:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
     publishDirectory: dist
 
-  palettes/celebration/fireworksMulticolorStroke:
+  palettes/confetti/confettiMonochromePink:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/confetti/confettiNeon:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/confetti/confettiPastel:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/confetti/confettiPatriotic:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/confetti/confettiRainbow:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/confetti/confettiWinter:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
@@ -812,6 +1068,174 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/fireworks/fireworksBlue:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksBlueStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksCopper:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksCopperStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksGold:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksGoldStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksGreen:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksGreenStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksIce:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksIceStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksMulticolor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksMulticolorStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksNeon:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksNeonStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksPastel:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksPastelStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksPurple:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksPurpleStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksRainbowStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksRed:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksRedStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksSilver:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/fireworks/fireworksSilverStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/impact/bulletHit:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/impact/explosionDebris:
     dependencies:
       '@tsparticles/engine':
@@ -819,7 +1243,63 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/impact/glassBurst:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/impact/meteorImpact:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/impact/nuclearGlow:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/impact/shockwaveBlast:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/impact/splatterDark:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/monochromatic/monochromeBlues:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeBrown:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeCyan:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeGold:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
@@ -840,6 +1320,13 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/monochromatic/monochromeOranges:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/monochromatic/monochromePinks:
     dependencies:
       '@tsparticles/engine':
@@ -848,6 +1335,34 @@ importers:
     publishDirectory: dist
 
   palettes/monochromatic/monochromePurples:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeReds:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeTeal:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeWhite:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/monochromatic/monochromeYellows:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
@@ -917,7 +1432,49 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/optics/bokehCold:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/optics/bokehGold:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/optics/bokehPastel:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/optics/holographicShimmer:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/optics/laserScatter:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/optics/lensFlareDust:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/optics/prismSpectrum:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11

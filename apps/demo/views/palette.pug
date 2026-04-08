@@ -25,12 +25,10 @@ html(lang="en")
 
         script(src="/stats.ts/dist/stats.min.js")
         script(src="/tsparticles-basic/tsparticles.basic.bundle.min.js")
-        script(src="/tsparticles-updater-paint/tsparticles.updater.paint.min.js")
         script(src=`${item.mountPath}/${item.scriptFile}`)
         script.
             (async (engine) => {
                 await loadBasic(engine);
-                await loadPaintUpdater(engine);
                 await #{item.loader}(engine);
 
                 const options = {
