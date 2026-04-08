@@ -251,9 +251,15 @@ importers:
       '@tsparticles/palette-fireworks-gold':
         specifier: workspace:^
         version: link:../../palettes/celebration/fireworksGold/dist
+      '@tsparticles/palette-fireworks-gold-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/celebration/fireworksGoldStroke/dist
       '@tsparticles/palette-fireworks-multicolor':
         specifier: workspace:^
         version: link:../../palettes/celebration/fireworksMulticolor/dist
+      '@tsparticles/palette-fireworks-multicolor-stroke':
+        specifier: workspace:^
+        version: link:../../palettes/celebration/fireworksMulticolorStroke/dist
       '@tsparticles/palette-foam-and-bubbles':
         specifier: workspace:^
         version: link:../../palettes/water/foamAndBubbles/dist
@@ -624,7 +630,21 @@ importers:
         version: 4.0.0-beta.11
     publishDirectory: dist
 
+  palettes/celebration/fireworksGoldStroke:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
   palettes/celebration/fireworksMulticolor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+    publishDirectory: dist
+
+  palettes/celebration/fireworksMulticolorStroke:
     dependencies:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11

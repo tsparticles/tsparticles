@@ -17,6 +17,8 @@ export const options: IPalette = {
           "#D89CFF",
         ],
       },
+    },
+    {
       stroke: {
         value: ["#AAFFFF", "#C8FAFF", "#8CEBFF"],
         width: {

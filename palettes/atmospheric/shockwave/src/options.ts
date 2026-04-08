@@ -6,6 +6,13 @@ export const options: IPalette = {
   blendMode: "screen",
   colors: [
     {
+      fill: {
+        enable: true,
+        opacity: 0.75,
+        value: ["#FFFFFF", "#FFEECC", "#FFAA44", "#FF5500"],
+      },
+    },
+    {
       stroke: {
         value: ["#FFFFFF", "#FFEECC"],
         width: {
@@ -15,6 +22,11 @@ export const options: IPalette = {
       },
     },
     {
+      fill: {
+        enable: true,
+        opacity: 0.6,
+        value: ["#FFEECC", "#FFAA44", "#FF5500", "#AA2200"],
+      },
       stroke: {
         value: ["#FFAA44", "#FF5500", "#AA2200"],
         width: {

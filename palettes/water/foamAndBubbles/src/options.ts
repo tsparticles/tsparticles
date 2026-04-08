@@ -6,6 +6,19 @@ export const options: IPalette = {
   blendMode: "source-over",
   colors: [
     {
+      fill: {
+        enable: true,
+        opacity: 0.7,
+        value: [
+          "#FFFFFF",
+          "#F0F8FF",
+          "#EAF8FF",
+          "#D0EEFF",
+          "#C8F0FF",
+        ],
+      },
+    },
+    {
       stroke: {
         value: [
           "#FFFFFF",
@@ -19,6 +32,16 @@ export const options: IPalette = {
       },
     },
     {
+      fill: {
+        enable: true,
+        opacity: 0.55,
+        value: [
+          "#D0EEFF",
+          "#C8F0FF",
+          "#A0D0FF",
+          "#70AAFF",
+        ],
+      },
       stroke: {
         value: [
           "#D0EEFF",

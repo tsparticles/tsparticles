@@ -10,6 +10,8 @@ export const options: IPalette = {
         enable: true,
         value: ["#FFFFEE", "#EEEEDD", "#DDDDCC", "#FFFFAA", "#F9F8F3"],
       },
+    },
+    {
       stroke: {
         value: ["#FFFFFF", "#FFFFEE", "#F4F1E8"],
         width: {

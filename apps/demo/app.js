@@ -39,6 +39,21 @@ const parsePaletteName = (fullPath, folder) => {
   return match?.[1] ?? toTitleCase(camelToKebab(folder).replaceAll("-", " "));
 };
 
+const parsePaletteScriptFile = (fullPath, slug) => {
+  const distPath = join(fullPath, "dist"),
+    defaultScriptFile = `tsparticles.palette.palette-${slug}.min.js`;
+
+  if (!existsSync(distPath)) {
+    return defaultScriptFile;
+  }
+
+  const generatedScript = readdirSync(distPath).find(file =>
+    /^tsparticles\.palette\..+\.min\.js$/u.test(file),
+  );
+
+  return generatedScript ?? defaultScriptFile;
+};
+
 const hasPaletteOptions = path => existsSync(join(path, "src", "options.ts"));
 
 const isDirectoryEntry = entry => entry.isDirectory();
@@ -81,7 +96,8 @@ const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) =>
   const slug = camelToKebab(folder),
     packageName = `@tsparticles/palette-${slug}`,
     title = parsePaletteName(fullPath, folder),
-    loader = `load${toPascal(folder)}Palette`;
+    loader = `load${toPascal(folder)}Palette`,
+    scriptFile = parsePaletteScriptFile(fullPath, slug);
 
   return {
     id: folder,
@@ -91,7 +107,7 @@ const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) =>
     mountPath: `/palette-${slug}`,
     route: `/palettes/${folder}`,
     image: `/images/palettes/${folder}.png`,
-    scriptFile: `tsparticles.palette.palette-${slug}.min.js`,
+    scriptFile,
     loader,
     optionValue: slug,
     description: `${title} palette demo`,
@@ -240,7 +256,9 @@ const paletteGroupDefinitions = [
     slugs: [
       "confetti",
       "fireworks-gold",
+      "fireworks-gold-stroke",
       "fireworks-multicolor",
+      "fireworks-multicolor-stroke",
       "explosion-debris",
       "rainbow",
       "full-spectrum",
