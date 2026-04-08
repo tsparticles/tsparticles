@@ -15,73 +15,69 @@ export async function loadSlim(engine: Engine): Promise<void> {
 
   await engine.pluginManager.register(async e => {
     const [
-      { loadBasic },
+        { loadBasic },
 
-      { loadExternalParallaxInteraction },
-      { loadExternalAttractInteraction },
-      { loadExternalBounceInteraction },
-      { loadExternalBubbleInteraction },
-      { loadExternalConnectInteraction },
-      { loadExternalGrabInteraction },
-      { loadExternalPauseInteraction },
-      { loadExternalPushInteraction },
-      { loadExternalRemoveInteraction },
-      { loadExternalRepulseInteraction },
-      { loadExternalSlowInteraction },
-      { loadParticlesAttractInteraction },
-      { loadParticlesCollisionsInteraction },
-      { loadParticlesLinksInteraction },
+        { loadExternalParallaxInteraction },
+        { loadExternalAttractInteraction },
+        { loadExternalBounceInteraction },
+        { loadExternalBubbleInteraction },
+        { loadExternalConnectInteraction },
+        { loadExternalGrabInteraction },
+        { loadExternalPauseInteraction },
+        { loadExternalPushInteraction },
+        { loadExternalRemoveInteraction },
+        { loadExternalRepulseInteraction },
+        { loadExternalSlowInteraction },
+        { loadParticlesAttractInteraction },
+        { loadParticlesCollisionsInteraction },
+        { loadParticlesLinksInteraction },
 
-      { loadEasingQuadPlugin },
-      { loadInteractivityPlugin },
+        { loadEasingQuadPlugin },
+        { loadInteractivityPlugin },
 
-      { loadEmojiShape },
-      { loadImageShape },
-      { loadLineShape },
-      { loadPolygonShape },
-      { loadSquareShape },
-      { loadStarShape },
+        { loadEmojiShape },
+        { loadImageShape },
+        { loadLineShape },
+        { loadPolygonShape },
+        { loadSquareShape },
+        { loadStarShape },
 
-      { loadLifeUpdater },
-      { loadPaintUpdater },
-      { loadRotateUpdater },
-    ] = await Promise.all([
-      import("@tsparticles/basic"),
+        { loadLifeUpdater },
+        { loadPaintUpdater },
+        { loadRotateUpdater },
+      ] = await Promise.all([
+        import("@tsparticles/basic"),
 
-      import("@tsparticles/interaction-external-parallax"),
-      import("@tsparticles/interaction-external-attract"),
-      import("@tsparticles/interaction-external-bounce"),
-      import("@tsparticles/interaction-external-bubble"),
-      import("@tsparticles/interaction-external-connect"),
-      import("@tsparticles/interaction-external-grab"),
-      import("@tsparticles/interaction-external-pause"),
-      import("@tsparticles/interaction-external-push"),
-      import("@tsparticles/interaction-external-remove"),
-      import("@tsparticles/interaction-external-repulse"),
-      import("@tsparticles/interaction-external-slow"),
-      import("@tsparticles/interaction-particles-attract"),
-      import("@tsparticles/interaction-particles-collisions"),
-      import("@tsparticles/interaction-particles-links"),
+        import("@tsparticles/interaction-external-parallax"),
+        import("@tsparticles/interaction-external-attract"),
+        import("@tsparticles/interaction-external-bounce"),
+        import("@tsparticles/interaction-external-bubble"),
+        import("@tsparticles/interaction-external-connect"),
+        import("@tsparticles/interaction-external-grab"),
+        import("@tsparticles/interaction-external-pause"),
+        import("@tsparticles/interaction-external-push"),
+        import("@tsparticles/interaction-external-remove"),
+        import("@tsparticles/interaction-external-repulse"),
+        import("@tsparticles/interaction-external-slow"),
+        import("@tsparticles/interaction-particles-attract"),
+        import("@tsparticles/interaction-particles-collisions"),
+        import("@tsparticles/interaction-particles-links"),
 
-      import("@tsparticles/plugin-easing-quad"),
-      import("@tsparticles/plugin-interactivity"),
+        import("@tsparticles/plugin-easing-quad"),
+        import("@tsparticles/plugin-interactivity"),
 
-      import("@tsparticles/shape-emoji"),
-      import("@tsparticles/shape-image"),
-      import("@tsparticles/shape-line"),
-      import("@tsparticles/shape-polygon"),
-      import("@tsparticles/shape-square"),
-      import("@tsparticles/shape-star"),
+        import("@tsparticles/shape-emoji"),
+        import("@tsparticles/shape-image"),
+        import("@tsparticles/shape-line"),
+        import("@tsparticles/shape-polygon"),
+        import("@tsparticles/shape-square"),
+        import("@tsparticles/shape-star"),
 
-      import("@tsparticles/updater-life"),
-      import("@tsparticles/updater-paint"),
-      import("@tsparticles/updater-rotate"),
-    ]);
-
-    await Promise.all([
-      loadBasic(e),
-
-      (async (): Promise<void> => {
+        import("@tsparticles/updater-life"),
+        import("@tsparticles/updater-paint"),
+        import("@tsparticles/updater-rotate"),
+      ]),
+      loadInteractivityForSlim = async (e: Engine): Promise<void> => {
         await loadInteractivityPlugin(e);
 
         await Promise.all([
@@ -101,7 +97,12 @@ export async function loadSlim(engine: Engine): Promise<void> {
           loadParticlesCollisionsInteraction(e),
           loadParticlesLinksInteraction(e),
         ]);
-      })(),
+      };
+
+    await Promise.all([
+      loadBasic(e),
+
+      loadInteractivityForSlim(e),
 
       loadEasingQuadPlugin(e),
 
