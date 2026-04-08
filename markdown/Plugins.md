@@ -127,7 +127,7 @@ Preset usage:
 ## Related resources
 
 - Official presets: <https://github.com/tsparticles/presets>
-- Official palettes: <https://github.com/tsparticles/presets/tree/main/palettes>
+- Official palettes: <https://github.com/tsparticles/palettes/tree/main/palettes>
 - Demo configs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
 - Root options: [Options](./Options.md)
 - Docs introduction: [Pages/index](./Pages/index.md)

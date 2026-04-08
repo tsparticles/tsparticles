@@ -111,8 +111,8 @@ Main preset catalog:
 
 Use palettes when you already have the behavior you want and only need a reusable color direction.
 
-- Repository directory: <https://github.com/tsparticles/presets/tree/main/palettes>
-- Palette-based demos: <https://particles.js.org/samples/presets/>
+- Repository directory: <https://github.com/tsparticles/palettes/tree/main/palettes>
+- Palette-based demos: <https://particles.js.org/samples/palettes/>
 
 ## Bundle choice
 
