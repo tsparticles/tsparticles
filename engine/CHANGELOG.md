@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.8...v4.0.0-beta.9) (2026-04-08)
+
+### Bug Fixes
+
+- improved palette stroke width type ([c34d2f3](https://github.com/tsparticles/tsparticles/commit/c34d2f33920f0287add7c01d0f93dbd7020e92f6))
+
 # [4.0.0-beta.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2026-04-07)
 
 **Note:** Version bump only for package @tsparticles/engine

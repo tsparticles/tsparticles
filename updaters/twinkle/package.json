@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-twinkle",
-  "version": "4.0.0-beta.8",
+  "version": "4.0.0-beta.9",
   "description": "tsParticles particles twinkle updater",
   "homepage": "https://particles.js.org",
   "scripts": {
