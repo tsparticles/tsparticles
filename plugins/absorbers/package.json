@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-absorbers",
-  "version": "4.0.0-beta.10",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

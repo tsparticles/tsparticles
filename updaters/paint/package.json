@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-paint",
-  "version": "4.0.0-beta.10",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles particles paint updater",
   "homepage": "https://particles.js.org",
   "scripts": {
