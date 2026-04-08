@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,jsdoc/require-param,jsdoc/check-param-names */
 import {
+  type IPaint,
   type IParticlesOptions,
   type ISourceOptions,
   LimitMode,
@@ -16,11 +17,10 @@ import { TestWindow } from "../Fixture/Window.js";
 /**
  * Returns the first paint entry configured for particles, if available.
  * @param options - Resolved particle options container.
- * @param options.particles
  * @returns The normalized particle paint configuration, if set.
  */
-function getParticlePaint(options: { particles: IParticlesOptions }): IParticlesOptions["paint"] | undefined {
-  return itemFromSingleOrMultiple(options.particles.paint);
+function getParticlePaint(options: { particles: IParticlesOptions }): IPaint | undefined {
+  return itemFromSingleOrMultiple(options.particles.paint, 0, true);
 }
 
 describe("Options tests", () => {
