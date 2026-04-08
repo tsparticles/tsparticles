@@ -115,8 +115,8 @@
     "@tsparticles/shape-line": "workspace:*",
     "@tsparticles/updater-destroy": "workspace:*",
     "@tsparticles/updater-life": "workspace:*",
-    "@tsparticles/updater-rotate": "workspace:*",
-    "@tsparticles/updater-stroke-color": "workspace:*"
+    "@tsparticles/updater-paint": "workspace:*",
+    "@tsparticles/updater-rotate": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

@@ -4,11 +4,13 @@ const options: ISourceOptions = {
   key: "shapeOptions",
   name: "Shape Options",
   particles: {
-    fill: {
-      color: {
-        value: "#000",
+    paint: {
+      fill: {
+        color: {
+          value: "#000",
+        },
+        enable: true,
       },
-      enable: true,
     },
     move: {
       direction: "none",

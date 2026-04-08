@@ -2,14 +2,13 @@
  * [[include:Options/Particles.md]]
  */
 import type { IEffect } from "./Effect/IEffect.js";
-import type { IFill } from "./IFill.js";
 import type { IMove } from "./Move/IMove.js";
 import type { IOpacity } from "./Opacity/IOpacity.js";
+import type { IPaint } from "./IPaint.js";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce.js";
 import type { IParticlesNumber } from "./Number/IParticlesNumber.js";
 import type { IShape } from "./Shape/IShape.js";
 import type { ISize } from "./Size/ISize.js";
-import type { IStroke } from "./IStroke.js";
 import type { IZIndex } from "./ZIndex/IZIndex.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
@@ -29,11 +28,6 @@ export interface IParticlesOptions {
    * Particles effects options
    */
   effect: IEffect;
-
-  /**
-   * Particles fill options
-   */
-  fill: SingleOrMultiple<IFill>;
 
   /**
    * Particles groups
@@ -56,6 +50,11 @@ export interface IParticlesOptions {
   opacity: IOpacity;
 
   /**
+   * Particles paint options, grouping fill and stroke variants together
+   */
+  paint: SingleOrMultiple<IPaint>;
+
+  /**
    * Registered palette id to import particle fill/stroke/blend defaults
    */
   palette?: string;
@@ -74,11 +73,6 @@ export interface IParticlesOptions {
    * Particles size options
    */
   size: ISize;
-
-  /**
-   * Particles stroke options
-   */
-  stroke: SingleOrMultiple<IStroke>;
 
   /**
    * Particles z-index options

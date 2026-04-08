@@ -43,8 +43,8 @@ export async function loadSlim(engine: Engine): Promise<void> {
       { loadStarShape },
 
       { loadLifeUpdater },
+      { loadPaintUpdater },
       { loadRotateUpdater },
-      { loadStrokeColorUpdater },
     ] = await Promise.all([
       import("@tsparticles/basic"),
 
@@ -74,8 +74,8 @@ export async function loadSlim(engine: Engine): Promise<void> {
       import("@tsparticles/shape-star"),
 
       import("@tsparticles/updater-life"),
+      import("@tsparticles/updater-paint"),
       import("@tsparticles/updater-rotate"),
-      import("@tsparticles/updater-stroke-color"),
     ]);
 
     await Promise.all([
@@ -113,8 +113,8 @@ export async function loadSlim(engine: Engine): Promise<void> {
       loadStarShape(e),
 
       loadLifeUpdater(e),
+      loadPaintUpdater(e),
       loadRotateUpdater(e),
-      loadStrokeColorUpdater(e),
     ]);
   });
 }

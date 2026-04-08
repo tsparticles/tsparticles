@@ -10,48 +10,50 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: "#ff0000",
-        animation: {
-          h: {
-            enable: true,
-            speed: { min: 30, max: 60 },
-            sync: true,
-          },
-          s: {
-            enable: true,
-            speed: { min: 5, max: 10 },
-            sync: true,
-          },
-          l: {
-            enable: true,
-            speed: { min: 5, max: 10 },
-            sync: true,
+    paint: {
+      fill: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            h: {
+              enable: true,
+              speed: { min: 30, max: 60 },
+              sync: true,
+            },
+            s: {
+              enable: true,
+              speed: { min: 5, max: 10 },
+              sync: true,
+            },
+            l: {
+              enable: true,
+              speed: { min: 5, max: 10 },
+              sync: true,
+            },
           },
         },
+        enable: true,
       },
-      enable: true,
-    },
-    stroke: {
-      width: 30,
-      color: {
-        value: "#0000ff",
-        animation: {
-          h: {
-            enable: true,
-            speed: { min: 30, max: 60 },
-            sync: true,
-          },
-          s: {
-            enable: true,
-            speed: { min: 5, max: 10 },
-            sync: true,
-          },
-          l: {
-            enable: true,
-            speed: { min: 5, max: 10 },
-            sync: true,
+      stroke: {
+        width: 30,
+        color: {
+          value: "#0000ff",
+          animation: {
+            h: {
+              enable: true,
+              speed: { min: 30, max: 60 },
+              sync: true,
+            },
+            s: {
+              enable: true,
+              speed: { min: 5, max: 10 },
+              sync: true,
+            },
+            l: {
+              enable: true,
+              speed: { min: 5, max: 10 },
+              sync: true,
+            },
           },
         },
       },

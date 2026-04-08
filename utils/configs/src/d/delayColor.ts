@@ -9,20 +9,22 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#f00",
-        animation: {
-          enable: true,
-          speed: 50,
-          sync: true,
-          delay: {
-            min: 1,
-            max: 3,
+    paint: {
+      fill: {
+        color: {
+          value: "#f00",
+          animation: {
+            enable: true,
+            speed: 50,
+            sync: true,
+            delay: {
+              min: 1,
+              max: 3,
+            },
           },
         },
+        enable: true,
       },
-      enable: true,
     },
     number: {
       value: 100,

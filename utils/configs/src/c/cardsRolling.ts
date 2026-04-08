@@ -12,11 +12,17 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
     key: "cardsRolling",
     name: "Cards Rolling",
     particles: {
-      fill: {
-        color: {
-          value: "#000",
+      paint: {
+        fill: {
+          color: {
+            value: "#000",
+          },
+          enable: true,
         },
-        enable: true,
+        stroke: {
+          width: 1,
+          color: { value: "#000" },
+        },
       },
       number: {
         value: 52,
@@ -33,10 +39,6 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       },
       size: {
         value: 30,
-      },
-      stroke: {
-        width: 1,
-        color: { value: "#000" },
       },
       move: {
         enable: true,

@@ -10,11 +10,13 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: "#1b1e34",
+    paint: {
+      fill: {
+        color: {
+          value: "#1b1e34",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "polygon",

@@ -7,9 +7,11 @@ const options: ISourceOptions = {
     number: {
       value: 25,
     },
-    fill: {
-      color: {
-        value: "#ffff00",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffff00",
+        },
       },
     },
     effect: {
@@ -18,16 +20,18 @@ const options: ISourceOptions = {
         particles: {
           spawn: {
             particles: {
-              fill: {
-                color: {
-                  value: "#ffff00",
-                  animation: {
-                    enable: true,
-                    speed: -70,
-                    sync: true,
+              paint: {
+                fill: {
+                  color: {
+                    value: "#ffff00",
+                    animation: {
+                      enable: true,
+                      speed: -70,
+                      sync: true,
+                    },
                   },
+                  enable: true,
                 },
-                enable: true,
               },
               effect: {
                 type: "none",

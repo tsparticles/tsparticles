@@ -11,8 +11,10 @@ const emitterRate = {
       opacity: {
         value: 1,
       },
-      fill: {
-        enable: false,
+      paint: {
+        fill: {
+          enable: false,
+        },
       },
       size: {
         value: 3,

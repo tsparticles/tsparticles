@@ -1,18 +1,18 @@
 import {
   AnimatableColor,
   type Container,
-  Fill,
   type IColorAnimation,
   type ICoordinates,
   type IDelta,
   type IDimension,
   type IDimensionWithMode,
   type IHsl,
+  type IPaint,
   type IParticlesOptions,
   type IRgb,
+  Paint,
   PixelMode,
   type RecursivePartial,
-  Stroke,
   Vector,
   calcPositionOrRandomFromSizeRanged,
   deepExtend,
@@ -59,10 +59,13 @@ function setParticlesOptionsFillColor(
   opacity: number,
   enable: boolean,
 ): void {
-  particlesOptions.fill = new Fill();
-  particlesOptions.fill.color = AnimatableColor.create(undefined, { value: color });
-  particlesOptions.fill.enable = enable;
-  particlesOptions.fill.opacity = opacity;
+  const paint = (particlesOptions.paint ??= new Paint()) as RecursivePartial<IPaint>;
+
+  paint.fill = {
+    color: AnimatableColor.create(undefined, { value: color }),
+    enable,
+    opacity,
+  };
 }
 
 /**
@@ -78,10 +81,13 @@ function setParticlesOptionsStrokeColor(
   opacity: number,
   width: number,
 ): void {
-  particlesOptions.stroke = new Stroke();
-  particlesOptions.stroke.color = AnimatableColor.create(undefined, { value: color });
-  particlesOptions.stroke.opacity = opacity;
-  particlesOptions.stroke.width = width;
+  const paint = (particlesOptions.paint ??= new Paint()) as RecursivePartial<IPaint>;
+
+  paint.stroke = {
+    color: AnimatableColor.create(undefined, { value: color }),
+    opacity,
+    width,
+  };
 }
 
 /**

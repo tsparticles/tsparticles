@@ -113,7 +113,10 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
             return Math.min(max, Math.max(min, result));
           },
-          fillData = trailOptions.particles?.fill ? itemFromSingleOrMultiple(trailOptions.particles.fill) : undefined,
+          trailPaintOptions = trailOptions.particles?.paint
+            ? itemFromSingleOrMultiple(trailOptions.particles.paint)
+            : undefined,
+          fillData = trailPaintOptions?.fill,
           // Safe conversion of the particle color option to HSL structure
           // This handles strings, RGB, and existing HSL objects correctly
           baseHsl = fillData
@@ -125,11 +128,15 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
         if (h !== undefined || s !== undefined || l !== undefined) {
           particleOptions = deepExtend({}, trailOptions.particles, {
-            color: {
-              value: {
-                h: h ?? baseHsl?.h,
-                s: s ?? baseHsl?.s,
-                l: l ?? baseHsl?.l,
+            paint: {
+              fill: {
+                color: {
+                  value: {
+                    h: h ?? baseHsl?.h,
+                    s: s ?? baseHsl?.s,
+                    l: l ?? baseHsl?.l,
+                  },
+                },
               },
             },
           }) as RecursivePartial<IParticlesOptions>;

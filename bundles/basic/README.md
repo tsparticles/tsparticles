@@ -14,7 +14,7 @@
 - [@tsparticles/plugin-hsl-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hslColor)
 - [@tsparticles/plugin-rgb-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/rgbColor)
 - [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
-- [@tsparticles/updater-fill-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-paint](https://github.com/tsparticles/tsparticles/tree/main/updaters/paint)
 - [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
 - [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
 - [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
@@ -44,7 +44,7 @@ subgraph s [Shapes]
 end
 
 subgraph u [Updaters]
-  uf[tsparticles/updater-fill-color]
+  up[tsparticles/updater-paint]
   uo[tsparticles/updater-opacity]
   uom[tsparticles/updater-out-modes]
   us[tsparticles/updater-size]

@@ -9,20 +9,25 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    stroke: {
-      color: {
-        value: "#f00",
-        animation: {
-          enable: true,
-          speed: 50,
-          sync: true,
-          delay: {
-            min: 1,
-            max: 3,
+    paint: {
+      fill: {
+        enable: false,
+      },
+      stroke: {
+        color: {
+          value: "#f00",
+          animation: {
+            enable: true,
+            speed: 50,
+            sync: true,
+            delay: {
+              min: 1,
+              max: 3,
+            },
           },
         },
+        width: 3,
       },
-      width: 3,
     },
     number: {
       value: 100,
@@ -32,9 +37,6 @@ const options: ISourceOptions = {
     },
     opacity: {
       value: 1,
-    },
-    fill: {
-      enable: false,
     },
     move: {
       enable: true,

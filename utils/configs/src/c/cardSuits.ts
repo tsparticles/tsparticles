@@ -16,41 +16,49 @@ const options: ISourceOptions = {
       options: {
         spades: {
           particles: {
-            fill: {
-              color: {
-                value: "#000000",
+            paint: {
+              fill: {
+                color: {
+                  value: "#000000",
+                },
+                enable: true,
               },
-              enable: true,
             },
           },
         },
         hearts: {
           particles: {
-            fill: {
-              color: {
-                value: "#ff0000",
+            paint: {
+              fill: {
+                color: {
+                  value: "#ff0000",
+                },
+                enable: true,
               },
-              enable: true,
             },
           },
         },
         diamonds: {
           particles: {
-            fill: {
-              color: {
-                value: "#ff0000",
+            paint: {
+              fill: {
+                color: {
+                  value: "#ff0000",
+                },
+                enable: true,
               },
-              enable: true,
             },
           },
         },
         clubs: {
           particles: {
-            fill: {
-              color: {
-                value: "#000000",
+            paint: {
+              fill: {
+                color: {
+                  value: "#000000",
+                },
+                enable: true,
               },
-              enable: true,
             },
           },
         },

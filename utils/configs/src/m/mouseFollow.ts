@@ -33,11 +33,13 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#000000",
+    paint: {
+      fill: {
+        color: {
+          value: "#000000",
+        },
+        enable: true,
       },
-      enable: true,
     },
     move: {
       direction: "none",

@@ -10,11 +10,13 @@ const options: ISourceOptions = {
         enable: false,
       },
     },
-    fill: {
-      color: {
-        value: "#000",
+    paint: {
+      fill: {
+        color: {
+          value: "#000",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",
@@ -75,11 +77,13 @@ const options: ISourceOptions = {
               sync: false,
             },
           },
-          fill: {
-            color: {
-              value: "#f0f",
+          paint: {
+            fill: {
+              color: {
+                value: "#f0f",
+              },
+              enable: true,
             },
-            enable: true,
           },
           links: {
             enable: false,
@@ -150,11 +154,13 @@ const options: ISourceOptions = {
             sync: false,
           },
         },
-        fill: {
-          color: {
-            value: "#0f0",
+        paint: {
+          fill: {
+            color: {
+              value: "#0f0",
+            },
+            enable: true,
           },
-          enable: true,
         },
         links: {
           enable: false,
@@ -181,11 +187,13 @@ const options: ISourceOptions = {
         shape: {
           type: "star",
         },
-        fill: {
-          color: {
-            value: "#f00",
+        paint: {
+          fill: {
+            color: {
+              value: "#f00",
+            },
+            enable: true,
           },
-          enable: true,
         },
         links: {
           enable: true,
@@ -243,11 +251,13 @@ const options: ISourceOptions = {
             sync: false,
           },
         },
-        fill: {
-          color: {
-            value: "#00f",
+        paint: {
+          fill: {
+            color: {
+              value: "#00f",
+            },
+            enable: true,
           },
-          enable: true,
         },
         links: {
           enable: false,

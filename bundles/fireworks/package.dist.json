@@ -107,8 +107,8 @@
     "@tsparticles/shape-line": "4.0.0-beta.9",
     "@tsparticles/updater-destroy": "4.0.0-beta.9",
     "@tsparticles/updater-life": "4.0.0-beta.9",
-    "@tsparticles/updater-rotate": "4.0.0-beta.9",
-    "@tsparticles/updater-stroke-color": "4.0.0-beta.9"
+    "@tsparticles/updater-paint": "4.0.0-beta.9",
+    "@tsparticles/updater-rotate": "4.0.0-beta.9"
   },
   "publishConfig": {
     "access": "public"

@@ -4,11 +4,13 @@ const options: ISourceOptions = {
   key: "orbit",
   name: "Orbit",
   particles: {
-    fill: {
-      color: {
-        value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+    paint: {
+      fill: {
+        color: {
+          value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+        },
+        enable: true,
       },
-      enable: true,
     },
     move: {
       enable: true,

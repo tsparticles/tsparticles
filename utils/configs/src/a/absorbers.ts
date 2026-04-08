@@ -10,11 +10,13 @@ const options: ISourceOptions = {
     collisions: {
       enable: true,
     },
-    fill: {
-      color: {
-        value: "#ffffff",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",

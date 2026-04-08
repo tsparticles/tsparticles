@@ -16,11 +16,13 @@ const options: ISourceOptions = {
         },
       },
     },
-    fill: {
-      color: {
-        value: "#ffffff",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",
@@ -85,19 +87,21 @@ const options: ISourceOptions = {
           },
         },
       },
-      fill: {
-        color: {
-          value: [
-            "#5bc0eb",
-            "#fde74c",
-            "#9bc53d",
-            "#e55934",
-            "#fa7921",
-            "#2FF3E0",
-            "#F8D210",
-            "#FA26A0",
-            "#F51720",
-          ],
+      paint: {
+        fill: {
+          color: {
+            value: [
+              "#5bc0eb",
+              "#fde74c",
+              "#9bc53d",
+              "#e55934",
+              "#fa7921",
+              "#2FF3E0",
+              "#F8D210",
+              "#FA26A0",
+              "#F51720",
+            ],
+          },
         },
       },
       size: {

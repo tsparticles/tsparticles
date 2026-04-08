@@ -112,7 +112,7 @@
     "@tsparticles/plugin-move": "workspace:*",
     "@tsparticles/plugin-rgb-color": "workspace:*",
     "@tsparticles/shape-circle": "workspace:*",
-    "@tsparticles/updater-fill-color": "workspace:*",
+    "@tsparticles/updater-paint": "workspace:*",
     "@tsparticles/updater-opacity": "workspace:*",
     "@tsparticles/updater-out-modes": "workspace:*",
     "@tsparticles/updater-size": "workspace:*"

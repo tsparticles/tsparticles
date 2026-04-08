@@ -16,11 +16,13 @@ const options: ISourceOptions = {
           color: "#ffffff",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#000000", "#0000ff"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#000000", "#0000ff"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -37,11 +39,13 @@ const options: ISourceOptions = {
           color: "#000000",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#ffffff", "#ff0000"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#ffffff", "#ff0000"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -53,11 +57,13 @@ const options: ISourceOptions = {
           color: "#ff0000",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#ffffff", "#000000"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#ffffff", "#000000"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -69,11 +75,13 @@ const options: ISourceOptions = {
           color: "#00ff00",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#000000", "#0000ff"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#000000", "#0000ff"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -85,11 +93,13 @@ const options: ISourceOptions = {
           color: "#0000ff",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#ffffff", "#00ff00"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#ffffff", "#00ff00"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -101,11 +111,13 @@ const options: ISourceOptions = {
           color: "#ffff00",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#000000", "#ff0000"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#000000", "#ff0000"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -117,11 +129,13 @@ const options: ISourceOptions = {
           color: "#00ffff",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#000000", "#ff00ff"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#000000", "#ff00ff"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },
@@ -133,11 +147,13 @@ const options: ISourceOptions = {
           color: "#777777",
         },
         particles: {
-          fill: {
-            color: {
-              value: ["#ffffff", "#000000"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#ffffff", "#000000"],
+              },
+              enable: true,
             },
-            enable: true,
           },
         },
       },

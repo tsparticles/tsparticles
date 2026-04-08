@@ -11,9 +11,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: "#ffffff",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
       },
     },
     effect: {

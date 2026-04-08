@@ -4,11 +4,13 @@ const options: ISourceOptions = {
   key: "reactMultipleImages",
   name: "React Multiple Images",
   particles: {
-    fill: {
-      color: {
-        value: "#CCC",
+    paint: {
+      fill: {
+        color: {
+          value: "#CCC",
+        },
+        enable: true,
       },
-      enable: true,
     },
     collisions: {
       enable: true,

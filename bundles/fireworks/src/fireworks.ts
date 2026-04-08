@@ -86,7 +86,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadRotateUpdater },
       { loadDestroyUpdater },
       { loadLifeUpdater },
-      { loadStrokeColorUpdater },
+      { loadPaintUpdater },
     ] = await Promise.all([
       import("@tsparticles/basic"),
       import("@tsparticles/shape-line"),
@@ -97,7 +97,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       import("@tsparticles/updater-rotate"),
       import("@tsparticles/updater-destroy"),
       import("@tsparticles/updater-life"),
-      import("@tsparticles/updater-stroke-color"),
+      import("@tsparticles/updater-paint"),
     ]);
 
     await Promise.all([
@@ -113,7 +113,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
-      loadStrokeColorUpdater(e),
+      loadPaintUpdater(e),
     ]);
   });
 
@@ -169,11 +169,13 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       number: {
         value: 0,
       },
-      stroke: {
-        color: {
-          value: options.colors,
+      paint: {
+        stroke: {
+          color: {
+            value: options.colors,
+          },
+          width: 2,
         },
-        width: 2,
       },
       destroy: {
         mode: "split",

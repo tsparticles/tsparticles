@@ -18,11 +18,20 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#FFF",
+    paint: {
+      fill: {
+        color: {
+          value: "#FFF",
+        },
+        enable: true,
       },
-      enable: true,
+      stroke: {
+        color: {
+          value: "#ff0000",
+        },
+        width: 0,
+        opacity: 1,
+      },
     },
     links: {
       blink: false,
@@ -62,13 +71,6 @@ const options: ISourceOptions = {
     },
     size: {
       value: 3,
-    },
-    stroke: {
-      color: {
-        value: "#ff0000",
-      },
-      width: 0,
-      opacity: 1,
     },
   },
   backgroundMask: {

@@ -52,11 +52,13 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: ["#4285f4", "#34A853", "#FBBC05", "#EA4335"],
+    paint: {
+      fill: {
+        color: {
+          value: ["#4285f4", "#34A853", "#FBBC05", "#EA4335"],
+        },
+        enable: true,
       },
-      enable: true,
     },
     links: {
       blink: false,

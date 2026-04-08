@@ -2,13 +2,12 @@ import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { isArray, isNull } from "../../../Utils/TypeUtils.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
-import { Fill } from "./Fill.js";
-import type { IFill } from "../../Interfaces/Particles/IFill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
-import type { IStroke } from "../../Interfaces/Particles/IStroke.js";
 import { Move } from "./Move/Move.js";
 import { Opacity } from "./Opacity/Opacity.js";
+import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
@@ -17,7 +16,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { Size } from "./Size/Size.js";
-import { Stroke } from "./Stroke.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
 
 /**
@@ -28,16 +26,15 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
   readonly bounce;
   readonly effect;
-  fill: SingleOrMultiple<Fill>;
   readonly groups: ParticlesGroups;
   readonly move;
   readonly number;
   readonly opacity;
+  paint: SingleOrMultiple<Paint>;
   palette?: string;
   reduceDuplicates;
   readonly shape;
   readonly size;
-  stroke: SingleOrMultiple<Stroke>;
   readonly zIndex;
 
   private readonly _container;
@@ -49,15 +46,14 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
     this.bounce = new ParticlesBounce();
     this.effect = new Effect();
-    this.fill = new Fill();
     this.groups = {};
     this.move = new Move();
     this.number = new ParticlesNumber();
     this.opacity = new Opacity();
+    this.paint = new Paint();
     this.reduceDuplicates = false;
     this.shape = new Shape();
     this.size = new Size();
-    this.stroke = new Stroke();
     this.zIndex = new ZIndex();
   }
 
@@ -95,33 +91,21 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.move.load(data.move);
     this.number.load(data.number);
     this.opacity.load(data.opacity);
+    const paintToLoad = data.paint;
+
+    if (paintToLoad) {
+      this.paint = executeOnSingleOrMultiple(paintToLoad, t => {
+        const tmp = new Paint();
+
+        tmp.load(t);
+
+        return tmp;
+      });
+    }
+
     this.shape.load(data.shape);
     this.size.load(data.size);
     this.zIndex.load(data.zIndex);
-
-    const fillToLoad = data.fill;
-
-    if (fillToLoad) {
-      this.fill = executeOnSingleOrMultiple(fillToLoad, t => {
-        const tmp = new Fill();
-
-        tmp.load(t);
-
-        return tmp;
-      });
-    }
-
-    const strokeToLoad = data.stroke;
-
-    if (strokeToLoad) {
-      this.stroke = executeOnSingleOrMultiple(strokeToLoad, t => {
-        const tmp = new Stroke();
-
-        tmp.load(t);
-
-        return tmp;
-      });
-    }
 
     if (this._container) {
       for (const plugin of this._pluginManager.plugins) {
@@ -151,31 +135,34 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
     const paletteColors = paletteData.colors,
       paletteFill = paletteColors.fill,
-      paletteStroke = paletteColors.stroke;
-
-    let paletteFillObj: IFill | undefined = undefined;
-
-    if (paletteFill) {
-      paletteFillObj = {
-        color: {
-          value: paletteFill.value,
-        },
-        enable: paletteFill.enable,
+      paletteStroke = paletteColors.stroke,
+      defaultPaintStrokeIndex = 0,
+      defaultPaintStrokeWidth = 0,
+      palettePaint: IPaint = {
+        fill: paletteFill
+          ? {
+              color: {
+                value: paletteFill.value,
+              },
+              enable: paletteFill.enable,
+            }
+          : undefined,
       };
-    }
-
-    let paletteStrokeObj: SingleOrMultiple<IStroke> | undefined = undefined;
 
     if (paletteStroke) {
       if (isArray(paletteStroke)) {
-        paletteStrokeObj = paletteStroke.map(s => ({
-          color: {
-            value: s.value,
-          },
-          width: s.width,
-        }));
+        const firstStroke = paletteStroke[defaultPaintStrokeIndex];
+
+        if (firstStroke) {
+          palettePaint.stroke = {
+            color: {
+              value: firstStroke.value,
+            },
+            width: firstStroke.width || defaultPaintStrokeWidth,
+          };
+        }
       } else {
-        paletteStrokeObj = {
+        palettePaint.stroke = {
           color: {
             value: paletteStroke.value,
           },
@@ -185,8 +172,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     this.load({
-      fill: paletteFillObj,
-      stroke: paletteStrokeObj,
+      paint: palettePaint,
       blend: {
         enable: true,
         mode: paletteData.blendMode,
