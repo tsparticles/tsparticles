@@ -81,8 +81,8 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "jsdelivr": "tsparticles.palette.palette-fireworks-multicolor-stroke.min.js",
-  "unpkg": "tsparticles.palette.palette-fireworks-multicolor-stroke.min.js",
+  "jsdelivr": "tsparticles.palette.fireworks-multicolor-stroke.min.js",
+  "unpkg": "tsparticles.palette.fireworks-multicolor-stroke.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",

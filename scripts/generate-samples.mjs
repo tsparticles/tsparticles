@@ -265,7 +265,10 @@ const captureItem = async (browser, item, options) => {
   }
 };
 
-const argv = await yargs(hideBin(process.argv))
+const rawCliArgs = hideBin(process.argv);
+const cliArgs = rawCliArgs[0] === "--" ? rawCliArgs.slice(1) : rawCliArgs;
+
+const argv = await yargs(cliArgs)
   .scriptName("generate-samples")
   .option("base-url", {
     describe: "Use an already running demo server instead of starting apps/demo automatically.",

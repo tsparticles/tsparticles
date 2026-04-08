@@ -1,6 +1,23 @@
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+const helpFlag = process.argv.includes("--help") || process.argv.includes("-h");
+
+if (helpFlag) {
+  console.log(`Usage: node scripts/update-palette-readmes.js
+
+Updates the "## Colors" section in palette README files using each palette's src/options.ts.
+
+Note: this script DOES NOT generate images.
+
+Useful commands:
+  pnpm generate:samples       Generate palettes/*/*/images/sample.png with Puppeteer
+  pnpm sync:samples           Copy sample images into apps/demo/public/images/palettes
+  pnpm generate:samples:all   Generate samples and sync demo images in one go
+`);
+  process.exit(0);
+}
+
 const palettesRoot = join(process.cwd(), "palettes");
 const colorsSectionPattern = /## Colors\n\n[\s\S]*?## Quick checklist\n/;
 
@@ -133,3 +150,9 @@ for (const entry of readdirSync(palettesRoot)) {
 }
 
 console.log(`Updated ${updatedCount} palette README files.`);
+
+if (updatedCount === 0) {
+  console.log("No README changes detected. This command only updates color tables, not screenshots.");
+  console.log("Use `pnpm generate:samples:all` to regenerate and sync all palette images.");
+}
+
