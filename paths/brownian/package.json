@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-brownian",
-  "version": "4.0.0-beta.8",
+  "version": "4.0.0-beta.9",
   "description": "tsParticles brownian path",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -5,7 +5,11 @@ export const palettes: Record<string, IPalette> = {
     name: "Test",
     background: "#000000",
     blendMode: "lighter",
-    colors: ["#ff0000", "#00ff00", "#0000ff"],
-    fill: true,
+    colors: {
+      fill: {
+        value: ["#ff0000", "#00ff00", "#0000ff"],
+        enable: true,
+      },
+    },
   },
 };
