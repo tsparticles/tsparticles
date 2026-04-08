@@ -99,10 +99,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.8",
-    "@tsparticles/engine": "^4.0.0-beta.8",
-    "@tsparticles/interaction-particles-links": "^4.0.0-beta.8",
-    "@tsparticles/plugin-interactivity": "^4.0.0-beta.8"
+    "@tsparticles/basic": "^4.0.0-beta.10",
+    "@tsparticles/engine": "^4.0.0-beta.10",
+    "@tsparticles/interaction-particles-links": "^4.0.0-beta.10",
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.10"
   },
   "publishConfig": {
     "access": "public"

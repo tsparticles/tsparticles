@@ -110,11 +110,11 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.8",
-    "@tsparticles/engine": "^4.0.0-beta.8",
-    "@tsparticles/interaction-external-trail": "^4.0.0-beta.8",
-    "@tsparticles/plugin-interactivity": "^4.0.0-beta.8",
-    "@tsparticles/updater-life": "^4.0.0-beta.8"
+    "@tsparticles/basic": "^4.0.0-beta.10",
+    "@tsparticles/engine": "^4.0.0-beta.10",
+    "@tsparticles/interaction-external-trail": "^4.0.0-beta.10",
+    "@tsparticles/plugin-interactivity": "^4.0.0-beta.10",
+    "@tsparticles/updater-life": "^4.0.0-beta.10"
   },
   "type": "module"
 }

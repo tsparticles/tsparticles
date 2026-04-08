@@ -110,9 +110,9 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.8",
-    "@tsparticles/engine": "^4.0.0-beta.8",
-    "@tsparticles/updater-stroke-color": "^4.0.0-beta.8"
+    "@tsparticles/basic": "^4.0.0-beta.10",
+    "@tsparticles/engine": "^4.0.0-beta.10",
+    "@tsparticles/updater-paint": "^4.0.0-beta.10"
   },
   "type": "module"
 }

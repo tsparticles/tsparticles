@@ -1,8 +1,8 @@
-linkWorkspacePackages: deep
 
 packages:
   - apps/*
   - presets/*
+linkWorkspacePackages: deep
 
 onlyBuiltDependencies:
   - '@swc/core'
@@ -10,3 +10,4 @@ onlyBuiltDependencies:
   - canvas
   - esbuild
   - nx
+  - puppeteer
