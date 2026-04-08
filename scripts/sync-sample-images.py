@@ -8,6 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PALETTES_ROOT = ROOT / "palettes"
 DEMO_IMAGES = ROOT / "apps" / "demo" / "public" / "images" / "palettes"
 
+SYNC_FROM_SAMPLES = "samples"
+SYNC_FROM_DEMO = "demo"
+
 def find_palette_dirs(root: Path) -> list[Path]:
     palette_dirs: list[Path] = []
 
@@ -29,12 +32,22 @@ def find_palette_dirs(root: Path) -> list[Path]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Sync sample.png files from apps/demo palette images."
+        description="Sync palette screenshots between package sample.png files and demo images."
+    )
+    parser.add_argument(
+        "--from",
+        choices=[SYNC_FROM_SAMPLES, SYNC_FROM_DEMO],
+        default=SYNC_FROM_SAMPLES,
+        dest="source",
+        help=(
+            "Sync direction: 'samples' copies palettes/*/*/images/sample.png to apps/demo/public/images/palettes/*.png "
+            "(default); 'demo' copies demo images back to package sample files."
+        ),
     )
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="Exit with code 1 if one or more demo images are missing.",
+        help="Exit with code 1 if one or more source images are missing.",
     )
 
     return parser.parse_args()
@@ -48,8 +61,13 @@ missing_demo_images = []
 
 for palette_dir in palette_dirs:
     folder_name = palette_dir.name
-    source_image = DEMO_IMAGES / f"{folder_name}.png"
-    target_image = palette_dir / "images" / "sample.png"
+
+    if args.source == SYNC_FROM_SAMPLES:
+      source_image = palette_dir / "images" / "sample.png"
+      target_image = DEMO_IMAGES / f"{folder_name}.png"
+    else:
+      source_image = DEMO_IMAGES / f"{folder_name}.png"
+      target_image = palette_dir / "images" / "sample.png"
 
     if not source_image.exists():
         missing_demo_images.append(folder_name)
@@ -60,6 +78,7 @@ for palette_dir in palette_dirs:
     updated += 1
 
 print(f"Palette packages found: {len(palette_dirs)}")
+print(f"Direction: {args.source} -> {'demo' if args.source == SYNC_FROM_SAMPLES else 'samples'}")
 print(f"Updated sample images: {updated}")
 print(f"Missing demo images: {len(missing_demo_images)}")
 

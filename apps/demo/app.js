@@ -6,8 +6,8 @@ import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
 
-const liveReloadPort = 35731,
-  expressPort = 3016;
+const liveReloadPort = Number.parseInt(process.env.LIVE_RELOAD_PORT ?? "35731", 10),
+  expressPort = Number.parseInt(process.env.PORT ?? "3016", 10);
 
 const app = express();
 
@@ -37,6 +37,21 @@ const parsePaletteName = (fullPath, folder) => {
     match = optionsContent.match(/name:\s*"([^"]+)"/);
 
   return match?.[1] ?? toTitleCase(camelToKebab(folder).replaceAll("-", " "));
+};
+
+const parsePaletteScriptFile = (fullPath, slug) => {
+  const distPath = join(fullPath, "dist"),
+    defaultScriptFile = `tsparticles.palette.palette-${slug}.min.js`;
+
+  if (!existsSync(distPath)) {
+    return defaultScriptFile;
+  }
+
+  const generatedScript = readdirSync(distPath).find(file =>
+    /^tsparticles\.palette\..+\.min\.js$/u.test(file),
+  );
+
+  return generatedScript ?? defaultScriptFile;
 };
 
 const hasPaletteOptions = path => existsSync(join(path, "src", "options.ts"));
@@ -81,7 +96,8 @@ const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) =>
   const slug = camelToKebab(folder),
     packageName = `@tsparticles/palette-${slug}`,
     title = parsePaletteName(fullPath, folder),
-    loader = `load${toPascal(folder)}Palette`;
+    loader = `load${toPascal(folder)}Palette`,
+    scriptFile = parsePaletteScriptFile(fullPath, slug);
 
   return {
     id: folder,
@@ -91,7 +107,7 @@ const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) =>
     mountPath: `/palette-${slug}`,
     route: `/palettes/${folder}`,
     image: `/images/palettes/${folder}.png`,
-    scriptFile: `tsparticles.palette.palette-${slug}.min.js`,
+    scriptFile,
     loader,
     optionValue: slug,
     description: `${title} palette demo`,
@@ -99,122 +115,87 @@ const palettes = discoverPaletteDirs(palettesRoot).map(({ folder, fullPath }) =>
 });
 
 const paletteGroupDefinitions = [
+  // ── fireworks/ ────────────────────────────────────────────────────────────
   {
-    title: "Accessible & High Contrast",
+    title: "Fireworks",
     slugs: [
-      "okabe-ito-accessible",
-      "rgb-primaries",
-      "cmy-secondaries",
-      "duality-blue-yellow",
-      "duality-green-magenta",
-      "duality-red-cyan",
-      "sunset-binary",
-      "crt-phosphor",
-      "network-nodes",
+      // monochromatic — fill + stroke pairs
+      "fireworks-gold",
+      "fireworks-gold-stroke",
+      "fireworks-silver",
+      "fireworks-silver-stroke",
+      "fireworks-blue",
+      "fireworks-blue-stroke",
+      "fireworks-red",
+      "fireworks-red-stroke",
+      "fireworks-green",
+      "fireworks-green-stroke",
+      "fireworks-purple",
+      "fireworks-purple-stroke",
+      "fireworks-copper",
+      "fireworks-copper-stroke",
+      "fireworks-ice",
+      "fireworks-ice-stroke",
+      // multicolor — fill + stroke pairs
+      "fireworks-multicolor",
+      "fireworks-multicolor-stroke",
+      "fireworks-rainbow-stroke",
+      // special
+      "fireworks-pastel",
+      "fireworks-pastel-stroke",
+      "fireworks-neon",
+      "fireworks-neon-stroke",
     ],
   },
+  // ── confetti/ ─────────────────────────────────────────────────────────────
+  {
+    title: "Confetti",
+    slugs: [
+      "confetti",
+      "confetti-rainbow",
+      "confetti-neon",
+      "confetti-gold",
+      "confetti-patriotic",
+      "confetti-winter",
+      "confetti-pastel",
+      "confetti-monochrome-pink",
+      "confetti-monochrome-blue",
+      "confetti-monochrome-green",
+    ],
+  },
+  // ── impact/ ───────────────────────────────────────────────────────────────
+  {
+    title: "Impact & Explosion",
+    slugs: [
+      "explosion-debris",
+      "shockwave-blast",
+      "bullet-hit",
+      "meteor-impact",
+      "glass-burst",
+      "nuclear-glow",
+      "splatter-dark",
+    ],
+  },
+  // ── monochromatic/ ────────────────────────────────────────────────────────
   {
     title: "Monochromatic",
     slugs: [
       "monochrome-noir",
+      "monochrome-white",
       "monochrome-blues",
+      "monochrome-cyan",
+      "monochrome-teal",
       "monochrome-greens",
+      "monochrome-yellows",
+      "monochrome-oranges",
+      "monochrome-reds",
       "monochrome-pinks",
       "monochrome-purples",
+      "monochrome-brown",
+      "monochrome-gold",
     ],
   },
-  {
-    title: "Nature & Organic",
-    slugs: [
-      "autumn-leaves",
-      "cherry-blossom",
-      "forest-canopy",
-      "spring-bloom",
-      "dandelion-seeds",
-      "pollen-and-spores",
-      "fireflies",
-      "skin-and-organic",
-      "earthy-nature",
-      "desert-sand",
-      "mud-and-dirt",
-      "rock-and-gravel",
-      "rust-and-corrosion",
-      "poison-and-venom",
-    ],
-  },
-  {
-    title: "Water, Ice & Weather",
-    slugs: [
-      "water",
-      "water-splash",
-      "deep-ocean",
-      "caustics",
-      "foam-and-bubbles",
-      "rising-bubbles",
-      "rain",
-      "snowfall",
-      "thunderstorm",
-      "fog-coastal",
-      "ice-magic",
-      "ice-triad",
-    ],
-  },
-  {
-    title: "Fire, Heat & Energy",
-    slugs: [
-      "fire",
-      "fire-seed",
-      "full-fire-gradient",
-      "heat-duality",
-      "heat-haze",
-      "lava-lamp",
-      "molten-metal",
-      "embers-and-ash",
-      "explosion-debris",
-      "metal-sparks",
-      "shockwave",
-      "solar-wind",
-      "sunrise-gold",
-      "candlelight",
-      "holy-light",
-      "lightning",
-      "plasma-arc",
-      "thermal-map",
-    ],
-  },
-  {
-    title: "Cosmic, Neon & Digital",
-    slugs: [
-      "aurora-borealis",
-      "bioluminescence",
-      "cosmic-radiation",
-      "dark-matter",
-      "galaxy-dust",
-      "hologram",
-      "jellyfish-glow",
-      "lens-flare-dust",
-      "portal",
-      "prism-scatter",
-      "pulsar",
-      "supernova",
-      "vaporwave",
-      "neon-city",
-      "matrix-rain",
-      "glitch",
-    ],
-  },
-  {
-    title: "Smoke & Atmosphere",
-    slugs: [
-      "colored-smoke-magenta",
-      "colored-smoke-teal",
-      "smoke-cold",
-      "smoke-warm",
-      "ink-in-water",
-      "fairy-dust",
-      "lofi-warm",
-    ],
-  },
+  // ── pastel/ ───────────────────────────────────────────────────────────────
   {
     title: "Pastel",
     slugs: [
@@ -225,28 +206,175 @@ const paletteGroupDefinitions = [
       "pastel-sunset",
     ],
   },
+  // ── vibrant/ ──────────────────────────────────────────────────────────────
   {
     title: "Vibrant",
     slugs: [
       "vibrant",
       "vibrant-neon",
+      "vibrant-electric",
       "vibrant-retro",
       "vibrant-tropical",
-      "vibrant-electric",
     ],
   },
+  // ── spectrum/ ─────────────────────────────────────────────────────────────
   {
-    title: "Celebration & Spectacle",
+    title: "Spectrum & Color Theory",
     slugs: [
-      "confetti",
-      "fireworks-gold",
-      "fireworks-multicolor",
-      "explosion-debris",
       "rainbow",
       "full-spectrum",
+      "rgb-primaries",
+      "cmy-secondaries",
       "acid-pair",
+      "prism-scatter",
+      "duality-blue-yellow",
+      "duality-green-magenta",
+      "duality-red-cyan",
+      "okabe-ito-accessible",
+    ],
+  },
+  // ── nature/ ───────────────────────────────────────────────────────────────
+  {
+    title: "Nature & Seasons",
+    slugs: [
+      "spring-bloom",
+      "cherry-blossom",
+      "forest-canopy",
+      "autumn-leaves",
+      "dandelion-seeds",
+      "pollen-and-spores",
+      "fireflies",
+      "snowfall",
+      "earthy-nature",
+    ],
+  },
+  // ── earth/ ────────────────────────────────────────────────────────────────
+  {
+    title: "Earth & Terrain",
+    slugs: [
+      "desert-sand",
+      "mud-and-dirt",
+      "rock-and-gravel",
+      "rust-and-corrosion",
+      "caustics",
+      "skin-and-organic",
       "oil-slick",
+    ],
+  },
+  // ── water/ ────────────────────────────────────────────────────────────────
+  {
+    title: "Water",
+    slugs: [
+      "water",
+      "water-splash",
+      "deep-ocean",
+      "foam-and-bubbles",
+      "rising-bubbles",
+      "rain",
+      "fog-coastal",
+      "ink-in-water",
+    ],
+  },
+  // ── fire/ ─────────────────────────────────────────────────────────────────
+  {
+    title: "Fire & Heat",
+    slugs: [
+      "fire",
+      "fire-seed",
+      "full-fire-gradient",
+      "lava-lamp",
+      "molten-metal",
+      "embers-and-ash",
+      "metal-sparks",
+      "candlelight",
+    ],
+  },
+  // ── atmospheric/ ──────────────────────────────────────────────────────────
+  {
+    title: "Atmospheric Phenomena",
+    slugs: [
+      "lightning",
+      "thunderstorm",
+      "shockwave",
+      "heat-duality",
+      "heat-haze",
+      "thermal-map",
+      "sunrise-gold",
+      "sunset-binary",
+      "smoke-cold",
+      "smoke-warm",
+    ],
+  },
+  // ── atmosphere/ ───────────────────────────────────────────────────────────
+  {
+    title: "Smoke & Colored Mist",
+    slugs: [
+      "colored-smoke-magenta",
+      "colored-smoke-teal",
+      "colored-smoke-blue",
+      "colored-smoke-green",
+      "colored-smoke-orange",
+      "colored-smoke-purple",
+      "colored-smoke-rainbow",
+      "fog-morning",
+      "dust-haze",
+      "volcanic-ash",
+    ],
+  },
+  // ── fantasy/ ──────────────────────────────────────────────────────────────
+  {
+    title: "Fantasy & Magic",
+    slugs: [
+      "bioluminescence",
+      "fairy-dust",
+      "holy-light",
+      "jellyfish-glow",
+      "ice-magic",
+      "ice-triad",
       "blood-and-gore",
+      "poison-and-venom",
+    ],
+  },
+  // ── space/ ────────────────────────────────────────────────────────────────
+  {
+    title: "Space & Cosmic",
+    slugs: [
+      "aurora-borealis",
+      "supernova",
+      "cosmic-radiation",
+      "dark-matter",
+      "galaxy-dust",
+      "portal",
+      "pulsar",
+      "solar-wind",
+    ],
+  },
+  // ── tech/ ─────────────────────────────────────────────────────────────────
+  {
+    title: "Tech & Digital",
+    slugs: [
+      "neon-city",
+      "matrix-rain",
+      "glitch",
+      "hologram",
+      "vaporwave",
+      "crt-phosphor",
+      "lofi-warm",
+      "network-nodes",
+      "plasma-arc",
+    ],
+  },
+  // ── optics/ ───────────────────────────────────────────────────────────────
+  {
+    title: "Optics & Light",
+    slugs: [
+      "lens-flare-dust",
+      "prism-spectrum",
+      "bokeh-gold",
+      "bokeh-cold",
+      "bokeh-pastel",
+      "holographic-shimmer",
+      "laser-scatter",
     ],
   },
 ];
@@ -300,7 +428,6 @@ app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/popper.js", express.static("./node_modules/@popperjs/core/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic/"));
-app.use("/tsparticles-updater-stroke-color", express.static("./node_modules/@tsparticles/updater-stroke-color/"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 

@@ -5,21 +5,53 @@ export const options: IPalette = {
   background: "#000000",
   blendMode: "screen",
   colors: [
-    "#FF0000",
-    "#FF0022",
-    "#FF2200",
-    "#CC0000",
-    "#00FF00",
-    "#00FF22",
-    "#22FF00",
-    "#00CC00",
-    "#0000FF",
-    "#0022FF",
-    "#2200FF",
-    "#0000CC",
-    "#FFFFFF",
-    "#AAAAAA",
-    "#000000",
+    {
+      fill: {
+        enable: true,
+        value: [
+          "#FF0033",
+          "#00FF66",
+          "#0099FF",
+          "#FFFFFF",
+        ],
+      },
+    },
+    {
+      stroke: {
+        value: [
+          "#FF0033",
+          "#00FF66",
+          "#0099FF",
+          "#CC0000",
+          "#0000CC",
+        ],
+        width: {
+          min: 0.5,
+          max: 1.1,
+        },
+      },
+    },
+    {
+      fill: {
+        enable: true,
+        value: [
+          "#FF0033",
+          "#00FF66",
+          "#0099FF",
+          "#FFFFFF",
+        ],
+      },
+      stroke: {
+        value: [
+          "#00FFFF",
+          "#FF00FF",
+          "#FFFFFF",
+        ],
+        width: {
+          min: 1.6,
+          max: 3,
+        },
+      },
+    },
   ],
-  fill: false,
 };

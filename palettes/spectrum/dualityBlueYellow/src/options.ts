@@ -4,6 +4,13 @@ export const options: IPalette = {
   name: "Duality - Blue/Yellow",
   background: "#111111",
   blendMode: "source-over",
-  colors: ["#0000ff", "#ffff00"],
-  fill: true,
+  colors: {
+    fill: {
+      enable: true,
+      value: [
+        "#0000ff",
+        "#ffff00",
+      ],
+    },
+  },
 };
