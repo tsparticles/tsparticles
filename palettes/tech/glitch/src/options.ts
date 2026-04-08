@@ -12,8 +12,6 @@ export const options: IPalette = {
         "#00FF66",
         "#0099FF",
         "#FFFFFF",
-        "#AAAAAA",
-        "#000000",
       ],
     },
     stroke: [
@@ -34,8 +32,7 @@ export const options: IPalette = {
         value: [
           "#00FFFF",
           "#FF00FF",
-          "#AAAAAA",
-          "#333333",
+          "#FFFFFF",
         ],
         width: {
           min: 1.6,
