@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/confetti",
-  "version": "4.0.0-beta.9",
+  "version": "4.0.0-beta.10",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

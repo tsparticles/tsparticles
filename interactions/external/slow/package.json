@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-slow",
-  "version": "4.0.0-beta.9",
+  "version": "4.0.0-beta.10",
   "description": "tsParticles slow external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {

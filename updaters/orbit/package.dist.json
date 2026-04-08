@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-orbit",
-  "version": "4.0.0-beta.9",
+  "version": "4.0.0-beta.10",
   "description": "tsParticles particles orbit updater",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.9"
+    "@tsparticles/engine": "4.0.0-beta.10"
   },
   "publishConfig": {
     "access": "public"
