@@ -17,7 +17,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
         { loadRotateUpdater },
         { loadDestroyUpdater },
         { loadLifeUpdater },
-        { loadPaintUpdater },
         { initOptions },
       ] = await Promise.all([
         import("@tsparticles/basic"),
@@ -29,7 +28,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
         import("@tsparticles/updater-rotate"),
         import("@tsparticles/updater-destroy"),
         import("@tsparticles/updater-life"),
-        import("@tsparticles/updater-paint"),
         import("./options.js"),
       ]),
       loadEmittersForFireworks = async (e: Engine): Promise<void> => {
@@ -47,7 +45,6 @@ export async function loadFireworksPreset(engine: Engine): Promise<void> {
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
-      loadPaintUpdater(e),
     ]);
 
     e.pluginManager.addPreset(presetName, initOptions(), false);

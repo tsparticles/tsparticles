@@ -3,11 +3,13 @@ import { type ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine
 export const options: ISourceOptions = {
   fpsLimit: 120,
   particles: {
-    fill: {
-      color: {
-        value: "random",
+    paint: {
+      fill: {
+        color: {
+          value: "random",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",

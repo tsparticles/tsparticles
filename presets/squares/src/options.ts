@@ -2,14 +2,16 @@ import { DestroyType, type ISourceOptions, RotateDirection, StartValueType } fro
 
 export const options: ISourceOptions = {
   particles: {
-    stroke: {
-      width: 5,
-      color: {
-        value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921", "#2FF3E0", "#F8D210", "#FA26A0", "#F51720"],
+    paint: {
+      stroke: {
+        width: 5,
+        color: {
+          value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921", "#2FF3E0", "#F8D210", "#FA26A0", "#F51720"],
+        },
       },
-    },
-    fill: {
-      enable: false,
+      fill: {
+        enable: false,
+      },
     },
     shape: {
       type: "square",

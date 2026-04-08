@@ -58,8 +58,7 @@
     "@tsparticles/preset-snow": "workspace:^",
     "@tsparticles/preset-squares": "workspace:^",
     "@tsparticles/preset-stars": "workspace:^",
-    "@tsparticles/preset-triangles": "workspace:^",
-    "@tsparticles/updater-paint": "^4.0.0-beta.11"
+    "@tsparticles/preset-triangles": "workspace:^"
   },
   "type": "module"
 }

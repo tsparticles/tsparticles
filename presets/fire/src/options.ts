@@ -9,11 +9,13 @@ export const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+    paint: {
+      fill: {
+        color: {
+          value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+        },
+        enable: true,
       },
-      enable: true,
     },
     opacity: {
       value: { min: 0.1, max: 0.5 },

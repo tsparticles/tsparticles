@@ -118,18 +118,20 @@ export function initOptions(): ISourceOptions {
           lRange = fixRange({ min: hsl.l - lOffset, max: hsl.l + lOffset }, lBounds.min, lBounds.max);
 
         return {
-          fill: {
-            color: {
-              value: {
-                h: hsl.h,
-                s: sRange,
-                l: lRange,
+          paint: {
+            fill: {
+              color: {
+                value: {
+                  h: hsl.h,
+                  s: sRange,
+                  l: lRange,
+                },
               },
+              enable: true,
             },
-            enable: true,
-          },
-          stroke: {
-            width: 0,
+            stroke: {
+              width: 0,
+            },
           },
           number: {
             value: 0,
@@ -261,14 +263,16 @@ export function initOptions(): ISourceOptions {
       size: {
         value: 1,
       },
-      stroke: {
-        color: {
-          value: "#ffffff",
+      paint: {
+        stroke: {
+          color: {
+            value: "#ffffff",
+          },
+          width: 1,
         },
-        width: 1,
-      },
-      fill: {
-        enable: false,
+        fill: {
+          enable: false,
+        },
       },
       move: {
         enable: true,

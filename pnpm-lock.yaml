@@ -221,9 +221,6 @@ importers:
       '@tsparticles/preset-triangles':
         specifier: workspace:^
         version: link:../../presets/triangles/dist
-      '@tsparticles/updater-paint':
-        specifier: ^4.0.0-beta.11
-        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
     devDependencies:
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0
@@ -345,9 +342,6 @@ importers:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
-      '@tsparticles/updater-paint':
-        specifier: ^4.0.0-beta.11
-        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
     publishDirectory: dist
 
   presets/bigCircles:
@@ -614,9 +608,6 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
       '@tsparticles/updater-life':
-        specifier: ^4.0.0-beta.11
-        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
-      '@tsparticles/updater-paint':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
       '@tsparticles/updater-rotate':
