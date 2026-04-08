@@ -10,16 +10,18 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: "#ff0000",
-        animation: {
-          enable: true,
-          speed: 20,
-          sync: true,
+    paint: {
+      fill: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            enable: true,
+            speed: 20,
+            sync: true,
+          },
         },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "heart",

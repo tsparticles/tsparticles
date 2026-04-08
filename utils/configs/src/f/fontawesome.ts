@@ -25,11 +25,17 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#ffffff",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+        enable: true,
       },
-      enable: true,
+      stroke: {
+        color: { value: "#ffffff" },
+        width: 1,
+      },
     },
     links: {
       blink: false,
@@ -80,10 +86,6 @@ const options: ISourceOptions = {
         ],
       },
       type: "char",
-    },
-    stroke: {
-      color: { value: "#ffffff" },
-      width: 1,
     },
     size: {
       value: 16,

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-image",
-  "version": "4.0.0-beta.9",
+  "version": "4.0.0-beta.10",
   "description": "tsParticles image shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -58,7 +58,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.9"
+    "@tsparticles/engine": "4.0.0-beta.10"
   },
   "publishConfig": {
     "access": "public"

@@ -404,15 +404,15 @@ importers:
       "@tsparticles/shape-circle":
         specifier: workspace:*
         version: link:../../shapes/circle/dist
-      "@tsparticles/updater-fill-color":
-        specifier: workspace:*
-        version: link:../../updaters/fillColor/dist
       "@tsparticles/updater-opacity":
         specifier: workspace:*
         version: link:../../updaters/opacity/dist
       "@tsparticles/updater-out-modes":
         specifier: workspace:*
         version: link:../../updaters/outModes/dist
+      "@tsparticles/updater-paint":
+        specifier: workspace:*
+        version: link:../../updaters/paint/dist
       "@tsparticles/updater-size":
         specifier: workspace:*
         version: link:../../updaters/size/dist
@@ -499,12 +499,12 @@ importers:
       "@tsparticles/updater-life":
         specifier: workspace:*
         version: link:../../updaters/life/dist
+      "@tsparticles/updater-paint":
+        specifier: workspace:*
+        version: link:../../updaters/paint/dist
       "@tsparticles/updater-rotate":
         specifier: workspace:*
         version: link:../../updaters/rotate/dist
-      "@tsparticles/updater-stroke-color":
-        specifier: workspace:*
-        version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   bundles/full:
@@ -647,12 +647,12 @@ importers:
       "@tsparticles/updater-life":
         specifier: workspace:*
         version: link:../../updaters/life/dist
+      "@tsparticles/updater-paint":
+        specifier: workspace:*
+        version: link:../../updaters/paint/dist
       "@tsparticles/updater-rotate":
         specifier: workspace:*
         version: link:../../updaters/rotate/dist
-      "@tsparticles/updater-stroke-color":
-        specifier: workspace:*
-        version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   demo/electron:
@@ -1045,9 +1045,6 @@ importers:
       "@tsparticles/updater-destroy":
         specifier: workspace:*
         version: link:../../updaters/destroy/dist
-      "@tsparticles/updater-fill-color":
-        specifier: workspace:*
-        version: link:../../updaters/fillColor/dist
       "@tsparticles/updater-gradient":
         specifier: workspace:*
         version: link:../../updaters/gradient/dist
@@ -1063,6 +1060,9 @@ importers:
       "@tsparticles/updater-out-modes":
         specifier: workspace:*
         version: link:../../updaters/outModes/dist
+      "@tsparticles/updater-paint":
+        specifier: workspace:*
+        version: link:../../updaters/paint/dist
       "@tsparticles/updater-roll":
         specifier: workspace:*
         version: link:../../updaters/roll/dist
@@ -1072,9 +1072,6 @@ importers:
       "@tsparticles/updater-size":
         specifier: workspace:*
         version: link:../../updaters/size/dist
-      "@tsparticles/updater-stroke-color":
-        specifier: workspace:*
-        version: link:../../updaters/strokeColor/dist
       "@tsparticles/updater-tilt":
         specifier: workspace:*
         version: link:../../updaters/tilt/dist
@@ -2142,13 +2139,6 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
-  updaters/fillColor:
-    devDependencies:
-      "@tsparticles/engine":
-        specifier: workspace:*
-        version: link:../../engine/dist
-    publishDirectory: dist
-
   updaters/gradient:
     devDependencies:
       "@tsparticles/engine":
@@ -2184,6 +2174,13 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
+  updaters/paint:
+    devDependencies:
+      "@tsparticles/engine":
+        specifier: workspace:*
+        version: link:../../engine/dist
+    publishDirectory: dist
+
   updaters/roll:
     devDependencies:
       "@tsparticles/engine":
@@ -2199,13 +2196,6 @@ importers:
     publishDirectory: dist
 
   updaters/size:
-    devDependencies:
-      "@tsparticles/engine":
-        specifier: workspace:*
-        version: link:../../engine/dist
-    publishDirectory: dist
-
-  updaters/strokeColor:
     devDependencies:
       "@tsparticles/engine":
         specifier: workspace:*

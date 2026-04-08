@@ -102,9 +102,8 @@ app.use("/shape-text", express.static("./node_modules/@tsparticles/shape-text"))
 app.use("/updater-life", express.static("./node_modules/@tsparticles/updater-life"));
 app.use("/updater-opacity", express.static("./node_modules/@tsparticles/updater-opacity"));
 app.use("/updater-size", express.static("./node_modules/@tsparticles/updater-size"));
-app.use("/updater-fill-color", express.static("./node_modules/@tsparticles/updater-fill-color"));
+app.use("/updater-paint", express.static("./node_modules/@tsparticles/updater-paint"));
 app.use("/updater-destroy", express.static("./node_modules/@tsparticles/updater-destroy"));
-app.use("/updater-stroke-color", express.static("./node_modules/@tsparticles/updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/@tsparticles/updater-out-modes"));
 app.use("/updater-rotate", express.static("./node_modules/@tsparticles/updater-rotate"));
 app.use("/updater-tilt", express.static("./node_modules/@tsparticles/updater-tilt"));

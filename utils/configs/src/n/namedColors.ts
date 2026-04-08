@@ -10,11 +10,13 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: ["aqua", "deepskyblue", "firebrick", "khaki"],
+    paint: {
+      fill: {
+        color: {
+          value: ["aqua", "deepskyblue", "firebrick", "khaki"],
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",

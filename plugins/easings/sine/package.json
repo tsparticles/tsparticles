@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-sine",
-  "version": "4.0.0-beta.9",
+  "version": "4.0.0-beta.10",
   "description": "tsParticles easing sine plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

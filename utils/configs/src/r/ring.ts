@@ -8,11 +8,13 @@ const options: ISourceOptions = {
       value: 0,
       limit: { value: 1000 },
     },
-    fill: {
-      color: {
-        value: "#ffffff",
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+        enable: true,
       },
-      enable: true,
     },
     move: {
       enable: true,

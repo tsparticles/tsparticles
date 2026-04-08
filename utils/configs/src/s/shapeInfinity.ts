@@ -10,19 +10,21 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      enable: false,
-    },
-    stroke: {
-      color: {
-        value: "#ff0000",
-        animation: {
-          enable: true,
-          speed: 20,
-          sync: true,
-        },
+    paint: {
+      fill: {
+        enable: false,
       },
-      width: 1,
+      stroke: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            enable: true,
+            speed: 20,
+            sync: true,
+          },
+        },
+        width: 1,
+      },
     },
     shape: {
       type: "infinity",

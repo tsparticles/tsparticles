@@ -35,7 +35,7 @@ a `@tsparticles/engine` instance.
 - [@tsparticles/shape-emoji](https://github.com/tsparticles/tsparticles/tree/main/shapes/emoji)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
 - [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
-- [@tsparticles/updater-stroke-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/strokeColor)
+- [@tsparticles/updater-paint](https://github.com/tsparticles/tsparticles/tree/main/updaters/paint)
 
 ## Dependency Graph
 
@@ -85,7 +85,7 @@ end
 subgraph u [Updaters]
   ul[tsparticles/updater-life]
   ur[tsparticles/updater-rotate]
-  usc[tsparticles/updater-stroke-color]
+  up[tsparticles/updater-paint]
 end
 
 bs --> bb

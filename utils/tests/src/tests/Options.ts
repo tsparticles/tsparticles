@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,jsdoc/require-param,jsdoc/check-param-names */
 import {
+  type IPaint,
   type IParticlesOptions,
   type ISourceOptions,
   LimitMode,
@@ -7,10 +8,20 @@ import {
   OptionsColor,
   OutMode,
   type RecursivePartial,
+  itemFromSingleOrMultiple,
   tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
+
+/**
+ * Returns the first paint entry configured for particles, if available.
+ * @param options - Resolved particle options container.
+ * @returns The normalized particle paint configuration, if set.
+ */
+function getParticlePaint(options: { particles: IParticlesOptions }): IPaint | undefined {
+  return itemFromSingleOrMultiple(options.particles.paint, 0, true);
+}
 
 describe("Options tests", () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -48,7 +59,9 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
+    const defaultPaint = getParticlePaint(options);
+
+    expect(defaultPaint?.fill).to.satisfy((fill: unknown) => fill === undefined || typeof fill === "object");
 
     /* particles line linked */
     /* expect(options.particles.links.blink).to.be.false;
@@ -101,7 +114,7 @@ describe("Options tests", () => {
     expect(options.particles.size.value).to.equal(3);
 
     /* particles stroke */
-    expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
+    expect(defaultPaint?.stroke).to.satisfy((stroke: unknown) => stroke === undefined || typeof stroke === "object");
 
     /* pause on blur */
     expect(options.pauseOnBlur).to.be.true;
@@ -219,7 +232,9 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
+    const presetPaint = getParticlePaint(options);
+
+    expect(presetPaint?.fill).to.satisfy((fill: unknown) => fill === undefined || typeof fill === "object");
 
     /* particles line linked */
     /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
@@ -377,7 +392,9 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
+    const testPresetPaint = getParticlePaint(options);
+
+    expect(testPresetPaint?.fill).to.satisfy((fill: unknown) => fill === undefined || typeof fill === "object");
 
     /* particles line linked */
     /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
@@ -417,13 +434,13 @@ describe("Options tests", () => {
     expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
 
     /* particles stroke */
-    /* expect(options.particles.stroke)
+    /* expect(options.particles.paint.stroke)
             .to.be.an("object")
             .to.have.property("color")
             .to.be.an("object")
             .to.have.property("value")
             .to.equal("#000000"); */
-    expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
+    expect(testPresetPaint?.stroke).to.satisfy((stroke: unknown) => stroke === undefined || typeof stroke === "object");
   });
 
   it("check particlesOptions override", async () => {

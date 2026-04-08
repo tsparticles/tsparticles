@@ -1,23 +1,12 @@
 # Particles Stroke
 
-Defines the outline drawn around particle shapes.
+Stroke options are now documented in [Particles Paint](./Paint.md) under `paint.stroke`.
 
-## Properties
+## Mapping
 
-| Key     | Type           | Example | Notes                                      |
-| ------- | -------------- | ------- | ------------------------------------------ |
-| `width` | `number`       | `2`     | Stroke width in pixels                     |
-| `color` | `color object` |         | Stroke color, see {@link IAnimatableColor} |
+- Old path: `particles.stroke`
+- New path: `particles.paint.stroke`
 
-## Quick example
+## See
 
-```json
-{
-  "stroke": {
-    "width": 2,
-    "color": {
-      "value": "#ffffff"
-    }
-  }
-}
-```
+- [Particles Paint](./Paint.md)

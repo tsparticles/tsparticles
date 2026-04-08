@@ -180,12 +180,12 @@ export function drawShape(drawer: IShapeDrawer | undefined, data: IShapeDrawData
     context.closePath();
   }
 
-  if (stroke) {
-    context.stroke();
-  }
-
   if (fill) {
     context.fill();
+  }
+
+  if (stroke) {
+    context.stroke();
   }
 }
 

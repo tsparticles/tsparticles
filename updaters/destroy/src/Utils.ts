@@ -143,8 +143,9 @@ function addSplitParticle(
 
   splitParticleOptions.load(splitParticlesOptions);
 
-  const splitParticleFillOptions = itemFromSingleOrMultiple(splitParticleOptions.fill),
-    splitParticleStrokeOptions = itemFromSingleOrMultiple(splitParticleOptions.stroke),
+  const splitParticlePaintOptions = itemFromSingleOrMultiple(splitParticleOptions.paint),
+    splitParticleFillOptions = splitParticlePaintOptions?.fill,
+    splitParticleStrokeOptions = splitParticlePaintOptions?.stroke,
     fillColor = resolveSplitColor(
       splitOptions.fillColorOffset,
       splitFillColor,

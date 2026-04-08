@@ -10,16 +10,18 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    fill: {
-      color: {
-        value: "#ff0000",
-        animation: {
-          enable: true,
-          speed: 20,
-          sync: true,
+    paint: {
+      fill: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            enable: true,
+            speed: 20,
+            sync: true,
+          },
         },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: "circle",
@@ -82,16 +84,18 @@ const options: ISourceOptions = {
         delay: 0.01,
         pauseOnStop: true,
         particles: {
-          fill: {
-            color: {
-              value: "#00ff00",
-              animation: {
-                enable: true,
-                speed: 200,
-                sync: false,
+          paint: {
+            fill: {
+              color: {
+                value: "#00ff00",
+                animation: {
+                  enable: true,
+                  speed: 200,
+                  sync: false,
+                },
               },
+              enable: true,
             },
-            enable: true,
           },
           links: {
             enable: false,

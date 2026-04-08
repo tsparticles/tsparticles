@@ -1,5 +1,6 @@
 import { type HslAnimation, type Particle } from "@tsparticles/engine";
 
-export type StrokeParticle = Particle & {
+export type PaintParticle = Particle & {
+  fillAnimation?: HslAnimation;
   strokeAnimation?: HslAnimation;
 };

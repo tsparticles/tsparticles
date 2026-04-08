@@ -61,11 +61,13 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    fill: {
-      color: {
-        value: "#f00",
+    paint: {
+      fill: {
+        color: {
+          value: "#f00",
+        },
+        enable: true,
       },
-      enable: true,
     },
     shape: {
       type: ["circle", "square", "polygon"],

@@ -10,9 +10,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    stroke: {
-      width: 1,
-      color: { value: "#ffffff" },
+    paint: {
+      stroke: {
+        width: 1,
+        color: { value: "#ffffff" },
+      },
     },
     shape: {
       type: "text",
@@ -23,14 +25,20 @@ const options: ISourceOptions = {
           style: "",
           weight: "400",
           particles: {
-            fill: [
+            paint: [
               {
-                color: {
-                  value: "#ff0000",
+                fill: {
+                  color: {
+                    value: "#ff0000",
+                  },
+                  enable: true,
                 },
-                enable: true,
               },
-              { enable: false },
+              {
+                fill: {
+                  enable: false,
+                },
+              },
             ],
           },
         },

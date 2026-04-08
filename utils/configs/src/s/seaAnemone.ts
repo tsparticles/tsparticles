@@ -4,9 +4,11 @@ const options: ISourceOptions = {
   key: "seaAnemone",
   name: "Sea Anemone",
   particles: {
-    fill: {
-      color: {
-        value: "#FF0000",
+    paint: {
+      fill: {
+        color: {
+          value: "#FF0000",
+        },
       },
     },
     move: {

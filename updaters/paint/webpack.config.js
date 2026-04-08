@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url),
   version = pkg.version;
 
 export default loadParticlesUpdater({
-  moduleName: "fill-color",
-  updaterName: "Fill Color",
+  moduleName: "paint",
+  updaterName: "Paint",
   version,
   dir: __dirname,
   progress: false,

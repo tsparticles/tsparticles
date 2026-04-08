@@ -33,9 +33,11 @@ const options: ISourceOptions = {
               quantity: 0,
             },
             particles: {
-              fill: {
-                color: {
-                  value: "#0f0",
+              paint: {
+                fill: {
+                  color: {
+                    value: "#0f0",
+                  },
                 },
               },
               size: {
@@ -70,9 +72,11 @@ const options: ISourceOptions = {
               duration: 0.1,
             },
             particles: {
-              fill: {
-                color: {
-                  value: "#f00",
+              paint: {
+                fill: {
+                  color: {
+                    value: "#f00",
+                  },
                 },
               },
               move: {

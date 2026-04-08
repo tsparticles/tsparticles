@@ -47,11 +47,17 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "random",
+    paint: {
+      fill: {
+        color: {
+          value: "random",
+        },
+        enable: true,
       },
-      enable: true,
+      stroke: {
+        color: { value: "#fff" },
+        width: 1,
+      },
     },
     links: {
       blink: false,
@@ -80,10 +86,6 @@ const options: ISourceOptions = {
     },
     shape: {
       type: "circle",
-    },
-    stroke: {
-      color: { value: "#fff" },
-      width: 1,
     },
     size: {
       value: {

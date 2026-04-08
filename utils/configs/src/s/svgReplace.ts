@@ -47,11 +47,13 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#00f",
+    paint: {
+      fill: {
+        color: {
+          value: "#00f",
+        },
+        enable: true,
       },
-      enable: true,
     },
     links: {
       blink: false,

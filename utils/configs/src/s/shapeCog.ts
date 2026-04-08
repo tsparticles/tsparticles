@@ -4,11 +4,13 @@ const options: ISourceOptions = {
   key: "shapeCog",
   name: "Shape Cog",
   particles: {
-    fill: {
-      color: {
-        value: ["#777", "#333", "#700", "#007", "#070"],
+    paint: {
+      fill: {
+        color: {
+          value: ["#777", "#333", "#700", "#007", "#070"],
+        },
+        enable: true,
       },
-      enable: true,
     },
     number: {
       value: 80,

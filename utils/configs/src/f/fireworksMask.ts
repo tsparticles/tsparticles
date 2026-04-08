@@ -40,11 +40,13 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    fill: {
-      color: {
-        value: "#fff",
+    paint: {
+      fill: {
+        color: {
+          value: "#fff",
+        },
+        enable: true,
       },
-      enable: true,
     },
     number: {
       value: 0,
@@ -63,12 +65,14 @@ const options: ISourceOptions = {
           value: 100,
         },
         particles: {
-          stroke: {
-            width: 0,
-          },
-          fill: {
-            color: {
-              value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+          paint: {
+            fill: {
+              color: {
+                value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+              },
+            },
+            stroke: {
+              width: 0,
             },
           },
           number: {

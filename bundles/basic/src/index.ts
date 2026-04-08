@@ -22,7 +22,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
 
       { loadCircleShape },
 
-      { loadFillColorUpdater },
+      { loadPaintUpdater },
       { loadOpacityUpdater },
       { loadOutModesUpdater },
       { loadSizeUpdater },
@@ -34,7 +34,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
 
       import("@tsparticles/shape-circle"),
 
-      import("@tsparticles/updater-fill-color"),
+      import("@tsparticles/updater-paint"),
       import("@tsparticles/updater-opacity"),
       import("@tsparticles/updater-out-modes"),
       import("@tsparticles/updater-size"),
@@ -46,7 +46,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
       loadRgbColorPlugin(e),
       loadMovePlugin(e),
       loadCircleShape(e),
-      loadFillColorUpdater(e),
+      loadPaintUpdater(e),
       loadOpacityUpdater(e),
       loadOutModesUpdater(e),
       loadSizeUpdater(e),

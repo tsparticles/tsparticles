@@ -77,43 +77,44 @@ async function initPlugins(engine: Engine): Promise<void> {
 
   await engine.pluginManager.register(async e => {
     const [
-      { loadBasic },
-      { loadLineShape },
-      { loadBlendPlugin },
-      { loadEmittersPluginSimple },
-      { loadEmittersShapeSquare },
-      { loadSoundsPlugin },
-      { loadRotateUpdater },
-      { loadDestroyUpdater },
-      { loadLifeUpdater },
-      { loadStrokeColorUpdater },
-    ] = await Promise.all([
-      import("@tsparticles/basic"),
-      import("@tsparticles/shape-line"),
-      import("@tsparticles/plugin-blend"),
-      import("@tsparticles/plugin-emitters/plugin"),
-      import("@tsparticles/plugin-emitters-shape-square"),
-      import("@tsparticles/plugin-sounds"),
-      import("@tsparticles/updater-rotate"),
-      import("@tsparticles/updater-destroy"),
-      import("@tsparticles/updater-life"),
-      import("@tsparticles/updater-stroke-color"),
-    ]);
+        { loadBasic },
+        { loadLineShape },
+        { loadBlendPlugin },
+        { loadEmittersPluginSimple },
+        { loadEmittersShapeSquare },
+        { loadSoundsPlugin },
+        { loadRotateUpdater },
+        { loadDestroyUpdater },
+        { loadLifeUpdater },
+        { loadPaintUpdater },
+      ] = await Promise.all([
+        import("@tsparticles/basic"),
+        import("@tsparticles/shape-line"),
+        import("@tsparticles/plugin-blend"),
+        import("@tsparticles/plugin-emitters/plugin"),
+        import("@tsparticles/plugin-emitters-shape-square"),
+        import("@tsparticles/plugin-sounds"),
+        import("@tsparticles/updater-rotate"),
+        import("@tsparticles/updater-destroy"),
+        import("@tsparticles/updater-life"),
+        import("@tsparticles/updater-paint"),
+      ]),
+      loadEmittersForFireworks = async (e: Engine): Promise<void> => {
+        await loadEmittersPluginSimple(e);
+
+        await loadEmittersShapeSquare(e);
+      };
 
     await Promise.all([
       loadBasic(e),
       loadLineShape(e),
       loadBlendPlugin(e),
-      (async (): Promise<void> => {
-        await loadEmittersPluginSimple(e);
-
-        await loadEmittersShapeSquare(e);
-      })(),
+      loadEmittersForFireworks(e),
       loadSoundsPlugin(e),
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
-      loadStrokeColorUpdater(e),
+      loadPaintUpdater(e),
     ]);
   });
 
@@ -169,11 +170,13 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
       number: {
         value: 0,
       },
-      stroke: {
-        color: {
-          value: options.colors,
+      paint: {
+        stroke: {
+          color: {
+            value: options.colors,
+          },
+          width: 2,
         },
-        width: 2,
       },
       destroy: {
         mode: "split",

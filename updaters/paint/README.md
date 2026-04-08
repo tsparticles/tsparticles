@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Stroke Color Updater
+# tsParticles Paint Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-stroke-color/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-stroke-color)
-[![npmjs](https://badge.fury.io/js/@tsparticles/updater-stroke-color.svg)](https://www.npmjs.com/package/@tsparticles/updater-stroke-color)
-[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-stroke-color)](https://www.npmjs.com/package/@tsparticles/updater-stroke-color) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-paint/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-paint)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-paint.svg)](https://www.npmjs.com/package/@tsparticles/updater-paint)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-paint)](https://www.npmjs.com/package/@tsparticles/updater-paint) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for stroke color animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for color animations.
 
 ## Quick checklist
 
@@ -20,10 +20,10 @@
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.updater.stroke-color.min.js` file will export the function to load the updater plugin:
+Including the `tsparticles.updater.paint.min.js` file will export the function to load the updater plugin:
 
 ```javascript
-loadStrokeColorUpdater;
+loadPaintUpdater;
 ```
 
 ### Usage
@@ -32,7 +32,7 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 
 ```javascript
 (async () => {
-  await loadStrokeColorUpdater(tsParticles);
+  await loadPaintUpdater(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",
@@ -48,23 +48,23 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install @tsparticles/updater-stroke-color
+$ npm install @tsparticles/updater-paint
 ```
 
 or
 
 ```shell
-$ yarn add @tsparticles/updater-stroke-color
+$ yarn add @tsparticles/updater-paint
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadStrokeColorUpdater } = require("@tsparticles/updater-stroke-color");
+const { loadPaintUpdater } = require("@tsparticles/updater-paint");
 
 (async () => {
-  await loadStrokeColorUpdater(tsParticles);
+  await loadPaintUpdater(tsParticles);
 })();
 ```
 
@@ -72,28 +72,28 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
+import { loadPaintUpdater } from "@tsparticles/updater-paint";
 
 (async () => {
-  await loadStrokeColorUpdater(tsParticles);
+  await loadPaintUpdater(tsParticles);
 })();
 ```
 
 ## Option mapping
 
-- Primary options key: `particles.stroke.color`
+- Primary options key: `particles.paint`
 
 ```json
 {
   "particles": {
-    "stroke.color": {}
+    "paint": {}
   }
 }
 ```
 
 ## Common pitfalls
 
-- Calling `tsParticles.load(...)` before `loadStrokeColorUpdater(...)`
+- Calling `tsParticles.load(...)` before `loadPaintUpdater(...)`
 - Verify required peer packages before enabling advanced options
 - Change one option group at a time to isolate regressions quickly
 
