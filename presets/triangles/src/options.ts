@@ -20,6 +20,13 @@ export const options: ISourceOptions = {
       enable: true,
       speed: 5,
     },
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+      },
+    },
     size: {
       value: 1,
     },

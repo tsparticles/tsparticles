@@ -376,8 +376,8 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
       '@tsparticles/palette-confetti':
-        specifier: ^4.0.0-alpha.5
-        version: 4.0.0-alpha.5
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/plugin-emitters':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)(@tsparticles/plugin-interactivity@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11))
@@ -416,8 +416,8 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)(@tsparticles/plugin-interactivity@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11))
       '@tsparticles/palette-confetti':
-        specifier: ^4.0.0-alpha.5
-        version: 4.0.0-alpha.5
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/plugin-interactivity':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
@@ -453,8 +453,8 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
       '@tsparticles/palette-confetti':
-        specifier: ^4.0.0-alpha.5
-        version: 4.0.0-alpha.5
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/plugin-emitters':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)(@tsparticles/plugin-interactivity@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11))
@@ -487,8 +487,8 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
       '@tsparticles/palette-confetti':
-        specifier: ^4.0.0-alpha.5
-        version: 4.0.0-alpha.5
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/plugin-motion':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
@@ -518,8 +518,8 @@ importers:
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
       '@tsparticles/palette-confetti':
-        specifier: ^4.0.0-alpha.5
-        version: 4.0.0-alpha.5
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/plugin-emitters':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)(@tsparticles/plugin-interactivity@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11))
@@ -1964,8 +1964,8 @@ packages:
       '@tsparticles/engine': 4.0.0-beta.11
       '@tsparticles/plugin-interactivity': 4.0.0-beta.11
 
-  '@tsparticles/palette-confetti@4.0.0-alpha.5':
-    resolution: {integrity: sha512-aQb2uuHMFg3Uj88qAW+VC0jxZQWAVYV3L5wuHgNvu2r6Npx5j7C68mP7tPbe8OZLj0o57oB88iE7ISHq7c3SSA==}
+  '@tsparticles/palette-confetti@4.0.0-beta.0':
+    resolution: {integrity: sha512-2zl9dG9/DLPsdYv/rtmlSenX0+JH3jln//q1YKjdlOAq+7NkHbHNaHacl0qCZ4B+GhMwQePY5sLd97JiiSNlBg==}
 
   '@tsparticles/path-curves@4.0.0-beta.11':
     resolution: {integrity: sha512-KJ+zbNFIiRiGMVczRRyrp3mEpsO9G+iqKJhqBtla+lgLvhelTqGk7T/UNzdqqjRJmh73zTYcvHsX/MgIcC+yrg==}
@@ -7387,7 +7387,7 @@ snapshots:
       '@tsparticles/engine': 4.0.0-beta.11
       '@tsparticles/plugin-interactivity': 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
 
-  '@tsparticles/palette-confetti@4.0.0-alpha.5':
+  '@tsparticles/palette-confetti@4.0.0-beta.0':
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 

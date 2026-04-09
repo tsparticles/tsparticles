@@ -13,6 +13,13 @@ export const options = {
     move: {
       enable: true,
     },
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+      },
+    },
     size: {
       value: 1,
     },

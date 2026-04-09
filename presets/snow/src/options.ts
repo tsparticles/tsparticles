@@ -14,6 +14,13 @@ export const options = {
       random: false,
       straight: false,
     },
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+      },
+    },
     opacity: {
       value: { min: 0.1, max: 0.5 },
     },
