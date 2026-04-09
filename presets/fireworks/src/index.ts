@@ -8,49 +8,44 @@ const presetName = "fireworks";
 export async function loadFireworksPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
-      { loadBasic },
-      { loadEmittersPlugin },
-      { loadInteractivityPlugin },
-      { loadTrailEffect },
-      { loadEmittersShapeSquare },
-      { loadSoundsPlugin },
-      { loadLineShape },
-      { loadRotateUpdater },
-      { loadDestroyUpdater },
-      { loadLifeUpdater },
-      { loadStrokeColorUpdater },
-      { initOptions },
-    ] = await Promise.all([
-      import("@tsparticles/basic"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-interactivity"),
-      import("@tsparticles/effect-trail"),
-      import("@tsparticles/plugin-emitters-shape-square"),
-      import("@tsparticles/plugin-sounds"),
-      import("@tsparticles/shape-line"),
-      import("@tsparticles/updater-rotate"),
-      import("@tsparticles/updater-destroy"),
-      import("@tsparticles/updater-life"),
-      import("@tsparticles/updater-stroke-color"),
-      import("./options.js"),
-    ]);
+        { loadBasic },
+        { loadEmittersPluginSimple },
+        { loadTrailEffect },
+        { loadEmittersShapeSquare },
+        { loadSoundsPlugin },
+        { loadLineShape },
+        { loadRotateUpdater },
+        { loadDestroyUpdater },
+        { loadLifeUpdater },
+        { initOptions },
+      ] = await Promise.all([
+        import("@tsparticles/basic"),
+        import("@tsparticles/plugin-emitters/plugin"),
+        import("@tsparticles/effect-trail"),
+        import("@tsparticles/plugin-emitters-shape-square"),
+        import("@tsparticles/plugin-sounds"),
+        import("@tsparticles/shape-line"),
+        import("@tsparticles/updater-rotate"),
+        import("@tsparticles/updater-destroy"),
+        import("@tsparticles/updater-life"),
+        import("./options.js"),
+      ]),
+      loadEmittersForFireworks = async (e: Engine): Promise<void> => {
+        await loadEmittersPluginSimple(e);
+
+        await loadEmittersShapeSquare(e);
+      };
 
     await Promise.all([
       loadBasic(e),
-      (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
-        await loadEmittersPlugin(e);
-      })(),
+      loadEmittersForFireworks(e),
       loadTrailEffect(e),
       loadSoundsPlugin(e),
       loadLineShape(e),
       loadRotateUpdater(e),
       loadDestroyUpdater(e),
       loadLifeUpdater(e),
-      loadStrokeColorUpdater(e),
     ]);
-
-    await loadEmittersShapeSquare(e);
 
     e.pluginManager.addPreset(presetName, initOptions(), false);
   });

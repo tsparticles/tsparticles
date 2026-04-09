@@ -13,7 +13,13 @@ center on a transparent background.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
+
+## Quick checklist
+
+1. Load `@tsparticles/engine`
+2. Call `loadConfettiPreset(tsParticles)` (or use the confetti bundle)
+3. Set `preset: "confetti"` in options
 
 ## How to use it
 
@@ -44,7 +50,7 @@ tsParticles.load({
   options: {
     particles: {
       color: {
-        value: ["#0000ff", "#00ff00"],
+        value: ["#ff0000", "#0000ff", "#00ff00", "#ffffff"],
       },
     },
     preset: "confetti",
@@ -52,17 +58,17 @@ tsParticles.load({
 });
 ```
 
-Like in the sample above, the white and red colors will be replaced by blue and lime.
+Like in the sample above, the default colors will be replaced by red, blue, lime and white.
 
-#### Cannons
+#### Explosion
 
-The preset has a single life cannon, with a short duration. The effect is immediate and ends few seconds after, but this
+The preset has a single life explosion, with a short duration. The effect is immediate and ends few seconds after, but this
 can be customized too.
 
-The confetti cannons are made using the _Emitter_ plugin, which is already
+The confetti explosion is made using the _Emitter_ plugin, which is already
 documented [here](https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html).
 
-These are the default cannon (emitter) options:
+These are the default explosion (emitter) options:
 
 The default emitter options are these:
 
@@ -88,15 +94,15 @@ The default emitter options are these:
 }
 ```
 
-Let's see how to create the most common types of cannon animations:
+Let's see how to create the most common types of explosion animations:
 
-##### Long lasting Cannon
+##### Long-lasting Explosion
 
-To create a long-lasting cannon, the emitter life options need some changes.
+To create a long-lasting explosion, the emitter life options need some changes.
 
 The `life.duration` needs to be increased, the value is in `seconds`, so actually it lasts one tenth of a second.
 
-If `life.duration` is set to `0`, the cannon will last forever.
+If `life.duration` is set to `0`, the explosion will last forever.
 
 The `life.count` parameter instead can be changed as well, but the animation will last for the specified
 duration, `life.count` times, if the `life.duration` is set to `0`, the `life.count` is ignored since its first life
@@ -118,15 +124,15 @@ tsParticles.load({
 });
 ```
 
-This will create an infinite cannon shooting confetti from the center of the canvas.
+This will create an infinite explosion shooting confetti from the center of the canvas.
 
-##### Immortal Cannon - Fireworks
+##### Immortal Explosion - Fireworks
 
-To create a fireworks effect, or an immortal cannon, the emitter life options, again, need some changes.
+To create a fireworks effect, or an immortal explosion, the emitter life options, again, need some changes.
 
 The `life.duration` can be kept to the default short value, but the `life.count` is what we need to change.
 
-For an immortal cannon we can change `life.count` to `0` and the emitter will continue respawning every `life.delay`
+For an immortal explosion we can change `life.count` to `0` and the emitter will continue respawning every `life.delay`
 seconds. Actually is not specified, if you want some delay between "explosions", set this value to something greater
 than `0`.
 
@@ -147,7 +153,7 @@ tsParticles.load({
         // to have explosions on the x or y axis
         // centered on the other one
         // if everything is kept commented,
-        // random positions will be used everytime the cannon fires
+        // random positions will be used everytime the explosion fires
         // x: 50,
         // y: 50
       },
@@ -157,13 +163,13 @@ tsParticles.load({
 });
 ```
 
-###### Multiple Cannons
+###### Multiple Explosions
 
-Now that we have played with a single cannon, what about multiple ones?
+Now that we have played with a single explosion, what about multiple ones?
 
-This needs more customization since the cannons array will overwrite the existing options.
+This needs more customization since the explosions array will overwrite the existing options.
 
-First let's start overriding the emitters (cannons) options placing an array instead of an object.
+First let's start overriding the emitters (explosions) options placing an array instead of an object.
 
 Like this:
 
@@ -224,7 +230,7 @@ tsParticles.load({
 });
 ```
 
-This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
+This samples creates two explosions, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
 in opposite directions.
 
 ### Frameworks with a tsParticles component library
@@ -232,6 +238,38 @@ in opposite directions.
 Checkout the documentation in the component library repository and call the `loadConfettiPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                         | Role in this preset                           | README                                                        |
+| ------------------------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| `@tsparticles/basic`            | Base runtime bundle used by the preset        | <https://www.npmjs.com/package/@tsparticles/basic>            |
+| `@tsparticles/engine`           | tsParticles engine and preset registration    | <https://www.npmjs.com/package/@tsparticles/engine>           |
+| `@tsparticles/palette-confetti` | Default confetti color palette                | <https://www.npmjs.com/package/@tsparticles/palette-confetti> |
+| `@tsparticles/plugin-emitters`  | Spawns particles from configurable emitters   | <https://www.npmjs.com/package/@tsparticles/plugin-emitters>  |
+| `@tsparticles/plugin-motion`    | Handles reduced-motion accessibility settings | <https://www.npmjs.com/package/@tsparticles/plugin-motion>    |
+| `@tsparticles/shape-square`     | Adds square particle shape                    | <https://www.npmjs.com/package/@tsparticles/shape-square>     |
+| `@tsparticles/updater-life`     | Controls particle life-cycle stages           | <https://www.npmjs.com/package/@tsparticles/updater-life>     |
+| `@tsparticles/updater-roll`     | Adds rolling spin motion                      | <https://www.npmjs.com/package/@tsparticles/updater-roll>     |
+| `@tsparticles/updater-rotate`   | Adds rotation animation                       | <https://www.npmjs.com/package/@tsparticles/updater-rotate>   |
+| `@tsparticles/updater-tilt`     | Adds tilt animation                           | <https://www.npmjs.com/package/@tsparticles/updater-tilt>     |
+| `@tsparticles/updater-wobble`   | Adds side-to-side wobble motion               | <https://www.npmjs.com/package/@tsparticles/updater-wobble>   |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Forgetting to load the preset before using `preset: "confetti"`
+- Overriding `emitters` with an empty array and expecting default explosion behavior
+- Combining many emitter changes at once without validating one step at a time
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

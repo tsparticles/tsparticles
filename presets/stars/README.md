@@ -12,7 +12,13 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadStarsPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "stars"` in options
 
 ## How to use it
 
@@ -66,6 +72,29 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package               | Role in this preset                        | README                                              |
+| --------------------- | ------------------------------------------ | --------------------------------------------------- |
+| `@tsparticles/basic`  | Base runtime bundle used by the preset     | <https://www.npmjs.com/package/@tsparticles/basic>  |
+| `@tsparticles/engine` | tsParticles engine and preset registration | <https://www.npmjs.com/package/@tsparticles/engine> |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadStarsPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- The stars preset uses a dark background by default; override `background.color` if you need a different style
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

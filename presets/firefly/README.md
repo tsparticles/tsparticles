@@ -13,7 +13,13 @@ little fireflies.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadFireflyPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "firefly"` in options
 
 ## How to use it
 
@@ -66,6 +72,32 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadFireflyPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                                   | Role in this preset                        | README                                                                  |
+| ----------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------- |
+| `@tsparticles/basic`                      | Base runtime bundle used by the preset     | <https://www.npmjs.com/package/@tsparticles/basic>                      |
+| `@tsparticles/engine`                     | tsParticles engine and preset registration | <https://www.npmjs.com/package/@tsparticles/engine>                     |
+| `@tsparticles/interaction-external-trail` | Adds pointer-driven trail interaction      | <https://www.npmjs.com/package/@tsparticles/interaction-external-trail> |
+| `@tsparticles/plugin-interactivity`       | Enables external interaction plumbing      | <https://www.npmjs.com/package/@tsparticles/plugin-interactivity>       |
+| `@tsparticles/updater-life`               | Controls particle life-cycle stages        | <https://www.npmjs.com/package/@tsparticles/updater-life>               |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadFireflyPreset(tsParticles)`
+- The effect relies on mouse movement; on touch-only devices it may not appear without additional interaction setup
+- The preset uses a transparent background; set `background.color` if you need a solid backdrop
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Interactivity options: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

@@ -89,41 +89,12 @@ export function initOptions(): ISourceOptions {
     },
     fireworksOptions: RecursivePartial<IParticlesOptions>[] = [
       "#FF0000",
-      "#FF2A00",
-      "#FF5500",
       "#FF8000",
-      "#FFAA00",
-      "#FFD400",
       "#FFFF00",
-      "#D4FF00",
-      "#AAFF00",
-      "#80FF00",
-      "#55FF00",
-      "#2AFF00",
       "#00FF00",
-      "#00FF2A",
-      "#00FF55",
-      "#00FF80",
-      "#00FFAA",
-      "#00FFD4",
       "#00FFFF",
-      "#00D4FF",
-      "#00AAFF",
-      "#0080FF",
-      "#0055FF",
-      "#002AFF",
       "#0000FF",
-      "#2A00FF",
-      "#5500FF",
-      "#8000FF",
-      "#AA00FF",
-      "#D400FF",
       "#FF00FF",
-      "#FF00D4",
-      "#FF00AA",
-      "#FF0080",
-      "#FF0055",
-      "#FF002A",
     ]
       .map(color => {
         const rgb = hexToRgba(color);
@@ -147,18 +118,20 @@ export function initOptions(): ISourceOptions {
           lRange = fixRange({ min: hsl.l - lOffset, max: hsl.l + lOffset }, lBounds.min, lBounds.max);
 
         return {
-          fill: {
-            color: {
-              value: {
-                h: hsl.h,
-                s: sRange,
-                l: lRange,
+          paint: {
+            fill: {
+              color: {
+                value: {
+                  h: hsl.h,
+                  s: sRange,
+                  l: lRange,
+                },
               },
+              enable: true,
             },
-            enable: true,
-          },
-          stroke: {
-            width: 0,
+            stroke: {
+              width: 0,
+            },
           },
           number: {
             value: 0,
@@ -290,14 +263,16 @@ export function initOptions(): ISourceOptions {
       size: {
         value: 1,
       },
-      stroke: {
-        color: {
-          value: "#ffffff",
+      paint: {
+        stroke: {
+          color: {
+            value: "#ffffff",
+          },
+          width: 1,
         },
-        width: 1,
-      },
-      fill: {
-        enable: false,
+        fill: {
+          enable: false,
+        },
       },
       move: {
         enable: true,

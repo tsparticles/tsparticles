@@ -10,15 +10,13 @@ export async function loadFountainPreset(engine: Engine): Promise<void> {
     const [
       { loadBasic },
       { loadDestroyUpdater },
-      { loadEmittersPlugin },
-      { loadInteractivityPlugin },
+      { loadEmittersPluginSimple },
       { loadTrailPlugin },
       { options },
     ] = await Promise.all([
       import("@tsparticles/basic"),
       import("@tsparticles/updater-destroy"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/plugin-trail"),
       import("./options.js"),
     ]);
@@ -26,11 +24,7 @@ export async function loadFountainPreset(engine: Engine): Promise<void> {
     await Promise.all([
       loadBasic(e),
       loadDestroyUpdater(e),
-      (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
-
-        await loadEmittersPlugin(e);
-      })(),
+      loadEmittersPluginSimple(e),
       loadTrailPlugin(e),
     ]);
 

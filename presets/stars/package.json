@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-stars",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-beta.0",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -110,8 +110,8 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-beta.1",
-    "@tsparticles/engine": "^4.0.0-beta.1"
+    "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/engine": "^4.0.0-beta.11"
   },
   "type": "module"
 }

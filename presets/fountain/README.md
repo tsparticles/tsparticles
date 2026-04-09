@@ -13,7 +13,13 @@ that break when hitting the ground.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadFountainPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "fountain"` in options
 
 ## How to use it
 
@@ -66,6 +72,32 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadFountainPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                        | Role in this preset                         | README                                                       |
+| ------------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
+| `@tsparticles/basic`           | Base runtime bundle used by the preset      | <https://www.npmjs.com/package/@tsparticles/basic>           |
+| `@tsparticles/engine`          | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>          |
+| `@tsparticles/plugin-emitters` | Spawns particles from configurable emitters | <https://www.npmjs.com/package/@tsparticles/plugin-emitters> |
+| `@tsparticles/plugin-trail`    | Adds persistent canvas trail rendering      | <https://www.npmjs.com/package/@tsparticles/plugin-trail>    |
+| `@tsparticles/updater-destroy` | Removes particles when their stage ends     | <https://www.npmjs.com/package/@tsparticles/updater-destroy> |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadFountainPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- The fountain effect uses emitters; overriding `emitters` will replace the default fountain behavior
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

@@ -1,9 +1,7 @@
 import { MoveDirection } from "@tsparticles/engine";
 
 export const options = {
-  background: {
-    color: "#333",
-  },
+  palette: "snowfall",
   particles: {
     number: {
       value: 100,

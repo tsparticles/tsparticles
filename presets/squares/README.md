@@ -12,7 +12,13 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/squares/images/sample.png)](https://particles.js.org/samples/presets/squares)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadSquaresPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "squares"` in options
 
 ## How to use it
 
@@ -66,6 +72,34 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                         | Role in this preset                         | README                                                        |
+| ------------------------------- | ------------------------------------------- | ------------------------------------------------------------- |
+| `@tsparticles/engine`           | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>           |
+| `@tsparticles/plugin-emitters`  | Spawns particles from configurable emitters | <https://www.npmjs.com/package/@tsparticles/plugin-emitters>  |
+| `@tsparticles/plugin-hex-color` | Adds hex color parsing support              | <https://www.npmjs.com/package/@tsparticles/plugin-hex-color> |
+| `@tsparticles/shape-square`     | Adds square particle shape                  | <https://www.npmjs.com/package/@tsparticles/shape-square>     |
+| `@tsparticles/updater-paint`    | Animates paint/fill color properties        | <https://www.npmjs.com/package/@tsparticles/updater-paint>    |
+| `@tsparticles/updater-rotate`   | Adds rotation animation                     | <https://www.npmjs.com/package/@tsparticles/updater-rotate>   |
+| `@tsparticles/updater-size`     | Animates particle size over time            | <https://www.npmjs.com/package/@tsparticles/updater-size>     |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSquaresPreset(tsParticles)`
+- The square shape is part of the bundle; when using engine-only builds, load the shape package separately
+- The preset uses a transparent background by default; set `background.color` if you need a solid backdrop
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

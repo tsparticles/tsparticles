@@ -6,11 +6,15 @@ const lifeDurationNum = 10,
 
 export const options: ISourceOptions = {
   palette: "confetti",
+  background: {
+    color: {
+      value: "",
+    },
+  },
   fullScreen: {
     enable: true,
     zIndex: 100,
   },
-  fpsLimit: 120,
   particles: {
     number: {
       value: 0,
@@ -57,8 +61,8 @@ export const options: ISourceOptions = {
       random: true,
       straight: false,
       outModes: {
-        default: "none",
-        bottom: "destroy",
+        default: "destroy",
+        top: "none",
       },
     },
     rotate: {
@@ -104,7 +108,6 @@ export const options: ISourceOptions = {
       },
     },
   },
-  detectRetina: true,
   motion: {
     disable: true,
   },

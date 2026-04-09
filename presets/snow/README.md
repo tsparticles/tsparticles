@@ -12,7 +12,13 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadSnowPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "snow"` in options
 
 ## How to use it
 
@@ -65,6 +71,31 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadSnowPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                         | Role in this preset                        | README                                                        |
+| ------------------------------- | ------------------------------------------ | ------------------------------------------------------------- |
+| `@tsparticles/basic`            | Base runtime bundle used by the preset     | <https://www.npmjs.com/package/@tsparticles/basic>            |
+| `@tsparticles/engine`           | tsParticles engine and preset registration | <https://www.npmjs.com/package/@tsparticles/engine>           |
+| `@tsparticles/palette-snowfall` | Default snowfall color palette             | <https://www.npmjs.com/package/@tsparticles/palette-snowfall> |
+| `@tsparticles/updater-wobble`   | Adds side-to-side wobble motion            | <https://www.npmjs.com/package/@tsparticles/updater-wobble>   |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSnowPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- The snow effect has a transparent background by default; set `background.color` if you need a specific backdrop
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

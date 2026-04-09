@@ -18,6 +18,13 @@ export const options = {
       speed: 0.1,
       straight: false,
     },
+    paint: {
+      fill: {
+        color: {
+          value: "#ffffff",
+        },
+      },
+    },
     opacity: {
       animation: {
         enable: true,

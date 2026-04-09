@@ -12,7 +12,13 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/ambient/images/sample.png)](https://particles.js.org/samples/presets/ambient)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/ambient/images/sample.png)](https://particles.js.org/samples/presets/ambient)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadAmbientPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "ambient"` in options
 
 ## How to use it
 
@@ -65,6 +71,29 @@ Like in the sample above, the circles will be replaced by squares.
 Checkout the documentation in the component library repository and call the `loadAmbientPreset` function instead of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package               | Role in this preset                        | README                                              |
+| --------------------- | ------------------------------------------ | --------------------------------------------------- |
+| `@tsparticles/basic`  | Base runtime bundle used by the preset     | <https://www.npmjs.com/package/@tsparticles/basic>  |
+| `@tsparticles/engine` | tsParticles engine and preset registration | <https://www.npmjs.com/package/@tsparticles/engine> |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadAmbientPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- The ambient preset uses soft slow-moving particles; high `speed` overrides will break the ambient feel
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Color formats: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

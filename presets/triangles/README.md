@@ -2,7 +2,7 @@
 
 # tsParticles Triangles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-triangles/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-triangles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-links.svg)](https://www.npmjs.com/package/@tsparticles/preset-links) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-triangles)](https://www.npmjs.com/package/@tsparticles/preset-triangles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-triangles/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-triangles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-triangles.svg)](https://www.npmjs.com/package/@tsparticles/preset-triangles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-triangles)](https://www.npmjs.com/package/@tsparticles/preset-triangles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) preset for creating a particles web created by link lines
 between them.
@@ -13,7 +13,13 @@ between them.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadTrianglesPreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "triangles"` in options
 
 ## How to use it
 
@@ -67,6 +73,31 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                                    | Role in this preset                         | README                                                                   |
+| ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------ |
+| `@tsparticles/basic`                       | Base runtime bundle used by the preset      | <https://www.npmjs.com/package/@tsparticles/basic>                       |
+| `@tsparticles/engine`                      | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>                      |
+| `@tsparticles/interaction-particles-links` | Enables link interactions between particles | <https://www.npmjs.com/package/@tsparticles/interaction-particles-links> |
+| `@tsparticles/plugin-interactivity`        | Enables external interaction plumbing       | <https://www.npmjs.com/package/@tsparticles/plugin-interactivity>        |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadTrianglesPreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- Triangle links require nearby particles; if the count is too low or `links.distance` too small, no triangles will form
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Interactivity options: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity.md>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

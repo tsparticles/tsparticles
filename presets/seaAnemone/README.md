@@ -2,7 +2,7 @@
 
 # tsParticles Sea Anemone Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-sea-anemone.svg)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-sea-anemone)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-sea-anemone) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-sea-anemone.svg)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-sea-anemone)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) preset for creating a beautiful sea anemone like effect with
 particles spawned in the canvas center.
@@ -13,7 +13,13 @@ particles spawned in the canvas center.
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
+
+## Quick checklist
+
+1. Install `@tsparticles/engine` (or use the CDN bundle below)
+2. Call `loadSeaAnemonePreset(tsParticles)` **before** `tsParticles.load(...)`
+3. Set `preset: "seaAnemone"` in options
 
 ## How to use it
 
@@ -67,6 +73,33 @@ Checkout the documentation in the component library repository and call the `loa
 of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
+
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                             | Role in this preset                         | README                                                            |
+| ----------------------------------- | ------------------------------------------- | ----------------------------------------------------------------- |
+| `@tsparticles/basic`                | Base runtime bundle used by the preset      | <https://www.npmjs.com/package/@tsparticles/basic>                |
+| `@tsparticles/engine`               | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>               |
+| `@tsparticles/path-curves`          | Moves particles along curved paths          | <https://www.npmjs.com/package/@tsparticles/path-curves>          |
+| `@tsparticles/plugin-emitters`      | Spawns particles from configurable emitters | <https://www.npmjs.com/package/@tsparticles/plugin-emitters>      |
+| `@tsparticles/plugin-interactivity` | Enables external interaction plumbing       | <https://www.npmjs.com/package/@tsparticles/plugin-interactivity> |
+| `@tsparticles/plugin-trail`         | Adds persistent canvas trail rendering      | <https://www.npmjs.com/package/@tsparticles/plugin-trail>         |
+
+If you want to customize one specific behavior, start from the related package README above.
+
+## Common pitfalls
+
+- Calling `tsParticles.load(...)` before `loadSeaAnemonePreset(tsParticles)`
+- Changing particle shape without loading the corresponding shape package
+- Particles spawn from the canvas center by default; override `emitters.position` to change the origin
+
+## Related docs
+
+- All presets catalog: <https://github.com/tsparticles/presets>
+- Emitter options: <https://particles.js.org/docs/classes/Plugins_Emitters_Options_Classes_Emitter.Emitter.html>
+- Main tsParticles docs: <https://particles.js.org/docs/>
 
 ---
 

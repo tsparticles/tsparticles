@@ -9,35 +9,29 @@ export async function loadSquaresPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const [
       { loadHexColorPlugin },
-      { loadEmittersPlugin },
-      { loadInteractivityPlugin },
+      { loadEmittersPluginSimple },
       { loadSquareShape },
       { loadRotateUpdater },
       { loadSizeUpdater },
-      { loadStrokeColorUpdater },
+      { loadPaintUpdater },
       { options },
     ] = await Promise.all([
       import("@tsparticles/plugin-hex-color"),
-      import("@tsparticles/plugin-emitters"),
-      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/plugin-emitters/plugin"),
       import("@tsparticles/shape-square"),
       import("@tsparticles/updater-rotate"),
       import("@tsparticles/updater-size"),
-      import("@tsparticles/updater-stroke-color"),
+      import("@tsparticles/updater-paint"),
       import("./options.js"),
     ]);
 
     await Promise.all([
       loadHexColorPlugin(e),
-      (async (): Promise<void> => {
-        await loadInteractivityPlugin(e);
-
-        await loadEmittersPlugin(e);
-      })(),
+      loadEmittersPluginSimple(e),
       loadSquareShape(e),
       loadRotateUpdater(e),
       loadSizeUpdater(e),
-      loadStrokeColorUpdater(e),
+      loadPaintUpdater(e),
     ]);
 
     e.pluginManager.addPreset(presetName, options);
