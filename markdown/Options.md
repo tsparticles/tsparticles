@@ -121,7 +121,8 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 ## Recommended starting sources
 
 - Config objects: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
-- Official presets and palettes: <https://github.com/tsparticles/presets>
+- Official presets: <https://github.com/tsparticles/presets>
+- Official palettes: <https://github.com/tsparticles/palettes>
 - Main getting-started guide: [Pages/index](./Pages/index.md)
 
 ## Common pitfalls

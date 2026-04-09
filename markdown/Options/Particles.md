@@ -102,9 +102,9 @@ Particle groups let you define subsets of particles with different configs appli
 
 When a palette is found, tsParticles imports these defaults:
 
-- `fill`: enabled/disabled according to palette settings
-- `fill.color.value`: palette color list when fill mode is enabled
-- `stroke`: one stroke per palette color when fill mode is disabled
+- `paint.fill`: imported from palette `colors.*.fill`
+- `paint.stroke`: imported from palette `colors.*.stroke`
+- `paint`: becomes an array when the palette declares multiple color variants
 - `blend`: enabled with the palette blend mode
 
 ```json
@@ -118,7 +118,7 @@ When a palette is found, tsParticles imports these defaults:
 }
 ```
 
-If you set `fill`, `stroke`, or `blend` explicitly after `palette`, those values override imported defaults.
+If you set `paint.fill`, `paint.stroke`, or `blend` explicitly after `palette`, those values override imported defaults.
 
 ## reduceDuplicates
 
