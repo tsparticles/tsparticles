@@ -41,7 +41,7 @@ const parsePaletteName = (fullPath, folder) => {
 
 const parsePaletteScriptFile = (fullPath, slug) => {
   const distPath = join(fullPath, "dist"),
-    defaultScriptFile = `tsparticles.palette.palette-${slug}.min.js`;
+    defaultScriptFile = `tsparticles.palette.${slug}.min.js`;
 
   if (!existsSync(distPath)) {
     return defaultScriptFile;

@@ -64,15 +64,18 @@
 ## Quick checklist
 
 1. Install `@tsparticles/engine` (or use the CDN bundle below)
-2. Call the package loader function(s) before `tsParticles.load(...)`
-3. Apply the package options in your `tsParticles.load(...)` config
+2. Load a base package (for example `@tsparticles/basic`) and call `loadMonochromeCyanPalette` before `tsParticles.load(...)`
+3. Apply the palette plus a minimal particles configuration in your options
+
+A palette defines colors, not complete behavior, so pair it with a runtime package and particle options.
 
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/palette-monochrome-cyan@4/tsparticles.palette-monochrome-cyan.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/palette-monochrome-cyan@4/tsparticles.palette-monochrome-cyan.min.js"></script>
 ```
 
 ### Usage
@@ -80,16 +83,28 @@
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-(async () => {
-  await loadMonochromeCyanPalette(tsParticles);
+(async engine => {
+  await loadBasic(engine);
+  await loadMonochromeCyanPalette(engine);
 
-  await tsParticles.load({
-    id: "tsparticles",
-    options: {
-      palette: "monochrome-cyan",
+  const options = {
+    particles: {
+      number: { value: 200 },
+      shape: { type: "circle" },
+      size: { value: { min: 10, max: 15 } },
+      move: {
+        enable: true,
+        speed: 2,
+      },
     },
+    palette: "monochrome-cyan",
+  };
+
+  await engine.load({
+    id: "tsparticles",
+    options,
   });
-})();
+})(tsParticles);
 ```
 
 #### Customization

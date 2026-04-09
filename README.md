@@ -50,19 +50,21 @@ Palettes are available in `palettes/` and can be used to apply a visual color id
 
 - Directory: <https://github.com/tsparticles/palettes/tree/main/palettes>
 - Global demos: <https://particles.js.org/samples/palettes/>
+- Total packages: `157` palettes across `17` categories
 
 ### Palette index by category
 
-- [atmosphere (2)](#atmosphere-2)
+- [atmosphere (10)](#atmosphere-10)
 - [atmospheric (10)](#atmospheric-10)
-- [celebration (3)](#celebration-3)
+- [confetti (10)](#confetti-10)
 - [earth (7)](#earth-7)
 - [fantasy (8)](#fantasy-8)
 - [fire (8)](#fire-8)
-- [impact (1)](#impact-1)
-- [monochromatic (5)](#monochromatic-5)
+- [fireworks (23)](#fireworks-23)
+- [impact (7)](#impact-7)
+- [monochromatic (13)](#monochromatic-13)
 - [nature (9)](#nature-9)
-- [optics (1)](#optics-1)
+- [optics (7)](#optics-7)
 - [pastel (5)](#pastel-5)
 - [space (8)](#space-8)
 - [spectrum (10)](#spectrum-10)
@@ -70,10 +72,18 @@ Palettes are available in `palettes/` and can be used to apply a visual color id
 - [vibrant (5)](#vibrant-5)
 - [water (8)](#water-8)
 
-#### atmosphere (2)
+#### atmosphere (10)
 
+- [`@tsparticles/palette-colored-smoke-blue`](./palettes/atmosphere/coloredSmokeBlue)
+- [`@tsparticles/palette-colored-smoke-green`](./palettes/atmosphere/coloredSmokeGreen)
 - [`@tsparticles/palette-colored-smoke-magenta`](./palettes/atmosphere/coloredSmokeMagenta)
+- [`@tsparticles/palette-colored-smoke-orange`](./palettes/atmosphere/coloredSmokeOrange)
+- [`@tsparticles/palette-colored-smoke-purple`](./palettes/atmosphere/coloredSmokePurple)
+- [`@tsparticles/palette-colored-smoke-rainbow`](./palettes/atmosphere/coloredSmokeRainbow)
 - [`@tsparticles/palette-colored-smoke-teal`](./palettes/atmosphere/coloredSmokeTeal)
+- [`@tsparticles/palette-dust-haze`](./palettes/atmosphere/dustHaze)
+- [`@tsparticles/palette-fog-morning`](./palettes/atmosphere/fogMorning)
+- [`@tsparticles/palette-volcanic-ash`](./palettes/atmosphere/volcanicAsh)
 
 #### atmospheric (10)
 
@@ -88,11 +98,18 @@ Palettes are available in `palettes/` and can be used to apply a visual color id
 - [`@tsparticles/palette-thermal-map`](./palettes/atmospheric/thermalMap)
 - [`@tsparticles/palette-thunderstorm`](./palettes/atmospheric/thunderstorm)
 
-#### celebration (3)
+#### confetti (10)
 
-- [`@tsparticles/palette-confetti`](./palettes/celebration/confetti)
-- [`@tsparticles/palette-fireworks-gold`](./palettes/celebration/fireworksGold)
-- [`@tsparticles/palette-fireworks-multicolor`](./palettes/celebration/fireworksMulticolor)
+- [`@tsparticles/palette-confetti`](./palettes/confetti/confetti)
+- [`@tsparticles/palette-confetti-gold`](./palettes/confetti/confettiGold)
+- [`@tsparticles/palette-confetti-monochrome-blue`](./palettes/confetti/confettiMonochromeBlue)
+- [`@tsparticles/palette-confetti-monochrome-green`](./palettes/confetti/confettiMonochromeGreen)
+- [`@tsparticles/palette-confetti-monochrome-pink`](./palettes/confetti/confettiMonochromePink)
+- [`@tsparticles/palette-confetti-neon`](./palettes/confetti/confettiNeon)
+- [`@tsparticles/palette-confetti-pastel`](./palettes/confetti/confettiPastel)
+- [`@tsparticles/palette-confetti-patriotic`](./palettes/confetti/confettiPatriotic)
+- [`@tsparticles/palette-confetti-rainbow`](./palettes/confetti/confettiRainbow)
+- [`@tsparticles/palette-confetti-winter`](./palettes/confetti/confettiWinter)
 
 #### earth (7)
 
@@ -126,17 +143,57 @@ Palettes are available in `palettes/` and can be used to apply a visual color id
 - [`@tsparticles/palette-metal-sparks`](./palettes/fire/metalSparks)
 - [`@tsparticles/palette-molten-metal`](./palettes/fire/moltenMetal)
 
-#### impact (1)
+#### fireworks (23)
 
+- [`@tsparticles/palette-fireworks-blue`](./palettes/fireworks/fireworksBlue)
+- [`@tsparticles/palette-fireworks-blue-stroke`](./palettes/fireworks/fireworksBlueStroke)
+- [`@tsparticles/palette-fireworks-copper`](./palettes/fireworks/fireworksCopper)
+- [`@tsparticles/palette-fireworks-copper-stroke`](./palettes/fireworks/fireworksCopperStroke)
+- [`@tsparticles/palette-fireworks-gold`](./palettes/fireworks/fireworksGold)
+- [`@tsparticles/palette-fireworks-gold-stroke`](./palettes/fireworks/fireworksGoldStroke)
+- [`@tsparticles/palette-fireworks-green`](./palettes/fireworks/fireworksGreen)
+- [`@tsparticles/palette-fireworks-green-stroke`](./palettes/fireworks/fireworksGreenStroke)
+- [`@tsparticles/palette-fireworks-ice`](./palettes/fireworks/fireworksIce)
+- [`@tsparticles/palette-fireworks-ice-stroke`](./palettes/fireworks/fireworksIceStroke)
+- [`@tsparticles/palette-fireworks-multicolor`](./palettes/fireworks/fireworksMulticolor)
+- [`@tsparticles/palette-fireworks-multicolor-stroke`](./palettes/fireworks/fireworksMulticolorStroke)
+- [`@tsparticles/palette-fireworks-neon`](./palettes/fireworks/fireworksNeon)
+- [`@tsparticles/palette-fireworks-neon-stroke`](./palettes/fireworks/fireworksNeonStroke)
+- [`@tsparticles/palette-fireworks-pastel`](./palettes/fireworks/fireworksPastel)
+- [`@tsparticles/palette-fireworks-pastel-stroke`](./palettes/fireworks/fireworksPastelStroke)
+- [`@tsparticles/palette-fireworks-purple`](./palettes/fireworks/fireworksPurple)
+- [`@tsparticles/palette-fireworks-purple-stroke`](./palettes/fireworks/fireworksPurpleStroke)
+- [`@tsparticles/palette-fireworks-rainbow-stroke`](./palettes/fireworks/fireworksRainbowStroke)
+- [`@tsparticles/palette-fireworks-red`](./palettes/fireworks/fireworksRed)
+- [`@tsparticles/palette-fireworks-red-stroke`](./palettes/fireworks/fireworksRedStroke)
+- [`@tsparticles/palette-fireworks-silver`](./palettes/fireworks/fireworksSilver)
+- [`@tsparticles/palette-fireworks-silver-stroke`](./palettes/fireworks/fireworksSilverStroke)
+
+#### impact (7)
+
+- [`@tsparticles/palette-bullet-hit`](./palettes/impact/bulletHit)
 - [`@tsparticles/palette-explosion-debris`](./palettes/impact/explosionDebris)
+- [`@tsparticles/palette-glass-burst`](./palettes/impact/glassBurst)
+- [`@tsparticles/palette-meteor-impact`](./palettes/impact/meteorImpact)
+- [`@tsparticles/palette-nuclear-glow`](./palettes/impact/nuclearGlow)
+- [`@tsparticles/palette-shockwave-blast`](./palettes/impact/shockwaveBlast)
+- [`@tsparticles/palette-splatter-dark`](./palettes/impact/splatterDark)
 
-#### monochromatic (5)
+#### monochromatic (13)
 
 - [`@tsparticles/palette-monochrome-blues`](./palettes/monochromatic/monochromeBlues)
+- [`@tsparticles/palette-monochrome-brown`](./palettes/monochromatic/monochromeBrown)
+- [`@tsparticles/palette-monochrome-cyan`](./palettes/monochromatic/monochromeCyan)
+- [`@tsparticles/palette-monochrome-gold`](./palettes/monochromatic/monochromeGold)
 - [`@tsparticles/palette-monochrome-greens`](./palettes/monochromatic/monochromeGreens)
 - [`@tsparticles/palette-monochrome-noir`](./palettes/monochromatic/monochromeNoir)
+- [`@tsparticles/palette-monochrome-oranges`](./palettes/monochromatic/monochromeOranges)
 - [`@tsparticles/palette-monochrome-pinks`](./palettes/monochromatic/monochromePinks)
 - [`@tsparticles/palette-monochrome-purples`](./palettes/monochromatic/monochromePurples)
+- [`@tsparticles/palette-monochrome-reds`](./palettes/monochromatic/monochromeReds)
+- [`@tsparticles/palette-monochrome-teal`](./palettes/monochromatic/monochromeTeal)
+- [`@tsparticles/palette-monochrome-white`](./palettes/monochromatic/monochromeWhite)
+- [`@tsparticles/palette-monochrome-yellows`](./palettes/monochromatic/monochromeYellows)
 
 #### nature (9)
 
@@ -150,9 +207,15 @@ Palettes are available in `palettes/` and can be used to apply a visual color id
 - [`@tsparticles/palette-snowfall`](./palettes/nature/snowfall)
 - [`@tsparticles/palette-spring-bloom`](./palettes/nature/springBloom)
 
-#### optics (1)
+#### optics (7)
 
+- [`@tsparticles/palette-bokeh-cold`](./palettes/optics/bokehCold)
+- [`@tsparticles/palette-bokeh-gold`](./palettes/optics/bokehGold)
+- [`@tsparticles/palette-bokeh-pastel`](./palettes/optics/bokehPastel)
+- [`@tsparticles/palette-holographic-shimmer`](./palettes/optics/holographicShimmer)
+- [`@tsparticles/palette-laser-scatter`](./palettes/optics/laserScatter)
 - [`@tsparticles/palette-lens-flare-dust`](./palettes/optics/lensFlareDust)
+- [`@tsparticles/palette-prism-spectrum`](./palettes/optics/prismSpectrum)
 
 #### pastel (5)
 
