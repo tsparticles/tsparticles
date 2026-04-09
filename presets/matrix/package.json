@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/preset-snow",
+  "name": "@tsparticles/preset-matrix",
   "version": "4.0.0-alpha.5",
-  "description": "tsParticles snow preset",
+  "description": "tsParticles matrix preset",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/presets.git",
-    "directory": "presets/snow"
+    "directory": "presets/matrix"
   },
   "keywords": [
     "front-end",
@@ -111,9 +111,11 @@
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/effect-shadow": "^4.0.0-beta.11",
     "@tsparticles/engine": "^4.0.0-beta.11",
-    "@tsparticles/palette-snowfall": "^4.0.0-beta.0",
-    "@tsparticles/updater-wobble": "^4.0.0-beta.11"
+    "@tsparticles/plugin-poisson-disc": "^4.0.0-beta.11",
+    "@tsparticles/plugin-trail": "^4.0.0-beta.11",
+    "@tsparticles/shape-matrix": "^4.0.0-beta.11"
   },
   "type": "module"
 }

@@ -74,6 +74,21 @@ of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
 
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                             | Role in this preset                         | README                                                            |
+| ----------------------------------- | ------------------------------------------- | ----------------------------------------------------------------- |
+| `@tsparticles/basic`                | Base runtime bundle used by the preset      | <https://www.npmjs.com/package/@tsparticles/basic>                |
+| `@tsparticles/engine`               | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>               |
+| `@tsparticles/path-curves`          | Moves particles along curved paths          | <https://www.npmjs.com/package/@tsparticles/path-curves>          |
+| `@tsparticles/plugin-emitters`      | Spawns particles from configurable emitters | <https://www.npmjs.com/package/@tsparticles/plugin-emitters>      |
+| `@tsparticles/plugin-interactivity` | Enables external interaction plumbing       | <https://www.npmjs.com/package/@tsparticles/plugin-interactivity> |
+| `@tsparticles/plugin-trail`         | Adds persistent canvas trail rendering      | <https://www.npmjs.com/package/@tsparticles/plugin-trail>         |
+
+If you want to customize one specific behavior, start from the related package README above.
+
 ## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadSeaAnemonePreset(tsParticles)`

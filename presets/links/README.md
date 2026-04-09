@@ -73,6 +73,19 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                                    | Role in this preset                         | README                                                                   |
+| ------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------ |
+| `@tsparticles/basic`                       | Base runtime bundle used by the preset      | <https://www.npmjs.com/package/@tsparticles/basic>                       |
+| `@tsparticles/engine`                      | tsParticles engine and preset registration  | <https://www.npmjs.com/package/@tsparticles/engine>                      |
+| `@tsparticles/interaction-particles-links` | Enables link interactions between particles | <https://www.npmjs.com/package/@tsparticles/interaction-particles-links> |
+| `@tsparticles/plugin-interactivity`        | Enables external interaction plumbing       | <https://www.npmjs.com/package/@tsparticles/plugin-interactivity>        |
+
+If you want to customize one specific behavior, start from the related package README above.
+
 ## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadLinksPreset(tsParticles)`

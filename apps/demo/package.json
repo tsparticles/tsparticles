@@ -54,6 +54,7 @@
     "@tsparticles/preset-fountain": "workspace:^",
     "@tsparticles/preset-hyperspace": "workspace:^",
     "@tsparticles/preset-links": "workspace:^",
+    "@tsparticles/preset-matrix": "workspace:^",
     "@tsparticles/preset-sea-anemone": "workspace:^",
     "@tsparticles/preset-snow": "workspace:^",
     "@tsparticles/preset-squares": "workspace:^",

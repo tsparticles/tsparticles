@@ -70,6 +70,24 @@ of `loadFull`, `loadSlim` or similar functions.
 
 The options shown above are valid for all the component libraries.
 
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                         | Role in this preset                           | README                                                        |
+| ------------------------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| `@tsparticles/basic`            | Base runtime bundle used by the preset        | <https://www.npmjs.com/package/@tsparticles/basic>            |
+| `@tsparticles/engine`           | tsParticles engine and preset registration    | <https://www.npmjs.com/package/@tsparticles/engine>           |
+| `@tsparticles/palette-confetti` | Default confetti color palette                | <https://www.npmjs.com/package/@tsparticles/palette-confetti> |
+| `@tsparticles/plugin-motion`    | Handles reduced-motion accessibility settings | <https://www.npmjs.com/package/@tsparticles/plugin-motion>    |
+| `@tsparticles/shape-square`     | Adds square particle shape                    | <https://www.npmjs.com/package/@tsparticles/shape-square>     |
+| `@tsparticles/updater-roll`     | Adds rolling spin motion                      | <https://www.npmjs.com/package/@tsparticles/updater-roll>     |
+| `@tsparticles/updater-rotate`   | Adds rotation animation                       | <https://www.npmjs.com/package/@tsparticles/updater-rotate>   |
+| `@tsparticles/updater-tilt`     | Adds tilt animation                           | <https://www.npmjs.com/package/@tsparticles/updater-tilt>     |
+| `@tsparticles/updater-wobble`   | Adds side-to-side wobble motion               | <https://www.npmjs.com/package/@tsparticles/updater-wobble>   |
+
+If you want to customize one specific behavior, start from the related package README above.
+
 ## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadConfettiFallingPreset(engine)`

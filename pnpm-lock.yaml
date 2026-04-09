@@ -206,6 +206,9 @@ importers:
       '@tsparticles/preset-links':
         specifier: workspace:^
         version: link:../../presets/links/dist
+      '@tsparticles/preset-matrix':
+        specifier: workspace:^
+        version: link:../../presets/matrix/dist
       '@tsparticles/preset-sea-anemone':
         specifier: workspace:^
         version: link:../../presets/seaAnemone/dist
@@ -672,6 +675,28 @@ importers:
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
     publishDirectory: dist
 
+  presets/matrix:
+    dependencies:
+      '@tsparticles/basic':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+      '@tsparticles/effect-shadow':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
+      '@tsparticles/engine':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11
+      '@tsparticles/plugin-poisson-disc':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
+      '@tsparticles/plugin-trail':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
+      '@tsparticles/shape-matrix':
+        specifier: ^4.0.0-beta.11
+        version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
+    publishDirectory: dist
+
   presets/seaAnemone:
     dependencies:
       '@tsparticles/basic':
@@ -702,6 +727,9 @@ importers:
       '@tsparticles/engine':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11
+      '@tsparticles/palette-snowfall':
+        specifier: ^4.0.0-beta.0
+        version: 4.0.0-beta.0
       '@tsparticles/updater-wobble':
         specifier: ^4.0.0-beta.11
         version: 4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)
@@ -1926,6 +1954,11 @@ packages:
     peerDependencies:
       dependency-cruiser: ^17
 
+  '@tsparticles/effect-shadow@4.0.0-beta.11':
+    resolution: {integrity: sha512-GqMFDHVVoy2hmMpmo4VlqiTZdc36ubMKemrI1V1Tb79tRsIAMrvsH15cNQX5yyUlHCZ+zW6nMe99a98gG9bOkA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
   '@tsparticles/effect-trail@4.0.0-beta.11':
     resolution: {integrity: sha512-pra2LSpBCetn+TTVVqtEdSG/AJB82w2UHL6PbFtRyEhZLePBQJph4D/xzJ4aYG8YLzS+P6I8LS1pDbHetmB+ag==}
     peerDependencies:
@@ -1966,6 +1999,9 @@ packages:
 
   '@tsparticles/palette-confetti@4.0.0-beta.0':
     resolution: {integrity: sha512-2zl9dG9/DLPsdYv/rtmlSenX0+JH3jln//q1YKjdlOAq+7NkHbHNaHacl0qCZ4B+GhMwQePY5sLd97JiiSNlBg==}
+
+  '@tsparticles/palette-snowfall@4.0.0-beta.0':
+    resolution: {integrity: sha512-g0h2sWIXOCNVbFraB/QrMaMNblvZH+DvZEtvUtQfEmrAaUSOq0NOUGl9FrMc9UZ2FdW2R/mq4Jaj1+ej2i0+rg==}
 
   '@tsparticles/path-curves@4.0.0-beta.11':
     resolution: {integrity: sha512-KJ+zbNFIiRiGMVczRRyrp3mEpsO9G+iqKJhqBtla+lgLvhelTqGk7T/UNzdqqjRJmh73zTYcvHsX/MgIcC+yrg==}
@@ -2013,6 +2049,11 @@ packages:
     peerDependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 
+  '@tsparticles/plugin-poisson-disc@4.0.0-beta.11':
+    resolution: {integrity: sha512-mYyiLuL5yAklyw0v0bGxlXt3D/jsd1Vmd9PZsJPx8yDD9PGjHoySRWnqyPru5KYt7iJI+ZB5dSdFdGucaZupOw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
   '@tsparticles/plugin-rgb-color@4.0.0-beta.11':
     resolution: {integrity: sha512-fqNsutZYUtR18n7R0YOcsSLkDxvIxlZ2jtIzLb24nad6xJvqXqUe55s5ZRhHIczTHK/oLMBaDs+UFdosz5pU1Q==}
     peerDependencies:
@@ -2040,6 +2081,11 @@ packages:
 
   '@tsparticles/shape-line@4.0.0-beta.11':
     resolution: {integrity: sha512-nS31UtZGcURtMHiYBx+d+ka400BfHOb0eoB6zu2Zt7HNtaY2yTjbRsJMZOW8KQLdYVPhelYpx8s5LOOy+zobFw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
+  '@tsparticles/shape-matrix@4.0.0-beta.11':
+    resolution: {integrity: sha512-Dy15K6oQlyxIVKxxZEs5S1yningS7q6IMYAoSJ2ld6gL3AtyrDSsp0gRRMnebZ7vIABnMdznuFqogOVI2+svKQ==}
     peerDependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 
@@ -7341,6 +7387,10 @@ snapshots:
     dependencies:
       dependency-cruiser: 17.3.10
 
+  '@tsparticles/effect-shadow@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
+    dependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
   '@tsparticles/effect-trail@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
@@ -7391,6 +7441,10 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 
+  '@tsparticles/palette-snowfall@4.0.0-beta.0':
+    dependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
   '@tsparticles/path-curves@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)(@tsparticles/plugin-move@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11))':
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
@@ -7427,6 +7481,10 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 
+  '@tsparticles/plugin-poisson-disc@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
+    dependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
   '@tsparticles/plugin-rgb-color@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
@@ -7449,6 +7507,10 @@ snapshots:
       '@tsparticles/engine': 4.0.0-beta.11
 
   '@tsparticles/shape-line@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
+    dependencies:
+      '@tsparticles/engine': 4.0.0-beta.11
+
+  '@tsparticles/shape-matrix@4.0.0-beta.11(@tsparticles/engine@4.0.0-beta.11)':
     dependencies:
       '@tsparticles/engine': 4.0.0-beta.11
 

@@ -1,18 +1,12 @@
 {
-  "name": "@tsparticles/preset-snow",
+  "name": "@tsparticles/preset-matrix",
   "version": "4.0.0-alpha.5",
-  "description": "tsParticles snow preset",
+  "description": "tsParticles matrix preset",
   "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-cli build",
-    "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
-    "prepack": "pnpm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/presets.git",
-    "directory": "presets/snow"
+    "directory": "presets/matrix"
   },
   "keywords": [
     "front-end",
@@ -68,11 +62,6 @@
     "canvas-confetti",
     "tsparticles-preset"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true,
-    "access": "public"
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -92,28 +81,33 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "sideEffects": false,
-  "browser": "dist/browser/index.js",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "jsdelivr": "tsparticles.preset.matrix.min.js",
+  "unpkg": "tsparticles.preset.matrix.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "browser": "./dist/browser/index.js",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
     },
-    "./package.json": "./dist/package.json"
+    "./package.json": "./package.json"
   },
-  "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/effect-shadow": "^4.0.0-beta.11",
     "@tsparticles/engine": "^4.0.0-beta.11",
-    "@tsparticles/palette-snowfall": "^4.0.0-beta.0",
-    "@tsparticles/updater-wobble": "^4.0.0-beta.11"
+    "@tsparticles/plugin-poisson-disc": "^4.0.0-beta.11",
+    "@tsparticles/plugin-trail": "^4.0.0-beta.11",
+    "@tsparticles/shape-matrix": "^4.0.0-beta.11"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "type": "module"
 }

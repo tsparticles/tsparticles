@@ -72,6 +72,25 @@ Checkout the documentation in the component library repository and call the `loa
 
 The options shown above are valid for all the component libraries.
 
+## Dependencies
+
+This preset loads and combines the following packages:
+
+| Package                                     | Role in this preset                           | README                                                                    |
+| ------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
+| `@tsparticles/basic`                        | Base runtime bundle used by the preset        | <https://www.npmjs.com/package/@tsparticles/basic>                        |
+| `@tsparticles/effect-trail`                 | Adds a fading trail effect behind particles   | <https://www.npmjs.com/package/@tsparticles/effect-trail>                 |
+| `@tsparticles/engine`                       | tsParticles engine and preset registration    | <https://www.npmjs.com/package/@tsparticles/engine>                       |
+| `@tsparticles/plugin-emitters`              | Spawns particles from configurable emitters   | <https://www.npmjs.com/package/@tsparticles/plugin-emitters>              |
+| `@tsparticles/plugin-emitters-shape-square` | Adds square emitter areas for launches/bursts | <https://www.npmjs.com/package/@tsparticles/plugin-emitters-shape-square> |
+| `@tsparticles/plugin-sounds`                | Adds synchronized sound playback              | <https://www.npmjs.com/package/@tsparticles/plugin-sounds>                |
+| `@tsparticles/shape-line`                   | Adds line/spark particle shape                | <https://www.npmjs.com/package/@tsparticles/shape-line>                   |
+| `@tsparticles/updater-destroy`              | Removes particles when their stage ends       | <https://www.npmjs.com/package/@tsparticles/updater-destroy>              |
+| `@tsparticles/updater-life`                 | Controls particle life-cycle stages           | <https://www.npmjs.com/package/@tsparticles/updater-life>                 |
+| `@tsparticles/updater-rotate`               | Adds rotation animation                       | <https://www.npmjs.com/package/@tsparticles/updater-rotate>               |
+
+If you want to customize one specific behavior, start from the related package README above.
+
 ## Common pitfalls
 
 - Calling `tsParticles.load(...)` before `loadFireworksPreset(tsParticles)`
