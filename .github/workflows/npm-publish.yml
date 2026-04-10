@@ -35,10 +35,22 @@ jobs:
           node-version: '24'
           registry-url: https://registry.npmjs.org
 
-      - uses: pnpm/action-setup@v6.0.0
+      - uses: pnpm/action-setup@v5.0.0
         name: Install pnpm
         with:
           cache: true
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependencies
         run: pnpm install
