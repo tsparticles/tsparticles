@@ -1,6 +1,5 @@
 {
   "mode": "yolo",
-  "depth": "standard",
   "parallelization": true,
   "commit_docs": true,
   "model_profile": "balanced",
@@ -9,5 +8,6 @@
     "plan_check": true,
     "verifier": true,
     "auto_advance": true
-  }
+  },
+  "granularity": "standard"
 }

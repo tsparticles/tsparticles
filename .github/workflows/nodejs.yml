@@ -101,7 +101,7 @@ jobs:
         run: pnpm run prettify:ci:readme
 
       - name: Build packages
-        run: npx nx affected -t build:ci
+        run: pnpm run build:affected:ci
 
       - name: Deploy to Firebase (production)
         if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
