@@ -33,7 +33,7 @@ jobs:
 
       - uses: pnpm/action-setup@v5.0.0
         with:
-          run_install: false
+          cache: true
 
       - name: Get pnpm store directory
         id: pnpm-cache

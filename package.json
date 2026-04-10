@@ -35,7 +35,9 @@
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
+    "@nx/devkit": "^22.6.5",
     "@swc/core": "^1.15.24",
+    "@swc-node/register": "^1.11.1",
     "@tsparticles/cli": "^3.4.5",
     "@tsparticles/depcruise-config": "^3.4.6",
     "@tsparticles/eslint-config": "^3.4.6",
