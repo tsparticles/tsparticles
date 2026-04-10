@@ -6,9 +6,7 @@
   "scripts": {
     "prettify:ci:schema": "prettier --check ./schema/options.schema.json",
     "prettify:schema": "prettier --write ./schema/options.schema.json",
-    "build": "tsparticles-cli build && pnpm run build:schema",
-    "build:ci": "tsparticles-cli build --ci && pnpm run build:schema",
-    "build:schema": "echo ts-json-schema-generator --path 'src/**/*.ts' --type 'IOptions' -f tsconfig.schema.json --additional-properties true --out ./schema/options.schema.json",
+    "build": "tsparticles-cli build",
     "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l && git add .",
     "postversion": "git push && git push --tags",
     "prepack": "pnpm run build",
