@@ -2294,7 +2294,7 @@ importers:
         version: 28.0.1
       '@vitest/coverage-v8':
         specifier: ^4.1.2
-        version: 4.1.3(vitest@4.1.3)
+        version: 4.1.4(vitest@4.1.3)
       '@vitest/ui':
         specifier: ^4.1.2
         version: 4.1.4(vitest@4.1.3)
@@ -2309,7 +2309,7 @@ importers:
         version: 3.0.2(jsdom@29.0.2(canvas@3.2.3))
       vitest:
         specifier: ^4.1.2
-        version: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.3)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
+        version: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.4)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
 
 packages:
 
@@ -3964,11 +3964,11 @@ packages:
     resolution: {integrity: sha512-y+vH7QE8ycjoa0bWciFg7OpFcipUuem1ujhrdLtq1gByKwfbC7bPeKsiny9e0urg93DqwGcHey+bGRKCnF1nZQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@vitest/coverage-v8@4.1.3':
-    resolution: {integrity: sha512-/MBdrkA8t6hbdCWFKs09dPik774xvs4Z6L4bycdCxYNLHM8oZuRyosumQMG19LUlBsB6GeVpL1q4kFFazvyKGA==}
+  '@vitest/coverage-v8@4.1.4':
+    resolution: {integrity: sha512-x7FptB5oDruxNPDNY2+S8tCh0pcq7ymCe1gTHcsp733jYjrJl8V1gMUlVysuCD9Kz46Xz9t1akkv08dPcYDs1w==}
     peerDependencies:
-      '@vitest/browser': 4.1.3
-      vitest: 4.1.3
+      '@vitest/browser': 4.1.4
+      vitest: 4.1.4
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -9924,10 +9924,10 @@ snapshots:
       '@typescript-eslint/types': 8.58.1
       eslint-visitor-keys: 5.0.1
 
-  '@vitest/coverage-v8@4.1.3(vitest@4.1.3)':
+  '@vitest/coverage-v8@4.1.4(vitest@4.1.3)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
-      '@vitest/utils': 4.1.3
+      '@vitest/utils': 4.1.4
       ast-v8-to-istanbul: 1.0.0
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-report: 3.0.1
@@ -9936,7 +9936,7 @@ snapshots:
       obug: 2.1.1
       std-env: 4.0.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.3)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
+      vitest: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.4)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
 
   '@vitest/expect@4.1.3':
     dependencies:
@@ -9986,7 +9986,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
-      vitest: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.3)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
+      vitest: 4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.4)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
 
   '@vitest/utils@4.1.3':
     dependencies:
@@ -14243,7 +14243,7 @@ snapshots:
       terser: 5.46.0
       yaml: 2.8.3
 
-  vitest@4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.3)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3)):
+  vitest@4.1.3(@types/node@25.5.2)(@vitest/coverage-v8@4.1.4)(@vitest/ui@4.1.4)(jsdom@29.0.2(canvas@3.2.3))(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.3
       '@vitest/mocker': 4.1.3(vite@8.0.8(@types/node@25.5.2)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.0)(yaml@2.8.3))
@@ -14267,7 +14267,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 25.5.2
-      '@vitest/coverage-v8': 4.1.3(vitest@4.1.3)
+      '@vitest/coverage-v8': 4.1.4(vitest@4.1.3)
       '@vitest/ui': 4.1.4(vitest@4.1.3)
       jsdom: 29.0.2(canvas@3.2.3)
     transitivePeerDependencies:
