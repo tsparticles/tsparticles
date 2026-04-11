@@ -1,0 +1,49 @@
+{
+  "name": "nuxt2-demo",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "pnpm run lintfix && nuxt build",
+    "build:ci": "pnpm run lint && nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.0.2",
+    "@tsparticles/vue2": "^3.0.0",
+    "core-js": "^3.32.2",
+    "nuxt": "^2.17.1",
+    "tsparticles": "^3.0.2",
+    "vue": "^2.7.14",
+    "vue-server-renderer": "^2.7.14",
+    "vue-template-compiler": "^2.7.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.19",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.22.11",
+    "@babel/plugin-transform-optional-chaining": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@nuxt/types": "^2.17.1",
+    "@nuxt/typescript-build": "^3.0.1",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@types/node": "^20.6.0",
+    "css-loader": "^4.3.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^3.0.3",
+    "vue-loader": "^15.10.2",
+    "vue-template-babel-compiler": "^2.0.0",
+    "webpack": "^4.46.0"
+  }
+}
