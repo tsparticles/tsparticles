@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Setup node env 🏗
-        uses: actions/setup-node@v4.0.2
+        uses: actions/setup-node@v4.4.0
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
