@@ -1,0 +1,51 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "gaID": "UA-161253125-1",
+  "entryPoints": [
+    "components/particles",
+    "components/confetti",
+    "components/fireworks"
+  ],
+  "entryPointStrategy": "packages",
+  "name": "tsParticles Angular Library",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "plugin": [
+    "typedoc-plugin-carbon-ads",
+    "typedoc-plugin-clarity",
+    "typedoc-plugin-coverage",
+    "typedoc-plugin-keywords"
+  ],
+  "clarityId": "8q4bxin4tm",
+  "carbonServe": "CEAI6KJL",
+  "carbonPlacement": "particlesjsorg",
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "particles",
+    "js",
+    "ts",
+    "jsx",
+    "tsx",
+    "canvas",
+    "confetti",
+    "fireworks",
+    "animations",
+    "react",
+    "vue",
+    "angular",
+    "svelte",
+    "libraries",
+    "how",
+    "to",
+    "create",
+    "add"
+  ],
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}

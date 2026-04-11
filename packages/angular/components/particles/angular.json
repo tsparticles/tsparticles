@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "247aa363-5b97-4bed-ac64-aa149ae85e08",
+    "packageManager": "pnpm"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-particles": {
+      "projectType": "library",
+      "root": "projects/ng-particles",
+      "sourceRoot": "projects/ng-particles/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-particles/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-particles/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-particles/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-particles/src/test.ts",
+            "tsConfig": "projects/ng-particles/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-particles/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-particles"
+}
