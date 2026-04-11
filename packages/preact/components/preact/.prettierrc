@@ -1,0 +1,18 @@
+{
+  "printWidth": 120,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "*.tsx",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}
