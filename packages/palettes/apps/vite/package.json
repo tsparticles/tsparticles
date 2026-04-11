@@ -1,0 +1,17 @@
+{
+  "name": "@tsparticles/vite-demo",
+  "private": true,
+  "version": "4.0.0-beta.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tsparticles/engine": "^4.0.0-beta.11",
+    "@tsparticles/palette-confetti": "workspace:^",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.5"
+  }
+}

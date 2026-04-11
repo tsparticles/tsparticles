@@ -1,0 +1,36 @@
+import { type IPalette } from "@tsparticles/engine";
+
+export const options: IPalette = {
+  name: "Full Fire Gradient",
+  background: "#000000",
+  blendMode: "screen",
+  colors: {
+    fill: {
+      enable: true,
+      value: [
+        "#000000",
+        "#110000",
+        "#220000",
+        "#440000",
+        "#660000",
+        "#880000",
+        "#AA0000",
+        "#CC0000",
+        "#FF0000",
+        "#FF2200",
+        "#FF4400",
+        "#FF6600",
+        "#FF8800",
+        "#FFAA00",
+        "#FFCC00",
+        "#FFDD00",
+        "#FFEE00",
+        "#FFFF00",
+        "#FFFF44",
+        "#FFFF88",
+        "#FFFFBB",
+        "#FFFFFF",
+      ],
+    },
+  },
+};

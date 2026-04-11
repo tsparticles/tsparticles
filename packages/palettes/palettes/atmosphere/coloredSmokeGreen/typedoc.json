@@ -1,0 +1,15 @@
+{
+    "includes": "./markdown",
+    "entryPoints": [
+        "./src/"
+    ],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles Colored Smoke Green Palette",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}
