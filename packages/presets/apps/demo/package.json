@@ -1,0 +1,65 @@
+{
+  "name": "@tsparticles/presets-demo",
+  "private": true,
+  "version": "4.0.0-beta.0",
+  "description": "> TODO: description",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "homepage": "https://particles.js.org",
+  "license": "MIT",
+  "main": "app.js",
+  "files": [
+    "app.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/presets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsparticles/presets/issues"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "connect-livereload": "^0.6.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.2",
+    "helmet": "^8.1.0",
+    "jquery": "^4.0.0",
+    "jsoneditor": "^10.4.3",
+    "livereload": "^0.10.3",
+    "lodash": "^4.18.1",
+    "nodemon": "^3.1.14",
+    "pug": "^3.0.4",
+    "stats.ts": "^2.1.6",
+    "stylus": "^0.64.0"
+  },
+  "dependencies": {
+    "@tsparticles/basic": "^4.0.0-beta.11",
+    "@tsparticles/preset-ambient": "workspace:^",
+    "@tsparticles/preset-big-circles": "workspace:^",
+    "@tsparticles/preset-bubbles": "workspace:^",
+    "@tsparticles/preset-confetti": "workspace:^",
+    "@tsparticles/preset-confetti-cannon": "workspace:^",
+    "@tsparticles/preset-confetti-explosions": "workspace:^",
+    "@tsparticles/preset-confetti-falling": "workspace:^",
+    "@tsparticles/preset-confetti-parade": "workspace:^",
+    "@tsparticles/preset-fire": "workspace:^",
+    "@tsparticles/preset-firefly": "workspace:^",
+    "@tsparticles/preset-fireworks": "workspace:^",
+    "@tsparticles/preset-fountain": "workspace:^",
+    "@tsparticles/preset-hyperspace": "workspace:^",
+    "@tsparticles/preset-links": "workspace:^",
+    "@tsparticles/preset-matrix": "workspace:^",
+    "@tsparticles/preset-sea-anemone": "workspace:^",
+    "@tsparticles/preset-snow": "workspace:^",
+    "@tsparticles/preset-squares": "workspace:^",
+    "@tsparticles/preset-stars": "workspace:^",
+    "@tsparticles/preset-triangles": "workspace:^"
+  },
+  "type": "module"
+}

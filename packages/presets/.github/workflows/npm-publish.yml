@@ -1,0 +1,103 @@
+name: Publish Packages
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  id-token: write
+  contents: write
+
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        name: Checkout Source
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        name: Setup Node.js
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - uses: pnpm/action-setup@v5.0.0
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Initialize Nx Cloud
+        run: pnpm exec nx-cloud start-ci-run --distribute-on="3 linux-medium-js"
+
+      - name: Build All Packages
+        run: pnpm nx run-many -t build:ci
+        env:
+          CI: true
+
+      - name: Generate zip artifacts
+        if: env.IS_STABLE == 'true'
+        run: pnpm run release:zip-artifacts
+
+      - name: Publish to NPM (OIDC Auth)
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          
+          BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
+
+          if [[ "$TAG" == *"-alpha."* ]]; then
+            $BASE_CMD --pre-dist-tag alpha --preid alpha
+          elif [[ "$TAG" == *"-beta."* ]]; then
+            $BASE_CMD --pre-dist-tag beta --preid beta
+          else
+            $BASE_CMD
+          fi
+
+      - name: Create Release (raw)
+        if: env.IS_STABLE == 'true'
+        id: release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          generate_release_notes: true
+
+      - name: Prettify changelog
+        if: env.IS_STABLE == 'true'
+        run: |
+          echo "${{ steps.release.outputs.body }}" > RAW_RELEASE.md
+          pnpm run release:prettify-changelog
+
+      - name: Update Release Notes
+        if: env.IS_STABLE == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/*.zip
+          body_path: RELEASE_NOTES.md
+
+      - name: Stop Nx Cloud Session
+        run: pnpm nx fix-ci
+        if: always()

@@ -1,0 +1,13 @@
+
+packages:
+  - apps/*
+  - presets/*
+linkWorkspacePackages: deep
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - '@tsparticles/engine'
+  - canvas
+  - esbuild
+  - nx
+  - puppeteer
