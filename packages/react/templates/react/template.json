@@ -1,0 +1,10 @@
+{
+  "package": {
+    "dependencies": {
+      "@tsparticles/react": "^3.0.0",
+      "@tsparticles/engine": "^3.0.2",
+      "tsparticles": "^3.0.2",
+      "tslib": "^2.6.2"
+    }
+  }
+}

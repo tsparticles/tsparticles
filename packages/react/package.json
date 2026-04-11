@@ -1,0 +1,24 @@
+{
+  "name": "@tsparticles/react-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "prettier --write README.md && lerna run build",
+    "build:ci": "prettier --check README.md && lerna run build:ci"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "husky": "^9.0.0",
+    "lerna": "^8.0.1",
+    "prettier": "^3.1.1",
+    "process": "^0.11.10",
+    "react-error-overlay": "^6.0.11"
+  },
+  "workspaces": [
+    "apps/*",
+    "components/*",
+    "templates/*"
+  ]
+}

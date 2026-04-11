@@ -1,0 +1,47 @@
+{
+  "name": "@tsparticles/react",
+  "version": "3.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "prettier --write README.md && pnpm run prettify && tsc && vite build",
+    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "prettify": "prettier --write \"src/**/*.{ts,tsx}\" && prettier --write \"lib/**/*.{ts,tsx}\"",
+    "prettify:ci": "prettier --check \"src/**/*.{ts,tsx}\" && prettier --check \"lib/**/*.{ts,tsx}\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@tsparticles/engine": "^3.0.2",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@tsparticles/engine": "^3.0.2",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "glob": "^10.3.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.6.4",
+    "vite-plugin-lib-inject-css": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
