@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: pnpm/action-setup@v2.4.1
         name: Install pnpm
         id: pnpm-install
         with:
@@ -73,7 +73,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: pnpm/action-setup@v2.4.1
         name: Install pnpm
         id: pnpm-install
         with:
