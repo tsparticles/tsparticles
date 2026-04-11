@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-beta-demo",
+  "name": "nextjs",
   "version": "3.0.0",
   "private": true,
   "scripts": {
@@ -10,16 +10,16 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "@tsparticles/react": "workspace:^",
+    "@tsparticles/nextjs": "workspace:*",
+    "@tsparticles/plugin-themes": "workspace:*",
+    "@tsparticles/slim": "workspace:*",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "next": "^16.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "tsparticles": "workspace:*",
     "typescript": "^6.0.2"
   },
   "devDependencies": {

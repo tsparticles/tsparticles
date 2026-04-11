@@ -56,6 +56,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
     - [Preact](#preact)
       - [`preact-particles`](#preact-particles)
     - [ReactJS](#reactjs)
+      - [`@tsparticles/nextjs`](#tsparticlesnextjs)
       - [`@tsparticles/react`](#tsparticlesreact)
     - [RiotJS](#riotjs)
       - [`riot-particles`](#riot-particles)
@@ -426,6 +427,12 @@ Instructions available [here](https://github.com/tsparticles/jquery/#readme)
 Instructions available [here](https://github.com/tsparticles/preact/#readme)
 
 ### ReactJS
+
+#### `@tsparticles/nextjs`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nextjs?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nextjs) [![npm](https://img.shields.io/npm/dm/@tsparticles/nextjs?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nextjs)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme)
 
 #### `@tsparticles/react`
 

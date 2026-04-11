@@ -1,15 +1,9 @@
 {
-  "name": "@tsparticles/react",
+  "name": "@tsparticles/nextjs",
   "version": "3.0.0",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/lib/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/lib/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "prettier --write README.md && pnpm run prettify && tsc && vite build",
@@ -20,17 +14,24 @@
     "prettify:ci": "prettier --check \"src/**/*.{ts,tsx}\" && prettier --check \"lib/**/*.{ts,tsx}\"",
     "prepublishOnly": "pnpm run build"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@tsparticles/engine": ">=3.9.1",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "@tsparticles/react": ">=3.0.0",
+    "next": ">=13.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/react": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.58.1",
@@ -40,12 +41,12 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "glob": "^13.0.6",
+    "next": "^16.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "typescript": "^6.0.2",
     "vite": "^8.0.8",
-    "vite-plugin-dts": "^4.5.4",
-    "vite-plugin-lib-inject-css": "^2.2.2"
+    "vite-plugin-dts": "^4.5.4"
   },
   "publishConfig": {
     "access": "public"
