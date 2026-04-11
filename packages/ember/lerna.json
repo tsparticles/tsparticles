@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "packages": [
+    "apps/*",
+    "components/*"
+  ],
+  "useWorkspaces": true,
+  "version": "2.9.3",
+  "npmClient": "pnpm",
+  "conventionalCommits": true,
+  "command": {
+    "version": {
+      "message": "chore(release): published new version"
+    }
+  }
+}

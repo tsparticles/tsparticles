@@ -1,0 +1,33 @@
+{{page-title 'ember-tsparticles'}}
+
+<h2 id='title'>ember-tsparticles</h2>
+
+<button
+  type='button'
+  {{on
+    'click'
+    (fn (mut this.isConfettiVisible) (if this.isConfettiVisible false true))
+  }}
+>
+  {{if this.isConfettiVisible 'Hide' 'Show'}} confetti
+</button>
+
+<Particles
+  class='fixed-size-particles'
+  @options={{this.options}}
+  @particlesInit={{this.loadFullOptions}}
+  @particlesLoaded={{this.loadedCallback}}
+/>
+
+<Particles
+  class='fixed-size-snow'
+  @options={{hash preset='snow' fullScreen=(hash enable=false)}}
+  @particlesInit={{this.loadSnowPreset}}
+/>
+
+{{#if this.isConfettiVisible}}
+  <Particles
+    @options={{this.confetti}}
+    @particlesInit={{this.loadFullOptions}}
+  />
+{{/if}}
