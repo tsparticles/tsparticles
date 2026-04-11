@@ -1,0 +1,157 @@
+{
+    "name": "@tsparticles/solid",
+    "version": "3.0.0",
+    "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
+    "license": "MIT",
+    "author": "Matteo Bruni <matteo.bruni@me.com>",
+    "homepage": "https://particles.js.org",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist"
+    ],
+    "bugs": {
+        "url": "https://github.com/tsparticles/solid/issues"
+    },
+    "repository": {
+        "url": "https://github.com/tsparticles/solid",
+        "directory": "components/solid",
+        "type": "git"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/matteobruni"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/tsparticles"
+        },
+        {
+            "type": "buymeacoffee",
+            "url": "https://www.buymeacoffee.com/matteobruni"
+        }
+    ],
+    "keywords": [
+        "front-end",
+        "frontend",
+        "tsparticles",
+        "particles.js",
+        "particlesjs",
+        "particles",
+        "particle",
+        "canvas",
+        "jsparticles",
+        "xparticles",
+        "particles-js",
+        "particles-bg",
+        "particles-bg-vue",
+        "particles-ts",
+        "particles.ts",
+        "react-particles-js",
+        "react-particles.js",
+        "react-particles",
+        "react",
+        "reactjs",
+        "vue-particles",
+        "ngx-particles",
+        "angular-particles",
+        "particleground",
+        "solid",
+        "vue",
+        "vuejs",
+        "preact",
+        "preactjs",
+        "jquery",
+        "angularjs",
+        "angular",
+        "typescript",
+        "javascript",
+        "animation",
+        "web",
+        "html5",
+        "web-design",
+        "webdesign",
+        "css",
+        "html",
+        "css3",
+        "animated",
+        "background",
+        "confetti",
+        "canvas",
+        "fireworks",
+        "fireworks-js",
+        "confetti-js",
+        "confettijs",
+        "fireworksjs",
+        "canvas-confetti"
+    ],
+    "exports": {
+        "solid": {
+            "development": "./dist/dev.jsx",
+            "import": "./dist/index.jsx"
+        },
+        "development": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/dev.js"
+            }
+        },
+        "import": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "prettier": "@tsparticles/prettier-config",
+    "scripts": {
+        "check": "tsc",
+        "build": "pnpm run prettify && pnpm run lint && tsup",
+        "build:ci": "pnpm run prettify:ci && pnpm run lint:ci && tsup",
+        "test": "concurrently pnpm:test:*",
+        "test:client": "vitest",
+        "test:ssr": "pnpm run test:client --mode ssr",
+        "lint": "concurrently \"pnpm:lint:code --fix\" pnpm:lint:types",
+        "lint:ci": "concurrently pnpm:lint:code pnpm:lint:types",
+        "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
+        "lint:types": "tsc --noEmit",
+        "update-deps": "pnpm up -Li",
+        "prettify": "prettier --write \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
+        "prettify:ci": "prettier --check \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
+        "prepack": "pnpm build",
+        "prepare": "pnpm build",
+        "prepublishOnly": "pnpm build"
+    },
+    "peerDependencies": {
+        "@tsparticles/engine": ">=1.0.0",
+        "solid-js": ">=1.0.0"
+    },
+    "devDependencies": {
+        "@tsparticles/engine": "^3.5.0",
+        "@tsparticles/prettier-config": "^2.1.6",
+        "@types/node": "^20.12.12",
+        "@typescript-eslint/eslint-plugin": "^7.9.0",
+        "@typescript-eslint/parser": "^7.9.0",
+        "concurrently": "^8.2.2",
+        "esbuild": "^0.21.3",
+        "esbuild-plugin-solid": "^0.6.0",
+        "eslint": "^8.56.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-no-only-tests": "^3.1.0",
+        "jsdom": "^24.0.0",
+        "prettier": "3.0.0",
+        "solid-js": "^1.8.17",
+        "tsup": "^8.0.2",
+        "tsup-preset-solid": "^2.2.0",
+        "typescript": "^5.4.5",
+        "vite": "^5.2.11",
+        "vite-plugin-solid": "^2.10.2",
+        "vitest": "^1.6.0"
+    },
+    "browser": {},
+    "typesVersions": {}
+}
