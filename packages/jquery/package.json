@@ -1,0 +1,19 @@
+{
+  "name": "@tsparticles/jquery-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "husky": "^8.0.3",
+    "lerna": "^8.0.1"
+  },
+  "workspaces": [
+    "apps/*",
+    "components/*"
+  ]
+}
