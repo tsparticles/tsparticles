@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import reportWebVitals from "./reportWebVitals";
+import { ParticlesProvider } from "@tsparticles/react";
+import { registerParticles } from "./particlesInit";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
     <React.StrictMode>
-        <App />
+        <ParticlesProvider init={registerParticles}>
+            <App />
+        </ParticlesProvider>
     </React.StrictMode>
 );
 

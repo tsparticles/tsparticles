@@ -1,4 +1,6 @@
 packages:
-  - 'apps/*'
-  - 'components/*'
-  - 'templates/*'
+  - "../../demo/react"
+  - "../../demo/react-nextjs"
+  - "../../demo/react-nextjs-app"
+  - "../../wrappers/react"
+  - "templates/*"

@@ -86,13 +86,13 @@
     }
   ],
   "dependencies": {
-    "@tsparticles/engine": "^3.0.2",
-    "@tsparticles/react": "^3.0.0",
-    "tslib": "^2.6.2",
-    "tsparticles": "^3.0.2"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/react": "workspace:^",
+    "tslib": "^2.8.1",
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.3.4"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

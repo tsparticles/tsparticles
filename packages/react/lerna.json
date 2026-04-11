@@ -1,8 +1,10 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": [
-    "apps/*",
-    "components/*",
+    "../../demo/react",
+    "../../demo/react-nextjs",
+    "../../demo/react-nextjs-app",
+    "../../wrappers/react",
     "templates/*"
   ],
   "version": "3.0.0",

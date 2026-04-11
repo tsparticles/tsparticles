@@ -4,6 +4,8 @@ packages:
   - effects/*
   - engine
   - interactions/*/*
+  - wrappers/*
+  - packages/react/templates/*
   - palettes/*/*
   - paths/*
   - plugins/*
@@ -20,7 +22,11 @@ linkWorkspacePackages: deep
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"
+  - '@tsparticles/engine'
   - canvas
+  - core-js
+  - core-js-pure
   - electron
   - esbuild
   - nx
+  - unrs-resolver
