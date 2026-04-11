@@ -1,0 +1,45 @@
+<riot-particles>
+    <script>
+        import { tsParticles } from "@tsparticles/engine";
+
+        let oldId;
+
+        export async function initParticlesEngine(
+            cb,
+        ) {
+            tsParticles.init();
+
+            await cb(tsParticles);
+        }
+
+        export default {
+            async onMounted(props) {
+                if (oldId) {
+                    const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
+
+                    if (oldContainer) {
+                        oldContainer.destroy();
+                    }
+                }
+
+                if (props.id) {
+                    const cb = (container) => {
+                        if (props.particlesLoaded) {
+                            props.particlesLoaded(container);
+                        }
+
+                        oldId = props.id;
+                    };
+
+                    tsParticles.load({ id: props.id, options: props.options, url: props.url }).then(cb);
+                } else {
+                    if (props.particlesLoaded) {
+                        props.particlesLoaded(undefined);
+                    }
+                }
+            }
+        }
+    </script>
+    <div id="{props.id}"></div>
+
+</riot-particles>

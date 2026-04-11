@@ -1,0 +1,20 @@
+{
+  "name": "riot-particles-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "husky": "^8.0.3",
+    "lerna": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "workspaces": [
+    "apps/*",
+    "components/*"
+  ]
+}
