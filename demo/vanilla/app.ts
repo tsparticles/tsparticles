@@ -1,11 +1,12 @@
 import { SeqTransport } from "@datalust/winston-seq";
 import cluster from "node:cluster";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 //import helmet from "helmet";
 import connectLiveReload from "connect-livereload";
-import { dirname } from 'path';
+import { dirname } from "path";
 import dotenv from "dotenv";
 import express from "express";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 import livereload from "livereload";
 import path from "node:path";
 import os from "os";
@@ -14,38 +15,225 @@ import stylus from "stylus";
 import winston from "winston";
 
 const fileName = fileURLToPath(import.meta.url),
-    dirName = dirname(fileName),
-    app = express(), numCpus = os.cpus().length;
+  dirName = dirname(fileName),
+  app = express(),
+  numCpus = os.cpus().length;
 
 dotenv.config({ path: path.join(dirName, "..", ".env") });
 
 let seqTransport = undefined;
 
 if (process.env.USE_SEQ === "1") {
-    seqTransport = new SeqTransport({
-        serverUrl: `http${process.env.SEQ_SSL === "1" ? "s" : ""}://${process.env.SEQ_HOST}:${process.env.SEQ_PORT}`,
-        apiKey: process.env.SEQ_KEY,
-        onError: (e => {
-            console.error(e);
-        }),
-        handleExceptions: true,
-        handleRejections: true
-    });
+  seqTransport = new SeqTransport({
+    serverUrl: `http${process.env.SEQ_SSL === "1" ? "s" : ""}://${process.env.SEQ_HOST}:${process.env.SEQ_PORT}`,
+    apiKey: process.env.SEQ_KEY,
+    onError: e => {
+      console.error(e);
+    },
+    handleExceptions: true,
+    handleRejections: true,
+  });
 }
 
 const logger = winston.createLogger({
-    level: "info",
-    format: winston.format.combine(  /* This is required to get errors to log with stack traces. See https://github.com/winstonjs/winston/issues/1498 */
-        winston.format.errors({ stack: true }),
-        winston.format.json()
-    ),
-    defaultMeta: { application: "tsParticles Demo" },
-    transports: [
-        seqTransport || new winston.transports.Console({
-            format: winston.format.simple()
-        })
-    ]
+  level: "info",
+  format: winston.format.combine(
+    /* This is required to get errors to log with stack traces. See https://github.com/winstonjs/winston/issues/1498 */
+    winston.format.errors({ stack: true }),
+    winston.format.json(),
+  ),
+  defaultMeta: { application: "tsParticles Demo" },
+  transports: [
+    seqTransport ||
+      new winston.transports.Console({
+        format: winston.format.simple(),
+      }),
+  ],
 });
+
+const workspaceRootGuess = path.resolve(dirName, "..", "..", ".."),
+  workspaceRoot = existsSync(path.join(workspaceRootGuess, "package.json"))
+    ? workspaceRootGuess
+    : path.resolve(dirName, "..", ".."),
+  presetsRoot = path.join(workspaceRoot, "presets"),
+  palettesRoot = path.join(workspaceRoot, "palettes");
+
+type CatalogMode = "preset" | "palette";
+
+interface CatalogItem {
+  id: string;
+  slug: string;
+  title: string;
+  packageName: string;
+  mountPath: string;
+  route: string;
+  image: string;
+  scriptFile: string;
+  loader: string;
+  optionValue: string;
+  description: string;
+  staticPath: string;
+  category?: string;
+}
+
+interface PaletteGroup {
+  title: string;
+  items: CatalogItem[];
+}
+
+const toTitleCase = (value: string): string => value.replace(/\b\w/gu, (char: string) => char.toUpperCase());
+
+const camelToKebab = (value: string): string =>
+  value
+    .replace(/([a-z0-9])([A-Z])/gu, "$1-$2")
+    .replace(/([A-Z]+)([A-Z][a-z0-9]+)/gu, "$1-$2")
+    .toLowerCase();
+
+const toPascal = (value: string): string => `${value[0].toUpperCase()}${value.slice(1)}`;
+
+const parsePaletteName = (fullPath: string, folder: string): string => {
+  const optionsPath = path.join(fullPath, "src", "options.ts");
+
+  if (!existsSync(optionsPath)) {
+    return toTitleCase(camelToKebab(folder).replace(/-/g, " "));
+  }
+
+  const optionsContent = readFileSync(optionsPath, "utf8"),
+    match = optionsContent.match(/name:\s*"([^"]+)"/u);
+
+  return match?.[1] ?? toTitleCase(camelToKebab(folder).replace(/-/g, " "));
+};
+
+const findGeneratedScript = (distPath: string, fallback: string, matcher: RegExp): string => {
+  if (!existsSync(distPath)) {
+    return fallback;
+  }
+
+  const generatedScript = readdirSync(distPath).find(file => matcher.test(file));
+
+  return generatedScript ?? fallback;
+};
+
+const loadPresetsCatalog = (): CatalogItem[] => {
+  if (!existsSync(presetsRoot)) {
+    return [];
+  }
+
+  return readdirSync(presetsRoot, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => entry.name)
+    .sort((a, b) => a.localeCompare(b))
+    .map(folder => {
+      const slug = camelToKebab(folder),
+        packageName = `@tsparticles/preset-${slug}`,
+        title = toTitleCase(slug.replace(/-/g, " ")),
+        loader = `load${toPascal(folder)}Preset`,
+        packageRoot = path.join(presetsRoot, folder),
+        scriptFile = findGeneratedScript(
+          path.join(packageRoot, "dist"),
+          `tsparticles.preset.${slug}.bundle.min.js`,
+          /^tsparticles\.preset\..+\.bundle\.min\.js$/u,
+        );
+
+      return {
+        id: folder,
+        slug,
+        title,
+        packageName,
+        mountPath: `/preset-${slug}`,
+        route: `/presets/${folder}`,
+        image: `/images/presets/${folder}.png`,
+        scriptFile,
+        loader,
+        optionValue: slug,
+        description: `${title} preset demo`,
+        staticPath: path.join(packageRoot, "dist"),
+      };
+    });
+};
+
+const hasPaletteOptions = (palettePath: string): boolean => existsSync(path.join(palettePath, "src", "options.ts"));
+
+const discoverPaletteDirs = (): Array<{ category: string; folder: string; fullPath: string }> => {
+  if (!existsSync(palettesRoot)) {
+    return [];
+  }
+
+  return readdirSync(palettesRoot, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .flatMap(entry => {
+      const categoryPath = path.join(palettesRoot, entry.name);
+
+      if (hasPaletteOptions(categoryPath)) {
+        return [{ category: "other", folder: entry.name, fullPath: categoryPath }];
+      }
+
+      return readdirSync(categoryPath, { withFileTypes: true })
+        .filter(nested => nested.isDirectory())
+        .map(nested => ({
+          category: entry.name,
+          folder: nested.name,
+          fullPath: path.join(categoryPath, nested.name),
+        }))
+        .filter(item => hasPaletteOptions(item.fullPath));
+    })
+    .sort((a, b) => a.folder.localeCompare(b.folder));
+};
+
+const loadPalettesCatalog = (): CatalogItem[] => {
+  return discoverPaletteDirs().map(({ category, folder, fullPath }) => {
+    const slug = camelToKebab(folder),
+      packageName = `@tsparticles/palette-${slug}`,
+      title = parsePaletteName(fullPath, folder),
+      loader = `load${toPascal(folder)}Palette`,
+      scriptFile = findGeneratedScript(
+        path.join(fullPath, "dist"),
+        `tsparticles.palette.${slug}.min.js`,
+        /^tsparticles\.palette\..+\.min\.js$/u,
+      );
+
+    return {
+      id: folder,
+      slug,
+      title,
+      packageName,
+      mountPath: `/palette-${slug}`,
+      route: `/palettes/${folder}`,
+      image: `/images/palettes/${folder}.png`,
+      scriptFile,
+      loader,
+      optionValue: slug,
+      description: `${title} palette demo`,
+      staticPath: path.join(fullPath, "dist"),
+      category,
+    };
+  });
+};
+
+const makePaletteGroups = (items: CatalogItem[]): PaletteGroup[] => {
+  const groups = new Map<string, CatalogItem[]>();
+
+  for (const item of items) {
+    const key = item.category ?? "other",
+      list = groups.get(key) ?? [];
+
+    list.push(item);
+    groups.set(key, list);
+  }
+
+  return [...groups.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, groupItems]) => ({
+      title: toTitleCase(camelToKebab(key).replace(/-/g, " ")),
+      items: groupItems.sort((a, b) => a.title.localeCompare(b.title)),
+    }));
+};
+
+const presetsCatalog = loadPresetsCatalog(),
+  presetsMap = new Map(presetsCatalog.map(item => [item.id, item])),
+  palettesCatalog = loadPalettesCatalog(),
+  palettesMap = new Map(palettesCatalog.map(item => [item.id, item])),
+  paletteGroups = makePaletteGroups(palettesCatalog);
 
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -87,8 +275,8 @@ app.use("/interaction-external-repulse", express.static("./node_modules/@tsparti
 app.use("/interaction-external-slow", express.static("./node_modules/@tsparticles/interaction-external-slow"));
 app.use("/interaction-particles-attract", express.static("./node_modules/@tsparticles/interaction-particles-attract"));
 app.use(
-    "/interaction-particles-collisions",
-    express.static("./node_modules/@tsparticles/interaction-particles-collisions")
+  "/interaction-particles-collisions",
+  express.static("./node_modules/@tsparticles/interaction-particles-collisions"),
 );
 app.use("/interaction-particles-links", express.static("./node_modules/@tsparticles/interaction-particles-links"));
 app.use("/shape-circle", express.static("./node_modules/@tsparticles/shape-circle"));
@@ -201,130 +389,192 @@ app.use("/shape-spiral", express.static("./node_modules/@tsparticles/shape-spira
 app.use("/shape-squircle", express.static("./node_modules/@tsparticles/shape-squircle"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
-app.get("/", function (req, res) {
-    logger.info("index requested");
+for (const item of presetsCatalog) {
+  if (existsSync(item.staticPath)) {
+    app.use(item.mountPath, express.static(item.staticPath));
+  }
+}
 
-    res.render("index");
+for (const item of palettesCatalog) {
+  if (existsSync(item.staticPath)) {
+    app.use(item.mountPath, express.static(item.staticPath));
+  }
+}
+
+app.get("/", function (req, res) {
+  logger.info("index requested");
+
+  res.render("index");
 });
 
 app.get("/basic", function (req, res) {
-    logger.info("basic requested");
+  logger.info("basic requested");
 
-    res.render("basic");
+  res.render("basic");
 });
 
 app.get("/bundle", function (req, res) {
-    logger.info("bundle requested");
+  logger.info("bundle requested");
 
-    res.render("bundle");
+  res.render("bundle");
 });
 
 app.get("/playground", function (req, res) {
-    logger.info("playground requested");
+  logger.info("playground requested");
 
-    res.render("playground");
+  res.render("playground");
 });
 
 app.get("/confetti", function (req, res) {
-    logger.info("confetti requested");
+  logger.info("confetti requested");
 
-    res.render("confetti");
+  res.render("confetti");
 });
 
 app.get("/fireworks", function (req, res) {
-    logger.info("firefox requested");
+  logger.info("firefox requested");
 
-    res.render("fireworks");
+  res.render("fireworks");
 });
 
 app.get("/domEmitters", function (req, res) {
-    logger.info("dom emitters requested");
+  logger.info("dom emitters requested");
 
-    res.render("domEmitters");
+  res.render("domEmitters");
 });
 
 app.get("/slim", function (req, res) {
-    logger.info("slim requested");
+  logger.info("slim requested");
 
-    res.render("slim");
+  res.render("slim");
 });
 
 app.get("/themes", function (req, res) {
-    logger.info("themes requested");
+  logger.info("themes requested");
 
-    res.render("themes");
+  res.render("themes");
 });
 
 app.get("/click", function (req, res) {
-    logger.info("click requested");
+  logger.info("click requested");
 
-    res.render("click");
+  res.render("click");
 });
 
 app.get("/noid", function (req, res) {
-    logger.info("noid requested");
+  logger.info("noid requested");
 
-    res.render("noid");
+  res.render("noid");
 });
 
 app.get("/pjs", function (req, res) {
-    logger.info("pjs requested");
+  logger.info("pjs requested");
 
-    res.render("pjs");
+  res.render("pjs");
 });
 
 app.get("/pjs2", function (req, res) {
-    logger.info("pjs2 requested");
+  logger.info("pjs2 requested");
 
-    res.render("pjs2");
+  res.render("pjs2");
 });
+
+app.get("/presets", function (req, res) {
+  logger.info("presets requested");
+
+  res.render("presets", { presets: presetsCatalog });
+});
+
+app.get("/presets/:id", function (req, res) {
+  const item = presetsMap.get(req.params.id);
+
+  if (!item) {
+    res.status(404).send("Preset not found");
+
+    return;
+  }
+
+  logger.info(`preset ${req.params.id} requested`);
+  res.render("preset", { item });
+});
+
+for (const item of presetsCatalog) {
+  app.get(`/preset/${item.id}`, function (req, res) {
+    res.redirect(item.route);
+  });
+}
+
+app.get("/palettes", function (req, res) {
+  logger.info("palettes requested");
+
+  res.render("palettes", { paletteGroups });
+});
+
+app.get("/palettes/:id", function (req, res) {
+  const item = palettesMap.get(req.params.id);
+
+  if (!item) {
+    res.status(404).send("Palette not found");
+
+    return;
+  }
+
+  logger.info(`palette ${req.params.id} requested`);
+  res.render("palette", { item });
+});
+
+for (const item of palettesCatalog) {
+  app.get(`/palette/${item.id}`, function (req, res) {
+    res.redirect(item.route);
+  });
+}
 
 const port = 3000;
 
 if (cluster.isMaster) {
-    for (let i = 0; i < numCpus; i++) {
-        cluster.fork();
+  for (let i = 0; i < numCpus; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", worker => {
+    logger.info(`worker ${worker.process.pid} died`);
+
+    cluster.fork();
+  });
+
+  process.on("SIGHUP", function () {
+    if (!cluster.workers) {
+      return;
     }
 
-    cluster.on("exit", (worker) => {
-        logger.info(`worker ${worker.process.pid} died`);
+    for (const worker of Object.values(cluster.workers)) {
+      worker?.process.kill("SIGTERM");
+    }
+  });
 
-        cluster.fork();
-    });
+  const liveReloadServer = livereload.createServer();
 
-    process.on("SIGHUP", function () {
-        if (!cluster.workers) {
-            return;
-        }
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  });
 
-        for (const worker of Object.values(cluster.workers)) {
-            worker?.process.kill("SIGTERM");
-        }
-    });
+  app.use(connectLiveReload());
 
-    const liveReloadServer = livereload.createServer();
-
-    liveReloadServer.server.once("connection", () => {
-        setTimeout(() => {
-            liveReloadServer.refresh("/");
-        }, 100);
-    });
-
-    app.use(connectLiveReload());
-
-    /*const limiter = rateLimit({
+  /*const limiter = rateLimit({
         windowMs: 1000, // 15 minutes
         max: 100 // limit each IP to 100 requests per windowMs
     });
 
     app.use(limiter);*/
-    //app.use(helmet()); // Safari requires https, probably a bug
+  //app.use(helmet()); // Safari requires https, probably a bug
 } else {
-    process.on("SIGHUP", function () {
-        //no-op
-    });
+  process.on("SIGHUP", function () {
+    //no-op
+  });
 
-    app.use(connectLiveReload());
+  app.use(connectLiveReload());
 
-    app.listen(port, () => logger.info(`Server working with pid ${process.pid} at localhost with port ${port}`));
+  app.listen(port, () => logger.info(`Server working with pid ${process.pid} at localhost with port ${port}`));
 }

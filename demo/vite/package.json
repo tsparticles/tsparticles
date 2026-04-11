@@ -11,7 +11,9 @@
   "dependencies": {
     "@tsparticles/all": "workspace:*",
     "@tsparticles/configs": "workspace:*",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/palette-confetti": "workspace:*",
+    "@tsparticles/preset-big-circles": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^6.0.2",

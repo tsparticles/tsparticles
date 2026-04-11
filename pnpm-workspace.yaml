@@ -3,23 +3,23 @@ packages:
   - demo/*
   - effects/*
   - engine
-  - interactions/*
-  - interactions/external/*
-  - interactions/particles/*
+  - interactions/*/*
+  - palettes/*/*
   - paths/*
   - plugins/*
   - plugins/colors/*
   - plugins/easings/*
   - plugins/emittersShapes/*
   - plugins/exports/*
+  - presets/*
   - shapes/*
   - updaters/*
   - utils/*
 linkWorkspacePackages: deep
 
 onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
+  - "@parcel/watcher"
+  - "@swc/core"
   - canvas
   - electron
   - esbuild

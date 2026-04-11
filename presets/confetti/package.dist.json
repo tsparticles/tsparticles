@@ -1,0 +1,118 @@
+{
+  "name": "@tsparticles/preset-confetti",
+  "version": "4.0.0-beta.0",
+  "description": "tsParticles confetti preset",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/presets.git",
+    "directory": "presets/confetti"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
+    "tsparticles-preset"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/presets/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "jsdelivr": "tsparticles.preset.confetti.min.js",
+  "unpkg": "tsparticles.preset.confetti.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@tsparticles/basic": "4.0.0-beta.0",
+    "@tsparticles/engine": "4.0.0-beta.0",
+    "@tsparticles/palette-confetti": "4.0.0-beta.0",
+    "@tsparticles/plugin-emitters": "4.0.0-beta.0",
+    "@tsparticles/plugin-motion": "4.0.0-beta.0",
+    "@tsparticles/shape-square": "4.0.0-beta.0",
+    "@tsparticles/updater-life": "4.0.0-beta.0",
+    "@tsparticles/updater-roll": "4.0.0-beta.0",
+    "@tsparticles/updater-rotate": "4.0.0-beta.0",
+    "@tsparticles/updater-tilt": "4.0.0-beta.0",
+    "@tsparticles/updater-wobble": "4.0.0-beta.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module"
+}
