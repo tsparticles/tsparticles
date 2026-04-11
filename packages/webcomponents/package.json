@@ -1,0 +1,19 @@
+{
+  "name": "web-particles-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "husky": "^8.0.3",
+    "lerna": "^7.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "components/*"
+  ]
+}
