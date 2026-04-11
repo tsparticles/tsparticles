@@ -1,0 +1,55 @@
+---
+import type { Container, Engine, ISourceOptions } from "tsparticles-engine";
+
+export interface IParticlesProps {
+    id: string;
+    init: string;
+    loaded?: string;
+    options?: ISourceOptions;
+    url?: string;
+}
+
+const { id, init, loaded, options, url } = Astro.props as IParticlesProps;
+---
+<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url} data-init={init}
+                 data-loaded={loaded}>
+    <canvas></canvas>
+</astro-particles>
+
+<script>
+    import { tsParticles } from "tsparticles-engine";
+
+    class AstroParticles extends HTMLElement {
+        constructor() {
+            super();
+
+            (async () => {
+                if (window.hasOwnProperty(this.dataset.init)) {
+                    const initFn = window[this.dataset.init];
+
+                    if (initFn instanceof Function) {
+                        await initFn(tsParticles);
+                    }
+                }
+
+                let container: Container | undefined;
+
+                if (this.dataset.url) {
+                    container = await tsParticles.loadJSON(this.dataset.id, this.dataset.url);
+                } else if (this.dataset.options) {
+                    container = await tsParticles.load(this.dataset.id, JSON.parse(this.dataset.options));
+                }
+
+                if (this.dataset.loaded && window.hasOwnProperty(this.dataset.loaded)) {
+                    const loadedFn = window[this.dataset.loaded];
+
+                    if (loadedFn instanceof Function) {
+                        loadedFn(container);
+                    }
+                }
+            })();
+        }
+    }
+
+    customElements.define("astro-particles", AstroParticles);
+</script>
