@@ -30,4 +30,5 @@ onlyBuiltDependencies:
   - electron
   - esbuild
   - nx
+  - sharp
   - unrs-resolver

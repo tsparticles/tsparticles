@@ -1,7 +1,7 @@
 {
   "extends": [
     "@tsconfig/node18/tsconfig.json",
-    "@vue/tsconfig/tsconfig.json"
+    "@vue/tsconfig/tsconfig.dom.json"
   ],
   "include": [
     "env.d.ts",
@@ -10,17 +10,11 @@
   ],
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
     "resolveJsonModule": true
-  },
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
-  ]
+  }
 }

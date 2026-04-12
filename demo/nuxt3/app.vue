@@ -3,37 +3,36 @@
     <!--<NuxtWelcome/>-->
     <client-only>
       <vue-particles
-          id="tsparticles"
-          :options="options"
-          @particles-loaded="particlesLoaded"
+        id="tsparticles"
+        :options="options"
+        @particles-loaded="particlesLoaded"
       />
     </client-only>
   </div>
 </template>
 <script setup lang="ts">
-import type { ISourceOptions, Container } from "@tsparticles/engine";
+import type { ISourceOptions, Container } from '@tsparticles/engine'
 
 const options: ISourceOptions = {
   background: {
-    color: "#000"
+    color: '#000',
   },
   particles: {
     links: {
-      enable: true
+      enable: true,
     },
     move: {
-      enable: true
+      enable: true,
     },
     number: {
-      value: 100
-    }
-  }
+      value: 100,
+    },
+  },
 }
 
 const particlesLoaded = (container?: Container) => {
   console.log(container)
 }
-
 </script>
 <style>
 .bg-white {

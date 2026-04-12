@@ -1,0 +1,45 @@
+{
+  "name": "vue3-demo",
+  "version": "3.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build-only",
+    "build:ci": "run-p type-check build-only",
+    "preview": "vite preview --port 4173",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit",
+    "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@tsparticles/configs": "^3.9.1",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/vue3": "workspace:^",
+    "tsparticles": "^3.9.1",
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@rushstack/eslint-patch": "^1.16.1",
+    "@tsconfig/node18": "^18.2.6",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/parser": "^8.58.1",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@vitejs/plugin-vue-jsx": "^5.1.5",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.2.0",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.5.0",
+    "minimatch": "^10.2.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.8.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8",
+    "vue-eslint-parser": "^10.4.0",
+    "vue-tsc": "^3.2.6"
+  }
+}

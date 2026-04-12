@@ -24,10 +24,10 @@ import Particles from "@tsparticles/vue3";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 
 createApp(App).use(Particles, {
-    init: async engine => {
-        // await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
-        await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if don't need Shapes or Animations
-    },
+  init: async engine => {
+    // await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
+    await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if don't need Shapes or Animations
+  },
 });
 ```
 
@@ -35,13 +35,13 @@ createApp(App).use(Particles, {
 
 ```html
 <template>
-    <div id="app">
-        <vue-particles id="tsparticles" @particles-loaded="particlesLoaded" url="http://foo.bar/particles.json" />
+  <div id="app">
+    <vue-particles id="tsparticles" @particles-loaded="particlesLoaded" url="http://foo.bar/particles.json" />
 
-        <vue-particles
-            id="tsparticles"
-            @particles-loaded="particlesLoaded"
-            :options="{
+    <vue-particles
+      id="tsparticles"
+      @particles-loaded="particlesLoaded"
+      :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -112,14 +112,14 @@ createApp(App).use(Particles, {
                     },
                     detectRetina: true
                 }"
-        />
-    </div>
+    />
+  </div>
 </template>
 ```
 
 ```javascript
 const particlesLoaded = async container => {
-    console.log("Particles container loaded", container);
+  console.log("Particles container loaded", container);
 };
 ```
 
@@ -146,9 +146,9 @@ There's also a CodePen collection actively maintained and updated [here](https:/
 
 If you are migrating your project from Vue 2.x to 3.x you need to these steps:
 
--   Change the dependency from `@tsparticles/vue2` to `@tsparticles/vue3`
--   Update the `node_modules` folder executing `npm install` or `yarn`
--   Change the `use` function from `Vue.use(Particles, { init: /* omissis */ })`
-    to `createApp(App).use(Particles, { init: /* omissis */ })`.
+- Change the dependency from `@tsparticles/vue2` to `@tsparticles/vue3`
+- Update the `node_modules` folder executing `npm install` or `yarn`
+- Change the `use` function from `Vue.use(Particles, { init: /* omissis */ })`
+  to `createApp(App).use(Particles, { init: /* omissis */ })`.
 
 The `<vue-particles />` tag syntax remains the same, so you don't need to do any additional action.

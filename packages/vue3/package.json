@@ -7,14 +7,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "husky": "^8.0.3",
-    "lerna": "^8.0.1"
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "husky": "^9.1.7",
+    "lerna": "^9.0.7"
   },
   "workspaces": [
-    "apps/*",
-    "components/*",
-    "components-legacy/*"
+    "../../demo/vue3",
+    "../../demo/nuxt3",
+    "../../wrappers/vue3"
   ]
 }

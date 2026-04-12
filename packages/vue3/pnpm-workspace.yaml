@@ -1,3 +1,4 @@
 packages:
-  - 'apps/*'
-  - 'components/*'
+  - '../../demo/vue3'
+  - '../../demo/nuxt3'
+  - '../../wrappers/vue3'
