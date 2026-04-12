@@ -3,6 +3,7 @@ packages:
   - demo/*
   - effects/*
   - engine
+  - interactions/*
   - interactions/*/*
   - wrappers/*
   - packages/react/templates/*
