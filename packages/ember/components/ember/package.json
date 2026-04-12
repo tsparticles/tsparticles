@@ -72,7 +72,7 @@
     "@types/qunit": "^2.19.3",
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.13",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.11.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~4.8.0",
     "ember-cli-dependency-checker": "^3.3.1",
