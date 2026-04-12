@@ -1,4 +1,5 @@
 packages:
   - '../../demo/vue3'
   - '../../demo/nuxt3'
+  - '../../wrappers/nuxt3'
   - '../../wrappers/vue3'

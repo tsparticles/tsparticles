@@ -22,6 +22,7 @@
     "@eslint/js": "^10.0.1",
     "@nuxt/ui-templates": "^1.3.4",
     "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/nuxt3": "workspace:^",
     "@tsparticles/vue3": "workspace:^",
     "@typescript-eslint/parser": "^8.58.1",
     "@vue/reactivity": "^3.5.32",

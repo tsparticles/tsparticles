@@ -1,46 +1,36 @@
-# vue3
+# Vue 3 tsParticles Demo
 
-This template should help get you started developing with Vue 3 in Vite.
+Demo app for `@tsparticles/vue3`.
 
-## Recommended IDE Setup
+## Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+## Development
 
-```sh
-npm run dev
+```bash
+pnpm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Build
 
-```sh
-npm run build
+```bash
+pnpm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Lint
 
-```sh
-npm run lint
+```bash
+pnpm run lint
 ```
+
+## How init works
+
+The plugin is registered once in `src/main.ts`:
+
+- `app.use(Particles, { init: registerParticles })`
+- `registerParticles` is defined in `src/particlesInit.ts`
+
+This keeps `@tsparticles/vue3` minimal and lets app developers choose what to load.

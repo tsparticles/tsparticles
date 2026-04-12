@@ -1,42 +1,43 @@
-# Nuxt 3 Minimal Starter
+# Nuxt tsParticles Demo
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+This demo uses the `@tsparticles/nuxt3` module.
 
 ## Setup
 
-Make sure to install the dependencies:
-
 ```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
+pnpm install
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
+## Development
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
-## Production
-
-Build the application for production:
+## Build
 
 ```bash
-npm run build
+pnpm run build
 ```
 
-Locally preview production build:
+## How init works
 
-```bash
-npm run preview
+The module reads `~/utils/particlesInit` by default.
+
+- File used in this demo: `utils/particlesInit.ts`
+- Export required: `registerParticles(engine)`
+
+The init function is where app developers decide which tsParticles packages to load.
+
+## Optional custom path
+
+You can customize the init file path in `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['@tsparticles/nuxt3'],
+  tsparticles: {
+    initPath: '~/particles/customInit',
+  },
+})
 ```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
