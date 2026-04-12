@@ -1,8 +1,9 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": [
-    "apps/*",
-    "components/*"
+    "../../demo/vue3",
+    "../../demo/nuxt3",
+    "../../wrappers/vue3"
   ],
   "version": "3.0.1",
   "npmClient": "pnpm",

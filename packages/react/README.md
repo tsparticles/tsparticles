@@ -78,7 +78,7 @@ const App = () => {
 
   // this should be run only once per application lifetime
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(async engine => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
@@ -91,7 +91,7 @@ const App = () => {
     });
   }, []);
 
-  const particlesLoaded = (container) => {
+  const particlesLoaded = container => {
     console.log(container);
   };
 
@@ -167,13 +167,7 @@ const App = () => {
   );
 
   if (init) {
-    return (
-      <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-      />
-    );
+    return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
   }
 
   return <></>;
@@ -185,12 +179,7 @@ const App = () => {
 ```tsx
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import {
-  type Container,
-  type ISourceOptions,
-  MoveDirection,
-  OutMode,
-} from "@tsparticles/engine";
+import { type Container, type ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
 // import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
@@ -201,7 +190,7 @@ const App = () => {
 
   // this should be run only once per application lifetime
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(async engine => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
@@ -290,13 +279,7 @@ const App = () => {
   );
 
   if (init) {
-    return (
-      <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-      />
-    );
+    return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
   }
 
   return <></>;
@@ -320,7 +303,7 @@ const App = () => {
 
   // this should be run only once per application lifetime
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(async engine => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
@@ -333,18 +316,12 @@ const App = () => {
     });
   }, []);
 
-  const particlesLoaded = (container) => {
+  const particlesLoaded = container => {
     console.log(container);
   };
 
   if (init) {
-    return (
-      <Particles
-        id="tsparticles"
-        url="http://foo.bar/particles.json"
-        particlesLoaded={particlesLoaded}
-      />
-    );
+    return <Particles id="tsparticles" url="http://foo.bar/particles.json" particlesLoaded={particlesLoaded} />;
   }
 
   return <></>;
@@ -367,7 +344,7 @@ const App = () => {
 
   // this should be run only once per application lifetime
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(async engine => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
@@ -385,13 +362,7 @@ const App = () => {
   };
 
   if (init) {
-    return (
-      <Particles
-        id="tsparticles"
-        url="http://foo.bar/particles.json"
-        particlesLoaded={particlesLoaded}
-      />
-    );
+    return <Particles id="tsparticles" url="http://foo.bar/particles.json" particlesLoaded={particlesLoaded} />;
   }
 
   return <></>;

@@ -5,8 +5,6 @@ import {
   type IParticlesProviderOptions,
   initParticlesProvider,
   particlesProviderKey,
-  type ParticlesPluginRegistrar,
-  useParticlesProvider,
 } from "./particles-provider";
 
 const VueParticles = (app: App, options?: IParticlesProviderOptions) => {
@@ -19,8 +17,6 @@ const VueParticles = (app: App, options?: IParticlesProviderOptions) => {
 };
 
 export default VueParticles;
-
-export { createParticlesProviderContext, initParticlesProvider, particlesProviderKey, useParticlesProvider };
 
 export type {
   IParticlesProviderContext,
