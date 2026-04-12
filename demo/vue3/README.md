@@ -33,4 +33,8 @@ The plugin is registered once in `src/main.ts`:
 - `app.use(Particles, { init: registerParticles })`
 - `registerParticles` is defined in `src/particlesInit.ts`
 
-This keeps `@tsparticles/vue3` minimal and lets app developers choose what to load.
+The init function is where app developers decide which tsParticles packages to load.
+
+## Related package
+
+For Nuxt projects use `@tsparticles/nuxt3`.

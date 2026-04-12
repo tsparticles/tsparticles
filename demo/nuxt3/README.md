@@ -34,6 +34,8 @@ The init function is where app developers decide which tsParticles packages to l
 You can customize the init file path in `nuxt.config.ts`:
 
 ```ts
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
   modules: ['@tsparticles/nuxt3'],
   tsparticles: {
