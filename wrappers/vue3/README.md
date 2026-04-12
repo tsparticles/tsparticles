@@ -70,4 +70,4 @@ function particlesLoaded(container?: Container): void {
 
 ## Nuxt support
 
-For Nuxt projects use [`@tsparticles/nuxt3`](../nuxt3/README.md), which wraps this package in a Nuxt module.
+For Nuxt projects use [`@tsparticles/nuxt3`](../nuxt3/README.md) or [`@tsparticles/nuxt4`](../nuxt4/README.md), which wrap this package in a Nuxt module.

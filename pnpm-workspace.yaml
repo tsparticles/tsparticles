@@ -6,7 +6,7 @@ packages:
   - interactions/*
   - interactions/*/*
   - wrappers/*
-  - packages/react/templates/*
+  - templates/*
   - palettes/*/*
   - paths/*
   - plugins/*
@@ -23,12 +23,14 @@ linkWorkspacePackages: deep
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"
-  - '@tsparticles/engine'
+  - "@tsparticles/engine"
   - canvas
   - core-js
   - core-js-pure
   - electron
   - esbuild
+  - fsevents
+  - nuxt
   - nx
   - sharp
   - unrs-resolver

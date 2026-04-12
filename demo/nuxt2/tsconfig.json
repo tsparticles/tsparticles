@@ -9,6 +9,7 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+    "ignoreDeprecations": "6.0",
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {

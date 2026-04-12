@@ -1,0 +1,46 @@
+{
+  "name": "@tsparticles/nuxt4",
+  "version": "3.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "prettier --write README.md && pnpm run prettify && tsc -p tsconfig.json",
+    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc -p tsconfig.json",
+    "lint": "eslint . --max-warnings 0",
+    "prettify": "prettier --write \"lib/**/*.ts\"",
+    "prettify:ci": "prettier --check \"lib/**/*.ts\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@nuxt/kit": "^4.4.2",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/vue3": "workspace:^"
+  },
+  "peerDependencies": {
+    "nuxt": "^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@nuxt/schema": "^4.4.2",
+    "@typescript-eslint/eslint-plugin": "^8.58.1",
+    "@typescript-eslint/parser": "^8.58.1",
+    "eslint": "^10.2.0",
+    "globals": "^16.4.0",
+    "nuxt": "^4.0.0",
+    "typescript": "^6.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

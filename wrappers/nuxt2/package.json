@@ -1,0 +1,38 @@
+{
+  "name": "@tsparticles/nuxt2",
+  "version": "3.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "prettier --write README.md && pnpm run prettify && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist",
+    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist",
+    "lint": "eslint . --max-warnings 0",
+    "prettify": "prettier --write \"lib/**/*.ts\"",
+    "prettify:ci": "prettier --check \"lib/**/*.ts\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@nuxt/types": "^2.17.1",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/vue2": "workspace:^"
+  },
+  "peerDependencies": {
+    "nuxt": "^2.17.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.58.1",
+    "@typescript-eslint/parser": "^8.58.1",
+    "eslint": "^10.2.0",
+    "globals": "^17.5.0",
+    "typescript": "^6.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

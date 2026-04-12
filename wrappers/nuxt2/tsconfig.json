@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "ignoreDeprecations": "6.0",
+    "strict": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "lib",
+    "esModuleInterop": true,
+    "types": ["node"],
+    "resolveJsonModule": true
+  },
+  "include": ["lib/**/*.ts"]
+}

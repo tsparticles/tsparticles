@@ -1,63 +1,64 @@
 <template>
-    <div :id="id"></div>
+  <div :id="id" />
 </template>
 
 <script lang="ts">
-import "tslib";
 import { Component, Prop } from "vue-property-decorator";
 import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 import Vue from "vue";
-import EventBus from "./event-bus.js";
+import EventBus from "./event-bus";
 
 export type IParticlesProps = ISourceOptions;
 
 async function particlesInit(component: Particles): Promise<void> {
-    if (!component.id) {
-        throw new Error("Prop 'id' is required!");
+  if (!component.id) {
+    throw new Error("Prop 'id' is required!");
+  }
+
+  const cb = (container?: Container) => {
+    component.container = container;
+
+    if (component.container && component.particlesLoaded) {
+      component.particlesLoaded(component.container);
     }
+  };
 
-    const cb = (container?: Container) => {
-        component.container = container;
+  const container = await tsParticles.load({
+    id: component.id,
+    options: component.options ?? {},
+    url: component.url,
+  });
 
-        if (component.container && component.particlesLoaded) {
-            component.particlesLoaded(component.container);
-        }
-    };
-
-    const container = await tsParticles.load({
-        id: component.id,
-        options: component.options ?? {},
-        url: component.url,
-    });
-
-    cb(container);
+  cb(container);
 }
 
 @Component
 export default class Particles extends Vue {
-    @Prop({ required: true }) id!: string;
-    @Prop() options?: IParticlesProps;
-    @Prop() url?: string;
-    @Prop() particlesLoaded?: (container: Container) => void;
-    container?: Container;
-    initHandler = async () => {
-        await particlesInit(this);
-    };
+  @Prop({ required: true }) readonly id!: string;
+  @Prop() readonly options?: IParticlesProps;
+  @Prop() readonly url?: string;
+  @Prop() readonly particlesLoaded?: (container: Container) => void;
 
-    private created(): void {
-        EventBus.$on("particles-init", this.initHandler);
-    }
+  container?: Container;
 
-    private mounted(): void {
-        this.$nextTick(() => {
-            particlesInit(this);
-        });
-    }
+  initHandler = async () => {
+    await particlesInit(this);
+  };
 
-    private beforeDestroy(): void {
-        this.container?.destroy();
+  created(): void {
+    EventBus.$on("particles-init", this.initHandler);
+  }
 
-        EventBus.$off("particles-init", this.initHandler);
-    }
+  mounted(): void {
+    this.$nextTick(() => {
+      void particlesInit(this);
+    });
+  }
+
+  beforeDestroy(): void {
+    this.container?.destroy();
+
+    EventBus.$off("particles-init", this.initHandler);
+  }
 }
 </script>

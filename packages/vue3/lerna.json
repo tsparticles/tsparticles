@@ -3,7 +3,9 @@
   "packages": [
     "../../demo/vue3",
     "../../demo/nuxt3",
+    "../../demo/nuxt4",
     "../../wrappers/nuxt3",
+    "../../wrappers/nuxt4",
     "../../wrappers/vue3"
   ],
   "version": "3.0.1",

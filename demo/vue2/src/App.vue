@@ -1,16 +1,20 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png"/>
-    <vue-particles id="tsparticles" :options="options"/>
-  </div>
+  <main id="app">
+    <vue-particles id="tsparticles" :options="options" :particles-loaded="particlesLoaded" />
+  </main>
 </template>
 
 <script lang="ts">
+import { Container } from "@tsparticles/engine";
 import { Vue } from "vue-property-decorator";
 import configs from "@tsparticles/configs";
 
 export default class App extends Vue {
   options = configs.basic;
+
+  particlesLoaded(container?: Container): void {
+    console.log(container);
+  }
 }
 </script>
 

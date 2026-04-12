@@ -37,4 +37,4 @@ The init function is where app developers decide which tsParticles packages to l
 
 ## Related package
 
-For Nuxt projects use `@tsparticles/nuxt3`.
+For Nuxt projects use `@tsparticles/nuxt3` or `@tsparticles/nuxt4`.

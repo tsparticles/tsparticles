@@ -1,37 +1,38 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "esnext",
+    "target": "ES2020",
+    "module": "ESNext",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": false,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "ignoreDeprecations": "6.0",
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [],
+    "types": ["node"],
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
     "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "dist"
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.vue"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

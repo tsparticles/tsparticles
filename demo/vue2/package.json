@@ -12,19 +12,21 @@
     "url": "git+https://github.com/tsparticles/vue2.git"
   },
   "scripts": {
+    "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:ci": "vue-cli-service build",
-    "clean": "rm -rf dist/*"
+    "clean": "rm -rf dist/*",
+    "lint": "eslint . --fix"
   },
   "bugs": {
     "url": "https://github.com/tsparticles/vue2/issues"
   },
   "dependencies": {
-    "@tsparticles/configs": "^3.0.2",
-    "@tsparticles/engine": "^3.0.2",
-    "@tsparticles/vue2": "^3.0.0",
-    "tsparticles": "^3.0.2",
+    "@tsparticles/configs": "^3.9.1",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/vue2": "workspace:^",
+    "tsparticles": "^3.9.1",
     "vue": "^2.7.14",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
@@ -43,7 +45,8 @@
     "@vue/cli-service": "^5.0.8",
     "babel-loader": "^8.3.0",
     "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-vue": "^9.33.0",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",

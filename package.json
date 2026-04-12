@@ -82,5 +82,19 @@
     "webpack-cli": "^7.0.2",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "packageExtensions": {
+      "vue-server-renderer@*": {
+        "dependencies": {
+          "vue": "2.7.16"
+        }
+      },
+      "vue-template-compiler@*": {
+        "dependencies": {
+          "vue": "2.7.16"
+        }
+      }
+    }
+  }
 }

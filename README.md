@@ -68,6 +68,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
       - [`@tsparticles/vue2`](#tsparticlesvue2)
     - [VueJS 3.x](#vuejs-3x)
       - [`@tsparticles/nuxt3`](#tsparticlesnuxt3)
+      - [`@tsparticles/nuxt4`](#tsparticlesnuxt4)
       - [`@tsparticles/vue3`](#tsparticlesvue3)
     - [Web Components](#web-components)
       - [`web-particles`](#web-particles)
@@ -480,6 +481,12 @@ Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 [![npm](https://img.shields.io/npm/v/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3)
 
 Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme)
+
+#### `@tsparticles/nuxt4`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt4?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt4) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt4?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt4)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme)
 
 #### `@tsparticles/vue3`
 

@@ -24,10 +24,10 @@ import Particles from "@tsparticles/vue2";
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 
 Vue.use(Particles, {
-    init: async engine => {
-        // await loadFull(engine);
-        await loadSlim(engine);
-    },
+  init: async engine => {
+    // await loadFull(engine);
+    await loadSlim(engine);
+  },
 });
 ```
 
@@ -35,15 +35,15 @@ Vue.use(Particles, {
 
 ```html
 <template>
-    <div id="app">
-        <vue-particles id="tsparticles" :particlesLoaded="particlesLoaded" url="http://foo.bar/particles.json" />
+  <div id="app">
+    <vue-particles id="tsparticles" :particlesLoaded="particlesLoaded" url="http://foo.bar/particles.json" />
 
-        <!-- or -->
+    <!-- or -->
 
-        <vue-particles
-            id="tsparticles"
-            :particlesLoaded="particlesLoaded"
-            :options="{
+    <vue-particles
+      id="tsparticles"
+      :particlesLoaded="particlesLoaded"
+      :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -114,14 +114,14 @@ Vue.use(Particles, {
                     },
                     detectRetina: true
                 }"
-        />
-    </div>
+    />
+  </div>
 </template>
 ```
 
 ```javascript
 const particlesLoaded = async container => {
-    console.log("Particles container loaded", container);
+  console.log("Particles container loaded", container);
 };
 ```
 
