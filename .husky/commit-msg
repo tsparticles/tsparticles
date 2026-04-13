@@ -1,1 +1,9 @@
-npx --no -- commitlint --edit ${1}
+if ! command -v node >/dev/null 2>&1; then
+  for d in "$HOME"/.nvm/versions/node/*/bin "$HOME"/.volta/bin /opt/homebrew/bin /usr/local/bin; do
+    if [ -d "$d" ]; then
+      PATH="$d:$PATH"
+    fi
+  done
+fi
+
+commitlint --edit "$1"

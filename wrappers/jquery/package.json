@@ -111,22 +111,22 @@
     "@tsparticles/engine": "workspace:^"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.6",
-    "@babel/preset-env": "^7.23.6",
-    "@rollup/plugin-babel": "^6.0.4",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@rollup/plugin-babel": "^7.0.0",
     "@tsparticles/prettier-config": "^3.4.6",
-    "@types/jquery": "^3.5.29",
-    "@types/node": "^20.10.5",
-    "@types/webpack-env": "^1.18.4",
+    "@types/jquery": "^4.0.0",
+    "@types/node": "^25.6.0",
+    "@types/webpack-env": "^1.18.8",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "jquery": "^3.7.1",
-    "prettier": "^3.1.1",
-    "rollup": "^4.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "jquery": "^4.0.0",
+    "prettier": "^3.8.2",
+    "rollup": "^4.60.1",
     "typescript": "^5.3.3",
-    "uglify-js": "^3.17.4"
+    "uglify-js": "^3.19.3"
   }
 }

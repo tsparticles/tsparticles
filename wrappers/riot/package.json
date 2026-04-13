@@ -97,18 +97,18 @@
     "@tsparticles/engine": "workspace:^"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/preset-typescript": "^7.23.3",
-    "@riotjs/cli": "^9.0.5",
-    "@riotjs/compiler": "^9.0.7",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@riotjs/cli": "^10.0.0",
+    "@riotjs/compiler": "^10.0.1",
     "@tsparticles/prettier-config": "^3.4.6",
-    "chai": "^4.4.0",
+    "chai": "^6.2.2",
     "esm": "^3.2.25",
-    "jsdom": "^24.0.0",
+    "jsdom": "^29.0.2",
     "jsdom-global": "^3.0.2",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0",
-    "prettier": "^3.2.4",
-    "riot": "^9.1.2"
+    "mocha": "^11.7.5",
+    "nyc": "^18.0.0",
+    "prettier": "^3.8.2",
+    "riot": "^10.1.3"
   }
 }

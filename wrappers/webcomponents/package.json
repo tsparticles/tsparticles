@@ -100,12 +100,12 @@
   "devDependencies": {
     "@tsparticles/prettier-config": "^3.4.6",
     "@types/node": "^20.1.0",
-    "prettier": "^3.0.0",
-    "rollup": "^3.21.5",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-typescript": "^11.1.0",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.1",
+    "prettier": "^3.8.2",
+    "rollup": "^4.60.1",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   }
 }
