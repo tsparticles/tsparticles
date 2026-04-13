@@ -72,12 +72,4 @@ watch(
   },
   { immediate: true },
 );
-
-watch(
-  () => props.theme,
-  () => {
-    container?.loadTheme(props.theme);
-  },
-  { immediate: true },
-);
 </script>

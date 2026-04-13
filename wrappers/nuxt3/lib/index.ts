@@ -20,7 +20,7 @@ const tsParticlesNuxtModule: NuxtModule<ITsParticlesNuxtOptions> = defineNuxtMod
     name: "@tsparticles/nuxt3",
     configKey: "tsparticles",
     compatibility: {
-      nuxt: ">=3.0.0",
+      nuxt: ">=3.0.0 <4",
     },
   },
   defaults: {

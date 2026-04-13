@@ -119,7 +119,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.9.1"
+    "@tsparticles/engine": "workspace:^"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

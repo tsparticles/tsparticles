@@ -21,6 +21,14 @@ export default Vue.extend({
           color: '#000',
         },
         particles: {
+          paint: {
+            fill: {
+              color: {
+                value: '#fff',
+              },
+              enable: true,
+            },
+          },
           links: {
             enable: true,
           },

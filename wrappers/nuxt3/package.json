@@ -23,20 +23,20 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@nuxt/kit": "^4.4.2",
-    "@tsparticles/engine": "^3.9.1",
+    "@nuxt/kit": "^3.21.2",
+    "@tsparticles/engine": "workspace:^",
     "@tsparticles/vue3": "workspace:^"
   },
   "peerDependencies": {
-    "nuxt": "^3.0.0 || ^4.0.0"
+    "nuxt": "^3.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.0",
+    "@eslint/js": "^10.0.1",
     "@nuxt/schema": "^4.4.2",
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
     "eslint": "^10.2.0",
-    "globals": "^16.4.0",
+    "globals": "^17.5.0",
     "typescript": "^6.0.2"
   },
   "publishConfig": {

@@ -13,10 +13,10 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@tsparticles/configs": "^3.9.1",
-    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/configs": "workspace:^",
+    "@tsparticles/engine": "workspace:^",
     "@tsparticles/vue3": "workspace:^",
-    "tsparticles": "^3.9.1",
+    "tsparticles": "workspace:^",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },

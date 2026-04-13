@@ -23,10 +23,10 @@
     "url": "https://github.com/tsparticles/vue2/issues"
   },
   "dependencies": {
-    "@tsparticles/configs": "^3.9.1",
-    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/configs": "workspace:^",
+    "@tsparticles/engine": "workspace:^",
     "@tsparticles/vue2": "workspace:^",
-    "tsparticles": "^3.9.1",
+    "tsparticles": "workspace:^",
     "vue": "^2.7.14",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
