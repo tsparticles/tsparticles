@@ -1,8 +1,5 @@
 import particles from "./vue-particles.vue";
-import { tsParticles } from "@tsparticles/engine";
-import EventBus from "./event-bus";
-
-export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+import { ensureParticlesInitialization, type ParticlesPluginRegistrar } from "./event-bus";
 
 export interface IParticlesPluginOptions {
   init?: ParticlesPluginRegistrar;
@@ -13,13 +10,8 @@ const VueParticles = {
     vue.component("VueParticles", particles);
     vue.component("VueParticles", particles);
 
-    if (options?.init) {
-      Promise.resolve(options.init(tsParticles)).then(() => {
-        EventBus.$emit("particles-init");
-      });
-    }
+    void ensureParticlesInitialization(options?.init);
   },
 };
 
-export { particles as ParticlesComponent };
 export default VueParticles;

@@ -6,7 +6,7 @@
 import { Component, Prop } from "vue-property-decorator";
 import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 import Vue from "vue";
-import EventBus from "./event-bus";
+import { waitForParticlesInitialization } from "./event-bus";
 
 export type IParticlesProps = ISourceOptions;
 
@@ -14,6 +14,8 @@ async function particlesInit(component: Particles): Promise<void> {
   if (!component.id) {
     throw new Error("Prop 'id' is required!");
   }
+
+  await waitForParticlesInitialization();
 
   const cb = (container?: Container) => {
     component.container = container;
@@ -41,14 +43,6 @@ export default class Particles extends Vue {
 
   container?: Container;
 
-  initHandler = async () => {
-    await particlesInit(this);
-  };
-
-  created(): void {
-    EventBus.$on("particles-init", this.initHandler);
-  }
-
   mounted(): void {
     this.$nextTick(() => {
       void particlesInit(this);
@@ -57,8 +51,6 @@ export default class Particles extends Vue {
 
   beforeDestroy(): void {
     this.container?.destroy();
-
-    EventBus.$off("particles-init", this.initHandler);
   }
 }
 </script>

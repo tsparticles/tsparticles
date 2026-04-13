@@ -13,49 +13,72 @@ export interface IParticlesProviderContext {
 
 export const particlesProviderKey: InjectionKey<IParticlesProviderContext> = Symbol("particles-provider");
 
-const appInitPromises = new WeakMap<App, Promise<void>>();
-const appInitCallbacks = new WeakMap<App, ParticlesPluginRegistrar | undefined>();
+interface IParticlesInitializationState {
+  callback?: ParticlesPluginRegistrar;
+  loaded: boolean;
+  promise?: Promise<void>;
+}
+
+const globalStateKey = "__tsparticles_vue3_init_state__";
+
+function getGlobalInitializationState(): IParticlesInitializationState {
+  const globalStore = globalThis as typeof globalThis & {
+    [globalStateKey]?: IParticlesInitializationState;
+  };
+
+  globalStore[globalStateKey] ??= {
+    loaded: false,
+  };
+
+  return globalStore[globalStateKey];
+}
 
 export function createParticlesProviderContext(): IParticlesProviderContext {
   return reactive<IParticlesProviderContext>({ loaded: false });
 }
 
 export function initParticlesProvider(
-  app: App,
+  _app: App,
   context: IParticlesProviderContext,
   init?: ParticlesPluginRegistrar,
 ): Promise<void> {
-  const existingPromise = appInitPromises.get(app);
-  const existingCallback = appInitCallbacks.get(app);
+  const state = getGlobalInitializationState();
 
-  if (existingPromise && existingCallback !== init) {
+  if (state.promise && state.callback !== init && !state.loaded) {
     throw new Error("@tsparticles/vue3 init callback must be stable across the app lifecycle.");
   }
 
-  if (existingPromise) {
-    return existingPromise;
+  if (state.loaded) {
+    context.loaded = true;
+
+    return Promise.resolve();
   }
 
-  appInitCallbacks.set(app, init);
+  if (state.promise) {
+    return state.promise.then(() => {
+      context.loaded = true;
+    });
+  }
 
-  const initPromise = (async () => {
-    tsParticles.init();
-
+  state.callback = init;
+  state.promise = (async () => {
     if (init) {
       await init(tsParticles);
     }
 
+    await tsParticles.init();
+
+    state.loaded = true;
     context.loaded = true;
   })().catch(error => {
-    appInitPromises.delete(app);
-    appInitCallbacks.delete(app);
+    state.promise = undefined;
+    state.callback = undefined;
+    state.loaded = false;
 
     throw error;
   });
 
-  appInitPromises.set(app, initPromise);
-
-  return initPromise;
+  return state.promise;
 }
 
 export function useParticlesProvider(): IParticlesProviderContext {

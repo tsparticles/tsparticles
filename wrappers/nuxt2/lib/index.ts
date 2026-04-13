@@ -1,16 +1,12 @@
 import type { Module } from "@nuxt/types";
-import type { Engine } from "@tsparticles/engine";
-import { resolve } from "path";
+import { resolve } from "node:path";
 
 interface ITsParticlesNuxt2Options {
   initPath?: string;
 }
 
-type ParticlesInitializer = (engine: Engine) => Promise<void> | void;
-
 const tsparticlesNuxt2Module = function (this, moduleOptions: ITsParticlesNuxt2Options = {}): void {
-  const nuxtOptions = ((this.options as { tsparticles?: ITsParticlesNuxt2Options }).tsparticles ??
-    {}) as ITsParticlesNuxt2Options;
+  const nuxtOptions = (this.options as { tsparticles?: ITsParticlesNuxt2Options }).tsparticles ?? {};
   const initPath = moduleOptions.initPath ?? nuxtOptions.initPath ?? "~/utils/particlesInit";
 
   this.addPlugin({

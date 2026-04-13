@@ -12,30 +12,27 @@ export type IParticlesProps = ISourceOptions;
 let container: Container | undefined;
 
 const props = defineProps<{
-  id: string;
-  options?: IParticlesProps;
-  url?: string;
-  theme?: string;
-}>();
+    id: string;
+    options?: IParticlesProps;
+    url?: string;
+    theme?: string;
+  }>(),
+  emit = defineEmits<{
+    (e: "particlesLoaded", container?: Container): void;
+  }>(),
+  provider = useParticlesProvider(),
+  isMounted = ref(false),
+  loadParticles = async () => {
+    container?.destroy();
 
-const emit = defineEmits<{
-  (e: "particlesLoaded", container?: Container): void;
-}>();
+    container = await tsParticles.load({
+      id: props.id,
+      url: props.url,
+      options: props.options,
+    });
 
-const provider = useParticlesProvider();
-const isMounted = ref(false);
-
-const loadParticles = async () => {
-  container?.destroy();
-
-  container = await tsParticles.load({
-    id: props.id,
-    url: props.url,
-    options: props.options,
-  });
-
-  emit("particlesLoaded", container);
-};
+    emit("particlesLoaded", container);
+  };
 
 onMounted(() => {
   void nextTick(() => {
