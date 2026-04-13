@@ -12,7 +12,7 @@ import { loadSnowPreset } from '@tsparticles/preset-snow';
 interface Context extends TestContext {
   id: string;
   url: string;
-  options: Object;
+  options: object;
   particlesInit: (engine: Engine) => void;
   particlesLoaded: (container: Container) => void;
 }
