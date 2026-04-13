@@ -1,0 +1,20 @@
+{
+  "name": "@tsparticles/astro-demo",
+  "type": "module",
+  "version": "2.10.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "build:ci": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^2.6.4",
+    "@tsparticles/astro": "workspace:^",
+    "tsparticles": "workspace:^",
+    "@tsparticles/engine": "workspace:^"
+  }
+}

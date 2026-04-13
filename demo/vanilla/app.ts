@@ -253,7 +253,7 @@ app.use("/tsparticles-fractal-noise", express.static("./node_modules/@tsparticle
 app.use("/tsparticles-noise-field", express.static("./node_modules/@tsparticles/noise-field"));
 app.use("/tsparticles-all", express.static("./node_modules/@tsparticles/all"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
-app.use("/tsparticles-engine", express.static("./node_modules/@tsparticles/engine"));
+app.use("/@tsparticles/engine", express.static("./node_modules/@tsparticles/engine"));
 app.use("/tsparticles-pjs", express.static("./node_modules/@tsparticles/pjs"));
 app.use("/tsparticles-slim", express.static("./node_modules/@tsparticles/slim"));
 app.use("/tsparticles-confetti", express.static("./node_modules/@tsparticles/confetti"));
