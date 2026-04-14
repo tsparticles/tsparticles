@@ -20,7 +20,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         await waitForParticlesEngineInitialization();
 
         if (!isParticlesEngineInitialized()) {
-          return undefined;
+          throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
 
         return tsParticles.load(data);

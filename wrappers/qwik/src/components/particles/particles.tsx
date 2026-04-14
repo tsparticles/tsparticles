@@ -18,7 +18,7 @@ const Particles = component$<IParticlesProps>(props => {
       await waitForParticlesEngineInitialization();
 
       if (!isParticlesEngineInitialized()) {
-        return;
+        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
       }
 
       const container = await tsParticles.load({

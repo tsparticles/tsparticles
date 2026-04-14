@@ -62,7 +62,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 				await waitForParticlesEngineInitialization();
 
 				if (!isParticlesEngineInitialized()) {
-					return;
+					throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
 				}
 			}
 
