@@ -1,13 +1,11 @@
-import { Particles } from "./components/particles";
+import { Particles, initParticlesEngine } from "./components/particles";
 import { loadFull } from "tsparticles";
-import { $ } from "@builder.io/qwik";
-import type { Engine } from "@tsparticles/engine";
+
+void initParticlesEngine(async engine => {
+  await loadFull(engine);
+});
 
 export default () => {
-  const init = $(async (engine: Engine) => {
-    await loadFull(engine);
-  });
-
   return (
     <>
       <head>
@@ -17,7 +15,6 @@ export default () => {
       <body>
         <Particles
           id="tsparticles"
-          init={init}
           options={{
             background: {
               color: {

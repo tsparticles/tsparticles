@@ -1,38 +1,25 @@
-import {
-  $,
-  NoSerialize,
-  component$,
-  noSerialize,
-  useSignal,
-  useVisibleTask$,
-} from "@builder.io/qwik";
+import { NoSerialize, component$, noSerialize, useVisibleTask$ } from "@builder.io/qwik";
 import { Container, tsParticles } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 /**
  * @param (props:IParticlesProps) Particles component properties
  */
-const Particles = component$<IParticlesProps>((props) => {
-  const initSig = useSignal(false);
-
-  const librarySig = useSignal<NoSerialize<Container | undefined>>(undefined);
+const Particles = component$<IParticlesProps>(props => {
+  const librarySig: { value: NoSerialize<Container | undefined> } = { value: undefined };
 
   const id = props.id ?? "tsparticles";
 
-  const {
-    init: InitFC,
-    class: className,
-    canvasClassName,
-    height,
-    width,
-    loaded,
-  } = props;
+  const { class: className, canvasClassName, height, width, loaded } = props;
 
-  useVisibleTask$(function Initializer({ track, cleanup }) {
-    track(() => initSig.value);
+  useVisibleTask$(function Initializer({ cleanup }) {
+    void (async () => {
+      await waitForParticlesEngineInitialization();
 
-    const loadParticles = $(async () => {
-      if (!initSig.value) return;
+      if (!isParticlesEngineInitialized()) {
+        return;
+      }
 
       const container = await tsParticles.load({
         url: props.url,
@@ -49,18 +36,7 @@ const Particles = component$<IParticlesProps>((props) => {
       if (loaded) {
         await loaded(container);
       }
-    });
-
-    const initParticles = async () => {
-      if (InitFC) {
-        await InitFC(tsParticles);
-      }
-
-      initSig.value = true;
-      await loadParticles();
-    };
-
-    initParticles();
+    })();
 
     cleanup(() => {
       if (librarySig.value) {

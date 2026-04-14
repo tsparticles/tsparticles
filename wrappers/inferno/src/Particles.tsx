@@ -1,8 +1,9 @@
-import { Component, Inferno } from "inferno";
+import { Component } from "inferno";
 import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 interface MutableRefObject<T> {
 	current: T | null;
@@ -12,7 +13,7 @@ interface MutableRefObject<T> {
  * @param {IParticlesProps}
  */
 export default class Particles extends Component<IParticlesProps, IParticlesState> {
-	static defaultProps: IParticlesProps = {
+	static defaultProps = {
 		width: "100%",
 		height: "100%",
 		options: {},
@@ -24,7 +25,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		super(props);
 
 		this.state = {
-			init: false,
+			init: isParticlesEngineInitialized(),
 			library: undefined,
 		};
 	}
@@ -57,8 +58,12 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
 	componentDidMount(): void {
 		(async () => {
-			if (this.props.init) {
-				await this.props.init(tsParticles);
+			if (!this.state.init) {
+				await waitForParticlesEngineInitialization();
+
+				if (!isParticlesEngineInitialized()) {
+					return;
+				}
 			}
 
 			this.setState(
@@ -76,7 +81,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.destroy();
 	}
 
-	render(): Inferno.InfernoNode {
+	render() {
 		const { width, height, className, canvasClassName, id } = this.props;
 
 		return (

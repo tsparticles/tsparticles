@@ -1,1 +1,6 @@
-export { Particles } from "./components/particles";
+export {
+  Particles,
+  initParticlesEngine,
+  type IParticlesProps,
+  type ParticlesPluginRegistrar,
+} from "./components/particles";

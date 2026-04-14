@@ -1,47 +1,94 @@
-# Qwik Library ⚡️
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik on GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
-- [Partytown](https://partytown.builder.io/)
-- [Mitosis](https://github.com/BuilderIO/mitosis)
-- [Builder.io](https://www.builder.io/)
+# @tsparticles/qwik
 
----
+[![npm](https://img.shields.io/npm/v/@tsparticles/qwik)](https://www.npmjs.com/package/@tsparticles/qwik)
+[![npm](https://img.shields.io/npm/dm/@tsparticles/qwik)](https://www.npmjs.com/package/@tsparticles/qwik)
 
-## Project Structure
+Official Qwik component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
 
-Inside your project, you'll see the following directories and files:
+## Installation
 
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── index.ts
+```bash
+pnpm add @tsparticles/qwik @tsparticles/engine
 ```
 
-- `src/components`: Recommended directory for components.
+or
 
-- `index.ts`: The entry point of your component library, make sure all the public components are exported from this file.
-
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). For Qwik during development, the `dev` command will also server-side render (SSR) the output. The client-side development modules are loaded by the browser.
-
-```
-pnpm dev
+```bash
+npm install @tsparticles/qwik @tsparticles/engine
 ```
 
-> Note: during dev mode, Vite will request many JS files, which does not represent a Qwik production build.
+or
 
-## Production
-
-The production build should generate the production build of your component library in (./lib) and the typescript type definitions in (./lib-types).
-
+```bash
+yarn add @tsparticles/qwik @tsparticles/engine
 ```
-pnpm build
+
+## Usage
+
+Initialize tsParticles once in your app bootstrap, then use `<Particles />` wherever needed.
+
+```tsx
+import { component$, useSignal } from "@builder.io/qwik";
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
+import type { Engine } from "@tsparticles/engine";
+
+void initParticlesEngine(async (engine: Engine) => {
+  const [{ loadSlim }] = await Promise.all([import("@tsparticles/slim")]);
+
+  await loadSlim(engine);
+});
+
+export default component$(() => {
+  const loaded = useSignal(false);
+
+  return (
+    <Particles
+      id="tsparticles"
+      options={{
+        fullScreen: {
+          zIndex: -1,
+        },
+        particles: {
+          number: { value: 80 },
+          links: { enable: true },
+          move: { enable: true },
+        },
+      }}
+      loaded={async () => {
+        loaded.value = true;
+      }}
+    />
+  );
+});
 ```
+
+## How init works
+
+- `initParticlesEngine` should be called once per app lifecycle.
+- All `<Particles />` instances wait for init completion before loading.
+- You can choose what to load inside init (`@tsparticles/slim`, `tsparticles`, or custom plugins).
+
+## Props
+
+| Prop            | Type     | Definition                                                                                                                                  |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string   | The id of the element.                                                                                                                      |
+| width           | string   | The width of the canvas.                                                                                                                    |
+| height          | string   | The height of the canvas.                                                                                                                   |
+| options         | object   | The options of the particles instance.                                                                                                      |
+| url             | string   | The remote options url, called using an AJAX request                                                                                        |
+| style           | object   | The style of the canvas element.                                                                                                            |
+| class           | string   | The class name of the canvas wrapper.                                                                                                       |
+| canvasClassName | string   | The class name of the canvas.                                                                                                               |
+| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
+| loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+
+Find your parameters configuration [here](https://particles.js.org).
+
+## Demos
+
+The demo website is [here](https://particles.js.org).
+
+There is also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage).

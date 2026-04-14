@@ -7,6 +7,8 @@
 import type { Component, RefObject } from "inferno";
 import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void>;
+
 export interface IParticlesProps {
 	id?: string;
 	width?: string;
@@ -18,7 +20,6 @@ export interface IParticlesProps {
 	className?: string;
 	canvasClassName?: string;
 	container?: RefObject<Container>;
-	init?: (engine: Engine) => Promise<void>;
 	loaded?: (container: Container) => Promise<void>;
 }
 
@@ -32,5 +33,7 @@ export type ParticlesProps = IParticlesProps;
 type Particles = Component<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;
+
+export declare function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void>;
 
 export default Particles;

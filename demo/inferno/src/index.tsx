@@ -1,31 +1,30 @@
-import { Component, render, version } from 'inferno';
-import { Incrementer } from './components/Incrementer';
-import Particles from "@tsparticles/inferno";
-import './main.css';
-import { Engine } from "@tsparticles/engine";
+import { Component, render, version } from "inferno";
+import { Incrementer } from "./components/Incrementer";
+import Particles, { initParticlesEngine } from "@tsparticles/inferno";
+import "./main.css";
 import { loadFull } from "tsparticles";
-import { basic } from '@tsparticles/configs';
+import { basic } from "@tsparticles/configs";
 
-const container = document.getElementById('app');
+void initParticlesEngine(async engine => {
+	await loadFull(engine);
+});
+
+const container = document.getElementById("app");
 
 class MyComponent extends Component<any, any> {
 	constructor(props, context) {
 		super(props, context);
 	}
 
-	particlesInit = async (engine: Engine) => {
-		await loadFull(engine);
-	}
-
 	public render() {
 		return (
 			<div>
-				<Particles id="tsparticles" options={basic} init={ this.particlesInit.bind(this) }/>
-				<h1>{ `Welcome to Inferno ${ version } TSX` }</h1>
-				<Incrementer name={ 'Crazy button' }/>
+				<Particles id="tsparticles" options={basic} />
+				<h1>{`Welcome to Inferno ${version} TSX`}</h1>
+				<Incrementer name={"Crazy button"} />
 			</div>
 		);
 	}
 }
 
-render(<MyComponent/>, container);
+render(<MyComponent />, container);

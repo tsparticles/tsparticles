@@ -1,11 +1,11 @@
-# `preact`
+# Inferno Demo
 
-> TODO: description
+Demo app for `@tsparticles/inferno`.
 
-## Usage
+## Notes
 
-```javascript
-const inferno = require('inferno');
+- The wrapper now follows app-level initialization.
+- Call `initParticlesEngine` once in app bootstrap/root.
+- Then render one or more `<Particles />` components.
 
-// TODO: DEMONSTRATE API
-```
+Current example source: `src/index.tsx`
