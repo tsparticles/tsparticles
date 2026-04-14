@@ -1,5 +1,5 @@
 {
-  "name": "vue3-demo",
+  "name": "@tsparticles/vue3-demo",
   "version": "3.0.1",
   "private": true,
   "type": "module",

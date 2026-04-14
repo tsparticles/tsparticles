@@ -1,5 +1,5 @@
 {
-  "name": "nuxt4-particles-demo",
+  "name": "@tsparticles/nuxt4-particles-demo",
   "version": "3.0.0",
   "private": true,
   "type": "module",

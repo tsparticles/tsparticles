@@ -1,5 +1,5 @@
 {
-  "name": "nuxt2-demo",
+  "name": "@tsparticles/nuxt2-demo",
   "version": "3.0.0",
   "private": true,
   "scripts": {
