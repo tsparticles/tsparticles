@@ -4,11 +4,10 @@
 	import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import type { Container, ISourceOptions } from '@tsparticles/engine';
 	import { tsParticles } from '@tsparticles/engine';
-	import { initialized } from './utils.js';
+	import * as particlesEngineInitialization from './utils.js';
 
 	let cssClass = '';
 	export { cssClass as class };
-	let canStart = false;
 	let mounted = false;
 
 	let style = '';
@@ -18,31 +17,19 @@
 	export let id = 'tsparticles';
 
 	const dispatch = createEventDispatcher<{
-			particlesLoaded: { container: Container };
+			particlesLoaded: { particles?: Container };
 		}>(),
 		particlesLoadedEvent = 'particlesLoaded';
 
 	let oldId = id;
+	let currentContainer: Container | undefined;
 
 	function destroyOldContainer() {
-		if (oldId) {
-			const oldContainer = tsParticles.dom().find((c) => c.id.toString() === oldId);
-
-			if (oldContainer) {
-				oldContainer.destroy();
-			}
-		}
+		currentContainer?.destroy();
+		currentContainer = undefined;
 	}
 
-	const unsub = initialized.subscribe((value) => {
-		canStart = value;
-
-		loadParticles();
-	});
-
 	onDestroy(() => {
-		unsub();
-
 		destroyOldContainer();
 	});
 
@@ -54,7 +41,17 @@
 	async function loadParticles(): Promise<void> {
 		destroyOldContainer();
 
-		if (!canStart || !mounted) {
+		if (!mounted) {
+			return;
+		}
+
+		await particlesEngineInitialization.waitForParticlesEngineInitialization();
+
+		if (!particlesEngineInitialization.isParticlesEngineInitialized()) {
+			throw new Error('initParticlesEngine(...) must be called once before rendering <Particles /> components.');
+		}
+
+		if (!mounted) {
 			return;
 		}
 
@@ -73,6 +70,8 @@
 				url
 			});
 
+			currentContainer = container;
+
 			cb(container);
 		} else {
 			dispatch(particlesLoadedEvent, {
@@ -86,4 +85,4 @@
 	});
 </script>
 
-<div {id} class={cssClass} {style} />
+<div {id} class={cssClass} {style}></div>

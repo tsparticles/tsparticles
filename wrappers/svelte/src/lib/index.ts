@@ -3,4 +3,4 @@ import { initParticlesEngine, type ParticlesPluginRegistrar } from './utils.js';
 
 export type { ParticlesPluginRegistrar };
 
-export { Particles as default, initParticlesEngine as particlesInit };
+export { Particles as default, initParticlesEngine, initParticlesEngine as particlesInit };

@@ -7,7 +7,7 @@
 import type { Component, RefObject } from "inferno";
 import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 
-export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void>;
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 export interface IParticlesProps {
 	id?: string;

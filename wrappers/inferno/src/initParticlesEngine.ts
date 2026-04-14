@@ -1,7 +1,7 @@
 import type { Engine } from "@tsparticles/engine";
 import { tsParticles } from "@tsparticles/engine";
 
-export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void>;
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
