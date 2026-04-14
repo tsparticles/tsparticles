@@ -1,27 +1,68 @@
-# Confetti
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+# angular-confetti
 
-## Development server
+[![npm](https://img.shields.io/npm/v/angular-confetti)](https://www.npmjs.com/package/angular-confetti) [![npm](https://img.shields.io/npm/dm/angular-confetti)](https://www.npmjs.com/package/angular-confetti) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Official Angular wrapper for [@tsparticles/confetti](https://www.npmjs.com/package/@tsparticles/confetti).
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```shell
+npm install angular-confetti @tsparticles/confetti @tsparticles/engine
+```
 
-## Build
+or
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+yarn add angular-confetti @tsparticles/confetti @tsparticles/engine
+```
 
-## Running unit tests
+## How to use
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Module setup
 
-## Running end-to-end tests
+```ts
+import { NgModule } from "@angular/core";
+import { NgxConfettiModule } from "angular-confetti";
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  imports: [NgxConfettiModule],
+})
+export class AppModule {}
+```
 
-## Further help
+### Template usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<ngx-confetti [id]="id" [options]="confettiOptions" [fire]="fire"></ngx-confetti>
+```
+
+### Component usage
+
+```ts
+import { Component } from "@angular/core";
+import type { ConfettiOptions } from "@tsparticles/confetti";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+})
+export class AppComponent {
+  public id = "tsparticles";
+  public fire = true;
+
+  public confettiOptions: ConfettiOptions = {
+    angle: 90,
+    count: 50,
+    spread: 45,
+    startVelocity: 45,
+  };
+}
+```
+
+`fire` accepts `boolean | number`:
+
+- `true`: fires once when mounted
+- `false`: does not fire
+- changing value (or incrementing a number): fires again

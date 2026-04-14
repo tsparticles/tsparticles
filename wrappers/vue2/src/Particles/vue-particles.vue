@@ -6,7 +6,7 @@
 import { Component, Prop } from "vue-property-decorator";
 import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 import Vue from "vue";
-import { waitForParticlesInitialization } from "./event-bus";
+import { isParticlesInitialized, waitForParticlesInitialization } from "./event-bus";
 
 export type IParticlesProps = ISourceOptions;
 
@@ -16,6 +16,12 @@ async function particlesInit(component: Particles): Promise<void> {
   }
 
   await waitForParticlesInitialization();
+
+  if (!isParticlesInitialized()) {
+    throw new Error(
+      "@tsparticles/vue2 plugin initialization must be completed before rendering <VueParticles /> components.",
+    );
+  }
 
   const cb = (container?: Container) => {
     component.container = container;

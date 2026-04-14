@@ -2,41 +2,66 @@
 
 # @tsparticles/webcomponents
 
-[![npm](https://img.shields.io/npm/v/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![npm](https://img.shields.io/npm/dm/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/@tsparticles/webcomponents)
+[![npm](https://img.shields.io/npm/v/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![npm](https://img.shields.io/npm/dm/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) Web Component
-
-[![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
-
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+Official [tsParticles](https://github.com/tsparticles/tsparticles) Web Component.
 
 ## Installation
 
-```shell script
-yarn add @tsparticles/webcomponents
+```shell
+npm install @tsparticles/webcomponents @tsparticles/engine
+```
+
+or
+
+```shell
+yarn add @tsparticles/webcomponents @tsparticles/engine
 ```
 
 ## Usage
 
-### Demo config
+```ts
+import { tsParticles } from "@tsparticles/engine";
+import { initParticlesEngine } from "@tsparticles/webcomponents";
+import { loadSlim } from "@tsparticles/slim";
 
-```html
-<@tsparticles/webcomponents id="tsparticles" url="http://foo.bar/particles.json" /> <@tsparticles/webcomponents
-id="tsparticles" options="{ background: { color: { value: '#0d47a1' } }, fpsLimit: 120, interactivity: { events: {
-onClick: { enable: true, mode: 'push' }, onHover: { enable: true, mode: 'repulse' }, resize: true }, modes: { push: {
-quantity: 4 }, repulse: { distance: 200, duration: 0.4 } } }, particles: { color: { value: '#ffffff' }, links: { color:
-'#ffffff', distance: 150, enable: true, opacity: 0.5, width: 1 }, collisions: { enable: true }, move: { direction:
-'none', enable: true, outMode: 'bounce', random: false, speed: 6, straight: false }, number: { density: { enable: true,
-area: 800 }, value: 80 }, opacity: { value: 0.5 }, shape: { type: 'circle' }, size: { value: { min: 1, max: 5 }, } },
-detectRetina: true }" />
+globalThis.tsParticles = tsParticles;
+
+await initParticlesEngine(async engine => {
+  await loadSlim(engine);
+});
 ```
 
-## Demos
+Then use the custom element:
 
-The demo website is [here](https://particles.js.org)
+```html
+<web-particles id="tsparticles" url="https://foo.bar/particles.json"></web-particles>
 
-<https://particles.js.org>
+<!-- or -->
 
-There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+<web-particles id="tsparticles-options"></web-particles>
 
-<https://codepen.io/collection/DPOage>
+<script>
+  const element = document.getElementById("tsparticles-options");
+
+  element.options = {
+    background: {
+      color: {
+        value: "#0d47a1",
+      },
+    },
+    particles: {
+      links: {
+        enable: true,
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
+
+  element.addEventListener("particlesLoaded", event => {
+    console.log(event.detail);
+  });
+</script>
+```

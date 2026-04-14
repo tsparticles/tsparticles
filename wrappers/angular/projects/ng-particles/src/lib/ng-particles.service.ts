@@ -27,7 +27,7 @@ export class NgParticlesService {
     }
 
     if (initPromise) {
-      if (initCallback && particlesInit && initCallback !== particlesInit) {
+      if (initCallback !== particlesInit) {
         throw new Error("NgParticlesService init callback must be stable across the app lifecycle.");
       }
 

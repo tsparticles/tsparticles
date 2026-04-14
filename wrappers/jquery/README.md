@@ -43,10 +43,13 @@ HTML
 ```
 
 ```javascript
-// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-// starting from v2 you can add only the features you need reducing the bundle size
+import { initParticlesEngine } from "@tsparticles/jquery";
+import { loadFull } from "tsparticles";
+
 $(document).ready(async function () {
-  await loadFull(tsParticles);
+  await initParticlesEngine(async engine => {
+    await loadFull(engine);
+  });
 
   $("#tsparticles")
     .particles()

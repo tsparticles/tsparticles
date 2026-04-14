@@ -1,27 +1,65 @@
-# Fireworks
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+# angular-fireworks
 
-## Development server
+[![npm](https://img.shields.io/npm/v/angular-fireworks)](https://www.npmjs.com/package/angular-fireworks) [![npm](https://img.shields.io/npm/dm/angular-fireworks)](https://www.npmjs.com/package/angular-fireworks) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Official Angular wrapper for [@tsparticles/fireworks](https://www.npmjs.com/package/@tsparticles/fireworks).
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```shell
+npm install angular-fireworks @tsparticles/fireworks
+```
 
-## Build
+or
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+yarn add angular-fireworks @tsparticles/fireworks
+```
 
-## Running unit tests
+## How to use
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Module setup
 
-## Running end-to-end tests
+```ts
+import { NgModule } from "@angular/core";
+import { NgxFireworksModule } from "angular-fireworks";
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  imports: [NgxFireworksModule],
+})
+export class AppModule {}
+```
 
-## Further help
+### Template usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<ngx-fireworks [id]="id" [options]="fireworksOptions"></ngx-fireworks>
+```
+
+### Component usage
+
+```ts
+import { Component } from "@angular/core";
+import type { FireworkOptions } from "@tsparticles/fireworks";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+})
+export class AppComponent {
+  public id = "tsparticles";
+
+  public fireworksOptions: FireworkOptions = {
+    background: {
+      color: {
+        value: "#000000",
+      },
+    },
+    sounds: {
+      enable: false,
+    },
+  };
+}
+```

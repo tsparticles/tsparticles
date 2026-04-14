@@ -15,7 +15,7 @@
             }
 
             if (initPromise) {
-                if (initCallback && cb && initCallback !== cb) {
+                if (initCallback !== cb) {
                     throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
                 }
 

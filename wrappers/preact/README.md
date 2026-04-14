@@ -73,7 +73,7 @@ class App extends Component {
 _Options object_
 
 ```javascript
-import Particles from "@tsparticles/preact";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
 
 class App extends Component {

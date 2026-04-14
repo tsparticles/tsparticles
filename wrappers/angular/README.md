@@ -10,48 +10,39 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular compo
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
-## How to use it
-
-### Install
+## Installation
 
 ```shell
-$ npm install @tsparticles/angular @tsparticles/engine
+npm install @tsparticles/angular @tsparticles/engine
 ```
 
 or
 
 ```shell
-$ yarn add @tsparticles/angular @tsparticles/engine
+yarn add @tsparticles/angular @tsparticles/engine
 ```
 
-### Usage
+## How to use
 
-_template.html_
+### Initialize once
 
-```html
-<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
+Call `NgParticlesService.init(...)` once in your app lifecycle before rendering `<ngx-particles />`.
 
-<!-- or -->
-
-<ngx-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
-```
-
-_app.ts_
-
-```typescript
-import { MoveDirection, ClickMode, HoverMode, OutMode } from "@tsparticles/engine";
-//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
+```ts
+import { Component, OnInit } from "@angular/core";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+import { ClickMode, HoverMode } from "@tsparticles/engine";
 import { NgParticlesService } from "@tsparticles/angular";
+import { loadSlim } from "@tsparticles/slim";
 
-export class AppComponent {
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+})
+export class AppComponent implements OnInit {
   id = "tsparticles";
 
-  /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
-  particlesUrl = "http://foo.bar/particles.json";
-
-  /* or the classic JavaScript object */
-  particlesOptions = {
+  particlesOptions: ISourceOptions = {
     background: {
       color: {
         value: "#0d47a1",
@@ -68,7 +59,6 @@ export class AppComponent {
           enable: true,
           mode: HoverMode.repulse,
         },
-        resize: true,
       },
       modes: {
         push: {
@@ -81,81 +71,56 @@ export class AppComponent {
       },
     },
     particles: {
-      color: {
-        value: "#ffffff",
-      },
       links: {
-        color: "#ffffff",
-        distance: 150,
         enable: true,
-        opacity: 0.5,
-        width: 1,
       },
       move: {
-        direction: MoveDirection.none,
+        direction: "none",
         enable: true,
         outModes: {
-          default: OutMode.bounce,
+          default: "out",
         },
-        random: false,
-        speed: 6,
-        straight: false,
       },
       number: {
-        density: {
-          enable: true,
-          area: 800,
-        },
         value: 80,
       },
-      opacity: {
-        value: 0.5,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        value: { min: 1, max: 5 },
-      },
     },
-    detectRetina: true,
   };
+
+  particlesUrl = "https://foo.bar/particles.json";
 
   constructor(private readonly ngParticlesService: NgParticlesService) {}
 
-  ngOnInit(): void {
-    this.ngParticlesService.init(async () => {
-      console.log(engine);
-
-      // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      //await loadFull(engine);
+  public ngOnInit(): void {
+    void this.ngParticlesService.init(async engine => {
       await loadSlim(engine);
     });
   }
 
-  particlesLoaded(container: Container): void {
+  public particlesLoaded(container: Container): void {
     console.log(container);
   }
 }
 ```
 
-_app.module.ts_
+### Template usage
 
-```typescript
-import { NgxParticlesModule } from "@tsparticles/angular";
+```html
+<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
+
+<!-- or -->
+
+<ngx-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
+```
+
+### Module setup
+
+```ts
 import { NgModule } from "@angular/core";
+import { NgxParticlesModule } from "@tsparticles/angular";
 
 @NgModule({
-  declarations: [
-    /* AppComponent */
-  ],
-  imports: [/* other imports */ NgxParticlesModule /* NgxParticlesModule is required*/],
-  providers: [],
-  bootstrap: [
-    /* AppComponent */
-  ],
+  imports: [NgxParticlesModule],
 })
 export class AppModule {}
 ```

@@ -26,56 +26,56 @@ yarn add @tsparticles/astro
 
 ```astro
 ---
-import Particles from "@tsparticles/astro"
+import Particles, { initParticlesEngine } from "@tsparticles/astro";
+import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
+
+await initParticlesEngine(async (engine) => {
+    await loadSlim(engine);
+});
 
 const options: ISourceOptions = {
     background: {
-        color: "#000"
+        color: {
+            value: "#000"
+        }
     },
     fullScreen: {
-        zIndex: -1
+        zIndex: -1,
     },
     particles: {
+        links: {
+            enable: true,
+        },
         number: {
-            value: 100
+            value: 100,
         },
         move: {
-            enable: true
-        }
+            enable: true,
+        },
     }
 };
 ---
 
 <script>
-    import { type Container, type Engine, tsParticles } from "@tsparticles/engine";
-    import { loadFull } from "tsparticles";
+    import type { Container } from "@tsparticles/engine";
 
-    // the function name is the parameter passed to the init attribute
-    // required
-    window.particlesInit = async function (engine: Engine) {
-        await loadFull(engine);
-    }
-    
-    // the function name is the parameter passed to the loaded attribute
-    // optional
     window.particlesLoaded = function (container: Container) {
         console.log("particlesLoaded callback");
-    }
+    };
 </script>
 
-<Particles id="tsparticles" options={options} init="particlesInit" />
+<Particles id="tsparticles" options={options} loaded="particlesLoaded" />
 ```
 
 ### Props
 
-| Prop    | Type   | Definition                                                             |
-|---------|--------|------------------------------------------------------------------------|
-| id      | string | The id of the element.                                                 |
-| init    | string | The name of the function to call when the particles instance is ready. |
-| loaded  | string | The name of the function to call when the particles are loaded.        |
-| options | object | The options of the particles instance.                                 |
-| url     | string | The remote options url, called using an AJAX request                   |
+| Prop    | Type   | Definition                                                      |
+| ------- | ------ | --------------------------------------------------------------- |
+| id      | string | The id of the element.                                          |
+| loaded  | string | The name of a global callback called once particles are loaded. |
+| options | object | The options of the particles instance.                          |
+| url     | string | The remote options url, called using an AJAX request            |
 
 #### particles.json
 

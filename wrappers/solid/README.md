@@ -31,7 +31,9 @@ Examples:
 _Remote url_
 
 ```javascript
-import Particles from "@tsparticles/solid";
+import { createEffect, createSignal } from "solid-js";
+import Particles, { initParticlesEngine } from "@tsparticles/solid";
+import { loadFull } from "tsparticles";
 
 function App() {
   const [init, setInit] = createSignal(false);
@@ -50,18 +52,16 @@ function App() {
     });
   });
 
-  return (
-    <div class="App">
-      {init() && <Particles id="tsparticles" init={particlesInit} url="https://foo.bar/particles.json" />}
-    </div>
-  );
+  return <div class="App">{init() && <Particles id="tsparticles" url="https://foo.bar/particles.json" />}</div>;
 }
 ```
 
 _Options object_
 
 ```javascript
-import Particles from "@tsparticles/solid";
+import { createEffect, createSignal } from "solid-js";
+import Particles, { initParticlesEngine } from "@tsparticles/solid";
+import { loadFull } from "tsparticles";
 
 function App() {
   const [init, setInit] = createSignal(false);
@@ -85,7 +85,6 @@ function App() {
       {init() && (
         <Particles
           id="tsparticles"
-          init={particlesInit}
           options={{
             background: {
               color: "#000",
@@ -111,10 +110,10 @@ function App() {
 | options         | object   | The options of the particles instance.                                                                                                      |
 | url             | string   | The remote options url, called using an AJAX request                                                                                        |
 | style           | object   | The style of the canvas element.                                                                                                            |
-| className       | string   | The class name of the canvas wrapper.                                                                                                       |
-| canvasClassName | string   | the class name of the canvas.                                                                                                               |
+| class           | string   | The class name of the canvas wrapper.                                                                                                       |
+| canvasClass     | string   | The class name of the canvas.                                                                                                               |
 | container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
-| particlesloaded | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+| particlesLoaded | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
 
 Find your parameters configuration [here](https://particles.js.org).
 

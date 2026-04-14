@@ -15,7 +15,7 @@ export async function initParticlesEngine(
   }
 
   if (initPromise) {
-    if (initCallback && init && initCallback !== init) {
+    if (initCallback !== init) {
       throw new Error(
         'initParticlesEngine callback must be stable across the app lifecycle.',
       );
