@@ -18,8 +18,8 @@
     ]
   },
   "scripts": {
-    "build": "env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
-    "build:ci": "env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
+    "build": "pnpm --filter @tsparticles/preact build && env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
+    "build:ci": "pnpm --filter @tsparticles/preact build:ci && env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
     "start": "sirv build --cors --single --host",
     "dev": "preact watch",
     "lint": "echo eslint src"
