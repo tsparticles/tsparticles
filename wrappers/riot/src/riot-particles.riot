@@ -3,17 +3,50 @@
         import { tsParticles } from "@tsparticles/engine";
 
         let oldId;
+        let initialized = false;
+        let initPromise;
+        let initCallback;
 
         export async function initParticlesEngine(
             cb,
         ) {
-            tsParticles.init();
+            if (initialized) {
+                return;
+            }
 
-            await cb(tsParticles);
+            if (initPromise) {
+                if (initCallback && cb && initCallback !== cb) {
+                    throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
+                }
+
+                await initPromise;
+
+                return;
+            }
+
+            initCallback = cb;
+            initPromise = (async () => {
+                if (cb) {
+                    await cb(tsParticles);
+                }
+
+                await tsParticles.init();
+                initialized = true;
+            })().catch((error) => {
+                initPromise = undefined;
+                initCallback = undefined;
+                initialized = false;
+
+                throw error;
+            });
+
+            await initPromise;
         }
 
         export default {
             async onMounted(props) {
+                await initParticlesEngine(props.particlesInit);
+
                 if (oldId) {
                     const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
 

@@ -1,6 +1,10 @@
 import Modifier, { NamedArgs, PositionalArgs } from 'ember-modifier';
-import type { Container, Engine, Options } from '@tsparticles/engine';
+import type { Container, Options } from '@tsparticles/engine';
 import { tsParticles } from '@tsparticles/engine';
+import {
+  initParticlesEngine,
+  type ParticlesPluginRegistrar,
+} from '../utils/init-particles-engine';
 
 import { registerDestructor } from '@ember/destroyable';
 
@@ -10,7 +14,7 @@ interface ParticlesModifierSignature {
     Named: {
       options: Options;
       url: string;
-      particlesInit: (engine: Engine) => void;
+      particlesInit?: ParticlesPluginRegistrar;
       particlesLoaded: (container: Container) => void;
     };
   };
@@ -31,11 +35,7 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
       throw new Error('The specified element must have an id attribute.');
     }
 
-    tsParticles.init();
-
-    if (particlesInit) {
-      await particlesInit(tsParticles);
-    }
+    await initParticlesEngine(particlesInit);
 
     let container = await tsParticles.load({
       id: element.id,
