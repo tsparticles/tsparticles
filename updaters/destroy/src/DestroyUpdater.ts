@@ -128,16 +128,20 @@ export class DestroyUpdater implements IParticleUpdater {
 
   update(particle: DestroyParticle, delta: IDelta): void {
     if (particle.exploding) {
-      const explode = particle.exploding,
+      const explosionState = particle.exploding,
         deltaFactor = delta.factor || defaultDeltaFactor;
 
-      explode.progress = Math.min(maxExplodeProgress, explode.progress + (explode.speed * deltaFactor) / fpsFactor);
+      explosionState.progress = Math.min(
+        maxExplodeProgress,
+        explosionState.progress + (explosionState.speed * deltaFactor) / fpsFactor,
+      );
 
-      const progress = explode.progress;
+      const progress = explosionState.progress;
 
-      particle.size.value = explode.initialSize + (explode.maxSize - explode.initialSize) * progress;
-      particle.fillOpacity = explode.initialFillOpacity * (maxExplodeProgress - progress);
-      particle.strokeOpacity = explode.initialStrokeOpacity * (maxExplodeProgress - progress);
+      particle.size.value =
+        explosionState.initialSize + (explosionState.maxSize - explosionState.initialSize) * progress;
+      particle.fillOpacity = explosionState.initialFillOpacity * (maxExplodeProgress - progress);
+      particle.strokeOpacity = explosionState.initialStrokeOpacity * (maxExplodeProgress - progress);
 
       if (progress >= maxExplodeProgress) {
         particle.exploding = undefined;
