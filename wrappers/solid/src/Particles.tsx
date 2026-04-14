@@ -1,6 +1,7 @@
 import { tsParticles } from "@tsparticles/engine";
 import { createEffect, createResource, JSX, mergeProps, on, onCleanup, onMount } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 /**
  * @param (props:IParticlesProps) Particles component properties
@@ -15,7 +16,15 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         options: config.params ?? config.options ?? {},
         url: config.url,
       }),
-      data => tsParticles.load(data),
+      async data => {
+        await waitForParticlesEngineInitialization();
+
+        if (!isParticlesEngineInitialized()) {
+          return undefined;
+        }
+
+        return tsParticles.load(data);
+      },
     );
 
     createEffect(
