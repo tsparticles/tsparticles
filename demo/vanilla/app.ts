@@ -266,6 +266,7 @@ app.use("/interaction-external-attract", express.static("./node_modules/@tsparti
 app.use("/interaction-external-bounce", express.static("./node_modules/@tsparticles/interaction-external-bounce"));
 app.use("/interaction-external-bubble", express.static("./node_modules/@tsparticles/interaction-external-bubble"));
 app.use("/interaction-external-connect", express.static("./node_modules/@tsparticles/interaction-external-connect"));
+app.use("/interaction-external-destroy", express.static("./node_modules/@tsparticles/interaction-external-destroy"));
 app.use("/interaction-external-drag", express.static("./node_modules/@tsparticles/interaction-external-drag"));
 app.use("/interaction-external-grab", express.static("./node_modules/@tsparticles/interaction-external-grab"));
 app.use("/interaction-external-pause", express.static("./node_modules/@tsparticles/interaction-external-pause"));

@@ -71,8 +71,8 @@ yarn add @tsparticles/svelte
 	id="tsparticles"
 	class="put your classes here"
 	style=""
-	options={particlesConfig}
-	on:particlesLoaded={onParticlesLoaded}
+	options="{particlesConfig}"
+	on:particlesLoaded="{onParticlesLoaded}"
 />
 
 <!-- or -->
@@ -81,8 +81,8 @@ yarn add @tsparticles/svelte
 	id="tsparticles"
 	class="put your classes here"
 	style=""
-	url={particlesUrl}
-	on:particlesLoaded={onParticlesLoaded}
+	url="{particlesUrl}"
+	on:particlesLoaded="{onParticlesLoaded}"
 />
 ```
 
@@ -146,23 +146,23 @@ You can see a sample below:
 </script>
 
 <svelte:component
-	this={ParticlesComponent}
+	this="{ParticlesComponent}"
 	id="tsparticles"
 	class="put your classes here"
 	style=""
-	options={particlesConfig}
-	on:particlesLoaded={onParticlesLoaded}
+	options="{particlesConfig}"
+	on:particlesLoaded="{onParticlesLoaded}"
 />
 
 <!-- or -->
 
 <svelte:component
-	this={ParticlesComponent}
+	this="{ParticlesComponent}"
 	id="tsparticles"
 	class="put your classes here"
 	style=""
-	url={particlesUrl}
-	on:particlesLoaded={onParticlesLoaded}
+	url="{particlesUrl}"
+	on:particlesLoaded="{onParticlesLoaded}"
 />
 ```
 

@@ -36,7 +36,7 @@ export class DestroyUpdater implements IParticleUpdater {
       return;
     }
 
-    particle.explode = undefined;
+    particle.exploding = undefined;
 
     particle.splitCount = 0;
 
@@ -68,7 +68,7 @@ export class DestroyUpdater implements IParticleUpdater {
   isEnabled(particle: Particle): boolean {
     const destroyParticle = particle as DestroyParticle;
 
-    return !destroyParticle.destroyed || !!destroyParticle.explode;
+    return !destroyParticle.destroyed || !!destroyParticle.exploding;
   }
 
   loadOptions(
@@ -95,7 +95,9 @@ export class DestroyUpdater implements IParticleUpdater {
 
         break;
       case DestroyMode.explode: {
-        if (particle.explode) {
+        if (particle.exploding) {
+          particle.destroyed = false;
+
           break;
         }
 
@@ -104,7 +106,7 @@ export class DestroyUpdater implements IParticleUpdater {
           maxSize = initialSize * explode.maxSizeFactor,
           opacity = particle.getOpacity();
 
-        particle.explode = {
+        particle.exploding = {
           initialFillOpacity: opacity.fillOpacity,
           initialSize,
           initialStrokeOpacity: opacity.strokeOpacity,
@@ -125,8 +127,8 @@ export class DestroyUpdater implements IParticleUpdater {
   }
 
   update(particle: DestroyParticle, delta: IDelta): void {
-    if (particle.explode) {
-      const explode = particle.explode,
+    if (particle.exploding) {
+      const explode = particle.exploding,
         deltaFactor = delta.factor || defaultDeltaFactor;
 
       explode.progress = Math.min(maxExplodeProgress, explode.progress + (explode.speed * deltaFactor) / fpsFactor);
@@ -138,7 +140,7 @@ export class DestroyUpdater implements IParticleUpdater {
       particle.strokeOpacity = explode.initialStrokeOpacity * (maxExplodeProgress - progress);
 
       if (progress >= maxExplodeProgress) {
-        particle.explode = undefined;
+        particle.exploding = undefined;
         particle.destroy(true);
       }
 

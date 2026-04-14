@@ -104,6 +104,7 @@
     "@tsparticles/interaction-external-bounce": "4.0.0-beta.11",
     "@tsparticles/interaction-external-bubble": "4.0.0-beta.11",
     "@tsparticles/interaction-external-connect": "4.0.0-beta.11",
+    "@tsparticles/interaction-external-destroy": "4.0.0-beta.11",
     "@tsparticles/interaction-external-grab": "4.0.0-beta.11",
     "@tsparticles/interaction-external-parallax": "4.0.0-beta.11",
     "@tsparticles/interaction-external-pause": "4.0.0-beta.11",

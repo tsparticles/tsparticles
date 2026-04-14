@@ -48,7 +48,9 @@
 		await particlesEngineInitialization.waitForParticlesEngineInitialization();
 
 		if (!particlesEngineInitialization.isParticlesEngineInitialized()) {
-			throw new Error('initParticlesEngine(...) must be called once before rendering <Particles /> components.');
+			throw new Error(
+				'initParticlesEngine(...) must be called once before rendering <Particles /> components.'
+			);
 		}
 
 		if (!mounted) {

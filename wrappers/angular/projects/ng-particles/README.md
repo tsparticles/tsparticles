@@ -2,9 +2,13 @@
 
 # @tsparticles/angular
 
-[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-Official [tsParticles](https://github.com/tsparticles/tsparticles) Angular component.
+Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
+
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Installation
 
@@ -22,7 +26,7 @@ yarn add @tsparticles/angular @tsparticles/engine
 
 ### Initialize once
 
-Call `NgParticlesService.init(...)` once before rendering `<ngx-particles />`.
+Call `NgParticlesService.init(...)` once in your app lifecycle before rendering `<ngx-particles />`.
 
 ```ts
 import { Component, OnInit } from "@angular/core";
@@ -36,9 +40,9 @@ import { loadSlim } from "@tsparticles/slim";
   templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-  public id = "tsparticles";
+  id = "tsparticles";
 
-  public particlesOptions: ISourceOptions = {
+  particlesOptions: ISourceOptions = {
     background: {
       color: {
         value: "#0d47a1",
@@ -60,6 +64,10 @@ export class AppComponent implements OnInit {
         push: {
           quantity: 4,
         },
+        repulse: {
+          distance: 200,
+          duration: 0.4,
+        },
       },
     },
     particles: {
@@ -67,7 +75,11 @@ export class AppComponent implements OnInit {
         enable: true,
       },
       move: {
+        direction: "none",
         enable: true,
+        outModes: {
+          default: "out",
+        },
       },
       number: {
         value: 80,
@@ -75,9 +87,9 @@ export class AppComponent implements OnInit {
     },
   };
 
-  public particlesUrl = "https://foo.bar/particles.json";
+  particlesUrl = "https://foo.bar/particles.json";
 
-  public constructor(private readonly ngParticlesService: NgParticlesService) {}
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
 
   public ngOnInit(): void {
     void this.ngParticlesService.init(async engine => {
@@ -112,3 +124,13 @@ import { NgxParticlesModule } from "@tsparticles/angular";
 })
 export class AppModule {}
 ```
+
+## Demos
+
+The demo website is [here](https://particles.js.org)
+
+<https://particles.js.org>
+
+There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>

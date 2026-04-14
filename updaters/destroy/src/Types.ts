@@ -12,7 +12,7 @@ export type DestroyParticlesOptions = ParticlesOptions & {
 
 export type DestroyParticle = Particle & {
   destroyBounds?: Partial<IBounds>;
-  explode?: {
+  exploding?: {
     initialFillOpacity: number;
     initialSize: number;
     initialStrokeOpacity: number;

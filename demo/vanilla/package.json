@@ -68,6 +68,7 @@
     "@tsparticles/interaction-external-bubble": "workspace:*",
     "@tsparticles/interaction-external-cannon": "workspace:*",
     "@tsparticles/interaction-external-connect": "workspace:*",
+    "@tsparticles/interaction-external-destroy": "workspace:*",
     "@tsparticles/interaction-external-drag": "workspace:*",
     "@tsparticles/interaction-external-grab": "workspace:*",
     "@tsparticles/interaction-external-parallax": "workspace:*",

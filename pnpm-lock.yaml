@@ -599,6 +599,9 @@ importers:
       '@tsparticles/interaction-external-connect':
         specifier: workspace:*
         version: link:../../interactions/external/connect/dist
+      '@tsparticles/interaction-external-destroy':
+        specifier: workspace:*
+        version: link:../../interactions/external/destroy/dist
       '@tsparticles/interaction-external-grab':
         specifier: workspace:*
         version: link:../../interactions/external/grab/dist
@@ -726,6 +729,9 @@ importers:
       '@tsparticles/interaction-external-connect':
         specifier: workspace:^
         version: link:../../interactions/external/connect/dist
+      '@tsparticles/interaction-external-destroy':
+        specifier: workspace:^
+        version: link:../../interactions/external/destroy/dist
       '@tsparticles/interaction-external-drag':
         specifier: workspace:^
         version: link:../../interactions/external/drag/dist
@@ -1107,6 +1113,9 @@ importers:
       '@tsparticles/interaction-external-connect':
         specifier: workspace:^
         version: link:../../interactions/external/connect/dist
+      '@tsparticles/interaction-external-destroy':
+        specifier: workspace:^
+        version: link:../../interactions/external/destroy/dist
       '@tsparticles/interaction-external-drag':
         specifier: workspace:^
         version: link:../../interactions/external/drag/dist
@@ -2255,6 +2264,9 @@ importers:
       '@tsparticles/interaction-external-connect':
         specifier: workspace:*
         version: link:../../interactions/external/connect/dist
+      '@tsparticles/interaction-external-destroy':
+        specifier: workspace:*
+        version: link:../../interactions/external/destroy/dist
       '@tsparticles/interaction-external-drag':
         specifier: workspace:*
         version: link:../../interactions/external/drag/dist
@@ -3061,6 +3073,16 @@ importers:
       '@tsparticles/canvas-utils':
         specifier: workspace:*
         version: link:../../../utils/canvasUtils/dist
+      '@tsparticles/engine':
+        specifier: workspace:*
+        version: link:../../../engine/dist
+      '@tsparticles/plugin-interactivity':
+        specifier: workspace:*
+        version: link:../../../plugins/interactivity/dist
+    publishDirectory: dist
+
+  interactions/external/destroy:
+    devDependencies:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
