@@ -43,9 +43,21 @@
             await initPromise;
         }
 
+        export function isParticlesEngineInitialized() {
+            return initialized;
+        }
+
+        export async function waitForParticlesEngineInitialization() {
+            await (initPromise ?? Promise.resolve());
+        }
+
         export default {
             async onMounted(props) {
-                await initParticlesEngine(props.particlesInit);
+                await waitForParticlesEngineInitialization();
+
+                if (!isParticlesEngineInitialized()) {
+                    throw new Error("initParticlesEngine(...) must be called once before mounting <riot-particles /> components.");
+                }
 
                 if (oldId) {
                     const oldContainer = tsParticles.dom().find((c) => c.id === oldId);

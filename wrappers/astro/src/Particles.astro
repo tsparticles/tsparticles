@@ -1,89 +1,29 @@
 ---
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export interface IParticlesProps {
     id: string;
-    init?: string;
     loaded?: string;
     options?: ISourceOptions;
     url?: string;
 }
 
-const { id, init, loaded, options, url } = Astro.props as IParticlesProps;
+const { id, loaded, options, url } = Astro.props as IParticlesProps;
 ---
-<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url} data-init={init}
+<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url}
                  data-loaded={loaded}>
     <canvas></canvas>
 </astro-particles>
 
 <script>
     import { tsParticles } from "@tsparticles/engine";
-
-    type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
-    type ParticlesInitState = {
-        callback?: ParticlesPluginRegistrar;
-        initialized: boolean;
-        promise?: Promise<void>;
-    };
-
-    const initStateKey = "__tsparticles_astro_init_state__";
+    import {
+        isParticlesEngineInitialized,
+        waitForParticlesEngineInitialization,
+    } from "./initParticlesEngine";
 
     function getGlobalStore(): Record<string, unknown> {
         return window as unknown as Record<string, unknown>;
-    }
-
-    function getInitState(): ParticlesInitState {
-        const globalStore = getGlobalStore();
-
-        globalStore[initStateKey] ??= {
-            callback: undefined,
-            initialized: false,
-            promise: undefined,
-        };
-
-        return globalStore[initStateKey] as ParticlesInitState;
-    }
-
-    async function initParticlesEngine(initName: string | undefined) {
-        const state = getInitState();
-        const globalStore = getGlobalStore();
-
-        if (state.initialized) {
-            return;
-        }
-
-        const initFn = initName && initName in globalStore
-            ? (globalStore[initName] as ParticlesPluginRegistrar | undefined)
-            : undefined;
-
-        if (state.promise) {
-            if (state.callback && initFn && state.callback !== initFn) {
-                throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
-            }
-
-            await state.promise;
-
-            return;
-        }
-
-        state.callback = initFn;
-        state.promise = (async () => {
-            if (initFn instanceof Function) {
-                await initFn(tsParticles);
-            }
-
-            await tsParticles.init();
-
-            state.initialized = true;
-        })().catch((error) => {
-            state.promise = undefined;
-            state.callback = undefined;
-            state.initialized = false;
-
-            throw error;
-        });
-
-        await state.promise;
     }
 
     class AstroParticles extends HTMLElement {
@@ -91,7 +31,12 @@ const { id, init, loaded, options, url } = Astro.props as IParticlesProps;
             super();
 
             (async () => {
-                await initParticlesEngine(this.dataset.init);
+                await waitForParticlesEngineInitialization();
+
+                if (!isParticlesEngineInitialized()) {
+                    throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+                }
+
                 const globalStore = getGlobalStore();
 
                 let container;

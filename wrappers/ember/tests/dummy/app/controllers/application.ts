@@ -4,6 +4,7 @@ import { loadSnowPreset } from '@tsparticles/preset-snow';
 import { tracked } from '@glimmer/tracking';
 import { CONFETTI_OPTIONS, LINK_OPTIONS } from '../utils/options';
 import { loadFull } from 'tsparticles';
+import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 
 export default class ApplicationController extends Controller {
   @tracked isConfettiVisible = false;
@@ -12,12 +13,13 @@ export default class ApplicationController extends Controller {
 
   confetti = CONFETTI_OPTIONS;
 
-  async loadFullOptions(engine: Engine) {
-    await loadFull(engine);
-  }
+  constructor(...args: unknown[]) {
+    super(...args);
 
-  async loadSnowPreset(engine: Engine) {
-    await loadSnowPreset(engine);
+    void initParticlesEngine(async (engine: Engine) => {
+      await loadFull(engine);
+      await loadSnowPreset(engine);
+    });
   }
 
   loadedCallback(container: Container) {

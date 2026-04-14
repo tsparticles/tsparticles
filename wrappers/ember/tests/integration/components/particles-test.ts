@@ -4,6 +4,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
+import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 import { loadFull } from 'tsparticles';
 
 import { Container, Engine, tsParticles } from '@tsparticles/engine';
@@ -13,7 +14,6 @@ interface Context extends TestContext {
   id: string;
   url: string;
   options: object;
-  particlesInit: (engine: Engine) => void;
   particlesLoaded: (container: Container) => void;
 }
 
@@ -26,6 +26,13 @@ module('Integration | Component | particles', function (hooks) {
 
   hooks.afterEach(function () {
     sinon.restore();
+  });
+
+  hooks.beforeEach(async function () {
+    await initParticlesEngine(async (engine: Engine) => {
+      await loadFull(engine);
+      await loadSnowPreset(engine);
+    });
   });
 
   test('generates a unique id', async function (this: Context, assert) {
@@ -60,28 +67,11 @@ module('Integration | Component | particles', function (hooks) {
     );
   });
 
-  test('calls the init callback', async function (this: Context, assert) {
-    this.options = LINK_OPTIONS;
-    this.particlesInit = () => {};
-    const particlesInitSpy = sinon.spy(this, 'particlesInit');
-    await render(
-      hbs`<Particles @options={{this.options}} @particlesInit={{this.particlesInit}}/>`,
-    );
-
-    assert.true(
-      particlesInitSpy.calledOnce,
-      'the init callback has been called',
-    );
-  });
-
   test('calls the loaded callback', async function (this: Context, assert) {
     assert.expect(0);
     const done = assert.async();
 
     this.options = LINK_OPTIONS;
-    this.particlesInit = async (engine) => {
-      await loadFull(engine);
-    };
     this.particlesLoaded = () => {
       done();
     };
@@ -89,7 +79,6 @@ module('Integration | Component | particles', function (hooks) {
       hbs`
       <Particles
         @options={{this.options}}
-        @particlesInit={{this.particlesInit}}
         @particlesLoaded={{this.particlesLoaded}}
       />`,
     );
@@ -102,9 +91,6 @@ module('Integration | Component | particles', function (hooks) {
     this.options = {
       preset: 'snow',
     };
-    this.particlesInit = async (engine) => {
-      await loadSnowPreset(engine);
-    };
     this.particlesLoaded = () => {
       done();
     };
@@ -112,7 +98,6 @@ module('Integration | Component | particles', function (hooks) {
       hbs`
       <Particles
         @options={{this.options}}
-        @particlesInit={{this.particlesInit}}
         @particlesLoaded={{this.particlesLoaded}}
       />`,
     );

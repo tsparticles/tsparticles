@@ -15,6 +15,12 @@ export class NgParticlesService {
     return initialized;
   }
 
+  public assertInitialized(): void {
+    if (!initialized) {
+      throw new Error("NgParticlesService.init(...) must be called once before rendering ngx-particles components.");
+    }
+  }
+
   public async init(particlesInit?: ParticlesPluginRegistrar): Promise<void> {
     if (initialized) {
       return;
@@ -46,5 +52,9 @@ export class NgParticlesService {
     });
 
     await initPromise;
+  }
+
+  public async waitForInitialization(): Promise<void> {
+    await (initPromise ?? Promise.resolve());
   }
 }

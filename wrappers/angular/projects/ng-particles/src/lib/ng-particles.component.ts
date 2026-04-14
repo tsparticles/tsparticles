@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID } from "@angular/core";
 import { isPlatformServer } from "@angular/common";
 import { tsParticles } from "@tsparticles/engine";
-import type { Container, Engine } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 import { IParticlesProps } from "./ng-particles.module";
 import { NgParticlesService } from "./ng-particles.service";
 
@@ -14,7 +14,6 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
   @Input() options?: IParticlesProps;
   @Input() url?: string;
   @Input() id = "tsparticles";
-  @Input() particlesInit?: (engine: Engine) => Promise<void> | void;
   @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
 
   private container?: Container;
@@ -40,7 +39,8 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
   }
 
   private async loadParticles(): Promise<void> {
-    await this.particlesService.init(this.particlesInit);
+    await this.particlesService.waitForInitialization();
+    this.particlesService.assertInitialized();
 
     this.container?.destroy();
 
