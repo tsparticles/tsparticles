@@ -123,7 +123,6 @@
     "prettify": "prettier --write \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prettify:ci": "prettier --check \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prepack": "pnpm build",
-    "prepare": "pnpm build",
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
