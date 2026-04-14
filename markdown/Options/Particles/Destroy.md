@@ -4,10 +4,18 @@ Controls what happens when a particle reaches its end condition.
 
 ## Properties
 
-| Key     | Type     | Example              | Notes                          |
-| ------- | -------- | -------------------- | ------------------------------ |
-| `mode`  | `string` | `"none"` / `"split"` | Destroy behavior               |
-| `split` | `object` |                      | Split configuration, see below |
+| Key       | Type     | Example                            | Notes                            |
+| --------- | -------- | ---------------------------------- | -------------------------------- |
+| `explode` | `object` |                                    | Explode configuration, see below |
+| `mode`    | `string` | `"none"` / `"split"` / `"explode"` | Destroy behavior                 |
+| `split`   | `object` |                                    | Split configuration, see below   |
+
+## Explode properties
+
+| Key             | Type     | Example | Notes                                                             |
+| --------------- | -------- | ------- | ----------------------------------------------------------------- |
+| `maxSizeFactor` | `number` | `3`     | Final size multiplier compared to the particle initial size       |
+| `speed`         | `number` | `2`     | Explosion progress speed (higher values complete the fade faster) |
 
 ## Split properties
 
@@ -44,6 +52,20 @@ Controls what happens when a particle reaches its end condition.
       "rate": {
         "value": 10
       }
+    }
+  }
+}
+```
+
+### Explode on destroy
+
+```json
+{
+  "destroy": {
+    "mode": "explode",
+    "explode": {
+      "maxSizeFactor": 3,
+      "speed": 2
     }
   }
 }

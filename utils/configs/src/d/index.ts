@@ -5,6 +5,7 @@ import delayOpacity from "./delayOpacity.js";
 import delaySize from "./delaySize.js";
 import delayStrokeColor from "./delayStrokeColor.js";
 import destroy from "./destroy.js";
+import destroyExplode from "./destroyExplode.js";
 import disappearing from "./disappearing.js";
 import divEvents from "./divEvents.js";
 
@@ -16,6 +17,7 @@ export default {
   delaySize,
   delayStrokeColor,
   destroy,
+  destroyExplode,
   disappearing,
   divEvents,
 };
