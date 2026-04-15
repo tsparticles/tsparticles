@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+### Features
+
+- improving other wrappers to make them similar to React, Vue and Angular ones ([4dccf8e](https://github.com/tsparticles/tsparticles/commit/4dccf8eb0fe4ac29f8240673c77e0701cdbd15b1))
+- improving other wrappers to make them similar to React, Vue and Angular ones ([e0c9230](https://github.com/tsparticles/tsparticles/commit/e0c9230b751d3a86b8f4eccf10b3660a0a7ddb91))
+- improving other wrappers to make them similar to React, Vue and Angular ones ([981e896](https://github.com/tsparticles/tsparticles/commit/981e896329951c6cdebfeba2406a68278c373996))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.9.2...riot-particles@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package riot-particles
@@ -35,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+- added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
 
 ## [2.5.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.5.2...riot-particles@2.5.3) (2022-11-07)
 
@@ -85,7 +93,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
 
 ## [2.2.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.2.0...riot-particles@2.2.1) (2022-08-12)
 
@@ -95,7 +103,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
+- **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
 
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.1.3...riot-particles@2.1.4) (2022-07-28)
 
@@ -129,34 +137,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.42.1...riot-particles@2.0.3) (2022-03-11)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.4...riot-particles@2.0.2) (2022-02-21)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.43.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.43.0...riot-particles@1.43.1) (2022-04-06)
 
@@ -212,22 +220,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.2...riot-particles@2.0.0-beta.4) (2022-01-30)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.0...riot-particles@1.41.1) (2022-02-14)
 
@@ -279,19 +287,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.4...riot-particles@2.0.0-beta.1) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.3...riot-particles@2.0.0-beta.0) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.11.5](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.4...riot-particles@1.11.5) (2021-11-28)
 
@@ -349,17 +357,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
 
 ### Features
 
--   improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+- improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
 
 ## [1.7.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.7.2...riot-particles@1.7.3) (2021-08-10)
 
 ### Features
 
--   added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+- added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
 
 ## [1.7.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.7.1...riot-particles@1.7.2) (2021-07-31)
 

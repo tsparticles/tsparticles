@@ -3,68 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+### Features
+
+- added nuxt 3 wrapper ([0651770](https://github.com/tsparticles/tsparticles/commit/06517700e8a15d3274fcedead040721b90654dd4))
+- seen working Vue3 package after updates and merge back ([bb2b01a](https://github.com/tsparticles/tsparticles/commit/bb2b01a25780662a7325d3990695db97610a5148))
+
 ## [3.0.1](https://github.com/tsparticles/vue3/compare/v3.0.0...v3.0.1) (2024-03-06)
 
 **Note:** Version bump only for package vue3-demo
 
-
-
-
-
 # [3.0.0](https://github.com/tsparticles/vue3/compare/v2.12.0...v3.0.0) (2023-12-22)
-
 
 ### Bug Fixes
 
-* **example:** clean up Vite example and remove dead code ([7064feb](https://github.com/tsparticles/vue3/commit/7064feb638a503a0bb158c49d0a76d16142bede2))
-* **example:** remove console#log ([e537e3a](https://github.com/tsparticles/vue3/commit/e537e3ae2fb2fbc101f6ef18f2f5dec518407f34))
-
+- **example:** clean up Vite example and remove dead code ([7064feb](https://github.com/tsparticles/vue3/commit/7064feb638a503a0bb158c49d0a76d16142bede2))
+- **example:** remove console#log ([e537e3a](https://github.com/tsparticles/vue3/commit/e537e3ae2fb2fbc101f6ef18f2f5dec518407f34))
 
 ### Features
 
-* updated for v3 ([c49ca9f](https://github.com/tsparticles/vue3/commit/c49ca9f1aec1f7ddaa0de7806291a5c4c78eb848))
-
-
-
-
+- updated for v3 ([c49ca9f](https://github.com/tsparticles/vue3/commit/c49ca9f1aec1f7ddaa0de7806291a5c4c78eb848))
 
 # [2.12.0](https://github.com/tsparticles/vue3/compare/v2.11.1...v2.12.0) (2023-08-04)
 
 **Note:** Version bump only for package vue3-demo
 
-
-
-
-
 ## [2.11.1](https://github.com/tsparticles/vue3/compare/v2.11.0...v2.11.1) (2023-07-27)
-
 
 ### Bug Fixes
 
-* fixed issue with engine not loading correctly, closes: [#26](https://github.com/tsparticles/vue3/issues/26) ([94e5215](https://github.com/tsparticles/vue3/commit/94e521546b7ed008d7b980e999ca30d0ce3d49db))
-
-
-
-
+- fixed issue with engine not loading correctly, closes: [#26](https://github.com/tsparticles/vue3/issues/26) ([94e5215](https://github.com/tsparticles/vue3/commit/94e521546b7ed008d7b980e999ca30d0ce3d49db))
 
 # [2.11.0](https://github.com/tsparticles/vue3/compare/v2.10.1...v2.11.0) (2023-07-14)
 
 **Note:** Version bump only for package vue3-demo
 
-
-
-
-
 ## 2.10.1 (2023-06-04)
-
 
 ### Features
 
-* adding vue-particles tag ([8b12d56](https://github.com/tsparticles/vue3/commit/8b12d5654515d52729ea7902f5e16806ddd48422))
-
-
-
-
+- adding vue-particles tag ([8b12d56](https://github.com/tsparticles/vue3/commit/8b12d5654515d52729ea7902f5e16806ddd48422))
 
 ## [0.9.3](https://github.com/matteobruni/tsparticles/compare/vue3-demo@0.9.2...vue3-demo@0.9.3) (2023-02-12)
 
@@ -158,4 +137,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed correctly both [#4031](https://github.com/matteobruni/tsparticles/issues/4031) and [#4385](https://github.com/matteobruni/tsparticles/issues/4385) ([6b57b69](https://github.com/matteobruni/tsparticles/commit/6b57b69585f931478118bd466dcdce9bbc90fa79))
+- fixed correctly both [#4031](https://github.com/matteobruni/tsparticles/issues/4031) and [#4385](https://github.com/matteobruni/tsparticles/issues/4385) ([6b57b69](https://github.com/matteobruni/tsparticles/commit/6b57b69585f931478118bd466dcdce9bbc90fa79))

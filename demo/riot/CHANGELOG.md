@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+**Note:** Version bump only for package @tsparticles/riot-demo
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.9.2...riot-particles-demo@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package riot-particles-demo
@@ -35,7 +39,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+- added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
 
 ## [2.5.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.5.2...riot-particles-demo@2.5.3) (2022-11-07)
 
@@ -97,7 +101,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
+- **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
 
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.1.3...riot-particles-demo@2.1.4) (2022-07-28)
 
@@ -127,29 +131,29 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   upgrade riot from 6.1.1 to 6.1.2 ([5eaa71c](https://github.com/matteobruni/tsparticles/commit/5eaa71c8d4af857a6829b2c1b371921e2d9f53e1))
+- upgrade riot from 6.1.1 to 6.1.2 ([5eaa71c](https://github.com/matteobruni/tsparticles/commit/5eaa71c8d4af857a6829b2c1b371921e2d9f53e1))
 
 ## [2.0.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.17.1...riot-particles-demo@2.0.4) (2022-04-06)
 
 ### Bug Fixes
 
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.1...riot-particles-demo@2.0.3) (2022-03-11)
 
 ### Bug Fixes
 
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.4...riot-particles-demo@2.0.2) (2022-02-21)
 
@@ -189,16 +193,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.0.0...riot-particles-demo@2.0.1) (2022-02-15)
 
--   fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+- fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 ## [1.15.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.3...riot-particles-demo@1.15.4) (2022-02-20)
 
@@ -216,37 +220,37 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.13.2...riot-particles-demo@2.0.0-beta.5) (2022-01-30)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.15.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.0...riot-particles-demo@1.15.1) (2022-02-14)
 
 ### Bug Fixes
 
--   upgrade riot from 6.0.4 to 6.1.1 ([9e22dbd](https://github.com/matteobruni/tsparticles/commit/9e22dbda3869f16657266b5d4cc096947502c864))
+- upgrade riot from 6.0.4 to 6.1.1 ([9e22dbd](https://github.com/matteobruni/tsparticles/commit/9e22dbda3869f16657266b5d4cc096947502c864))
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.0.0-beta.3...riot-particles-demo@2.0.0-beta.4) (2021-12-07)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.11.5...riot-particles-demo@2.0.0-beta.3) (2021-12-04)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [1.15.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.14.2...riot-particles-demo@1.15.0) (2022-02-10)
 
@@ -268,7 +272,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.0.0-beta.0...riot-particles-demo@2.0.0-beta.1) (2021-10-06)
 
@@ -332,7 +336,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.9.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.9.2...riot-particles-demo@1.9.3) (2021-10-03)
 
@@ -358,8 +362,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
 
 ## [1.7.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.7.2...riot-particles-demo@1.7.3) (2021-08-10)
 

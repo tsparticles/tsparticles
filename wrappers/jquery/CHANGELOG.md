@@ -3,17 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 3.0.0 (2023-12-26)
-
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
 ### Features
 
-* completed transition to v3 ([a6af1b6](https://github.com/tsparticles/jquery/commit/a6af1b64e72361ba3ed349ff2d218656c247e9de))
-* migrated to v3 ([d6f1e64](https://github.com/tsparticles/jquery/commit/d6f1e6481c02b9ad835fd5b9b85ae1570ee89bac))
+- improving other wrappers to make them similar to React, Vue and Angular ones ([4dccf8e](https://github.com/tsparticles/tsparticles/commit/4dccf8eb0fe4ac29f8240673c77e0701cdbd15b1))
+- improving other wrappers to make them similar to React, Vue and Angular ones ([aee371e](https://github.com/tsparticles/tsparticles/commit/aee371eb4f879899bd4fc7b9d8e6957a88637c36))
 
+# 3.0.0 (2023-12-26)
 
+### Features
 
-
+- completed transition to v3 ([a6af1b6](https://github.com/tsparticles/jquery/commit/a6af1b64e72361ba3ed349ff2d218656c247e9de))
+- migrated to v3 ([d6f1e64](https://github.com/tsparticles/jquery/commit/d6f1e6481c02b9ad835fd5b9b85ae1570ee89bac))
 
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.9.2...jquery-particles@2.9.3) (2023-02-12)
 
@@ -95,7 +97,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
 
 ## [2.2.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.2.0...jquery-particles@2.2.1) (2022-08-12)
 
@@ -105,12 +107,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
--   **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
+- **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+- **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
 
 ### Features
 
--   added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+- added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
 
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.1.3...jquery-particles@2.1.4) (2022-07-28)
 
@@ -132,10 +134,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
--   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
--   **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
--   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+- **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+- **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+- **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+- **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
 
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.0.5...jquery-particles@2.0.6) (2022-04-16)
 
@@ -149,41 +151,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
--   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.42.1...jquery-particles@2.0.3) (2022-03-11)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
--   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.41.4...jquery-particles@2.0.2) (2022-02-21)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
--   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.43.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.43.0...jquery-particles@1.43.1) (2022-04-06)
 
@@ -239,14 +241,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
--   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.39.2...jquery-particles@2.0.0-beta.4) (2022-01-30)
 
@@ -274,19 +276,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 ## [1.39.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.39.1...jquery-particles@1.39.2) (2022-01-29)
 
 ### Bug Fixes
 
--   **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+- **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.0.0-beta.2...jquery-particles@2.0.0-beta.3) (2021-12-07)
 
@@ -302,25 +304,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.35.4...jquery-particles@2.0.0-beta.1) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.35.3...jquery-particles@2.0.0-beta.0) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.37.6](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.5...jquery-particles@1.37.6) (2021-12-24)
 
 ### Bug Fixes
 
--   fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+- fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.4...jquery-particles@1.37.5) (2021-11-28)
 
@@ -378,13 +380,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
 
 ## [1.33.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.33.2...jquery-particles@1.33.3) (2021-08-10)
 
 ### Features
 
--   added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+- added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
 
 ## [1.33.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.33.1...jquery-particles@1.33.2) (2021-07-31)
 

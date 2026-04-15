@@ -3,65 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+**Note:** Version bump only for package @tsparticles/svelte-demo
+
 ## [3.1.1](https://github.com/tsparticles/svelte/compare/v3.1.0...v3.1.1) (2024-05-26)
 
 **Note:** Version bump only for package svelte-demo
-
-
-
-
 
 # [3.1.0](https://github.com/tsparticles/svelte/compare/v3.0.0...v3.1.0) (2024-05-26)
 
 **Note:** Version bump only for package svelte-demo
 
-
-
-
-
 # [3.0.0](https://github.com/tsparticles/svelte/compare/v2.12.0...v3.0.0) (2023-12-24)
-
 
 ### Features
 
-* migrated to v3, used new init structure ([bee139b](https://github.com/tsparticles/svelte/commit/bee139bd3466725681212a5d662060cd2f1b3dc2))
-* updated to v3, needs new initialization function to replace particlesInit ([404d847](https://github.com/tsparticles/svelte/commit/404d847673d7d6d830b8ecf9433e4bd468a475fd))
-
-
-
-
+- migrated to v3, used new init structure ([bee139b](https://github.com/tsparticles/svelte/commit/bee139bd3466725681212a5d662060cd2f1b3dc2))
+- updated to v3, needs new initialization function to replace particlesInit ([404d847](https://github.com/tsparticles/svelte/commit/404d847673d7d6d830b8ecf9433e4bd468a475fd))
 
 # [2.12.0](https://github.com/tsparticles/svelte/compare/v2.11.0...v2.12.0) (2023-08-04)
 
 **Note:** Version bump only for package svelte-demo
 
-
-
-
-
 # [2.11.0](https://github.com/tsparticles/svelte/compare/v2.10.1...v2.11.0) (2023-07-15)
 
 **Note:** Version bump only for package svelte-demo
-
-
-
-
 
 ## [2.10.1](https://github.com/tsparticles/svelte/compare/v2.10.0...v2.10.1) (2023-06-08)
 
 **Note:** Version bump only for package svelte-demo
 
-
-
-
-
 # 2.10.0 (2023-06-08)
 
 **Note:** Version bump only for package svelte-demo
-
-
-
-
 
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@2.9.2...svelte-demo@2.9.3) (2023-02-12)
 
@@ -187,11 +162,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.1...svelte-demo@2.0.3) (2022-03-11)
 
@@ -203,15 +178,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.4...svelte-demo@2.0.2) (2022-02-21)
 
--   upgrade sirv-cli from 2.0.1 to 2.0.2 ([70f74fe](https://github.com/matteobruni/tsparticles/commit/70f74fed6693561fac9f259b3de6ea16a9c2fa32))
+- upgrade sirv-cli from 2.0.1 to 2.0.2 ([70f74fe](https://github.com/matteobruni/tsparticles/commit/70f74fed6693561fac9f259b3de6ea16a9c2fa32))
 
 ## [1.25.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.3...svelte-demo@1.25.4) (2022-03-20)
 
@@ -241,15 +216,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@2.0.0...svelte-demo@2.0.1) (2022-02-15)
 
--   fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+- fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 ## [1.24.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.3...svelte-demo@1.24.4) (2022-02-20)
 
@@ -267,27 +242,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.2...svelte-demo@2.0.0-beta.5) (2022-01-30)
 
 ### Bug Fixes
 
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@2.0.0-beta.3...svelte-demo@2.0.0-beta.4) (2021-12-07)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.20.5...svelte-demo@2.0.0-beta.3) (2021-12-04)
 
@@ -367,8 +342,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
 
 ## [1.16.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.2...svelte-demo@1.16.3) (2021-08-10)
 
@@ -376,13 +351,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed issues with svelte 3.41.0 ([113c1c9](https://github.com/matteobruni/tsparticles/commit/113c1c9675eb365dedbedbc8ea39a8116ef66da8))
+- fixed issues with svelte 3.41.0 ([113c1c9](https://github.com/matteobruni/tsparticles/commit/113c1c9675eb365dedbedbc8ea39a8116ef66da8))
 
 ## [1.16.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.1...svelte-demo@1.16.2) (2021-07-31)
 
 ### Bug Fixes
 
--   fixed svelte component, reverted to an older svelte version for now, closes [#1924](https://github.com/matteobruni/tsparticles/issues/1924) ([80a88be](https://github.com/matteobruni/tsparticles/commit/80a88beaeb8a11b83c3f602234da0ec2cfadc10e))
+- fixed svelte component, reverted to an older svelte version for now, closes [#1924](https://github.com/matteobruni/tsparticles/issues/1924) ([80a88be](https://github.com/matteobruni/tsparticles/commit/80a88beaeb8a11b83c3f602234da0ec2cfadc10e))
 
 ## [1.16.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.0...svelte-demo@1.16.1) (2021-07-29)
 
@@ -456,7 +431,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package svelte-demo
 
--   removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+- removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
 
 # [1.1.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.5...svelte-demo@1.1.0-alpha.6) (2020-08-11)
 

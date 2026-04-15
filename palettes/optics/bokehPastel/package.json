@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-bokeh-pastel",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles bokeh pastel optics palette",
   "homepage": "https://particles.js.org",
   "scripts": {

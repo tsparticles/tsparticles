@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ionic-demo",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -30,10 +30,10 @@
     "@stencil/core": "^4.43.3",
     "@tsparticles/angular": "workspace:^",
     "@tsparticles/basic": "workspace:^",
+    "@tsparticles/canvas-utils": "workspace:^",
     "@tsparticles/configs": "workspace:^",
     "@tsparticles/effect-trail": "workspace:^",
     "@tsparticles/engine": "workspace:^",
-    "@tsparticles/canvas-utils": "workspace:^",
     "@tsparticles/interaction-external-attract": "workspace:^",
     "@tsparticles/interaction-external-bounce": "workspace:^",
     "@tsparticles/interaction-external-bubble": "workspace:^",

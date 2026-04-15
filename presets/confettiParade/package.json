@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-parade",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles confetti parade preset",
   "homepage": "https://particles.js.org",
   "scripts": {

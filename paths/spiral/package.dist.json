@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-spiral",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles spiral path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -103,8 +103,8 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.11",
-    "@tsparticles/plugin-move": "4.0.0-beta.11"
+    "@tsparticles/engine": "4.0.0-beta.12",
+    "@tsparticles/plugin-move": "4.0.0-beta.12"
   },
   "type": "module"
 }

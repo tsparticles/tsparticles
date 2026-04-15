@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue2",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "main": "dist/vue2-particles.umd.js",
   "module": "dist/vue2-particles.es.js",
   "types": "dist/index.d.ts",
@@ -135,10 +135,10 @@
     "vite": "^6.4.1",
     "vite-plugin-dts": "^4.5.4",
     "vue": "^2.7.16",
-    "vue-property-decorator": "^9.1.2",
     "vue-class-component": "^7.2.6",
-    "vue-template-compiler": "^2.7.16",
     "vue-eslint-parser": "^10.4.0",
+    "vue-property-decorator": "^9.1.2",
+    "vue-template-compiler": "^2.7.16",
     "vue-tsc": "^3.2.6"
   }
 }

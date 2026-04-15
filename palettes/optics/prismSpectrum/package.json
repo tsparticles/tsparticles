@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-prism-spectrum",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles prism spectrum optics palette",
   "homepage": "https://particles.js.org",
   "scripts": {

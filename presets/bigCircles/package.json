@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-big-circles",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.js.org",
   "scripts": {

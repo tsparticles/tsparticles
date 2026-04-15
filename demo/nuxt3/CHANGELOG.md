@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+### Features
+
+- added nuxt 3 wrapper ([0651770](https://github.com/tsparticles/tsparticles/commit/06517700e8a15d3274fcedead040721b90654dd4))
+- seen working Vue3 package after updates and merge back ([bb2b01a](https://github.com/tsparticles/tsparticles/commit/bb2b01a25780662a7325d3990695db97610a5148))
+
 ## [3.0.1](https://github.com/tsparticles/vue3/compare/v3.0.0...v3.0.1) (2024-03-06)
 
 **Note:** Version bump only for package nuxt3-particles-demo

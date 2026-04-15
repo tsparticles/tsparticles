@@ -3,38 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/tsparticles/preact/compare/v2.12.1...v3.0.0) (2023-12-30)
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
+**Note:** Version bump only for package @tsparticles/preact-demo
+
+# [3.0.0](https://github.com/tsparticles/preact/compare/v2.12.1...v3.0.0) (2023-12-30)
 
 ### Features
 
-* migrated to v3 ([4ea00d8](https://github.com/tsparticles/preact/commit/4ea00d85fae4df8c1ae124071f017c8b455a8c98))
-
-
-
-
+- migrated to v3 ([4ea00d8](https://github.com/tsparticles/preact/commit/4ea00d85fae4df8c1ae124071f017c8b455a8c98))
 
 ## [2.12.1](https://github.com/tsparticles/preact/compare/v2.12.0...v2.12.1) (2023-08-11)
 
-
 ### Bug Fixes
 
-* fixed issue with component update ([e674d8a](https://github.com/tsparticles/preact/commit/e674d8abdec99dd80ad589109b9c0bc411909e46))
-
-
-
-
+- fixed issue with component update ([e674d8a](https://github.com/tsparticles/preact/commit/e674d8abdec99dd80ad589109b9c0bc411909e46))
 
 # 2.12.0 (2023-08-04)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency preact-render-to-string to v6 ([50d2e5f](https://github.com/tsparticles/preact/commit/50d2e5fb2521592e12db43888a664cd65e8f5a39))
-
-
-
-
+- **deps:** update dependency preact-render-to-string to v6 ([50d2e5f](https://github.com/tsparticles/preact/commit/50d2e5fb2521592e12db43888a664cd65e8f5a39))
 
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.9.2...preact-particles-demo@2.9.3) (2023-02-12)
 
@@ -128,17 +117,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+- **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
 
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.1.3...preact-particles-demo@2.1.4) (2022-07-28)
 
 ### Bug Fixes
 
--   upgrade preact from 10.8.1 to 10.8.2 ([b66330b](https://github.com/matteobruni/tsparticles/commit/b66330bd3af1cb14ea47abc6d1b62f6a0e8854e2))
+- upgrade preact from 10.8.1 to 10.8.2 ([b66330b](https://github.com/matteobruni/tsparticles/commit/b66330bd3af1cb14ea47abc6d1b62f6a0e8854e2))
 
 ### Features
 
--   preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+- preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
 
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.1.2...preact-particles-demo@2.1.3) (2022-07-01)
 
@@ -156,8 +145,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
--   upgrade preact-render-to-string from 5.1.20 to 5.1.21 ([f2fc2b9](https://github.com/matteobruni/tsparticles/commit/f2fc2b9d4cb454dfbae3e13f747b0392f135d537))
+- **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+- upgrade preact-render-to-string from 5.1.20 to 5.1.21 ([f2fc2b9](https://github.com/matteobruni/tsparticles/commit/f2fc2b9d4cb454dfbae3e13f747b0392f135d537))
 
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.0.5...preact-particles-demo@2.0.6) (2022-04-16)
 
@@ -167,19 +156,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   upgrade preact-router from 4.0.0 to 4.0.1 ([c8740e1](https://github.com/matteobruni/tsparticles/commit/c8740e13db83fb95cdbd980f0b531e6ac1e09ff9))
+- upgrade preact-router from 4.0.0 to 4.0.1 ([c8740e1](https://github.com/matteobruni/tsparticles/commit/c8740e13db83fb95cdbd980f0b531e6ac1e09ff9))
 
 ## [2.0.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.28.1...preact-particles-demo@2.0.4) (2022-04-06)
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
--   **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+- **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@2.0.3) (2022-03-11)
 
@@ -195,18 +184,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
--   **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+- **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@2.0.2) (2022-02-21)
 
--   upgrade preact from 10.6.5 to 10.6.6 ([525d1b7](https://github.com/matteobruni/tsparticles/commit/525d1b7e6145bcbbd205235982c2478796c882d2))
--   upgrade preact-render-to-string from 5.1.19 to 5.1.20 ([1b85be0](https://github.com/matteobruni/tsparticles/commit/1b85be0123f24a9cf23e54e70ba2c0dbabe0c0f1))
+- upgrade preact from 10.6.5 to 10.6.6 ([525d1b7](https://github.com/matteobruni/tsparticles/commit/525d1b7e6145bcbbd205235982c2478796c882d2))
+- upgrade preact-render-to-string from 5.1.19 to 5.1.20 ([1b85be0](https://github.com/matteobruni/tsparticles/commit/1b85be0123f24a9cf23e54e70ba2c0dbabe0c0f1))
 
 ## [1.27.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.2...preact-particles-demo@1.27.3) (2022-03-18)
 
@@ -232,16 +221,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.0.0...preact-particles-demo@2.0.1) (2022-02-15)
 
--   fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+- fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.3...preact-particles-demo@1.26.4) (2022-02-20)
 
@@ -259,12 +248,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.2...preact-particles-demo@2.0.0-beta.5) (2022-01-30)
 
@@ -272,14 +261,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
--   **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+- **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+- **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
--   **deps:** update dependency preact-router to v4 ([c80c3a3](https://github.com/matteobruni/tsparticles/commit/c80c3a39d7dcc44d6c173e360c7a9a07d4f60efb))
--   upgrade preact from 10.5.14 to 10.6.4 ([0e83038](https://github.com/matteobruni/tsparticles/commit/0e830385d790f8f84b875aefc7fdbcda19f01b12))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- **deps:** update dependency preact-router to v4 ([c80c3a3](https://github.com/matteobruni/tsparticles/commit/c80c3a39d7dcc44d6c173e360c7a9a07d4f60efb))
+- upgrade preact from 10.5.14 to 10.6.4 ([0e83038](https://github.com/matteobruni/tsparticles/commit/0e830385d790f8f84b875aefc7fdbcda19f01b12))
 
 # [1.26.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.2...preact-particles-demo@1.26.0) (2022-02-10)
 
@@ -327,7 +316,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+- added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.4...preact-particles-demo@2.0.0-beta.2) (2021-10-06)
 
@@ -393,7 +382,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
 
 ## [1.18.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.18.2...preact-particles-demo@1.18.3) (2021-08-10)
 

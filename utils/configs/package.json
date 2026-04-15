@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/configs",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",

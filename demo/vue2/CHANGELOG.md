@@ -3,41 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 3.0.0 (2023-12-22)
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
+**Note:** Version bump only for package @tsparticles/vue2-demo
+
+# 3.0.0 (2023-12-22)
 
 ### Features
 
-* improving init function for v3 ([24a83a0](https://github.com/tsparticles/vue2/commit/24a83a043c552dad4fa42ced026367698fe73da3))
-* preparing v3 ([7d7b0b9](https://github.com/tsparticles/vue2/commit/7d7b0b9e78894a19ce9e064c1ea05260f1d7e4e8))
-
-
-
-
+- improving init function for v3 ([24a83a0](https://github.com/tsparticles/vue2/commit/24a83a043c552dad4fa42ced026367698fe73da3))
+- preparing v3 ([7d7b0b9](https://github.com/tsparticles/vue2/commit/7d7b0b9e78894a19ce9e064c1ea05260f1d7e4e8))
 
 # [2.12.0](https://github.com/tsparticles/vue2/compare/vue2-particles-demo@2.11.0...vue2-particles-demo@2.12.0) (2023-08-04)
 
 **Note:** Version bump only for package vue2-particles-demo
 
-
-
-
-
 # [2.11.0](https://github.com/tsparticles/vue2/compare/vue2-particles-demo@2.10.0...vue2-particles-demo@2.11.0) (2023-07-14)
 
 **Note:** Version bump only for package vue2-particles-demo
 
-
-
-
-
 # 2.10.0 (2023-06-04)
 
 **Note:** Version bump only for package vue2-particles-demo
-
-
-
-
 
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/vue2-particles-demo@2.9.2...vue2-particles-demo@2.9.3) (2023-02-12)
 
@@ -115,13 +102,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([91f7890](https://github.com/matteobruni/tsparticles/commit/91f78904474b9b021c783342c5968e3debe035c4))
+- fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([91f7890](https://github.com/matteobruni/tsparticles/commit/91f78904474b9b021c783342c5968e3debe035c4))
 
 ## [2.2.3](https://github.com/matteobruni/tsparticles/compare/vue2-particles-demo@2.2.2...vue2-particles-demo@2.2.3) (2022-08-21)
 
 ### Bug Fixes
 
--   fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([ac97f83](https://github.com/matteobruni/tsparticles/commit/ac97f83d470efcb51a3b1942edd7536574c54bad))
+- fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([ac97f83](https://github.com/matteobruni/tsparticles/commit/ac97f83d470efcb51a3b1942edd7536574c54bad))
 
 ## [2.2.2](https://github.com/matteobruni/tsparticles/compare/vue2-particles-demo@2.2.1...vue2-particles-demo@2.2.2) (2022-08-16)
 
@@ -139,20 +126,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
--   fixed package.json typos ([5c0cb15](https://github.com/matteobruni/tsparticles/commit/5c0cb15e21efa547b5253a57d4497686eecfbe61))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+- fixed package.json typos ([5c0cb15](https://github.com/matteobruni/tsparticles/commit/5c0cb15e21efa547b5253a57d4497686eecfbe61))
 
 ### Features
 
--   added confetti cannon preset ([625eeff](https://github.com/matteobruni/tsparticles/commit/625eeffa151b7d236f25414e8464628f166d0478))
--   added sizeOffset option to destroy split section ([a6b9ba0](https://github.com/matteobruni/tsparticles/commit/a6b9ba0e207f7976c7a91fe1e2091e7fd40effb4))
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
--   created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
--   preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- added confetti cannon preset ([625eeff](https://github.com/matteobruni/tsparticles/commit/625eeffa151b7d236f25414e8464628f166d0478))
+- added sizeOffset option to destroy split section ([a6b9ba0](https://github.com/matteobruni/tsparticles/commit/a6b9ba0e207f7976c7a91fe1e2091e7fd40effb4))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
+- created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
+- preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.1.2...particles.vue-demo@2.1.3) (2022-07-01)
 
@@ -182,22 +169,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.27.1...particles.vue-demo@2.0.3) (2022-03-11)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.26.4...particles.vue-demo@2.0.2) (2022-02-21)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.28.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.28.0...particles.vue-demo@1.28.1) (2022-04-06)
 
@@ -235,7 +222,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+- fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0...particles.vue-demo@2.0.1) (2022-02-15)
 
@@ -255,8 +242,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.2...particles.vue-demo@2.0.0-beta.5) (2022-01-30)
 
@@ -284,21 +271,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0-beta.3...particles.vue-demo@2.0.0-beta.4) (2021-12-07)
 
 ### Features
 
--   async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+- async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.5...particles.vue-demo@2.0.0-beta.3) (2021-12-04)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.4...particles.vue-demo@2.0.0-beta.2) (2021-10-06)
 
@@ -330,7 +317,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0-beta.0...particles.vue-demo@2.0.0-beta.1) (2021-10-06)
 
@@ -362,7 +349,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.20.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.2...particles.vue-demo@1.20.3) (2021-10-03)
 
@@ -388,7 +375,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
 
 ## [1.18.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.18.2...particles.vue-demo@1.18.3) (2021-08-10)
 
@@ -438,7 +425,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
+- created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
 
 # [1.3.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.2.9...particles.vue-demo@1.3.0-alpha.14) (2020-08-22)
 
@@ -512,7 +499,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
+- changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
 
 # [1.2.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.2.0-alpha.9...particles.vue-demo@1.2.0-alpha.10) (2020-06-29)
 

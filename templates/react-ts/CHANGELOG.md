@@ -3,65 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/tsparticles/react/compare/v2.12.2...v3.0.0) (2023-12-07)
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
+**Note:** Version bump only for package cra-template-particles-typescript
+
+# [3.0.0](https://github.com/tsparticles/react/compare/v2.12.2...v3.0.0) (2023-12-07)
 
 ### Bug Fixes
 
-* **deps:** update dependency @testing-library/jest-dom to v6 ([ba7f6c0](https://github.com/tsparticles/react/commit/ba7f6c08f5373eaf83838ba579c4a755353ac6b4))
-* fixed component, it was refreshing infinite times for a bug. now it works perfectly ([4ef5e81](https://github.com/tsparticles/react/commit/4ef5e8197f1364e3a62c8262ae04c9272457047a))
-
+- **deps:** update dependency @testing-library/jest-dom to v6 ([ba7f6c0](https://github.com/tsparticles/react/commit/ba7f6c08f5373eaf83838ba579c4a755353ac6b4))
+- fixed component, it was refreshing infinite times for a bug. now it works perfectly ([4ef5e81](https://github.com/tsparticles/react/commit/4ef5e8197f1364e3a62c8262ae04c9272457047a))
 
 ### Features
 
-* added particles setup function (name not definitive), updated to v3 ([e164c66](https://github.com/tsparticles/react/commit/e164c669b515d30057059ef8f7a8d35ff562b5e3))
-
-
-
-
+- added particles setup function (name not definitive), updated to v3 ([e164c66](https://github.com/tsparticles/react/commit/e164c669b515d30057059ef8f7a8d35ff562b5e3))
 
 ## [3.0.0-beta.1](https://github.com/tsparticles/react/compare/v2.12.1...v3.0.0-beta.1) (2023-08-11)
 
 **Note:** Version bump only for package cra-template-particles-typescript
 
-
-
-
-
 ## [2.12.1](https://github.com/tsparticles/react/compare/v3.0.0-beta.1...v2.12.1) (2023-08-04)
 
 **Note:** Version bump only for package cra-template-particles-typescript
-
-
-
-
 
 # [3.0.0-beta.1](https://github.com/tsparticles/react/compare/v2.11.0...v3.0.0-beta.1) (2023-08-04)
 
 **Note:** Version bump only for package cra-template-particles-typescript
 
-
-
-
-
 # [2.11.0](https://github.com/tsparticles/react/compare/v2.10.1...v2.11.0) (2023-07-14)
 
 **Note:** Version bump only for package cra-template-particles-typescript
 
-
-
-
-
 ## 2.10.1 (2023-06-04)
-
 
 ### Features
 
-* updated templates to React 18 ([d9ae354](https://github.com/tsparticles/react/commit/d9ae354d71f245e85009c96007bd59df7bd422c8))
-
-
-
-
+- updated templates to React 18 ([d9ae354](https://github.com/tsparticles/react/commit/d9ae354d71f245e85009c96007bd59df7bd422c8))
 
 ## [2.9.3](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.9.2...cra-template-particles-typescript@2.9.3) (2023-02-12)
 
@@ -91,13 +68,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   improved density values, now is 1:1 with number on 1080 resolution with pixel ratio of 1 ([3ff8fbf](https://github.com/tsparticles/tsparticles/commit/3ff8fbfefb01f1d6fe8be836c3c2909b74630475))
+- improved density values, now is 1:1 with number on 1080 resolution with pixel ratio of 1 ([3ff8fbf](https://github.com/tsparticles/tsparticles/commit/3ff8fbfefb01f1d6fe8be836c3c2909b74630475))
 
 # [2.6.0](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.5.3...cra-template-particles-typescript@2.6.0) (2022-12-06)
 
 ### Bug Fixes
 
--   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+- **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
 
 ## [2.5.3](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.5.2...cra-template-particles-typescript@2.5.3) (2022-11-07)
 
@@ -119,7 +96,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+- removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 
 ## [2.3.4](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.3.3...cra-template-particles-typescript@2.3.4) (2022-09-30)
 
@@ -153,7 +130,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
 
 ## [2.2.1](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.2.0...cra-template-particles-typescript@2.2.1) (2022-08-12)
 
@@ -167,7 +144,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   preparing @tsparticles/react and switching alternate packages ([49e749e](https://github.com/tsparticles/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+- preparing @tsparticles/react and switching alternate packages ([49e749e](https://github.com/tsparticles/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
 
 ## [2.1.3](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.1.2...cra-template-particles-typescript@2.1.3) (2022-07-01)
 
@@ -185,8 +162,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/tsparticles/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
--   fixed react-tsparticles typescript template ([04a4d10](https://github.com/tsparticles/tsparticles/commit/04a4d100b97bd5828d7346c7277c5b47bd8f9208))
+- **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/tsparticles/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+- fixed react-tsparticles typescript template ([04a4d10](https://github.com/tsparticles/tsparticles/commit/04a4d100b97bd5828d7346c7277c5b47bd8f9208))
 
 ## [2.0.6](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.0.5...cra-template-particles-typescript@2.0.6) (2022-04-16)
 
@@ -200,19 +177,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.42.1...cra-template-particles-typescript@2.0.3) (2022-03-11)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.41.4...cra-template-particles-typescript@2.0.2) (2022-02-21)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.43.1](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.43.0...cra-template-particles-typescript@1.43.1) (2022-04-06)
 
@@ -268,7 +245,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.22.2...cra-template-particles-typescript@2.0.0-beta.5) (2022-01-30)
 
@@ -296,8 +273,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 # [2.0.0-beta.4](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.0.0-beta.3...cra-template-particles-typescript@2.0.0-beta.4) (2021-12-07)
 
@@ -325,13 +302,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.2](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.18.4...cra-template-particles-typescript@2.0.0-beta.2) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@2.0.0-beta.0...cra-template-particles-typescript@2.0.0-beta.1) (2021-10-06)
 
@@ -371,7 +348,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.18.3](https://github.com/tsparticles/tsparticles/compare/cra-template-particles-typescript@1.18.2...cra-template-particles-typescript@1.18.3) (2021-10-03)
 

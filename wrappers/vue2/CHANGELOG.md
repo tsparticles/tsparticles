@@ -3,41 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 3.0.0 (2023-12-22)
-
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
 ### Features
 
-* improving init function for v3 ([24a83a0](https://github.com/tsparticles/vue2/commit/24a83a043c552dad4fa42ced026367698fe73da3))
-* preparing v3 ([7d7b0b9](https://github.com/tsparticles/vue2/commit/7d7b0b9e78894a19ce9e064c1ea05260f1d7e4e8))
+- improving other wrappers to make them similar to React, Vue and Angular ones ([4dccf8e](https://github.com/tsparticles/tsparticles/commit/4dccf8eb0fe4ac29f8240673c77e0701cdbd15b1))
+- vue2, vue3, nuxt2, nuxt3, nuxt4 wrappers are working ([9271928](https://github.com/tsparticles/tsparticles/commit/9271928b3056c7ad75a5f9a8ad5affa18f641c13))
 
+# 3.0.0 (2023-12-22)
 
+### Features
 
-
+- improving init function for v3 ([24a83a0](https://github.com/tsparticles/vue2/commit/24a83a043c552dad4fa42ced026367698fe73da3))
+- preparing v3 ([7d7b0b9](https://github.com/tsparticles/vue2/commit/7d7b0b9e78894a19ce9e064c1ea05260f1d7e4e8))
 
 # [2.12.0](https://github.com/tsparticles/vue2/compare/vue2-particles@2.11.0...vue2-particles@2.12.0) (2023-08-04)
 
 **Note:** Version bump only for package vue2-particles
 
-
-
-
-
 # [2.11.0](https://github.com/tsparticles/vue2/compare/vue2-particles@2.10.0...vue2-particles@2.11.0) (2023-07-14)
 
 **Note:** Version bump only for package vue2-particles
 
-
-
-
-
 # 2.10.0 (2023-06-04)
 
 **Note:** Version bump only for package vue2-particles
-
-
-
-
 
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.9.2...vue2-particles@2.9.3) (2023-02-12)
 
@@ -119,7 +109,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
 
 ## [2.2.1](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.2.0...vue2-particles@2.2.1) (2022-08-12)
 
@@ -129,13 +119,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
+- **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
 
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.1.3...vue2-particles@2.1.4) (2022-07-28)
 
 ### Features
 
--   preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+- preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
 
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.1.2...vue2-particles@2.1.3) (2022-07-01)
 
@@ -153,9 +143,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
--   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
--   **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+- **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+- **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+- **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
 
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.0.5...vue2-particles@2.0.6) (2022-04-16)
 

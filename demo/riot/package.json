@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/riot-demo",
   "private": true,
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -36,11 +36,11 @@
     "@riotjs/hot-reload": "^9.0.1",
     "@riotjs/lazy": "^9.0.0",
     "@riotjs/route": "^9.1.2",
+    "@tsparticles/configs": "workspace:^",
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/riot": "workspace:^",
     "path": "^0.12.7",
     "riot": "^9.1.2",
-    "@tsparticles/riot": "workspace:^",
-    "tsparticles": "workspace:^",
-    "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^"
+    "tsparticles": "workspace:^"
   }
 }

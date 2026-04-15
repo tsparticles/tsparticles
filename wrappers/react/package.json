@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/react",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/lib/index.d.ts",

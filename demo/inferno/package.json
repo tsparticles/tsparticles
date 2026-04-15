@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/inferno-demo",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "private": true,
   "description": "> TODO: description",
   "main": "index.js",
@@ -13,11 +13,11 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "dependencies": {
-    "inferno": "^8.0.5",
-    "@tsparticles/inferno": "workspace:^",
-    "tsparticles": "workspace:^",
     "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^"
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/inferno": "workspace:^",
+    "inferno": "^8.0.5",
+    "tsparticles": "workspace:^"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",

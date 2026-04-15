@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-fireworks-neon-stroke",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles fireworks neon stroke palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -98,7 +98,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-beta.0"
+    "@tsparticles/engine": "4.0.0-beta.12"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-fireworks-neon-stroke.min.js",

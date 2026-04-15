@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-falling",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles confetti falling preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,15 +99,15 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.0-beta.0",
-    "@tsparticles/engine": "4.0.0-beta.0",
-    "@tsparticles/palette-confetti": "4.0.0-beta.0",
-    "@tsparticles/plugin-motion": "4.0.0-beta.0",
-    "@tsparticles/shape-square": "4.0.0-beta.0",
-    "@tsparticles/updater-roll": "4.0.0-beta.0",
-    "@tsparticles/updater-rotate": "4.0.0-beta.0",
-    "@tsparticles/updater-tilt": "4.0.0-beta.0",
-    "@tsparticles/updater-wobble": "4.0.0-beta.0"
+    "@tsparticles/basic": "4.0.0-beta.12",
+    "@tsparticles/engine": "4.0.0-beta.12",
+    "@tsparticles/palette-confetti": "4.0.0-beta.12",
+    "@tsparticles/plugin-motion": "4.0.0-beta.12",
+    "@tsparticles/shape-square": "4.0.0-beta.12",
+    "@tsparticles/updater-roll": "4.0.0-beta.12",
+    "@tsparticles/updater-rotate": "4.0.0-beta.12",
+    "@tsparticles/updater-tilt": "4.0.0-beta.12",
+    "@tsparticles/updater-wobble": "4.0.0-beta.12"
   },
   "publishConfig": {
     "access": "public"

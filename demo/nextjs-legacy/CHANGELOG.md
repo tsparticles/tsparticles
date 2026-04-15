@@ -3,61 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/tsparticles/react/compare/v2.12.2...v3.0.0) (2023-12-07)
-
-
-### Bug Fixes
-
-* fixed component, it was refreshing infinite times for a bug. now it works perfectly ([4ef5e81](https://github.com/tsparticles/react/commit/4ef5e8197f1364e3a62c8262ae04c9272457047a))
-
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
 
 ### Features
 
-* added particles setup function (name not definitive), updated to v3 ([e164c66](https://github.com/tsparticles/react/commit/e164c669b515d30057059ef8f7a8d35ff562b5e3))
+- added next.js wrapper and updated react demos ([24c9095](https://github.com/tsparticles/tsparticles/commit/24c9095dcc61ac0d68544078f2137e473108139b))
 
+# [3.0.0](https://github.com/tsparticles/react/compare/v2.12.2...v3.0.0) (2023-12-07)
 
+### Bug Fixes
 
+- fixed component, it was refreshing infinite times for a bug. now it works perfectly ([4ef5e81](https://github.com/tsparticles/react/commit/4ef5e8197f1364e3a62c8262ae04c9272457047a))
 
+### Features
+
+- added particles setup function (name not definitive), updated to v3 ([e164c66](https://github.com/tsparticles/react/commit/e164c669b515d30057059ef8f7a8d35ff562b5e3))
 
 ## [3.0.0-beta.1](https://github.com/tsparticles/react/compare/v2.12.1...v3.0.0-beta.1) (2023-08-11)
 
 **Note:** Version bump only for package nextjs
 
-
-
-
-
 ## [2.12.1](https://github.com/tsparticles/react/compare/v3.0.0-beta.1...v2.12.1) (2023-08-04)
 
 **Note:** Version bump only for package nextjs
-
-
-
-
 
 # [3.0.0-beta.1](https://github.com/tsparticles/react/compare/v2.11.0...v3.0.0-beta.1) (2023-08-04)
 
 **Note:** Version bump only for package nextjs
 
-
-
-
-
 # [2.11.0](https://github.com/tsparticles/react/compare/v2.10.1...v2.11.0) (2023-07-14)
 
 **Note:** Version bump only for package nextjs
 
-
-
-
-
 ## 2.10.1 (2023-06-04)
 
 **Note:** Version bump only for package nextjs
-
-
-
-
 
 ## [0.11.3](https://github.com/tsparticles/tsparticles/compare/nextjs@0.11.2...nextjs@0.11.3) (2023-02-12)
 
@@ -131,7 +111,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency next to v12.2.4 [security] ([8ac6931](https://github.com/tsparticles/tsparticles/commit/8ac6931121a264d986f96e0a59db517ccb404451))
+- **deps:** update dependency next to v12.2.4 [security] ([8ac6931](https://github.com/tsparticles/tsparticles/commit/8ac6931121a264d986f96e0a59db517ccb404451))
 
 ## [0.4.4](https://github.com/tsparticles/tsparticles/compare/nextjs@0.4.2...nextjs@0.4.4) (2022-08-26)
 
@@ -157,7 +137,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   preparing @tsparticles/react and switching alternate packages ([49e749e](https://github.com/tsparticles/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+- preparing @tsparticles/react and switching alternate packages ([49e749e](https://github.com/tsparticles/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
 
 ## [0.3.3](https://github.com/tsparticles/tsparticles/compare/nextjs@0.3.2...nextjs@0.3.3) (2022-07-01)
 
@@ -175,7 +155,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+- **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
 
 ## [0.2.4](https://github.com/tsparticles/tsparticles/compare/nextjs@0.2.3...nextjs@0.2.4) (2022-04-16)
 
@@ -189,7 +169,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update react monorepo to v18 ([4a434e6](https://github.com/tsparticles/tsparticles/commit/4a434e6217f7b65291da2a053af8f2ded70c879c))
+- **deps:** update react monorepo to v18 ([4a434e6](https://github.com/tsparticles/tsparticles/commit/4a434e6217f7b65291da2a053af8f2ded70c879c))
 
 ## [0.2.1](https://github.com/tsparticles/tsparticles/compare/nextjs@0.2.0...nextjs@0.2.1) (2022-04-06)
 
@@ -199,7 +179,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update react monorepo to v18 ([79e531d](https://github.com/tsparticles/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+- **deps:** update react monorepo to v18 ([79e531d](https://github.com/tsparticles/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
 
 ## 0.1.1 (2022-03-20)
 
