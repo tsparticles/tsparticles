@@ -1,0 +1,90 @@
+<riot-particles>
+    <script>
+        import { tsParticles } from "@tsparticles/engine";
+
+        let oldId;
+        let initialized = false;
+        let initPromise;
+        let initCallback;
+
+        export async function initParticlesEngine(
+            cb,
+        ) {
+            if (initialized) {
+                return;
+            }
+
+            if (initPromise) {
+                if (initCallback !== cb) {
+                    throw new Error("initParticlesEngine callback must be stable across the app lifecycle.");
+                }
+
+                await initPromise;
+
+                return;
+            }
+
+            initCallback = cb;
+            initPromise = (async () => {
+                if (cb) {
+                    await cb(tsParticles);
+                }
+
+                await tsParticles.init();
+                initialized = true;
+            })().catch((error) => {
+                initPromise = undefined;
+                initCallback = undefined;
+                initialized = false;
+
+                throw error;
+            });
+
+            await initPromise;
+        }
+
+        export function isParticlesEngineInitialized() {
+            return initialized;
+        }
+
+        export async function waitForParticlesEngineInitialization() {
+            await (initPromise ?? Promise.resolve());
+        }
+
+        export default {
+            async onMounted(props) {
+                await waitForParticlesEngineInitialization();
+
+                if (!isParticlesEngineInitialized()) {
+                    throw new Error("initParticlesEngine(...) must be called once before mounting <riot-particles /> components.");
+                }
+
+                if (oldId) {
+                    const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
+
+                    if (oldContainer) {
+                        oldContainer.destroy();
+                    }
+                }
+
+                if (props.id) {
+                    const cb = (container) => {
+                        if (props.particlesLoaded) {
+                            props.particlesLoaded(container);
+                        }
+
+                        oldId = props.id;
+                    };
+
+                    tsParticles.load({ id: props.id, options: props.options, url: props.url }).then(cb);
+                } else {
+                    if (props.particlesLoaded) {
+                        props.particlesLoaded(undefined);
+                    }
+                }
+            }
+        }
+    </script>
+    <div id="{props.id}"></div>
+
+</riot-particles>

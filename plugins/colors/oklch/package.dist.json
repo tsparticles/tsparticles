@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-oklch-color",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles OKLCH color plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,7 +99,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.0-beta.11"
+    "@tsparticles/engine": "4.0.0-beta.12"
   },
   "publishConfig": {
     "access": "public"

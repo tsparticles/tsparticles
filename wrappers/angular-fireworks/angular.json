@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "pnpm",
+    "analytics": "c5dd724c-2bc7-4551-b48d-12fa415b8496"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-fireworks": {
+      "projectType": "library",
+      "root": "projects/ng-fireworks",
+      "sourceRoot": "projects/ng-fireworks/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-fireworks/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-fireworks/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-fireworks/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ng-fireworks/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-expo",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles easing expo plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

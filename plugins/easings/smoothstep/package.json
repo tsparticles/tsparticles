@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-smoothstep",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles easing smoothstep plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

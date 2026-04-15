@@ -1,0 +1,144 @@
+{
+  "name": "@tsparticles/vue2",
+  "version": "4.0.0-beta.12",
+  "main": "dist/vue2-particles.umd.js",
+  "module": "dist/vue2-particles.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vue2-particles.es.js",
+      "require": "./dist/vue2-particles.umd.js",
+      "default": "./dist/vue2-particles.umd.js"
+    }
+  },
+  "description": "Official tsParticles Vue.js 2.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 3.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "dev": "vite",
+    "build": "pnpm run clean && pnpm run prettify:src && pnpm run prettify:readme && vite build",
+    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vite build",
+    "preview": "vite preview --port 5050",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint . --fix",
+    "prettify:ci:src": "prettier --check ./src/*",
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:src": "prettier --write ./src/*",
+    "prettify:readme": "prettier --write ./README.md",
+    "prepack": "pnpm run build"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "unpkg": "dist/vue2-particles.umd.js",
+  "jsdelivr": "dist/vue2-particles.umd.js",
+  "repository": {
+    "url": "https://github.com/tsparticles/tsparticles.git",
+    "type": "git",
+    "directory": "wrappers/vue2"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "bugs": {
+    "url": "https://github.com/tsparticles/vue2/issues"
+  },
+  "homepage": "https://particles.js.org",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "peerDependencies": {
+    "vue": "^2.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tsparticles/prettier-config": "^3.4.6",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/parser": "^8.58.1",
+    "@vitejs/plugin-vue2": "^2.3.4",
+    "eslint": "^10.2.0",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.5.0",
+    "prettier": "^3.8.2",
+    "typescript": "^6.0.2",
+    "vite": "^6.4.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^2.7.16",
+    "vue-class-component": "^7.2.6",
+    "vue-eslint-parser": "^10.4.0",
+    "vue-property-decorator": "^9.1.2",
+    "vue-template-compiler": "^2.7.16",
+    "vue-tsc": "^3.2.6"
+  }
+}

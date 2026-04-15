@@ -33,6 +33,9 @@ html(lang="en")
                 #sidebar.col-3.p-0.h-100(style="overflow: auto; z-index: 10000;")
                     .row.p-1
                         .col
+                            .d-flex.gap-2.mb-2
+                                a.btn.btn-outline-info.btn-sm(href="/presets" target="_blank") Presets Catalog
+                                a.btn.btn-outline-warning.btn-sm(href="/palettes" target="_blank") Palettes Catalog
                             .input-group
                                 select.custom-select#presets
 
@@ -115,7 +118,7 @@ html(lang="en")
         script(src="/tsparticles-perlin-noise/tsparticles.perlin.noise.min.js")
         script(src="/tsparticles-simplex-noise/tsparticles.simplex.noise.min.js")
         script(src="/tsparticles-fractal-noise/tsparticles.fractal.noise.min.js")
-        script(src="/tsparticles-engine/tsparticles.engine.min.js")
+        script(src="/@tsparticles/engine/tsparticles.engine.min.js")
         script(src="/canvas-utils/tsparticles.canvas.utils.min.js")
         script(src="/path-utils/tsparticles.path.utils.min.js")
         script(src="/tsparticles-noise-field/tsparticles.noise.field.min.js")
@@ -130,6 +133,7 @@ html(lang="en")
         script(src="/interaction-external-bubble/tsparticles.interaction.external.bubble.min.js")
         script(src="/interaction-external-cannon/tsparticles.interaction.external.cannon.min.js")
         script(src="/interaction-external-connect/tsparticles.interaction.external.connect.min.js")
+        script(src="/interaction-external-destroy/tsparticles.interaction.external.destroy.min.js")
         script(src="/interaction-external-drag/tsparticles.interaction.external.drag.min.js")
         script(src="/interaction-external-grab/tsparticles.interaction.external.grab.min.js")
         script(src="/interaction-external-parallax/tsparticles.interaction.external.parallax.min.js")

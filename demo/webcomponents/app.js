@@ -1,0 +1,24 @@
+const express = require("express");
+const helmet = require("helmet");
+const stylus = require("stylus");
+
+const app = express();
+
+// app.use(helmet()); // Safari requires https, probably a bug
+
+const port = 3005;
+
+app.set("views", "./views");
+app.set("view engine", "pug");
+app.use(stylus.middleware("./public"));
+app.use(express.static("./public"));
+app.use("/tsparticles", express.static("./node_modules/tsparticles"));
+app.use("/@tsparticles/configs", express.static("./node_modules/@tsparticles/configs"));
+app.use("/@tsparticles/webcomponents", express.static("./node_modules/@tsparticles/webcomponents/dist"));
+app.use("/webcomponentsjs", express.static("./node_modules/@webcomponents/webcomponentsjs/"));
+
+app.get("/", function (req, res) {
+  res.render("index");
+});
+
+app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

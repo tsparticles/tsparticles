@@ -1,0 +1,27 @@
+{
+  "name": "@tsparticles/nextjs-legacy-demo",
+  "version": "4.0.0-beta.12",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:ci": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/nextjs": "workspace:*",
+    "@tsparticles/plugin-themes": "workspace:*",
+    "@tsparticles/slim": "workspace:*",
+    "next": "^16.2.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^16.2.3",
+    "eslint": "^10.2.0",
+    "eslint-config-next": "^16.2.3"
+  }
+}

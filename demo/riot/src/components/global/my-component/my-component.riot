@@ -1,0 +1,31 @@
+<my-component>
+    <p>{ props.message }</p>
+
+    <riot-particles if={state.particlesInitialized} id="tsparticles" options='{particlesConfig}' particlesInit='{particlesInit}'
+                    particlesLoaded='{particlesLoaded}'/>
+
+    <script>
+        import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+        import { loadFull } from "tsparticles";
+        import configs from "@tsparticles/configs";
+
+        export default {
+            components: {
+                RiotParticles
+            },
+            particlesConfig: configs.basic,
+            particlesLoaded: (container) => console.log(container),
+            onBeforeMount() {
+                this.state.particlesInitialized = false;
+
+                initParticlesEngine(async (engine) => {
+                    await loadFull(engine);
+
+                    console.log("particles initialized");
+                }).then(() => {
+                    this.update({ particlesInitialized: true });
+                })
+            },
+        }
+    </script>
+</my-component>

@@ -1,0 +1,44 @@
+{
+  "name": "@tsparticles/nuxt3-particles-demo",
+  "version": "4.0.0-beta.12",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint:js": "eslint .",
+    "lint:prettier": "prettier --check .",
+    "lint": "pnpm run lint:js && pnpm run lint:prettier",
+    "lintfix": "prettier --write --list-different . && pnpm run lint:js --fix"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --cache",
+    "*.**": "prettier --check --ignore-unknown"
+  },
+  "dependencies": {
+    "@babel/core": "^7.29.0",
+    "@eslint/js": "^10.0.1",
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/nuxt3": "workspace:^",
+    "@tsparticles/vue3": "workspace:^",
+    "@typescript-eslint/parser": "^8.58.1",
+    "@vue/reactivity": "^3.5.32",
+    "@vue/runtime-core": "^3.5.32",
+    "@vue/runtime-dom": "^3.5.32",
+    "@vue/shared": "^3.5.32",
+    "consola": "^3.4.2",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.5.0",
+    "lint-staged": "^16.4.0",
+    "nuxt": "^3.21.2",
+    "prettier": "^3.8.2",
+    "tsparticles": "workspace:^",
+    "typescript": "^6.0.2",
+    "vue": "^3.5.32",
+    "vue-eslint-parser": "^10.4.0"
+  }
+}

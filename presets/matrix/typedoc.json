@@ -1,0 +1,14 @@
+{
+  "includes": "./markdown",
+  "entryPoints": ["./src/"],
+  "entryPointStrategy": "expand",
+  "name": "tsParticles Matrix Preset",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}
+

@@ -5,6 +5,8 @@ import motionReduce from "./motionReduce.js";
 import mouseAttract from "./mouseAttract.js";
 import mouseBounce from "./mouseBounce.js";
 import mouseCannon from "./mouseCannon.js";
+import mouseDestroy from "./mouseDestroy.js";
+import mouseDestroyExplode from "./mouseDestroyExplode.js";
 import mouseDrag from "./mouseDrag.js";
 import mouseDragMomentum from "./mouseDragMomentum.js";
 import mouseFollow from "./mouseFollow.js";
@@ -27,6 +29,8 @@ export default {
   mouseAttract,
   mouseBounce,
   mouseCannon,
+  mouseDestroy,
+  mouseDestroyExplode,
   mouseDrag,
   mouseDragMomentum,
   mouseFollow,

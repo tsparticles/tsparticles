@@ -1,0 +1,25 @@
+import type { App } from "vue";
+import particles from "./vue-particles.vue";
+import {
+  createParticlesProviderContext,
+  type IParticlesProviderOptions,
+  initParticlesProvider,
+  particlesProviderKey,
+} from "./particles-provider";
+
+const VueParticles = (app: App, options?: IParticlesProviderOptions) => {
+  const context = createParticlesProviderContext();
+
+  app.provide(particlesProviderKey, context);
+  app.component("VueParticles", particles);
+
+  void initParticlesProvider(app, context, options?.init);
+};
+
+export default VueParticles;
+
+export type {
+  IParticlesProviderContext,
+  IParticlesProviderOptions,
+  ParticlesPluginRegistrar,
+} from "./particles-provider";

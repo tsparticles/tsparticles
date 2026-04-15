@@ -1,0 +1,11 @@
+{{!-- template-lint-disable no-implicit-this --}}
+<div
+  id='particles-{{unique-id-polyfill}}'
+  data-test-id='particles'
+  ...attributes
+  {{particles
+    options=@options
+    url=@url
+    particlesLoaded=@particlesLoaded
+  }}
+></div>

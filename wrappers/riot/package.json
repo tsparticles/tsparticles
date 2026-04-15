@@ -1,0 +1,114 @@
+{
+  "name": "@tsparticles/riot",
+  "version": "4.0.0-beta.12",
+  "description": "Official tsParticles Riot Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
+  "main": "dist/riot-particles.js",
+  "scripts": {
+    "build": "echo build",
+    "build:ci": "echo build",
+    "prettify:ci:src": "prettier --check ./src/*",
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:src": "prettier --write ./src/*",
+    "prettify:readme": "prettier --write ./README.md",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/riot"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/riot/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "peerDependencies": {
+    "riot": "^9.1.2"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@riotjs/cli": "^10.0.0",
+    "@riotjs/compiler": "^10.0.1",
+    "@tsparticles/prettier-config": "^3.4.6",
+    "chai": "^6.2.2",
+    "esm": "^3.2.25",
+    "jsdom": "^29.0.2",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^11.7.5",
+    "nyc": "^18.0.0",
+    "prettier": "^3.8.2",
+    "riot": "^10.1.3"
+  }
+}

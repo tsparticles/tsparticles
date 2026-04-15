@@ -35,9 +35,9 @@
     ],
     "sharedGlobals": [
       "{workspaceRoot}/nx.json",
-      "{workspaceRoot}/package.json",
       "{workspaceRoot}/tsconfig.json",
-      "{workspaceRoot}/pnpm-lock.yaml"
+      "{workspaceRoot}/lerna.json",
+      "{workspaceRoot}/pnpm-workspace.yaml"
     ],
     "production": [
       "{projectRoot}/src/**/*",

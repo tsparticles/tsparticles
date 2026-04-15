@@ -1,0 +1,120 @@
+{
+  "name": "@tsparticles/svelte",
+  "version": "4.0.0-beta.12",
+  "description": "Official tsParticles Svelte Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/svelte"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "scripts": {
+    "dev": "vite dev",
+    "build": "pnpm run format && vite build && npm run package",
+    "build:ci": "vite build && npm run package",
+    "preview": "vite preview",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "svelte": "^4.2.17"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/kit": "^2.57.1",
+    "@sveltejs/package": "^2.5.7",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-svelte": "^3.17.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-svelte": "^3.5.1",
+    "publint": "^0.3.18",
+    "svelte": "^5.55.3",
+    "svelte-check": "^4.4.6",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8"
+  },
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module"
+}

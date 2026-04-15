@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+
+# tsup
+tsup.config.bundled_*.{m,c,}s

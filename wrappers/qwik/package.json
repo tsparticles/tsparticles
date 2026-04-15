@@ -1,0 +1,55 @@
+{
+  "name": "@tsparticles/qwik",
+  "version": "4.0.0-beta.12",
+  "description": "Official tsParticles Qwik Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.",
+  "main": "./lib/index.qwik.mjs",
+  "qwik": "./lib/index.qwik.mjs",
+  "types": "./lib-types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.qwik.mjs",
+      "require": "./lib/index.qwik.cjs",
+      "types": "./lib-types/index.d.ts"
+    }
+  },
+  "files": [
+    "lib",
+    "lib-types"
+  ],
+  "engines": {
+    "node": ">=15.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "echo build",
+    "build.lib": "vite build --mode lib",
+    "build.types": "tsc --emitDeclarationOnly",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "release": "np",
+    "start": "vite --open --mode ssr",
+    "qwik": "qwik"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "1.19.2",
+    "@types/eslint": "9.6.1",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/eslint-plugin": "8.58.2",
+    "@typescript-eslint/parser": "8.58.2",
+    "eslint": "10.2.0",
+    "eslint-plugin-qwik": "latest",
+    "np": "11.0.3",
+    "prettier": "3.8.2",
+    "tsparticles": "workspace:^",
+    "typescript": "6.0.2",
+    "undici": "8.1.0",
+    "vite": "8.0.8",
+    "vite-tsconfig-paths": "6.1.1"
+  }
+}

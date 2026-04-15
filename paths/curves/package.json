@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-curves",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org",
   "scripts": {

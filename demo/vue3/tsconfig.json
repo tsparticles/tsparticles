@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "@tsconfig/node18/tsconfig.json",
+    "@vue/tsconfig/tsconfig.dom.json"
+  ],
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "resolveJsonModule": true
+  }
+}

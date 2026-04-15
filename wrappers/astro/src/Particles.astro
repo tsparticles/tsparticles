@@ -1,0 +1,68 @@
+---
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+
+export interface IParticlesProps {
+    id: string;
+    loaded?: string;
+    options?: ISourceOptions;
+    url?: string;
+}
+
+const { id, loaded, options, url } = Astro.props as IParticlesProps;
+---
+<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url}
+                 data-loaded={loaded}>
+    <canvas></canvas>
+</astro-particles>
+
+<script>
+    import { tsParticles } from "@tsparticles/engine";
+    import {
+        isParticlesEngineInitialized,
+        waitForParticlesEngineInitialization,
+    } from "./initParticlesEngine";
+
+    function getGlobalStore(): Record<string, unknown> {
+        return window as unknown as Record<string, unknown>;
+    }
+
+    class AstroParticles extends HTMLElement {
+        constructor() {
+            super();
+
+            (async () => {
+                await waitForParticlesEngineInitialization();
+
+                if (!isParticlesEngineInitialized()) {
+                    throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+                }
+
+                const globalStore = getGlobalStore();
+
+                let container;
+
+                if (this.dataset.url) {
+                    container = await tsParticles.load({
+                        id: this.dataset.id,
+                        url: this.dataset.url,
+                    });
+                } else if (this.dataset.options) {
+                    container = await tsParticles.load({
+                        id: this.dataset.id,
+                        options: JSON.parse(this.dataset.options),
+                    });
+                }
+
+                if (this.dataset.loaded && this.dataset.loaded in globalStore) {
+                    const loadedFn = globalStore[this.dataset.loaded];
+
+                    if (loadedFn instanceof Function) {
+                        loadedFn(container);
+                    }
+                }
+            })();
+        }
+    }
+
+    customElements.define("astro-particles", AstroParticles);
+</script>

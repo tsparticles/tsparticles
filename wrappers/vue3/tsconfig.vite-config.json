@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@tsconfig/node18/tsconfig.json",
+    "@vue/tsconfig/tsconfig.dom.json"//,
+    //"@vue/tsconfig/tsconfig.lib.json"
+  ],
+  "include": [
+    "vite.config.*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "types": [
+      "node"
+    ]
+  }
+}

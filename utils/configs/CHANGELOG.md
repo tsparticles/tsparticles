@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-04-15)
+
+### Features
+
+- added explode destroy mode and destroy external interactor ([e6dfdd8](https://github.com/tsparticles/tsparticles/commit/e6dfdd88c3295cceffbf813ff809587b30b54417))
+- new destroy mode: explode ([a7ab84c](https://github.com/tsparticles/tsparticles/commit/a7ab84c2618eb3e17d0c801267406248a7d4a2e6))
+
 # [4.0.0-beta.11](https://github.com/tsparticles/tsparticles/compare/v4.0.0-beta.10...v4.0.0-beta.11) (2026-04-08)
 
 **Note:** Version bump only for package @tsparticles/configs

@@ -12,6 +12,14 @@ export type DestroyParticlesOptions = ParticlesOptions & {
 
 export type DestroyParticle = Particle & {
   destroyBounds?: Partial<IBounds>;
+  exploding?: {
+    initialFillOpacity: number;
+    initialSize: number;
+    initialStrokeOpacity: number;
+    maxSize: number;
+    progress: number;
+    speed: number;
+  };
   options: DestroyParticlesOptions;
   /**
    * Sets the count of particles created when destroyed with split mode

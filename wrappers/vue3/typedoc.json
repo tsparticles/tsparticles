@@ -1,0 +1,15 @@
+{
+  "includes": "./markdown",
+  "entryPoints": [
+    "./src/"
+  ],
+  "entryPointStrategy": "expand",
+  "name": "tsParticles Vue 3.x Component",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}

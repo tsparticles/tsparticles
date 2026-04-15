@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-cubic",
-  "version": "4.0.0-beta.11",
+  "version": "4.0.0-beta.12",
   "description": "tsParticles easing cubic plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

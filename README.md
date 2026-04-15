@@ -44,33 +44,39 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
     - [**_Usage_**](#usage)
   - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
     - [Angular](#angular)
-      - [`@tsparticles/angular`](#@tsparticles/angular)
+      - [`@tsparticles/angular`](#tsparticlesangular)
     - [Astro](#astro)
-      - [`astro-particles`](#astro-particles)
+      - [`@tsparticles/astro`](#tsparticlesastro)
     - [Ember.js](#emberjs)
-      - [`ember-tsparticles`](#ember-tsparticles)
+      - [`@tsparticles/ember`](#tsparticlesember)
     - [Inferno](#inferno)
-      - [`inferno-particles`](#inferno-particles)
+      - [`@tsparticles/inferno`](#tsparticlesinferno)
     - [jQuery](#jquery)
-      - [`jquery-particles`](#jquery-particles)
+      - [`@tsparticles/jquery`](#tsparticlesjquery)
     - [Preact](#preact)
-      - [`preact-particles`](#preact-particles)
+      - [`@tsparticles/preact`](#tsparticlespreact)
+    - [Qwik](#qwik)
+      - [`@tsparticles/qwik`](#tsparticlesqwik)
     - [ReactJS](#reactjs)
+      - [`@tsparticles/nextjs`](#tsparticlesnextjs)
       - [`@tsparticles/react`](#tsparticlesreact)
     - [RiotJS](#riotjs)
-      - [`riot-particles`](#riot-particles)
+      - [`@tsparticles/riot`](#tsparticlesriot)
     - [SolidJS](#solidjs)
-      - [`solid-particles`](#solid-particles)
+      - [`@tsparticles/solid`](#tsparticlessolid)
     - [Svelte](#svelte)
-      - [`@tsparticles/svelte`](#@tsparticles/svelte)
+      - [`@tsparticles/svelte`](#tsparticlessvelte)
     - [VueJS 2.x](#vuejs-2x)
+      - [`@tsparticles/nuxt2`](#tsparticlesnuxt2)
       - [`@tsparticles/vue2`](#tsparticlesvue2)
     - [VueJS 3.x](#vuejs-3x)
+      - [`@tsparticles/nuxt3`](#tsparticlesnuxt3)
+      - [`@tsparticles/nuxt4`](#tsparticlesnuxt4)
       - [`@tsparticles/vue3`](#tsparticlesvue3)
     - [Web Components](#web-components)
-      - [`web-particles`](#web-particles)
+      - [`@tsparticles/webcomponents`](#tsparticleswebcomponents)
     - [WordPress](#wordpress)
-      - [`@tsparticles/wordpress`](#@tsparticles/wordpress)
+      - [`@tsparticles/wordpress`](#tsparticleswordpress)
     - [Elementor](#elementor)
   - [Presets](#presets)
     - [Ambient](#ambient)
@@ -383,71 +389,85 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular)
 
-Instructions available [here](https://github.com/tsparticles/angular/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme)
 
 ### Astro
 
-#### `astro-particles`
+#### `@tsparticles/astro`
 
-[![npm](https://img.shields.io/npm/v/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/astro?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/astro) [![npm](https://img.shields.io/npm/dm/@tsparticles/astro?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/astro)
 
-Instructions available [here](https://github.com/tsparticles/astro/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme)
 
 ### Ember.js
 
-#### `ember-tsparticles`
+#### `@tsparticles/ember`
 
-[![npm](https://img.shields.io/npm/v/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/ember?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/ember) [![npm](https://img.shields.io/npm/dm/@tsparticles/ember?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/ember)
 
-Instructions available [here](https://github.com/tsparticles/ember/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme)
 
 ### Inferno
 
-#### `inferno-particles`
+#### `@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/inferno)
 
-Instructions available [here](https://github.com/tsparticles/inferno/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme)
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/jquery)
 
-Instructions available [here](https://github.com/tsparticles/jquery/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme)
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/preact)
 
-Instructions available [here](https://github.com/tsparticles/preact/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme)
+
+### Qwik
+
+#### `@tsparticles/qwik`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/qwik?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/qwik) [![npm](https://img.shields.io/npm/dm/@tsparticles/qwik?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/qwik)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme)
 
 ### ReactJS
+
+#### `@tsparticles/nextjs`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nextjs?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nextjs) [![npm](https://img.shields.io/npm/dm/@tsparticles/nextjs?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nextjs)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme)
 
 #### `@tsparticles/react`
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react)
 
-Instructions available [here](https://github.com/tsparticles/react/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme)
 
 ### RiotJS
 
-#### `riot-particles`
+#### `@tsparticles/riot`
 
-[![npm](https://img.shields.io/npm/v/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles) [![npm](https://img.shields.io/npm/dm/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/riot?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/riot) [![npm](https://img.shields.io/npm/dm/@tsparticles/riot?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/riot)
 
-You can find the instructions [here](https://github.com/tsparticles/riot/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme)
 
 ### SolidJS
 
-#### `solid-particles`
+#### `@tsparticles/solid`
 
-[![npm](https://img.shields.io/npm/v/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/solid?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/solid) [![npm](https://img.shields.io/npm/dm/@tsparticles/solid?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/solid)
 
-You can find the instructions [here](https://github.com/tsparticles/solid/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme)
 
 ### Svelte
 
@@ -455,31 +475,49 @@ You can find the instructions [here](https://github.com/tsparticles/solid/#readm
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte)
 
-Instructions available [here](https://github.com/tsparticles/svelte/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme)
 
 ### VueJS 2.x
+
+#### `@tsparticles/nuxt2`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt2)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme)
 
 #### `@tsparticles/vue2`
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2)
 
-Instructions available [here](https://github.com/tsparticles/vue2/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme)
 
 ### VueJS 3.x
+
+#### `@tsparticles/nuxt3`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt3)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme)
+
+#### `@tsparticles/nuxt4`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/nuxt4?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt4) [![npm](https://img.shields.io/npm/dm/@tsparticles/nuxt4?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/nuxt4)
+
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme)
 
 #### `@tsparticles/vue3`
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3)
 
-Instruction available [here](https://github.com/tsparticles/vue3/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme)
 
 ### Web Components
 
-#### `web-particles`
+#### `@tsparticles/webcomponents`
 
-[![npm](https://img.shields.io/npm/v/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/webcomponents?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![npm](https://img.shields.io/npm/dm/@tsparticles/webcomponents?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/webcomponents)
 
-You can find the instructions [here](https://github.com/tsparticles/webcomponents/#readme)
+Instructions available [here](https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme)
 
 ### WordPress
 

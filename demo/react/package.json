@@ -1,0 +1,27 @@
+{
+  "name": "@tsparticles/react-demo",
+  "version": "4.0.0-beta.12",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-themes": "workspace:*",
+    "@tsparticles/react": "workspace:^",
+    "@tsparticles/slim": "workspace:*",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "build:ci": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.0",
+    "vite": "^8.0.8"
+  }
+}

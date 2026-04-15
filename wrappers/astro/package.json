@@ -1,0 +1,103 @@
+{
+  "name": "@tsparticles/astro",
+  "version": "4.0.0-beta.12",
+  "description": "Official tsParticles Astro Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React.js, Riot.js, Solid.js, Inferno.",
+  "scripts": {
+    "build": "echo build",
+    "build:ci": "echo build:ci",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "url": "https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/astro",
+    "type": "git"
+  },
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "astro-component",
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "@tsparticles/react-js",
+    "@tsparticles/react.js",
+    "@tsparticles/react",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/tsparticles/astro/issues"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "peerDependencies": {
+    "astro": "^6.1.6"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "astro": "^6.1.6",
+    "typescript": "^5.9.3"
+  }
+}

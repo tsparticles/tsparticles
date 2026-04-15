@@ -14,8 +14,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  NODE_VERSION: "24"
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
   ZIP_CONCURRENCY: 5
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
 
@@ -32,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v6
         name: Setup Node.js
         with:
-          node-version: '24'
+          node-version: "24"
           registry-url: https://registry.npmjs.org
 
       - uses: pnpm/action-setup@v5.0.0
