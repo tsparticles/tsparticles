@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt3-particles-demo",
-  "version": "3.0.1",
+  "version": "4.0.0-beta.11",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/lit-demo",
-  "version": "2.9.3",
+  "version": "4.0.0-beta.11",
   "private": true,
   "description": "A simple web component",
   "type": "module",

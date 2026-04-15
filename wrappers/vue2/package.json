@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue2",
-  "version": "3.0.0",
+  "version": "4.0.0-beta.11",
   "main": "dist/vue2-particles.umd.js",
   "module": "dist/vue2-particles.es.js",
   "types": "dist/index.d.ts",

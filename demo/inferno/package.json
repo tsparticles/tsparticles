@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/inferno-demo",
-  "version": "2.9.3",
+  "version": "4.0.0-beta.11",
   "private": true,
   "description": "> TODO: description",
   "main": "index.js",

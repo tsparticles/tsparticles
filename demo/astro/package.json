@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/astro-demo",
   "type": "module",
-  "version": "2.10.0",
+  "version": "4.0.0-beta.11",
   "private": true,
   "scripts": {
     "dev": "astro dev",

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ionic-demo",
-  "version": "3.0.0",
+  "version": "4.0.0-beta.11",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
   "scripts": {

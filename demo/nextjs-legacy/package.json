@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nextjs-legacy-demo",
-  "version": "3.0.0",
+  "version": "4.0.0-beta.11",
   "private": true,
   "scripts": {
     "dev": "next dev",

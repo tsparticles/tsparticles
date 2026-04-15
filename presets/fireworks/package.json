@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fireworks",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.11",
   "description": "tsParticles fireworks preset",
   "homepage": "https://particles.js.org",
   "scripts": {
