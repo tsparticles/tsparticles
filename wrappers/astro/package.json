@@ -99,5 +99,8 @@
   "devDependencies": {
     "astro": "^6.1.6",
     "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -110,5 +110,8 @@
     "nyc": "^18.0.0",
     "prettier": "^3.8.2",
     "riot": "^10.1.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

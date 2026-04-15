@@ -90,5 +90,8 @@
   },
   "dependencies": {
     "tslib": "^2.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

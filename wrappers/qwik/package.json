@@ -51,5 +51,8 @@
     "undici": "8.1.0",
     "vite": "8.0.8",
     "vite-tsconfig-paths": "6.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
