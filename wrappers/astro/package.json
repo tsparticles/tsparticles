@@ -90,7 +90,14 @@
   "exports": {
     ".": "./index.ts"
   },
+  "peerDependencies": {
+    "astro": "^6.1.6"
+  },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "astro": "^6.1.6",
+    "typescript": "^5.9.3"
   }
 }

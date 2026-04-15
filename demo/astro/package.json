@@ -12,9 +12,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.6.4",
     "@tsparticles/astro": "workspace:^",
-    "tsparticles": "workspace:^",
-    "@tsparticles/engine": "workspace:^"
+    "@tsparticles/engine": "workspace:^",
+    "astro": "^6.1.6",
+    "tsparticles": "workspace:^"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "typescript": "^5.9.3"
   }
 }
