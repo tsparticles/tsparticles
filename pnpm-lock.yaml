@@ -2739,7 +2739,7 @@ importers:
         version: link:../../engine/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/preset-big-circles":
         specifier: workspace:*
         version: link:../../presets/bigCircles/dist
@@ -3415,70 +3415,70 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confetti:
+  palettes/confetti/default:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiGold:
+  palettes/confetti/defaultGold:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiMonochromeBlue:
+  palettes/confetti/defaultMonochromeBlue:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiMonochromeGreen:
+  palettes/confetti/defaultMonochromeGreen:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiMonochromePink:
+  palettes/confetti/defaultMonochromePink:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiNeon:
+  palettes/confetti/defaultNeon:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiPastel:
+  palettes/confetti/defaultPastel:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiPatriotic:
+  palettes/confetti/defaultPatriotic:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiRainbow:
+  palettes/confetti/defaultRainbow:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/confetti/confettiWinter:
+  palettes/confetti/defaultWinter:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -3604,14 +3604,14 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fire/fire:
+  palettes/fire/default:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fire/fireSeed:
+  palettes/fire/defaultSeed:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -3646,161 +3646,161 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksBlue:
+  palettes/fireworks/blue:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksBlueStroke:
+  palettes/fireworks/blueStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksCopper:
+  palettes/fireworks/copper:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksCopperStroke:
+  palettes/fireworks/copperStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksGold:
+  palettes/fireworks/gold:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksGoldStroke:
+  palettes/fireworks/goldStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksGreen:
+  palettes/fireworks/green:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksGreenStroke:
+  palettes/fireworks/greenStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksIce:
+  palettes/fireworks/ice:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksIceStroke:
+  palettes/fireworks/iceStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksMulticolor:
+  palettes/fireworks/multicolor:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksMulticolorStroke:
+  palettes/fireworks/multicolorStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksNeon:
+  palettes/fireworks/neon:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksNeonStroke:
+  palettes/fireworks/neonStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksPastel:
+  palettes/fireworks/pastel:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksPastelStroke:
+  palettes/fireworks/pastelStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksPurple:
+  palettes/fireworks/purple:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksPurpleStroke:
+  palettes/fireworks/purpleStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksRainbowStroke:
+  palettes/fireworks/rainbowStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksRed:
+  palettes/fireworks/red:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksRedStroke:
+  palettes/fireworks/redStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksSilver:
+  palettes/fireworks/silver:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/fireworks/fireworksSilverStroke:
+  palettes/fireworks/silverStroke:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -4059,35 +4059,35 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/pastel/pastelCool:
+  palettes/pastel/cool:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/pastel/pastelDream:
+  palettes/pastel/dream:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/pastel/pastelMint:
+  palettes/pastel/mint:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/pastel/pastelSunset:
+  palettes/pastel/sunset:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/pastel/pastelWarm:
+  palettes/pastel/warm:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -4283,35 +4283,35 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/vibrant/vibrant:
+  palettes/vibrant/default:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/vibrant/vibrantElectric:
+  palettes/vibrant/defaultElectric:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/vibrant/vibrantNeon:
+  palettes/vibrant/defaultNeon:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/vibrant/vibrantRetro:
+  palettes/vibrant/defaultRetro:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/vibrant/vibrantTropical:
+  palettes/vibrant/defaultTropical:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -4360,14 +4360,14 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/water/water:
+  palettes/water/default:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  palettes/water/waterSplash:
+  palettes/water/defaultSplash:
     dependencies:
       "@tsparticles/engine":
         specifier: workspace:*
@@ -4951,7 +4951,7 @@ importers:
         version: link:../../engine/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/plugin-emitters":
         specifier: workspace:*
         version: link:../../plugins/emitters/dist
@@ -4991,7 +4991,7 @@ importers:
         version: link:../../interactions/external/cannon/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/plugin-interactivity":
         specifier: workspace:*
         version: link:../../plugins/interactivity/dist
@@ -5028,7 +5028,7 @@ importers:
         version: link:../../engine/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/plugin-emitters":
         specifier: workspace:*
         version: link:../../plugins/emitters/dist
@@ -5062,7 +5062,7 @@ importers:
         version: link:../../engine/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/plugin-motion":
         specifier: workspace:*
         version: link:../../plugins/motion/dist
@@ -5093,7 +5093,7 @@ importers:
         version: link:../../engine/dist
       "@tsparticles/palette-confetti":
         specifier: workspace:*
-        version: link:../../palettes/confetti/confetti/dist
+        version: link:../../palettes/confetti/default/dist
       "@tsparticles/plugin-emitters":
         specifier: workspace:*
         version: link:../../plugins/emitters/dist
