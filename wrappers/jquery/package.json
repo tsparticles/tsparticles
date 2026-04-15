@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/jquery.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "wrappers/jquery"
   },
   "keywords": [

@@ -81,7 +81,7 @@
     "README.md"
   ],
   "repository": {
-    "url": "https://github.com/tsparticles/vue3",
+    "url": "https://github.com/tsparticles/tsparticles.git",
     "type": "git",
     "directory": "wrappers/vue3"
   },

@@ -5,7 +5,7 @@
   "homepage": "https://confetti.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/angular.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "components/confetti"
   },
   "keywords": [

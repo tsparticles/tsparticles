@@ -57,7 +57,7 @@
   ],
   "main": "dist/web-particles.js",
   "repository": {
-    "url": "https://github.com/tsparticles/webcomponents",
+    "url": "https://github.com/tsparticles/tsparticles.git",
     "type": "git",
     "directory": "wrappers/webcomponents"
   },

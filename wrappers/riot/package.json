@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/riot.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "wrappers/riot"
   },
   "keywords": [

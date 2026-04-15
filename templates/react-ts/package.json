@@ -65,7 +65,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/react.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "templates/react-ts"
   },
   "bugs": {

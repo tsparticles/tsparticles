@@ -5,7 +5,7 @@
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/presets.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "presets/hyperspace"
   },
   "keywords": [

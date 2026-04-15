@@ -5,7 +5,7 @@
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/palettes.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "palettes/fireworks/fireworksIceStroke"
   },
   "keywords": [

@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/preact.git"
+    "url": "git+https://github.com/tsparticles/tsparticles.git"
   },
   "eslintConfig": {
     "extends": "preact",

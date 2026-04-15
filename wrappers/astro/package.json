@@ -8,7 +8,7 @@
     "prepack": "pnpm run build"
   },
   "repository": {
-    "url": "https://github.com/tsparticles/astro",
+    "url": "https://github.com/tsparticles/tsparticles.git",
     "directory": "wrappers/astro",
     "type": "git"
   },
