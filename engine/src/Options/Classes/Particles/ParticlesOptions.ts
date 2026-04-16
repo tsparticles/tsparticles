@@ -1,7 +1,9 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { isArray, isNull } from "../../../Utils/TypeUtils.js";
+import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
+import { Fill } from "./Fill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
@@ -51,6 +53,10 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.number = new ParticlesNumber();
     this.opacity = new Opacity();
     this.paint = new Paint();
+    this.paint.color = new AnimatableColor();
+    this.paint.color.value = "#fff";
+    this.paint.fill = new Fill();
+    this.paint.fill.enable = true;
     this.reduceDuplicates = false;
     this.shape = new Shape();
     this.size = new Size();

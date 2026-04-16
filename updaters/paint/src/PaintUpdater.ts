@@ -1,9 +1,13 @@
 import {
+  AnimatableColor,
   type Container,
+  type IAnimatableColor,
   type IDelta,
   type IParticleUpdater,
   type Particle,
   type PluginManager,
+  type RecursivePartial,
+  type SingleOrMultiple,
   getHslAnimationFromHsl,
   getRangeValue,
   itemFromSingleOrMultiple,
@@ -27,15 +31,22 @@ export class PaintUpdater implements IParticleUpdater {
     const container = this._container,
       options = particle.options,
       paint = itemFromSingleOrMultiple(options.paint, particle.id, options.reduceDuplicates),
+      color = (paint as { color?: unknown } | undefined)?.color,
+      paintColor = (color ?? undefined) as SingleOrMultiple<string> | RecursivePartial<IAnimatableColor> | undefined,
       fill = paint?.fill,
       stroke = paint?.stroke;
 
     if (fill) {
+      const fillColor = AnimatableColor.create(
+        paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
+        fill.color,
+      );
+
       particle.fillEnabled = fill.enable;
       particle.fillOpacity = getRangeValue(fill.opacity);
-      particle.fillAnimation = fill.color.animation;
+      particle.fillAnimation = fillColor.animation;
 
-      const fillHslColor = rangeColorToHsl(this._pluginManager, fill.color);
+      const fillHslColor = rangeColorToHsl(this._pluginManager, fillColor);
 
       if (fillHslColor) {
         particle.fillColor = getHslAnimationFromHsl(
@@ -52,11 +63,16 @@ export class PaintUpdater implements IParticleUpdater {
     }
 
     if (stroke) {
+      const strokeColor = AnimatableColor.create(
+        paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
+        stroke.color,
+      );
+
       particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
       particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
-      particle.strokeAnimation = stroke.color?.animation;
+      particle.strokeAnimation = strokeColor.animation;
 
-      const strokeHslColor = rangeColorToHsl(this._pluginManager, stroke.color) ?? particle.getFillColor();
+      const strokeHslColor = rangeColorToHsl(this._pluginManager, strokeColor) ?? particle.getFillColor();
 
       if (strokeHslColor) {
         particle.strokeColor = getHslAnimationFromHsl(

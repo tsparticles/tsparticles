@@ -15,6 +15,9 @@ const options: ISourceOptions = {
       },
     },
     paint: {
+      fill: {
+        enable: false,
+      },
       stroke: {
         color: {
           value: ["#60a5fa", "#22d3ee", "#22c55e", "#fde047", "#f97316", "#ef4444"],

@@ -171,6 +171,9 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
         value: 0,
       },
       paint: {
+        fill: {
+          enable: false,
+        },
         stroke: {
           color: {
             value: options.colors,

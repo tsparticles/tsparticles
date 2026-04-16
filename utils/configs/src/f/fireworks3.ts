@@ -37,6 +37,9 @@ const thirdFactor = 3,
     },
     particles: {
       paint: {
+        fill: {
+          enable: false,
+        },
         stroke: {
           color: {
             value: [

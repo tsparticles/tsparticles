@@ -11,6 +11,9 @@ const options: ISourceOptions = {
       },
     },
     paint: {
+      fill: {
+        enable: false,
+      },
       stroke: {
         width: 1,
         color: { value: "#ffffff" },

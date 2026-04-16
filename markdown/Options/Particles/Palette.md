@@ -12,6 +12,7 @@ When a matching palette is registered, the engine imports particle defaults:
 
 - `paint.fill.enable`: copied from the palette settings
 - `paint.fill.color.value`: set to palette colors when fill is enabled
+- `paint.color.value`: imported as shared fallback when provided by the palette variant
 - `paint.stroke`: imported from palette stroke settings when present
 - `paint`: can be a single object or an array when the palette defines multiple variants
 - `blend.enable`: set to `true`

@@ -6,8 +6,20 @@ Defines particle painting options grouped under `paint`.
 
 | Key      | Type               | Notes                                |
 | -------- | ------------------ | ------------------------------------ |
+| `color`  | `IColor`           | Default fill/stroke color fallback   |
 | `fill`   | `IColorFill`       | Inner particle color options         |
 | `stroke` | `SingleOrMultiple` | Outline options, see {@link IStroke} |
+
+`paint.color` is used as the base color for both fill and stroke when their own `color` is not set. If `paint.fill.color` or
+`paint.stroke.color` are provided, they override `paint.color`.
+
+## Defaults
+
+- `paint.color.value`: `"#fff"`
+- `paint.fill.enable`: `true`
+
+These defaults are initialized in particle options and keep the historical behavior: particles are white and filled unless
+overridden.
 
 ## `fill` details
 
@@ -16,6 +28,9 @@ Defines particle painting options grouped under `paint`.
 ```json
 {
   "paint": {
+    "color": {
+      "value": "#22d3ee"
+    },
     "fill": {
       "enable": true,
       "color": {
@@ -33,6 +48,9 @@ Defines particle painting options grouped under `paint`.
 ```json
 {
   "paint": {
+    "color": {
+      "value": "#14b8a6"
+    },
     "stroke": {
       "width": 2,
       "color": {

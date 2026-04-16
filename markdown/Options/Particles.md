@@ -19,6 +19,7 @@ Use the links below to navigate to the detailed page for each sub-option.
 | `move`             | Movement direction, speed, and path                                         | [Move](./Particles/Move.md)             |
 | `number`           | How many particles exist and density rules                                  | [Number](./Particles/Number.md)         |
 | `opacity`          | Transparency and animated fading                                            | [Opacity](./Particles/Opacity.md)       |
+| `paint`            | Grouped fill/stroke painting options with shared color defaults             | [Paint](./Particles/Paint.md)           |
 | `orbit`            | Orbital rotation around a center point                                      | {@link IOrbit}                          |
 | `palette`          | Imports a named palette and applies fill/stroke + blend defaults            | [Palette](./Particles/Palette.md)       |
 | `reduceDuplicates` | When `true`, picks particle configs sequentially instead of randomly        | —                                       |
@@ -119,6 +120,11 @@ When a palette is found, tsParticles imports these defaults:
 ```
 
 If you set `paint.fill`, `paint.stroke`, or `blend` explicitly after `palette`, those values override imported defaults.
+
+Default paint behavior:
+
+- `paint.color.value` defaults to `"#fff"`
+- `paint.fill.enable` defaults to `true`
 
 ## reduceDuplicates
 

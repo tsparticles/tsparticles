@@ -177,6 +177,9 @@ const options: ISourceOptions = {
       },
     },
     paint: {
+      fill: {
+        enable: false,
+      },
       stroke: {
         color: {
           value: "#ffffff",
