@@ -57,6 +57,9 @@ html(lang="en")
                                                 .card-body
                                                     h5.card-title= item.title
                                                     p.card-text= item.description
-                                                    a.btn.btn-primary(href=item.route target="_blank") See demo
+                                                    .d-flex.gap-2.flex-wrap
+                                                        a.btn.btn-primary(href=item.route target="_blank") See demo
+                                                        if item.showcaseRoute
+                                                            a.btn.btn-outline-dark(href=item.showcaseRoute target="_blank")= item.showcaseLabel
 
         script(src="/bootstrap/js/bootstrap.bundle.min.js")

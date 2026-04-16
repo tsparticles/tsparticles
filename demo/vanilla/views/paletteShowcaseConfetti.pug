@@ -1,0 +1,199 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="description", content="tsParticles")
+    meta(name="author", content="Matteo Bruni")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:creator" content="@HollowMatt_ITA")
+    meta(name="twitter:image:src" content="https://particles.js.org/images/demo2.png")
+    meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+    meta(property="og:site_name" content="tsParticles")
+    meta(property="og:url" content="https://particles.js.org/")
+    meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+    meta(property="og:image" content="https://particles.js.org/images/demo2.png")
+
+    title= `tsParticles ${item.title} Confetti Showcase`
+
+    link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+    style.
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #2d1b69 0%, #1f0f42 45%, #0a0618 100%);
+        color: #f8f9fa;
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 20;
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+      }
+
+      .overlay .btn {
+        --bs-btn-padding-y: 0.2rem;
+        --bs-btn-padding-x: 0.55rem;
+        --bs-btn-font-size: 0.75rem;
+      }
+
+      #tsparticles {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+      }
+
+  body
+    #tsparticles
+    .overlay
+      a.btn.btn-light(href=item.route target="_blank") Open palette demo
+      a.btn.btn-outline-light(href="/palettes" target="_blank") Back to palettes
+
+    script(src="/bootstrap/js/bootstrap.bundle.min.js")
+    script(src="/tsparticles-all/tsparticles.all.bundle.min.js")
+    script(src=`${item.mountPath}/${item.scriptFile}`)
+    script.
+      (async (engine) => {
+        await loadAll(engine);
+        await #{item.loader}(engine);
+
+        const options = {
+          palette: "#{item.optionValue}",
+          fullScreen: {
+            enable: true,
+            zIndex: 100,
+          },
+          particles: {
+            number: {
+              value: 0,
+              density: {
+                enable: true,
+              },
+            },
+            shape: {
+              type: ["square", "circle"],
+            },
+            size: {
+              value: {
+                min: 3,
+                max: 5,
+              },
+            },
+            opacity: {
+              value: { min: 0, max: 1 },
+              animation: {
+                enable: true,
+                startValue: "max",
+                destroy: "min",
+                speed: 3,
+              },
+            },
+            move: {
+              angle: {
+                value: 45,
+                offset: 0,
+              },
+              drift: 0,
+              enable: true,
+              gravity: {
+                enable: true,
+                acceleration: 9.81,
+              },
+              speed: {
+                min: 15,
+                max: 25,
+              },
+              decay: 0.1,
+              random: true,
+              straight: false,
+              outModes: {
+                default: "destroy",
+                top: "none",
+              },
+            },
+            rotate: {
+              value: {
+                min: 0,
+                max: 360,
+              },
+              direction: "random",
+              move: true,
+              animation: {
+                enable: true,
+                speed: 60,
+              },
+            },
+            tilt: {
+              direction: "random",
+              enable: true,
+              value: {
+                min: 0,
+                max: 360,
+              },
+              animation: {
+                enable: true,
+                speed: 60,
+              },
+            },
+            roll: {
+              darken: {
+                enable: true,
+                value: 30,
+              },
+              enlighten: {
+                enable: true,
+                value: 30,
+              },
+              enable: true,
+              mode: "both",
+              speed: {
+                min: 15,
+                max: 25,
+              },
+            },
+            wobble: {
+              distance: 30,
+              enable: true,
+              move: true,
+              speed: {
+                min: -15,
+                max: 15,
+              },
+            },
+          },
+          emitters: {
+            name: "confetti",
+            size: {
+              width: 0,
+              height: 0,
+            },
+            rate: {
+              delay: 0,
+              quantity: 50,
+            },
+            life: {
+              count: 0,
+              duration: 0.1,
+              delay: 0.4,
+            },
+          },
+          motion: {
+            disable: true,
+          },
+        };
+
+        await engine.load({
+          id: "tsparticles",
+          options,
+        });
+      })(tsParticles);

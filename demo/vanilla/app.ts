@@ -74,6 +74,8 @@ interface CatalogItem {
   description: string;
   staticPath: string;
   category?: string;
+  showcaseRoute?: string;
+  showcaseLabel?: string;
 }
 
 interface PaletteGroup {
@@ -249,6 +251,10 @@ const loadPalettesCatalog = (): CatalogItem[] => {
       packageMetadata = readPalettePackageMetadata(fullPath, folder),
       title = parsePaletteName(fullPath, folder),
       sourceMetadata = readPaletteSourceMetadata(fullPath, folder, packageMetadata.slug),
+      isFireworksStroke = category === "fireworks" && /stroke$/iu.test(folder),
+      showcaseRoute = category === "confetti" || isFireworksStroke ? `/palettes/${paletteId}/showcase` : undefined,
+      showcaseLabel =
+        category === "confetti" ? "Confetti Example" : isFireworksStroke ? "Fireworks Example" : undefined,
       scriptFile = findGeneratedScript(
         path.join(fullPath, "dist"),
         `tsparticles.palette.${packageMetadata.slug}.min.js`,
@@ -269,6 +275,8 @@ const loadPalettesCatalog = (): CatalogItem[] => {
       description: `${title} palette demo`,
       staticPath: path.join(fullPath, "dist"),
       category,
+      showcaseRoute,
+      showcaseLabel,
     };
   });
 };
@@ -585,6 +593,38 @@ app.get("/palettes/:id", function (req, res) {
 
   logger.info(`palette ${req.params.id} requested`);
   res.render("palette", { item });
+});
+
+app.get("/palettes/:id/showcase", function (req, res) {
+  const item = palettesMap.get(req.params.id);
+
+  if (!item) {
+    res.status(404).send("Palette not found");
+
+    return;
+  }
+
+  if (!item.showcaseRoute) {
+    res.status(404).send("Showcase not available for this palette");
+
+    return;
+  }
+
+  if (item.category === "confetti") {
+    logger.info(`palette confetti showcase ${req.params.id} requested`);
+    res.render("paletteShowcaseConfetti", { item });
+
+    return;
+  }
+
+  if (item.category === "fireworks") {
+    logger.info(`palette fireworks showcase ${req.params.id} requested`);
+    res.render("paletteShowcaseFireworks", { item });
+
+    return;
+  }
+
+  res.status(404).send("Showcase not available for this palette");
 });
 
 for (const item of palettesCatalog) {

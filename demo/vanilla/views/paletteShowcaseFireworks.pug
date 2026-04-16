@@ -1,0 +1,217 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="description", content="tsParticles")
+    meta(name="author", content="Matteo Bruni")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:creator" content="@HollowMatt_ITA")
+    meta(name="twitter:image:src" content="https://particles.js.org/images/demo2.png")
+    meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+    meta(property="og:site_name" content="tsParticles")
+    meta(property="og:url" content="https://particles.js.org/")
+    meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+    meta(property="og:image" content="https://particles.js.org/images/demo2.png")
+
+    title= `tsParticles ${item.title} Fireworks Showcase`
+
+    link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+    style.
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #02030d 0%, #040b24 40%, #000000 100%);
+        color: #f8f9fa;
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 20;
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+      }
+
+      .overlay .btn {
+        --bs-btn-padding-y: 0.2rem;
+        --bs-btn-padding-x: 0.55rem;
+        --bs-btn-font-size: 0.75rem;
+      }
+
+      #tsparticles {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+      }
+
+  body
+    #tsparticles
+    .overlay
+      a.btn.btn-light(href=item.route target="_blank") Open palette demo
+      a.btn.btn-outline-light(href="/palettes" target="_blank") Back to palettes
+
+    script(src="/bootstrap/js/bootstrap.bundle.min.js")
+    script(src="/tsparticles-all/tsparticles.all.bundle.min.js")
+    script(src=`${item.mountPath}/${item.scriptFile}`)
+    script.
+      (async (engine) => {
+        await loadAll(engine);
+        await #{item.loader}(engine);
+
+        const options = {
+          palette: "#{item.optionValue}",
+          fullScreen: {
+            enable: true,
+          },
+          background: {
+            color: "#000",
+          },
+          blend: {
+            enable: true,
+            mode: "lighter",
+          },
+          emitters: {
+            direction: "top",
+            life: {
+              count: 0,
+              duration: 0.1,
+              delay: 0.1,
+            },
+            rate: {
+              delay: 0.1,
+              quantity: 1,
+            },
+            size: {
+              width: 100,
+              height: 0,
+            },
+            position: {
+              y: 100,
+              x: 50,
+            },
+          },
+          particles: {
+            number: {
+              value: 0,
+            },
+            destroy: {
+              bounds: {
+                top: { min: 10, max: 30 },
+              },
+              mode: "split",
+              split: {
+                count: 1,
+                factor: {
+                  value: 1/3,
+                },
+                rate: {
+                  value: 100,
+                },
+                strokeColorOffset: {
+                  l: {
+                    min: -30,
+                    max: 30,
+                  },
+                },
+                particles: {
+                  destroy: {
+                    bounds: {
+                      top: 0,
+                    },
+                  },
+                  opacity: {
+                    value: {
+                      min: 0.1,
+                      max: 1,
+                    },
+                    animation: {
+                      enable: true,
+                      speed: { min: 2, max: 4 },
+                      sync: true,
+                      startValue: "max",
+                      destroy: "min",
+                      count: 1,
+                    },
+                  },
+                  size: {
+                    value: { min: 5, max: 10 },
+                    animation: {
+                      enable: false,
+                    },
+                  },
+                  life: {
+                    count: 1,
+                    duration: {
+                      value: {
+                        min: 0.5,
+                        max: 1,
+                      },
+                    },
+                  },
+                  move: {
+                    gravity: {
+                      enable: false,
+                    },
+                    enable: true,
+                    decay: 0.05,
+                    speed: {
+                      min: 10,
+                      max: 25,
+                    },
+                    direction: "outside",
+                    outModes: "destroy",
+                  },
+                },
+              },
+            },
+            life: {
+              count: 1,
+            },
+            shape: {
+              type: "line",
+              options: {
+                line: {
+                  cap: "round",
+                },
+              },
+            },
+            size: {
+              value: { min: 10, max: 20 },
+            },
+            move: {
+              enable: true,
+              gravity: {
+                acceleration: 30,
+                enable: true,
+                inverse: true,
+                maxSpeed: 150,
+              },
+              speed: {
+                min: 20,
+                max: 40,
+              },
+              outModes: {
+                default: "destroy",
+                top: "none",
+              },
+            },
+            rotate: {
+              path: true,
+            },
+          },
+        };
+
+        await engine.load({
+          id: "tsparticles",
+          options,
+        });
+      })(tsParticles);
