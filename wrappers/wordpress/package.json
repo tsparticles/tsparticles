@@ -135,7 +135,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.29.0",
-		"@babel/runtime": "^7.29.2",
+		"@babel/runtime": "^7.23.6",
 		"@wordpress/block-editor": "^15.16.0",
 		"@wordpress/browserslist-config": "^6.43.0",
 		"@wordpress/blocks": "^15.16.0",
