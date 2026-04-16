@@ -91,6 +91,6 @@
     "@tsparticles/engine": "^"
   },
   "dependencies": {
-    "tslib": "^2.6.2"
+    "tslib": "^2.8.1"
   }
 }
