@@ -2933,9 +2933,9 @@ importers:
       minimatch:
         specifier: ^10.2.5
         version: 10.2.5
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
+      npm-run-all2:
+        specifier: ^5.0.0
+        version: 5.0.2
       prettier:
         specifier: ^3.8.2
         version: 3.8.2
@@ -3226,15 +3226,6 @@ importers:
         specifier: workspace:*
         version: link:../../plugins/interactivity/dist
     publishDirectory: dist
-
-  interactions/light/dist:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: 4.0.0-beta.12
-        version: link:../../../engine/dist
-      '@tsparticles/plugin-interactivity':
-        specifier: 4.0.0-beta.12
-        version: link:../../../plugins/interactivity/dist
 
   interactions/particles/attract:
     devDependencies:
@@ -6412,9 +6403,9 @@ importers:
       loader.js:
         specifier: ^4.7.0
         version: 4.7.0
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
+      npm-run-all2:
+        specifier: ^5.0.0
+        version: 5.0.2
       prettier:
         specifier: ^3.8.2
         version: 3.8.2
@@ -14693,6 +14684,7 @@ packages:
 
   '@simple-git/argv-parser@1.1.0':
     resolution: {integrity: sha512-sUKOu2lb5vGIWADNNLpscyj07DAeQZU3KLbnE2Tj53tW6BbDQKMly2CCfnR4oYzqtRELCPWfwaPg+Q0T8qfKBg==}
+    deprecated: Contains a breaking change that should be a major version bump
 
   '@simple-libs/child-process-utils@1.0.2':
     resolution: {integrity: sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw==}
@@ -15783,9 +15775,6 @@ packages:
 
   '@types/node@25.6.0':
     resolution: {integrity: sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==}
-
-  '@types/normalize-package-data@2.4.1':
-    resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -27413,9 +27402,9 @@ packages:
     resolution: {integrity: sha512-TakBap6OM1w0H73VZVDf44iFXsOS3h+L4wVMXmbWOQroZgFhMch0juN6XSzBNlD965yIKvWg2dfu7NSiaYLxtw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  npm-run-all@4.1.5:
-    resolution: {integrity: sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==}
-    engines: {node: '>= 4'}
+  npm-run-all2@5.0.2:
+    resolution: {integrity: sha512-S2G6FWZ3pNWAAKm2PFSOtEAG/N+XO/kz3+9l6V91IY+Y3XFSt7Lp7DV92KCgEboEW0hRTu0vFaMe4zXDZYaOyA==}
+    engines: {node: '>= 10'}
     hasBin: true
 
   npm-run-path@2.0.2:
@@ -28248,8 +28237,8 @@ packages:
   picomodal@3.0.0:
     resolution: {integrity: sha512-FoR3TDfuLlqUvcEeK5ifpKSVVns6B4BQvc8SDF6THVMuadya6LLtji0QgUDSStw0ZR2J7I6UGi5V2V23rnPWTw==}
 
-  pidtree@0.3.1:
-    resolution: {integrity: sha512-qQbW94hLHEqCg7nhby4yRC7G2+jYHY4Rguc2bjw7Uug4GIJuu1tvf2uHaZv5Q8zdt+WKJ6qK1FOI6amaWUo5FA==}
+  pidtree@0.5.0:
+    resolution: {integrity: sha512-9nxspIM7OpZuhBxPg73Zvyq7j1QMPMPsGKTqRc2XOaFQauDvoNz9fM1Wdkjmeo7l9GXOZiRs97sPkuayl39wjA==}
     engines: {node: '>=0.10'}
     hasBin: true
 
@@ -31629,10 +31618,6 @@ packages:
 
   string.prototype.matchall@4.0.12:
     resolution: {integrity: sha512-6CC9uyBL+/48dYizRf7H7VAYCMCNTBeM78x/VTUe9bFEaxBepPJDa1Ow99LqI/1yF7kuy7Q3cQsYMrcjGUcskA==}
-    engines: {node: '>= 0.4'}
-
-  string.prototype.padend@3.1.6:
-    resolution: {integrity: sha512-XZpspuSB7vJWhvJc9DLSlrXl1mcA2BdoY5jjnS135ydXqLoqhs96JjDtCkjJEQHvfqZIp9hBuBMgI589peyx9Q==}
     engines: {node: '>= 0.4'}
 
   string.prototype.repeat@1.0.0:
@@ -36062,7 +36047,7 @@ snapshots:
       browser-or-node: 3.0.0
       diff: 8.0.4
       json5: 2.2.3
-      type-fest: 5.4.4
+      type-fest: 5.5.0
 
   '@babel/code-frame@7.29.0':
     dependencies:
@@ -38347,7 +38332,7 @@ snapshots:
     dependencies:
       '@types/luxon': 3.7.1
       luxon: 3.7.2
-      type-fest: 5.4.4
+      type-fest: 5.5.0
 
   '@discoveryjs/json-ext@0.5.7': {}
 
@@ -45277,6 +45262,26 @@ snapshots:
     dependencies:
       ember-resolver: 13.2.0
 
+  '@types/ember@4.0.11':
+    dependencies:
+      '@types/ember__application': 4.0.11(@babel/core@7.29.0)
+      '@types/ember__array': 4.0.10
+      '@types/ember__component': 4.0.22
+      '@types/ember__controller': 4.0.12
+      '@types/ember__debug': 4.0.8
+      '@types/ember__engine': 4.0.11
+      '@types/ember__error': 4.0.6
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__polyfills': 4.0.6
+      '@types/ember__routing': 4.0.23
+      '@types/ember__runloop': 4.0.10
+      '@types/ember__service': 4.0.9
+      '@types/ember__string': 3.0.15
+      '@types/ember__template': 4.0.7
+      '@types/ember__test': 4.0.6(@babel/core@7.29.0)
+      '@types/ember__utils': 4.0.7
+      '@types/rsvp': 4.0.9
+
   '@types/ember@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.29.0)
@@ -45312,6 +45317,11 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__array@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
+
   '@types/ember__array@4.0.10(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
@@ -45319,6 +45329,11 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__component@4.0.22':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
 
   '@types/ember__component@4.0.22(@babel/core@7.29.0)':
     dependencies:
@@ -45328,12 +45343,21 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__controller@4.0.12':
+    dependencies:
+      '@types/ember__object': 4.0.12
+
   '@types/ember__controller@4.0.12(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__debug@4.0.8':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
 
   '@types/ember__debug@4.0.8(@babel/core@7.29.0)':
     dependencies:
@@ -45345,6 +45369,11 @@ snapshots:
 
   '@types/ember__destroyable@4.0.5': {}
 
+  '@types/ember__engine@4.0.11':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
+
   '@types/ember__engine@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
@@ -45354,6 +45383,11 @@ snapshots:
       - supports-color
 
   '@types/ember__error@4.0.6': {}
+
+  '@types/ember__object@4.0.12':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/rsvp': 4.0.9
 
   '@types/ember__object@4.0.12(@babel/core@7.29.0)':
     dependencies:
@@ -45367,15 +45401,26 @@ snapshots:
 
   '@types/ember__polyfills@4.0.6': {}
 
+  '@types/ember__routing@4.0.23':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__controller': 4.0.12
+      '@types/ember__object': 4.0.12
+      '@types/ember__service': 4.0.9
+
   '@types/ember__routing@4.0.23(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__controller': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__controller': 4.0.12
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
-      '@types/ember__service': 4.0.9(@babel/core@7.29.0)
+      '@types/ember__service': 4.0.9
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__runloop@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__runloop@4.0.10(@babel/core@7.29.0)':
     dependencies:
@@ -45383,6 +45428,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__service@4.0.9':
+    dependencies:
+      '@types/ember__object': 4.0.12
 
   '@types/ember__service@4.0.9(@babel/core@7.29.0)':
     dependencies:
@@ -45409,6 +45458,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__utils@4.0.7':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__utils@4.0.7(@babel/core@7.29.0)':
     dependencies:
@@ -45691,8 +45744,6 @@ snapshots:
   '@types/node@25.6.0':
     dependencies:
       undici-types: 7.19.2
-
-  '@types/normalize-package-data@2.4.1': {}
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -56785,7 +56836,7 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.4
+      minimatch: 3.1.5
       once: 1.4.0
       path-is-absolute: 1.0.1
 
@@ -62437,17 +62488,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  npm-run-all@4.1.5:
+  npm-run-all2@5.0.2:
     dependencies:
-      ansi-styles: 3.2.1
-      chalk: 2.4.2
-      cross-spawn: 6.0.6
+      ansi-styles: 5.2.0
+      cross-spawn: 7.0.6
       memorystream: 0.3.1
-      minimatch: 3.1.4
-      pidtree: 0.3.1
-      read-pkg: 3.0.0
+      minimatch: 3.1.5
+      pidtree: 0.5.0
+      read-pkg: 5.2.0
       shell-quote: 1.8.3
-      string.prototype.padend: 3.1.6
 
   npm-run-path@2.0.2:
     dependencies:
@@ -64161,7 +64210,7 @@ snapshots:
 
   picomodal@3.0.0: {}
 
-  pidtree@0.3.1: {}
+  pidtree@0.5.0: {}
 
   pify@2.3.0: {}
 
@@ -66192,7 +66241,7 @@ snapshots:
 
   read-pkg@5.2.0:
     dependencies:
-      '@types/normalize-package-data': 2.4.1
+      '@types/normalize-package-data': 2.4.4
       normalize-package-data: 2.5.0
       parse-json: 5.2.0
       type-fest: 0.6.0
@@ -68371,13 +68420,6 @@ snapshots:
       regexp.prototype.flags: 1.5.4
       set-function-name: 2.0.2
       side-channel: 1.1.0
-
-  string.prototype.padend@3.1.6:
-    dependencies:
-      call-bind: 1.0.9
-      define-properties: 1.2.1
-      es-abstract: 1.24.2
-      es-object-atoms: 1.1.1
 
   string.prototype.repeat@1.0.0:
     dependencies:
