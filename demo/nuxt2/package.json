@@ -20,7 +20,7 @@
     "core-js": "^3.49.0",
     "nuxt": "^2.18.1",
     "tsparticles": "workspace:^",
-    "vue": "^2.7.16",
+    "vue": "^3.0.0",
     "vue-router": "^3.6.5",
     "vue-server-renderer": "^2.7.16",
     "vue-template-compiler": "^2.7.16"
