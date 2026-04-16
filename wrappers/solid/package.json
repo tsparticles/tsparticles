@@ -147,7 +147,7 @@
     "tsup": "^8.0.2",
     "tsup-preset-solid": "^2.2.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11",
+    "vite": "^6.0.0",
     "vite-plugin-solid": "^2.10.2",
     "vitest": "^1.6.0"
   },
