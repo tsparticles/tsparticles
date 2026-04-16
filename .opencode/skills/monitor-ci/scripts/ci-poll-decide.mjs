@@ -106,7 +106,7 @@ function categorizeTasks() {
 }
 
 function backoff(count) {
-  const delays = [60, 90, 120];
+  const delays = [60, 90, 120, 180];
   return delays[Math.min(count, delays.length - 1)];
 }
 
@@ -145,7 +145,7 @@ function isNewCipe() {
 //     3. still waiting                   → wait  (waiting_for_cipe)
 //   NORMAL MODE:
 //     4. polling timeout                 → done  (polling_timeout)
-//     5. circuit breaker (5 polls)       → done  (circuit_breaker)
+//     5. circuit breaker (13 polls)      → done  (circuit_breaker)
 //     6. CI succeeded                    → done  (ci_success)
 //     7. CI canceled                     → done  (cipe_canceled)
 //     8. CI timed out                    → done  (cipe_timed_out)
@@ -177,7 +177,7 @@ function classify() {
 
   // --- Guards ---
   if (isTimedOut()) return { action: "done", code: "polling_timeout" };
-  if (noProgressCount >= 5) return { action: "done", code: "circuit_breaker" };
+  if (noProgressCount >= 13) return { action: "done", code: "circuit_breaker" };
 
   // --- Terminal CI states ---
   if (cipeStatus === "SUCCEEDED") return { action: "done", code: "ci_success" };
@@ -267,7 +267,7 @@ const messages = {
 
   // guards
   polling_timeout: () => "Polling timeout exceeded.",
-  circuit_breaker: () => "No progress after 5 consecutive polls. Stopping.",
+  circuit_breaker: () => "No progress after 13 consecutive polls. Stopping.",
 
   // terminal
   ci_success: () => "CI passed successfully!",
