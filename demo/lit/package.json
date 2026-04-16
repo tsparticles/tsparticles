@@ -52,7 +52,7 @@
     "rimraf": "^5.0.0",
     "rollup": "^3.0.0",
     "rollup-plugin-filesize": "^10.0.0",
-    "rollup-plugin-terser": "^7.0.0",
+    "@rollup/plugin-terser": "^0.1.0",
     "sinon": "^16.0.0",
     "typescript": "^5.0.0",
     "web-component-analyzer": "^1.0.0"
