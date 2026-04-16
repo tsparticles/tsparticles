@@ -22,7 +22,7 @@
     "@tsparticles/vue2": "workspace:^"
   },
   "peerDependencies": {
-    "nuxt": ">=2.0.0 <3.0.0"
+    "nuxt": "<5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

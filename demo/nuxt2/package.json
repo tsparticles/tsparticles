@@ -18,7 +18,7 @@
     "@tsparticles/nuxt2": "workspace:^",
     "@tsparticles/vue2": "workspace:^",
     "core-js": "^3.49.0",
-    "nuxt": "^2.18.1",
+    "nuxt": "^3.0.0",
     "tsparticles": "workspace:^",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",
