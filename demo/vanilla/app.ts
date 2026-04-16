@@ -91,6 +91,9 @@ const camelToKebab = (value: string): string =>
 
 const toPascal = (value: string): string => `${value[0].toUpperCase()}${value.slice(1)}`;
 
+const getPaletteId = (category: string, folder: string): string =>
+  category === "other" ? folder : `${category}${toPascal(folder)}`;
+
 const parsePaletteName = (fullPath: string, folder: string): string => {
   const optionsPath = path.join(fullPath, "src", "options.ts");
 
@@ -102,6 +105,66 @@ const parsePaletteName = (fullPath: string, folder: string): string => {
     match = optionsContent.match(/name:\s*"([^"]+)"/u);
 
   return match?.[1] ?? toTitleCase(camelToKebab(folder).replace(/-/g, " "));
+};
+
+interface PaletteSourceMetadata {
+  loader: string;
+  optionValue: string;
+}
+
+interface PalettePackageMetadata {
+  packageName: string;
+  slug: string;
+}
+
+const readPalettePackageMetadata = (fullPath: string, folder: string): PalettePackageMetadata => {
+  const fallbackSlug = camelToKebab(folder),
+    packageJsonPath = path.join(fullPath, "package.json");
+
+  if (!existsSync(packageJsonPath)) {
+    return {
+      packageName: `@tsparticles/palette-${fallbackSlug}`,
+      slug: fallbackSlug,
+    };
+  }
+
+  try {
+    const parsed = JSON.parse(readFileSync(packageJsonPath, "utf8")) as { name?: string },
+      packageName = parsed.name?.startsWith("@tsparticles/palette-")
+        ? parsed.name
+        : `@tsparticles/palette-${fallbackSlug}`,
+      slug = packageName.replace("@tsparticles/palette-", "");
+
+    return {
+      packageName,
+      slug,
+    };
+  } catch {
+    return {
+      packageName: `@tsparticles/palette-${fallbackSlug}`,
+      slug: fallbackSlug,
+    };
+  }
+};
+
+const readPaletteSourceMetadata = (fullPath: string, folder: string, slug: string): PaletteSourceMetadata => {
+  const indexPath = path.join(fullPath, "src", "index.ts");
+
+  if (!existsSync(indexPath)) {
+    return {
+      loader: `load${toPascal(folder)}Palette`,
+      optionValue: slug,
+    };
+  }
+
+  const indexContent = readFileSync(indexPath, "utf8"),
+    loaderMatch = indexContent.match(/export\s+async\s+function\s+(load\w+Palette)\s*\(/u),
+    paletteNameMatch = indexContent.match(/const\s+paletteName\s*=\s*"([^"]+)"\s*;/u);
+
+  return {
+    loader: loaderMatch?.[1] ?? `load${toPascal(folder)}Palette`,
+    optionValue: paletteNameMatch?.[1] ?? slug,
+  };
 };
 
 const findGeneratedScript = (distPath: string, fallback: string, matcher: RegExp): string => {
@@ -182,27 +245,27 @@ const discoverPaletteDirs = (): Array<{ category: string; folder: string; fullPa
 
 const loadPalettesCatalog = (): CatalogItem[] => {
   return discoverPaletteDirs().map(({ category, folder, fullPath }) => {
-    const slug = camelToKebab(folder),
-      packageName = `@tsparticles/palette-${slug}`,
+    const paletteId = getPaletteId(category, folder),
+      packageMetadata = readPalettePackageMetadata(fullPath, folder),
       title = parsePaletteName(fullPath, folder),
-      loader = `load${toPascal(folder)}Palette`,
+      sourceMetadata = readPaletteSourceMetadata(fullPath, folder, packageMetadata.slug),
       scriptFile = findGeneratedScript(
         path.join(fullPath, "dist"),
-        `tsparticles.palette.${slug}.min.js`,
+        `tsparticles.palette.${packageMetadata.slug}.min.js`,
         /^tsparticles\.palette\..+\.min\.js$/u,
       );
 
     return {
-      id: folder,
-      slug,
+      id: paletteId,
+      slug: packageMetadata.slug,
       title,
-      packageName,
-      mountPath: `/palette-${slug}`,
-      route: `/palettes/${folder}`,
-      image: `/images/palettes/${folder}.png`,
+      packageName: packageMetadata.packageName,
+      mountPath: `/palette-${packageMetadata.slug}`,
+      route: `/palettes/${paletteId}`,
+      image: `/images/palettes/${paletteId}.png`,
       scriptFile,
-      loader,
-      optionValue: slug,
+      loader: sourceMetadata.loader,
+      optionValue: sourceMetadata.optionValue,
       description: `${title} palette demo`,
       staticPath: path.join(fullPath, "dist"),
       category,
@@ -530,7 +593,8 @@ for (const item of palettesCatalog) {
   });
 }
 
-const port = 3000;
+const liveReloadPort = Number.parseInt(process.env.LIVE_RELOAD_PORT ?? "35731", 10),
+  port = Number.parseInt(process.env.PORT ?? "3000", 10);
 
 if (cluster.isMaster) {
   for (let i = 0; i < numCpus; i++) {
@@ -553,7 +617,7 @@ if (cluster.isMaster) {
     }
   });
 
-  const liveReloadServer = livereload.createServer();
+  const liveReloadServer = livereload.createServer({ port: liveReloadPort });
 
   liveReloadServer.server.once("connection", () => {
     setTimeout(() => {

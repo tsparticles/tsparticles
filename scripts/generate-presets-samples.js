@@ -14,34 +14,34 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const workspaceRoot = resolve(__dirname, "..");
 const catalogRoot = resolve(workspaceRoot, "presets");
-const demoRoot = resolve(workspaceRoot, "apps", "demo");
+const demoRoot = resolve(workspaceRoot, "demo", "vanilla");
 const demoPort = 3415;
 const liveReloadPort = 3715;
 const pnpmCommand = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
 
-const toKebabCase = (value) =>
+const toKebabCase = value =>
   value
     .replaceAll(/([a-z0-9])([A-Z])/g, "$1-$2")
     .replaceAll(/([A-Z]+)([A-Z][a-z0-9]+)/g, "$1-$2")
     .toLowerCase();
 
-const parseIds = (value) => {
+const parseIds = value => {
   if (!value) {
     return [];
   }
 
   return value
-    .flatMap((entry) => String(entry).split(","))
-    .map((entry) => entry.trim())
+    .flatMap(entry => String(entry).split(","))
+    .map(entry => entry.trim())
     .filter(Boolean);
 };
 
-const discoverPresets = async (root) => {
+const discoverPresets = async root => {
   const entries = await readdir(root, { withFileTypes: true });
 
   return entries
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
-    .map((entry) => ({
+    .filter(entry => entry.isDirectory() && !entry.name.startsWith("."))
+    .map(entry => ({
       fullPath: join(root, entry.name),
       id: entry.name,
       outputPath: join(root, entry.name, "images", "sample.png"),
@@ -51,7 +51,7 @@ const discoverPresets = async (root) => {
     .sort((first, second) => first.slug.localeCompare(second.slug));
 };
 
-const isReachable = async (baseUrl) => {
+const isReachable = async baseUrl => {
   try {
     const response = await fetch(baseUrl, { method: "GET" });
 
@@ -79,7 +79,7 @@ const waitForServer = async (baseUrl, timeout, child, output) => {
   throw new Error(`Timed out waiting for ${baseUrl}.\n${output.join("")}`.trim());
 };
 
-const stopServer = async (child) => {
+const stopServer = async child => {
   if (!child || child.exitCode != null) {
     return;
   }
@@ -109,7 +109,7 @@ const startDemoServer = async ({ baseUrl, port, timeout, verbose }) => {
     },
     stdio: ["ignore", "pipe", "pipe"],
   });
-  const appendOutput = (chunk) => {
+  const appendOutput = chunk => {
     const message = chunk.toString();
 
     output.push(message);
@@ -163,7 +163,7 @@ const getBrowserCandidates = () => {
   }
 };
 
-const resolveExecutablePath = (cliPath) => {
+const resolveExecutablePath = cliPath => {
   // 1. Explicit CLI override always wins
   if (cliPath) {
     return cliPath;
@@ -172,7 +172,7 @@ const resolveExecutablePath = (cliPath) => {
   // 2. Prefer well-known system browsers (Chrome > Chromium > Edge)
   //    so a global PUPPETEER_EXECUTABLE_PATH pointing to a broken Homebrew
   //    Chromium does not accidentally override a working Chrome install.
-  const detectedBrowser = getBrowserCandidates().find((candidate) => existsSync(candidate));
+  const detectedBrowser = getBrowserCandidates().find(candidate => existsSync(candidate));
 
   if (detectedBrowser) {
     return detectedBrowser;
@@ -195,7 +195,7 @@ const resolveExecutablePath = (cliPath) => {
   }
 };
 
-const hideOverlay = async (page) => {
+const hideOverlay = async page => {
   await page.evaluate(() => {
     document.getElementById("stats")?.remove();
   });
@@ -229,7 +229,7 @@ const captureItem = async (browser, item, options) => {
     await delay(options.delay);
     await page.evaluate(
       () =>
-        new Promise((resolve) => {
+        new Promise(resolve => {
           requestAnimationFrame(() => {
             requestAnimationFrame(resolve);
           });
@@ -246,10 +246,13 @@ const captureItem = async (browser, item, options) => {
   }
 };
 
-const argv = await yargs(hideBin(process.argv))
+const rawCliArgs = hideBin(process.argv);
+const cliArgs = rawCliArgs[0] === "--" ? rawCliArgs.slice(1) : rawCliArgs;
+
+const argv = await yargs(cliArgs)
   .scriptName("generate-samples")
   .option("base-url", {
-    describe: "Use an already running demo server instead of starting apps/demo automatically.",
+    describe: "Use an already running demo server instead of starting demo/vanilla automatically.",
     type: "string",
   })
   .option("delay", {
@@ -316,15 +319,15 @@ const argv = await yargs(hideBin(process.argv))
   .parse();
 
 const allItems = await discoverPresets(catalogRoot);
-const filters = new Set((argv.id ?? []).map((value) => value.toLowerCase()));
-const matchedItems = allItems.filter((item) => {
+const filters = new Set((argv.id ?? []).map(value => value.toLowerCase()));
+const matchedItems = allItems.filter(item => {
   if (filters.size === 0) {
     return true;
   }
 
   return filters.has(item.id.toLowerCase()) || filters.has(item.slug.toLowerCase());
 });
-const items = argv["skip-existing"] ? matchedItems.filter((item) => !existsSync(item.outputPath)) : matchedItems;
+const items = argv["skip-existing"] ? matchedItems.filter(item => !existsSync(item.outputPath)) : matchedItems;
 
 if (argv.list || argv["dry-run"]) {
   for (const item of items) {

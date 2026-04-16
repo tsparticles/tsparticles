@@ -14,60 +14,64 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const workspaceRoot = resolve(__dirname, "..");
 const catalogRoot = resolve(workspaceRoot, "palettes");
-const demoRoot = resolve(workspaceRoot, "apps", "demo");
+const demoRoot = resolve(workspaceRoot, "demo", "vanilla");
 const demoPort = 3416;
 const liveReloadPort = 3716;
 const pnpmCommand = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
 
-const toKebabCase = (value) =>
+const toKebabCase = value =>
   value
     .replaceAll(/([a-z0-9])([A-Z])/g, "$1-$2")
     .replaceAll(/([A-Z]+)([A-Z][a-z0-9]+)/g, "$1-$2")
     .toLowerCase();
 
-const parseIds = (value) => {
+const parseIds = value => {
   if (!value) {
     return [];
   }
 
   return value
-    .flatMap((entry) => String(entry).split(","))
-    .map((entry) => entry.trim())
+    .flatMap(entry => String(entry).split(","))
+    .map(entry => entry.trim())
     .filter(Boolean);
 };
 
-const hasPaletteOptions = (path) => existsSync(join(path, "src", "options.ts"));
+const hasPaletteOptions = path => existsSync(join(path, "src", "options.ts"));
 
-const createItem = (id, fullPath) => ({
+const toPascalCase = value => `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+
+const getPaletteId = (category, folder) => (category === "other" ? folder : `${category}${toPascalCase(folder)}`);
+
+const createItem = (category, folder, fullPath) => ({
+  category,
+  folder,
   fullPath,
-  id,
+  id: getPaletteId(category, folder),
   outputPath: join(fullPath, "images", "sample.png"),
-  route: `/palettes/${id}`,
-  slug: toKebabCase(id),
+  route: `/palettes/${getPaletteId(category, folder)}`,
+  slug: toKebabCase(getPaletteId(category, folder)),
 });
 
-const discoverPalettes = async (root) => {
+const discoverPalettes = async root => {
   const entries = await readdir(root, { withFileTypes: true });
   const items = [];
 
-  for (const entry of entries.filter((current) => current.isDirectory() && !current.name.startsWith("."))) {
+  for (const entry of entries.filter(current => current.isDirectory() && !current.name.startsWith("."))) {
     const entryPath = join(root, entry.name);
 
     if (hasPaletteOptions(entryPath)) {
-      items.push(createItem(entry.name, entryPath));
+      items.push(createItem("other", entry.name, entryPath));
 
       continue;
     }
 
     const nestedEntries = await readdir(entryPath, { withFileTypes: true });
 
-    for (const nestedEntry of nestedEntries.filter(
-      (current) => current.isDirectory() && !current.name.startsWith("."),
-    )) {
+    for (const nestedEntry of nestedEntries.filter(current => current.isDirectory() && !current.name.startsWith("."))) {
       const nestedPath = join(entryPath, nestedEntry.name);
 
       if (hasPaletteOptions(nestedPath)) {
-        items.push(createItem(nestedEntry.name, nestedPath));
+        items.push(createItem(entry.name, nestedEntry.name, nestedPath));
       }
     }
   }
@@ -75,7 +79,7 @@ const discoverPalettes = async (root) => {
   return items.sort((first, second) => first.slug.localeCompare(second.slug));
 };
 
-const isReachable = async (baseUrl) => {
+const isReachable = async baseUrl => {
   try {
     const response = await fetch(baseUrl, { method: "GET" });
 
@@ -103,7 +107,7 @@ const waitForServer = async (baseUrl, timeout, child, output) => {
   throw new Error(`Timed out waiting for ${baseUrl}.\n${output.join("")}`.trim());
 };
 
-const stopServer = async (child) => {
+const stopServer = async child => {
   if (!child || child.exitCode != null) {
     return;
   }
@@ -133,7 +137,7 @@ const startDemoServer = async ({ baseUrl, port, timeout, verbose }) => {
     },
     stdio: ["ignore", "pipe", "pipe"],
   });
-  const appendOutput = (chunk) => {
+  const appendOutput = chunk => {
     const message = chunk.toString();
 
     output.push(message);
@@ -187,7 +191,7 @@ const getBrowserCandidates = () => {
   }
 };
 
-const resolveExecutablePath = (cliPath) => {
+const resolveExecutablePath = cliPath => {
   // 1. Explicit CLI override always wins
   if (cliPath) {
     return cliPath;
@@ -196,7 +200,7 @@ const resolveExecutablePath = (cliPath) => {
   // 2. Prefer well-known system browsers (Chrome > Chromium > Edge)
   //    so a global PUPPETEER_EXECUTABLE_PATH pointing to a broken Homebrew
   //    Chromium does not accidentally override a working Chrome install.
-  const detectedBrowser = getBrowserCandidates().find((candidate) => existsSync(candidate));
+  const detectedBrowser = getBrowserCandidates().find(candidate => existsSync(candidate));
 
   if (detectedBrowser) {
     return detectedBrowser;
@@ -219,7 +223,7 @@ const resolveExecutablePath = (cliPath) => {
   }
 };
 
-const hideOverlay = async (page) => {
+const hideOverlay = async page => {
   await page.evaluate(() => {
     document.getElementById("stats")?.remove();
   });
@@ -253,7 +257,7 @@ const captureItem = async (browser, item, options) => {
     await delay(options.delay);
     await page.evaluate(
       () =>
-        new Promise((resolve) => {
+        new Promise(resolve => {
           requestAnimationFrame(() => {
             requestAnimationFrame(resolve);
           });
@@ -276,7 +280,7 @@ const cliArgs = rawCliArgs[0] === "--" ? rawCliArgs.slice(1) : rawCliArgs;
 const argv = await yargs(cliArgs)
   .scriptName("generate-samples")
   .option("base-url", {
-    describe: "Use an already running demo server instead of starting apps/demo automatically.",
+    describe: "Use an already running demo server instead of starting demo/vanilla automatically.",
     type: "string",
   })
   .option("delay", {
@@ -343,19 +347,19 @@ const argv = await yargs(cliArgs)
   .parse();
 
 const allItems = await discoverPalettes(catalogRoot);
-const filters = new Set((argv.id ?? []).map((value) => value.toLowerCase()));
-const matchedItems = allItems.filter((item) => {
+const filters = new Set((argv.id ?? []).map(value => value.toLowerCase()));
+const matchedItems = allItems.filter(item => {
   if (filters.size === 0) {
     return true;
   }
 
   return filters.has(item.id.toLowerCase()) || filters.has(item.slug.toLowerCase());
 });
-const items = argv["skip-existing"] ? matchedItems.filter((item) => !existsSync(item.outputPath)) : matchedItems;
+const items = argv["skip-existing"] ? matchedItems.filter(item => !existsSync(item.outputPath)) : matchedItems;
 
 if (argv.list || argv["dry-run"]) {
   for (const item of items) {
-    console.log(`${item.id}\t${item.slug}\t${item.outputPath}`);
+    console.log(`${item.id}\t${item.slug}\t${item.category}/${item.folder}\t${item.outputPath}`);
   }
 
   process.exit(0);
