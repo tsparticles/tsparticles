@@ -3227,15 +3227,6 @@ importers:
         version: link:../../plugins/interactivity/dist
     publishDirectory: dist
 
-  interactions/light/dist:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: 4.0.0-beta.12
-        version: link:../../../engine/dist
-      '@tsparticles/plugin-interactivity':
-        specifier: 4.0.0-beta.12
-        version: link:../../../plugins/interactivity/dist
-
   interactions/particles/attract:
     devDependencies:
       '@tsparticles/engine':
@@ -6995,11 +6986,11 @@ importers:
         specifier: ^9.2.1
         version: 9.2.1
       esbuild:
-        specifier: ^0.21.3
-        version: 0.21.5
+        specifier: ^0.25.0
+        version: 0.25.12
       esbuild-plugin-solid:
         specifier: ^0.6.0
-        version: 0.6.0(esbuild@0.21.5)(solid-js@1.9.12)
+        version: 0.6.0(esbuild@0.25.12)(solid-js@1.9.12)
       eslint:
         specifier: ^8.56.0
         version: 8.57.1
@@ -7023,7 +7014,7 @@ importers:
         version: 8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
       tsup-preset-solid:
         specifier: ^2.2.0
-        version: 2.2.0(esbuild@0.21.5)(solid-js@1.9.12)(tsup@8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3))
+        version: 2.2.0(esbuild@0.25.12)(solid-js@1.9.12)(tsup@8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3))
       typescript:
         specifier: ^5.4.5
         version: 5.9.3
@@ -14693,6 +14684,7 @@ packages:
 
   '@simple-git/argv-parser@1.1.0':
     resolution: {integrity: sha512-sUKOu2lb5vGIWADNNLpscyj07DAeQZU3KLbnE2Tj53tW6BbDQKMly2CCfnR4oYzqtRELCPWfwaPg+Q0T8qfKBg==}
+    deprecated: Contains a breaking change that should be a major version bump
 
   '@simple-libs/child-process-utils@1.0.2':
     resolution: {integrity: sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw==}
@@ -45277,6 +45269,26 @@ snapshots:
     dependencies:
       ember-resolver: 13.2.0
 
+  '@types/ember@4.0.11':
+    dependencies:
+      '@types/ember__application': 4.0.11(@babel/core@7.29.0)
+      '@types/ember__array': 4.0.10
+      '@types/ember__component': 4.0.22
+      '@types/ember__controller': 4.0.12
+      '@types/ember__debug': 4.0.8
+      '@types/ember__engine': 4.0.11
+      '@types/ember__error': 4.0.6
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__polyfills': 4.0.6
+      '@types/ember__routing': 4.0.23
+      '@types/ember__runloop': 4.0.10
+      '@types/ember__service': 4.0.9
+      '@types/ember__string': 3.0.15
+      '@types/ember__template': 4.0.7
+      '@types/ember__test': 4.0.6(@babel/core@7.29.0)
+      '@types/ember__utils': 4.0.7
+      '@types/rsvp': 4.0.9
+
   '@types/ember@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.29.0)
@@ -45312,6 +45324,11 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__array@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
+
   '@types/ember__array@4.0.10(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
@@ -45319,6 +45336,11 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__component@4.0.22':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
 
   '@types/ember__component@4.0.22(@babel/core@7.29.0)':
     dependencies:
@@ -45328,12 +45350,21 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__controller@4.0.12':
+    dependencies:
+      '@types/ember__object': 4.0.12
+
   '@types/ember__controller@4.0.12(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__debug@4.0.8':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
 
   '@types/ember__debug@4.0.8(@babel/core@7.29.0)':
     dependencies:
@@ -45345,6 +45376,11 @@ snapshots:
 
   '@types/ember__destroyable@4.0.5': {}
 
+  '@types/ember__engine@4.0.11':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
+
   '@types/ember__engine@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
@@ -45354,6 +45390,11 @@ snapshots:
       - supports-color
 
   '@types/ember__error@4.0.6': {}
+
+  '@types/ember__object@4.0.12':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/rsvp': 4.0.9
 
   '@types/ember__object@4.0.12(@babel/core@7.29.0)':
     dependencies:
@@ -45367,15 +45408,26 @@ snapshots:
 
   '@types/ember__polyfills@4.0.6': {}
 
+  '@types/ember__routing@4.0.23':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__controller': 4.0.12
+      '@types/ember__object': 4.0.12
+      '@types/ember__service': 4.0.9
+
   '@types/ember__routing@4.0.23(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__controller': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__controller': 4.0.12
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
-      '@types/ember__service': 4.0.9(@babel/core@7.29.0)
+      '@types/ember__service': 4.0.9
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__runloop@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__runloop@4.0.10(@babel/core@7.29.0)':
     dependencies:
@@ -45383,6 +45435,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__service@4.0.9':
+    dependencies:
+      '@types/ember__object': 4.0.12
 
   '@types/ember__service@4.0.9(@babel/core@7.29.0)':
     dependencies:
@@ -45409,6 +45465,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__utils@4.0.7':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__utils@4.0.7(@babel/core@7.29.0)':
     dependencies:
@@ -54289,22 +54349,22 @@ snapshots:
     dependencies:
       es6-promise: 4.2.8
 
-  esbuild-plugin-solid@0.5.0(esbuild@0.21.5)(solid-js@1.9.12):
+  esbuild-plugin-solid@0.5.0(esbuild@0.25.12)(solid-js@1.9.12):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
       babel-preset-solid: 1.9.12(@babel/core@7.29.0)(solid-js@1.9.12)
-      esbuild: 0.21.5
+      esbuild: 0.25.12
       solid-js: 1.9.12
     transitivePeerDependencies:
       - supports-color
 
-  esbuild-plugin-solid@0.6.0(esbuild@0.21.5)(solid-js@1.9.12):
+  esbuild-plugin-solid@0.6.0(esbuild@0.25.12)(solid-js@1.9.12):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/preset-typescript': 7.28.5(@babel/core@7.29.0)
       babel-preset-solid: 1.9.12(@babel/core@7.29.0)(solid-js@1.9.12)
-      esbuild: 0.21.5
+      esbuild: 0.25.12
       solid-js: 1.9.12
     transitivePeerDependencies:
       - supports-color
@@ -69853,9 +69913,9 @@ snapshots:
 
   tsscmp@1.0.6: {}
 
-  tsup-preset-solid@2.2.0(esbuild@0.21.5)(solid-js@1.9.12)(tsup@8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)):
+  tsup-preset-solid@2.2.0(esbuild@0.25.12)(solid-js@1.9.12)(tsup@8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)):
     dependencies:
-      esbuild-plugin-solid: 0.5.0(esbuild@0.21.5)(solid-js@1.9.12)
+      esbuild-plugin-solid: 0.5.0(esbuild@0.25.12)(solid-js@1.9.12)
       tsup: 8.5.1(@microsoft/api-extractor@7.58.2(@types/node@20.19.39))(@swc/core@1.15.26)(jiti@2.6.1)(postcss@8.5.9)(typescript@5.9.3)(yaml@2.8.3)
     transitivePeerDependencies:
       - esbuild
