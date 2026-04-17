@@ -1,0 +1,17 @@
+#title {
+  color: #ffffff;
+  padding: 20px;
+}
+
+body {
+  margin: 0;
+  background-color: #1f263b;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.fixed-size-particles,
+.fixed-size-snow {
+  width: 500px;
+  height: 500px;
+}

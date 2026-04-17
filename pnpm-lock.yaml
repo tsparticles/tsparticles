@@ -982,6 +982,136 @@ importers:
         specifier: ^41.2.0
         version: 41.2.0
 
+  demo/ember:
+    dependencies:
+      '@tsparticles/ember':
+        specifier: workspace:^
+        version: link:../../wrappers/ember
+      '@tsparticles/engine':
+        specifier: workspace:^
+        version: link:../../engine/dist
+      '@tsparticles/preset-snow':
+        specifier: workspace:^
+        version: link:../../presets/snow/dist
+      ember-auto-import:
+        specifier: ^2.13.1
+        version: 2.13.1(webpack@5.106.1(@swc/core@1.15.26)(webpack-cli@7.0.2))
+      ember-cli-babel:
+        specifier: ^8.3.1
+        version: 8.3.1(@babel/core@7.29.0)
+      ember-cli-htmlbars:
+        specifier: ^7.0.1
+        version: 7.0.1(@babel/core@7.29.0)(ember-source@6.12.0(@glimmer/component@2.1.1)(rsvp@4.8.5))
+      ember-cli-typescript:
+        specifier: ^5.3.0
+        version: 5.3.0
+      ember-load-initializers:
+        specifier: ^3.0.1
+        version: 3.0.1(ember-source@6.12.0(@glimmer/component@2.1.1)(rsvp@4.8.5))
+      ember-modifier:
+        specifier: ^4.3.0
+        version: 4.3.0(@babel/core@7.29.0)
+      ember-page-title:
+        specifier: ^9.0.3
+        version: 9.0.3
+      ember-resolver:
+        specifier: ^13.2.0
+        version: 13.2.0
+      ember-source:
+        specifier: ~6.12.0
+        version: 6.12.0(@glimmer/component@2.1.1)(rsvp@4.8.5)
+      tsparticles:
+        specifier: workspace:^
+        version: link:../../bundles/full/dist
+    devDependencies:
+      '@babel/core':
+        specifier: 7.29.0
+        version: 7.29.0
+      '@ember/optional-features':
+        specifier: ^3.0.0
+        version: 3.0.0(@types/node@25.6.0)
+      '@ember/test-helpers':
+        specifier: ^5.4.1
+        version: 5.4.1(@babel/core@7.29.0)
+      '@tsconfig/ember':
+        specifier: ^3.0.12
+        version: 3.0.12
+      '@types/ember':
+        specifier: ^4.0.11
+        version: 4.0.11(@babel/core@7.29.0)
+      '@types/ember__application':
+        specifier: ^4.0.11
+        version: 4.0.11(@babel/core@7.29.0)
+      '@types/ember__routing':
+        specifier: ^4.0.23
+        version: 4.0.23(@babel/core@7.29.0)
+      '@types/node':
+        specifier: ^25.6.0
+        version: 25.6.0
+      '@types/qunit':
+        specifier: ^2.19.13
+        version: 2.19.13
+      broccoli-asset-rev:
+        specifier: ^3.0.0
+        version: 3.0.0
+      ember-cli:
+        specifier: ~6.12.0
+        version: 6.12.0(@babel/core@7.29.0)(@types/node@25.6.0)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(underscore@1.13.8)
+      ember-cli-dependency-checker:
+        specifier: ^3.3.3
+        version: 3.3.3(ember-cli@6.12.0(@babel/core@7.29.0)(@types/node@25.6.0)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(underscore@1.13.8))
+      ember-cli-inject-live-reload:
+        specifier: ^2.1.0
+        version: 2.1.0
+      ember-cli-sri:
+        specifier: ^2.1.1
+        version: 2.1.1
+      ember-cli-terser:
+        specifier: ^4.0.2
+        version: 4.0.2
+      ember-qunit:
+        specifier: ^9.0.4
+        version: 9.0.4(@babel/core@7.29.0)(@ember/test-helpers@5.4.1(@babel/core@7.29.0))(qunit@2.25.0)
+      ember-template-lint:
+        specifier: ^7.9.3
+        version: 7.9.3
+      eslint:
+        specifier: ^10.2.0
+        version: 10.2.0(jiti@2.6.1)
+      eslint-config-prettier:
+        specifier: ^10.1.8
+        version: 10.1.8(eslint@10.2.0(jiti@2.6.1))
+      eslint-plugin-ember:
+        specifier: ^12.7.5
+        version: 12.7.5(@babel/core@7.29.0)(@typescript-eslint/parser@8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)
+      eslint-plugin-node:
+        specifier: ^11.1.0
+        version: 11.1.0(eslint@10.2.0(jiti@2.6.1))
+      eslint-plugin-prettier:
+        specifier: ^5.5.5
+        version: 5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.2.0(jiti@2.6.1)))(eslint@10.2.0(jiti@2.6.1))(prettier@3.8.3)
+      eslint-plugin-qunit:
+        specifier: ^8.2.6
+        version: 8.2.6(eslint@10.2.0(jiti@2.6.1))
+      loader.js:
+        specifier: ^4.7.0
+        version: 4.7.0
+      prettier:
+        specifier: ^3.8.2
+        version: 3.8.3
+      qunit:
+        specifier: ^2.25.0
+        version: 2.25.0
+      qunit-dom:
+        specifier: ^3.5.0
+        version: 3.5.0
+      typescript:
+        specifier: ^6.0.2
+        version: 6.0.2
+      webpack:
+        specifier: ^5.106.1
+        version: 5.106.1(@swc/core@1.15.26)(webpack-cli@7.0.2)
+
   demo/inferno:
     dependencies:
       '@tsparticles/configs':
@@ -1949,6 +2079,31 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
+
+  demo/qwik:
+    dependencies:
+      '@builder.io/qwik':
+        specifier: 1.19.2
+        version: 1.19.2(vite@8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3))
+      '@tsparticles/engine':
+        specifier: workspace:^
+        version: link:../../engine/dist
+      '@tsparticles/slim':
+        specifier: workspace:^
+        version: link:../../bundles/slim/dist
+    devDependencies:
+      '@types/node':
+        specifier: ^25.6.0
+        version: 25.6.0
+      typescript:
+        specifier: ^6.0.2
+        version: 6.0.2
+      vite:
+        specifier: ^8.0.8
+        version: 8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3)
+      vite-tsconfig-paths:
+        specifier: ^6.1.1
+        version: 6.1.1(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.46.1)(yaml@2.8.3))
 
   demo/react:
     dependencies:
@@ -45556,7 +45711,7 @@ snapshots:
 
   '@types/jsdom@28.0.1':
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 20.19.39
       '@types/tough-cookie': 4.0.5
       parse5: 7.3.0
       undici-types: 7.24.7
@@ -45849,7 +46004,7 @@ snapshots:
 
   '@types/stylus@0.48.43':
     dependencies:
-      '@types/node': 25.6.0
+      '@types/node': 20.19.39
 
   '@types/symlink-or-copy@1.2.2': {}
 
@@ -50155,9 +50310,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.1.0
       picocolors: 1.1.1
-      postcss: 8.5.6
+      postcss: 8.5.9
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.6)
+      postcss-safe-parser: 7.0.1(postcss@8.5.9)
 
   before-after-hook@2.2.3: {}
 
@@ -50538,7 +50693,7 @@ snapshots:
   broccoli-middleware@2.1.1:
     dependencies:
       ansi-html: 0.0.7
-      handlebars: 4.7.7
+      handlebars: 4.7.9
       has-ansi: 3.0.0
       mime-types: 2.1.35
 
@@ -53371,7 +53526,7 @@ snapshots:
       debug: 4.4.3(supports-color@5.5.0)
       fs-extra: 10.1.0
       fs-tree-diff: 2.0.1
-      handlebars: 4.7.7
+      handlebars: 4.7.9
       is-subdir: 1.2.0
       js-string-escape: 1.0.1
       lodash: 4.18.1
@@ -53608,7 +53763,7 @@ snapshots:
       calculate-cache-key-for-tree: 2.0.0
       capture-exit: 2.0.0
       chalk: 5.6.2
-      ci-info: 4.3.1
+      ci-info: 4.4.0
       clean-base-url: 1.0.0
       compression: 1.8.1
       configstore: 7.1.0
@@ -53616,7 +53771,7 @@ snapshots:
       content-tag: 4.1.1
       core-object: 3.1.5
       dag-map: 2.0.2
-      diff: 8.0.3
+      diff: 8.0.4
       ember-cli-is-package-missing: 1.0.0
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-preprocess-registry: 5.0.1
@@ -62032,7 +62187,7 @@ snapshots:
       proc-log: 6.1.0
       semver: 7.7.4
       tar: 7.5.11
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.16
       which: 6.0.1
     transitivePeerDependencies:
       - supports-color
@@ -65201,10 +65356,6 @@ snapshots:
   postcss-safe-parser@6.0.0(postcss@8.5.9):
     dependencies:
       postcss: 8.5.9
-
-  postcss-safe-parser@7.0.1(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
 
   postcss-safe-parser@7.0.1(postcss@8.5.9):
     dependencies:

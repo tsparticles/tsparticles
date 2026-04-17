@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/ember/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "ember-demo/*": [
+        "app/*"
+      ],
+      "@tsparticles/ember": [
+        "../../wrappers/ember/addon"
+      ],
+      "@tsparticles/ember/*": [
+        "../../wrappers/ember/addon/*"
+      ]
+    }
+  },
+  "include": [
+    "app/**/*",
+    "config/**/*"
+  ]
+}

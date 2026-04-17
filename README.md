@@ -832,6 +832,8 @@ $ pnpm start
 
 **Boom! 💥** <http://localhost:3000> and you can check out other demos.
 
+Note: `demo/wordpress` contains documentation only. The WordPress wrapper runs as a plugin inside a WordPress installation, not as a standalone demo app.
+
 _If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
 
 ---
