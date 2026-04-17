@@ -10,7 +10,6 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![Cdnjs](https://img.shields.io/cdnjs/v/@tsparticles/engine?style=for-the-badge)](https://cdnjs.com/libraries/tsparticles)
 [![npm](https://img.shields.io/npm/v/@tsparticles/engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 [![npm](https://img.shields.io/npm/dm/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff?style=for-the-badge)](https://lerna.js.org/)
 [![CodeFactor](https://www.codefactor.io/repository/github/tsparticles/tsparticles/badge)](https://www.codefactor.io/repository/github/tsparticles/tsparticles)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=tsparticles/tsparticles&utm_campaign=Badge_Grade)
 [![Rate this package](https://badges.openbase.com/js/rating/tsparticles.svg?style=openbase&token=A9jHQ1nkb6fnCndKM7O2w4hx3OD8PVCuqHtSpw8mMOg=)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rating-badge&utm_term=js/tsparticles)

@@ -1,2 +1,2 @@
 tasks:
-  - init: pnpm i && npx lerna run build
+  - init: pnpm i && pnpm run build

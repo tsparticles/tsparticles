@@ -75,23 +75,25 @@ jobs:
       - name: Publish to NPM (OIDC Auth)
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
+          BASE_CMD="pnpm exec nx release publish --skip-version"
 
           echo "Publishing tag: $TAG via OIDC"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
-            $BASE_CMD --dist-tag alpha
+            $BASE_CMD --tag=alpha
           elif [[ "$TAG" == *"-beta."* ]]; then
-            $BASE_CMD --dist-tag beta
+            $BASE_CMD --tag=beta
           elif [[ "$TAG" == v1* ]]; then
-            $BASE_CMD --dist-tag v1
+            $BASE_CMD --tag=v1
           elif [[ "$TAG" == v2* ]]; then
-            $BASE_CMD --dist-tag v2
+            $BASE_CMD --tag=v2
           elif [[ "$TAG" == v3* ]]; then
-            $BASE_CMD --dist-tag v3
+            $BASE_CMD --tag=v3
           else
             $BASE_CMD
           fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # 🧠 Create release (raw GitHub notes)
       - name: Create Release (raw)

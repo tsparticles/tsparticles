@@ -3,6 +3,25 @@
   "extends": "nx/presets/npm.json",
   "nxCloudId": "62a6df5ddbaff92c46e3b366",
   "defaultBase": "main",
+  "release": {
+    "projectsRelationship": "fixed",
+    "version": {
+      "conventionalCommits": true,
+      "generatorOptions": {
+        "fallbackCurrentVersionResolver": "disk"
+      }
+    },
+    "changelog": {
+      "workspaceChangelog": true,
+      "projectChangelogs": false
+    },
+    "git": {
+      "commit": true,
+      "commitMessage": "chore(release): published new version",
+      "tag": true,
+      "stageChanges": true
+    }
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": [
@@ -36,7 +55,6 @@
     "sharedGlobals": [
       "{workspaceRoot}/nx.json",
       "{workspaceRoot}/tsconfig.json",
-      "{workspaceRoot}/lerna.json",
       "{workspaceRoot}/pnpm-workspace.yaml"
     ],
     "production": [

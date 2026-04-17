@@ -1,8 +1,8 @@
-*This file is still Work in Progress*
+_This file is still Work in Progress_
 
 # Start development
 
-Before you can start making changes, it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
+Before you can start making changes, run `pnpm i` to install all workspace dependencies.
 
 After that, you can start coding. Here is the folder layout
 
@@ -16,7 +16,7 @@ After that, you can start coding. Here is the folder layout
 
 The `plugins` folder contains all external presets and shapes.
 
-Once done editing, you can check if everything builds running `lerna run build`.
+Once done editing, you can check if everything builds running `pnpm run build`.
 
 The difference is, the first does not create the docs folder, and it might be unnecessary while coding.
 
@@ -25,14 +25,14 @@ For building the first time:
 Unix
 
 ```shell
-pnpm i && npx lerna run build
+pnpm i && pnpm run build
 ```
 
 Windows
 
 ```shell
 pnpm i
-npx lerna run build
+pnpm run build
 ```
 
 For building local packages it's possible to run only `pnpm run build` in every folder with a package.json file
@@ -59,40 +59,42 @@ There's a `demo` folder where you can find some demo apps used for testing confi
 
 # Pull Requests
 
-**Before opening any pull request, check that `lerna run build` completes**
+**Before opening any pull request, check that `pnpm run build` completes**
 
-*The build task will be performed automatically by the CI\CD, but a first local check should be done*
+_The build task will be performed automatically by the CI\CD, but a first local check should be done_
 
-If you want to contribute to the project, please use *v2* or *v3* as the base branch, *v2* is the current release, *v3* is what is coming in *v3*.
+If you want to contribute to the project, please use _v2_ or _v3_ as the base branch, _v2_ is the current release, _v3_ is what is coming in _v3_.
 
-Use *main* branch **ONLY** for critical bug fixes.
+Use _main_ branch **ONLY** for critical bug fixes.
 
-Once done, create the **Pull Request** to *v2* or *v3* branch. If it's a critical bug fix, use *main*.
+Once done, create the **Pull Request** to _v2_ or _v3_ branch. If it's a critical bug fix, use _main_.
 
 ## Branches
 
-### *v1*
+### _v1_
 
 This branch is the version 1 branch, it's not active, it's there only for historical purpose.
 
-### *v2*
+### _v2_
 
 This branch is the version 2 branch, the actual release. It will be closed once version 3 will be released.
 
-### *v3*
+### _v3_
 
 This branch is the main development branch, and it has the lowest priority branch under CI.
 
 This branch should always build. Sometimes it can be necessary to break this rule. This is why it is **should** and not **must**.
 
-### *main*
+### _main_
+
 This is the production branch.
 
 **This must be used for PR only for critical bug fixes** and always **MUST** build.
 
-Changes to README.md or other markdown files are not priorities. So for these changes, use *dev* or *staging*, and they will be implemented in the next release.
+Changes to README.md or other markdown files are not priorities. So for these changes, use _dev_ or _staging_, and they will be implemented in the next release.
 
-### *every other branch* except *gh-pages*
+### _every other branch_ except _gh-pages_
+
 You can create any branch you want to push & any kind of commits.
 
 There are no rules in the CI for all the other branches.

@@ -19,7 +19,7 @@
   - SDK/Client: `FirebaseExtended/action-hosting-deploy@v0` in `.github/workflows/nodejs.yml`
   - Auth: `FIREBASE_SERVICE_ACCOUNT_TSPARTICLES`
 - npm Registry - publishes monorepo packages on tag pushes
-  - SDK/Client: `pnpm lerna publish` in `.github/workflows/npm-publish.yml`
+  - SDK/Client: `pnpm exec nx release publish --skip-version` in `.github/workflows/npm-publish.yml`
   - Auth: OIDC trusted publishing (workflow requests `id-token: write` in `.github/workflows/npm-publish.yml`)
 
 **Documentation Publishing:**

@@ -31,7 +31,6 @@
 **Core:**
 
 - Nx 22.6.4 - monorepo task orchestration and affected builds (`package.json`, `nx.json`).
-- Lerna 9.0.7 with Nx integration - versioning/publishing orchestration (`lerna.json`, root `package.json` scripts).
 - tsParticles CLI (`@tsparticles/cli`) - package build pipeline invoked by package scripts (`engine/package.json`, `bundles/full/package.json`).
 
 **Testing:**
@@ -70,7 +69,7 @@
 
 **Build:**
 
-- Workspace build orchestration: `package.json`, `nx.json`, `pnpm-workspace.yaml`, `lerna.json`.
+- Workspace build orchestration: `package.json`, `nx.json`, `pnpm-workspace.yaml`.
 - Compiler and docs config: `tsconfig.json`, package-local tsconfig files (example `demo/vanilla/tsconfig.json`), `typedoc.json`.
 - Bundling config: package-level `webpack.config.js` files (example `engine/webpack.config.js`, `bundles/full/webpack.config.js`).
 
