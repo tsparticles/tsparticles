@@ -108,7 +108,7 @@
     "@types/jasmine": "~6.0.0",
     "@types/jasminewd2": "~2.0.13",
     "@types/node": "^25.6.0",
-    "@typescript-eslint/eslint-plugin": "^8.58.1",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.1",
     "eslint": "^8.57.1",
     "eslint-plugin-import": "^2.32.0",

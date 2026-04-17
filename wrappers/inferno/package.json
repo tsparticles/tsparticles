@@ -110,7 +110,7 @@
 		"@babel/preset-typescript": "^7.28.5",
 		"@babel/runtime": "^7.29.2",
 		"@tsparticles/prettier-config": "^3.4.6",
-		"@typescript-eslint/eslint-plugin": "^5.48.2",
+		"@typescript-eslint/eslint-plugin": "^8.58.2",
 		"@typescript-eslint/parser": "^5.48.2",
 		"babel-loader": "^10.1.1",
 		"babel-plugin-inferno": "^6.8.5",

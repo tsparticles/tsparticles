@@ -118,7 +118,7 @@
     "@types/jquery": "^4.0.0",
     "@types/node": "^25.6.0",
     "@types/webpack-env": "^1.18.8",
-    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^6.16.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.56.0",

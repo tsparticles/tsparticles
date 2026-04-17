@@ -29,7 +29,7 @@
     "@tsparticles/configs": "workspace:^",
     "@tsparticles/engine": "workspace:^",
     "@tsparticles/webcomponents": "workspace:^",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^6.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "eslint": "^8.40.0",
