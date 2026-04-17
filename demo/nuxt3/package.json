@@ -34,7 +34,7 @@
     "eslint-plugin-vue": "^10.8.0",
     "globals": "^17.5.0",
     "lint-staged": "^16.4.0",
-    "nuxt": "^3.21.2",
+    "nuxt": "^4.4.2",
     "prettier": "^3.8.2",
     "tsparticles": "workspace:^",
     "typescript": "^6.0.2",
