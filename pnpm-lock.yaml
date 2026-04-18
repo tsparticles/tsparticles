@@ -976,8 +976,8 @@ importers:
         version: link:../../bundles/full/dist
     devDependencies:
       electron:
-        specifier: ^41.2.0
-        version: 41.2.0
+        specifier: ^41.2.1
+        version: 41.2.1
 
   demo/ember:
     dependencies:
@@ -21222,8 +21222,8 @@ packages:
   electron-to-chromium@1.5.331:
     resolution: {integrity: sha512-IbxXrsTlD3hRodkLnbxAPP4OuJYdWCeM3IOdT+CpcMoIwIoDfCmRpEtSPfwBXxVkg9xmBeY7Lz2Eo2TDn/HC3Q==}
 
-  electron@41.2.0:
-    resolution: {integrity: sha512-0OKLiymqfV0WK68RBXqAm3Myad2TpI5wwxLCBEUcH5Nugo3YfSk7p1Js/AL9266qTz5xZioUnxt9hG8FFwax0g==}
+  electron@41.2.1:
+    resolution: {integrity: sha512-teeRThiYGTPKf/2yOW7zZA1bhb91KEQ4yLBPOg7GxpmnkLFLugKgQaAKOrCgdzwsXh/5mFIfmkm+4+wACJKwaA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -52672,7 +52672,7 @@ snapshots:
 
   electron-to-chromium@1.5.331: {}
 
-  electron@41.2.0:
+  electron@41.2.1:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 24.12.2

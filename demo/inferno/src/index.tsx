@@ -3,7 +3,7 @@ import { Incrementer } from "./components/Incrementer";
 import Particles, { initParticlesEngine } from "@tsparticles/inferno";
 import "./main.css";
 import { loadFull } from "tsparticles";
-import { basic } from "@tsparticles/configs";
+import configs from "@tsparticles/configs";
 
 void initParticlesEngine(async engine => {
 	await loadFull(engine);
@@ -19,7 +19,7 @@ class MyComponent extends Component<any, any> {
 	public render() {
 		return (
 			<div>
-				<Particles id="tsparticles" options={basic} />
+				<Particles id="tsparticles" options={configs.basic} />
 				<h1>{`Welcome to Inferno ${version} TSX`}</h1>
 				<Incrementer name={"Crazy button"} />
 			</div>

@@ -11,29 +11,28 @@ await initParticlesEngine(async (engine) => {
 });
 
 const options: ISourceOptions = {
-    background: {
-        color: {
-            value: "#fff"
-        }
-    },
-    fullScreen: {
-        zIndex: -1
-    },
-    particles: {
-        color: {
-            value: "#000"
-        },
-        links: {
-            color: "#000",
-            enable: true
-        },
-        number: {
-            value: 100
-        },
-        move: {
-            enable: true
-        }
+  background: {
+    color: {
+      value: "#f00"
     }
+  },
+  particles: {
+    paint: {
+      color: {
+        value: "#000"
+      },
+    },
+    links: {
+      color: "#000",
+      enable: true
+    },
+    number: {
+      value: 100
+    },
+    move: {
+      enable: true
+    }
+  }
 };
 ---
 

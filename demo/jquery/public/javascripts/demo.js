@@ -1,7 +1,7 @@
 const stats = new Stats();
 
 stats.addPanel('count', '#ff8', 0, () => {
-    const container = tsParticles.domItem(0);
+    const container = tsParticles.item(0);
     if (container) {
         maxParticles = Math.max(container.particles.count, maxParticles);
 
@@ -32,7 +32,7 @@ let updateStats = function () {
 let updateParticles = function (editor) {
     let presetId = localStorage.presetId || 'basic';
 
-    $('#tsparticles').particles().init(tsParticles.configs[presetId], (particles) => {
+    $('#tsparticles').particles().init(tsParticles.pluginManager.configs[presetId], (particles) => {
         localStorage.presetId = presetId;
 
         const omit = obj => {
@@ -96,10 +96,10 @@ $(document).ready(function () {
 
     const btnUpdate = $('#btnUpdate');
     btnUpdate.click(function () {
-        const particles = tsParticles.domItem(0);
+        const particles = tsParticles.item(0);
 
         particles.reset().then(() => {
-            particles.options.load(editor.get());
+            particles.options.c(editor.get());
             particles.refresh().then(() => {
                 // do nothing
             });
