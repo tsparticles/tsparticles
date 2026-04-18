@@ -19,7 +19,7 @@
     "@tsparticles/engine": "workspace:^",
     "@tsparticles/svelte": "workspace:^",
     "@types/cookie": "^0.6.0",
-    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^7.10.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
