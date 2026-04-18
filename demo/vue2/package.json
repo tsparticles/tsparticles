@@ -48,7 +48,7 @@
     "babel-loader": "^8.3.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.1.2",
-    "eslint-plugin-vue": "^9.33.0",
+    "eslint-plugin-vue": "^10.8.0",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",
