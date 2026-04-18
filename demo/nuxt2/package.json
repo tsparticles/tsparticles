@@ -46,7 +46,7 @@
     "postcss-loader": "^4.3.0",
     "prettier": "^3.8.2",
     "ts-loader": "^8.4.0",
-    "vue-loader": "^15.11.1",
+    "vue-loader": "^17.4.2",
     "vue-template-babel-compiler": "^2.0.0",
     "webpack": "^4.47.0"
   }
