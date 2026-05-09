@@ -28,17 +28,17 @@ If you explain these categories to users, they immediately understand how deep t
 
 ## Summary table
 
-| Type | Quick create (app-local) | How to use |
-| --- | --- | --- |
-| Bundle | Compose your own `loadAppBundle(engine)` and call internal loaders | Call `await loadAppBundle(tsParticles)` before `tsParticles.load(...)` |
-| Effect | Register with `pluginManager.addEffect("app-*", drawer)` | Set `particles.effect.type` to your effect id |
-| Interaction | Register with `pluginManager.addInteractor("app-*", interactor)` | Enable in `interactivity.events` / optional custom mode checks |
-| Palette | Register with `pluginManager.addPalette("app-*", palette)` | Set `particles.palette` to your palette id |
-| Path | Register with `pluginManager.addPathGenerator("app-*", generator)` | Set `particles.move.path.generator` to your path id |
-| Plugin | Create `IPlugin` + `IContainerPlugin` and call `engine.addPlugin(...)` | Enable with your plugin options and lifecycle hooks |
-| Preset | Register with `tsParticles.addPreset("app-*", options)` | Set root `preset` |
-| Shape | Register with `tsParticles.addShape("app-*", drawer)` or load all official shape packages | Set `particles.shape.type` and per-shape `particles.shape.options` |
-| Updater | Register with `pluginManager.addParticleUpdater("app-*", updater)` | Runs automatically on particles where `isEnabled(...)` returns `true` |
+| Type        | Quick create (app-local)                                                                  | How to use                                                             |
+| ----------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Bundle      | Compose your own `loadAppBundle(engine)` and call internal loaders                        | Call `await loadAppBundle(tsParticles)` before `tsParticles.load(...)` |
+| Effect      | Register with `pluginManager.addEffect("app-*", drawer)`                                  | Set `particles.effect.type` to your effect id                          |
+| Interaction | Register with `pluginManager.addInteractor("app-*", interactor)`                          | Enable in `interactivity.events` / optional custom mode checks         |
+| Palette     | Register with `pluginManager.addPalette("app-*", palette)`                                | Set `particles.palette` to your palette id                             |
+| Path        | Register with `pluginManager.addPathGenerator("app-*", generator)`                        | Set `particles.move.path.generator` to your path id                    |
+| Plugin      | Create `IPlugin` + `IContainerPlugin` and call `engine.addPlugin(...)`                    | Enable with your plugin options and lifecycle hooks                    |
+| Preset      | Register with `tsParticles.addPreset("app-*", options)`                                   | Set root `preset`                                                      |
+| Shape       | Register with `tsParticles.addShape("app-*", drawer)` or load all official shape packages | Set `particles.shape.type` and per-shape `particles.shape.options`     |
+| Updater     | Register with `pluginManager.addParticleUpdater("app-*", updater)`                        | Runs automatically on particles where `isEnabled(...)` returns `true`  |
 
 ## Quick app-local creation + usage by extension type
 
@@ -82,7 +82,7 @@ await loadAppBundle(tsParticles);
 import type { Engine } from "@tsparticles/engine";
 
 export async function loadAppEffect(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addEffect("app-fade", () =>
       Promise.resolve({
         drawBefore: ({ context }) => {
@@ -111,7 +111,11 @@ const options = {
 ### Interactions (external and particles)
 
 ```ts
-import { ExternalInteractorBase, loadInteractivityPlugin, type IInteractivityData } from "@tsparticles/plugin-interactivity";
+import {
+  ExternalInteractorBase,
+  loadInteractivityPlugin,
+  type IInteractivityData,
+} from "@tsparticles/plugin-interactivity";
 import type { Engine, IDelta } from "@tsparticles/engine";
 
 class AppHoverPauseInteractor extends ExternalInteractorBase {
@@ -139,8 +143,8 @@ class AppHoverPauseInteractor extends ExternalInteractorBase {
 export async function loadAppInteraction(engine: Engine): Promise<void> {
   await loadInteractivityPlugin(engine);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addInteractor?.("app-hover-pause", container => {
+  await engine.pluginManager.register((e) => {
+    e.pluginManager.addInteractor?.("app-hover-pause", (container) => {
       return Promise.resolve(new AppHoverPauseInteractor(container));
     });
   });
@@ -176,7 +180,7 @@ const appPalette: IPalette = {
 };
 
 export async function loadAppPalette(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPalette("app-sunset", appPalette);
   });
 }
@@ -199,10 +203,10 @@ import { Vector, type Engine } from "@tsparticles/engine";
 export async function loadAppPath(engine: Engine): Promise<void> {
   await loadMovePlugin(engine);
 
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPathGenerator?.("app-sway", () =>
       Promise.resolve({
-        generate: particle => {
+        generate: (particle) => {
           const wave = Math.sin(particle.position.y * 0.02);
 
           return Vector.create(wave, 0);
@@ -293,7 +297,6 @@ export async function loadAppPreset(): Promise<void> {
 }
 
 await loadAppPreset();
-
 
 const options = {
   preset: "app-hero",
@@ -447,7 +450,7 @@ The `image.src` URL above is reused from existing project configs (`utils/config
 import type { Engine, IDelta, Particle } from "@tsparticles/engine";
 
 export async function loadAppUpdater(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addParticleUpdater("app-drift", () =>
       Promise.resolve({
         init: (): void => {},

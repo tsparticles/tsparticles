@@ -54,11 +54,6 @@ jobs:
         working-directory: websites/website
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        if: steps.changes.outputs.changed == 'true'
-        working-directory: websites/website
-        run: pnpm run lint
-
       - name: Build
         if: steps.changes.outputs.changed == 'true'
         working-directory: websites/website

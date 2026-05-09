@@ -1,20 +1,20 @@
-import { defineConfig } from "vite";
-import { readFileSync } from "fs";
+import { defineConfig } from 'vite';
+import { readFileSync } from 'fs';
 
 const confettiPkg = JSON.parse(
-  readFileSync("./node_modules/@tsparticles/confetti/package.json", "utf8"),
+  readFileSync('./node_modules/@tsparticles/confetti/package.json', 'utf8')
 );
 
 export default defineConfig({
   plugins: [
     {
-      name: "html-transform",
+      name: 'html-transform',
       transformIndexHtml(html) {
         return html.replace(/__CONFETTI_VERSION__/g, confettiPkg.version);
       },
     },
   ],
   build: {
-    outDir: "dist",
+    outDir: 'dist',
   },
 });

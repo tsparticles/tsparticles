@@ -28,17 +28,17 @@ tsParticles 的自定义能力不仅限于自定义插件。
 
 ## 汇总表
 
-| 类型 | 快速创建（应用内本地） | 使用方式 |
-| --- | --- | --- |
-| Bundle | 组合自己的 `loadAppBundle(engine)` 并调用内部加载器 | 在 `tsParticles.load(...)` 之前调用 `await loadAppBundle(tsParticles)` |
-| Effect | 使用 `pluginManager.addEffect("app-*", drawer)` 注册 | 将 `particles.effect.type` 设为你的 effect id |
-| Interaction | 使用 `pluginManager.addInteractor("app-*", interactor)` 注册 | 在 `interactivity.events` 中启用 / 可选自定义模式判断 |
-| Palette | 使用 `pluginManager.addPalette("app-*", palette)` 注册 | 将 `particles.palette` 设为你的 palette id |
-| Path | 使用 `pluginManager.addPathGenerator("app-*", generator)` 注册 | 将 `particles.move.path.generator` 设为你的 path id |
-| Plugin | 创建 `IPlugin` + `IContainerPlugin` 并调用 `engine.addPlugin(...)` | 通过插件选项和生命周期钩子启用 |
-| Preset | 使用 `tsParticles.addPreset("app-*", options)` 注册 | 设置根级 `preset` |
-| Shape | 使用 `tsParticles.addShape("app-*", drawer)` 注册，或加载全部官方 shape 包 | 设置 `particles.shape.type` 以及每种 shape 的 `particles.shape.options` |
-| Updater | 使用 `pluginManager.addParticleUpdater("app-*", updater)` 注册 | 在 `isEnabled(...)` 返回 `true` 的粒子上自动运行 |
+| 类型        | 快速创建（应用内本地）                                                     | 使用方式                                                                |
+| ----------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Bundle      | 组合自己的 `loadAppBundle(engine)` 并调用内部加载器                        | 在 `tsParticles.load(...)` 之前调用 `await loadAppBundle(tsParticles)`  |
+| Effect      | 使用 `pluginManager.addEffect("app-*", drawer)` 注册                       | 将 `particles.effect.type` 设为你的 effect id                           |
+| Interaction | 使用 `pluginManager.addInteractor("app-*", interactor)` 注册               | 在 `interactivity.events` 中启用 / 可选自定义模式判断                   |
+| Palette     | 使用 `pluginManager.addPalette("app-*", palette)` 注册                     | 将 `particles.palette` 设为你的 palette id                              |
+| Path        | 使用 `pluginManager.addPathGenerator("app-*", generator)` 注册             | 将 `particles.move.path.generator` 设为你的 path id                     |
+| Plugin      | 创建 `IPlugin` + `IContainerPlugin` 并调用 `engine.addPlugin(...)`         | 通过插件选项和生命周期钩子启用                                          |
+| Preset      | 使用 `tsParticles.addPreset("app-*", options)` 注册                        | 设置根级 `preset`                                                       |
+| Shape       | 使用 `tsParticles.addShape("app-*", drawer)` 注册，或加载全部官方 shape 包 | 设置 `particles.shape.type` 以及每种 shape 的 `particles.shape.options` |
+| Updater     | 使用 `pluginManager.addParticleUpdater("app-*", updater)` 注册             | 在 `isEnabled(...)` 返回 `true` 的粒子上自动运行                        |
 
 ## 按扩展类型快速本地创建与使用
 
@@ -82,7 +82,7 @@ await loadAppBundle(tsParticles);
 import type { Engine } from "@tsparticles/engine";
 
 export async function loadAppEffect(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addEffect("app-fade", () =>
       Promise.resolve({
         drawBefore: ({ context }) => {
@@ -111,7 +111,11 @@ const options = {
 ### 交互（external 和 particles）
 
 ```ts
-import { ExternalInteractorBase, loadInteractivityPlugin, type IInteractivityData } from "@tsparticles/plugin-interactivity";
+import {
+  ExternalInteractorBase,
+  loadInteractivityPlugin,
+  type IInteractivityData,
+} from "@tsparticles/plugin-interactivity";
 import type { Engine, IDelta } from "@tsparticles/engine";
 
 class AppHoverPauseInteractor extends ExternalInteractorBase {
@@ -139,8 +143,8 @@ class AppHoverPauseInteractor extends ExternalInteractorBase {
 export async function loadAppInteraction(engine: Engine): Promise<void> {
   await loadInteractivityPlugin(engine);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addInteractor?.("app-hover-pause", container => {
+  await engine.pluginManager.register((e) => {
+    e.pluginManager.addInteractor?.("app-hover-pause", (container) => {
       return Promise.resolve(new AppHoverPauseInteractor(container));
     });
   });
@@ -176,7 +180,7 @@ const appPalette: IPalette = {
 };
 
 export async function loadAppPalette(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPalette("app-sunset", appPalette);
   });
 }
@@ -199,10 +203,10 @@ import { Vector, type Engine } from "@tsparticles/engine";
 export async function loadAppPath(engine: Engine): Promise<void> {
   await loadMovePlugin(engine);
 
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPathGenerator?.("app-sway", () =>
       Promise.resolve({
-        generate: particle => {
+        generate: (particle) => {
           const wave = Math.sin(particle.position.y * 0.02);
 
           return Vector.create(wave, 0);
@@ -293,7 +297,6 @@ export async function loadAppPreset(): Promise<void> {
 }
 
 await loadAppPreset();
-
 
 const options = {
   preset: "app-hero",
@@ -447,7 +450,7 @@ const options = {
 import type { Engine, IDelta, Particle } from "@tsparticles/engine";
 
 export async function loadAppUpdater(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addParticleUpdater("app-drift", () =>
       Promise.resolve({
         init: (): void => {},

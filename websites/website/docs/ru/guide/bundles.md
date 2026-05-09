@@ -4,15 +4,15 @@
 
 ## Сравнение пакетов
 
-| Пакет | Лучше всего подходит для | Стиль настройки |
-| --- | --- | --- |
-| `@tsparticles/basic` | Очень легкие конфигурации | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | Большинство сайтов/приложений | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | Полный набор официальных возможностей с контролем engine | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | Все возможности, быстрое прототипирование | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | Эффекты конфетти в один вызов | `await confetti(options)` |
-| `@tsparticles/fireworks` | Эффекты фейерверков в один вызов | `await fireworks(options)` |
-| `@tsparticles/particles` | Простое API для фоновых частиц | `await particles(options)` |
+| Пакет                    | Лучше всего подходит для                                 | Стиль настройки                                |
+| ------------------------ | -------------------------------------------------------- | ---------------------------------------------- |
+| `@tsparticles/basic`     | Очень легкие конфигурации                                | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | Большинство сайтов/приложений                            | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | Полный набор официальных возможностей с контролем engine | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | Все возможности, быстрое прототипирование                | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | Эффекты конфетти в один вызов                            | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | Эффекты фейерверков в один вызов                         | `await fireworks(options)`                     |
+| `@tsparticles/particles` | Простое API для фоновых частиц                           | `await particles(options)`                     |
 
 ## Руководства по bundle
 

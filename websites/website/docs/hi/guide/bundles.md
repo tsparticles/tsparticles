@@ -4,15 +4,15 @@
 
 ## पैकेज तुलना
 
-| पैकेज | किसके लिए बेहतर | setup स्टाइल |
-| --- | --- | --- |
-| `@tsparticles/basic` | बहुत हल्के सेटअप | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | ज्यादातर वेबसाइट/ऐप्स | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | official full फीचर सेट और engine control | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | सभी फीचर्स, तेज prototyping | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | one-call confetti effects | `await confetti(options)` |
-| `@tsparticles/fireworks` | one-call fireworks effects | `await fireworks(options)` |
-| `@tsparticles/particles` | सरल particles background API | `await particles(options)` |
+| पैकेज                    | किसके लिए बेहतर                          | setup स्टाइल                                   |
+| ------------------------ | ---------------------------------------- | ---------------------------------------------- |
+| `@tsparticles/basic`     | बहुत हल्के सेटअप                         | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | ज्यादातर वेबसाइट/ऐप्स                    | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | official full फीचर सेट और engine control | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | सभी फीचर्स, तेज prototyping              | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | one-call confetti effects                | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | one-call fireworks effects               | `await fireworks(options)`                     |
+| `@tsparticles/particles` | सरल particles background API             | `await particles(options)`                     |
 
 ## Bundle guides
 

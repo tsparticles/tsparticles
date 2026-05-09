@@ -9,12 +9,13 @@
         "postinstall": "node ./scripts/fix-palette-types.mjs",
         "docs:assets": "node ./scripts/sync-public-assets.mjs",
         "dev": "pnpm run docs:assets && vitepress dev docs --host",
-        "docs:build": "pnpm run docs:assets && vitepress build docs",
+        "docs:build": "pnpm run lint:fix && pnpm run docs:assets && vitepress build docs",
+        "docs:build:ci": "pnpm run lint && pnpm run docs:assets && vitepress build docs",
         "docs:preview": "vitepress preview docs --host",
         "build": "pnpm run docs:build",
         "lint": "prettier --check \"docs/**/*.{md,ts,css}\"",
         "lint:fix": "prettier --write \"docs/**/*.{md,ts,css}\"",
-        "build:ci": "pnpm run docs:build"
+        "build:ci": "pnpm run docs:build:ci"
     },
     "repository": {
         "type": "git",

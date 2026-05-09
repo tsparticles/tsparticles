@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "pnpm run format && pnpm run lint:fix && vite build",
+    "build:ci": "pnpm run format:check && pnpm run lint && vite build",
     "preview": "vite preview",
     "deploy": "node deploy.js",
     "lint": "eslint src",

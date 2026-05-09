@@ -28,17 +28,17 @@ Si vous expliquez ces categories aux utilisateurs, ils comprennent immediatement
 
 ## Tableau recapitulatif
 
-| Type | Creation rapide (locale a l'app) | Utilisation |
-| --- | --- | --- |
-| Bundle | Composez votre `loadAppBundle(engine)` et appelez les chargeurs internes | Appelez `await loadAppBundle(tsParticles)` avant `tsParticles.load(...)` |
-| Effect | Enregistrez avec `pluginManager.addEffect("app-*", drawer)` | Definissez `particles.effect.type` avec l'id de votre effect |
-| Interaction | Enregistrez avec `pluginManager.addInteractor("app-*", interactor)` | Activez dans `interactivity.events` / verifications optionnelles de mode personnalise |
-| Palette | Enregistrez avec `pluginManager.addPalette("app-*", palette)` | Definissez `particles.palette` avec l'id de votre palette |
-| Path | Enregistrez avec `pluginManager.addPathGenerator("app-*", generator)` | Definissez `particles.move.path.generator` avec l'id de votre path |
-| Plugin | Creez `IPlugin` + `IContainerPlugin` et appelez `engine.addPlugin(...)` | Activez via les options du plugin et les hooks du cycle de vie |
-| Preset | Enregistrez avec `tsParticles.addPreset("app-*", options)` | Definissez le `preset` racine |
-| Shape | Enregistrez avec `tsParticles.addShape("app-*", drawer)` ou chargez tous les packages shape officiels | Definissez `particles.shape.type` et les options par shape dans `particles.shape.options` |
-| Updater | Enregistrez avec `pluginManager.addParticleUpdater("app-*", updater)` | S'execute automatiquement sur les particules ou `isEnabled(...)` renvoie `true` |
+| Type        | Creation rapide (locale a l'app)                                                                      | Utilisation                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Bundle      | Composez votre `loadAppBundle(engine)` et appelez les chargeurs internes                              | Appelez `await loadAppBundle(tsParticles)` avant `tsParticles.load(...)`                  |
+| Effect      | Enregistrez avec `pluginManager.addEffect("app-*", drawer)`                                           | Definissez `particles.effect.type` avec l'id de votre effect                              |
+| Interaction | Enregistrez avec `pluginManager.addInteractor("app-*", interactor)`                                   | Activez dans `interactivity.events` / verifications optionnelles de mode personnalise     |
+| Palette     | Enregistrez avec `pluginManager.addPalette("app-*", palette)`                                         | Definissez `particles.palette` avec l'id de votre palette                                 |
+| Path        | Enregistrez avec `pluginManager.addPathGenerator("app-*", generator)`                                 | Definissez `particles.move.path.generator` avec l'id de votre path                        |
+| Plugin      | Creez `IPlugin` + `IContainerPlugin` et appelez `engine.addPlugin(...)`                               | Activez via les options du plugin et les hooks du cycle de vie                            |
+| Preset      | Enregistrez avec `tsParticles.addPreset("app-*", options)`                                            | Definissez le `preset` racine                                                             |
+| Shape       | Enregistrez avec `tsParticles.addShape("app-*", drawer)` ou chargez tous les packages shape officiels | Definissez `particles.shape.type` et les options par shape dans `particles.shape.options` |
+| Updater     | Enregistrez avec `pluginManager.addParticleUpdater("app-*", updater)`                                 | S'execute automatiquement sur les particules ou `isEnabled(...)` renvoie `true`           |
 
 ## Creation locale rapide + utilisation par type d'extension
 
@@ -82,7 +82,7 @@ await loadAppBundle(tsParticles);
 import type { Engine } from "@tsparticles/engine";
 
 export async function loadAppEffect(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addEffect("app-fade", () =>
       Promise.resolve({
         drawBefore: ({ context }) => {
@@ -111,7 +111,11 @@ const options = {
 ### Interactions (external et particles)
 
 ```ts
-import { ExternalInteractorBase, loadInteractivityPlugin, type IInteractivityData } from "@tsparticles/plugin-interactivity";
+import {
+  ExternalInteractorBase,
+  loadInteractivityPlugin,
+  type IInteractivityData,
+} from "@tsparticles/plugin-interactivity";
 import type { Engine, IDelta } from "@tsparticles/engine";
 
 class AppHoverPauseInteractor extends ExternalInteractorBase {
@@ -139,8 +143,8 @@ class AppHoverPauseInteractor extends ExternalInteractorBase {
 export async function loadAppInteraction(engine: Engine): Promise<void> {
   await loadInteractivityPlugin(engine);
 
-  await engine.pluginManager.register(e => {
-    e.pluginManager.addInteractor?.("app-hover-pause", container => {
+  await engine.pluginManager.register((e) => {
+    e.pluginManager.addInteractor?.("app-hover-pause", (container) => {
       return Promise.resolve(new AppHoverPauseInteractor(container));
     });
   });
@@ -176,7 +180,7 @@ const appPalette: IPalette = {
 };
 
 export async function loadAppPalette(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPalette("app-sunset", appPalette);
   });
 }
@@ -199,10 +203,10 @@ import { Vector, type Engine } from "@tsparticles/engine";
 export async function loadAppPath(engine: Engine): Promise<void> {
   await loadMovePlugin(engine);
 
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addPathGenerator?.("app-sway", () =>
       Promise.resolve({
-        generate: particle => {
+        generate: (particle) => {
           const wave = Math.sin(particle.position.y * 0.02);
 
           return Vector.create(wave, 0);
@@ -293,7 +297,6 @@ export async function loadAppPreset(): Promise<void> {
 }
 
 await loadAppPreset();
-
 
 const options = {
   preset: "app-hero",
@@ -447,7 +450,7 @@ L'URL `image.src` ci-dessus est reutilisee depuis les configurations existantes 
 import type { Engine, IDelta, Particle } from "@tsparticles/engine";
 
 export async function loadAppUpdater(engine: Engine): Promise<void> {
-  await engine.pluginManager.register(e => {
+  await engine.pluginManager.register((e) => {
     e.pluginManager.addParticleUpdater("app-drift", () =>
       Promise.resolve({
         init: (): void => {},

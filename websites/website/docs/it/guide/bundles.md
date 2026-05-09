@@ -4,15 +4,15 @@ Questa pagina ti aiuta a scegliere il bundle `tsParticles` giusto e a configurar
 
 ## Confronto pacchetti
 
-| Pacchetto | Ideale per | Stile di setup |
-| --- | --- | --- |
-| `@tsparticles/basic` | Setup ultra leggeri | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | La maggior parte di siti/app | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | Set completo di funzionalita ufficiali con controllo engine | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | Tutte le funzionalita, prototipazione rapida | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | Effetti coriandoli con una chiamata | `await confetti(options)` |
-| `@tsparticles/fireworks` | Effetti fuochi d'artificio con una chiamata | `await fireworks(options)` |
-| `@tsparticles/particles` | API semplice per sfondo particellare | `await particles(options)` |
+| Pacchetto                | Ideale per                                                  | Stile di setup                                 |
+| ------------------------ | ----------------------------------------------------------- | ---------------------------------------------- |
+| `@tsparticles/basic`     | Setup ultra leggeri                                         | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | La maggior parte di siti/app                                | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | Set completo di funzionalita ufficiali con controllo engine | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | Tutte le funzionalita, prototipazione rapida                | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | Effetti coriandoli con una chiamata                         | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | Effetti fuochi d'artificio con una chiamata                 | `await fireworks(options)`                     |
+| `@tsparticles/particles` | API semplice per sfondo particellare                        | `await particles(options)`                     |
 
 ## Guide per bundle
 

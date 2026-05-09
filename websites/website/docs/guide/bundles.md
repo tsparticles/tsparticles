@@ -4,15 +4,15 @@ This page helps you pick the right `tsParticles` bundle and set it up quickly.
 
 ## Package comparison
 
-| Package | Best for | Setup style |
-| --- | --- | --- |
-| `@tsparticles/basic` | Extra-light setups | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | Most websites/apps | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | Full official feature set with engine control | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | Full features, fastest prototyping | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | One-call confetti effects | `await confetti(options)` |
-| `@tsparticles/fireworks` | One-call fireworks effects | `await fireworks(options)` |
-| `@tsparticles/particles` | Simple particles background API | `await particles(options)` |
+| Package                  | Best for                                      | Setup style                                    |
+| ------------------------ | --------------------------------------------- | ---------------------------------------------- |
+| `@tsparticles/basic`     | Extra-light setups                            | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | Most websites/apps                            | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | Full official feature set with engine control | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | Full features, fastest prototyping            | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | One-call confetti effects                     | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | One-call fireworks effects                    | `await fireworks(options)`                     |
+| `@tsparticles/particles` | Simple particles background API               | `await particles(options)`                     |
 
 ## Bundle guides
 

@@ -4,15 +4,15 @@
 
 ## パッケージ比較
 
-| パッケージ | 向いている用途 | セットアップ方式 |
-| --- | --- | --- |
-| `@tsparticles/basic` | さらに軽量な構成 | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | ほとんどの Web サイト/アプリ | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | 公式機能を広く含む full 構成を engine 制御で使う | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | 全機能を使った高速プロトタイプ | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | 1 回の呼び出しで紙吹雪演出 | `await confetti(options)` |
-| `@tsparticles/fireworks` | 1 回の呼び出しで花火演出 | `await fireworks(options)` |
-| `@tsparticles/particles` | シンプルな粒子背景 API | `await particles(options)` |
+| パッケージ               | 向いている用途                                   | セットアップ方式                               |
+| ------------------------ | ------------------------------------------------ | ---------------------------------------------- |
+| `@tsparticles/basic`     | さらに軽量な構成                                 | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | ほとんどの Web サイト/アプリ                     | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | 公式機能を広く含む full 構成を engine 制御で使う | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | 全機能を使った高速プロトタイプ                   | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | 1 回の呼び出しで紙吹雪演出                       | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | 1 回の呼び出しで花火演出                         | `await fireworks(options)`                     |
+| `@tsparticles/particles` | シンプルな粒子背景 API                           | `await particles(options)`                     |
 
 ## Bundle ガイド
 

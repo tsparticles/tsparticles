@@ -1,6 +1,6 @@
-import { confetti } from "@tsparticles/confetti";
-import "./style.css";
-import "./cookie-consent.js";
+import { confetti } from '@tsparticles/confetti';
+import './style.css';
+import './cookie-consent.js';
 
 window.confetti = confetti;
 
@@ -15,35 +15,35 @@ const sharePlatformTemplates = {
   whatsapp: (url, text) => `https://wa.me/?text=${text}%20${url}`,
   email: (url, text) => `mailto:?subject=${text}&body=${url}`,
 };
-const shareDesktopOrder = ["facebook", "x", "linkedin", "reddit", "telegram", "whatsapp", "email"];
-const shareMobileOrder = ["x", "whatsapp", "telegram", "facebook", "linkedin", "reddit", "email"];
+const shareDesktopOrder = ['facebook', 'x', 'linkedin', 'reddit', 'telegram', 'whatsapp', 'email'];
+const shareMobileOrder = ['x', 'whatsapp', 'telegram', 'facebook', 'linkedin', 'reddit', 'email'];
 
-let activeTheme = "dark";
-let currentStep = parseInt(localStorage.getItem("tsparticles-confetti/theme"), 10) || 0;
+let activeTheme = 'dark';
+let currentStep = parseInt(localStorage.getItem('tsparticles-confetti/theme'), 10) || 0;
 
-const prefersLightTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
+const prefersLightTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
 const themes = {
-  light: "ace/theme/xcode",
-  dark: "ace/theme/monokai",
+  light: 'ace/theme/xcode',
+  dark: 'ace/theme/monokai',
 };
 
 const getPreferedTheme = function () {
-  return prefersLightTheme ? (prefersLightTheme.matches ? "light" : "dark") : "dark";
+  return prefersLightTheme ? (prefersLightTheme.matches ? 'light' : 'dark') : 'dark';
 };
 
 const updateShareLinks = function () {
   const encodedUrl = encodeURIComponent(window.location.href);
-  const encodedText = encodeURIComponent(document.title || "tsParticles Confetti");
+  const encodedText = encodeURIComponent(document.title || 'tsParticles Confetti');
 
-  Array.from(document.querySelectorAll("[data-share-link]")).forEach((link) => {
-    const platform = link.getAttribute("data-share-link");
+  Array.from(document.querySelectorAll('[data-share-link]')).forEach((link) => {
+    const platform = link.getAttribute('data-share-link');
     const template = sharePlatformTemplates[platform];
 
     if (!template) {
       return;
     }
 
-    link.setAttribute("href", template(encodedUrl, encodedText));
+    link.setAttribute('href', template(encodedUrl, encodedText));
   });
 };
 
@@ -58,7 +58,7 @@ const trackShare = function (platform) {
     return;
   }
 
-  window.gtag("event", "share_click", {
+  window.gtag('event', 'share_click', {
     method: platform,
     page_path: window.location.pathname,
     page_title: document.title,
@@ -70,23 +70,23 @@ const trackCopyLink = function () {
     return;
   }
 
-  window.gtag("event", "share_copy_link", {
-    method: "copy_link",
+  window.gtag('event', 'share_copy_link', {
+    method: 'copy_link',
     page_path: window.location.pathname,
     page_title: document.title,
   });
 };
 
 const updateShareOrder = function () {
-  const currentOrder = window.matchMedia("(max-width: 768px)").matches
+  const currentOrder = window.matchMedia('(max-width: 768px)').matches
     ? shareMobileOrder
     : shareDesktopOrder;
 
-  Array.from(document.querySelectorAll(".social-share")).forEach((shareContainer) => {
+  Array.from(document.querySelectorAll('.social-share')).forEach((shareContainer) => {
     const linksByPlatform = {};
 
-    Array.from(shareContainer.querySelectorAll("[data-share-link]")).forEach((link) => {
-      const platform = link.getAttribute("data-share-link");
+    Array.from(shareContainer.querySelectorAll('[data-share-link]')).forEach((link) => {
+      const platform = link.getAttribute('data-share-link');
 
       if (platform) {
         linksByPlatform[platform] = link;
@@ -101,7 +101,7 @@ const updateShareOrder = function () {
       }
     });
 
-    const copyButton = shareContainer.querySelector("#shareCopyLinkButton");
+    const copyButton = shareContainer.querySelector('#shareCopyLinkButton');
 
     if (copyButton) {
       shareContainer.appendChild(copyButton);
@@ -110,37 +110,37 @@ const updateShareOrder = function () {
 };
 
 const setupShareActions = function () {
-  const shareDropdown = document.querySelector(".share-menu");
+  const shareDropdown = document.querySelector('.share-menu');
 
   if (shareDropdown) {
-    document.addEventListener("click", (event) => {
+    document.addEventListener('click', (event) => {
       if (!shareDropdown.contains(event.target)) {
-        shareDropdown.removeAttribute("open");
+        shareDropdown.removeAttribute('open');
       }
     });
   }
 
-  Array.from(document.querySelectorAll("[data-share-link]")).forEach((link) => {
-    const platform = link.getAttribute("data-share-link") || "unknown";
+  Array.from(document.querySelectorAll('[data-share-link]')).forEach((link) => {
+    const platform = link.getAttribute('data-share-link') || 'unknown';
 
-    link.addEventListener("click", () => {
+    link.addEventListener('click', () => {
       trackShare(platform);
     });
   });
 
-  Array.from(document.querySelectorAll("#shareCopyLinkButton")).forEach((copyButton) => {
-    copyButton.addEventListener("click", async () => {
+  Array.from(document.querySelectorAll('#shareCopyLinkButton')).forEach((copyButton) => {
+    copyButton.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
         const originalLabel = copyButton.textContent;
 
-        copyButton.textContent = "Copied";
+        copyButton.textContent = 'Copied';
         trackCopyLink();
         window.setTimeout(() => {
           copyButton.textContent = originalLabel;
         }, 1800);
       } catch (err) {
-        console.error("Unable to copy share link.", err);
+        console.error('Unable to copy share link.', err);
       }
     });
   });
@@ -148,16 +148,16 @@ const setupShareActions = function () {
 
 const setTheme = function (isAuto, theme) {
   if (isAuto) {
-    document.body.setAttribute("auto-theme", true);
+    document.body.setAttribute('auto-theme', true);
 
     activeTheme = getPreferedTheme();
   } else {
-    document.body.removeAttribute("auto-theme");
+    document.body.removeAttribute('auto-theme');
 
     activeTheme = theme;
   }
 
-  document.body.setAttribute("data-theme", activeTheme);
+  document.body.setAttribute('data-theme', activeTheme);
 
   editors.forEach(function (editor) {
     editor.setTheme(themes[activeTheme]);
@@ -171,34 +171,34 @@ const updateTheme = function (step) {
     case 0:
       setTheme(true);
 
-      prefersLightTheme && prefersLightTheme.addEventListener("change", setTheme);
+      prefersLightTheme && prefersLightTheme.addEventListener('change', setTheme);
 
       break;
 
     case 1:
     case 2:
-      setTheme(false, step === 1 ? "dark" : "light");
+      setTheme(false, step === 1 ? 'dark' : 'light');
 
       prefersLightTheme && prefersLightTheme.removeListener(setTheme);
       break;
   }
 
-  localStorage.setItem("tsparticles-confetti/theme", currentStep);
+  localStorage.setItem('tsparticles-confetti/theme', currentStep);
 };
 
 updateTheme(currentStep);
 
-document.getElementById("themeToggle").addEventListener("click", function () {
+document.getElementById('themeToggle').addEventListener('click', function () {
   updateTheme(++currentStep % 3);
 });
 
 const modes = [
   {
-    id: "cannon",
-    name: "Basic Cannon",
+    id: 'cannon',
+    name: 'Basic Cannon',
     description: [
       {
-        cssClass: "",
+        cssClass: '',
         text: "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?",
       },
     ],
@@ -212,12 +212,12 @@ const modes = [
   },
 
   {
-    id: "random",
-    name: "Random Direction",
+    id: 'random',
+    name: 'Random Direction',
     description: [
       {
-        cssClass: "",
-        text: "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)",
+        cssClass: '',
+        text: 'Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)',
       },
     ],
     fn: function () {
@@ -235,11 +235,11 @@ const modes = [
   },
 
   {
-    id: "realistic",
-    name: "Realistic Look",
+    id: 'realistic',
+    name: 'Realistic Look',
     description: [
       {
-        cssClass: "",
+        cssClass: '',
         text: 'If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even "flattened cone" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together.',
       },
     ],
@@ -253,7 +253,7 @@ const modes = [
         confetti(
           Object.assign({}, defaults, opts, {
             particleCount: Math.floor(count * particleRatio),
-          }),
+          })
         );
       }
 
@@ -287,15 +287,15 @@ const modes = [
   },
 
   {
-    id: "hearts",
+    id: 'hearts',
     name: "Valentine's Day",
     description: [
       {
-        cssClass: "",
+        cssClass: '',
         text: "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
       },
       {
-        cssClass: "center",
+        cssClass: 'center',
         text: "❤️ Happy Valentine's Day! ❤️",
       },
     ],
@@ -306,8 +306,8 @@ const modes = [
         gravity: 0,
         decay: 0.94,
         startVelocity: 30,
-        shapes: ["heart"],
-        colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+        shapes: ['heart'],
+        colors: ['FFC0CB', 'FF69B4', 'FF1493', 'C71585'],
       };
 
       confetti({
@@ -331,16 +331,16 @@ const modes = [
   },
 
   {
-    id: "stars",
-    name: "Stars",
+    id: 'stars',
+    name: 'Stars',
     description: [
       {
-        cssClass: "",
-        text: "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
+        cssClass: '',
+        text: 'You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.',
       },
       {
-        cssClass: "center",
-        text: "✨ Celebrate with a burst of stars! ✨",
+        cssClass: 'center',
+        text: '✨ Celebrate with a burst of stars! ✨',
       },
     ],
     fn: function () {
@@ -350,8 +350,8 @@ const modes = [
         gravity: 0,
         decay: 0.94,
         startVelocity: 30,
-        shapes: ["star"],
-        colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+        shapes: ['star'],
+        colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8'],
       };
 
       function shoot() {
@@ -359,14 +359,14 @@ const modes = [
           ...defaults,
           particleCount: 40,
           scalar: 1.2,
-          shapes: ["star"],
+          shapes: ['star'],
         });
 
         confetti({
           ...defaults,
           particleCount: 10,
           scalar: 0.75,
-          shapes: ["circle"],
+          shapes: ['circle'],
         });
       }
 
@@ -377,16 +377,16 @@ const modes = [
   },
 
   {
-    id: "emoji",
-    name: "Emoji and Unicorns",
+    id: 'emoji',
+    name: 'Emoji and Unicorns',
     description: [
       {
-        cssClass: "",
-        text: "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄 ",
+        cssClass: '',
+        text: 'You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄 ',
       },
       {
-        cssClass: "center",
-        text: "🦄 Unicorns loves rainbows! 🦄",
+        cssClass: 'center',
+        text: '🦄 Unicorns loves rainbows! 🦄',
       },
     ],
     fn: function () {
@@ -403,18 +403,18 @@ const modes = [
           ...defaults,
           particleCount: 30,
           scalar: 1.2,
-          shapes: ["circle", "square"],
-          colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+          shapes: ['circle', 'square'],
+          colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
         });
 
         confetti({
           ...defaults,
           particleCount: 20,
           scalar: 2,
-          shapes: ["emoji"],
+          shapes: ['emoji'],
           shapeOptions: {
             emoji: {
-              value: ["🦄", "🌈"],
+              value: ['🦄', '🌈'],
             },
           },
         });
@@ -427,15 +427,15 @@ const modes = [
   },
 
   {
-    id: "images",
-    name: "Images",
+    id: 'images',
+    name: 'Images',
     description: [
       {
-        cssClass: "",
+        cssClass: '',
         text: "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
       },
       {
-        cssClass: "center",
+        cssClass: 'center',
         text: "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋",
       },
     ],
@@ -448,86 +448,86 @@ const modes = [
         startVelocity: 30,
         particleCount: 100,
         scalar: 3,
-        shapes: ["image"],
+        shapes: ['image'],
         shapeOptions: {
           image: [
             {
-              src: "https://particles.js.org/images/fruits/apple.png",
+              src: 'https://particles.js.org/images/fruits/apple.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/avocado.png",
+              src: 'https://particles.js.org/images/fruits/avocado.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/banana.png",
+              src: 'https://particles.js.org/images/fruits/banana.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/berries.png",
+              src: 'https://particles.js.org/images/fruits/berries.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/cherry.png",
+              src: 'https://particles.js.org/images/fruits/cherry.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/grapes.png",
+              src: 'https://particles.js.org/images/fruits/grapes.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/lemon.png",
+              src: 'https://particles.js.org/images/fruits/lemon.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/orange.png",
+              src: 'https://particles.js.org/images/fruits/orange.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/peach.png",
+              src: 'https://particles.js.org/images/fruits/peach.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/pear.png",
+              src: 'https://particles.js.org/images/fruits/pear.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/pepper.png",
+              src: 'https://particles.js.org/images/fruits/pepper.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/plum.png",
+              src: 'https://particles.js.org/images/fruits/plum.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/star.png",
+              src: 'https://particles.js.org/images/fruits/star.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/strawberry.png",
+              src: 'https://particles.js.org/images/fruits/strawberry.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/watermelon.png",
+              src: 'https://particles.js.org/images/fruits/watermelon.png',
               width: 32,
               height: 32,
             },
             {
-              src: "https://particles.js.org/images/fruits/watermelon_slice.png",
+              src: 'https://particles.js.org/images/fruits/watermelon_slice.png',
               width: 32,
               height: 32,
             },
@@ -538,12 +538,12 @@ const modes = [
   },
 
   {
-    id: "fireworks",
-    name: "Fireworks",
+    id: 'fireworks',
+    name: 'Fireworks',
     description: [
       {
-        cssClass: "",
-        text: "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center.",
+        cssClass: '',
+        text: 'Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center.',
       },
     ],
     fn: function () {
@@ -568,25 +568,25 @@ const modes = [
           Object.assign({}, defaults, {
             particleCount,
             origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-          }),
+          })
         );
         confetti(
           Object.assign({}, defaults, {
             particleCount,
             origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-          }),
+          })
         );
       }, 250);
     },
   },
 
   {
-    id: "snow",
-    name: "Snow",
+    id: 'snow',
+    name: 'Snow',
     description: [
       {
-        cssClass: "",
-        text: "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page.",
+        cssClass: '',
+        text: 'The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page.',
       },
     ],
     fn: function () {
@@ -613,8 +613,8 @@ const modes = [
             x: Math.random(),
             y: Math.random() * skew - 0.2,
           },
-          colors: ["#ffffff"],
-          shapes: ["circle"],
+          colors: ['#ffffff'],
+          shapes: ['circle'],
           gravity: randomInRange(0.4, 0.6),
           scalar: randomInRange(0.4, 1),
           drift: randomInRange(-0.4, 0.4),
@@ -628,22 +628,22 @@ const modes = [
   },
 
   {
-    id: "continuous",
-    name: "School Pride",
+    id: 'continuous',
+    name: 'School Pride',
     description: [
       {
-        cssClass: "",
-        text: "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
+        cssClass: '',
+        text: 'But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.',
       },
       {
-        cssClass: "center",
-        text: "🌰 Go Buckeyes! 🌰",
+        cssClass: 'center',
+        text: '🌰 Go Buckeyes! 🌰',
       },
     ],
     fn: function () {
       const end = Date.now() + 15 * 1000;
 
-      const colors = ["#bb0000", "#ffffff"];
+      const colors = ['#bb0000', '#ffffff'];
 
       (function frame() {
         confetti({
@@ -670,16 +670,16 @@ const modes = [
   },
 
   {
-    id: "customShapes",
-    name: "Custom Shapes",
+    id: 'customShapes',
+    name: 'Custom Shapes',
     description: [
       {
-        cssClass: "",
-        text: "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
+        cssClass: '',
+        text: 'Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!',
       },
       {
-        cssClass: "center",
-        text: "🎃🎄💜",
+        cssClass: 'center',
+        text: '🎃🎄💜',
       },
     ],
     fn: function () {
@@ -693,50 +693,50 @@ const modes = [
 
       confetti({
         ...defaults,
-        shapes: ["image"],
+        shapes: ['image'],
         shapeOptions: {
           image: {
-            src: "https://particles.js.org/images/pumpkin.svg",
+            src: 'https://particles.js.org/images/pumpkin.svg',
             replaceColor: true,
             width: 32,
             height: 40,
           },
         },
-        colors: ["#ff9a00", "#ff7400", "#ff4d00"],
+        colors: ['#ff9a00', '#ff7400', '#ff4d00'],
       });
       confetti({
         ...defaults,
-        shapes: ["image"],
+        shapes: ['image'],
         shapeOptions: {
           image: {
-            src: "https://particles.js.org/images/pine-tree.svg",
+            src: 'https://particles.js.org/images/pine-tree.svg',
             replaceColor: true,
             width: 271,
             height: 351.5,
           },
         },
-        colors: ["#8d960f", "#be0f10", "#445404"],
+        colors: ['#8d960f', '#be0f10', '#445404'],
       });
       confetti({
         ...defaults,
-        shapes: ["heart"],
-        colors: ["#f93963", "#a10864", "#ee0b93"],
+        shapes: ['heart'],
+        colors: ['#f93963', '#a10864', '#ee0b93'],
       });
     },
   },
 
   {
-    id: "custom",
-    name: "Custom Canvas",
+    id: 'custom',
+    name: 'Custom Canvas',
     description: [
       {
-        cssClass: "",
+        cssClass: '',
         text: "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element.",
       },
     ],
     fn: function () {
       (async () => {
-        const canvas = document.getElementById("my-canvas");
+        const canvas = document.getElementById('my-canvas');
 
         canvas.confetti = canvas.confetti || (await confetti.create(canvas, { resize: true }));
 
@@ -766,22 +766,26 @@ function renderModes(modes) {
             </button>
           </div>
           <div class="description">
-            ${mode.description.map((d) => `<p class="${d.cssClass}">${d.text}</p>`).join("")}
+            ${mode.description.map((d) => `<p class="${d.cssClass}">${d.text}</p>`).join('')}
           </div>
         </div>
         <div class="editor"></div>
-        ${mode.id === "custom" ? `
+        ${
+          mode.id === 'custom'
+            ? `
         <div class="flex-rows">
           <canvas id="my-canvas" style="width: 100%; height: 380px; max-width: 1000px" class="custom-canvas"></canvas>
-        </div>` : ""}
+        </div>`
+            : ''
+        }
       </div>
-    </div>`,
+    </div>`
     )
-    .join("\n");
+    .join('\n');
 }
 
 function pretty(val) {
-  return js_beautify(val, { indent_size: 2, brace_style: "preserve-inline" });
+  return js_beautify(val, { indent_size: 2, brace_style: 'preserve-inline' });
 }
 
 function getCode(name) {
@@ -790,55 +794,55 @@ function getCode(name) {
   let code = pretty(mode.fn.toString());
 
   code = code
-    .split("\n")
+    .split('\n')
     .slice(1)
     .slice(0, -1)
     .map(function (s) {
       return s.trim();
     })
-    .join("\n");
+    .join('\n');
 
   return pretty(code);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   updateShareLinks();
   updateShareOrder();
   setupShareActions();
-  window.addEventListener("resize", updateShareOrder);
+  window.addEventListener('resize', updateShareOrder);
 
-  Array.from(document.querySelectorAll(".html-group")).forEach(function (group) {
-    const codeElem = group.querySelector(".editor"),
+  Array.from(document.querySelectorAll('.html-group')).forEach(function (group) {
+    const codeElem = group.querySelector('.editor'),
       editor = ace.edit(codeElem);
 
     editor.setTheme(themes[activeTheme]);
 
-    editor.session.setMode("ace/mode/html");
+    editor.session.setMode('ace/mode/html');
     editor.session.setUseSoftTabs(true);
     editor.session.setTabSize(2);
 
     const count = editor.session.getLength();
 
-    codeElem.style.minHeight = 14 * count + 1 + "px";
-    codeElem.style.height = count + "rem";
+    codeElem.style.minHeight = 14 * count + 1 + 'px';
+    codeElem.style.height = count + 'rem';
 
     editors.push(editor);
   });
 
-  document.getElementById("confetti-modes").innerHTML = renderModes(modes);
+  document.getElementById('confetti-modes').innerHTML = renderModes(modes);
 
-  Array.from(document.querySelectorAll(".group")).forEach(function (group) {
-    const name = group.getAttribute("data-name"),
-      button = group.querySelector(".run"),
-      codeElem = group.querySelector(".editor"),
+  Array.from(document.querySelectorAll('.group')).forEach(function (group) {
+    const name = group.getAttribute('data-name'),
+      button = group.querySelector('.run'),
+      codeElem = group.querySelector('.editor'),
       editor = ace.edit(codeElem);
 
     editor.setTheme(themes[activeTheme]);
 
-    editor.session.on("changeMode", function (e, session) {
-      if ("ace/mode/javascript" === session.getMode().$id) {
+    editor.session.on('changeMode', function (e, session) {
+      if ('ace/mode/javascript' === session.getMode().$id) {
         if (!!session.$worker) {
-          session.$worker.send("setOptions", [
+          session.$worker.send('setOptions', [
             {
               esversion: 9,
               esnext: false,
@@ -848,18 +852,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    editor.session.setMode("ace/mode/javascript");
+    editor.session.setMode('ace/mode/javascript');
     editor.session.setUseSoftTabs(true);
     editor.session.setTabSize(2);
     editor.session.setValue(getCode(name));
 
     const count = editor.session.getLength();
 
-    codeElem.style.minHeight = 14 * count + 1 + "px";
-    codeElem.style.height = count + "rem";
+    codeElem.style.minHeight = 14 * count + 1 + 'px';
+    codeElem.style.height = count + 'rem';
 
-    button.addEventListener("click", (ev) => {
-      if (ev && typeof ev.preventDefault === "function") ev.preventDefault();
+    button.addEventListener('click', (ev) => {
+      if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
 
       try {
         eval(editor.getValue());

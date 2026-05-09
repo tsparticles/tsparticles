@@ -243,7 +243,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
 };
 
 function prefixSidebarItems(items: DefaultTheme.SidebarItem[], prefix: string): DefaultTheme.SidebarItem[] {
-  return items.map(item => ({
+  return items.map((item) => ({
     ...item,
     link: item.link ? prefix + item.link : undefined,
     items: item.items ? prefixSidebarItems(item.items, prefix) : undefined,
@@ -251,7 +251,7 @@ function prefixSidebarItems(items: DefaultTheme.SidebarItem[], prefix: string): 
 }
 
 function prefixNavItems(items: DefaultTheme.NavItem[], prefix: string): DefaultTheme.NavItem[] {
-  return items.map(item => {
+  return items.map((item) => {
     if ("link" in item && item.link && !item.link.startsWith("http") && !item.link.startsWith("//")) {
       return { ...item, link: prefix + item.link } as DefaultTheme.NavItem;
     }
@@ -281,10 +281,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   base,
-  ignoreDeadLinks: [
-    /\/releases\/index$/,
-    /\/[a-z]{2}\/releases\/index$/,
-  ],
+  ignoreDeadLinks: [/\/releases\/index$/, /\/[a-z]{2}\/releases\/index$/],
   locales: {
     root: {
       label: "English",

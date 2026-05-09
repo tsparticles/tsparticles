@@ -1,6 +1,6 @@
-const CONSENT_KEY = "tsparticles-confetti/cookie-consent-v1";
-const GA_MEASUREMENT_ID = "G-80MY3TZM79";
-const ADSENSE_CLIENT_ID = "ca-pub-1784552607103901";
+const CONSENT_KEY = 'tsparticles-confetti/cookie-consent-v1';
+const GA_MEASUREMENT_ID = 'G-80MY3TZM79';
+const ADSENSE_CLIENT_ID = 'ca-pub-1784552607103901';
 const ADSENSE_NON_PERSONALIZED_ON_REJECT = true;
 
 const defaultConsent = {
@@ -22,7 +22,7 @@ function readConsent() {
 
     const parsed = JSON.parse(rawConsent);
 
-    if (typeof parsed !== "object" || !parsed) {
+    if (typeof parsed !== 'object' || !parsed) {
       return undefined;
     }
 
@@ -31,7 +31,7 @@ function readConsent() {
       adsense: !!parsed.adsense,
     };
   } catch (err) {
-    console.warn("Cannot read cookie consent preferences.", err);
+    console.warn('Cannot read cookie consent preferences.', err);
 
     return undefined;
   }
@@ -50,7 +50,7 @@ function loadScript(id, src, attributes) {
     return;
   }
 
-  const script = document.createElement("script");
+  const script = document.createElement('script');
 
   script.id = id;
   script.src = src;
@@ -78,9 +78,9 @@ function initAnalytics() {
   }
 
   ensureGtagStub();
-  loadScript("ga-script", `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
-  window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, {
+  loadScript('ga-script', `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID, {
     send_page_view: false,
   });
 
@@ -93,11 +93,11 @@ function initAdSense() {
   }
 
   loadScript(
-    "adsense-script",
+    'adsense-script',
     `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`,
     {
-      crossorigin: "anonymous",
-    },
+      crossorigin: 'anonymous',
+    }
   );
 
   window.adsbygoogle = window.adsbygoogle || [];
@@ -112,11 +112,11 @@ function initAdSense() {
 function updateConsentMode(activeConsent) {
   ensureGtagStub();
 
-  window.gtag("consent", "update", {
-    ad_storage: activeConsent.adsense ? "granted" : "denied",
-    analytics_storage: activeConsent.analytics ? "granted" : "denied",
-    ad_user_data: activeConsent.adsense ? "granted" : "denied",
-    ad_personalization: activeConsent.adsense ? "granted" : "denied",
+  window.gtag('consent', 'update', {
+    ad_storage: activeConsent.adsense ? 'granted' : 'denied',
+    analytics_storage: activeConsent.analytics ? 'granted' : 'denied',
+    ad_user_data: activeConsent.adsense ? 'granted' : 'denied',
+    ad_personalization: activeConsent.adsense ? 'granted' : 'denied',
   });
 }
 
@@ -140,7 +140,7 @@ function applyConsent(activeConsent) {
 }
 
 function closeBanner() {
-  const banner = document.getElementById("cookieConsentBanner");
+  const banner = document.getElementById('cookieConsentBanner');
 
   if (banner) {
     banner.remove();
@@ -155,15 +155,15 @@ function saveAndApply(nextConsent) {
 }
 
 function createBanner() {
-  if (document.getElementById("cookieConsentBanner")) {
+  if (document.getElementById('cookieConsentBanner')) {
     return;
   }
 
-  const banner = document.createElement("div");
+  const banner = document.createElement('div');
   const consentState = consent || defaultConsent;
 
-  banner.id = "cookieConsentBanner";
-  banner.className = "cookie-consent-banner";
+  banner.id = 'cookieConsentBanner';
+  banner.className = 'cookie-consent-banner';
 
   banner.innerHTML = `
       <div class="cookie-consent-content">
@@ -173,11 +173,11 @@ function createBanner() {
           Read the <a class="cookie-consent-link" href="/cookie-policy.html" target="_blank" rel="noopener noreferrer">cookie policy</a>.
         </p>
         <label class="cookie-consent-option">
-          <input id="cookieConsentAnalytics" type="checkbox" ${consentState.analytics ? "checked" : ""} />
+          <input id="cookieConsentAnalytics" type="checkbox" ${consentState.analytics ? 'checked' : ''} />
           <span>Analytics</span>
         </label>
         <label class="cookie-consent-option">
-          <input id="cookieConsentAdsense" type="checkbox" ${consentState.adsense ? "checked" : ""} />
+          <input id="cookieConsentAdsense" type="checkbox" ${consentState.adsense ? 'checked' : ''} />
           <span>Google AdSense</span>
         </label>
         <div class="cookie-consent-actions">
@@ -190,23 +190,23 @@ function createBanner() {
 
   document.body.appendChild(banner);
 
-  document.getElementById("cookieConsentReject").addEventListener("click", () => {
+  document.getElementById('cookieConsentReject').addEventListener('click', () => {
     saveAndApply({ analytics: false, adsense: false });
   });
 
-  document.getElementById("cookieConsentAccept").addEventListener("click", () => {
+  document.getElementById('cookieConsentAccept').addEventListener('click', () => {
     saveAndApply({ analytics: true, adsense: true });
   });
 
-  document.getElementById("cookieConsentSave").addEventListener("click", () => {
+  document.getElementById('cookieConsentSave').addEventListener('click', () => {
     saveAndApply({
-      analytics: document.getElementById("cookieConsentAnalytics").checked,
-      adsense: document.getElementById("cookieConsentAdsense").checked,
+      analytics: document.getElementById('cookieConsentAnalytics').checked,
+      adsense: document.getElementById('cookieConsentAdsense').checked,
     });
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   if (hasUserChoice()) {
     applyConsent(consent);
   } else {
@@ -214,10 +214,10 @@ document.addEventListener("DOMContentLoaded", () => {
     createBanner();
   }
 
-  const preferencesButton = document.getElementById("cookiePreferencesButton");
+  const preferencesButton = document.getElementById('cookiePreferencesButton');
 
   if (preferencesButton) {
-    preferencesButton.addEventListener("click", () => {
+    preferencesButton.addEventListener('click', () => {
       createBanner();
     });
   }

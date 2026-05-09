@@ -4,15 +4,15 @@
 
 ## 包对比
 
-| 包 | 适用场景 | setup 方式 |
-| --- | --- | --- |
-| `@tsparticles/basic` | 超轻量场景 | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim` | 大多数网站/应用 | `tsParticles` + `await loadSlim(tsParticles)` |
-| `tsparticles` | 官方全量能力组合并保留 engine 控制 | `tsParticles` + `await loadFull(tsParticles)` |
-| `@tsparticles/all` | 全功能、快速原型 | `tsParticles` + `await loadAll(tsParticles)` |
-| `@tsparticles/confetti` | 一次调用的彩纸效果 | `await confetti(options)` |
-| `@tsparticles/fireworks` | 一次调用的烟花效果 | `await fireworks(options)` |
-| `@tsparticles/particles` | 简化的粒子背景 API | `await particles(options)` |
+| 包                       | 适用场景                           | setup 方式                                     |
+| ------------------------ | ---------------------------------- | ---------------------------------------------- |
+| `@tsparticles/basic`     | 超轻量场景                         | `tsParticles` + `await loadBasic(tsParticles)` |
+| `@tsparticles/slim`      | 大多数网站/应用                    | `tsParticles` + `await loadSlim(tsParticles)`  |
+| `tsparticles`            | 官方全量能力组合并保留 engine 控制 | `tsParticles` + `await loadFull(tsParticles)`  |
+| `@tsparticles/all`       | 全功能、快速原型                   | `tsParticles` + `await loadAll(tsParticles)`   |
+| `@tsparticles/confetti`  | 一次调用的彩纸效果                 | `await confetti(options)`                      |
+| `@tsparticles/fireworks` | 一次调用的烟花效果                 | `await fireworks(options)`                     |
+| `@tsparticles/particles` | 简化的粒子背景 API                 | `await particles(options)`                     |
 
 ## Bundle 分页指南
 
