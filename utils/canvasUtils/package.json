@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "paths/canvasUtils"
+    "directory": "utils/canvasUtils"
   },
   "keywords": [
     "front-end",

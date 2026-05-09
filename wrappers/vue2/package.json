@@ -83,7 +83,7 @@
   "unpkg": "dist/vue2-particles.umd.js",
   "jsdelivr": "dist/vue2-particles.umd.js",
   "repository": {
-    "url": "https://github.com/tsparticles/tsparticles.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "type": "git",
     "directory": "wrappers/vue2"
   },

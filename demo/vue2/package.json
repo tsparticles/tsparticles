@@ -9,7 +9,8 @@
   "main": "lib/vue.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/tsparticles.git"
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/vue2"
   },
   "scripts": {
     "dev": "vue-cli-service serve",

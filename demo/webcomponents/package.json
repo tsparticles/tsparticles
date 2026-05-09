@@ -12,7 +12,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/tsparticles.git"
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/webcomponents"
   },
   "bugs": {
     "url": "https://github.com/tsparticles/webcomponents/issues"

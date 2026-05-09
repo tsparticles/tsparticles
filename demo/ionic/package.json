@@ -3,6 +3,11 @@
   "version": "4.0.0-beta.15",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/ionic"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

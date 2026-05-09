@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/emitterShapes/polygon"
+    "directory": "plugins/emittersShapes/polygon"
   },
   "keywords": [
     "front-end",

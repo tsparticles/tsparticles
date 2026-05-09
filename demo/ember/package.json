@@ -3,6 +3,11 @@
   "version": "4.0.0-beta.15",
   "private": true,
   "description": "Ember demo for @tsparticles/ember",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/ember"
+  },
   "engines": {
     "node": "14.* || 16.* || >= 18"
   },

@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'websites/website/**'
+      - '.github/workflows/deploy-website.yml'
   workflow_dispatch:
 
 concurrency:
@@ -21,33 +22,50 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v5
-        with:
-          version: 10
+      - name: Check for website changes
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            if git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" | grep -q "^websites/website/"; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v6
+        if: steps.changes.outputs.changed == 'true'
         with:
-          node-version: '22'
-          cache: 'pnpm'
-          cache-dependency-path: websites/website/pnpm-lock.yaml
+          cache: true
+
+      - uses: actions/setup-node@v6
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          node-version: '24'
 
       - name: Install dependencies
+        if: steps.changes.outputs.changed == 'true'
         working-directory: websites/website
         run: pnpm install --frozen-lockfile
 
       - name: Lint
+        if: steps.changes.outputs.changed == 'true'
         working-directory: websites/website
         run: pnpm run lint
 
       - name: Build
+        if: steps.changes.outputs.changed == 'true'
         working-directory: websites/website
         run: pnpm run docs:build
 
       - name: Generate GitHub App token
+        if: steps.changes.outputs.changed == 'true'
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
@@ -58,6 +76,7 @@ jobs:
             website
 
       - name: Deploy to tsparticles/website main
+        if: steps.changes.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v4
         with:
           token: ${{ steps.app-token.outputs.token }}

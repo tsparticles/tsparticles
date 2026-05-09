@@ -2,6 +2,11 @@
   "name": "@tsparticles/nextjs",
   "version": "4.0.0-beta.15",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/nextjs"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -2,6 +2,11 @@
   "name": "@tsparticles/nextjs-legacy-demo",
   "version": "4.0.0-beta.15",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/nextjs-legacy"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

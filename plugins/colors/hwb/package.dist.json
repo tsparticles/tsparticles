@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/colors/hwbColor"
+    "directory": "plugins/colors/hwb"
   },
   "keywords": [
     "front-end",

@@ -3,6 +3,11 @@
   "version": "4.0.0-beta.15",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/react"
+  },
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/plugin-themes": "workspace:*",

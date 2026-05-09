@@ -8,7 +8,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/tsparticles.git"
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/jquery"
   },
   "scripts": {
     "build": "pnpm run build:style && pnpm run build:index",
