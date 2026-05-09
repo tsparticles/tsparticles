@@ -2,6 +2,11 @@
   "name": "@tsparticles/svelte-demo",
   "version": "4.0.0-beta.15",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/svelte"
+  },
   "scripts": {
     "build": "rollup -c",
     "build:ci": "rollup -c",

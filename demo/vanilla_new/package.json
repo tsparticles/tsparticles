@@ -15,7 +15,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsparticles/tsparticles.git"
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/vanilla_new"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

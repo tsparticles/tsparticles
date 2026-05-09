@@ -19,7 +19,7 @@
     "url": "https://github.com/tsparticles/solid/issues"
   },
   "repository": {
-    "url": "https://github.com/tsparticles/tsparticles.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "wrappers/solid",
     "type": "git"
   },

@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "paths/noiseField"
+    "directory": "utils/noiseField"
   },
   "keywords": [
     "front-end",

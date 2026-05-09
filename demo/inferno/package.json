@@ -4,6 +4,11 @@
   "private": true,
   "description": "> TODO: description",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/inferno"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "build:ci": "webpack --mode production",

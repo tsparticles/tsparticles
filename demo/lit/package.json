@@ -4,6 +4,11 @@
   "private": true,
   "description": "A simple web component",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/lit"
+  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

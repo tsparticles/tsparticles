@@ -3,6 +3,11 @@
   "private": true,
   "version": "4.0.0-beta.15",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/vite"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

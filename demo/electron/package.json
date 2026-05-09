@@ -4,6 +4,11 @@
   "description": "",
   "main": "app/index.cjs",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/electron"
+  },
   "scripts": {
     "start": "pnpm run build:client && electron .",
     "build": "pnpm run build:client && pnpx @electron/packager . electron-demo",

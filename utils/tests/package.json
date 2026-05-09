@@ -2,6 +2,11 @@
   "name": "@tsparticles/tests",
   "private": true,
   "version": "4.0.0-beta.15",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "utils/tests"
+  },
   "scripts": {
     "prettify:ci": "prettier --check ./src",
     "prettify": "prettier --write ./src",

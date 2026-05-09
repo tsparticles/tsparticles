@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "components/confetti"
+    "directory": "wrappers/angular-fireworks/projects/ng-fireworks"
   },
   "keywords": [
     "front-end",
