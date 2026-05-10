@@ -97,7 +97,7 @@
   "pnpm": {
     "overrides": {
       "@nuxt/vue-app@2.18.1>vue": "2.7.16",
-      "@nuxt/vue-renderer@2.18.1>vue": "2.7.16",
+      "@nuxt/vue-renderer@2.18.1>vue": "3.0.0",
       "vue-server-renderer@2.7.16>vue": "2.7.16",
       "vue-template-compiler@2.7.16>vue": "2.7.16"
     },
