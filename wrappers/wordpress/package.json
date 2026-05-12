@@ -195,7 +195,7 @@
     "@wordpress/scripts": "^32.1.0",
     "fs-extra": "^11.3.4",
     "gulp": "^5.0.1",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.10",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "typescript": "^6.0.3"
