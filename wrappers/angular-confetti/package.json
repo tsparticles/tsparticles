@@ -137,6 +137,13 @@
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/projects/**/src/**/*"]
+      }
+    }
+  },
   "module": "dist/ng-confetti/fesm2015/ng-confetti.mjs",
   "es2020": "dist/ng-confetti/fesm2020/ng-confetti.mjs",
   "esm2020": "dist/ng-confetti/esm2020/ng-confetti.mjs",

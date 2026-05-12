@@ -2,10 +2,11 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove.js";
 import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
-/**
- */
+/** The polygon mask move options */
 export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygonMaskMove> {
+  /** The polygon mask move radius */
   radius;
+  /** The polygon mask move type */
   type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
 
   constructor() {

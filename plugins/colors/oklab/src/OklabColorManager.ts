@@ -16,11 +16,20 @@ import { oklabToRgb, oklabaToRgba } from "./utils.js";
 const oklabRegex =
   /oklab\(\s*(\d+(\.\d+)?)%\s+(-?\d+(\.\d+)?)\s+(-?\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
+/** OKLAB color manager */
 export class OklabColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with oklab
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("oklab");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IOklab);
@@ -32,6 +41,10 @@ export class OklabColorManager implements IColorManager {
     return oklabToRgb(oklabColor);
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IRangeOklab);
@@ -47,6 +60,10 @@ export class OklabColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses an OKLAB color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

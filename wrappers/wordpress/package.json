@@ -32,6 +32,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/src/**/*", "{projectRoot}/wordpress-particles.php", "{projectRoot}/readme.txt"]
+      }
+    }
+  },
   "dependencies": {
     "@tsparticles/all": "workspace:^",
     "@tsparticles/basic": "workspace:^",

@@ -118,6 +118,13 @@
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/index.ts"]
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
   }

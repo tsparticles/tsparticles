@@ -21,28 +21,50 @@ import {
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
 
-type RotateParticle = Particle & {
+/**
+ * Rotate particle extension type
+ */
+export type RotateParticle = Particle & {
   options: RotateParticlesOptions;
+  /** Rotate animation data */
   rotate?: IParticleNumericValueAnimation;
 };
 
-type IRotateParticlesOptions = IParticlesOptions & {
+/**
+ * Rotate particles options interface
+ */
+export type IRotateParticlesOptions = IParticlesOptions & {
+  /** Rotate options */
   rotate?: IRotate;
 };
 
-type RotateParticlesOptions = ParticlesOptions & {
+/**
+ * Rotate particles options
+ */
+export type RotateParticlesOptions = ParticlesOptions & {
+  /** Rotate options */
   rotate?: Rotate;
 };
 
 const doublePIDeg = 360;
 
+/** Rotate updater plugin */
 export class RotateUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly container;
 
+  /**
+   * RotateUpdater constructor
+   * @param container
+   */
   constructor(container: Container) {
     this.container = container;
   }
 
+  /**
+   * Initializes the particle rotation
+   * @param particle
+   */
   init(particle: RotateParticle): void {
     const rotateOptions = particle.options.rotate;
 
@@ -96,6 +118,10 @@ export class RotateUpdater implements IParticleUpdater {
     particle.rotation = particle.rotate.value;
   }
 
+  /**
+   * Checks if rotation is enabled
+   * @param particle
+   */
   isEnabled(particle: RotateParticle): boolean {
     const rotate = particle.options.rotate;
 
@@ -106,6 +132,11 @@ export class RotateUpdater implements IParticleUpdater {
     return !particle.destroyed && !particle.spawning && (!!rotate.value || rotate.animation.enable || rotate.path);
   }
 
+  /**
+   * Loads the rotate options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: RotateParticlesOptions,
     ...sources: (RecursivePartial<IRotateParticlesOptions> | undefined)[]
@@ -117,6 +148,11 @@ export class RotateUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates the particle rotation
+   * @param particle
+   * @param delta
+   */
   update(particle: RotateParticle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {
       return;

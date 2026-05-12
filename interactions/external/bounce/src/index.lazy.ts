@@ -4,7 +4,8 @@ import type { InteractivityEngine } from "@tsparticles/plugin-interactivity/lazy
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the external bounce interaction plugin (lazy version)
+ * @param engine - The engine instance to register the plugin with
  */
 export async function loadExternalBounceInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

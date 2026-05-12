@@ -18,6 +18,7 @@ import type {
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask.js";
 import type { PolygonMask } from "./Options/Classes/PolygonMask.js";
 
+/** SVG path segment types with absolute coordinates */
 export type SvgAbsoluteCoordinatesTypes =
   | SVGPathSegArcAbs
   | SVGPathSegCurvetoCubicAbs
@@ -27,6 +28,7 @@ export type SvgAbsoluteCoordinatesTypes =
   | SVGPathSegLinetoAbs
   | SVGPathSegMovetoAbs;
 
+/** SVG path segment types with relative coordinates */
 export type SvgRelativeCoordinatesTypes =
   | SVGPathSegArcRel
   | SVGPathSegCurvetoCubicRel
@@ -36,14 +38,17 @@ export type SvgRelativeCoordinatesTypes =
   | SVGPathSegLinetoRel
   | SVGPathSegMovetoRel;
 
+/** Polygon mask plugin options interface */
 export type IPolygonMaskOptions = IOptions & {
   polygon: IPolygonMask;
 };
 
+/** Polygon mask plugin options class */
 export type PolygonMaskOptions = Options & {
   polygon?: PolygonMask;
 };
 
+/** Polygon mask container type */
 export type PolygonMaskContainer = Container & {
   actualOptions: PolygonMaskOptions;
 };

@@ -7,10 +7,10 @@ This repository uses a pnpm + Nx TypeScript monorepo structure. The guidance bel
 ## Quick Commands
 
 - Install dependencies: `pnpm i`
-- Build all packages: `pnpm run build` (runs `slimbuild` + docs)
+- Build all packages: `pnpm run build` (runs `build` + docs)
 - Build affected packages: `pnpm run build:affected` or `pnpm nx affected -t build`
 - Run the full workspace build (CI): `pnpm run build:ci`
-- Run typedoc (docs): `pnpm run build:docs`
+- Run typedoc (docs): `pnpm --filter @tsparticles/website run typedoc:api`
 - Start demo server: `cd demo/vanilla && pnpm start`
 
 ## Lint / Format / Commit hooks
@@ -37,7 +37,7 @@ Notes on single-test execution: prefer package scripts that target a single file
 
 ## Build & Bundles
 
-- Slim/full bundle build: `pnpm run slimbuild` (uses `nx run-many -t build`)
+- Slim/full bundle build: `pnpm run build` (uses `nx run-many -t build`)
 - Build for CI with module/UMD targets: `pnpm run build:ci`
 - Bundle configs are under `bundles/*/webpack.config.js` and package-level `tsconfig.*.json` files.
 

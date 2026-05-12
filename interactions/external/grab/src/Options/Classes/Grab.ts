@@ -2,10 +2,12 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import { GrabLinks } from "./GrabLinks.js";
 import type { IGrab } from "../Interfaces/IGrab.js";
 
-/**
- */
+/** Grab mode options class */
 export class Grab implements IGrab, IOptionLoader<IGrab> {
+  /** Grab distance in pixels */
   distance;
+
+  /** Grab links options */
   links;
 
   constructor() {
@@ -13,6 +15,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     this.links = new GrabLinks();
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<IGrab>): void {
     if (isNull(data)) {
       return;

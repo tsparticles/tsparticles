@@ -10,7 +10,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
+/** Value with random range option class */
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
+  /** The value or range of values */
   value: RangeValue;
 
   constructor() {
@@ -28,7 +30,9 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
   }
 }
 
+/** Animation value with random range option class */
 export class AnimationValueWithRandom extends ValueWithRandom implements IOptionLoader<IAnimationValueWithRandom> {
+  /** Animation options */
   readonly animation = new AnimationOptions();
 
   override load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
@@ -46,6 +50,7 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
   }
 }
 
+/** Ranged animation value with random range option class */
 export class RangedAnimationValueWithRandom
   extends AnimationValueWithRandom
   implements IOptionLoader<IRangedAnimationValueWithRandom>

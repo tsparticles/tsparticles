@@ -2,12 +2,18 @@ import { type IContainerPlugin, manageListener, safeMatchMedia } from "@tspartic
 import type { ThemesContainer } from "./types.js";
 
 export class ThemesPluginInstance implements IContainerPlugin {
+  /** The themes container */
   private readonly _container;
 
+  /**
+   * Creates a new ThemesPluginInstance
+   * @param container - the themes container
+   */
   constructor(container: ThemesContainer) {
     this._container = container;
   }
 
+  /** @inheritDoc */
   init(): Promise<void> {
     const container = this._container;
 
@@ -51,22 +57,29 @@ export class ThemesPluginInstance implements IContainerPlugin {
     return Promise.resolve();
   }
 
+  /**
+   * Manages theme media query listeners
+   * @param add
+   */
   manageListeners(add: boolean): void {
     const container = this._container;
 
     container.manageMediaMatch?.(add);
   }
 
+  /** @inheritDoc */
   async start(): Promise<void> {
     this.manageListeners(true);
 
     return Promise.resolve();
   }
 
+  /** @inheritDoc */
   stop(): void {
     this.manageListeners(false);
   }
 
+  /** @inheritDoc */
   updateActualOptions(): boolean {
     const container = this._container;
 

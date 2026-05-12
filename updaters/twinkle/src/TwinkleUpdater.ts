@@ -14,15 +14,30 @@ import {
 import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
 import { Twinkle } from "./Options/Classes/Twinkle.js";
 
+/** Twinkle updater plugin */
 export class TwinkleUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * TwinkleUpdater constructor
+   * @param pluginManager
+   * @param container
+   */
   constructor(pluginManager: PluginManager, container: Container) {
     this._pluginManager = pluginManager;
     this._container = container;
   }
 
+  /**
+   * Gets the twinkle color styles
+   * @param particle
+   * @param _context
+   * @param _radius
+   * @param opacity
+   */
   getColorStyles(
     particle: Particle,
     _context: CanvasContextType,
@@ -70,10 +85,15 @@ export class TwinkleUpdater implements IParticleUpdater {
     return res;
   }
 
+  /** Initializes the twinkle (no-op) */
   init(): void {
     // nothing to do
   }
 
+  /**
+   * Checks if twinkle is enabled
+   * @param particle
+   */
   isEnabled(particle: TwinkeParticle): boolean {
     const pOptions = particle.options,
       twinkleOptions = pOptions.twinkle;
@@ -85,6 +105,11 @@ export class TwinkleUpdater implements IParticleUpdater {
     return twinkleOptions.particles.enable;
   }
 
+  /**
+   * Loads the twinkle options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: TwinkleParticlesOptions,
     ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
@@ -96,6 +121,7 @@ export class TwinkleUpdater implements IParticleUpdater {
     }
   }
 
+  /** Updates the twinkle (no-op) */
   update(): void {
     // nothing to do
   }

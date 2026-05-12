@@ -1,9 +1,14 @@
+/** Cannon mode options */
 export interface ICannon {
   /**
    * Whether to render the dashed aim line and power circle while dragging.
    */
   drawVector: boolean;
 
+  /**
+   * Maximum drag distance in canvas pixels.
+   * The drag vector is clamped to this length for both visual feedback and force calculation.
+   */
   maxDragDistance: number;
 
   /**

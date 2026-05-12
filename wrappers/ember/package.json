@@ -111,6 +111,13 @@
   "ember": {
     "edition": "octane"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/addon/**/*", "{projectRoot}/app/**/*", "{projectRoot}/config/**/*", "{projectRoot}/index.js"]
+      }
+    }
+  },
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },

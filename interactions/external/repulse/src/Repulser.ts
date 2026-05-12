@@ -43,6 +43,7 @@ const repulseMode = "repulse",
  * Particle repulse manager
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private readonly _clickVec: Vector;
@@ -100,10 +101,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
@@ -117,6 +120,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -146,6 +150,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -171,6 +176,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     return isInArray(repulseMode, hoverMode) || isInArray(repulseMode, clickMode) || divRepulse;
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & RepulseMode,
     ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
@@ -182,6 +188,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

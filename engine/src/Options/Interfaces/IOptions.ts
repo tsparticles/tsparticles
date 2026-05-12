@@ -71,6 +71,9 @@ export interface IOptions {
    */
   name?: string;
 
+  /**
+   * The palette name to use for coloring particles
+   */
   palette?: string;
 
   /**
@@ -109,6 +112,9 @@ export interface IOptions {
    */
   smooth: boolean;
 
+  /**
+   * Inline CSS style applied to the particles canvas element.
+   */
   style: RecursivePartial<CSSStyleDeclaration>;
 
   /**

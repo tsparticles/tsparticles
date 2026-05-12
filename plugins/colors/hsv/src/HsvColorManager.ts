@@ -15,11 +15,20 @@ import { hsvToRgb, hsvaToRgba } from "./utils.js";
 
 const hsvRegex = /hsva?\(\s*(\d+)°\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i;
 
+/** HSV color manager */
 export class HsvColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with hsv
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("hsv");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       hsvColor = colorValue.hsv ?? (color.value as IHsv);
@@ -31,6 +40,10 @@ export class HsvColorManager implements IColorManager {
     return hsvToRgb(hsvColor);
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
       hsvColor = colorValue.hsv ?? (color.value as IRangeHsv);
@@ -46,6 +59,10 @@ export class HsvColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses an HSV color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

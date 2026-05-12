@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const end = performance.now() + 15 * 1000,
     colors = ["#bb0000", "#ffffff"],
     canvas = document.getElementById("canvas"),
-    fetti = async options => await confetti.create(canvas, options),
+    fetti = await confetti.create(canvas),
     fworks = async options => await fireworks.create(canvas, options),
     prtcls = async options => await particles.create(canvas, options),
     standard = async options =>

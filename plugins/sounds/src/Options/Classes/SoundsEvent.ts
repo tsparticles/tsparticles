@@ -14,14 +14,19 @@ import { SoundsMelody } from "./SoundsMelody.js";
 import { SoundsNote } from "./SoundsNote.js";
 
 export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
+  /** The sounds event audio */
   audio?: SingleOrMultiple<SoundsAudio>;
 
+  /** The sounds event name */
   event: SingleOrMultiple<string>;
 
+  /** The sounds event filter */
   filter?: FilterFunction;
 
+  /** The sounds event melodies */
   melodies?: SoundsMelody[];
 
+  /** The sounds event notes */
   notes?: SoundsNote[];
 
   constructor() {

@@ -100,17 +100,32 @@ function setIconStyle(
 }
 
 export class SoundsPluginInstance implements IContainerPlugin {
+  /** Map of audio source URLs to decoded audio buffers */
   private _audioMap: Map<string, AudioBuffer>;
+  /** Array of active audio source nodes */
   private readonly _audioSources: AudioScheduledSourceNode[];
+  /** The particles container */
   private readonly _container;
+  /** The particles engine */
   private readonly _engine;
+  /** The gain node for volume control */
   private _gain?: GainNode;
+  /** The mute icon image element */
   private _muteImg?: HTMLImageElement;
+  /** The unmute icon image element */
   private _unmuteImg?: HTMLImageElement;
+  /** The current volume level */
   private _volume: number;
+  /** The volume down icon image element */
   private _volumeDownImg?: HTMLImageElement;
+  /** The volume up icon image element */
   private _volumeUpImg?: HTMLImageElement;
 
+  /**
+   * Creates a new SoundsPluginInstance
+   * @param container - the container using this plugin
+   * @param engine - the engine instance
+   */
   constructor(container: SoundsContainer, engine: Engine) {
     this._container = container;
     this._engine = engine;
@@ -119,6 +134,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
     this._audioMap = new Map<string, AudioBuffer>();
   }
 
+  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this._container,
       options = container.actualOptions,
@@ -179,12 +195,14 @@ export class SoundsPluginInstance implements IContainerPlugin {
     }
   }
 
+  /** Mutes the audio */
   async mute(): Promise<void> {
     if (!this._container.muted) {
       await this.toggleMute();
     }
   }
 
+  /** @inheritDoc */
   async start(): Promise<void> {
     const container = this._container,
       options = container.actualOptions,
@@ -262,6 +280,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
     }
   }
 
+  /** @inheritDoc */
   stop(): void {
     this._container.muted = true;
 
@@ -275,6 +294,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
     })();
   }
 
+  /** Toggles between mute and unmute */
   async toggleMute(): Promise<void> {
     const container = this._container;
 
@@ -284,12 +304,14 @@ export class SoundsPluginInstance implements IContainerPlugin {
     await this._updateMuteStatus();
   }
 
+  /** Unmutes the audio */
   async unmute(): Promise<void> {
     if (this._container.muted) {
       await this.toggleMute();
     }
   }
 
+  /** Decreases the volume by the configured step */
   async volumeDown(): Promise<void> {
     const container = this._container,
       soundsOptions = container.actualOptions.sounds;
@@ -307,6 +329,7 @@ export class SoundsPluginInstance implements IContainerPlugin {
     await this._updateVolume();
   }
 
+  /** Increases the volume by the configured step */
   async volumeUp(): Promise<void> {
     const container = this._container,
       soundsOptions = container.actualOptions.sounds;

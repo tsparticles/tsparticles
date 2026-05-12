@@ -7,19 +7,31 @@ import {
   tsParticles,
 } from "@tsparticles/engine";
 
-interface ResponsiveOptions {
+/** Responsive options for Marc Bruederlin's particles */
+export interface ResponsiveOptions {
+  /** Viewport breakpoint */
   breakpoint: number;
+  /** Options for this breakpoint */
   options: ParticlesOptions;
 }
 
-interface ParticlesOptions {
+/** Marc Bruederlin's particles options */
+export interface ParticlesOptions {
+  /** Particle colors */
   color: SingleOrMultiple<string>;
+  /** Enables connecting particles with lines */
   connectParticles: boolean;
+  /** Maximum number of particles */
   maxParticles: number;
+  /** Minimum distance for connections */
   minDistance: number;
+  /** Responsive breakpoints */
   responsive: ResponsiveOptions[];
+  /** CSS selector for the container */
   selector: string;
+  /** Size variation */
   sizeVariations: number;
+  /** Movement speed */
   speed: number;
 }
 
@@ -28,9 +40,17 @@ const linksMinDistance = 120,
   particlesMinCount = 100,
   sizeMinValue = 3;
 
+/** Marc Bruederlin's particles compatibility class */
+/** Marc Bruederlin's particles compatibility class */
 export class MBParticles {
+  /** The tsParticles container instance */
   private _container?: Container;
 
+  /** Initializes a new particles instance with the given options */
+  /**
+   * Initializes a new particles instance with the given options
+   * @param options
+   */
   static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
     const particles = new MBParticles(),
       selector = options.selector;
@@ -108,18 +128,21 @@ export class MBParticles {
     return particles;
   }
 
+  /** Destroys the particles instance and cleans up resources */
   destroy(): void {
     const container = this._container;
 
     container?.destroy();
   }
 
+  /** Pauses the particle animation */
   pauseAnimation(): void {
     const container = this._container;
 
     container?.pause();
   }
 
+  /** Resumes the particle animation */
   resumeAnimation(): void {
     const container = this._container;
 

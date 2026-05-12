@@ -12,8 +12,10 @@ const pauseMode = "pause";
  * Particle attract manager
  */
 export class Pauser extends ExternalInteractorBase {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  /** @inheritDoc */
   readonly maxDistance = 0;
 
   constructor(container: InteractivityContainer) {
@@ -34,18 +36,22 @@ export class Pauser extends ExternalInteractorBase {
     };
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   isEnabled(_interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -54,6 +60,7 @@ export class Pauser extends ExternalInteractorBase {
     return !!events && isInArray(pauseMode, events.onClick.mode);
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

@@ -16,8 +16,7 @@ import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
 import type { IParticleInteractorBase } from "./Interfaces/IParticleInteractorBase.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";
 
-/**
- */
+/** Interactivity plugin class implementing IPlugin */
 export class InteractivityPlugin implements IPlugin {
   readonly id = "interactivity";
 

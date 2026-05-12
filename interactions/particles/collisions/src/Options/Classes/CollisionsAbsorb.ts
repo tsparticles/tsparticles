@@ -2,6 +2,7 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ICollisionsAbsorb } from "../Interfaces/ICollisionsAbsorb.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
+  /** The absorb speed */
   speed;
 
   constructor() {

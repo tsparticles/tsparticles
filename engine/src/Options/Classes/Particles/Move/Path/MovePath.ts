@@ -7,6 +7,7 @@ import { deepExtend } from "../../../../../Utils/Utils.js";
 import { isNull } from "../../../../../Utils/TypeUtils.js";
 
 /**
+ * Path movement options.
  */
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
   clamp;

@@ -16,11 +16,20 @@ import { oklchToRgb, oklchaToRgba } from "./utils.js";
 const oklchRegex =
   /oklch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
+/** OKLCH color manager */
 export class OklchColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with oklch
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("oklch");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       oklchColor = colorValue.oklch ?? (color.value as IOklch);
@@ -32,6 +41,10 @@ export class OklchColorManager implements IColorManager {
     return oklchToRgb(oklchColor);
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
       oklchColor = colorValue.oklch ?? (color.value as IRangeOklch);
@@ -47,6 +60,10 @@ export class OklchColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses an OKLCH color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

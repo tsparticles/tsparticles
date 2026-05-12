@@ -7,12 +7,18 @@ const defaultFactor = 1,
   identity = 1;
 
 export class MotionPluginInstance implements IContainerPlugin {
+  /** The motion container */
   private readonly _container;
 
+  /**
+   * Creates a new MotionPluginInstance
+   * @param container - the motion container
+   */
   constructor(container: MotionContainer) {
     this._container = container;
   }
 
+  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this._container,
       options = container.actualOptions.motion;

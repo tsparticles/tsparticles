@@ -23,20 +23,63 @@ import type { IEmitter } from "../Interfaces/IEmitter.js";
  * [[include:Options/Plugins/Emitters.md]]
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
+  /**
+   * Starts the emitter automatically
+   */
   autoPlay;
+  /**
+   * The direction of the emitted particles
+   */
   direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+  /**
+   * The DOM element id to link the emitter to an HTML element
+   */
   domId?: string;
+  /**
+   * Sets if the particles will spawn at the emitter perimeter or inside the area
+   */
   fill;
+  /**
+   * The emitter life options
+   */
   life;
+  /**
+   * The emitter name
+   */
   name?: string;
+  /**
+   * Particles emitted customization
+   */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
+  /**
+   * The relative position of the emitter
+   */
   position?: RecursivePartial<IRangedCoordinates>;
+  /**
+   * The particles emitting rate options
+   */
   rate;
+  /**
+   * The emitter shape options
+   */
   shape;
+  /**
+   * The size of the particles emitter area
+   */
   size?: EmitterSize;
+  /**
+   * The emitter spawn options
+   */
   spawn;
+  /**
+   * The particle spawn fill color
+   */
   spawnFillColor?: AnimatableColor;
+  /**
+   * The particle spawn stroke color
+   */
   spawnStrokeColor?: AnimatableColor;
+  /** The number of starting particles of the emitter */
   startCount;
 
   constructor() {
@@ -49,6 +92,10 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     this.startCount = 0;
   }
 
+  /**
+   * Loads the emitter options from the given data
+   * @param data - the data to load from
+   */
   load(data?: RecursivePartial<IEmitter>): void {
     if (isNull(data)) {
       return;

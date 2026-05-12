@@ -7,7 +7,7 @@ const half = 0.5,
   minRadius = 0;
 
 /**
- *
+ * Process destroy in an area
  * @param container
  * @param area
  */
@@ -20,7 +20,7 @@ function processDestroy(container: DestroyContainer, area: Circle | Rectangle): 
 }
 
 /**
- *
+ * Process destroy for a single selector
  * @param container
  * @param selector
  * @param div
@@ -56,7 +56,7 @@ function singleSelectorDestroy(container: DestroyContainer, selector: string, di
 }
 
 /**
- *
+ * Destroy particles in div elements
  * @param container
  * @param divs
  * @param destroyMode
@@ -68,7 +68,7 @@ export function divDestroy(container: DestroyContainer, divs: SingleOrMultiple<D
 }
 
 /**
- *
+ * Destroy particles at mouse position
  * @param container
  * @param interactivityData
  */

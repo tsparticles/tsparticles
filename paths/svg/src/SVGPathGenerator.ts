@@ -18,7 +18,8 @@ import type { SVGPathData } from "./types.js";
 import { createSVGPaths } from "./createSVGPaths.js";
 import { loadSVGFromString } from "./loadSVGFromString.js";
 
-enum SVGPathDirection {
+/** SVG path direction */
+export enum SVGPathDirection {
   normal,
   reverse,
 }
@@ -28,15 +29,25 @@ const minStep = 0,
   minWidth = 0,
   minScale = 1;
 
-type SVGPathParticle = Particle & {
+/**
+ * SVG path particle extension type
+ */
+export type SVGPathParticle = Particle & {
+  /** Direction along the SVG path */
   svgDirection?: SVGPathDirection;
+  /** Initial position when the particle started following the path */
   svgInitialPosition?: ICoordinates;
+  /** Offset from the path */
   svgOffset?: IDimension;
+  /** Current path index */
   svgPathIndex?: number;
+  /** Speed along the path */
   svgSpeed?: number;
+  /** Current step on the path */
   svgStep?: number;
 };
 
+/** @internal */
 interface SVGPathOptions {
   path?: {
     data: string[];
@@ -49,16 +60,29 @@ interface SVGPathOptions {
   width?: number;
 }
 
+/** SVG path generator plugin */
 export class SVGPathGenerator implements IMovePathGenerator {
+  /** The particles container */
   private readonly _container;
+  /** The position offset */
   private readonly _offset: ICoordinatesWithMode;
+  /** The parsed SVG paths */
   private _paths: SVGPathData[];
+  /** The result vector */
   private readonly _res: Vector;
+  /** Whether to reverse path direction */
   private _reverse: boolean;
+  /** The scale factor */
   private _scale: number;
+  /** The SVG size */
   private readonly _size: IDimension;
+  /** The path width */
   private _width: number;
 
+  /**
+   * SVGPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._paths = [];
@@ -70,6 +94,11 @@ export class SVGPathGenerator implements IMovePathGenerator {
     this._res = Vector.origin;
   }
 
+  /**
+   * Generates the next position along the SVG path
+   * @param particle
+   * @param delta
+   */
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
     const container = this._container,
       pxRatio = container.retina.pixelRatio;
@@ -148,6 +177,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the SVG path data */
   init(): void {
     const options = this._container.actualOptions.particles.move.path.options as SVGPathOptions,
       position = options.position ?? this._offset;
@@ -180,10 +210,12 @@ export class SVGPathGenerator implements IMovePathGenerator {
     }
   }
 
+  /** Resets the path generator (no-op) */
   reset(): void {
     // do nothing
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // do nothing
   }

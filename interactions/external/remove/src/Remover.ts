@@ -15,8 +15,10 @@ const removeMode = "remove";
  * Particle attract manager
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  /** @inheritDoc */
   readonly maxDistance = 0;
 
   constructor(container: RemoveContainer) {
@@ -38,18 +40,22 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     };
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -59,6 +65,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(removeMode, events.onClick.mode);
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & RemoveMode,
     ...sources: RecursivePartial<(IModes & IRemoveMode) | undefined>[]
@@ -70,6 +77,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

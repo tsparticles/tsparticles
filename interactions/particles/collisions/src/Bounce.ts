@@ -1,7 +1,11 @@
 import { circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
 import { type CollisionParticle } from "./Types.js";
 
-type BounceParticle = CollisionParticle & {
+/**
+ * Bounce particle extension type
+ */
+export type BounceParticle = CollisionParticle & {
+  /** Maximum collision speed for this particle */
   collisionMaxSpeed?: number;
 };
 

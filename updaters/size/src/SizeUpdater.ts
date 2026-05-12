@@ -10,13 +10,23 @@ import {
 
 const minLoops = 0;
 
+/** Size updater plugin */
 export class SizeUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * SizeUpdater constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
   }
 
+  /**
+   * Initializes the particle size animation velocity
+   * @param particle
+   */
   init(particle: Particle): void {
     const container = this._container,
       sizeOptions = particle.options.size,
@@ -32,6 +42,10 @@ export class SizeUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Checks if size animation is enabled
+   * @param particle
+   */
   isEnabled(particle: Particle): boolean {
     return (
       !particle.destroyed &&
@@ -43,11 +57,20 @@ export class SizeUpdater implements IParticleUpdater {
     );
   }
 
+  /**
+   * Resets the particle size state
+   * @param particle
+   */
   reset(particle: Particle): void {
     particle.size.time = 0;
     particle.size.loops = 0;
   }
 
+  /**
+   * Updates the particle size
+   * @param particle
+   * @param delta
+   */
   update(particle: Particle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {
       return;

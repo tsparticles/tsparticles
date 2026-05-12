@@ -5,10 +5,15 @@ import { SoundsIcons } from "./SoundsIcons.js";
 import { SoundsVolume } from "./SoundsVolume.js";
 
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
+  /** Enables auto play */
   autoPlay: boolean;
+  /** Enables the sounds */
   enable;
+  /** The sounds events */
   events: SoundsEvent[];
+  /** The sounds icons */
   icons;
+  /** The sounds volume */
   volume;
 
   constructor() {

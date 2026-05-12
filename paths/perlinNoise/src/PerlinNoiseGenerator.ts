@@ -2,6 +2,7 @@ import type { Container } from "@tsparticles/engine";
 import { NoiseFieldGenerator } from "@tsparticles/noise-field";
 import { PerlinNoise } from "@tsparticles/perlin-noise";
 
+/** Perlin noise path generator for particle motion */
 export class PerlinNoiseGenerator extends NoiseFieldGenerator {
   constructor(container: Container) {
     const perlinNoise = new PerlinNoise();

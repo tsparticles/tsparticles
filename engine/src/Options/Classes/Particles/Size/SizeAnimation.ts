@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
+ * Size animation options.
  */
 export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
   destroy: DestroyType | keyof typeof DestroyType;

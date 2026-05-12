@@ -21,8 +21,17 @@ import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 const absorbersMode = "absorbers";
 
+/**
+ * Handles the interaction between particles and absorbers, including click-to-add and dragging
+ */
 export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContainer> {
+  /**
+   * Handles the click mode for adding absorbers
+   */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  /**
+   * The maximum distance for the interactor
+   */
   readonly maxDistance;
 
   private _dragging = false;
@@ -64,14 +73,25 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     };
   }
 
+  /**
+   * Clears the interactor state
+   */
   clear(): void {
     // no-op
   }
 
+  /**
+   * Initializes the interactor
+   */
   init(): void {
     // no-op
   }
 
+  /**
+   * Processes the interaction for each frame, attracting particles to absorbers and handling dragging
+   * @param interactivityData - the interactivity data
+   * @param delta - the delta time
+   */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
       for (const absorber of this._instancesManager.getArray(this.container)) {
@@ -105,6 +125,12 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     }
   }
 
+  /**
+   * Checks if the interactor is enabled for the given interactivity data
+   * @param interactivityData - the interactivity data
+   * @param particle - the optional particle
+   * @returns true if the interactor is enabled
+   */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -118,6 +144,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     return isInArray(absorbersMode, events.onClick.mode);
   }
 
+  /**
+   * Loads the absorber mode options from sources
+   * @param options - the target options to load into
+   * @param sources - the source options to load from
+   */
   loadModeOptions(
     options: Modes & AbsorberModeOptions,
     ...sources: RecursivePartial<(IModes & IAbsorberModeOptions) | undefined>[]
@@ -147,6 +178,9 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     }
   }
 
+  /**
+   * Resets the interactor state
+   */
   reset(): void {
     // no-op
   }

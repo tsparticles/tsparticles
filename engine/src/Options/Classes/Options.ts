@@ -14,8 +14,11 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
-interface DefaultThemes {
+/** Default themes configuration */
+export interface DefaultThemes {
+  /** The default dark theme */
   dark?: string;
+  /** The default light theme */
   light?: string;
 }
 
@@ -25,26 +28,47 @@ interface DefaultThemes {
 export class Options implements IOptions, IOptionLoader<IOptions> {
   [name: string]: unknown;
 
+  /** The autoPlay flag */
   autoPlay;
+  /** The background options */
   readonly background;
+  /** The clear flag */
   clear: boolean;
+  /** The default themes */
   defaultThemes: DefaultThemes;
+  /** The delay value */
   delay: RangeValue;
+  /** The detect retina flag */
   detectRetina;
+  /** The duration value */
   duration: RangeValue;
+  /** The FPS limit */
   fpsLimit;
+  /** The full screen options */
   readonly fullScreen;
+  /** The HDR flag */
   hdr;
+  /** The key value */
   key?: string;
+  /** The name value */
   name?: string;
+  /** The palette value */
   palette?: string;
+  /** The particles options */
   readonly particles;
+  /** The pause on blur flag */
   pauseOnBlur;
+  /** The pause on outside viewport flag */
   pauseOnOutsideViewport;
+  /** The preset value */
   preset?: SingleOrMultiple<string>;
+  /** The resize options */
   readonly resize;
+  /** The smooth flag */
   smooth: boolean;
+  /** The style options */
   style: RecursivePartial<CSSStyleDeclaration>;
+  /** The z-layers value */
   zLayers;
 
   private readonly _container;

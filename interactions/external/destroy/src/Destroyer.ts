@@ -14,6 +14,7 @@ import { Destroy } from "./Options/Classes/Destroy.js";
 
 const destroyMode = "destroy";
 
+/** Particle destroy manager */
 export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
   private _maxDistance;
 
@@ -23,14 +24,17 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     this._maxDistance = 0;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       destroy = container.actualOptions.interactivity?.modes.destroy;
@@ -44,6 +48,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     container.retina.destroyModeDistance = destroy.distance * container.retina.pixelRatio;
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -65,6 +70,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -83,6 +89,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     );
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & DestroyMode,
     ...sources: RecursivePartial<(IModes & IDestroyMode) | undefined>[]
@@ -94,6 +101,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

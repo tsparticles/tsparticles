@@ -16,12 +16,21 @@ const defaultSizeFactor = 1,
   defaultDeltaFactor = 1;
 
 export class MovePluginInstance implements IContainerPlugin {
+  /** Available path generators from the engine */
   availablePathGenerators: Map<string, IMovePathGenerator>;
+  /** Active path generators for this container */
   pathGenerators: Map<string, IMovePathGenerator>;
 
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * Creates a new MovePluginInstance
+   * @param pluginManager - the plugin manager
+   * @param container - the particles container
+   */
   constructor(pluginManager: MovePluginManager, container: Container) {
     this._pluginManager = pluginManager;
     this._container = container;
@@ -30,6 +39,7 @@ export class MovePluginInstance implements IContainerPlugin {
     this.pathGenerators = new Map();
   }
 
+  /** @inheritDoc */
   destroy(): void {
     this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
@@ -43,9 +53,7 @@ export class MovePluginInstance implements IContainerPlugin {
     return !particle.destroyed && particle.options.move.enable;
   }
 
-  /**
-   * @param particle -
-   */
+  /** @inheritDoc */
   particleCreated(particle: MoveParticle): void {
     const options = particle.options,
       moveOptions = options.move,
@@ -80,16 +88,14 @@ export class MovePluginInstance implements IContainerPlugin {
     initSpin(this._container, particle);
   }
 
+  /** @inheritDoc */
   particleDestroyed(particle: MoveParticle): void {
     const pathGenerator = particle.pathGenerator;
 
     pathGenerator?.reset(particle);
   }
 
-  /**
-   * @param particle -
-   * @param delta -
-   */
+  /** @inheritDoc */
   particleUpdate(particle: MoveParticle, delta: IDelta): void {
     const particleOptions = particle.options,
       moveOptions = particleOptions.move;
@@ -119,14 +125,17 @@ export class MovePluginInstance implements IContainerPlugin {
     applyDistance(particle);
   }
 
+  /** @inheritDoc */
   preInit(): Promise<void> {
     return this._init();
   }
 
+  /** @inheritDoc */
   redrawInit(): Promise<void> {
     return this._init();
   }
 
+  /** Updates all active path generators */
   update(): void {
     for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();

@@ -3,13 +3,24 @@ import { type IContainerPlugin, isNull, safeDocument } from "@tsparticles/engine
 import type { CanvasMaskContainer } from "./types.js";
 import { addParticlesFromCanvasPixels } from "./utils.js";
 
+/**
+ * The CanvasMaskPluginInstance class handles the initialization of the canvas mask,
+ * converting image, text, or canvas element data into particles
+ */
 export class CanvasMaskPluginInstance implements IContainerPlugin {
+  /** The canvas mask container */
   private readonly _container;
 
+  /**
+   * @param container - the container using the canvas mask
+   */
   constructor(container: CanvasMaskContainer) {
     this._container = container;
   }
 
+  /**
+   * Initializes the canvas mask, loading pixel data from the configured source
+   */
   async init(): Promise<void> {
     const container = this._container,
       options = container.actualOptions.canvasMask;

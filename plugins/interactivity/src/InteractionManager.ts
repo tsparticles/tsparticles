@@ -24,13 +24,17 @@ const clickRadius = 1,
   touchEndLengthOffset = 1,
   minCoordinate = 0;
 
+/** Container click handler type */
 type ContainerClickHandler = (evt: Event) => void;
 
 export class InteractionManager {
+  /** The current interactivity state data */
   interactivityData: IInteractivityData;
 
+  /** Map of event names to click handlers */
   private readonly _clickHandlers;
 
+  /** The event listeners instance */
   private readonly _eventListeners;
 
   /**
@@ -45,6 +49,7 @@ export class InteractionManager {
    */
   private _interactors: IInteractor[];
 
+  /** The intersection observer for viewport detection */
   private readonly _intersectionObserver;
 
   /**
@@ -85,6 +90,10 @@ export class InteractionManager {
     });
   }
 
+  /**
+   * Adds a click/touch handler to the container element
+   * @param callback - the callback to invoke on click/touch
+   */
   addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
     const { container, interactivityData } = this;
 
@@ -189,10 +198,12 @@ export class InteractionManager {
     }
   }
 
+  /** Adds interactivity event listeners */
   addListeners(): void {
     this._eventListeners.addListeners();
   }
 
+  /** Clears all click and touch handlers */
   clearClickHandlers(): void {
     const { container, interactivityData } = this;
 
@@ -221,6 +232,10 @@ export class InteractionManager {
     }
   }
 
+  /**
+   * Handles a click mode for all external interactors
+   * @param mode - the click mode to handle
+   */
   handleClickMode(mode: string): void {
     if (this.container.destroyed) {
       return;
@@ -255,6 +270,7 @@ export class InteractionManager {
     }
   }
 
+  /** Initializes all interactors from the plugin manager */
   async initInteractors(): Promise<void> {
     const interactors = await this._pluginManager.getInteractors?.(this.container, true);
 
@@ -287,6 +303,7 @@ export class InteractionManager {
     }
   }
 
+  /** Removes all interactivity event listeners */
   removeListeners(): void {
     this._eventListeners.removeListeners();
   }
@@ -311,6 +328,7 @@ export class InteractionManager {
     }
   }
 
+  /** Starts observing the container element for intersection changes */
   startObserving(): void {
     const { interactivityData } = this;
 
@@ -319,6 +337,7 @@ export class InteractionManager {
     }
   }
 
+  /** Stops observing the container element for intersection changes */
   stopObserving(): void {
     const { interactivityData } = this;
 
@@ -327,6 +346,7 @@ export class InteractionManager {
     }
   }
 
+  /** Updates the maximum distance for the spatial grid */
   updateMaxDistance(): void {
     let maxTotalDistance = 0;
 

@@ -1,8 +1,8 @@
 import type { Container, IContainerPlugin, IPlugin } from "@tsparticles/engine";
 
-/**
- */
+/** JSON export plugin */
 export class ExportJSONPlugin implements IPlugin {
+  /** Plugin ID */
   readonly id = "export-json";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
@@ -15,6 +15,7 @@ export class ExportJSONPlugin implements IPlugin {
     // do nothing
   }
 
+  /** Checks if the plugin is needed */
   needsPlugin(): boolean {
     return true;
   }

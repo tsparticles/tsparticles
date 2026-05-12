@@ -11,12 +11,15 @@ import {
 } from "@tsparticles/engine";
 import type { IPush } from "../Interfaces/IPush.js";
 
-/**
- */
+/** Push mode options class */
 export class Push implements IPush, IOptionLoader<IPush> {
+  /** Whether to use the default groups */
   default;
+  /** Groups to push particles from */
   groups: string[];
+  /** Particles options for pushed particles */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
+  /** Number of particles to push */
   quantity: RangeValue;
 
   constructor() {
@@ -25,6 +28,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
     this.quantity = 4;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<IPush>): void {
     if (isNull(data)) {
       return;

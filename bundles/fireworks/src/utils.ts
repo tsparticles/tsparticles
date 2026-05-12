@@ -20,6 +20,10 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
 
+/**
+ * Checks if a particle supports explosion sounds
+ * @param args
+ */
 export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
   const data = args.data as { particle?: Particle } | undefined;
 
@@ -27,7 +31,7 @@ export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
 };
 
 /**
- *
+ * Converts firework options to tsParticles source options
  * @param options -
  * @param canvas -
  * @returns the options for the tsParticles instance
@@ -200,6 +204,7 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
 }
 
 /**
+ * Gets or creates a fireworks instance for the given id
  * @param engine -
  * @param id -
  * @param sourceOptions -

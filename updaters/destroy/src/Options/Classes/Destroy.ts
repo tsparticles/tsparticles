@@ -5,12 +5,18 @@ import { Explode } from "./Explode.js";
 import type { IDestroy } from "../Interfaces/IDestroy.js";
 import { Split } from "./Split.js";
 
+/** Destroy options class */
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
+  /** The destroy bounds */
   bounds: DestroyBounds;
+  /** The explode options */
   explode: Explode;
+  /** The destroy mode */
   mode: DestroyMode | keyof typeof DestroyMode;
+  /** The split options */
   split: Split;
 
+  /** Destroy constructor */
   constructor() {
     this.bounds = new DestroyBounds();
     this.explode = new Explode();
@@ -18,6 +24,10 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
     this.split = new Split();
   }
 
+  /**
+   * Loads the destroy options from data
+   * @param data
+   */
   load(data?: RecursivePartial<IDestroy>): void {
     if (isNull(data)) {
       return;

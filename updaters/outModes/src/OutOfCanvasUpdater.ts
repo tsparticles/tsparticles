@@ -23,16 +23,27 @@ const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMod
   );
 };
 
+/** Out of canvas updater plugin */
 export class OutOfCanvasUpdater implements IParticleUpdater {
+  /** Out mode managers by out mode */
   updaters: Map<OutMode, IOutModeManager>;
 
+  /** The particles container */
   private readonly container;
 
+  /**
+   * OutOfCanvasUpdater constructor
+   * @param container
+   */
   constructor(container: Container) {
     this.container = container;
     this.updaters = new Map();
   }
 
+  /**
+   * Initializes particle out mode handlers
+   * @param particle
+   */
   init(particle: Particle): void {
     this._addUpdaterIfMissing(particle, OutMode.bounce, container => new BounceOutMode(container));
     this._addUpdaterIfMissing(particle, OutMode.out, container => new OutOutMode(container));
@@ -40,10 +51,19 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     this._addUpdaterIfMissing(particle, OutMode.none, container => new NoneOutMode(container));
   }
 
+  /**
+   * Checks if out of canvas handling is enabled
+   * @param particle
+   */
   isEnabled(particle: Particle): boolean {
     return !particle.destroyed && !particle.spawning;
   }
 
+  /**
+   * Updates particle out mode handling
+   * @param particle
+   * @param delta
+   */
   update(particle: Particle, delta: IDelta): void {
     const outModes = particle.options.move.outModes;
 

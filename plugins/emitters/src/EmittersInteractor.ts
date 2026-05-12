@@ -25,8 +25,18 @@ import { defaultRandomOptions } from "./constants.js";
 
 const emittersMode = "emitters";
 
+/**
+ * The EmittersInteractor class handles the interaction between the user and the emitters,
+ * processing click modes and updating emitter instances each frame.
+ */
 export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer> {
+  /**
+   * Handles click mode for adding emitters on click
+   */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  /**
+   * The maximum distance for the interactor
+   */
   readonly maxDistance;
 
   private readonly _instancesManager;
@@ -91,20 +101,37 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     };
   }
 
+  /**
+   * Clears the interactor state
+   */
   clear(): void {
     // no-op
   }
 
+  /**
+   * Initializes the interactor
+   */
   init(): void {
     // no-op
   }
 
+  /**
+   * Processes the interaction for each frame, updating all emitter instances
+   * @param _interactivityData - the interactivity data
+   * @param delta - the delta time
+   */
   interact(_interactivityData: IInteractivityData, delta: IDelta): void {
     for (const emitter of this._instancesManager.getArray(this.container)) {
       emitter.update(delta);
     }
   }
 
+  /**
+   * Checks if the interactor is enabled for the given interactivity data
+   * @param interactivityData - the interactivity data
+   * @param particle - the optional particle
+   * @returns true if the interactor is enabled
+   */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -118,6 +145,11 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     return isInArray(emittersMode, events.onClick.mode);
   }
 
+  /**
+   * Loads the emitter mode options from sources
+   * @param options - the target options to load into
+   * @param sources - the source options to load from
+   */
   loadModeOptions(
     options: Modes & EmitterModeOptions,
     ...sources: RecursivePartial<(IModes & IEmitterModeOptions) | undefined>[]
@@ -171,6 +203,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     }
   }
 
+  /**
+   * Removes an emitter from the instances manager
+   * @param emitter - the emitter instance to remove
+   */
   removeEmitter(emitter: EmitterInstance): void {
     const index = this._instancesManager.getArray(this.container).indexOf(emitter),
       minIndex = 0,
@@ -181,6 +217,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     }
   }
 
+  /**
+   * Resets the interactor state
+   */
   reset(): void {
     // no-op
   }

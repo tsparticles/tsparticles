@@ -1,5 +1,8 @@
 import type { IColorAnimation } from "./IColorAnimation.js";
 
+/**
+ * HSL channel animation settings.
+ */
 export interface IHslAnimation {
   /**
    * Animation for hue.

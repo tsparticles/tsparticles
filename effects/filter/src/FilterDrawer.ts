@@ -1,13 +1,22 @@
 import { type Container, type IEffectDrawer, type IShapeDrawData, isNull } from "@tsparticles/engine";
 import type { FilterParticle } from "./FilterParticle.js";
 
+/** CSS filter effect drawer plugin */
 export class FilterDrawer implements IEffectDrawer<FilterParticle> {
+  /**
+   * Restores the canvas context after filter rendering
+   * @param data
+   */
   drawAfter(data: IShapeDrawData<FilterParticle>): void {
     const { context } = data;
 
     context.restore();
   }
 
+  /**
+   * Applies CSS filters before particle rendering
+   * @param data
+   */
   drawBefore(data: IShapeDrawData<FilterParticle>): void {
     const { context, particle } = data;
 
@@ -41,6 +50,11 @@ export class FilterDrawer implements IEffectDrawer<FilterParticle> {
       `${blurString} ${brightnessString} ${contrastString} ${dropShadowString} ${grayscaleString} ${hueRotateString} ${invertString} ${opacityString} ${saturateString} ${sepiaString} ${urlString}`.trim();
   }
 
+  /**
+   * Initializes filter-related particle properties
+   * @param _container
+   * @param particle
+   */
   particleInit(_container: Container, particle: FilterParticle): void {
     const effectData = particle.effectData;
 

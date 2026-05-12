@@ -2,6 +2,7 @@ import type { Container } from "@tsparticles/engine";
 import { NoiseFieldGenerator } from "@tsparticles/noise-field";
 import { SimplexNoise } from "@tsparticles/simplex-noise";
 
+/** Simplex noise path generator for particle motion */
 export class SimplexNoiseGenerator extends NoiseFieldGenerator {
   constructor(container: Container) {
     const simplex = new SimplexNoise();

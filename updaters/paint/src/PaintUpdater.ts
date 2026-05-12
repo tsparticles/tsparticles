@@ -15,15 +15,27 @@ import type { PaintParticle } from "./Types.js";
 
 const defaultOpacity = 1;
 
+/** Paint updater plugin */
 export class PaintUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * PaintUpdater constructor
+   * @param pluginManager
+   * @param container
+   */
   constructor(pluginManager: PluginManager, container: Container) {
     this._container = container;
     this._pluginManager = pluginManager;
   }
 
+  /**
+   * Initializes paint-related particle properties
+   * @param particle
+   */
   init(particle: PaintParticle): void {
     const container = this._container,
       options = particle.options,
@@ -86,6 +98,10 @@ export class PaintUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Checks if paint animation is enabled
+   * @param particle
+   */
   isEnabled(particle: PaintParticle): boolean {
     const { fillAnimation, fillColor, strokeAnimation, strokeColor } = particle,
       fillEnabled =
@@ -102,6 +118,11 @@ export class PaintUpdater implements IParticleUpdater {
     return !particle.destroyed && !particle.spawning && (fillEnabled || strokeEnabled);
   }
 
+  /**
+   * Updates the particle paint colors
+   * @param particle
+   * @param delta
+   */
   update(particle: Particle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {
       return;

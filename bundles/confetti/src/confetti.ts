@@ -21,23 +21,15 @@ import { setConfetti } from "./utils.js";
 declare const __VERSION__: string;
 
 declare global {
-  /**
-   *
-   */
+  /** The global confetti function */
   var confetti: ConfettiFunc & {
-    /**
-     *
-     * @param canvas -
-     * @param options -
-     * @returns the confetti function
-     */
+    /** Creates a confetti animation bound to a specific canvas */
     create: (canvas?: HTMLCanvasElement | null, options?: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
 
+    /** Initializes the confetti plugins */
     init: () => Promise<void>;
 
-    /**
-     * the confetti version number
-     */
+    /** The confetti bundle version */
     version: string;
   };
 }
@@ -45,7 +37,8 @@ declare global {
 let initPromise: Promise<void> | null = null;
 
 /**
- * @param engine -
+ * Initializes all required plugins for the confetti bundle
+ * @param engine - The engine to register plugins with
  * @returns the init plugins promise
  * @internal
  */
@@ -161,13 +154,12 @@ confetti.create = async (
   };
 };
 
+/** Initializes the confetti plugins without creating an animation */
 confetti.init = async (): Promise<void> => {
   await initPlugins(tsParticles);
 };
 
-/**
- *
- */
+/** The confetti bundle version */
 confetti.version = __VERSION__;
 
 globalThis.confetti = confetti;

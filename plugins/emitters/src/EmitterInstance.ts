@@ -91,18 +91,53 @@ function setParticlesOptionsStrokeColor(
 }
 
 /**
+ * The EmitterInstance class manages a single emitter, handling particle emission,
+ * lifecycle (duration/count), positioning, sizing, and shape-based spawning.
  */
 export class EmitterInstance {
+  /**
+   * Sets if the particles will spawn at the emitter perimeter or inside the area
+   */
   fill;
+  /**
+   * The emitter name
+   */
   readonly name?: string;
+  /**
+   * The emitter options
+   */
   options;
+  /**
+   * The emitter position
+   */
   position: ICoordinates;
+  /**
+   * The emitter size
+   */
   size: IDimension;
+  /**
+   * The emitter spawn fill color
+   */
   spawnFillColor?: IHsl;
+  /**
+   * The emitter spawn fill enabled flag
+   */
   spawnFillEnabled?: boolean;
+  /**
+   * The emitter spawn fill opacity
+   */
   spawnFillOpacity?: number;
+  /**
+   * The emitter spawn stroke color
+   */
   spawnStrokeColor?: IHsl;
+  /**
+   * The emitter spawn stroke opacity
+   */
   spawnStrokeOpacity?: number;
+  /**
+   * The emitter spawn stroke width
+   */
   spawnStrokeWidth?: number;
 
   private readonly _container;
@@ -214,22 +249,34 @@ export class EmitterInstance {
     this.play();
   }
 
+  /**
+   * Pauses the emitter from external calls
+   */
   externalPause(): void {
     this._paused = true;
 
     this.pause();
   }
 
+  /**
+   * Resumes the emitter from external calls
+   */
   externalPlay(): void {
     this._paused = false;
 
     this.play();
   }
 
+  /**
+   * Initializes the emitter shape
+   */
   async init(): Promise<void> {
     await this._shape?.init();
   }
 
+  /**
+   * Pauses the emitter
+   */
   pause(): void {
     if (this._paused) {
       return;
@@ -238,6 +285,9 @@ export class EmitterInstance {
     delete this._emitDelay;
   }
 
+  /**
+   * Starts or resumes the emitter
+   */
   play(): void {
     if (this._paused) {
       return;
@@ -267,6 +317,9 @@ export class EmitterInstance {
     }
   }
 
+  /**
+   * Resizes the emitter, recalculating position and size, and notifying the shape
+   */
   resize(): void {
     const initialPosition = this._initialPosition,
       container = this._container;
@@ -282,6 +335,10 @@ export class EmitterInstance {
     this._shape?.resize(this.position, this.size);
   }
 
+  /**
+   * Updates the emitter state, handling spawning delays, life cycle, and particle emission
+   * @param delta - the delta time of the frame
+   */
   update(delta: IDelta): void {
     if (this._paused) {
       return;

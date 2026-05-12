@@ -4,7 +4,8 @@ import { ExportImagePlugin } from "./ExportImagePlugin.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the image export plugin for tsParticles
+ * @param engine
  */
 export async function loadExportImagePlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

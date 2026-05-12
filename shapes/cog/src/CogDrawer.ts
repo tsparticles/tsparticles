@@ -8,15 +8,29 @@ const defaultHoleRadius = 44,
   defaultNotches = 7,
   defaultOuterTaper = 50;
 
+/** Cog shape drawer plugin */
 export class CogDrawer implements IShapeDrawer<CogParticle> {
+  /**
+   * Draws the cog hole after the main shape
+   * @param data
+   */
   afterDraw(data: IShapeDrawData<CogParticle>): void {
     drawCogHole(data);
   }
 
+  /**
+   * Draws the cog shape
+   * @param data
+   */
   draw(data: IShapeDrawData<CogParticle>): void {
     drawCog(data);
   }
 
+  /**
+   * Initializes cog-specific particle properties
+   * @param _container
+   * @param particle
+   */
   particleInit(_container: Container, particle: CogParticle): void {
     const shapeData = particle.shapeData;
 

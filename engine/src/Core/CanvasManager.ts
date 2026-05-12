@@ -63,6 +63,7 @@ export class CanvasManager {
    */
   element?: HTMLCanvasElement;
 
+  /** The render manager */
   readonly render;
 
   /**
@@ -141,6 +142,7 @@ export class CanvasManager {
     this._resizePlugins = [];
   }
 
+  /** Gets the zoom center point */
   getZoomCenter(): ICoordinates {
     const pxRatio = this._container.retina.pixelRatio,
       { width, height } = this.size;
@@ -330,6 +332,10 @@ export class CanvasManager {
     return true;
   }
 
+  /**
+   * Sets the pointer events style on the canvas
+   * @param type
+   */
   setPointerEvents(type: string): void {
     const element = this.element;
 
@@ -351,6 +357,7 @@ export class CanvasManager {
     this._zoomCenter = center;
   }
 
+  /** Stops the canvas manager */
   stop(): void {
     this._safeMutationObserver(obs => {
       obs.disconnect();

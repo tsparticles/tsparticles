@@ -5,13 +5,19 @@ import { Infecter } from "./Infecter.js";
 const minStage = 0;
 
 export class InfectionPluginInstance implements IContainerPlugin {
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * Creates a new InfectionPluginInstance
+   * @param container - the infectable container
+   */
   constructor(container: InfectableContainer) {
     this._container = container;
     this._container.infecter = new Infecter(this._container);
   }
 
+  /** @inheritDoc */
   particleFillColor(particle: InfectableParticle): string | IOptionsColor | undefined {
     const options = this._container.actualOptions;
 
@@ -26,10 +32,12 @@ export class InfectionPluginInstance implements IContainerPlugin {
     return infectionStage === undefined ? undefined : infectionStages[infectionStage]?.color;
   }
 
+  /** @inheritDoc */
   particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
     return this.particleFillColor(particle);
   }
 
+  /** @inheritDoc */
   particlesSetup(): void {
     const options = this._container.actualOptions;
 

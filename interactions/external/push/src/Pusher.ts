@@ -24,8 +24,10 @@ const pushMode = "push",
  * Particle attract manager
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  /** @inheritDoc */
   readonly maxDistance = 0;
 
   constructor(container: PushContainer) {
@@ -59,18 +61,22 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     };
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -80,6 +86,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(pushMode, events.onClick.mode);
   }
 
+  /** @inheritDoc */
   loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
     options.push ??= new Push();
 
@@ -88,6 +95,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

@@ -4,7 +4,8 @@ import { ExportJSONPlugin } from "./ExportJSONPlugin.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the JSON export plugin for tsParticles
+ * @param engine
  */
 export async function loadExportJSONPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

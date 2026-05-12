@@ -9,13 +9,16 @@ import {
 } from "@tsparticles/engine";
 import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke.js";
 
-/**
- */
+/** The polygon mask draw stroke options */
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoader<IPolygonMaskDrawStroke> {
+  /** The polygon mask draw stroke color */
   color;
+  /** The polygon mask draw stroke opacity */
   opacity;
+  /** The polygon mask draw stroke width */
   width;
 
+  /** The plugin manager */
   private readonly _pluginManager;
 
   constructor(pluginManager: PluginManager) {

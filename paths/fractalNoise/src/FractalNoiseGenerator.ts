@@ -2,6 +2,7 @@ import type { Container } from "@tsparticles/engine";
 import { FractalNoise } from "@tsparticles/fractal-noise";
 import { NoiseFieldGenerator } from "@tsparticles/noise-field";
 
+/** Fractal noise path generator for particle motion */
 export class FractalNoiseGenerator extends NoiseFieldGenerator {
   constructor(container: Container) {
     const fractalNoise = new FractalNoise();

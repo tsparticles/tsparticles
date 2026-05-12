@@ -2,9 +2,13 @@ import { type IOptionLoader, type RecursivePartial, isNull, isObject } from "@ts
 import type { ISoundsVolume } from "../Interfaces/ISoundsVolume.js";
 
 export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume> {
+  /** The maximum volume */
   max: number;
+  /** The minimum volume */
   min: number;
+  /** The volume step */
   step: number;
+  /** The default volume */
   value: number;
 
   constructor() {

@@ -2,8 +2,17 @@ import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull, isN
 import { AbsorberSizeLimit } from "./AbsorberSizeLimit.js";
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize.js";
 
+/**
+ * The absorber size options
+ */
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
+  /**
+   * The absorber size density, affects the attraction force
+   */
   density;
+  /**
+   * The absorber size limit
+   */
   limit: AbsorberSizeLimit;
 
   constructor() {
@@ -13,6 +22,10 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
     this.limit = new AbsorberSizeLimit();
   }
 
+  /**
+   * Loads the absorber size options from the given data
+   * @param data - the data to load from
+   */
   override load(data?: RecursivePartial<IAbsorberSize>): void {
     if (isNull(data)) {
       return;

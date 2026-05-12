@@ -15,11 +15,19 @@ const defaultOptions = {
   },
 };
 
+/** Branches path generator plugin */
 export class BranchesPathGenerator implements IMovePathGenerator {
+  /** Branches path options */
   readonly options: IBranchesPathOptions;
+  /** The particles container */
   private readonly _container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * BranchesPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
@@ -30,6 +38,10 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     };
   }
 
+  /**
+   * Generates the next movement vector for the particle
+   * @param p
+   */
   generate(p: BranchesPathParticle): Vector {
     const opts = this.options;
 
@@ -80,6 +92,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const source = this._container.actualOptions.particles.move.path.options;
 
@@ -100,10 +113,15 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     }
   }
 
+  /**
+   * Resets the particle branching state
+   * @param p
+   */
   reset(p: BranchesPathParticle): void {
     delete p.branching;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // nothing to do
   }

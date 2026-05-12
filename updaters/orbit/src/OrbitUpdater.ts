@@ -21,15 +21,27 @@ const defaultOrbitSpeed = 0,
   defaultWidth = 1,
   defaultRotation = 0;
 
+/** Orbit updater plugin */
 export class OrbitUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * OrbitUpdater constructor
+   * @param pluginManager
+   * @param container
+   */
   constructor(pluginManager: PluginManager, container: OrbitContainer) {
     this._pluginManager = pluginManager;
     this._container = container;
   }
 
+  /**
+   * Draws the orbit after particle rendering
+   * @param particle
+   */
   afterDraw(particle: OrbitParticle): void {
     const orbitOptions = particle.options.orbit;
 
@@ -38,6 +50,10 @@ export class OrbitUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Draws the orbit before particle rendering
+   * @param particle
+   */
   beforeDraw(particle: OrbitParticle): void {
     const orbitOptions = particle.options.orbit;
 
@@ -46,6 +62,11 @@ export class OrbitUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Draws the orbit ellipse
+   * @param particle
+   * @param type
+   */
   drawOrbit(particle: OrbitParticle, type: OrbitType): void {
     const container = this._container;
 
@@ -81,6 +102,10 @@ export class OrbitUpdater implements IParticleUpdater {
     });
   }
 
+  /**
+   * Initializes the particle orbit
+   * @param particle
+   */
   init(particle: OrbitParticle): void {
     /* orbit */
     const container = this._container,
@@ -103,12 +128,21 @@ export class OrbitUpdater implements IParticleUpdater {
     particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
   }
 
+  /**
+   * Checks if orbit is enabled for the particle
+   * @param particle
+   */
   isEnabled(particle: OrbitParticle): boolean {
     const orbitAnimations = particle.options.orbit?.animation;
 
     return !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable;
   }
 
+  /**
+   * Loads the orbit options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: OrbitParticlesOptions,
     ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
@@ -120,6 +154,11 @@ export class OrbitUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates the particle orbit rotation
+   * @param particle
+   * @param delta
+   */
   update(particle: OrbitParticle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {
       return;

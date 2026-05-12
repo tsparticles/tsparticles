@@ -86,10 +86,12 @@ export class RenderManager {
     this._drawSettingsCleanupPlugins = [];
   }
 
+  /** Canvas rendering context settings */
   get settings(): CanvasRenderingContext2DSettings | undefined {
     return this._contextSettings;
   }
 
+  /** Clears the canvas directly */
   canvasClear(): void {
     if (!this._container.actualOptions.clear) {
       return;
@@ -237,6 +239,10 @@ export class RenderManager {
     });
   }
 
+  /**
+   * Draws all particles for the current frame
+   * @param delta
+   */
   drawParticles(delta: IDelta): void {
     const { particles } = this._container;
 
@@ -372,18 +378,31 @@ export class RenderManager {
     this.paintBase();
   }
 
+  /**
+   * Paints the canvas background with an optional base color
+   * @param baseColor
+   */
   paintBase(baseColor?: string): void {
     this.draw(ctx => {
       paintBase(ctx, this._canvasManager.size, baseColor);
     });
   }
 
+  /**
+   * Paints an image on the canvas with the given opacity
+   * @param image
+   * @param opacity
+   */
   paintImage(image: HTMLImageElement, opacity: number): void {
     this.draw(ctx => {
       paintImage(ctx, this._canvasManager.size, image, opacity);
     });
   }
 
+  /**
+   * Sets the canvas rendering context
+   * @param context
+   */
   setContext(context: CanvasContextType | null): void {
     this._context = context;
 
@@ -392,10 +411,15 @@ export class RenderManager {
     }
   }
 
+  /**
+   * Sets the canvas rendering context settings
+   * @param settings
+   */
   setContextSettings(settings: CanvasRenderingContext2DSettings): void {
     this._contextSettings = settings;
   }
 
+  /** Stops the renderer and clears the canvas */
   stop(): void {
     this.draw(ctx => {
       clear(ctx, this._canvasManager.size);

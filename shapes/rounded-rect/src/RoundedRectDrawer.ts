@@ -4,7 +4,12 @@ import { drawRoundedRect } from "./Utils.js";
 
 const defaultRadius = 5;
 
+/** Rounded rectangle shape drawer plugin */
 export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
+  /**
+   * Draws the rounded rectangle shape
+   * @param data
+   */
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data,
       fixedRadius = radius * Math.SQRT1_2,
@@ -18,6 +23,11 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     }
   }
 
+  /**
+   * Initializes the rounded rectangle particle properties
+   * @param container
+   * @param particle
+   */
   particleInit(container: Container, particle: RoundedParticle): void {
     const shapeData = particle.shapeData;
 

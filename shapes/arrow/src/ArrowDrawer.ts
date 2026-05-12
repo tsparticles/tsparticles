@@ -6,11 +6,21 @@ const defaultHeightFactor = 0.5,
   defaultHeadWidthFactor = 0.2,
   defaultBodyHeightFactor = 0.5;
 
+/** Arrow shape drawer plugin */
 export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
+  /**
+   * Draws the arrow shape
+   * @param data
+   */
   draw(data: IShapeDrawData<ArrowParticle>): void {
     drawArrow(data);
   }
 
+  /**
+   * Initializes arrow-specific particle properties
+   * @param _container
+   * @param particle
+   */
   particleInit(_container: Container, particle: ArrowParticle): void {
     const shapeData = particle.shapeData;
 

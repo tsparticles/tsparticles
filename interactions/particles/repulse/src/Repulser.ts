@@ -8,15 +8,21 @@ const minDistance = 0,
   squareExp = 2,
   minVelocity = 0;
 
-type RepulseParticle = Particle & {
+/** Repulse particle extension type */
+export type RepulseParticle = Particle & {
   options: RepulseParticlesOptions;
+  /** Repulse interaction data for this particle */
   repulse?: {
+    /** Repulse distance */
     distance: number;
+    /** Repulse factor */
     factor: number;
+    /** Repulse speed */
     speed: number;
   };
 };
 
+/** Particles repulse interactor */
 export class Repulser extends ParticlesInteractorBase {
   private _maxDistance;
   private readonly _normVec: Vector;
@@ -30,18 +36,22 @@ export class Repulser extends ParticlesInteractorBase {
     this._velocityVec = Vector.origin;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(p1: RepulseParticle): void {
     const container = this.container;
 
@@ -97,10 +107,12 @@ export class Repulser extends ParticlesInteractorBase {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(particle: RepulseParticle): boolean {
     return particle.options.repulse?.enabled ?? false;
   }
 
+  /** @inheritDoc */
   loadParticlesOptions?(
     options: RepulseParticlesOptions,
     ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
@@ -112,6 +124,7 @@ export class Repulser extends ParticlesInteractorBase {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

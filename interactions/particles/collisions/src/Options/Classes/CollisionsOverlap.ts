@@ -2,7 +2,9 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ICollisionsOverlap } from "../Interfaces/ICollisionsOverlap.js";
 
 export class CollisionsOverlap implements ICollisionsOverlap, IOptionLoader<ICollisionsOverlap> {
+  /** Enables collision overlap */
   enable: boolean;
+  /** The number of overlap retries */
   retries: number;
 
   constructor() {

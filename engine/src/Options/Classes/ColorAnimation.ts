@@ -6,11 +6,13 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
-/**
- */
+/** Color animation options class */
 export class ColorAnimation extends AnimationOptions implements IColorAnimation, IOptionLoader<IColorAnimation> {
+  /** Maximum color value */
   max;
+  /** Minimum color value */
   min;
+  /** Color value offset */
   offset: RangeValue;
 
   constructor(min: number, max: number) {
@@ -22,6 +24,10 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
     this.sync = true;
   }
 
+  /**
+   * Loads color animation options from the given data
+   * @param data
+   */
   override load(data?: RecursivePartial<IColorAnimation>): void {
     super.load(data);
 

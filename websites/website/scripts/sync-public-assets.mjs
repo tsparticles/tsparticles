@@ -7,6 +7,8 @@ const rootDir = resolve(__dirname, "..");
 const docsPublicDir = resolve(rootDir, "docs", "public");
 const rootCname = resolve(rootDir, "CNAME");
 const docsCname = resolve(docsPublicDir, "CNAME");
+const iconName = resolve(rootDir, "tsParticles-64.png");
+const docsIconName = resolve(docsPublicDir, "tsParticles-64.png");
 
 const assetsToSync = ["audio", "images", "videos"];
 
@@ -28,5 +30,8 @@ if (existsSync(rootCname)) {
   cpSync(rootCname, docsCname);
 }
 
-console.log(`[assets] synced ${assetsToSync.join(", ")} to docs/public`);
+if (existsSync(iconName)) {
+  cpSync(iconName, docsIconName);
+}
 
+console.log(`[assets] synced ${assetsToSync.join(", ")} to docs/public`);

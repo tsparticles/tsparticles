@@ -20,9 +20,12 @@ const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", 
   noPadding = 0,
   firstItem = 0;
 
+/** Emoji shape drawer plugin */
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
+  /** Cached emoji renderings mapped by value and font */
   private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
+  /** Clears the emoji cache */
   destroy(): void {
     for (const [key, data] of this._emojiShapeDict) {
       if (data instanceof ImageBitmap) {
@@ -33,6 +36,10 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
   }
 
+  /**
+   * Draws the emoji shape
+   * @param data
+   */
   draw(data: IShapeDrawData<EmojiParticle>): void {
     const key = data.particle.emojiDataKey;
 
@@ -49,6 +56,10 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     drawEmoji(data, image);
   }
 
+  /**
+   * Loads the required emoji fonts
+   * @param container
+   */
   async init(container: Container): Promise<void> {
     const options = container.actualOptions,
       shapeData = options.particles.shape;
@@ -69,10 +80,19 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     await Promise.all(promises);
   }
 
+  /**
+   * Cleans up emoji data when particle is destroyed
+   * @param particle
+   */
   particleDestroy(particle: EmojiParticle): void {
     particle.emojiDataKey = undefined;
   }
 
+  /**
+   * Initializes the emoji shape for a particle
+   * @param container
+   * @param particle
+   */
   particleInit(container: Container, particle: EmojiParticle): void {
     const shapeData = particle.shapeData as unknown as IEmojiShape;
 

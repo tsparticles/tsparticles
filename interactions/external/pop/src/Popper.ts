@@ -12,8 +12,10 @@ const popMode = "pop";
  * Particle attract manager
  */
 export class Popper extends ExternalInteractorBase {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  /** @inheritDoc */
   readonly maxDistance = 0;
 
   constructor(container: InteractivityContainer) {
@@ -44,18 +46,22 @@ export class Popper extends ExternalInteractorBase {
     };
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -65,6 +71,7 @@ export class Popper extends ExternalInteractorBase {
     return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(popMode, events.onClick.mode);
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

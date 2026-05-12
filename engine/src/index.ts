@@ -1,5 +1,8 @@
 import { initEngine } from "./initEngine.js";
 
+/**
+ * Shared tsParticles engine instance.
+ */
 const tsParticles = initEngine();
 
 export * from "./exports.js";

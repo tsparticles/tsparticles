@@ -1,9 +1,4 @@
 {
-  "baseBranches": [
-    "v4"
-  ],
-  "extends": [
-    "config:base",
-    ":preserveSemverRanges"
-  ]
+  "baseBranchPatterns": ["v4"],
+  "extends": ["config:recommended", ":preserveSemverRanges"]
 }

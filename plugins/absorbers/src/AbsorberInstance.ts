@@ -47,7 +47,7 @@ const squareExp = 2,
 /**
  * Particle extension type for Absorber orbit options
  */
-type OrbitingParticle = Particle & {
+export type OrbitingParticle = Particle & {
   /**
    * Vector representing the orbit of the particle around the absorber
    */
@@ -65,6 +65,8 @@ type OrbitingParticle = Particle & {
 };
 
 /**
+ * The AbsorberInstance class manages a single absorber, handling particle attraction,
+ * orbit, destruction, and lifecycle management
  */
 export class AbsorberInstance {
   /**

@@ -9,8 +9,11 @@ import type { ITheme } from "../Interfaces/ITheme.js";
 import { ThemeDefault } from "./ThemeDefault.js";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
+  /** Options to set the default theme */
   readonly default;
+  /** Theme name, use it when changing theme */
   name;
+  /** All options the theme will override */
   options?: ISourceOptions;
 
   constructor() {

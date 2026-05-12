@@ -9,18 +9,30 @@ import {
 } from "@tsparticles/engine";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
+/** Firework options class */
 export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {
+  /** Background color */
   background: string;
+  /** Brightness offset for stroke colors */
   brightness: RangeValue;
+  /** Firework colors */
   colors: SingleOrMultiple<string>;
+  /** Gravity acceleration */
   gravity: RangeValue;
+  /** Minimum height before splitting */
   minHeight: RangeValue;
+  /** Firework launch rate */
   rate: RangeValue;
+  /** Saturation offset for stroke colors */
   saturation: RangeValue;
+  /** Enables explosion sounds */
   sounds;
+  /** Rocket speed */
   speed: RangeValue;
+  /** Number of split particles per explosion */
   splitCount: RangeValue;
 
+  /** Creates a new FireworkOptions instance with default values */
   constructor() {
     this.background = "none";
     this.brightness = {
@@ -80,6 +92,10 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
     this.splitCount = 100;
   }
 
+  /**
+   * Loads firework options from the provided data
+   * @param data
+   */
   load(data?: RecursivePartial<IFireworkOptions>): void {
     if (isNull(data)) {
       return;

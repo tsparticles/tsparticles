@@ -4,7 +4,8 @@ import { ExportVideoPlugin } from "./ExportVideoPlugin.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the video export plugin for tsParticles
+ * @param engine
  */
 export async function loadExportVideoPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

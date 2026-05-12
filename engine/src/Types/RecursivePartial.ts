@@ -1,4 +1,5 @@
 /**
+ * Recursive partial helper type used by options loaders.
  */
 export type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]

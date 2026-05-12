@@ -1,8 +1,12 @@
 import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILightShadow } from "../Interfaces/ILightShadow.js";
 
+/** Light shadow options class */
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
+  /** The shadow color */
   color;
+
+  /** The shadow length */
   length;
 
   constructor() {
@@ -12,6 +16,7 @@ export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
     this.length = 2000;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ILightShadow>): void {
     if (isNull(data)) {
       return;

@@ -1,7 +1,6 @@
 import type { ICoordinates } from "@tsparticles/engine";
 
-/**
- */
+/** Mouse event data for interactivity */
 export interface IMouseData {
   clickPosition?: ICoordinates;
   clickTime?: number;

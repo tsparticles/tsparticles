@@ -1,5 +1,4 @@
-/**
- */
+/** Particles density options */
 export interface IParticlesDensity {
   /**
    * Enable density to increase or reduce the number of particles depending on the size of the container

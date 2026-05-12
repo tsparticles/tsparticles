@@ -4,14 +4,14 @@ import { RangeType } from "../../Enums/RangeType.js";
 import { checkDistance } from "../../Utils/MathUtils.js";
 import { squareExp } from "./Constants.js";
 
-/**
- */
+/** Abstract base class for spatial ranges */
 export abstract class BaseRange {
   /**
    * Range position
    */
   readonly position: ICoordinates;
 
+  /** The range type identifier */
   readonly type: string;
 
   /**
@@ -29,6 +29,11 @@ export abstract class BaseRange {
     this.type = type;
   }
 
+  /**
+   * Updates the internal position values.
+   * @param x - New x coordinate.
+   * @param y - New y coordinate.
+   */
   protected _resetPosition(x: number, y: number): void {
     this.position.x = x;
     this.position.y = y;
@@ -49,9 +54,9 @@ export abstract class BaseRange {
   abstract intersects(range: BaseRange): boolean;
 }
 
-/**
- */
+/** Circular spatial range */
 export class Circle extends BaseRange {
+  /** Circle radius */
   radius;
 
   /**
@@ -67,7 +72,7 @@ export class Circle extends BaseRange {
   }
 
   /**
-   * Check if the given point is inside the circle
+   * Checks if the given point is inside the circle
    * @param point - the point to check
    * @returns true or false, checking if the given point is inside the circle
    */
@@ -104,6 +109,13 @@ export class Circle extends BaseRange {
     return false;
   }
 
+  /**
+   * Resets the circle position and radius, reusing the instance
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param radius - Circle's radius
+   * @returns the circle instance for chaining
+   */
   reset(x: number, y: number, radius: number): this {
     this._resetPosition(x, y);
 
@@ -113,8 +125,7 @@ export class Circle extends BaseRange {
   }
 }
 
-/**
- */
+/** Rectangular spatial range */
 export class Rectangle extends BaseRange {
   /**
    * The rectangle size
@@ -175,6 +186,14 @@ export class Rectangle extends BaseRange {
     return pos2.x < pos1.x + w && pos2.x + w2 > pos1.x && pos2.y < pos1.y + h && pos2.y + h2 > pos1.y;
   }
 
+  /**
+   * Resets the rectangle position and size, reusing the instance
+   * @param x - X coordinate of the position
+   * @param y - Y coordinate of the position
+   * @param width - Rectangle width
+   * @param height - Rectangle height
+   * @returns the rectangle instance for chaining
+   */
   reset(x: number, y: number, width: number, height: number): this {
     this._resetPosition(x, y);
     this.size.width = width;

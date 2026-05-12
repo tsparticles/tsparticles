@@ -1,12 +1,15 @@
 import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILinksTriangle } from "../Interfaces/ILinksTriangle.js";
 
-/**
- */
+/** Links triangle options class */
 export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriangle> {
+  /** Triangle fill color */
   color?: OptionsColor;
+  /** Enables link triangles */
   enable;
+  /** Triangle fill frequency */
   frequency;
+  /** Triangle fill opacity */
   opacity?: number;
 
   constructor() {
@@ -14,6 +17,7 @@ export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriang
     this.frequency = 1;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ILinksTriangle>): void {
     if (isNull(data)) {
       return;

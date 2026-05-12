@@ -12,10 +12,17 @@ export interface RepulseMode {
   repulse?: Repulse;
 }
 
-interface IContainerRepulse {
+/**
+ * Container repulse data
+ */
+export interface IContainerRepulse {
+  /** Whether the user is clicking */
   clicking?: boolean;
+  /** Number of repulsed particles */
   count?: number;
+  /** Whether the repulse action has finished */
   finish?: boolean;
+  /** Particles being repulsed */
   particles: Particle[];
 }
 

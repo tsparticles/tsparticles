@@ -6,8 +6,9 @@ import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 
 /**
- * @param options -
- * @param sourceOptionsArr -
+ * Loads one or more partial source options into an option loader.
+ * @param options - Target option loader.
+ * @param sourceOptionsArr - Source option chunks to merge.
  */
 export function loadOptions<T>(
   options: IOptionLoader<T>,

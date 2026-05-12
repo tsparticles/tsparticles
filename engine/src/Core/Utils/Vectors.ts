@@ -10,6 +10,7 @@ function getZ(source: ICoordinates | ICoordinates3d): number {
 }
 
 /**
+ * 3D vector utility class used by particle math helpers.
  */
 export class Vector3d implements ICoordinates3d {
   /**
@@ -243,6 +244,9 @@ export class Vector3d implements ICoordinates3d {
 }
 
 /**
+ */
+/**
+ * 2D vector specialization built on top of Vector3d.
  */
 export class Vector extends Vector3d {
   /**

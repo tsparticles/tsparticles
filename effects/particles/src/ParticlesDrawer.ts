@@ -16,35 +16,63 @@ const minSpawnRate = 0,
   defaultSpawnRate = 1,
   defaultSpawnQuantity = 1;
 
-interface IParticlesRateData {
+/** Particles spawn rate data */
+export interface IParticlesRateData {
+  /** Delay between spawns */
   delay: RangeValue;
+  /** Number of particles per spawn */
   quantity: RangeValue;
 }
 
-interface ISpawnParticlesData {
+/** Particles spawn data */
+export interface ISpawnParticlesData {
+  /** Particles options to spawn */
   particles?: RecursivePartial<IParticlesOptions>;
+  /** Spawn rate configuration */
   rate?: IParticlesRateData;
 }
 
-interface IParticlesData extends IShapeValues {
+/**
+ * Particles effect shape data
+ */
+export interface IParticlesData extends IShapeValues {
+  /** Spawn configuration */
   spawn?: ISpawnParticlesData;
 }
 
-type ParticlesParticle = Particle & {
+/**
+ * Particles effect particle extension type
+ */
+export type ParticlesParticle = Particle & {
+  /** Effect data */
   effectData?: IParticlesData;
+  /** Particles data for spawning */
   particlesData?: IParticlesData;
+  /** Next spawn time */
   particlesNextSpawn?: number;
+  /** Number of particles to spawn each time */
   particlesSpawnQuantity?: number;
+  /** Spawn rate in ms */
   particlesSpawnRate?: number;
 };
 
+/** Particles spawning effect drawer plugin */
 export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * ParticlesDrawer constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
   }
 
+  /**
+   * Spawns new particles after rendering
+   * @param data
+   */
   drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
     const { particle } = data,
       { _container: container } = this;
@@ -71,6 +99,11 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     }
   }
 
+  /**
+   * Initializes the particle spawner properties
+   * @param _container
+   * @param particle
+   */
   particleInit(_container: Container, particle: ParticlesParticle): void {
     const effectData = particle.effectData,
       spawnRate = getRangeValue(effectData?.spawn?.rate?.delay ?? defaultSpawnRate);

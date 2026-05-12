@@ -21,17 +21,30 @@ const minRadius = 0,
     radialSpeed: { min: 0.1, max: 0.3 },
   };
 
+/** Spiral path generator plugin */
 export class SpiralPathGenerator implements IMovePathGenerator {
+  /** Spiral path options */
   readonly options;
+  /** The particles container */
   private readonly _container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * SpiralPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as ISpiralOptions;
   }
 
+  /**
+   * Generates the next movement vector with spiral oscillation
+   * @param particle
+   * @param delta
+   */
   generate(particle: SpiralParticle, delta: IDelta): Vector {
     const { options } = this;
 
@@ -74,6 +87,7 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
@@ -82,10 +96,15 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     this.options.radialSpeed = (sourceOptions["radialSpeed"] as RangeValue | undefined) ?? this.options.radialSpeed;
   }
 
+  /**
+   * Resets the particle spiral state
+   * @param particle
+   */
   reset(particle: SpiralParticle): void {
     delete particle.spiral;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // no-op
   }

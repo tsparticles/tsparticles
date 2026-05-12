@@ -46,7 +46,7 @@ export class SpatialHashGrid {
 
   /**
    * Adds a particle to the appropriate cell
-   * @param particle -
+   * @param particle - the particle to insert
    */
   insert(particle: Particle): void {
     const { x, y } = particle.getPosition(),
@@ -61,10 +61,10 @@ export class SpatialHashGrid {
 
   /**
    * Queries particles within a range (Circle or Rectangle)
-   * @param range -
+   * @param range - the range to query particles in
    * @param check - optional callback to check particles against, if not provided all particles will be returned
-   * @param out -
-   * @returns Particle[]
+   * @param out - optional output array to fill with results
+   * @returns the array of particles within the range
    */
   query(range: BaseRange, check?: (particle: Particle) => boolean, out: Particle[] = []): Particle[] {
     const bounds = this._getRangeBounds(range);
@@ -102,6 +102,14 @@ export class SpatialHashGrid {
     return out;
   }
 
+  /**
+   * Queries particles within a circular range
+   * @param position - the center position of the circle
+   * @param radius - the circle radius
+   * @param check - optional callback to filter particles
+   * @param out - optional output array to fill with results
+   * @returns the array of particles within the circle
+   */
   queryCircle(
     position: ICoordinates,
     radius: number,
@@ -116,6 +124,14 @@ export class SpatialHashGrid {
     return result;
   }
 
+  /**
+   * Queries particles within a rectangular range
+   * @param position - the top-left position of the rectangle
+   * @param size - the rectangle size
+   * @param check - optional callback to filter particles
+   * @param out - optional output array to fill with results
+   * @returns the array of particles within the rectangle
+   */
   queryRectangle(
     position: ICoordinates,
     size: IDimension,
@@ -130,6 +146,10 @@ export class SpatialHashGrid {
     return result;
   }
 
+  /**
+   * Sets the cell size (applied on next clear)
+   * @param cellSize - the new cell size
+   */
   setCellSize(cellSize: number): void {
     this._pendingCellSize = cellSize;
   }

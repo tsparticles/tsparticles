@@ -19,10 +19,18 @@ const firstIndex = 0,
  * Multiline text drawer
  */
 export class TextDrawer implements IShapeDrawer<TextParticle> {
+  /**
+   * Draws the text shape
+   * @param data
+   */
   draw(data: IShapeDrawData<TextParticle>): void {
     drawText(data);
   }
 
+  /**
+   * Loads the required fonts
+   * @param container
+   */
   async init(container: Container): Promise<void> {
     const options = container.actualOptions;
 

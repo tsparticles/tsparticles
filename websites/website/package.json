@@ -6,11 +6,12 @@
     "main": "docs/index.md",
     "type": "module",
     "scripts": {
-        "postinstall": "node ./scripts/fix-palette-types.mjs",
+        "typedoc:api": "typedoc --options typedoc.json",
+        "docs:typedoc": "node ./scripts/sync-typedoc.mjs",
         "docs:assets": "node ./scripts/sync-public-assets.mjs",
-        "dev": "pnpm run docs:assets && vitepress dev docs --host",
-        "docs:build": "pnpm run lint:fix && pnpm run docs:assets && vitepress build docs",
-        "docs:build:ci": "pnpm run lint && pnpm run docs:assets && vitepress build docs",
+        "dev": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run docs:assets && vitepress dev docs --host",
+        "docs:build": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint:fix && pnpm run docs:assets && vitepress build docs && node ./scripts/merge-sitemaps.mjs",
+        "docs:build:ci": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint && pnpm run docs:assets && vitepress build docs && node ./scripts/merge-sitemaps.mjs",
         "docs:preview": "vitepress preview docs --host",
         "build": "pnpm run docs:build",
         "lint": "prettier --check \"docs/**/*.{md,ts,css}\"",
@@ -249,6 +250,30 @@
     },
     "devDependencies": {
         "prettier": "^3.8.3",
+        "typedoc": "^0.28.19",
+        "typedoc-plugin-clarity": "^1.6.0",
+        "typedoc-plugin-coverage": "^4.0.3",
+        "typedoc-plugin-google-ads": "^1.6.0",
+        "typedoc-plugin-keywords": "^1.6.0",
+        "typedoc-plugin-markdown": "^4.11.0",
+        "typedoc-plugin-mdn-links": "^5.1.1",
+        "typedoc-plugin-missing-exports": "^4.1.3",
         "vitepress": "^1.6.4"
+    },
+    "nx": {
+        "targets": {
+            "build": {
+                "outputs": [
+                    "{projectRoot}/docs/.vitepress/dist",
+                    "{projectRoot}/docs/docs/"
+                ],
+                "inputs": [
+                    "production",
+                    "^production",
+                    "{projectRoot}/docs/**/*",
+                    "{projectRoot}/typedoc.json"
+                ]
+            }
+        }
     }
 }

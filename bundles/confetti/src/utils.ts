@@ -12,6 +12,7 @@ const defaultGravity = 9.81,
   ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
 
 /**
+ * Adds an emitter to the container for confetti particles
  * @param container -
  * @param actualOptions -
  * @param opacitySpeed -
@@ -133,6 +134,7 @@ export async function addEmitter(
 }
 
 /**
+ * Converts confetti options to tsParticles source options
  * @param actualOptions -
  * @param params -
  * @param opacitySpeed -

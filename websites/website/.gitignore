@@ -21,6 +21,8 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+!docs/releases/
+!docs/**/releases/
 x64/
 x86/
 [Aa][Rr][Mm]/
@@ -362,6 +364,10 @@ css/*.map
 # VitePress generated artifacts
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+
+# TypeDoc generated API docs (HTML output)
+typedoc-dist/
+docs/public/docs/
 docs/public/audio/
 docs/public/images/
 docs/public/videos/

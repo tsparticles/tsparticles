@@ -34,17 +34,31 @@ const noPolygonDataLoaded = `No polygon data loaded.`,
  * Polygon Mask manager
  */
 export class PolygonMaskInstance implements IContainerPlugin {
+  /** The polygon mask dimensions */
   dimension: IDimension;
+  /** The polygon mask offset */
   offset?: ICoordinates;
+  /** The parsed SVG paths */
   paths?: ISvgPath[];
+  /** The raw polygon coordinates */
   raw?: ICoordinates[];
+  /** The redraw timeout handle */
   redrawTimeout?: number;
 
+  /** The particles container */
   private readonly _container;
+  /** The movement radius for inline particles */
   private _moveRadius;
+  /** The plugin manager */
   private readonly _pluginManager;
+  /** The scale factor */
   private _scale;
 
+  /**
+   * Creates a new PolygonMaskInstance
+   * @param pluginManager - the plugin manager
+   * @param container - the polygon mask container
+   */
   constructor(pluginManager: PluginManager, container: PolygonMaskContainer) {
     this._container = container;
     this._pluginManager = pluginManager;
@@ -56,6 +70,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
     this._scale = 1;
   }
 
+  /**
+   * Checks if a click position is valid inside the polygon
+   * @param position - the click position
+   * @returns true if the position is valid
+   */
   clickPositionValid(position: ICoordinates): boolean {
     const options = this._container.actualOptions.polygon;
 
@@ -67,6 +86,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     );
   }
 
+  /** @inheritDoc */
   draw(context: CanvasContextType): void {
     if (!this.paths?.length) {
       return;
@@ -97,6 +117,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
   }
 
+  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this._container,
       polygonMaskOptions = container.actualOptions.polygon,
@@ -115,10 +136,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
   }
 
+  /** @inheritDoc */
   particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
     return this._polygonBounce(particle, delta, direction);
   }
 
+  /** @inheritDoc */
   particlePosition(position?: ICoordinates): ICoordinates | undefined {
     const options = this._container.actualOptions.polygon,
       defaultLength = 0;
@@ -130,6 +153,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     return deepExtend({}, position ?? this._randomPoint()) as ICoordinates;
   }
 
+  /** @inheritDoc */
   particlesInitialization(): boolean {
     const options = this._container.actualOptions.polygon;
 
@@ -147,6 +171,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     return false;
   }
 
+  /** @inheritDoc */
   resize(): void {
     const container = this._container,
       options = container.actualOptions.polygon;
@@ -170,6 +195,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }, timeout);
   }
 
+  /** @inheritDoc */
   stop(): void {
     delete this.raw;
     delete this.paths;

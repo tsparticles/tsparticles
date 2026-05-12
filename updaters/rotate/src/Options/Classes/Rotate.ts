@@ -13,10 +13,14 @@ import { RotateAnimation } from "./RotateAnimation.js";
  * [[include:Options/Particles/Rotate.md]]
  */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
+  /** Rotate animation options */
   animation;
+  /** Rotate direction */
   direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+  /** Enables path rotation */
   path;
 
+  /** Rotate constructor */
   constructor() {
     super();
     this.animation = new RotateAnimation();
@@ -25,6 +29,10 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
     this.value = 0;
   }
 
+  /**
+   * Loads the rotate options from data
+   * @param data
+   */
   override load(data?: RecursivePartial<IRotate>): void {
     if (isNull(data)) {
       return;

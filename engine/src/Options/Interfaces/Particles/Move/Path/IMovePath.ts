@@ -1,8 +1,7 @@
 import type { IValueWithRandom } from "../../../IValueWithRandom.js";
 import type { PathOptions } from "../../../../../Types/PathOptions.js";
 
-/**
- */
+/** Move path options */
 export interface IMovePath {
   /**
    * Checks if the output value is clamped between -1 and 1, the velocity range, values out of range must be handled correctly.

@@ -17,6 +17,7 @@ const attractMode = "attract";
  * Particle external attract manager
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private _maxDistance;
@@ -66,14 +67,17 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     };
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       attract = container.actualOptions.interactivity?.modes.attract;
@@ -87,6 +91,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -107,6 +112,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -123,6 +129,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & AttractMode,
     ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
@@ -134,6 +141,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

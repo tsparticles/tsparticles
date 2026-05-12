@@ -53,6 +53,13 @@
     "vite": "^8.0.8",
     "vite-plugin-dts": "^4.5.4"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/lib/**/*"]
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
   }

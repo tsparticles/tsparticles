@@ -18,14 +18,23 @@ import { PolygonMaskType } from "../../Enums/PolygonMaskType.js";
  * [[include:Options/Plugins/PolygonMask.md]]
  */
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
+  /** The polygon mask SVG data */
   data?: string | PolygonMaskLocalSvg;
+  /** The polygon mask draw options */
   draw;
+  /** Enables the polygon mask */
   enable;
+  /** The polygon mask inline options */
   inline;
+  /** The polygon mask move options */
   move;
+  /** The polygon mask position */
   position?: ICoordinates;
+  /** The polygon mask scale */
   scale;
+  /** The polygon mask type */
   type;
+  /** The polygon mask SVG url */
   url?: string;
 
   constructor(pluginManager: PluginManager) {

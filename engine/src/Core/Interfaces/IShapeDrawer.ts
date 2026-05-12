@@ -3,6 +3,7 @@ import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particle.js";
 
 /**
+ * Shape drawer contract used by particle shape plugins.
  */
 export interface IShapeDrawer<TParticle extends Particle = Particle> {
   /**

@@ -2,10 +2,11 @@ import { type IOptionLoader, type PluginManager, type RecursivePartial, isNull }
 import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw.js";
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke.js";
 
-/**
- */
+/** The polygon mask draw options */
 export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygonMaskDraw> {
+  /** Enables the polygon mask drawing */
   enable;
+  /** The polygon mask draw stroke options */
   stroke;
 
   constructor(pluginManager: PluginManager) {

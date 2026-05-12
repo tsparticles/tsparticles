@@ -1,17 +1,10 @@
 import type { Container, RecursivePartial } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 
-/**
- *
- */
+/** Confetti function first parameter type */
 export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 
-/**
- *
- * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
- * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
- * @returns the container of the animation, or undefined if no canvas was found
- */
+/** Confetti function type */
 export type ConfettiFunc = (
   idOrOptions: ConfettiFirstParam,
   confettiOptions?: RecursivePartial<IConfettiOptions>,

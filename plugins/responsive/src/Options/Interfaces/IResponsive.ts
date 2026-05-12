@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 import type { ResponsiveMode } from "../../ResponsiveMode.js";
 
+/** The responsive options */
 export interface IResponsive {
   /**
    * Maximum width of the canvas or the screen, depending on {@link mode} value.

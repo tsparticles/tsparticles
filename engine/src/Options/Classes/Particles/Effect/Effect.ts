@@ -11,8 +11,11 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  * [[include:Options/Particles/Effect.md]]
  */
 export class Effect implements IEffect, IOptionLoader<IEffect> {
+  /** Whether the effect shape is closed */
   close;
+  /** Effect shape options data */
   options: ShapeData;
+  /** Effect type name or array of names */
   type: SingleOrMultiple<string>;
 
   constructor() {

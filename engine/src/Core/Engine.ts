@@ -134,6 +134,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
+  /** The plugin manager */
   readonly pluginManager = new PluginManager(this);
   /**
    * Contains all the {@link Container} instances of the current engine instance
@@ -147,10 +148,12 @@ export class Engine {
    */
   private _initialized = false;
 
+  /** The container instances */
   get items(): Container[] {
     return this._domArray;
   }
 
+  /** The engine version */
   get version(): string {
     return __VERSION__;
   }
@@ -166,6 +169,10 @@ export class Engine {
 
   /**
    * @param pluginVersion - the plugin version to check against
+   */
+  /**
+   * Checks if a plugin version matches the engine version
+   * @param pluginVersion
    */
   checkVersion(pluginVersion: string): void {
     if (this.version === pluginVersion) {

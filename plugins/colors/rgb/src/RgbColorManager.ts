@@ -10,23 +10,35 @@ import {
   parseAlpha,
 } from "@tsparticles/engine";
 
+/** Indexes for RGB regex capture groups */
 enum RgbIndexes {
+  /** Red component index */
   r = 1,
+  /** Green component index */
   g = 2,
+  /** Blue component index */
   b = 3,
+  /** Alpha component index */
   a = 5,
 }
 
 const rgbRegex =
   /rgba?\(\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i;
 
-/**
- */
+/** RGB color manager */
 export class RgbColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with rgb
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("rgb");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       rgbColor = colorValue.rgb ?? (color.value as IRgb);
@@ -38,6 +50,10 @@ export class RgbColorManager implements IColorManager {
     return rgbColor;
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       rgbColor = colorValue.rgb ?? (color.value as IRangeRgb);
@@ -53,6 +69,10 @@ export class RgbColorManager implements IColorManager {
     };
   }
 
+  /**
+   * Parses an RGB color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

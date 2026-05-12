@@ -49,14 +49,30 @@ function angleRad(x0: number, y0: number, x1: number, y1: number): number {
   return Math.atan2(y1 - y0, x1 - x0);
 }
 
+/** Cannon mode internal data */
 interface CannonData {
+  /** Whether to draw the aiming vector line */
   drawVector: boolean;
+
+  /** Maximum drag distance in pixels */
   maxDragDistance: number;
+
+  /** Maximum number of particles to spawn */
   maxParticles: number;
+
+  /** Minimum number of particles to spawn */
   minParticles: number;
+
+  /** Particles per pixel of drag distance */
   particleFactor: number;
+
+  /** Spread half-angle in radians */
   spread: number;
+
+  /** CSS color for the aiming line */
   vectorColor: string;
+
+  /** Velocity multiplier from drag distance */
   velocityFactor: number;
 }
 
@@ -88,6 +104,7 @@ interface CannonGesture {
  * - `vectorColor`    — CSS color for the aiming line (default "#ffffff80")
  */
 export class Cannoner extends ExternalInteractorBase<CannonContainer> {
+  /** @inheritDoc */
   readonly maxDistance = 0;
 
   private _data?: CannonData;
@@ -100,15 +117,18 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   private _lastDownPosition: ICoordinates | undefined = undefined;
   private _state: CannonState = CannonState.idle;
 
+  /** @inheritDoc */
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: CannonContainer) {
     super(container);
   }
 
+  /** @inheritDoc */
   clear(_particle: InteractivityParticle, _delta: IDelta): void {
     // nothing to clear per-particle
   }
 
+  /** @inheritDoc */
   init(): void {
     const options = this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
 
@@ -124,6 +144,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     };
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData, _delta: IDelta): void {
     const mouse = interactivityData.mouse,
       mousePos = mouse.position,
@@ -155,6 +176,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData): boolean {
     const { container } = this,
       events = container.actualOptions.interactivity?.events;
@@ -175,6 +197,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     return this._state !== CannonState.idle || interactivityData.mouse.clicking;
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & CannonMode,
     ...sources: RecursivePartial<(IModes & ICannonMode) | undefined>[]
@@ -186,6 +209,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
     // nothing to reset
   }

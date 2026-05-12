@@ -1,0 +1,98 @@
+name: Deploy Websites
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'websites/confetti/**'
+      - 'websites/website/**'
+      - '.github/workflows/deploy-websites.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-websites-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Initialize Nx Cloud or fall back to local
+        run: |
+          if [ -z "$NX_CLOUD_ACCESS_TOKEN" ]; then
+            echo "NX Cloud token missing — using local nx execution"
+            echo "NX_NO_CLOUD=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build workspace packages
+        run: pnpm exec nx run-many -t build --projects="@tsparticles/confetti-website,@tsparticles/website"
+
+      - name: Generate GitHub App token (confetti)
+        id: token-confetti
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.PAGES_APP_ID }}
+          private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
+          owner: tsparticles
+          repositories: |
+            confetti
+
+      - name: Generate GitHub App token (website)
+        id: token-website
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.PAGES_APP_ID }}
+          private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
+          owner: tsparticles
+          repositories: |
+            website
+
+      - name: Deploy to tsparticles/confetti main
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ steps.token-confetti.outputs.token }}
+          external_repository: tsparticles/confetti
+          publish_branch: main
+          publish_dir: websites/confetti/dist
+          cname: confetti.js.org
+          user_name: 'github-actions-bot'
+          user_email: 'support+actions@github.com'
+          commit_message: 'build: website updated'
+          force_orphan: true
+
+      - name: Deploy to tsparticles/website main
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ steps.token-website.outputs.token }}
+          external_repository: tsparticles/website
+          publish_branch: main
+          publish_dir: websites/website/docs/.vitepress/dist
+          cname: particles.js.org
+          user_name: 'github-actions-bot'
+          user_email: 'support+actions@github.com'
+          commit_message: 'build: website updated'
+          force_orphan: true

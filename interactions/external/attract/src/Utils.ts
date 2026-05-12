@@ -17,13 +17,13 @@ const minFactor = 1,
   updateVector = Vector.origin;
 
 /**
- *
- * @param pluginManager -
- * @param container -
- * @param position -
- * @param attractRadius -
- * @param area -
- * @param queryCb -
+ * Processes particle attraction within a given area
+ * @param pluginManager - The plugin manager instance
+ * @param container - The attract container
+ * @param position - The center position of the attraction
+ * @param attractRadius - The radius of the attraction effect
+ * @param area - The area to query particles from
+ * @param queryCb - Callback to filter which particles to attract
  */
 function processAttract(
   pluginManager: PluginManager,
@@ -58,10 +58,11 @@ function processAttract(
 }
 
 /**
- * @param pluginManager -
- * @param container -
- * @param interactivityData -
- * @param enabledCb -
+ * Handles click-based particle attraction
+ * @param pluginManager - The plugin manager instance
+ * @param container - The attract container
+ * @param interactivityData - The interactivity data containing mouse position
+ * @param enabledCb - Callback to check if a particle should be attracted
  */
 export function clickAttract(
   pluginManager: PluginManager,
@@ -104,10 +105,11 @@ export function clickAttract(
 }
 
 /**
- * @param pluginManager -
- * @param container -
- * @param interactivityData -
- * @param enabledCb -
+ * Handles hover-based particle attraction
+ * @param pluginManager - The plugin manager instance
+ * @param container - The attract container
+ * @param interactivityData - The interactivity data containing mouse position
+ * @param enabledCb - Callback to check if a particle should be attracted
  */
 export function hoverAttract(
   pluginManager: PluginManager,

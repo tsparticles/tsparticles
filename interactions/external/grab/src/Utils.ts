@@ -31,11 +31,12 @@ export function drawGrabLine(
 }
 
 /**
- * @param container -
- * @param particle -
- * @param lineColor -
- * @param opacity -
- * @param mousePos -
+ * Draw the grab interaction
+ * @param container
+ * @param particle
+ * @param lineColor
+ * @param opacity
+ * @param mousePos
  */
 export function drawGrab(
   container: GrabContainer,

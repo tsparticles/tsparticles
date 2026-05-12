@@ -7,14 +7,22 @@ import {
   setRangeValue,
 } from "@tsparticles/engine";
 
+/** Gradient angle animation options class */
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
+  /** Animation repeat count */
   count: RangeValue;
+  /** Animation decay */
   decay: RangeValue;
+  /** Animation delay */
   delay: RangeValue;
+  /** Enables the animation */
   enable;
+  /** Animation speed */
   speed: RangeValue;
+  /** Enables animation sync */
   sync;
 
+  /** GradientAngleAnimation constructor */
   constructor() {
     this.count = 0;
     this.enable = false;
@@ -24,6 +32,10 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
     this.sync = false;
   }
 
+  /**
+   * Loads the gradient angle animation from data
+   * @param data
+   */
   load(data?: RecursivePartial<IAnimation>): void {
     if (isNull(data)) {
       return;

@@ -21,13 +21,23 @@ import { TiltDirection } from "./TiltDirection.js";
 
 const maxAngle = 360;
 
+/** Tilt updater plugin */
 export class TiltUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly container;
 
+  /**
+   * TiltUpdater constructor
+   * @param container
+   */
   constructor(container: Container) {
     this.container = container;
   }
 
+  /**
+   * Gets the transform values for the tilt effect
+   * @param particle
+   */
   getTransformValues(particle: TiltParticle): Partial<IParticleTransformValues> {
     const tilt = particle.tilt?.enable && particle.tilt;
 
@@ -37,6 +47,10 @@ export class TiltUpdater implements IParticleUpdater {
     };
   }
 
+  /**
+   * Initializes the particle tilt
+   * @param particle
+   */
   init(particle: TiltParticle): void {
     const tiltOptions = particle.options.tilt;
 
@@ -87,12 +101,21 @@ export class TiltUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Checks if tilt animation is enabled
+   * @param particle
+   */
   isEnabled(particle: TiltParticle): boolean {
     const tiltAnimation = particle.options.tilt?.animation;
 
     return !particle.destroyed && !particle.spawning && !!tiltAnimation?.enable;
   }
 
+  /**
+   * Loads the tilt options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: TiltParticlesOptions,
     ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
@@ -104,6 +127,11 @@ export class TiltUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates the particle tilt
+   * @param particle
+   * @param delta
+   */
   update(particle: TiltParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.tilt) {
       return;

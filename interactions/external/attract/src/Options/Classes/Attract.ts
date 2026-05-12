@@ -1,14 +1,24 @@
 import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IAttract } from "../Interfaces/IAttract.js";
 
-/**
- */
+/** Attract mode options class */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
+  /** Attraction distance in pixels */
   distance;
+
+  /** Attraction animation duration in seconds */
   duration;
+
+  /** Easing type used for the attraction animation */
   easing: EasingType | EasingTypeAlt;
+
+  /** Attraction factor multiplier */
   factor;
+
+  /** Maximum speed of attracted particles */
   maxSpeed;
+
+  /** Attraction speed */
   speed;
 
   constructor() {
@@ -20,6 +30,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
     this.speed = 1;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<IAttract>): void {
     if (isNull(data)) {
       return;

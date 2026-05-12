@@ -20,6 +20,12 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
     this.animation = new HslAnimation();
   }
 
+  /**
+   * Creates an animatable color from optional source and input data.
+   * @param source - Existing color instance to clone from.
+   * @param data - Color input data.
+   * @returns A configured animatable color instance.
+   */
   static override create(
     source?: AnimatableColor,
     data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>,

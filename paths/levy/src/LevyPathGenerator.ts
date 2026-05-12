@@ -7,11 +7,19 @@ import type { LevyPathParticle } from "./LevyPathParticle.js";
 const defaultScale = 1,
   defaultLevyAlpha = 1.5;
 
+/** L\u00e9vy flight path generator plugin */
 export class LevyPathGenerator implements IMovePathGenerator {
+  /** Levy path options */
   readonly options: ILevyPathOptions;
+  /** The particles container */
   private readonly _container: Container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * LevyPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
@@ -23,6 +31,10 @@ export class LevyPathGenerator implements IMovePathGenerator {
     };
   }
 
+  /**
+   * Generates the next movement vector using L\u00e9vy flight
+   * @param p
+   */
   generate(p: LevyPathParticle): Vector {
     p.levy ??= {
       angle: getRandom() * Math.PI * 2,
@@ -56,6 +68,7 @@ export class LevyPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const source = this._container.actualOptions.particles.move.path.options;
 
@@ -64,10 +77,15 @@ export class LevyPathGenerator implements IMovePathGenerator {
     this.options.maxStep = (source["maxStep"] as number | undefined) ?? this.options.maxStep;
   }
 
+  /**
+   * Resets the particle L\u00e9vy state
+   * @param p
+   */
   reset(p: LevyPathParticle): void {
     delete p.levy;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // nothing to do
   }

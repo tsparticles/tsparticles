@@ -30,15 +30,30 @@ import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOpti
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
 
+/** Gradient updater plugin */
 export class GradientUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * GradientUpdater constructor
+   * @param pluginManager
+   * @param container
+   */
   constructor(pluginManager: PluginManager, container: Container) {
     this._pluginManager = pluginManager;
     this._container = container;
   }
 
+  /**
+   * Gets the color styles for the gradient
+   * @param particle
+   * @param context
+   * @param radius
+   * @param opacity
+   */
   getColorStyles(
     particle: GradientParticle,
     context: CanvasContextType,
@@ -78,6 +93,10 @@ export class GradientUpdater implements IParticleUpdater {
     return { fill: fillGradient };
   }
 
+  /**
+   * Initializes the particle gradient
+   * @param particle
+   */
   init(particle: GradientParticle): void {
     const gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
@@ -188,6 +207,10 @@ export class GradientUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Checks if gradient animation is enabled
+   * @param particle
+   */
   isEnabled(particle: GradientParticle): boolean {
     return (
       !particle.destroyed &&
@@ -197,6 +220,11 @@ export class GradientUpdater implements IParticleUpdater {
     );
   }
 
+  /**
+   * Loads the gradient options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: GradientParticlesOptions,
     ...sources: (RecursivePartial<IGradientParticlesOptions> | undefined)[]
@@ -218,6 +246,11 @@ export class GradientUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates particle gradient animation
+   * @param particle
+   * @param delta
+   */
   update(particle: GradientParticle, delta: IDelta): void {
     updateGradient(particle, delta);
   }

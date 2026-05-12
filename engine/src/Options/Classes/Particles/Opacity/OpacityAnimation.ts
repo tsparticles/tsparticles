@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
+ * Opacity animation options.
  */
 export class OpacityAnimation
   extends RangedAnimationOptions

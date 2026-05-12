@@ -51,6 +51,7 @@ const bubbleMode = "bubble",
  * Particle bubble manager
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
+  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private _maxDistance;
@@ -75,10 +76,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     };
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
     if (particle.bubble.inRange && !force) {
       return;
@@ -90,6 +93,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     delete particle.bubble.color;
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       bubble = container.actualOptions.interactivity?.modes.bubble;
@@ -107,6 +111,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     const options = this.container.actualOptions,
       events = options.interactivity?.events;
@@ -135,6 +140,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -155,6 +161,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     return isInArray(bubbleMode, onHover.mode) || isInArray(bubbleMode, onClick.mode) || divBubble;
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & BubbleMode,
     ...sources: RecursivePartial<(IModes & IBubbleMode) | undefined>[]
@@ -166,6 +173,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(_interactivityData: IInteractivityData, particle: Particle): void {
     particle.bubble.inRange = false;
   }

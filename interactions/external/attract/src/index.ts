@@ -5,7 +5,8 @@ import { type Engine } from "@tsparticles/engine";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the external attract interaction plugin
+ * @param engine - The engine instance to register the plugin with
  */
 export async function loadExternalAttractInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

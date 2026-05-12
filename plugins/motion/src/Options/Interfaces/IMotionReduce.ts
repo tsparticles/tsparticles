@@ -1,5 +1,4 @@
-/**
- */
+/** Motion reduce options for prefers-reduced-motion */
 export interface IMotionReduce {
   /**
    * Factor used to reduce motion, the higher the value, the higher the motion reduction

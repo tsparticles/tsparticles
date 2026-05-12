@@ -208,8 +208,10 @@ export class Particle {
    */
   fillOpacity?: number;
 
+  /** The particle group */
   group?: string;
 
+  /** The particle id */
   id!: number;
 
   /**
@@ -227,8 +229,10 @@ export class Particle {
    */
   initialVelocity!: Vector;
 
+  /** Checks if the particle is rotating */
   isRotating!: boolean;
 
+  /** Checks if the particle just warped */
   justWarped!: boolean;
 
   /**
@@ -241,6 +245,7 @@ export class Particle {
    */
   misplaced!: boolean;
 
+  /** The move center coordinates */
   moveCenter!: ICenterCoordinates;
 
   /**
@@ -258,6 +263,7 @@ export class Particle {
    */
   options!: ParticlesOptions;
 
+  /** The particle out type */
   outType!: ParticleOutType;
 
   /**
@@ -383,6 +389,10 @@ export class Particle {
     this._container = container;
   }
 
+  /**
+   * Destroys the particle
+   * @param override
+   */
   destroy(override?: boolean): void {
     if (this.unbreakable || this.destroyed) {
       return;
@@ -410,6 +420,10 @@ export class Particle {
     });
   }
 
+  /**
+   * Draws the particle
+   * @param delta
+   */
   draw(delta: IDelta): void {
     const container = this._container,
       render = container.canvas.render;
@@ -418,18 +432,22 @@ export class Particle {
     render.drawParticle(this, delta);
   }
 
+  /** Gets the particle angle */
   getAngle(): number {
     return this.rotation + (this.pathRotation ? this.velocity.angle : defaultAngle);
   }
 
+  /** Gets the particle fill color */
   getFillColor(): IHsl | undefined {
     return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
   }
 
+  /** Gets the particle mass */
   getMass(): number {
     return this.getRadius() ** squareExp * Math.PI * half;
   }
 
+  /** Gets the particle opacity */
   getOpacity(): IParticleOpacityData {
     const zIndexOptions = this.options.zIndex,
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
@@ -445,6 +463,7 @@ export class Particle {
     return this._cachedOpacityData;
   }
 
+  /** Gets the particle position */
   getPosition(): ICoordinates3d {
     this._cachedPosition.x = this.position.x + this.offset.x;
     this._cachedPosition.y = this.position.y + this.offset.y;
@@ -453,10 +472,12 @@ export class Particle {
     return this._cachedPosition;
   }
 
+  /** Gets the particle radius */
   getRadius(): number {
     return this.bubble.radius ?? this.size.value;
   }
 
+  /** Gets the particle rotation data */
   getRotateData(): IParticleRotateData {
     const angle = this.getAngle();
 
@@ -466,10 +487,15 @@ export class Particle {
     return this._cachedRotateData;
   }
 
+  /** Gets the particle stroke color */
   getStrokeColor(): IHsl | undefined {
     return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
   }
 
+  /**
+   * Gets the particle transform data
+   * @param externalTransform
+   */
   getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
     const rotateData = this.getRotateData(),
       rotating = this.isRotating;
@@ -486,6 +512,13 @@ export class Particle {
     return this._cachedTransform;
   }
 
+  /**
+   * Initializes the particle with the given parameters
+   * @param id
+   * @param position
+   * @param overrideOptions
+   * @param group
+   */
   init(
     id: number,
     position?: ICoordinates,
@@ -652,6 +685,7 @@ export class Particle {
     }
   }
 
+  /** Checks if the particle is inside the canvas */
   isInsideCanvas(): boolean {
     const radius = this.getRadius(),
       canvasSize = this._container.canvas.size,
@@ -665,6 +699,7 @@ export class Particle {
     );
   }
 
+  /** Checks if the particle is showing its back side */
   isShowingBack(): boolean {
     if (!this.roll) {
       return false;
@@ -696,6 +731,7 @@ export class Particle {
     return false;
   }
 
+  /** Checks if the particle is visible */
   isVisible(): boolean {
     return !this.destroyed && !this.spawning && this.isInsideCanvas();
   }

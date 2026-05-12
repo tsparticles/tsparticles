@@ -462,11 +462,12 @@ function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
 }
 
 /**
- * @param color1 -
- * @param color2 -
- * @param size1 -
- * @param size2 -
- * @returns the return value is a color mix between the two parameters, using sizes to mix more the biggest value
+ * Mixes two colors based on size proportions
+ * @param color1 - the first color
+ * @param color2 - the second color
+ * @param size1 - the size of the first color
+ * @param size2 - the size of the second color
+ * @returns the mixed RGB color
  */
 export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
   let rgb1 = color1 as IRgb,
@@ -488,10 +489,11 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
 }
 
 /**
- * @param p1 -
- * @param p2 -
- * @param linkColor -
- * @returns the link color calculated using the two linked particles
+ * Gets the link color between two linked particles
+ * @param p1 - the first particle
+ * @param p2 - the second particle
+ * @param linkColor - the link color configuration
+ * @returns the calculated link color
  */
 export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb): IRgb | undefined {
   if (linkColor === randomColorValue) {
@@ -517,11 +519,12 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
 }
 
 /**
- * @param pluginManager -
- * @param optColor -
- * @param blink -
- * @param consent -
- * @returns returns a link random color, if needed
+ * Gets a random link color or a specific one based on parameters
+ * @param pluginManager - the plugin manager
+ * @param optColor - the color option
+ * @param blink - whether the link color blinks
+ * @param consent - whether the user consented
+ * @returns a link color
  */
 export function getLinkRandomColor(
   pluginManager: PluginManager,
@@ -553,8 +556,9 @@ export function getLinkRandomColor(
 }
 
 /**
- * @param animation -
- * @returns returns an animatable HSL color, if needed
+ * Gets the HSL color values from an HSL animation
+ * @param animation - the HSL animation to extract values from
+ * @returns the HSL color or undefined
  */
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
   return animation === undefined
@@ -567,10 +571,11 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
 }
 
 /**
- * @param hsl -
- * @param animationOptions -
- * @param reduceFactor -
- * @returns returns the particle HSL animation values
+ * Creates an HSL animation from a base HSL color and animation options
+ * @param hsl - the base HSL color
+ * @param animationOptions - the HSL animation options
+ * @param reduceFactor - the reduce factor for velocity
+ * @returns the HSL animation data
  */
 export function getHslAnimationFromHsl(
   hsl: IHsl,
@@ -644,9 +649,10 @@ function setColorAnimation(
 }
 
 /**
- * @param data -
- * @param decrease -
- * @param delta -
+ * Updates a color animation value for the current frame
+ * @param data - the color animation data
+ * @param decrease - whether the color should decrease over time
+ * @param delta - the frame delta time
  */
 export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta): void {
   const minLoops = 0,
@@ -711,8 +717,9 @@ export function updateColorValue(data: IParticleColorAnimation, decrease: boolea
 }
 
 /**
- * @param color -
- * @param delta -
+ * Updates all HSL color channels for the current frame
+ * @param color - the HSL animation to update
+ * @param delta - the frame delta time
  */
 export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta): void {
   if (!color) {

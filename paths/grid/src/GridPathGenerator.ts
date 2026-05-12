@@ -23,11 +23,19 @@ const dirs = [
   opposite = [2, 3, 0, 1],
   minLength = 0;
 
+/** Grid path generator plugin */
 export class GridPathGenerator implements IMovePathGenerator {
+  /** Grid path options */
   readonly options: IGridPathOptions;
+  /** The particles container */
   private readonly _container: Container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * GridPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
@@ -40,6 +48,10 @@ export class GridPathGenerator implements IMovePathGenerator {
 
   // -------------------------------------------
 
+  /**
+   * Generates the next movement vector along the grid
+   * @param p
+   */
   generate(p: GridPathParticle): Vector {
     const size = this.options.cellSize;
 
@@ -87,6 +99,7 @@ export class GridPathGenerator implements IMovePathGenerator {
 
   // -------------------------------------------
 
+  /** Initializes the path generator options */
   init(): void {
     const source = this._container.actualOptions.particles.move.path.options;
 
@@ -107,10 +120,15 @@ export class GridPathGenerator implements IMovePathGenerator {
     }
   }
 
+  /**
+   * Resets the particle grid state
+   * @param p
+   */
   reset(p: GridPathParticle): void {
     delete p.grid;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // nothing to do
   }

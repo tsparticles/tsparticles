@@ -2,6 +2,7 @@ import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticl
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
+/** Image shape types */
 export const shapeTypes = ["image", "images"];
 
 const stringStart = 0,

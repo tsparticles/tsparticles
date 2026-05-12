@@ -5,15 +5,39 @@ import { TextOptions } from "./TextOptions.js";
 
 const minAlpha = 0;
 
+/**
+ * Canvas emitter shape options
+ */
 export class EmittersCanvasShapeOptions
   implements IEmittersCanvasShapeOptions, IOptionLoader<IEmittersCanvasShapeOptions>
 {
+  /**
+   * The canvas element to use as the shape source
+   */
   element?: HTMLCanvasElement;
+  /**
+   * A filter function or string to apply to pixels
+   */
   filter: string | ((pixel: IRgba) => boolean);
+  /**
+   * The image element to use as the shape source
+   */
   image?: HTMLImageElement;
+  /**
+   * The pixels options
+   */
   pixels: PixelsOptions;
+  /**
+   * The scale factor for the shape
+   */
   scale: number;
+  /**
+   * The CSS selector for the canvas element
+   */
   selector: string;
+  /**
+   * The text options for rendering text as the shape
+   */
   text: TextOptions;
 
   constructor() {
@@ -24,6 +48,10 @@ export class EmittersCanvasShapeOptions
     this.text = new TextOptions();
   }
 
+  /**
+   * Loads the canvas shape options from the given data
+   * @param data - the data to load from
+   */
   load(data?: RecursivePartial<IEmittersCanvasShapeOptions>): void {
     if (isNull(data)) {
       return;

@@ -3,8 +3,12 @@ import type { ILight } from "../Interfaces/ILight.js";
 import { LightArea } from "./LightArea.js";
 import { LightShadow } from "./LightShadow.js";
 
+/** Light mode options class */
 export class Light implements ILight, IOptionLoader<ILight> {
+  /** The light area options */
   area;
+
+  /** The light shadow options */
   shadow;
 
   constructor() {
@@ -12,6 +16,7 @@ export class Light implements ILight, IOptionLoader<ILight> {
     this.shadow = new LightShadow();
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ILight>): void {
     if (isNull(data)) {
       return;

@@ -5,6 +5,9 @@ import type { IParticleColorStyle } from "./IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./IParticleTransformValues.js";
 import type { Particle } from "../Particle.js";
 
+/**
+ * Parameters used to draw a particle on the canvas.
+ */
 export interface IDrawParticleParams {
   /**
    * The color styles value

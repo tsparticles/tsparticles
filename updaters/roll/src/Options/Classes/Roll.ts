@@ -10,14 +10,22 @@ import type { IRoll } from "../Interfaces/IRoll.js";
 import { RollLight } from "./RollLight.js";
 import { RollMode } from "../../RollMode.js";
 
+/** Roll options class */
 export class Roll implements IRoll, IOptionLoader<IRoll> {
+  /** Roll back color */
   backColor?: OptionsColor;
+  /** Roll darken options */
   darken;
+  /** Enables the roll */
   enable;
+  /** Roll enlighten options */
   enlighten;
+  /** Roll mode */
   mode: RollMode | keyof typeof RollMode;
+  /** Roll speed */
   speed: RangeValue;
 
+  /** Roll constructor */
   constructor() {
     this.darken = new RollLight();
     this.enable = false;
@@ -26,6 +34,10 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
     this.speed = 25;
   }
 
+  /**
+   * Loads the roll options from data
+   * @param data
+   */
   load(data?: RecursivePartial<IRoll>): void {
     if (isNull(data)) {
       return;

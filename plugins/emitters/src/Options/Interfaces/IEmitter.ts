@@ -76,6 +76,9 @@ export interface IEmitter {
    */
   size?: IEmitterSize;
 
+  /**
+   * The emitter spawn options
+   */
   spawn: IEmitterSpawn;
 
   /**

@@ -15,14 +15,22 @@ import { OrbitRotation } from "./OrbitRotation.js";
  * [[include:Options/Particles/Orbit.md]]
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
+  /** Orbit animation options */
   animation;
+  /** Orbit color */
   color?: OptionsColor;
+  /** Enables the orbit */
   enable: boolean;
+  /** Orbit opacity */
   opacity: RangeValue;
+  /** Orbit radius */
   radius?: RangeValue;
+  /** Orbit rotation */
   rotation;
+  /** Orbit width */
   width: RangeValue;
 
+  /** Orbit constructor */
   constructor() {
     this.animation = new AnimationOptions();
     this.enable = false;
@@ -31,6 +39,10 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
     this.width = 1;
   }
 
+  /**
+   * Loads the orbit options from data
+   * @param data
+   */
   load(data?: RecursivePartial<IOrbit>): void {
     if (isNull(data)) {
       return;

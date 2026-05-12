@@ -2,7 +2,12 @@ import { type IEffectDrawer, type IShapeDrawData, defaultAngle, doublePI } from 
 
 const bubbleFactor = 3;
 
+/** Bubble effect drawer plugin */
 export class BubbleDrawer implements IEffectDrawer {
+  /**
+   * Draws the bubble highlight after particle rendering
+   * @param data
+   */
   drawAfter(data: IShapeDrawData): void {
     const { context, radius } = data,
       bubbleRadius = radius / bubbleFactor;

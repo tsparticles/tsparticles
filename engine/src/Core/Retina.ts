@@ -3,10 +3,11 @@ import type { Container } from "./Container.js";
 import type { Particle } from "./Particle.js";
 import { getRangeValue } from "../Utils/MathUtils.js";
 
-/**
- */
+/** Retina handling class for device pixel ratio adjustments */
 export class Retina {
+  /** Device pixel ratio */
   pixelRatio: number;
+  /** Reduce factor for performance */
   reduceFactor: number;
 
   constructor(private readonly container: Container) {
@@ -35,6 +36,10 @@ export class Retina {
     }
   }
 
+  /**
+   * Initializes retina-scaled properties for a particle
+   * @param particle
+   */
   initParticle(particle: Particle): void {
     const options = particle.options,
       ratio = this.pixelRatio,

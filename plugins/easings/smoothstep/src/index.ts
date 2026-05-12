@@ -4,7 +4,8 @@ import { easingsFunctions } from "./easingsFunctions.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the easing smoothstep plugin for tsParticles
+ * @param engine
  */
 export async function loadEasingSmoothstepPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

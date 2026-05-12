@@ -14,18 +14,33 @@ import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 const angularFrequencyFactor = 0.5,
   halfPI = Math.PI * half;
 
-interface ZigZagParticle extends Particle {
+/**
+ * Zigzag path particle extension type
+ */
+export interface ZigZagParticle extends Particle {
+  /** Zigzag data for this particle */
   zigzag?: ZigZagData;
 }
 
-interface ZigZagData {
+/**
+ * Zigzag path data for a particle
+ */
+export interface ZigZagData {
+  /** Animation counter */
   counter: number;
+  /** Height of the wave */
   waveHeight: number;
+  /** Length of the wave */
   waveLength: number;
 }
 
-interface IZigZagOptions {
+/**
+ * Zigzag path generator options
+ */
+export interface IZigZagOptions {
+  /** Wave height range */
   waveHeight: RangeValue;
+  /** Wave length range */
   waveLength: RangeValue;
 }
 
@@ -34,18 +49,31 @@ const defaultOptions: IZigZagOptions = {
   waveLength: { min: 0, max: 5 },
 };
 
+/** Zigzag path generator plugin */
 export class ZigZagPathGenerator implements IMovePathGenerator {
+  /** Zigzag path options */
   readonly options;
 
+  /** The particles container */
   private readonly _container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * ZigZagPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as IZigZagOptions;
   }
 
+  /**
+   * Generates the next movement vector with zigzag oscillation
+   * @param particle
+   * @param delta
+   */
   generate(particle: ZigZagParticle, delta: IDelta): Vector {
     const { options } = this;
 
@@ -70,6 +98,7 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
@@ -77,10 +106,12 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     this.options.waveHeight = (sourceOptions["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
   }
 
+  /** Resets the path generator (no-op) */
   reset(): void {
     // do nothing
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // do nothing
   }

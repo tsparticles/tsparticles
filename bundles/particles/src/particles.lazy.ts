@@ -9,19 +9,23 @@ declare const __VERSION__: string;
 let initPromise: Promise<void> | null = null;
 
 declare global {
+  /** The global particles function */
   var particles: ParticlesFunc & {
+    /** Creates a particles animation bound to a specific canvas */
     create: (
       canvas?: HTMLCanvasElement | null,
       options?: RecursivePartial<IParticlesOptions>,
     ) => Promise<ParticlesInstance | undefined>;
+    /** Initializes the particles plugins */
     init: () => Promise<void>;
+    /** The particles bundle version */
     version: string;
   };
 }
 
 /**
- * @param engine -
- * @returns -
+ * Initializes all required plugins for the particles bundle
+ * @param engine - The engine to register plugins with
  */
 async function doInitPlugins(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
@@ -55,8 +59,9 @@ async function doInitPlugins(engine: Engine): Promise<void> {
 }
 
 /**
- * @param engine -
- * @returns -
+ * Ensures plugins are initialized only once
+ * @param engine - The engine to register plugins with
+ * @returns The initialization promise
  */
 async function initPlugins(engine: Engine): Promise<void> {
   if (initPromise) {
@@ -69,9 +74,10 @@ async function initPlugins(engine: Engine): Promise<void> {
 }
 
 /**
- * @param idOrOptions -
- * @param sourceOptions -
- * @returns -
+ * Creates a particles animation
+ * @param idOrOptions - The id or options for the animation
+ * @param sourceOptions - The animation options when providing an id
+ * @returns The particles instance
  */
 export async function particles(
   idOrOptions?: string | RecursivePartial<IParticlesOptions>,
@@ -92,6 +98,11 @@ export async function particles(
   return getParticlesInstance(tsParticles, id, options);
 }
 
+/**
+ * Creates a particles animation on the given canvas
+ * @param canvas
+ * @param options
+ */
 particles.create = async (
   canvas?: HTMLCanvasElement | null,
   options?: RecursivePartial<IParticlesOptions>,
@@ -103,10 +114,12 @@ particles.create = async (
   return getParticlesInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
 };
 
+/** Initializes the particles plugins without creating an animation */
 particles.init = async (): Promise<void> => {
   await initPlugins(tsParticles);
 };
 
+/** The particles bundle version */
 particles.version = __VERSION__;
 
 globalThis.particles = particles;

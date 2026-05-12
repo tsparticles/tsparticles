@@ -37,6 +37,7 @@ function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDi
   return Math.hypot(warpDistances.x, warpDistances.y);
 }
 
+/** Particles link interactor */
 export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
   private _maxDistance;
   private readonly _pluginManager;
@@ -48,19 +49,23 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     this._maxDistance = 0;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     this.container.particles.linksColor = undefined;
     this.container.particles.linksColors = new Map();
   }
 
+  /** @inheritDoc */
   interact(p1: LinkParticle): void {
     if (!p1.options.links) {
       return;
@@ -132,10 +137,12 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     }
   }
 
+  /** @inheritDoc */
   isEnabled(particle: LinkParticle): boolean {
     return !!particle.options.links?.enable;
   }
 
+  /** @inheritDoc */
   loadParticlesOptions(
     options: ParticlesLinkOptions,
     ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
@@ -146,6 +153,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

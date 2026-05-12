@@ -18,15 +18,27 @@ const defaultDeltaFactor = 1,
   minExplodeSpeed = 0.01,
   maxExplodeProgress = 1;
 
+/** Destroy updater plugin */
 export class DestroyUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly _container;
+  /** The plugin manager */
   private readonly _pluginManager;
 
+  /**
+   * DestroyUpdater constructor
+   * @param pluginManager
+   * @param container
+   */
   constructor(pluginManager: PluginManager, container: Container) {
     this._container = container;
     this._pluginManager = pluginManager;
   }
 
+  /**
+   * Initializes destroy-related particle properties
+   * @param particle
+   */
   init(particle: DestroyParticle): void {
     const container = this._container,
       particlesOptions = particle.options,
@@ -65,12 +77,21 @@ export class DestroyUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Checks if the particle needs destroy handling
+   * @param particle
+   */
   isEnabled(particle: Particle): boolean {
     const destroyParticle = particle as DestroyParticle;
 
     return !destroyParticle.destroyed || !!destroyParticle.exploding;
   }
 
+  /**
+   * Loads the destroy options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: DestroyParticlesOptions,
     ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
@@ -82,6 +103,11 @@ export class DestroyUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Handles particle destruction (split or explode)
+   * @param particle
+   * @param override
+   */
   particleDestroyed(particle: DestroyParticle, override?: boolean): void {
     if (override) {
       return;
@@ -126,6 +152,11 @@ export class DestroyUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates particle destruction state
+   * @param particle
+   * @param delta
+   */
   update(particle: DestroyParticle, delta: IDelta): void {
     if (particle.exploding) {
       const explosionState = particle.exploding,

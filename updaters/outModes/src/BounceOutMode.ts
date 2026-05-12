@@ -10,11 +10,18 @@ import {
 import { bounceHorizontal, bounceVertical } from "./Utils.js";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
+/** Bounce out mode manager */
 export class BounceOutMode implements IOutModeManager {
+  /** Supported out modes */
   modes: (OutMode | keyof typeof OutMode)[];
 
+  /** Particle bounce plugins */
   private readonly _particleBouncePlugins: IContainerPlugin[];
 
+  /**
+   * BounceOutMode constructor
+   * @param container
+   */
   constructor(private readonly container: Container) {
     this.modes = [
       OutMode.bounce,
@@ -23,6 +30,13 @@ export class BounceOutMode implements IOutModeManager {
     this._particleBouncePlugins = container.plugins.filter(p => p.particleBounce !== undefined);
   }
 
+  /**
+   * Updates the particle bouncing off the canvas edges
+   * @param particle
+   * @param direction
+   * @param delta
+   * @param outMode
+   */
   update(
     particle: Particle,
     direction: OutModeDirection,

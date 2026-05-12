@@ -1,5 +1,4 @@
-/**
- */
+/** The parallax mode options */
 export interface IParallax {
   /**
    * This property is used to define the parallax force.

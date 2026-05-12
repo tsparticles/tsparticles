@@ -3,6 +3,9 @@ import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
+/**
+ * Data passed to shape and effect draw callbacks.
+ */
 export interface IShapeDrawData<TParticle extends Particle = Particle> {
   /**
    * the canvas context for drawing

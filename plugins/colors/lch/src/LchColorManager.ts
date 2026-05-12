@@ -15,11 +15,20 @@ import { lchToRgb, lchaToRgba } from "./utils.js";
 
 const lchRegex = /lch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
+/** LCH color manager */
 export class LchColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with lch
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("lch");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       lchColor = colorValue.lch ?? (color.value as ILch);
@@ -31,6 +40,10 @@ export class LchColorManager implements IColorManager {
     return lchToRgb(lchColor); // Handle LCH conversion
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
       lchColor = colorValue.lch ?? (color.value as IRangeLch); // Support for LCH
@@ -46,6 +59,10 @@ export class LchColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses an LCH color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

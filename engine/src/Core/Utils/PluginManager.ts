@@ -21,19 +21,29 @@ import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
-type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
-type SyncLoadPluginFunction = (engine: Engine) => void;
-type AsyncLoadPluginNoEngine = () => Promise<void>;
-type SyncLoadPluginNoEngine = () => void;
-type LoadPluginFunction =
+/** Async plugin loader with engine parameter */
+export type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
+/** Sync plugin loader with engine parameter */
+export type SyncLoadPluginFunction = (engine: Engine) => void;
+/** Async plugin loader without engine parameter */
+export type AsyncLoadPluginNoEngine = () => Promise<void>;
+/** Sync plugin loader without engine parameter */
+export type SyncLoadPluginNoEngine = () => void;
+/** Plugin loader function type */
+export type LoadPluginFunction =
   | AsyncLoadPluginFunction
   | SyncLoadPluginFunction
   | AsyncLoadPluginNoEngine
   | SyncLoadPluginNoEngine;
 
+/**
+ * Stores and resolves plugins, shapes, effects, palettes and updaters.
+ */
 export class PluginManager {
+  /** The color managers map */
   readonly colorManagers = new Map<string, IColorManager>();
 
+  /** The easing functions map */
   readonly easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
 
   /**
@@ -41,12 +51,14 @@ export class PluginManager {
    */
   readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
 
+  /** The initializers map */
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
     shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
 
+  /** The palettes map */
   readonly palettes = new Map<string, IPalette>();
 
   /**
@@ -57,6 +69,7 @@ export class PluginManager {
   /**
    * The presets array
    */
+  /** The presets map */
   readonly presets = new Map<string, ISourceOptions>();
 
   /**
@@ -90,6 +103,7 @@ export class PluginManager {
     this._engine = engine;
   }
 
+  /** The configs record */
   get configs(): Record<string, ISourceOptions> {
     const res: Record<string, ISourceOptions> = {};
 
@@ -101,13 +115,18 @@ export class PluginManager {
   }
 
   /**
-   * @param name -
-   * @param manager -
+   * Registers a color manager.
+   * @param name - Color manager identifier.
+   * @param manager - Color manager implementation.
    */
   addColorManager(name: string, manager: IColorManager): void {
     this.colorManagers.set(name, manager);
   }
 
+  /**
+   * Adds a config to the manager
+   * @param config - the configuration to add
+   */
   addConfig(config: ISourceOptions): void {
     const key = config.key ?? config.name ?? "default";
 
@@ -116,8 +135,9 @@ export class PluginManager {
   }
 
   /**
-   * @param name -
-   * @param easing -
+   * Registers an easing function.
+   * @param name - Easing identifier.
+   * @param easing - Easing function implementation.
    */
   addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
     if (this.easingFunctions.get(name)) {
@@ -136,6 +156,11 @@ export class PluginManager {
     this.initializers.effects.set(effect, drawer);
   }
 
+  /**
+   * Adds a palette to the manager
+   * @param name - the palette name
+   * @param palette - the palette to add
+   */
   addPalette(name: string, palette: IPalette): void {
     this.palettes.set(name, palette);
   }
@@ -186,6 +211,10 @@ export class PluginManager {
     }
   }
 
+  /**
+   * Clears plugins for a container
+   * @param container - the container to clear plugins for
+   */
   clearPlugins(container: Container): void {
     this.effectDrawers.delete(container);
     this.shapeDrawers.delete(container);
@@ -193,17 +222,29 @@ export class PluginManager {
   }
 
   /**
-   * @param name -
-   * @returns the easing function
+   * Gets an easing function by name.
+   * @param name - Easing identifier.
+   * @returns The easing function, or a passthrough easing if not found.
    */
   getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
   }
 
+  /**
+   * Gets the effect drawers for a container
+   * @param container - the container to get effect drawers for
+   * @param force - if true, reloads the effect drawers
+   * @returns the effect drawers map
+   */
   getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
     return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
+  /**
+   * Gets a palette by name
+   * @param name - the palette name
+   * @returns the palette if found
+   */
   getPalette(name: string): IPalette | undefined {
     return this.palettes.get(name);
   }
@@ -226,6 +267,12 @@ export class PluginManager {
     return this.presets.get(preset);
   }
 
+  /**
+   * Gets the shape drawers for a container
+   * @param container - the container to get shape drawers for
+   * @param force - if true, reloads the shape drawers
+   * @returns the shape drawers map
+   */
   async getShapeDrawers(container: Container, force = false): Promise<Map<string, IShapeDrawer>> {
     return getItemMapFromInitializer(container, this.shapeDrawers, this.initializers.shapes, force);
   }
@@ -265,7 +312,7 @@ export class PluginManager {
   }
 
   /**
-   * Load the given particles options for all the updaters
+   * Loads particles options for all updaters.
    * @param container - the container of the updaters
    * @param options - the actual options to set
    * @param sourceOptions - the source options to read
@@ -284,6 +331,10 @@ export class PluginManager {
     updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
   }
 
+  /**
+   * Registers plugin loaders
+   * @param loaders - the plugin loader functions to register
+   */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
     if (this._initialized) {
       throw new Error("Register plugins can only be done before calling tsParticles.load()");

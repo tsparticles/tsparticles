@@ -2,6 +2,9 @@ import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particle.js";
 
+/**
+ * Effect drawer lifecycle callbacks.
+ */
 export interface IEffectDrawer<TParticle extends Particle = Particle> {
   /**
    * Shape destroy function

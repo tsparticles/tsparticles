@@ -5,8 +5,11 @@ import { TrailFill } from "./TrailFill.js";
 /**
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
+  /** Enables the trail */
   enable;
+  /** The trail fill options */
   readonly fill;
+  /** The trail length */
   length;
 
   constructor() {

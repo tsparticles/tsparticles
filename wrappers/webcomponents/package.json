@@ -94,6 +94,13 @@
     "prepack": "pnpm run build"
   },
   "prettier": "@tsparticles/prettier-config",
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/src/**/*", "{projectRoot}/build.ts"]
+      }
+    }
+  },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"
   },

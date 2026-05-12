@@ -12,93 +12,57 @@ import {
 } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 
-/**
- *
- */
+/** Confetti options class */
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
-  /**
-   *
-   */
+  /** Confetti angle */
   angle: number;
 
-  /**
-   *
-   */
+  /** Confetti colors */
   colors: SingleOrMultiple<string>;
 
-  /**
-   *
-   */
+  /** Number of confetti particles to emit */
   count: number;
 
-  /**
-   *
-   */
+  /** Confetti decay rate */
   decay: number;
 
-  /**
-   *
-   */
+  /** Disables confetti for users who prefer reduced motion */
   disableForReducedMotion: boolean;
 
-  /**
-   *
-   */
+  /** Confetti drift offset */
   drift: number;
 
-  /**
-   *
-   */
+  /** Enables flat confetti */
   flat: boolean;
 
-  /**
-   *
-   */
+  /** Confetti gravity */
   gravity: number;
 
-  /**
-   *
-   */
+  /** Confetti position, in percent values */
   position: ICoordinates;
 
-  /**
-   *
-   */
+  /** Confetti size scalar */
   scalar: number;
 
-  /**
-   *
-   */
+  /** Per-shape options */
   shapeOptions: ShapeData;
 
-  /**
-   *
-   */
+  /** Confetti shape types */
   shapes: SingleOrMultiple<string>;
 
-  /**
-   *
-   */
+  /** Confetti spread angle */
   spread: number;
 
-  /**
-   *
-   */
+  /** Confetti initial velocity */
   startVelocity: number;
 
-  /**
-   *
-   */
+  /** Confetti animation ticks */
   ticks: number;
 
-  /**
-   *
-   */
+  /** Confetti z-index */
   zIndex: number;
 
-  /**
-   *
-   */
+  /** Creates a new ConfettiOptions instance with default values */
   constructor() {
     this.angle = 90;
     this.count = 50;
@@ -156,7 +120,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
   }
 
   /**
-   *
+   * Loads confetti options from the provided data
    * @param data -
    */
   load(data?: RecursivePartial<IConfettiOptions>): void {

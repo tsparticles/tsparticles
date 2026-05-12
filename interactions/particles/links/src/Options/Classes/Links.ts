@@ -7,17 +7,29 @@ import { LinksTriangle } from "./LinksTriangle.js";
  * [[include:Options/Particles/Links.md]]
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
+  /** Enables random blinking of link colors */
   blink;
+  /** Link line color */
   color;
+  /** Whether a random color applies to all links (consent) */
   consent;
+  /** Maximum link line distance */
   distance;
+  /** Enables particle links */
   enable;
+  /** Link frequency */
   frequency;
+  /** Link ID for grouping */
   id?: string;
+  /** Maximum link opacity */
   opacity;
+  /** Link shadow options */
   shadow;
+  /** Link triangle fill options */
   triangles;
+  /** Enable link wrap around canvas edges */
   warp;
+  /** Link line width */
   width;
 
   constructor() {
@@ -35,6 +47,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     this.warp = false;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ILinks>): void {
     if (isNull(data)) {
       return;

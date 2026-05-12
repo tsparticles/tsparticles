@@ -14,6 +14,7 @@ import { Bounce } from "./Options/Classes/Bounce.js";
 
 const bounceMode = "bounce";
 
+/** Particle bounce manager */
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
   private _maxDistance;
 
@@ -23,14 +24,17 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     this._maxDistance = 0;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       bounce = container.actualOptions.interactivity?.modes.bounce;
@@ -44,6 +48,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -65,6 +70,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -83,6 +89,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     );
   }
 
+  /** @inheritDoc */
   loadModeOptions(
     options: Modes & BounceMode,
     ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
@@ -94,6 +101,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

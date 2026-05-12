@@ -387,8 +387,11 @@ export interface ILaba extends IOklab, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IHwb {
+  /** Blackness */
   b: number;
+  /** Hue */
   h: number;
+  /** Whiteness */
   w: number;
 }
 
@@ -402,8 +405,11 @@ export interface IHwba extends IHwb, IAlphaColor {}
  * Range HWB Color
  */
 export interface IRangeHwb {
+  /** Blackness range */
   b: RangeValue;
+  /** Hue range */
   h: RangeValue;
+  /** Whiteness range */
   w: RangeValue;
 }
 

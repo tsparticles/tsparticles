@@ -2,9 +2,15 @@ import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles
 import type { IWobble } from "./Options/Interfaces/IWobble.js";
 import type { Wobble } from "./Options/Classes/Wobble.js";
 
-interface IParticleWobble {
+/**
+ * Particle wobble data
+ */
+export interface IParticleWobble {
+  /** Current wobble angle */
   angle: number;
+  /** Wobble angle speed */
   angleSpeed: number;
+  /** Wobble movement speed */
   moveSpeed: number;
 }
 

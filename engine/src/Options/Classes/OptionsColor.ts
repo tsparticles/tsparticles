@@ -36,6 +36,12 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
     this.value = "";
   }
 
+  /**
+   * Creates an options color from optional source and input data.
+   * @param source - Existing color instance to clone from.
+   * @param data - Color input data.
+   * @returns A configured color instance.
+   */
   static create(
     source?: OptionsColor,
     data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>,

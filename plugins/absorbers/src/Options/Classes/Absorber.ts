@@ -14,14 +14,41 @@ import type { IAbsorber } from "../Interfaces/IAbsorber.js";
  * [[include:Options/Plugins/Absorbers.md]]
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
+  /**
+   * The absorber color
+   */
   color;
+  /**
+   * Enables particle destruction, if disabled the particle will randomly respawn
+   */
   destroy;
+  /**
+   * Enables dragging on absorbers
+   */
   draggable;
+  /**
+   * The absorber life options
+   */
   life;
+  /**
+   * The absorber name
+   */
   name?: string;
+  /**
+   * The absorber opacity
+   */
   opacity;
+  /**
+   * Enables particles orbiting while being attracted by the absorber
+   */
   orbits;
+  /**
+   * The absorber position, percent values calculated on canvas size
+   */
   position?: RecursivePartial<IRangedCoordinates>;
+  /**
+   * The absorber size options
+   */
   size;
 
   constructor() {
@@ -35,6 +62,10 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     this.size = new AbsorberSize();
   }
 
+  /**
+   * Loads the absorber options from the given data
+   * @param data - the data to load from
+   */
   load(data?: RecursivePartial<IAbsorber>): void {
     if (isNull(data)) {
       return;

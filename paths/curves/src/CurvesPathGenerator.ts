@@ -23,17 +23,28 @@ function randomVelocity(): number {
   return getRandom() * factor + offset;
 }
 
+/** Curves path generator plugin */
 export class CurvesPathGenerator implements IMovePathGenerator {
+  /** Curves path options */
   readonly options;
 
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * CurvesPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
 
     this.options = deepExtend({}, defaultOptions) as ICurvesOptions;
   }
 
+  /**
+   * Generates the next movement vector using curve harmonics
+   * @param particle
+   */
   generate(particle: CurvesPathParticle): Vector {
     if (!particle.pathGen) {
       const { options } = this;
@@ -64,6 +75,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
     return particle.curveVelocity;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
@@ -83,11 +95,16 @@ export class CurvesPathGenerator implements IMovePathGenerator {
     this.options.highValue = (sourceOptions["highValue"] as number | undefined) ?? this.options.highValue;
   }
 
+  /**
+   * Resets the particle curve state
+   * @param particle
+   */
   reset(particle: CurvesPathParticle): void {
     delete particle.pathGen;
     delete particle.curveVelocity;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // do nothing
   }

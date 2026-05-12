@@ -9,17 +9,22 @@ declare const __VERSION__: string;
 let initPromise: Promise<void> | null = null;
 
 declare global {
+  /** The global fireworks function */
   var fireworks: FireworksFunc & {
+    /** Creates a fireworks animation bound to a specific canvas */
     create: (
       canvas?: HTMLCanvasElement | null,
       options?: RecursivePartial<IFireworkOptions>,
     ) => Promise<FireworksInstance | undefined>;
+    /** Initializes the fireworks plugins */
     init: () => Promise<void>;
+    /** The fireworks bundle version */
     version: string;
   };
 }
 
 /**
+ * Initializes all required plugins for the fireworks bundle
  * @param engine - the engine to use for loading all plugins
  * @returns the promise of initialization
  * @internal
@@ -110,6 +115,11 @@ export async function fireworks(
   return getFireworksInstance(tsParticles, id, options);
 }
 
+/**
+ * Creates a fireworks animation on the given canvas
+ * @param canvas
+ * @param options
+ */
 fireworks.create = async (
   canvas?: HTMLCanvasElement | null,
   options?: RecursivePartial<IFireworkOptions>,
@@ -121,10 +131,12 @@ fireworks.create = async (
   return getFireworksInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
 };
 
+/** Initializes the fireworks plugins without creating an animation */
 fireworks.init = async (): Promise<void> => {
   await initPlugins(tsParticles);
 };
 
+/** The fireworks bundle version */
 fireworks.version = __VERSION__;
 
 globalThis.fireworks = fireworks;

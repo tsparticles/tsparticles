@@ -2,8 +2,12 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ILightArea } from "../Interfaces/ILightArea.js";
 import { LightGradient } from "./LightGradient.js";
 
+/** Light area options class */
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
+  /** The light gradient options */
   gradient;
+
+  /** The light radius */
   radius;
 
   constructor() {
@@ -11,6 +15,7 @@ export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
     this.radius = 1000;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ILightArea>): void {
     if (isNull(data)) {
       return;

@@ -3,13 +3,23 @@ import type { CardParticle } from "../CardParticle.js";
 import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";
 
+/** Card drawer plugin */
 export class CardDrawer implements IShapeDrawer<CardParticle> {
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * CardDrawer constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
   }
 
+  /**
+   * Draws the card shape
+   * @param data
+   */
   draw(data: IShapeDrawData<CardParticle>): void {
     const { context, particle, opacity, radius } = data;
 
@@ -34,6 +44,11 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
     context.globalAlpha = defaultOpacity;
   }
 
+  /**
+   * Initializes the card shape on the particle
+   * @param _container
+   * @param particle
+   */
   particleInit(_container: Container, particle: CardParticle): void {
     const shape = particle.shapeData;
 

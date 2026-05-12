@@ -4,14 +4,17 @@ import type { ILight } from "./Options/Interfaces/ILight.js";
 import type { IRgb } from "@tsparticles/engine";
 import type { Light } from "./Options/Classes/Light.js";
 
+/** Light mode interface */
 export interface ILightMode {
   light?: ILight;
 }
 
+/** Light mode options */
 export interface LightMode {
   light?: Light;
 }
 
+/** Light container interface */
 export type LightContainer = InteractivityContainer & {
   actualOptions: LightOptions;
   canvas: {
@@ -19,6 +22,7 @@ export type LightContainer = InteractivityContainer & {
   };
 };
 
+/** Light particle interface */
 export type LightParticle = InteractivityParticle & {
   interactivity: {
     modes: ILightMode;

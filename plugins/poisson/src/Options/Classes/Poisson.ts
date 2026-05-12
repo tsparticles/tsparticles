@@ -5,10 +5,15 @@ import type { IPoisson } from "../Interfaces/IPoisson.js";
  * [[include:Options/Plugins/Poisson.md]]
  */
 export class Poisson implements IPoisson, IOptionLoader<IPoisson> {
+  /** The poisson dimensions */
   dimensions;
+  /** Enables the poisson disc sampling */
   enable;
+  /** The poisson radius */
   radius;
+  /** The poisson retries */
   retries;
+  /** The poisson steps */
   steps;
 
   constructor() {

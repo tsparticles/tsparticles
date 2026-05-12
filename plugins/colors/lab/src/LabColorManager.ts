@@ -15,11 +15,20 @@ import { labToRgb, labaToRgba } from "./utils.js";
 
 const labRegex = /lab\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
+/** LAB color manager */
 export class LabColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with lab
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("lab");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       labColor = colorValue.lab ?? (color.value as ILab);
@@ -31,6 +40,10 @@ export class LabColorManager implements IColorManager {
     return labToRgb(labColor); // Handle LAB conversion
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
       labColor = colorValue.lab ?? (color.value as IRangeLab); // Support for LAB
@@ -46,6 +59,10 @@ export class LabColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses a LAB color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

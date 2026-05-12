@@ -130,6 +130,13 @@
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/projects/**/src/**/*"]
+      }
+    }
+  },
   "module": "dist/ng-fireworks/fesm2015/ng-fireworks.mjs",
   "es2020": "dist/ng-fireworks/fesm2020/ng-fireworks.mjs",
   "esm2020": "dist/ng-fireworks/esm2020/ng-fireworks.mjs",

@@ -8,7 +8,9 @@ const defaultOptions: ICurlOptions = {
   step: 250,
 };
 
+/** Curl noise path generator for particle motion */
 export class CurlNoiseGenerator implements IMovePathGenerator {
+  /** Curl noise configuration options */
   readonly options;
 
   private readonly _container;
@@ -25,6 +27,10 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     this.options = deepExtend({}, defaultOptions) as ICurlOptions;
   }
 
+  /**
+   * Generates a curl noise vector for the given particle
+   * @param particle
+   */
   generate(particle: Particle): Vector {
     const pos = particle.getPosition(),
       { speed, step } = this.options,
@@ -47,6 +53,7 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the curl noise generator with container options */
   init(): void {
     const container = this._container,
       sourceOptions = container.actualOptions.particles.move.path.options;
@@ -59,10 +66,12 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     this._simplex.seed(this.options.seed ?? getRandom());
   }
 
+  /** Resets the generator state */
   reset(): void {
     // nothing to do
   }
 
+  /** Updates the generator state */
   update(): void {
     // nothing to do
   }

@@ -18,11 +18,17 @@ import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
-interface ContainerParams {
+/** Container constructor parameters */
+export interface ContainerParams {
+  /** Event dispatch callback */
   dispatchCallback: (eventType: string, args?: CustomEventArgs) => void;
+  /** The container id */
   id: string;
+  /** Destroy callback */
   onDestroy: (remove: boolean) => void;
+  /** The plugin manager instance */
   pluginManager: PluginManager;
+  /** Source options to load */
   sourceOptions?: ISourceOptions;
 }
 
@@ -84,6 +90,7 @@ export class Container {
    */
   destroyed;
 
+  /** The effect drawers map */
   effectDrawers: Map<string, IEffectDrawer>;
 
   /**
@@ -96,6 +103,7 @@ export class Container {
    */
   hdr;
 
+  /** The container id */
   readonly id;
 
   /**
@@ -103,10 +111,14 @@ export class Container {
    */
   pageHidden;
 
+  /** Particle created plugins */
   readonly particleCreatedPlugins: IContainerPlugin[];
+  /** Particle destroyed plugins */
   readonly particleDestroyedPlugins: IContainerPlugin[];
+  /** Particle position plugins */
   readonly particlePositionPlugins: IContainerPlugin[];
 
+  /** The particle updaters array */
   particleUpdaters: IParticleUpdater[];
 
   /**
@@ -119,8 +131,10 @@ export class Container {
    */
   readonly plugins: IContainerPlugin[];
 
+  /** The retina manager */
   readonly retina;
 
+  /** The shape drawers map */
   shapeDrawers: Map<string, IShapeDrawer>;
 
   /**
@@ -128,6 +142,7 @@ export class Container {
    */
   started;
 
+  /** The number of z-layers */
   zLayers;
 
   private _delay: number;
@@ -226,10 +241,15 @@ export class Container {
     return this._sourceOptions;
   }
 
+  /**
+   * Adds to the container lifetime
+   * @param value
+   */
   addLifeTime(value: number): void {
     this._lifeTime += value;
   }
 
+  /** Checks if the container is still alive */
   alive(): boolean {
     return !this._duration || this._lifeTime <= this._duration;
   }
@@ -274,6 +294,11 @@ export class Container {
     this.dispatchEvent(EventType.containerDestroyed);
   }
 
+  /**
+   * Dispatches an event from the container
+   * @param type
+   * @param data
+   */
   dispatchEvent(type: string, data?: unknown): void {
     this._dispatchCallback(type, {
       container: this,
@@ -303,6 +328,11 @@ export class Container {
     });
   }
 
+  /**
+   * Exports the container canvas to the specified format
+   * @param type
+   * @param options
+   */
   async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
     for (const plugin of this.plugins) {
       if (!plugin.export) {
@@ -408,6 +438,7 @@ export class Container {
     this.dispatchEvent(EventType.particlesSetup);
   }
 
+  /** Initializes the effect drawers, shape drawers and particle updaters */
   async initDrawersAndUpdaters(): Promise<void> {
     const pluginManager = this._pluginManager;
 
@@ -494,6 +525,10 @@ export class Container {
     return this.start();
   }
 
+  /**
+   * Resets the container with new options
+   * @param sourceOptions
+   */
   async reset(sourceOptions?: ISourceOptions): Promise<void> {
     if (!guardCheck(this)) {
       return;

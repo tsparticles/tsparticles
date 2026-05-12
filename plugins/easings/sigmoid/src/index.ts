@@ -4,7 +4,8 @@ import { easingsFunctions } from "./easingsFunctions.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Loads the easing sigmoid plugin for tsParticles
+ * @param engine
  */
 export async function loadEasingSigmoidPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

@@ -36,14 +36,17 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     this._maxDistance = 0;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     const container = this.container,
       grab = container.actualOptions.interactivity?.modes.grab;
@@ -57,6 +60,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
   }
 
+  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -129,6 +133,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     }
   }
 
+  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -137,6 +142,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     return !!events?.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
   }
 
+  /** @inheritDoc */
   loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
     options.grab ??= new Grab();
 
@@ -145,6 +151,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

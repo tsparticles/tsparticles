@@ -11,12 +11,21 @@ const defaultOptions = {
   angle: 30,
 };
 
+/** Polygon path generator plugin */
 export class PolygonPathGenerator implements IMovePathGenerator {
+  /** Direction list for polygon movement */
   dirsList: ICoordinates[];
+  /** Polygon path options */
   readonly options;
+  /** The particles container */
   private readonly _container;
+  /** The result vector */
   private readonly _res: Vector;
 
+  /**
+   * PolygonPathGenerator constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
     this._res = Vector.origin;
@@ -24,6 +33,10 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     this.options = deepExtend({}, defaultOptions) as IPolygonPathOptions;
   }
 
+  /**
+   * Generates the next movement vector along polygon vertices
+   * @param p
+   */
   generate(p: PolygonPathParticle): Vector {
     const { sides, turnSteps } = this.options;
 
@@ -48,6 +61,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     return this._res;
   }
 
+  /** Initializes the path generator options */
   init(): void {
     const container = this._container,
       sourceOptions = container.actualOptions.particles.move.path.options;
@@ -61,12 +75,17 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     this._createDirs();
   }
 
+  /**
+   * Resets the particle polygon state
+   * @param particle
+   */
   reset(particle: PolygonPathParticle): void {
     delete particle.hexStep;
     delete particle.hexDirection;
     delete particle.hexSpeed;
   }
 
+  /** Updates the path generator (no-op) */
   update(): void {
     // do nothing
   }

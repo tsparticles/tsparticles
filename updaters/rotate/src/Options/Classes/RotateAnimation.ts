@@ -1,14 +1,18 @@
 import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IRotateAnimation } from "../Interfaces/IRotateAnimation.js";
 
-/**
- */
+/** Rotate animation options class */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
+  /** Animation decay */
   decay: RangeValue;
+  /** Enables the animation */
   enable;
+  /** Animation speed */
   speed: RangeValue;
+  /** Enables animation sync */
   sync;
 
+  /** RotateAnimation constructor */
   constructor() {
     this.enable = false;
     this.speed = 0;
@@ -16,6 +20,10 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
     this.sync = false;
   }
 
+  /**
+   * Loads the rotate animation from data
+   * @param data
+   */
   load(data?: RecursivePartial<IRotateAnimation>): void {
     if (isNull(data)) {
       return;

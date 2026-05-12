@@ -16,13 +16,23 @@ const noTime = 0,
   identity = 1,
   infiniteValue = -1;
 
+/** Life updater plugin */
 export class LifeUpdater implements IParticleUpdater {
+  /** The particles container */
   private readonly container;
 
+  /**
+   * LifeUpdater constructor
+   * @param container
+   */
   constructor(container: Container) {
     this.container = container;
   }
 
+  /**
+   * Initializes particle life values
+   * @param particle
+   */
   init(particle: LifeParticle): void {
     const container = this.container,
       particlesOptions = particle.options,
@@ -60,10 +70,19 @@ export class LifeUpdater implements IParticleUpdater {
     particle.spawning = particle.life.delay > noTime;
   }
 
+  /**
+   * Checks if life updater is enabled
+   * @param particle
+   */
   isEnabled(particle: Particle): boolean {
     return !particle.destroyed;
   }
 
+  /**
+   * Loads the life options
+   * @param options
+   * @param sources
+   */
   loadOptions(
     options: LifeParticlesOptions,
     ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
@@ -75,6 +94,11 @@ export class LifeUpdater implements IParticleUpdater {
     }
   }
 
+  /**
+   * Updates the particle life state
+   * @param particle
+   * @param delta
+   */
   update(particle: LifeParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.life) {
       return;

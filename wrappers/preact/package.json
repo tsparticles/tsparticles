@@ -83,6 +83,13 @@
   "license": "MIT",
   "homepage": "https://particles.js.org",
   "prettier": "@tsparticles/prettier-config",
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/src/**/*", "{projectRoot}/index.*"]
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

@@ -29,6 +29,10 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     this.enable = false;
   }
 
+  /**
+   * Loads the background mask options from the given data
+   * @param data - the data to load from
+   */
   load(data?: RecursivePartial<IBackgroundMask>): void {
     if (isNull(data)) {
       return;

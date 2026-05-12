@@ -9,6 +9,7 @@ const nav: DefaultTheme.NavItem[] = [
   { text: "Demos", link: "/demos/" },
   { text: "Wrappers", link: "/guide/wrappers" },
   { text: "Options", link: "/options/" },
+  { text: "API", link: "/docs/", target: "_blank" },
   {
     text: "Sponsor",
     items: [
@@ -279,9 +280,9 @@ export default defineConfig({
   description: "Modern particle animations for the web",
   lang: "en-US",
   cleanUrls: true,
-  lastUpdated: true,
+  lastUpdated: false,
   base,
-  ignoreDeadLinks: [/\/releases\/index$/, /\/[a-z]{2}\/releases\/index$/],
+  ignoreDeadLinks: [],
   locales: {
     root: {
       label: "English",
@@ -386,6 +387,30 @@ export default defineConfig({
   },
   vite: {
     envDir: "..",
+    build: {
+      sourcemap: false,
+    },
+  },
+  markdown: {
+    shiki: {
+      langs: [
+        "typescript",
+        "javascript",
+        "jsx",
+        "tsx",
+        "css",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "bash",
+        "shell",
+        "markdown",
+        "vue",
+        "svelte",
+        "astro",
+      ],
+    },
   },
   sitemap: {
     hostname,

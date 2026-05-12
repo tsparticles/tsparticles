@@ -5,6 +5,8 @@ import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 const defaultMinOpacity = 0,
   defaultMinSize = 0,
   speedFactor = 3,
+  /** Default particles.js options */
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   defaultPjsOptions: IParticlesJSOptions = {
     particles: {
       number: {
@@ -115,6 +117,10 @@ const defaultMinOpacity = 0,
     },
     retina_detect: false,
   },
+  /**
+   * Initializes particlesJS compatibility layer
+   * @param engine
+   */
   initParticlesJS = (
     engine: InteractivityEngine,
   ): {
@@ -139,8 +145,10 @@ const defaultMinOpacity = 0,
      */
     const particlesJS = async (
       tagId: string,
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       options: RecursivePartial<IParticlesJSOptions>,
     ): Promise<Container | undefined> => {
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       const fixedOptions = deepExtend({}, defaultPjsOptions, options) as IParticlesJSOptions;
 
       return await engine.load({

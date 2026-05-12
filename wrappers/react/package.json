@@ -52,6 +52,13 @@
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-lib-inject-css": "^2.2.2"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/lib/**/*"]
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
   }

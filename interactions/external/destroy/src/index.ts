@@ -5,7 +5,8 @@ import { type Engine } from "@tsparticles/engine";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Registers the destroy external interaction in the given engine.
+ * @param engine - The engine to register the interaction into
  */
 export async function loadExternalDestroyInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

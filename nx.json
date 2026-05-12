@@ -83,6 +83,7 @@
     ],
     "production": [
       "{projectRoot}/src/**/*",
+      "{projectRoot}/index.*",
       "{projectRoot}/package.json",
       "{projectRoot}/tsconfig*.json",
       "sharedGlobals"

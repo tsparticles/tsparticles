@@ -4,8 +4,13 @@ import type { ManualParticlesContainer } from "./types.js";
 const noParticles = 0;
 
 export class ManualParticlesPluginInstance implements IContainerPlugin {
+  /** The manual particles container */
   private readonly _container;
 
+  /**
+   * Creates a new ManualParticlesPluginInstance
+   * @param container - the manual particles container
+   */
   constructor(container: ManualParticlesContainer) {
     this._container = container;
   }

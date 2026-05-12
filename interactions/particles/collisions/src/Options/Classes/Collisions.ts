@@ -15,11 +15,17 @@ import type { ICollisions } from "../Interfaces/ICollisions.js";
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
+  /** The collisions absorb options */
   readonly absorb;
+  /** The collisions bounce options */
   readonly bounce;
+  /** Enables collisions */
   enable;
+  /** The maximum collision speed */
   maxSpeed: RangeValue;
+  /** The collision mode */
   mode: CollisionMode | keyof typeof CollisionMode;
+  /** The collision overlap options */
   readonly overlap;
 
   constructor() {

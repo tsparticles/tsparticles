@@ -2,8 +2,7 @@ import { deleteCount, minIndex } from "../Core/Utils/Constants.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 
-/**
- */
+/** Custom event dispatcher for managing event listeners */
 export class EventDispatcher {
   private _listeners: Map<string, CustomEventListener[]>;
 
@@ -11,6 +10,11 @@ export class EventDispatcher {
     this._listeners = new Map<string, CustomEventListener[]>();
   }
 
+  /**
+   * Adds an event listener for the given type
+   * @param type
+   * @param listener
+   */
   addEventListener(type: string, listener: CustomEventListener): void {
     this.removeEventListener(type, listener);
 
@@ -25,6 +29,11 @@ export class EventDispatcher {
     arr.push(listener);
   }
 
+  /**
+   * Dispatches an event to all registered listeners
+   * @param type
+   * @param args
+   */
   dispatchEvent(type: string, args?: CustomEventArgs): void {
     const listeners = this._listeners.get(type);
 
@@ -33,10 +42,18 @@ export class EventDispatcher {
     });
   }
 
+  /**
+   * Checks if any listeners are registered for the given type
+   * @param type
+   */
   hasEventListener(type: string): boolean {
     return !!this._listeners.get(type);
   }
 
+  /**
+   * Removes all event listeners, optionally filtered by type
+   * @param type
+   */
   removeAllEventListeners(type?: string): void {
     if (!type) {
       this._listeners = new Map<string, CustomEventListener[]>();
@@ -45,6 +62,11 @@ export class EventDispatcher {
     }
   }
 
+  /**
+   * Removes a specific event listener
+   * @param type
+   * @param listener
+   */
   removeEventListener(type: string, listener: CustomEventListener): void {
     const arr = this._listeners.get(type);
 

@@ -6,8 +6,7 @@ import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 const attractFactor = 1000,
   identity = 1;
 
-/**
- */
+/** Particle attract interactor */
 export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
   private _maxDistance;
 
@@ -17,18 +16,22 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     this._maxDistance = 0;
   }
 
+  /** @inheritDoc */
   get maxDistance(): number {
     return this._maxDistance;
   }
 
+  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
+  /** @inheritDoc */
   interact(p1: AttractParticle): void {
     if (!p1.options.attract?.enable) {
       return;
@@ -70,10 +73,12 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     }
   }
 
+  /** @inheritDoc */
   isEnabled(particle: AttractParticle): boolean {
     return particle.options.attract?.enable ?? false;
   }
 
+  /** @inheritDoc */
   loadParticlesOptions(
     options: ParticlesAttractOptions,
     ...sources: (RecursivePartial<IParticlesAttractOptions> | undefined)[]
@@ -85,6 +90,7 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     }
   }
 
+  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

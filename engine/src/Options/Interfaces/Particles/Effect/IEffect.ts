@@ -10,7 +10,9 @@ export interface IEffect {
    */
   close: boolean;
 
+  /** Effect shape options data */
   options: ShapeData;
 
+  /** Effect type name or array of names */
   type: SingleOrMultiple<string>;
 }

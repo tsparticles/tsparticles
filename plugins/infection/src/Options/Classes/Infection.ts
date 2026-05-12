@@ -6,10 +6,15 @@ import { InfectionStage } from "./InfectionStage.js";
  * [[include:Options/Plugins/Infection.md]]
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {
+  /** This property specifies if particles can turn back to the original state after being infected */
   cure;
+  /** The infection delay of the new infected particles */
   delay;
+  /** Enables the infection animations */
   enable;
+  /** The initial number of infected particles */
   infections;
+  /** This property contains all the infection stages configurations */
   stages: InfectionStage[];
 
   constructor() {

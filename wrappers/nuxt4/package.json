@@ -45,6 +45,13 @@
     "nuxt": "^4.4.2",
     "typescript": "^6.0.2"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/lib/**/*"]
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
   }

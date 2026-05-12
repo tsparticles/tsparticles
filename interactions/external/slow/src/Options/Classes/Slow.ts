@@ -1,10 +1,11 @@
 import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ISlow } from "../Interfaces/ISlow.js";
 
-/**
- */
+/** Slow mode options class */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
+  /** Slow factor multiplier */
   factor;
+  /** Slow radius in pixels */
   radius;
 
   constructor() {
@@ -12,6 +13,7 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
     this.radius = 200;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<ISlow>): void {
     if (isNull(data)) {
       return;

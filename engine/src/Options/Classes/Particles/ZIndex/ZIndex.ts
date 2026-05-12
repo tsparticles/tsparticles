@@ -5,6 +5,7 @@ import { ValueWithRandom } from "../../ValueWithRandom.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
+ * Z-index related particle behavior options.
  */
 export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZIndex> {
   opacityRate;

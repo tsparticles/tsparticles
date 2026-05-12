@@ -1,3 +1,4 @@
+/** The zoom mode options */
 export interface IZoom {
   /**
    * Enables or disables zoom interactions.

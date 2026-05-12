@@ -16,12 +16,14 @@ const gradientPos = {
   quarterPI = Math.PI * quarter,
   arcStart = 0;
 
+/** Light mode identifier */
 export const lightMode = "light";
 
 /**
- * @param container -
- * @param context -
- * @param mousePos -
+ * Draw the light area around the mouse
+ * @param container
+ * @param context
+ * @param mousePos
  */
 export function drawLight(container: LightContainer, context: CanvasContextType, mousePos: ICoordinates): void {
   const lightOptions = container.actualOptions.interactivity?.modes.light?.area;
@@ -55,10 +57,11 @@ export function drawLight(container: LightContainer, context: CanvasContextType,
 }
 
 /**
- * @param container -
- * @param context -
- * @param particle -
- * @param mousePos -
+ * Draw the shadow of a particle in light mode
+ * @param container
+ * @param context
+ * @param particle
+ * @param mousePos
  */
 export function drawParticleShadow(
   container: LightContainer,

@@ -2,13 +2,20 @@ import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursiveParti
 import type { IRepulseBase } from "../Interfaces/IRepulseBase.js";
 
 /**
+ * Repulse mode base options
  */
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
+  /** Repulse distance in pixels */
   distance;
+  /** Repulse animation duration in seconds */
   duration;
+  /** Easing type used for the repulse animation */
   easing: EasingType | EasingTypeAlt;
+  /** Repulse factor multiplier */
   factor;
+  /** Maximum repulse speed */
   maxSpeed;
+  /** Repulse speed */
   speed;
 
   constructor() {
@@ -20,6 +27,7 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
     this.easing = EasingType.easeOutQuad;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<IRepulseBase>): void {
     if (isNull(data)) {
       return;

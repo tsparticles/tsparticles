@@ -54,12 +54,12 @@ interface RectSideBounceData {
 }
 
 /**
- *
- * @param container -
- * @param position -
- * @param radius -
- * @param area -
- * @param enabledCb -
+ * Processes particle bounce within a given area
+ * @param container - The bounce container
+ * @param position - The center position of the bounce effect
+ * @param radius - The radius of the bounce effect
+ * @param area - The area to query particles from
+ * @param enabledCb - Callback to check if a particle should bounce
  */
 function processBounce(
   container: BounceContainer,
@@ -86,11 +86,11 @@ function processBounce(
 }
 
 /**
- *
- * @param container -
- * @param selector -
- * @param div -
- * @param bounceCb -
+ * Processes bounce for a single CSS selector element
+ * @param container - The bounce container
+ * @param selector - The CSS selector string
+ * @param div - The div event configuration
+ * @param bounceCb - Callback to execute bounce with position, radius and area
  */
 function singleSelectorBounce(
   container: BounceContainer,
@@ -128,11 +128,11 @@ function singleSelectorBounce(
 }
 
 /**
- *
- * @param container -
- * @param divs -
- * @param bounceMode -
- * @param enabledCb -
+ * Handles bounce from HTML div elements
+ * @param container - The bounce container
+ * @param divs - Single or multiple div event configurations
+ * @param bounceMode - The bounce mode identifier
+ * @param enabledCb - Callback to check if a particle should bounce
  */
 export function divBounce(
   container: BounceContainer,
@@ -148,10 +148,10 @@ export function divBounce(
 }
 
 /**
- *
- * @param container -
- * @param interactivityData -
- * @param enabledCb -
+ * Handles mouse-based particle bounce
+ * @param container - The bounce container
+ * @param interactivityData - The interactivity data containing mouse position
+ * @param enabledCb - Callback to check if a particle should bounce
  */
 export function mouseBounce(
   container: BounceContainer,

@@ -4,6 +4,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
+ * Density options used to scale particle count with area.
  */
 export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
   enable;

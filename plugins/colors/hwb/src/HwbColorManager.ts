@@ -11,10 +11,15 @@ import {
   parseAlpha,
 } from "@tsparticles/engine";
 
+/** Indexes for HWB regex capture groups */
 enum HwbIndexes {
+  /** Hue component index */
   h = 1,
+  /** Whiteness component index */
   w = 2,
+  /** Blackness component index */
   b = 3,
+  /** Alpha component index */
   a = 5,
 }
 
@@ -88,11 +93,20 @@ function hwbaToRgba(hwba: IHwba): IRgba {
   };
 }
 
+/** HWB color manager */
 export class HwbColorManager implements IColorManager {
+  /**
+   * Checks if the input starts with hwb
+   * @param input
+   */
   accepts(input: string): boolean {
     return input.startsWith("hwb");
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       hwbColor = colorValue.hwb ?? (color.value as unknown as IHwb);
@@ -104,6 +118,10 @@ export class HwbColorManager implements IColorManager {
     return hwbToRgb(hwbColor);
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
       hwbColor = colorValue.hwb ?? (color.value as unknown as IHwb);
@@ -119,6 +137,10 @@ export class HwbColorManager implements IColorManager {
     });
   }
 
+  /**
+   * Parses an HWB color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
       return;

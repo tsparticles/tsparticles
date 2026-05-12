@@ -47,7 +47,7 @@ jobs:
         run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build All Packages
-        run: pnpm run slimbuild:ci
+        run: pnpm run build:ci
         env:
           CI: true
 

@@ -31,8 +31,10 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
  * Particles manager object
  */
 export class ParticlesManager {
+  /** Check particle position plugins */
   checkParticlePositionPlugins: IContainerPlugin[];
 
+  /** The spatial hash grid */
   grid;
 
   /**
@@ -82,10 +84,18 @@ export class ParticlesManager {
     this._updatePlugins = [];
   }
 
+  /** Gets the number of particles */
   get count(): number {
     return this._array.length;
   }
 
+  /**
+   * Adds a particle to the manager
+   * @param position
+   * @param overrideOptions
+   * @param group
+   * @param initializer
+   */
   addParticle(
     position?: ICoordinates,
     overrideOptions?: RecursivePartial<IParticlesOptions>,
@@ -161,6 +171,7 @@ export class ParticlesManager {
     this._zArray = [];
   }
 
+  /** Destroys the particles manager */
   destroy(): void {
     this._array = [];
     this._pool.length = 0;
@@ -173,25 +184,41 @@ export class ParticlesManager {
     this._updatePlugins = [];
   }
 
+  /**
+   * Draws all particles
+   * @param delta
+   */
   drawParticles(delta: IDelta): void {
     for (const particle of this._zArray) {
       particle.draw(delta);
     }
   }
 
+  /**
+   * Filters particles with a condition
+   * @param condition
+   */
   filter(condition: (particle: Particle) => boolean): Particle[] {
     return this._array.filter(condition);
   }
 
+  /**
+   * Finds a particle with a condition
+   * @param condition
+   */
   find(condition: (particle: Particle) => boolean): Particle | undefined {
     return this._array.find(condition);
   }
 
+  /**
+   * Gets a particle by index
+   * @param index
+   */
   get(index: number): Particle | undefined {
     return this._array[index];
   }
 
-  /* --------- tsParticles functions - particles ----------- */
+  /** Initializes the particles manager */
   async init(): Promise<void> {
     const container = this._container,
       options = container.actualOptions;
@@ -280,6 +307,13 @@ export class ParticlesManager {
     }
   }
 
+  /**
+   * Adds particles to the manager
+   * @param nb
+   * @param position
+   * @param overrideOptions
+   * @param group
+   */
   push(
     nb: number,
     position?: ICoordinates,
@@ -291,6 +325,7 @@ export class ParticlesManager {
     }
   }
 
+  /** Redraws all particles */
   async redraw(): Promise<void> {
     this.clear();
     await this.init();
@@ -298,10 +333,23 @@ export class ParticlesManager {
     this._container.canvas.render.drawParticles({ value: 0, factor: 0 });
   }
 
+  /**
+   * Removes a particle
+   * @param particle
+   * @param group
+   * @param override
+   */
   remove(particle: Particle, group?: string, override?: boolean): void {
     this.removeAt(this._array.indexOf(particle), undefined, group, override);
   }
 
+  /**
+   * Removes particles at a specific index
+   * @param index
+   * @param quantity
+   * @param group
+   * @param override
+   */
   removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
     if (index < minIndex || index > this.count) {
       return;
@@ -317,10 +365,16 @@ export class ParticlesManager {
     }
   }
 
+  /**
+   * Removes a quantity of particles
+   * @param quantity
+   * @param group
+   */
   removeQuantity(quantity: number, group?: string): void {
     this.removeAt(minIndex, quantity, group);
   }
 
+  /** Sets the particle density */
   setDensity(): void {
     const options = this._container.actualOptions,
       groups = options.particles.groups;
@@ -348,14 +402,26 @@ export class ParticlesManager {
     this._applyDensity(options.particles, pluginsCount);
   }
 
+  /**
+   * Sets the last z-index
+   * @param zIndex
+   */
   setLastZIndex(zIndex: number): void {
     this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
   }
 
+  /**
+   * Sets the resize factor
+   * @param factor
+   */
   setResizeFactor(factor: IDimension): void {
     this._resizeFactor = factor;
   }
 
+  /**
+   * Updates all particles
+   * @param delta
+   */
   update(delta: IDelta): void {
     const particlesToDelete = new Set<Particle>();
 

@@ -51,11 +51,12 @@ export function gradient(
 }
 
 /**
- * @param context -
- * @param width -
- * @param lineStyle -
- * @param begin -
- * @param end -
+ * Draw a connect line between two points
+ * @param context
+ * @param width
+ * @param lineStyle
+ * @param begin
+ * @param end
  */
 export function drawConnectLine(
   context: CanvasContextType,
@@ -72,11 +73,11 @@ export function drawConnectLine(
 }
 
 /**
- * @param container -
- * @param ctx -
- * @param p1 -
- * @param p2 -
- * @returns The gradient.
+ * Get the line style for a connection
+ * @param container
+ * @param ctx
+ * @param p1
+ * @param p2
  */
 export function lineStyle(
   container: ConnectContainer,
@@ -95,9 +96,10 @@ export function lineStyle(
 }
 
 /**
- * @param container -
- * @param p1 -
- * @param p2 -
+ * Draw a connection between two particles
+ * @param container
+ * @param p1
+ * @param p2
  */
 export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
   container.canvas.render.draw(ctx => {

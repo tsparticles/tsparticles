@@ -1,10 +1,12 @@
 import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IParallax } from "../Interfaces/IParallax.js";
 
-/**
- */
+/** Parallax effect options */
 export class Parallax implements IParallax, IOptionLoader<IParallax> {
+  /** The parallax force */
   force;
+
+  /** The parallax smoothing factor */
   smooth;
 
   constructor() {
@@ -12,6 +14,7 @@ export class Parallax implements IParallax, IOptionLoader<IParallax> {
     this.smooth = 10;
   }
 
+  /** @inheritDoc */
   load(data?: RecursivePartial<IParallax>): void {
     if (isNull(data)) {
       return;

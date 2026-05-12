@@ -683,7 +683,7 @@ const modes = [
       },
     ],
     fn: function () {
-      var defaults = {
+      const defaults = {
         scalar: 2,
         spread: 270,
         particleCount: 25,
@@ -738,11 +738,11 @@ const modes = [
       (async () => {
         const canvas = document.getElementById('my-canvas');
 
-        canvas.confetti = canvas.confetti || (await confetti.create(canvas, { resize: true }));
+        canvas.confetti = canvas.confetti || (await confetti.create(canvas, {}));
 
         canvas.confetti({
           spread: 70,
-          origin: { y: 1.2 },
+          origin: { y: 0.5 },
         });
       })();
     },
@@ -805,10 +805,13 @@ function getCode(name) {
   return pretty(code);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await confetti.init();
+
   updateShareLinks();
   updateShareOrder();
   setupShareActions();
+
   window.addEventListener('resize', updateShareOrder);
 
   Array.from(document.querySelectorAll('.html-group')).forEach(function (group) {

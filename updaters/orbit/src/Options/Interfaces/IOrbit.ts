@@ -4,6 +4,7 @@ import type { IAnimatable, IAnimation, IOptionsColor, IValueWithRandom, RangeVal
  * [[include:Options/Particles/Orbit.md]]
  */
 export interface IOrbit extends IAnimatable<IAnimation> {
+  /** The orbit color */
   color?: string | IOptionsColor;
 
   /**
@@ -11,8 +12,12 @@ export interface IOrbit extends IAnimatable<IAnimation> {
    */
   enable: boolean;
 
+  /** The orbit opacity */
   opacity: RangeValue;
+  /** The orbit radius */
   radius?: RangeValue;
+  /** The orbit rotation */
   rotation: IValueWithRandom;
+  /** The orbit width */
   width: RangeValue;
 }

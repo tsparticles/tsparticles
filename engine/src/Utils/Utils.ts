@@ -32,9 +32,15 @@ import { Vector } from "../Core/Utils/Vectors.js";
 const minRadius = 0,
   minMemoizeSize = 0;
 
-interface MemoizeOptions<TArgs> {
+/**
+ * Memoize function options
+ */
+export interface MemoizeOptions<TArgs> {
+  /** Custom key function for cache lookups */
   keyFn?: (args: TArgs) => string;
+  /** Maximum cache size */
   maxSize?: number;
+  /** Time-to-live in milliseconds */
   ttlMs?: number;
 }
 
@@ -166,7 +172,8 @@ export function safeDocument(): Document {
 }
 
 /**
- * @param query -
+ * Safely queries a media query string
+ * @param query - the media query string
  * @returns the media query list, if supported
  */
 export function safeMatchMedia(query: string): MediaQueryList | undefined {
@@ -178,8 +185,9 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 }
 
 /**
- * @param callback -
- * @returns the interaction observer, if supported
+ * Safely creates an IntersectionObserver if supported
+ * @param callback - the observer callback
+ * @returns the intersection observer, if supported
  */
 export function safeIntersectionObserver(
   callback: (records: IntersectionObserverEntry[]) => void,
@@ -192,7 +200,8 @@ export function safeIntersectionObserver(
 }
 
 /**
- * @param callback -
+ * Safely creates a MutationObserver if supported
+ * @param callback - the observer callback
  * @returns the mutation observer, if supported
  */
 export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
@@ -645,11 +654,12 @@ function checkDestroy(
 }
 
 /**
- * @param particle -
- * @param data -
- * @param changeDirection -
- * @param destroyType -
- * @param delta -
+ * Updates a numeric particle animation state.
+ * @param particle - Particle owning the animated value.
+ * @param data - Numeric animation state.
+ * @param changeDirection - Whether the animation should ping-pong.
+ * @param destroyType - Destroy behavior applied at bounds.
+ * @param delta - Frame delta data.
  */
 export function updateAnimation(
   particle: Particle,
@@ -780,9 +790,9 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
 }
 
 /**
- *
- * @param zIndex - the z-index value
- * @returns the full screen style
+ * Computes full-screen canvas style for a given z-index.
+ * @param zIndex - The z-index value.
+ * @returns Full-screen CSS style declaration.
  */
 function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
   const fullScreenStyle = safeDocument().createElement("div").style,
@@ -814,6 +824,9 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
   return fullScreenStyle;
 }
 
+/**
+ * Memoized full-screen style builder.
+ */
 export const getFullScreenStyle = memoize(computeFullScreenStyle);
 
 /**

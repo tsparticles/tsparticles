@@ -1,5 +1,8 @@
 import { initEngine } from "./initEngine.js";
 
+/**
+ * Shared tsParticles engine instance for lazy/global builds.
+ */
 const tsParticles = initEngine();
 
 globalThis.tsParticles = tsParticles;

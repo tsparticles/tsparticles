@@ -8,7 +8,8 @@ export { Cannon } from "./Options/Classes/Cannon.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * Registers the cannon external interaction in the given engine.
+ * @param engine - The engine to register the interaction into
  */
 export async function loadExternalCannonInteraction(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

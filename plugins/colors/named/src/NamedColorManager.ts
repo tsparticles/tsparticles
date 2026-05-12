@@ -158,19 +158,36 @@ const namedColors = new Map<string, IRgb>([
   ["yellowgreen", { r: 154, g: 205, b: 50 }],
 ]);
 
+/** Named CSS color manager */
 export class NamedColorManager implements IColorManager {
+  /**
+   * Checks if the input is a named CSS color
+   * @param input
+   */
   accepts(input: string): boolean {
     return namedColors.has(input.toLowerCase());
   }
 
+  /**
+   * Converts an IColor to RGB
+   * @param color
+   */
   handleColor(color: IColor): IRgb | undefined {
     return this._parseString(color.value);
   }
 
+  /**
+   * Converts an IRangeColor to RGB
+   * @param color
+   */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     return this._parseString(color.value);
   }
 
+  /**
+   * Parses a named color string to RGBA
+   * @param input
+   */
   parseString(input: string): IRgba | undefined {
     return this._parseString(input);
   }

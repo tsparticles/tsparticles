@@ -2,10 +2,20 @@ import { type IOptionLoader, PixelMode, type RecursivePartial, isNull } from "@t
 import type { IEmitterSize } from "../Interfaces/IEmitterSize.js";
 
 /**
+ * The emitter size options
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
+  /**
+   * The emitter area height
+   */
   height;
+  /**
+   * The emitter size mode (percent or precise)
+   */
   mode: PixelMode | keyof typeof PixelMode;
+  /**
+   * The emitter area width
+   */
   width;
 
   constructor() {
@@ -14,6 +24,10 @@ export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     this.width = 0;
   }
 
+  /**
+   * Loads the emitter size options from the given data
+   * @param data - the data to load from
+   */
   load(data?: RecursivePartial<IEmitterSize>): void {
     if (isNull(data)) {
       return;

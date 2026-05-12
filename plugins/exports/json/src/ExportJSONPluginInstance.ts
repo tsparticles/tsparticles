@@ -2,6 +2,7 @@ import type { Container, ExportResult, IContainerPlugin } from "@tsparticles/eng
 
 const indent = 2;
 
+/** JSON export plugin instance */
 export class ExportJSONPluginInstance implements IContainerPlugin {
   private readonly _container: Container;
 

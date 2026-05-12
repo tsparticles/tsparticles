@@ -3,6 +3,7 @@ import type { IInteractivityData } from "./IInteractivityData.js";
 import type { IParticleInteractorBase } from "./IParticleInteractorBase.js";
 
 /**
+  Particles interactor interface
  */
 export interface IParticlesInteractor<
   TParticle extends Particle = Particle,

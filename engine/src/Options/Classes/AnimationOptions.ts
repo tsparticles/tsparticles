@@ -7,12 +7,19 @@ import { StartValueType } from "../../Enums/Types/StartValueType.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
+/** Animation options configuration class */
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
+  /** Number of animation loops (0 = infinite) */
   count: RangeValue;
+  /** Animation decay factor */
   decay: RangeValue;
+  /** Delay before animation starts */
   delay: RangeValue;
+  /** Enables the animation */
   enable;
+  /** Animation speed */
   speed: RangeValue;
+  /** Whether the animation is synchronized across particles */
   sync;
 
   constructor() {
@@ -55,9 +62,12 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
   }
 }
 
+/** Ranged animation options with mode and start value */
 export class RangedAnimationOptions extends AnimationOptions implements IOptionLoader<IRangedAnimation> {
+  /** Animation mode (auto, increase, decrease, random) */
   mode: AnimationMode | keyof typeof AnimationMode;
 
+  /** Start value type for the animation */
   startValue: StartValueType | keyof typeof StartValueType;
 
   constructor() {

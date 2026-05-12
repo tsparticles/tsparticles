@@ -6,17 +6,26 @@ import type { PoissonDisc } from "./PoissonDisc.js";
  * Poisson Disc manager
  */
 export class PoissonDiscPluginInstance implements IContainerPlugin {
+  /** The poisson disc sampler */
   poissonDisc?: PoissonDisc;
+  /** The redraw timeout handle */
   redrawTimeout?: number;
 
+  /** The poisson container */
   private readonly _container: PoissonContainer;
+  /** The current point index */
   private _currentIndex: number;
 
+  /**
+   * Creates a new PoissonDiscPluginInstance
+   * @param container - the poisson container
+   */
   constructor(container: PoissonContainer) {
     this._container = container;
     this._currentIndex = 0;
   }
 
+  /** @inheritDoc */
   async init(): Promise<void> {
     await this._initData();
   }

@@ -21,7 +21,8 @@ const minTrailLength = 3,
   loopTrailLengthOffset = 2,
   loopTrailLengthMinIndex = 0;
 
-interface TrailStep {
+/** Trail step data */
+export interface TrailStep {
   break: boolean;
   color: string | CanvasGradient | CanvasPattern;
   position: ICoordinates;
@@ -33,21 +34,39 @@ interface TrailStep {
   };
 }
 
-interface ITrailData extends IShapeValues {
+/**
+ * Trail effect shape data
+ */
+export interface ITrailData extends IShapeValues {
+  /** Whether the trail fades */
   fade?: boolean;
+  /** Trail length */
   length?: RangeValue;
+  /** Maximum trail width */
   maxWidth?: RangeValue;
+  /** Minimum trail width */
   minWidth?: RangeValue;
+  /** Whether to use transform data */
   transform?: boolean;
 }
 
-type TrailParticle = Particle & {
+/**
+ * Trail effect particle extension type
+ */
+export type TrailParticle = Particle & {
+  /** Trail effect data */
   effectData?: ITrailData;
+  /** Trail step history */
   trail?: TrailStep[];
+  /** Whether the trail fades */
   trailFade?: boolean;
+  /** Trail length */
   trailLength?: number;
+  /** Maximum trail width */
   trailMaxWidth?: number;
+  /** Minimum trail width */
   trailMinWidth?: number;
+  /** Whether to apply transform data */
   trailTransform?: boolean;
 };
 
@@ -58,13 +77,23 @@ const defaultTransform = {
   d: 1,
 };
 
+/** Trail effect drawer plugin */
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
+  /** The particles container */
   private readonly _container;
 
+  /**
+   * TrailDrawer constructor
+   * @param container
+   */
   constructor(container: Container) {
     this._container = container;
   }
 
+  /**
+   * Draws the particle trail after particle rendering
+   * @param data
+   */
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
     const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
       container = this._container,
@@ -157,6 +186,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     context.restore();
   }
 
+  /**
+   * Initializes trail-related particle properties
+   * @param container
+   * @param particle
+   */
   particleInit(container: Container, particle: TrailParticle): void {
     particle.trail = [];
 

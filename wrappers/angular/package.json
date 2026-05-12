@@ -110,6 +110,13 @@
     "prettier": "^3.8.3",
     "typescript": "~5.9.3"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "inputs": ["production", "^production", "{projectRoot}/projects/**/src/**/*"]
+      }
+    }
+  },
   "module": "dist/ng-particles/fesm2015/ng-particles.mjs",
   "es2020": "dist/ng-particles/fesm2020/ng-particles.mjs",
   "esm2020": "dist/ng-particles/esm2020/ng-particles.mjs",

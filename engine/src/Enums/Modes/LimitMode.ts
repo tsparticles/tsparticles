@@ -1,3 +1,6 @@
+/**
+ * Behavior to apply when particle limits are reached.
+ */
 export enum LimitMode {
   /**
    * When limit is reached, older particles are removed
