@@ -7,8 +7,9 @@ This repository uses a pnpm + Nx TypeScript monorepo structure. The guidance bel
 ## Quick Commands
 
 - Install dependencies: `pnpm i`
-- Build all packages: `pnpm run build` (runs `build` + docs)
+- Build all packages: `pnpm run build` (runs `prettify:readme` + `nx run-many -t build --parallel=50%`)
 - Build affected packages: `pnpm run build:affected` or `pnpm nx affected -t build`
+- Build affected packages for CI: `pnpm run build:affected:ci`
 - Run the full workspace build (CI): `pnpm run build:ci`
 - Run typedoc (docs): `pnpm --filter @tsparticles/website run typedoc:api`
 - Start demo server: `cd demo/vanilla && pnpm start`
@@ -118,6 +119,7 @@ PRs
 - `engine/src/` — core runtime
 - `bundles/*/` — bundle assembly and webpack configs
 - `utils/tests/` — primary test package and fixtures
+- `websites/website/` — VitePress docs + typedoc sync/build scripts
 - `.github/workflows/` — CI and publish pipelines
 
 ## Cursor & Copilot rules
@@ -141,6 +143,15 @@ PRs
   - `.github/skills/nx-plugins/SKILL.md`
   - `.github/agents/ci-monitor-subagent.agent.md`
   - `.github/prompts/monitor-ci.prompt.md`
+
+- Additional mirrored skills are present under `.agents/skills/` (for agent runtimes that read `.agents` conventions):
+  - `.agents/skills/monitor-ci/SKILL.md`
+  - `.agents/skills/link-workspace-packages/SKILL.md`
+  - `.agents/skills/nx-workspace/SKILL.md`
+  - `.agents/skills/nx-generate/SKILL.md`
+  - `.agents/skills/nx-import/SKILL.md`
+  - `.agents/skills/nx-run-tasks/SKILL.md`
+  - `.agents/skills/nx-plugins/SKILL.md`
 
 - There is no `.github/copilot-instructions.md` present; follow the repository linting and commit rules instead.
 
