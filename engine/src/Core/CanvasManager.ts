@@ -1,9 +1,10 @@
+import type { DomCanvasManagerFactory, IDomCanvasManager } from "./Interfaces/IDomCanvasManager.js";
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
-import { DomCanvasManager } from "../Dom/DomCanvasManager.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
+import { NoOpDomCanvasManager } from "./Interfaces/NoOpDomCanvasManager.js";
 import type { ParticlesCanvasType } from "../Types/ParticlesCanvasType.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { RenderManager } from "./RenderManager.js";
@@ -86,10 +87,13 @@ export class CanvasManager {
    * Constructor of canvas manager
    * @param pluginManager - the engine managing the whole library
    * @param container - the parent container
+   * @param domCanvasManagerFactory - factory to create the DOM canvas manager
    */
-  constructor(pluginManager: PluginManager, container: Container) {
+  constructor(pluginManager: PluginManager, container: Container, domCanvasManagerFactory?: DomCanvasManagerFactory) {
     this._container = container;
-    this._domManager = new DomCanvasManager(pluginManager, container);
+    this._domManager = domCanvasManagerFactory
+      ? domCanvasManagerFactory(pluginManager, container)
+      : this._createDefaultDomCanvasManager();
     this.render = new RenderManager(pluginManager, container, this);
     this._standardSize = {
       height: 0,
@@ -324,4 +328,12 @@ export class CanvasManager {
       plugin.resize?.();
     }
   };
+
+  /**
+   * Creates a default no-op DOM canvas manager (used for headless scenarios).
+   * @returns A no-op DOM canvas manager
+   */
+  private _createDefaultDomCanvasManager(): IDomCanvasManager {
+    return new NoOpDomCanvasManager();
+  }
 }

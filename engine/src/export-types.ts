@@ -90,8 +90,6 @@ export type * from "./Types/ShapeData.js";
 export type * from "./Types/SingleOrMultiple.js";
 export type * from "./Platform/PlatformAdapter.js";
 
-export type { EventListeners } from "./Dom/EventListeners.js";
-export type { DomEngine } from "./Dom/DomEngine.js";
 export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
 export type { CanvasManager } from "./Core/CanvasManager.js";
 export type { Container } from "./Core/Container.js";
@@ -101,3 +99,4 @@ export type { Retina } from "./Core/Retina.js";
 export type { Engine } from "./Core/Engine.js";
 export type { PluginManager } from "./Core/Utils/PluginManager.js";
 export type * from "./Core/Interfaces/IEventListeners.js";
+export type * from "./Core/Interfaces/IDomCanvasManager.js";

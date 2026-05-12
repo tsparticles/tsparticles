@@ -13,10 +13,13 @@
  * this file will be one of its entry points.
  */
 import type { Container } from "../Core/Container.js";
+import { DomCanvasManager } from "./DomCanvasManager.js";
 import { Engine } from "../Core/Engine.js";
 import { EventListeners } from "./EventListeners.js";
+import type { IDomCanvasManager } from "../Core/Interfaces/IDomCanvasManager.js";
 import type { IEventListeners } from "../Core/Interfaces/IEventListeners.js";
 import type { ILoadParams } from "../Core/Interfaces/ILoadParams.js";
+import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import { getCanvasFromDomContainer } from "./EngineDom.js";
 import { getRandom } from "../Utils/MathUtils.js";
 import { loadRandomFactor } from "../Core/Utils/Constants.js";
@@ -44,6 +47,18 @@ export class DomEngine extends Engine {
       typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement ? params.element : undefined;
 
     return params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`;
+  }
+
+  /**
+   * Provides the {@link DomCanvasManager} factory so that each new
+   * {@link Container} gets full DOM canvas support (styles, fullscreen, etc.).
+   */
+  protected override makeDomCanvasManagerFactory(): (
+    pluginManager: PluginManager,
+    container: Container,
+  ) => IDomCanvasManager {
+    return (pluginManager: PluginManager, container: Container): DomCanvasManager =>
+      new DomCanvasManager(pluginManager, container);
   }
 
   /**

@@ -7,6 +7,7 @@ import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
+import type { IDomCanvasManager } from "./Interfaces/IDomCanvasManager.js";
 import type { IEventListeners } from "./Interfaces/IEventListeners.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
@@ -203,6 +204,20 @@ export class Engine {
   }
 
   /**
+   * Returns a factory that creates the {@link IDomCanvasManager} instance for a
+   * given {@link Container}, or `undefined` when running headless (no DOM).
+   *
+   * The Core implementation returns `undefined` — DOM canvas management is a DOM
+   * concern.  Override in `DomEngine` to provide the real implementation.
+   * @returns The DOM canvas manager factory, or undefined for headless use
+   */
+  protected makeDomCanvasManagerFactory():
+    | ((pluginManager: PluginManager, container: Container) => IDomCanvasManager)
+    | undefined {
+    return undefined;
+  }
+
+  /**
    * Returns a factory that creates the {@link IEventListeners} instance for a
    * given {@link Container}, or `undefined` when running headless (no DOM).
    *
@@ -252,6 +267,7 @@ export class Engine {
           this.dispatchEvent(eventType, args);
         },
         eventListenersFactory: this.makeEventListenersFactory(),
+        domCanvasManagerFactory: this.makeDomCanvasManagerFactory(),
         id,
         onDestroy: (remove): void => {
           if (!remove) {
