@@ -29,8 +29,8 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@commitlint/cli": "^21.0.0",
-    "@commitlint/config-conventional": "^21.0.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
     "@nx/devkit": "^22.7.1",
     "@nx/js": "^22.7.1",
     "@swc-node/register": "^1.11.1",
@@ -76,7 +76,7 @@
     "webpack-cli": "^7.0.2",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@11.1.0",
+  "packageManager": "pnpm@11.1.1",
   "pnpm": {
     "overrides": {
       "@nuxt/vue-app@2.18.1>vue": "2.7.16",
