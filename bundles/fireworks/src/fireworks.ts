@@ -1,4 +1,4 @@
-import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+import { type Engine, type RecursivePartial, createBrowserEngine, isString } from "@tsparticles/engine";
 import type { FireworksFunc } from "./types.js";
 import type { FireworksInstance } from "./FireworksInstance.js";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
@@ -17,6 +17,7 @@ import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 declare const __VERSION__: string;
 
 let initPromise: Promise<void> | null = null;
+const engine = createBrowserEngine();
 
 declare global {
   /** The global fireworks function */
@@ -87,7 +88,7 @@ export async function fireworks(
   idOrOptions?: string | RecursivePartial<IFireworkOptions>,
   sourceOptions?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   let id: string, options: RecursivePartial<IFireworkOptions>;
 
@@ -99,7 +100,7 @@ export async function fireworks(
     options = idOrOptions ?? {};
   }
 
-  return getFireworksInstance(tsParticles, id, options);
+  return getFireworksInstance(engine, id, options);
 }
 
 /**
@@ -111,16 +112,16 @@ fireworks.create = async (
   canvas?: HTMLCanvasElement | null,
   options?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   const id = canvas?.id ?? "fireworks";
 
-  return getFireworksInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+  return getFireworksInstance(engine, id, options ?? {}, canvas ?? undefined);
 };
 
 /** Initializes the fireworks plugins without creating an animation */
 fireworks.init = async (): Promise<void> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 };
 
 /** The fireworks bundle version */

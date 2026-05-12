@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import type { IParticlesProps } from "./IParticlesProps";
-import { tsParticles, type Container } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
+import { engine } from "./engine";
 import { useParticlesProvider } from "./ParticlesProvider";
 
 const Particles: FC<IParticlesProps> = props => {
@@ -14,7 +15,7 @@ const Particles: FC<IParticlesProps> = props => {
 
     let container: Container | undefined;
 
-    tsParticles.load({ id: id ?? "tsparticles", url, options }).then(c => {
+    engine.load({ id: id ?? "tsparticles", url, options }).then(c => {
       container = c;
 
       particlesLoaded?.(c);

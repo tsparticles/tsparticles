@@ -1,12 +1,14 @@
 import { Component } from "preact/compat";
 import { ComponentChild } from "preact";
-import { tsParticles, Container } from "@tsparticles/engine";
+import { Container, createBrowserEngine } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
 import { deepCompare } from "./Utils";
 import React from "preact/compat";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const engine = createBrowserEngine();
 
 /**
  * @param {IParticlesProps}
@@ -122,6 +124,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     const cb = async (container?: Container) => {
+      if (!container) {
+        return;
+      }
+
       if (this.props.container) {
         (this.props.container as MutableRefObject<Container>).current = container;
       }
@@ -130,12 +136,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         library: container,
       });
 
-      if (this.props.particlesLoaded) {
-        await this.props.particlesLoaded(container);
-      }
+      await this.props.particlesLoaded?.(container);
     };
 
-    const container = await tsParticles.load({
+    const container = await engine.load({
       url: this.props.url,
       options: this.props.options,
       id: this.props.id,

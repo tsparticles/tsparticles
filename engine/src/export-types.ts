@@ -88,6 +88,7 @@ export type * from "./Types/RangeValue.js";
 export type * from "./Types/RecursivePartial.js";
 export type * from "./Types/ShapeData.js";
 export type * from "./Types/SingleOrMultiple.js";
+export type * from "./Platform/PlatformAdapter.js";
 
 export type { EventListeners } from "./Dom/EventListeners.js";
 export type { DomEngine } from "./Dom/DomEngine.js";

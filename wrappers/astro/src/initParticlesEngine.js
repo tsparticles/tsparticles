@@ -1,4 +1,4 @@
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 
 // Minimal JS runtime copy of the TypeScript initParticlesEngine implementation.
 // Kept in src as a .js file so consumers (Vite/dev server/browser) can import it
@@ -11,6 +11,7 @@ console.log("[tsparticles/astro] initParticlesEngine.js loaded");
 let initialized = false;
 let initPromise = undefined;
 let initCallback = undefined;
+const engine = createBrowserEngine();
 
 export async function initParticlesEngine(init) {
   console.log("[tsparticles/astro] initParticlesEngine called");
@@ -32,12 +33,12 @@ export async function initParticlesEngine(init) {
   initCallback = init;
   initPromise = (async () => {
     if (init) {
-      await init(tsParticles);
+      await init(engine);
     }
 
     // Some engine builds require an explicit init call to register plugins.
-    if (typeof tsParticles.init === "function") {
-      await tsParticles.init();
+    if (typeof engine.init === "function") {
+      await engine.init();
     }
 
     initialized = true;

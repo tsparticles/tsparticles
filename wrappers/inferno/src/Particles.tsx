@@ -1,7 +1,9 @@
 import { Component } from "inferno";
 import type { IParticlesProps } from "./IParticlesProps";
-import { type Container, tsParticles, getLogger } from "@tsparticles/engine";
+import { createBrowserEngine, getLogger, type Container } from "@tsparticles/engine";
 import { waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const engine = createBrowserEngine();
 
 // Class-based Particles component to avoid relying on Inferno hooks at
 // runtime. This ensures compatibility with Inferno builds that do not
@@ -48,7 +50,7 @@ export default class Particles extends Component<IParticlesProps> {
 
 			const { id, url, options } = this.props;
 
-			this._container = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+			this._container = await engine.load({ id: id ?? "tsparticles", url, options });
 		} catch (e) {
 			getLogger().error("Particles: error during load", e);
 		}

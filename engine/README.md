@@ -13,9 +13,9 @@
 ## Quick checklist
 
 1. Install `@tsparticles/engine`
-2. Initialize the engine instance in your code
+2. Create an explicit engine instance in your code
 3. Load additional plugins/shapes/updaters as needed
-4. Use `tsParticles.load()` to apply particle configurations
+4. Use `engine.load()` to apply particle configurations
 
 ## How to use it
 
@@ -40,9 +40,11 @@ pnpm install @tsparticles/engine
 ### Basic Usage
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 
-await tsParticles.load({
+const engine = createBrowserEngine();
+
+await engine.load({
   id: "tsparticles",
   options: {
     particles: {
@@ -58,6 +60,14 @@ await tsParticles.load({
 });
 ```
 
+### Migration note (singleton -> explicit engine)
+
+| Scenario                  | Before                          | After (recommended)                    |
+| ------------------------- | ------------------------------- | -------------------------------------- |
+| Bootstrap browser runtime | `tsParticles` singleton         | `const engine = createBrowserEngine()` |
+| Load feature bundles      | `await loadSlim(tsParticles)`   | `await loadSlim(engine)`               |
+| Load container options    | `await tsParticles.load({...})` | `await engine.load({...})`             |
+
 ## Features
 
 - **Lightweight**: Core engine without unnecessary dependencies
@@ -71,12 +81,14 @@ await tsParticles.load({
 To extend the engine with more capabilities, load additional packages:
 
 ```javascript
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; // or other bundles
 
-await loadSlim(tsParticles); // Load preset features
+const engine = createBrowserEngine();
 
-await tsParticles.load({
+await loadSlim(engine); // Load preset features
+
+await engine.load({
   id: "tsparticles",
   options: {
     // Your configuration here
@@ -86,7 +98,7 @@ await tsParticles.load({
 
 ## Common pitfalls
 
-- Loading plugins after calling `tsParticles.load(...)` may not work as expected
+- Loading plugins after calling `engine.load(...)` may not work as expected
 - Ensure all required peer packages are loaded before using their features
 - Some shapes or updaters need their specific packages to be loaded
 

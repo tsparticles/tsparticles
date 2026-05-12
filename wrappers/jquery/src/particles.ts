@@ -1,10 +1,11 @@
-import { type Container, getRandom, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine, type Container, type Engine, getRandom, type ISourceOptions } from "@tsparticles/engine";
 
-export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+const engine = createBrowserEngine();
 
 async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
   if (initialized) {
@@ -24,10 +25,10 @@ async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<voi
   initCallback = init;
   initPromise = (async () => {
     if (init) {
-      await init(tsParticles);
+      await init(engine);
     }
 
-    await tsParticles.init();
+    await engine.init();
 
     initialized = true;
   })().catch((error: unknown) => {
@@ -106,7 +107,7 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        return await tsParticles.load({ id: element.id, options });
+        return await engine.load({ id: element.id, options });
       })();
 
       promises.push(p);
@@ -130,7 +131,7 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        return await tsParticles.load({ id: element.id, url: jsonUrl });
+        return await engine.load({ id: element.id, url: jsonUrl });
       })();
 
       promises.push(p);

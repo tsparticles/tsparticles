@@ -1,5 +1,7 @@
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { loadWordpressParticles } from "./load";
+
+const engine = createBrowserEngine();
 
 document.addEventListener("DOMContentLoaded", async () => {
 	const els = Array.from(document.querySelectorAll(".wp-block-tsparticles-tsparticles-wp-block")),
@@ -15,11 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 		}
 	}
 
-	await loadWordpressParticles(tsParticles, plugins);
+	await loadWordpressParticles(engine, plugins);
 
 	for (const el of els) {
 		try {
-			await tsParticles.load({
+			await engine.load({
 				id: el.id,
 				options: JSON.parse(el.dataset.options),
 			});

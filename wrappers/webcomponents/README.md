@@ -21,16 +21,23 @@ yarn add @tsparticles/webcomponents @tsparticles/engine
 ## Usage
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 
-globalThis.tsParticles = tsParticles;
+const engine = createBrowserEngine();
+
+globalThis.tsParticles = engine;
 
 await initParticlesEngine(async engine => {
   await loadSlim(engine);
 });
 ```
+
+| Scenario                  | Before                                 | After (recommended)                    |
+| ------------------------- | -------------------------------------- | -------------------------------------- |
+| Bootstrap browser runtime | `tsParticles` singleton import         | `const engine = createBrowserEngine()` |
+| WebComponents bridge      | `globalThis.tsParticles = tsParticles` | `globalThis.tsParticles = engine`      |
 
 Then use the custom element:
 

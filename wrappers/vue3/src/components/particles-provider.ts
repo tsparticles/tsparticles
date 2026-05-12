@@ -1,4 +1,4 @@
-import { type Engine, tsParticles } from "@tsparticles/engine";
+import { type Engine, createBrowserEngine } from "@tsparticles/engine";
 import { inject, reactive, type App, type InjectionKey } from "vue";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
@@ -20,6 +20,7 @@ interface IParticlesInitializationState {
 }
 
 const globalStateKey = "__tsparticles_vue3_init_state__";
+const engine = createBrowserEngine();
 
 function getGlobalInitializationState(): IParticlesInitializationState {
   const globalStore = globalThis as typeof globalThis & {
@@ -63,10 +64,10 @@ export function initParticlesProvider(
   state.callback = init;
   state.promise = (async () => {
     if (init) {
-      await init(tsParticles);
+      await init(engine);
     }
 
-    await tsParticles.init();
+    await engine.init();
 
     state.loaded = true;
     context.loaded = true;

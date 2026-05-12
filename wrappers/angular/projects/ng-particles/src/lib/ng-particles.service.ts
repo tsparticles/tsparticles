@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Engine, tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine, type Engine } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+const engine = createBrowserEngine();
 
 @Injectable({
   providedIn: "root",
@@ -39,7 +40,7 @@ export class NgParticlesService {
     initCallback = particlesInit;
     initPromise = (async () => {
       if (particlesInit) {
-        await particlesInit(tsParticles);
+        await particlesInit(engine);
       }
 
       initialized = true;

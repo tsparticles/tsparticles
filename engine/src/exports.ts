@@ -2,6 +2,9 @@ export * from "./Core/Utils/Constants.js";
 export * from "./Core/Utils/Ranges.js";
 export * from "./Core/Utils/Vectors.js";
 
+export * from "./Api/createBrowserEngine.js";
+export * from "./Api/createEngine.js";
+
 export * from "./Enums/Directions/MoveDirection.js";
 export * from "./Enums/Directions/RotateDirection.js";
 export * from "./Enums/Directions/OutModeDirection.js";
@@ -75,3 +78,5 @@ export * from "./Utils/MathUtils.js";
 export * from "./Utils/OptionsUtils.js";
 export * from "./Utils/Utils.js";
 export * from "./Utils/TypeUtils.js";
+
+export * from "./Platform/BrowserPlatformAdapter.js";

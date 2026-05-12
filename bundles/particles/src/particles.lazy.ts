@@ -1,4 +1,4 @@
-import { type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
+import { type Engine, type RecursivePartial, createBrowserEngine, isString } from "@tsparticles/engine/lazy";
 import type { IParticlesOptions } from "./IParticlesOptions.js";
 import type { ParticlesFunc } from "./types.js";
 import type { ParticlesInstance } from "./ParticlesInstance.js";
@@ -7,6 +7,7 @@ import { getParticlesInstance } from "./utils.js";
 declare const __VERSION__: string;
 
 let initPromise: Promise<void> | null = null;
+const engine = createBrowserEngine();
 
 declare global {
   /** The global particles function */
@@ -83,7 +84,7 @@ export async function particles(
   idOrOptions?: string | RecursivePartial<IParticlesOptions>,
   sourceOptions?: RecursivePartial<IParticlesOptions>,
 ): Promise<ParticlesInstance | undefined> {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   let id: string, options: RecursivePartial<IParticlesOptions>;
 
@@ -95,7 +96,7 @@ export async function particles(
     options = idOrOptions ?? {};
   }
 
-  return getParticlesInstance(tsParticles, id, options);
+  return getParticlesInstance(engine, id, options);
 }
 
 /**
@@ -107,16 +108,16 @@ particles.create = async (
   canvas?: HTMLCanvasElement | null,
   options?: RecursivePartial<IParticlesOptions>,
 ): Promise<ParticlesInstance | undefined> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   const id = canvas?.id ?? "particles";
 
-  return getParticlesInstance(tsParticles, id, options ?? {}, canvas ?? undefined);
+  return getParticlesInstance(engine, id, options ?? {}, canvas ?? undefined);
 };
 
 /** Initializes the particles plugins without creating an animation */
 particles.init = async (): Promise<void> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 };
 
 /** The particles bundle version */

@@ -1,5 +1,5 @@
 import type { ConfettiFirstParam, ConfettiFunc } from "./types.js";
-import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
+import { type Container, type Engine, type RecursivePartial, createBrowserEngine, isString } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadCardSuitsShape } from "@tsparticles/shape-cards/suits";
@@ -35,6 +35,7 @@ declare global {
 }
 
 let initPromise: Promise<void> | null = null;
+const engine = createBrowserEngine();
 
 /**
  * Initializes all required plugins for the confetti bundle
@@ -92,7 +93,7 @@ export async function confetti(
   idOrOptions: ConfettiFirstParam,
   confettiOptions?: RecursivePartial<IConfettiOptions>,
 ): Promise<Container | undefined> {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   let options: RecursivePartial<IConfettiOptions>, id: string;
 
@@ -104,7 +105,7 @@ export async function confetti(
     options = idOrOptions;
   }
 
-  return setConfetti(tsParticles, {
+  return setConfetti(engine, {
     id,
     options,
   });
@@ -120,13 +121,13 @@ confetti.create = async (
   canvas?: HTMLCanvasElement | null,
   options: RecursivePartial<IConfettiOptions> = {},
 ): Promise<ConfettiFunc> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 
   const id = canvas?.getAttribute("id") ?? "confetti";
 
   canvas?.setAttribute("id", id);
 
-  await setConfetti(tsParticles, {
+  await setConfetti(engine, {
     id,
     canvas: canvas ?? undefined,
     options,
@@ -146,7 +147,7 @@ confetti.create = async (
       subOptions = idOrOptions;
     }
 
-    return setConfetti(tsParticles, {
+    return setConfetti(engine, {
       id: subId,
       canvas: canvas ?? undefined,
       options: subOptions,
@@ -156,7 +157,7 @@ confetti.create = async (
 
 /** Initializes the confetti plugins without creating an animation */
 confetti.init = async (): Promise<void> => {
-  await initPlugins(tsParticles);
+  await initPlugins(engine);
 };
 
 /** The confetti bundle version */

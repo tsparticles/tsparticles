@@ -1,9 +1,11 @@
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import configs from "@tsparticles/configs";
 
-document.addEventListener("DOMContentLoaded", async () => {
-    await loadFull(tsParticles);
+const engine = createBrowserEngine();
 
-    await tsParticles.load({ options: configs.basic });
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadFull(engine);
+
+    await engine.load({ options: configs.basic });
 });

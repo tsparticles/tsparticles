@@ -1,7 +1,9 @@
 import { NoSerialize, component$, noSerialize, useVisibleTask$ } from "@builder.io/qwik";
-import { Container, tsParticles } from "@tsparticles/engine";
+import { Container, createBrowserEngine } from "@tsparticles/engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const engine = createBrowserEngine();
 
 /**
  * @param (props:IParticlesProps) Particles component properties
@@ -21,7 +23,7 @@ const Particles = component$<IParticlesProps>(props => {
         throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
       }
 
-      const container = await tsParticles.load({
+      const container = await engine.load({
         url: props.url,
         id,
         options: props.options ?? props.params,

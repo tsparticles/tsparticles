@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
-import { tsParticles } from "@tsparticles/engine";
 import { createContext, type FC, type PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
+import { engine } from "./engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void>;
 
@@ -32,7 +32,7 @@ export const ParticlesProvider: FC<IParticlesProviderProps> = ({ children, init 
       initCallback = init;
 
       initPromise = (async () => {
-        await init(tsParticles);
+        await init(engine);
 
         initialized = true;
       })().catch(error => {

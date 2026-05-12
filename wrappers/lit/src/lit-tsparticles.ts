@@ -1,12 +1,13 @@
 import { LitElement, html, PropertyValues } from "lit";
 import { property, customElement } from "lit/decorators.js";
-import { Container, Engine, ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { Container, createBrowserEngine, Engine, ISourceOptions } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+const engine = createBrowserEngine();
 
 export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
   if (initialized) {
@@ -26,12 +27,10 @@ export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Prom
   initCallback = init;
   initPromise = (async () => {
     if (init) {
-      await init(tsParticles);
+      await init(engine);
     }
 
-    if (typeof (tsParticles as any).init === "function") {
-      await (tsParticles as any).init();
-    }
+    await engine.init();
 
     initialized = true;
   })().catch((error: unknown) => {
@@ -110,9 +109,9 @@ export class LitParticles extends LitElement {
     let container: Container | undefined;
 
     if (this.options) {
-      container = await tsParticles.load({ id, options: this.options });
+      container = await engine.load({ id, options: this.options });
     } else if (this.url) {
-      container = await tsParticles.load({ id, url: this.url });
+      container = await engine.load({ id, url: this.url });
     } else {
       throw new Error("No options or url provided");
     }

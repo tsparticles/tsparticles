@@ -1,10 +1,11 @@
-import { tsParticles, type Engine } from "@tsparticles/engine";
+import { createBrowserEngine, type Engine } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+const engine = createBrowserEngine();
 
 export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
   if (initialized) {
@@ -24,12 +25,12 @@ export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Prom
   initCallback = init;
   initPromise = (async () => {
     if (init) {
-      await init(tsParticles);
+      await init(engine);
     }
 
     // Some engine builds require an explicit init call to register plugins.
-    if (typeof (tsParticles as any).init === "function") {
-      await (tsParticles as any).init();
+    if (typeof (engine as any).init === "function") {
+      await (engine as any).init();
     }
 
     initialized = true;

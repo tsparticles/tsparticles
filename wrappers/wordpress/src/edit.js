@@ -14,8 +14,10 @@ import { __ } from "@wordpress/i18n";
 import { Panel, PanelBody, PanelRow, TextControl, TextareaControl, ToggleControl } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { useEffect } from "@wordpress/element";
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { getAllPlugins, loadWordpressParticles } from "./load";
+
+const engine = createBrowserEngine();
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -46,8 +48,8 @@ export default function Edit({ attributes, setAttributes }) {
 			const selectedPlugins = serializedPlugins.split(",").filter(Boolean);
 
 			try {
-				await loadWordpressParticles(tsParticles, selectedPlugins);
-				await tsParticles.load({
+				await loadWordpressParticles(engine, selectedPlugins);
+				await engine.load({
 					id: elementId,
 					options: JSON.parse(attributes.options),
 				});

@@ -1,7 +1,9 @@
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { createEffect, createResource, JSX, mergeProps, on, onCleanup, onMount } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const engine = createBrowserEngine();
 
 /**
  * @param (props:IParticlesProps) Particles component properties
@@ -23,7 +25,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
           throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
         }
 
-        return tsParticles.load(data);
+        return engine.load(data);
       },
     );
 

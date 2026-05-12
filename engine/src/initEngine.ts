@@ -1,11 +1,9 @@
-import { DomEngine } from "./Dom/DomEngine.js";
+import type { DomEngine } from "./Dom/DomEngine.js";
+import { createBrowserEngine } from "./Api/createBrowserEngine.js";
 
 /**
  * @returns the initialized engine object (DOM-aware)
  */
 export function initEngine(): DomEngine {
-  /**
-   * The exposed tsParticles instance
-   */
-  return new DomEngine();
+  return createBrowserEngine();
 }

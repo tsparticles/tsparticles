@@ -20,12 +20,14 @@ If this is your first time with tsParticles:
 ## Minimal start example
 
 ```ts
-import { tsParticles } from "@tsparticles/engine";
+import { createBrowserEngine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
-await loadSlim(tsParticles);
+const engine = createBrowserEngine();
 
-await tsParticles.load({
+await loadSlim(engine);
+
+await engine.load({
   id: "tsparticles",
   options: {
     background: {
@@ -46,6 +48,14 @@ await tsParticles.load({
   },
 });
 ```
+
+## Migration note (singleton -> explicit engine)
+
+| Scenario                  | Before                          | After (recommended)                    |
+| ------------------------- | ------------------------------- | -------------------------------------- |
+| Bootstrap browser runtime | `tsParticles` singleton         | `const engine = createBrowserEngine()` |
+| Load bundle features      | `await loadSlim(tsParticles)`   | `await loadSlim(engine)`               |
+| Load container options    | `await tsParticles.load({...})` | `await engine.load({...})`             |
 
 ## Choose your quick-start path
 
@@ -123,7 +133,7 @@ Use palettes when you already have the behavior you want and only need a reusabl
 
 ## Common pitfalls
 
-- Calling `tsParticles.load(...)` before loading bundle or preset features
+- Calling `engine.load(...)` before loading bundle or preset features
 - Using an `id` that does not exist in the DOM
 - Assuming configs or presets also load the runtime plugins they depend on
 - Mixing too many presets/options in the first iteration instead of starting from one stable base

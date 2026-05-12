@@ -1,10 +1,11 @@
-import { tsParticles } from "@tsparticles/engine";
+import { type Engine, createBrowserEngine } from "@tsparticles/engine";
 
-export type ParticlesPluginRegistrar = (engine: typeof tsParticles) => Promise<void> | void;
+export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+const engine = createBrowserEngine();
 
 export function ensureParticlesInitialization(init?: ParticlesPluginRegistrar): Promise<void> {
   if (initialized) {
@@ -20,7 +21,7 @@ export function ensureParticlesInitialization(init?: ParticlesPluginRegistrar): 
   }
 
   initCallback = init;
-  initPromise = Promise.resolve(init?.(tsParticles))
+  initPromise = Promise.resolve(init?.(engine))
     .then(() => {
       initialized = true;
     })

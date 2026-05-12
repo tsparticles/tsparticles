@@ -156,57 +156,15 @@ export class Engine {
   async load(params: ILoadParams): Promise<Container | undefined> {
     await this.init();
 
-    const { Container } = await import("./Container.js"),
-      id = this.getSourceId(params),
-      { index, url } = params,
-      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
-      /* elements */
-      currentOptions = itemFromSingleOrMultiple(options, index),
-      { items } = this,
-      oldIndex = items.findIndex(v => v.id.description === id),
-      newItem = new Container({
-        dispatchCallback: (eventType, args): void => {
-          this.dispatchEvent(eventType, args);
-        },
-        eventListenersFactory: this.makeEventListenersFactory(),
-        id,
-        onDestroy: (remove): void => {
-          if (!remove) {
-            return;
-          }
+    const id = this.getSourceId(params),
+      options = await this.resolveOptions(params),
+      container = await this.createContainer(id, itemFromSingleOrMultiple(options, params.index));
 
-          const mainArr = this.items,
-            idx = mainArr.indexOf(newItem);
+    this.registerContainer(container, id);
+    await this.attachRenderer(container, id, params);
+    await this.startContainer(container);
 
-          if (idx >= removeMinIndex) {
-            mainArr.splice(idx, removeDeleteCount);
-          }
-        },
-        pluginManager: this.pluginManager,
-        sourceOptions: currentOptions,
-      });
-
-    if (oldIndex >= loadMinIndex) {
-      const old = this.item(oldIndex),
-        deleteCount = old ? one : none;
-
-      if (old && !old.destroyed) {
-        old.destroy(false);
-      }
-
-      items.splice(oldIndex, deleteCount, newItem);
-    } else {
-      items.push(newItem);
-    }
-
-    const sourceCanvas = await this.resolveCanvas(id, params);
-
-    newItem.canvas.loadCanvas(sourceCanvas);
-
-    /* launch tsParticles */
-    await newItem.start();
-
-    return newItem;
+    return container;
   }
 
   /**
@@ -279,5 +237,73 @@ export class Engine {
           `to load from an HTMLElement.`,
       ),
     );
+  }
+
+  private async attachRenderer(container: Container, id: string, params: ILoadParams): Promise<void> {
+    const target = await this.resolveTarget(id, params);
+
+    container.canvas.loadCanvas(target);
+  }
+
+  private async createContainer(id: string, sourceOptions: ISourceOptions | undefined): Promise<Container> {
+    const { Container } = await import("./Container.js"),
+      container = new Container({
+        dispatchCallback: (eventType, args): void => {
+          this.dispatchEvent(eventType, args);
+        },
+        eventListenersFactory: this.makeEventListenersFactory(),
+        id,
+        onDestroy: (remove): void => {
+          if (!remove) {
+            return;
+          }
+
+          const mainArr = this.items,
+            idx = mainArr.indexOf(container);
+
+          if (idx >= removeMinIndex) {
+            mainArr.splice(idx, removeDeleteCount);
+          }
+        },
+        pluginManager: this.pluginManager,
+        sourceOptions,
+      });
+
+    return container;
+  }
+
+  private registerContainer(container: Container, id: string): void {
+    const { items } = this,
+      oldIndex = items.findIndex(v => v.id.description === id);
+
+    if (oldIndex < loadMinIndex) {
+      items.push(container);
+
+      return;
+    }
+
+    const old = this.item(oldIndex),
+      deleteCount = old ? one : none;
+
+    if (old && !old.destroyed) {
+      old.destroy(false);
+    }
+
+    items.splice(oldIndex, deleteCount, container);
+  }
+
+  private async resolveOptions(params: ILoadParams): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
+    const { index, url } = params;
+
+    return url ? getDataFromUrl({ fallback: params.options, url, index }) : params.options;
+  }
+
+  private resolveTarget(id: string, params: ILoadParams): Promise<HTMLCanvasElement | OffscreenCanvas> {
+    return this.resolveCanvas(id, params);
+  }
+
+  private async startContainer(container: Container): Promise<void> {
+    /* launch tsParticles */
+    await container.start();
   }
 }

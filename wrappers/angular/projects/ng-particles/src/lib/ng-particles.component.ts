@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID } from "@angular/core";
 import { isPlatformServer } from "@angular/common";
-import { tsParticles } from "@tsparticles/engine";
-import type { Container } from "@tsparticles/engine";
+import { createBrowserEngine, type Container } from "@tsparticles/engine";
 import { IParticlesProps } from "./ng-particles.module";
 import { NgParticlesService } from "./ng-particles.service";
+
+const engine = createBrowserEngine();
 
 @Component({
   selector: "ngx-particles",
@@ -44,7 +45,7 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
 
     this.container?.destroy();
 
-    const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+    const container = await engine.load({ id: this.id, options: this.options, url: this.url });
 
     this.container = container;
     this.particlesLoaded.emit(container);
