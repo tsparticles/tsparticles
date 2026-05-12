@@ -1,7 +1,7 @@
-(async () => {
-  await loadBasic(tsParticles);
+(async (engine) => {
+  await loadBasic(engine);
 
-  await tsParticles.load({
+  await engine.load({
     options: {
       name: "Big Particles",
       particles: {
@@ -44,4 +44,4 @@
       },
     },
   });
-})();
+})(tsParticles);

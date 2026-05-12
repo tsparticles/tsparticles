@@ -2,11 +2,11 @@ import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "./Utils/Constants.js";
 import { CanvasManager } from "./CanvasManager.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
-import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import { type IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import type { IEventListeners } from "./Interfaces/IEventListeners.js";
 import { type IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import { type IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
@@ -22,6 +22,13 @@ import { loadOptions } from "../Utils/OptionsUtils.js";
 export interface ContainerParams {
   /** Event dispatch callback */
   dispatchCallback: (eventType: string, args?: CustomEventArgs) => void;
+  /**
+   * Optional factory that creates the browser event listeners for this container.
+   * When undefined (e.g. in a headless / OffscreenCanvas-only context) no listeners
+   * are attached and the container runs without DOM interaction.
+   * The Dom layer provides this factory; the Core Engine leaves it undefined.
+   */
+  eventListenersFactory?: (container: Container) => IEventListeners;
   /** The container id */
   id: string;
   /** Destroy callback */
@@ -154,7 +161,7 @@ export class Container {
    * The container duration
    */
   private _duration;
-  private readonly _eventListeners;
+  private readonly _eventListeners?: IEventListeners;
   private _firstStart;
   private _initialSourceOptions;
   /**
@@ -177,7 +184,7 @@ export class Container {
    * @param params -
    */
   constructor(params: ContainerParams) {
-    const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
+    const { dispatchCallback, eventListenersFactory, pluginManager, id, onDestroy, sourceOptions } = params;
 
     this._pluginManager = pluginManager;
     this._dispatchCallback = dispatchCallback;
@@ -213,7 +220,7 @@ export class Container {
     this.actualOptions = loadContainerOptions(this._pluginManager, this);
 
     /* ---------- tsParticles - start ------------ */
-    this._eventListeners = new EventListeners(this);
+    this._eventListeners = eventListenersFactory?.(this);
     this.dispatchEvent(EventType.containerBuilt);
   }
 
@@ -556,7 +563,7 @@ export class Container {
 
     await new Promise<void>(resolve => {
       const start = async (): Promise<void> => {
-        this._eventListeners.addListeners();
+        this._eventListeners?.addListeners();
 
         for (const plugin of this.plugins) {
           await plugin.start?.();
@@ -589,7 +596,7 @@ export class Container {
 
     this._firstStart = true;
     this.started = false;
-    this._eventListeners.removeListeners();
+    this._eventListeners?.removeListeners();
     this.pause();
     this.particles.clear();
     this.canvas.stop();

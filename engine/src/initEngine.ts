@@ -1,11 +1,11 @@
-import { Engine } from "./Core/Engine.js";
+import { DomEngine } from "./Dom/DomEngine.js";
 
 /**
- * @returns the initialized engine object
+ * @returns the initialized engine object (DOM-aware)
  */
-export function initEngine(): Engine {
+export function initEngine(): DomEngine {
   /**
    * The exposed tsParticles instance
    */
-  return new Engine();
+  return new DomEngine();
 }

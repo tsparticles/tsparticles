@@ -2,38 +2,25 @@
  * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances
  */
-import {
-  canvasFirstIndex,
-  canvasTag,
-  generatedAttribute,
-  generatedFalse,
-  generatedTrue,
-  loadMinIndex,
-  loadRandomFactor,
-  none,
-  one,
-  removeDeleteCount,
-  removeMinIndex,
-} from "./Utils/Constants.js";
-import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
+import type { IEventListeners } from "./Interfaces/IEventListeners.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { PluginManager } from "./Utils/PluginManager.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { getRandom } from "../Utils/MathUtils.js";
+import { itemFromSingleOrMultiple } from "../Utils/Utils.js";
 
 declare const __VERSION__: string;
 
 declare global {
   var tsParticles: Engine;
 }
-
-const fullPercent = "100%";
 
 interface DataFromUrlParams {
   fallback?: SingleOrMultiple<ISourceOptions>;
@@ -64,69 +51,6 @@ async function getDataFromUrl(
 
   return data.fallback;
 }
-
-const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
-    const documentSafe = safeDocument();
-
-    let canvasEl: HTMLCanvasElement;
-    const isCanvas = domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag;
-
-    if (isCanvas) {
-      canvasEl = domContainer as HTMLCanvasElement;
-
-      canvasEl.dataset[generatedAttribute] ??= generatedFalse;
-
-      if (canvasEl.dataset[generatedAttribute] === generatedTrue) {
-        canvasEl.style.width ||= fullPercent;
-        canvasEl.style.height ||= fullPercent;
-        canvasEl.style.pointerEvents = "none";
-        canvasEl.style.setProperty("pointer-events", "none");
-      }
-    } else {
-      const existingCanvases = domContainer.getElementsByTagName(canvasTag),
-        foundCanvas = existingCanvases.item(canvasFirstIndex);
-
-      /* get existing canvas if present, otherwise a new one will be created */
-      if (foundCanvas) {
-        canvasEl = foundCanvas;
-
-        canvasEl.dataset[generatedAttribute] = generatedFalse;
-      } else {
-        /* create canvas element */
-        canvasEl = documentSafe.createElement(canvasTag);
-
-        canvasEl.dataset[generatedAttribute] = generatedTrue;
-
-        /* append canvas */
-        domContainer.appendChild(canvasEl);
-      }
-
-      canvasEl.style.width ||= fullPercent;
-      canvasEl.style.height ||= fullPercent;
-      canvasEl.style.pointerEvents = "none";
-      canvasEl.style.setProperty("pointer-events", "none");
-    }
-
-    return canvasEl;
-  },
-  getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-    const documentSafe = safeDocument();
-
-    let domContainer = source ?? documentSafe.getElementById(id);
-
-    if (domContainer) {
-      return domContainer;
-    }
-
-    domContainer = documentSafe.createElement("canvas");
-
-    domContainer.id = id;
-    domContainer.dataset[generatedAttribute] = generatedTrue;
-
-    documentSafe.body.append(domContainer);
-
-    return domContainer;
-  };
 
 /**
  * Engine class for creating the singleton on globalThis.
@@ -232,14 +156,8 @@ export class Engine {
   async load(params: ILoadParams): Promise<Container | undefined> {
     await this.init();
 
-    let domSourceElement: HTMLElement | undefined;
-
-    if (typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement) {
-      domSourceElement = params.element;
-    }
-
     const { Container } = await import("./Container.js"),
-      id = params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+      id = this.getSourceId(params),
       { index, url } = params,
       options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
       /* elements */
@@ -250,6 +168,7 @@ export class Engine {
         dispatchCallback: (eventType, args): void => {
           this.dispatchEvent(eventType, args);
         },
+        eventListenersFactory: this.makeEventListenersFactory(),
         id,
         onDestroy: (remove): void => {
           if (!remove) {
@@ -280,10 +199,7 @@ export class Engine {
       items.push(newItem);
     }
 
-    const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
-      typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
-        ? params.element
-        : getCanvasFromContainer(getDomContainer(id, domSourceElement));
+    const sourceCanvas = await this.resolveCanvas(id, params);
 
     newItem.canvas.loadCanvas(sourceCanvas);
 
@@ -312,5 +228,56 @@ export class Engine {
    */
   removeEventListener(type: string, listener: CustomEventListener): void {
     this._eventDispatcher.removeEventListener(type, listener);
+  }
+
+  /**
+   * Returns the id to assign to a new {@link Container}.
+   *
+   * Override in a Dom-aware subclass to also derive the id from an
+   * `HTMLElement.id` attribute when `params.element` is an `HTMLElement`.
+   * Core only uses `params.id` and falls back to a random suffix so that
+   * nothing in this class ever references browser globals.
+   * @param params - The load params supplied by the caller
+   * @returns The resolved container id string
+   */
+  protected getSourceId(params: ILoadParams): string {
+    return params.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`;
+  }
+
+  /**
+   * Returns a factory that creates the {@link IEventListeners} instance for a
+   * given {@link Container}, or `undefined` when running headless (no DOM).
+   *
+   * The Core implementation returns `undefined` — event listeners are a DOM
+   * concern.  Override in `DomEngine` to provide the real implementation.
+   * @returns The event listeners factory, or undefined for headless use
+   */
+  protected makeEventListenersFactory(): ((container: Container) => IEventListeners) | undefined {
+    return undefined;
+  }
+
+  /**
+   * Resolves the render canvas from `params`.
+   *
+   * The Core implementation only handles an `OffscreenCanvas` supplied
+   * directly by the caller. When the element is missing or is an
+   * `HTMLElement`, the returned Promise rejects: resolving DOM elements
+   * requires `DomEngine`.
+   * @param id - The container id (used in error messages)
+   * @param params - The load params supplied by the caller
+   * @returns A Promise resolving to the canvas render target
+   */
+  protected resolveCanvas(id: string, params: ILoadParams): Promise<HTMLCanvasElement | OffscreenCanvas> {
+    if (typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas) {
+      return Promise.resolve(params.element);
+    }
+
+    return Promise.reject(
+      new Error(
+        `Engine (Core): cannot resolve a render canvas for container "${id}". ` +
+          `Supply an OffscreenCanvas via params.element, or use DomEngine / @tsparticles/dom ` +
+          `to load from an HTMLElement.`,
+      ),
+    );
   }
 }

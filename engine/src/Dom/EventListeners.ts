@@ -1,6 +1,6 @@
-import { manageListener, safeDocument } from "../../Utils/Utils.js";
-import { millisecondsToSeconds, resizeEvent, visibilityChangeEvent } from "./Constants.js";
-import type { Container } from "../Container.js";
+import { manageListener, safeDocument } from "../Utils/Utils.js";
+import { millisecondsToSeconds, resizeEvent, visibilityChangeEvent } from "../Core/Utils/Constants.js";
+import type { Container } from "../Core/Container.js";
 
 interface EventListenersHandlers {
   readonly resize: EventListenerOrEventListenerObject;
@@ -8,7 +8,7 @@ interface EventListenersHandlers {
 }
 
 /**
- * Particles container event listeners manager
+ * Particles container event listeners manager.
  */
 export class EventListeners {
   private readonly _handlers: EventListenersHandlers;
@@ -16,7 +16,7 @@ export class EventListeners {
   private _resizeTimeout?: number;
 
   /**
-   * Events listener constructor
+   * Events listener constructor.
    * @param container - the calling container
    */
   constructor(private readonly container: Container) {
@@ -30,24 +30,16 @@ export class EventListeners {
     };
   }
 
-  /**
-   * Adding all listeners
-   */
+  /** Adds all listeners. */
   addListeners(): void {
     this._manageListeners(true);
   }
 
-  /**
-   * Removing all listeners
-   */
+  /** Removes all listeners. */
   removeListeners(): void {
     this._manageListeners(false);
   }
 
-  /**
-   * Handles blur event
-   * @internal
-   */
   private readonly _handleVisibilityChange: () => void = () => {
     const container = this.container,
       options = container.actualOptions;
@@ -58,7 +50,6 @@ export class EventListeners {
 
     if (safeDocument().hidden) {
       container.pageHidden = true;
-
       container.pause();
     } else {
       container.pageHidden = false;
@@ -71,10 +62,6 @@ export class EventListeners {
     }
   };
 
-  /**
-   * Handles window resize event
-   * @internal
-   */
   private readonly _handleWindowResize = (): void => {
     if (this._resizeTimeout) {
       clearTimeout(this._resizeTimeout);
@@ -83,9 +70,7 @@ export class EventListeners {
     }
 
     const handleResize = async (): Promise<void> => {
-      const canvas = this.container.canvas;
-
-      await canvas.windowResize();
+      await this.container.canvas.windowResize();
     };
 
     this._resizeTimeout = setTimeout(
@@ -94,10 +79,6 @@ export class EventListeners {
     );
   };
 
-  /**
-   * Initializing event listeners
-   * @param add -
-   */
   private readonly _manageListeners: (add: boolean) => void = add => {
     const handlers = this._handlers;
 

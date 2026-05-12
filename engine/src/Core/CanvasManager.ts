@@ -1,13 +1,13 @@
-import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
-import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
+import { DomCanvasManager } from "../Dom/DomCanvasManager.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { ParticlesCanvasType } from "../Types/ParticlesCanvasType.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { RenderManager } from "./RenderManager.js";
+import { safeMatchMedia } from "../Utils/Utils.js";
 
 /**
  * Returns the canvas to use for rendering.
@@ -45,52 +45,6 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
   };
 
 /**
- *
- * @param canvas -
- * @param style -
- * @param important -
- */
-function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, important = false): void {
-  if (!style) {
-    return;
-  }
-
-  const element = canvas,
-    elementStyle = element.style,
-    keys = new Set<string>();
-
-  for (let i = 0; i < elementStyle.length; i++) {
-    const key = elementStyle.item(i);
-
-    if (!key) {
-      continue;
-    }
-
-    keys.add(key);
-  }
-
-  for (let i = 0; i < style.length; i++) {
-    const key = style.item(i);
-
-    if (!key) {
-      continue;
-    }
-
-    keys.add(key);
-  }
-
-  for (const key of keys) {
-    const value = style.getPropertyValue(key);
-
-    if (value) {
-      elementStyle.setProperty(key, value, important ? "important" : "");
-    } else {
-      elementStyle.removeProperty(key);
-    }
-  }
-}
-
-/**
  * Canvas manager
  */
 export class CanvasManager {
@@ -119,11 +73,7 @@ export class CanvasManager {
   zoom = defaultZoom;
 
   private readonly _container;
-  private _generated;
-  private _mutationObserver?: MutationObserver;
-  private _originalStyle?: CSSStyleDeclaration;
-  private readonly _pluginManager;
-  private _pointerEvents: string;
+  private readonly _domManager;
   private _resizePlugins: IContainerPlugin[];
   private readonly _standardSize: IDimension;
 
@@ -138,8 +88,8 @@ export class CanvasManager {
    * @param container - the parent container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
     this._container = container;
+    this._domManager = new DomCanvasManager(pluginManager, container);
     this.render = new RenderManager(pluginManager, container, this);
     this._standardSize = {
       height: 0,
@@ -154,13 +104,7 @@ export class CanvasManager {
       width: stdSize.width * pxRatio,
     };
 
-    this._generated = false;
     this._resizePlugins = [];
-    this._pointerEvents = "none";
-  }
-
-  private get _fullScreen(): boolean {
-    return this._container.actualOptions.fullScreen.enable;
   }
 
   /**
@@ -169,16 +113,9 @@ export class CanvasManager {
   destroy(): void {
     this.stop();
 
-    if (this._generated) {
-      const element = this.domElement;
-
-      element?.remove();
-
-      this.domElement = undefined;
-      this.renderCanvas = undefined;
-    } else {
-      this._resetOriginalStyle();
-    }
+    this._domManager.destroy();
+    this.domElement = undefined;
+    this.renderCanvas = undefined;
 
     this.render.destroy();
 
@@ -207,29 +144,8 @@ export class CanvasManager {
    * Initializes the canvas element
    */
   init(): void {
-    this._safeMutationObserver(obs => {
-      obs.disconnect();
-    });
-    this._mutationObserver = safeMutationObserver(records => {
-      for (const record of records) {
-        if (record.type === "attributes" && record.attributeName === "style") {
-          this._repairStyle();
-        }
-      }
-    });
-
     this.resize();
-    this._initStyle();
-    this.initBackground();
-    this._safeMutationObserver(obs => {
-      const element = this.domElement;
-
-      if (!element || !(element instanceof Node)) {
-        return;
-      }
-
-      obs.observe(element, { attributes: true });
-    });
+    this._domManager.init();
 
     this.initPlugins();
     this.render.init();
@@ -239,28 +155,7 @@ export class CanvasManager {
    * Initializes the canvas background
    */
   initBackground(): void {
-    const { _container } = this,
-      options = _container.actualOptions,
-      background = options.background,
-      element = this.domElement;
-
-    if (!element) {
-      return;
-    }
-
-    const elementStyle = element.style,
-      color = rangeColorToRgb(this._pluginManager, background.color);
-
-    if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, _container.hdr, background.opacity);
-    } else {
-      elementStyle.backgroundColor = "";
-    }
-
-    elementStyle.backgroundImage = background.image || "";
-    elementStyle.backgroundPosition = background.position || "";
-    elementStyle.backgroundRepeat = background.repeat || "";
-    elementStyle.backgroundSize = background.size || "";
+    this._domManager.initBackground();
   }
 
   /**
@@ -281,26 +176,15 @@ export class CanvasManager {
    * @param canvas - the canvas source element or OffscreenCanvas
    */
   loadCanvas(canvas: ParticlesCanvasType): void {
-    if (this._generated && this.domElement) {
-      this.domElement.remove();
-    }
-
     const container = this._container,
       domCanvas = isHtmlCanvasElement(canvas) ? canvas : undefined;
 
-    this.domElement = domCanvas;
-    this._generated = domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false;
+    this._domManager.loadCanvasElement(domCanvas, domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false);
+    this.domElement = this._domManager.domElement;
     this.renderCanvas = domCanvas ? getTransferredCanvas(domCanvas) : canvas;
 
-    const domElement = this.domElement;
-
-    if (domElement) {
-      domElement.ariaHidden = "true";
-
-      this._originalStyle = cloneStyle(domElement.style);
-    }
-
-    const standardSize = this._standardSize,
+    const domElement = this.domElement,
+      standardSize = this._standardSize,
       renderCanvas = this.renderCanvas;
 
     if (domElement) {
@@ -327,22 +211,8 @@ export class CanvasManager {
     });
     this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
 
-    this._safeMutationObserver(obs => {
-      obs.disconnect();
-    });
-
     container.retina.init();
     this.initBackground();
-
-    this._safeMutationObserver(obs => {
-      const element = this.domElement;
-
-      if (!element || !(element instanceof Node)) {
-        return;
-      }
-
-      obs.observe(element, { attributes: true });
-    });
   }
 
   /**
@@ -408,14 +278,7 @@ export class CanvasManager {
    * @param type - The pointer-events value to apply.
    */
   setPointerEvents(type: string): void {
-    const element = this.domElement;
-
-    if (!element) {
-      return;
-    }
-
-    this._pointerEvents = type;
-    this._repairStyle();
+    this._domManager.setPointerEvents(type);
   }
 
   /**
@@ -430,11 +293,7 @@ export class CanvasManager {
 
   /** Stops the canvas manager */
   stop(): void {
-    this._safeMutationObserver(obs => {
-      obs.disconnect();
-    });
-
-    this._mutationObserver = undefined;
+    this._domManager.stop();
 
     this.render.stop();
   }
@@ -464,90 +323,5 @@ export class CanvasManager {
     for (const plugin of this._resizePlugins) {
       plugin.resize?.();
     }
-  };
-
-  private readonly _initStyle: () => void = () => {
-    const element = this.domElement,
-      options = this._container.actualOptions;
-
-    if (!element) {
-      return;
-    }
-
-    if (this._fullScreen) {
-      this._setFullScreenStyle();
-    } else {
-      this._resetOriginalStyle();
-    }
-
-    for (const key in options.style) {
-      if (!key || !(key in options.style)) {
-        continue;
-      }
-
-      const value = options.style[key];
-
-      if (!value) {
-        continue;
-      }
-
-      element.style.setProperty(key, value, "important");
-    }
-  };
-
-  private readonly _repairStyle: () => void = () => {
-    const element = this.domElement;
-
-    if (!element) {
-      return;
-    }
-
-    this._safeMutationObserver(observer => {
-      observer.disconnect();
-    });
-    this._initStyle();
-    this.initBackground();
-
-    const pointerEvents = this._pointerEvents;
-
-    element.style.pointerEvents = pointerEvents;
-    element.style.setProperty("pointer-events", pointerEvents);
-
-    this._safeMutationObserver(observer => {
-      if (!(element instanceof Node)) {
-        return;
-      }
-
-      observer.observe(element, { attributes: true });
-    });
-  };
-
-  private readonly _resetOriginalStyle: () => void = () => {
-    const element = this.domElement,
-      originalStyle = this._originalStyle;
-
-    if (!element || !originalStyle) {
-      return;
-    }
-
-    setStyle(element, originalStyle, true);
-  };
-
-  private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
-    if (!this._mutationObserver) {
-      return;
-    }
-
-    callback(this._mutationObserver);
-  };
-
-  private readonly _setFullScreenStyle: () => void = () => {
-    const element = this.domElement;
-
-    if (!element) {
-      return;
-    }
-
-    setStyle(element, getFullScreenStyle(this._container.actualOptions.fullScreen.zIndex), true);
   };
 }
