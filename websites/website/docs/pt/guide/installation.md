@@ -99,7 +99,7 @@ await tsParticles.load({
 - [`/guide/getting-started`](/pt/guide/getting-started)
 - [`/guide/wrappers`](/pt/guide/wrappers)
 - [`/demos/presets`](/pt/demos/presets)
-- [`/migration/`](/pt/migration/)
+- [`/migrations/particles-js`](/pt/migrations/particles-js)
 
 ## Compatibilidade legada
 

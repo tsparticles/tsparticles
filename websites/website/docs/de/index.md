@@ -49,7 +49,7 @@ Die Website wurde um die haufigste Frage herum neu aufgebaut: **"Wie nutze ich t
 3. [`/playground/`](/de/playground/): Starte Demos per Befehl und bearbeite JSON live.
 4. [`/demos/`](/de/demos/): Ubernehme produktionsreife Rezepte.
 5. [`/options/`](/de/options/): Ubersicht der Root-Optionen und Deep Links.
-6. [`/migration/`](/de/migration/): Migration von particles.js mit Kompatibilitats-Hinweisen.
+6. [`/migrations/particles-js`](/de/migrations/particles-js): Migration von particles.js mit Kompatibilitats-Hinweisen.
 7. [`/guide/wrappers`](/de/guide/wrappers): Offizielle Wrapper-Pakete und Framework-Links.
 8. [`/guide/plugins-customization`](/de/guide/plugins-customization): Eigene Shapes, Presets und Plugin-Erweiterung.
 9. [`/guide/templates-resources`](/de/guide/templates-resources): Starter-Repositories und teilbare Ressourcen.

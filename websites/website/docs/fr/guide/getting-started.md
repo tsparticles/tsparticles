@@ -94,7 +94,7 @@ Si vous préférez les configurations basées sur les noms de préréglages, uti
 - Catalogue de préréglages : [`/demos/presets`](/fr/demos/presets)
 - Catalogue de palettes : [`/demos/palettes`](/fr/demos/palettes)
 - Catalogue de formes : [`/demos/shapes`](/fr/demos/shapes)
-- Migration depuis particles.js : [`/migration/`](/fr/migration/)
+- Migration depuis particles.js : [`/migrations/particles-js`](/fr/migrations/particles-js)
 - Formats couleur : [`/guide/color-formats`](/fr/guide/color-formats)
 - Cycle de vie du conteneur : [`/guide/container-lifecycle`](/fr/guide/container-lifecycle)
 - Plugins et personnalisation : [`/guide/plugins-customization`](/fr/guide/plugins-customization)

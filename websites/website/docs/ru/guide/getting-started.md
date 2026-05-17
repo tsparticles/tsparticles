@@ -94,7 +94,7 @@ pnpm add @tsparticles/configs
 - Каталог пресетов: [`/demos/presets`](/ru/demos/presets)
 - Каталог палитр: [`/demos/palettes`](/ru/demos/palettes)
 - Каталог форм: [`/demos/shapes`](/ru/demos/shapes)
-- Миграция с particles.js: [`/migration/`](/ru/migration/)
+- Миграция с particles.js: [`/migrations/particles-js`](/ru/migrations/particles-js)
 - Цветовые форматы: [`/guide/color-formats`](/ru/guide/color-formats)
 - Жизненный цикл контейнера: [`/guide/container-lifecycle`](/ru/guide/container-lifecycle)
 - Плагины и настройка: [`/guide/plugins-customization`](/ru/guide/plugins-customization)

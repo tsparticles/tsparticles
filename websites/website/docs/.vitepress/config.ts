@@ -18,8 +18,7 @@ const nav: DefaultTheme.NavItem[] = [
       { text: "@tsparticles", link: "https://github.com/tsparticles" },
     ],
   },
-  { text: "Changelog", link: "/changelog" },
-  { text: "Releases", link: "/releases/" },
+  { text: "Versioning & Migration", link: "/migrations/" },
 ];
 
 const baseSidebar: DefaultTheme.Sidebar = {
@@ -66,11 +65,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
       items: [
         { text: "Getting Started", link: "/guide/getting-started" },
         { text: "Installation", link: "/guide/installation" },
-        { text: "Migrations", link: "/guide/migrations" },
-        { text: "Option Rename Matrix", link: "/guide/option-rename-matrix" },
-        { text: "Migrate from v3.x", link: "/guide/migrate-from-v3" },
-        { text: "Migrate from v2.x", link: "/guide/migrate-from-v2" },
-        { text: "Migrate from v1.x", link: "/guide/migrate-from-v1" },
+
         { text: "Bundles", link: "/guide/bundles" },
         { text: "Bundle: Basic", link: "/guide/bundles-basic" },
         { text: "Bundle: Slim", link: "/guide/bundles-slim" },
@@ -239,9 +234,21 @@ const baseSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
-  "/migration/": [{ text: "Migration", items: [{ text: "Compatibility & Migrations", link: "/migration/" }] }],
-  "/changelog": [{ text: "Changelog", items: [{ text: "Latest Release", link: "/changelog" }] }],
-  "/releases/": [{ text: "Releases", items: [{ text: "Versioning & Release", link: "/releases/" }] }],
+  "/migrations/": [
+    {
+      text: "Versioning & Migration",
+      items: [
+        { text: "Overview", link: "/migrations/" },
+        { text: "Migrate from v3.x", link: "/migrations/from-v3" },
+        { text: "Migrate from v2.x", link: "/migrations/from-v2" },
+        { text: "Migrate from v1.x", link: "/migrations/from-v1" },
+        { text: "Option Rename Matrix", link: "/migrations/option-rename-matrix" },
+        { text: "Changelog", link: "/migrations/changelog" },
+        { text: "Releases", link: "/migrations/releases" },
+        { text: "particles.js Migration", link: "/migrations/particles-js" },
+      ],
+    },
+  ],
 };
 
 function prefixSidebarItems(items: DefaultTheme.SidebarItem[], prefix: string): DefaultTheme.SidebarItem[] {

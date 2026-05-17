@@ -94,7 +94,7 @@ Si prefieres configuraciones basadas en nombre de preset, usa el catalogo oficia
 - Catalogo de presets: [`/demos/presets`](/es/demos/presets)
 - Catalogo de paletas: [`/demos/palettes`](/es/demos/palettes)
 - Catalogo de formas: [`/demos/shapes`](/es/demos/shapes)
-- Migracion desde particles.js: [`/migration/`](/es/migration/)
+- Migracion desde particles.js: [`/migrations/particles-js`](/es/migrations/particles-js)
 - Formatos de color: [`/guide/color-formats`](/es/guide/color-formats)
 - Ciclo de vida del contenedor: [`/guide/container-lifecycle`](/es/guide/container-lifecycle)
 - Plugins y personalizacion: [`/guide/plugins-customization`](/es/guide/plugins-customization)

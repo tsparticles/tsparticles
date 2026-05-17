@@ -49,7 +49,7 @@ features:
 3. [`/playground/`](/ja/playground/): コマンドでデモを起動し、JSON をライブ編集。
 4. [`/demos/`](/ja/demos/): 本番向けレシピをそのまま利用。
 5. [`/options/`](/ja/options/): ルート options の地図と詳細ページへの導線。
-6. [`/migration/`](/ja/migration/): particles.js からの移行手順と互換性メモ。
+6. [`/migrations/particles-js`](/ja/migrations/particles-js): particles.js からの移行手順と互換性メモ。
 7. [`/guide/wrappers`](/ja/guide/wrappers): 公式 wrappers と framework 別リンク。
 8. [`/guide/plugins-customization`](/ja/guide/plugins-customization): カスタム shape、presets、plugin 拡張。
 9. [`/guide/templates-resources`](/ja/guide/templates-resources): スターターリポジトリと共有リソース。

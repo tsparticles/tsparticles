@@ -94,7 +94,7 @@ pnpm add @tsparticles/configs
 - 预设目录：[`/demos/presets`](/zh/demos/presets)
 - 调色板目录：[`/demos/palettes`](/zh/demos/palettes)
 - 形状目录：[`/demos/shapes`](/zh/demos/shapes)
-- 从 particles.js 迁移：[`/migration/`](/zh/migration/)
+- 从 particles.js 迁移：[`/migrations/particles-js`](/zh/migrations/particles-js)
 - 颜色格式：[`/guide/color-formats`](/zh/guide/color-formats)
 - 容器生命周期：[`/guide/container-lifecycle`](/zh/guide/container-lifecycle)
 - 插件和自定义：[`/guide/plugins-customization`](/zh/guide/plugins-customization)

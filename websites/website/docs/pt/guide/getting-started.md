@@ -94,7 +94,7 @@ Se você preferir configurações baseadas em nomes de predefinições, use o ca
 - Catálogo de predefinições: [`/demos/presets`](/pt/demos/presets)
 - Catálogo de paletas: [`/demos/palettes`](/pt/demos/palettes)
 - Catalogo de formas: [`/demos/shapes`](/pt/demos/shapes)
-- Migração de particles.js: [`/migration/`](/pt/migration/)
+- Migração de particles.js: [`/migrations/particles-js`](/pt/migrations/particles-js)
 - Formatos de cores: [`/guide/color-formats`](/pt/guide/color-formats)
 - Ciclo de vida do contêiner: [`/guide/container-lifecycle`](/pt/guide/container-lifecycle)
 - Plug-ins e personalização: [`/guide/plugins-customization`](/pt/guide/plugins-customization)

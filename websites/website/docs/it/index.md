@@ -49,7 +49,7 @@ Il sito è stato riprogettato intorno alla domanda più comune: **"Come uso tsPa
 3. [`/playground/`](/it/playground/): avvia demo su comando e modifica JSON live.
 4. [`/demos/`](/it/demos/): copia ricette pronte per la produzione.
 5. [`/options/`](/it/options/): mappa delle opzioni root e deep link.
-6. [`/migration/`](/it/migration/): migra da particles.js con note di compatibilita.
+6. [`/migrations/particles-js`](/it/migrations/particles-js): migra da particles.js con note di compatibilita.
 7. [`/guide/wrappers`](/it/guide/wrappers): wrapper ufficiali e link framework.
 8. [`/guide/plugins-customization`](/it/guide/plugins-customization): forme personalizzate, preset ed estensioni plugin.
 9. [`/guide/templates-resources`](/it/guide/templates-resources): repository iniziali e risorse condivisibili.
