@@ -6,6 +6,7 @@ import tilt from "./tilt.js";
 import trail from "./trail.js";
 import trailImage from "./trailImage.js";
 import triangles from "./triangles.js";
+import tunnel from "./tunnel.js";
 import twinkle from "./twinkle.js";
 
 export default {
@@ -17,5 +18,6 @@ export default {
   trail,
   trailImage,
   triangles,
+  tunnel,
   twinkle,
 };
