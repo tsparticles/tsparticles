@@ -78,13 +78,13 @@ await tsParticles.load({
 
 Some `v3.x` packages have been renamed or restructured:
 
-| v3 package | Current package | Note |
-|---|---|---|
-| `@tsparticles/move-base` | `@tsparticles/plugin-move` | Merged into single plugin |
-| `@tsparticles/move-parallax` | `@tsparticles/plugin-move` | Merged into single plugin |
-| `@tsparticles/updater-color` | `@tsparticles/updater-paint` | Replaced by paint system |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint` | Replaced by paint system |
-| `@tsparticles/plugin-hsv-color` | `@tsparticles/plugin-hsv-color` | Moved to `plugins/colors/hsv/`, still the same package name |
+| v3 package                          | Current package                 | Note                                                        |
+| ----------------------------------- | ------------------------------- | ----------------------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | Merged into single plugin                                   |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | Merged into single plugin                                   |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Replaced by paint system                                    |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Replaced by paint system                                    |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Moved to `plugins/colors/hsv/`, still the same package name |
 
 ## Recommended steps
 

@@ -11,13 +11,13 @@ Da `v3.x`, i rischi principali in migrazione sono la **compatibilità delle opzi
 
 Alcuni pacchetti di `v3.x` sono stati rinominati o ristrutturati:
 
-| Pacchetto v3 | Pacchetto attuale | Note |
-|---|---|---|
-| `@tsparticles/move-base` | `@tsparticles/plugin-move` | Uniti in un singolo plugin |
-| `@tsparticles/move-parallax` | `@tsparticles/plugin-move` | Uniti in un singolo plugin |
-| `@tsparticles/updater-color` | `@tsparticles/updater-paint` | Sostituito dal sistema paint |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint` | Sostituito dal sistema paint |
-| `@tsparticles/plugin-hsv-color` | `@tsparticles/plugin-hsv-color` | Spostato in `plugins/colors/hsv/`, stesso nome |
+| Pacchetto v3                        | Pacchetto attuale               | Note                                           |
+| ----------------------------------- | ------------------------------- | ---------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | Uniti in un singolo plugin                     |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | Uniti in un singolo plugin                     |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Sostituito dal sistema paint                   |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Sostituito dal sistema paint                   |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Spostato in `plugins/colors/hsv/`, stesso nome |
 
 ## Esempi mappatura opzioni
 

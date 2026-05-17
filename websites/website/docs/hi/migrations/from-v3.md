@@ -11,13 +11,13 @@
 
 कुछ `v3.x` पैकेजों का नाम बदल दिया गया है या पुनर्गठित किया गया है:
 
-| v3 पैकेज | वर्तमान पैकेज | नोट |
-|---|---|---|
-| `@tsparticles/move-base` | `@tsparticles/plugin-move` | एकल प्लगइन में विलय |
-| `@tsparticles/move-parallax` | `@tsparticles/plugin-move` | एकल प्लगइन में विलय |
-| `@tsparticles/updater-color` | `@tsparticles/updater-paint` | paint सिस्टम से बदला गया |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint` | paint सिस्टम से बदला गया |
-| `@tsparticles/plugin-hsv-color` | `@tsparticles/plugin-hsv-color` | `plugins/colors/hsv/` में स्थानांतरित, same name |
+| v3 पैकेज                            | वर्तमान पैकेज                   | नोट                                              |
+| ----------------------------------- | ------------------------------- | ------------------------------------------------ |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | एकल प्लगइन में विलय                              |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | एकल प्लगइन में विलय                              |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | paint सिस्टम से बदला गया                         |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | paint सिस्टम से बदला गया                         |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | `plugins/colors/hsv/` में स्थानांतरित, same name |
 
 ## ऑप्शन मैपिंग उदाहरण
 

@@ -11,13 +11,13 @@
 
 Некоторые пакеты `v3.x` были переименованы или реструктурированы:
 
-| Пакет v3 | Текущий пакет | Примечание |
-|---|---|---|
-| `@tsparticles/move-base` | `@tsparticles/plugin-move` | Объединены в один плагин |
-| `@tsparticles/move-parallax` | `@tsparticles/plugin-move` | Объединены в один плагин |
-| `@tsparticles/updater-color` | `@tsparticles/updater-paint` | Заменён системой paint |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint` | Заменён системой paint |
-| `@tsparticles/plugin-hsv-color` | `@tsparticles/plugin-hsv-color` | Перемещён в `plugins/colors/hsv/`, то же имя |
+| Пакет v3                            | Текущий пакет                   | Примечание                                   |
+| ----------------------------------- | ------------------------------- | -------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | Объединены в один плагин                     |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | Объединены в один плагин                     |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Заменён системой paint                       |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Заменён системой paint                       |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Перемещён в `plugins/colors/hsv/`, то же имя |
 
 ## Примеры соответствия опций
 
