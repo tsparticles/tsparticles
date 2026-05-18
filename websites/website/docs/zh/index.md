@@ -49,7 +49,7 @@ features:
 3. [`/playground/`](/zh/playground/)：按命令启动演示并实时编辑 JSON。
 4. [`/demos/`](/zh/demos/)：可直接用于生产的配方示例。
 5. [`/options/`](/zh/options/)：根选项地图与深层链接。
-6. [`/migration/`](/zh/migration/)：从 particles.js 迁移及兼容说明。
+6. [`/migrations/particles-js`](/zh/migrations/particles-js)：从 particles.js 迁移及兼容说明。
 7. [`/guide/wrappers`](/zh/guide/wrappers)：官方 wrappers 与各 framework 入口。
 8. [`/guide/plugins-customization`](/zh/guide/plugins-customization)：自定义形状、presets 与 plugin 扩展。
 9. [`/guide/templates-resources`](/zh/guide/templates-resources)：起步仓库与可复用资源。

@@ -94,7 +94,7 @@ Wenn Sie Setups bevorzugen, die auf Preset-Namen basieren, verwenden Sie den off
 - Voreinstellungskatalog: [`/demos/presets`](/de/demos/presets)
 - Palettenkatalog: [`/demos/palettes`](/de/demos/palettes)
 - Formenkatalog: [`/demos/shapes`](/de/demos/shapes)
-- Migration von particles.js: [`/migration/`](/de/migration/)
+- Migration von particles.js: [`/migrations/particles-js`](/de/migrations/particles-js)
 - Farbformate: [`/guide/color-formats`](/de/guide/color-formats)
 - Container-Lebenszyklus: [`/guide/container-lifecycle`](/de/guide/container-lifecycle)
 - Plugins und Anpassungen: [`/guide/plugins-customization`](/de/guide/plugins-customization)

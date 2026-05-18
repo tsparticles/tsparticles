@@ -49,7 +49,7 @@ O site foi redesenhado em torno da pergunta mais comum: **"Como uso tsParticles 
 3. [`/playground/`](/pt/playground/): rode demos por comando e edite JSON ao vivo.
 4. [`/demos/`](/pt/demos/): copie receitas prontas para producao.
 5. [`/options/`](/pt/options/): mapa das opcoes raiz e links profundos.
-6. [`/migration/`](/pt/migration/): migre de particles.js com notas de compatibilidade.
+6. [`/migrations/particles-js`](/pt/migrations/particles-js): migre de particles.js com notas de compatibilidade.
 7. [`/guide/wrappers`](/pt/guide/wrappers): wrappers oficiais e links por framework.
 8. [`/guide/plugins-customization`](/pt/guide/plugins-customization): formas personalizadas, presets e extensao por plugins.
 9. [`/guide/templates-resources`](/pt/guide/templates-resources): repositorios iniciais e recursos compartilhaveis.

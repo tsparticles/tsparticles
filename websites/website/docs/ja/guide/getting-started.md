@@ -94,7 +94,7 @@ pnpm add @tsparticles/configs
 - プリセットカタログ: [`/demos/presets`](/ja/demos/presets)
 - パレット カタログ: [`/demos/palettes`](/ja/demos/palettes)
 - シェイプ カタログ: [`/demos/shapes`](/ja/demos/shapes)
-- particles.js からの移行: [`/migration/`](/ja/migration/)
+- particles.js からの移行: [`/migrations/particles-js`](/ja/migrations/particles-js)
 - カラー形式: [`/guide/color-formats`](/ja/guide/color-formats)
 - コンテナのライフサイクル: [`/guide/container-lifecycle`](/ja/guide/container-lifecycle)
 - プラグインとカスタマイズ: [`/guide/plugins-customization`](/ja/guide/plugins-customization)

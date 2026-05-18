@@ -94,7 +94,7 @@ If you prefer preset-name based setups, use the official presets catalog in [`/d
 - Presets catalog: [`/demos/presets`](/demos/presets)
 - Palettes catalog: [`/demos/palettes`](/demos/palettes)
 - Shapes catalog: [`/demos/shapes`](/demos/shapes)
-- Migration from particles.js: [`/migration/`](/migration/)
+- Migration from particles.js: [`/migrations/particles-js`](/migrations/particles-js)
 - Color formats: [`/guide/color-formats`](/guide/color-formats)
 - Container lifecycle: [`/guide/container-lifecycle`](/guide/container-lifecycle)
 - Plugins and customization: [`/guide/plugins-customization`](/guide/plugins-customization)

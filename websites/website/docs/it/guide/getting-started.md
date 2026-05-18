@@ -94,7 +94,7 @@ Se preferisci configurazioni basate sul nome preimpostato, utilizza il catalogo 
 - Catalogo preimpostazioni: [`/demos/presets`](/it/demos/presets)
 - Catalogo tavolozze: [`/demos/palettes`](/it/demos/palettes)
 - Catalogo forme: [`/demos/shapes`](/it/demos/shapes)
-- Migrazione da particles.js: [`/migration/`](/it/migration/)
+- Migrazione da particles.js: [`/migrations/particles-js`](/it/migrations/particles-js)
 - Formati colore: [`/guide/color-formats`](/it/guide/color-formats)
 - Ciclo di vita del contenitore: [`/guide/container-lifecycle`](/it/guide/container-lifecycle)
 - Plugin e personalizzazione: [`/guide/plugins-customization`](/it/guide/plugins-customization)

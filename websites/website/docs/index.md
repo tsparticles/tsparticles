@@ -1,15 +1,12 @@
 ---
-layout: home
-
-title: tsParticles
-titleTemplate: Build expressive particle backgrounds in minutes
+layout: MyHome
 
 hero:
   name: tsParticles
   text: Powerful particle engine, simple developer workflow
   tagline: Ship interactive backgrounds, effects, and confetti on any framework.
   image:
-    src: https://particles.js.org/images/banner3.png
+    src: /images/banner3.png
     alt: tsParticles
   actions:
     - theme: brand
@@ -49,8 +46,8 @@ The website has been redesigned around the most common question: **"How do I use
 3. [`/playground/`](/playground/): launch demos only on command and edit JSON live.
 4. [`/demos/`](/demos/): copy ready-to-use recipes for production.
 5. [`/options/`](/options/): map of root options and deep links.
-6. [`/guide/migrations`](/guide/migrations): migrate from tsParticles v1/v2/v3 to current.
-7. [`/migration/`](/migration/): migrate from particles.js with compatibility notes.
+6. [`/migrations/`](/migrations/): migrate from tsParticles v1/v2/v3 to current.
+7. [`/migrations/particles-js`](/migrations/particles-js): migrate from particles.js with compatibility notes.
 8. [`/guide/wrappers`](/guide/wrappers): official wrapper packages and framework links.
 9. [`/guide/plugins-customization`](/guide/plugins-customization): custom shapes, presets, and plugin extension.
 10. [`/guide/templates-resources`](/guide/templates-resources): starter repos and shareable resources.
@@ -60,7 +57,7 @@ The website has been redesigned around the most common question: **"How do I use
 ## Core source and folders
 
 - Main monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
-- Main README (quick start, wrappers, presets): [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
+- Main README: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
 - Wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
 - Demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
 - Presets workspace folders: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
@@ -70,5 +67,5 @@ The website has been redesigned around the most common question: **"How do I use
 
 ## Support the project
 
-- Sponsor Matteo Bruni: <https://github.com/matteobruni>
-- Sponsor tsParticles org: <https://github.com/tsparticles>
+- Sponsor Matteo Bruni: [https://github.com/matteobruni](https://github.com/matteobruni)
+- Sponsor tsParticles org: [https://github.com/tsparticles](https://github.com/tsparticles)

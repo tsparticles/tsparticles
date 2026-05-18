@@ -49,7 +49,7 @@ Le site a ete repense autour de la question la plus frequente : **"Comment utili
 3. [`/playground/`](/fr/playground/) : lancez les demos a la demande et editez le JSON en direct.
 4. [`/demos/`](/fr/demos/) : copiez des recettes prates pour la production.
 5. [`/options/`](/fr/options/) : carte des options racine et liens directs.
-6. [`/migration/`](/fr/migration/) : migrez depuis particles.js avec des notes de compatibilite.
+6. [`/migrations/particles-js`](/fr/migrations/particles-js) : migrez depuis particles.js avec des notes de compatibilite.
 7. [`/guide/wrappers`](/fr/guide/wrappers) : wrappers officiels et liens frameworks.
 8. [`/guide/plugins-customization`](/fr/guide/plugins-customization) : formes personnalisees, presets et extensions plugin.
 9. [`/guide/templates-resources`](/fr/guide/templates-resources) : repositories de demarrage et ressources partageables.

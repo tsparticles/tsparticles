@@ -49,7 +49,7 @@ features:
 3. [`/playground/`](/ru/playground/): запускайте демо по команде и редактируйте JSON вживую.
 4. [`/demos/`](/ru/demos/): готовые рецепты для продакшена.
 5. [`/options/`](/ru/options/): карта корневых опций и прямые ссылки.
-6. [`/migration/`](/ru/migration/): миграция с particles.js с заметками по совместимости.
+6. [`/migrations/particles-js`](/ru/migrations/particles-js): миграция с particles.js с заметками по совместимости.
 7. [`/guide/wrappers`](/ru/guide/wrappers): официальные wrappers и ссылки по framework.
 8. [`/guide/plugins-customization`](/ru/guide/plugins-customization): пользовательские shapes, presets и расширение через plugins.
 9. [`/guide/templates-resources`](/ru/guide/templates-resources): стартовые репозитории и полезные ресурсы.

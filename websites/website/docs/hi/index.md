@@ -49,7 +49,7 @@ features:
 3. [`/playground/`](/hi/playground/): command से demos चलाएं और JSON live edit करें।
 4. [`/demos/`](/hi/demos/): production-ready recipes कॉपी करें।
 5. [`/options/`](/hi/options/): root options का map और सीधे links।
-6. [`/migration/`](/hi/migration/): particles.js से migration और compatibility notes।
+6. [`/migrations/particles-js`](/hi/migrations/particles-js): particles.js से migration और compatibility notes।
 7. [`/guide/wrappers`](/hi/guide/wrappers): official wrappers और framework links।
 8. [`/guide/plugins-customization`](/hi/guide/plugins-customization): custom shapes, presets और plugin extensions।
 9. [`/guide/templates-resources`](/hi/guide/templates-resources): शुरुआती repositories और reusable resources।
