@@ -141,7 +141,6 @@
     "@tsparticles/path-svg": "workspace:*",
     "@tsparticles/path-zig-zag": "workspace:*",
     "@tsparticles/plugin-background-mask": "workspace:*",
-    "@tsparticles/plugin-blend": "workspace:*",
     "@tsparticles/plugin-canvas-mask": "workspace:*",
     "@tsparticles/plugin-easing-back": "workspace:*",
     "@tsparticles/plugin-easing-bounce": "workspace:*",

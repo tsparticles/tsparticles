@@ -45,7 +45,8 @@
   "nx": {
     "implicitDependencies": [
       "*",
-      "!@tsparticles/website"
+      "!@tsparticles/website",
+      "!@tsparticles/*-demo"
     ],
     "targets": {
       "build": {

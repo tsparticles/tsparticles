@@ -131,7 +131,6 @@
     "@tsparticles/path-svg": "4.0.2",
     "@tsparticles/path-zig-zag": "4.0.2",
     "@tsparticles/plugin-background-mask": "4.0.2",
-    "@tsparticles/plugin-blend": "4.0.2",
     "@tsparticles/plugin-canvas-mask": "4.0.2",
     "@tsparticles/plugin-easing-back": "4.0.2",
     "@tsparticles/plugin-easing-bounce": "4.0.2",

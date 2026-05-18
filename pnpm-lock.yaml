@@ -231,9 +231,6 @@ importers:
       '@tsparticles/plugin-background-mask':
         specifier: workspace:*
         version: link:../../plugins/backgroundMask/dist
-      '@tsparticles/plugin-blend':
-        specifier: workspace:*
-        version: link:../../plugins/blend/dist
       '@tsparticles/plugin-canvas-mask':
         specifier: workspace:*
         version: link:../../plugins/canvasMask/dist
@@ -401,6 +398,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      '@tsparticles/plugin-blend':
+        specifier: workspace:*
+        version: link:../../plugins/blend/dist
       '@tsparticles/plugin-hex-color':
         specifier: workspace:*
         version: link:../../plugins/colors/hex/dist
@@ -3976,6 +3976,9 @@ importers:
       '@tsparticles/plugin-absorbers':
         specifier: workspace:^
         version: link:../../plugins/absorbers/dist
+      '@tsparticles/plugin-blend':
+        specifier: workspace:^
+        version: link:../../plugins/blend/dist
       '@tsparticles/plugin-easing-quad':
         specifier: workspace:^
         version: link:../../plugins/easings/quad/dist

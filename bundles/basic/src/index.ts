@@ -1,4 +1,5 @@
 import { type Engine } from "@tsparticles/engine";
+import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 import { loadCircleShape } from "@tsparticles/shape-circle";
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
 import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
@@ -24,6 +25,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
 
   await engine.pluginManager.register(async e => {
     await Promise.all([
+      loadBlendPlugin(e),
       loadHexColorPlugin(e),
       loadHslColorPlugin(e),
       loadRgbColorPlugin(e),

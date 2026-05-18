@@ -1,7 +1,6 @@
 import { type Engine } from "@tsparticles/engine";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
-import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 import { loadBranchesPath } from "@tsparticles/path-branches";
 import { loadBrownianPath } from "@tsparticles/path-brownian";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
@@ -150,7 +149,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadEasingSmoothstepPlugin(e),
 
       loadBackgroundMaskPlugin(e),
-      loadBlendPlugin(e),
       loadCanvasMaskPlugin(e),
       loadManualParticlesPlugin(e),
       loadMotionPlugin(e),
