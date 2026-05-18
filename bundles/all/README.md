@@ -35,7 +35,6 @@
 - [@tsparticles/path-svg](https://github.com/tsparticles/tsparticles/tree/main/paths/svg)
 - [@tsparticles/path-zig-zag](https://github.com/tsparticles/tsparticles/tree/main/paths/zigzag)
 - [@tsparticles/plugin-background-mask](https://github.com/tsparticles/tsparticles/tree/main/plugins/backgroundMask)
-- [@tsparticles/plugin-blend](https://github.com/tsparticles/tsparticles/tree/main/plugins/blend)
 - [@tsparticles/plugin-canvas-mask](https://github.com/tsparticles/tsparticles/tree/main/plugins/canvasMask)
 - [@tsparticles/plugin-easing-back](https://github.com/tsparticles/tsparticles/tree/main/plugins/easings/back)
 - [@tsparticles/plugin-easing-bounce](https://github.com/tsparticles/tsparticles/tree/main/plugins/easings/bounce)
@@ -136,7 +135,6 @@ end
 
 subgraph p [Plugins]
   pbm[tsparticles/plugin-background-mask]
-  pbl[tsparticles/plugin-blend]
   pcm[tsparticles/plugin-canvas-mask]
   phsv[tsparticles/plugin-hsv-color]
   phwb[tsparticles/plugin-hwb-color]

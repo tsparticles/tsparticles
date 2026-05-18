@@ -21,6 +21,7 @@ permissions:
 
 env:
   NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
+  PUPPETEER_SKIP_DOWNLOAD: true
 
 jobs:
   build-and-deploy:
