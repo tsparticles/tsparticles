@@ -19,6 +19,7 @@ const canvasRef = ref<HTMLElement | null>(null);
 
 let cycleTimer: ReturnType<typeof setTimeout> | undefined;
 let initialized = false;
+let isMounted = true;
 
 function pickRandom(): string {
   return configKeys[Math.floor(Math.random() * configKeys.length)];
@@ -65,12 +66,30 @@ async function loadAndStart(key: string) {
 async function nextRandom() {
   const newKey = pickRandom();
   currentKey.value = newKey;
-  await loadAndStart(newKey);
-  resetCycle();
+
+  try {
+    await loadAndStart(newKey);
+  } catch (error) {
+    console.error("[RandomDemo] Failed to load random config", error);
+
+    return;
+  }
+
+  if (isMounted) {
+    resetCycle();
+  }
 }
 
 function resetCycle() {
-  if (cycleTimer) clearTimeout(cycleTimer);
+  if (!isMounted) {
+    return;
+  }
+
+  if (cycleTimer) {
+    clearTimeout(cycleTimer);
+    cycleTimer = undefined;
+  }
+
   cycleTimer = setTimeout(nextRandom, 10000);
 }
 
@@ -80,7 +99,13 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  if (cycleTimer) clearTimeout(cycleTimer);
+  isMounted = false;
+
+  if (cycleTimer) {
+    clearTimeout(cycleTimer);
+    cycleTimer = undefined;
+  }
+
   const container = tsParticles.items.find((c) => c.id === containerId);
   if (container) container.destroy();
 });
@@ -92,7 +117,7 @@ onUnmounted(() => {
     <div class="demo-overlay">
       <div class="demo-bar">
         <span class="demo-name">{{ currentTitle }}</span>
-        <button class="demo-shuffle" @click="nextRandom" title="Next random config">
+        <button type="button" class="demo-shuffle" @click="nextRandom" aria-label="Next random config" title="Next random config">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="1 4 1 10 7 10" />
             <polyline points="23 20 23 14 17 14" />

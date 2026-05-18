@@ -43,7 +43,7 @@ interface HeroAction {
               :class="(action as HeroAction).theme === 'alt' ? 'alt' : 'brand'"
               :href="(action as HeroAction).link"
               :target="(action as HeroAction).target"
-              :rel="(action as HeroAction).rel"
+              :rel="(action as HeroAction).rel || ((action as HeroAction).target === '_blank' ? 'noopener noreferrer' : '')"
               v-text="(action as HeroAction).text"
             />
           </div>
