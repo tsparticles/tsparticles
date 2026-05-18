@@ -116,9 +116,9 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-blend": "workspace:*",
     "@tsparticles/plugin-hex-color": "workspace:*",
     "@tsparticles/plugin-hsl-color": "workspace:*",
-    "@tsparticles/plugin-blend": "workspace:*",
     "@tsparticles/plugin-move": "workspace:*",
     "@tsparticles/plugin-rgb-color": "workspace:*",
     "@tsparticles/shape-circle": "workspace:*",

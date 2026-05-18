@@ -41,7 +41,7 @@
     "@tsparticles/tsconfig": "workspace:^",
     "@tsparticles/webpack-plugin": "workspace:^",
     "dependency-cruiser": "^17.4.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^62.9.0",
     "eslint-plugin-prettier": "^5.5.5",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@types/estree": "^1.0.9",
     "@types/klaw": "^3.0.7",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.8.0",
     "@types/prompts": "^2.4.9",
     "@types/webpack-env": "^1.18.8",
     "browserslist": "^4.28.2",

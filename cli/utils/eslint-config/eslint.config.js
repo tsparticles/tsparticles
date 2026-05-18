@@ -131,6 +131,7 @@ export default defineConfig([
       "@typescript-eslint/no-magic-numbers": [
         "error",
         {
+          ignore: [],
           ignoreEnums: true,
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,

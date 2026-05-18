@@ -106,9 +106,9 @@
   },
   "dependencies": {
     "@tsparticles/engine": "4.0.2",
+    "@tsparticles/plugin-blend": "4.0.2",
     "@tsparticles/plugin-hex-color": "4.0.2",
     "@tsparticles/plugin-hsl-color": "4.0.2",
-    "@tsparticles/plugin-blend": "4.0.2",
     "@tsparticles/plugin-move": "4.0.2",
     "@tsparticles/plugin-rgb-color": "4.0.2",
     "@tsparticles/shape-circle": "4.0.2",
