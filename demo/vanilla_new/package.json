@@ -25,8 +25,8 @@
   },
   "homepage": "https://particles.js.org",
   "devDependencies": {
-    "@swc/core": "^1.15.24",
-    "minify": "^15.2.0",
+    "@swc/core": "^1.15.33",
+    "minify": "^15.3.1",
     "sass": "^1.99.0"
   },
   "dependencies": {
