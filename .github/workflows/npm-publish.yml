@@ -44,8 +44,15 @@ jobs:
           node-version: "24"
           registry-url: https://registry.npmjs.org
 
+      - name: Skip puppeteer browser download in CI
+        run: echo '{"skipDownload":true}' > .puppeteerrc.json
+
       - name: Install Dependencies
         run: pnpm install
+
+      - name: Clean up puppeteer CI config
+        if: always()
+        run: rm -f .puppeteerrc.json
 
       - name: Initialize Nx Cloud
         run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
