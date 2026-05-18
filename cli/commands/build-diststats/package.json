@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-build-diststats",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

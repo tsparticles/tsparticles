@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-drag",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "tsParticles drag external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -97,7 +97,7 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.2",
-    "@tsparticles/plugin-interactivity": "4.0.2"
+    "@tsparticles/engine": "4.0.3",
+    "@tsparticles/plugin-interactivity": "4.0.3"
   }
 }
