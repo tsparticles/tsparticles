@@ -22,7 +22,6 @@ env:
   RELEASE_UPLOAD_RETRIES: 6
   RELEASE_RETRY_BASE_DELAY: 10
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
-  PUPPETEER_SKIP_DOWNLOAD: "true"
 
 jobs:
   publish:
