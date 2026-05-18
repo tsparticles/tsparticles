@@ -14,7 +14,7 @@ env:
   NODE_VERSION: "24"
   NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
   firebaseToken: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
-  PUPPETEER_SKIP_DOWNLOAD: true
+  PUPPETEER_SKIP_DOWNLOAD: "true"
 
 jobs:
   build-and-deploy:
@@ -37,15 +37,8 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Skip puppeteer browser download in CI
-        run: echo '{"skipDownload":true}' > .puppeteerrc.json
-
       - name: Install dependencies
         run: pnpm install
-
-      - name: Clean up puppeteer CI config
-        if: always()
-        run: rm -f .puppeteerrc.json
 
       - name: Initialize Nx Cloud or fall back to local
         run: |

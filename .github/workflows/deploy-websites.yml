@@ -21,7 +21,7 @@ permissions:
 
 env:
   NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
-  PUPPETEER_SKIP_DOWNLOAD: true
+  PUPPETEER_SKIP_DOWNLOAD: "true"
 
 jobs:
   build-and-deploy:
@@ -46,15 +46,8 @@ jobs:
             echo "NX_NO_CLOUD=true" >> "$GITHUB_ENV"
           fi
 
-      - name: Skip puppeteer browser download in CI
-        run: echo '{"skipDownload":true}' > .puppeteerrc.json
-
       - name: Install dependencies
         run: pnpm install
-
-      - name: Clean up puppeteer CI config
-        if: always()
-        run: rm -f .puppeteerrc.json
 
       - name: Build workspace packages
         run: pnpm exec nx run-many -t build --projects="@tsparticles/confetti-website,@tsparticles/website"
