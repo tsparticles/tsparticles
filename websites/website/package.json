@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "4.0.2",
+    "version": "4.0.3",
     "private": true,
     "description": "tsParticles Website (VitePress)",
     "main": "docs/index.md",
@@ -270,14 +270,34 @@
         ],
         "targets": {
             "build": {
+                "cache": true,
                 "outputs": [
                     "{projectRoot}/docs/.vitepress/dist",
-                    "{projectRoot}/docs/docs/"
+                    "{projectRoot}/docs/.vitepress/cache"
                 ],
                 "inputs": [
                     "production",
                     "^production",
-                    "{projectRoot}/docs/**/*",
+                    "{projectRoot}/docs/.vitepress/config.ts",
+                    "{projectRoot}/docs/.vitepress/theme/**/*",
+                    "{projectRoot}/docs/**/*.md",
+                    "{projectRoot}/docs/public/**/*",
+                    "{projectRoot}/typedoc.json"
+                ]
+            },
+            "build:ci": {
+                "cache": true,
+                "outputs": [
+                    "{projectRoot}/docs/.vitepress/dist",
+                    "{projectRoot}/docs/.vitepress/cache"
+                ],
+                "inputs": [
+                    "production",
+                    "^production",
+                    "{projectRoot}/docs/.vitepress/config.ts",
+                    "{projectRoot}/docs/.vitepress/theme/**/*",
+                    "{projectRoot}/docs/**/*.md",
+                    "{projectRoot}/docs/public/**/*",
                     "{projectRoot}/typedoc.json"
                 ]
             }

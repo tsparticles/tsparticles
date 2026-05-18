@@ -133,6 +133,7 @@ const consumerDir = process.cwd(),
       "@typescript-eslint/no-magic-numbers": [
         "error",
         {
+          ignore: [],
           ignoreEnums: true,
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,

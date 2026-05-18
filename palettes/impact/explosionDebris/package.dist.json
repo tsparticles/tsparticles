@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-explosion-debris",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "tsParticles explosion - debris palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.2"
+    "@tsparticles/engine": "4.0.3"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

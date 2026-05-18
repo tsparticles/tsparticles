@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/tsparticles/tsparticles/compare/v4.0.2...v4.0.3) (2026-05-18)
+
+### Bug Fixes
+
+- add plugin-blend to electron demo lockfile entry ([e6b3586](https://github.com/tsparticles/tsparticles/commit/e6b358673edad8eb21ee17acc6edba4eac132934))
+- fixed basic bundle deps, it was missing blend plugin that was in all by mistake ([83cdf89](https://github.com/tsparticles/tsparticles/commit/83cdf89bc031893d911a9fef26ccbdf9ba603469))
+- fixed peer dependencies, fixes [#5763](https://github.com/tsparticles/tsparticles/issues/5763) [Self-Healing CI Rerun] ([301a5c1](https://github.com/tsparticles/tsparticles/commit/301a5c196bc4923a876b08ece513b76d9085e533))
+- update pnpm lockfile for electron demo canvas-utils dep ([59696e8](https://github.com/tsparticles/tsparticles/commit/59696e84e2b806ec6a5cdce327b4ed3a873418d3))
+
 ## [4.0.2](https://github.com/tsparticles/tsparticles/compare/v4.0.1...v4.0.2) (2026-05-16)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
-  "name": "@tsparticles/vite-template-solid",
-  "version": "4.0.2",
+  "name": "@tsparticles/solid-demo",
+  "version": "4.0.3",
   "private": true,
   "description": "",
   "repository": {

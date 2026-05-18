@@ -40,7 +40,6 @@ export async function loadAll(engine: Engine): Promise<void> {
         { loadEasingSmoothstepPlugin },
 
         { loadBackgroundMaskPlugin },
-        { loadBlendPlugin },
         { loadCanvasMaskPlugin },
         { loadInfectionPlugin },
         { loadManualParticlesPlugin },
@@ -128,7 +127,6 @@ export async function loadAll(engine: Engine): Promise<void> {
         import("@tsparticles/plugin-easing-smoothstep/lazy"),
 
         import("@tsparticles/plugin-background-mask/lazy"),
-        import("@tsparticles/plugin-blend/lazy"),
         import("@tsparticles/plugin-canvas-mask/lazy"),
         import("@tsparticles/plugin-infection/lazy"),
         import("@tsparticles/plugin-manual-particles/lazy"),
@@ -250,7 +248,6 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadEasingSmoothstepPlugin(e),
 
       loadBackgroundMaskPlugin(e),
-      loadBlendPlugin(e),
       loadCanvasMaskPlugin(e),
       loadManualParticlesPlugin(e),
       loadMotionPlugin(e),

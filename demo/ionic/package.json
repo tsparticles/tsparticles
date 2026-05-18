@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ionic-demo",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -58,6 +58,7 @@
     "@tsparticles/interaction-particles-links": "workspace:^",
     "@tsparticles/pjs": "workspace:^",
     "@tsparticles/plugin-absorbers": "workspace:^",
+    "@tsparticles/plugin-blend": "workspace:^",
     "@tsparticles/plugin-easing-quad": "workspace:^",
     "@tsparticles/plugin-emitters": "workspace:^",
     "@tsparticles/plugin-emitters-shape-circle": "workspace:^",

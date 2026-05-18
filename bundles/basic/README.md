@@ -13,6 +13,7 @@
 - [@tsparticles/plugin-hex-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hex)
 - [@tsparticles/plugin-hsl-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hsl)
 - [@tsparticles/plugin-rgb-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/rgb)
+- [@tsparticles/plugin-blend](https://github.com/tsparticles/tsparticles/tree/main/plugins/blend)
 - [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
 - [@tsparticles/updater-paint](https://github.com/tsparticles/tsparticles/tree/main/updaters/paint)
 - [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
@@ -37,6 +38,7 @@ subgraph p [Plugins]
   ph[tsparticles/plugin-hex-color]
   phs[tsparticles/plugin-hsl-color]
   pr[tsparticles/plugin-rgb-color]
+  pbl[tsparticles/plugin-blend]
 end
 
 subgraph s [Shapes]

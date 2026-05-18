@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-cannon",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "tsParticles confetti cannon preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,18 +106,18 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.2",
-    "@tsparticles/engine": "4.0.2",
-    "@tsparticles/interaction-external-cannon": "4.0.2",
-    "@tsparticles/palette-confetti": "4.0.2",
-    "@tsparticles/plugin-interactivity": "4.0.2",
-    "@tsparticles/plugin-motion": "4.0.2",
-    "@tsparticles/shape-square": "4.0.2",
-    "@tsparticles/updater-life": "4.0.2",
-    "@tsparticles/updater-roll": "4.0.2",
-    "@tsparticles/updater-rotate": "4.0.2",
-    "@tsparticles/updater-tilt": "4.0.2",
-    "@tsparticles/updater-wobble": "4.0.2"
+    "@tsparticles/basic": "4.0.3",
+    "@tsparticles/engine": "4.0.3",
+    "@tsparticles/interaction-external-cannon": "4.0.3",
+    "@tsparticles/palette-confetti": "4.0.3",
+    "@tsparticles/plugin-interactivity": "4.0.3",
+    "@tsparticles/plugin-motion": "4.0.3",
+    "@tsparticles/shape-square": "4.0.3",
+    "@tsparticles/updater-life": "4.0.3",
+    "@tsparticles/updater-roll": "4.0.3",
+    "@tsparticles/updater-rotate": "4.0.3",
+    "@tsparticles/updater-tilt": "4.0.3",
+    "@tsparticles/updater-wobble": "4.0.3"
   },
   "publishConfig": {
     "access": "public"

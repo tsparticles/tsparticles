@@ -15,6 +15,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
 
   await engine.pluginManager.register(async e => {
     const [
+      { loadBlendPlugin },
       { loadHexColorPlugin },
       { loadHslColorPlugin },
       { loadRgbColorPlugin },
@@ -27,6 +28,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
       { loadPaintUpdater },
       { loadSizeUpdater },
     ] = await Promise.all([
+      import("@tsparticles/plugin-blend/lazy"),
       import("@tsparticles/plugin-hex-color/lazy"),
       import("@tsparticles/plugin-hsl-color/lazy"),
       import("@tsparticles/plugin-rgb-color/lazy"),
@@ -41,6 +43,7 @@ export async function loadBasic(engine: Engine): Promise<void> {
     ]);
 
     await Promise.all([
+      loadBlendPlugin(e),
       loadHexColorPlugin(e),
       loadHslColorPlugin(e),
       loadRgbColorPlugin(e),

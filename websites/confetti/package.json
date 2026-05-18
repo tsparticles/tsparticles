@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/confetti-website",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "tsParticles confetti webpage",
   "private": true,
   "type": "module",
@@ -34,18 +34,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "gh-pages": "^6.3.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.3",
-    "vite": "^8.0.12"
+    "vite": "^8.0.13"
   },
   "nx": {
     "implicitDependencies": [
       "*",
-      "!@tsparticles/website"
+      "!@tsparticles/website",
+      "!@tsparticles/*-demo"
     ],
     "targets": {
       "build": {

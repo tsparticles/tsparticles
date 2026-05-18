@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-interactivity",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "tsParticles interactivity sickness plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,7 +92,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.2"
+    "@tsparticles/engine": "4.0.3"
   },
   "publishConfig": {
     "access": "public"

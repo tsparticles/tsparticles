@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-create-bundle",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -37,7 +37,7 @@
     "@tsparticles/prettier-config": "workspace:^",
     "@tsparticles/tsconfig": "workspace:^",
     "dependency-cruiser": "^17.4.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^62.9.0",
     "eslint-plugin-prettier": "^5.5.5",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@types/estree": "^1.0.9",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.8.0",
     "browserslist": "^4.28.2",
     "commander": "^14.0.3",
     "copyfiles": "^2.4.1",
