@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-triangles",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org",
   "scripts": {

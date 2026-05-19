@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Ember.js component for using tsParticles",
   "keywords": [
     "ember-addon"

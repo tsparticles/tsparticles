@@ -1,5 +1,5 @@
 import path from "node:path";
-import fs from "fs-extra";
+import { readFile } from "node:fs/promises";
 
 const ERR_INCOMPATIBLE = "incompatible-package-found",
   ERR_DEPRECATED = "deprecated-package-found",
@@ -325,7 +325,7 @@ async function checkErrors() {
     console.log(initialMessage);
 
     const rootPkgPath = path.join(process.env.INIT_CWD, "package.json"),
-      pkgSettings = await fs.readJson(rootPkgPath);
+      pkgSettings = JSON.parse(await readFile(rootPkgPath, "utf8"));
 
     if (!pkgSettings) {
       return;
