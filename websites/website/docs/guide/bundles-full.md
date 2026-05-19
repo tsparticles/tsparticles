@@ -1,4 +1,4 @@
-# Bundle: tsparticles (Full)
+# tsparticles (Full)
 
 `tsparticles` is the full bundle and includes a broad set of official features with one loader.
 

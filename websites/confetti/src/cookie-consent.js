@@ -10,9 +10,7 @@ const defaultConsent = {
 };
 
 let consent = readConsent();
-let analyticsInitialized = false;
 let adsenseInitialized = false;
-let consentDefaultsInitialized = false;
 let initialPageViewTracked = false;
 
 function readConsent() {
@@ -66,40 +64,11 @@ function loadScript(id, src, attributes) {
   document.head.appendChild(script);
 }
 
-function ensureGtagStub() {
-  window.dataLayer = window.dataLayer || [];
-  window.gtag =
-    window.gtag ||
-    function () {
-      window.dataLayer.push(arguments);
-    };
-}
-
-function initAnalytics() {
-  if (analyticsInitialized) {
-    return;
-  }
-
-  ensureGtagStub();
-  initConsentDefaults();
-  loadScript('ga-script', `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    send_page_view: false,
-  });
-
-  analyticsInitialized = true;
-}
-
 function initAdSense() {
   if (adsenseInitialized) {
     return;
   }
 
-  // Auto-ads are configured via the AdSense dashboard and activated automatically
-  // by the script when loaded with ?client=ca-pub-XXXXX — no manual push needed.
-  // Pushing enable_page_level_ads manually conflicts with the script's own init
-  // and causes "Only one 'enable_page_level_ads' allowed per page" TagError.
   loadScript(
     'adsense-script',
     `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`,
@@ -113,35 +82,6 @@ function initAdSense() {
   adsenseInitialized = true;
 }
 
-function initConsentDefaults() {
-  if (consentDefaultsInitialized) {
-    return;
-  }
-
-  ensureGtagStub();
-
-  window.gtag('consent', 'default', {
-    ad_storage: 'denied',
-    analytics_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  });
-
-  consentDefaultsInitialized = true;
-}
-
-function updateConsentMode(activeConsent) {
-  initConsentDefaults();
-  ensureGtagStub();
-
-  window.gtag('consent', 'update', {
-    ad_storage: activeConsent.adsense ? 'granted' : 'denied',
-    analytics_storage: activeConsent.analytics ? 'granted' : 'denied',
-    ad_user_data: activeConsent.adsense ? 'granted' : 'denied',
-    ad_personalization: activeConsent.adsense ? 'granted' : 'denied',
-  });
-}
-
 function updateAdSensePersonalization(activeConsent) {
   window.adsbygoogle = window.adsbygoogle || [];
   window.adsbygoogle.requestNonPersonalizedAds =
@@ -153,26 +93,35 @@ function canTrackAnalytics(activeConsent) {
 }
 
 function trackInitialPageView(activeConsent) {
-  if (initialPageViewTracked || !canTrackAnalytics(activeConsent) || !globalThis.gtag) {
+  if (initialPageViewTracked || !canTrackAnalytics(activeConsent) || !window.gtag) {
     return;
   }
 
-  globalThis.gtag('event', 'page_view', {
-    page_location: globalThis.location.href,
-    page_path: globalThis.location.pathname,
+  window.gtag('event', 'page_view', {
+    page_location: window.location.href,
+    page_path: window.location.pathname,
     page_title: document.title,
   });
 
   initialPageViewTracked = true;
 }
 
+function updateConsentMode(activeConsent) {
+  if (!window.gtag) {
+    return;
+  }
+
+  window.gtag('consent', 'update', {
+    ad_storage: activeConsent.adsense ? 'granted' : 'denied',
+    analytics_storage: activeConsent.analytics ? 'granted' : 'denied',
+    ad_user_data: activeConsent.adsense ? 'granted' : 'denied',
+    ad_personalization: activeConsent.adsense ? 'granted' : 'denied',
+  });
+}
+
 function applyConsent(activeConsent) {
   updateConsentMode(activeConsent);
   updateAdSensePersonalization(activeConsent);
-
-  if (canTrackAnalytics(activeConsent)) {
-    initAnalytics();
-  }
 
   trackInitialPageView(activeConsent);
 

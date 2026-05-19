@@ -1,4 +1,4 @@
-# Bundle: All
+# All
 
 `@tsparticles/all` loads all official features and is ideal for fast prototyping.
 

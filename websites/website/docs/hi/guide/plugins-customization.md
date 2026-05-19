@@ -353,6 +353,11 @@ export async function loadAppShape(engine: Engine): Promise<void> {
 
 await loadAppShape(tsParticles);
 
+/* ग्रैन्युलर लोडिंग के लिए, आप केवल आवश्यक आकार आयात कर सकते हैं:
+ * - @tsparticles/shape-cards/clubs, /diamonds, /hearts, /spades, /suits, /cards
+ * - @tsparticles/shape-polygon: loadGenericPolygonShape या loadTriangleShape
+ */
+
 const options = {
   particles: {
     paint: {

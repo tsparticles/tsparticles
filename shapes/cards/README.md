@@ -81,6 +81,28 @@ import { loadCardsShape } from "@tsparticles/shape-cards";
 })();
 ```
 
+### Granular loading
+
+This package exposes several subpath imports to load only the shapes you need:
+
+- **All card suits** (clubs, diamonds, hearts, spades):
+  ```ts
+  import { loadCardSuitsShape } from "@tsparticles/shape-cards/suits";
+  ```
+- **Single suit** (e.g. clubs):
+  ```ts
+  import { loadClubsSuitShape } from "@tsparticles/shape-cards/clubs";
+  import { loadDiamondsSuitShape } from "@tsparticles/shape-cards/diamonds";
+  import { loadHeartsSuitShape } from "@tsparticles/shape-cards/hearts";
+  import { loadSpadesSuitShape } from "@tsparticles/shape-cards/spades";
+  ```
+- **Card images only** (full card face render):
+  ```ts
+  import { loadFullCardsShape } from "@tsparticles/shape-cards/cards";
+  ```
+
+All individual loader functions can also use the `/lazy` suffix for lazy imports (e.g. `@tsparticles/shape-cards/clubs/lazy`).
+
 ## Option mapping
 
 - Primary options key: `particles.shape.type: "cards"`

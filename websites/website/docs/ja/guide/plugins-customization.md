@@ -353,6 +353,11 @@ export async function loadAppShape(engine: Engine): Promise<void> {
 
 await loadAppShape(tsParticles);
 
+/* 細粒度ローディングのため、必要なシェイプのみをインポートできます：
+ * - @tsparticles/shape-cards/clubs, /diamonds, /hearts, /spades, /suits, /cards
+ * - @tsparticles/shape-polygon: loadGenericPolygonShape または loadTriangleShape
+ */
+
 const options = {
   particles: {
     paint: {

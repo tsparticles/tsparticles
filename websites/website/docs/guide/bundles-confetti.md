@@ -1,4 +1,4 @@
-# Bundle: Confetti
+# Confetti
 
 `@tsparticles/confetti` exposes a focused API for confetti effects with minimal setup.
 

@@ -1,4 +1,4 @@
-# Bundle: Fireworks
+# Fireworks
 
 `@tsparticles/fireworks` exposes a focused API for fireworks effects with minimal setup.
 

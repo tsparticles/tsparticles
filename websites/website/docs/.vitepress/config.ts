@@ -1,7 +1,11 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
+import { loadEnv } from "vite";
 
 const base = process.env.VITEPRESS_BASE ?? "/";
 const hostname = "https://particles.js.org";
+
+const loadedEnv = loadEnv("", process.cwd(), "VITE_");
+const gaMeasurementId = loadedEnv.VITE_GA_MEASUREMENT_ID ?? "";
 
 const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
@@ -66,18 +70,39 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Getting Started", link: "/guide/getting-started" },
         { text: "Installation", link: "/guide/installation" },
 
-        { text: "Bundles", link: "/guide/bundles" },
-        { text: "Bundle: Basic", link: "/guide/bundles-basic" },
-        { text: "Bundle: Slim", link: "/guide/bundles-slim" },
-        { text: "Bundle: tsparticles (Full)", link: "/guide/bundles-full" },
-        { text: "Bundle: All", link: "/guide/bundles-all" },
-        { text: "Bundle: Confetti", link: "/guide/bundles-confetti" },
-        { text: "Bundle: Fireworks", link: "/guide/bundles-fireworks" },
-        { text: "Bundle: Particles", link: "/guide/bundles-particles" },
+        {
+          text: "Bundles",
+          collapsed: true,
+          items: [
+            { text: "Overview", link: "/guide/bundles" },
+            { text: "Basic", link: "/guide/bundles-basic" },
+            { text: "Slim", link: "/guide/bundles-slim" },
+            { text: "tsparticles (Full)", link: "/guide/bundles-full" },
+            { text: "All", link: "/guide/bundles-all" },
+            { text: "Confetti", link: "/guide/bundles-confetti" },
+            { text: "Fireworks", link: "/guide/bundles-fireworks" },
+            { text: "Particles", link: "/guide/bundles-particles" },
+          ],
+        },
         { text: "Framework Integrations", link: "/guide/frameworks" },
         { text: "Color Formats", link: "/guide/color-formats" },
         { text: "Container Lifecycle", link: "/guide/container-lifecycle" },
-        { text: "Plugins & Customization", link: "/guide/plugins-customization" },
+        {
+          text: "Plugins & Customization",
+          collapsed: true,
+          items: [
+            { text: "Overview", link: "/guide/plugins-customization" },
+            { text: "Plugin", link: "/guide/plugins-customization-plugin" },
+            { text: "Shape", link: "/guide/plugins-customization-shape" },
+            { text: "Preset", link: "/guide/plugins-customization-preset" },
+            { text: "Updater", link: "/guide/plugins-customization-updater" },
+            { text: "Effect", link: "/guide/plugins-customization-effect" },
+            { text: "Interaction", link: "/guide/plugins-customization-interaction" },
+            { text: "Path", link: "/guide/plugins-customization-path" },
+            { text: "Palette", link: "/guide/plugins-customization-palette" },
+            { text: "Custom Bundle", link: "/guide/plugins-customization-bundle" },
+          ],
+        },
         { text: "Templates & Resources", link: "/guide/templates-resources" },
         { text: "Video Tutorials", link: "/guide/video-tutorials" },
         { text: "Dependency Graph", link: "/guide/dependency-graph" },
@@ -428,6 +453,42 @@ export default defineConfig({
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:title", content: "tsParticles" }],
     ["meta", { property: "og:description", content: "TypeScript particle engine for websites and apps" }],
+    ...(gaMeasurementId
+      ? [
+          [
+            "script",
+            {},
+            `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("consent", "default", {
+  ad_storage: "denied",
+  analytics_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+});
+`,
+          ],
+          [
+            "script",
+            {
+              async: "",
+              src: `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`,
+              id: "tsparticles-ga-loader",
+            },
+          ],
+          [
+            "script",
+            {},
+            `
+gtag("js", new Date());
+gtag("config", "${gaMeasurementId}", {
+  send_page_view: false,
+});
+`,
+          ],
+        ]
+      : []),
   ],
   themeConfig: {
     logo: "https://particles.js.org/tsParticles-64.png",

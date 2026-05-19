@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/browserslist-config",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "tsParticles default Browserslist configuration",
   "main": "dist/index.js",
   "license": "MIT",

@@ -20,6 +20,31 @@
     </title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+
+    <!-- Google Consent Mode v2 defaults — set before GA script loads -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-80MY3TZM79"
+      id="ga-script"
+    ></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-80MY3TZM79', {
+        send_page_view: false,
+      });
+    </script>
   </head>
   <body>
     <svg class="sprite" xmlns="http://www.w3.org/2000/svg">

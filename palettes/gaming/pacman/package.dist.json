@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-pacman",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "tsParticles pacman palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -108,7 +108,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.4"
+    "@tsparticles/engine": "4.0.5"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-palette-pacman.min.js",
