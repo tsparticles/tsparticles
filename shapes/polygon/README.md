@@ -81,6 +81,21 @@ import { loadPolygonShape } from "@tsparticles/shape-polygon";
 })();
 ```
 
+### Granular loading
+
+Instead of loading all polygon shapes, you can import only the shape you need:
+
+- **Polygon only** (generic polygon shape):
+  ```ts
+  import { loadGenericPolygonShape } from "@tsparticles/shape-polygon";
+  ```
+- **Triangle only**:
+  ```ts
+  import { loadTriangleShape } from "@tsparticles/shape-polygon";
+  ```
+
+Both functions are available from the same entry point. Lazy-loaded variants use `@tsparticles/shape-polygon/lazy`.
+
 ## Option mapping
 
 - Primary options key: `particles.shape.type: "polygon"`

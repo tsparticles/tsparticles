@@ -84,6 +84,25 @@ import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 })();
 ```
 
+### Granular loading
+
+Instead of the full `loadEmittersPlugin`, you can import only the parts you need to reduce bundle size:
+
+- **Plugin only** (emitter lifecycle and drawing):
+  ```ts
+  import { loadEmittersPluginSimple } from "@tsparticles/plugin-emitters/plugin";
+  ```
+- **Interaction only** (click/hover on emitters):
+  ```ts
+  import { loadEmittersInteraction } from "@tsparticles/plugin-emitters/interaction";
+  ```
+
+Lazy-loaded variants are also available by appending `/lazy` to the import path:
+```ts
+import { loadEmittersPluginSimple } from "@tsparticles/plugin-emitters/plugin/lazy";
+import { loadEmittersInteraction } from "@tsparticles/plugin-emitters/interaction/lazy";
+```
+
 ## Option mapping
 
 - Primary options key: `emitters`

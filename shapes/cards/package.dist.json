@@ -131,19 +131,19 @@
       "require": "./cjs/clubs/index.lazy.js",
       "default": "./esm/clubs/index.lazy.js"
     },
-    "./diamons": {
-      "types": "./types/diamons/index.d.ts",
-      "browser": "./browser/diamons/index.js",
-      "import": "./esm/diamons/index.js",
-      "require": "./cjs/diamons/index.js",
-      "default": "./esm/diamons/index.js"
+    "./diamonds": {
+      "types": "./types/diamonds/index.d.ts",
+      "browser": "./browser/diamonds/index.js",
+      "import": "./esm/diamonds/index.js",
+      "require": "./cjs/diamonds/index.js",
+      "default": "./esm/diamonds/index.js"
     },
-    "./diamons/lazy": {
-      "types": "./types/diamons/index.lazy.d.ts",
-      "browser": "./browser/diamons/index.lazy.js",
-      "import": "./esm/diamons/index.lazy.js",
-      "require": "./cjs/diamons/index.lazy.js",
-      "default": "./esm/diamons/index.lazy.js"
+    "./diamonds/lazy": {
+      "types": "./types/diamonds/index.lazy.d.ts",
+      "browser": "./browser/diamonds/index.lazy.js",
+      "import": "./esm/diamonds/index.lazy.js",
+      "require": "./cjs/diamonds/index.lazy.js",
+      "default": "./esm/diamonds/index.lazy.js"
     },
     "./hearts": {
       "types": "./types/hearts/index.d.ts",

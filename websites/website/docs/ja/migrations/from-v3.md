@@ -18,6 +18,7 @@
 | `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | paint システムに置き換え                 |
 | `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | paint システムに置き換え                 |
 | `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | `plugins/colors/hsv/` に移動、名前は同じ |
+| (v3では不要 - 組み込み)            | `@tsparticles/plugin-interactivity` | すべてのインタラクションプラグイン（grab, bubble, repulseなど）の動作に必要 |
 
 ## オプション対応例
 
@@ -77,8 +78,25 @@ await tsParticles.load({
 1. すべての `@tsparticles/*` パッケージを最新バージョンに揃える。
 2. 非推奨のオプションキー（`particles.color`、`particles.stroke`）を `particles.paint.*` に置き換える。
 3. 名称変更されたパッケージを `package.json` で更新する（上の表を参照）。
-4. カスタムプラグイン/シェイプが `tsParticles.load(...)` の前に読み込まれていることを確認する。
-5. インタラクションとパフォーマンス重視のシーンを再テストする。
+4. インタラクションプラグイン（grab, bubble, repulseなど）を使用する場合は、`@tsparticles/plugin-interactivity` をインストールし、インタラクションプラグインを読み込む前に `await loadInteractivityPlugin(tsParticles)` で読み込んでください。
+5. カスタムプラグイン/シェイプが `tsParticles.load(...)` の前に読み込まれていることを確認する。
+6. インタラクションとパフォーマンス重視のシーンを再テストする。
+
+## 細粒度ローダー関数
+
+一部のパッケージは、必要なものだけをロードしてバンドルサイズを削減するための個別のローダー関数を提供しています。
+
+### プラグイン
+
+- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple`（アブソーバーのライフサイクルと描画のみ）、`loadAbsorbersInteraction`（クリック/ホバーインタラクションのみ）、または `loadAbsorbersPlugin`（両方）。
+- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple`（エミッターのライフサイクルと描画のみ）、`loadEmittersInteraction`（クリック/ホバーインタラクションのみ）、または `loadEmittersPlugin`（両方）。
+
+### シェイプ
+
+- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape`（ポリゴン）または `loadTriangleShape`（三角形）を個別に、または `loadPolygonShape` で両方。
+- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`、`loadDiamondsSuitShape`、`loadHeartsSuitShape`、`loadSpadesSuitShape`（個別のスート）、`loadCardSuitsShape`（すべてのスート）、`loadFullCardsShape`（カード画像）、または `loadCardsShape`（すべて）。
+
+他のすべてのシェイプパッケージ（arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text）は、単一の `load*Shape` 関数を直接エクスポートします。
 
 ## リソース
 

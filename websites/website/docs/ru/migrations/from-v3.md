@@ -18,6 +18,7 @@
 | `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Заменён системой paint                       |
 | `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Заменён системой paint                       |
 | `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Перемещён в `plugins/colors/hsv/`, то же имя |
+| (не нужно в v3 - встроено)          | `@tsparticles/plugin-interactivity` | Требуется для работы всех плагинов взаимодействия (grab, bubble, repulse и т.д.) |
 
 ## Примеры соответствия опций
 
@@ -77,8 +78,25 @@ await tsParticles.load({
 1. Приведите все пакеты `@tsparticles/*` к последней версии.
 2. Замените устаревшие ключи опций (`particles.color`, `particles.stroke`) на `particles.paint.*`.
 3. Обновите переименованные пакеты в `package.json` (см. таблицу выше).
-4. Убедитесь, что пользовательские плагины/фигуры загружаются до `tsParticles.load(...)`.
-5. Повторно протестируйте взаимодействия и сцены, критичные для производительности.
+4. Если вы используете плагины взаимодействия (grab, bubble, repulse и т.д.), установите `@tsparticles/plugin-interactivity` и загрузите его с помощью `await loadInteractivityPlugin(tsParticles)` перед загрузкой любого плагина взаимодействия.
+5. Убедитесь, что пользовательские плагины/фигуры загружаются до `tsParticles.load(...)`.
+6. Повторно протестируйте взаимодействия и сцены, критичные для производительности.
+
+## Детализированные функции загрузки
+
+Некоторые пакеты предоставляют отдельные функции загрузки, чтобы загружать только то, что нужно, уменьшая размер бандла.
+
+### Плагины
+
+- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple` (только жизненный цикл и отрисовка абсорберов), `loadAbsorbersInteraction` (только взаимодействие клик/наведение) или `loadAbsorbersPlugin` (оба).
+- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple` (только жизненный цикл и отрисовка эмиттеров), `loadEmittersInteraction` (только взаимодействие клик/наведение) или `loadEmittersPlugin` (оба).
+
+### Фигуры
+
+- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape` (многоугольник) или `loadTriangleShape` (треугольник) по отдельности, или `loadPolygonShape` для обоих.
+- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`, `loadDiamondsSuitShape`, `loadHeartsSuitShape`, `loadSpadesSuitShape` (отдельные масти), `loadCardSuitsShape` (все масти), `loadFullCardsShape` (изображения карт) или `loadCardsShape` (все).
+
+Все остальные пакеты фигур (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) экспортируют одну функцию `load*Shape` напрямую.
 
 ## Ресурсы
 

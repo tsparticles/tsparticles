@@ -18,6 +18,7 @@ Alguns pacotes `v3.x` foram renomeados ou reestruturados:
 | `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Substituido pelo sistema paint                |
 | `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Substituido pelo sistema paint                |
 | `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Movido para `plugins/colors/hsv/`, mesmo nome |
+| (nao necessario no v3 - integrado)  | `@tsparticles/plugin-interactivity` | Necessario para todos os plugins de interacao (grab, bubble, repulse, etc.) funcionarem |
 
 ## Exemplos de mapeamento de opcoes
 
@@ -77,8 +78,25 @@ await tsParticles.load({
 1. Alinhe todos os pacotes `@tsparticles/*` para a versao mais recente.
 2. Substitua as chaves de opcao obsoletas (`particles.color`, `particles.stroke`) por `particles.paint.*`.
 3. Atualize os pacotes renomeados em `package.json` (ver tabela acima).
-4. Verifique se plugins/formas personalizados sao carregados antes de `tsParticles.load(...)`.
-5. Reteste interacoes e cenas criticas de desempenho.
+4. Se voce usa plugins de interacao (grab, bubble, repulse, etc.), instale `@tsparticles/plugin-interactivity` e carregue-o com `await loadInteractivityPlugin(tsParticles)` antes de carregar qualquer plugin de interacao.
+5. Verifique se plugins/formas personalizados sao carregados antes de `tsParticles.load(...)`.
+6. Reteste interacoes e cenas criticas de desempenho.
+
+## Funcoes de carregamento granulares
+
+Alguns pacotes expoem funcoes de carregamento individuais para carregar apenas o necessario, reduzindo o tamanho do bundle.
+
+### Plugins
+
+- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple` (apenas ciclo de vida e desenho dos absorvedores), `loadAbsorbersInteraction` (apenas interacao clique/hover) ou `loadAbsorbersPlugin` (ambos).
+- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple` (apenas ciclo de vida e desenho dos emissores), `loadEmittersInteraction` (apenas interacao clique/hover) ou `loadEmittersPlugin` (ambos).
+
+### Formas
+
+- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape` (poligono) ou `loadTriangleShape` (triangulo) individualmente, ou `loadPolygonShape` para ambos.
+- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`, `loadDiamondsSuitShape`, `loadHeartsSuitShape`, `loadSpadesSuitShape` (naipes individuais), `loadCardSuitsShape` (todos os naipes), `loadFullCardsShape` (imagens de cartas) ou `loadCardsShape` (todos).
+
+Todos os outros pacotes de formas (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) exportam diretamente uma unica funcao `load*Shape`.
 
 ## Recursos
 

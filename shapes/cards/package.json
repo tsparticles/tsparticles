@@ -138,19 +138,19 @@
       "require": "./dist/cjs/clubs/index.lazy.js",
       "default": "./dist/esm/clubs/index.lazy.js"
     },
-    "./diamons": {
-      "types": "./dist/types/diamons/index.d.ts",
-      "browser": "./dist/browser/diamons/index.js",
-      "import": "./dist/esm/diamons/index.js",
-      "require": "./dist/cjs/diamons/index.js",
-      "default": "./dist/esm/diamons/index.js"
+    "./diamonds": {
+      "types": "./dist/types/diamonds/index.d.ts",
+      "browser": "./dist/browser/diamonds/index.js",
+      "import": "./dist/esm/diamonds/index.js",
+      "require": "./dist/cjs/diamonds/index.js",
+      "default": "./dist/esm/diamonds/index.js"
     },
-    "./diamons/lazy": {
-      "types": "./dist/types/diamons/index.lazy.d.ts",
-      "browser": "./dist/browser/diamons/index.lazy.js",
-      "import": "./dist/esm/diamons/index.lazy.js",
-      "require": "./dist/cjs/diamons/index.lazy.js",
-      "default": "./dist/esm/diamons/index.lazy.js"
+    "./diamonds/lazy": {
+      "types": "./dist/types/diamonds/index.lazy.d.ts",
+      "browser": "./dist/browser/diamonds/index.lazy.js",
+      "import": "./dist/esm/diamonds/index.lazy.js",
+      "require": "./dist/cjs/diamonds/index.lazy.js",
+      "default": "./dist/esm/diamonds/index.lazy.js"
     },
     "./hearts": {
       "types": "./dist/types/hearts/index.d.ts",

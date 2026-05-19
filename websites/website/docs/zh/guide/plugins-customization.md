@@ -353,6 +353,11 @@ export async function loadAppShape(engine: Engine): Promise<void> {
 
 await loadAppShape(tsParticles);
 
+/* 对于粒度加载，你可以只导入所需的形状：
+ * - @tsparticles/shape-cards/clubs, /diamonds, /hearts, /spades, /suits, /cards
+ * - @tsparticles/shape-polygon: loadGenericPolygonShape 或 loadTriangleShape
+ */
+
 const options = {
   particles: {
     paint: {

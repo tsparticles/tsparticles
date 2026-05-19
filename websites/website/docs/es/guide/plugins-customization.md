@@ -353,6 +353,11 @@ export async function loadAppShape(engine: Engine): Promise<void> {
 
 await loadAppShape(tsParticles);
 
+/* Para carga granular, puedes importar solo las formas que necesitas:
+ * - @tsparticles/shape-cards/clubs, /diamonds, /hearts, /spades, /suits, /cards
+ * - @tsparticles/shape-polygon: loadGenericPolygonShape o loadTriangleShape
+ */
+
 const options = {
   particles: {
     paint: {
