@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-build",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "license": "MIT",
   "type": "module",
   "bin": {

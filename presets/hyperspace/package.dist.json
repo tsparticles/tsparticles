@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-hyperspace",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "tsParticles hyperspace preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,12 +106,12 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.4",
-    "@tsparticles/engine": "4.0.4",
-    "@tsparticles/plugin-emitters": "4.0.4",
-    "@tsparticles/plugin-emitters-shape-square": "4.0.4",
-    "@tsparticles/plugin-trail": "4.0.4",
-    "@tsparticles/updater-life": "4.0.4"
+    "@tsparticles/basic": "4.0.5",
+    "@tsparticles/engine": "4.0.5",
+    "@tsparticles/plugin-emitters": "4.0.5",
+    "@tsparticles/plugin-emitters-shape-square": "4.0.5",
+    "@tsparticles/plugin-trail": "4.0.5",
+    "@tsparticles/updater-life": "4.0.5"
   },
   "publishConfig": {
     "access": "public"

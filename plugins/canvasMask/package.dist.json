@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-canvas-mask",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,13 +92,13 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.0.4"
+    "@tsparticles/engine": "4.0.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "dependencies": {
-    "@tsparticles/canvas-utils": "4.0.4"
+    "@tsparticles/canvas-utils": "4.0.5"
   }
 }

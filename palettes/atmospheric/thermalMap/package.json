@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-thermal-map",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "tsParticles thermal map - cold to hot palette",
   "homepage": "https://particles.js.org",
   "scripts": {
