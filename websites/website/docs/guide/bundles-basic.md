@@ -1,4 +1,4 @@
-# Bundle: Basic
+# Basic
 
 `@tsparticles/basic` is for extra-light setups where you need a minimal runtime.
 

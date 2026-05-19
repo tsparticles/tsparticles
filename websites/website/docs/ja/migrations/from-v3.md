@@ -11,14 +11,14 @@
 
 一部の `v3.x` パッケージは名称変更または再構成されました：
 
-| v3 パッケージ                       | 現在のパッケージ                | 備考                                     |
-| ----------------------------------- | ------------------------------- | ---------------------------------------- |
-| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | 1つのプラグインに統合                    |
-| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | 1つのプラグインに統合                    |
-| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | paint システムに置き換え                 |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | paint システムに置き換え                 |
-| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | `plugins/colors/hsv/` に移動、名前は同じ |
-| (v3では不要 - 組み込み)            | `@tsparticles/plugin-interactivity` | すべてのインタラクションプラグイン（grab, bubble, repulseなど）の動作に必要 |
+| v3 パッケージ                       | 現在のパッケージ                    | 備考                                                                        |
+| ----------------------------------- | ----------------------------------- | --------------------------------------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`          | 1つのプラグインに統合                                                       |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`          | 1つのプラグインに統合                                                       |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`        | paint システムに置き換え                                                    |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`        | paint システムに置き換え                                                    |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color`     | `plugins/colors/hsv/` に移動、名前は同じ                                    |
+| (v3では不要 - 組み込み)             | `@tsparticles/plugin-interactivity` | すべてのインタラクションプラグイン（grab, bubble, repulseなど）の動作に必要 |
 
 ## オプション対応例
 

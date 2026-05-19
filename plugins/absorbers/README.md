@@ -98,6 +98,7 @@ Instead of the full `loadAbsorbersPlugin`, you can import only the parts you nee
   ```
 
 Lazy-loaded variants are also available by appending `/lazy` to the import path:
+
 ```ts
 import { loadAbsorbersPluginSimple } from "@tsparticles/plugin-absorbers/plugin/lazy";
 import { loadAbsorbersInteraction } from "@tsparticles/plugin-absorbers/interaction/lazy";

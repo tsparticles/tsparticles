@@ -1,4 +1,4 @@
-# Bundle: Slim
+# Slim
 
 `@tsparticles/slim` is the recommended default for most projects.
 

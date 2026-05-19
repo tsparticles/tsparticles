@@ -11,14 +11,14 @@ Da `v3.x`, i rischi principali in migrazione sono la **compatibilità delle opzi
 
 Alcuni pacchetti di `v3.x` sono stati rinominati o ristrutturati:
 
-| Pacchetto v3                        | Pacchetto attuale               | Note                                           |
-| ----------------------------------- | ------------------------------- | ---------------------------------------------- |
-| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | Uniti in un singolo plugin                     |
-| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | Uniti in un singolo plugin                     |
-| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | Sostituito dal sistema paint                   |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | Sostituito dal sistema paint                   |
-| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | Spostato in `plugins/colors/hsv/`, stesso nome |
-| (non necessario in v3 - integrato) | `@tsparticles/plugin-interactivity` | Necessario per far funzionare qualsiasi plugin di interazione (grab, bubble, repulse, ecc.) |
+| Pacchetto v3                        | Pacchetto attuale                   | Note                                                                                        |
+| ----------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`          | Uniti in un singolo plugin                                                                  |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`          | Uniti in un singolo plugin                                                                  |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`        | Sostituito dal sistema paint                                                                |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`        | Sostituito dal sistema paint                                                                |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color`     | Spostato in `plugins/colors/hsv/`, stesso nome                                              |
+| (non necessario in v3 - integrato)  | `@tsparticles/plugin-interactivity` | Necessario per far funzionare qualsiasi plugin di interazione (grab, bubble, repulse, ecc.) |
 
 ## Esempi mappatura opzioni
 

@@ -1,4 +1,4 @@
-# Bundle: Particles
+# Particles
 
 `@tsparticles/particles` exposes a focused API for simple particles backgrounds.
 

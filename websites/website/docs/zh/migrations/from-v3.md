@@ -11,13 +11,13 @@
 
 部分 `v3.x` 包已重命名或重组：
 
-| v3 包                               | 当前包                          | 说明                                   |
-| ----------------------------------- | ------------------------------- | -------------------------------------- |
-| `@tsparticles/move-base`            | `@tsparticles/plugin-move`      | 合并为单个插件                         |
-| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`      | 合并为单个插件                         |
-| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`    | 被 paint 系统取代                      |
-| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`    | 被 paint 系统取代                      |
-| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color` | 移动到 `plugins/colors/hsv/`，名称不变 |
+| v3 包                               | 当前包                              | 说明                                                   |
+| ----------------------------------- | ----------------------------------- | ------------------------------------------------------ |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`          | 合并为单个插件                                         |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`          | 合并为单个插件                                         |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`        | 被 paint 系统取代                                      |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`        | 被 paint 系统取代                                      |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color`     | 移动到 `plugins/colors/hsv/`，名称不变                 |
 | (v3 中不需要 - 内置)                | `@tsparticles/plugin-interactivity` | 所有交互插件（grab, bubble, repulse 等）正常工作所必需 |
 
 ## 选项映射示例

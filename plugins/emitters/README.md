@@ -98,6 +98,7 @@ Instead of the full `loadEmittersPlugin`, you can import only the parts you need
   ```
 
 Lazy-loaded variants are also available by appending `/lazy` to the import path:
+
 ```ts
 import { loadEmittersPluginSimple } from "@tsparticles/plugin-emitters/plugin/lazy";
 import { loadEmittersInteraction } from "@tsparticles/plugin-emitters/interaction/lazy";
