@@ -15,27 +15,6 @@ let adSenseInitialized = false;
 let consentApplied: CookieConsentPreferences | undefined;
 let consentDefaultsInitialized = false;
 
-function initConsentModeDefaults(): void {
-  if (consentDefaultsInitialized) {
-    return;
-  }
-
-  const trackingWindow = ensureGtagStub();
-
-  if (!trackingWindow?.gtag) {
-    return;
-  }
-
-  trackingWindow.gtag("consent", "default", {
-    ad_storage: "denied",
-    analytics_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-  });
-
-  consentDefaultsInitialized = true;
-}
-
 function getTrackingWindow(): TrackingWindow | undefined {
   if (typeof globalThis.window === "undefined") {
     return undefined;
@@ -62,6 +41,27 @@ function ensureGtagStub(): TrackingWindow | undefined {
   return trackingWindow;
 }
 
+function initConsentModeDefaults(): void {
+  if (consentDefaultsInitialized) {
+    return;
+  }
+
+  const trackingWindow = ensureGtagStub();
+
+  if (!trackingWindow?.gtag) {
+    return;
+  }
+
+  trackingWindow.gtag("consent", "default", {
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+
+  consentDefaultsInitialized = true;
+}
+
 function loadScriptOnce(id: string, src: string): void {
   const trackingWindow = getTrackingWindow();
 
@@ -81,8 +81,6 @@ function initGoogleAnalytics(): void {
   if (!trackingConfig.isAnalyticsEnabled || gaInitialized) {
     return;
   }
-
-  initConsentModeDefaults();
 
   const trackingWindow = ensureGtagStub();
 

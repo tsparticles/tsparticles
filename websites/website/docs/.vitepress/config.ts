@@ -1,7 +1,35 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
+import { readFileSync } from "fs";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const base = process.env.VITEPRESS_BASE ?? "/";
 const hostname = "https://particles.js.org";
+
+const envPath = resolve(__dirname, "../../.env");
+
+let gaMeasurementId = process.env.VITE_GA_MEASUREMENT_ID ?? "";
+
+if (!gaMeasurementId) {
+  try {
+    const envContent = readFileSync(envPath, "utf8");
+
+    for (const line of envContent.split("\n")) {
+      const trimmed = line.trim();
+
+      if (trimmed && !trimmed.startsWith("#") && trimmed.startsWith("VITE_GA_MEASUREMENT_ID=")) {
+        gaMeasurementId = trimmed.split("=").slice(1).join("=").trim();
+
+        break;
+      }
+    }
+  } catch {
+    // .env file not available
+  }
+}
 
 const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
@@ -449,6 +477,35 @@ export default defineConfig({
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:title", content: "tsParticles" }],
     ["meta", { property: "og:description", content: "TypeScript particle engine for websites and apps" }],
+    ...(gaMeasurementId
+      ? [
+          [
+            "script",
+            {},
+            `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("consent", "default", {
+  ad_storage: "denied",
+  analytics_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+});
+`,
+          ],
+          ["script", { async: "", src: `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`, id: "tsparticles-ga-loader" }],
+          [
+            "script",
+            {},
+            `
+gtag("js", new Date());
+gtag("config", "${gaMeasurementId}", {
+  send_page_view: false,
+});
+`,
+          ],
+        ]
+      : []),
   ],
   themeConfig: {
     logo: "https://particles.js.org/tsParticles-64.png",
