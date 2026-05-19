@@ -52,14 +52,33 @@ onlyBuiltDependencies:
   - "@tsparticles/engine"
   - canvas
   - core-js
+  - core-js-bundle
   - core-js-pure
   - electron
   - esbuild
   - fsevents
+  - inferno
+  - lmdb
+  - msgpackr-extract
   - nuxt
   - nx
+  - puppeteer
   - sharp
   - unrs-resolver
 patchedDependencies:
   tsup@8.5.1: patches/tsup@8.5.1.patch
   vue-server-renderer@2.7.16: patches/vue-server-renderer@2.7.16.patch
+
+overrides:
+  "@nuxt/vue-app@2.18.1>vue": "2.7.16"
+  "@nuxt/vue-renderer@2.18.1>vue": "2.7.16"
+  "vue-server-renderer@2.7.16>vue": "2.7.16"
+  "vue-template-compiler@2.7.16>vue": "2.7.16"
+
+packageExtensions:
+  vue-server-renderer@*:
+    dependencies:
+      vue: "2.7.16"
+  vue-template-compiler@*:
+    dependencies:
+      vue: "2.7.16"
