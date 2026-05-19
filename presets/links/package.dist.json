@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-links",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "tsParticles links preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,10 +106,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.3",
-    "@tsparticles/engine": "4.0.3",
-    "@tsparticles/interaction-particles-links": "4.0.3",
-    "@tsparticles/plugin-interactivity": "4.0.3"
+    "@tsparticles/basic": "4.0.4",
+    "@tsparticles/engine": "4.0.4",
+    "@tsparticles/interaction-particles-links": "4.0.4",
+    "@tsparticles/plugin-interactivity": "4.0.4"
   },
   "publishConfig": {
     "access": "public"

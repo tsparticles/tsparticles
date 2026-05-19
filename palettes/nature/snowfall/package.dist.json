@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-snowfall",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "tsParticles snowfall palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.3"
+    "@tsparticles/engine": "4.0.4"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",
