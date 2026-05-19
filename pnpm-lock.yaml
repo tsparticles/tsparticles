@@ -4134,7 +4134,7 @@ importers:
         version: 21.2.8(@angular/compiler@21.2.8)(typescript@5.9.3)
       '@angular/language-service':
         specifier: ~21.2.8
-        version: 21.2.8
+        version: 21.2.13
       '@capacitor/cli':
         specifier: ^8.3.0
         version: 8.3.0
@@ -14951,8 +14951,8 @@ packages:
       '@angular/platform-browser': 21.2.9
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/language-service@21.2.8':
-    resolution: {integrity: sha512-Eyvoo3ttFhRAAEmPcLkLfbEtTLfKnAxRAbxNoA9eDXozskkgaDDBUAHd9qOC1A6cnVda5nP4aNeUa+I81Q2maw==}
+  '@angular/language-service@21.2.13':
+    resolution: {integrity: sha512-6WDw77DdxaQjze+4EL3ySZx5CCY1jxIymTNsEZvAxQXP5jc6/f+h4bHbFCv4QCyYHGTCLDCZmL+jeT1LngmGng==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@angular/platform-browser-dynamic@21.2.8':
@@ -43930,7 +43930,7 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/language-service@21.2.8': {}
+  '@angular/language-service@21.2.13': {}
 
   '@angular/platform-browser-dynamic@21.2.8(@angular/common@21.2.13(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/compiler@21.2.8)(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.8(@angular/animations@21.2.8(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.2)(zone.js@0.16.1)))(@angular/common@21.2.13(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.8(@angular/compiler@21.2.8)(rxjs@7.8.2)(zone.js@0.16.1)))':
     dependencies:
@@ -54580,17 +54580,17 @@ snapshots:
   '@types/ember@4.0.11':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__array': 4.0.10
+      '@types/ember__array': 4.0.10(@babel/core@7.29.0)
       '@types/ember__component': 4.0.22
-      '@types/ember__controller': 4.0.12
-      '@types/ember__debug': 4.0.8
-      '@types/ember__engine': 4.0.11
+      '@types/ember__controller': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__debug': 4.0.8(@babel/core@7.29.0)
+      '@types/ember__engine': 4.0.11(@babel/core@7.29.0)
       '@types/ember__error': 4.0.6
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
       '@types/ember__polyfills': 4.0.6
       '@types/ember__routing': 4.0.23
       '@types/ember__runloop': 4.0.10
-      '@types/ember__service': 4.0.9
+      '@types/ember__service': 4.0.9(@babel/core@7.29.0)
       '@types/ember__string': 3.0.15
       '@types/ember__template': 4.0.7
       '@types/ember__test': 4.0.6(@babel/core@7.29.0)
@@ -54623,19 +54623,14 @@ snapshots:
   '@types/ember__application@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@glimmer/component': 1.1.2(@babel/core@7.29.0)
-      '@types/ember': 4.0.11(@babel/core@7.29.0)
+      '@types/ember': 4.0.11
       '@types/ember__engine': 4.0.11(@babel/core@7.29.0)
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
       '@types/ember__owner': 4.0.9
-      '@types/ember__routing': 4.0.23(@babel/core@7.29.0)
+      '@types/ember__routing': 4.0.23
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__array@4.0.10':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/ember__object': 4.0.12
 
   '@types/ember__array@4.0.10(@babel/core@7.29.0)':
     dependencies:
@@ -54648,7 +54643,7 @@ snapshots:
   '@types/ember__component@4.0.22':
     dependencies:
       '@types/ember': 4.0.11
-      '@types/ember__object': 4.0.12
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
 
   '@types/ember__component@4.0.22(@babel/core@7.29.0)':
     dependencies:
@@ -54658,21 +54653,12 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@types/ember__controller@4.0.12':
-    dependencies:
-      '@types/ember__object': 4.0.12
-
   '@types/ember__controller@4.0.12(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__debug@4.0.8':
-    dependencies:
-      '@types/ember__object': 4.0.12
-      '@types/ember__owner': 4.0.9
 
   '@types/ember__debug@4.0.8(@babel/core@7.29.0)':
     dependencies:
@@ -54684,11 +54670,6 @@ snapshots:
 
   '@types/ember__destroyable@4.0.5': {}
 
-  '@types/ember__engine@4.0.11':
-    dependencies:
-      '@types/ember__object': 4.0.12
-      '@types/ember__owner': 4.0.9
-
   '@types/ember__engine@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
@@ -54698,11 +54679,6 @@ snapshots:
       - supports-color
 
   '@types/ember__error@4.0.6': {}
-
-  '@types/ember__object@4.0.12':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/rsvp': 4.0.9
 
   '@types/ember__object@4.0.12(@babel/core@7.29.0)':
     dependencies:
@@ -54719,16 +54695,16 @@ snapshots:
   '@types/ember__routing@4.0.23':
     dependencies:
       '@types/ember': 4.0.11
-      '@types/ember__controller': 4.0.12
-      '@types/ember__object': 4.0.12
-      '@types/ember__service': 4.0.9
+      '@types/ember__controller': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__service': 4.0.9(@babel/core@7.29.0)
 
   '@types/ember__routing@4.0.23(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__controller': 4.0.12
+      '@types/ember__controller': 4.0.12(@babel/core@7.29.0)
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
-      '@types/ember__service': 4.0.9
+      '@types/ember__service': 4.0.9(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -54743,10 +54719,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  '@types/ember__service@4.0.9':
-    dependencies:
-      '@types/ember__object': 4.0.12
 
   '@types/ember__service@4.0.9(@babel/core@7.29.0)':
     dependencies:
