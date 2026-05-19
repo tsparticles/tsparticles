@@ -24,7 +24,9 @@
     <!-- Google Consent Mode v2 defaults — set before GA script loads -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('consent', 'default', {
         ad_storage: 'denied',
         analytics_storage: 'denied',
@@ -32,7 +34,11 @@
         ad_personalization: 'denied',
       });
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80MY3TZM79" id="ga-script"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-80MY3TZM79"
+      id="ga-script"
+    ></script>
     <script>
       gtag('js', new Date());
       gtag('config', 'G-80MY3TZM79', {

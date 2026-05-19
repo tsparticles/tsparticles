@@ -493,7 +493,14 @@ gtag("consent", "default", {
 });
 `,
           ],
-          ["script", { async: "", src: `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`, id: "tsparticles-ga-loader" }],
+          [
+            "script",
+            {
+              async: "",
+              src: `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`,
+              id: "tsparticles-ga-loader",
+            },
+          ],
           [
             "script",
             {},
