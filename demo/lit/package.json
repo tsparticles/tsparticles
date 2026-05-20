@@ -29,7 +29,7 @@
   "dependencies": {
     "@tsparticles/engine": "workspace:^",
     "@tsparticles/lit": "workspace:^",
-    "lit": "^2.6.1",
+    "lit": "^3.3.3",
     "tsparticles": "workspace:^"
   },
   "devDependencies": {
