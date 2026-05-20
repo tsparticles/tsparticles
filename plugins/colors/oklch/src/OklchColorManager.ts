@@ -9,12 +9,14 @@ import {
   type IRgba,
   type IValueColor,
   getRangeValue,
+  identity,
   parseAlpha,
+  percentDenominator,
 } from "@tsparticles/engine";
 import { oklchToRgb, oklchaToRgba } from "./utils.js";
 
 const oklchRegex =
-  /oklch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
+  /oklch\(\s*(\d+(?:\.\d+)?)(%?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
 /** OKLCH color manager */
 export class OklchColorManager implements IColorManager {
@@ -72,18 +74,19 @@ export class OklchColorManager implements IColorManager {
     const result = oklchRegex.exec(input),
       indexes = {
         l: 1, // Lightness
+        lPercent: 2, // % after lightness
         c: 3, // Chroma
-        h: 5, // Hue
-        a: 7, // Optional alpha for OKLCH
+        h: 4, // Hue
+        a: 6, // Optional alpha for OKLCH
       },
       defaultAlpha = 1;
 
     return result
       ? oklchaToRgba({
           a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          c: parseFloat(result[indexes.c] ?? "0"), // Chroma
-          h: parseFloat(result[indexes.h] ?? "0"), // Hue
-          l: parseFloat(result[indexes.l] ?? "0"), // Lightness
+          c: parseFloat(result[indexes.c] ?? "0"),
+          h: parseFloat(result[indexes.h] ?? "0"),
+          l: parseFloat(result[indexes.l] ?? "0") * (result[indexes.lPercent] ? identity : percentDenominator),
         })
       : undefined; // OKLCH parsing without alpha
   }

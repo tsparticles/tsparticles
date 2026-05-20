@@ -9825,6 +9825,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/hsl:
@@ -9835,6 +9838,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/hsv:
@@ -9845,6 +9851,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/hwb:
@@ -9855,6 +9864,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/lab:
@@ -9865,6 +9877,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/lch:
@@ -9875,6 +9890,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/named:
@@ -9885,6 +9903,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/oklab:
@@ -9895,6 +9916,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/oklch:
@@ -9905,6 +9929,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/colors/rgb:
@@ -9915,6 +9942,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(@opentelemetry/api@1.9.1)(@types/node@25.9.1)(@vitest/coverage-v8@4.1.6)(@vitest/ui@4.1.6)(jsdom@29.1.1(canvas@3.2.3))(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
     publishDirectory: dist
 
   plugins/easings/back:

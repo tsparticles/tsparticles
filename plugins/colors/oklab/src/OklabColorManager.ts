@@ -9,12 +9,14 @@ import {
   type IRgba,
   type IValueColor,
   getRangeValue,
+  identity,
   parseAlpha,
+  percentDenominator,
 } from "@tsparticles/engine";
 import { oklabToRgb, oklabaToRgba } from "./utils.js";
 
 const oklabRegex =
-  /oklab\(\s*(\d+(\.\d+)?)%\s+(-?\d+(\.\d+)?)\s+(-?\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
+  /oklab\(\s*(\d+(?:\.\d+)?)(%?)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
 /** OKLAB color manager */
 export class OklabColorManager implements IColorManager {
@@ -72,16 +74,17 @@ export class OklabColorManager implements IColorManager {
     const result = oklabRegex.exec(input),
       indexes = {
         l: 1,
+        lPercent: 2,
         aAxis: 3,
-        bAxis: 5,
-        a: 7,
+        bAxis: 4,
+        a: 5,
       },
       defaultAlpha = 1;
 
     return result
       ? oklabaToRgba({
           a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          l: parseFloat(result[indexes.l] ?? "0"),
+          l: parseFloat(result[indexes.l] ?? "0") * (result[indexes.lPercent] ? identity : percentDenominator),
           aAxis: parseFloat(result[indexes.aAxis] ?? "0"),
           bAxis: parseFloat(result[indexes.bAxis] ?? "0"),
         })
