@@ -15,8 +15,6 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.browser,
-        ace: 'readonly',
-        js_beautify: 'readonly',
       },
     },
     plugins: {

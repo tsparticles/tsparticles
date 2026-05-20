@@ -1,6 +1,19 @@
 import { confetti } from '@tsparticles/confetti';
 import './style.css';
 import './cookie-consent.js';
+import ace from 'ace-builds';
+import { js_beautify } from 'js-beautify';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/mode-html';
+import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-xcode';
+import javascriptWorkerUrl from 'ace-builds/src-noconflict/worker-javascript.js?url';
+import htmlWorkerUrl from 'ace-builds/src-noconflict/worker-html.js?url';
+import cssWorkerUrl from 'ace-builds/src-noconflict/worker-css.js?url';
+
+ace.config.setModuleUrl('ace/mode/javascript_worker', javascriptWorkerUrl);
+ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
+ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
 
 window.confetti = confetti;
 

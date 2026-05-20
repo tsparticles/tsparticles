@@ -22,7 +22,7 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.0.1
-        version: 21.0.1(@types/node@25.8.0)(conventional-commits-parser@6.3.0)(typescript@6.0.3)
+        version: 21.0.1(@types/node@25.9.0)(conventional-commits-parser@6.3.0)(typescript@6.0.3)
       '@commitlint/config-conventional':
         specifier: ^21.0.1
         version: 21.0.1
@@ -66,8 +66,8 @@ importers:
         specifier: workspace:^
         version: link:cli/utils/webpack-config
       '@types/node':
-        specifier: ^25.8.0
-        version: 25.8.0
+        specifier: ^25.9.0
+        version: 25.9.0
       '@types/webpack-env':
         specifier: ^1.18.8
         version: 1.18.8
@@ -106,7 +106,7 @@ importers:
         version: 9.1.7
       lerna:
         specifier: ^9.0.7
-        version: 9.0.7(@swc-node/register@1.11.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@swc/core@1.15.33)(@swc/types@0.1.26)(typescript@6.0.3))(@swc/core@1.15.33)(@types/node@25.8.0)(babel-plugin-macros@3.1.0)
+        version: 9.0.7(@swc-node/register@1.11.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@swc/core@1.15.33)(@swc/types@0.1.26)(typescript@6.0.3))(@swc/core@1.15.33)(@types/node@25.9.0)(babel-plugin-macros@3.1.0)
       nx:
         specifier: ^22.7.2
         version: 22.7.2(@swc-node/register@1.11.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@swc/core@1.15.33)(@swc/types@0.1.26)(typescript@6.0.3))(@swc/core@1.15.33)
@@ -120,8 +120,8 @@ importers:
         specifier: ^4.1.8
         version: 4.1.8(prettier@3.8.3)
       puppeteer:
-        specifier: ^25.0.3
-        version: 25.0.3(typescript@6.0.3)
+        specifier: ^25.0.4
+        version: 25.0.4(typescript@6.0.3)
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -139,12 +139,12 @@ importers:
         version: 2.9.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.15.33)(@types/node@25.8.0)(typescript@6.0.3)
+        version: 10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
       typescript-eslint:
-        specifier: ^8.59.3
+        specifier: ^8.59.4
         version: 8.59.4(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
       webpack:
         specifier: ^5.106.2
@@ -642,9 +642,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/plugin-interactivity':
         specifier: workspace:*
         version: link:../../plugins/interactivity/dist
@@ -6518,9 +6515,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6531,9 +6525,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6544,9 +6535,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6557,9 +6545,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6570,9 +6555,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6590,9 +6572,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6606,9 +6585,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6622,9 +6598,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6638,9 +6611,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6658,9 +6628,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6674,9 +6641,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6690,9 +6654,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6710,9 +6671,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6726,9 +6684,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6742,9 +6697,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6758,9 +6710,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6774,9 +6723,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6790,9 +6736,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6806,9 +6749,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6822,9 +6762,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6838,9 +6775,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6854,9 +6788,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6870,9 +6801,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -6886,9 +6814,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6902,9 +6827,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6922,9 +6844,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -6938,9 +6857,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -9656,9 +9572,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9672,9 +9585,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9688,9 +9598,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9707,9 +9614,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9723,9 +9627,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9745,9 +9646,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9761,9 +9659,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9777,9 +9672,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9799,9 +9691,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9815,9 +9704,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9831,9 +9717,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9853,9 +9736,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9869,9 +9749,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9885,9 +9762,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9901,9 +9775,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9917,9 +9788,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9930,9 +9798,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9947,9 +9812,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -9960,9 +9822,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -9973,9 +9832,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -9986,9 +9842,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -9999,9 +9852,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10012,9 +9862,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10025,9 +9872,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10038,9 +9882,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10051,9 +9892,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10064,9 +9902,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10077,9 +9912,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10090,9 +9922,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10103,9 +9932,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10116,9 +9942,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10129,9 +9952,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10142,9 +9962,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10155,9 +9972,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10210,9 +10024,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10223,9 +10034,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10236,9 +10044,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10249,9 +10054,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10262,9 +10064,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10275,9 +10074,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10295,9 +10091,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10311,9 +10104,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10327,9 +10117,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10343,9 +10130,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10359,9 +10143,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10375,9 +10156,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10388,9 +10166,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10401,9 +10176,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
@@ -10414,9 +10186,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10430,9 +10199,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10443,9 +10209,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10456,9 +10219,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10469,9 +10229,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10482,9 +10239,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10495,9 +10249,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10508,9 +10259,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10521,9 +10269,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10534,9 +10279,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10547,9 +10289,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -10560,9 +10299,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11162,9 +10898,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11179,9 +10912,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11192,9 +10922,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11205,9 +10932,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11222,9 +10946,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11235,9 +10956,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11248,9 +10966,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11261,9 +10976,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11274,9 +10986,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11287,9 +10996,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11304,9 +11010,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11317,9 +11020,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11330,9 +11030,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11343,9 +11040,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11356,9 +11050,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11369,9 +11060,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11382,9 +11070,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11395,9 +11080,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11412,9 +11094,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11493,9 +11172,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11506,9 +11182,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11519,9 +11192,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11532,9 +11202,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11545,9 +11212,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11558,9 +11222,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11571,9 +11232,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11584,9 +11242,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11597,9 +11252,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11610,9 +11262,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11623,9 +11272,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11636,9 +11282,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11649,9 +11292,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11662,9 +11302,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11675,9 +11312,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11692,9 +11326,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11705,9 +11336,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11721,9 +11349,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11734,9 +11359,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11747,9 +11369,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11760,9 +11379,6 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:^
         version: link:../../cli/packages/cli-build
-      '@tsparticles/cli-command-build':
-        specifier: workspace:^
-        version: link:../../cli/commands/build
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -11813,6 +11429,12 @@ importers:
       '@tsparticles/confetti':
         specifier: workspace:*
         version: link:../../bundles/confetti/dist
+      ace-builds:
+        specifier: ^1.37.5
+        version: 1.44.0
+      js-beautify:
+        specifier: ^1.15.4
+        version: 1.15.4
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -12533,8 +12155,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3(typedoc@0.28.19(typescript@6.0.3))
       vite:
-        specifier: ^5.4.0
-        version: 5.4.21(@types/node@25.9.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
       vitepress:
         specifier: ^1.6.4
         version: 1.6.4(@algolia/client-search@5.52.1)(@types/node@25.9.0)(@types/react@18.3.28)(axios@1.16.1)(fuse.js@7.3.0)(less@4.6.4)(lightningcss@1.32.0)(postcss@8.5.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.99.0)(search-insights@2.17.3)(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.3)
@@ -13397,7 +13019,7 @@ importers:
         version: link:../vue2
       nuxt:
         specifier: '>=2.0.0 <3.0.0'
-        version: 2.18.1(@vue/compiler-sfc@3.5.32)(buffer@6.0.3)(consola@3.4.2)(encoding@0.1.13)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
+        version: 2.18.1(@vue/compiler-sfc@3.5.32)(buffer@6.0.3)(consola@3.4.2)(encoding@0.1.13)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -13431,7 +13053,7 @@ importers:
         version: link:../vue3
       nuxt:
         specifier: ^3.0.0
-        version: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
+        version: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -19524,6 +19146,9 @@ packages:
   '@octokit/types@13.10.0':
     resolution: {integrity: sha512-ifLaO34EbbPj0Xgro4G5lP5asESjwHracYJvVaPIyXMuiuXLlhic3S47cBdTb+jfODkTE5YtGCLt3Ay3+J97sA==}
 
+  '@one-ini/wasm@0.1.1':
+    resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
+
   '@one-ini/wasm@0.2.1':
     resolution: {integrity: sha512-TUqERXGNTifZ9y2g3wPxQrw3HpHv/02DsW3D90T9x0hhonrL1ZqpSmNrU2XkoIq0fP1N6gZfVQzy2Fw1ZvGBNg==}
 
@@ -20258,6 +19883,9 @@ packages:
 
   '@oxc-project/types@0.119.0':
     resolution: {integrity: sha512-9SCGhodOxEicD2kblitu34fGHcpmqgI3beYw/E22ehVLHzccHRFH91NmKt0MhZEaAwLpei6OOA9aB6Vuks9qAg==}
+
+  '@oxc-project/types@0.122.0':
+    resolution: {integrity: sha512-oLAl5kBpV4w69UtFZ9xqcmTi+GENWOcPF7FCrczTiBbmC0ibXxCwyvZGbO39rCVEuLGAZM84DH0pUIyyv/YJzA==}
 
   '@oxc-project/types@0.124.0':
     resolution: {integrity: sha512-VBFWMTBvHxS11Z5Lvlr3IWgrwhMTXV+Md+EQF0Xf60+wAdsGFTBx7X7K/hP4pi8N7dcm1RvcHwDxZ16Qx8keUg==}
@@ -21038,6 +20666,12 @@ packages:
       '@riotjs/compiler': ^6.0.0 || ^9.0.0 || ^10.0.0
       webpack: '>=5.0.0'
 
+  '@rolldown/binding-android-arm64@1.0.0-rc.12':
+    resolution: {integrity: sha512-pv1y2Fv0JybcykuiiD3qBOBdz6RteYojRFY1d+b95WVuzx211CRh+ytI/+9iVyWQ6koTh5dawe4S/yRfOFjgaA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [android]
+
   '@rolldown/binding-android-arm64@1.0.0-rc.15':
     resolution: {integrity: sha512-YYe6aWruPZDtHNpwu7+qAHEMbQ/yRl6atqb/AhznLTnD3UY99Q1jE7ihLSahNWkF4EqRPVC4SiR4O0UkLK02tA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21056,6 +20690,12 @@ packages:
     cpu: [arm64]
     os: [android]
 
+  '@rolldown/binding-darwin-arm64@1.0.0-rc.12':
+    resolution: {integrity: sha512-cFYr6zTG/3PXXF3pUO+umXxt1wkRK/0AYT8lDwuqvRC+LuKYWSAQAQZjCWDQpAH172ZV6ieYrNnFzVVcnSflAg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rolldown/binding-darwin-arm64@1.0.0-rc.15':
     resolution: {integrity: sha512-oArR/ig8wNTPYsXL+Mzhs0oxhxfuHRfG7Ikw7jXsw8mYOtk71W0OkF2VEVh699pdmzjPQsTjlD1JIOoHkLP1Fg==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21072,6 +20712,12 @@ packages:
     resolution: {integrity: sha512-cKnAhWEsV7TPcA/5EAteDp6KcJZBQ2G+BqE7zayMMi7kMvwRsbv7WT9aOnn0WNl4SKEIf43vjS31iUPu80nzXg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
+    os: [darwin]
+
+  '@rolldown/binding-darwin-x64@1.0.0-rc.12':
+    resolution: {integrity: sha512-ZCsYknnHzeXYps0lGBz8JrF37GpE9bFVefrlmDrAQhOEi4IOIlcoU1+FwHEtyXGx2VkYAvhu7dyBf75EJQffBw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
     os: [darwin]
 
   '@rolldown/binding-darwin-x64@1.0.0-rc.15':
@@ -21092,6 +20738,12 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  '@rolldown/binding-freebsd-x64@1.0.0-rc.12':
+    resolution: {integrity: sha512-dMLeprcVsyJsKolRXyoTH3NL6qtsT0Y2xeuEA8WQJquWFXkEC4bcu1rLZZSnZRMtAqwtrF/Ib9Ddtpa/Gkge9Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [freebsd]
+
   '@rolldown/binding-freebsd-x64@1.0.0-rc.15':
     resolution: {integrity: sha512-9Erhx956jeQ0nNTyif1+QWAXDRD38ZNjr//bSHrt6wDwB+QkAfl2q6Mn1k6OBPerznjRmbM10lgRb1Pli4xZPw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21110,6 +20762,12 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
+  '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.12':
+    resolution: {integrity: sha512-YqWjAgGC/9M1lz3GR1r1rP79nMgo3mQiiA+Hfo+pvKFK1fAJ1bCi0ZQVh8noOqNacuY1qIcfyVfP6HoyBRZ85Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
   '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.15':
     resolution: {integrity: sha512-cVwk0w8QbZJGTnP/AHQBs5yNwmpgGYStL88t4UIaqcvYJWBfS0s3oqVLZPwsPU6M0zlW4GqjP0Zq5MnAGwFeGA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21127,6 +20785,13 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
+
+  '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.12':
+    resolution: {integrity: sha512-/I5AS4cIroLpslsmzXfwbe5OmWvSsrFuEw3mwvbQ1kDxJ822hFHIx+vsN/TAzNVyepI/j/GSzrtCIwQPeKCLIg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
 
   '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.15':
     resolution: {integrity: sha512-eBZ/u8iAK9SoHGanqe/jrPnY0JvBN6iXbVOsbO38mbz+ZJsaobExAm1Iu+rxa4S1l2FjG0qEZn4Rc6X8n+9M+w==}
@@ -21149,6 +20814,13 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rolldown/binding-linux-arm64-musl@1.0.0-rc.12':
+    resolution: {integrity: sha512-V6/wZztnBqlx5hJQqNWwFdxIKN0m38p8Jas+VoSfgH54HSj9tKTt1dZvG6JRHcjh6D7TvrJPWFGaY9UBVOaWPw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
   '@rolldown/binding-linux-arm64-musl@1.0.0-rc.15':
     resolution: {integrity: sha512-ZvRYMGrAklV9PEkgt4LQM6MjQX2P58HPAuecwYObY2DhS2t35R0I810bKi0wmaYORt6m/2Sm+Z+nFgb0WhXNcQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21170,6 +20842,13 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.12':
+    resolution: {integrity: sha512-AP3E9BpcUYliZCxa3w5Kwj9OtEVDYK6sVoUzy4vTOJsjPOgdaJZKFmN4oOlX0Wp0RPV2ETfmIra9x1xuayFB7g==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
   '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.15':
     resolution: {integrity: sha512-VDpgGBzgfg5hLg+uBpCLoFG5kVvEyafmfxGUV0UHLcL5irxAK7PKNeC2MwClgk6ZAiNhmo9FLhRYgvMmedLtnQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21184,6 +20863,13 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.12':
+    resolution: {integrity: sha512-nWwpvUSPkoFmZo0kQazZYOrT7J5DGOJ/+QHHzjvNlooDZED8oH82Yg67HvehPPLAg5fUff7TfWFHQS8IV1n3og==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
   '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.15':
     resolution: {integrity: sha512-y1uXY3qQWCzcPgRJATPSOUP4tCemh4uBdY7e3EZbVwCJTY3gLJWnQABgeUetvED+bt1FQ01OeZwvhLS2bpNrAQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21195,6 +20881,13 @@ packages:
     resolution: {integrity: sha512-0frlsT/f4Ft6I7SMESTKnF3cZsdicQn1dCMkF/jT9wDLE+gGoiQfv1nmT9e+s7s/fekvvy6tZM2jHvI2tkbJDQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
+  '@rolldown/binding-linux-x64-gnu@1.0.0-rc.12':
+    resolution: {integrity: sha512-RNrafz5bcwRy+O9e6P8Z/OCAJW/A+qtBczIqVYwTs14pf4iV1/+eKEjdOUta93q2TsT/FI0XYDP3TCky38LMAg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
     os: [linux]
     libc: [glibc]
 
@@ -21219,6 +20912,13 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rolldown/binding-linux-x64-musl@1.0.0-rc.12':
+    resolution: {integrity: sha512-Jpw/0iwoKWx3LJ2rc1yjFrj+T7iHZn2JDg1Yny1ma0luviFS4mhAIcd1LFNxK3EYu3DHWCps0ydXQ5i/rrJ2ig==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
   '@rolldown/binding-linux-x64-musl@1.0.0-rc.15':
     resolution: {integrity: sha512-witB2O0/hU4CgfOOKUoeFgQ4GktPi1eEbAhaLAIpgD6+ZnhcPkUtPsoKKHRzmOoWPZue46IThdSgdo4XneOLYw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21240,6 +20940,12 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@rolldown/binding-openharmony-arm64@1.0.0-rc.12':
+    resolution: {integrity: sha512-vRugONE4yMfVn0+7lUKdKvN4D5YusEiPilaoO2sgUWpCvrncvWgPMzK00ZFFJuiPgLwgFNP5eSiUlv2tfc+lpA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [openharmony]
+
   '@rolldown/binding-openharmony-arm64@1.0.0-rc.15':
     resolution: {integrity: sha512-UCL68NJ0Ud5zRipXZE9dF5PmirzJE4E4BCIOOssEnM7wLDsxjc6Qb0sGDxTNRTP53I6MZpygyCpY8Aa8sPfKPg==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -21258,6 +20964,11 @@ packages:
     cpu: [arm64]
     os: [openharmony]
 
+  '@rolldown/binding-wasm32-wasi@1.0.0-rc.12':
+    resolution: {integrity: sha512-ykGiLr/6kkiHc0XnBfmFJuCjr5ZYKKofkx+chJWDjitX+KsJuAmrzWhwyOMSHzPhzOHOy7u9HlFoa5MoAOJ/Zg==}
+    engines: {node: '>=14.0.0'}
+    cpu: [wasm32]
+
   '@rolldown/binding-wasm32-wasi@1.0.0-rc.15':
     resolution: {integrity: sha512-ApLruZq/ig+nhaE7OJm4lDjayUnOHVUa77zGeqnqZ9pn0ovdVbbNPerVibLXDmWeUZXjIYIT8V3xkT58Rm9u5Q==}
     engines: {node: '>=14.0.0'}
@@ -21272,6 +20983,12 @@ packages:
     resolution: {integrity: sha512-+1xc9X45l8ufsBAm6Gjvx2qDRIY9lTVt0cgWNcJ+1gdhXvkbxePA60yRTwSTuXL09CMhyJmjpV7E3NoyxbqFQQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [wasm32]
+
+  '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.12':
+    resolution: {integrity: sha512-5eOND4duWkwx1AzCxadcOrNeighiLwMInEADT0YM7xeEOOFcovWZCq8dadXgcRHSf3Ulh1kFo/qvzoFiCLOL1Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
 
   '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.15':
     resolution: {integrity: sha512-KmoUoU7HnN+Si5YWJigfTws1jz1bKBYDQKdbLspz0UaqjjFkddHsqorgiW1mxcAj88lYUE6NC/zJNwT+SloqtA==}
@@ -21289,6 +21006,12 @@ packages:
     resolution: {integrity: sha512-1D+UqZdfnuR+Jy1GgMJwi85bD40H21uNmOPRWQhw4oRSuolZ/B5rixZ45DK2KXOTCvmVCecauWgEhbw8bI7tOw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
+    os: [win32]
+
+  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.12':
+    resolution: {integrity: sha512-PyqoipaswDLAZtot351MLhrlrh6lcZPo2LSYE+VDxbVk24LVKAGOuE4hb8xZQmrPAuEtTZW8E6D2zc5EUZX4Lw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
     os: [win32]
 
   '@rolldown/binding-win32-x64-msvc@1.0.0-rc.15':
@@ -21311,6 +21034,9 @@ packages:
 
   '@rolldown/pluginutils@1.0.0':
     resolution: {integrity: sha512-aKs/3GSWyV0mrhNmt/96/Z3yczC3yvrzYATCiCXQebBsGyYzjNdUphRVLeJQ67ySKVXRfMxt2lm12pmXvbPFQQ==}
+
+  '@rolldown/pluginutils@1.0.0-rc.12':
+    resolution: {integrity: sha512-HHMwmarRKvoFsJorqYlFeFRzXZqCt2ETQlEDOb9aqssrnVBB1/+xgTGtuTrIk5vzLNX1MjMtTf7W9z3tsSbrxw==}
 
   '@rolldown/pluginutils@1.0.0-rc.15':
     resolution: {integrity: sha512-UromN0peaE53IaBRe9W7CjrZgXl90fqGpK+mIZbA3qSTeYqg3pqpROBdIPvOG3F5ereDHNwoHBI2e50n1BDr1g==}
@@ -24898,6 +24624,10 @@ packages:
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
 
+  abbrev@2.0.0:
+    resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
   abbrev@3.0.1:
     resolution: {integrity: sha512-AO2ac6pjRB3SJmGJo+v5/aK6Omggp6fsLrs6wN9bd35ulu4cCwaAU9+7ZhXjeqHVkaHThLuzH0nZr0YpCDhygg==}
     engines: {node: ^18.17.0 || >=20.5.0}
@@ -24920,9 +24650,6 @@ packages:
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
-
-  ace-builds@1.43.6:
-    resolution: {integrity: sha512-L1ddibQ7F3vyXR2k2fg+I8TQTPWVA6CKeDQr/h2+8CeyTp3W6EQL8xNFZRTztuP8xNOAqL3IYPqdzs31GCjDvg==}
 
   ace-builds@1.44.0:
     resolution: {integrity: sha512-PFNMSYqFdEUkul2Ntud0HvA09AgY+F1ag0UYdpMH60wNI/qOA8cB8tlTgoALMEwIdUPJK2CjrIQ7OnbiSS/ugQ==}
@@ -28856,6 +28583,11 @@ packages:
   editions@2.3.1:
     resolution: {integrity: sha512-ptGvkwTvGdGfC0hfhKg0MT+TRLRKGtUiWGBInxOm5pz7ssADezahjCUaYuZ8Dr+C05FW0AECIIPt4WBxVINEhA==}
     engines: {node: '>=0.8'}
+
+  editorconfig@1.0.7:
+    resolution: {integrity: sha512-e0GOtq/aTQhVdNyDU9e02+wz9oDDM+SIOQxWME2QRjzRX5yyLAuHDE+0aE8vHb9XRC8XD37eO2u57+F09JqFhw==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   editorconfig@3.0.2:
     resolution: {integrity: sha512-T0ix8GhtxyKVfUFEcvdNDt3YGqlwkFHbD4/5bgFUDgFmxhI/cSRAeJ87/Sz//Cq8Eam6JX/e23RkoFO71P7aAA==}
@@ -32832,6 +32564,15 @@ packages:
   js-base64@2.6.4:
     resolution: {integrity: sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==}
 
+  js-beautify@1.15.4:
+    resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  js-cookie@3.0.7:
+    resolution: {integrity: sha512-z/wZZgDrkNV1eA0ULjM/F9/50Ya8fbzgKneSpoPsXSGd0KnpdtHfOZWK+GcwLk+EZbS4F9RBhU+K2RgzuDaItw==}
+    engines: {node: '>=20'}
+
   js-library-detector@6.7.0:
     resolution: {integrity: sha512-c80Qupofp43y4cJ7+8TTDN/AsDwLi5oOm/plBrWI+iQt485vKXCco+yVmOwEgdo9VOdsYTuV0UlTeetVPTriXA==}
     engines: {node: '>=12'}
@@ -34896,6 +34637,11 @@ packages:
   nopt@6.0.0:
     resolution: {integrity: sha512-ZwLpbTgdhuZUnZzjd7nb1ZV+4DoiC6/sfiVKok72ym/4Tlf+DFdlHYmT2JPmcNNWV6Pi3SDf1kT+A4r9RTuT9g==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    hasBin: true
+
+  nopt@7.2.1:
+    resolution: {integrity: sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
 
   nopt@8.1.0:
@@ -37411,12 +37157,12 @@ packages:
     resolution: {integrity: sha512-T5ScUMAsmhdNbgDR41AGESYeS6V9MSgetkSnVhhW+gXvzC42VesKCn5ld87gAZDJ6vLHL9GkRvY9WtQWSnwFbw==}
     engines: {node: '>=18'}
 
-  puppeteer-core@25.0.3:
-    resolution: {integrity: sha512-mNT7RWTAzgo9Q+TD8s1XzIOd6/7ZkbF40A0yNYanZOZZ7zSrFN1Am+EtL0nAMU5QWSSv6Dgi+3unRk0saeGcOg==}
+  puppeteer-core@25.0.4:
+    resolution: {integrity: sha512-K1LQKDP6w1rIr1jUyN9obH16TO/DCy86k3q+FBd2prGY+TStxhFySxmaZZuRF+0D3BJXjwCYFke7tMHCH4olTA==}
     engines: {node: '>=22.12.0'}
 
-  puppeteer@25.0.3:
-    resolution: {integrity: sha512-P2sLckgbW1P6o0p5d4V4SpoYFL9X8kJ3qC7rNKW1dz5WQ9t9wSCj0MnAZVZqax6BZHdBWQo2uLXM6F7O8cwmKg==}
+  puppeteer@25.0.4:
+    resolution: {integrity: sha512-QFdBAuNOqL0I+AdARTlRR1KcgPk0fo0dU127e1ZQFVxb9QPcpBDIiQp/dMgdbyLXHpF2GRjC/OezDmjKcLCKYw==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -38215,6 +37961,11 @@ packages:
   robots-parser@3.0.1:
     resolution: {integrity: sha512-s+pyvQeIKIZ0dx5iJiQk1tPLJAWln39+MI5jtM8wnyws+G5azk+dMnMX0qfbqNetKKNgcWWOdi0sfm+FbQbgdQ==}
     engines: {node: '>=10.0.0'}
+
+  rolldown@1.0.0-rc.12:
+    resolution: {integrity: sha512-yP4USLIMYrwpPHEFB5JGH1uxhcslv6/hL0OyvTuY+3qlOSJvZ7ntYnoWpehBxufkgN0cvXxppuTu5hHa/zPh+A==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
 
   rolldown@1.0.0-rc.15:
     resolution: {integrity: sha512-Ff31guA5zT6WjnGp0SXw76X6hzGRk/OQq2hE+1lcDe+lJdHSgnSX6nK3erbONHyCbpSj9a9E+uX/OvytZoWp2g==}
@@ -41577,6 +41328,49 @@ packages:
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
       '@vitejs/devtools': ^0.1.18
+      esbuild: ^0.27.0 || ^0.28.0
+      jiti: '>=1.21.0'
+      less: ^4.0.0
+      sass: ^1.70.0
+      sass-embedded: ^1.70.0
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      '@vitejs/devtools':
+        optional: true
+      esbuild:
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
+  vite@8.0.5:
+    resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^20.19.0 || >=22.12.0
+      '@vitejs/devtools': ^0.1.0
       esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
@@ -46156,11 +45950,11 @@ snapshots:
 
   '@colors/colors@1.6.0': {}
 
-  '@commitlint/cli@21.0.1(@types/node@25.8.0)(conventional-commits-parser@6.3.0)(typescript@6.0.3)':
+  '@commitlint/cli@21.0.1(@types/node@25.9.0)(conventional-commits-parser@6.3.0)(typescript@6.0.3)':
     dependencies:
       '@commitlint/format': 21.0.1
       '@commitlint/lint': 21.0.1
-      '@commitlint/load': 21.0.1(@types/node@25.8.0)(typescript@6.0.3)
+      '@commitlint/load': 21.0.1(@types/node@25.9.0)(typescript@6.0.3)
       '@commitlint/read': 21.0.1(conventional-commits-parser@6.3.0)
       '@commitlint/types': 21.0.1
       tinyexec: 1.1.1
@@ -46205,14 +45999,14 @@ snapshots:
       '@commitlint/rules': 21.0.1
       '@commitlint/types': 21.0.1
 
-  '@commitlint/load@21.0.1(@types/node@25.8.0)(typescript@6.0.3)':
+  '@commitlint/load@21.0.1(@types/node@25.9.0)(typescript@6.0.3)':
     dependencies:
       '@commitlint/config-validator': 21.0.1
       '@commitlint/execute-rule': 21.0.1
       '@commitlint/resolve-extends': 21.0.1
       '@commitlint/types': 21.0.1
       cosmiconfig: 9.0.1(typescript@6.0.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@25.8.0)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@25.9.0)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3)
       es-toolkit: 1.46.1
       is-plain-obj: 4.1.0
       picocolors: 1.1.1
@@ -47877,15 +47671,15 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/checkbox@4.3.2(@types/node@25.8.0)':
+  '@inquirer/checkbox@4.3.2(@types/node@25.9.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/checkbox@5.1.5(@types/node@25.6.0)':
     dependencies:
@@ -47912,12 +47706,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/confirm@5.1.21(@types/node@25.8.0)':
+  '@inquirer/confirm@5.1.21(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/confirm@6.0.13(@types/node@25.6.0)':
     dependencies:
@@ -47946,18 +47740,18 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/core@10.3.2(@types/node@25.8.0)':
+  '@inquirer/core@10.3.2(@types/node@25.9.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       cli-width: 4.1.0
       mute-stream: 2.0.0
       signal-exit: 4.1.0
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/core@11.1.10(@types/node@25.6.0)':
     dependencies:
@@ -48015,13 +47809,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/editor@4.2.23(@types/node@25.8.0)':
+  '@inquirer/editor@4.2.23(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/external-editor': 1.0.3(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/editor@5.1.2(@types/node@25.6.0)':
     dependencies:
@@ -48047,13 +47841,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/expand@4.0.23(@types/node@25.8.0)':
+  '@inquirer/expand@4.0.23(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/expand@5.0.14(@types/node@25.6.0)':
     dependencies:
@@ -48076,12 +47870,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.8.0)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.9.0)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/external-editor@3.0.0(@types/node@25.6.0)':
     dependencies:
@@ -48108,12 +47902,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/input@4.3.1(@types/node@25.8.0)':
+  '@inquirer/input@4.3.1(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/input@5.0.13(@types/node@25.6.0)':
     dependencies:
@@ -48136,12 +47930,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/number@3.0.23(@types/node@25.8.0)':
+  '@inquirer/number@3.0.23(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/number@4.0.13(@types/node@25.6.0)':
     dependencies:
@@ -48165,13 +47959,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/password@4.0.23(@types/node@25.8.0)':
+  '@inquirer/password@4.0.23(@types/node@25.9.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/password@5.0.13(@types/node@25.6.0)':
     dependencies:
@@ -48204,20 +47998,20 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/prompts@7.10.1(@types/node@25.8.0)':
+  '@inquirer/prompts@7.10.1(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/checkbox': 4.3.2(@types/node@25.8.0)
-      '@inquirer/confirm': 5.1.21(@types/node@25.8.0)
-      '@inquirer/editor': 4.2.23(@types/node@25.8.0)
-      '@inquirer/expand': 4.0.23(@types/node@25.8.0)
-      '@inquirer/input': 4.3.1(@types/node@25.8.0)
-      '@inquirer/number': 3.0.23(@types/node@25.8.0)
-      '@inquirer/password': 4.0.23(@types/node@25.8.0)
-      '@inquirer/rawlist': 4.1.11(@types/node@25.8.0)
-      '@inquirer/search': 3.2.2(@types/node@25.8.0)
-      '@inquirer/select': 4.4.2(@types/node@25.8.0)
+      '@inquirer/checkbox': 4.3.2(@types/node@25.9.0)
+      '@inquirer/confirm': 5.1.21(@types/node@25.9.0)
+      '@inquirer/editor': 4.2.23(@types/node@25.9.0)
+      '@inquirer/expand': 4.0.23(@types/node@25.9.0)
+      '@inquirer/input': 4.3.1(@types/node@25.9.0)
+      '@inquirer/number': 3.0.23(@types/node@25.9.0)
+      '@inquirer/password': 4.0.23(@types/node@25.9.0)
+      '@inquirer/rawlist': 4.1.11(@types/node@25.9.0)
+      '@inquirer/search': 3.2.2(@types/node@25.9.0)
+      '@inquirer/select': 4.4.2(@types/node@25.9.0)
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/prompts@8.4.3(@types/node@25.6.0)':
     dependencies:
@@ -48257,13 +48051,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/rawlist@4.1.11(@types/node@25.8.0)':
+  '@inquirer/rawlist@4.1.11(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/rawlist@5.2.9(@types/node@25.6.0)':
     dependencies:
@@ -48288,14 +48082,14 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/search@3.2.2(@types/node@25.8.0)':
+  '@inquirer/search@3.2.2(@types/node@25.9.0)':
     dependencies:
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/search@4.1.9(@types/node@25.6.0)':
     dependencies:
@@ -48323,15 +48117,15 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/select@4.4.2(@types/node@25.8.0)':
+  '@inquirer/select@4.4.2(@types/node@25.9.0)':
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
       '@inquirer/figures': 1.0.15
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       yoctocolors-cjs: 2.1.3
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/select@5.1.5(@types/node@25.6.0)':
     dependencies:
@@ -48355,9 +48149,9 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@inquirer/type@3.0.10(@types/node@25.8.0)':
+  '@inquirer/type@3.0.10(@types/node@25.9.0)':
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@inquirer/type@4.0.5(@types/node@25.6.0)':
     optionalDependencies:
@@ -48505,7 +48299,7 @@ snapshots:
   '@jest/console@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -48518,14 +48312,14 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.9.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.19.39)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3))
+      jest-config: 29.7.0(@types/node@25.9.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -48558,7 +48352,7 @@ snapshots:
       '@jest/fake-timers': 30.3.0
       '@jest/types': 30.3.0
       '@types/jsdom': 21.1.7
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-mock: 30.3.0
       jest-util: 30.3.0
       jsdom: 26.1.0(canvas@3.2.3)
@@ -48569,14 +48363,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-mock: 29.7.0
 
   '@jest/environment@30.3.0':
     dependencies:
       '@jest/fake-timers': 30.3.0
       '@jest/types': 30.3.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-mock: 30.3.0
 
   '@jest/expect-utils@29.7.0':
@@ -48598,7 +48392,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -48607,7 +48401,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.3.0
       '@sinonjs/fake-timers': 15.4.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-message-util: 30.3.0
       jest-mock: 30.3.0
       jest-util: 30.3.0
@@ -48625,7 +48419,7 @@ snapshots:
 
   '@jest/pattern@30.0.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-regex-util: 30.0.1
 
   '@jest/reporters@29.7.0(node-notifier@10.0.1)':
@@ -48636,7 +48430,7 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit: 0.1.2
@@ -48712,7 +48506,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -48722,7 +48516,7 @@ snapshots:
       '@jest/schemas': 30.0.5
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -48964,7 +48758,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
-      semver: 7.7.4
+      semver: 7.8.0
       tar: 7.5.15
     transitivePeerDependencies:
       - encoding
@@ -49382,7 +49176,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.0
 
   '@npmcli/git@4.1.0':
     dependencies:
@@ -49405,7 +49199,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.8.0
       which: 5.0.0
 
   '@npmcli/git@7.0.2':
@@ -49488,7 +49282,7 @@ snapshots:
       hosted-git-info: 9.0.2
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.0
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@6.0.2':
@@ -49648,12 +49442,12 @@ snapshots:
       - webpack-command
       - whiskers
 
-  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))':
+  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
@@ -49875,14 +49669,6 @@ snapshots:
 
   '@nuxt/devalue@2.0.2': {}
 
-  '@nuxt/devtools-kit@3.2.4(magicast@0.5.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))':
-    dependencies:
-      '@nuxt/kit': 4.4.2(magicast@0.5.2)
-      execa: 8.0.1
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-    transitivePeerDependencies:
-      - magicast
-
   '@nuxt/devtools-kit@3.2.4(magicast@0.5.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))':
     dependencies:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
@@ -49908,48 +49694,7 @@ snapshots:
       magicast: 0.5.2
       pathe: 2.0.3
       pkg-types: 2.3.0
-      semver: 7.7.4
-
-  '@nuxt/devtools@3.2.4(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
-    dependencies:
-      '@nuxt/devtools-kit': 3.2.4(magicast@0.5.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
-      '@nuxt/devtools-wizard': 3.2.4
-      '@nuxt/kit': 4.4.2(magicast@0.5.2)
-      '@vue/devtools-core': 8.1.1(vue@3.5.32(typescript@6.0.2))
-      '@vue/devtools-kit': 8.1.1
-      birpc: 4.0.0
-      consola: 3.4.2
-      destr: 2.0.5
-      error-stack-parser-es: 1.0.5
-      execa: 8.0.1
-      fast-npm-meta: 1.4.2
-      get-port-please: 3.2.0
-      hookable: 6.1.0
-      image-meta: 0.2.2
-      is-installed-globally: 1.0.0
-      launch-editor: 2.13.2
-      local-pkg: 1.1.2
-      magicast: 0.5.2
-      nypm: 0.6.5
-      ohash: 2.0.11
-      pathe: 2.0.3
-      perfect-debounce: 2.1.0
-      pkg-types: 2.3.0
-      semver: 7.7.4
-      simple-git: 3.36.0
-      sirv: 3.0.2
-      structured-clone-es: 2.0.0
-      tinyglobby: 0.2.16
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vite-plugin-inspect: 11.3.3(@nuxt/kit@4.4.2(magicast@0.5.2))(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
-      vite-plugin-vue-tracer: 1.3.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
-      which: 6.0.1
-      ws: 8.20.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-      - vue
+      semver: 7.8.0
 
   '@nuxt/devtools@3.2.4(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -50114,7 +49859,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nuxt/nitro-server@3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)':
+  '@nuxt/nitro-server@3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/kit': 3.21.2(magicast@0.5.2)
@@ -50132,7 +49877,7 @@ snapshots:
       klona: 2.0.6
       mocked-exports: 0.1.1
       nitropack: 2.13.3(encoding@0.1.13)(rolldown@1.0.1)(srvx@0.11.15)(xml2js@0.6.2)
-      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
+      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
       ohash: 2.0.11
       pathe: 2.0.3
       pkg-types: 2.3.0
@@ -50181,7 +49926,7 @@ snapshots:
       - uploadthing
       - xml2js
 
-  '@nuxt/nitro-server@3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)':
+  '@nuxt/nitro-server@3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(typescript@6.0.2)(xml2js@0.6.2)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/kit': 3.21.2(magicast@0.5.2)
@@ -50199,7 +49944,7 @@ snapshots:
       klona: 2.0.6
       mocked-exports: 0.1.1
       nitropack: 2.13.3(encoding@0.1.13)(rolldown@1.0.1)(srvx@0.11.15)(xml2js@0.6.2)
-      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
+      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
       ohash: 2.0.11
       pathe: 2.0.3
       pkg-types: 2.3.0
@@ -50585,12 +50330,12 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxt/vite-builder@3.21.2(b4f3c9c91e5ed79d117c7769076ae2f0)':
+  '@nuxt/vite-builder@3.21.2(a548bd6fe7bab5b665da7aaccea171a1)':
     dependencies:
       '@nuxt/kit': 3.21.2(magicast@0.5.2)
       '@rollup/plugin-replace': 6.0.3(rollup@4.60.4)
-      '@vitejs/plugin-vue': 6.0.5(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
-      '@vitejs/plugin-vue-jsx': 5.1.5(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
+      '@vitejs/plugin-vue': 6.0.5(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
+      '@vitejs/plugin-vue-jsx': 5.1.5(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
       autoprefixer: 10.4.27(postcss@8.5.14)
       consola: 3.4.2
       cssnano: 7.1.4(postcss@8.5.14)
@@ -50604,7 +50349,7 @@ snapshots:
       magic-string: 0.30.21
       mlly: 1.8.2
       mocked-exports: 0.1.1
-      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
+      nuxt: 3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3)
       nypm: 0.6.5
       ohash: 2.0.11
       pathe: 2.0.3
@@ -50615,9 +50360,9 @@ snapshots:
       std-env: 4.0.0
       ufo: 1.6.3
       unenv: 2.0.0-rc.24
-      vite: 7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vite-node: 5.3.0(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vite-plugin-checker: 0.12.0(eslint@10.2.0(jiti@2.6.1))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.26.1(typescript@6.0.2))(typescript@6.0.2)(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))
+      vite: 7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
+      vite-node: 5.3.0(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
+      vite-plugin-checker: 0.12.0(eslint@10.2.0(jiti@2.7.0))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.26.1(typescript@6.0.2))(typescript@6.0.2)(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))
       vue: 3.5.32(typescript@6.0.2)
       vue-bundle-renderer: 2.2.0
     optionalDependencies:
@@ -50914,7 +50659,7 @@ snapshots:
       - webpack-command
       - whiskers
 
-  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))':
+  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))':
     dependencies:
       '@babel/core': 7.29.0
       '@nuxt/babel-preset-app': 2.18.1(vue@2.7.16)
@@ -51278,6 +51023,8 @@ snapshots:
   '@octokit/types@13.10.0':
     dependencies:
       '@octokit/openapi-types': 24.2.0
+
+  '@one-ini/wasm@0.1.1': {}
 
   '@one-ini/wasm@0.2.1': {}
 
@@ -51895,6 +51642,8 @@ snapshots:
   '@oxc-project/types@0.117.0': {}
 
   '@oxc-project/types@0.119.0': {}
+
+  '@oxc-project/types@0.122.0': {}
 
   '@oxc-project/types@0.124.0': {}
 
@@ -52607,6 +52356,9 @@ snapshots:
       '@riotjs/compiler': 10.0.1
       webpack: 5.106.1(@swc/core@1.15.33)(webpack-cli@5.1.4)
 
+  '@rolldown/binding-android-arm64@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-android-arm64@1.0.0-rc.15':
     optional: true
 
@@ -52614,6 +52366,9 @@ snapshots:
     optional: true
 
   '@rolldown/binding-android-arm64@1.0.1':
+    optional: true
+
+  '@rolldown/binding-darwin-arm64@1.0.0-rc.12':
     optional: true
 
   '@rolldown/binding-darwin-arm64@1.0.0-rc.15':
@@ -52625,6 +52380,9 @@ snapshots:
   '@rolldown/binding-darwin-arm64@1.0.1':
     optional: true
 
+  '@rolldown/binding-darwin-x64@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-darwin-x64@1.0.0-rc.15':
     optional: true
 
@@ -52632,6 +52390,9 @@ snapshots:
     optional: true
 
   '@rolldown/binding-darwin-x64@1.0.1':
+    optional: true
+
+  '@rolldown/binding-freebsd-x64@1.0.0-rc.12':
     optional: true
 
   '@rolldown/binding-freebsd-x64@1.0.0-rc.15':
@@ -52643,6 +52404,9 @@ snapshots:
   '@rolldown/binding-freebsd-x64@1.0.1':
     optional: true
 
+  '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.15':
     optional: true
 
@@ -52650,6 +52414,9 @@ snapshots:
     optional: true
 
   '@rolldown/binding-linux-arm-gnueabihf@1.0.1':
+    optional: true
+
+  '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.12':
     optional: true
 
   '@rolldown/binding-linux-arm64-gnu@1.0.0-rc.15':
@@ -52661,6 +52428,9 @@ snapshots:
   '@rolldown/binding-linux-arm64-gnu@1.0.1':
     optional: true
 
+  '@rolldown/binding-linux-arm64-musl@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-linux-arm64-musl@1.0.0-rc.15':
     optional: true
 
@@ -52670,16 +52440,25 @@ snapshots:
   '@rolldown/binding-linux-arm64-musl@1.0.1':
     optional: true
 
+  '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-linux-ppc64-gnu@1.0.0-rc.15':
     optional: true
 
   '@rolldown/binding-linux-ppc64-gnu@1.0.1':
     optional: true
 
+  '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-linux-s390x-gnu@1.0.0-rc.15':
     optional: true
 
   '@rolldown/binding-linux-s390x-gnu@1.0.1':
+    optional: true
+
+  '@rolldown/binding-linux-x64-gnu@1.0.0-rc.12':
     optional: true
 
   '@rolldown/binding-linux-x64-gnu@1.0.0-rc.15':
@@ -52691,6 +52470,9 @@ snapshots:
   '@rolldown/binding-linux-x64-gnu@1.0.1':
     optional: true
 
+  '@rolldown/binding-linux-x64-musl@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-linux-x64-musl@1.0.0-rc.15':
     optional: true
 
@@ -52700,6 +52482,9 @@ snapshots:
   '@rolldown/binding-linux-x64-musl@1.0.1':
     optional: true
 
+  '@rolldown/binding-openharmony-arm64@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-openharmony-arm64@1.0.0-rc.15':
     optional: true
 
@@ -52707,6 +52492,14 @@ snapshots:
     optional: true
 
   '@rolldown/binding-openharmony-arm64@1.0.1':
+    optional: true
+
+  '@rolldown/binding-wasm32-wasi@1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+    dependencies:
+      '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+    transitivePeerDependencies:
+      - '@emnapi/core'
+      - '@emnapi/runtime'
     optional: true
 
   '@rolldown/binding-wasm32-wasi@1.0.0-rc.15':
@@ -52731,6 +52524,9 @@ snapshots:
       '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
     optional: true
 
+  '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.12':
+    optional: true
+
   '@rolldown/binding-win32-arm64-msvc@1.0.0-rc.15':
     optional: true
 
@@ -52738,6 +52534,9 @@ snapshots:
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.0.1':
+    optional: true
+
+  '@rolldown/binding-win32-x64-msvc@1.0.0-rc.12':
     optional: true
 
   '@rolldown/binding-win32-x64-msvc@1.0.0-rc.15':
@@ -52750,6 +52549,8 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.0': {}
+
+  '@rolldown/pluginutils@1.0.0-rc.12': {}
 
   '@rolldown/pluginutils@1.0.0-rc.15': {}
 
@@ -54439,7 +54240,7 @@ snapshots:
 
   '@types/accepts@1.3.7':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/argparse@1.0.38': {}
 
@@ -54471,16 +54272,16 @@ snapshots:
   '@types/body-parser@1.19.2':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/browserslist-useragent@3.0.7': {}
 
@@ -54492,7 +54293,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/responselike': 1.0.3
 
   '@types/caniuse-api@3.0.6': {}
@@ -54510,7 +54311,7 @@ snapshots:
 
   '@types/co-body@6.1.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/qs': 6.15.1
 
   '@types/command-line-args@5.2.3': {}
@@ -54524,7 +54325,7 @@ snapshots:
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 5.0.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/connect-livereload@0.6.3':
     dependencies:
@@ -54532,11 +54333,11 @@ snapshots:
 
   '@types/connect@3.4.35':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/content-disposition@0.5.9': {}
 
@@ -54549,11 +54350,11 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/express': 5.0.6
       '@types/keygrip': 1.0.6
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/debounce@1.2.4': {}
 
@@ -54810,18 +54611,18 @@ snapshots:
 
   '@types/etag@1.8.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/express-serve-static-core@4.19.8':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/qs': 6.15.1
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
 
   '@types/express-serve-static-core@5.0.0':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
       '@types/send': 0.17.1
@@ -54845,16 +54646,16 @@ snapshots:
 
   '@types/fs-extra@5.1.0':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/fs-extra@8.1.5':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@types/glob@9.0.0':
     dependencies:
@@ -54862,7 +54663,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/gradient-parser@1.1.0': {}
 
@@ -54886,7 +54687,7 @@ snapshots:
 
   '@types/http-proxy@1.17.17':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -54913,13 +54714,13 @@ snapshots:
 
   '@types/jsdom@21.1.7':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/tough-cookie': 4.0.5
       parse5: 7.3.0
 
   '@types/jsdom@28.0.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/tough-cookie': 4.0.5
       parse5: 8.0.1
       undici-types: 7.24.7
@@ -54944,7 +54745,7 @@ snapshots:
 
   '@types/karma@5.0.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       log4js: 4.5.1
     transitivePeerDependencies:
       - supports-color
@@ -54953,11 +54754,11 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/klaw@3.0.7':
     dependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   '@types/koa-compose@3.2.9':
     dependencies:
@@ -54966,7 +54767,7 @@ snapshots:
   '@types/koa-compress@2.0.9':
     dependencies:
       '@types/koa': 2.15.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/koa-etag@3.0.4':
     dependencies:
@@ -54991,7 +54792,7 @@ snapshots:
       '@types/http-errors': 2.0.5
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.9
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/koa__cors@3.3.1':
     dependencies:
@@ -55044,7 +54845,7 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/nlcst@2.0.3':
     dependencies:
@@ -55052,7 +54853,7 @@ snapshots:
 
   '@types/node-forge@1.3.14':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/node@16.18.126': {}
 
@@ -55096,13 +54897,13 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       pg-protocol: 1.13.0
       pg-types: 2.2.0
 
   '@types/prompts@2.4.9':
     dependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
       kleur: 3.0.3
 
   '@types/prop-types@15.7.15': {}
@@ -55147,17 +54948,17 @@ snapshots:
 
   '@types/resolve@0.0.8':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/resolve@1.20.2': {}
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/retry@0.12.0': {}
 
@@ -55166,7 +54967,7 @@ snapshots:
   '@types/rimraf@2.0.5':
     dependencies:
       '@types/glob': 9.0.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/rsvp@4.0.9': {}
 
@@ -55177,16 +54978,16 @@ snapshots:
   '@types/send@0.17.1':
     dependencies:
       '@types/mime': 1.3.2
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/send@0.17.6':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/serve-index@1.9.4':
     dependencies:
@@ -55195,19 +54996,19 @@ snapshots:
   '@types/serve-static@1.15.10':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/send': 0.17.6
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/send': 1.2.1
 
   '@types/serve-static@2.2.0':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/shimmer@1.2.0': {}
 
@@ -55230,7 +55031,7 @@ snapshots:
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/source-list-map@0.1.6': {}
 
@@ -55238,7 +55039,7 @@ snapshots:
 
   '@types/stylus@0.48.43':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/symlink-or-copy@1.2.2': {}
 
@@ -55246,7 +55047,7 @@ snapshots:
 
   '@types/tedious@4.0.14':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/terser-webpack-plugin@4.2.1':
     dependencies:
@@ -55275,7 +55076,7 @@ snapshots:
 
   '@types/webpack-bundle-analyzer@4.7.0(@swc/core@1.15.33)(webpack-cli@7.0.2)':
     dependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
       tapable: 2.3.2
       webpack: 5.106.2(@swc/core@1.15.33)(webpack-cli@7.0.2)
     transitivePeerDependencies:
@@ -55293,13 +55094,13 @@ snapshots:
 
   '@types/webpack-sources@3.2.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/source-list-map': 0.1.6
       source-map: 0.7.6
 
   '@types/webpack@4.41.40':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/tapable': 1.0.12
       '@types/uglify-js': 3.17.5
       '@types/webpack-sources': 3.2.3
@@ -55308,19 +55109,19 @@ snapshots:
 
   '@types/whatwg-url@6.4.0':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/ws@7.4.7':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/ws@8.5.4':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -55330,7 +55131,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
     optional: true
 
   '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.3.0(jiti@2.7.0))(typescript@6.0.3)':
@@ -55601,8 +55402,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.3)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -55610,8 +55411,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.58.1(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.58.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.58.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -55619,8 +55420,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.58.1(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.58.1(typescript@6.0.2)
-      '@typescript-eslint/types': 8.58.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.2)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 6.0.2
     transitivePeerDependencies:
@@ -55628,8 +55429,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.58.2(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.58.2(typescript@6.0.2)
-      '@typescript-eslint/types': 8.58.2
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.2)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 6.0.2
     transitivePeerDependencies:
@@ -55637,8 +55438,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.59.1(typescript@4.9.5)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.59.1(typescript@4.9.5)
-      '@typescript-eslint/types': 8.59.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@4.9.5)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 4.9.5
     transitivePeerDependencies:
@@ -55646,8 +55447,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.59.1(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.59.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.59.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -55655,8 +55456,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.59.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.59.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.59.1
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.3)
+      '@typescript-eslint/types': 8.59.4
       debug: 4.4.3(supports-color@5.5.0)
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -55750,6 +55551,10 @@ snapshots:
   '@typescript-eslint/tsconfig-utils@8.59.1(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
+
+  '@typescript-eslint/tsconfig-utils@8.59.4(typescript@4.9.5)':
+    dependencies:
+      typescript: 4.9.5
 
   '@typescript-eslint/tsconfig-utils@8.59.4(typescript@5.9.3)':
     dependencies:
@@ -56285,18 +56090,6 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-rc.7
       vite: 8.0.8(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
 
-  '@vitejs/plugin-vue-jsx@5.1.5(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
-    dependencies:
-      '@babel/core': 7.29.0
-      '@babel/plugin-syntax-typescript': 7.28.6(@babel/core@7.29.0)
-      '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
-      '@rolldown/pluginutils': 1.0.0-rc.15
-      '@vue/babel-plugin-jsx': 2.0.1(@babel/core@7.29.0)
-      vite: 7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vue: 3.5.32(typescript@6.0.2)
-    transitivePeerDependencies:
-      - supports-color
-
   '@vitejs/plugin-vue-jsx@5.1.5(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
     dependencies:
       '@babel/core': 7.29.0
@@ -56330,12 +56123,6 @@ snapshots:
     dependencies:
       vite: 5.4.21(@types/node@25.9.0)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)
       vue: 3.5.32(typescript@6.0.3)
-
-  '@vitejs/plugin-vue@6.0.5(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
-    dependencies:
-      '@rolldown/pluginutils': 1.0.0-rc.2
-      vite: 7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vue: 3.5.32(typescript@6.0.2)
 
   '@vitejs/plugin-vue@6.0.5(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))':
     dependencies:
@@ -58317,6 +58104,8 @@ snapshots:
 
   abbrev@1.1.1: {}
 
+  abbrev@2.0.0: {}
+
   abbrev@3.0.1: {}
 
   abbrev@4.0.0: {}
@@ -58336,8 +58125,6 @@ snapshots:
     dependencies:
       mime-types: 3.0.2
       negotiator: 1.0.0
-
-  ace-builds@1.43.6: {}
 
   ace-builds@1.44.0: {}
 
@@ -61226,7 +61013,7 @@ snapshots:
 
   chrome-launcher@1.2.1:
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 2.0.2
@@ -61841,7 +61628,7 @@ snapshots:
       handlebars: 4.7.9
       json-stringify-safe: 5.0.1
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.8.0
       split: 1.0.1
 
   conventional-commits-filter@3.0.0:
@@ -62011,9 +61798,9 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@25.8.0)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@25.9.0)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
       cosmiconfig: 9.0.1(typescript@6.0.3)
       jiti: 2.7.0
       typescript: 6.0.3
@@ -63276,6 +63063,13 @@ snapshots:
       errlop: 2.2.0
       semver: 6.3.1
 
+  editorconfig@1.0.7:
+    dependencies:
+      '@one-ini/wasm': 0.1.1
+      commander: 10.0.1
+      minimatch: 9.0.9
+      semver: 7.8.0
+
   editorconfig@3.0.2:
     dependencies:
       '@one-ini/wasm': 0.2.1
@@ -64173,7 +63967,7 @@ snapshots:
   engine.io@6.6.6:
     dependencies:
       '@types/cors': 2.8.19
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       '@types/ws': 8.18.1
       accepts: 1.3.8
       base64id: 2.0.0
@@ -67174,7 +66968,7 @@ snapshots:
   git-semver-tags@5.0.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.8.0
 
   git-up@7.0.0:
     dependencies:
@@ -67285,7 +67079,7 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.4
+      minimatch: 3.1.5
       once: 1.4.0
       path-is-absolute: 1.0.1
 
@@ -68403,17 +68197,17 @@ snapshots:
       inquirer: 6.5.2
       rxjs: 6.6.7
 
-  inquirer@12.9.6(@types/node@25.8.0):
+  inquirer@12.9.6(@types/node@25.9.0):
     dependencies:
       '@inquirer/ansi': 1.0.2
-      '@inquirer/core': 10.3.2(@types/node@25.8.0)
-      '@inquirer/prompts': 7.10.1(@types/node@25.8.0)
-      '@inquirer/type': 3.0.10(@types/node@25.8.0)
+      '@inquirer/core': 10.3.2(@types/node@25.9.0)
+      '@inquirer/prompts': 7.10.1(@types/node@25.9.0)
+      '@inquirer/type': 3.0.10(@types/node@25.9.0)
       mute-stream: 2.0.0
       run-async: 4.0.6
       rxjs: 7.8.2
     optionalDependencies:
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
 
   inquirer@13.4.1(@types/node@25.6.0):
     dependencies:
@@ -69166,7 +68960,7 @@ snapshots:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
@@ -69206,37 +69000,6 @@ snapshots:
       - babel-plugin-macros
       - supports-color
       - ts-node
-
-  jest-config@29.7.0(@types/node@20.19.39)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3)):
-    dependencies:
-      '@babel/core': 7.29.0
-      '@jest/test-sequencer': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.29.0)
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
-      jest-environment-node: 29.7.0
-      jest-get-type: 29.6.3
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-runner: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      micromatch: 4.0.8
-      parse-json: 5.2.0
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    optionalDependencies:
-      '@types/node': 20.19.39
-      ts-node: 10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3)
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
 
   jest-config@29.7.0(@types/node@25.9.0)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.33)(@types/node@25.9.0)(typescript@6.0.3)):
     dependencies:
@@ -69325,7 +69088,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -69335,7 +69098,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -69393,13 +69156,13 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-util: 29.7.0
 
   jest-mock@30.3.0:
     dependencies:
       '@jest/types': 30.3.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-util: 30.3.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
@@ -69436,7 +69199,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -69464,7 +69227,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       cjs-module-lexer: 1.4.3
       collect-v8-coverage: 1.0.3
@@ -69510,7 +69273,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -69519,7 +69282,7 @@ snapshots:
   jest-util@30.3.0:
     dependencies:
       '@jest/types': 30.3.0
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       chalk: 4.1.2
       ci-info: 4.4.0
       graceful-fs: 4.2.11
@@ -69538,7 +69301,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -69547,19 +69310,19 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -69617,6 +69380,16 @@ snapshots:
   jquery@4.0.0: {}
 
   js-base64@2.6.4: {}
+
+  js-beautify@1.15.4:
+    dependencies:
+      config-chain: 1.1.13
+      editorconfig: 1.0.7
+      glob: 10.5.0
+      js-cookie: 3.0.7
+      nopt: 7.2.1
+
+  js-cookie@3.0.7: {}
 
   js-library-detector@6.7.0: {}
 
@@ -69874,7 +69647,7 @@ snapshots:
 
   jsoneditor@10.4.3:
     dependencies:
-      ace-builds: 1.43.6
+      ace-builds: 1.44.0
       ajv: 6.14.0
       javascript-natural-sort: 0.7.1
       jmespath: 0.16.0
@@ -70234,7 +70007,7 @@ snapshots:
 
   legacy-javascript@0.0.1: {}
 
-  lerna@9.0.7(@swc-node/register@1.11.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@swc/core@1.15.33)(@swc/types@0.1.26)(typescript@6.0.3))(@swc/core@1.15.33)(@types/node@25.8.0)(babel-plugin-macros@3.1.0):
+  lerna@9.0.7(@swc-node/register@1.11.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@swc/core@1.15.33)(@swc/types@0.1.26)(typescript@6.0.3))(@swc/core@1.15.33)(@types/node@25.9.0)(babel-plugin-macros@3.1.0):
     dependencies:
       '@npmcli/arborist': 9.1.6
       '@npmcli/package-json': 7.0.2
@@ -70265,7 +70038,7 @@ snapshots:
       import-local: 3.1.0
       ini: 1.3.8
       init-package-json: 8.2.2
-      inquirer: 12.9.6(@types/node@25.8.0)
+      inquirer: 12.9.6(@types/node@25.9.0)
       is-ci: 3.0.1
       jest-diff: 30.3.0
       js-yaml: 4.1.1
@@ -70979,7 +70752,7 @@ snapshots:
 
   macos-version@6.0.0:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   magic-regexp@0.10.0:
     dependencies:
@@ -72427,7 +72200,7 @@ snapshots:
       rollup: 4.60.4
       rollup-plugin-visualizer: 7.0.1(rolldown@1.0.1)(rollup@4.60.4)
       scule: 1.3.0
-      semver: 7.7.4
+      semver: 7.8.0
       serve-placeholder: 2.0.2
       serve-static: 2.2.1
       source-map: 0.7.6
@@ -72539,9 +72312,9 @@ snapshots:
       make-fetch-happen: 15.0.3
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.0
       tar: 7.5.11
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.16
       which: 6.0.1
     transitivePeerDependencies:
       - supports-color
@@ -72604,7 +72377,7 @@ snapshots:
     dependencies:
       growly: 1.3.0
       is-wsl: 2.2.0
-      semver: 7.7.4
+      semver: 7.8.0
       shellwords: 0.1.1
       uuid: 8.3.2
       which: 2.0.2
@@ -72662,6 +72435,10 @@ snapshots:
     dependencies:
       abbrev: 1.1.1
 
+  nopt@7.2.1:
+    dependencies:
+      abbrev: 2.0.0
+
   nopt@8.1.0:
     dependencies:
       abbrev: 3.0.1
@@ -72681,7 +72458,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.2
+      semver: 7.8.0
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@5.0.0:
@@ -72694,7 +72471,7 @@ snapshots:
   normalize-package-data@8.0.0:
     dependencies:
       hosted-git-info: 9.0.2
-      semver: 7.7.4
+      semver: 7.8.0
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -72826,7 +72603,7 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.0
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.1:
@@ -72892,7 +72669,7 @@ snapshots:
       npm-install-checks: 7.1.2
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.8.0
 
   npm-pick-manifest@11.0.3:
     dependencies:
@@ -73089,10 +72866,10 @@ snapshots:
       - webpack-command
       - whiskers
 
-  nuxt@2.18.1(@vue/compiler-sfc@3.5.32)(buffer@6.0.3)(consola@3.4.2)(encoding@0.1.13)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2)):
+  nuxt@2.18.1(@vue/compiler-sfc@3.5.32)(buffer@6.0.3)(consola@3.4.2)(encoding@0.1.13)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2)):
     dependencies:
       '@nuxt/babel-preset-app': 2.18.1(vue@2.7.16)
-      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
+      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
       '@nuxt/cli': 2.18.1(buffer@6.0.3)
       '@nuxt/components': 2.2.1(consola@3.4.2)
       '@nuxt/config': 2.18.1
@@ -73105,7 +72882,7 @@ snapshots:
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
       '@nuxt/vue-renderer': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(vue@2.7.16)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.32)(prettier@3.8.3)(tslib@2.8.1)(typescript@6.0.2)(webpack-cli@7.0.2(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.4)(webpack@5.106.2))
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - arc-templates
@@ -73174,16 +72951,16 @@ snapshots:
       - webpack-command
       - whiskers
 
-  nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3):
+  nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3):
     dependencies:
       '@dxup/nuxt': 0.4.0(magicast@0.5.2)(typescript@6.0.2)
       '@nuxt/cli': 3.34.0(@nuxt/schema@3.21.2)(cac@6.7.14)(commander@13.1.0)(magicast@0.5.2)
-      '@nuxt/devtools': 3.2.4(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
+      '@nuxt/devtools': 3.2.4(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
       '@nuxt/kit': 3.21.2(magicast@0.5.2)
-      '@nuxt/nitro-server': 3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.8.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)
+      '@nuxt/nitro-server': 3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)
       '@nuxt/schema': 3.21.2
       '@nuxt/telemetry': 2.8.0(@nuxt/kit@3.21.2(magicast@0.5.2))
-      '@nuxt/vite-builder': 3.21.2(b4f3c9c91e5ed79d117c7769076ae2f0)
+      '@nuxt/vite-builder': 3.21.2(0460f2223a398df6a8ecde67b41be268)
       '@unhead/vue': 2.1.13(vue@3.5.32(typescript@6.0.2))
       '@vue/shared': 3.5.32
       c12: 3.3.4(magicast@0.5.2)
@@ -73235,7 +73012,7 @@ snapshots:
       vue-router: 4.6.4(vue@3.5.32(typescript@6.0.2))
     optionalDependencies:
       '@parcel/watcher': 2.5.6
-      '@types/node': 25.8.0
+      '@types/node': 25.9.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -73302,16 +73079,16 @@ snapshots:
       - xml2js
       - yaml
 
-  nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3):
+  nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3):
     dependencies:
       '@dxup/nuxt': 0.4.0(magicast@0.5.2)(typescript@6.0.2)
       '@nuxt/cli': 3.34.0(@nuxt/schema@3.21.2)(cac@6.7.14)(commander@13.1.0)(magicast@0.5.2)
-      '@nuxt/devtools': 3.2.4(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
+      '@nuxt/devtools': 3.2.4(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2))
       '@nuxt/kit': 3.21.2(magicast@0.5.2)
-      '@nuxt/nitro-server': 3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.6.1))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(srvx@0.11.15)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(srvx@0.11.15)(typescript@6.0.2)(xml2js@0.6.2)
+      '@nuxt/nitro-server': 3.21.2(db0@0.3.4)(encoding@0.1.13)(ioredis@5.10.1)(magicast@0.5.2)(nuxt@3.21.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@parcel/watcher@2.5.6)(@types/node@25.9.0)(@vue/compiler-sfc@3.5.32)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(encoding@0.1.13)(eslint@10.2.0(jiti@2.7.0))(ioredis@5.10.1)(less@4.6.4)(lightningcss@1.32.0)(magicast@0.5.2)(meow@13.2.0)(optionator@0.9.4)(rolldown@1.0.1)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.1)(rollup@4.60.4))(rollup@4.60.4)(sass@1.99.0)(stylelint@16.26.1(typescript@6.0.2))(stylus@0.64.0)(terser@5.47.1)(typescript@6.0.2)(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2))(xml2js@0.6.2)(yaml@2.8.3))(rolldown@1.0.1)(typescript@6.0.2)(xml2js@0.6.2)
       '@nuxt/schema': 3.21.2
       '@nuxt/telemetry': 2.8.0(@nuxt/kit@3.21.2(magicast@0.5.2))
-      '@nuxt/vite-builder': 3.21.2(0460f2223a398df6a8ecde67b41be268)
+      '@nuxt/vite-builder': 3.21.2(a548bd6fe7bab5b665da7aaccea171a1)
       '@unhead/vue': 2.1.13(vue@3.5.32(typescript@6.0.2))
       '@vue/shared': 3.5.32
       c12: 3.3.4(magicast@0.5.2)
@@ -74659,7 +74436,7 @@ snapshots:
       ky: 1.14.3
       registry-auth-token: 5.1.1
       registry-url: 6.0.1
-      semver: 7.7.4
+      semver: 7.8.0
 
   package-json@6.5.0:
     dependencies:
@@ -76945,7 +76722,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer-core@25.0.3:
+  puppeteer-core@25.0.4:
     dependencies:
       '@puppeteer/browsers': 3.0.3
       chromium-bidi: 16.0.1(devtools-protocol@0.0.1608973)
@@ -76953,7 +76730,7 @@ snapshots:
       devtools-protocol: 0.0.1608973
       typed-query-selector: 2.12.2
       webdriver-bidi-protocol: 0.4.1
-      ws: 8.20.0
+      ws: 8.20.1
     transitivePeerDependencies:
       - bare-abort-controller
       - bare-buffer
@@ -76963,13 +76740,13 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@25.0.3(typescript@6.0.3):
+  puppeteer@25.0.4(typescript@6.0.3):
     dependencies:
       '@puppeteer/browsers': 3.0.3
       chromium-bidi: 16.0.1(devtools-protocol@0.0.1608973)
       cosmiconfig: 9.0.1(typescript@6.0.3)
       devtools-protocol: 0.0.1608973
-      puppeteer-core: 25.0.3
+      puppeteer-core: 25.0.4
       typed-query-selector: 2.12.2
     transitivePeerDependencies:
       - bare-abort-controller
@@ -77899,6 +77676,30 @@ snapshots:
     optional: true
 
   robots-parser@3.0.1: {}
+
+  rolldown@1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
+    dependencies:
+      '@oxc-project/types': 0.122.0
+      '@rolldown/pluginutils': 1.0.0-rc.12
+    optionalDependencies:
+      '@rolldown/binding-android-arm64': 1.0.0-rc.12
+      '@rolldown/binding-darwin-arm64': 1.0.0-rc.12
+      '@rolldown/binding-darwin-x64': 1.0.0-rc.12
+      '@rolldown/binding-freebsd-x64': 1.0.0-rc.12
+      '@rolldown/binding-linux-arm-gnueabihf': 1.0.0-rc.12
+      '@rolldown/binding-linux-arm64-gnu': 1.0.0-rc.12
+      '@rolldown/binding-linux-arm64-musl': 1.0.0-rc.12
+      '@rolldown/binding-linux-ppc64-gnu': 1.0.0-rc.12
+      '@rolldown/binding-linux-s390x-gnu': 1.0.0-rc.12
+      '@rolldown/binding-linux-x64-gnu': 1.0.0-rc.12
+      '@rolldown/binding-linux-x64-musl': 1.0.0-rc.12
+      '@rolldown/binding-openharmony-arm64': 1.0.0-rc.12
+      '@rolldown/binding-wasm32-wasi': 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@rolldown/binding-win32-arm64-msvc': 1.0.0-rc.12
+      '@rolldown/binding-win32-x64-msvc': 1.0.0-rc.12
+    transitivePeerDependencies:
+      - '@emnapi/core'
+      - '@emnapi/runtime'
 
   rolldown@1.0.0-rc.15:
     dependencies:
@@ -79144,7 +78945,7 @@ snapshots:
       get-stdin: 9.0.0
       git-hooks-list: 3.2.0
       is-plain-obj: 4.1.0
-      semver: 7.7.4
+      semver: 7.8.0
       sort-object-keys: 1.1.3
       tinyglobby: 0.2.16
 
@@ -79324,7 +79125,7 @@ snapshots:
 
   speedline-core@1.4.3:
     dependencies:
-      '@types/node': 20.19.39
+      '@types/node': 25.9.0
       image-ssim: 0.2.0
       jpeg-js: 0.4.4
 
@@ -81175,7 +80976,6 @@ snapshots:
       yn: 3.1.1
     optionalDependencies:
       '@swc/core': 1.15.33
-    optional: true
 
   ts-pnp@1.2.0(typescript@5.9.3):
     optionalDependencies:
@@ -82170,12 +81970,6 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  vite-dev-rpc@1.1.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
-    dependencies:
-      birpc: 2.9.0
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vite-hot-client: 2.1.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
-
   vite-dev-rpc@1.1.0(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
     dependencies:
       birpc: 2.9.0
@@ -82187,10 +81981,6 @@ snapshots:
       birpc: 2.9.0
       vite: 8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
       vite-hot-client: 2.1.0(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
-
-  vite-hot-client@2.1.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
-    dependencies:
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
 
   vite-hot-client@2.1.0(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
     dependencies:
@@ -82218,26 +82008,6 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@5.3.0(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
-    dependencies:
-      cac: 6.7.14
-      es-module-lexer: 2.1.0
-      obug: 2.1.1
-      pathe: 2.0.3
-      vite: 7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-    transitivePeerDependencies:
-      - '@types/node'
-      - jiti
-      - less
-      - lightningcss
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - terser
-      - tsx
-      - yaml
-
   vite-node@5.3.0(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
     dependencies:
       cac: 6.7.14
@@ -82257,25 +82027,6 @@ snapshots:
       - terser
       - tsx
       - yaml
-
-  vite-plugin-checker@0.12.0(eslint@10.2.0(jiti@2.6.1))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.26.1(typescript@6.0.2))(typescript@6.0.2)(vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2)):
-    dependencies:
-      '@babel/code-frame': 7.29.0
-      chokidar: 4.0.3
-      npm-run-path: 6.0.0
-      picocolors: 1.1.1
-      picomatch: 4.0.4
-      tiny-invariant: 1.3.3
-      tinyglobby: 0.2.16
-      vite: 7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vscode-uri: 3.1.0
-    optionalDependencies:
-      eslint: 10.2.0(jiti@2.6.1)
-      meow: 13.2.0
-      optionator: 0.9.4
-      stylelint: 16.26.1(typescript@6.0.2)
-      typescript: 6.0.2
-      vue-tsc: 3.2.6(typescript@6.0.2)
 
   vite-plugin-checker@0.12.0(eslint@10.2.0(jiti@2.6.1))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.26.1(typescript@6.0.2))(typescript@6.0.2)(vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue-tsc@3.2.6(typescript@6.0.2)):
     dependencies:
@@ -82380,23 +82131,6 @@ snapshots:
       rollup: 2.80.0
       vite: 8.0.13(@types/node@20.19.39)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
 
-  vite-plugin-inspect@11.3.3(@nuxt/kit@4.4.2(magicast@0.5.2))(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
-    dependencies:
-      ansis: 4.2.0
-      debug: 4.4.3(supports-color@5.5.0)
-      error-stack-parser-es: 1.0.5
-      ohash: 2.0.11
-      open: 10.2.0
-      perfect-debounce: 2.1.0
-      sirv: 3.0.2
-      unplugin-utils: 0.3.1
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vite-dev-rpc: 1.1.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))
-    optionalDependencies:
-      '@nuxt/kit': 4.4.2(magicast@0.5.2)
-    transitivePeerDependencies:
-      - supports-color
-
   vite-plugin-inspect@11.3.3(@nuxt/kit@4.4.2(magicast@0.5.2))(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)):
     dependencies:
       ansis: 4.2.0
@@ -82467,16 +82201,6 @@ snapshots:
       '@testing-library/jest-dom': 6.9.1
     transitivePeerDependencies:
       - supports-color
-
-  vite-plugin-vue-tracer@1.3.0(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2)):
-    dependencies:
-      estree-walker: 3.0.3
-      exsolve: 1.0.8
-      magic-string: 0.30.21
-      pathe: 2.0.3
-      source-map-js: 1.2.1
-      vite: 8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3)
-      vue: 3.5.32(typescript@6.0.2)
 
   vite-plugin-vue-tracer@1.3.0(vite@8.0.13(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3))(vue@3.5.32(typescript@6.0.2)):
     dependencies:
@@ -82562,7 +82286,7 @@ snapshots:
       picomatch: 4.0.4
       postcss: 8.5.14
       rollup: 4.60.4
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 25.6.0
       fsevents: 2.3.3
@@ -82572,25 +82296,6 @@ snapshots:
       sass: 1.97.3
       stylus: 0.64.0
       terser: 5.46.0
-      yaml: 2.8.3
-
-  vite@7.3.3(@types/node@25.8.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
-    dependencies:
-      esbuild: 0.27.7
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
-      postcss: 8.5.14
-      rollup: 4.60.4
-      tinyglobby: 0.2.16
-    optionalDependencies:
-      '@types/node': 25.8.0
-      fsevents: 2.3.3
-      jiti: 2.6.1
-      less: 4.6.4
-      lightningcss: 1.32.0
-      sass: 1.99.0
-      stylus: 0.64.0
-      terser: 5.47.1
       yaml: 2.8.3
 
   vite@7.3.3(@types/node@25.9.0)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
@@ -82668,24 +82373,6 @@ snapshots:
       yaml: 2.8.3
     optional: true
 
-  vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
-    dependencies:
-      lightningcss: 1.32.0
-      picomatch: 4.0.4
-      postcss: 8.5.14
-      rolldown: 1.0.1
-      tinyglobby: 0.2.16
-    optionalDependencies:
-      '@types/node': 25.8.0
-      esbuild: 0.28.0
-      fsevents: 2.3.3
-      jiti: 2.6.1
-      less: 4.6.4
-      sass: 1.99.0
-      stylus: 0.64.0
-      terser: 5.47.1
-      yaml: 2.8.3
-
   vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
     dependencies:
       lightningcss: 1.32.0
@@ -82739,6 +82426,27 @@ snapshots:
       stylus: 0.64.0
       terser: 5.47.1
       yaml: 2.8.3
+
+  vite@8.0.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.9.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
+    dependencies:
+      lightningcss: 1.32.0
+      picomatch: 4.0.4
+      postcss: 8.5.14
+      rolldown: 1.0.0-rc.12(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      tinyglobby: 0.2.16
+    optionalDependencies:
+      '@types/node': 25.9.0
+      esbuild: 0.28.0
+      fsevents: 2.3.3
+      jiti: 2.7.0
+      less: 4.6.4
+      sass: 1.99.0
+      stylus: 0.64.0
+      terser: 5.47.1
+      yaml: 2.8.3
+    transitivePeerDependencies:
+      - '@emnapi/core'
+      - '@emnapi/runtime'
 
   vite@8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.7.0)(less@4.6.4)(sass@1.99.0)(stylus@0.64.0)(terser@5.47.1)(yaml@2.8.3):
     dependencies:
