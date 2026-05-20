@@ -49,7 +49,6 @@ jobs:
           fi
 
           echo "NX Cloud token present — attempting distributed execution"
-          npx nx-cloud --version || echo "nx-cloud --version not available"
 
           retries=0
           max_retries=3
