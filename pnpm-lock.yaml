@@ -4278,8 +4278,8 @@ importers:
         specifier: workspace:^
         version: link:../../wrappers/lit
       lit:
-        specifier: ^2.6.1
-        version: 2.8.0
+        specifier: ^3.3.3
+        version: 3.3.3
       tsparticles:
         specifier: workspace:^
         version: link:../../bundles/full/dist
@@ -12979,7 +12979,7 @@ importers:
         version: link:../../engine/dist
       lit:
         specifier: ^3.3.2
-        version: 3.3.2
+        version: 3.3.3
     devDependencies:
       typescript:
         specifier: ^5.0.0
@@ -18307,11 +18307,8 @@ packages:
       '@inquirer/prompts': '>= 3 < 8'
       listr2: 9.0.5
 
-  '@lit-labs/ssr-dom-shim@1.5.1':
-    resolution: {integrity: sha512-Aou5UdlSpr5whQe8AA/bZG0jMj96CoJIWbGfZ91qieWu5AWUMKw8VR/pAkQkJYvBNhmCcWnZlyyk5oze8JIqYA==}
-
-  '@lit/reactive-element@1.6.3':
-    resolution: {integrity: sha512-QuTgnG52Poic7uM1AN5yJ09QMe0O28e10XzSvWDz02TJiiKee4stsiownEIadWm8nYzyDAyT+gKzUoZmiWQtsQ==}
+  '@lit-labs/ssr-dom-shim@1.6.0':
+    resolution: {integrity: sha512-VHb0ALPMTlgKjM6yIxxoQNnpKyUKLD04VzeQdsiXkMqkvYlAHxq9glGLmgbb889/1GsohSOAjvQYoiBppXFqrQ==}
 
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
@@ -33288,23 +33285,14 @@ packages:
     resolution: {integrity: sha512-OEARBhDidyaQENavLbzpTKbEmu5rnAI+SdYsH4ia1BlGlLiqQXoym7uH1MaRPtwtUPbkhUfT4OBDZ+74VHc3Cg==}
     hasBin: true
 
-  lit-element@3.3.3:
-    resolution: {integrity: sha512-XbeRxmTHubXENkV4h8RIPyr8lXc+Ff28rkcQzw3G6up2xg5E8Zu1IgOWIwBLEQsu3cOVFqdYwiVi0hv0SlpqUA==}
-
   lit-element@4.2.2:
     resolution: {integrity: sha512-aFKhNToWxoyhkNDmWZwEva2SlQia+jfG0fjIWV//YeTaWrVnOxD89dPKfigCUspXFmjzOEUQpOkejH5Ly6sG0w==}
 
-  lit-html@2.8.0:
-    resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
+  lit-html@3.3.3:
+    resolution: {integrity: sha512-el8M6jK2o3RXBnrSHX3ZKrsN8zEV63pSExTO1wYJz7QndGYZ8353e2a5PPX+qHe2aGayfnchQmkAojaWAREOIA==}
 
-  lit-html@3.3.2:
-    resolution: {integrity: sha512-Qy9hU88zcmaxBXcc10ZpdK7cOLXvXpRoBxERdtqV9QOrfpMZZ6pSYP91LhpPtap3sFMUiL7Tw2RImbe0Al2/kw==}
-
-  lit@2.8.0:
-    resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
-
-  lit@3.3.2:
-    resolution: {integrity: sha512-NF9zbsP79l4ao2SNrH3NkfmFgN/hBYSQo90saIVI1o5GpjAdCPVstVzO1MrLOakHoEhYkrtRjPK6Ob521aoYWQ==}
+  lit@3.3.3:
+    resolution: {integrity: sha512-fycuvZg/hkpozL00lm1pEJH5nN/lr9ZXd6mJI2HSN4+Bzc+LDNdEApJ6HFbPkdFNHLvOplIIuJvxkS4XUxqirw==}
 
   livereload-js@3.4.1:
     resolution: {integrity: sha512-5MP0uUeVCec89ZbNOT/i97Mc+q3SxXmiUGhRFOTmhrGPn//uWVQdCvcLJDy64MSBR5MidFdOR7B9viumoavy6g==}
@@ -48770,15 +48758,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@lit-labs/ssr-dom-shim@1.5.1': {}
-
-  '@lit/reactive-element@1.6.3':
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.5.1
+  '@lit-labs/ssr-dom-shim@1.6.0': {}
 
   '@lit/reactive-element@2.1.2':
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.5.1
+      '@lit-labs/ssr-dom-shim': 1.6.0
 
   '@lmdb/lmdb-darwin-arm64@3.5.1':
     optional: true
@@ -51148,8 +51132,8 @@ snapshots:
   '@open-wc/testing-helpers@2.3.2':
     dependencies:
       '@open-wc/scoped-elements': 2.2.4
-      lit: 2.8.0
-      lit-html: 3.3.2
+      lit: 3.3.3
+      lit-html: 3.3.3
 
   '@open-wc/testing-karma@4.0.9(encoding@0.1.13)':
     dependencies:
@@ -70530,37 +70514,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  lit-element@3.3.3:
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.5.1
-      '@lit/reactive-element': 1.6.3
-      lit-html: 2.8.0
-
   lit-element@4.2.2:
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.5.1
+      '@lit-labs/ssr-dom-shim': 1.6.0
       '@lit/reactive-element': 2.1.2
-      lit-html: 3.3.2
+      lit-html: 3.3.3
 
-  lit-html@2.8.0:
+  lit-html@3.3.3:
     dependencies:
       '@types/trusted-types': 2.0.7
 
-  lit-html@3.3.2:
-    dependencies:
-      '@types/trusted-types': 2.0.7
-
-  lit@2.8.0:
-    dependencies:
-      '@lit/reactive-element': 1.6.3
-      lit-element: 3.3.3
-      lit-html: 2.8.0
-
-  lit@3.3.2:
+  lit@3.3.3:
     dependencies:
       '@lit/reactive-element': 2.1.2
       lit-element: 4.2.2
-      lit-html: 3.3.2
+      lit-html: 3.3.3
 
   livereload-js@3.4.1: {}
 
