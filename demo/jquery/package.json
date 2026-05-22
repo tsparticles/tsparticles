@@ -38,13 +38,13 @@
     "eslint-config-prettier": "^10.1.8",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
-    "helmet": "^7.1.0",
+    "helmet": "^8.1.0",
     "jsoneditor": "^10.0.0",
     "lodash": "^4.17.21",
     "prettier": "^3.1.1",
     "pug": "^3.0.2",
     "stats.ts": "^1.1.0",
-    "stylus": "^0.62.0",
+    "stylus": "^0.64.0",
     "typescript": "^5.3.3"
   }
 }

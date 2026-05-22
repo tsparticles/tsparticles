@@ -36,10 +36,10 @@
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "express": "^4.18.2",
-    "helmet": "^7.0.0",
+    "helmet": "^8.1.0",
     "prettier": "^3.0.0",
     "pug": "^3.0.2",
-    "stylus": "^0.62.0",
+    "stylus": "^0.64.0",
     "tsparticles": "workspace:^",
     "typescript": "^5.0.4"
   }
