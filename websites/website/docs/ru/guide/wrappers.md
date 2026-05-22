@@ -39,6 +39,7 @@
 - [`Qwik`](/ru/guide/wrappers-qwik)
 - [`Riot`](/ru/guide/wrappers-riot)
 - [`Solid`](/ru/guide/wrappers-solid)
+- [`Stencil`](/ru/guide/wrappers-stencil)
 - [`Web Components`](/ru/guide/wrappers-webcomponents)
 - [`WordPress`](/ru/guide/wrappers-wordpress)
 
@@ -87,6 +88,8 @@
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - локальный гайд: [`/guide/wrappers-riot`](/ru/guide/wrappers-riot)
 - `@tsparticles/solid`: wrapper-компонент для Solid  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - локальный гайд: [`/guide/wrappers-solid`](/ru/guide/wrappers-solid)
+- `@tsparticles/stencil`: wrapper-компонент для Stencil (`<stencil-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - локальный гайд: [`/guide/wrappers-stencil`](/ru/guide/wrappers-stencil)
 - `@tsparticles/svelte`: wrapper-компонент для Svelte  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - локальный гайд: [`/guide/wrappers-svelte`](/ru/guide/wrappers-svelte)
 - `@tsparticles/vue2`: wrapper-компонент для Vue 2  
@@ -137,6 +140,7 @@
 | `@tsparticles/react`         | `demo/react`                                         |
 | `@tsparticles/riot`          | `demo/riot`                                          |
 | `@tsparticles/solid`         | `demo/solid`                                         |
+| `@tsparticles/stencil`       | `demo/stencil`                                       |
 | `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                     |
 | `@tsparticles/vue2`          | `demo/vue2`                                          |
 | `@tsparticles/vue3`          | `demo/vue3`                                          |
