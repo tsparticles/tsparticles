@@ -1,14 +1,14 @@
 import type { JSX } from "@stencil/core";
-import { Component, Element, h, Prop, Watch } from "@stencil/core";
+import { Component, Element, Prop, Watch, h } from "@stencil/core";
 import { Container, Engine, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 
 export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 
 @Component({
-  tag: "stencil-particles"
+  tag: "stencil-particles",
 })
 export class StencilParticles {
-  @Element() private host!: HTMLElement;
+  @Element() private readonly host!: HTMLElement;
   private containerElement?: HTMLDivElement;
 
   @Prop({ attribute: "container-id" }) containerId = "tsparticles";
@@ -57,12 +57,12 @@ export class StencilParticles {
       if (this.options) {
         container = await tsParticles.load({
           id: this.containerId ?? "tsparticles",
-          options: this.options
+          options: this.options,
         });
       } else if (this.url) {
         container = await tsParticles.load({
           id: this.containerId ?? "tsparticles",
-          url: this.url
+          url: this.url,
         });
       } else {
         console.warn("[stencil-particles] neither options nor url provided");
@@ -82,11 +82,6 @@ export class StencilParticles {
     }
 
     this.container = container;
-
-    console.info("[stencil-particles] loaded", {
-      id: this.containerId,
-      hasCanvas: !!(this.containerElement?.querySelector("canvas") || document.querySelector(`#${this.containerId} canvas`))
-    });
   }
 
   render(): JSX.Element {

@@ -34,8 +34,10 @@
     }
   },
   "particles": {
-    "color": {
-      "value": "#fde68a"
+    "paint": {
+      "color": {
+        "value": "#fde68a"
+      }
     },
     "links": {
       "color": "#f8fafc",
