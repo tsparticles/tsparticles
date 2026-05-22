@@ -1,6 +1,6 @@
 # Wrapper: @tsparticles/stencil
 
-Offizieller Stencil-Wrapper fur `tsParticles`.
+Offizieller Stencil-Wrapper für `tsParticles`.
 
 ## Installation
 
@@ -12,7 +12,7 @@ pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 
 1. Wrapper + Engine + Loader-Paket installieren.
 2. Stencil Custom Elements einmalig mit `@tsparticles/stencil/loader` registrieren.
-3. `<stencil-particles />` rendern und `init` + `options` (oder `url`) ubergeben.
+3. `<stencil-particles />` rendern und `init` + `options` (oder `url`) übergeben.
 
 ## Monorepo-Referenzen
 

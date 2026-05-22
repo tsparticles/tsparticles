@@ -1,19 +1,14 @@
 # stencil-particles
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                        | Default         |
-| ------------- | -------------- | ----------- | ------------------------------------------- | --------------- |
-| `containerId` | `container-id` |             | `string`                                    | `"tsparticles"` |
-| `init`        | --             |             | `(engine: Engine) => void \| Promise<void>` | `undefined`     |
-| `options`     | --             |             | `IOptions`                                  | `undefined`     |
-| `url`         | `url`          |             | `string`                                    | `undefined`     |
-
+| Property  | Attribute | Description | Type                                        | Default     |
+|-----------|-----------|-------------|---------------------------------------------|-------------|
+| `init`    | --        |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
+| `options` | --        |             | `ISourceOptions`                            | `undefined` |
+| `url`     | `url`     |             | `string`                                    | `undefined` |
 
 ----------------------------------------------
 

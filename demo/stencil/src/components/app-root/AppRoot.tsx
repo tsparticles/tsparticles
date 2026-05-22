@@ -1,6 +1,5 @@
-import { Component, h, State } from "@stencil/core";
+import { Component, type JSX, State, h } from "@stencil/core";
 import type { ISourceOptions } from "@tsparticles/engine";
-import type { JSX } from "@stencil/core";
 import { defineCustomElements } from "@tsparticles/stencil/loader";
 import { loadSlim } from "@tsparticles/slim";
 

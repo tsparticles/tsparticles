@@ -6,15 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ISourceOptions } from "@tsparticles/engine";
-import { ParticlesPluginRegistrar } from "./components/stencil-particles/stencil-particles";
+import { ParticlesPluginRegistrar } from "./initParticlesEngine";
 export { ISourceOptions } from "@tsparticles/engine";
-export { ParticlesPluginRegistrar } from "./components/stencil-particles/stencil-particles";
+export { ParticlesPluginRegistrar } from "./initParticlesEngine";
 export namespace Components {
     interface StencilParticles {
-        /**
-          * @default "tsparticles"
-         */
-        "containerId": string;
         "init"?: ParticlesPluginRegistrar;
         "options"?: ISourceOptions;
         "url"?: string;
@@ -33,17 +29,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface StencilParticles {
-        /**
-          * @default "tsparticles"
-         */
-        "containerId"?: string;
         "init"?: ParticlesPluginRegistrar;
         "options"?: ISourceOptions;
         "url"?: string;
     }
 
     interface StencilParticlesAttributes {
-        "containerId": string;
         "url": string;
     }
 

@@ -1,8 +1,8 @@
-import type { JSX } from "@stencil/core";
-import { Component, Element, Prop, Watch, h } from "@stencil/core";
-import { Container, Engine, type ISourceOptions, tsParticles } from "@tsparticles/engine";
-
-export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
+import { Component, Element, type JSX, Prop, Watch, h } from "@stencil/core";
+import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+// ✅ Import the shared type instead of redefining it locally
+// Adjust the path to match your actual project structure
+import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 
 @Component({
   tag: "stencil-particles",
@@ -11,26 +11,28 @@ export class StencilParticles {
   @Element() private readonly host!: HTMLElement;
   private containerElement?: HTMLDivElement;
 
-  @Prop({ attribute: "container-id" }) containerId = "tsparticles";
+  // ✅ Removed `containerId`: loading via `element` avoids ID collisions entirely
   @Prop() options?: ISourceOptions;
   @Prop() url?: string;
   @Prop() init?: ParticlesPluginRegistrar;
 
   private container?: Container;
   private renderId = 0;
-  private initialized = false;
+
+  // ✅ Static flag to prevent redundant `tsParticles.init()` calls
+  // when multiple instances of this component are mounted on the same page
+  private static engineInitialized = false;
 
   async componentDidLoad(): Promise<void> {
     await this.loadParticles(++this.renderId);
   }
 
   disconnectedCallback(): void {
-    this.renderId++;
+    this.renderId++; // Invalidate any pending load promises
     this.container?.destroy();
     this.container = undefined;
   }
 
-  @Watch("containerId")
   @Watch("options")
   @Watch("url")
   @Watch("init")
@@ -41,43 +43,44 @@ export class StencilParticles {
   private async loadParticles(currentRenderId: number): Promise<void> {
     this.container?.destroy();
 
-    let container: Container | undefined;
-
-    try {
-      if (!this.initialized) {
-        if (this.init) {
-          await this.init(tsParticles);
-        }
-
-        await tsParticles.init();
-
-        this.initialized = true;
-      }
-
-      if (this.options) {
-        container = await tsParticles.load({
-          id: this.containerId ?? "tsparticles",
-          options: this.options,
-        });
-      } else if (this.url) {
-        container = await tsParticles.load({
-          id: this.containerId ?? "tsparticles",
-          url: this.url,
-        });
-      } else {
-        console.warn("[stencil-particles] neither options nor url provided");
-
-        return;
-      }
-    } catch (error: unknown) {
-      console.error("[stencil-particles] load failed", error);
-
+    // ✅ Guard clause: `containerElement` is now strictly required
+    if (!this.containerElement) {
+      console.warn("[stencil-particles] container element not available yet");
       return;
     }
 
+    let container: Container | undefined;
+
+    try {
+      if (!StencilParticles.engineInitialized) {
+        if (this.init) {
+          await this.init(tsParticles);
+        }
+        await tsParticles.init();
+        StencilParticles.engineInitialized = true;
+      }
+
+      if (!this.options && !this.url) {
+        console.warn("[stencil-particles] neither options nor url provided");
+        return;
+      }
+
+      // ✅ Load directly onto the DOM element.
+      // tsParticles will auto-generate a unique internal ID, preventing collisions.
+      const loadParams = {
+        element: this.containerElement,
+        ...(this.options ? { options: this.options } : { url: this.url! }),
+      };
+
+      container = await tsParticles.load(loadParams);
+    } catch (error: unknown) {
+      console.error("[stencil-particles] load failed", error);
+      return;
+    }
+
+    // Race condition guard: discard result if props changed during async load
     if (currentRenderId !== this.renderId) {
       container?.destroy();
-
       return;
     }
 
@@ -87,8 +90,8 @@ export class StencilParticles {
   render(): JSX.Element {
     return (
       <div
-        id={this.containerId}
         ref={el => {
+          // ✅ Ref is actively captured and passed to the engine
           this.containerElement = el as HTMLDivElement;
         }}
         style={{ width: "100%", height: "100%" }}
