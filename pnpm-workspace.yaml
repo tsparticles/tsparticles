@@ -82,3 +82,7 @@ packageExtensions:
   vue-template-compiler@*:
     dependencies:
       vue: "2.7.16"
+
+minimumReleaseAgeExclude:
+  - eslint-plugin-jsdoc@63.0.0
+  - webpack@5.107.0

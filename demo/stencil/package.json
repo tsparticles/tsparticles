@@ -1,0 +1,26 @@
+{
+  "name": "@tsparticles/stencil-demo",
+  "version": "4.0.5",
+  "private": true,
+  "description": "Stencil demo for @tsparticles/stencil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "demo/stencil"
+  },
+  "scripts": {
+    "start": "stencil build --dev --watch --serve",
+    "build": "stencil build",
+    "build:ci": "stencil build"
+  },
+  "dependencies": {
+    "@tsparticles/configs": "workspace:^",
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/slim": "workspace:^",
+    "@tsparticles/stencil": "workspace:^"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.43.4",
+    "typescript": "^6.0.3"
+  }
+}

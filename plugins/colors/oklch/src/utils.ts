@@ -38,7 +38,7 @@ const OKLAB_LMS = {
 export function oklchToRgb(oklch: IOklch): IRgb {
   // 1. Normalize OKLCH
   const L = oklch.l / percentDenominator,
-    C = oklch.c / percentDenominator,
+    C = oklch.c,
     hRad = degToRad(oklch.h),
     // 2. OKLCH → OKLAB
     a = C * Math.cos(hRad),
@@ -92,5 +92,5 @@ export function getStyleFromOklch(color: IOklch, opacity?: number): string {
   const { l, c, h } = color,
     alpha = opacity !== undefined ? ` / ${opacity.toString()}` : "";
 
-  return `oklch(${l.toString()}% ${c.toString()}% ${h.toString()}°${alpha})`;
+  return `oklch(${l.toString()}% ${c.toString()} ${h.toString()}°${alpha})`;
 }

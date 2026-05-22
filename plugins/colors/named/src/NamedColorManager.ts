@@ -205,6 +205,6 @@ export class NamedColorManager implements IColorManager {
       return undefined;
     }
 
-    return { ...rgbColor, a: 255 };
+    return { ...rgbColor, a: 1 };
   }
 }

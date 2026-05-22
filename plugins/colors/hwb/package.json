@@ -5,6 +5,7 @@
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build",
+    "test": "vitest run",
     "version": "tsparticles-build -d && git add package.dist.json && tsparticles-build -p -l && git add .",
     "prepack": "pnpm run build"
   },
@@ -117,8 +118,8 @@
   },
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:^",
-    "@tsparticles/cli-command-build": "workspace:^",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "vitest": "^4.1.6"
   },
   "publishConfig": {
     "access": "public",

@@ -39,6 +39,7 @@
 - [`Qwik`](/ja/guide/wrappers-qwik)
 - [`Riot`](/ja/guide/wrappers-riot)
 - [`Solid`](/ja/guide/wrappers-solid)
+- [`Stencil`](/ja/guide/wrappers-stencil)
 - [`Web Components`](/ja/guide/wrappers-webcomponents)
 - [`WordPress`](/ja/guide/wrappers-wordpress)
 
@@ -87,6 +88,8 @@
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - ローカルガイド: [`/guide/wrappers-riot`](/ja/guide/wrappers-riot)
 - `@tsparticles/solid`: Solid コンポーネント wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - ローカルガイド: [`/guide/wrappers-solid`](/ja/guide/wrappers-solid)
+- `@tsparticles/stencil`: Stencil コンポーネント wrapper（`<stencil-particles />`）  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - ローカルガイド: [`/guide/wrappers-stencil`](/ja/guide/wrappers-stencil)
 - `@tsparticles/svelte`: Svelte コンポーネント wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - ローカルガイド: [`/guide/wrappers-svelte`](/ja/guide/wrappers-svelte)
 - `@tsparticles/vue2`: Vue 2 コンポーネント wrapper  
@@ -137,6 +140,7 @@ demo ソースフォルダー: <https://github.com/tsparticles/tsparticles/tree/
 | `@tsparticles/react`         | `demo/react`                          |
 | `@tsparticles/riot`          | `demo/riot`                           |
 | `@tsparticles/solid`         | `demo/solid`                          |
+| `@tsparticles/stencil`       | `demo/stencil`                        |
 | `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`      |
 | `@tsparticles/vue2`          | `demo/vue2`                           |
 | `@tsparticles/vue3`          | `demo/vue3`                           |

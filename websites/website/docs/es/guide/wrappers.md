@@ -39,6 +39,7 @@ Carpeta fuente: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 - [`Qwik`](/es/guide/wrappers-qwik)
 - [`Riot`](/es/guide/wrappers-riot)
 - [`Solid`](/es/guide/wrappers-solid)
+- [`Stencil`](/es/guide/wrappers-stencil)
 - [`Web Components`](/es/guide/wrappers-webcomponents)
 - [`WordPress`](/es/guide/wrappers-wordpress)
 
@@ -87,6 +88,8 @@ Regla de orden para esta seccion:
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - guia local: [`/guide/wrappers-riot`](/es/guide/wrappers-riot)
 - `@tsparticles/solid`: wrapper de componente Solid  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - guia local: [`/guide/wrappers-solid`](/es/guide/wrappers-solid)
+- `@tsparticles/stencil`: wrapper de componente Stencil (`<stencil-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - guia local: [`/guide/wrappers-stencil`](/es/guide/wrappers-stencil)
 - `@tsparticles/svelte`: wrapper de componente Svelte  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - guia local: [`/guide/wrappers-svelte`](/es/guide/wrappers-svelte)
 - `@tsparticles/vue2`: wrapper de componente Vue 2  
@@ -137,6 +140,7 @@ Carpeta fuente de demos: <https://github.com/tsparticles/tsparticles/tree/main/d
 | `@tsparticles/react`         | `demo/react`                                           |
 | `@tsparticles/riot`          | `demo/riot`                                            |
 | `@tsparticles/solid`         | `demo/solid`                                           |
+| `@tsparticles/stencil`       | `demo/stencil`                                         |
 | `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                       |
 | `@tsparticles/vue2`          | `demo/vue2`                                            |
 | `@tsparticles/vue3`          | `demo/vue3`                                            |

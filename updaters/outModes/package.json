@@ -101,7 +101,6 @@
   },
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:^",
-    "@tsparticles/cli-command-build": "workspace:^",
     "@tsparticles/engine": "workspace:*"
   },
   "publishConfig": {

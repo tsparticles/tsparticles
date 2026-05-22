@@ -1,0 +1,60 @@
+{
+  "name": "@tsparticles/stencil",
+  "version": "4.0.5",
+  "description": "Official tsParticles Stencil Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
+  "license": "MIT",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/stencil"
+  },
+  "bugs": {
+    "url": "https://github.com/tsparticles/stencil/issues"
+  },
+  "files": [
+    "dist",
+    "loader"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js"
+    }
+  },
+  "scripts": {
+    "build": "stencil build",
+    "build:ci": "stencil build"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:^"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.43.4",
+    "typescript": "^6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": [
+          "{projectRoot}/dist",
+          "{projectRoot}/loader"
+        ]
+      }
+    }
+  }
+}
