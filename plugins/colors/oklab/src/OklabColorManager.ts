@@ -10,6 +10,7 @@ import {
   type IValueColor,
   getRangeValue,
   identity,
+  none,
   parseAlpha,
   percentDenominator,
 } from "@tsparticles/engine";
@@ -64,7 +65,7 @@ export class OklabColorManager implements IColorManager {
 
   /**
    * Parses an OKLAB color string to RGBA
-   * @param input
+   * @param input -
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {
@@ -81,13 +82,30 @@ export class OklabColorManager implements IColorManager {
       },
       defaultAlpha = 1;
 
-    return result
-      ? oklabaToRgba({
-          a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          l: parseFloat(result[indexes.l] ?? "0") * (result[indexes.lPercent] ? identity : percentDenominator),
-          aAxis: parseFloat(result[indexes.aAxis] ?? "0"),
-          bAxis: parseFloat(result[indexes.bAxis] ?? "0"),
-        })
-      : undefined;
+    if (!result) {
+      return undefined;
+    }
+
+    const rawL = parseFloat(result[indexes.l] ?? "0");
+
+    // Validate lightness range BEFORE scaling
+    if (result[indexes.lPercent]) {
+      // Percentage format: must be 0..100
+      if (rawL < none || rawL > percentDenominator) {
+        return undefined;
+      }
+    } else {
+      // Unitless format: must be 0..1
+      if (rawL < none || rawL > identity) {
+        return undefined;
+      }
+    }
+
+    return oklabaToRgba({
+      a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
+      l: rawL * (result[indexes.lPercent] ? identity : percentDenominator),
+      aAxis: parseFloat(result[indexes.aAxis] ?? "0"),
+      bAxis: parseFloat(result[indexes.bAxis] ?? "0"),
+    });
   }
 }

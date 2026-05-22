@@ -158,7 +158,11 @@ function closeBanner() {
 function saveAndApply(nextConsent) {
   consent = nextConsent;
 
-  writeConsent(nextConsent);
+  try {
+    writeConsent(nextConsent);
+  } catch (err) {
+    console.warn('Cannot persist cookie consent preferences.', err);
+  }
 
   window.tsParticlesConfettiConsent.get = () => consent || defaultConsent;
 

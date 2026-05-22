@@ -14,7 +14,7 @@ pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 2. Registre os custom elements do Stencil uma vez usando `@tsparticles/stencil/loader`.
 3. Renderize `<stencil-particles />` passando `init` + `options` (ou `url`).
 
-## Referencias do Monorepo
+## Referências do Monorepo
 
 - Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil>
 - App de demonstracao: <https://github.com/tsparticles/tsparticles/tree/main/demo/stencil>

@@ -56,6 +56,7 @@ export const Background = () => (
 You can also load options from URL:
 
 ```html
+
 <stencil-particles container-id="tsparticles" url="/assets/default.json"></stencil-particles>
 ```
 
