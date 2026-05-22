@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   // auto-unregister service worker during dev mode
   navigator.serviceWorker.getRegistration().then(function(registration) {
     if (registration) {
-      registration.unregister().then(function() { location.reload(true) });
+      registration.unregister().then(function() { location.reload() });
     }
   });
 }
