@@ -2,13 +2,15 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property  | Attribute | Description | Type                                        | Default     |
-|-----------|-----------|-------------|---------------------------------------------|-------------|
+| --------- | --------- | ----------- | ------------------------------------------- | ----------- |
 | `init`    | --        |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
-| `options` | --        |             | `ISourceOptions`                            | `undefined` |
+| `options` | --        |             | `IOptions`                                  | `undefined` |
 | `url`     | `url`     |             | `string`                                    | `undefined` |
+
 
 ----------------------------------------------
 

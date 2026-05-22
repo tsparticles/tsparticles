@@ -1,27 +1,20 @@
-import { Component, Element, type JSX, Prop, Watch, h } from "@stencil/core";
+import { Component, type JSX, Prop, Watch, h } from "@stencil/core";
 import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
-// ✅ Import the shared type instead of redefining it locally
-// Adjust the path to match your actual project structure
 import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
+import { initParticlesEngine } from "../../initParticlesEngine";
 
 @Component({
   tag: "stencil-particles",
 })
 export class StencilParticles {
-  @Element() private readonly host!: HTMLElement;
   private containerElement?: HTMLDivElement;
 
-  // ✅ Removed `containerId`: loading via `element` avoids ID collisions entirely
   @Prop() options?: ISourceOptions;
   @Prop() url?: string;
   @Prop() init?: ParticlesPluginRegistrar;
 
   private container?: Container;
   private renderId = 0;
-
-  // ✅ Static flag to prevent redundant `tsParticles.init()` calls
-  // when multiple instances of this component are mounted on the same page
-  private static engineInitialized = false;
 
   async componentDidLoad(): Promise<void> {
     await this.loadParticles(++this.renderId);
@@ -43,7 +36,6 @@ export class StencilParticles {
   private async loadParticles(currentRenderId: number): Promise<void> {
     this.container?.destroy();
 
-    // ✅ Guard clause: `containerElement` is now strictly required
     if (!this.containerElement) {
       console.warn("[stencil-particles] container element not available yet");
       return;
@@ -52,12 +44,11 @@ export class StencilParticles {
     let container: Container | undefined;
 
     try {
-      if (!StencilParticles.engineInitialized) {
-        if (this.init) {
-          await this.init(tsParticles);
-        }
-        await tsParticles.init();
-        StencilParticles.engineInitialized = true;
+      // Use the shared initialization logic to ensure consistent plugin registration
+      // and avoid duplicate initialization when multiple instances mount concurrently.
+      // initParticlesEngine handles promise de-duplication and enforces a stable init callback.
+      if (this.init) {
+        await initParticlesEngine(this.init);
       }
 
       if (!this.options && !this.url) {
@@ -65,7 +56,7 @@ export class StencilParticles {
         return;
       }
 
-      // ✅ Load directly onto the DOM element.
+      // Load particles directly onto the DOM element.
       // tsParticles will auto-generate a unique internal ID, preventing collisions.
       const loadParams = {
         element: this.containerElement,
@@ -91,7 +82,6 @@ export class StencilParticles {
     return (
       <div
         ref={el => {
-          // ✅ Ref is actively captured and passed to the engine
           this.containerElement = el as HTMLDivElement;
         }}
         style={{ width: "100%", height: "100%" }}
