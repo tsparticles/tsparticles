@@ -62,13 +62,19 @@ const updateShareLinks = function () {
 
 const canTrackAnalytics = function () {
   const consentApi = window.tsParticlesConfettiConsent;
-  const preferences = consentApi?.get?.();
 
-  if (!preferences) {
-    return false;
+  // fallback nel caso il consent script non sia ancora pronto
+  if (!consentApi) {
+    return true;
   }
 
-  return !!preferences.analytics || !!consentApi?.allowsCookielessAnalytics;
+  const preferences = consentApi.get?.();
+
+  if (!preferences) {
+    return !!consentApi.allowsCookielessAnalytics;
+  }
+
+  return !!preferences.analytics || !!consentApi.allowsCookielessAnalytics;
 };
 
 const trackShare = function (platform) {
@@ -150,10 +156,13 @@ const setupShareActions = function () {
     copyButton.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
+
         const originalLabel = copyButton.textContent;
 
         copyButton.textContent = 'Copied';
+
         trackCopyLink();
+
         window.setTimeout(() => {
           copyButton.textContent = originalLabel;
         }, 1800);
@@ -182,6 +191,12 @@ const setTheme = function (isAuto, theme) {
   });
 };
 
+const handleSystemThemeChange = () => {
+  if (currentStep === 0) {
+    setTheme(true);
+  }
+};
+
 const updateTheme = function (step) {
   currentStep = step;
 
@@ -189,7 +204,7 @@ const updateTheme = function (step) {
     case 0:
       setTheme(true);
 
-      prefersLightTheme && prefersLightTheme.addEventListener('change', setTheme);
+      prefersLightTheme && prefersLightTheme.addEventListener('change', handleSystemThemeChange);
 
       break;
 
@@ -197,7 +212,8 @@ const updateTheme = function (step) {
     case 2:
       setTheme(false, step === 1 ? 'dark' : 'light');
 
-      prefersLightTheme && prefersLightTheme.removeListener(setTheme);
+      prefersLightTheme && prefersLightTheme.removeEventListener('change', handleSystemThemeChange);
+
       break;
   }
 
@@ -775,11 +791,17 @@ function renderModes(modes) {
       <div class="group" data-name="${mode.id}">
         <div class="flex-rows">
           <div class="left">
-            <h2><a href="#${mode.id}" id="${mode.id}" class="anchor">${mode.name}</a></h2>
+            <h2>
+              <a href="#${mode.id}" id="${mode.id}" class="anchor">
+                ${mode.name}
+              </a>
+            </h2>
             <button class="run">
               Run
               <span class="icon">
-                <svg class="icon"><use xlink:href="#run"></use></svg>
+                <svg class="icon">
+                  <use xlink:href="#run"></use>
+                </svg>
               </span>
             </button>
           </div>
@@ -791,19 +813,28 @@ function renderModes(modes) {
         ${
           mode.id === 'custom'
             ? `
-        <div class="flex-rows">
-          <canvas id="my-canvas" style="width: 100%; height: 380px; max-width: 1000px" class="custom-canvas"></canvas>
-        </div>`
+          <div class="flex-rows">
+            <canvas
+              id="my-canvas"
+              style="width: 100%; height: 380px; max-width: 1000px"
+              class="custom-canvas"
+            ></canvas>
+          </div>
+        `
             : ''
         }
       </div>
-    </div>`
+    </div>
+  `
     )
     .join('\n');
 }
 
 function pretty(val) {
-  return js_beautify(val, { indent_size: 2, brace_style: 'preserve-inline' });
+  return js_beautify(val, {
+    indent_size: 2,
+    brace_style: 'preserve-inline',
+  });
 }
 
 function getCode(name) {
@@ -884,7 +915,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     codeElem.style.height = count + 'rem';
 
     button.addEventListener('click', (ev) => {
-      if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+      if (ev && typeof ev.preventDefault === 'function') {
+        ev.preventDefault();
+      }
 
       try {
         eval(editor.getValue());

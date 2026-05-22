@@ -11,7 +11,7 @@ const defaultConsent = {
 
 let consent = readConsent();
 let adsenseInitialized = false;
-let initialPageViewTracked = false;
+let analyticsInitialized = false;
 
 function readConsent() {
   try {
@@ -64,10 +64,52 @@ function loadScript(id, src, attributes) {
   document.head.appendChild(script);
 }
 
+function initAnalytics() {
+  if (analyticsInitialized) {
+    return;
+  }
+
+  loadScript(
+    'google-analytics',
+    `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+  );
+
+  window.dataLayer = window.dataLayer || [];
+
+  window.gtag = function () {
+    window.dataLayer.push(arguments);
+  };
+
+  const analyticsGranted = consent?.analytics;
+  const adsGranted = consent?.adsense;
+
+  // Consent Mode v2 default
+  window.gtag('consent', 'default', {
+    ad_storage: adsGranted ? 'granted' : 'denied',
+    analytics_storage: analyticsGranted ? 'granted' : 'denied',
+    ad_user_data: adsGranted ? 'granted' : 'denied',
+    ad_personalization: adsGranted ? 'granted' : 'denied',
+  });
+
+  window.gtag('js', new Date());
+
+  window.gtag('config', GA_MEASUREMENT_ID, {
+    send_page_view: true,
+  });
+
+  analyticsInitialized = true;
+}
+
 function initAdSense() {
   if (adsenseInitialized) {
     return;
   }
+
+  window.adsbygoogle = window.adsbygoogle || [];
+
+  // NPA mode
+  window.adsbygoogle.requestNonPersonalizedAds =
+    consent?.adsense || !ADSENSE_NON_PERSONALIZED_ON_REJECT ? 0 : 1;
 
   loadScript(
     'adsense-script',
@@ -77,33 +119,7 @@ function initAdSense() {
     }
   );
 
-  window.adsbygoogle = window.adsbygoogle || [];
-
   adsenseInitialized = true;
-}
-
-function updateAdSensePersonalization(activeConsent) {
-  window.adsbygoogle = window.adsbygoogle || [];
-  window.adsbygoogle.requestNonPersonalizedAds =
-    activeConsent.adsense || !ADSENSE_NON_PERSONALIZED_ON_REJECT ? 0 : 1;
-}
-
-function canTrackAnalytics(activeConsent) {
-  return !!activeConsent && (activeConsent.analytics || ANALYTICS_COOKIELESS_ON_REJECT);
-}
-
-function trackInitialPageView(activeConsent) {
-  if (initialPageViewTracked || !canTrackAnalytics(activeConsent) || !window.gtag) {
-    return;
-  }
-
-  window.gtag('event', 'page_view', {
-    page_location: window.location.href,
-    page_path: window.location.pathname,
-    page_title: document.title,
-  });
-
-  initialPageViewTracked = true;
 }
 
 function updateConsentMode(activeConsent) {
@@ -120,10 +136,11 @@ function updateConsentMode(activeConsent) {
 }
 
 function applyConsent(activeConsent) {
-  updateConsentMode(activeConsent);
-  updateAdSensePersonalization(activeConsent);
+  if (activeConsent.analytics || ANALYTICS_COOKIELESS_ON_REJECT) {
+    initAnalytics();
+  }
 
-  trackInitialPageView(activeConsent);
+  updateConsentMode(activeConsent);
 
   if (activeConsent.adsense || ADSENSE_NON_PERSONALIZED_ON_REJECT) {
     initAdSense();
@@ -140,8 +157,13 @@ function closeBanner() {
 
 function saveAndApply(nextConsent) {
   consent = nextConsent;
+
   writeConsent(nextConsent);
+
+  window.tsParticlesConfettiConsent.get = () => consent || defaultConsent;
+
   applyConsent(nextConsent);
+
   closeBanner();
 }
 
@@ -157,37 +179,69 @@ function createBanner() {
   banner.className = 'cookie-consent-banner';
 
   banner.innerHTML = `
-      <div class="cookie-consent-content">
-        <p class="cookie-consent-title">Privacy settings</p>
-        <p class="cookie-consent-text">
-          Choose how this site can use analytics and advertising technologies.
-          If analytics cookies are disabled, anonymous cookieless measurement remains enabled.
-          Read the <a class="cookie-consent-link" href="/cookie-policy.html" target="_blank" rel="noopener noreferrer">cookie policy</a>.
-        </p>
-        <label class="cookie-consent-option">
-          <input id="cookieConsentAnalytics" type="checkbox" ${consentState.analytics ? 'checked' : ''} />
-          <span>Analytics cookies</span>
-        </label>
-        <label class="cookie-consent-option">
-          <input id="cookieConsentAdsense" type="checkbox" ${consentState.adsense ? 'checked' : ''} />
-          <span>Google AdSense</span>
-        </label>
-        <div class="cookie-consent-actions">
-          <button id="cookieConsentReject" type="button">Reject all</button>
-          <button id="cookieConsentSave" type="button">Save choices</button>
-          <button id="cookieConsentAccept" type="button" class="cookie-consent-primary">Accept all</button>
-        </div>
+    <div class="cookie-consent-content">
+      <p class="cookie-consent-title">Privacy settings</p>
+      <p class="cookie-consent-text">
+        Choose how this site can use analytics and advertising technologies.
+        If analytics cookies are disabled, anonymous cookieless measurement remains enabled.
+        Read the
+        <a
+          class="cookie-consent-link"
+          href="/cookie-policy.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          cookie policy
+        </a>.
+      </p>
+      <label class="cookie-consent-option">
+        <input
+          id="cookieConsentAnalytics"
+          type="checkbox"
+          ${consentState.analytics ? 'checked' : ''}
+        />
+        <span>Analytics cookies</span>
+      </label>
+      <label class="cookie-consent-option">
+        <input
+          id="cookieConsentAdsense"
+          type="checkbox"
+          ${consentState.adsense ? 'checked' : ''}
+        />
+        <span>Google AdSense</span>
+      </label>
+      <div class="cookie-consent-actions">
+        <button id="cookieConsentReject" type="button">
+          Reject all
+        </button>
+        <button id="cookieConsentSave" type="button">
+          Save choices
+        </button>
+        <button
+          id="cookieConsentAccept"
+          type="button"
+          class="cookie-consent-primary"
+        >
+          Accept all
+        </button>
       </div>
-    `;
+    </div>
+  `;
 
   document.body.appendChild(banner);
 
   document.getElementById('cookieConsentReject').addEventListener('click', () => {
-    saveAndApply({ analytics: false, adsense: false });
+    saveAndApply({
+      analytics: false,
+      adsense: false,
+    });
   });
 
   document.getElementById('cookieConsentAccept').addEventListener('click', () => {
-    saveAndApply({ analytics: true, adsense: true });
+    saveAndApply({
+      analytics: true,
+      adsense: true,
+    });
   });
 
   document.getElementById('cookieConsentSave').addEventListener('click', () => {
@@ -198,11 +252,20 @@ function createBanner() {
   });
 }
 
+window.tsParticlesConfettiConsent = {
+  get() {
+    return consent || defaultConsent;
+  },
+
+  allowsCookielessAnalytics: ANALYTICS_COOKIELESS_ON_REJECT,
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   if (hasUserChoice()) {
     applyConsent(consent);
   } else {
     applyConsent(defaultConsent);
+
     createBanner();
   }
 
@@ -213,11 +276,4 @@ document.addEventListener('DOMContentLoaded', () => {
       createBanner();
     });
   }
-
-  window.tsParticlesConfettiConsent = {
-    get() {
-      return consent || defaultConsent;
-    },
-    allowsCookielessAnalytics: ANALYTICS_COOKIELESS_ON_REJECT,
-  };
 });

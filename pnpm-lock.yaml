@@ -4960,11 +4960,11 @@ importers:
         version: link:../../wrappers/stencil
     devDependencies:
       '@stencil/core':
-        specifier: ^4.38.3
-        version: 4.43.3
+        specifier: ^4.43.4
+        version: 4.43.4
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.3
+        version: 6.0.3
 
   demo/svelte:
     dependencies:
@@ -13470,11 +13470,11 @@ importers:
         version: link:../../engine/dist
     devDependencies:
       '@stencil/core':
-        specifier: ^4.38.3
-        version: 4.43.3
+        specifier: ^4.43.4
+        version: 4.43.4
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.3
+        version: 6.0.3
 
   wrappers/svelte:
     dependencies:
@@ -22221,6 +22221,11 @@ packages:
 
   '@stencil/core@4.43.3':
     resolution: {integrity: sha512-w41W6txhGULvvEfa5AEgwfNGAbK3YGowQYMTWuRvXSIbnkiyRDGLogsYSYtHDlz1JJe645JJIK9Lvh5uquFiSw==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
+    hasBin: true
+
+  '@stencil/core@4.43.4':
+    resolution: {integrity: sha512-QWawMM1XIpSz4k+k+VyHZMr2YSxlCNAPWO/jTdJ+2kdgdN7ZQVEFZpc4WBm3E3mrDPTZ79lLcnIPa399bg4XOg==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -53857,6 +53862,17 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.34.9
 
   '@stencil/core@4.43.3':
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.44.0
+      '@rollup/rollup-darwin-x64': 4.44.0
+      '@rollup/rollup-linux-arm64-gnu': 4.44.0
+      '@rollup/rollup-linux-arm64-musl': 4.44.0
+      '@rollup/rollup-linux-x64-gnu': 4.44.0
+      '@rollup/rollup-linux-x64-musl': 4.44.0
+      '@rollup/rollup-win32-arm64-msvc': 4.44.0
+      '@rollup/rollup-win32-x64-msvc': 4.44.0
+
+  '@stencil/core@4.43.4':
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.44.0
       '@rollup/rollup-darwin-x64': 4.44.0
