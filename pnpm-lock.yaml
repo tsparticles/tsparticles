@@ -4263,8 +4263,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       stylus:
-        specifier: ^0.62.0
-        version: 0.62.0
+        specifier: ^0.64.0
+        version: 0.64.0
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -6523,8 +6523,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.4
       stylus:
-        specifier: ^0.62.0
-        version: 0.62.0
+        specifier: ^0.64.0
+        version: 0.64.0
       tsparticles:
         specifier: workspace:^
         version: link:../../bundles/full/dist
@@ -38335,11 +38335,9 @@ packages:
   sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
 
-  sax@1.3.0:
-    resolution: {integrity: sha512-0s+oAmw9zLl1V1cS9BtZN7JAd0cW5e0QH4W3LWEK6a4LaLEA2OTpGYWDY+6XasBLtz6wkm3u1xRw95mRuJ59WA==}
-
-  sax@1.4.1:
-    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+  sax@1.4.4:
+    resolution: {integrity: sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==}
+    engines: {node: '>=11.0.0'}
 
   sax@1.6.0:
     resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
@@ -38918,10 +38916,6 @@ packages:
     resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
     engines: {node: '>= 8'}
 
-  source-map@0.7.4:
-    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
-    engines: {node: '>= 8'}
-
   source-map@0.7.6:
     resolution: {integrity: sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==}
     engines: {node: '>= 12'}
@@ -39434,10 +39428,6 @@ packages:
 
   stylus@0.54.8:
     resolution: {integrity: sha512-vr54Or4BZ7pJafo2mpf0ZcwA74rpuYCZbxrHBsH8kbcXOwSfvBFwsRfpGO5OD5fhG5HDCFW737PKaawI7OqEAg==}
-    hasBin: true
-
-  stylus@0.62.0:
-    resolution: {integrity: sha512-v3YCf31atbwJQIMtPNX8hcQ+okD4NQaTuKGUWfII8eaqn+3otrbttGL1zSMZAAtiPsBztQnujVBugg/cXFUpyg==}
     hasBin: true
 
   stylus@0.64.0:
@@ -54460,9 +54450,9 @@ snapshots:
       '@types/ember__debug': 4.0.8
       '@types/ember__engine': 4.0.11
       '@types/ember__error': 4.0.6
-      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__object': 4.0.12
       '@types/ember__polyfills': 4.0.6
-      '@types/ember__routing': 4.0.23
+      '@types/ember__routing': 4.0.23(@babel/core@7.29.0)
       '@types/ember__runloop': 4.0.10
       '@types/ember__service': 4.0.9
       '@types/ember__string': 3.0.15
@@ -54589,13 +54579,6 @@ snapshots:
   '@types/ember__owner@4.0.9': {}
 
   '@types/ember__polyfills@4.0.6': {}
-
-  '@types/ember__routing@4.0.23':
-    dependencies:
-      '@types/ember': 4.0.11
-      '@types/ember__controller': 4.0.12
-      '@types/ember__object': 4.0.12
-      '@types/ember__service': 4.0.9
 
   '@types/ember__routing@4.0.23(@babel/core@7.29.0)':
     dependencies:
@@ -78365,9 +78348,7 @@ snapshots:
 
   sax@1.2.4: {}
 
-  sax@1.3.0: {}
-
-  sax@1.4.1: {}
+  sax@1.4.4: {}
 
   sax@1.6.0: {}
 
@@ -79173,8 +79154,6 @@ snapshots:
 
   source-map@0.7.3: {}
 
-  source-map@0.7.4: {}
-
   source-map@0.7.6: {}
 
   source-map@0.8.0-beta.0:
@@ -79840,28 +79819,18 @@ snapshots:
       safer-buffer: 2.1.2
       sax: 1.2.4
       semver: 6.3.1
-      source-map: 0.7.3
-    transitivePeerDependencies:
-      - supports-color
-    optional: true
-
-  stylus@0.62.0:
-    dependencies:
-      '@adobe/css-tools': 4.3.3
-      debug: 4.4.3(supports-color@5.5.0)
-      glob: 7.2.3
-      sax: 1.3.0
       source-map: 0.7.6
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   stylus@0.64.0:
     dependencies:
       '@adobe/css-tools': 4.3.3
       debug: 4.4.3(supports-color@5.5.0)
       glob: 10.5.0
-      sax: 1.4.1
-      source-map: 0.7.4
+      sax: 1.4.4
+      source-map: 0.7.6
     transitivePeerDependencies:
       - supports-color
 

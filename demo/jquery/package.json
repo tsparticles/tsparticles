@@ -44,7 +44,7 @@
     "prettier": "^3.1.1",
     "pug": "^3.0.2",
     "stats.ts": "^1.1.0",
-    "stylus": "^0.62.0",
+    "stylus": "^0.64.0",
     "typescript": "^5.3.3"
   }
 }
