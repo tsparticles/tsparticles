@@ -4245,8 +4245,8 @@ importers:
         specifier: ^7.1.5
         version: 7.5.1(express@4.22.1)
       helmet:
-        specifier: ^7.1.0
-        version: 7.2.0
+        specifier: ^8.1.0
+        version: 8.1.0
       jsoneditor:
         specifier: ^10.0.0
         version: 10.4.3
@@ -6514,8 +6514,8 @@ importers:
         specifier: ^4.18.2
         version: 4.22.1
       helmet:
-        specifier: ^7.0.0
-        version: 7.2.0
+        specifier: ^8.1.0
+        version: 8.1.0
       prettier:
         specifier: ^3.0.0
         version: 3.8.2
@@ -31108,10 +31108,6 @@ packages:
 
   heimdalljs@0.2.6:
     resolution: {integrity: sha512-o9bd30+5vLBvBtzCPwwGqpry2+n0Hi6H1+qwt6y+0kwRHGGF8TFIhJPmnuM0xO97zaKrDZMwO/V56fAnn8m/tA==}
-
-  helmet@7.2.0:
-    resolution: {integrity: sha512-ZRiwvN089JfMXokizgqEPXsl2Guk094yExfoDXR0cBYWxtBbaSww/w+vT4WEJsBW2iTUi1GgZ6swmoug3Oy4Xw==}
-    engines: {node: '>=16.0.0'}
 
   helmet@8.1.0:
     resolution: {integrity: sha512-jOiHyAZsmnr8LqoPGmCjYAaiuWwjAPLgY8ZX2XrmHawt99/u1y6RgrZMTeoPfpUbV96HOalYgz1qzkRbw54Pmg==}
@@ -67717,8 +67713,6 @@ snapshots:
   heimdalljs@0.2.6:
     dependencies:
       rsvp: 3.2.1
-
-  helmet@7.2.0: {}
 
   helmet@8.1.0: {}
 
