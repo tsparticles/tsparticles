@@ -61,20 +61,7 @@ const updateShareLinks = function () {
 };
 
 const canTrackAnalytics = function () {
-  const consentApi = window.tsParticlesConfettiConsent;
-
-  // fallback nel caso il consent script non sia ancora pronto
-  if (!consentApi) {
-    return true;
-  }
-
-  const preferences = consentApi.get?.();
-
-  if (!preferences) {
-    return !!consentApi.allowsCookielessAnalytics;
-  }
-
-  return !!preferences.analytics || !!consentApi.allowsCookielessAnalytics;
+  return !!window.gtag;
 };
 
 const trackShare = function (platform) {

@@ -1,9 +1,9 @@
+export type { CannonContainer, CannonMode, ICannonMode } from "./Types.js";
 import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tsparticles/plugin-interactivity";
 export { Cannon } from "./Options/Classes/Cannon.js";
 import { Cannoner } from "./Cannoner.js";
 import { type Engine } from "@tsparticles/engine";
 export type { ICannon } from "./Options/Interfaces/ICannon.js";
-export type { CannonContainer, CannonMode, ICannonMode } from "./Types.js";
 
 declare const __VERSION__: string;
 

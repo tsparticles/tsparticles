@@ -69,32 +69,44 @@ function initAnalytics() {
     return;
   }
 
-  loadScript(
-    'google-analytics',
-    `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-  );
-
   window.dataLayer = window.dataLayer || [];
 
   window.gtag = function () {
     window.dataLayer.push(arguments);
   };
 
-  const analyticsGranted = consent?.analytics;
-  const adsGranted = consent?.adsense;
+  const analyticsGranted = !!consent?.analytics;
+  const adsGranted = !!consent?.adsense;
 
-  // Consent Mode v2 default
+  // IMPORTANTISSIMO:
+  // default consent BEFORE loading GA
   window.gtag('consent', 'default', {
     ad_storage: adsGranted ? 'granted' : 'denied',
     analytics_storage: analyticsGranted ? 'granted' : 'denied',
     ad_user_data: adsGranted ? 'granted' : 'denied',
     ad_personalization: adsGranted ? 'granted' : 'denied',
+
+    // cookieless improvements
+    wait_for_update: 500,
   });
+
+  loadScript(
+    'google-analytics',
+    `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+  );
 
   window.gtag('js', new Date());
 
   window.gtag('config', GA_MEASUREMENT_ID, {
     send_page_view: true,
+
+    // cookieless mode
+    client_storage: analyticsGranted ? 'cookie' : 'none',
+
+    // aiuta attribution cookieless
+    url_passthrough: true,
+
+    anonymize_ip: true,
   });
 
   analyticsInitialized = true;
@@ -106,10 +118,6 @@ function initAdSense() {
   }
 
   window.adsbygoogle = window.adsbygoogle || [];
-
-  // NPA mode
-  window.adsbygoogle.requestNonPersonalizedAds =
-    consent?.adsense || !ADSENSE_NON_PERSONALIZED_ON_REJECT ? 0 : 1;
 
   loadScript(
     'adsense-script',
@@ -127,24 +135,28 @@ function updateConsentMode(activeConsent) {
     return;
   }
 
+  const analyticsGranted = !!activeConsent.analytics;
+
   window.gtag('consent', 'update', {
     ad_storage: activeConsent.adsense ? 'granted' : 'denied',
-    analytics_storage: activeConsent.analytics ? 'granted' : 'denied',
+    analytics_storage: analyticsGranted ? 'granted' : 'denied',
     ad_user_data: activeConsent.adsense ? 'granted' : 'denied',
     ad_personalization: activeConsent.adsense ? 'granted' : 'denied',
+  });
+
+  // switch runtime storage mode
+  window.gtag('set', {
+    client_storage: analyticsGranted ? 'cookie' : 'none',
   });
 }
 
 function applyConsent(activeConsent) {
-  if (activeConsent.analytics || ANALYTICS_COOKIELESS_ON_REJECT) {
-    initAnalytics();
-  }
+  // analytics ALWAYS initialized
+  initAnalytics();
 
   updateConsentMode(activeConsent);
 
-  if (activeConsent.adsense || ADSENSE_NON_PERSONALIZED_ON_REJECT) {
-    initAdSense();
-  }
+  initAdSense();
 }
 
 function closeBanner() {
