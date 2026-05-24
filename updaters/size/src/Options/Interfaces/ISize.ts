@@ -1,5 +1,5 @@
 import type { ISizeAnimation } from "./ISizeAnimation.js";
-import type { IValueWithRandom } from "../../IValueWithRandom.js";
+import type { IValueWithRandom } from "@tsparticles/engine";
 
 /**
  * [[include:Options/Particles/Size.md]]

@@ -82,7 +82,7 @@ export function drawParticleShadow(
   const radius = particle.getRadius(),
     sides = particle.sides,
     full = doublePI / sides,
-    angle = -particle.rotation + quarterPI,
+    angle = -particle.getAngle() + quarterPI,
     factor = 1, // Math.sqrt(2)
     dots: ICoordinates[] = [];
 

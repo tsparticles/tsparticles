@@ -1,5 +1,4 @@
-import type { DestroyType } from "../../../../Enums/Types/DestroyType.js";
-import type { IRangedAnimation } from "../../IAnimation.js";
+import type { DestroyType, IRangedAnimation } from "@tsparticles/engine";
 
 /** Opacity animation options */
 export interface IOpacityAnimation extends IRangedAnimation {

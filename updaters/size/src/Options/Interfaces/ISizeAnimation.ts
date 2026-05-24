@@ -1,5 +1,4 @@
-import type { DestroyType } from "../../../../Enums/Types/DestroyType.js";
-import type { IRangedAnimation } from "../../IAnimation.js";
+import type { DestroyType, IRangedAnimation } from "@tsparticles/engine";
 
 /** Size animation options */
 export interface ISizeAnimation extends IRangedAnimation {

@@ -37,7 +37,7 @@ export class Retina {
 
   /**
    * Initializes retina-scaled properties for a particle
-   * @param particle
+   * @param particle -
    */
   initParticle(particle: Particle): void {
     const options = particle.options,
@@ -49,7 +49,6 @@ export class Retina {
     props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
     props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
     props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
-    props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
 
     const maxDistance = props.maxDistance;
 

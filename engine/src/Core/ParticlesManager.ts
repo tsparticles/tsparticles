@@ -82,17 +82,21 @@ export class ParticlesManager {
     this._updatePlugins = [];
   }
 
-  /** Gets the number of particles */
+  /**
+   * Gets the number of particles
+   * @returns the count of particles
+   */
   get count(): number {
     return this._array.length;
   }
 
   /**
    * Adds a particle to the manager
-   * @param position
-   * @param overrideOptions
-   * @param group
-   * @param initializer
+   * @param position -
+   * @param overrideOptions -
+   * @param group -
+   * @param initializer -
+   * @returns the particle added
    */
   addParticle(
     position?: ICoordinates,
@@ -186,7 +190,7 @@ export class ParticlesManager {
 
   /**
    * Draws all particles
-   * @param delta
+   * @param delta -
    */
   drawParticles(delta: IDelta): void {
     for (let i = this._zBuckets.length - one; i >= minIndex; i--) {
@@ -204,7 +208,8 @@ export class ParticlesManager {
 
   /**
    * Filters particles with a condition
-   * @param condition
+   * @param condition -
+   * @returns the array of the particles filtered
    */
   filter(condition: (particle: Particle) => boolean): Particle[] {
     return this._array.filter(condition);
@@ -212,7 +217,8 @@ export class ParticlesManager {
 
   /**
    * Finds a particle with a condition
-   * @param condition
+   * @param condition -
+   * @returns the particle found
    */
   find(condition: (particle: Particle) => boolean): Particle | undefined {
     return this._array.find(condition);
@@ -220,13 +226,17 @@ export class ParticlesManager {
 
   /**
    * Gets a particle by index
-   * @param index
+   * @param index -
+   * @returns the particle at the index
    */
   get(index: number): Particle | undefined {
     return this._array[index];
   }
 
-  /** Initializes the particles manager */
+  /**
+   * Initializes the particles manager
+   * @returns the promise for the init
+   */
   async init(): Promise<void> {
     const container = this._container,
       options = container.actualOptions;
@@ -316,10 +326,10 @@ export class ParticlesManager {
 
   /**
    * Adds particles to the manager
-   * @param nb
-   * @param position
-   * @param overrideOptions
-   * @param group
+   * @param nb -
+   * @param position -
+   * @param overrideOptions -
+   * @param group -
    */
   push(
     nb: number,
@@ -342,9 +352,9 @@ export class ParticlesManager {
 
   /**
    * Removes a particle
-   * @param particle
-   * @param group
-   * @param override
+   * @param particle -
+   * @param group -
+   * @param override -
    */
   remove(particle: Particle, group?: string, override?: boolean): void {
     this.removeAt(this._array.indexOf(particle), undefined, group, override);
@@ -352,10 +362,10 @@ export class ParticlesManager {
 
   /**
    * Removes particles at a specific index
-   * @param index
-   * @param quantity
-   * @param group
-   * @param override
+   * @param index -
+   * @param quantity -
+   * @param group -
+   * @param override -
    */
   removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
     if (index < minIndex || index > this.count) {
@@ -374,8 +384,8 @@ export class ParticlesManager {
 
   /**
    * Removes a quantity of particles
-   * @param quantity
-   * @param group
+   * @param quantity -
+   * @param group -
    */
   removeQuantity(quantity: number, group?: string): void {
     this.removeAt(minIndex, quantity, group);
@@ -411,7 +421,7 @@ export class ParticlesManager {
 
   /**
    * Sets the resize factor
-   * @param factor
+   * @param factor -
    */
   setResizeFactor(factor: IDimension): void {
     this._resizeFactor = factor;
@@ -419,7 +429,7 @@ export class ParticlesManager {
 
   /**
    * Updates all particles
-   * @param delta
+   * @param delta -
    */
   update(delta: IDelta): void {
     this.grid.clear();

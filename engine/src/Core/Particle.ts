@@ -12,13 +12,7 @@ import {
   randomInRangeValue,
   setRangeValue,
 } from "../Utils/MathUtils.js";
-import {
-  deepExtend,
-  getPosition,
-  initParticleNumericAnimationValue,
-  isInArray,
-  itemFromSingleOrMultiple,
-} from "../Utils/Utils.js";
+import { deepExtend, getPosition, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import {
   defaultAngle,
   defaultOpacity,
@@ -391,7 +385,7 @@ export class Particle {
 
   /**
    * Destroys the particle
-   * @param override
+   * @param override -
    */
   destroy(override?: boolean): void {
     if (this.unbreakable || this.destroyed) {
@@ -422,7 +416,7 @@ export class Particle {
 
   /**
    * Draws the particle
-   * @param delta
+   * @param delta -
    */
   draw(delta: IDelta): void {
     const container = this._container,
@@ -432,22 +426,34 @@ export class Particle {
     render.drawParticle(this, delta);
   }
 
-  /** Gets the particle angle */
+  /**
+   * Gets the particle angle
+   * @returns the angle in radiants
+   */
   getAngle(): number {
     return this.rotation + (this.pathRotation ? this.velocity.angle : defaultAngle);
   }
 
-  /** Gets the particle fill color */
+  /**
+   * Gets the particle fill color
+   * @returns the fill color object
+   */
   getFillColor(): IHsl | undefined {
     return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
   }
 
-  /** Gets the particle mass */
+  /**
+   * Gets the particle mass
+   * @returns the particle mass
+   */
   getMass(): number {
     return this.getRadius() ** squareExp * Math.PI * half;
   }
 
-  /** Gets the particle opacity */
+  /**
+   * Gets the particle opacity
+   * @returns the opacity object
+   */
   getOpacity(): IParticleOpacityData {
     const zIndexOptions = this.options.zIndex,
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
@@ -463,7 +469,10 @@ export class Particle {
     return this._cachedOpacityData;
   }
 
-  /** Gets the particle position */
+  /**
+   * Gets the particle position
+   * @returns the particle position
+   */
   getPosition(): ICoordinates3d {
     this._cachedPosition.x = this.position.x + this.offset.x;
     this._cachedPosition.y = this.position.y + this.offset.y;
@@ -472,12 +481,18 @@ export class Particle {
     return this._cachedPosition;
   }
 
-  /** Gets the particle radius */
+  /**
+   * Gets the particle radius
+   * @returns the particle radius
+   */
   getRadius(): number {
     return this.bubble.radius ?? this.size.value;
   }
 
-  /** Gets the particle rotation data */
+  /**
+   * Gets the particle rotation data
+   * @returns the rotate data
+   */
   getRotateData(): IParticleRotateData {
     const angle = this.getAngle();
 
@@ -487,14 +502,18 @@ export class Particle {
     return this._cachedRotateData;
   }
 
-  /** Gets the particle stroke color */
+  /**
+   * Gets the particle stroke color
+   * @returns the stroke color
+   */
   getStrokeColor(): IHsl | undefined {
     return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
   }
 
   /**
    * Gets the particle transform data
-   * @param externalTransform
+   * @param externalTransform -
+   * @returns get transform data
    */
   getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
     const rotateData = this.getRotateData(),
@@ -514,10 +533,10 @@ export class Particle {
 
   /**
    * Initializes the particle with the given parameters
-   * @param id
-   * @param position
-   * @param overrideOptions
-   * @param group
+   * @param id -
+   * @param position -
+   * @param overrideOptions -
+   * @param group -
    */
   init(
     id: number,
@@ -549,8 +568,7 @@ export class Particle {
     this.outType = ParticleOutType.normal;
     this.ignoresResizeRatio = true;
 
-    const pxRatio = container.retina.pixelRatio,
-      mainOptions = container.actualOptions,
+    const mainOptions = container.actualOptions,
       particlesOptions = loadParticlesOptions(this._pluginManager, container, mainOptions.particles),
       reduceDuplicates = particlesOptions.reduceDuplicates,
       effectType = particlesOptions.effect.type,
@@ -563,7 +581,7 @@ export class Particle {
       shapeOptions = particlesOptions.shape;
 
     if (overrideOptions) {
-      if (overrideOptions.effect?.type) {
+      if (overrideOptions.effect?.type && overrideOptions.effect.type !== this.effect) {
         const overrideEffectType = overrideOptions.effect.type,
           effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
 
@@ -574,7 +592,7 @@ export class Particle {
         }
       }
 
-      if (overrideOptions.shape?.type) {
+      if (overrideOptions.shape?.type && overrideOptions.shape.type !== this.shape) {
         const overrideShapeType = overrideOptions.shape.type,
           shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
 
@@ -603,13 +621,12 @@ export class Particle {
 
     particlesOptions.load(overrideOptions);
 
-    const effectData = this.effectData;
+    const effectData = this.effectData,
+      shapeData = this.shapeData;
 
     if (effectData) {
       particlesOptions.load(effectData.particles);
     }
-
-    const shapeData = this.shapeData;
 
     if (shapeData) {
       particlesOptions.load(shapeData.particles);
@@ -621,8 +638,9 @@ export class Particle {
 
     container.retina.initParticle(this);
 
-    /* size */
-    this.size = initParticleNumericAnimationValue(this.options.size, pxRatio);
+    for (const updater of container.particleUpdaters) {
+      updater.preInit?.(this);
+    }
 
     /* position */
     this.bubble = {
@@ -681,7 +699,10 @@ export class Particle {
     }
   }
 
-  /** Checks if the particle is inside the canvas */
+  /**
+   * Checks if the particle is inside the canvas
+   * @returns true if the particle is still inside the canvas
+   */
   isInsideCanvas(): boolean {
     const radius = this.getRadius(),
       canvasSize = this._container.canvas.size,
@@ -695,7 +716,10 @@ export class Particle {
     );
   }
 
-  /** Checks if the particle is showing its back side */
+  /**
+   * Checks if the particle is showing its back side
+   * @returns true if the particle is showing its back side, false otherwise
+   */
   isShowingBack(): boolean {
     if (!this.roll) {
       return false;
@@ -727,7 +751,10 @@ export class Particle {
     return false;
   }
 
-  /** Checks if the particle is visible */
+  /**
+   * Checks if the particle is visible
+   * @returns true if the particle is still visible
+   */
   isVisible(): boolean {
     return !this.destroyed && !this.spawning && this.isInsideCanvas();
   }
@@ -800,9 +827,9 @@ export class Particle {
   };
 
   private readonly _calculateVelocity: () => Vector = () => {
-    const baseVelocity = getParticleBaseVelocity(this.direction),
-      res = baseVelocity.copy(),
-      moveOptions = this.options.move;
+    const moveOptions = this.options.move,
+      baseVelocity = getParticleBaseVelocity(this.direction),
+      res = baseVelocity.copy();
 
     if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
       return res;

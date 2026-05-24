@@ -64,13 +64,7 @@ export type * from "./Options/Interfaces/Particles/Number/IParticlesDensity.js";
 export type * from "./Options/Interfaces/Particles/Number/IParticlesNumber.js";
 export type * from "./Options/Interfaces/Particles/Number/IParticlesNumberLimit.js";
 
-export type * from "./Options/Interfaces/Particles/Opacity/IOpacity.js";
-export type * from "./Options/Interfaces/Particles/Opacity/IOpacityAnimation.js";
-
 export type * from "./Options/Interfaces/Particles/Shape/IShape.js";
-
-export type * from "./Options/Interfaces/Particles/Size/ISize.js";
-export type * from "./Options/Interfaces/Particles/Size/ISizeAnimation.js";
 
 export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 

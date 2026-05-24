@@ -1,9 +1,11 @@
-import { DestroyType } from "../../../../Enums/Types/DestroyType.js";
-import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IOpacityAnimation.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import { RangedAnimationOptions } from "../../AnimationOptions.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
+import {
+  DestroyType,
+  type IOptionLoader,
+  RangedAnimationOptions,
+  type RecursivePartial,
+  isNull,
+} from "@tsparticles/engine";
+import type { IOpacityAnimation } from "../Interfaces/IOpacityAnimation.js";
 
 /**
  * Opacity animation options.

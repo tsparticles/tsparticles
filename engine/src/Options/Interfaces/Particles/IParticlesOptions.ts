@@ -3,12 +3,10 @@
  */
 import type { IEffect } from "./Effect/IEffect.js";
 import type { IMove } from "./Move/IMove.js";
-import type { IOpacity } from "./Opacity/IOpacity.js";
 import type { IPaint } from "./IPaint.js";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce.js";
 import type { IParticlesNumber } from "./Number/IParticlesNumber.js";
 import type { IShape } from "./Shape/IShape.js";
-import type { ISize } from "./Size/ISize.js";
 import type { IZIndex } from "./ZIndex/IZIndex.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
@@ -45,11 +43,6 @@ export interface IParticlesOptions {
   number: IParticlesNumber;
 
   /**
-   * Particles opacity options
-   */
-  opacity: IOpacity;
-
-  /**
    * Particles paint options, grouping fill and stroke variants together
    */
   paint: SingleOrMultiple<IPaint>;
@@ -68,11 +61,6 @@ export interface IParticlesOptions {
    * Particles shape options
    */
   shape: IShape;
-
-  /**
-   * Particles size options
-   */
-  size: ISize;
 
   /**
    * Particles z-index options

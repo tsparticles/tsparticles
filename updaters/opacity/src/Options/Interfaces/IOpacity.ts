@@ -1,5 +1,5 @@
 import type { IOpacityAnimation } from "./IOpacityAnimation.js";
-import type { IValueWithRandom } from "../../IValueWithRandom.js";
+import type { IValueWithRandom } from "@tsparticles/engine";
 
 /**
  * [[include:Options/Particles/Opacity.md]]

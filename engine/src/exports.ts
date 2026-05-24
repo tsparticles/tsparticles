@@ -55,13 +55,7 @@ export * from "./Options/Classes/Particles/Number/ParticlesNumber.js";
 export * from "./Options/Classes/Particles/Number/ParticlesNumberLimit.js";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity.js";
 
-export * from "./Options/Classes/Particles/Opacity/Opacity.js";
-export * from "./Options/Classes/Particles/Opacity/OpacityAnimation.js";
-
 export * from "./Options/Classes/Particles/Shape/Shape.js";
-
-export * from "./Options/Classes/Particles/Size/Size.js";
-export * from "./Options/Classes/Particles/Size/SizeAnimation.js";
 
 export * from "./Options/Classes/Particles/ZIndex/ZIndex.js";
 

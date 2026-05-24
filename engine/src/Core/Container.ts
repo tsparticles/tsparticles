@@ -243,13 +243,16 @@ export class Container {
 
   /**
    * Adds to the container lifetime
-   * @param value
+   * @param value -
    */
   addLifeTime(value: number): void {
     this._lifeTime += value;
   }
 
-  /** Checks if the container is still alive */
+  /**
+   * Checks if the container is still alive
+   * @returns true if particle lifetime is less than duration, or if duration is not set, false otherwise
+   */
   alive(): boolean {
     return !this._duration || this._lifeTime <= this._duration;
   }
@@ -296,8 +299,8 @@ export class Container {
 
   /**
    * Dispatches an event from the container
-   * @param type
-   * @param data
+   * @param type -
+   * @param data -
    */
   dispatchEvent(type: string, data?: unknown): void {
     this._dispatchCallback(type, {
@@ -330,8 +333,9 @@ export class Container {
 
   /**
    * Exports the container canvas to the specified format
-   * @param type
-   * @param options
+   * @param type -
+   * @param options -
+   * @returns the promise for the export data
    */
   async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
     for (const plugin of this.plugins) {
@@ -355,6 +359,7 @@ export class Container {
 
   /**
    * Initializes the container
+   * @returns the promise for the init
    */
   async init(): Promise<void> {
     if (!guardCheck(this)) {
@@ -527,7 +532,8 @@ export class Container {
 
   /**
    * Resets the container with new options
-   * @param sourceOptions
+   * @param sourceOptions -
+   * @returns the promise for the reset
    */
   async reset(sourceOptions?: ISourceOptions): Promise<void> {
     if (!guardCheck(this)) {

@@ -85,7 +85,10 @@ export class RenderManager {
     this._drawSettingsCleanupPlugins = [];
   }
 
-  /** Canvas rendering context settings */
+  /**
+   * Canvas rendering context settings
+   * @returns the canvas context settings
+   */
   get settings(): CanvasRenderingContext2DSettings | undefined {
     return this._contextSettings;
   }
@@ -240,7 +243,7 @@ export class RenderManager {
 
   /**
    * Draws all particles for the current frame
-   * @param delta
+   * @param delta -
    */
   drawParticles(delta: IDelta): void {
     const { particles } = this._container;
@@ -379,7 +382,7 @@ export class RenderManager {
 
   /**
    * Paints the canvas background with an optional base color
-   * @param baseColor
+   * @param baseColor -
    */
   paintBase(baseColor?: string): void {
     this.draw(ctx => {
@@ -389,8 +392,8 @@ export class RenderManager {
 
   /**
    * Paints an image on the canvas with the given opacity
-   * @param image
-   * @param opacity
+   * @param image -
+   * @param opacity -
    */
   paintImage(image: HTMLImageElement, opacity: number): void {
     this.draw(ctx => {
@@ -400,7 +403,7 @@ export class RenderManager {
 
   /**
    * Sets the canvas rendering context
-   * @param context
+   * @param context -
    */
   setContext(context: OffscreenCanvasRenderingContext2D | null): void {
     this._context = context;
@@ -412,7 +415,7 @@ export class RenderManager {
 
   /**
    * Sets the canvas rendering context settings
-   * @param settings
+   * @param settings -
    */
   setContextSettings(settings: CanvasRenderingContext2DSettings): void {
     this._contextSettings = settings;

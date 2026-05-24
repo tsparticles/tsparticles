@@ -12,8 +12,8 @@ export class EventDispatcher {
 
   /**
    * Adds an event listener for the given type
-   * @param type
-   * @param listener
+   * @param type -
+   * @param listener -
    */
   addEventListener(type: string, listener: CustomEventListener): void {
     this.removeEventListener(type, listener);
@@ -31,8 +31,8 @@ export class EventDispatcher {
 
   /**
    * Dispatches an event to all registered listeners
-   * @param type
-   * @param args
+   * @param type -
+   * @param args -
    */
   dispatchEvent(type: string, args?: CustomEventArgs): void {
     const listeners = this._listeners.get(type);
@@ -44,7 +44,8 @@ export class EventDispatcher {
 
   /**
    * Checks if any listeners are registered for the given type
-   * @param type
+   * @param type -
+   * @returns true if there are any listeners registered for the given type, false otherwise
    */
   hasEventListener(type: string): boolean {
     return !!this._listeners.get(type);
@@ -52,7 +53,7 @@ export class EventDispatcher {
 
   /**
    * Removes all event listeners, optionally filtered by type
-   * @param type
+   * @param type -
    */
   removeAllEventListeners(type?: string): void {
     if (!type) {
@@ -64,8 +65,8 @@ export class EventDispatcher {
 
   /**
    * Removes a specific event listener
-   * @param type
-   * @param listener
+   * @param type -
+   * @param listener -
    */
   removeEventListener(type: string, listener: CustomEventListener): void {
     const arr = this._listeners.get(type);

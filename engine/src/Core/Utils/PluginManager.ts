@@ -103,7 +103,10 @@ export class PluginManager {
     this._engine = engine;
   }
 
-  /** The configs record */
+  /**
+   * The configs record
+   * @returns the available configs
+   */
   get configs(): Record<string, ISourceOptions> {
     const res: Record<string, ISourceOptions> = {};
 

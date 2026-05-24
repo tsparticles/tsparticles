@@ -1,9 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import type { ISize } from "../../../Interfaces/Particles/Size/ISize.js";
-import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { type IOptionLoader, RangedAnimationValueWithRandom, type RecursivePartial, isNull } from "@tsparticles/engine";
+import type { ISize } from "../Interfaces/ISize.js";
 import { SizeAnimation } from "./SizeAnimation.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Size.md]]

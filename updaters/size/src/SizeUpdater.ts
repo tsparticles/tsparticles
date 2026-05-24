@@ -2,11 +2,15 @@ import {
   type Container,
   type IDelta,
   type IParticleUpdater,
-  type Particle,
+  type RecursivePartial,
   getRandom,
+  getRangeValue,
+  initParticleNumericAnimationValue,
   percentDenominator,
   updateAnimation,
 } from "@tsparticles/engine";
+import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
+import { Size } from "./Options/Classes/Size.js";
 
 const minLoops = 0;
 
@@ -17,7 +21,7 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * SizeUpdater constructor
-   * @param container
+   * @param container -
    */
   constructor(container: Container) {
     this._container = container;
@@ -25,28 +29,37 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle size animation velocity
-   * @param particle
+   * @param particle -
    */
-  init(particle: Particle): void {
+  init(particle: SizeParticle): void {
     const container = this._container,
-      sizeOptions = particle.options.size,
-      sizeAnimation = sizeOptions.animation;
+      sizeOptions = particle.options.size;
 
-    if (sizeAnimation.enable) {
-      particle.size.velocity =
-        (particle.retina.sizeAnimationSpeed / percentDenominator) * container.retina.reduceFactor;
-
-      if (!sizeAnimation.sync) {
-        particle.size.velocity *= getRandom();
-      }
+    if (!sizeOptions) {
+      return;
     }
+
+    const sizeAnimation = sizeOptions.animation;
+
+    if (!sizeAnimation.enable) {
+      return;
+    }
+
+    particle.size.velocity = (particle.retina.sizeAnimationSpeed / percentDenominator) * container.retina.reduceFactor;
+
+    if (sizeAnimation.sync) {
+      return;
+    }
+
+    particle.size.velocity *= getRandom();
   }
 
   /**
    * Checks if size animation is enabled
-   * @param particle
+   * @param particle -
+   * @returns true if size animation is enabled, false otherwise
    */
-  isEnabled(particle: Particle): boolean {
+  isEnabled(particle: SizeParticle): boolean {
     return (
       !particle.destroyed &&
       !particle.spawning &&
@@ -58,21 +71,56 @@ export class SizeUpdater implements IParticleUpdater {
   }
 
   /**
-   * Resets the particle size state
-   * @param particle
+   * Loads the size options
+   * @param options -
+   * @param sources -
    */
-  reset(particle: Particle): void {
+  loadOptions(
+    options: SizeParticlesOptions,
+    ...sources: (RecursivePartial<ISizeParticlesOptions> | undefined)[]
+  ): void {
+    options.size ??= new Size();
+
+    for (const source of sources) {
+      options.size.load(source?.size);
+    }
+  }
+
+  /**
+   * Pre-initializes the particle size
+   * @param particle -
+   */
+  preInit(particle: SizeParticle): void {
+    const pxRatio = this._container.retina.pixelRatio,
+      options = particle.options,
+      sizeOptions = options.size;
+
+    if (!sizeOptions) {
+      return;
+    }
+
+    /* size */
+    particle.size = initParticleNumericAnimationValue(sizeOptions, pxRatio);
+
+    particle.retina.sizeAnimationSpeed = getRangeValue(sizeOptions.animation.speed) * pxRatio;
+  }
+
+  /**
+   * Resets the particle size state
+   * @param particle -
+   */
+  reset(particle: SizeParticle): void {
     particle.size.time = 0;
     particle.size.loops = 0;
   }
 
   /**
    * Updates the particle size
-   * @param particle
-   * @param delta
+   * @param particle -
+   * @param delta -
    */
-  update(particle: Particle, delta: IDelta): void {
-    if (!this.isEnabled(particle)) {
+  update(particle: SizeParticle, delta: IDelta): void {
+    if (!this.isEnabled(particle) || !particle.options.size) {
       return;
     }
 

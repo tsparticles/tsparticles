@@ -1,9 +1,6 @@
-import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { type IOptionLoader, RangedAnimationValueWithRandom, type RecursivePartial, isNull } from "@tsparticles/engine";
+import type { IOpacity } from "../Interfaces/IOpacity.js";
 import { OpacityAnimation } from "./OpacityAnimation.js";
-import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
