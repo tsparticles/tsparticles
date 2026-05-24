@@ -3,7 +3,6 @@ import {
   type IContainerPlugin,
   type IDelta,
   decayOffset,
-  getRangeMax,
   getRangeValue,
   half,
   millisecondsToSeconds,
@@ -39,7 +38,7 @@ export class MovePluginInstance implements IContainerPlugin {
     this.pathGenerators = new Map();
   }
 
-  /** @inheritDoc */
+  /** {@inheritDoc IContainerPlugin.destroy} */
   destroy(): void {
     this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
@@ -105,12 +104,11 @@ export class MovePluginInstance implements IContainerPlugin {
     }
 
     const container = this._container,
-      pxRatio = container.retina.pixelRatio,
       slowFactor = getProximitySpeedFactor(particle),
       reduceFactor = container.retina.reduceFactor,
       baseSpeed = particle.retina.moveSpeed,
       moveDrift = particle.retina.moveDrift,
-      maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
+      maxSize = particle.size.max,
       sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
       deltaFactor = delta.factor || defaultDeltaFactor,
       moveSpeed = baseSpeed * sizeFactor * slowFactor * deltaFactor * half,

@@ -9,7 +9,6 @@ import {
   colorMix,
   double,
   getDistance,
-  getRangeMax,
   half,
   isInArray,
   itemFromSingleOrMultiple,
@@ -228,7 +227,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
           value: particle.bubble.radius,
         },
         particlesObj: {
-          optValue: getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
+          optValue: particle.size.max,
           value: particle.size.value,
         },
         type: ProcessBubbleType.size,
@@ -242,7 +241,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
           value: particle.bubble.opacity,
         },
         particlesObj: {
-          optValue: getRangeMax(particle.options.opacity.value),
+          optValue: particle.opacity?.max ?? defaultOpacity,
           value: particle.opacity?.value ?? defaultOpacity,
         },
         type: ProcessBubbleType.opacity,
@@ -354,9 +353,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    const optOpacity = particle.options.opacity.value,
-      pOpacity = particle.opacity?.value ?? defaultOpacity,
-      opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
+    const pOpacity = particle.opacity?.value ?? defaultOpacity,
+      opacity = calculateBubbleValue(pOpacity, modeOpacity, particle.opacity?.max ?? defaultOpacity, ratio);
 
     if (opacity !== undefined) {
       particle.bubble.opacity = opacity;
@@ -375,9 +373,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    const optSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
-      pSize = particle.size.value,
-      size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
+    const pSize = particle.size.value,
+      size = calculateBubbleValue(pSize, modeSize, particle.size.max, ratio);
 
     if (size !== undefined) {
       particle.bubble.radius = size;

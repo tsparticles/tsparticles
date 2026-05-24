@@ -2,6 +2,8 @@ import { type IContainerPlugin, type ICoordinates, getRangeMax } from "@tspartic
 import type { PoissonContainer } from "./types.js";
 import type { PoissonDisc } from "./PoissonDisc.js";
 
+const defaultSize = 1;
+
 /**
  * Poisson Disc manager
  */
@@ -92,7 +94,7 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
       poissonOptions.radius
         ? poissonOptions.radius * pixelRatio
         : Math.max(
-            getRangeMax(particlesOptions.size.value) * pixelRatio,
+            getRangeMax((particlesOptions["size.value"] as number | undefined) ?? defaultSize) * pixelRatio,
             Math.sqrt((canvasSize.width * canvasSize.height) / particlesOptions.number.value),
           ),
       poissonOptions.retries,

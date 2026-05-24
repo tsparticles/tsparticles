@@ -14,7 +14,6 @@ import {
   getDistance,
   getDistances,
   getRandom,
-  getRangeMax,
   getRangeValue,
   getStyleFromRgb,
   half,
@@ -377,7 +376,7 @@ export class AbsorberInstance {
 
       particle.velocity.setTo(Vector.origin);
 
-      const maxSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
+      const maxSize = particle.size.max,
         sizeFactor = particle.options.move.size ? particle.getRadius() / maxSize : identity,
         deltaFactor = delta.factor || identity,
         baseSpeed = particle.retina.moveSpeed,

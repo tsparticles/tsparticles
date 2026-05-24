@@ -565,6 +565,12 @@ export class Particle {
       moveSpeed: 0,
       sizeAnimationSpeed: 0,
     };
+    this.size = {
+      value: 1,
+      max: 1,
+      min: 1,
+      enable: false,
+    };
     this.outType = ParticleOutType.normal;
     this.ignoresResizeRatio = true;
 
