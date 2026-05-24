@@ -64,6 +64,10 @@ export class Cannon implements ICannon {
       this.maxParticles = data.maxParticles;
     }
 
+    if (data.maxDragDistance !== undefined) {
+      this.maxDragDistance = data.maxDragDistance;
+    }
+
     if (data.drawVector !== undefined) {
       this.drawVector = data.drawVector;
     }
