@@ -148,12 +148,18 @@ export class Engine {
    */
   private _initialized = false;
 
-  /** The container instances */
+  /**
+   * The container instances
+   * @returns the instances loaded in the engine
+   */
   get items(): Container[] {
     return this._domArray;
   }
 
-  /** The engine version */
+  /**
+   * The engine version
+   * @returns the version string
+   */
   get version(): string {
     return __VERSION__;
   }
@@ -172,7 +178,7 @@ export class Engine {
    */
   /**
    * Checks if a plugin version matches the engine version
-   * @param pluginVersion
+   * @param pluginVersion - the version to check
    */
   checkVersion(pluginVersion: string): void {
     if (this.version === pluginVersion) {

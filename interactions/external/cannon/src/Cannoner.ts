@@ -95,16 +95,16 @@ interface CannonGesture {
  * The number of particles and their velocity scale with the drag length.
  *
  * Options live under `interactivity.modes.cannon`:
- * - `spread`         — half-angle spread in degrees around the launch angle (default 30)
+ * - `spread` — half-angle spread in degrees around the launch angle (default 30)
  * - `velocityFactor` — multiplier applied to drag length to obtain particle speed (default 10)
  * - `particleFactor` — how many particles per pixel of drag (default 0.2)
- * - `minParticles`   — minimum burst size regardless of drag length (default 5)
- * - `maxParticles`   — cap for burst size (default 200)
- * - `drawVector`     — whether to render the aiming line while dragging (default true)
- * - `vectorColor`    — CSS color for the aiming line (default "#ffffff80")
+ * - `minParticles` — minimum burst size regardless of drag length (default 5)
+ * - `maxParticles` — cap for burst size (default 200)
+ * - `drawVector` — whether to render the aiming line while dragging (default true)
+ * - `vectorColor` — CSS color for the aiming line (default "#ffffff80")
  */
 export class Cannoner extends ExternalInteractorBase<CannonContainer> {
-  /** @inheritDoc */
+  /** {@inheritDoc ExternalInteractorBase.maxDistance} */
   readonly maxDistance = 0;
 
   private _data?: CannonData;
@@ -117,18 +117,25 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   private _lastDownPosition: ICoordinates | undefined = undefined;
   private _state: CannonState = CannonState.idle;
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase}
+   * @param container -
+   */
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: CannonContainer) {
     super(container);
   }
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase.clear}
+   * @param _particle -
+   * @param _delta -
+   */
   clear(_particle: InteractivityParticle, _delta: IDelta): void {
     // nothing to clear per-particle
   }
 
-  /** @inheritDoc */
+  /** {@inheritDoc ExternalInteractorBase.init} */
   init(): void {
     const options = this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
 
@@ -144,7 +151,11 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     };
   }
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase.interact}
+   * @param interactivityData -
+   * @param _delta -
+   */
   interact(interactivityData: IInteractivityData, _delta: IDelta): void {
     const mouse = interactivityData.mouse,
       mousePos = mouse.position,
@@ -176,7 +187,11 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     }
   }
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase.isEnabled}
+   * @param interactivityData -
+   * @returns -
+   */
   isEnabled(interactivityData: IInteractivityData): boolean {
     const { container } = this,
       events = container.actualOptions.interactivity?.events;
@@ -197,7 +212,11 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     return this._state !== CannonState.idle || interactivityData.mouse.clicking;
   }
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase.loadModeOptions}
+   * @param options -
+   * @param sources -
+   */
   loadModeOptions(
     options: Modes & CannonMode,
     ...sources: RecursivePartial<(IModes & ICannonMode) | undefined>[]
@@ -209,7 +228,11 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     }
   }
 
-  /** @inheritDoc */
+  /**
+   * {@inheritDoc ExternalInteractorBase.reset}
+   * @param _interactivityData -
+   * @param _particle -
+   */
   reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
     // nothing to reset
   }
@@ -231,7 +254,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
-        clampedDist = opts.maxDragDistance > none ? Math.min(dragDist, opts.maxDragDistance * pxRatio) : pxRatio,
+        clampedDist = opts.maxDragDistance > none ? Math.min(dragDist, opts.maxDragDistance * pxRatio) : dragDist,
         clampRatio = dragDist > minDistance ? clampedDist / dragDist : minDistance,
         clampedX = origin.x + (current.x - origin.x) * clampRatio,
         clampedY = origin.y + (current.y - origin.y) * clampRatio;

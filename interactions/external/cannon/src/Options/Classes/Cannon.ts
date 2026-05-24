@@ -31,7 +31,7 @@ export class Cannon implements ICannon {
     this.spread = 30;
     this.velocityFactor = 0.5;
     this.particleFactor = 0.2;
-    this.maxDragDistance = 200;
+    this.maxDragDistance = 0;
     this.minParticles = 5;
     this.maxParticles = 200;
     this.drawVector = true;
@@ -62,6 +62,10 @@ export class Cannon implements ICannon {
 
     if (data.maxParticles !== undefined) {
       this.maxParticles = data.maxParticles;
+    }
+
+    if (data.maxDragDistance !== undefined) {
+      this.maxDragDistance = data.maxDragDistance;
     }
 
     if (data.drawVector !== undefined) {
