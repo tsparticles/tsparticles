@@ -39,7 +39,10 @@ const options: ISourceOptions = {
       options: {
         ribbon: {
           angle: 45,
-          backColor: "#777",
+          darken: {
+            enable: true,
+            value: 30,
+          },
           count: 50,
           drag: 0.05,
           mass: 1,

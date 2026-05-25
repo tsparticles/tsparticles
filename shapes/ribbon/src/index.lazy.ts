@@ -1,3 +1,4 @@
+import { type Container } from "@tsparticles/engine";
 import { type Engine } from "@tsparticles/engine/lazy";
 
 declare const __VERSION__: string;
@@ -11,6 +12,6 @@ export async function loadRibbonShape(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { RibbonDrawer } = await import("./RibbonDrawer.js");
 
-    e.pluginManager.addShape(["ribbon"], () => Promise.resolve(new RibbonDrawer()));
+    e.pluginManager.addShape(["ribbon"], (container: Container) => Promise.resolve(new RibbonDrawer(container.hdr)));
   });
 }

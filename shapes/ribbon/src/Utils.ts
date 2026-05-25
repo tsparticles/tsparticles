@@ -1,4 +1,12 @@
-import { type IShapeDrawData, Vector, getRangeValue } from "@tsparticles/engine";
+import {
+  AlterType,
+  type IShapeDrawData,
+  Vector,
+  alterHsl,
+  getHslFromAnimation,
+  getRangeValue,
+  getStyleFromHsl,
+} from "@tsparticles/engine";
 import type { RibbonParticle } from "./RibbonParticle.js";
 
 interface IRibbonDrawData {
@@ -454,8 +462,9 @@ function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData
 /**
  *
  * @param data -
+ * @param hdr -
  */
-export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
+export function drawRibbon(data: IShapeDrawData<RibbonParticle>, hdr: boolean): void {
   const { context, particle, radius } = data,
     points = particle.ribbonPoints,
     offsets = particle.ribbonOffsets,
@@ -467,12 +476,32 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
     return;
   }
 
-  const backColor = particle.shapeData?.backColor,
-    drawOffsets = offsets.mult(radius),
+  const drawOffsets = offsets.mult(radius),
     center = particle.position,
-    frontFill = context.fillStyle,
-    frontStroke = context.strokeStyle,
-    backFill = backColor ?? (hasStroke ? frontStroke : frontFill);
+    frontFill = typeof context.fillStyle === "string" ? context.fillStyle : "",
+    frontStroke = typeof context.strokeStyle === "string" ? context.strokeStyle : "",
+    shapeData = particle.shapeData;
+  let backFill = hasStroke ? frontStroke : frontFill;
+
+  if (shapeData?.backColor) {
+    backFill = shapeData.backColor;
+  } else if (shapeData?.darken?.enable) {
+    const frontHsl = getHslFromAnimation(particle.fillColor);
+
+    if (frontHsl) {
+      const altered = alterHsl(frontHsl, AlterType.darken, getRangeValue(shapeData.darken.value));
+
+      backFill = getStyleFromHsl(altered, hdr);
+    }
+  } else if (shapeData?.enlighten?.enable) {
+    const frontHsl = getHslFromAnimation(particle.fillColor);
+
+    if (frontHsl) {
+      const altered = alterHsl(frontHsl, AlterType.enlighten, getRangeValue(shapeData.enlighten.value));
+
+      backFill = getStyleFromHsl(altered, hdr);
+    }
+  }
 
   context.lineWidth = lineWidth;
   context.lineJoin = "round";
