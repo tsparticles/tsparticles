@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/confetti",
+  "name": "@tsparticles/shape-ribbon",
   "version": "4.0.5",
-  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "description": "tsParticles ribbon shape",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build",
@@ -11,7 +11,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "bundles/confetti"
+    "directory": "shapes/ribbon"
   },
   "keywords": [
     "front-end",
@@ -64,7 +64,8 @@
     "confetti-js",
     "confettijs",
     "fireworksjs",
-    "canvas-confetti"
+    "canvas-confetti",
+    "tsparticles-shape"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -111,33 +112,17 @@
     },
     "./package.json": "./dist/package.json"
   },
-  "dependencies": {
-    "@tsparticles/basic": "workspace:*",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/plugin-emitters": "workspace:*",
-    "@tsparticles/plugin-motion": "workspace:*",
-    "@tsparticles/shape-cards": "workspace:*",
-    "@tsparticles/shape-emoji": "workspace:*",
-    "@tsparticles/shape-heart": "workspace:*",
-    "@tsparticles/shape-image": "workspace:*",
-    "@tsparticles/shape-polygon": "workspace:*",
-    "@tsparticles/shape-ribbon": "workspace:*",
-    "@tsparticles/shape-square": "workspace:*",
-    "@tsparticles/shape-star": "workspace:*",
-    "@tsparticles/updater-life": "workspace:*",
-    "@tsparticles/updater-roll": "workspace:*",
-    "@tsparticles/updater-rotate": "workspace:*",
-    "@tsparticles/updater-tilt": "workspace:*",
-    "@tsparticles/updater-wobble": "workspace:*"
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/engine": "workspace:*"
   },
   "publishConfig": {
     "access": "public",
     "directory": "dist",
     "linkDirectory": true
   },
-  "type": "module",
-  "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
-    "@tsparticles/cli-command-build": "workspace:^"
-  }
+  "type": "module"
 }

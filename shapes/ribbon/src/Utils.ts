@@ -1,0 +1,526 @@
+import { type IShapeDrawData, Vector, getRangeValue } from "@tsparticles/engine";
+import type { RibbonParticle } from "./RibbonParticle.js";
+
+const defaultParticleDist = 8,
+  defaultMass = 1,
+  defaultDrag = 0.05,
+  defaultVelocityInherit = 5,
+  defaultOscillationSpeed = 3,
+  defaultOscillationDistance = 40,
+  defaultYSpeed = 100,
+  defaultAngle = 45,
+  defaultPointCount = 30,
+  defaultThickness = 8,
+  minPointCount = 4,
+  noPoint = 0,
+  firstPoint = 1,
+  secondPoint = 2,
+  lineWidth = 1,
+  randomTimeFactor = 100,
+  degrees = 180,
+  fixedDurationFrames = 50,
+  fixedDuration = firstPoint / fixedDurationFrames,
+  millisecondsToSeconds = 1000,
+  minDelta = 1e-6,
+  maxVelocityInherit = 800,
+  offscreenMarginFactor = 1,
+  noDistance = 0,
+  half = 0.5;
+
+/**
+ *
+ * @param particle
+ * @param width
+ * @param height
+ */
+export function setRibbonBounds(particle: RibbonParticle, width: number, height: number): void {
+  particle.ribbonBounds = Vector.create(width, height);
+}
+
+/**
+ *
+ * @param particle
+ */
+function getMass(particle: RibbonParticle): number {
+  return particle.ribbonMass ?? defaultMass;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getDrag(particle: RibbonParticle): number {
+  return particle.ribbonDrag ?? defaultDrag;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getVelocityInherit(particle: RibbonParticle): number {
+  return particle.ribbonVelocityInherit ?? defaultVelocityInherit;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getOscillationSpeed(particle: RibbonParticle): number {
+  return particle.ribbonOscillationSpeed ?? defaultOscillationSpeed;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getOscillationDistance(particle: RibbonParticle): number {
+  return particle.ribbonOscillationDistance ?? defaultOscillationDistance;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getParticleDist(particle: RibbonParticle): number {
+  return particle.ribbonParticleDist ?? defaultParticleDist;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getYSpeed(particle: RibbonParticle): number {
+  return particle.ribbonYSpeed ?? defaultYSpeed;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getHead(particle: RibbonParticle): Vector {
+  particle.ribbonHead ??= Vector.create(particle.position.x, particle.position.y);
+
+  return particle.ribbonHead;
+}
+
+/**
+ *
+ * @param particle
+ */
+function getPreviousHead(particle: RibbonParticle): Vector {
+  particle.ribbonPreviousHead ??= Vector.create(particle.position.x, particle.position.y);
+
+  return particle.ribbonPreviousHead;
+}
+
+/**
+ *
+ * @param particle
+ */
+export function createRibbonState(particle: RibbonParticle): void {
+  const shapeData = particle.shapeData,
+    count = Math.max(minPointCount, Math.round(getRangeValue(shapeData?.count ?? defaultPointCount))),
+    particleDist = getRangeValue(shapeData?.particleDist ?? defaultParticleDist),
+    mass = getRangeValue(shapeData?.mass ?? defaultMass),
+    drag = getRangeValue(shapeData?.drag ?? defaultDrag),
+    velocityInherit = getRangeValue(shapeData?.velocityInherit ?? defaultVelocityInherit),
+    oscillationSpeed = getRangeValue(shapeData?.oscillationSpeed ?? defaultOscillationSpeed),
+    oscillationDistance = getRangeValue(shapeData?.oscillationDistance ?? defaultOscillationDistance),
+    ySpeed = getRangeValue(shapeData?.ySpeed ?? defaultYSpeed),
+    angle = getRangeValue(shapeData?.angle ?? defaultAngle),
+    thickness = getRangeValue(shapeData?.thickness ?? defaultThickness),
+    angleRad = (Math.PI / degrees) * angle,
+    head = Vector.create(particle.position.x, particle.position.y),
+    bounds = particle.ribbonBounds;
+
+  if (!bounds) {
+    return;
+  }
+
+  particle.ribbonParticleDist = particleDist;
+  particle.ribbonMass = mass;
+  particle.ribbonDrag = drag;
+  particle.ribbonVelocityInherit = velocityInherit;
+  particle.ribbonTime = Math.random() * randomTimeFactor;
+  particle.ribbonOscillationSpeed = oscillationSpeed;
+  particle.ribbonOscillationDistance = oscillationDistance;
+  particle.ribbonYSpeed = ySpeed;
+  particle.ribbonOffsets = Vector.create(Math.cos(angleRad) * thickness, Math.sin(angleRad) * thickness);
+  particle.ribbonHead = head;
+  particle.ribbonPreviousHead = Vector.create(head.x, head.y);
+  particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
+  particle.ribbonPoints = new Array(count);
+
+  for (let i = noPoint; i < count; i++) {
+    particle.ribbonPoints[i] = {
+      force: Vector.origin,
+      position: Vector.create(head.x, head.y - i * particleDist),
+      velocity: Vector.origin,
+    };
+  }
+}
+
+/**
+ *
+ * @param particle
+ */
+function resetRibbonState(particle: RibbonParticle): void {
+  const points = particle.ribbonPoints,
+    bounds = particle.ribbonBounds,
+    width = bounds?.x ?? noDistance,
+    height = bounds?.y ?? noDistance,
+    position = Vector.create(Math.random() * width, -Math.random() * height);
+
+  if (!bounds) {
+    return;
+  }
+
+  if (!points?.length) {
+    createRibbonState(particle);
+
+    return;
+  }
+
+  particle.position.x = position.x;
+  particle.position.y = position.y;
+  particle.ribbonHead = Vector.create(position.x, position.y);
+  particle.ribbonPreviousHead = Vector.create(position.x, position.y);
+  particle.ribbonPreviousPosition = Vector.create(position.x, position.y);
+  particle.ribbonTime = Math.random() * randomTimeFactor;
+
+  for (let i = noPoint; i < points.length; i++) {
+    const point = points[i];
+
+    if (!point) {
+      continue;
+    }
+
+    point.position = Vector.create(position.x, position.y - i * getParticleDist(particle));
+    point.force = Vector.origin;
+    point.velocity = Vector.origin;
+  }
+}
+
+/**
+ *
+ * @param particle
+ * @param index
+ * @param force
+ */
+function addPointForce(particle: RibbonParticle, index: number, force: Vector): void {
+  const point = particle.ribbonPoints?.[index];
+
+  if (!point) {
+    return;
+  }
+
+  point.force.addTo(force);
+}
+
+/**
+ *
+ * @param particle
+ * @param index
+ * @param dt
+ */
+function integratePoint(particle: RibbonParticle, index: number, dt: number): void {
+  const point = particle.ribbonPoints?.[index];
+
+  if (!point) {
+    return;
+  }
+
+  const mass = getMass(particle),
+    drag = getDrag(particle),
+    totalForce = Vector.create(point.force.x, point.force.y),
+    speed = point.velocity.length,
+    dragVelocity = Vector.create(point.velocity.x, point.velocity.y);
+
+  dragVelocity.multTo(drag * mass * speed);
+  totalForce.subFrom(dragVelocity);
+
+  const acceleration = totalForce.div(mass);
+
+  point.position.addTo(point.velocity.mult(dt));
+  point.velocity.addTo(acceleration.mult(dt));
+  point.force = Vector.origin;
+}
+
+/**
+ *
+ * @param data
+ */
+export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
+  const { particle, delta } = data,
+    points = particle.ribbonPoints,
+    offsets = particle.ribbonOffsets,
+    bounds = particle.ribbonBounds;
+
+  if (!points?.length || !offsets || !bounds) {
+    return;
+  }
+
+  const dt = Math.min(fixedDuration, Math.max(delta.value / millisecondsToSeconds, minDelta)),
+    head = getHead(particle),
+    previousHead = getPreviousHead(particle),
+    velocityInherit = getVelocityInherit(particle);
+
+  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * getOscillationSpeed(particle);
+  head.y += getYSpeed(particle) * dt;
+  head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
+
+  const particleDist = getParticleDist(particle),
+    thickness = offsets.length,
+    offscreenMargin = Math.max(particleDist, thickness) * offscreenMarginFactor,
+    isOutBottom = head.y > bounds.y + offscreenMargin,
+    isOutLeft = head.x < -offscreenMargin,
+    isOutRight = head.x > bounds.x + offscreenMargin;
+
+  if (isOutBottom || isOutLeft || isOutRight || !Number.isFinite(head.x) || !Number.isFinite(head.y)) {
+    resetRibbonState(particle);
+
+    return;
+  }
+
+  particle.position.x = head.x;
+  particle.position.y = head.y;
+
+  const first = points[noPoint];
+
+  if (!first) {
+    return;
+  }
+
+  first.position = Vector.create(head.x, head.y);
+
+  const dX = previousHead.x - head.x,
+    dY = previousHead.y - head.y,
+    movement = Math.sqrt(dX * dX + dY * dY),
+    velocityFactor = Math.min((movement / dt) * velocityInherit, maxVelocityInherit);
+
+  particle.ribbonPreviousHead = Vector.create(head.x, head.y);
+  particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
+
+  for (let i = firstPoint; i < points.length; i++) {
+    const point = points[i],
+      previousPoint = points[i - firstPoint];
+
+    if (!point || !previousPoint) {
+      continue;
+    }
+
+    const direction = previousPoint.position.sub(point.position).copy();
+
+    direction.normalize();
+    direction.multTo(velocityFactor);
+
+    addPointForce(particle, i, direction);
+  }
+
+  for (let i = firstPoint; i < points.length; i++) {
+    integratePoint(particle, i, dt);
+  }
+
+  for (let i = firstPoint; i < points.length; i++) {
+    const point = points[i],
+      previousPoint = points[i - firstPoint];
+
+    if (!point || !previousPoint) {
+      continue;
+    }
+
+    const normalized = point.position.sub(previousPoint.position).copy();
+
+    normalized.normalize();
+    normalized.multTo(particleDist);
+    point.position = previousPoint.position.add(normalized);
+
+    if (
+      !Number.isFinite(point.position.x) ||
+      !Number.isFinite(point.position.y) ||
+      !Number.isFinite(point.velocity.x) ||
+      !Number.isFinite(point.velocity.y)
+    ) {
+      resetRibbonState(particle);
+
+      return;
+    }
+  }
+}
+
+/**
+ *
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ * @param x3
+ * @param y3
+ */
+function getSegmentSide(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): number {
+  return (x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2);
+}
+
+/**
+ *
+ * @param a
+ * @param b
+ */
+function getMidpoint(a: Vector, b: Vector): Vector {
+  return Vector.create((a.x + b.x) * half, (a.y + b.y) * half);
+}
+
+/**
+ *
+ * @param context
+ * @param drawData
+ * @param drawData.a
+ * @param drawData.b
+ * @param drawData.c
+ * @param drawData.d
+ * @param drawData.fill
+ * @param drawData.stroke
+ */
+function drawPolygonSegment(
+  context: OffscreenCanvasRenderingContext2D,
+  drawData: {
+    a: Vector;
+    b: Vector;
+    c: Vector;
+    d?: Vector;
+    fill: boolean;
+    stroke: boolean;
+  },
+): void {
+  context.beginPath();
+  context.moveTo(drawData.a.x, drawData.a.y);
+  context.lineTo(drawData.b.x, drawData.b.y);
+  context.lineTo(drawData.c.x, drawData.c.y);
+
+  if (drawData.d) {
+    context.lineTo(drawData.d.x, drawData.d.y);
+  }
+
+  context.closePath();
+
+  if (drawData.stroke) {
+    context.stroke();
+  }
+
+  if (drawData.fill) {
+    context.fill();
+  }
+}
+
+/**
+ *
+ * @param data
+ */
+export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
+  const { context, particle } = data,
+    points = particle.ribbonPoints,
+    offsets = particle.ribbonOffsets,
+    bounds = particle.ribbonBounds,
+    hasFill = data.fill,
+    hasStroke = data.stroke;
+
+  if (!points || !offsets || !bounds || points.length < minPointCount || (!hasFill && !hasStroke)) {
+    return;
+  }
+
+  const center = particle.position,
+    frontFill = context.fillStyle,
+    frontStroke = context.strokeStyle,
+    backFill = hasStroke ? frontStroke : frontFill;
+
+  context.lineWidth = lineWidth;
+  context.lineJoin = "round";
+  context.lineCap = "round";
+
+  for (let i = noPoint; i < points.length - firstPoint; i++) {
+    const current = points[i],
+      next = points[i + firstPoint];
+
+    if (!current || !next) {
+      continue;
+    }
+
+    const currentOffset = current.position.add(offsets),
+      nextOffset = next.position.add(offsets),
+      currentBase = current.position.sub(center),
+      nextBase = next.position.sub(center),
+      currentSide = currentOffset.sub(center),
+      nextSide = nextOffset.sub(center),
+      minY = Math.min(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
+      maxY = Math.max(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
+      isFront =
+        getSegmentSide(
+          current.position.x,
+          current.position.y,
+          next.position.x,
+          next.position.y,
+          nextOffset.x,
+          nextOffset.y,
+        ) < noDistance,
+      segmentStyle = isFront ? frontFill : backFill;
+
+    if (minY > bounds.y + offsets.length || maxY < -offsets.length) {
+      continue;
+    }
+
+    context.fillStyle = segmentStyle;
+
+    if (hasStroke) {
+      context.strokeStyle = segmentStyle;
+    }
+
+    if (i === noPoint) {
+      drawPolygonSegment(context, {
+        a: currentBase,
+        b: nextBase,
+        c: getMidpoint(nextBase, nextSide),
+        fill: hasFill,
+        stroke: hasStroke,
+      });
+      drawPolygonSegment(context, {
+        a: nextSide,
+        b: currentSide,
+        c: getMidpoint(nextBase, nextSide),
+        fill: hasFill,
+        stroke: hasStroke,
+      });
+    } else if (i === points.length - secondPoint) {
+      drawPolygonSegment(context, {
+        a: currentBase,
+        b: nextBase,
+        c: getMidpoint(currentBase, currentSide),
+        fill: hasFill,
+        stroke: hasStroke,
+      });
+      drawPolygonSegment(context, {
+        a: nextSide,
+        b: currentSide,
+        c: getMidpoint(currentBase, currentSide),
+        fill: hasFill,
+        stroke: hasStroke,
+      });
+    } else {
+      drawPolygonSegment(context, {
+        a: currentBase,
+        b: nextBase,
+        c: nextSide,
+        d: currentSide,
+        fill: hasFill,
+        stroke: hasStroke,
+      });
+    }
+  }
+
+  context.fillStyle = frontFill;
+
+  if (hasStroke) {
+    context.strokeStyle = frontStroke;
+  }
+
+  context.beginPath();
+}

@@ -175,6 +175,7 @@
     "@tsparticles/shape-infinity": "4.0.5",
     "@tsparticles/shape-matrix": "4.0.5",
     "@tsparticles/shape-path": "4.0.5",
+    "@tsparticles/shape-ribbon": "4.0.5",
     "@tsparticles/shape-rounded-polygon": "4.0.5",
     "@tsparticles/shape-rounded-rect": "4.0.5",
     "@tsparticles/shape-spiral": "4.0.5",

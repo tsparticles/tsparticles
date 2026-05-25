@@ -379,6 +379,7 @@
     "@tsparticles/shape-matrix": "workspace:*",
     "@tsparticles/shape-path": "workspace:*",
     "@tsparticles/shape-polygon": "workspace:*",
+    "@tsparticles/shape-ribbon": "workspace:*",
     "@tsparticles/shape-rounded-polygon": "workspace:*",
     "@tsparticles/shape-rounded-rect": "workspace:*",
     "@tsparticles/shape-spiral": "workspace:*",

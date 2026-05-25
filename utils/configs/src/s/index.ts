@@ -9,6 +9,7 @@ import shapeInfinity from "./shapeInfinity.js";
 import shapeMultilineText from "./shapeMultilineText.js";
 import shapeOptions from "./shapeOptions.js";
 import shapePath from "./shapePath.js";
+import shapeRibbon from "./shapeRibbon.js";
 import shapeRoundedPolygon from "./shapeRoundedPolygon.js";
 import shapeRoundedRect from "./shapeRoundedRect.js";
 import shapeSpiral from "./shapeSpiral.js";
@@ -39,6 +40,7 @@ export default {
   shapeMultilineText,
   shapeOptions,
   shapePath,
+  shapeRibbon,
   shapeRoundedPolygon,
   shapeRoundedRect,
   shapeSpiral,
