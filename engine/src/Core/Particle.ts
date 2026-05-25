@@ -893,35 +893,39 @@ export class Particle {
     });
   };
 
-  private readonly _getDefaultInsideCanvasResult = (direction?: OutModeDirection): IParticleCanvasBoundsResult => {
+  private readonly _getDefaultInsideCanvasResult = (
+    direction?: OutModeDirection,
+    outMode?: OutMode | keyof typeof OutMode,
+  ): IParticleCanvasBoundsResult => {
     const radius = this.getRadius(),
       canvasSize = this._container.canvas.size,
-      position = this.position;
+      position = this.position,
+      isBounce = outMode === OutMode.bounce;
 
     if (direction === OutModeDirection.bottom) {
       return {
-        inside: position.y - radius < canvasSize.height,
+        inside: isBounce ? position.y + radius < canvasSize.height : position.y - radius < canvasSize.height,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.left) {
       return {
-        inside: position.x + radius > defaultAngle,
+        inside: isBounce ? position.x - radius > defaultAngle : position.x + radius > defaultAngle,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.right) {
       return {
-        inside: position.x - radius < canvasSize.width,
+        inside: isBounce ? position.x + radius < canvasSize.width : position.x - radius < canvasSize.width,
         reason: "default",
       };
     }
 
     if (direction === OutModeDirection.top) {
       return {
-        inside: position.y + radius > defaultAngle,
+        inside: isBounce ? position.y - radius > defaultAngle : position.y + radius > defaultAngle,
         reason: "default",
       };
     }
@@ -953,7 +957,7 @@ export class Particle {
     direction?: OutModeDirection;
     outMode?: OutMode | keyof typeof OutMode;
   }): IParticleCanvasBoundsResult => {
-    const defaultResult = this._getDefaultInsideCanvasResult(data.direction),
+    const defaultResult = this._getDefaultInsideCanvasResult(data.direction, data.outMode),
       container = this._container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
       effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined,

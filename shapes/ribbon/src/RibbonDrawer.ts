@@ -232,6 +232,28 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
    * @param container -
    * @param particle -
    */
+  /**
+   * Clears ribbon state when particle is destroyed, so it gets properly recreated when recycled from the pool.
+   * Without this, a recycled particle would keep stale ribbonPoints[] positions (from when it was destroyed
+   * far off-screen), causing isInsideCanvas to immediately flag it as outside again.
+   * @param particle -
+   */
+  particleDestroy(particle: RibbonParticle): void {
+    delete particle.ribbonPoints;
+    delete particle.ribbonHead;
+    delete particle.ribbonPreviousHead;
+    delete particle.ribbonPreviousPosition;
+    delete particle.ribbonTime;
+    delete particle.ribbonOffsets;
+    delete particle.ribbonParticleDist;
+    delete particle.ribbonMass;
+    delete particle.ribbonDrag;
+    delete particle.ribbonVelocityInherit;
+    delete particle.ribbonOscillationSpeed;
+    delete particle.ribbonOscillationDistance;
+    delete particle.ribbonYSpeed;
+  }
+
   particleInit(container: Container, particle: RibbonParticle): void {
     prepareRibbonParticle(particle, container.canvas.size.width, container.canvas.size.height);
   }
