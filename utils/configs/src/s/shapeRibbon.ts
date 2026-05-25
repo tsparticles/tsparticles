@@ -38,16 +38,16 @@ const options: ISourceOptions = {
       type: "ribbon",
       options: {
         ribbon: {
+          angle: 45,
           backColor: "#777",
           count: 50,
-          particleDist: 8,
-          thickness: 8,
-          angle: 45,
-          mass: 1,
           drag: 0.05,
-          velocityInherit: 5,
-          oscillationSpeed: 3,
+          mass: 1,
           oscillationDistance: 40,
+          oscillationSpeed: 3,
+          particleDist: 8,
+          thickness: 1,
+          velocityInherit: 5,
           ySpeed: 100,
         },
       },
@@ -56,7 +56,7 @@ const options: ISourceOptions = {
       value: 1,
     },
     size: {
-      value: 1,
+      value: 8,
     },
     links: {
       enable: false,

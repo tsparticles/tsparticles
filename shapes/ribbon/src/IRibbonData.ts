@@ -9,7 +9,6 @@ export interface IRibbonData extends IShapeValues {
   oscillationDistance?: RangeValue;
   oscillationSpeed?: RangeValue;
   particleDist?: RangeValue;
-  thickness?: RangeValue;
   velocityInherit?: RangeValue;
   ySpeed?: RangeValue;
 }

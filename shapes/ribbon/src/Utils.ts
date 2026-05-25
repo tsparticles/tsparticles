@@ -19,7 +19,6 @@ const defaultParticleDist = 8,
   defaultYSpeed = 100,
   defaultAngle = 45,
   defaultPointCount = 30,
-  defaultThickness = 8,
   minPointCount = 4,
   noPoint = 0,
   firstPoint = 1,
@@ -145,7 +144,6 @@ export function createRibbonState(particle: RibbonParticle): void {
     oscillationDistance = getRangeValue(shapeData?.oscillationDistance ?? defaultOscillationDistance),
     ySpeed = getRangeValue(shapeData?.ySpeed ?? defaultYSpeed),
     angle = getRangeValue(shapeData?.angle ?? defaultAngle),
-    thickness = getRangeValue(shapeData?.thickness ?? defaultThickness),
     angleRad = (Math.PI / degrees) * angle,
     head = Vector.create(particle.position.x, particle.position.y),
     bounds = particle.ribbonBounds;
@@ -162,7 +160,7 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonOscillationDistance = oscillationDistance;
   particle.ribbonYSpeed = ySpeed;
   particle.ribbonTime = Math.random() * randomTimeFactor;
-  particle.ribbonOffsets = Vector.create(Math.cos(angleRad) * thickness, Math.sin(angleRad) * thickness);
+  particle.ribbonOffsets = Vector.create(Math.cos(angleRad), Math.sin(angleRad));
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
   particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
