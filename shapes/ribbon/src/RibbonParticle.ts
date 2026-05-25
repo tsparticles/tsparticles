@@ -8,6 +8,7 @@ export interface IRibbonPoint {
 }
 
 export type RibbonParticle = Particle & {
+  ribbonBackColor?: string;
   ribbonBounds?: Vector;
   ribbonDrag?: number;
   ribbonHead?: Vector;

@@ -30,9 +30,9 @@ interface ParticleContainerRef {
 
 /**
  *
- * @param particle
- * @param width
- * @param height
+ * @param particle -
+ * @param width -
+ * @param height -
  */
 function prepareRibbonParticle(particle: RibbonParticle, width: number, height: number): void {
   setRibbonBounds(particle, width, height);
@@ -44,7 +44,7 @@ function prepareRibbonParticle(particle: RibbonParticle, width: number, height: 
 
 /**
  *
- * @param particle
+ * @param particle -
  * @returns particle container canvas bounds if available
  */
 function getParticleBounds(particle: RibbonParticle): { height: number; width: number } | undefined {
@@ -62,7 +62,7 @@ function getParticleBounds(particle: RibbonParticle): { height: number; width: n
 
 /**
  *
- * @param particle
+ * @param particle -
  * @returns the expected ribbon points count from shape data
  */
 function getRibbonCount(particle: RibbonParticle): number {
@@ -71,12 +71,13 @@ function getRibbonCount(particle: RibbonParticle): number {
 
 /**
  *
- * @param data
- * @param minX
- * @param maxX
- * @param minY
- * @param maxY
- * @param margin
+ * @param data -
+ * @param minX -
+ * @param maxX -
+ * @param minY -
+ * @param maxY -
+ * @param margin -
+ * @returns true if the particle is inside the canvas, false otherwise
  */
 function isInsideByDirection(
   data: IParticleCanvasBoundsData<RibbonParticle>,
@@ -111,7 +112,7 @@ function isInsideByDirection(
 export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   /**
    * Draws the ribbon shape
-   * @param data
+   * @param data -
    */
   draw(data: IShapeDrawData<RibbonParticle>): void {
     const bounds = getParticleBounds(data.particle);
@@ -130,7 +131,8 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
 
   /**
    * Gets the number of sides for this shape
-   * @param particle
+   * @param particle -
+   * @returns the sides count
    */
   getSidesCount(particle: RibbonParticle): number {
     const pointsLen = particle.ribbonPoints?.length;
@@ -205,7 +207,7 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
 
   /**
    * Resets ribbon state when particle respawns
-   * @param particle
+   * @param particle -
    */
   loadShape(particle: RibbonParticle): void {
     if (!particle.shapeData) {
@@ -221,9 +223,8 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
 
   /**
    * Initializes ribbon-specific particle properties
-   * @param _container
-   * @param container
-   * @param particle
+   * @param container -
+   * @param particle -
    */
   particleInit(container: Container, particle: RibbonParticle): void {
     prepareRibbonParticle(particle, container.canvas.size.width, container.canvas.size.height);

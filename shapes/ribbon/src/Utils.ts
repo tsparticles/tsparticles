@@ -1,6 +1,15 @@
 import { type IShapeDrawData, Vector, getRangeValue } from "@tsparticles/engine";
 import type { RibbonParticle } from "./RibbonParticle.js";
 
+interface IRibbonDrawData {
+  a: Vector;
+  b: Vector;
+  c: Vector;
+  d?: Vector;
+  fill: boolean;
+  stroke: boolean;
+}
+
 const defaultParticleDist = 8,
   defaultMass = 1,
   defaultDrag = 0.05,
@@ -28,9 +37,9 @@ const defaultParticleDist = 8,
 
 /**
  *
- * @param particle
- * @param width
- * @param height
+ * @param particle -
+ * @param width -
+ * @param height -
  */
 export function setRibbonBounds(particle: RibbonParticle, width: number, height: number): void {
   particle.ribbonBounds = Vector.create(width, height);
@@ -38,7 +47,8 @@ export function setRibbonBounds(particle: RibbonParticle, width: number, height:
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the mass
  */
 function getMass(particle: RibbonParticle): number {
   return particle.ribbonMass ?? defaultMass;
@@ -46,7 +56,8 @@ function getMass(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the drag
  */
 function getDrag(particle: RibbonParticle): number {
   return particle.ribbonDrag ?? defaultDrag;
@@ -54,7 +65,8 @@ function getDrag(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the velocity inherit factor
  */
 function getVelocityInherit(particle: RibbonParticle): number {
   return particle.ribbonVelocityInherit ?? defaultVelocityInherit;
@@ -62,7 +74,8 @@ function getVelocityInherit(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the distance
  */
 function getParticleDist(particle: RibbonParticle): number {
   return particle.ribbonParticleDist ?? defaultParticleDist;
@@ -70,7 +83,8 @@ function getParticleDist(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the oscillation speed
  */
 function getOscillationSpeed(particle: RibbonParticle): number {
   return particle.ribbonOscillationSpeed ?? defaultOscillationSpeed;
@@ -78,7 +92,8 @@ function getOscillationSpeed(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the oscillation distance
  */
 function getOscillationDistance(particle: RibbonParticle): number {
   return particle.ribbonOscillationDistance ?? defaultOscillationDistance;
@@ -86,7 +101,8 @@ function getOscillationDistance(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the y speed
  */
 function getYSpeed(particle: RibbonParticle): number {
   return particle.ribbonYSpeed ?? defaultYSpeed;
@@ -94,7 +110,8 @@ function getYSpeed(particle: RibbonParticle): number {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the ribbon head
  */
 function getHead(particle: RibbonParticle): Vector {
   particle.ribbonHead ??= Vector.create(particle.position.x, particle.position.y);
@@ -104,7 +121,8 @@ function getHead(particle: RibbonParticle): Vector {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns the previous ribbon head
  */
 function getPreviousHead(particle: RibbonParticle): Vector {
   particle.ribbonPreviousHead ??= Vector.create(particle.position.x, particle.position.y);
@@ -114,7 +132,7 @@ function getPreviousHead(particle: RibbonParticle): Vector {
 
 /**
  *
- * @param particle
+ * @param particle -
  */
 export function createRibbonState(particle: RibbonParticle): void {
   const shapeData = particle.shapeData,
@@ -148,6 +166,7 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
   particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
+
   const trailAngle = particle.velocity.angle + Math.PI,
     noiseScale = particleDist * half;
 
@@ -171,7 +190,7 @@ export function createRibbonState(particle: RibbonParticle): void {
 
 /**
  *
- * @param particle
+ * @param particle -
  */
 function resetRibbonState(particle: RibbonParticle): void {
   const points = particle.ribbonPoints,
@@ -212,9 +231,9 @@ function resetRibbonState(particle: RibbonParticle): void {
 
 /**
  *
- * @param particle
- * @param index
- * @param force
+ * @param particle -
+ * @param index -
+ * @param force -
  */
 function addPointForce(particle: RibbonParticle, index: number, force: Vector): void {
   const point = particle.ribbonPoints?.[index];
@@ -228,9 +247,9 @@ function addPointForce(particle: RibbonParticle, index: number, force: Vector): 
 
 /**
  *
- * @param particle
- * @param index
- * @param dt
+ * @param particle -
+ * @param index -
+ * @param dt -
  */
 function integratePoint(particle: RibbonParticle, index: number, dt: number): void {
   const point = particle.ribbonPoints?.[index];
@@ -257,7 +276,7 @@ function integratePoint(particle: RibbonParticle, index: number, dt: number): vo
 
 /**
  *
- * @param data
+ * @param data -
  */
 export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
   const { particle, delta } = data,
@@ -386,12 +405,13 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
 
 /**
  *
- * @param x1
- * @param y1
- * @param x2
- * @param y2
- * @param x3
- * @param y3
+ * @param x1 -
+ * @param y1 -
+ * @param x2 -
+ * @param y2 -
+ * @param x3 -
+ * @param y3 -
+ * @returns the segment side
  */
 function getSegmentSide(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): number {
   return (x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2);
@@ -399,8 +419,9 @@ function getSegmentSide(x1: number, y1: number, x2: number, y2: number, x3: numb
 
 /**
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
+ * @returns the midpoint
  */
 function getMidpoint(a: Vector, b: Vector): Vector {
   return Vector.create((a.x + b.x) * half, (a.y + b.y) * half);
@@ -408,26 +429,10 @@ function getMidpoint(a: Vector, b: Vector): Vector {
 
 /**
  *
- * @param context
- * @param drawData
- * @param drawData.a
- * @param drawData.b
- * @param drawData.c
- * @param drawData.d
- * @param drawData.fill
- * @param drawData.stroke
+ * @param context -
+ * @param drawData -
  */
-function drawPolygonSegment(
-  context: OffscreenCanvasRenderingContext2D,
-  drawData: {
-    a: Vector;
-    b: Vector;
-    c: Vector;
-    d?: Vector;
-    fill: boolean;
-    stroke: boolean;
-  },
-): void {
+function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData: IRibbonDrawData): void {
   context.beginPath();
   context.moveTo(drawData.a.x, drawData.a.y);
   context.lineTo(drawData.b.x, drawData.b.y);
@@ -450,7 +455,7 @@ function drawPolygonSegment(
 
 /**
  *
- * @param data
+ * @param data -
  */
 export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
   const { context, particle, radius } = data,
@@ -464,11 +469,12 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
     return;
   }
 
-  const drawOffsets = offsets.mult(radius),
+  const backColor = particle.shapeData?.backColor,
+    drawOffsets = offsets.mult(radius),
     center = particle.position,
     frontFill = context.fillStyle,
     frontStroke = context.strokeStyle,
-    backFill = hasStroke ? frontStroke : frontFill;
+    backFill = backColor ?? (hasStroke ? frontStroke : frontFill);
 
   context.lineWidth = lineWidth;
   context.lineJoin = "round";

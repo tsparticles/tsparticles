@@ -38,6 +38,7 @@ const options: ISourceOptions = {
       type: "ribbon",
       options: {
         ribbon: {
+          backColor: "#777",
           count: 50,
           particleDist: 8,
           thickness: 8,
