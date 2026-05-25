@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type ICoordinates, calcExactPositionOrRandomFromSize, tsParticles } from "@tsparticles/engine";
+import {
+  type ICoordinates,
+  type IEffectDrawer,
+  type IShapeDrawer,
+  OutMode,
+  OutModeDirection,
+  calcExactPositionOrRandomFromSize,
+  tsParticles,
+} from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -166,6 +174,266 @@ describe("Particle", async () => {
       expect(particle.position.x).to.be.at.most(width);
       expect(particle.position.y).to.be.at.least(0);
       expect(particle.position.y).to.be.at.most(height);
+    });
+
+    afterAll(async () => {
+      await container.reset();
+    });
+  });
+
+  describe("canvas bounds ownership", () => {
+    const pluginManager = tsParticles.pluginManager,
+      defaultOptions = {
+        particles: {
+          effect: {
+            type: "none",
+          },
+          move: {
+            enable: false,
+          },
+          number: {
+            value: 0,
+          },
+          shape: {
+            type: "bounds-default-shape",
+          },
+          size: {
+            value: 8,
+          },
+        },
+      },
+      outsidePosition = {
+        x: -100,
+        y: height * 0.5,
+      },
+      shapeDrawerDefault: IShapeDrawer = {
+        draw: () => {
+          // no-op
+        },
+      },
+      shapeDrawerInside: IShapeDrawer = {
+        draw: () => {
+          // no-op
+        },
+        isInsideCanvas: () => true,
+      },
+      shapeDrawerOutside: IShapeDrawer = {
+        draw: () => {
+          // no-op
+        },
+        isInsideCanvas: () => false,
+      },
+      effectDrawerInside: IEffectDrawer = {
+        isInsideCanvas: () => true,
+      },
+      effectDrawerOutside: IEffectDrawer = {
+        isInsideCanvas: () => false,
+      },
+      effectDrawerOutModeAware: IEffectDrawer = {
+        isInsideCanvas: data => {
+          return data.outMode === OutMode.destroy ? false : true;
+        },
+      },
+      shapeDrawerOutModeAware: IShapeDrawer = {
+        draw: () => {
+          // no-op
+        },
+        isInsideCanvas: data => {
+          return data.outMode === OutMode.destroy ? false : true;
+        },
+      };
+
+    pluginManager.addShape(["bounds-default-shape"], () => Promise.resolve(shapeDrawerDefault));
+    pluginManager.addShape(["bounds-shape-inside"], () => Promise.resolve(shapeDrawerInside));
+    pluginManager.addShape(["bounds-shape-outside"], () => Promise.resolve(shapeDrawerOutside));
+    pluginManager.addShape(["bounds-shape-out-mode-aware"], () => Promise.resolve(shapeDrawerOutModeAware));
+    pluginManager.addEffect("bounds-effect-inside", () => Promise.resolve(effectDrawerInside));
+    pluginManager.addEffect("bounds-effect-outside", () => Promise.resolve(effectDrawerOutside));
+    pluginManager.addEffect("bounds-effect-out-mode-aware", () => Promise.resolve(effectDrawerOutModeAware));
+
+    it("should use default radius-based bounds when no callbacks are defined", async () => {
+      await container.reset(defaultOptions);
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      particle.position.x = outsidePosition.x;
+      particle.position.y = outsidePosition.y;
+
+      expect(particle.isInsideCanvas()).to.be.false;
+      expect(particle.isInsideCanvas(OutModeDirection.right)).to.be.true;
+    });
+
+    it("should use shape callback when only shape implements bounds", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          shape: {
+            type: "bounds-shape-inside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      particle.position.x = outsidePosition.x;
+      particle.position.y = outsidePosition.y;
+
+      expect(particle.isInsideCanvas()).to.be.true;
+      expect(particle.isInsideCanvas(OutModeDirection.left)).to.be.true;
+    });
+
+    it("should use effect callback when only effect implements bounds", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-inside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      particle.position.x = outsidePosition.x;
+      particle.position.y = outsidePosition.y;
+
+      expect(particle.isInsideCanvas()).to.be.true;
+      expect(particle.isInsideCanvas(OutModeDirection.left)).to.be.true;
+    });
+
+    it("should combine shape and effect callbacks with AND policy", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-outside",
+          },
+          shape: {
+            type: "bounds-shape-inside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvas()).to.be.false;
+      expect(particle.isInsideCanvas(OutModeDirection.bottom)).to.be.false;
+    });
+
+    it("should combine shape and effect callbacks with AND policy when shape is false", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-inside",
+          },
+          shape: {
+            type: "bounds-shape-outside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvas()).to.be.false;
+      expect(particle.isInsideCanvas(OutModeDirection.top)).to.be.false;
+    });
+
+    it("should pass out mode to callbacks for strategy-aware bounds", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-out-mode-aware",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvas()).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.left)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.left)).to.be.false;
+    });
+
+    it("should pass out mode to shape callbacks for strategy-aware bounds", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          shape: {
+            type: "bounds-shape-out-mode-aware",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvas()).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.top)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy, OutModeDirection.top)).to.be.false;
     });
 
     afterAll(async () => {

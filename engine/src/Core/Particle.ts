@@ -1,4 +1,5 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
+import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./Interfaces/IParticleCanvasBounds.js";
 import { Vector, Vector3d } from "./Utils/Vectors.js";
 import { alterHsl, getHslFromAnimation } from "../Utils/ColorUtils.js";
 import {
@@ -50,6 +51,7 @@ import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
@@ -707,19 +709,21 @@ export class Particle {
 
   /**
    * Checks if the particle is inside the canvas
+   * @param direction - optional bounds side check
    * @returns true if the particle is still inside the canvas
    */
-  isInsideCanvas(): boolean {
-    const radius = this.getRadius(),
-      canvasSize = this._container.canvas.size,
-      position = this.position;
+  isInsideCanvas(direction?: OutModeDirection): boolean {
+    return this._getInsideCanvasResult({ direction }).inside;
+  }
 
-    return (
-      position.x >= -radius &&
-      position.y >= -radius &&
-      position.y <= canvasSize.height + radius &&
-      position.x <= canvasSize.width + radius
-    );
+  /**
+   * Checks if the particle is inside the canvas for a specific out mode and direction
+   * @param outMode - current out mode
+   * @param direction - out mode direction
+   * @returns true if the particle is still inside for the given strategy
+   */
+  isInsideCanvasForOutMode(outMode: OutMode | keyof typeof OutMode, direction?: OutModeDirection): boolean {
+    return this._getInsideCanvasResult({ direction, outMode }).inside;
   }
 
   /**
@@ -889,6 +893,94 @@ export class Particle {
     });
   };
 
+  private readonly _getDefaultInsideCanvasResult = (direction?: OutModeDirection): IParticleCanvasBoundsResult => {
+    const radius = this.getRadius(),
+      canvasSize = this._container.canvas.size,
+      position = this.position;
+
+    if (direction === OutModeDirection.bottom) {
+      return {
+        inside: position.y - radius < canvasSize.height,
+        reason: "default",
+      };
+    }
+
+    if (direction === OutModeDirection.left) {
+      return {
+        inside: position.x + radius > defaultAngle,
+        reason: "default",
+      };
+    }
+
+    if (direction === OutModeDirection.right) {
+      return {
+        inside: position.x - radius < canvasSize.width,
+        reason: "default",
+      };
+    }
+
+    if (direction === OutModeDirection.top) {
+      return {
+        inside: position.y + radius > defaultAngle,
+        reason: "default",
+      };
+    }
+
+    return {
+      inside:
+        position.x >= -radius &&
+        position.y >= -radius &&
+        position.y <= canvasSize.height + radius &&
+        position.x <= canvasSize.width + radius,
+      reason: "default",
+    };
+  };
+
+  private readonly _getInsideCanvasCallbackData = (
+    direction?: OutModeDirection,
+    outMode?: OutMode | keyof typeof OutMode,
+  ): IParticleCanvasBoundsData => {
+    return {
+      canvasSize: this._container.canvas.size,
+      direction,
+      outMode,
+      particle: this,
+      radius: this.getRadius(),
+    };
+  };
+
+  private readonly _getInsideCanvasResult = (data: {
+    direction?: OutModeDirection;
+    outMode?: OutMode | keyof typeof OutMode;
+  }): IParticleCanvasBoundsResult => {
+    const defaultResult = this._getDefaultInsideCanvasResult(data.direction),
+      container = this._container,
+      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
+      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined,
+      shapeCheck = shapeDrawer?.isInsideCanvas,
+      effectCheck = effectDrawer?.isInsideCanvas;
+
+    if (!shapeCheck && !effectCheck) {
+      return defaultResult;
+    }
+
+    const callbackData = this._getInsideCanvasCallbackData(data.direction, data.outMode),
+      shapeResult = shapeCheck ? this._normalizeInsideCanvasResult(shapeCheck(callbackData), "shape") : undefined,
+      effectResult = effectCheck ? this._normalizeInsideCanvasResult(effectCheck(callbackData), "effect") : undefined;
+
+    if (shapeResult && effectResult) {
+      const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle);
+
+      return {
+        inside: shapeResult.inside && effectResult.inside,
+        margin: margin > defaultAngle ? margin : undefined,
+        reason: "combined",
+      };
+    }
+
+    return shapeResult ?? effectResult ?? defaultResult;
+  };
+
   private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
     if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
       return color;
@@ -945,5 +1037,23 @@ export class Particle {
 
     /* parallax */
     this.offset = Vector.origin;
+  };
+
+  private readonly _normalizeInsideCanvasResult = (
+    result: boolean | IParticleCanvasBoundsResult,
+    reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,
+  ): IParticleCanvasBoundsResult => {
+    if (typeof result === "boolean") {
+      return {
+        inside: result,
+        reason,
+      };
+    }
+
+    return {
+      inside: result.inside,
+      margin: result.margin,
+      reason: result.reason ?? reason,
+    };
   };
 }

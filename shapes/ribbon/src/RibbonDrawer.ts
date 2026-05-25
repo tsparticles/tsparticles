@@ -1,11 +1,21 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import {
+  type Container,
+  type IParticleCanvasBoundsData,
+  type IShapeDrawData,
+  type IShapeDrawer,
+  OutMode,
+  OutModeDirection,
+  getRangeValue,
+} from "@tsparticles/engine";
 import { createRibbonState, drawRibbon, setRibbonBounds, updateRibbon } from "./Utils.js";
 import type { RibbonParticle } from "./RibbonParticle.js";
 
 const defaultSides = 12,
   defaultRibbonCount = 30,
   minRibbonCount = 4,
-  sidesMultiplier = 2;
+  sidesMultiplier = 2,
+  minRadius = 0,
+  insideMargin = 0;
 
 interface ParticleContainerRef {
   _container?: {
@@ -59,6 +69,44 @@ function getRibbonCount(particle: RibbonParticle): number {
   return Math.max(minRibbonCount, Math.round(getRangeValue(particle.shapeData?.count ?? defaultRibbonCount)));
 }
 
+/**
+ *
+ * @param data
+ * @param minX
+ * @param maxX
+ * @param minY
+ * @param maxY
+ * @param margin
+ */
+function isInsideByDirection(
+  data: IParticleCanvasBoundsData<RibbonParticle>,
+  minX: number,
+  maxX: number,
+  minY: number,
+  maxY: number,
+  margin: number,
+): boolean {
+  const { canvasSize, direction } = data;
+
+  if (direction === OutModeDirection.bottom) {
+    return minY <= canvasSize.height + margin;
+  }
+
+  if (direction === OutModeDirection.left) {
+    return maxX >= -margin;
+  }
+
+  if (direction === OutModeDirection.right) {
+    return minX <= canvasSize.width + margin;
+  }
+
+  if (direction === OutModeDirection.top) {
+    return maxY >= -margin;
+  }
+
+  return maxX >= -margin && maxY >= -margin && minX <= canvasSize.width + margin && minY <= canvasSize.height + margin;
+}
+
 /** Ribbon shape drawer plugin */
 export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   /**
@@ -85,11 +133,74 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
    * @param particle
    */
   getSidesCount(particle: RibbonParticle): number {
-    if (!particle.ribbonPoints?.length) {
+    const pointsLen = particle.ribbonPoints?.length;
+
+    if (!pointsLen) {
       return defaultSides;
     }
 
-    return Math.max(defaultSides, particle.ribbonPoints.length * sidesMultiplier);
+    return Math.max(defaultSides, pointsLen * sidesMultiplier);
+  }
+
+  isInsideCanvas(data: IParticleCanvasBoundsData<RibbonParticle>): boolean {
+    const { outMode, particle, radius } = data,
+      points = particle.ribbonPoints,
+      offsets = particle.ribbonOffsets,
+      position = particle.position,
+      strictBounds = outMode === OutMode.destroy || outMode === OutMode.out,
+      scaledOffsetLen = (offsets?.length ?? minRadius) * radius,
+      headRadius = Math.max(radius, scaledOffsetLen);
+
+    if (!strictBounds) {
+      return isInsideByDirection(
+        data,
+        position.x - headRadius,
+        position.x + headRadius,
+        position.y - headRadius,
+        position.y + headRadius,
+        insideMargin,
+      );
+    }
+
+    if (!points?.length || !offsets) {
+      return isInsideByDirection(
+        data,
+        position.x - headRadius,
+        position.x + headRadius,
+        position.y - headRadius,
+        position.y + headRadius,
+        insideMargin,
+      );
+    }
+
+    let minX = Number.POSITIVE_INFINITY,
+      maxX = Number.NEGATIVE_INFINITY,
+      minY = Number.POSITIVE_INFINITY,
+      maxY = Number.NEGATIVE_INFINITY;
+
+    for (const point of points) {
+      const baseX = point.position.x,
+        baseY = point.position.y,
+        sideX = baseX + offsets.x * radius,
+        sideY = baseY + offsets.y * radius;
+
+      minX = Math.min(minX, baseX, sideX);
+      maxX = Math.max(maxX, baseX, sideX);
+      minY = Math.min(minY, baseY, sideY);
+      maxY = Math.max(maxY, baseY, sideY);
+    }
+
+    if (!Number.isFinite(minX) || !Number.isFinite(minY) || !Number.isFinite(maxX) || !Number.isFinite(maxY)) {
+      return false;
+    }
+
+    const oscAmp =
+        particle.ribbonOscillationSpeed && particle.ribbonOscillationDistance
+          ? particle.ribbonOscillationDistance / particle.ribbonOscillationSpeed
+          : minRadius,
+      margin = Math.max(headRadius, particle.ribbonParticleDist ?? minRadius) + oscAmp;
+
+    return isInsideByDirection(data, minX, maxX, minY, maxY, margin);
   }
 
   /**

@@ -66,9 +66,10 @@ export class BounceOutMode implements IOutModeManager {
       offset = particle.offset,
       size = particle.getRadius(),
       bounds = calculateBounds(pos, size),
-      canvasSize = container.canvas.size;
+      canvasSize = container.canvas.size,
+      outOfCanvas = !particle.isInsideCanvasForOutMode(outMode, direction);
 
-    bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, size });
-    bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, size });
+    bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
+    bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
   }
 }

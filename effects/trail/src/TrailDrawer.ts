@@ -2,8 +2,11 @@ import {
   type Container,
   type ICoordinates,
   type IEffectDrawer,
+  type IParticleCanvasBoundsData,
   type IShapeDrawData,
   type IShapeValues,
+  OutMode,
+  OutModeDirection,
   type Particle,
   type RangeValue,
   defaultAlpha,
@@ -19,7 +22,9 @@ const minTrailLength = 3,
   firstIndex = 0,
   defaultLength = 10,
   loopTrailLengthOffset = 2,
-  loopTrailLengthMinIndex = 0;
+  loopTrailLengthMinIndex = 0,
+  defaultWidth = 0,
+  minBound = 0;
 
 /** Trail step data */
 export interface TrailStep {
@@ -184,6 +189,61 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     }
 
     context.restore();
+  }
+
+  isInsideCanvas(data: IParticleCanvasBoundsData<TrailParticle>): boolean {
+    const { canvasSize, direction, outMode, particle, radius } = data,
+      position = particle.position,
+      trail = particle.trail;
+
+    let minX = position.x - radius,
+      maxX = position.x + radius,
+      minY = position.y - radius,
+      maxY = position.y + radius;
+
+    if (trail?.length) {
+      const widthPadding = Math.max(
+        radius,
+        particle.trailMaxWidth ?? defaultWidth,
+        particle.trailMinWidth ?? defaultWidth,
+      );
+
+      for (const step of trail) {
+        minX = Math.min(minX, step.position.x - widthPadding);
+        maxX = Math.max(maxX, step.position.x + widthPadding);
+        minY = Math.min(minY, step.position.y - widthPadding);
+        maxY = Math.max(maxY, step.position.y + widthPadding);
+      }
+    }
+
+    const strictBounds = outMode === OutMode.destroy;
+
+    if (direction === OutModeDirection.bottom) {
+      return minY <= canvasSize.height;
+    }
+
+    if (direction === OutModeDirection.left) {
+      return maxX >= minBound;
+    }
+
+    if (direction === OutModeDirection.right) {
+      return minX <= canvasSize.width;
+    }
+
+    if (direction === OutModeDirection.top) {
+      return maxY >= minBound;
+    }
+
+    if (!strictBounds) {
+      return (
+        position.x + radius >= minBound &&
+        position.y + radius >= minBound &&
+        position.x - radius <= canvasSize.width &&
+        position.y - radius <= canvasSize.height
+      );
+    }
+
+    return maxX >= minBound && maxY >= minBound && minX <= canvasSize.width && minY <= canvasSize.height;
   }
 
   /**

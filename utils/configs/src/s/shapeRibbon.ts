@@ -38,7 +38,7 @@ const options: ISourceOptions = {
       type: "ribbon",
       options: {
         ribbon: {
-          count: 30,
+          count: 50,
           particleDist: 8,
           thickness: 8,
           angle: 45,
@@ -52,16 +52,18 @@ const options: ISourceOptions = {
       },
     },
     opacity: {
-      value: 0.85,
+      value: 1,
     },
     size: {
-      value: 8,
+      value: 1,
     },
     links: {
       enable: false,
     },
     move: {
-      enable: false,
+      enable: true,
+      direction: "none",
+      speed: 2,
     },
   },
   background: {

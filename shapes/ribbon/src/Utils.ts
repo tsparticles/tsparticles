@@ -23,7 +23,6 @@ const defaultParticleDist = 8,
   millisecondsToSeconds = 1000,
   minDelta = 1e-6,
   maxVelocityInherit = 800,
-  offscreenMarginFactor = 1,
   noDistance = 0,
   half = 0.5;
 
@@ -65,6 +64,14 @@ function getVelocityInherit(particle: RibbonParticle): number {
  *
  * @param particle
  */
+function getParticleDist(particle: RibbonParticle): number {
+  return particle.ribbonParticleDist ?? defaultParticleDist;
+}
+
+/**
+ *
+ * @param particle
+ */
 function getOscillationSpeed(particle: RibbonParticle): number {
   return particle.ribbonOscillationSpeed ?? defaultOscillationSpeed;
 }
@@ -75,14 +82,6 @@ function getOscillationSpeed(particle: RibbonParticle): number {
  */
 function getOscillationDistance(particle: RibbonParticle): number {
   return particle.ribbonOscillationDistance ?? defaultOscillationDistance;
-}
-
-/**
- *
- * @param particle
- */
-function getParticleDist(particle: RibbonParticle): number {
-  return particle.ribbonParticleDist ?? defaultParticleDist;
 }
 
 /**
@@ -141,20 +140,30 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonMass = mass;
   particle.ribbonDrag = drag;
   particle.ribbonVelocityInherit = velocityInherit;
-  particle.ribbonTime = Math.random() * randomTimeFactor;
   particle.ribbonOscillationSpeed = oscillationSpeed;
   particle.ribbonOscillationDistance = oscillationDistance;
   particle.ribbonYSpeed = ySpeed;
+  particle.ribbonTime = Math.random() * randomTimeFactor;
   particle.ribbonOffsets = Vector.create(Math.cos(angleRad) * thickness, Math.sin(angleRad) * thickness);
   particle.ribbonHead = head;
   particle.ribbonPreviousHead = Vector.create(head.x, head.y);
   particle.ribbonPreviousPosition = Vector.create(particle.position.x, particle.position.y);
+  const trailAngle = particle.velocity.angle + Math.PI,
+    noiseScale = particleDist * half;
+
   particle.ribbonPoints = new Array(count);
 
   for (let i = noPoint; i < count; i++) {
+    const offset = i * particleDist,
+      perpNoise = (Math.random() - half) * noiseScale,
+      perpAngle = trailAngle + Math.PI * half;
+
     particle.ribbonPoints[i] = {
       force: Vector.origin,
-      position: Vector.create(head.x, head.y - i * particleDist),
+      position: Vector.create(
+        head.x + Math.cos(trailAngle) * offset + Math.cos(perpAngle) * perpNoise,
+        head.y + Math.sin(trailAngle) * offset + Math.sin(perpAngle) * perpNoise,
+      ),
       velocity: Vector.origin,
     };
   }
@@ -263,27 +272,54 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
   const dt = Math.min(fixedDuration, Math.max(delta.value / millisecondsToSeconds, minDelta)),
     head = getHead(particle),
     previousHead = getPreviousHead(particle),
-    velocityInherit = getVelocityInherit(particle);
+    velocityInherit = getVelocityInherit(particle),
+    followsParticleMotion = particle.options.move.enable;
 
   particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * getOscillationSpeed(particle);
-  head.y += getYSpeed(particle) * dt;
-  head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
 
-  const particleDist = getParticleDist(particle),
-    thickness = offsets.length,
-    offscreenMargin = Math.max(particleDist, thickness) * offscreenMarginFactor,
-    isOutBottom = head.y > bounds.y + offscreenMargin,
-    isOutLeft = head.x < -offscreenMargin,
-    isOutRight = head.x > bounds.x + offscreenMargin;
+  if (followsParticleMotion) {
+    head.x =
+      particle.position.x +
+      (Math.cos(particle.ribbonTime) * getOscillationDistance(particle)) / getOscillationSpeed(particle);
+    head.y = particle.position.y;
+  } else {
+    head.y += getYSpeed(particle) * dt;
+    head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
+  }
 
-  if (isOutBottom || isOutLeft || isOutRight || !Number.isFinite(head.x) || !Number.isFinite(head.y)) {
+  if (particle.justWarped) {
+    const trailAngle = particle.velocity.angle + Math.PI,
+      dist = getParticleDist(particle),
+      firstPointObj = points[noPoint];
+
+    if (firstPointObj) {
+      firstPointObj.position = Vector.create(head.x, head.y);
+      firstPointObj.velocity = Vector.origin;
+      firstPointObj.force = Vector.origin;
+    }
+
+    for (let i = firstPoint; i < points.length; i++) {
+      const point = points[i];
+
+      if (!point) {
+        continue;
+      }
+
+      const offset = i * dist;
+
+      point.position = Vector.create(head.x + Math.cos(trailAngle) * offset, head.y + Math.sin(trailAngle) * offset);
+      point.velocity = Vector.origin;
+      point.force = Vector.origin;
+    }
+  }
+
+  const particleDist = getParticleDist(particle);
+
+  if (!Number.isFinite(head.x) || !Number.isFinite(head.y)) {
     resetRibbonState(particle);
 
     return;
   }
-
-  particle.position.x = head.x;
-  particle.position.y = head.y;
 
   const first = points[noPoint];
 
@@ -417,7 +453,7 @@ function drawPolygonSegment(
  * @param data
  */
 export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
-  const { context, particle } = data,
+  const { context, particle, radius } = data,
     points = particle.ribbonPoints,
     offsets = particle.ribbonOffsets,
     bounds = particle.ribbonBounds,
@@ -428,7 +464,8 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
     return;
   }
 
-  const center = particle.position,
+  const drawOffsets = offsets.mult(radius),
+    center = particle.position,
     frontFill = context.fillStyle,
     frontStroke = context.strokeStyle,
     backFill = hasStroke ? frontStroke : frontFill;
@@ -445,8 +482,8 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
       continue;
     }
 
-    const currentOffset = current.position.add(offsets),
-      nextOffset = next.position.add(offsets),
+    const currentOffset = current.position.add(drawOffsets),
+      nextOffset = next.position.add(drawOffsets),
       currentBase = current.position.sub(center),
       nextBase = next.position.sub(center),
       currentSide = currentOffset.sub(center),
@@ -464,7 +501,7 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>): void {
         ) < noDistance,
       segmentStyle = isFront ? frontFill : backFill;
 
-    if (minY > bounds.y + offsets.length || maxY < -offsets.length) {
+    if (minY > bounds.y + drawOffsets.length || maxY < -drawOffsets.length) {
       continue;
     }
 
