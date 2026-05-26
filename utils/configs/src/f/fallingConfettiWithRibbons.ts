@@ -203,8 +203,8 @@ const options: ISourceOptions = {
               max: 140,
             },
             oscillationSpeed: {
-              min: 4,
-              max: 6,
+              min: 3,
+              max: 5,
             },
             particleDist: 8,
             velocityInherit: {
