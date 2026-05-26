@@ -12,14 +12,14 @@
     "directory": "cli/utils/depcruise-config"
   },
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "default": "./dist/index.mjs"
     }
   },
   "files": [
@@ -32,8 +32,8 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "compile": "tsup",
-    "compile:ci": "tsup",
+    "compile": "tsdown",
+    "compile:ci": "tsdown",
     "build": "pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run prettify:readme",
     "build:ci": "pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run prettify:ci:readme",
     "prepack": "pnpm run build"
@@ -46,15 +46,15 @@
     "@tsparticles/eslint-config": "workspace:^",
     "@tsparticles/prettier-config": "workspace:^",
     "@types/node": "^25.9.1",
-    "dependency-cruiser": "^17.4.0",
+    "dependency-cruiser": "^17.4.2",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^63.0.0",
     "eslint-plugin-tsdoc": "^0.5.2",
     "prettier": "^3.8.3",
     "prettier-plugin-multiline-arrays": "^4.1.8",
-    "tsup": "^8.5.1",
+    "tsdown": "^0.22.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.4"
+    "typescript-eslint": "^8.60.0"
   }
 }

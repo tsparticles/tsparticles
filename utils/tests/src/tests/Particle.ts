@@ -231,7 +231,7 @@ describe("Particle", async () => {
       },
       effectDrawerOutModeAware: IEffectDrawer = {
         isInsideCanvas: data => {
-          return data.outMode === OutMode.destroy ? false : true;
+          return data.outMode !== OutMode.destroy;
         },
       },
       shapeDrawerOutModeAware: IShapeDrawer = {
@@ -239,7 +239,7 @@ describe("Particle", async () => {
           // no-op
         },
         isInsideCanvas: data => {
-          return data.outMode === OutMode.destroy ? false : true;
+          return data.outMode !== OutMode.destroy;
         },
       };
 

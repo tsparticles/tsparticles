@@ -66,7 +66,6 @@ onlyBuiltDependencies:
   - sharp
   - unrs-resolver
 patchedDependencies:
-  tsup@8.5.1: patches/tsup@8.5.1.patch
   vue-server-renderer@2.7.16: patches/vue-server-renderer@2.7.16.patch
 
 overrides:
@@ -86,3 +85,29 @@ packageExtensions:
 minimumReleaseAgeExclude:
   - eslint-plugin-jsdoc@63.0.0
   - webpack@5.107.0
+  - '@nx/devkit@22.7.4'
+  - '@nx/js@22.7.4'
+  - '@nx/nx-darwin-arm64@22.7.4'
+  - '@nx/nx-darwin-x64@22.7.4'
+  - '@nx/nx-freebsd-x64@22.7.4'
+  - '@nx/nx-linux-arm-gnueabihf@22.7.4'
+  - '@nx/nx-linux-arm64-gnu@22.7.4'
+  - '@nx/nx-linux-arm64-musl@22.7.4'
+  - '@nx/nx-linux-x64-gnu@22.7.4'
+  - '@nx/nx-linux-x64-musl@22.7.4'
+  - '@nx/nx-win32-arm64-msvc@22.7.4'
+  - '@nx/nx-win32-x64-msvc@22.7.4'
+  - '@nx/workspace@22.7.4'
+  - '@typescript-eslint/eslint-plugin@8.60.0'
+  - '@typescript-eslint/parser@8.60.0'
+  - '@typescript-eslint/project-service@8.60.0'
+  - '@typescript-eslint/scope-manager@8.60.0'
+  - '@typescript-eslint/tsconfig-utils@8.60.0'
+  - '@typescript-eslint/type-utils@8.60.0'
+  - '@typescript-eslint/types@8.60.0'
+  - '@typescript-eslint/typescript-estree@8.60.0'
+  - '@typescript-eslint/utils@8.60.0'
+  - '@typescript-eslint/visitor-keys@8.60.0'
+  - nx@22.7.4
+  - typescript-eslint@8.60.0
+  - webpack@5.107.2

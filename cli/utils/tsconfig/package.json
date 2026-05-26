@@ -22,7 +22,7 @@
     "typescript": "^6"
   },
   "devDependencies": {
-    "cpx2": "^8.0.2",
+    "cpx2": "^9.0.0",
     "typescript": "^6.0.3"
   }
 }
