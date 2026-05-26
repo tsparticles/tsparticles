@@ -2,11 +2,11 @@ import type { BlendContainer, BlendParticle } from "./types.js";
 import { type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
 
 export class BlendPluginInstance implements IContainerPlugin {
-  private readonly _container;
-  private _defaultCompositeValue?: GlobalCompositeOperation;
+  readonly #container;
+  #defaultCompositeValue?: GlobalCompositeOperation;
 
   constructor(container: BlendContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   drawParticleCleanup(context: OffscreenCanvasRenderingContext2D, particle: BlendParticle): void {
@@ -30,18 +30,18 @@ export class BlendPluginInstance implements IContainerPlugin {
   }
 
   drawSettingsCleanup(context: OffscreenCanvasRenderingContext2D): void {
-    if (!this._defaultCompositeValue) {
+    if (!this.#defaultCompositeValue) {
       return;
     }
 
-    context.globalCompositeOperation = this._defaultCompositeValue;
+    context.globalCompositeOperation = this.#defaultCompositeValue;
   }
 
   drawSettingsSetup(context: OffscreenCanvasRenderingContext2D): void {
     const previousComposite = context.globalCompositeOperation,
-      blend = this._container.actualOptions.blend;
+      blend = this.#container.actualOptions.blend;
 
-    this._defaultCompositeValue = previousComposite;
+    this.#defaultCompositeValue = previousComposite;
 
     context.globalCompositeOperation = blend?.enable ? blend.mode : previousComposite;
   }

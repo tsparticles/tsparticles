@@ -4,10 +4,10 @@ import type { CustomEventListener } from "../Types/CustomEventListener.js";
 
 /** Custom event dispatcher for managing event listeners */
 export class EventDispatcher {
-  private _listeners: Map<string, CustomEventListener[]>;
+  #listeners: Map<string, CustomEventListener[]>;
 
   constructor() {
-    this._listeners = new Map<string, CustomEventListener[]>();
+    this.#listeners = new Map<string, CustomEventListener[]>();
   }
 
   /**
@@ -18,12 +18,12 @@ export class EventDispatcher {
   addEventListener(type: string, listener: CustomEventListener): void {
     this.removeEventListener(type, listener);
 
-    let arr = this._listeners.get(type);
+    let arr = this.#listeners.get(type);
 
     if (!arr) {
       arr = [];
 
-      this._listeners.set(type, arr);
+      this.#listeners.set(type, arr);
     }
 
     arr.push(listener);
@@ -35,7 +35,7 @@ export class EventDispatcher {
    * @param args -
    */
   dispatchEvent(type: string, args?: CustomEventArgs): void {
-    const listeners = this._listeners.get(type);
+    const listeners = this.#listeners.get(type);
 
     listeners?.forEach(handler => {
       handler(args);
@@ -48,7 +48,7 @@ export class EventDispatcher {
    * @returns true if there are any listeners registered for the given type, false otherwise
    */
   hasEventListener(type: string): boolean {
-    return !!this._listeners.get(type);
+    return !!this.#listeners.get(type);
   }
 
   /**
@@ -57,9 +57,9 @@ export class EventDispatcher {
    */
   removeAllEventListeners(type?: string): void {
     if (!type) {
-      this._listeners = new Map<string, CustomEventListener[]>();
+      this.#listeners = new Map<string, CustomEventListener[]>();
     } else {
-      this._listeners.delete(type);
+      this.#listeners.delete(type);
     }
   }
 
@@ -69,7 +69,7 @@ export class EventDispatcher {
    * @param listener -
    */
   removeEventListener(type: string, listener: CustomEventListener): void {
-    const arr = this._listeners.get(type);
+    const arr = this.#listeners.get(type);
 
     if (!arr) {
       return;
@@ -83,7 +83,7 @@ export class EventDispatcher {
     }
 
     if (length === deleteCount) {
-      this._listeners.delete(type);
+      this.#listeners.delete(type);
     } else {
       arr.splice(idx, deleteCount);
     }

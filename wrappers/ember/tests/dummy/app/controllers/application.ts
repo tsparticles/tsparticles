@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { Container, Engine } from '@tsparticles/engine';
+import type { Container, Engine } from '@tsparticles/engine';
 import { loadSnowPreset } from '@tsparticles/preset-snow';
 import { tracked } from '@glimmer/tracking';
 import { CONFETTI_OPTIONS, LINK_OPTIONS } from '../utils/options';
@@ -13,7 +13,7 @@ export default class ApplicationController extends Controller {
 
   confetti = CONFETTI_OPTIONS;
 
-  constructor(...args: unknown[]) {
+  constructor(...args: never[]) {
     super(...args);
 
     void initParticlesEngine(async (engine: Engine) => {

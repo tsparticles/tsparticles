@@ -8,12 +8,12 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 const defaultIndex = 0;
 
 export class EmittersInstancesManager {
-  private readonly _containerArrays;
-  private readonly _pluginManager;
+  readonly #containerArrays;
+  readonly #pluginManager;
 
   constructor(pluginManager: EmittersPluginManager) {
-    this._containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
-    this._pluginManager = pluginManager;
+    this.#containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
+    this.#pluginManager = pluginManager;
   }
 
   async addEmitter(
@@ -27,7 +27,7 @@ export class EmittersInstancesManager {
 
     const { EmitterInstance } = await import("./EmitterInstance.js"),
       emitter = new EmitterInstance(
-        this._pluginManager,
+        this.#pluginManager,
         container,
         (emitter: EmitterInstance) => {
           this.removeEmitter(container, emitter);
@@ -46,29 +46,29 @@ export class EmittersInstancesManager {
   clear(container: EmitterContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this.#containerArrays.set(container, []);
   }
 
   getArray(container: EmitterContainer): EmitterInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this.#containerArrays.get(container);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this.#containerArrays.set(container, array);
     }
 
     return array;
   }
 
   initContainer(container: EmitterContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this.#containerArrays.has(container)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this.#containerArrays.set(container, []);
 
     container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined => {
       const array = this.getArray(container);

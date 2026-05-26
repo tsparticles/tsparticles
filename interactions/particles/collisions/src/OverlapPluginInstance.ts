@@ -4,17 +4,17 @@ import type { CollisionParticle } from "./Types.js";
 const minRetries = 0;
 
 export class OverlapPluginInstance implements IContainerPlugin {
-  private readonly _container: Container;
+  readonly #container: Container;
 
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   checkParticlePosition(particle: CollisionParticle, position: ICoordinates, tryCount: number): boolean {
-    return !this._hasOverlaps(particle, position, tryCount);
+    return !this.#hasOverlaps(particle, position, tryCount);
   }
 
-  private readonly _hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean = (
+  readonly #hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean = (
     particle,
     pos,
     tryCount,
@@ -37,6 +37,6 @@ export class OverlapPluginInstance implements IContainerPlugin {
       throw new Error(`Particle is overlapping and can't be placed`);
     }
 
-    return !!this._container.particles.find(p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius());
+    return !!this.#container.particles.find(p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius());
   };
 }

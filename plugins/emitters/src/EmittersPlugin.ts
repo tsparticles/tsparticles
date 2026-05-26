@@ -17,16 +17,16 @@ import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 export class EmittersPlugin implements IPlugin {
   readonly id = "emitters";
 
-  private readonly _instancesManager;
+  readonly #instancesManager;
 
   constructor(instancesManager: EmittersInstancesManager) {
-    this._instancesManager = instancesManager;
+    this.#instancesManager = instancesManager;
   }
 
   async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
     const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
 
-    return new EmittersPluginInstance(this._instancesManager, container);
+    return new EmittersPluginInstance(this.#instancesManager, container);
   }
 
   loadOptions(_container: Container, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {

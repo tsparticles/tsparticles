@@ -35,12 +35,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   readonly shape;
   readonly zIndex;
 
-  private readonly _container;
-  private readonly _pluginManager;
+  readonly #container;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container?: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
 
     this.bounce = new ParticlesBounce();
     this.effect = new Effect();
@@ -65,7 +65,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     if (data.palette) {
       this.palette = data.palette;
 
-      this._importPalette(this.palette);
+      this.#importPalette(this.palette);
     }
 
     if (data.groups !== undefined) {
@@ -113,14 +113,14 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.shape.load(data.shape);
     this.zIndex.load(data.zIndex);
 
-    if (this._container) {
-      for (const plugin of this._pluginManager.plugins) {
+    if (this.#container) {
+      for (const plugin of this.#pluginManager.plugins) {
         if (plugin.loadParticlesOptions) {
-          plugin.loadParticlesOptions(this._container, this, data);
+          plugin.loadParticlesOptions(this.#container, this, data);
         }
       }
 
-      const updaters = this._pluginManager.updaters.get(this._container);
+      const updaters = this.#pluginManager.updaters.get(this.#container);
 
       if (updaters) {
         for (const updater of updaters) {
@@ -132,8 +132,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
   }
 
-  private readonly _importPalette = (palette: string): void => {
-    const paletteData = this._pluginManager.getPalette(palette);
+  readonly #importPalette = (palette: string): void => {
+    const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
       return;

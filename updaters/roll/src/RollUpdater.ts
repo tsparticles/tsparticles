@@ -13,14 +13,14 @@ import { Roll } from "./Options/Classes/Roll.js";
 /** Roll updater plugin */
 export class RollUpdater implements IParticleUpdater {
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * RollUpdater constructor
    * @param pluginManager
    */
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   /**
@@ -43,7 +43,7 @@ export class RollUpdater implements IParticleUpdater {
    * @param particle
    */
   init(particle: RollParticle): void {
-    initParticle(this._pluginManager, particle);
+    initParticle(this.#pluginManager, particle);
   }
 
   /**

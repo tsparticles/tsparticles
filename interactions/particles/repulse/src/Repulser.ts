@@ -24,21 +24,21 @@ export type RepulseParticle = Particle & {
 
 /** Particles repulse interactor */
 export class Repulser extends ParticlesInteractorBase {
-  private _maxDistance;
-  private readonly _normVec: Vector;
-  private readonly _velocityVec: Vector;
+  #maxDistance;
+  readonly #normVec: Vector;
+  readonly #velocityVec: Vector;
 
   constructor(container: InteractivityContainer) {
     super(container);
 
-    this._maxDistance = 0;
-    this._normVec = Vector.origin;
-    this._velocityVec = Vector.origin;
+    this.#maxDistance = 0;
+    this.#normVec = Vector.origin;
+    this.#velocityVec = Vector.origin;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -65,7 +65,7 @@ export class Repulser extends ParticlesInteractorBase {
       const repulseDistance = getRangeValue(repulseOpt1.distance);
 
       if (repulseDistance > this.maxDistance) {
-        this._maxDistance = repulseDistance;
+        this.#maxDistance = repulseDistance;
       }
 
       p1.repulse = {
@@ -94,15 +94,15 @@ export class Repulser extends ParticlesInteractorBase {
           clamp((identity - Math.pow(distance * p1DistanceFactor, squareExp)) * velocity, minVelocity, velocity) *
           distanceFactor;
 
-        this._normVec.x = dx * repulseFactor;
-        this._normVec.y = dy * repulseFactor;
+        this.#normVec.x = dx * repulseFactor;
+        this.#normVec.y = dy * repulseFactor;
 
-        p2.position.addTo(this._normVec);
+        p2.position.addTo(this.#normVec);
       } else {
-        this._velocityVec.x = velocity;
-        this._velocityVec.y = velocity;
+        this.#velocityVec.x = velocity;
+        this.#velocityVec.y = velocity;
 
-        p2.position.addTo(this._velocityVec);
+        p2.position.addTo(this.#velocityVec);
       }
     }
   }

@@ -16,17 +16,17 @@ const slowMode = "slow",
  * Particle slow manager
  */
 export class Slower extends ExternalInteractorBase<SlowContainer> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: SlowContainer) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -47,7 +47,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
       return;
     }
 
-    this._maxDistance = slow.radius;
+    this.#maxDistance = slow.radius;
 
     container.retina.slowModeRadius = slow.radius * container.retina.pixelRatio;
   }

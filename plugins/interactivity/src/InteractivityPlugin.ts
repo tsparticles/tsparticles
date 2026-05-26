@@ -20,16 +20,16 @@ import { Interactivity } from "./Options/Classes/Interactivity.js";
 export class InteractivityPlugin implements IPlugin {
   readonly id = "interactivity";
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: InteractivityPluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { InteractivityPluginInstance } = await import("./InteractivityPluginInstance.js");
 
-    return new InteractivityPluginInstance(this._pluginManager, container);
+    return new InteractivityPluginInstance(this.#pluginManager, container);
   }
 
   loadOptions(
@@ -44,12 +44,12 @@ export class InteractivityPlugin implements IPlugin {
     let interactivityOptions = options.interactivity;
 
     if (!interactivityOptions?.load) {
-      options.interactivity = interactivityOptions = new Interactivity(this._pluginManager, container);
+      options.interactivity = interactivityOptions = new Interactivity(this.#pluginManager, container);
     }
 
     interactivityOptions.load(source?.interactivity);
 
-    const interactors = this._pluginManager.interactors?.get(container);
+    const interactors = this.#pluginManager.interactors?.get(container);
 
     if (!interactors) {
       return;
@@ -71,7 +71,7 @@ export class InteractivityPlugin implements IPlugin {
       options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    const interactors = this._pluginManager.interactors?.get(container) as IParticleInteractorBase[] | undefined;
+    const interactors = this.#pluginManager.interactors?.get(container) as IParticleInteractorBase[] | undefined;
 
     if (!interactors) {
       return;

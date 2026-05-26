@@ -3,19 +3,19 @@ import type { ThemesContainer } from "./types.js";
 
 export class ThemesPluginInstance implements IContainerPlugin {
   /** The themes container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * Creates a new ThemesPluginInstance
    * @param container - the themes container
    */
   constructor(container: ThemesContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   /** @inheritDoc */
   init(): Promise<void> {
-    const container = this._container;
+    const container = this.#container;
 
     container.themeMatchMedia = safeMatchMedia("(prefers-color-scheme: dark)");
 
@@ -31,10 +31,10 @@ export class ThemesPluginInstance implements IContainerPlugin {
 
     container.themeHandlers = {
       themeChange: (e): void => {
-        this._handleThemeChange(e);
+        this.#handleThemeChange(e);
       },
       oldThemeChange: (e): void => {
-        this._handleThemeChange(e);
+        this.#handleThemeChange(e);
       },
     };
 
@@ -62,7 +62,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
    * @param add
    */
   manageListeners(add: boolean): void {
-    const container = this._container;
+    const container = this.#container;
 
     container.manageMediaMatch?.(add);
   }
@@ -81,7 +81,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
 
   /** @inheritDoc */
   updateActualOptions(): boolean {
-    const container = this._container;
+    const container = this.#container;
 
     container.actualOptions.setTheme?.(container.currentTheme);
 
@@ -93,9 +93,9 @@ export class ThemesPluginInstance implements IContainerPlugin {
    * @param e - the media query event
    * @internal
    */
-  private readonly _handleThemeChange = (e: Event): void => {
+  readonly #handleThemeChange = (e: Event): void => {
     const mediaEvent = e as MediaQueryListEvent,
-      container = this._container,
+      container = this.#container,
       options = container.options,
       defaultThemes = options.defaultThemes,
       themeName = mediaEvent.matches ? defaultThemes.dark : defaultThemes.light,

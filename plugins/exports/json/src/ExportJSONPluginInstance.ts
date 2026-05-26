@@ -4,10 +4,10 @@ const indent = 2;
 
 /** JSON export plugin instance */
 export class ExportJSONPluginInstance implements IContainerPlugin {
-  private readonly _container: Container;
+  readonly #container: Container;
 
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   async export(type: string): Promise<ExportResult> {
@@ -18,7 +18,7 @@ export class ExportJSONPluginInstance implements IContainerPlugin {
     switch (type) {
       case "json":
         res.supported = true;
-        res.blob = await this._exportJSON();
+        res.blob = await this.#exportJSON();
 
         break;
     }
@@ -26,9 +26,9 @@ export class ExportJSONPluginInstance implements IContainerPlugin {
     return res;
   }
 
-  private readonly _exportJSON = async (): Promise<Blob | undefined> => {
+  readonly #exportJSON = async (): Promise<Blob | undefined> => {
     const json = JSON.stringify(
-      this._container.actualOptions,
+      this.#container.actualOptions,
       (key, value: unknown) => {
         if (key.startsWith("_")) {
           return;

@@ -26,19 +26,19 @@ const grabMode = "grab",
  * Particle grab manager
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
-  private _maxDistance;
-  private readonly _pluginManager;
+  #maxDistance;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: GrabContainer) {
     super(container);
 
-    this._pluginManager = pluginManager;
-    this._maxDistance = 0;
+    this.#pluginManager = pluginManager;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -55,7 +55,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
       return;
     }
 
-    this._maxDistance = grab.distance;
+    this.#maxDistance = grab.distance;
 
     container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
   }
@@ -116,7 +116,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         const linksOptions = interactivity.modes.grab.links;
 
         container.particles.grabLineColor = getLinkRandomColor(
-          this._pluginManager,
+          this.#pluginManager,
           optColor,
           linksOptions.blink,
           linksOptions.consent,

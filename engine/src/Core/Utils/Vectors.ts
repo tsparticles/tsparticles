@@ -62,7 +62,7 @@ export class Vector3d implements ICoordinates3d {
    * @param angle - the angle to set
    */
   set angle(angle: number) {
-    this._updateFromAngle(angle, this.length);
+    this.#updateFromAngle(angle, this.length);
   }
 
   /**
@@ -78,7 +78,7 @@ export class Vector3d implements ICoordinates3d {
    * @param length - the length to set
    */
   set length(length: number) {
-    this._updateFromAngle(this.angle, length);
+    this.#updateFromAngle(this.angle, length);
   }
 
   /**
@@ -237,7 +237,7 @@ export class Vector3d implements ICoordinates3d {
    * @param length - the new length
    * @internal
    */
-  private _updateFromAngle(angle: number, length: number): void {
+  #updateFromAngle(angle: number, length: number): void {
     this.x = Math.cos(angle) * length;
     this.y = Math.sin(angle) * length;
   }

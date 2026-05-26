@@ -59,14 +59,14 @@ export type ParticlesParticle = Particle & {
 /** Particles spawning effect drawer plugin */
 export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * ParticlesDrawer constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   /**
@@ -75,7 +75,7 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
    */
   drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
     const { particle } = data,
-      { _container: container } = this;
+      container = this.#container;
 
     if (!particle.particlesNextSpawn) {
       return;

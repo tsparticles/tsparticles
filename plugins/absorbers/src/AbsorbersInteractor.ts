@@ -34,17 +34,17 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
    */
   readonly maxDistance;
 
-  private _dragging = false;
-  private _draggingAbsorber: AbsorberInstance | undefined;
-  private readonly _instancesManager;
+  #dragging = false;
+  #draggingAbsorber: AbsorberInstance | undefined;
+  readonly #instancesManager;
 
   constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
     super(container);
 
     this.maxDistance = 0;
-    this._instancesManager = instancesManager;
+    this.#instancesManager = instancesManager;
 
-    this._instancesManager.initContainer(container);
+    this.#instancesManager.initContainer(container);
 
     this.handleClickMode = (mode, interactivityData): void => {
       const container = this.container,
@@ -69,7 +69,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
 
       const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber();
 
-      void this._instancesManager.addAbsorber(container, absorbersModeOptions, clickPosition);
+      void this.#instancesManager.addAbsorber(container, absorbersModeOptions, clickPosition);
     };
   }
 
@@ -94,7 +94,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
    */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
-      for (const absorber of this._instancesManager.getArray(this.container)) {
+      for (const absorber of this.#instancesManager.getArray(this.container)) {
         if (absorber.options.draggable) {
           const mouse = interactivityData.mouse;
 
@@ -102,15 +102,15 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             const mouseDist = getDistance(absorber.position, mouse.downPosition);
 
             if (mouseDist <= absorber.size) {
-              this._dragging = true;
-              this._draggingAbsorber = absorber;
+              this.#dragging = true;
+              this.#draggingAbsorber = absorber;
             }
           } else {
-            this._dragging = false;
-            this._draggingAbsorber = undefined;
+            this.#dragging = false;
+            this.#draggingAbsorber = undefined;
           }
 
-          if (this._dragging && this._draggingAbsorber == absorber && mouse.position) {
+          if (this.#dragging && this.#draggingAbsorber == absorber && mouse.position) {
             absorber.position.x = mouse.position.x;
             absorber.position.y = mouse.position.y;
           }

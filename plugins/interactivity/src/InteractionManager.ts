@@ -32,61 +32,60 @@ export class InteractionManager {
   interactivityData: IInteractivityData;
 
   /** Map of event names to click handlers */
-  private readonly _clickHandlers;
+  readonly #clickHandlers;
+
+  /**
+   * The constructor of the interaction manager
+   * @param container - the parent container
+   */
+  readonly #container: Container;
 
   /** The event listeners instance */
-  private readonly _eventListeners;
+  readonly #eventListeners;
 
   /**
    * Registered external interactivity managers
    * @internal
    */
-  private _externalInteractors: IExternalInteractor[];
+  #externalInteractors: IExternalInteractor[];
 
   /**
    * The interactors that are used for initialization
    * @internal
    */
-  private _interactors: IInteractor[];
+  #interactors: IInteractor[];
 
   /** The intersection observer for viewport detection */
-  private readonly _intersectionObserver;
+  readonly #intersectionObserver;
 
   /**
    * Registered particles interactions managers
    * @internal
    */
-  private _particleInteractors: IParticlesInteractor[];
+  #particleInteractors: IParticlesInteractor[];
 
   /**
    * The plugin manager used for registering the interactions managers
    * @internal
    */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
-  /**
-   * The constructor of the interaction manager
-   * @param pluginManager - the parent engine
-   * @param container - the parent container
-   */
-  constructor(
-    pluginManager: InteractivityPluginManager,
-    private readonly container: Container,
-  ) {
-    this._pluginManager = pluginManager;
-    this._interactors = [];
-    this._externalInteractors = [];
-    this._particleInteractors = [];
-    this._clickHandlers = new Map<string, ContainerClickHandler>();
-    this._eventListeners = new InteractivityEventListeners(container, this);
+  constructor(pluginManager: InteractivityPluginManager, container: Container) {
+    this.#container = container;
+    this.#pluginManager = pluginManager;
+    this.#interactors = [];
+    this.#externalInteractors = [];
+    this.#particleInteractors = [];
+    this.#clickHandlers = new Map<string, ContainerClickHandler>();
+    this.#eventListeners = new InteractivityEventListeners(container, this);
     this.interactivityData = {
       mouse: {
         clicking: false,
         inside: false,
       },
     };
-    this._intersectionObserver = safeIntersectionObserver(entries => {
-      this._intersectionManager(entries);
+    this.#intersectionObserver = safeIntersectionObserver(entries => {
+      this.#intersectionManager(entries);
     });
   }
 
@@ -95,7 +94,8 @@ export class InteractionManager {
    * @param callback - the callback to invoke on click/touch
    */
   addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-    const { container, interactivityData } = this;
+    const container = this.#container,
+      interactivityData = this.interactivityData;
 
     if (container.destroyed) {
       return;
@@ -187,35 +187,36 @@ export class InteractionManager {
     let touched = false,
       touchMoved = false;
 
-    this._clickHandlers.set(clickEvent, clickHandler);
-    this._clickHandlers.set(touchStartEvent, touchStartHandler);
-    this._clickHandlers.set(touchMoveEvent, touchMoveHandler);
-    this._clickHandlers.set(touchEndEvent, touchEndHandler);
-    this._clickHandlers.set(touchCancelEvent, touchCancelHandler);
+    this.#clickHandlers.set(clickEvent, clickHandler);
+    this.#clickHandlers.set(touchStartEvent, touchStartHandler);
+    this.#clickHandlers.set(touchMoveEvent, touchMoveHandler);
+    this.#clickHandlers.set(touchEndEvent, touchEndHandler);
+    this.#clickHandlers.set(touchCancelEvent, touchCancelHandler);
 
-    for (const [key, handler] of this._clickHandlers) {
+    for (const [key, handler] of this.#clickHandlers) {
       el.addEventListener(key, handler);
     }
   }
 
   /** Adds interactivity event listeners */
   addListeners(): void {
-    this._eventListeners.addListeners();
+    this.#eventListeners.addListeners();
   }
 
   /** Clears all click and touch handlers */
   clearClickHandlers(): void {
-    const { container, interactivityData } = this;
+    const container = this.#container,
+      interactivityData = this.interactivityData;
 
     if (container.destroyed) {
       return;
     }
 
-    for (const [key, handler] of this._clickHandlers) {
+    for (const [key, handler] of this.#clickHandlers) {
       interactivityData.element?.removeEventListener(key, handler);
     }
 
-    this._clickHandlers.clear();
+    this.#clickHandlers.clear();
   }
 
   /**
@@ -223,8 +224,8 @@ export class InteractionManager {
    * @param delta - this variable contains the delta between the current frame and the previous frame
    */
   externalInteract(delta: IDelta): void {
-    for (const interactor of this._externalInteractors) {
-      const { interactivityData } = this;
+    for (const interactor of this.#externalInteractors) {
+      const interactivityData = this.interactivityData;
 
       if (interactor.isEnabled(interactivityData)) {
         interactor.interact(interactivityData, delta);
@@ -237,13 +238,13 @@ export class InteractionManager {
    * @param mode - the click mode to handle
    */
   handleClickMode(mode: string): void {
-    if (this.container.destroyed) {
+    if (this.#container.destroyed) {
       return;
     }
 
-    const { interactivityData } = this;
+    const interactivityData = this.interactivityData;
 
-    for (const interactor of this._externalInteractors) {
+    for (const interactor of this.#externalInteractors) {
       interactor.handleClickMode?.(mode, interactivityData);
     }
   }
@@ -252,16 +253,16 @@ export class InteractionManager {
    * Initializes the interaction manager, loading all the engine registered managers into the container
    */
   init(): void {
-    this._eventListeners.init();
+    this.#eventListeners.init();
 
-    for (const interactor of this._interactors) {
+    for (const interactor of this.#interactors) {
       switch (interactor.type) {
         case InteractorType.external:
-          this._externalInteractors.push(interactor as IExternalInteractor);
+          this.#externalInteractors.push(interactor as IExternalInteractor);
 
           break;
         case InteractorType.particles:
-          this._particleInteractors.push(interactor as IParticlesInteractor);
+          this.#particleInteractors.push(interactor as IParticlesInteractor);
 
           break;
       }
@@ -272,15 +273,15 @@ export class InteractionManager {
 
   /** Initializes all interactors from the plugin manager */
   async initInteractors(): Promise<void> {
-    const interactors = await this._pluginManager.getInteractors?.(this.container, true);
+    const interactors = await this.#pluginManager.getInteractors?.(this.#container, true);
 
     if (!interactors) {
       return;
     }
 
-    this._interactors = interactors;
-    this._externalInteractors = [];
-    this._particleInteractors = [];
+    this.#interactors = interactors;
+    this.#externalInteractors = [];
+    this.#particleInteractors = [];
   }
 
   /**
@@ -289,14 +290,14 @@ export class InteractionManager {
    * @param delta - this variable contains the delta between the current frame and the previous frame
    */
   particlesInteract(particle: Particle, delta: IDelta): void {
-    const { interactivityData } = this;
+    const interactivityData = this.interactivityData;
 
-    for (const interactor of this._externalInteractors) {
+    for (const interactor of this.#externalInteractors) {
       interactor.clear(particle, delta);
     }
 
     /* interaction auto between particles */
-    for (const interactor of this._particleInteractors) {
+    for (const interactor of this.#particleInteractors) {
       if (interactor.isEnabled(particle, interactivityData)) {
         interactor.interact(particle, interactivityData, delta);
       }
@@ -305,7 +306,7 @@ export class InteractionManager {
 
   /** Removes all interactivity event listeners */
   removeListeners(): void {
-    this._eventListeners.removeListeners();
+    this.#eventListeners.removeListeners();
   }
 
   /**
@@ -313,15 +314,15 @@ export class InteractionManager {
    * @param particle - the particle to reset
    */
   reset(particle: Particle): void {
-    const { interactivityData } = this;
+    const interactivityData = this.interactivityData;
 
-    for (const interactor of this._externalInteractors) {
+    for (const interactor of this.#externalInteractors) {
       if (interactor.isEnabled(interactivityData)) {
         interactor.reset(interactivityData, particle);
       }
     }
 
-    for (const interactor of this._particleInteractors) {
+    for (const interactor of this.#particleInteractors) {
       if (interactor.isEnabled(particle, interactivityData)) {
         interactor.reset(interactivityData, particle);
       }
@@ -330,19 +331,19 @@ export class InteractionManager {
 
   /** Starts observing the container element for intersection changes */
   startObserving(): void {
-    const { interactivityData } = this;
+    const interactivityData = this.interactivityData;
 
-    if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
-      this._intersectionObserver.observe(interactivityData.element);
+    if (interactivityData.element instanceof HTMLElement && this.#intersectionObserver) {
+      this.#intersectionObserver.observe(interactivityData.element);
     }
   }
 
   /** Stops observing the container element for intersection changes */
   stopObserving(): void {
-    const { interactivityData } = this;
+    const interactivityData = this.interactivityData;
 
-    if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
-      this._intersectionObserver.unobserve(interactivityData.element);
+    if (interactivityData.element instanceof HTMLElement && this.#intersectionObserver) {
+      this.#intersectionObserver.unobserve(interactivityData.element);
     }
   }
 
@@ -350,19 +351,19 @@ export class InteractionManager {
   updateMaxDistance(): void {
     let maxTotalDistance = 0;
 
-    for (const interactor of this._interactors) {
+    for (const interactor of this.#interactors) {
       if (interactor.maxDistance > maxTotalDistance) {
         maxTotalDistance = interactor.maxDistance;
       }
     }
 
-    const container = this.container;
+    const container = this.#container;
 
     container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
-  private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
-    const { container } = this;
+  readonly #intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
+    const container = this.#container;
 
     if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
       return;

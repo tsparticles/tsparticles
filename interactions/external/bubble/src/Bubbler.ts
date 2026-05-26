@@ -53,14 +53,14 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-  private _maxDistance;
-  private readonly _pluginManager;
+  #maxDistance;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: BubbleContainer) {
     super(container);
 
-    this._pluginManager = pluginManager;
-    this._maxDistance = 0;
+    this.#pluginManager = pluginManager;
+    this.#maxDistance = 0;
 
     container.bubble ??= {};
 
@@ -77,7 +77,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -101,7 +101,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    this._maxDistance = bubble.distance;
+    this.#maxDistance = bubble.distance;
 
     container.retina.bubbleModeDistance = bubble.distance * container.retina.pixelRatio;
 
@@ -129,12 +129,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     /* on hover event */
     if (hoverEnabled && isInArray(bubbleMode, hoverMode)) {
-      this._hoverBubble(interactivityData);
+      this.#hoverBubble(interactivityData);
     } else if (clickEnabled && isInArray(bubbleMode, clickMode)) {
-      this._clickBubble(interactivityData);
+      this.#clickBubble(interactivityData);
     } else {
       divModeExecute(bubbleMode, divs, (selector, div): void => {
-        this._singleSelectorHover(interactivityData, delta, selector, div);
+        this.#singleSelectorHover(interactivityData, delta, selector, div);
       });
     }
   }
@@ -177,7 +177,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     particle.bubble.inRange = false;
   }
 
-  private readonly _clickBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
+  readonly #clickBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
     const container = this.container,
       options = container.actualOptions,
       mouseClickPos = interactivityData.mouse.clickPosition,
@@ -233,7 +233,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         type: ProcessBubbleType.size,
       };
 
-      this._process(particle, distMouse, timeSpent, sizeData);
+      this.#process(particle, distMouse, timeSpent, sizeData);
 
       const opacityData: Interfaces = {
         bubbleObj: {
@@ -247,17 +247,17 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         type: ProcessBubbleType.opacity,
       };
 
-      this._process(particle, distMouse, timeSpent, opacityData);
+      this.#process(particle, distMouse, timeSpent, opacityData);
 
       if (!bubble.durationEnd && distMouse <= distance) {
-        this._hoverBubbleColor(particle, distMouse);
+        this.#hoverBubbleColor(particle, distMouse);
       } else {
         delete particle.bubble.color;
       }
     }
   };
 
-  private readonly _hoverBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
+  readonly #hoverBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
     const container = this.container,
       mousePos = interactivityData.mouse.position,
       distance = container.retina.bubbleModeDistance;
@@ -280,13 +280,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       if (pointDistance <= distance) {
         if (ratio >= minRatio && interactivityData.status === mouseMoveEvent) {
           /* size */
-          this._hoverBubbleSize(particle, ratio);
+          this.#hoverBubbleSize(particle, ratio);
 
           /* opacity */
-          this._hoverBubbleOpacity(particle, ratio);
+          this.#hoverBubbleOpacity(particle, ratio);
 
           /* color */
-          this._hoverBubbleColor(particle, ratio);
+          this.#hoverBubbleColor(particle, ratio);
         }
       } else {
         this.reset(interactivityData, particle);
@@ -299,7 +299,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   };
 
-  private readonly _hoverBubbleColor: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
+  readonly #hoverBubbleColor: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
     particle,
     ratio,
     divBubble,
@@ -320,7 +320,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
       const bubbleColor = itemFromSingleOrMultiple(modeColor);
 
-      particle.bubble.finalColor = rangeColorToHsl(this._pluginManager, bubbleColor);
+      particle.bubble.finalColor = rangeColorToHsl(this.#pluginManager, bubbleColor);
     }
 
     if (!particle.bubble.finalColor) {
@@ -340,7 +340,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   };
 
-  private readonly _hoverBubbleOpacity: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
+  readonly #hoverBubbleOpacity: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
     particle,
     ratio,
     divBubble,
@@ -361,7 +361,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   };
 
-  private readonly _hoverBubbleSize: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
+  readonly #hoverBubbleSize: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
     particle,
     ratio,
     divBubble,
@@ -381,7 +381,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   };
 
-  private readonly _process: (particle: Particle, distMouse: number, timeSpent: number, data: Interfaces) => void = (
+  readonly #process: (particle: Particle, distMouse: number, timeSpent: number, data: Interfaces) => void = (
     particle,
     distMouse,
     timeSpent,
@@ -446,7 +446,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     }
   };
 
-  private readonly _singleSelectorHover: (
+  readonly #singleSelectorHover: (
     interactivityData: IInteractivityData,
     delta: IDelta,
     selector: string,
@@ -496,13 +496,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
 
         /* size */
-        this._hoverBubbleSize(particle, defaultRatio, divBubble);
+        this.#hoverBubbleSize(particle, defaultRatio, divBubble);
 
         /* opacity */
-        this._hoverBubbleOpacity(particle, defaultRatio, divBubble);
+        this.#hoverBubbleOpacity(particle, defaultRatio, divBubble);
 
         /* color */
-        this._hoverBubbleColor(particle, defaultRatio, divBubble);
+        this.#hoverBubbleColor(particle, defaultRatio, divBubble);
       }
     });
   };

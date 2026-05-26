@@ -8,12 +8,12 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
   /** @inheritDoc */
   readonly maxDistance;
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: LightContainer) {
     super(container);
 
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
     this.maxDistance = 0;
   }
 
@@ -62,7 +62,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     if (res && interactivity.modes.light) {
       const shadowOptions = interactivity.modes.light.shadow;
 
-      particle.lightShadow = rangeColorToRgb(this._pluginManager, shadowOptions.color);
+      particle.lightShadow = rangeColorToRgb(this.#pluginManager, shadowOptions.color);
     }
 
     return res;

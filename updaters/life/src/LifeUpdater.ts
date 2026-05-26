@@ -19,14 +19,14 @@ const noTime = 0,
 /** Life updater plugin */
 export class LifeUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly container;
+  readonly #container;
 
   /**
    * LifeUpdater constructor
    * @param container
    */
   constructor(container: Container) {
-    this.container = container;
+    this.#container = container;
   }
 
   /**
@@ -34,7 +34,7 @@ export class LifeUpdater implements IParticleUpdater {
    * @param particle
    */
   init(particle: LifeParticle): void {
-    const container = this.container,
+    const container = this.#container,
       particlesOptions = particle.options,
       lifeOptions = particlesOptions.life;
 
@@ -104,6 +104,6 @@ export class LifeUpdater implements IParticleUpdater {
       return;
     }
 
-    updateLife(particle, delta, this.container.canvas.size);
+    updateLife(particle, delta, this.#container.canvas.size);
   }
 }

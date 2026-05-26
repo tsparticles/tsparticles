@@ -22,10 +22,10 @@ const generalFirstClickHandler = (): void => {
 export class SoundsPlugin implements IPlugin {
   readonly id = "sounds";
 
-  private readonly _engine;
+  readonly #engine;
 
   constructor(engine: Engine) {
-    this._engine = engine;
+    this.#engine = engine;
 
     const listenerOptions = {
       capture: true,
@@ -39,7 +39,7 @@ export class SoundsPlugin implements IPlugin {
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { SoundsPluginInstance } = await import("./SoundsPluginInstance.js");
 
-    return new SoundsPluginInstance(container, this._engine);
+    return new SoundsPluginInstance(container, this.#engine);
   }
 
   loadOptions(_container: Container, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {

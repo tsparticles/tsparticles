@@ -24,9 +24,9 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
   /** @inheritDoc */
   readonly maxDistance = 0;
 
-  private _clearTimeout?: number;
-  private _lastPosition?: ICoordinates;
-  private _particle?: Particle;
+  #clearTimeout?: number;
+  #lastPosition?: ICoordinates;
+  #particle?: Particle;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: InteractivityParticleContainer) {
@@ -61,28 +61,28 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
     const mouseStopped =
         interactivityParticleOptions.pauseOnStop &&
-        (interactivityData.mouse.position === this._lastPosition ||
-          (interactivityData.mouse.position?.x === this._lastPosition?.x &&
-            interactivityData.mouse.position?.y === this._lastPosition?.y)),
+        (interactivityData.mouse.position === this.#lastPosition ||
+          (interactivityData.mouse.position?.x === this.#lastPosition?.x &&
+            interactivityData.mouse.position?.y === this.#lastPosition?.y)),
       clearDelay = interactivityParticleOptions.stopDelay;
 
     if (mousePos) {
-      this._lastPosition = { ...mousePos };
+      this.#lastPosition = { ...mousePos };
     } else {
-      delete this._lastPosition;
+      this.#lastPosition = undefined;
     }
 
-    if (!this._lastPosition) {
+    if (!this.#lastPosition) {
       return;
     }
 
     if (mouseStopped) {
-      if (this._clearTimeout) {
+      if (this.#clearTimeout) {
         return;
       }
 
-      this._clearTimeout = setTimeout(() => {
-        if (!this._particle) {
+      this.#clearTimeout = setTimeout(() => {
+        if (!this.#particle) {
           return;
         }
 
@@ -98,28 +98,28 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
           }
         }
 
-        this._particle.destroy(true);
+        this.#particle.destroy(true);
 
-        delete this._particle;
+        this.#particle = undefined;
       }, clearDelay);
 
       return;
     }
 
-    if (this._clearTimeout) {
-      clearTimeout(this._clearTimeout);
+    if (this.#clearTimeout) {
+      clearTimeout(this.#clearTimeout);
 
-      delete this._clearTimeout;
+      this.#clearTimeout = undefined;
     }
 
-    if (!this._particle) {
+    if (!this.#particle) {
       const particleOptions = deepExtend(interactivityParticleOptions.options, {
         move: {
           enable: false,
         },
       }) as RecursivePartial<ParticlesOptions>;
 
-      this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
+      this.#particle = container.particles.addParticle(this.#lastPosition, particleOptions);
 
       if (interactivityParticleOptions.replaceCursor) {
         const element = interactivityData.element as HTMLElement | Window | Document | undefined;
@@ -134,12 +134,12 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
       }
     }
 
-    if (!this._particle) {
+    if (!this.#particle) {
       return;
     }
 
-    this._particle.position.x = this._lastPosition.x;
-    this._particle.position.y = this._lastPosition.y;
+    this.#particle.position.x = this.#lastPosition.x;
+    this.#particle.position.y = this.#lastPosition.y;
   }
 
   /** @inheritDoc */

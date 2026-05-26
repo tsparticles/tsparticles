@@ -10,7 +10,10 @@ export class Retina {
   /** Reduce factor for performance */
   reduceFactor: number;
 
-  constructor(private readonly container: Container) {
+  readonly #container: Container;
+
+  constructor(container: Container) {
+    this.#container = container;
     this.pixelRatio = defaultRatio;
     this.reduceFactor = defaultReduceFactor;
   }
@@ -19,7 +22,7 @@ export class Retina {
    * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
    */
   init(): void {
-    const container = this.container,
+    const container = this.#container,
       options = container.actualOptions;
 
     this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;

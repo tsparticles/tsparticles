@@ -17,14 +17,14 @@ const minLoops = 0;
 /** Size updater plugin */
 export class SizeUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * SizeUpdater constructor
    * @param container -
    */
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   /**
@@ -32,7 +32,7 @@ export class SizeUpdater implements IParticleUpdater {
    * @param particle -
    */
   init(particle: SizeParticle): void {
-    const container = this._container,
+    const container = this.#container,
       sizeOptions = particle.options.size;
 
     if (!sizeOptions) {
@@ -91,7 +91,7 @@ export class SizeUpdater implements IParticleUpdater {
    * @param particle -
    */
   preInit(particle: SizeParticle): void {
-    const pxRatio = this._container.retina.pixelRatio,
+    const pxRatio = this.#container.retina.pixelRatio,
       options = particle.options,
       sizeOptions = options.size;
 

@@ -44,7 +44,7 @@ const linksMinDistance = 120,
 /** Marc Bruederlin's particles compatibility class */
 export class MBParticles {
   /** The tsParticles container instance */
-  private _container?: Container;
+  #container?: Container;
 
   /** Initializes a new particles instance with the given options */
   /**
@@ -121,7 +121,7 @@ export class MBParticles {
           },
         })
         .then(container => {
-          particles._container = container;
+          particles.#container = container;
         });
     })(tsParticles);
 
@@ -130,21 +130,21 @@ export class MBParticles {
 
   /** Destroys the particles instance and cleans up resources */
   destroy(): void {
-    const container = this._container;
+    const container = this.#container;
 
     container?.destroy();
   }
 
   /** Pauses the particle animation */
   pauseAnimation(): void {
-    const container = this._container;
+    const container = this.#container;
 
     container?.pause();
   }
 
   /** Resumes the particle animation */
   resumeAnimation(): void {
-    const container = this._container;
+    const container = this.#container;
 
     container?.play();
   }

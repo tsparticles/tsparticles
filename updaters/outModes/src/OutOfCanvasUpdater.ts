@@ -29,14 +29,14 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
   updaters: Map<OutMode, IOutModeManager>;
 
   /** The particles container */
-  private readonly container;
+  readonly #container;
 
   /**
    * OutOfCanvasUpdater constructor
    * @param container
    */
   constructor(container: Container) {
-    this.container = container;
+    this.#container = container;
     this.updaters = new Map();
   }
 
@@ -45,10 +45,10 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
    * @param particle
    */
   init(particle: Particle): void {
-    this._addUpdaterIfMissing(particle, OutMode.bounce, container => new BounceOutMode(container));
-    this._addUpdaterIfMissing(particle, OutMode.out, container => new OutOutMode(container));
-    this._addUpdaterIfMissing(particle, OutMode.destroy, container => new DestroyOutMode(container));
-    this._addUpdaterIfMissing(particle, OutMode.none, container => new NoneOutMode(container));
+    this.#addUpdaterIfMissing(particle, OutMode.bounce, container => new BounceOutMode(container));
+    this.#addUpdaterIfMissing(particle, OutMode.out, container => new OutOutMode(container));
+    this.#addUpdaterIfMissing(particle, OutMode.destroy, container => new DestroyOutMode(container));
+    this.#addUpdaterIfMissing(particle, OutMode.none, container => new NoneOutMode(container));
   }
 
   /**
@@ -69,13 +69,13 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
     particle.justWarped = false;
 
-    this._updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
-    this._updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
-    this._updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
-    this._updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
+    this.#updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
+    this.#updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
+    this.#updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
+    this.#updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
   }
 
-  private readonly _addUpdaterIfMissing = (
+  readonly #addUpdaterIfMissing = (
     particle: Particle,
     outMode: OutMode,
     getUpdater: (container: Container) => IOutModeManager,
@@ -83,11 +83,11 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     const outModes = particle.options.move.outModes;
 
     if (!this.updaters.has(outMode) && checkOutMode(outModes, outMode)) {
-      this.updaters.set(outMode, getUpdater(this.container));
+      this.updaters.set(outMode, getUpdater(this.#container));
     }
   };
 
-  private readonly _updateOutMode = (
+  readonly #updateOutMode = (
     particle: Particle,
     delta: IDelta,
     outMode: OutMode | keyof typeof OutMode,

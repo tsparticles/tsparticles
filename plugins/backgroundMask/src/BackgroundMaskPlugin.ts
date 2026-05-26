@@ -7,16 +7,16 @@ import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 export class BackgroundMaskPlugin implements IPlugin {
   readonly id = "background-mask";
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
 
-    return new BackgroundMaskPluginInstance(this._pluginManager, container);
+    return new BackgroundMaskPluginInstance(this.#pluginManager, container);
   }
 
   loadOptions(

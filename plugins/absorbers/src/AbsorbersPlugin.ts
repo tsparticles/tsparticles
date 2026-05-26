@@ -17,16 +17,16 @@ import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 export class AbsorbersPlugin implements IPlugin {
   readonly id = "absorbers";
 
-  private readonly _instancesManager;
+  readonly #instancesManager;
 
   constructor(instancesManager: AbsorbersInstancesManager) {
-    this._instancesManager = instancesManager;
+    this.#instancesManager = instancesManager;
   }
 
   async getPlugin(container: AbsorberContainer): Promise<IContainerPlugin> {
     const { AbsorbersPluginInstance } = await import("./AbsorbersPluginInstance.js");
 
-    return new AbsorbersPluginInstance(container, this._instancesManager);
+    return new AbsorbersPluginInstance(container, this.#instancesManager);
   }
 
   loadOptions(_container: Container, options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {

@@ -7,27 +7,27 @@ import { shuffleSeed } from "../utils.js";
 const quarter = 0.25;
 
 export class SimplexNoise4D {
-  private readonly _NORM_4D;
-  private readonly _SQUISH_4D;
-  private readonly _STRETCH_4D;
+  readonly #NORM_4D;
+  readonly #SQUISH_4D;
+  readonly #STRETCH_4D;
 
-  private readonly _base4D;
-  private readonly _gradients4D;
-  private _lookup: Contribution4D[];
-  private readonly _lookupPairs4D;
-  private readonly _p4D;
-  private _perm: Uint8Array;
-  private _perm4D: Uint8Array;
+  readonly #base4D;
+  readonly #gradients4D;
+  #lookup: Contribution4D[];
+  readonly #lookupPairs4D;
+  readonly #p4D;
+  #perm: Uint8Array;
+  #perm4D: Uint8Array;
 
   constructor() {
-    this._NORM_4D = 1 / 30;
-    this._SQUISH_4D = (Math.sqrt(4 + 1) - 1) * quarter;
-    this._STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) * quarter;
-    this._lookup = [];
-    this._perm = new Uint8Array(0);
-    this._perm4D = new Uint8Array(0);
+    this.#NORM_4D = 1 / 30;
+    this.#SQUISH_4D = (Math.sqrt(4 + 1) - 1) * quarter;
+    this.#STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) * quarter;
+    this.#lookup = [];
+    this.#perm = new Uint8Array(0);
+    this.#perm4D = new Uint8Array(0);
 
-    this._base4D = [
+    this.#base4D = [
       [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
       [3, 1, 1, 1, 0, 3, 1, 1, 0, 1, 3, 1, 0, 1, 1, 3, 0, 1, 1, 1, 4, 1, 1, 1, 1],
       [
@@ -135,7 +135,7 @@ export class SimplexNoise4D {
         1,
       ],
     ];
-    this._gradients4D = [
+    this.#gradients4D = [
       3,
       1,
       1,
@@ -393,7 +393,7 @@ export class SimplexNoise4D {
       -1,
       -3,
     ];
-    this._lookupPairs4D = [
+    this.#lookupPairs4D = [
       0,
       3,
       1,
@@ -1515,7 +1515,7 @@ export class SimplexNoise4D {
       599295,
       10,
     ];
-    this._p4D = [
+    this.#p4D = [
       0,
       0,
       1,
@@ -2807,8 +2807,14 @@ export class SimplexNoise4D {
    * @returns the noise value
    */
   noise(x: number, y: number, z: number, w: number): number {
-    const { _perm, _perm4D, _lookup, _STRETCH_4D, _SQUISH_4D, _gradients4D, _NORM_4D } = this,
-      stretchOffset = (x + y + z + w) * _STRETCH_4D,
+    const perm = this.#perm,
+      perm4D = this.#perm4D,
+      lookup = this.#lookup,
+      STRETCH_4D = this.#STRETCH_4D,
+      SQUISH_4D = this.#SQUISH_4D,
+      gradients4D = this.#gradients4D,
+      NORM_4D = this.#NORM_4D,
+      stretchOffset = (x + y + z + w) * STRETCH_4D,
       xs = x + stretchOffset,
       ys = y + stretchOffset,
       zs = z + stretchOffset,
@@ -2817,7 +2823,7 @@ export class SimplexNoise4D {
       ysb = Math.floor(ys),
       zsb = Math.floor(zs),
       wsb = Math.floor(ws),
-      squishOffset = (xsb + ysb + zsb + wsb) * _SQUISH_4D,
+      squishOffset = (xsb + ysb + zsb + wsb) * SQUISH_4D,
       dx0 = x - (xsb + squishOffset),
       dy0 = y - (ysb + squishOffset),
       dz0 = z - (zsb + squishOffset),
@@ -2842,7 +2848,7 @@ export class SimplexNoise4D {
 
     let value = 0;
 
-    for (let c: Contribution4D | undefined = _lookup[hash]; c !== undefined; c = c.next) {
+    for (let c: Contribution4D | undefined = lookup[hash]; c !== undefined; c = c.next) {
       const dx = dx0 + c.dx,
         dy = dy0 + c.dy,
         dz = dz0 + c.dz,
@@ -2854,35 +2860,37 @@ export class SimplexNoise4D {
           py = ysb + c.ysb,
           pz = zsb + c.zsb,
           pw = wsb + c.wsb,
-          indexPartA = _perm[px & 0xff]!,
-          indexPartB = _perm[(indexPartA + py) & 0xff]!,
-          indexPartC = _perm[(indexPartB + pz) & 0xff]!,
-          index = _perm4D[(indexPartC + pw) & 0xff]!,
+          indexPartA = perm[px & 0xff]!,
+          indexPartB = perm[(indexPartA + py) & 0xff]!,
+          indexPartC = perm[(indexPartB + pz) & 0xff]!,
+          index = perm4D[(indexPartC + pw) & 0xff]!,
           valuePart =
-            _gradients4D[index]! * dx +
-            _gradients4D[index + 1]! * dy +
-            _gradients4D[index + 2]! * dz +
-            _gradients4D[index + 3]! * dw;
+            gradients4D[index]! * dx +
+            gradients4D[index + 1]! * dy +
+            gradients4D[index + 2]! * dz +
+            gradients4D[index + 3]! * dw;
 
         value += attn * attn * attn * attn * valuePart;
       }
     }
 
-    return value * _NORM_4D;
+    return value * NORM_4D;
   }
 
   seed(clientSeed: number): void {
-    const { _p4D, _base4D, _lookupPairs4D } = this,
+    const p4D = this.#p4D,
+      base4D = this.#base4D,
+      lookupPairs4D = this.#lookupPairs4D,
       contributions: Contribution4D[] = [];
 
-    for (let i = 0; i < _p4D.length; i += 16) {
-      const baseSet = _base4D[_p4D[i]!]!;
+    for (let i = 0; i < p4D.length; i += 16) {
+      const baseSet = base4D[p4D[i]!]!;
 
       let previous: Contribution4D | null = null,
         current: Contribution4D | null = null;
 
       for (let k = 0; k < baseSet.length; k += 5) {
-        current = this._contribution4D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!, baseSet[k + 3]!, baseSet[k + 4]!);
+        current = this.#contribution4D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!, baseSet[k + 3]!, baseSet[k + 4]!);
 
         if (previous === null) {
           contributions[i / 16] = current;
@@ -2894,26 +2902,26 @@ export class SimplexNoise4D {
       }
 
       if (current) {
-        current.next = this._contribution4D(_p4D[i + 1]!, _p4D[i + 2]!, _p4D[i + 3]!, _p4D[i + 4]!, _p4D[i + 5]!);
-        current.next.next = this._contribution4D(_p4D[i + 6]!, _p4D[i + 7]!, _p4D[i + 8]!, _p4D[i + 9]!, _p4D[i + 10]!);
-        current.next.next.next = this._contribution4D(
-          _p4D[i + 11]!,
-          _p4D[i + 12]!,
-          _p4D[i + 13]!,
-          _p4D[i + 14]!,
-          _p4D[i + 15]!,
+        current.next = this.#contribution4D(p4D[i + 1]!, p4D[i + 2]!, p4D[i + 3]!, p4D[i + 4]!, p4D[i + 5]!);
+        current.next.next = this.#contribution4D(p4D[i + 6]!, p4D[i + 7]!, p4D[i + 8]!, p4D[i + 9]!, p4D[i + 10]!);
+        current.next.next.next = this.#contribution4D(
+          p4D[i + 11]!,
+          p4D[i + 12]!,
+          p4D[i + 13]!,
+          p4D[i + 14]!,
+          p4D[i + 15]!,
         );
       }
     }
 
-    this._lookup = [];
+    this.#lookup = [];
 
-    for (let i = 0; i < _lookupPairs4D.length; i += 2) {
-      this._lookup[_lookupPairs4D[i]!] = contributions[_lookupPairs4D[i + 1]!]!;
+    for (let i = 0; i < lookupPairs4D.length; i += 2) {
+      this.#lookup[lookupPairs4D[i]!] = contributions[lookupPairs4D[i + 1]!]!;
     }
 
-    this._perm = new Uint8Array(256);
-    this._perm4D = new Uint8Array(256);
+    this.#perm = new Uint8Array(256);
+    this.#perm4D = new Uint8Array(256);
 
     const source = new Uint8Array(256);
 
@@ -2937,8 +2945,8 @@ export class SimplexNoise4D {
         r[0] += i + 1;
       }
 
-      this._perm[i] = source[r[0]]!;
-      this._perm4D[i] = this._perm[i]! & 0xfc;
+      this.#perm[i] = source[r[0]]!;
+      this.#perm4D[i] = this.#perm[i]! & 0xfc;
 
       source[r[0]] = source[i]!;
     }
@@ -2952,14 +2960,14 @@ export class SimplexNoise4D {
    * @param wsb -
    * @returns the contribution matrix
    */
-  private _contribution4D(multiplier: number, xsb: number, ysb: number, zsb: number, wsb: number): Contribution4D {
-    const { _SQUISH_4D } = this;
+  #contribution4D(multiplier: number, xsb: number, ysb: number, zsb: number, wsb: number): Contribution4D {
+    const SQUISH_4D = this.#SQUISH_4D;
 
     return {
-      dx: -xsb - multiplier * _SQUISH_4D,
-      dy: -ysb - multiplier * _SQUISH_4D,
-      dz: -zsb - multiplier * _SQUISH_4D,
-      dw: -wsb - multiplier * _SQUISH_4D,
+      dx: -xsb - multiplier * SQUISH_4D,
+      dy: -ysb - multiplier * SQUISH_4D,
+      dz: -zsb - multiplier * SQUISH_4D,
+      dw: -wsb - multiplier * SQUISH_4D,
       xsb,
       ysb,
       zsb,

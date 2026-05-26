@@ -12,17 +12,17 @@ export class LevyPathGenerator implements IMovePathGenerator {
   /** Levy path options */
   readonly options: ILevyPathOptions;
   /** The particles container */
-  private readonly _container: Container;
+  readonly #container: Container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * LevyPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
 
     this.options = {
       alpha: defaultLevyAlpha,
@@ -62,15 +62,15 @@ export class LevyPathGenerator implements IMovePathGenerator {
     p.velocity.x = 0;
     p.velocity.y = 0;
 
-    this._res.length = speed;
-    this._res.angle = l.angle;
+    this.#res.length = speed;
+    this.#res.angle = l.angle;
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator options */
   init(): void {
-    const source = this._container.actualOptions.particles.move.path.options;
+    const source = this.#container.actualOptions.particles.move.path.options;
 
     this.options.alpha = (source["alpha"] as number | undefined) ?? this.options.alpha;
     this.options.scale = (source["scale"] as number | undefined) ?? this.options.scale;

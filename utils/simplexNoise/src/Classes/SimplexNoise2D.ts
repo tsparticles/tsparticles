@@ -6,27 +6,27 @@ import { shuffleSeed } from "../utils.js";
 const half = 0.5;
 
 export class SimplexNoise2D {
-  private readonly _NORM_2D;
-  private readonly _SQUISH_2D;
-  private readonly _STRETCH_2D;
+  readonly #NORM_2D;
+  readonly #SQUISH_2D;
+  readonly #STRETCH_2D;
 
-  private readonly _base2D;
-  private readonly _gradients2D;
-  private _lookup: Contribution2D[];
-  private readonly _lookupPairs2D;
-  private readonly _p2D;
-  private _perm: Uint8Array;
-  private _perm2D: Uint8Array;
+  readonly #base2D;
+  readonly #gradients2D;
+  #lookup: Contribution2D[];
+  readonly #lookupPairs2D;
+  readonly #p2D;
+  #perm: Uint8Array;
+  #perm2D: Uint8Array;
 
   constructor() {
-    this._NORM_2D = 1 / 47;
-    this._SQUISH_2D = (Math.sqrt(2 + 1) - 1) * half;
-    this._STRETCH_2D = (1 / Math.sqrt(2 + 1) - 1) * half;
-    this._base2D = [
+    this.#NORM_2D = 1 / 47;
+    this.#SQUISH_2D = (Math.sqrt(2 + 1) - 1) * half;
+    this.#STRETCH_2D = (1 / Math.sqrt(2 + 1) - 1) * half;
+    this.#base2D = [
       [1, 1, 0, 1, 0, 1, 0, 0, 0],
       [1, 1, 0, 1, 0, 1, 2, 1, 1],
     ];
-    this._gradients2D = [
+    this.#gradients2D = [
       5,
       2,
       2,
@@ -44,8 +44,8 @@ export class SimplexNoise2D {
       -2,
       -5,
     ];
-    this._lookup = [];
-    this._lookupPairs2D = [
+    this.#lookup = [];
+    this.#lookupPairs2D = [
       0,
       1,
       1,
@@ -71,7 +71,7 @@ export class SimplexNoise2D {
       43,
       3,
     ];
-    this._p2D = [
+    this.#p2D = [
       0,
       0,
       1,
@@ -97,18 +97,24 @@ export class SimplexNoise2D {
       0,
       0,
     ];
-    this._perm = new Uint8Array(256);
-    this._perm2D = new Uint8Array(256);
+    this.#perm = new Uint8Array(256);
+    this.#perm2D = new Uint8Array(256);
   }
 
   noise(x: number, y: number): number {
-    const { _gradients2D, _NORM_2D, _SQUISH_2D, _STRETCH_2D, _lookup, _perm, _perm2D } = this,
-      stretchOffset = (x + y) * _STRETCH_2D,
+    const gradients2D = this.#gradients2D,
+      NORM_2D = this.#NORM_2D,
+      SQUISH_2D = this.#SQUISH_2D,
+      STRETCH_2D = this.#STRETCH_2D,
+      lookup = this.#lookup,
+      perm = this.#perm,
+      perm2D = this.#perm2D,
+      stretchOffset = (x + y) * STRETCH_2D,
       xs = x + stretchOffset,
       ys = y + stretchOffset,
       xsb = Math.floor(xs),
       ysb = Math.floor(ys),
-      squishOffset = (xsb + ysb) * _SQUISH_2D,
+      squishOffset = (xsb + ysb) * SQUISH_2D,
       dx0 = x - (xsb + squishOffset),
       dy0 = y - (ysb + squishOffset),
       xins = xs - xsb,
@@ -118,7 +124,7 @@ export class SimplexNoise2D {
 
     let value = 0;
 
-    for (let c: Contribution2D | undefined = _lookup[hash]; c !== undefined; c = c.next) {
+    for (let c: Contribution2D | undefined = lookup[hash]; c !== undefined; c = c.next) {
       const dx = dx0 + c.dx,
         dy = dy0 + c.dy,
         attn = 2 - dx * dx - dy * dy;
@@ -129,28 +135,30 @@ export class SimplexNoise2D {
 
       const px = xsb + c.xsb,
         py = ysb + c.ysb,
-        indexPartA = _perm[px & 0xff]!,
-        index = _perm2D[(indexPartA + py) & 0xff]!,
-        valuePart = _gradients2D[index]! * dx + _gradients2D[index + 1]! * dy;
+        indexPartA = perm[px & 0xff]!,
+        index = perm2D[(indexPartA + py) & 0xff]!,
+        valuePart = gradients2D[index]! * dx + gradients2D[index + 1]! * dy;
 
       value += attn * attn * attn * attn * valuePart;
     }
 
-    return value * _NORM_2D;
+    return value * NORM_2D;
   }
 
   seed(clientSeed: number): void {
-    const { _p2D, _base2D, _lookupPairs2D } = this,
+    const p2D = this.#p2D,
+      base2D = this.#base2D,
+      lookupPairs2D = this.#lookupPairs2D,
       contributions: Contribution2D[] = [];
 
-    for (let i = 0; i < _p2D.length; i += 4) {
-      const baseSet = _base2D[_p2D[i]!]!;
+    for (let i = 0; i < p2D.length; i += 4) {
+      const baseSet = base2D[p2D[i]!]!;
 
       let previous: Contribution2D | null = null,
         current: Contribution2D | null = null;
 
       for (let k = 0; k < baseSet.length; k += 3) {
-        current = this._contribution2D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!);
+        current = this.#contribution2D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!);
 
         if (previous === null) {
           contributions[i / 4] = current;
@@ -162,18 +170,18 @@ export class SimplexNoise2D {
       }
 
       if (current) {
-        current.next = this._contribution2D(_p2D[i + 1]!, _p2D[i + 2]!, _p2D[i + 3]!);
+        current.next = this.#contribution2D(p2D[i + 1]!, p2D[i + 2]!, p2D[i + 3]!);
       }
     }
 
-    this._lookup = [];
+    this.#lookup = [];
 
-    for (let i = 0; i < _lookupPairs2D.length; i += 2) {
-      this._lookup[_lookupPairs2D[i]!] = contributions[_lookupPairs2D[i + 1]!]!;
+    for (let i = 0; i < lookupPairs2D.length; i += 2) {
+      this.#lookup[lookupPairs2D[i]!] = contributions[lookupPairs2D[i + 1]!]!;
     }
 
-    this._perm = new Uint8Array(256);
-    this._perm2D = new Uint8Array(256);
+    this.#perm = new Uint8Array(256);
+    this.#perm2D = new Uint8Array(256);
 
     const source = new Uint8Array(256);
 
@@ -197,19 +205,19 @@ export class SimplexNoise2D {
         r[0] += i + 1;
       }
 
-      this._perm[i] = source[r[0]]!;
-      this._perm2D[i] = this._perm[i]! & 0x0e;
+      this.#perm[i] = source[r[0]]!;
+      this.#perm2D[i] = this.#perm[i]! & 0x0e;
 
       source[r[0]] = source[i]!;
     }
   }
 
-  private _contribution2D(multiplier: number, xsb: number, ysb: number): Contribution2D {
-    const { _SQUISH_2D } = this;
+  #contribution2D(multiplier: number, xsb: number, ysb: number): Contribution2D {
+    const SQUISH_2D = this.#SQUISH_2D;
 
     return {
-      dx: -xsb - multiplier * _SQUISH_2D,
-      dy: -ysb - multiplier * _SQUISH_2D,
+      dx: -xsb - multiplier * SQUISH_2D,
+      dy: -ysb - multiplier * SQUISH_2D,
       xsb,
       ysb,
     };

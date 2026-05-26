@@ -8,19 +8,19 @@ import {
 import type { BackgroundMaskContainer } from "./types.js";
 
 export class BackgroundMaskPluginInstance implements IContainerPlugin {
-  private readonly _container;
-  private _coverColorStyle?: string;
-  private _coverImage?: { image: HTMLImageElement; opacity: number };
-  private _defaultCompositeValue?: GlobalCompositeOperation;
-  private readonly _pluginManager;
+  readonly #container;
+  #coverColorStyle?: string;
+  #coverImage?: { image: HTMLImageElement; opacity: number };
+  #defaultCompositeValue?: GlobalCompositeOperation;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: BackgroundMaskContainer) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   canvasClear(): boolean {
-    const backgroundMask = this._container.actualOptions.backgroundMask;
+    const backgroundMask = this.#container.actualOptions.backgroundMask;
 
     if (!backgroundMask?.enable) {
       return false;
@@ -30,51 +30,51 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
   }
 
   canvasPaint(): boolean {
-    if (!this._container.actualOptions.backgroundMask?.enable) {
+    if (!this.#container.actualOptions.backgroundMask?.enable) {
       return false;
     }
 
-    const canvas = this._container.canvas;
+    const canvas = this.#container.canvas;
 
     canvas.render.canvasClear();
 
-    if (this._coverImage) {
-      canvas.render.paintImage(this._coverImage.image, this._coverImage.opacity);
+    if (this.#coverImage) {
+      canvas.render.paintImage(this.#coverImage.image, this.#coverImage.opacity);
     } else {
-      canvas.render.paintBase(this._coverColorStyle);
+      canvas.render.paintBase(this.#coverColorStyle);
     }
 
     return true;
   }
 
   drawSettingsCleanup(context: OffscreenCanvasRenderingContext2D): void {
-    if (!this._defaultCompositeValue) {
+    if (!this.#defaultCompositeValue) {
       return;
     }
 
-    context.globalCompositeOperation = this._defaultCompositeValue;
+    context.globalCompositeOperation = this.#defaultCompositeValue;
   }
 
   drawSettingsSetup(context: OffscreenCanvasRenderingContext2D): void {
     const previousComposite = context.globalCompositeOperation,
-      backgroundMask = this._container.actualOptions.backgroundMask;
+      backgroundMask = this.#container.actualOptions.backgroundMask;
 
-    this._defaultCompositeValue = previousComposite;
+    this.#defaultCompositeValue = previousComposite;
 
     context.globalCompositeOperation = backgroundMask?.enable ? backgroundMask.composite : previousComposite;
   }
 
   async init(): Promise<void> {
-    await this._initCover();
+    await this.#initCover();
   }
 
-  private readonly _initCover = async (): Promise<void> => {
-    const options = this._container.actualOptions,
+  readonly #initCover = async (): Promise<void> => {
+    const options = this.#container.actualOptions,
       cover = options.backgroundMask?.cover,
       color = cover?.color;
 
     if (color) {
-      const coverRgb = rangeColorToRgb(this._pluginManager, color);
+      const coverRgb = rangeColorToRgb(this.#pluginManager, color);
 
       if (coverRgb) {
         const coverColor = {
@@ -82,7 +82,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
           a: cover.opacity,
         };
 
-        this._coverColorStyle = getStyleFromRgb(coverColor, this._container.hdr, coverColor.a);
+        this.#coverColorStyle = getStyleFromRgb(coverColor, this.#container.hdr, coverColor.a);
       }
     } else {
       await new Promise<void>((resolve, reject) => {
@@ -93,7 +93,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
         const img = safeDocument().createElement("img");
 
         img.addEventListener("load", () => {
-          this._coverImage = {
+          this.#coverImage = {
             image: img,
             opacity: cover.opacity,
           };

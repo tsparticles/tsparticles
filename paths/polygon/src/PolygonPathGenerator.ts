@@ -18,17 +18,17 @@ export class PolygonPathGenerator implements IMovePathGenerator {
   /** Polygon path options */
   readonly options;
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * PolygonPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
     this.dirsList = [];
     this.options = deepExtend({}, defaultOptions) as IPolygonPathOptions;
   }
@@ -55,15 +55,15 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
     const direction = this.dirsList[p.hexDirection]!;
 
-    this._res.x = direction.x * p.hexSpeed;
-    this._res.y = direction.y * p.hexSpeed;
+    this.#res.x = direction.x * p.hexSpeed;
+    this.#res.y = direction.y * p.hexSpeed;
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator options */
   init(): void {
-    const container = this._container,
+    const container = this.#container,
       sourceOptions = container.actualOptions.particles.move.path.options;
 
     this.options.sides =
@@ -72,7 +72,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     this.options.turnSteps =
       (sourceOptions["turnSteps"] as number) >= 0 ? (sourceOptions["turnSteps"] as number) : this.options.turnSteps;
 
-    this._createDirs();
+    this.#createDirs();
   }
 
   /**
@@ -90,8 +90,8 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     // do nothing
   }
 
-  private readonly _createDirs = (): void => {
-    const { options } = this;
+  readonly #createDirs = (): void => {
+    const options = this.options;
 
     this.dirsList = [];
 

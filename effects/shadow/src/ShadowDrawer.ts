@@ -46,9 +46,9 @@ export type ShadowParticle = Particle & {
 /** Shadow effect drawer plugin */
 export class ShadowDrawer implements IEffectDrawer {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * ShadowDrawer constructor
@@ -56,8 +56,8 @@ export class ShadowDrawer implements IEffectDrawer {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   /**
@@ -76,7 +76,7 @@ export class ShadowDrawer implements IEffectDrawer {
    */
   drawBefore(data: IShapeDrawData): void {
     const { particle, context } = data,
-      { _container: container } = this,
+      container = this.#container,
       shadowParticle = particle as ShadowParticle,
       shadowColor = shadowParticle.shadowColor,
       shadowOffset = shadowParticle.shadowOffset;
@@ -102,7 +102,7 @@ export class ShadowDrawer implements IEffectDrawer {
     const effectData = particle.effectData,
       shadowColor = OptionsColor.create(new OptionsColor(), effectData?.color);
 
-    particle.shadowColor = rangeColorToRgb(this._pluginManager, shadowColor);
+    particle.shadowColor = rangeColorToRgb(this.#pluginManager, shadowColor);
     particle.shadowBlur = effectData?.blur ?? defaultShadowBlur;
     particle.shadowOffset = effectData?.offset ?? originPoint;
   }

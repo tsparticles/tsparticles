@@ -22,8 +22,8 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
   @Input() id = "tsparticles";
   @Input() fire: boolean | number = true;
 
-  private container?: Container;
-  private renderId = 0;
+  #container?: Container;
+  #renderId = 0;
 
   constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
 
@@ -32,7 +32,7 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
       return;
     }
 
-    void this.tryFire();
+    void this.#tryFire();
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -43,28 +43,28 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
     const fireChanges = changes["fire"];
 
     if (this.fire && fireChanges && fireChanges.previousValue !== fireChanges.currentValue) {
-      void this.tryFire();
+      void this.#tryFire();
     }
   }
 
   public ngOnDestroy(): void {
-    this.renderId++;
-    this.container?.destroy();
+    this.#renderId++;
+    this.#container?.destroy();
 
-    this.container = undefined;
+    this.#container = undefined;
   }
 
-  private async tryFire(): Promise<void> {
-    const currentRenderId = ++this.renderId;
+  async #tryFire(): Promise<void> {
+    const currentRenderId = ++this.#renderId;
     const container = await confetti(this.id, this.options);
 
-    if (currentRenderId !== this.renderId) {
+    if (currentRenderId !== this.#renderId) {
       container?.destroy();
 
       return;
     }
 
-    this.container?.destroy();
-    this.container = container;
+    this.#container?.destroy();
+    this.#container = container;
   }
 }

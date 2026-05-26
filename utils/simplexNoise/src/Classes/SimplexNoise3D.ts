@@ -6,29 +6,29 @@ import { shuffleSeed } from "../utils.js";
 const third = 1 / 3;
 
 export class SimplexNoise3D {
-  private readonly _NORM_3D;
-  private readonly _SQUISH_3D;
-  private readonly _STRETCH_3D;
+  readonly #NORM_3D;
+  readonly #SQUISH_3D;
+  readonly #STRETCH_3D;
 
-  private readonly _base3D;
-  private readonly _gradients3D;
-  private _lookup: Contribution3D[];
-  private readonly _lookupPairs3D;
-  private readonly _p3D;
-  private _perm: Uint8Array;
-  private _perm3D: Uint8Array;
+  readonly #base3D;
+  readonly #gradients3D;
+  #lookup: Contribution3D[];
+  readonly #lookupPairs3D;
+  readonly #p3D;
+  #perm: Uint8Array;
+  #perm3D: Uint8Array;
 
   constructor() {
-    this._NORM_3D = 1 / 103;
-    this._SQUISH_3D = (Math.sqrt(3 + 1) - 1) * third;
-    this._STRETCH_3D = (1 / Math.sqrt(3 + 1) - 1) * third;
+    this.#NORM_3D = 1 / 103;
+    this.#SQUISH_3D = (Math.sqrt(3 + 1) - 1) * third;
+    this.#STRETCH_3D = (1 / Math.sqrt(3 + 1) - 1) * third;
 
-    this._base3D = [
+    this.#base3D = [
       [0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1],
       [2, 1, 1, 0, 2, 1, 0, 1, 2, 0, 1, 1, 3, 1, 1, 1],
       [1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 2, 1, 1, 0, 2, 1, 0, 1, 2, 0, 1, 1],
     ];
-    this._gradients3D = [
+    this.#gradients3D = [
       -11,
       4,
       4,
@@ -102,8 +102,8 @@ export class SimplexNoise3D {
       -4,
       -11,
     ];
-    this._lookup = [];
-    this._lookupPairs3D = [
+    this.#lookup = [];
+    this.#lookupPairs3D = [
       0,
       2,
       1,
@@ -249,7 +249,7 @@ export class SimplexNoise3D {
       2039,
       6,
     ];
-    this._p3D = [
+    this.#p3D = [
       0,
       0,
       1,
@@ -467,20 +467,26 @@ export class SimplexNoise3D {
       2,
       0,
     ];
-    this._perm = new Uint8Array(256);
-    this._perm3D = new Uint8Array(256);
+    this.#perm = new Uint8Array(256);
+    this.#perm3D = new Uint8Array(256);
   }
 
   noise(x: number, y: number, z: number): number {
-    const { _STRETCH_3D, _NORM_3D, _SQUISH_3D, _lookup, _perm, _perm3D, _gradients3D } = this,
-      stretchOffset = (x + y + z) * _STRETCH_3D,
+    const STRETCH_3D = this.#STRETCH_3D,
+      NORM_3D = this.#NORM_3D,
+      SQUISH_3D = this.#SQUISH_3D,
+      lookup = this.#lookup,
+      perm = this.#perm,
+      perm3D = this.#perm3D,
+      gradients3D = this.#gradients3D,
+      stretchOffset = (x + y + z) * STRETCH_3D,
       xs = x + stretchOffset,
       ys = y + stretchOffset,
       zs = z + stretchOffset,
       xsb = Math.floor(xs),
       ysb = Math.floor(ys),
       zsb = Math.floor(zs),
-      squishOffset = (xsb + ysb + zsb) * _SQUISH_3D,
+      squishOffset = (xsb + ysb + zsb) * SQUISH_3D,
       dx0 = x - (xsb + squishOffset),
       dy0 = y - (ysb + squishOffset),
       dz0 = z - (zsb + squishOffset),
@@ -499,7 +505,7 @@ export class SimplexNoise3D {
 
     let value = 0;
 
-    for (let c: Contribution3D | undefined = _lookup[hash]; c !== undefined; c = c.next) {
+    for (let c: Contribution3D | undefined = lookup[hash]; c !== undefined; c = c.next) {
       const dx = dx0 + c.dx,
         dy = dy0 + c.dy,
         dz = dz0 + c.dz,
@@ -509,29 +515,31 @@ export class SimplexNoise3D {
         const px = xsb + c.xsb,
           py = ysb + c.ysb,
           pz = zsb + c.zsb,
-          indexPartA = _perm[px & 0xff]!,
-          indexPartB = _perm[(indexPartA + py) & 0xff]!,
-          index = _perm3D[(indexPartB + pz) & 0xff]!,
-          valuePart = _gradients3D[index]! * dx + _gradients3D[index + 1]! * dy + _gradients3D[index + 2]! * dz;
+          indexPartA = perm[px & 0xff]!,
+          indexPartB = perm[(indexPartA + py) & 0xff]!,
+          index = perm3D[(indexPartB + pz) & 0xff]!,
+          valuePart = gradients3D[index]! * dx + gradients3D[index + 1]! * dy + gradients3D[index + 2]! * dz;
 
         value += attn * attn * attn * attn * valuePart;
       }
     }
-    return value * _NORM_3D;
+    return value * NORM_3D;
   }
 
   seed(clientSeed: number): void {
-    const { _base3D, _lookupPairs3D, _p3D } = this,
+    const base3D = this.#base3D,
+      lookupPairs3D = this.#lookupPairs3D,
+      p3D = this.#p3D,
       contributions: Contribution3D[] = [];
 
-    for (let i = 0; i < _p3D.length; i += 9) {
-      const baseSet = _base3D[_p3D[i]!]!;
+    for (let i = 0; i < p3D.length; i += 9) {
+      const baseSet = base3D[p3D[i]!]!;
 
       let previous: Contribution3D | null = null,
         current: Contribution3D | null = null;
 
       for (let k = 0; k < baseSet.length; k += 4) {
-        current = this._contribution3D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!, baseSet[k + 3]!);
+        current = this.#contribution3D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!, baseSet[k + 3]!);
 
         if (previous === null) {
           contributions[i / 9] = current;
@@ -543,19 +551,19 @@ export class SimplexNoise3D {
       }
 
       if (current) {
-        current.next = this._contribution3D(_p3D[i + 1]!, _p3D[i + 2]!, _p3D[i + 3]!, _p3D[i + 4]!);
-        current.next.next = this._contribution3D(_p3D[i + 5]!, _p3D[i + 6]!, _p3D[i + 7]!, _p3D[i + 8]!);
+        current.next = this.#contribution3D(p3D[i + 1]!, p3D[i + 2]!, p3D[i + 3]!, p3D[i + 4]!);
+        current.next.next = this.#contribution3D(p3D[i + 5]!, p3D[i + 6]!, p3D[i + 7]!, p3D[i + 8]!);
       }
     }
 
-    this._lookup = [];
+    this.#lookup = [];
 
-    for (let i = 0; i < _lookupPairs3D.length; i += 2) {
-      this._lookup[_lookupPairs3D[i]!] = contributions[_lookupPairs3D[i + 1]!]!;
+    for (let i = 0; i < lookupPairs3D.length; i += 2) {
+      this.#lookup[lookupPairs3D[i]!] = contributions[lookupPairs3D[i + 1]!]!;
     }
 
-    this._perm = new Uint8Array(256);
-    this._perm3D = new Uint8Array(256);
+    this.#perm = new Uint8Array(256);
+    this.#perm3D = new Uint8Array(256);
 
     const source = new Uint8Array(256);
 
@@ -579,20 +587,20 @@ export class SimplexNoise3D {
         r[0] += i + 1;
       }
 
-      this._perm[i] = source[r[0]]!;
-      this._perm3D[i] = (this._perm[i]! % 24) * 3;
+      this.#perm[i] = source[r[0]]!;
+      this.#perm3D[i] = (this.#perm[i]! % 24) * 3;
 
       source[r[0]] = source[i]!;
     }
   }
 
-  private _contribution3D(multiplier: number, xsb: number, ysb: number, zsb: number): Contribution3D {
-    const { _SQUISH_3D } = this;
+  #contribution3D(multiplier: number, xsb: number, ysb: number, zsb: number): Contribution3D {
+    const SQUISH_3D = this.#SQUISH_3D;
 
     return {
-      dx: -xsb - multiplier * _SQUISH_3D,
-      dy: -ysb - multiplier * _SQUISH_3D,
-      dz: -zsb - multiplier * _SQUISH_3D,
+      dx: -xsb - multiplier * SQUISH_3D,
+      dy: -ysb - multiplier * SQUISH_3D,
+      dz: -zsb - multiplier * SQUISH_3D,
       xsb,
       ysb,
       zsb,

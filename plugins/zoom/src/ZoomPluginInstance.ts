@@ -3,20 +3,20 @@ import type { ZoomContainer } from "./types.js";
 import { ZoomEventListeners } from "./ZoomEventListeners.js";
 
 export class ZoomPluginInstance implements IContainerPlugin {
-  private readonly _container;
-  private readonly _listeners;
+  readonly #container;
+  readonly #listeners;
 
   constructor(container: ZoomContainer) {
-    this._container = container;
-    this._listeners = new ZoomEventListeners(container);
+    this.#container = container;
+    this.#listeners = new ZoomEventListeners(container);
   }
 
   destroy(): void {
-    this._listeners.removeListeners();
+    this.#listeners.removeListeners();
   }
 
   drawParticleTransform(data: IShapeDrawData): void {
-    const container = this._container,
+    const container = this.#container,
       canvas = container.canvas,
       zoom = canvas.zoom;
 
@@ -44,7 +44,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
   }
 
   drawSettingsCleanup(context: OffscreenCanvasRenderingContext2D): void {
-    const zoom = this._container.canvas.zoom;
+    const zoom = this.#container.canvas.zoom;
 
     if (zoom === defaultZoom) {
       return;
@@ -54,7 +54,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
   }
 
   drawSettingsSetup(context: OffscreenCanvasRenderingContext2D): void {
-    const zoom = this._container.canvas.zoom;
+    const zoom = this.#container.canvas.zoom;
 
     if (zoom === defaultZoom) {
       return;
@@ -62,7 +62,7 @@ export class ZoomPluginInstance implements IContainerPlugin {
 
     context.save();
 
-    const { x: centerX, y: centerY } = this._container.canvas.getZoomCenter();
+    const { x: centerX, y: centerY } = this.#container.canvas.getZoomCenter();
 
     context.translate(centerX, centerY);
     context.scale(zoom, zoom);
@@ -70,12 +70,12 @@ export class ZoomPluginInstance implements IContainerPlugin {
   }
 
   start(): Promise<void> {
-    this._listeners.addListeners();
+    this.#listeners.addListeners();
 
     return Promise.resolve();
   }
 
   stop(): void {
-    this._listeners.removeListeners();
+    this.#listeners.removeListeners();
   }
 }

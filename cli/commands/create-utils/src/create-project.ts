@@ -620,10 +620,14 @@ function createPluginConfig(nameData: INameData, description: string, type: Plug
         "src/PluginInstance.ts": `import { type Container, type IContainerPlugin } from "@tsparticles/engine";
 
 export class PluginInstance implements IContainerPlugin {
-  constructor(private readonly _container: Container) {}
+  readonly #container: Container;
+
+  constructor(container: Container) {
+    this.#container = container;
+  }
 
   get pluginContainer(): Container {
-    return this._container;
+    return this.#container;
   }
 
   draw(): void {
@@ -804,10 +808,14 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
         "src/ExportPlugin.ts": `import { type Container, type IContainerPlugin, type IPlugin, type ISourceOptions, type Options } from "@tsparticles/engine";
 
 class ${nameData.pascalName}ExportPluginInstance implements IContainerPlugin {
-  constructor(private readonly _container: Container) {}
+  readonly #container: Container;
+
+  constructor(container: Container) {
+    this.#container = container;
+  }
 
   get pluginContainer(): Container {
-    return this._container;
+    return this.#container;
   }
 
   draw(): void {

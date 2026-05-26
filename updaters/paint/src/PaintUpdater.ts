@@ -18,9 +18,9 @@ const defaultOpacity = 1;
 /** Paint updater plugin */
 export class PaintUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * PaintUpdater constructor
@@ -28,8 +28,8 @@ export class PaintUpdater implements IParticleUpdater {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._container = container;
-    this._pluginManager = pluginManager;
+    this.#container = container;
+    this.#pluginManager = pluginManager;
   }
 
   /**
@@ -37,7 +37,7 @@ export class PaintUpdater implements IParticleUpdater {
    * @param particle
    */
   init(particle: PaintParticle): void {
-    const container = this._container,
+    const container = this.#container,
       options = particle.options,
       paint = itemFromSingleOrMultiple(options.paint, particle.id, options.reduceDuplicates),
       color = (paint as { color?: unknown } | undefined)?.color,
@@ -55,7 +55,7 @@ export class PaintUpdater implements IParticleUpdater {
       particle.fillOpacity = getRangeValue(fill.opacity);
       particle.fillAnimation = fillColor.animation;
 
-      const fillHslColor = rangeColorToHsl(this._pluginManager, fillColor);
+      const fillHslColor = rangeColorToHsl(this.#pluginManager, fillColor);
 
       if (fillHslColor) {
         particle.fillColor = getHslAnimationFromHsl(
@@ -81,7 +81,7 @@ export class PaintUpdater implements IParticleUpdater {
       particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
       particle.strokeAnimation = strokeColor.animation;
 
-      const strokeHslColor = rangeColorToHsl(this._pluginManager, strokeColor) ?? particle.getFillColor();
+      const strokeHslColor = rangeColorToHsl(this.#pluginManager, strokeColor) ?? particle.getFillColor();
 
       if (strokeHslColor) {
         particle.strokeColor = getHslAnimationFromHsl(

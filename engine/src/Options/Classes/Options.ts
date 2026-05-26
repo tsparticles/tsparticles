@@ -71,12 +71,12 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   /** The z-layers value */
   zLayers;
 
-  private readonly _container;
-  private readonly _pluginManager;
+  readonly #container;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
     this.autoPlay = true;
     this.background = new Background();
     this.clear = true;
@@ -87,7 +87,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.duration = 0;
     this.fpsLimit = 120;
     this.hdr = true;
-    this.particles = loadParticlesOptions(this._pluginManager, this._container);
+    this.particles = loadParticlesOptions(this.#pluginManager, this.#container);
     this.pauseOnBlur = true;
     this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
@@ -109,14 +109,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       this.preset = data.preset;
 
       executeOnSingleOrMultiple(this.preset, preset => {
-        this._importPreset(preset);
+        this.#importPreset(preset);
       });
     }
 
     if (data.palette !== undefined) {
       this.palette = data.palette;
 
-      this._importPalette(this.palette);
+      this.#importPalette(this.palette);
     }
 
     if (data.autoPlay !== undefined) {
@@ -191,13 +191,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       this.smooth = data.smooth;
     }
 
-    this._pluginManager.plugins.forEach(plugin => {
-      plugin.loadOptions(this._container, this, data);
+    this.#pluginManager.plugins.forEach(plugin => {
+      plugin.loadOptions(this.#container, this, data);
     });
   }
 
-  private readonly _importPalette: (palette: string) => void = palette => {
-    const paletteData = this._pluginManager.getPalette(palette);
+  readonly #importPalette: (palette: string) => void = palette => {
+    const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
       return;
@@ -217,7 +217,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     });
   };
 
-  private readonly _importPreset: (preset: string) => void = preset => {
-    this.load(this._pluginManager.getPreset(preset));
+  readonly #importPreset: (preset: string) => void = preset => {
+    this.load(this.#pluginManager.getPreset(preset));
   };
 }

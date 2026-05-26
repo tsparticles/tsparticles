@@ -7,19 +7,19 @@ const minRandom = -1,
 /** Random path generator plugin */
 export class RandomPathGenerator implements IMovePathGenerator {
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /** RandomPathGenerator constructor */
   constructor() {
-    this._res = Vector.origin;
+    this.#res = Vector.origin;
   }
 
   /** Generates a random movement vector */
   generate(): Vector {
-    this._res.x = getRandomInRange(minRandom, maxRandom);
-    this._res.y = getRandomInRange(minRandom, maxRandom);
+    this.#res.x = getRandomInRange(minRandom, maxRandom);
+    this.#res.y = getRandomInRange(minRandom, maxRandom);
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator (no-op) */

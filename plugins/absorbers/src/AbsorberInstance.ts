@@ -108,16 +108,16 @@ export class AbsorberInstance {
    */
   size;
 
-  private readonly _container;
-  private _currentDuration;
-  private _currentSpawnDelay;
-  private _duration?: number;
-  private _firstSpawn;
-  private readonly _immortal;
-  private _lifeCount;
-  private readonly _pluginManager;
-  private _spawnDelay?: number;
-  private readonly initialPosition?: Vector;
+  readonly #container;
+  #currentDuration;
+  #currentSpawnDelay;
+  #duration?: number;
+  #firstSpawn;
+  readonly #immortal;
+  readonly #initialPosition?: Vector;
+  #lifeCount;
+  readonly #pluginManager;
+  #spawnDelay?: number;
 
   /**
    * The absorber constructor, initializes the absorber based on the given options and position
@@ -132,13 +132,13 @@ export class AbsorberInstance {
     options: RecursivePartial<IAbsorber>,
     position?: ICoordinates,
   ) {
-    this._container = container;
-    this._pluginManager = pluginManager;
+    this.#container = container;
+    this.#pluginManager = pluginManager;
 
-    this._currentDuration = 0;
-    this._currentSpawnDelay = 0;
+    this.#currentDuration = 0;
+    this.#currentSpawnDelay = 0;
 
-    this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
+    this.#initialPosition = position ? Vector.create(position.x, position.y) : undefined;
 
     if (options instanceof Absorber) {
       this.options = options;
@@ -159,18 +159,18 @@ export class AbsorberInstance {
       mass: limit.mass,
     };
 
-    this.color = rangeColorToRgb(this._pluginManager, this.options.color) ?? {
+    this.color = rangeColorToRgb(this.#pluginManager, this.options.color) ?? {
       b: 0,
       g: 0,
       r: 0,
     };
 
-    this.position = this.initialPosition?.copy() ?? this._calcPosition();
+    this.position = this.#initialPosition?.copy() ?? this.#calcPosition();
 
-    this._firstSpawn = !this.options.life.wait;
-    this._lifeCount = this.options.life.count ?? defaultLifeCount;
-    this._immortal = this._lifeCount <= minLifeCount;
-    this._spawnDelay = container.retina.reduceFactor
+    this.#firstSpawn = !this.options.life.wait;
+    this.#lifeCount = this.options.life.count ?? defaultLifeCount;
+    this.#immortal = this.#lifeCount <= minLifeCount;
+    this.#spawnDelay = container.retina.reduceFactor
       ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
@@ -182,7 +182,7 @@ export class AbsorberInstance {
    * @param delta - the delta time of the frame, used for calculating the force between the particles and the absorber
    */
   attract(particle: OrbitingParticle, delta: IDelta): void {
-    const container = this._container,
+    const container = this.#container,
       options = this.options,
       pos = particle.getPosition(),
       { dx, dy, distance } = getDistances(this.position, pos),
@@ -202,14 +202,14 @@ export class AbsorberInstance {
         } else {
           particle.needsNewPosition = true;
 
-          this._updateParticlePosition(particle, delta, v);
+          this.#updateParticlePosition(particle, delta, v);
         }
       } else {
         if (options.destroy) {
           particle.size.value -= sizeFactor;
         }
 
-        this._updateParticlePosition(particle, delta, v);
+        this.#updateParticlePosition(particle, delta, v);
       }
 
       if (this.limit.radius <= minRadius || this.size < this.limit.radius) {
@@ -220,7 +220,7 @@ export class AbsorberInstance {
         this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
       }
     } else {
-      this._updateParticlePosition(particle, delta, v);
+      this.#updateParticlePosition(particle, delta, v);
     }
   }
 
@@ -233,7 +233,7 @@ export class AbsorberInstance {
     context.beginPath();
     context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
     context.closePath();
-    context.fillStyle = getStyleFromRgb(this.color, this._container.hdr, this.opacity);
+    context.fillStyle = getStyleFromRgb(this.color, this.#container.hdr, this.opacity);
     context.fill();
   }
 
@@ -241,12 +241,12 @@ export class AbsorberInstance {
    * The resize method, for fixing the Absorber position
    */
   resize(): void {
-    const initialPosition = this.initialPosition;
+    const initialPosition = this.#initialPosition;
 
     this.position =
-      initialPosition && isPointInside(initialPosition, this._container.canvas.size, Vector.origin)
+      initialPosition && isPointInside(initialPosition, this.#container.canvas.size, Vector.origin)
         ? initialPosition
-        : this._calcPosition();
+        : this.#calcPosition();
   }
 
   /**
@@ -254,44 +254,44 @@ export class AbsorberInstance {
    * @param delta - the delta time of the frame
    */
   update(delta: IDelta): void {
-    if (this._firstSpawn) {
-      this._firstSpawn = false;
+    if (this.#firstSpawn) {
+      this.#firstSpawn = false;
 
-      this._currentSpawnDelay = this._spawnDelay ?? defaultSpawnDelay;
+      this.#currentSpawnDelay = this.#spawnDelay ?? defaultSpawnDelay;
     }
 
-    if (this._duration !== undefined) {
-      this._currentDuration += delta.value;
+    if (this.#duration !== undefined) {
+      this.#currentDuration += delta.value;
 
-      if (this._currentDuration >= this._duration) {
-        if (!this._immortal) {
-          this._lifeCount--;
+      if (this.#currentDuration >= this.#duration) {
+        if (!this.#immortal) {
+          this.#lifeCount--;
         }
 
-        if (this._lifeCount > minLifeCount || this._immortal) {
-          this.position = this._calcPosition();
+        if (this.#lifeCount > minLifeCount || this.#immortal) {
+          this.position = this.#calcPosition();
 
-          this._spawnDelay = this._container.retina.reduceFactor
+          this.#spawnDelay = this.#container.retina.reduceFactor
             ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
-              this._container.retina.reduceFactor
+              this.#container.retina.reduceFactor
             : Infinity;
         }
 
-        this._currentDuration -= this._duration;
+        this.#currentDuration -= this.#duration;
 
-        delete this._duration;
+        this.#duration = undefined;
       }
     }
 
-    if (this._spawnDelay !== undefined) {
-      this._currentSpawnDelay += delta.value;
+    if (this.#spawnDelay !== undefined) {
+      this.#currentSpawnDelay += delta.value;
 
-      if (this._currentSpawnDelay >= this._spawnDelay) {
-        this.play();
+      if (this.#currentSpawnDelay >= this.#spawnDelay) {
+        this.#play();
 
-        this._currentSpawnDelay -= this._spawnDelay;
+        this.#currentSpawnDelay -= this.#spawnDelay;
 
-        delete this._spawnDelay;
+        this.#spawnDelay = undefined;
       }
     }
   }
@@ -301,9 +301,9 @@ export class AbsorberInstance {
    * @internal
    * @returns the calculated position for the absorber
    */
-  private readonly _calcPosition: () => Vector = () => {
+  readonly #calcPosition: () => Vector = () => {
     const exactPosition = calcPositionOrRandomFromSizeRanged({
-      size: this._container.canvas.size,
+      size: this.#container.canvas.size,
       position: this.options.position,
     });
 
@@ -311,15 +311,33 @@ export class AbsorberInstance {
   };
 
   /**
+   * Play method that prepares the absorber to be drawn and updated
+   */
+  readonly #play: () => void = () => {
+    if (
+      !(
+        (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
+        (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
+      )
+    ) {
+      return;
+    }
+
+    if (this.#lifeCount > minLifeCount || this.#immortal) {
+      this.#prepareToDie();
+    }
+  };
+
+  /**
    * Prepares the absorber to die by calculating its life duration
    * @internal
    */
-  private readonly _prepareToDie: () => void = () => {
+  readonly #prepareToDie: () => void = () => {
     const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
       minDuration = 0;
 
-    if ((this._lifeCount > minLifeCount || this._immortal) && duration !== undefined && duration > minDuration) {
-      this._duration = duration * millisecondsToSeconds;
+    if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
+      this.#duration = duration * millisecondsToSeconds;
     }
   };
 
@@ -330,7 +348,7 @@ export class AbsorberInstance {
    * @param v - the vector used for calculating the distance between the Absorber and the particle
    * @internal
    */
-  private readonly _updateParticlePosition: (particle: OrbitingParticle, delta: IDelta, v: Vector) => void = (
+  readonly #updateParticlePosition: (particle: OrbitingParticle, delta: IDelta, v: Vector) => void = (
     particle,
     delta,
     v,
@@ -339,7 +357,7 @@ export class AbsorberInstance {
       return;
     }
 
-    const container = this._container,
+    const container = this.#container,
       canvasSize = container.canvas.size;
 
     if (particle.needsNewPosition) {
@@ -391,24 +409,6 @@ export class AbsorberInstance {
       particle.absorberOrbit.angle += moveSpeed * angleIncrementFactor * container.retina.reduceFactor;
     } else {
       particle.velocity.addTo(v);
-    }
-  };
-
-  /**
-   * Play method that prepares the absorber to be drawn and updated
-   */
-  private readonly play: () => void = () => {
-    if (
-      !(
-        (this._lifeCount > minLifeCount || this._immortal || !this.options.life.count) &&
-        (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? defaultSpawnDelay))
-      )
-    ) {
-      return;
-    }
-
-    if (this._lifeCount > minLifeCount || this._immortal) {
-      this._prepareToDie();
     }
   };
 }

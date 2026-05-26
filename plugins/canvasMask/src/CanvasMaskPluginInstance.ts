@@ -9,20 +9,20 @@ import { addParticlesFromCanvasPixels } from "./utils.js";
  */
 export class CanvasMaskPluginInstance implements IContainerPlugin {
   /** The canvas mask container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * @param container - the container using the canvas mask
    */
   constructor(container: CanvasMaskContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   /**
    * Initializes the canvas mask, loading pixel data from the configured source
    */
   async init(): Promise<void> {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions.canvasMask;
 
     if (!options?.enable) {

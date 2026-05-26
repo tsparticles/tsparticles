@@ -7,16 +7,16 @@ import { Trail } from "./Options/Classes/Trail.js";
 export class TrailPlugin implements IPlugin {
   readonly id = "trail";
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { TrailPluginInstance } = await import("./TrailPluginInstance.js");
 
-    return new TrailPluginInstance(this._pluginManager, container);
+    return new TrailPluginInstance(this.#pluginManager, container);
   }
 
   loadOptions(_container: Container, options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {

@@ -7,16 +7,16 @@ const minStagesCount = 1;
 /**
  */
 export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContainer> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: InfectableContainer) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   clear(): void {
@@ -54,7 +54,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
       return;
     }
 
-    this._maxDistance = Math.max(this._maxDistance, infectionStage1.radius);
+    this.#maxDistance = Math.max(this.#maxDistance, infectionStage1.radius);
 
     const pxRatio = container.retina.pixelRatio,
       radius = p1.getRadius() * double + infectionStage1.radius * pxRatio,

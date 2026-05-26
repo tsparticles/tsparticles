@@ -193,11 +193,11 @@ export class PoissonDisc {
         continue;
       }
 
-      this._step();
+      this.#step();
     } // n loop
   }
 
-  private _getNewPoint(currentPoint: IPoissonPoint, tries: number): ICoordinates | undefined {
+  #getNewPoint(currentPoint: IPoissonPoint, tries: number): ICoordinates | undefined {
     const minCoordinate = 0,
       gridMinValue = 0,
       maxNeighbourIndex = 1,
@@ -283,7 +283,7 @@ export class PoissonDisc {
     return newPoint;
   }
 
-  private _step(): void {
+  #step(): void {
     const minCount = 0,
       randomActive = this.getRandom(minCount, this.active.length);
 
@@ -302,7 +302,7 @@ export class PoissonDisc {
         continue;
       }
 
-      const newPoint = this._getNewPoint(point, tries);
+      const newPoint = this.#getNewPoint(point, tries);
 
       if (newPoint) {
         /* Valid, add this point */

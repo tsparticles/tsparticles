@@ -24,14 +24,14 @@ const maxAngle = 360;
 /** Tilt updater plugin */
 export class TiltUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly container;
+  readonly #container;
 
   /**
    * TiltUpdater constructor
    * @param container
    */
   constructor(container: Container) {
-    this.container = container;
+    this.#container = container;
   }
 
   /**
@@ -93,7 +93,7 @@ export class TiltUpdater implements IParticleUpdater {
 
     if (tiltAnimation?.enable) {
       particle.tilt.decay = identity - getRangeValue(tiltAnimation.decay);
-      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this.container.retina.reduceFactor;
+      particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / maxAngle) * this.#container.retina.reduceFactor;
 
       if (!tiltAnimation.sync) {
         particle.tilt.velocity *= getRandom();

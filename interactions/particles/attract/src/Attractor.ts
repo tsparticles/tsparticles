@@ -8,17 +8,17 @@ const attractFactor = 1000,
 
 /** Particle attract interactor */
 export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: Container) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -42,8 +42,8 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     if (isNull(p1.attractDistance)) {
       const attractDistance = getRangeValue(p1.options.attract.distance);
 
-      if (attractDistance > this._maxDistance) {
-        this._maxDistance = attractDistance;
+      if (attractDistance > this.#maxDistance) {
+        this.#maxDistance = attractDistance;
       }
 
       p1.attractDistance = attractDistance * container.retina.pixelRatio;

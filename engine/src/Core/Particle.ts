@@ -357,32 +357,32 @@ export class Particle {
    */
   zIndexFactor!: number;
 
-  private readonly _cachedOpacityData: IParticleOpacityData = {
+  readonly #cachedOpacityData: IParticleOpacityData = {
     fillOpacity: defaultOpacity,
     opacity: defaultOpacity,
     strokeOpacity: defaultOpacity,
   };
 
-  private readonly _cachedPosition = Vector3d.origin;
-  private readonly _cachedRotateData: IParticleRotateData = { sin: 0, cos: 0 };
-  private readonly _cachedTransform: IParticleTransformValues = {
+  readonly #cachedPosition = Vector3d.origin;
+  readonly #cachedRotateData: IParticleRotateData = { sin: 0, cos: 0 };
+  readonly #cachedTransform: IParticleTransformValues = {
     a: 1,
     b: 0,
     c: 0,
     d: 1,
   };
 
-  private readonly _container;
+  readonly #container;
 
   /**
    * Gets the particle containing engine instance
    * @internal
    */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   /**
@@ -398,7 +398,7 @@ export class Particle {
     this.bubble.inRange = false;
     this.slow.inRange = false;
 
-    const container = this._container,
+    const container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
@@ -411,7 +411,7 @@ export class Particle {
       updater.particleDestroyed?.(this, override);
     }
 
-    this._container.dispatchEvent(EventType.particleDestroyed, {
+    this.#container.dispatchEvent(EventType.particleDestroyed, {
       particle: this,
     });
   }
@@ -421,7 +421,7 @@ export class Particle {
    * @param delta -
    */
   draw(delta: IDelta): void {
-    const container = this._container,
+    const container = this.#container,
       render = container.canvas.render;
 
     render.drawParticlePlugins(this, delta);
@@ -441,7 +441,7 @@ export class Particle {
    * @returns the fill color object
    */
   getFillColor(): IHsl | undefined {
-    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
+    return this.#getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
   }
 
   /**
@@ -464,11 +464,11 @@ export class Particle {
       fillOpacity = this.fillOpacity ?? defaultOpacity,
       strokeOpacity = this.strokeOpacity ?? defaultOpacity;
 
-    this._cachedOpacityData.fillOpacity = opacity * fillOpacity * zOpacityFactor;
-    this._cachedOpacityData.opacity = opacity * zOpacityFactor;
-    this._cachedOpacityData.strokeOpacity = opacity * strokeOpacity * zOpacityFactor;
+    this.#cachedOpacityData.fillOpacity = opacity * fillOpacity * zOpacityFactor;
+    this.#cachedOpacityData.opacity = opacity * zOpacityFactor;
+    this.#cachedOpacityData.strokeOpacity = opacity * strokeOpacity * zOpacityFactor;
 
-    return this._cachedOpacityData;
+    return this.#cachedOpacityData;
   }
 
   /**
@@ -476,11 +476,11 @@ export class Particle {
    * @returns the particle position
    */
   getPosition(): ICoordinates3d {
-    this._cachedPosition.x = this.position.x + this.offset.x;
-    this._cachedPosition.y = this.position.y + this.offset.y;
-    this._cachedPosition.z = this.position.z;
+    this.#cachedPosition.x = this.position.x + this.offset.x;
+    this.#cachedPosition.y = this.position.y + this.offset.y;
+    this.#cachedPosition.z = this.position.z;
 
-    return this._cachedPosition;
+    return this.#cachedPosition;
   }
 
   /**
@@ -498,10 +498,10 @@ export class Particle {
   getRotateData(): IParticleRotateData {
     const angle = this.getAngle();
 
-    this._cachedRotateData.sin = Math.sin(angle);
-    this._cachedRotateData.cos = Math.cos(angle);
+    this.#cachedRotateData.sin = Math.sin(angle);
+    this.#cachedRotateData.cos = Math.cos(angle);
 
-    return this._cachedRotateData;
+    return this.#cachedRotateData;
   }
 
   /**
@@ -509,7 +509,7 @@ export class Particle {
    * @returns the stroke color
    */
   getStrokeColor(): IHsl | undefined {
-    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
+    return this.#getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
   }
 
   /**
@@ -521,16 +521,16 @@ export class Particle {
     const rotateData = this.getRotateData(),
       rotating = this.isRotating;
 
-    this._cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);
-    this._cachedTransform.b = rotating
+    this.#cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);
+    this.#cachedTransform.b = rotating
       ? rotateData.sin * (externalTransform.b ?? identity)
       : (externalTransform.b ?? defaultTransform.b);
-    this._cachedTransform.c = rotating
+    this.#cachedTransform.c = rotating
       ? -rotateData.sin * (externalTransform.c ?? identity)
       : (externalTransform.c ?? defaultTransform.c);
-    this._cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);
+    this.#cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);
 
-    return this._cachedTransform;
+    return this.#cachedTransform;
   }
 
   /**
@@ -546,7 +546,7 @@ export class Particle {
     overrideOptions?: RecursivePartial<IParticlesOptions>,
     group?: string,
   ): void {
-    const container = this._container;
+    const container = this.#container;
 
     this.id = id;
     this.group = group;
@@ -577,7 +577,7 @@ export class Particle {
     this.ignoresResizeRatio = true;
 
     const mainOptions = container.actualOptions,
-      particlesOptions = loadParticlesOptions(this._pluginManager, container, mainOptions.particles),
+      particlesOptions = loadParticlesOptions(this.#pluginManager, container, mainOptions.particles),
       reduceDuplicates = particlesOptions.reduceDuplicates,
       effectType = particlesOptions.effect.type,
       shapeType = particlesOptions.shape.type;
@@ -613,13 +613,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this._container.effectDrawers.keys()];
+      const availableEffects = [...this.#container.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this._container.shapeDrawers.keys()];
+      const availableShapes = [...this.#container.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -659,10 +659,10 @@ export class Particle {
       factor: 1,
     };
 
-    this._initPosition(position);
+    this.#initPosition(position);
 
     /* animation - velocity for speed */
-    this.initialVelocity = this._calculateVelocity();
+    this.initialVelocity = this.#calculateVelocity();
     this.velocity = this.initialVelocity.copy();
 
     // Scale z-index factor
@@ -713,7 +713,7 @@ export class Particle {
    * @returns true if the particle is still inside the canvas
    */
   isInsideCanvas(direction?: OutModeDirection): boolean {
-    return this._getInsideCanvasResult({ direction }).inside;
+    return this.#getInsideCanvasResult({ direction }).inside;
   }
 
   /**
@@ -723,7 +723,7 @@ export class Particle {
    * @returns true if the particle is still inside for the given strategy
    */
   isInsideCanvasForOutMode(outMode: OutMode | keyof typeof OutMode, direction?: OutModeDirection): boolean {
-    return this._getInsideCanvasResult({ direction, outMode }).inside;
+    return this.#getInsideCanvasResult({ direction, outMode }).inside;
   }
 
   /**
@@ -773,19 +773,19 @@ export class Particle {
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
-    for (const updater of this._container.particleUpdaters) {
+    for (const updater of this.#container.particleUpdaters) {
       updater.reset?.(this);
     }
   }
 
-  private readonly _calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
+  readonly #calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
     position,
     zIndex,
   ) => {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-    const container = this._container,
+    const container = this.#container,
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
@@ -809,10 +809,10 @@ export class Particle {
         pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex);
 
       /* check position - into the canvas */
-      this._fixHorizontal(pos, radius, outModes.left ?? outModes.default);
-      this._fixHorizontal(pos, radius, outModes.right ?? outModes.default);
-      this._fixVertical(pos, radius, outModes.top ?? outModes.default);
-      this._fixVertical(pos, radius, outModes.bottom ?? outModes.default);
+      this.#fixHorizontal(pos, radius, outModes.left ?? outModes.default);
+      this.#fixHorizontal(pos, radius, outModes.right ?? outModes.default);
+      this.#fixVertical(pos, radius, outModes.top ?? outModes.default);
+      this.#fixVertical(pos, radius, outModes.bottom ?? outModes.default);
 
       let isValidPosition = true;
 
@@ -836,7 +836,7 @@ export class Particle {
     return posVec;
   };
 
-  private readonly _calculateVelocity: () => Vector = () => {
+  readonly #calculateVelocity: () => Vector = () => {
     const moveOptions = this.options.move,
       baseVelocity = getParticleBaseVelocity(this.direction),
       res = baseVelocity.copy();
@@ -863,42 +863,34 @@ export class Particle {
     return res;
   };
 
-  private readonly _fixHorizontal = (
-    pos: ICoordinates,
-    radius: number,
-    outMode: OutMode | keyof typeof OutMode,
-  ): void => {
+  readonly #fixHorizontal = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.x,
-      maxCoord: this._container.canvas.size.width,
+      maxCoord: this.#container.canvas.size.width,
       setCb: (value: number) => (pos.x += value),
       radius,
     });
   };
 
-  private readonly _fixVertical = (
-    pos: ICoordinates,
-    radius: number,
-    outMode: OutMode | keyof typeof OutMode,
-  ): void => {
+  readonly #fixVertical = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
       coord: pos.y,
-      maxCoord: this._container.canvas.size.height,
+      maxCoord: this.#container.canvas.size.height,
       setCb: (value: number) => (pos.y += value),
       radius,
     });
   };
 
-  private readonly _getDefaultInsideCanvasResult = (
+  readonly #getDefaultInsideCanvasResult = (
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsResult => {
     const radius = this.getRadius(),
-      canvasSize = this._container.canvas.size,
+      canvasSize = this.#container.canvas.size,
       position = this.position,
       isBounce = outMode === OutMode.bounce;
 
@@ -940,12 +932,12 @@ export class Particle {
     };
   };
 
-  private readonly _getInsideCanvasCallbackData = (
+  readonly #getInsideCanvasCallbackData = (
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
   ): IParticleCanvasBoundsData => {
     return {
-      canvasSize: this._container.canvas.size,
+      canvasSize: this.#container.canvas.size,
       direction,
       outMode,
       particle: this,
@@ -953,12 +945,12 @@ export class Particle {
     };
   };
 
-  private readonly _getInsideCanvasResult = (data: {
+  readonly #getInsideCanvasResult = (data: {
     direction?: OutModeDirection;
     outMode?: OutMode | keyof typeof OutMode;
   }): IParticleCanvasBoundsResult => {
-    const defaultResult = this._getDefaultInsideCanvasResult(data.direction, data.outMode),
-      container = this._container,
+    const defaultResult = this.#getDefaultInsideCanvasResult(data.direction, data.outMode),
+      container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
       effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined,
       shapeCheck = shapeDrawer?.isInsideCanvas,
@@ -968,9 +960,9 @@ export class Particle {
       return defaultResult;
     }
 
-    const callbackData = this._getInsideCanvasCallbackData(data.direction, data.outMode),
-      shapeResult = shapeCheck ? this._normalizeInsideCanvasResult(shapeCheck(callbackData), "shape") : undefined,
-      effectResult = effectCheck ? this._normalizeInsideCanvasResult(effectCheck(callbackData), "effect") : undefined;
+    const callbackData = this.#getInsideCanvasCallbackData(data.direction, data.outMode),
+      shapeResult = shapeCheck ? this.#normalizeInsideCanvasResult(shapeCheck(callbackData), "shape") : undefined,
+      effectResult = effectCheck ? this.#normalizeInsideCanvasResult(effectCheck(callbackData), "effect") : undefined;
 
     if (shapeResult && effectResult) {
       const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle);
@@ -985,7 +977,7 @@ export class Particle {
     return shapeResult ?? effectResult ?? defaultResult;
   };
 
-  private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
+  readonly #getRollColor: (color?: IHsl) => IHsl | undefined = color => {
     if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
       return color;
     }
@@ -1005,10 +997,10 @@ export class Particle {
     return color;
   };
 
-  private readonly _initPosition: (position?: ICoordinates) => void = position => {
-    const container = this._container,
+  readonly #initPosition: (position?: ICoordinates) => void = position => {
+    const container = this.#container,
       zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value)),
-      initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+      initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
     if (!initialPosition) {
       throw new Error("a valid position cannot be found for particle");
@@ -1043,7 +1035,7 @@ export class Particle {
     this.offset = Vector.origin;
   };
 
-  private readonly _normalizeInsideCanvasResult = (
+  readonly #normalizeInsideCanvasResult = (
     result: boolean | IParticleCanvasBoundsResult,
     reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,
   ): IParticleCanvasBoundsResult => {

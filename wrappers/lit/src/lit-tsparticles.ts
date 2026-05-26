@@ -80,23 +80,23 @@ export class LitParticles extends LitElement {
 
   container?: Container;
 
-  private renderId = 0;
+  #renderId = 0;
 
   update(changedProperties: PropertyValues) {
     super.update(changedProperties);
 
-    void this.loadParticles(++this.renderId);
+    void this.#loadParticles(++this.#renderId);
   }
 
   disconnectedCallback(): void {
-    this.renderId++;
+    this.#renderId++;
     this.container?.destroy();
     this.container = undefined;
 
     super.disconnectedCallback();
   }
 
-  private async loadParticles(currentRenderId: number): Promise<void> {
+  async #loadParticles(currentRenderId: number): Promise<void> {
     await waitForParticlesEngineInitialization();
 
     if (!isParticlesEngineInitialized()) {
@@ -117,7 +117,7 @@ export class LitParticles extends LitElement {
       throw new Error("No options or url provided");
     }
 
-    if (currentRenderId !== this.renderId) {
+    if (currentRenderId !== this.#renderId) {
       container?.destroy();
 
       return;

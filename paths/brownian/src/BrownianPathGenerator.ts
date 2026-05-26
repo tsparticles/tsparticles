@@ -9,17 +9,17 @@ export class BrownianPathGenerator implements IMovePathGenerator {
   /** Brownian path options */
   readonly options: IBrownianPathOptions;
   /** The particles container */
-  private readonly _container: Container;
+  readonly #container: Container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * BrownianPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
 
     this.options = {
       angleDelta: Math.PI / 12,
@@ -47,15 +47,15 @@ export class BrownianPathGenerator implements IMovePathGenerator {
     p.velocity.x = 0;
     p.velocity.y = 0;
 
-    this._res.length = b.speed * damping;
-    this._res.angle = b.angle;
+    this.#res.length = b.speed * damping;
+    this.#res.angle = b.angle;
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator options */
   init(): void {
-    const source = this._container.actualOptions.particles.move.path.options;
+    const source = this.#container.actualOptions.particles.move.path.options;
 
     this.options.angleDelta = (source["angleDelta"] as number | undefined) ?? this.options.angleDelta;
     this.options.damping = (source["damping"] as number | undefined) ?? this.options.damping;

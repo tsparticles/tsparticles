@@ -5,22 +5,22 @@ const noParticles = 0;
 
 export class ManualParticlesPluginInstance implements IContainerPlugin {
   /** The manual particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * Creates a new ManualParticlesPluginInstance
    * @param container - the manual particles container
    */
   constructor(container: ManualParticlesContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   particlesDensityCount(): number {
-    return this._container.actualOptions.manualParticles?.length ?? noParticles;
+    return this.#container.actualOptions.manualParticles?.length ?? noParticles;
   }
 
   particlesInitialization(): boolean {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions;
 
     options.manualParticles?.forEach(p =>

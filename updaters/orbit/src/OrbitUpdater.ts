@@ -24,9 +24,9 @@ const defaultOrbitSpeed = 0,
 /** Orbit updater plugin */
 export class OrbitUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * OrbitUpdater constructor
@@ -34,8 +34,8 @@ export class OrbitUpdater implements IParticleUpdater {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: OrbitContainer) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   /**
@@ -68,7 +68,7 @@ export class OrbitUpdater implements IParticleUpdater {
    * @param type
    */
   drawOrbit(particle: OrbitParticle, type: OrbitType): void {
-    const container = this._container;
+    const container = this.#container;
 
     let start: number, end: number;
 
@@ -108,7 +108,7 @@ export class OrbitUpdater implements IParticleUpdater {
    */
   init(particle: OrbitParticle): void {
     /* orbit */
-    const container = this._container,
+    const container = this.#container,
       particlesOptions = particle.options,
       orbitOptions = particlesOptions.orbit;
 
@@ -117,7 +117,7 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-    particle.orbitColor = rangeColorToHsl(this._pluginManager, orbitOptions.color);
+    particle.orbitColor = rangeColorToHsl(this.#pluginManager, orbitOptions.color);
     particle.retina.orbitRadius =
       orbitOptions.radius !== undefined ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio : undefined;
     container.retina.orbitRadius = particle.retina.orbitRadius;

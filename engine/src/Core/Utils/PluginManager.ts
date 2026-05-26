@@ -82,25 +82,25 @@ export class PluginManager {
    */
   readonly updaters = new Map<Container, IParticleUpdater[]>();
 
-  private _allLoadersSet = new Set<LoadPluginFunction>();
+  #allLoadersSet = new Set<LoadPluginFunction>();
 
-  private readonly _configs = new Map<string, ISourceOptions>();
+  readonly #configs = new Map<string, ISourceOptions>();
 
-  private readonly _engine;
+  readonly #engine;
 
-  private _executedSet = new Set<LoadPluginFunction>();
+  #executedSet = new Set<LoadPluginFunction>();
 
   /**
    * Checks if the engine instance is initialized
    */
-  private _initialized = false;
+  #initialized = false;
 
-  private _isRunningLoaders = false;
+  #isRunningLoaders = false;
 
-  private readonly _loadPromises = new Set<LoadPluginFunction>();
+  readonly #loadPromises = new Set<LoadPluginFunction>();
 
   constructor(engine: Engine) {
-    this._engine = engine;
+    this.#engine = engine;
   }
 
   /**
@@ -110,7 +110,7 @@ export class PluginManager {
   get configs(): Record<string, ISourceOptions> {
     const res: Record<string, ISourceOptions> = {};
 
-    for (const [name, config] of this._configs) {
+    for (const [name, config] of this.#configs) {
       res[name] = config;
     }
 
@@ -133,8 +133,8 @@ export class PluginManager {
   addConfig(config: ISourceOptions): void {
     const key = config.key ?? config.name ?? "default";
 
-    this._configs.set(key, config);
-    this._engine.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
+    this.#configs.set(key, config);
+    this.#engine.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
   }
 
   /**
@@ -294,23 +294,23 @@ export class PluginManager {
    * init method, used by imports
    */
   async init(): Promise<void> {
-    if (this._initialized || this._isRunningLoaders) {
+    if (this.#initialized || this.#isRunningLoaders) {
       return;
     }
 
-    this._isRunningLoaders = true;
+    this.#isRunningLoaders = true;
 
-    this._executedSet = new Set<LoadPluginFunction>();
-    this._allLoadersSet = new Set(this._loadPromises);
+    this.#executedSet = new Set<LoadPluginFunction>();
+    this.#allLoadersSet = new Set(this.#loadPromises);
 
     try {
-      for (const loader of this._allLoadersSet) {
-        await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+      for (const loader of this.#allLoadersSet) {
+        await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
       }
     } finally {
-      this._loadPromises.clear();
-      this._isRunningLoaders = false;
-      this._initialized = true;
+      this.#loadPromises.clear();
+      this.#isRunningLoaders = false;
+      this.#initialized = true;
     }
   }
 
@@ -339,20 +339,20 @@ export class PluginManager {
    * @param loaders - the plugin loader functions to register
    */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
-    if (this._initialized) {
+    if (this.#initialized) {
       throw new Error("Register plugins can only be done before calling tsParticles.load()");
     }
 
     for (const loader of loaders) {
-      if (this._isRunningLoaders) {
-        await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+      if (this.#isRunningLoaders) {
+        await this.#runLoader(loader, this.#executedSet, this.#allLoadersSet);
       } else {
-        this._loadPromises.add(loader);
+        this.#loadPromises.add(loader);
       }
     }
   }
 
-  private async _runLoader(
+  async #runLoader(
     loader: LoadPluginFunction,
     executed: Set<LoadPluginFunction>,
     allLoaders: Set<LoadPluginFunction>,
@@ -362,6 +362,6 @@ export class PluginManager {
     executed.add(loader);
     allLoaders.add(loader);
 
-    await loader(this._engine);
+    await loader(this.#engine);
   }
 }

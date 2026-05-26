@@ -16,9 +16,9 @@ import { Twinkle } from "./Options/Classes/Twinkle.js";
 /** Twinkle updater plugin */
 export class TwinkleUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * TwinkleUpdater constructor
@@ -26,8 +26,8 @@ export class TwinkleUpdater implements IParticleUpdater {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   /**
@@ -44,7 +44,7 @@ export class TwinkleUpdater implements IParticleUpdater {
     opacity: number,
   ): IParticleColorStyle {
     const pOptions = particle.options,
-      { _container: container } = this,
+      container = this.#container,
       twinkleOptions = pOptions["twinkle"] as Twinkle | undefined;
 
     if (!twinkleOptions) {
@@ -57,8 +57,8 @@ export class TwinkleUpdater implements IParticleUpdater {
       zOffset = 1,
       zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
       twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-      twinkleFillRgb = rangeColorToHsl(this._pluginManager, twinkle.fillColor),
-      twinkleStrokeRgb = rangeColorToHsl(this._pluginManager, twinkle.strokeColor),
+      twinkleFillRgb = rangeColorToHsl(this.#pluginManager, twinkle.fillColor),
+      twinkleStrokeRgb = rangeColorToHsl(this.#pluginManager, twinkle.strokeColor),
       getTwinkleFillStyle = (): string | undefined => {
         if (!twinkleFillRgb) {
           return undefined;

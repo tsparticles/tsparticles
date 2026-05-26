@@ -20,8 +20,10 @@ const minVelocity = 0,
 
 export class OutOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
+  readonly #container: Container;
 
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this.#container = container;
     this.modes = [OutMode.out];
   }
 
@@ -35,7 +37,7 @@ export class OutOutMode implements IOutModeManager {
       return;
     }
 
-    const container = this.container;
+    const container = this.#container;
 
     switch (particle.outType) {
       case ParticleOutType.inside: {

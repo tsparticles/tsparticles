@@ -29,14 +29,14 @@ export class CurvesPathGenerator implements IMovePathGenerator {
   readonly options;
 
   /** The particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * CurvesPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
 
     this.options = deepExtend({}, defaultOptions) as ICurvesOptions;
   }
@@ -47,7 +47,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
    */
   generate(particle: CurvesPathParticle): Vector {
     if (!particle.pathGen) {
-      const { options } = this;
+      const options = this.options;
 
       particle.pathGen = CurvesPathGen(
         options.rndFunc,
@@ -77,7 +77,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this._container.actualOptions.particles.move.path.options;
+    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
 
     if (isFunction(sourceOptions["rndFunc"])) {
       this.options.rndFunc = sourceOptions["rndFunc"] as () => number;

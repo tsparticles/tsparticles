@@ -3,18 +3,18 @@ import type { ResponsiveContainer } from "./types.js";
 
 export class ResponsivePluginInstance implements IContainerPlugin {
   /** The responsive container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * Creates a new ResponsivePluginInstance
    * @param container - the responsive container
    */
   constructor(container: ResponsiveContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   updateActualOptions(): boolean {
-    const container = this._container;
+    const container = this.#container;
 
     container.actualOptions.responsive = [];
 

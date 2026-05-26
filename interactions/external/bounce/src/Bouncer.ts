@@ -16,17 +16,17 @@ const bounceMode = "bounce";
 
 /** Particle bounce manager */
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: BounceContainer) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -43,7 +43,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
       return;
     }
 
-    this._maxDistance = bounce.distance;
+    this.#maxDistance = bounce.distance;
 
     container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
   }

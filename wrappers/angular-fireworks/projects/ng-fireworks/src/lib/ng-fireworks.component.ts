@@ -12,7 +12,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnDestroy {
   @Input() options?: FireworkOptions;
   @Input() id = "tsparticles";
 
-  private fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
+  #fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
 
   constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
 
@@ -22,12 +22,12 @@ export class NgxFireworksComponent implements AfterViewInit, OnDestroy {
     }
 
     void fireworks(this.id, this.options).then(firework => {
-      this.fireworksInstance = firework;
+      this.#fireworksInstance = firework;
     });
   }
 
   public ngOnDestroy(): void {
-    this.fireworksInstance?.stop();
-    this.fireworksInstance = undefined;
+    this.#fireworksInstance?.stop();
+    this.#fireworksInstance = undefined;
   }
 }

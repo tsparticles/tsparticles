@@ -14,37 +14,37 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
   redrawTimeout?: number;
 
   /** The poisson container */
-  private readonly _container: PoissonContainer;
+  readonly #container: PoissonContainer;
   /** The current point index */
-  private _currentIndex: number;
+  #currentIndex: number;
 
   /**
    * Creates a new PoissonDiscPluginInstance
    * @param container - the poisson container
    */
   constructor(container: PoissonContainer) {
-    this._container = container;
-    this._currentIndex = 0;
+    this.#container = container;
+    this.#currentIndex = 0;
   }
 
   /** @inheritDoc */
   async init(): Promise<void> {
-    await this._initData();
+    await this.#initData();
   }
 
   particlePosition(position?: ICoordinates): ICoordinates | undefined {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions.poisson;
 
-    if (!this.poissonDisc || !(options?.enable ?? false) || this._currentIndex >= this.poissonDisc.points.length) {
+    if (!this.poissonDisc || !(options?.enable ?? false) || this.#currentIndex >= this.poissonDisc.points.length) {
       return;
     }
 
-    return position ?? this.poissonDisc.points[this._currentIndex++]?.position;
+    return position ?? this.poissonDisc.points[this.#currentIndex++]?.position;
   }
 
   resize(): void {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions.poisson;
 
     if (!(options?.enable ?? false)) {
@@ -59,11 +59,11 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
 
     this.redrawTimeout = setTimeout(() => {
       void (async (): Promise<void> => {
-        if (this._container.destroyed) {
+        if (this.#container.destroyed) {
           return;
         }
 
-        await this._initData();
+        await this.#initData();
 
         await container.particles.redraw();
       })();
@@ -74,8 +74,8 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
     delete this.poissonDisc;
   }
 
-  private async _initData(): Promise<void> {
-    const container = this._container,
+  async #initData(): Promise<void> {
+    const container = this.#container,
       poissonOptions = container.actualOptions.poisson,
       particlesOptions = container.actualOptions.particles,
       canvasSize = container.canvas.size,
@@ -85,7 +85,7 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
       return;
     }
 
-    this._currentIndex = 0;
+    this.#currentIndex = 0;
 
     const { PoissonDisc } = await import("./PoissonDisc.js");
 

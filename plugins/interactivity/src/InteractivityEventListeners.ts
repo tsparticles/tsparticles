@@ -41,12 +41,12 @@ interface InteractivityEventListenersHandlers {
  * Particles container event listeners manager
  */
 export class InteractivityEventListeners {
-  private _canPush = true;
-  private readonly _clickPositionPlugins: IContainerPlugin[];
-  private readonly _container;
-  private readonly _handlers: InteractivityEventListenersHandlers;
-  private readonly _interactionManager: InteractionManager;
-  private readonly _touches: Map<number, number>;
+  #canPush = true;
+  readonly #clickPositionPlugins: IContainerPlugin[];
+  readonly #container;
+  readonly #handlers: InteractivityEventListenersHandlers;
+  readonly #interactionManager: InteractionManager;
+  readonly #touches: Map<number, number>;
 
   /**
    * Events listener constructor
@@ -54,40 +54,40 @@ export class InteractivityEventListeners {
    * @param interactionManager - the interaction manager instance
    */
   constructor(container: InteractivityContainer, interactionManager: InteractionManager) {
-    this._container = container;
-    this._clickPositionPlugins = [];
-    this._interactionManager = interactionManager;
-    this._touches = new Map<number, number>();
-    this._handlers = {
+    this.#container = container;
+    this.#clickPositionPlugins = [];
+    this.#interactionManager = interactionManager;
+    this.#touches = new Map<number, number>();
+    this.#handlers = {
       mouseDown: (): void => {
-        this._mouseDown();
+        this.#mouseDown();
       },
       mouseLeave: (): void => {
-        this._mouseTouchFinish();
+        this.#mouseTouchFinish();
       },
       mouseMove: (e): void => {
-        this._mouseTouchMove(e);
+        this.#mouseTouchMove(e);
       },
       mouseUp: (e): void => {
-        this._mouseTouchClick(e);
+        this.#mouseTouchClick(e);
       },
       touchStart: (e): void => {
-        this._touchStart(e);
+        this.#touchStart(e);
       },
       touchMove: (e): void => {
-        this._mouseTouchMove(e);
+        this.#mouseTouchMove(e);
       },
       touchEnd: (e): void => {
-        this._touchEnd(e);
+        this.#touchEnd(e);
       },
       touchCancel: (e: Event): void => {
-        this._touchEnd(e);
+        this.#touchEnd(e);
       },
       touchEndClick: (e): void => {
-        this._touchEndClick(e);
+        this.#touchEndClick(e);
       },
       visibilityChange: (): void => {
-        this._handleVisibilityChange();
+        this.#handleVisibilityChange();
       },
     };
   }
@@ -96,14 +96,14 @@ export class InteractivityEventListeners {
    * Adding all listeners
    */
   addListeners(): void {
-    this._manageListeners(true);
+    this.#manageListeners(true);
   }
 
   init(): void {
-    this._clickPositionPlugins.length = 0;
+    this.#clickPositionPlugins.length = 0;
 
-    for (const plugin of this._container.plugins.filter(p => !!p.clickPositionValid)) {
-      this._clickPositionPlugins.push(plugin);
+    for (const plugin of this.#container.plugins.filter(p => !!p.clickPositionValid)) {
+      this.#clickPositionPlugins.push(plugin);
     }
   }
 
@@ -111,19 +111,19 @@ export class InteractivityEventListeners {
    * Removing all listeners
    */
   removeListeners(): void {
-    this._manageListeners(false);
+    this.#manageListeners(false);
   }
 
   /**
    * Mouse/Touch click/tap event implementation
    * @param e - the click event arguments
    */
-  private readonly _doMouseTouchClick: (e: Event) => void = e => {
-    const container = this._container,
-      interactionManager = this._interactionManager,
+  readonly #doMouseTouchClick: (e: Event) => void = e => {
+    const container = this.#container,
+      interactionManager = this.#interactionManager,
       options = container.actualOptions;
 
-    if (this._canPush) {
+    if (this.#canPush) {
       const mouseInteractivity = interactionManager.interactivityData.mouse,
         mousePos = mouseInteractivity.position;
 
@@ -147,7 +147,7 @@ export class InteractivityEventListeners {
 
     if (e.type === "touchend") {
       setTimeout(() => {
-        this._mouseTouchFinish();
+        this.#mouseTouchFinish();
       }, touchDelay);
     }
   };
@@ -156,14 +156,14 @@ export class InteractivityEventListeners {
    * Handles blur event
    * @internal
    */
-  private readonly _handleVisibilityChange: () => void = () => {
-    this._mouseTouchFinish();
+  readonly #handleVisibilityChange: () => void = () => {
+    this.#mouseTouchFinish();
   };
 
-  private readonly _manageInteractivityListeners: (add: boolean) => void = add => {
-    const handlers = this._handlers,
-      container = this._container,
-      interactionManager = this._interactionManager,
+  readonly #manageInteractivityListeners: (add: boolean) => void = add => {
+    const handlers = this.#handlers,
+      container = this.#container,
+      interactionManager = this.#interactionManager,
       options = container.actualOptions,
       interactivityEl = interactionManager.interactivityData.element;
 
@@ -209,10 +209,10 @@ export class InteractivityEventListeners {
    * Initializing event listeners
    * @param add -
    */
-  private readonly _manageListeners: (add: boolean) => void = add => {
-    const handlers = this._handlers,
-      container = this._container,
-      interactionManager = this._interactionManager,
+  readonly #manageListeners: (add: boolean) => void = add => {
+    const handlers = this.#handlers,
+      container = this.#container,
+      interactionManager = this.#interactionManager,
       options = container.actualOptions,
       detectType = options.interactivity?.detectsOn,
       canvasEl = container.canvas.domElement;
@@ -226,7 +226,7 @@ export class InteractivityEventListeners {
       interactionManager.interactivityData.element = canvasEl;
     }
 
-    this._manageInteractivityListeners(add);
+    this.#manageInteractivityListeners(add);
 
     manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
   };
@@ -235,8 +235,8 @@ export class InteractivityEventListeners {
    * Handle mouse down event
    * @internal
    */
-  private readonly _mouseDown: () => void = () => {
-    const { interactivityData } = this._interactionManager,
+  readonly #mouseDown: () => void = () => {
+    const { interactivityData } = this.#interactionManager,
       { mouse } = interactivityData;
 
     mouse.clicking = true;
@@ -247,9 +247,9 @@ export class InteractivityEventListeners {
    * Mouse/Touch click/tap event
    * @param e - the click event arguments
    */
-  private readonly _mouseTouchClick: (e: Event) => void = e => {
-    const container = this._container,
-      interactionManager = this._interactionManager,
+  readonly #mouseTouchClick: (e: Event) => void = e => {
+    const container = this.#container,
+      interactionManager = this.#interactionManager,
       options = container.actualOptions,
       { mouse } = interactionManager.interactivityData;
 
@@ -263,7 +263,7 @@ export class InteractivityEventListeners {
       return;
     }
 
-    for (const plugin of this._clickPositionPlugins) {
+    for (const plugin of this.#clickPositionPlugins) {
       handled = plugin.clickPositionValid?.(mousePosition) ?? false;
 
       if (handled) {
@@ -272,7 +272,7 @@ export class InteractivityEventListeners {
     }
 
     if (!handled) {
-      this._doMouseTouchClick(e);
+      this.#doMouseTouchClick(e);
     }
 
     mouse.clicking = false;
@@ -281,8 +281,8 @@ export class InteractivityEventListeners {
   /**
    * Mouse/Touch event finish
    */
-  private readonly _mouseTouchFinish: () => void = () => {
-    const { interactivityData } = this._interactionManager,
+  readonly #mouseTouchFinish: () => void = () => {
+    const { interactivityData } = this.#interactionManager,
       { mouse } = interactivityData;
 
     delete mouse.position;
@@ -299,9 +299,9 @@ export class InteractivityEventListeners {
    * Mouse/Touch move event
    * @param e - the event arguments
    */
-  private readonly _mouseTouchMove: (e: Event) => void = e => {
-    const container = this._container,
-      interactionManager = this._interactionManager,
+  readonly #mouseTouchMove: (e: Event) => void = e => {
+    const container = this.#container,
+      interactionManager = this.#interactionManager,
       options = container.actualOptions,
       interactivity = interactionManager.interactivityData,
       canvasEl = container.canvas.domElement;
@@ -315,7 +315,7 @@ export class InteractivityEventListeners {
     let pos: ICoordinates | undefined;
 
     if (e.type.startsWith("pointer")) {
-      this._canPush = true;
+      this.#canPush = true;
 
       const mouseEvent = e as MouseEvent;
 
@@ -354,7 +354,7 @@ export class InteractivityEventListeners {
         };
       }
     } else {
-      this._canPush = e.type !== "touchmove";
+      this.#canPush = e.type !== "touchmove";
 
       if (canvasEl) {
         const touchEvent = e as TouchEvent,
@@ -383,36 +383,36 @@ export class InteractivityEventListeners {
     interactivity.status = mouseMoveEvent;
   };
 
-  private readonly _touchEnd: (e: Event) => void = e => {
+  readonly #touchEnd: (e: Event) => void = e => {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
     for (const touch of touches) {
-      this._touches.delete(touch.identifier);
+      this.#touches.delete(touch.identifier);
     }
 
-    this._mouseTouchFinish();
+    this.#mouseTouchFinish();
   };
 
-  private readonly _touchEndClick: (e: Event) => void = e => {
+  readonly #touchEndClick: (e: Event) => void = e => {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
     for (const touch of touches) {
-      this._touches.delete(touch.identifier);
+      this.#touches.delete(touch.identifier);
     }
 
-    this._mouseTouchClick(e);
+    this.#mouseTouchClick(e);
   };
 
-  private readonly _touchStart: (e: Event) => void = e => {
+  readonly #touchStart: (e: Event) => void = e => {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
     for (const touch of touches) {
-      this._touches.set(touch.identifier, performance.now());
+      this.#touches.set(touch.identifier, performance.now());
     }
 
-    this._mouseTouchMove(e);
+    this.#mouseTouchMove(e);
   };
 }

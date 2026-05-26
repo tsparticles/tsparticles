@@ -54,13 +54,13 @@ function getVideoSupportedMimeTypes(): string[] {
 
 /** Video export plugin instance */
 export class ExportVideoPluginInstance implements IContainerPlugin {
-  private readonly _container: Container;
-  private readonly _supportedTypes: string[] = [];
+  readonly #container: Container;
+  readonly #supportedTypes: string[] = [];
 
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
 
-    this._supportedTypes = getVideoSupportedMimeTypes();
+    this.#supportedTypes = getVideoSupportedMimeTypes();
   }
 
   async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {
@@ -71,7 +71,7 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
     switch (type) {
       case "video":
         res.supported = true;
-        res.blob = await this._exportVideo(data);
+        res.blob = await this.#exportVideo(data);
 
         break;
     }
@@ -79,17 +79,17 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
     return res;
   }
 
-  private readonly _exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async data => {
-    const element = this._container.canvas.domElement;
+  readonly #exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async data => {
+    const element = this.#container.canvas.domElement;
 
     if (!element) {
       return;
     }
 
     return new Promise<Blob | undefined>(resolve => {
-      const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
+      const stream = element.captureStream(data.fps ?? this.#container.actualOptions.fpsLimit),
         firstIndex = 0,
-        mimeType = data.mimeType ?? this._supportedTypes[firstIndex],
+        mimeType = data.mimeType ?? this.#supportedTypes[firstIndex],
         recorder = new MediaRecorder(stream, {
           mimeType,
         }),

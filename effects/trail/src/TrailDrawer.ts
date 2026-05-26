@@ -85,14 +85,14 @@ const defaultTransform = {
 /** Trail effect drawer plugin */
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * TrailDrawer constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   /**
@@ -101,7 +101,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
    */
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
     const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
-      container = this._container,
+      container = this.#container,
       diameter = drawRadius * double,
       pxRatio = container.retina.pixelRatio,
       trail = particle.trail;

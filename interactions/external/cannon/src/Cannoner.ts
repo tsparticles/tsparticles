@@ -107,15 +107,15 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   /** {@inheritDoc ExternalInteractorBase.maxDistance} */
   readonly maxDistance = 0;
 
-  private _data?: CannonData;
-  private _gesture: CannonGesture = {
+  #data?: CannonData;
+  #gesture: CannonGesture = {
     origin: Vector.origin,
     current: Vector.origin,
     active: false,
   };
 
-  private _lastDownPosition: ICoordinates | undefined = undefined;
-  private _state: CannonState = CannonState.idle;
+  #lastDownPosition: ICoordinates | undefined = undefined;
+  #state: CannonState = CannonState.idle;
 
   /**
    * {@inheritDoc ExternalInteractorBase}
@@ -139,7 +139,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   init(): void {
     const options = this.container.actualOptions.interactivity?.modes.cannon ?? new Cannon();
 
-    this._data = {
+    this.#data = {
       spread: degToRad(options.spread),
       maxDragDistance: options.maxDragDistance,
       velocityFactor: options.velocityFactor,
@@ -163,27 +163,27 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
       downPos = mouse.downPosition;
 
     // ── DOWN transition: new downPosition that we haven't processed yet
-    if (clicking && downPos && downPos !== this._lastDownPosition && this._state === CannonState.idle) {
-      this._lastDownPosition = downPos;
-      this._gesture = {
+    if (clicking && downPos && downPos !== this.#lastDownPosition && this.#state === CannonState.idle) {
+      this.#lastDownPosition = downPos;
+      this.#gesture = {
         origin: { x: downPos.x, y: downPos.y },
         current: { x: downPos.x, y: downPos.y },
         active: true,
       };
-      this._state = CannonState.aiming;
+      this.#state = CannonState.aiming;
     }
 
     // ── Update endpoint during drag
-    if (this._state === CannonState.aiming && mousePos) {
-      this._gesture.current = { x: mousePos.x, y: mousePos.y };
-      this._drawVector();
+    if (this.#state === CannonState.aiming && mousePos) {
+      this.#gesture.current = { x: mousePos.x, y: mousePos.y };
+      this.#drawVector();
     }
 
     // ── UP transition: clicking false while we were aiming
-    if (!clicking && this._state === CannonState.aiming) {
-      this._gesture.active = false;
-      this._fire();
-      this._state = CannonState.idle;
+    if (!clicking && this.#state === CannonState.aiming) {
+      this.#gesture.active = false;
+      this.#fire();
+      this.#state = CannonState.idle;
     }
   }
 
@@ -193,7 +193,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * @returns -
    */
   isEnabled(interactivityData: IInteractivityData): boolean {
-    const { container } = this,
+    const container = this.container,
       events = container.actualOptions.interactivity?.events;
 
     if (!events?.onClick.enable) {
@@ -209,7 +209,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
 
     // Enabled if the gesture is active OR if the mouse is pressed —
     // the second case covers frame zero before _state switches to "aiming"
-    return this._state !== CannonState.idle || interactivityData.mouse.clicking;
+    return this.#state !== CannonState.idle || interactivityData.mouse.clicking;
   }
 
   /**
@@ -242,15 +242,15 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
    * Draws the aiming line and power circle on the canvas.
    * Rendered directly on the container canvas context.
    */
-  private _drawVector(): void {
+  #drawVector(): void {
     this.container.canvas.render.draw(ctx => {
-      const opts = this._data;
+      const opts = this.#data;
 
       if (!opts) {
         return;
       }
 
-      const { origin, current } = this._gesture,
+      const { origin, current } = this.#gesture,
         pxRatio = this.container.retina.pixelRatio,
         dragDist = getDistance(origin, current),
         // Clamp to maxDragDistance so visual feedback matches actual force
@@ -282,14 +282,14 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
   /**
    * Fires a burst of particles based on the completed drag gesture.
    */
-  private _fire(): void {
-    const opts = this._data;
+  #fire(): void {
+    const opts = this.#data;
 
     if (!opts) {
       return;
     }
 
-    const { origin, current } = this._gesture,
+    const { origin, current } = this.#gesture,
       pxRatio = this.container.retina.pixelRatio,
       dist = getDistance(origin, current),
       dragLength = opts.maxDragDistance > none ? Math.min(dist, opts.maxDragDistance * pxRatio) : dist;

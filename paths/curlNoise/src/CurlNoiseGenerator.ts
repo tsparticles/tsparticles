@@ -13,17 +13,17 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
   /** Curl noise configuration options */
   readonly options;
 
-  private readonly _container;
-  private readonly _res: Vector;
-  private readonly _simplex;
+  readonly #container;
+  readonly #res: Vector;
+  readonly #simplex;
 
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
 
     const simplex = new SimplexNoise();
 
-    this._simplex = simplex.noise2d;
+    this.#simplex = simplex.noise2d;
     this.options = deepExtend({}, defaultOptions) as ICurlOptions;
   }
 
@@ -37,25 +37,25 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
       x = pos.x / step,
       y = pos.y / step,
       eps = 0.001,
-      n1a = this._simplex.noise(x, y + eps),
-      n2a = this._simplex.noise(x, y - eps),
+      n1a = this.#simplex.noise(x, y + eps),
+      n2a = this.#simplex.noise(x, y - eps),
       a = (n1a - n2a) / (double * eps),
-      n1b = this._simplex.noise(x + eps, y),
-      n2b = this._simplex.noise(x - eps, y),
+      n1b = this.#simplex.noise(x + eps, y),
+      n2b = this.#simplex.noise(x - eps, y),
       b = (n1b - n2b) / (double * eps);
 
     particle.velocity.x = 0;
     particle.velocity.y = 0;
 
-    this._res.x = speed * a;
-    this._res.y = speed * -b;
+    this.#res.x = speed * a;
+    this.#res.y = speed * -b;
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the curl noise generator with container options */
   init(): void {
-    const container = this._container,
+    const container = this.#container,
       sourceOptions = container.actualOptions.particles.move.path.options;
 
     this.options.seed = sourceOptions["seed"] as number | undefined;
@@ -63,7 +63,7 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
       ((sourceOptions["speed"] as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
     this.options.step = (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
 
-    this._simplex.seed(this.options.seed ?? getRandom());
+    this.#simplex.seed(this.options.seed ?? getRandom());
   }
 
   /** Resets the generator state */

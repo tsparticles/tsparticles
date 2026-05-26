@@ -117,19 +117,19 @@ export class CanvasManager {
    */
   zoom = defaultZoom;
 
-  private readonly _container;
-  private _generated;
-  private _mutationObserver?: MutationObserver;
-  private _originalStyle?: CSSStyleDeclaration;
-  private readonly _pluginManager;
-  private _pointerEvents: string;
-  private _resizePlugins: IContainerPlugin[];
-  private readonly _standardSize: IDimension;
+  readonly #container;
+  #generated;
+  #mutationObserver?: MutationObserver;
+  #originalStyle?: CSSStyleDeclaration;
+  readonly #pluginManager;
+  #pointerEvents: string;
+  #resizePlugins: IContainerPlugin[];
+  readonly #standardSize: IDimension;
 
   /**
    * Zoom center point (for centered zooming)
    */
-  private _zoomCenter?: ICoordinates;
+  #zoomCenter?: ICoordinates;
 
   /**
    * Constructor of canvas manager
@@ -137,29 +137,29 @@ export class CanvasManager {
    * @param container - the parent container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
     this.render = new RenderManager(pluginManager, container, this);
-    this._standardSize = {
+    this.#standardSize = {
       height: 0,
       width: 0,
     };
 
     const pxRatio = container.retina.pixelRatio,
-      stdSize = this._standardSize;
+      stdSize = this.#standardSize;
 
     this.size = {
       height: stdSize.height * pxRatio,
       width: stdSize.width * pxRatio,
     };
 
-    this._generated = false;
-    this._resizePlugins = [];
-    this._pointerEvents = "none";
+    this.#generated = false;
+    this.#resizePlugins = [];
+    this.#pointerEvents = "none";
   }
 
-  private get _fullScreen(): boolean {
-    return this._container.actualOptions.fullScreen.enable;
+  get #fullScreen(): boolean {
+    return this.#container.actualOptions.fullScreen.enable;
   }
 
   /**
@@ -168,7 +168,7 @@ export class CanvasManager {
   destroy(): void {
     this.stop();
 
-    if (this._generated) {
+    if (this.#generated) {
       const element = this.domElement;
 
       element?.remove();
@@ -176,12 +176,12 @@ export class CanvasManager {
       this.domElement = undefined;
       this.renderCanvas = undefined;
     } else {
-      this._resetOriginalStyle();
+      this.#resetOriginalStyle();
     }
 
     this.render.destroy();
 
-    this._resizePlugins = [];
+    this.#resizePlugins = [];
   }
 
   /**
@@ -189,11 +189,11 @@ export class CanvasManager {
    * @returns The current zoom center.
    */
   getZoomCenter(): ICoordinates {
-    const pxRatio = this._container.retina.pixelRatio,
+    const pxRatio = this.#container.retina.pixelRatio,
       { width, height } = this.size;
 
-    if (this._zoomCenter) {
-      return this._zoomCenter;
+    if (this.#zoomCenter) {
+      return this.#zoomCenter;
     }
 
     return {
@@ -206,21 +206,21 @@ export class CanvasManager {
    * Initializes the canvas element
    */
   init(): void {
-    this._safeMutationObserver(obs => {
+    this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
-    this._mutationObserver = safeMutationObserver(records => {
+    this.#mutationObserver = safeMutationObserver(records => {
       for (const record of records) {
         if (record.type === "attributes" && record.attributeName === "style") {
-          this._repairStyle();
+          this.#repairStyle();
         }
       }
     });
 
     this.resize();
-    this._initStyle();
+    this.#initStyle();
     this.initBackground();
-    this._safeMutationObserver(obs => {
+    this.#safeMutationObserver(obs => {
       const element = this.domElement;
 
       if (!element || !(element instanceof Node)) {
@@ -238,8 +238,8 @@ export class CanvasManager {
    * Initializes the canvas background
    */
   initBackground(): void {
-    const { _container } = this,
-      options = _container.actualOptions,
+    const container = this.#container,
+      options = container.actualOptions,
       background = options.background,
       element = this.domElement;
 
@@ -248,10 +248,10 @@ export class CanvasManager {
     }
 
     const elementStyle = element.style,
-      color = rangeColorToRgb(this._pluginManager, background.color);
+      color = rangeColorToRgb(this.#pluginManager, background.color);
 
     if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, _container.hdr, background.opacity);
+      elementStyle.backgroundColor = getStyleFromRgb(color, container.hdr, background.opacity);
     } else {
       elementStyle.backgroundColor = "";
     }
@@ -266,11 +266,11 @@ export class CanvasManager {
    * Initializes the plugins needed by canvas
    */
   initPlugins(): void {
-    this._resizePlugins = [];
+    this.#resizePlugins = [];
 
-    for (const plugin of this._container.plugins) {
+    for (const plugin of this.#container.plugins) {
       if (plugin.resize) {
-        this._resizePlugins.push(plugin);
+        this.#resizePlugins.push(plugin);
       }
     }
   }
@@ -280,15 +280,15 @@ export class CanvasManager {
    * @param canvas - the canvas source element or OffscreenCanvas
    */
   loadCanvas(canvas: HTMLCanvasElement | OffscreenCanvas): void {
-    if (this._generated && this.domElement) {
+    if (this.#generated && this.domElement) {
       this.domElement.remove();
     }
 
-    const container = this._container,
+    const container = this.#container,
       domCanvas = isHtmlCanvasElement(canvas) ? canvas : undefined;
 
     this.domElement = domCanvas;
-    this._generated = domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false;
+    this.#generated = domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false;
     this.renderCanvas = domCanvas ? getTransferredCanvas(domCanvas) : (canvas as OffscreenCanvas);
 
     const domElement = this.domElement;
@@ -296,10 +296,10 @@ export class CanvasManager {
     if (domElement) {
       domElement.ariaHidden = "true";
 
-      this._originalStyle = cloneStyle(domElement.style);
+      this.#originalStyle = cloneStyle(domElement.style);
     }
 
-    const standardSize = this._standardSize,
+    const standardSize = this.#standardSize,
       renderCanvas = this.renderCanvas;
 
     if (domElement) {
@@ -310,7 +310,7 @@ export class CanvasManager {
       standardSize.width = renderCanvas.width;
     }
 
-    const pxRatio = this._container.retina.pixelRatio,
+    const pxRatio = this.#container.retina.pixelRatio,
       retinaSize = this.size;
 
     renderCanvas.height = retinaSize.height = standardSize.height * pxRatio;
@@ -326,14 +326,14 @@ export class CanvasManager {
     });
     this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
 
-    this._safeMutationObserver(obs => {
+    this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
 
     container.retina.init();
     this.initBackground();
 
-    this._safeMutationObserver(obs => {
+    this.#safeMutationObserver(obs => {
       const element = this.domElement;
 
       if (!element || !(element instanceof Node)) {
@@ -355,14 +355,14 @@ export class CanvasManager {
       return false;
     }
 
-    const container = this._container,
+    const container = this.#container,
       renderCanvas = this.renderCanvas;
 
     if (renderCanvas === undefined) {
       return false;
     }
 
-    const currentSize = container.canvas._standardSize,
+    const currentSize = container.canvas.#standardSize,
       newSize = {
         width: element.offsetWidth,
         height: element.offsetHeight,
@@ -392,7 +392,7 @@ export class CanvasManager {
     renderCanvas.width = canvasSize.width = retinaSize.width;
     renderCanvas.height = canvasSize.height = retinaSize.height;
 
-    if (this._container.started) {
+    if (this.#container.started) {
       container.particles.setResizeFactor({
         width: currentSize.width / oldSize.width,
         height: currentSize.height / oldSize.height,
@@ -413,8 +413,8 @@ export class CanvasManager {
       return;
     }
 
-    this._pointerEvents = type;
-    this._repairStyle();
+    this.#pointerEvents = type;
+    this.#repairStyle();
   }
 
   /**
@@ -424,16 +424,16 @@ export class CanvasManager {
    */
   setZoom(zoomLevel: number, center?: ICoordinates): void {
     this.zoom = zoomLevel;
-    this._zoomCenter = center;
+    this.#zoomCenter = center;
   }
 
   /** Stops the canvas manager */
   stop(): void {
-    this._safeMutationObserver(obs => {
+    this.#safeMutationObserver(obs => {
       obs.disconnect();
     });
 
-    this._mutationObserver = undefined;
+    this.#mutationObserver = undefined;
 
     this.render.stop();
   }
@@ -446,37 +446,37 @@ export class CanvasManager {
       return;
     }
 
-    const container = this._container,
+    const container = this.#container,
       needsRefresh = container.updateActualOptions();
 
     /* density particles enabled */
     container.particles.setDensity();
 
-    this._applyResizePlugins();
+    this.#applyResizePlugins();
 
     if (needsRefresh) {
       await container.refresh();
     }
   }
 
-  private readonly _applyResizePlugins: () => void = () => {
-    for (const plugin of this._resizePlugins) {
+  readonly #applyResizePlugins: () => void = () => {
+    for (const plugin of this.#resizePlugins) {
       plugin.resize?.();
     }
   };
 
-  private readonly _initStyle: () => void = () => {
+  readonly #initStyle: () => void = () => {
     const element = this.domElement,
-      options = this._container.actualOptions;
+      options = this.#container.actualOptions;
 
     if (!element) {
       return;
     }
 
-    if (this._fullScreen) {
-      this._setFullScreenStyle();
+    if (this.#fullScreen) {
+      this.#setFullScreenStyle();
     } else {
-      this._resetOriginalStyle();
+      this.#resetOriginalStyle();
     }
 
     for (const key in options.style) {
@@ -494,25 +494,25 @@ export class CanvasManager {
     }
   };
 
-  private readonly _repairStyle: () => void = () => {
+  readonly #repairStyle: () => void = () => {
     const element = this.domElement;
 
     if (!element) {
       return;
     }
 
-    this._safeMutationObserver(observer => {
+    this.#safeMutationObserver(observer => {
       observer.disconnect();
     });
-    this._initStyle();
+    this.#initStyle();
     this.initBackground();
 
-    const pointerEvents = this._pointerEvents;
+    const pointerEvents = this.#pointerEvents;
 
     element.style.pointerEvents = pointerEvents;
     element.style.setProperty("pointer-events", pointerEvents);
 
-    this._safeMutationObserver(observer => {
+    this.#safeMutationObserver(observer => {
       if (!(element instanceof Node)) {
         return;
       }
@@ -521,9 +521,9 @@ export class CanvasManager {
     });
   };
 
-  private readonly _resetOriginalStyle: () => void = () => {
+  readonly #resetOriginalStyle: () => void = () => {
     const element = this.domElement,
-      originalStyle = this._originalStyle;
+      originalStyle = this.#originalStyle;
 
     if (!element || !originalStyle) {
       return;
@@ -532,21 +532,21 @@ export class CanvasManager {
     setStyle(element, originalStyle, true);
   };
 
-  private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
-    if (!this._mutationObserver) {
+  readonly #safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
+    if (!this.#mutationObserver) {
       return;
     }
 
-    callback(this._mutationObserver);
+    callback(this.#mutationObserver);
   };
 
-  private readonly _setFullScreenStyle: () => void = () => {
+  readonly #setFullScreenStyle: () => void = () => {
     const element = this.domElement;
 
     if (!element) {
       return;
     }
 
-    setStyle(element, getFullScreenStyle(this._container.actualOptions.fullScreen.zIndex), true);
+    setStyle(element, getFullScreenStyle(this.#container.actualOptions.fullScreen.zIndex), true);
   };
 }

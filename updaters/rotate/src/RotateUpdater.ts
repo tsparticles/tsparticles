@@ -51,14 +51,14 @@ const doublePIDeg = 360;
 /** Rotate updater plugin */
 export class RotateUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly container;
+  readonly #container;
 
   /**
    * RotateUpdater constructor
    * @param container
    */
   constructor(container: Container) {
-    this.container = container;
+    this.#container = container;
   }
 
   /**
@@ -108,7 +108,7 @@ export class RotateUpdater implements IParticleUpdater {
     if (rotateAnimation.enable) {
       particle.rotate.decay = identity - getRangeValue(rotateAnimation.decay);
       particle.rotate.velocity =
-        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this.container.retina.reduceFactor;
+        (getRangeValue(rotateAnimation.speed) / doublePIDeg) * this.#container.retina.reduceFactor;
 
       if (!rotateAnimation.sync) {
         particle.rotate.velocity *= getRandom();

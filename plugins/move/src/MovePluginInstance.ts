@@ -21,9 +21,9 @@ export class MovePluginInstance implements IContainerPlugin {
   pathGenerators: Map<string, IMovePathGenerator>;
 
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * Creates a new MovePluginInstance
@@ -31,8 +31,8 @@ export class MovePluginInstance implements IContainerPlugin {
    * @param container - the particles container
    */
   constructor(pluginManager: MovePluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
 
     this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
@@ -84,7 +84,7 @@ export class MovePluginInstance implements IContainerPlugin {
       inverse: gravityOptions.inverse,
     };
 
-    initSpin(this._container, particle);
+    initSpin(this.#container, particle);
   }
 
   /** @inheritDoc */
@@ -103,7 +103,7 @@ export class MovePluginInstance implements IContainerPlugin {
       return;
     }
 
-    const container = this._container,
+    const container = this.#container,
       slowFactor = getProximitySpeedFactor(particle),
       reduceFactor = container.retina.reduceFactor,
       baseSpeed = particle.retina.moveSpeed,
@@ -125,12 +125,12 @@ export class MovePluginInstance implements IContainerPlugin {
 
   /** @inheritDoc */
   preInit(): Promise<void> {
-    return this._init();
+    return this.#init();
   }
 
   /** @inheritDoc */
   redrawInit(): Promise<void> {
-    return this._init();
+    return this.#init();
   }
 
   /** Updates all active path generators */
@@ -140,8 +140,8 @@ export class MovePluginInstance implements IContainerPlugin {
     }
   }
 
-  private async _init(): Promise<void> {
-    const availablePathGenerators = await this._pluginManager.getPathGenerators?.(this._container, true);
+  async #init(): Promise<void> {
+    const availablePathGenerators = await this.#pluginManager.getPathGenerators?.(this.#container, true);
 
     if (!availablePathGenerators) {
       return;
