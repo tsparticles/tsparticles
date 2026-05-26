@@ -24,7 +24,6 @@ const defaultParticleDist = 8,
   defaultVelocityInherit = 5,
   defaultOscillationSpeed = 3,
   defaultOscillationDistance = 40,
-  defaultYSpeed = 100,
   defaultAngle = 45,
   defaultPointCount = 30,
   minPointCount = 4,
@@ -109,15 +108,6 @@ function getOscillationDistance(particle: RibbonParticle): number {
 /**
  *
  * @param particle -
- * @returns the y speed
- */
-function getYSpeed(particle: RibbonParticle): number {
-  return particle.ribbonYSpeed ?? defaultYSpeed;
-}
-
-/**
- *
- * @param particle -
  * @returns the ribbon head
  */
 function getHead(particle: RibbonParticle): Vector {
@@ -150,7 +140,6 @@ export function createRibbonState(particle: RibbonParticle): void {
     velocityInherit = getRangeValue(shapeData?.velocityInherit ?? defaultVelocityInherit),
     oscillationSpeed = getRangeValue(shapeData?.oscillationSpeed ?? defaultOscillationSpeed),
     oscillationDistance = getRangeValue(shapeData?.oscillationDistance ?? defaultOscillationDistance),
-    ySpeed = getRangeValue(shapeData?.ySpeed ?? defaultYSpeed),
     angle = getRangeValue(shapeData?.angle ?? defaultAngle),
     angleRad = (Math.PI / degrees) * angle,
     head = Vector.create(particle.position.x, particle.position.y),
@@ -166,7 +155,6 @@ export function createRibbonState(particle: RibbonParticle): void {
   particle.ribbonVelocityInherit = velocityInherit;
   particle.ribbonOscillationSpeed = oscillationSpeed;
   particle.ribbonOscillationDistance = oscillationDistance;
-  particle.ribbonYSpeed = ySpeed;
   particle.ribbonTime = Math.random() * randomTimeFactor;
   particle.ribbonOffsets = Vector.create(Math.cos(angleRad), Math.sin(angleRad));
   particle.ribbonHead = head;
@@ -308,7 +296,6 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
       (Math.cos(particle.ribbonTime) * getOscillationDistance(particle)) / getOscillationSpeed(particle);
     head.y = particle.position.y;
   } else {
-    head.y += getYSpeed(particle) * dt;
     head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
   }
 

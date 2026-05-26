@@ -251,7 +251,6 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
     delete particle.ribbonVelocityInherit;
     delete particle.ribbonOscillationSpeed;
     delete particle.ribbonOscillationDistance;
-    delete particle.ribbonYSpeed;
   }
 
   particleInit(container: Container, particle: RibbonParticle): void {

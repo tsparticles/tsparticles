@@ -50,7 +50,6 @@ const options: ISourceOptions = {
           oscillationSpeed: 3,
           particleDist: 8,
           velocityInherit: 5,
-          ySpeed: 100,
         },
       },
     },

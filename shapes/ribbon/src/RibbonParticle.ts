@@ -22,6 +22,5 @@ export type RibbonParticle = Particle & {
   ribbonPreviousPosition?: Vector;
   ribbonTime?: number;
   ribbonVelocityInherit?: number;
-  ribbonYSpeed?: number;
   shapeData?: IRibbonData;
 };

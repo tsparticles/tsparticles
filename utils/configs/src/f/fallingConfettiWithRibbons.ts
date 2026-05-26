@@ -62,7 +62,7 @@ const options: ISourceOptions = {
       outModes: "out",
       speed: {
         min: 3,
-        max: 6,
+        max: 5,
       },
     },
     number: {
@@ -126,8 +126,8 @@ const options: ISourceOptions = {
       enable: true,
       mode: "both",
       speed: {
-        min: 15,
-        max: 25,
+        min: 40,
+        max: 60,
       },
     },
     wobble: {
@@ -151,7 +151,7 @@ const options: ISourceOptions = {
       height: 0,
     },
     rate: {
-      delay: 2,
+      delay: 1,
       quantity: 1,
     },
     particles: {
@@ -162,7 +162,10 @@ const options: ISourceOptions = {
           top: "none",
           default: "destroy",
         },
-        speed: 3,
+        speed: {
+          min: 4,
+          max: 6,
+        },
       },
       size: {
         value: 8,
@@ -192,14 +195,22 @@ const options: ISourceOptions = {
               enable: true,
               value: 30,
             },
-            count: 50,
-            drag: 0.05,
+            count: 60,
+            drag: 0.02,
             mass: 1,
-            oscillationDistance: 40,
-            oscillationSpeed: 3,
+            oscillationDistance: {
+              min: 100,
+              max: 140,
+            },
+            oscillationSpeed: {
+              min: 4,
+              max: 6,
+            },
             particleDist: 8,
-            velocityInherit: 5,
-            ySpeed: 100,
+            velocityInherit: {
+              min: 4,
+              max: 6,
+            },
           },
         },
       },
