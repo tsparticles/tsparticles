@@ -67,7 +67,7 @@
 		"build": "pnpm run format && vite build && npm run package",
 		"build:ci": "vite build && npm run package",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint",
+		"package": "svelte-kit sync && svelte-package && node ../../scripts/resolve-dist-package.cjs && publint",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -81,15 +81,16 @@
 		}
 	},
 	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"dist"
 	],
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"directory": "dist",
+		"linkDirectory": true
 	},
 	"peerDependencies": {
-		"svelte": "^4.2.17"
+		"svelte": "^4.2.17",
+		"@tsparticles/engine": "workspace:*"
 	},
 	"dependencies": {
 		"@tsparticles/engine": "workspace:^"

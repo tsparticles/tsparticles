@@ -99,7 +99,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "preact": "^10.19.3"
+    "preact": "^10.19.3",
+    "@tsparticles/engine": "workspace:*"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"

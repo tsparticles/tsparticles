@@ -16,8 +16,8 @@
     "doc": "doc",
     "test": "tests"
   },
-  "scripts": {
-    "build": "ember build",
+	"scripts": {
+		"build": "ember build",
     "lint": "npm-run-all --print-name --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --print-name --aggregate-output --continue-on-error --parallel \"lint:*:fix\"",
     "lint:hbs": "ember-template-lint .",
@@ -128,7 +128,10 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependencies": {
+		"@tsparticles/engine": "workspace:*"
+	}
 }

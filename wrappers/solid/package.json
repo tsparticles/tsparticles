@@ -10,7 +10,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   },
   "files": [
     "dist"
@@ -110,8 +112,8 @@
   "prettier": "@tsparticles/prettier-config",
   "scripts": {
     "check": "tsc",
-    "build": "pnpm run prettify && pnpm run lint && tsup",
-    "build:ci": "pnpm run prettify:ci && pnpm run lint:ci && tsup",
+    "build": "pnpm run prettify && pnpm run lint && tsup && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run prettify:ci && pnpm run lint:ci && tsup && node ../../scripts/resolve-dist-package.cjs",
     "test": "concurrently pnpm:test:*",
     "test:client": "vitest",
     "test:ssr": "pnpm run test:client --mode ssr",
@@ -126,7 +128,7 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/engine": "workspace:*",
     "solid-js": ">=1.0.0"
   },
   "devDependencies": {

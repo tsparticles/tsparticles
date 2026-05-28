@@ -11,8 +11,8 @@
   "types": "dist/lib/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "prettier --write README.md && pnpm run prettify && tsc && vite build",
-    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc && vite build",
+    "build": "prettier --write README.md && pnpm run prettify && tsc && vite build && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc && vite build && node ../../scripts/resolve-dist-package.cjs",
     "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",
     "prettify": "prettier --write \"src/**/*.{ts,tsx}\" && prettier --write \"lib/**/*.{ts,tsx}\"",
@@ -33,7 +33,8 @@
     "@tsparticles/react": "workspace:^",
     "next": ">=13.0.0",
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
     "@tsparticles/react": "workspace:^",
@@ -65,6 +66,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

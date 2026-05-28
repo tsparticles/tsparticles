@@ -139,5 +139,8 @@
       "node": "./dist/ng-particles/fesm2015/ng-particles.mjs",
       "default": "./dist/ng-particles/fesm2020/ng-particles.mjs"
     }
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*"
   }
 }

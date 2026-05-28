@@ -63,10 +63,6 @@
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
-  "files": [
-    "**/*"
-  ],
-  "types": "ng-fireworks.d.ts",
   "funding": [
     {
       "type": "github",
@@ -86,13 +82,9 @@
     "@angular/core": ">=2.0.0",
     "rxjs": ">=7.0.0",
     "@tsparticles/fireworks": "^4.0.5",
-    "@tsparticles/engine": "workspace:*"
-  },
-  "dependencies": {
-    "tslib": "^2.8.1"
+    "@tsparticles/engine": "__VERSION__"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {}
+  }
 }

@@ -166,5 +166,8 @@
       "node": "./dist/ng-confetti/fesm2015/ng-confetti.mjs",
       "default": "./dist/ng-confetti/fesm2020/ng-confetti.mjs"
     }
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*"
   }
 }

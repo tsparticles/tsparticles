@@ -5,8 +5,8 @@
   "main": "dist/particles.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "pnpm run lint && webpack --mode production && pnpm run build:types",
-    "build:ci": "pnpm run lint:ci && webpack --mode production",
+    "build": "pnpm run lint && webpack --mode production && pnpm run build:types && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run lint:ci && webpack --mode production && node ../../scripts/resolve-dist-package.cjs",
     "check": "tsc",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
@@ -97,7 +97,8 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
-    "inferno": "<=9"
+    "inferno": "<=9",
+    "@tsparticles/engine": "workspace:*"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^",
@@ -132,6 +133,11 @@
     "webpack-dev-server": "^5.2.3"
   },
   "publishConfig": {
-    "access": "public"
-  }
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "files": [
+    "dist"
+  ]
 }

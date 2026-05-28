@@ -106,7 +106,8 @@
   "module": "./index.client.js",
   "browser": "./index.client.js",
   "peerDependencies": {
-    "astro": "^6.1.6"
+    "astro": "^6.1.6",
+    "@tsparticles/engine": "workspace:*"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"

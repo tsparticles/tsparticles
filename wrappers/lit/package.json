@@ -49,5 +49,8 @@
         ]
       }
     }
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*"
   }
 }

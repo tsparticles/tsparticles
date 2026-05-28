@@ -15,8 +15,8 @@
     "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
-    "build": "pnpm run prettify:src && rollup -c",
-    "build:ci": "pnpm run prettify:ci:src && rollup -c",
+    "build": "pnpm run prettify:src && rollup -c && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run prettify:ci:src && rollup -c && node ../../scripts/resolve-dist-package.cjs",
     "prepack": "pnpm run build"
   },
   "repository": {
@@ -98,7 +98,8 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
-    "riot": "^10"
+    "riot": "^10",
+    "@tsparticles/engine": "workspace:*"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"
@@ -122,6 +123,11 @@
     "rollup-plugin-riot": "^10.0.0"
   },
   "publishConfig": {
-    "access": "public"
-  }
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -16,8 +16,8 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "dev": "vite",
-    "build": "pnpm run clean && pnpm run prettify:src && pnpm run prettify:readme && vite build",
-    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vite build",
+    "build": "pnpm run clean && pnpm run prettify:src && pnpm run prettify:readme && vite build && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vite build && node ../../scripts/resolve-dist-package.cjs",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
@@ -113,10 +113,13 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
-    "vue": "^2.7.0"
+    "vue": "^2.7.0",
+    "@tsparticles/engine": "workspace:*"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"

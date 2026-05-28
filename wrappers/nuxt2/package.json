@@ -13,8 +13,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "prettier --write README.md && pnpm run prettify && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist",
-    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist",
+    "build": "prettier --write README.md && pnpm run prettify && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "prettier --check README.md && pnpm run prettify:ci && tsc -p tsconfig.json && copyfiles -f lib/plugin.js dist && node ../../scripts/resolve-dist-package.cjs",
     "lint": "eslint . --max-warnings 0",
     "prettify": "prettier --write \"lib/**/*.ts\"",
     "prettify:ci": "prettier --check \"lib/**/*.ts\"",
@@ -27,7 +27,8 @@
     "@tsparticles/vue2": "workspace:^"
   },
   "peerDependencies": {
-    "nuxt": ">=2.0.0 <3.0.0"
+    "nuxt": ">=2.0.0 <3.0.0",
+    "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -49,6 +50,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

@@ -93,5 +93,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "scripts": {}
 }

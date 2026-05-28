@@ -13,12 +13,12 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
-    "build": "pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme",
-    "build:ci": "pnpm run prettify:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme",
+    "build": "pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run prettify:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run minify && pnpm run prettify:readme && node ../../scripts/resolve-dist-package.cjs",
     "prepack": "pnpm run build"
   },
   "files": [
-    "dist/**/*"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -102,10 +102,13 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   },
   "peerDependencies": {
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "@tsparticles/engine": "workspace:*"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"

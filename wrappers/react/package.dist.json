@@ -1,0 +1,27 @@
+{
+  "name": "@tsparticles/react",
+  "version": "4.0.5",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/react"
+  },
+  "main": "./index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@tsparticles/engine": "__VERSION__",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
