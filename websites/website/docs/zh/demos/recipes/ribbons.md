@@ -1,14 +1,14 @@
-# Ribbons Bundle
+# Ribbons 捆绑包
 
-Official bundle from the `bundles/ribbons` workspace.
+来自 `bundles/ribbons` 工作区的官方捆绑包。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/ribbons
 ```
 
-## Ready-to-use (full page)
+## 即用型（全页）
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -20,7 +20,7 @@ await ribbons({
 });
 ```
 
-## Scoped to a specific canvas
+## 限定在特定 Canvas 中
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -46,4 +46,4 @@ export function resume(): void {
 }
 ```
 
-Perfect for decorative flowing backgrounds, celebratory cascades, and colorful animated trails.
+非常适合装饰性流动背景、庆祝性瀑布和彩色动画轨迹。

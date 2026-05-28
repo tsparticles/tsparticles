@@ -49,6 +49,7 @@ export function resume(): void {
 - [`Snow`](/hi/demos/recipes/snow)
 - [`Squares`](/hi/demos/recipes/squares)
 - [`Stars`](/hi/demos/recipes/stars)
+- [`Ribbons`](/hi/demos/recipes/ribbons)
 - [`Triangles`](/hi/demos/recipes/triangles)
 
 यूआई में उनका तुरंत परीक्षण करने के लिए, [`Playground`](/hi/playground/) का उपयोग करें और जरूरत पड़ने पर ही उन्हें `Start` से प्रारंभ करें।

@@ -49,6 +49,7 @@ export function resume(): void {
 - [`Snow`](/zh/demos/recipes/snow)
 - [`Squares`](/zh/demos/recipes/squares)
 - [`Stars`](/zh/demos/recipes/stars)
+- [`Ribbons`](/zh/demos/recipes/ribbons)
 - [`Triangles`](/zh/demos/recipes/triangles)
 
 要立即在 UI 中测试它们，请使用 [`Playground`](/zh/playground/) 并仅在需要时使用 `Start` 启动它们。

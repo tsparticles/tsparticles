@@ -60,10 +60,8 @@ const defaultOptions: Record<BundleKey, unknown> = {
     shape: ["circle", "square"],
   },
   ribbons: {
-    count: 1,
+    count: 5,
     spread: 0,
-    startVelocity: 0,
-    gravity: 1,
     colors: ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"],
     position: {
       x: 50,
@@ -523,7 +521,7 @@ function destroyRibbons(): void {
 
     <section class="bundle-card">
       <h2>@tsparticles/ribbons</h2>
-      <p class="bundle-description">Ready-to-use animated ribbons with emitters, gravity, and multi-color support.</p>
+      <p class="bundle-description">Ready-to-use animated ribbons with emitters, spread, and multi-color support.</p>
       <canvas :id="bundleIds.ribbons" ref="ribbonsCanvas" class="playground-canvas" />
       <div class="button-row">
         <button type="button" :disabled="busy.ribbons" @click="resetOptions('ribbons')">Reset JSON</button>

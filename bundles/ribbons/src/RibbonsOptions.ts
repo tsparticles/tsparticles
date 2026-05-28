@@ -22,17 +22,11 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Number of ribbon particles to emit */
   count: number;
 
-  /** Ribbons decay rate */
-  decay: number;
-
   /** Disables ribbons for users who prefer reduced motion */
   disableForReducedMotion: boolean;
 
   /** Ribbons drift offset */
   drift: number;
-
-  /** Ribbons gravity */
-  gravity: number;
 
   /** Ribbons position, in percent values */
   position: ICoordinates;
@@ -46,9 +40,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Ribbons spread angle */
   spread: number;
 
-  /** Ribbons initial velocity */
-  startVelocity: number;
-
   /** Ribbons animation ticks */
   ticks: number;
 
@@ -58,11 +49,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Creates a new RibbonsOptions instance with default values */
   constructor() {
     this.angle = 90;
-    this.count = 1;
+    this.count = 5;
     this.spread = 0;
-    this.startVelocity = 0;
-    this.decay = 1;
-    this.gravity = 1;
     this.drift = 0;
     this.ticks = 200;
     this.position = {
@@ -154,18 +142,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
     if (data.spread !== undefined) {
       this.spread = data.spread;
-    }
-
-    if (data.startVelocity !== undefined) {
-      this.startVelocity = data.startVelocity;
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = data.decay;
-    }
-
-    if (data.gravity !== undefined) {
-      this.gravity = data.gravity;
     }
 
     if (data.drift !== undefined) {

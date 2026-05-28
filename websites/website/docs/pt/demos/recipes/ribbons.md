@@ -1,14 +1,14 @@
-# Ribbons Bundle
+# Bundle Ribbons
 
-Official bundle from the `bundles/ribbons` workspace.
+Bundle oficial do espaço de trabalho `bundles/ribbons`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/ribbons
 ```
 
-## Ready-to-use (full page)
+## Pronto para usar (página inteira)
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -20,7 +20,7 @@ await ribbons({
 });
 ```
 
-## Scoped to a specific canvas
+## Limitado a um canvas específico
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -46,4 +46,4 @@ export function resume(): void {
 }
 ```
 
-Perfect for decorative flowing backgrounds, celebratory cascades, and colorful animated trails.
+Perfeito para fundos decorativos, cascatas festivas e rastros coloridos animados.

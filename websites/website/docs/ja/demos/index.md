@@ -49,6 +49,7 @@ export function resume(): void {
 - [`Snow`](/ja/demos/recipes/snow)
 - [`Squares`](/ja/demos/recipes/squares)
 - [`Stars`](/ja/demos/recipes/stars)
+- [`Ribbons`](/ja/demos/recipes/ribbons)
 - [`Triangles`](/ja/demos/recipes/triangles)
 
 UI ですぐにテストするには、[`Playground`](/ja/playground/) を使用し、必要な場合にのみ `Start` で開始します。

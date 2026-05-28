@@ -11,17 +11,11 @@ export interface IRibbonsOptions {
   /** Number of ribbon particles */
   count: number;
 
-  /** Ribbons decay rate */
-  decay: number;
-
   /** Disables ribbons for users who prefer reduced motion */
   disableForReducedMotion: boolean;
 
   /** Ribbons drift */
   drift: number;
-
-  /** Ribbons gravity */
-  gravity: number;
 
   /**
    * @deprecated use position instead
@@ -44,9 +38,6 @@ export interface IRibbonsOptions {
 
   /** Ribbons spread */
   spread: number;
-
-  /** Ribbons initial velocity */
-  startVelocity: number;
 
   /** Number of animation ticks */
   ticks: number;

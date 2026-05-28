@@ -11568,6 +11568,12 @@ importers:
       '@tsparticles/ribbons':
         specifier: workspace:*
         version: link:../../bundles/ribbons/dist
+      ace-builds:
+        specifier: ^1.37.5
+        version: 1.44.0
+      js-beautify:
+        specifier: ^1.15.4
+        version: 1.15.4
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -12253,6 +12259,12 @@ importers:
       '@tsparticles/preset-triangles':
         specifier: workspace:*
         version: link:../../presets/triangles/dist
+      '@tsparticles/ribbons':
+        specifier: workspace:*
+        version: link:../../bundles/ribbons/dist
+      '@tsparticles/shape-ribbon':
+        specifier: workspace:*
+        version: link:../../shapes/ribbon/dist
       '@tsparticles/slim':
         specifier: workspace:*
         version: link:../../bundles/slim/dist

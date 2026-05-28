@@ -30,7 +30,9 @@
   },
   "homepage": "https://ribbons.js.org",
   "dependencies": {
-    "@tsparticles/ribbons": "workspace:*"
+    "@tsparticles/ribbons": "workspace:*",
+    "ace-builds": "^1.37.5",
+    "js-beautify": "^1.15.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

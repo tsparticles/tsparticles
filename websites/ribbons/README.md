@@ -4,8 +4,12 @@ tsParticles official ribbons website examples.
 
 ## Available examples
 
-- Ribbons base
-- Ribbons in a custom canvas
+- Basic Ribbons
+- Custom Colors
+- Wide Spread
+- Continuous Fall
+- Custom Canvas
+- Fixed Position
 
 ## Development
 
