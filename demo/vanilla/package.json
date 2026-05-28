@@ -347,6 +347,7 @@
     "@tsparticles/plugin-themes": "workspace:*",
     "@tsparticles/plugin-trail": "workspace:*",
     "@tsparticles/plugin-zoom": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
     "@tsparticles/preset-ambient": "workspace:*",
     "@tsparticles/preset-big-circles": "workspace:*",
     "@tsparticles/preset-bubbles": "workspace:*",

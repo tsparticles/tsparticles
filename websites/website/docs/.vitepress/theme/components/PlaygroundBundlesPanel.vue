@@ -3,14 +3,16 @@ import { confetti, type ConfettiOptions } from "@tsparticles/confetti";
 import { tsParticles, type Container } from "@tsparticles/engine";
 import { fireworks, type FireworkOptions } from "@tsparticles/fireworks";
 import { particles, type ParticlesOptions } from "@tsparticles/particles";
+import { ribbons, type RibbonsOptions } from "@tsparticles/ribbons";
 import { reactive, ref } from "vue";
 
-type BundleKey = "confetti" | "fireworks" | "particles";
+type BundleKey = "confetti" | "fireworks" | "particles" | "ribbons";
 
 const bundleIds: Record<BundleKey, string> = {
   confetti: "tsparticles-bundle-confetti",
   fireworks: "tsparticles-bundle-fireworks",
   particles: "tsparticles-bundle-particles",
+  ribbons: "tsparticles-bundle-ribbons",
 };
 
 const defaultOptions: Record<BundleKey, unknown> = {
@@ -57,30 +59,45 @@ const defaultOptions: Record<BundleKey, unknown> = {
     },
     shape: ["circle", "square"],
   },
+  ribbons: {
+    count: 1,
+    spread: 0,
+    startVelocity: 0,
+    gravity: 1,
+    colors: ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"],
+    position: {
+      x: 50,
+      y: 0,
+    },
+  },
 };
 
 const editors = reactive<Record<BundleKey, string>>({
   confetti: JSON.stringify(defaultOptions.confetti, null, 2),
   fireworks: JSON.stringify(defaultOptions.fireworks, null, 2),
   particles: JSON.stringify(defaultOptions.particles, null, 2),
+  ribbons: JSON.stringify(defaultOptions.ribbons, null, 2),
 });
 
 const statuses = reactive<Record<BundleKey, string>>({
   confetti: "Ready. Press Start.",
   fireworks: "Ready. Press Start.",
   particles: "Ready. Press Start.",
+  ribbons: "Ready. Press Start.",
 });
 
 const parseErrors = reactive<Record<BundleKey, string>>({
   confetti: "",
   fireworks: "",
   particles: "",
+  ribbons: "",
 });
 
 const busy = reactive<Record<BundleKey, boolean>>({
   confetti: false,
   fireworks: false,
   particles: false,
+  ribbons: false,
 });
 
 const confettiContainer = ref<Container | undefined>();
@@ -92,6 +109,9 @@ const fireworksRunning = ref(false);
 const particlesCanvas = ref<HTMLCanvasElement | null>(null);
 const particlesInstance = ref<{ pause: () => void; play: () => void; stop: () => void } | undefined>();
 const particlesRunning = ref(false);
+const ribbonsCanvas = ref<HTMLCanvasElement | null>(null);
+const ribbonsContainer = ref<Container | undefined>();
+const ribbonsRunning = ref(false);
 
 function getContainerById(id: string): Container | undefined {
   return tsParticles.items.find((container) => String(container.id) === id);
@@ -360,6 +380,80 @@ function destroyParticles(): void {
   particlesRunning.value = false;
   statuses.particles = "Particles destroyed.";
 }
+
+async function startRibbons(): Promise<void> {
+  if (busy.ribbons) {
+    return;
+  }
+
+  const options = parseOptions<RibbonsOptions>("ribbons");
+
+  if (!options) {
+    return;
+  }
+
+  busy.ribbons = true;
+
+  try {
+    destroyById(bundleIds.ribbons);
+    ribbonsContainer.value = undefined;
+    const container = await ribbons(bundleIds.ribbons, options);
+
+    if (!container) {
+      ribbonsRunning.value = false;
+      statuses.ribbons = "No ribbons container created.";
+
+      return;
+    }
+
+    ribbonsContainer.value = container;
+    ribbonsRunning.value = true;
+    statuses.ribbons = "Ribbons running.";
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "Unknown error";
+
+    statuses.ribbons = `Start failed: ${reason}`;
+  } finally {
+    busy.ribbons = false;
+  }
+}
+
+function stopRibbons(): void {
+  if (!ribbonsContainer.value) {
+    statuses.ribbons = "No active ribbons demo.";
+
+    return;
+  }
+
+  ribbonsContainer.value.pause();
+  ribbonsRunning.value = false;
+  statuses.ribbons = "Ribbons paused.";
+}
+
+function resumeRibbons(): void {
+  if (!ribbonsContainer.value) {
+    statuses.ribbons = "No active ribbons demo.";
+
+    return;
+  }
+
+  ribbonsContainer.value.play();
+  ribbonsRunning.value = true;
+  statuses.ribbons = "Ribbons resumed.";
+}
+
+function destroyRibbons(): void {
+  if (!ribbonsContainer.value) {
+    statuses.ribbons = "No ribbons demo to destroy.";
+
+    return;
+  }
+
+  ribbonsContainer.value.destroy();
+  ribbonsContainer.value = undefined;
+  ribbonsRunning.value = false;
+  statuses.ribbons = "Ribbons destroyed.";
+}
 </script>
 
 <template>
@@ -424,6 +518,27 @@ function destroyParticles(): void {
         class="options-editor"
         spellcheck="false"
         aria-label="Particles options editor"
+      />
+    </section>
+
+    <section class="bundle-card">
+      <h2>@tsparticles/ribbons</h2>
+      <p class="bundle-description">Ready-to-use animated ribbons with emitters, gravity, and multi-color support.</p>
+      <canvas :id="bundleIds.ribbons" ref="ribbonsCanvas" class="playground-canvas" />
+      <div class="button-row">
+        <button type="button" :disabled="busy.ribbons" @click="resetOptions('ribbons')">Reset JSON</button>
+        <button type="button" :disabled="busy.ribbons" @click="startRibbons">Start</button>
+        <button type="button" :disabled="busy.ribbons || !ribbonsRunning" @click="stopRibbons">Pause</button>
+        <button type="button" :disabled="busy.ribbons || ribbonsRunning" @click="resumeRibbons">Resume</button>
+        <button type="button" :disabled="busy.ribbons" @click="destroyRibbons">Destroy</button>
+      </div>
+      <p class="status">{{ statuses.ribbons }}</p>
+      <p v-if="parseErrors.ribbons" class="parse-error">{{ parseErrors.ribbons }}</p>
+      <textarea
+        v-model="editors.ribbons"
+        class="options-editor"
+        spellcheck="false"
+        aria-label="Ribbons options editor"
       />
     </section>
   </div>

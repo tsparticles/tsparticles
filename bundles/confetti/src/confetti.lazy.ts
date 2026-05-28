@@ -41,7 +41,6 @@ async function doInitPlugins(engine: Engine): Promise<void> {
       { loadHeartShape },
       { loadImageShape },
       { loadPolygonShape },
-      { loadRibbonShape },
       { loadSquareShape },
       { loadStarShape },
 
@@ -60,7 +59,6 @@ async function doInitPlugins(engine: Engine): Promise<void> {
       import("@tsparticles/shape-heart/lazy"),
       import("@tsparticles/shape-image/lazy"),
       import("@tsparticles/shape-polygon/lazy"),
-      import("@tsparticles/shape-ribbon/lazy"),
       import("@tsparticles/shape-square/lazy"),
       import("@tsparticles/shape-star/lazy"),
 
@@ -81,7 +79,6 @@ async function doInitPlugins(engine: Engine): Promise<void> {
       loadHeartShape(e),
       loadImageShape(e),
       loadPolygonShape(e),
-      loadRibbonShape(e),
       loadSquareShape(e),
       loadStarShape(e),
       loadEmojiShape(e),

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="tsParticles ribbons: ready-to-use ribbon animations with simple JavaScript API."
+    />
+    <title>tsParticles Ribbons</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <h1>tsParticles Ribbons</h1>
+        <p>Two quick examples: default ribbons and ribbons in a custom canvas.</p>
+        <p class="usage">
+          CDN:
+          <code
+            >&lt;script
+            src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@__RIBBONS_VERSION__/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;</code
+          >
+        </p>
+      </header>
+
+      <section class="example">
+        <div class="example-header">
+          <h2>Ribbons Base</h2>
+          <button id="runBase" type="button">Run</button>
+        </div>
+        <pre><code>await ribbons({
+  position: { x: random(0..100), y: 0 },
+});</code></pre>
+      </section>
+
+      <section class="example">
+        <div class="example-header">
+          <h2>Ribbons Custom Canvas</h2>
+          <button id="runCustom" type="button">Run</button>
+        </div>
+        <pre><code>const canvas = document.getElementById("customCanvas");
+const localRibbons = await ribbons.create(canvas);
+
+await localRibbons({
+  position: { x: random(0..100), y: 0 },
+});</code></pre>
+        <canvas id="customCanvas" class="custom-canvas"></canvas>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

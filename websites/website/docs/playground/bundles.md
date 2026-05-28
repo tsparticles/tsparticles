@@ -5,6 +5,7 @@ Use this page to test the focused APIs from these packages:
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
 
 Each section has its own canvas, JSON editor, and controls.
 

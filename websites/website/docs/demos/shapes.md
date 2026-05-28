@@ -27,6 +27,7 @@ Source folders:
 - `matrix` (`options.matrix.interval`)
 - `path` (`options.path.half`, `options.path.segments`)
 - `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## Notes on aliases and bundles
 

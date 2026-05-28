@@ -459,6 +459,7 @@ app.use("/tsparticles-slim", express.static("./node_modules/@tsparticles/slim"))
 app.use("/tsparticles-confetti", express.static("./node_modules/@tsparticles/confetti"));
 app.use("/tsparticles-fireworks", express.static("./node_modules/@tsparticles/fireworks"));
 app.use("/tsparticles-particles", express.static("./node_modules/@tsparticles/particles"));
+app.use("/tsparticles-ribbons", express.static("./node_modules/@tsparticles/ribbons"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
 app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
@@ -646,6 +647,12 @@ app.get("/fireworks", function (req, res) {
   logger.info("firefox requested");
 
   res.render("fireworks");
+});
+
+app.get("/ribbons", function (req, res) {
+  logger.info("ribbons requested");
+
+  res.render("ribbons");
 });
 
 app.get("/particles", function (req, res) {

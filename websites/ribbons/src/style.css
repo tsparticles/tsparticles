@@ -1,0 +1,117 @@
+:root {
+  color-scheme: dark;
+  --bg-start: #061629;
+  --bg-end: #14041f;
+  --panel: rgba(10, 25, 45, 0.72);
+  --panel-border: rgba(128, 218, 255, 0.35);
+  --text: #f4fbff;
+  --muted: #c8d9e8;
+  --accent: #ff6d8f;
+  --accent-2: #63d2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 109, 143, 0.2), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(99, 210, 255, 0.22), transparent 30%),
+    linear-gradient(140deg, var(--bg-start), var(--bg-end));
+}
+
+.page {
+  width: min(980px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+}
+
+.hero p {
+  margin: 0.5rem 0;
+  color: var(--muted);
+}
+
+.usage {
+  font-size: 0.9rem;
+}
+
+.usage code {
+  display: inline-block;
+  margin-top: 0.45rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  background: rgba(0, 0, 0, 0.35);
+  word-break: break-all;
+}
+
+.example {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 1rem;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+}
+
+.example-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.example-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #0c1320;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+pre {
+  margin: 0.8rem 0 0;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.88rem;
+}
+
+.custom-canvas {
+  display: block;
+  margin-top: 0.8rem;
+  width: 100%;
+  height: 320px;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.45);
+}

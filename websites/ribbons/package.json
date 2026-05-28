@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/confetti-website",
+  "name": "@tsparticles/ribbons-website",
   "version": "4.0.5",
-  "description": "tsParticles confetti webpage",
+  "description": "tsParticles ribbons webpage",
   "private": true,
   "type": "module",
   "engines": {
@@ -21,18 +21,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "websites/confetti"
+    "directory": "websites/ribbons"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "homepage": "https://confetti.js.org",
+  "homepage": "https://ribbons.js.org",
   "dependencies": {
-    "@tsparticles/confetti": "workspace:*",
-    "ace-builds": "^1.37.5",
-    "js-beautify": "^1.15.4"
+    "@tsparticles/ribbons": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -48,7 +46,7 @@
     "implicitDependencies": [
       "*",
       "!@tsparticles/website",
-      "!@tsparticles/ribbons-website",
+      "!@tsparticles/confetti-website",
       "!@tsparticles/*-demo"
     ],
     "targets": {

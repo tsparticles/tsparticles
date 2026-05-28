@@ -10,7 +10,6 @@ import { loadImageShape } from "@tsparticles/shape-image";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 import { loadPolygonShape } from "@tsparticles/shape-polygon";
-import { loadRibbonShape } from "@tsparticles/shape-ribbon";
 import { loadRollUpdater } from "@tsparticles/updater-roll";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSquareShape } from "@tsparticles/shape-square";
@@ -55,7 +54,6 @@ async function doInitPlugins(engine: Engine): Promise<void> {
       loadHeartShape(e),
       loadImageShape(e),
       loadPolygonShape(e),
-      loadRibbonShape(e),
       loadSquareShape(e),
       loadStarShape(e),
       loadEmojiShape(e),

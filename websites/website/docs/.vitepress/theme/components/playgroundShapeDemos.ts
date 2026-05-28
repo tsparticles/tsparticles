@@ -802,6 +802,44 @@ export const shapeDemos: DemoPreset[] = [
     },
   },
   {
+    key: "shape-ribbon",
+    title: "Ribbon Shape",
+    description: "Ribbon with chain-based physics simulation, darken, and oscillation options.",
+    category: "interactive",
+    kind: "shape",
+    recipePath: "/demos/shapes",
+    options: base({
+      type: "ribbon",
+      close: true,
+      options: {
+        ribbon: {
+          close: true,
+          angle: 45,
+          count: 40,
+          drag: 0.02,
+          mass: 1,
+          oscillationDistance: {
+            min: 80,
+            max: 120,
+          },
+          oscillationSpeed: {
+            min: 3,
+            max: 5,
+          },
+          particleDist: 8,
+          velocityInherit: {
+            min: 4,
+            max: 6,
+          },
+          darken: {
+            enable: true,
+            value: 30,
+          },
+        },
+      },
+    }),
+  },
+  {
     key: "shape-mixed-core",
     title: "Mixed Core Shapes",
     description: "Comparison scene with explicit options for each core shape.",
