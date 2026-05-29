@@ -111,3 +111,13 @@ minimumReleaseAgeExclude:
   - nx@22.7.4
   - typescript-eslint@8.60.0
   - webpack@5.107.2
+  - '@commitlint/cli@21.0.2'
+  - '@commitlint/config-conventional@21.0.2'
+  - '@commitlint/is-ignored@21.0.2'
+  - '@commitlint/lint@21.0.2'
+  - '@commitlint/load@21.0.2'
+  - '@commitlint/message@21.0.2'
+  - '@commitlint/parse@21.0.2'
+  - '@commitlint/read@21.0.2'
+  - '@commitlint/rules@21.0.2'
+  - '@commitlint/top-level@21.0.2'
