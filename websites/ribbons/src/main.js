@@ -211,8 +211,6 @@ document.getElementById("themeToggle").addEventListener("click", function () {
   updateTheme(++currentStep % 3);
 });
 
-const randomX = () => Math.floor(Math.random() * 100);
-
 const modes = [
   {
     id: "basic",
@@ -224,9 +222,7 @@ const modes = [
       },
     ],
     fn: function () {
-      ribbons({
-        position: { x: randomX(), y: 0 },
-      });
+      ribbons();
     },
   },
 
@@ -245,13 +241,11 @@ const modes = [
     ],
     fn: function () {
       ribbons({
-        position: { x: randomX(), y: 0 },
         colors: ["#FF4500", "#FF6347", "#FFD700", "#FF8C00", "#FF0000"],
       });
 
       setTimeout(() => {
         ribbons({
-          position: { x: randomX(), y: 0 },
           colors: ["#00BFFF", "#1E90FF", "#00CED1", "#7FFFD4", "#E0FFFF"],
         });
       }, 1200);
@@ -271,7 +265,6 @@ const modes = [
       ribbons({
         count: 2,
         spread: 60,
-        position: { x: randomX(), y: 0 },
       });
 
       setTimeout(() => {
@@ -279,7 +272,6 @@ const modes = [
           count: 2,
           spread: 60,
           angle: 60,
-          position: { x: randomX(), y: 0 },
         });
       }, 300);
 
@@ -288,7 +280,6 @@ const modes = [
           count: 2,
           spread: 60,
           angle: 120,
-          position: { x: randomX(), y: 0 },
         });
       }, 600);
     },
@@ -314,13 +305,25 @@ const modes = [
           return clearInterval(interval);
         }
 
-        ribbons({
-          position: {
-            x: randomX(),
-            y: 0,
-          },
-        });
+        ribbons();
       }, 260);
+    },
+  },
+
+  {
+    id: "fixed-position",
+    name: "Fixed Position",
+    description: [
+      {
+        cssClass: "",
+        text: "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element.",
+      },
+    ],
+    fn: function () {
+      ribbons({
+        position: { x: 50, y: 0 },
+        emitterSize: { width: 0, height: 0 },
+      });
     },
   },
 
@@ -351,30 +354,9 @@ const modes = [
             return clearInterval(interval);
           }
 
-          canvas.ribbons({
-            position: {
-              x: randomX(),
-              y: 0,
-            },
-          });
+          canvas.ribbons();
         }, 300);
       })();
-    },
-  },
-
-  {
-    id: "fixed-position",
-    name: "Fixed Position",
-    description: [
-      {
-        cssClass: "",
-        text: "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element.",
-      },
-    ],
-    fn: function () {
-      ribbons({
-        position: { x: 50, y: 0 },
-      });
     },
   },
 ];

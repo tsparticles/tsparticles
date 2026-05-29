@@ -1,4 +1,4 @@
-import type { ICoordinates, IShapeValues, SingleOrMultiple } from "@tsparticles/engine";
+import type { ICoordinates, IDimension, IShapeValues, SingleOrMultiple } from "@tsparticles/engine";
 
 /** Ribbons options interface */
 export interface IRibbonsOptions {
@@ -16,6 +16,9 @@ export interface IRibbonsOptions {
 
   /** Ribbons drift */
   drift: number;
+
+  /** Emitter size for particle spawn area (in percent). Default: { width: 100, height: 0 } */
+  emitterSize: IDimension;
 
   /**
    * @deprecated use position instead

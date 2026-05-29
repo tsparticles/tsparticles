@@ -83,6 +83,7 @@
     "@tsparticles/basic": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/plugin-emitters": "workspace:*",
+    "@tsparticles/plugin-emitters-shape-square": "workspace:*",
     "@tsparticles/plugin-motion": "workspace:*",
     "@tsparticles/shape-ribbon": "workspace:*",
     "@tsparticles/updater-life": "workspace:*"

@@ -47,3 +47,18 @@ export function resume(): void {
 ```
 
 装飾的な流れる背景、お祝いのカスケード、カラフルなアニメーショントレイルに最適です。
+
+## 固定位置（単一点）
+
+デフォルトでは、各リボン粒子はキャンバス幅全体のランダムなx位置に生成されます。`emitterSize`を使用して生成領域を制御します — `{ width: 0, height: 0 }`に設定すると、すべてのリボンが同じ点から始まります：
+
+```ts
+import { ribbons } from "@tsparticles/ribbons";
+
+await ribbons({
+  position: { x: 50, y: 0 },
+  emitterSize: { width: 0, height: 0 },
+});
+```
+
+これは、ボタンやページ上の特定の要素からリボンをトリガーするのに便利です。

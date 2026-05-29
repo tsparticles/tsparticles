@@ -47,3 +47,18 @@ export function resume(): void {
 ```
 
 Perfekt für dekorative Hintergründe, festliche Kaskaden und farbenfrohe animierte Spuren.
+
+## Feste Position (einzelner Punkt)
+
+Standardmäßig wird jedes Ribbon-Partikel an einer zufälligen x-Position über die gesamte Canvas-Breite erzeugt. Mit `emitterSize` kann der Erzeugungsbereich gesteuert werden — setze ihn auf `{ width: 0, height: 0 }`, um alle Ribbons vom selben Punkt starten zu lassen:
+
+```ts
+import { ribbons } from "@tsparticles/ribbons";
+
+await ribbons({
+  position: { x: 50, y: 0 },
+  emitterSize: { width: 0, height: 0 },
+});
+```
+
+Nützlich, um Ribbons von einem Button oder einem bestimmten Element auf deiner Seite auszulösen.

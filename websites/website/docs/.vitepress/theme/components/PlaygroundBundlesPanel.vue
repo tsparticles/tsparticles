@@ -63,10 +63,6 @@ const defaultOptions: Record<BundleKey, unknown> = {
     count: 5,
     spread: 0,
     colors: ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"],
-    position: {
-      x: 50,
-      y: 0,
-    },
   },
 };
 
@@ -385,8 +381,13 @@ async function startRibbons(): Promise<void> {
   }
 
   const options = parseOptions<RibbonsOptions>("ribbons");
+  const canvas = ribbonsCanvas.value;
 
-  if (!options) {
+  if (!options || !canvas) {
+    if (!canvas) {
+      statuses.ribbons = "Canvas not ready yet. Retry in a second.";
+    }
+
     return;
   }
 
@@ -395,16 +396,17 @@ async function startRibbons(): Promise<void> {
   try {
     destroyById(bundleIds.ribbons);
     ribbonsContainer.value = undefined;
-    const container = await ribbons(bundleIds.ribbons, options);
+    const fire = await ribbons.create(canvas, options);
 
-    if (!container) {
+    ribbonsContainer.value = await fire(options);
+
+    if (!ribbonsContainer.value) {
       ribbonsRunning.value = false;
       statuses.ribbons = "No ribbons container created.";
 
       return;
     }
 
-    ribbonsContainer.value = container;
     ribbonsRunning.value = true;
     statuses.ribbons = "Ribbons running.";
   } catch (error) {

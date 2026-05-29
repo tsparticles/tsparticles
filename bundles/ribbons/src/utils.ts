@@ -4,7 +4,6 @@ import { RibbonsOptions } from "./RibbonsOptions.js";
 import type { RibbonsParams } from "./RibbonsParams.js";
 
 const sizeFactor = 8,
-  emitterWidth = 100,
   emitterTop = 0,
   ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
 
@@ -20,9 +19,12 @@ export async function addEmitter(container: EmitterContainer, actualOptions: Rib
       x: actualOptions.position.x,
       y: emitterTop,
     },
+    shape: {
+      type: "square",
+    },
     size: {
-      width: emitterWidth,
-      height: 0,
+      width: actualOptions.emitterSize.width,
+      height: actualOptions.emitterSize.height,
     },
     rate: {
       delay: 0,
@@ -164,9 +166,12 @@ export function convertOptions(actualOptions: RibbonsOptions, params: RibbonsPar
         x: actualOptions.position.x,
         y: emitterTop,
       },
+      shape: {
+        type: "square",
+      },
       size: {
-        width: emitterWidth,
-        height: 0,
+        width: actualOptions.emitterSize.width,
+        height: actualOptions.emitterSize.height,
       },
       rate: {
         delay: 0,

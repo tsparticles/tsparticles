@@ -47,3 +47,18 @@ export function resume(): void {
 ```
 
 非常适合装饰性流动背景、庆祝性瀑布和彩色动画轨迹。
+
+## 固定位置（单点）
+
+默认情况下，每个彩带粒子在画布整个宽度上的随机x位置生成。使用 `emitterSize` 控制生成区域 — 将其设置为 `{ width: 0, height: 0 }` 可使所有彩带从同一点开始：
+
+```ts
+import { ribbons } from "@tsparticles/ribbons";
+
+await ribbons({
+  position: { x: 50, y: 0 },
+  emitterSize: { width: 0, height: 0 },
+});
+```
+
+这对于从按钮或页面上的特定元素触发彩带非常有用。

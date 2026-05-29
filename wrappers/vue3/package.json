@@ -126,6 +126,7 @@
     "@vitejs/plugin-vue-jsx": "^5.1.5",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/language-core": "^3.3.2",
     "@vue/tsconfig": "^0.9.1",
     "eslint": "^10.2.0",
     "eslint-plugin-vue": "^10.8.0",

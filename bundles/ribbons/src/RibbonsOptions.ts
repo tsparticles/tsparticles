@@ -1,5 +1,6 @@
 import {
   type ICoordinates,
+  type IDimension,
   type IOptionLoader,
   type IShapeValues,
   type RecursivePartial,
@@ -28,6 +29,9 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Ribbons drift offset */
   drift: number;
 
+  /** Emitter size for particle spawn area */
+  emitterSize: IDimension;
+
   /** Ribbons position, in percent values */
   position: ICoordinates;
 
@@ -52,6 +56,10 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
     this.count = 5;
     this.spread = 0;
     this.drift = 0;
+    this.emitterSize = {
+      width: 100,
+      height: 0,
+    };
     this.ticks = 200;
     this.position = {
       x: 50,
@@ -150,6 +158,16 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
     if (data.ticks !== undefined) {
       this.ticks = data.ticks;
+    }
+
+    if (data.emitterSize) {
+      if (data.emitterSize.width !== undefined) {
+        this.emitterSize.width = data.emitterSize.width;
+      }
+
+      if (data.emitterSize.height !== undefined) {
+        this.emitterSize.height = data.emitterSize.height;
+      }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated

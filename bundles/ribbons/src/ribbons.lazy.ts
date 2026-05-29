@@ -32,23 +32,30 @@ async function doInitPlugins(engine: Engine): Promise<void> {
 
   await engine.pluginManager.register(async e => {
     const [
-      { loadBasic },
-      { loadEmittersPluginSimple },
-      { loadMotionPlugin },
-      { loadRibbonShape },
-      { loadLifeUpdater },
-    ] = await Promise.all([
-      import("@tsparticles/basic/lazy"),
-      import("@tsparticles/plugin-emitters/plugin/lazy"),
-      import("@tsparticles/plugin-motion/lazy"),
-      import("@tsparticles/shape-ribbon/lazy"),
-      import("@tsparticles/updater-life/lazy"),
-    ]);
+        { loadBasic },
+        { loadEmittersPluginSimple },
+        { loadEmittersShapeSquare },
+        { loadMotionPlugin },
+        { loadRibbonShape },
+        { loadLifeUpdater },
+      ] = await Promise.all([
+        import("@tsparticles/basic/lazy"),
+        import("@tsparticles/plugin-emitters/plugin/lazy"),
+        import("@tsparticles/plugin-emitters-shape-square/lazy"),
+        import("@tsparticles/plugin-motion/lazy"),
+        import("@tsparticles/shape-ribbon/lazy"),
+        import("@tsparticles/updater-life/lazy"),
+      ]),
+      emittersRegister = async (engine: Engine): Promise<void> => {
+        await loadEmittersPluginSimple(engine);
+
+        await loadEmittersShapeSquare(engine);
+      };
 
     await Promise.all([
       loadBasic(e),
       loadMotionPlugin(e),
-      loadEmittersPluginSimple(e),
+      emittersRegister(e),
       loadRibbonShape(e),
       loadLifeUpdater(e),
     ]);

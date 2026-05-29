@@ -47,3 +47,18 @@ export function resume(): void {
 ```
 
 Perfeito para fundos decorativos, cascatas festivas e rastros coloridos animados.
+
+## Posição fixa (ponto único)
+
+Por padrão, cada partícula de ribbon aparece em uma posição x aleatória em toda a largura do canvas. Use `emitterSize` para controlar a área de spawn — defina como `{ width: 0, height: 0 }` para fazer todos os ribbons partirem do mesmo ponto:
+
+```ts
+import { ribbons } from "@tsparticles/ribbons";
+
+await ribbons({
+  position: { x: 50, y: 0 },
+  emitterSize: { width: 0, height: 0 },
+});
+```
+
+Útil para disparar ribbons a partir de um botão ou elemento específico da sua página.

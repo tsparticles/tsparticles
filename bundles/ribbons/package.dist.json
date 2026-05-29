@@ -76,6 +76,7 @@
     "@tsparticles/basic": "4.0.5",
     "@tsparticles/engine": "4.0.5",
     "@tsparticles/plugin-emitters": "4.0.5",
+    "@tsparticles/plugin-emitters-shape-square": "4.0.5",
     "@tsparticles/plugin-motion": "4.0.5",
     "@tsparticles/shape-ribbon": "4.0.5",
     "@tsparticles/updater-life": "4.0.5"

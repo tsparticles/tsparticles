@@ -3,6 +3,7 @@ import type { RibbonsFirstParam, RibbonsFunc } from "./types.js";
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEmittersPluginSimple } from "@tsparticles/plugin-emitters/plugin";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 import { loadRibbonShape } from "@tsparticles/shape-ribbon";
@@ -36,10 +37,16 @@ async function doInitPlugins(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(async e => {
+    const emittersRegister = async (engine: Engine): Promise<void> => {
+      await loadEmittersPluginSimple(engine);
+
+      await loadEmittersShapeSquare(engine);
+    };
+
     await Promise.all([
       loadBasic(e),
       loadMotionPlugin(e),
-      loadEmittersPluginSimple(e),
+      emittersRegister(e),
       loadRibbonShape(e),
       loadLifeUpdater(e),
     ]);
