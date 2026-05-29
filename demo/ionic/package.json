@@ -103,7 +103,7 @@
     "@angular-devkit/build-angular": "~21.2.7",
     "@angular-eslint/builder": "~21.3.1",
     "@angular-eslint/eslint-plugin": "~21.3.1",
-    "@angular-eslint/eslint-plugin-template": "~21.3.1",
+    "@angular-eslint/eslint-plugin-template": "~21.4.0",
     "@angular-eslint/template-parser": "~21.3.1",
     "@angular/cli": "~21.2.7",
     "@angular/compiler": "~21.2.8",
