@@ -17,8 +17,8 @@ const sides = 12;
  * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer<ImageParticle> {
-  private readonly _container;
-  private readonly _engine;
+  readonly #container;
+  readonly #engine;
 
   /**
    * Image drawer constructor, initializing the image set collection
@@ -26,8 +26,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param container -
    */
   constructor(engine: ImageEngine, container: ImageContainer) {
-    this._engine = engine;
-    this._container = container;
+    this.#engine = engine;
+    this.#container = container;
   }
 
   /**
@@ -46,7 +46,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data, this._container.canvas.render.settings);
+      drawGif(data, this.#container.canvas.render.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {
@@ -73,21 +73,21 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
   async init(container: ImageContainer): Promise<void> {
     const options = container.actualOptions;
 
-    if (!options.preload || !this._engine.loadImage) {
+    if (!options.preload || !this.#engine.loadImage) {
       return;
     }
 
     const promises: Promise<void>[] = [];
 
     for (const imageData of options.preload) {
-      promises.push(this._engine.loadImage(container, imageData));
+      promises.push(this.#engine.loadImage(container, imageData));
     }
 
     await Promise.all(promises);
   }
 
   loadShape(particle: ImageParticle): void {
-    const { _container: container } = this;
+    const container = this.#container;
 
     if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;
@@ -99,14 +99,14 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const images = this._engine.getImages?.(container),
+    const images = this.#engine.getImages?.(container),
       image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (image) {
       return;
     }
 
-    void this.loadImageShape(container, imageData).then(() => {
+    void this.#loadImageShape(container, imageData).then(() => {
       this.loadShape(particle);
     });
   }
@@ -121,7 +121,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const images = this._engine.getImages?.(container),
+    const images = this.#engine.getImages?.(container),
       imageData = particle.shapeData as IImageShape | undefined;
 
     if (!imageData) {
@@ -187,12 +187,12 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param imageShape - the image shape to load
    * @internal
    */
-  private readonly loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
-    if (!this._engine.loadImage) {
+  readonly #loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
+    if (!this.#engine.loadImage) {
       throw new Error(`Image shape not initialized`);
     }
 
-    await this._engine.loadImage(container, {
+    await this.#engine.loadImage(container, {
       gif: imageShape.gif,
       name: imageShape.name,
       replaceColor: imageShape.replaceColor,

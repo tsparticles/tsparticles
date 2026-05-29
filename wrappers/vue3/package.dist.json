@@ -1,0 +1,100 @@
+{
+  "name": "@tsparticles/vue3",
+  "version": "4.0.5",
+  "description": "Official tsParticles Vue.js 3.x Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 2.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "type": "git",
+    "directory": "wrappers/vue3"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/vue3/issues"
+  },
+  "type": "module",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "types": "index.d.ts",
+  "module": "particles.es.js",
+  "main": "particles.es.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./particles.es.js"
+    }
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "__VERSION__"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

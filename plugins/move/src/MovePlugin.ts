@@ -4,16 +4,16 @@ import type { MovePluginManager } from "./Types.js";
 export class MovePlugin implements IPlugin {
   id = "move";
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: MovePluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { MovePluginInstance } = await import("./MovePluginInstance.js");
 
-    return new MovePluginInstance(this._pluginManager, container);
+    return new MovePluginInstance(this.#pluginManager, container);
   }
 
   loadOptions(): void {

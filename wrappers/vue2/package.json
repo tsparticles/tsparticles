@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue2",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "main": "dist/vue2-particles.umd.js",
   "module": "dist/vue2-particles.es.js",
   "types": "dist/index.d.ts",
@@ -16,8 +16,8 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "dev": "vite",
-    "build": "pnpm run clean && pnpm run prettify:src && pnpm run prettify:readme && vite build",
-    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vite build",
+    "build": "pnpm run clean && pnpm run prettify:src && pnpm run prettify:readme && vite build && node ../../scripts/resolve-dist-package.cjs",
+    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vite build && node ../../scripts/resolve-dist-package.cjs",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
@@ -113,10 +113,13 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
+    "@tsparticles/engine": "workspace:*",
     "vue": "^2.7.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"
@@ -133,7 +136,7 @@
     "prettier": "^3.8.2",
     "typescript": "^6.0.2",
     "vite": "^6.4.1",
-    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-dts": "^5.0.1",
     "vue": "^2.7.16",
     "vue-class-component": "^7.2.6",
     "vue-eslint-parser": "^10.4.0",

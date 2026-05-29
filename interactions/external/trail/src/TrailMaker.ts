@@ -37,14 +37,14 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
   /** @inheritDoc */
   readonly maxDistance = 0;
 
-  private _delay: number;
-  private _lastPosition?: ICoordinates;
-  private readonly _pluginManager;
+  #delay: number;
+  #lastPosition?: ICoordinates;
+  readonly #pluginManager;
 
   constructor(pluginManager: InteractivityPluginManager, container: TrailContainer) {
     super(container);
-    this._pluginManager = pluginManager;
-    this._delay = 0;
+    this.#pluginManager = pluginManager;
+    this.#delay = 0;
   }
 
   /** @inheritDoc */
@@ -70,23 +70,23 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
     const optDelay = (trailOptions.delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
 
-    if (this._delay < optDelay) {
-      this._delay += delta.value;
+    if (this.#delay < optDelay) {
+      this.#delay += delta.value;
     }
 
-    if (this._delay < optDelay) return;
+    if (this.#delay < optDelay) return;
 
     const mousePos = interactivityData.mouse.position,
       canEmit = !(
         trailOptions.pauseOnStop &&
-        (mousePos === this._lastPosition ||
-          (mousePos?.x === this._lastPosition?.x && mousePos?.y === this._lastPosition?.y))
+        (mousePos === this.#lastPosition ||
+          (mousePos?.x === this.#lastPosition?.x && mousePos?.y === this.#lastPosition?.y))
       );
 
     if (mousePos) {
-      this._lastPosition = { ...mousePos };
+      this.#lastPosition = { ...mousePos };
     } else {
-      delete this._lastPosition;
+      this.#lastPosition = undefined;
     }
 
     if (canEmit && mousePos) {
@@ -125,7 +125,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
           // Safe conversion of the particle color option to HSL structure
           // This handles strings, RGB, and existing HSL objects correctly
           baseHsl = fillData
-            ? rangeColorToHsl(this._pluginManager, AnimatableColor.create(undefined, fillData.color))
+            ? rangeColorToHsl(this.#pluginManager, AnimatableColor.create(undefined, fillData.color))
             : undefined,
           h = calculateValue(colorCoords.h, baseHsl?.h, hMax),
           s = calculateValue(colorCoords.s, baseHsl?.s, sMax),
@@ -151,7 +151,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       container.particles.push(trailOptions.quantity, mousePos, particleOptions);
     }
 
-    this._delay -= optDelay;
+    this.#delay -= optDelay;
   }
 
   /** @inheritDoc */

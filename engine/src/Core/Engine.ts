@@ -139,21 +139,21 @@ export class Engine {
   /**
    * Contains all the {@link Container} instances of the current engine instance
    */
-  private readonly _domArray: Container[] = [];
+  readonly #domArray: Container[] = [];
 
-  private readonly _eventDispatcher = new EventDispatcher();
+  readonly #eventDispatcher = new EventDispatcher();
 
   /**
    * Checks if the engine instance is initialized
    */
-  private _initialized = false;
+  #initialized = false;
 
   /**
    * The container instances
    * @returns the instances loaded in the engine
    */
   get items(): Container[] {
-    return this._domArray;
+    return this.#domArray;
   }
 
   /**
@@ -170,7 +170,7 @@ export class Engine {
    * @param listener - The listener of the specified event
    */
   addEventListener(type: string, listener: CustomEventListener): void {
-    this._eventDispatcher.addEventListener(type, listener);
+    this.#eventDispatcher.addEventListener(type, listener);
   }
 
   /**
@@ -196,20 +196,20 @@ export class Engine {
    * @param args - The event parameters
    */
   dispatchEvent(type: string, args?: CustomEventArgs): void {
-    this._eventDispatcher.dispatchEvent(type, args);
+    this.#eventDispatcher.dispatchEvent(type, args);
   }
 
   /**
    * init method, used by imports
    */
   async init(): Promise<void> {
-    if (this._initialized) {
+    if (this.#initialized) {
       return;
     }
 
     await this.pluginManager.init();
 
-    this._initialized = true;
+    this.#initialized = true;
   }
 
   /**
@@ -218,7 +218,7 @@ export class Engine {
    * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
    */
   item(index: number): Container | undefined {
-    const { items } = this,
+    const items = this.items,
       item = items[index];
 
     if (item?.destroyed) {
@@ -317,6 +317,6 @@ export class Engine {
    * @param listener - The listener of the specified event
    */
   removeEventListener(type: string, listener: CustomEventListener): void {
-    this._eventDispatcher.removeEventListener(type, listener);
+    this.#eventDispatcher.removeEventListener(type, listener);
   }
 }

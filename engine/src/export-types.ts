@@ -12,6 +12,7 @@ export type * from "./Core/Interfaces/IDrawParticleParams.js";
 export type * from "./Core/Interfaces/IEffectDrawer.js";
 export type * from "./Core/Interfaces/ILoadParams.js";
 export type * from "./Core/Interfaces/IPalette.js";
+export type * from "./Core/Interfaces/IParticleCanvasBounds.js";
 export type * from "./Core/Interfaces/IParticleColorStyle.js";
 export type * from "./Core/Interfaces/IParticleHslAnimation.js";
 export type * from "./Core/Interfaces/IParticleLife.js";
@@ -64,13 +65,7 @@ export type * from "./Options/Interfaces/Particles/Number/IParticlesDensity.js";
 export type * from "./Options/Interfaces/Particles/Number/IParticlesNumber.js";
 export type * from "./Options/Interfaces/Particles/Number/IParticlesNumberLimit.js";
 
-export type * from "./Options/Interfaces/Particles/Opacity/IOpacity.js";
-export type * from "./Options/Interfaces/Particles/Opacity/IOpacityAnimation.js";
-
 export type * from "./Options/Interfaces/Particles/Shape/IShape.js";
-
-export type * from "./Options/Interfaces/Particles/Size/ISize.js";
-export type * from "./Options/Interfaces/Particles/Size/ISizeAnimation.js";
 
 export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 

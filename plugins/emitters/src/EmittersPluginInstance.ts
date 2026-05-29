@@ -5,53 +5,52 @@ import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 /**
  */
 export class EmittersPluginInstance implements IContainerPlugin {
-  private readonly _instancesManager;
+  readonly #container: EmitterContainer;
+  readonly #instancesManager;
 
-  constructor(
-    instancesManager: EmittersInstancesManager,
-    private readonly container: EmitterContainer,
-  ) {
-    this._instancesManager = instancesManager;
+  constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
+    this.#instancesManager = instancesManager;
+    this.#container = container;
 
-    this._instancesManager.initContainer(container);
+    this.#instancesManager.initContainer(container);
   }
 
   async init(): Promise<void> {
-    const emittersOptions = this.container.actualOptions.emitters;
+    const emittersOptions = this.#container.actualOptions.emitters;
 
     if (isArray(emittersOptions)) {
       for (const emitterOptions of emittersOptions) {
-        await this._instancesManager.addEmitter(this.container, emitterOptions);
+        await this.#instancesManager.addEmitter(this.#container, emitterOptions);
       }
     } else {
-      await this._instancesManager.addEmitter(this.container, emittersOptions);
+      await this.#instancesManager.addEmitter(this.#container, emittersOptions);
     }
   }
 
   pause(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this.#instancesManager.getArray(this.#container)) {
       emitter.pause();
     }
   }
 
   play(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this.#instancesManager.getArray(this.#container)) {
       emitter.play();
     }
   }
 
   resize(): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this.#instancesManager.getArray(this.#container)) {
       emitter.resize();
     }
   }
 
   stop(): void {
-    this._instancesManager.clear(this.container);
+    this.#instancesManager.clear(this.#container);
   }
 
   update(delta: IDelta): void {
-    this._instancesManager.getArray(this.container).forEach(emitter => {
+    this.#instancesManager.getArray(this.#container).forEach(emitter => {
       emitter.update(delta);
     });
   }

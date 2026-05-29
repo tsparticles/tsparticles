@@ -97,7 +97,7 @@ export class Particles extends HTMLElement {
       if (this.isConnected) {
         this.url = newValue;
       } else {
-        this._url = newValue;
+        this.#url = newValue;
       }
     } else if (name === "options") {
       if (newValue) {
@@ -107,7 +107,7 @@ export class Particles extends HTMLElement {
           if (this.isConnected) {
             this.options = parsed as any;
           } else {
-            this._options = parsed as any;
+            this.#options = parsed as any;
           }
         } catch {
           // ignore malformed JSON
@@ -116,42 +116,42 @@ export class Particles extends HTMLElement {
         if (this.isConnected) {
           this.options = undefined;
         } else {
-          this._options = undefined;
+          this.#options = undefined;
         }
       }
     }
   }
   get url(): string | null | undefined {
-    return this._url;
+    return this.#url;
   }
 
   set url(value: string | null | undefined) {
-    this._url = value;
+    this.#url = value;
 
     // Note: setter triggers a reload when changed
 
     this.container.current?.destroy();
 
-    void this.loadParticles(++this.loadId);
+    void this.#loadParticles(++this.#loadId);
   }
 
   get options(): ISourceOptions | undefined {
-    return this._options;
+    return this.#options;
   }
 
   set options(value: ISourceOptions | undefined) {
-    this._options = value;
+    this.#options = value;
 
     // Note: setter triggers a reload when changed
 
     this.container.current?.destroy();
 
-    void this.loadParticles(++this.loadId);
+    void this.#loadParticles(++this.#loadId);
   }
 
-  private _options?: ISourceOptions;
-  private _url?: string | null;
-  private loadId = 0;
+  #options?: ISourceOptions;
+  #url?: string | null;
+  #loadId = 0;
 
   public container: {
     current?: Container;
@@ -166,10 +166,10 @@ export class Particles extends HTMLElement {
 
     if (options) {
       try {
-        this._options = JSON.parse(options);
+        this.#options = JSON.parse(options);
       } catch {}
     }
-    this._url = this.getAttribute("url");
+    this.#url = this.getAttribute("url");
 
     // Dispatch the engine that's actually available at runtime (if any).
     try {
@@ -206,16 +206,16 @@ export class Particles extends HTMLElement {
 
     // connected - start load when element is attached
 
-    void this.loadParticles(++this.loadId);
+    void this.#loadParticles(++this.#loadId);
   }
 
   disconnectedCallback(): void {
-    this.loadId++;
+    this.#loadId++;
     this.container.current?.destroy();
     this.container.current = undefined;
   }
 
-  private async loadParticles(currentLoadId: number): Promise<void> {
+  async #loadParticles(currentLoadId: number): Promise<void> {
     // entering loadParticles
 
     try {
@@ -235,10 +235,10 @@ export class Particles extends HTMLElement {
 
       let container: Container | undefined;
 
-      if (this._url) {
+      if (this.#url) {
         // Normalize URL early and log for diagnostics so demo pages can
         // inspect what the wrapper sends to the engine when loads fail.
-        let urlParam = this._url;
+        let urlParam = this.#url;
         try {
           urlParam = new URL(urlParam as string, document.baseURI).toString();
         } catch (e) {
@@ -252,26 +252,26 @@ export class Particles extends HTMLElement {
           element: this,
           url: urlParam,
         });
-      } else if (this._options) {
+      } else if (this.#options) {
         // calling engine.load with inline options
 
         container = await engine?.load({
           id: this.id,
           element: this,
-          options: this._options,
+          options: this.#options,
         });
       }
 
       // after engine.load returned
 
-      if (currentLoadId !== this.loadId) {
+      if (currentLoadId !== this.#loadId) {
         // Another load superseded us; destroy the stale container.
         container?.destroy();
 
         return;
       }
 
-      this.notifyParticlesLoaded(container);
+      this.#notifyParticlesLoaded(container);
     } catch (err) {
       // Prevent an unhandled rejection by catching load errors and exposing
       // them via events so the embedding page can surface diagnostics.
@@ -287,8 +287,8 @@ export class Particles extends HTMLElement {
         message: err && (err as any).message ? (err as any).message : String(err),
         name: err && (err as any).name ? (err as any).name : undefined,
         stack: err && (err as any).stack ? (err as any).stack : undefined,
-        url: this._url,
-        hasOptions: !!this._options,
+        url: this.#url,
+        hasOptions: !!this.#options,
         enginePresent: !!engine,
         engineVersion: engine ? (engine as any).version : undefined,
         engineItemsLength: engine ? (engine as any).items?.length : undefined,
@@ -318,7 +318,7 @@ export class Particles extends HTMLElement {
     }
   }
 
-  private notifyParticlesLoaded(container?: Container): void {
+  #notifyParticlesLoaded(container?: Container): void {
     this.container.current = container;
 
     this.dispatchEvent(

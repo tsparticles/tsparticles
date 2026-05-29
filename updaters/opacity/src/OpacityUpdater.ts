@@ -2,36 +2,42 @@ import {
   type Container,
   type IDelta,
   type IParticleUpdater,
-  type Particle,
+  type RecursivePartial,
   getRandom,
   getRangeValue,
   initParticleNumericAnimationValue,
   percentDenominator,
   updateAnimation,
 } from "@tsparticles/engine";
+import { type IOpacityParticlesOptions, type OpacityParticle, type OpacityParticlesOptions } from "./Types.js";
+import { Opacity } from "./Options/Classes/Opacity.js";
 
 /**
  * The opacity updater, it manages the opacity on each particle
  */
 export class OpacityUpdater implements IParticleUpdater {
-  private readonly container;
+  readonly #container;
 
   /**
    * Constructor of opacity updater
    * @param container - The container to manage
    */
   constructor(container: Container) {
-    this.container = container;
+    this.#container = container;
   }
 
   /**
    * Init a single particle opacity
    * @param particle -
    */
-  init(particle: Particle): void {
+  init(particle: OpacityParticle): void {
     /* opacity */
     const opacityOptions = particle.options.opacity,
       pxRatio = 1;
+
+    if (!opacityOptions) {
+      return;
+    }
 
     particle.opacity = initParticleNumericAnimationValue(opacityOptions, pxRatio);
 
@@ -39,7 +45,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
     if (opacityAnimation.enable) {
       particle.opacity.velocity =
-        (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.container.retina.reduceFactor;
+        (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.#container.retina.reduceFactor;
 
       if (!opacityAnimation.sync) {
         particle.opacity.velocity *= getRandom();
@@ -52,7 +58,7 @@ export class OpacityUpdater implements IParticleUpdater {
    * @param particle -
    * @returns true if opacity updater is enabled, false otherwise
    */
-  isEnabled(particle: Particle): boolean {
+  isEnabled(particle: OpacityParticle): boolean {
     const none = 0;
 
     return (
@@ -67,10 +73,26 @@ export class OpacityUpdater implements IParticleUpdater {
   }
 
   /**
+   * Loads the opacity options
+   * @param options -
+   * @param sources -
+   */
+  loadOptions(
+    options: OpacityParticlesOptions,
+    ...sources: (RecursivePartial<IOpacityParticlesOptions> | undefined)[]
+  ): void {
+    options.opacity ??= new Opacity();
+
+    for (const source of sources) {
+      options.opacity.load(source?.opacity);
+    }
+  }
+
+  /**
    * Resets the opacity of a particle
    * @param particle -
    */
-  reset(particle: Particle): void {
+  reset(particle: OpacityParticle): void {
     if (!particle.opacity) {
       return;
     }
@@ -84,8 +106,8 @@ export class OpacityUpdater implements IParticleUpdater {
    * @param particle -
    * @param delta -
    */
-  update(particle: Particle, delta: IDelta): void {
-    if (!this.isEnabled(particle) || !particle.opacity) {
+  update(particle: OpacityParticle, delta: IDelta): void {
+    if (!this.isEnabled(particle) || !particle.opacity || !particle.options.opacity) {
       return;
     }
 

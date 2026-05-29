@@ -8,19 +8,19 @@ const defaultFactor = 1,
 
 export class MotionPluginInstance implements IContainerPlugin {
   /** The motion container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * Creates a new MotionPluginInstance
    * @param container - the motion container
    */
   constructor(container: MotionContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   /** @inheritDoc */
   async init(): Promise<void> {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions.motion;
 
     if (!(options && (options.disable || options.reduce.value))) {
@@ -38,12 +38,12 @@ export class MotionPluginInstance implements IContainerPlugin {
     }
 
     // Check if the media query matches or is not available.
-    this._handleMotionChange(mediaQuery);
+    this.#handleMotionChange(mediaQuery);
 
     // Ads an event listener to check for changes in the media query's value.
     const handleChange = (): void => {
       void (async (): Promise<void> => {
-        this._handleMotionChange(mediaQuery);
+        this.#handleMotionChange(mediaQuery);
 
         try {
           await container.refresh();
@@ -58,8 +58,8 @@ export class MotionPluginInstance implements IContainerPlugin {
     await Promise.resolve();
   }
 
-  private readonly _handleMotionChange: (mediaQuery: MediaQueryList) => void = mediaQuery => {
-    const container = this._container,
+  readonly #handleMotionChange: (mediaQuery: MediaQueryList) => void = mediaQuery => {
+    const container = this.#container,
       motion = container.actualOptions.motion;
 
     if (!motion) {

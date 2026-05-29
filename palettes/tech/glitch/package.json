@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-glitch",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "tsParticles glitch - full rgb shift palette",
   "homepage": "https://particles.js.org",
   "scripts": {

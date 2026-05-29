@@ -17,17 +17,17 @@ const connectMode = "connect",
  * Particle connection manager
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: ConnectContainer) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -44,7 +44,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
       return;
     }
 
-    this._maxDistance = connect.distance;
+    this.#maxDistance = connect.distance;
 
     container.retina.connectModeDistance = connect.distance * container.retina.pixelRatio;
     container.retina.connectModeRadius = connect.radius * container.retina.pixelRatio;

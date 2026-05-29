@@ -14,34 +14,34 @@ interface RangeBounds {
  * SpatialHashGrid for fast particle lookup
  */
 export class SpatialHashGrid {
-  private _cellSize: number;
-  private readonly _cells = new Map<string, Particle[]>();
-  private readonly _circlePool: Circle[] = [];
-  private _circlePoolIdx;
-  private _pendingCellSize?: number;
-  private readonly _rectanglePool: Rectangle[] = [];
-  private _rectanglePoolIdx;
+  #cellSize: number;
+  readonly #cells = new Map<string, Particle[]>();
+  readonly #circlePool: Circle[] = [];
+  #circlePoolIdx;
+  #pendingCellSize?: number;
+  readonly #rectanglePool: Rectangle[] = [];
+  #rectanglePoolIdx;
 
   constructor(cellSize: number) {
-    this._cellSize = cellSize;
+    this.#cellSize = cellSize;
 
-    this._circlePoolIdx = 0;
-    this._rectanglePoolIdx = 0;
+    this.#circlePoolIdx = 0;
+    this.#rectanglePoolIdx = 0;
   }
 
   /**
    * Clears the grid for the next frame
    */
   clear(): void {
-    this._cells.clear();
+    this.#cells.clear();
 
-    const pendingCellSize = this._pendingCellSize;
+    const pendingCellSize = this.#pendingCellSize;
 
     if (pendingCellSize) {
-      this._cellSize = pendingCellSize;
+      this.#cellSize = pendingCellSize;
     }
 
-    this._pendingCellSize = undefined;
+    this.#pendingCellSize = undefined;
   }
 
   /**
@@ -50,13 +50,13 @@ export class SpatialHashGrid {
    */
   insert(particle: Particle): void {
     const { x, y } = particle.getPosition(),
-      key = this._cellKeyFromCoords(x, y);
+      key = this.#cellKeyFromCoords(x, y);
 
-    if (!this._cells.has(key)) {
-      this._cells.set(key, []);
+    if (!this.#cells.has(key)) {
+      this.#cells.set(key, []);
     }
 
-    this._cells.get(key)?.push(particle);
+    this.#cells.get(key)?.push(particle);
   }
 
   /**
@@ -67,21 +67,21 @@ export class SpatialHashGrid {
    * @returns the array of particles within the range
    */
   query(range: BaseRange, check?: (particle: Particle) => boolean, out: Particle[] = []): Particle[] {
-    const bounds = this._getRangeBounds(range);
+    const bounds = this.#getRangeBounds(range);
 
     if (!bounds) {
       return out;
     }
 
-    const minCellX = Math.floor(bounds.minX / this._cellSize),
-      maxCellX = Math.floor(bounds.maxX / this._cellSize),
-      minCellY = Math.floor(bounds.minY / this._cellSize),
-      maxCellY = Math.floor(bounds.maxY / this._cellSize);
+    const minCellX = Math.floor(bounds.minX / this.#cellSize),
+      maxCellX = Math.floor(bounds.maxX / this.#cellSize),
+      minCellY = Math.floor(bounds.minY / this.#cellSize),
+      maxCellY = Math.floor(bounds.maxY / this.#cellSize);
 
     for (let cx = minCellX; cx <= maxCellX; cx++) {
       for (let cy = minCellY; cy <= maxCellY; cy++) {
         const key = `${cx}_${cy}`,
-          cellParticles = this._cells.get(key);
+          cellParticles = this.#cells.get(key);
 
         if (!cellParticles) {
           continue;
@@ -116,10 +116,10 @@ export class SpatialHashGrid {
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    const circle = this._acquireCircle(position.x, position.y, radius),
+    const circle = this.#acquireCircle(position.x, position.y, radius),
       result = this.query(circle, check, out);
 
-    this._releaseShapes();
+    this.#releaseShapes();
 
     return result;
   }
@@ -138,10 +138,10 @@ export class SpatialHashGrid {
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    const rect = this._acquireRectangle(position.x, position.y, size.width, size.height),
+    const rect = this.#acquireRectangle(position.x, position.y, size.width, size.height),
       result = this.query(rect, check, out);
 
-    this._releaseShapes();
+    this.#releaseShapes();
 
     return result;
   }
@@ -151,15 +151,15 @@ export class SpatialHashGrid {
    * @param cellSize - the new cell size
    */
   setCellSize(cellSize: number): void {
-    this._pendingCellSize = cellSize;
+    this.#pendingCellSize = cellSize;
   }
 
-  private _acquireCircle(x: number, y: number, r: number): Circle {
-    return (this._circlePool[this._circlePoolIdx++] ??= new Circle(x, y, r)).reset(x, y, r);
+  #acquireCircle(x: number, y: number, r: number): Circle {
+    return (this.#circlePool[this.#circlePoolIdx++] ??= new Circle(x, y, r)).reset(x, y, r);
   }
 
-  private _acquireRectangle(x: number, y: number, w: number, h: number): Rectangle {
-    return (this._rectanglePool[this._rectanglePoolIdx++] ??= new Rectangle(x, y, w, h)).reset(x, y, w, h);
+  #acquireRectangle(x: number, y: number, w: number, h: number): Rectangle {
+    return (this.#rectanglePool[this.#rectanglePoolIdx++] ??= new Rectangle(x, y, w, h)).reset(x, y, w, h);
   }
 
   /**
@@ -168,9 +168,9 @@ export class SpatialHashGrid {
    * @param y -
    * @returns -
    */
-  private _cellKeyFromCoords(x: number, y: number): string {
-    const cellX = Math.floor(x / this._cellSize),
-      cellY = Math.floor(y / this._cellSize);
+  #cellKeyFromCoords(x: number, y: number): string {
+    const cellX = Math.floor(x / this.#cellSize),
+      cellY = Math.floor(y / this.#cellSize);
 
     return `${cellX}_${cellY}`;
   }
@@ -180,7 +180,7 @@ export class SpatialHashGrid {
    * @param range -
    * @returns -
    */
-  private _getRangeBounds(range: BaseRange): RangeBounds | null {
+  #getRangeBounds(range: BaseRange): RangeBounds | null {
     if (range instanceof Circle) {
       const r = range.radius,
         { x, y } = range.position;
@@ -208,8 +208,8 @@ export class SpatialHashGrid {
     return null;
   }
 
-  private _releaseShapes(): void {
-    this._circlePoolIdx = 0;
-    this._rectanglePoolIdx = 0;
+  #releaseShapes(): void {
+    this.#circlePoolIdx = 0;
+    this.#rectanglePoolIdx = 0;
   }
 }

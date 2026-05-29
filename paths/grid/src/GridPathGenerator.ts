@@ -28,17 +28,17 @@ export class GridPathGenerator implements IMovePathGenerator {
   /** Grid path options */
   readonly options: IGridPathOptions;
   /** The particles container */
-  private readonly _container: Container;
+  readonly #container: Container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * GridPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
     this.options = {
       cellSize: 40,
       graph: undefined,
@@ -91,17 +91,17 @@ export class GridPathGenerator implements IMovePathGenerator {
 
     const d = dirs[grid.direction]!;
 
-    this._res.x = d.x * grid.speed;
-    this._res.y = d.y * grid.speed;
+    this.#res.x = d.x * grid.speed;
+    this.#res.y = d.y * grid.speed;
 
-    return this._res;
+    return this.#res;
   }
 
   // -------------------------------------------
 
   /** Initializes the path generator options */
   init(): void {
-    const source = this._container.actualOptions.particles.move.path.options;
+    const source = this.#container.actualOptions.particles.move.path.options;
 
     this.options.cellSize = (source["cellSize"] as number | undefined) ?? this.options.cellSize;
     this.options.autoMaze = (source["autoMaze"] as boolean | undefined) ?? this.options.autoMaze;
@@ -109,14 +109,14 @@ export class GridPathGenerator implements IMovePathGenerator {
 
     // AUTO MAZE = FULL CANVAS
     if (this.options.autoMaze) {
-      const canvas = this._container.canvas.size,
+      const canvas = this.#container.canvas.size,
         cellSize = this.options.cellSize,
         size: IDimension = {
           width: Math.ceil(canvas.width / cellSize),
           height: Math.ceil(canvas.height / cellSize),
         };
 
-      this.options.graph = this._generateMazeGraph(size);
+      this.options.graph = this.#generateMazeGraph(size);
     }
   }
 
@@ -134,7 +134,7 @@ export class GridPathGenerator implements IMovePathGenerator {
   }
 
   // ---------- MAZE GENERATION (DFS) ----------
-  private _generateMazeGraph({ height, width }: IDimension): Record<string, number[]> {
+  #generateMazeGraph({ height, width }: IDimension): Record<string, number[]> {
     const graph: Record<string, number[]> = {},
       visited: boolean[][] = [];
 

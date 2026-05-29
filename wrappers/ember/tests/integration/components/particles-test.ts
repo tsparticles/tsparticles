@@ -1,4 +1,4 @@
-import { render, TestContext } from '@ember/test-helpers';
+import { render, type TestContext } from '@ember/test-helpers';
 import { LINK_OPTIONS } from 'dummy/tests/helpers/particles';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
@@ -7,7 +7,8 @@ import sinon from 'sinon';
 import { initParticlesEngine } from '@tsparticles/ember/utils/init-particles-engine';
 import { loadFull } from 'tsparticles';
 
-import { Container, Engine, tsParticles } from '@tsparticles/engine';
+import type { Container, Engine } from '@tsparticles/engine';
+import { tsParticles } from '@tsparticles/engine';
 import { loadSnowPreset } from '@tsparticles/preset-snow';
 
 interface Context extends TestContext {
@@ -56,13 +57,13 @@ module('Integration | Component | particles', function (hooks) {
     assert.true(loadSpy.calledOnce, 'tsparticles engine load has been called');
   });
 
-  test('calls loadJSON when passing an url', async function (this: Context, assert) {
-    const loadJSONSpy = sinon.stub(tsParticles, 'loadJSON');
+  test('calls load when passing an url', async function (this: Context, assert) {
+    const loadSpy = sinon.stub(tsParticles, 'load');
     this.url = 'https://example.com/config.json';
     await render(hbs`<Particles @url={{this.url}}/>`);
 
     assert.true(
-      loadJSONSpy.calledOnce,
+      loadSpy.calledOnce,
       'tsparticles engine load has been called',
     );
   });

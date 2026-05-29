@@ -459,6 +459,7 @@ app.use("/tsparticles-slim", express.static("./node_modules/@tsparticles/slim"))
 app.use("/tsparticles-confetti", express.static("./node_modules/@tsparticles/confetti"));
 app.use("/tsparticles-fireworks", express.static("./node_modules/@tsparticles/fireworks"));
 app.use("/tsparticles-particles", express.static("./node_modules/@tsparticles/particles"));
+app.use("/tsparticles-ribbons", express.static("./node_modules/@tsparticles/ribbons"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
 app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
@@ -585,6 +586,7 @@ app.use("/shape-heart", express.static("./node_modules/@tsparticles/shape-heart"
 app.use("/shape-infinity", express.static("./node_modules/@tsparticles/shape-infinity"));
 app.use("/shape-matrix", express.static("./node_modules/@tsparticles/shape-matrix"));
 app.use("/shape-path", express.static("./node_modules/@tsparticles/shape-path"));
+app.use("/shape-ribbon", express.static("./node_modules/@tsparticles/shape-ribbon"));
 app.use("/shape-rounded-polygon", express.static("./node_modules/@tsparticles/shape-rounded-polygon"));
 app.use("/shape-rounded-rect", express.static("./node_modules/@tsparticles/shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/@tsparticles/shape-spiral"));
@@ -645,6 +647,12 @@ app.get("/fireworks", function (req, res) {
   logger.info("firefox requested");
 
   res.render("fireworks");
+});
+
+app.get("/ribbons", function (req, res) {
+  logger.info("ribbons requested");
+
+  res.render("ribbons");
 });
 
 app.get("/particles", function (req, res) {

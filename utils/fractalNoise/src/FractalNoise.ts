@@ -2,10 +2,10 @@
 import { SmoothValueNoise } from "@tsparticles/smooth-value-noise";
 
 export class FractalNoise {
-  private readonly _smoothValueNoise: SmoothValueNoise;
+  readonly #smoothValueNoise: SmoothValueNoise;
 
   constructor() {
-    this._smoothValueNoise = new SmoothValueNoise();
+    this.#smoothValueNoise = new SmoothValueNoise();
   }
 
   noise2d(x: number, y: number, octaves = 5, persistence = 0.5, lacunarity = 2): number {
@@ -15,7 +15,7 @@ export class FractalNoise {
       maxValue = 0;
 
     for (let i = 0; i < octaves; i++) {
-      total += this._smoothValueNoise.noise2d(x * frequency, y * frequency) * amplitude;
+      total += this.#smoothValueNoise.noise2d(x * frequency, y * frequency) * amplitude;
       maxValue += amplitude;
       amplitude *= persistence;
       frequency *= lacunarity;
@@ -31,7 +31,7 @@ export class FractalNoise {
       maxValue = 0;
 
     for (let i = 0; i < octaves; i++) {
-      total += this._smoothValueNoise.noise3d(x * frequency, y * frequency, z * frequency) * amplitude;
+      total += this.#smoothValueNoise.noise3d(x * frequency, y * frequency, z * frequency) * amplitude;
       maxValue += amplitude;
       amplitude *= persistence;
       frequency *= lacunarity;
@@ -47,7 +47,7 @@ export class FractalNoise {
       maxValue = 0;
 
     for (let i = 0; i < octaves; i++) {
-      total += this._smoothValueNoise.noise4d(x * frequency, y * frequency, z * frequency, w * frequency) * amplitude;
+      total += this.#smoothValueNoise.noise4d(x * frequency, y * frequency, z * frequency, w * frequency) * amplitude;
       maxValue += amplitude;
       amplitude *= persistence;
       frequency *= lacunarity;
@@ -57,6 +57,6 @@ export class FractalNoise {
   }
 
   seed(seed: number): void {
-    this._smoothValueNoise.seed(seed);
+    this.#smoothValueNoise.seed(seed);
   }
 }

@@ -9,12 +9,12 @@ import type { InteractivityPluginManager } from "../../../types.js";
 export class Modes implements IModes, IOptionLoader<IModes> {
   [name: string]: unknown;
 
-  private readonly _container;
-  private readonly _pluginManager;
+  readonly #container;
+  readonly #pluginManager;
 
   constructor(pluginManager: InteractivityPluginManager, container?: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   load(data?: RecursivePartial<IModes>): void {
@@ -22,11 +22,11 @@ export class Modes implements IModes, IOptionLoader<IModes> {
       return;
     }
 
-    if (!this._container) {
+    if (!this.#container) {
       return;
     }
 
-    const interactors = this._pluginManager.interactors?.get(this._container) as IExternalInteractor[] | undefined;
+    const interactors = this.#pluginManager.interactors?.get(this.#container) as IExternalInteractor[] | undefined;
 
     if (!interactors) {
       return;

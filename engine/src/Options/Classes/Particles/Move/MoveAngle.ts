@@ -19,7 +19,7 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
 
   /**
    * Loads move angle options from the given data
-   * @param data
+   * @param data -
    */
   load(data?: RecursivePartial<IMoveAngle>): void {
     if (isNull(data)) {

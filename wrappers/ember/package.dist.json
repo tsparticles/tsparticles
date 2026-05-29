@@ -1,0 +1,21 @@
+{
+  "name": "@tsparticles/ember",
+  "version": "4.0.5",
+  "description": "Ember.js component for using tsParticles",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/ember"
+  },
+  "keywords": [
+    "ember-addon"
+  ],
+  "author": "Ignace Maes (https://ignacemaes.com/)",
+  "license": "MIT",
+  "peerDependencies": {
+    "@tsparticles/engine": "__VERSION__"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

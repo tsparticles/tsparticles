@@ -10,7 +10,10 @@ export class Retina {
   /** Reduce factor for performance */
   reduceFactor: number;
 
-  constructor(private readonly container: Container) {
+  readonly #container: Container;
+
+  constructor(container: Container) {
+    this.#container = container;
     this.pixelRatio = defaultRatio;
     this.reduceFactor = defaultReduceFactor;
   }
@@ -19,7 +22,7 @@ export class Retina {
    * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
    */
   init(): void {
-    const container = this.container,
+    const container = this.#container,
       options = container.actualOptions;
 
     this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;
@@ -37,7 +40,7 @@ export class Retina {
 
   /**
    * Initializes retina-scaled properties for a particle
-   * @param particle
+   * @param particle -
    */
   initParticle(particle: Particle): void {
     const options = particle.options,
@@ -49,7 +52,6 @@ export class Retina {
     props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
     props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
     props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
-    props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
 
     const maxDistance = props.maxDistance;
 

@@ -11,26 +11,26 @@ import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 /**
  */
 export class AbsorbersPluginInstance implements IContainerPlugin {
-  private readonly _container;
-  private readonly _instancesManager;
+  readonly #container;
+  readonly #instancesManager;
 
   constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
-    this._container = container;
-    this._instancesManager = instancesManager;
+    this.#container = container;
+    this.#instancesManager = instancesManager;
 
-    this._instancesManager.initContainer(container);
+    this.#instancesManager.initContainer(container);
   }
 
   draw(context: OffscreenCanvasRenderingContext2D): void {
-    for (const absorber of this._instancesManager.getArray(this._container)) {
+    for (const absorber of this.#instancesManager.getArray(this.#container)) {
       absorber.draw(context);
     }
   }
 
   async init(): Promise<void> {
-    const absorbers = this._container.actualOptions.absorbers,
+    const absorbers = this.#container.actualOptions.absorbers,
       promises = executeOnSingleOrMultiple(absorbers, async (absorber): Promise<void> => {
-        await this._instancesManager.addAbsorber(this._container, absorber);
+        await this.#instancesManager.addAbsorber(this.#container, absorber);
       });
 
     if (isArray(promises)) {
@@ -41,7 +41,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
   }
 
   particleUpdate(particle: Particle, delta: IDelta): void {
-    for (const absorber of this._instancesManager.getArray(this._container)) {
+    for (const absorber of this.#instancesManager.getArray(this.#container)) {
       absorber.attract(particle, delta);
 
       if (particle.destroyed) {
@@ -51,12 +51,12 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
   }
 
   resize(): void {
-    for (const absorber of this._instancesManager.getArray(this._container)) {
+    for (const absorber of this.#instancesManager.getArray(this.#container)) {
       absorber.resize();
     }
   }
 
   stop(): void {
-    this._instancesManager.clear(this._container);
+    this.#instancesManager.clear(this.#container);
   }
 }

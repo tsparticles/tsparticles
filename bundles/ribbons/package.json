@@ -1,0 +1,101 @@
+{
+  "name": "@tsparticles/ribbons",
+  "version": "4.1.0",
+  "description": "Easily create ready to use animated ribbons effects.",
+  "homepage": "https://particles.js.org",
+  "scripts": {
+    "build": "tsparticles-build",
+    "version": "tsparticles-build -d && git add package.dist.json && tsparticles-build -p -l && git add .",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "bundles/ribbons"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "animated",
+    "background",
+    "ribbon",
+    "ribbons",
+    "confetti",
+    "canvas-confetti"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "browser": "dist/browser/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "browser": "./dist/browser/index.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./lazy": {
+      "types": "./dist/types/index.lazy.d.ts",
+      "browser": "./dist/browser/index.lazy.js",
+      "import": "./dist/esm/index.lazy.js",
+      "require": "./dist/cjs/index.lazy.js",
+      "default": "./dist/esm/index.lazy.js"
+    },
+    "./package.json": "./dist/package.json"
+  },
+  "dependencies": {
+    "@tsparticles/basic": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-emitters": "workspace:*",
+    "@tsparticles/plugin-emitters-shape-square": "workspace:*",
+    "@tsparticles/plugin-motion": "workspace:*",
+    "@tsparticles/shape-ribbon": "workspace:*",
+    "@tsparticles/updater-life": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "type": "module",
+  "devDependencies": {
+    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-command-build": "workspace:^"
+  }
+}

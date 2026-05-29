@@ -42,21 +42,21 @@ export class ParticlesManager {
   /**
    * All the particles used in canvas
    */
-  private _array: Particle[];
-  private readonly _container: Container;
-  private readonly _groupLimits: Map<string, number>;
-  private _limit;
-  private _nextId;
-  private readonly _particleBuckets: Map<number, number>;
-  private _particleResetPlugins: IContainerPlugin[];
-  private _particleUpdatePlugins: IContainerPlugin[];
-  private readonly _pluginManager;
-  private readonly _pool: Particle[];
-  private _postParticleUpdatePlugins: IContainerPlugin[];
-  private _postUpdatePlugins: IContainerPlugin[];
-  private _resizeFactor?: IDimension;
-  private _updatePlugins: IContainerPlugin[];
-  private _zBuckets: Particle[][];
+  #array: Particle[];
+  readonly #container: Container;
+  readonly #groupLimits: Map<string, number>;
+  #limit;
+  #nextId;
+  readonly #particleBuckets: Map<number, number>;
+  #particleResetPlugins: IContainerPlugin[];
+  #particleUpdatePlugins: IContainerPlugin[];
+  readonly #pluginManager;
+  readonly #pool: Particle[];
+  #postParticleUpdatePlugins: IContainerPlugin[];
+  #postUpdatePlugins: IContainerPlugin[];
+  #resizeFactor?: IDimension;
+  #updatePlugins: IContainerPlugin[];
+  #zBuckets: Particle[][];
 
   /**
    *
@@ -64,35 +64,39 @@ export class ParticlesManager {
    * @param container -
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
-    this._nextId = 0;
-    this._array = [];
-    this._pool = [];
-    this._limit = 0;
-    this._groupLimits = new Map<string, number>();
-    this._particleBuckets = new Map<number, number>();
-    this._zBuckets = this._createBuckets(this._container.zLayers);
+    this.#pluginManager = pluginManager;
+    this.#container = container;
+    this.#nextId = 0;
+    this.#array = [];
+    this.#pool = [];
+    this.#limit = 0;
+    this.#groupLimits = new Map<string, number>();
+    this.#particleBuckets = new Map<number, number>();
+    this.#zBuckets = this.#createBuckets(this.#container.zLayers);
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.checkParticlePositionPlugins = [];
-    this._particleResetPlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._updatePlugins = [];
+    this.#particleResetPlugins = [];
+    this.#particleUpdatePlugins = [];
+    this.#postUpdatePlugins = [];
+    this.#postParticleUpdatePlugins = [];
+    this.#updatePlugins = [];
   }
 
-  /** Gets the number of particles */
+  /**
+   * Gets the number of particles
+   * @returns the count of particles
+   */
   get count(): number {
-    return this._array.length;
+    return this.#array.length;
   }
 
   /**
    * Adds a particle to the manager
-   * @param position
-   * @param overrideOptions
-   * @param group
-   * @param initializer
+   * @param position -
+   * @param overrideOptions -
+   * @param group -
+   * @param initializer -
+   * @returns the particle added
    */
   addParticle(
     position?: ICoordinates,
@@ -100,8 +104,8 @@ export class ParticlesManager {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
-    const limitMode = this._container.actualOptions.particles.number.limit.mode,
-      limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
+    const limitMode = this.#container.actualOptions.particles.number.limit.mode,
+      limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
       currentCount = this.count;
 
     if (limit > minLimit) {
@@ -128,9 +132,9 @@ export class ParticlesManager {
     }
 
     try {
-      const particle = this._pool.pop() ?? new Particle(this._pluginManager, this._container);
+      const particle = this.#pool.pop() ?? new Particle(this.#pluginManager, this.#container);
 
-      particle.init(this._nextId, position, overrideOptions, group);
+      particle.init(this.#nextId, position, overrideOptions, group);
 
       let canAdd = true;
 
@@ -139,17 +143,17 @@ export class ParticlesManager {
       }
 
       if (!canAdd) {
-        this._pool.push(particle);
+        this.#pool.push(particle);
 
         return;
       }
 
-      this._array.push(particle);
-      this._insertParticleIntoBucket(particle);
+      this.#array.push(particle);
+      this.#insertParticleIntoBucket(particle);
 
-      this._nextId++;
+      this.#nextId++;
 
-      this._container.dispatchEvent(EventType.particleAdded, {
+      this.#container.dispatchEvent(EventType.particleAdded, {
         particle,
       });
 
@@ -165,32 +169,32 @@ export class ParticlesManager {
    * Removes all particles from the array
    */
   clear(): void {
-    this._array = [];
-    this._particleBuckets.clear();
-    this._resetBuckets(this._container.zLayers);
+    this.#array = [];
+    this.#particleBuckets.clear();
+    this.#resetBuckets(this.#container.zLayers);
   }
 
   /** Destroys the particles manager */
   destroy(): void {
-    this._array = [];
-    this._pool.length = 0;
-    this._particleBuckets.clear();
-    this._zBuckets = [];
+    this.#array = [];
+    this.#pool.length = 0;
+    this.#particleBuckets.clear();
+    this.#zBuckets = [];
     this.checkParticlePositionPlugins = [];
-    this._particleResetPlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._updatePlugins = [];
+    this.#particleResetPlugins = [];
+    this.#particleUpdatePlugins = [];
+    this.#postUpdatePlugins = [];
+    this.#postParticleUpdatePlugins = [];
+    this.#updatePlugins = [];
   }
 
   /**
    * Draws all particles
-   * @param delta
+   * @param delta -
    */
   drawParticles(delta: IDelta): void {
-    for (let i = this._zBuckets.length - one; i >= minIndex; i--) {
-      const bucket = this._zBuckets[i];
+    for (let i = this.#zBuckets.length - one; i >= minIndex; i--) {
+      const bucket = this.#zBuckets[i];
 
       if (!bucket) {
         continue;
@@ -204,41 +208,47 @@ export class ParticlesManager {
 
   /**
    * Filters particles with a condition
-   * @param condition
+   * @param condition -
+   * @returns the array of the particles filtered
    */
   filter(condition: (particle: Particle) => boolean): Particle[] {
-    return this._array.filter(condition);
+    return this.#array.filter(condition);
   }
 
   /**
    * Finds a particle with a condition
-   * @param condition
+   * @param condition -
+   * @returns the particle found
    */
   find(condition: (particle: Particle) => boolean): Particle | undefined {
-    return this._array.find(condition);
+    return this.#array.find(condition);
   }
 
   /**
    * Gets a particle by index
-   * @param index
+   * @param index -
+   * @returns the particle at the index
    */
   get(index: number): Particle | undefined {
-    return this._array[index];
+    return this.#array[index];
   }
 
-  /** Initializes the particles manager */
+  /**
+   * Initializes the particles manager
+   * @returns the promise for the init
+   */
   async init(): Promise<void> {
-    const container = this._container,
+    const container = this.#container,
       options = container.actualOptions;
 
     this.checkParticlePositionPlugins = [];
-    this._updatePlugins = [];
-    this._particleUpdatePlugins = [];
-    this._postUpdatePlugins = [];
-    this._particleResetPlugins = [];
-    this._postParticleUpdatePlugins = [];
-    this._particleBuckets.clear();
-    this._resetBuckets(container.zLayers);
+    this.#updatePlugins = [];
+    this.#particleUpdatePlugins = [];
+    this.#postUpdatePlugins = [];
+    this.#particleResetPlugins = [];
+    this.#postParticleUpdatePlugins = [];
+    this.#particleBuckets.clear();
+    this.#resetBuckets(container.zLayers);
 
     this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
@@ -252,33 +262,33 @@ export class ParticlesManager {
       }
 
       if (plugin.update) {
-        this._updatePlugins.push(plugin);
+        this.#updatePlugins.push(plugin);
       }
 
       if (plugin.particleUpdate) {
-        this._particleUpdatePlugins.push(plugin);
+        this.#particleUpdatePlugins.push(plugin);
       }
 
       if (plugin.postUpdate) {
-        this._postUpdatePlugins.push(plugin);
+        this.#postUpdatePlugins.push(plugin);
       }
 
       if (plugin.particleReset) {
-        this._particleResetPlugins.push(plugin);
+        this.#particleResetPlugins.push(plugin);
       }
 
       if (plugin.postParticleUpdate) {
-        this._postParticleUpdatePlugins.push(plugin);
+        this.#postParticleUpdatePlugins.push(plugin);
       }
     }
 
-    await this._container.initDrawersAndUpdaters();
+    await this.#container.initDrawersAndUpdaters();
 
-    for (const drawer of this._container.effectDrawers.values()) {
+    for (const drawer of this.#container.effectDrawers.values()) {
       await drawer.init?.(container);
     }
 
-    for (const drawer of this._container.shapeDrawers.values()) {
+    for (const drawer of this.#container.shapeDrawers.values()) {
       await drawer.init?.(container);
     }
 
@@ -316,10 +326,10 @@ export class ParticlesManager {
 
   /**
    * Adds particles to the manager
-   * @param nb
-   * @param position
-   * @param overrideOptions
-   * @param group
+   * @param nb -
+   * @param position -
+   * @param overrideOptions -
+   * @param group -
    */
   push(
     nb: number,
@@ -337,25 +347,25 @@ export class ParticlesManager {
     this.clear();
     await this.init();
 
-    this._container.canvas.render.drawParticles({ value: 0, factor: 0 });
+    this.#container.canvas.render.drawParticles({ value: 0, factor: 0 });
   }
 
   /**
    * Removes a particle
-   * @param particle
-   * @param group
-   * @param override
+   * @param particle -
+   * @param group -
+   * @param override -
    */
   remove(particle: Particle, group?: string, override?: boolean): void {
-    this.removeAt(this._array.indexOf(particle), undefined, group, override);
+    this.removeAt(this.#array.indexOf(particle), undefined, group, override);
   }
 
   /**
    * Removes particles at a specific index
-   * @param index
-   * @param quantity
-   * @param group
-   * @param override
+   * @param index -
+   * @param quantity -
+   * @param group -
+   * @param override -
    */
   removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
     if (index < minIndex || index > this.count) {
@@ -365,7 +375,7 @@ export class ParticlesManager {
     let deleted = 0;
 
     for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this._removeParticle(i, group, override)) {
+      if (this.#removeParticle(i, group, override)) {
         i--;
         deleted++;
       }
@@ -374,8 +384,8 @@ export class ParticlesManager {
 
   /**
    * Removes a quantity of particles
-   * @param quantity
-   * @param group
+   * @param quantity -
+   * @param group -
    */
   removeQuantity(quantity: number, group?: string): void {
     this.removeAt(minIndex, quantity, group);
@@ -383,12 +393,12 @@ export class ParticlesManager {
 
   /** Sets the particle density */
   setDensity(): void {
-    const options = this._container.actualOptions,
+    const options = this.#container.actualOptions,
       groups = options.particles.groups;
 
     let pluginsCount = 0;
 
-    for (const plugin of this._container.plugins) {
+    for (const plugin of this.#container.plugins) {
       if (plugin.particlesDensityCount) {
         pluginsCount += plugin.particlesDensityCount();
       }
@@ -401,40 +411,40 @@ export class ParticlesManager {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this._pluginManager, this._container, groupData);
+      const groupDataOptions = loadParticlesOptions(this.#pluginManager, this.#container, groupData);
 
-      this._applyDensity(groupDataOptions, pluginsCount, group);
+      this.#applyDensity(groupDataOptions, pluginsCount, group);
     }
 
-    this._applyDensity(options.particles, pluginsCount);
+    this.#applyDensity(options.particles, pluginsCount);
   }
 
   /**
    * Sets the resize factor
-   * @param factor
+   * @param factor -
    */
   setResizeFactor(factor: IDimension): void {
-    this._resizeFactor = factor;
+    this.#resizeFactor = factor;
   }
 
   /**
    * Updates all particles
-   * @param delta
+   * @param delta -
    */
   update(delta: IDelta): void {
     this.grid.clear();
 
-    for (const plugin of this._updatePlugins) {
+    for (const plugin of this.#updatePlugins) {
       plugin.update?.(delta);
     }
 
-    const particlesToDelete = this._updateParticlesPhase1(delta);
+    const particlesToDelete = this.#updateParticlesPhase1(delta);
 
-    for (const plugin of this._postUpdatePlugins) {
+    for (const plugin of this.#postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
-    this._updateParticlesPhase2(delta, particlesToDelete);
+    this.#updateParticlesPhase2(delta, particlesToDelete);
 
     if (particlesToDelete.size) {
       for (const particle of particlesToDelete) {
@@ -442,14 +452,14 @@ export class ParticlesManager {
       }
     }
 
-    delete this._resizeFactor;
+    this.#resizeFactor = undefined;
   }
 
-  private readonly _addToPool = (...particles: Particle[]): void => {
-    this._pool.push(...particles);
+  readonly #addToPool = (...particles: Particle[]): void => {
+    this.#pool.push(...particles);
   };
 
-  private readonly _applyDensity = (
+  readonly #applyDensity = (
     options: ParticlesOptions,
     pluginsCount: number,
     group?: string,
@@ -459,24 +469,24 @@ export class ParticlesManager {
 
     if (!numberOptions.density.enable) {
       if (group === undefined) {
-        this._limit = numberOptions.limit.value;
+        this.#limit = numberOptions.limit.value;
       } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
-        this._groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
+        this.#groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
       }
 
       return;
     }
 
-    const densityFactor = this._initDensityFactor(numberOptions.density),
+    const densityFactor = this.#initDensityFactor(numberOptions.density),
       optParticlesNumber = numberOptions.value,
       optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
       particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
       particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
 
     if (group === undefined) {
-      this._limit = numberOptions.limit.value * densityFactor;
+      this.#limit = numberOptions.limit.value * densityFactor;
     } else {
-      this._groupLimits.set(group, numberOptions.limit.value * densityFactor);
+      this.#groupLimits.set(group, numberOptions.limit.value * densityFactor);
     }
 
     if (particlesCount < particlesNumber) {
@@ -486,14 +496,14 @@ export class ParticlesManager {
     }
   };
 
-  private readonly _createBuckets = (zLayers: number): Particle[][] => {
+  readonly #createBuckets = (zLayers: number): Particle[][] => {
     const bucketCount = Math.max(Math.floor(zLayers), one);
 
     return Array.from({ length: bucketCount }, () => []);
   };
 
-  private readonly _getBucketIndex = (zIndex: number): number => {
-    const maxBucketIndex = this._zBuckets.length - one;
+  readonly #getBucketIndex = (zIndex: number): number => {
+    const maxBucketIndex = this.#zBuckets.length - one;
 
     if (maxBucketIndex <= minIndex) {
       return minIndex;
@@ -502,7 +512,7 @@ export class ParticlesManager {
     return Math.min(Math.max(Math.floor(zIndex), minIndex), maxBucketIndex);
   };
 
-  private readonly _getParticleInsertIndex = (bucket: Particle[], particleId: number): number => {
+  readonly #getParticleInsertIndex = (bucket: Particle[], particleId: number): number => {
     let start = minIndex,
       end = bucket.length;
 
@@ -526,8 +536,8 @@ export class ParticlesManager {
     return start;
   };
 
-  private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = densityOptions => {
-    const container = this._container;
+  readonly #initDensityFactor: (densityOptions: IParticlesDensity) => number = densityOptions => {
+    const container = this.#container;
 
     if (!densityOptions.enable) {
       return defaultDensityFactor;
@@ -548,20 +558,20 @@ export class ParticlesManager {
     );
   };
 
-  private readonly _insertParticleIntoBucket = (particle: Particle): void => {
-    const bucketIndex = this._getBucketIndex(particle.position.z),
-      bucket = this._zBuckets[bucketIndex];
+  readonly #insertParticleIntoBucket = (particle: Particle): void => {
+    const bucketIndex = this.#getBucketIndex(particle.position.z),
+      bucket = this.#zBuckets[bucketIndex];
 
     if (!bucket) {
       return;
     }
 
-    bucket.splice(this._getParticleInsertIndex(bucket, particle.id), empty, particle);
-    this._particleBuckets.set(particle.id, bucketIndex);
+    bucket.splice(this.#getParticleInsertIndex(bucket, particle.id), empty, particle);
+    this.#particleBuckets.set(particle.id, bucketIndex);
   };
 
-  private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
-    const particle = this._array[index];
+  readonly #removeParticle = (index: number, group?: string, override?: boolean): boolean => {
+    const particle = this.#array[index];
 
     if (!particle) {
       return false;
@@ -571,62 +581,62 @@ export class ParticlesManager {
       return false;
     }
 
-    this._array.splice(index, deleteCount);
-    this._removeParticleFromBucket(particle);
+    this.#array.splice(index, deleteCount);
+    this.#removeParticleFromBucket(particle);
 
     particle.destroy(override);
 
-    this._container.dispatchEvent(EventType.particleRemoved, {
+    this.#container.dispatchEvent(EventType.particleRemoved, {
       particle,
     });
 
-    this._addToPool(particle);
+    this.#addToPool(particle);
 
     return true;
   };
 
-  private readonly _removeParticleFromBucket = (particle: Particle): void => {
-    const bucketIndex = this._particleBuckets.get(particle.id) ?? this._getBucketIndex(particle.position.z),
-      bucket = this._zBuckets[bucketIndex];
+  readonly #removeParticleFromBucket = (particle: Particle): void => {
+    const bucketIndex = this.#particleBuckets.get(particle.id) ?? this.#getBucketIndex(particle.position.z),
+      bucket = this.#zBuckets[bucketIndex];
 
     if (!bucket) {
-      this._particleBuckets.delete(particle.id);
+      this.#particleBuckets.delete(particle.id);
 
       return;
     }
 
-    const particleIndex = this._getParticleInsertIndex(bucket, particle.id);
+    const particleIndex = this.#getParticleInsertIndex(bucket, particle.id);
 
     if (bucket[particleIndex]?.id !== particle.id) {
-      this._particleBuckets.delete(particle.id);
+      this.#particleBuckets.delete(particle.id);
 
       return;
     }
 
     bucket.splice(particleIndex, deleteCount);
-    this._particleBuckets.delete(particle.id);
+    this.#particleBuckets.delete(particle.id);
   };
 
-  private readonly _resetBuckets = (zLayers: number): void => {
+  readonly #resetBuckets = (zLayers: number): void => {
     const bucketCount = Math.max(Math.floor(zLayers), one);
 
-    if (this._zBuckets.length !== bucketCount) {
-      this._zBuckets = this._createBuckets(bucketCount);
+    if (this.#zBuckets.length !== bucketCount) {
+      this.#zBuckets = this.#createBuckets(bucketCount);
 
       return;
     }
 
-    for (const bucket of this._zBuckets) {
+    for (const bucket of this.#zBuckets) {
       bucket.length = minIndex;
     }
   };
 
-  private readonly _updateParticleBucket = (particle: Particle): void => {
-    const newBucketIndex = this._getBucketIndex(particle.position.z),
-      currentBucketIndex = this._particleBuckets.get(particle.id);
+  readonly #updateParticleBucket = (particle: Particle): void => {
+    const newBucketIndex = this.#getBucketIndex(particle.position.z),
+      currentBucketIndex = this.#particleBuckets.get(particle.id);
 
     if (currentBucketIndex === undefined) {
-      this._insertParticleIntoBucket(particle);
+      this.#insertParticleIntoBucket(particle);
 
       return;
     }
@@ -635,33 +645,33 @@ export class ParticlesManager {
       return;
     }
 
-    const currentBucket = this._zBuckets[currentBucketIndex];
+    const currentBucket = this.#zBuckets[currentBucketIndex];
 
     if (currentBucket) {
-      const particleIndex = this._getParticleInsertIndex(currentBucket, particle.id);
+      const particleIndex = this.#getParticleInsertIndex(currentBucket, particle.id);
 
       if (currentBucket[particleIndex]?.id === particle.id) {
         currentBucket.splice(particleIndex, deleteCount);
       }
     }
 
-    const newBucket = this._zBuckets[newBucketIndex];
+    const newBucket = this.#zBuckets[newBucketIndex];
 
     if (!newBucket) {
-      this._particleBuckets.set(particle.id, newBucketIndex);
+      this.#particleBuckets.set(particle.id, newBucketIndex);
 
       return;
     }
 
-    newBucket.splice(this._getParticleInsertIndex(newBucket, particle.id), empty, particle);
-    this._particleBuckets.set(particle.id, newBucketIndex);
+    newBucket.splice(this.#getParticleInsertIndex(newBucket, particle.id), empty, particle);
+    this.#particleBuckets.set(particle.id, newBucketIndex);
   };
 
-  private readonly _updateParticlesPhase1 = (delta: IDelta): Set<Particle> => {
+  readonly #updateParticlesPhase1 = (delta: IDelta): Set<Particle> => {
     const particlesToDelete = new Set<Particle>(),
-      resizeFactor = this._resizeFactor;
+      resizeFactor = this.#resizeFactor;
 
-    for (const particle of this._array) {
+    for (const particle of this.#array) {
       if (resizeFactor && !particle.ignoresResizeRatio) {
         particle.position.x *= resizeFactor.width;
         particle.position.y *= resizeFactor.height;
@@ -671,11 +681,11 @@ export class ParticlesManager {
 
       particle.ignoresResizeRatio = false;
 
-      for (const plugin of this._particleResetPlugins) {
+      for (const plugin of this.#particleResetPlugins) {
         plugin.particleReset?.(particle);
       }
 
-      for (const plugin of this._particleUpdatePlugins) {
+      for (const plugin of this.#particleUpdatePlugins) {
         if (particle.destroyed) {
           break;
         }
@@ -695,25 +705,25 @@ export class ParticlesManager {
     return particlesToDelete;
   };
 
-  private readonly _updateParticlesPhase2 = (delta: IDelta, particlesToDelete: Set<Particle>): void => {
-    for (const particle of this._array) {
+  readonly #updateParticlesPhase2 = (delta: IDelta, particlesToDelete: Set<Particle>): void => {
+    for (const particle of this.#array) {
       if (particle.destroyed) {
         particlesToDelete.add(particle);
 
         continue;
       }
 
-      for (const updater of this._container.particleUpdaters) {
+      for (const updater of this.#container.particleUpdaters) {
         updater.update(particle, delta);
       }
 
       if (!particle.spawning) {
-        for (const plugin of this._postParticleUpdatePlugins) {
+        for (const plugin of this.#postParticleUpdatePlugins) {
           plugin.postParticleUpdate?.(particle, delta);
         }
       }
 
-      this._updateParticleBucket(particle);
+      this.#updateParticleBucket(particle);
     }
   };
 }

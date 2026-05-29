@@ -6,30 +6,30 @@ const zeroValue = 0;
  * Minimal OffscreenCanvas test double backed by node-canvas.
  */
 export class TestOffscreenCanvas {
-  private readonly _canvas: Canvas;
+  readonly #canvas: Canvas;
 
   constructor(width: number, height: number) {
-    this._canvas = createCanvas(width, height);
+    this.#canvas = createCanvas(width, height);
   }
 
   get height(): number {
-    return this._canvas.height;
+    return this.#canvas.height;
   }
 
   set height(value: number) {
-    this._canvas.height = value;
+    this.#canvas.height = value;
   }
 
   get width(): number {
-    return this._canvas.width;
+    return this.#canvas.width;
   }
 
   set width(value: number) {
-    this._canvas.width = value;
+    this.#canvas.width = value;
   }
 
   getContext(type: "2d", settings?: CanvasRenderingContext2DSettings): CanvasRenderingContext2D | null {
-    return this._canvas.getContext(type, settings) as unknown as CanvasRenderingContext2D | null;
+    return this.#canvas.getContext(type, settings) as unknown as CanvasRenderingContext2D | null;
   }
 }
 

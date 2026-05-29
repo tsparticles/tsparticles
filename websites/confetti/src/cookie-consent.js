@@ -1,8 +1,6 @@
 const CONSENT_KEY = 'tsparticles-confetti/cookie-consent-v1';
 const GA_MEASUREMENT_ID = 'G-80MY3TZM79';
 const ADSENSE_CLIENT_ID = 'ca-pub-1784552607103901';
-const ADSENSE_NON_PERSONALIZED_ON_REJECT = true;
-const ANALYTICS_COOKIELESS_ON_REJECT = true;
 
 const defaultConsent = {
   analytics: false,
@@ -78,17 +76,21 @@ function initAnalytics() {
   const analyticsGranted = !!consent?.analytics;
   const adsGranted = !!consent?.adsense;
 
-  // IMPORTANTISSIMO:
-  // default consent BEFORE loading GA
+  // Consent Mode v2
   window.gtag('consent', 'default', {
     ad_storage: adsGranted ? 'granted' : 'denied',
     analytics_storage: analyticsGranted ? 'granted' : 'denied',
     ad_user_data: adsGranted ? 'granted' : 'denied',
     ad_personalization: adsGranted ? 'granted' : 'denied',
 
-    // cookieless improvements
     wait_for_update: 500,
   });
+
+  // Privacy improvements
+  window.gtag('set', 'ads_data_redaction', true);
+
+  // Better attribution without cookies
+  window.gtag('set', 'url_passthrough', true);
 
   loadScript(
     'google-analytics',
@@ -99,14 +101,8 @@ function initAnalytics() {
 
   window.gtag('config', GA_MEASUREMENT_ID, {
     send_page_view: true,
-
-    // cookieless mode
-    client_storage: analyticsGranted ? 'cookie' : 'none',
-
-    // aiuta attribution cookieless
-    url_passthrough: true,
-
     anonymize_ip: true,
+    transport_type: 'beacon',
   });
 
   analyticsInitialized = true;
@@ -135,18 +131,11 @@ function updateConsentMode(activeConsent) {
     return;
   }
 
-  const analyticsGranted = !!activeConsent.analytics;
-
   window.gtag('consent', 'update', {
     ad_storage: activeConsent.adsense ? 'granted' : 'denied',
-    analytics_storage: analyticsGranted ? 'granted' : 'denied',
+    analytics_storage: activeConsent.analytics ? 'granted' : 'denied',
     ad_user_data: activeConsent.adsense ? 'granted' : 'denied',
     ad_personalization: activeConsent.adsense ? 'granted' : 'denied',
-  });
-
-  // switch runtime storage mode
-  window.gtag('set', {
-    client_storage: analyticsGranted ? 'cookie' : 'none',
   });
 }
 
@@ -272,8 +261,6 @@ window.tsParticlesConfettiConsent = {
   get() {
     return consent || defaultConsent;
   },
-
-  allowsCookielessAnalytics: ANALYTICS_COOKIELESS_ON_REJECT,
 };
 
 document.addEventListener('DOMContentLoaded', () => {

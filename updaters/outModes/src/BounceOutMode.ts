@@ -16,18 +16,20 @@ export class BounceOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
 
   /** Particle bounce plugins */
-  private readonly _particleBouncePlugins: IContainerPlugin[];
+  readonly #container: Container;
+  readonly #particleBouncePlugins: IContainerPlugin[];
 
   /**
    * BounceOutMode constructor
    * @param container
    */
-  constructor(private readonly container: Container) {
+  constructor(container: Container) {
+    this.#container = container;
     this.modes = [
       OutMode.bounce,
       OutMode.split,
     ];
-    this._particleBouncePlugins = container.plugins.filter(p => p.particleBounce !== undefined);
+    this.#particleBouncePlugins = container.plugins.filter(p => p.particleBounce !== undefined);
   }
 
   /**
@@ -47,10 +49,10 @@ export class BounceOutMode implements IOutModeManager {
       return;
     }
 
-    const container = this.container;
+    const container = this.#container;
     let handled = false;
 
-    for (const plugin of this._particleBouncePlugins) {
+    for (const plugin of this.#particleBouncePlugins) {
       handled = plugin.particleBounce?.(particle, delta, direction) ?? false;
 
       if (handled) {
@@ -66,9 +68,10 @@ export class BounceOutMode implements IOutModeManager {
       offset = particle.offset,
       size = particle.getRadius(),
       bounds = calculateBounds(pos, size),
-      canvasSize = container.canvas.size;
+      canvasSize = container.canvas.size,
+      outOfCanvas = !particle.isInsideCanvasForOutMode(outMode, direction);
 
-    bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, size });
-    bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, size });
+    bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
+    bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
   }
 }

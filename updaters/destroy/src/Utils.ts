@@ -8,6 +8,7 @@ import {
   type Particle,
   PixelMode,
   type PluginManager,
+  type RangeValue,
   type RecursivePartial,
   getRangeValue,
   identity,
@@ -132,13 +133,20 @@ function addSplitParticle(
     },
   });
 
-  const factor = identity / getRangeValue(splitOptions.factor.value);
+  const factor = identity / getRangeValue(splitOptions.factor.value),
+    sizeOptions = splitParticleOptions["size"] as
+      | {
+          value: RangeValue;
+        }
+      | undefined;
 
-  if (isNumber(splitParticleOptions.size.value)) {
-    splitParticleOptions.size.value *= factor;
-  } else {
-    splitParticleOptions.size.value.min *= factor;
-    splitParticleOptions.size.value.max *= factor;
+  if (sizeOptions) {
+    if (isNumber(sizeOptions.value)) {
+      sizeOptions.value *= factor;
+    } else {
+      sizeOptions.value.min *= factor;
+      sizeOptions.value.max *= factor;
+    }
   }
 
   splitParticleOptions.load(splitParticlesOptions);

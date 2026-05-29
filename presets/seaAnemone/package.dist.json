@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-sea-anemone",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "tsParticles sea anemone preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,12 +106,12 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.5",
-    "@tsparticles/engine": "4.0.5",
-    "@tsparticles/path-curves": "4.0.5",
-    "@tsparticles/plugin-emitters": "4.0.5",
-    "@tsparticles/plugin-interactivity": "4.0.5",
-    "@tsparticles/plugin-trail": "4.0.5"
+    "@tsparticles/basic": "4.1.0",
+    "@tsparticles/engine": "4.1.0",
+    "@tsparticles/path-curves": "4.1.0",
+    "@tsparticles/plugin-emitters": "4.1.0",
+    "@tsparticles/plugin-interactivity": "4.1.0",
+    "@tsparticles/plugin-trail": "4.1.0"
   },
   "publishConfig": {
     "access": "public"

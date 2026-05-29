@@ -1,0 +1,88 @@
+{
+  "name": "@tsparticles/ribbons",
+  "version": "4.1.0",
+  "description": "Easily create ready to use animated ribbons effects.",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "bundles/ribbons"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "animated",
+    "background",
+    "ribbon",
+    "ribbons",
+    "confetti",
+    "canvas-confetti"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "sideEffects": false,
+  "jsdelivr": "tsparticles.ribbons.bundle.min.js",
+  "unpkg": "tsparticles.ribbons.bundle.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "default": "./esm/index.js"
+    },
+    "./lazy": {
+      "types": "./types/index.lazy.d.ts",
+      "browser": "./browser/index.lazy.js",
+      "import": "./esm/index.lazy.js",
+      "require": "./cjs/index.lazy.js",
+      "default": "./esm/index.lazy.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@tsparticles/basic": "4.1.0",
+    "@tsparticles/engine": "4.1.0",
+    "@tsparticles/plugin-emitters": "4.1.0",
+    "@tsparticles/plugin-emitters-shape-square": "4.1.0",
+    "@tsparticles/plugin-motion": "4.1.0",
+    "@tsparticles/shape-ribbon": "4.1.0",
+    "@tsparticles/updater-life": "4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module"
+}

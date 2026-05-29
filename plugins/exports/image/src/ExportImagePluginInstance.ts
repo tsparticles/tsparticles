@@ -3,10 +3,10 @@ import type { IExportImageData } from "./IExportImageData.js";
 
 /** Image export plugin instance */
 export class ExportImagePluginInstance implements IContainerPlugin {
-  private readonly _container: Container;
+  readonly #container: Container;
 
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {
@@ -17,7 +17,7 @@ export class ExportImagePluginInstance implements IContainerPlugin {
     switch (type) {
       case "image":
         res.supported = true;
-        res.blob = await this._exportImage(data);
+        res.blob = await this.#exportImage(data);
 
         break;
     }
@@ -25,8 +25,8 @@ export class ExportImagePluginInstance implements IContainerPlugin {
     return res;
   }
 
-  private readonly _exportImage: (data: IExportImageData) => Promise<Blob | undefined> = async data => {
-    const element = this._container.canvas.domElement;
+  readonly #exportImage: (data: IExportImageData) => Promise<Blob | undefined> = async data => {
+    const element = this.#container.canvas.domElement;
 
     if (!element) {
       return;

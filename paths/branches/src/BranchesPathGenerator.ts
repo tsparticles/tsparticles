@@ -20,17 +20,17 @@ export class BranchesPathGenerator implements IMovePathGenerator {
   /** Branches path options */
   readonly options: IBranchesPathOptions;
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * BranchesPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
 
     this.options = {
       ...defaultOptions,
@@ -79,22 +79,22 @@ export class BranchesPathGenerator implements IMovePathGenerator {
       p.velocity.x += (targetX - p.velocity.x) * factor;
       p.velocity.y += (targetY - p.velocity.y) * factor;
 
-      this._res.x = p.velocity.x;
-      this._res.y = p.velocity.y;
+      this.#res.x = p.velocity.x;
+      this.#res.y = p.velocity.y;
     } else {
       p.velocity.x = 0;
       p.velocity.y = 0;
 
-      this._res.x = targetX;
-      this._res.y = targetY;
+      this.#res.x = targetX;
+      this.#res.y = targetY;
     }
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator options */
   init(): void {
-    const source = this._container.actualOptions.particles.move.path.options;
+    const source = this.#container.actualOptions.particles.move.path.options;
 
     this.options.segmentLength = (source["segmentLength"] as number | undefined) ?? this.options.segmentLength;
     this.options.branchChance = (source["branchChance"] as number | undefined) ?? this.options.branchChance;

@@ -7,14 +7,14 @@ const minStage = 0,
 /**
  */
 export class Infecter {
-  private readonly _container;
+  readonly #container;
 
   constructor(container: InfectableContainer) {
-    this._container = container;
+    this.#container = container;
   }
 
   startInfection(particle: InfectableParticle, stage: number): void {
-    const infectionOptions = this._container.actualOptions.infection,
+    const infectionOptions = this.#container.actualOptions.infection,
       { infection } = particle;
 
     if (!infectionOptions || !infection) {
@@ -33,7 +33,7 @@ export class Infecter {
   }
 
   updateInfection(particle: InfectableParticle, delta: number): void {
-    const infectionOptions = this._container.actualOptions.infection,
+    const infectionOptions = this.#container.actualOptions.infection,
       { infection } = particle;
 
     if (!infectionOptions || !infection) {
@@ -69,7 +69,7 @@ export class Infecter {
 
       if (infectionStage?.duration !== undefined && infectionStage.duration >= minDuration) {
         if (infection.time > infectionStage.duration * millisecondsToSeconds) {
-          this._nextInfectionStage(particle);
+          this.#nextInfectionStage(particle);
         } else {
           infection.time += delta;
         }
@@ -83,7 +83,7 @@ export class Infecter {
   }
 
   updateInfectionStage(particle: InfectableParticle, stage: number): void {
-    const options = this._container.actualOptions,
+    const options = this.#container.actualOptions,
       { infection } = particle;
 
     if (!options.infection || !infection) {
@@ -100,8 +100,8 @@ export class Infecter {
     infection.time = 0;
   }
 
-  private readonly _nextInfectionStage: (particle: InfectableParticle) => void = particle => {
-    const infectionOptions = this._container.actualOptions.infection,
+  readonly #nextInfectionStage: (particle: InfectableParticle) => void = particle => {
+    const infectionOptions = this.#container.actualOptions.infection,
       { infection } = particle;
 
     if (!infectionOptions || !infection) {

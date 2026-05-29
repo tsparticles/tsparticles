@@ -25,7 +25,7 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
 
   /**
    * Loads gravity options from the given data
-   * @param data
+   * @param data -
    */
   load(data?: RecursivePartial<IMoveGravity>): void {
     if (isNull(data)) {

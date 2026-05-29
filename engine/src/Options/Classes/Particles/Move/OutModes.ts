@@ -23,7 +23,7 @@ export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
 
   /**
    * Loads out modes from the given data
-   * @param data
+   * @param data -
    */
   load(data?: RecursivePartial<IOutModes>): void {
     if (isNull(data)) {

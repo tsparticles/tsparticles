@@ -26,7 +26,7 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
 
   /**
    * Loads color animation options from the given data
-   * @param data
+   * @param data -
    */
   override load(data?: RecursivePartial<IColorAnimation>): void {
     super.load(data);

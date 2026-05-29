@@ -83,7 +83,7 @@ export function addParticlesFromCanvasPixels(
     }
 
     if (override.opacity) {
-      pOptions.opacity = {
+      pOptions["opacity"] = {
         value: pixel.a,
       };
     }

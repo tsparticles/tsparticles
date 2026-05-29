@@ -16,17 +16,17 @@ const destroyMode = "destroy";
 
 /** Particle destroy manager */
 export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
-  private _maxDistance;
+  #maxDistance;
 
   constructor(container: DestroyContainer) {
     super(container);
 
-    this._maxDistance = 0;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -43,7 +43,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
       return;
     }
 
-    this._maxDistance = destroy.distance;
+    this.#maxDistance = destroy.distance;
 
     container.retina.destroyModeDistance = destroy.distance * container.retina.pixelRatio;
   }

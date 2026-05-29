@@ -20,6 +20,7 @@ import moveInside from "./moveInside.js";
 import moveOutside from "./moveOutside.js";
 import multipleClickEmitters from "./multipleClickEmitters.js";
 import multiplePolygonMasks from "./multiplePolygonMasks.js";
+import musicEmitter from "./musicEmitter.js";
 
 export default {
   manual,
@@ -44,4 +45,5 @@ export default {
   moveOutside,
   multipleClickEmitters,
   multiplePolygonMasks,
+  musicEmitter,
 };

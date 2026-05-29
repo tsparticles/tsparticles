@@ -39,12 +39,12 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    */
   readonly maxDistance;
 
-  private readonly _instancesManager;
+  readonly #instancesManager;
 
   constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
     super(container);
 
-    this._instancesManager = instancesManager;
+    this.#instancesManager = instancesManager;
     this.maxDistance = 0;
 
     this.handleClickMode = (mode, interactivityData): void => {
@@ -96,7 +96,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         ePosition = interactivityData.mouse.clickPosition;
 
       void executeOnSingleOrMultiple(emittersOptions, async emitter => {
-        await this._instancesManager.addEmitter(this.container, emitter, ePosition);
+        await this.#instancesManager.addEmitter(this.container, emitter, ePosition);
       });
     };
   }
@@ -121,7 +121,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * @param delta - the delta time
    */
   interact(_interactivityData: IInteractivityData, delta: IDelta): void {
-    for (const emitter of this._instancesManager.getArray(this.container)) {
+    for (const emitter of this.#instancesManager.getArray(this.container)) {
       emitter.update(delta);
     }
   }
@@ -208,12 +208,12 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * @param emitter - the emitter instance to remove
    */
   removeEmitter(emitter: EmitterInstance): void {
-    const index = this._instancesManager.getArray(this.container).indexOf(emitter),
+    const index = this.#instancesManager.getArray(this.container).indexOf(emitter),
       minIndex = 0,
       deleteCount = 1;
 
     if (index >= minIndex) {
-      this._instancesManager.getArray(this.container).splice(index, deleteCount);
+      this.#instancesManager.getArray(this.container).splice(index, deleteCount);
     }
   }
 

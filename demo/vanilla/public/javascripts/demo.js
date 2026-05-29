@@ -48,8 +48,7 @@
         requestAnimationFrame(update);
     };
 
-    const particlesCount = document.getElementById("particles-count"),
-        poolCount = document.getElementById("pool-count");
+    const particlesCount = document.getElementById("particles-count");
 
     setInterval(() => {
         if (!window.tsParticles) {
@@ -60,7 +59,6 @@
 
         if (container) {
             particlesCount.innerText = `${container.particles.count}`;
-            poolCount.innerText = `${container.particles._pool.length}`;
         }
     }, 100);
 

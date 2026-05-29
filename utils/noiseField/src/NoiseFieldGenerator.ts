@@ -42,14 +42,14 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   readonly noiseGen: INoiseGenerator;
   noiseW: number;
   readonly options: INoiseFieldOptions;
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   protected constructor(container: Container, noiseGen: INoiseGenerator) {
     this.container = container;
     this.noiseGen = noiseGen;
     this.field = [];
     this.noiseW = 0;
-    this._res = Vector.origin;
+    this.#res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
   }
 
@@ -66,18 +66,18 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
       fieldPoint = field[point.x]?.[point.y]?.[point.z];
 
     if (fieldPoint) {
-      this._res.x = fieldPoint.x;
-      this._res.y = fieldPoint.y;
+      this.#res.x = fieldPoint.x;
+      this.#res.y = fieldPoint.y;
     } else {
-      this._res.x = 0;
-      this._res.y = 0;
+      this.#res.x = 0;
+      this.#res.y = 0;
     }
 
-    return this._res;
+    return this.#res;
   }
 
   init(): void {
-    this._setup();
+    this.#setup();
   }
 
   reset(): void {
@@ -85,7 +85,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   }
 
   update(): void {
-    this._calculateField();
+    this.#calculateField();
 
     this.noiseW += this.options.increment;
 
@@ -94,12 +94,15 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
 
     this.container.canvas.render.draw(ctx => {
-      this._drawField(ctx);
+      this.#drawField(ctx);
     });
   }
 
-  private _calculateField(): void {
-    const { field, noiseGen, options, noiseW } = this,
+  #calculateField(): void {
+    const field = this.field,
+      noiseGen = this.noiseGen,
+      options = this.options,
+      noiseW = this.noiseW,
       lengthFactor = options.factor.length,
       angleFactor = options.factor.angle;
 
@@ -136,7 +139,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
   }
 
-  private _drawField(ctx: OffscreenCanvasRenderingContext2D): void {
+  #drawField(ctx: OffscreenCanvasRenderingContext2D): void {
     const { field, options } = this;
 
     for (let x = 0; x < options.columns; x++) {
@@ -187,7 +190,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
   }
 
-  private _initField(): void {
+  #initField(): void {
     const { columns, rows, layers } = this.options;
 
     this.field = new Array<Vector[][]>(columns);
@@ -209,7 +212,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     }
   }
 
-  private _resetField(): void {
+  #resetField(): void {
     const container = this.container,
       sourceOptions = container.actualOptions.particles.move.path.options,
       { options } = this;
@@ -241,16 +244,16 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
     options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
 
-    this._initField();
+    this.#initField();
   }
 
-  private _setup(): void {
+  #setup(): void {
     this.noiseW = 0;
 
-    this._resetField();
+    this.#resetField();
 
     addEventListener("resize", () => {
-      this._resetField();
+      this.#resetField();
     });
   }
 }

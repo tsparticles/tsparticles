@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "Ember.js component for using tsParticles",
   "keywords": [
     "ember-addon"
@@ -130,5 +130,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*"
   }
 }

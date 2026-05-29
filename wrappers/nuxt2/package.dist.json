@@ -1,0 +1,19 @@
+{
+  "name": "@tsparticles/nuxt2",
+  "version": "4.0.5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/nuxt2"
+  },
+  "license": "MIT",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "peerDependencies": {
+    "nuxt": ">=2.0.0 <3.0.0",
+    "@tsparticles/engine": "__VERSION__"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

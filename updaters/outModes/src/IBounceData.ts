@@ -12,6 +12,8 @@ export interface IBounceData {
   offset: ICoordinates;
   /** Out mode type */
   outMode: OutMode | keyof typeof OutMode;
+  /** True when particle-owned bounds report outside for this direction */
+  outOfCanvas: boolean;
   /** The particle */
   particle: Particle;
   /** Particle size */

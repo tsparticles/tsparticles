@@ -4,13 +4,13 @@
 import { Grad } from "./Grad.js";
 
 export class PerlinNoise {
-  private readonly _grad4;
-  private readonly _gradP: Grad[];
-  private readonly _p;
-  private readonly _perm: number[];
+  readonly #grad4;
+  readonly #gradP: Grad[];
+  readonly #p;
+  readonly #perm: number[];
 
   constructor() {
-    this._grad4 = [
+    this.#grad4 = [
       new Grad(0, 1, 1, 1),
       new Grad(0, 1, 1, -1),
       new Grad(0, 1, -1, 1),
@@ -44,7 +44,7 @@ export class PerlinNoise {
       new Grad(-1, -1, 1, 0),
       new Grad(-1, -1, -1, 0),
     ];
-    this._p = [
+    this.#p = [
       151,
       160,
       137,
@@ -302,12 +302,13 @@ export class PerlinNoise {
       156,
       180,
     ];
-    this._gradP = new Array<Grad>(512);
-    this._perm = new Array<number>(512);
+    this.#gradP = new Array<Grad>(512);
+    this.#perm = new Array<number>(512);
   }
 
   noise2d(x: number, y: number): number {
-    const { _gradP, _perm } = this;
+    const gradP = this.#gradP,
+      perm = this.#perm;
 
     // Find unit grid cell containing point
     let X = Math.floor(x),
@@ -322,19 +323,20 @@ export class PerlinNoise {
     Y &= 255;
 
     // Calculate noise contributions from each of the four corners
-    const n00 = _gradP[X + _perm[Y]!]!.dot2(x, y),
-      n01 = _gradP[X + _perm[Y + 1]!]!.dot2(x, y - 1),
-      n10 = _gradP[X + 1 + _perm[Y]!]!.dot2(x - 1, y),
-      n11 = _gradP[X + 1 + _perm[Y + 1]!]!.dot2(x - 1, y - 1),
+    const n00 = gradP[X + perm[Y]!]!.dot2(x, y),
+      n01 = gradP[X + perm[Y + 1]!]!.dot2(x, y - 1),
+      n10 = gradP[X + 1 + perm[Y]!]!.dot2(x - 1, y),
+      n11 = gradP[X + 1 + perm[Y + 1]!]!.dot2(x - 1, y - 1),
       // Compute the fade curve value for x
-      u = this._fade(x);
+      u = this.#fade(x);
 
     // Interpolate the four results
-    return this._lerp(this._lerp(n00, n10, u), this._lerp(n01, n11, u), this._fade(y));
+    return this.#lerp(this.#lerp(n00, n10, u), this.#lerp(n01, n11, u), this.#fade(y));
   }
 
   noise3d(x: number, y: number, z: number): number {
-    const { _gradP: gradP, _perm: perm } = this;
+    const gradP = this.#gradP,
+      perm = this.#perm;
 
     // Find unit grid cell containing point
     let X = Math.floor(x),
@@ -361,20 +363,21 @@ export class PerlinNoise {
       n110 = gradP[X + 1 + perm[Y + 1 + perm[Z]!]!]!.dot3(x - 1, y - 1, z),
       n111 = gradP[X + 1 + perm[Y + 1 + perm[Z + 1]!]!]!.dot3(x - 1, y - 1, z - 1),
       // Compute the fade curve value for x, y, z
-      u = this._fade(x),
-      v = this._fade(y),
-      w = this._fade(z);
+      u = this.#fade(x),
+      v = this.#fade(y),
+      w = this.#fade(z);
 
     // Interpolate
-    return this._lerp(
-      this._lerp(this._lerp(n000, n100, u), this._lerp(n001, n101, u), w),
-      this._lerp(this._lerp(n010, n110, u), this._lerp(n011, n111, u), w),
+    return this.#lerp(
+      this.#lerp(this.#lerp(n000, n100, u), this.#lerp(n001, n101, u), w),
+      this.#lerp(this.#lerp(n010, n110, u), this.#lerp(n011, n111, u), w),
       v,
     );
   }
 
   noise4d(x: number, y: number, z: number, w: number): number {
-    const { _gradP: gradP, _perm: perm } = this;
+    const gradP = this.#gradP,
+      perm = this.#perm;
 
     // Find unit grid cell containing point
     let X = Math.floor(x),
@@ -394,10 +397,10 @@ export class PerlinNoise {
     Z &= 255;
     W &= 255;
 
-    const u = this._fade(x),
-      v = this._fade(y),
-      s = this._fade(z),
-      t = this._fade(w),
+    const u = this.#fade(x),
+      v = this.#fade(y),
+      s = this.#fade(z),
+      t = this.#fade(w),
       // Helper to get gradient index
       gi = (i: number, j: number, k: number, l: number): Grad =>
         gradP[X + i + perm[Y + j + perm[Z + k + perm[W + l]!]!]!]!,
@@ -419,26 +422,29 @@ export class PerlinNoise {
       n1110 = gi(1, 1, 1, 0).dot4(x - 1, y - 1, z - 1, w),
       n1111 = gi(1, 1, 1, 1).dot4(x - 1, y - 1, z - 1, w - 1),
       // Trilinear interpolation
-      x00 = this._lerp(n0000, n1000, u),
-      x01 = this._lerp(n0001, n1001, u),
-      x10 = this._lerp(n0010, n1010, u),
-      x11 = this._lerp(n0011, n1011, u),
-      y00 = this._lerp(x00, x10, s),
-      y01 = this._lerp(x01, x11, s),
-      x20 = this._lerp(n0100, n1100, u),
-      x21 = this._lerp(n0101, n1101, u),
-      x30 = this._lerp(n0110, n1110, u),
-      x31 = this._lerp(n0111, n1111, u),
-      y10 = this._lerp(x20, x30, s),
-      y11 = this._lerp(x21, x31, s),
-      z0 = this._lerp(y00, y10, v),
-      z1 = this._lerp(y01, y11, v);
+      x00 = this.#lerp(n0000, n1000, u),
+      x01 = this.#lerp(n0001, n1001, u),
+      x10 = this.#lerp(n0010, n1010, u),
+      x11 = this.#lerp(n0011, n1011, u),
+      y00 = this.#lerp(x00, x10, s),
+      y01 = this.#lerp(x01, x11, s),
+      x20 = this.#lerp(n0100, n1100, u),
+      x21 = this.#lerp(n0101, n1101, u),
+      x30 = this.#lerp(n0110, n1110, u),
+      x31 = this.#lerp(n0111, n1111, u),
+      y10 = this.#lerp(x20, x30, s),
+      y11 = this.#lerp(x21, x31, s),
+      z0 = this.#lerp(y00, y10, v),
+      z1 = this.#lerp(y01, y11, v);
 
-    return this._lerp(z0, z1, t);
+    return this.#lerp(z0, z1, t);
   }
 
   seed(inputSeed: number): void {
-    const { _grad4: grad4, _gradP: gradP, _perm: perm, _p: p } = this;
+    const grad4 = this.#grad4,
+      gradP = this.#gradP,
+      perm = this.#perm,
+      p = this.#p;
 
     let seed = inputSeed;
 
@@ -468,7 +474,7 @@ export class PerlinNoise {
    * @param t -
    * @returns the fade value
    */
-  private _fade(t: number): number {
+  #fade(t: number): number {
     return t * t * t * (t * (t * 6 - 15) + 10);
   }
 
@@ -478,7 +484,7 @@ export class PerlinNoise {
    * @param t -
    * @returns the linear interpolation value
    */
-  private _lerp(a: number, b: number, t: number): number {
+  #lerp(a: number, b: number, t: number): number {
     return (1 - t) * a + t * b;
   }
 }

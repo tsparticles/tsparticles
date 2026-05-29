@@ -2,12 +2,12 @@ import { /*type Container, type Engine,*/ type IContainerPlugin } from "@tsparti
 
 export class PluginInstance implements IContainerPlugin {
     /*
-    private readonly _container;
-    private readonly _engine;
+    readonly #container;
+    readonly #engine;
 
     constructor(container: Container, engine: Engine) {
-        /*this._container = container;
-        this._engine = engine;
+        /*this.#container = container;
+        this.#engine = engine;
     }
     */
 

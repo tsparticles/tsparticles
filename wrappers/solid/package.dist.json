@@ -1,0 +1,57 @@
+{
+  "name": "@tsparticles/solid",
+  "version": "4.0.5",
+  "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
+  "license": "MIT",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "homepage": "https://particles.js.org",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "bugs": {
+    "url": "https://github.com/tsparticles/solid/issues"
+  },
+  "repository": {
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/solid",
+    "type": "git"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "exports": {
+    "solid": {
+      "development": "./dev.jsx",
+      "import": "./index.jsx"
+    },
+    "development": {
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./dev.js"
+      }
+    },
+    "import": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "@tsparticles/engine": "__VERSION__",
+    "solid-js": ">=1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

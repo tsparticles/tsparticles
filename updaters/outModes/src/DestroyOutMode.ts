@@ -6,8 +6,6 @@ import {
   type Particle,
   ParticleOutType,
   getDistances,
-  isPointInside,
-  originPoint,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
@@ -16,7 +14,7 @@ const minVelocity = 0;
 export class DestroyOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
 
-  constructor(private readonly container: Container) {
+  constructor(_container: Container) {
     this.modes = [OutMode.destroy];
   }
 
@@ -30,12 +28,10 @@ export class DestroyOutMode implements IOutModeManager {
       return;
     }
 
-    const container = this.container;
-
     switch (particle.outType) {
       case ParticleOutType.normal:
       case ParticleOutType.outside:
-        if (isPointInside(particle.position, container.canvas.size, originPoint, particle.getRadius(), direction)) {
+        if (particle.isInsideCanvasForOutMode(outMode, direction)) {
           return;
         }
 

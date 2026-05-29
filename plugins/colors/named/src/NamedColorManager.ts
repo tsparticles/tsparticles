@@ -173,7 +173,7 @@ export class NamedColorManager implements IColorManager {
    * @param color
    */
   handleColor(color: IColor): IRgb | undefined {
-    return this._parseString(color.value);
+    return this.#parseString(color.value);
   }
 
   /**
@@ -181,7 +181,7 @@ export class NamedColorManager implements IColorManager {
    * @param color
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
-    return this._parseString(color.value);
+    return this.#parseString(color.value);
   }
 
   /**
@@ -189,10 +189,10 @@ export class NamedColorManager implements IColorManager {
    * @param input
    */
   parseString(input: string): IRgba | undefined {
-    return this._parseString(input);
+    return this.#parseString(input);
   }
 
-  private _parseString(input: unknown): IRgba | undefined {
+  #parseString(input: unknown): IRgba | undefined {
     if (!input || typeof input !== "string") {
       return undefined;
     }

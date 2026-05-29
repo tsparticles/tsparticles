@@ -19,10 +19,10 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
   width;
 
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
     this.color = new OptionsColor();
     this.width = 0.5;
     this.opacity = 1;
@@ -36,7 +36,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
     this.color = OptionsColor.create(this.color, data.color);
 
     if (isString(this.color.value)) {
-      this.opacity = stringToAlpha(this._pluginManager, this.color.value) ?? this.opacity;
+      this.opacity = stringToAlpha(this.#pluginManager, this.color.value) ?? this.opacity;
     }
 
     if (data.opacity !== undefined) {

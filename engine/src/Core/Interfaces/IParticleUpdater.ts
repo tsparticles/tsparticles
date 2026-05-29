@@ -31,6 +31,9 @@ export interface IParticleUpdater {
   /** Called when a particle is destroyed */
   particleDestroyed?: (particle: Particle, override?: boolean) => void;
 
+  /** Called before initialization */
+  preInit?: (particle: Particle) => void;
+
   /** Resets the updater state for a particle */
   reset?: (particle: Particle) => void;
 

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-background-mask",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "tsParticles background mask plugin",
   "homepage": "https://particles.js.org",
   "scripts": {

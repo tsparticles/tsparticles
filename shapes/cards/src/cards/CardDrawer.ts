@@ -6,14 +6,14 @@ import { drawRoundedCard } from "../utils.js";
 /** Card drawer plugin */
 export class CardDrawer implements IShapeDrawer<CardParticle> {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
 
   /**
    * CardDrawer constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
+    this.#container = container;
   }
 
   /**
@@ -28,7 +28,7 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
     }
 
     const defaultOpacity = context.globalAlpha,
-      container = this._container;
+      container = this.#container;
 
     context.globalAlpha = opacity;
 

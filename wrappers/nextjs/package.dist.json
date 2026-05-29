@@ -1,0 +1,29 @@
+{
+  "name": "@tsparticles/nextjs",
+  "version": "4.0.5",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/nextjs"
+  },
+  "main": "./index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@tsparticles/react": "^__VERSION__",
+    "next": ">=13.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "@tsparticles/engine": "__VERSION__"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

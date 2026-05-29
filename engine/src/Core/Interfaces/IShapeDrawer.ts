@@ -1,3 +1,4 @@
+import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./IParticleCanvasBounds.js";
 import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particle.js";
@@ -42,6 +43,12 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
    * @param container - the container initializing the shape
    */
   init?: (container: Container) => Promise<void>;
+
+  /**
+   * Optional shape-owned canvas bounds check.
+   * @param data - the data used for bounds evaluation
+   */
+  isInsideCanvas?: (data: IParticleCanvasBoundsData<TParticle>) => boolean | IParticleCanvasBoundsResult;
 
   /**
    * Shape load function

@@ -21,9 +21,9 @@ const defaultDeltaFactor = 1,
 /** Destroy updater plugin */
 export class DestroyUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * DestroyUpdater constructor
@@ -31,8 +31,8 @@ export class DestroyUpdater implements IParticleUpdater {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._container = container;
-    this._pluginManager = pluginManager;
+    this.#container = container;
+    this.#pluginManager = pluginManager;
   }
 
   /**
@@ -40,7 +40,7 @@ export class DestroyUpdater implements IParticleUpdater {
    * @param particle
    */
   init(particle: DestroyParticle): void {
-    const container = this._container,
+    const container = this.#container,
       particlesOptions = particle.options,
       destroyOptions = particlesOptions.destroy;
 
@@ -117,7 +117,7 @@ export class DestroyUpdater implements IParticleUpdater {
 
     switch (destroyOptions?.mode) {
       case DestroyMode.split:
-        split(this._pluginManager, this._container, particle);
+        split(this.#pluginManager, this.#container, particle);
 
         break;
       case DestroyMode.explode: {

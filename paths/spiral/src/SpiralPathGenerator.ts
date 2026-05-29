@@ -26,17 +26,17 @@ export class SpiralPathGenerator implements IMovePathGenerator {
   /** Spiral path options */
   readonly options;
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The result vector */
-  private readonly _res: Vector;
+  readonly #res: Vector;
 
   /**
    * SpiralPathGenerator constructor
    * @param container
    */
   constructor(container: Container) {
-    this._container = container;
-    this._res = Vector.origin;
+    this.#container = container;
+    this.#res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as ISpiralOptions;
   }
 
@@ -46,7 +46,7 @@ export class SpiralPathGenerator implements IMovePathGenerator {
    * @param delta
    */
   generate(particle: SpiralParticle, delta: IDelta): Vector {
-    const { options } = this;
+    const options = this.options;
 
     particle.spiral ??= {
       angle: getRandom() * doublePI,
@@ -81,15 +81,15 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     particle.position.x += offsetX;
     particle.position.y += offsetY;
 
-    this._res.x = 0;
-    this._res.y = 0;
+    this.#res.x = 0;
+    this.#res.y = 0;
 
-    return this._res;
+    return this.#res;
   }
 
   /** Initializes the path generator options */
   init(): void {
-    const sourceOptions = this._container.actualOptions.particles.move.path.options;
+    const sourceOptions = this.#container.actualOptions.particles.move.path.options;
 
     this.options.maxRadius = (sourceOptions["maxRadius"] as RangeValue | undefined) ?? this.options.maxRadius;
     this.options.angularSpeed = (sourceOptions["angularSpeed"] as RangeValue | undefined) ?? this.options.angularSpeed;

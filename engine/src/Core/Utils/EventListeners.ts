@@ -11,21 +11,23 @@ interface EventListenersHandlers {
  * Particles container event listeners manager
  */
 export class EventListeners {
-  private readonly _handlers: EventListenersHandlers;
-  private _resizeObserver?: ResizeObserver;
-  private _resizeTimeout?: number;
+  readonly #container: Container;
+  readonly #handlers: EventListenersHandlers;
+  #resizeObserver?: ResizeObserver;
+  #resizeTimeout?: number;
 
   /**
    * Events listener constructor
    * @param container - the calling container
    */
-  constructor(private readonly container: Container) {
-    this._handlers = {
+  constructor(container: Container) {
+    this.#container = container;
+    this.#handlers = {
       visibilityChange: (): void => {
-        this._handleVisibilityChange();
+        this.#handleVisibilityChange();
       },
       resize: (): void => {
-        this._handleWindowResize();
+        this.#handleWindowResize();
       },
     };
   }
@@ -34,22 +36,22 @@ export class EventListeners {
    * Adding all listeners
    */
   addListeners(): void {
-    this._manageListeners(true);
+    this.#manageListeners(true);
   }
 
   /**
    * Removing all listeners
    */
   removeListeners(): void {
-    this._manageListeners(false);
+    this.#manageListeners(false);
   }
 
   /**
    * Handles blur event
    * @internal
    */
-  private readonly _handleVisibilityChange: () => void = () => {
-    const container = this.container,
+  readonly #handleVisibilityChange: () => void = () => {
+    const container = this.#container,
       options = container.actualOptions;
 
     if (!options.pauseOnBlur) {
@@ -75,22 +77,22 @@ export class EventListeners {
    * Handles window resize event
    * @internal
    */
-  private readonly _handleWindowResize = (): void => {
-    if (this._resizeTimeout) {
-      clearTimeout(this._resizeTimeout);
+  readonly #handleWindowResize = (): void => {
+    if (this.#resizeTimeout) {
+      clearTimeout(this.#resizeTimeout);
 
-      delete this._resizeTimeout;
+      this.#resizeTimeout = undefined;
     }
 
     const handleResize = async (): Promise<void> => {
-      const canvas = this.container.canvas;
+      const canvas = this.#container.canvas;
 
       await canvas.windowResize();
     };
 
-    this._resizeTimeout = setTimeout(
+    this.#resizeTimeout = setTimeout(
       () => void handleResize(),
-      this.container.actualOptions.resize.delay * millisecondsToSeconds,
+      this.#container.actualOptions.resize.delay * millisecondsToSeconds,
     );
   };
 
@@ -98,17 +100,17 @@ export class EventListeners {
    * Initializing event listeners
    * @param add -
    */
-  private readonly _manageListeners: (add: boolean) => void = add => {
-    const handlers = this._handlers;
+  readonly #manageListeners: (add: boolean) => void = add => {
+    const handlers = this.#handlers;
 
-    this._manageResize(add);
+    this.#manageResize(add);
 
     manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
   };
 
-  private readonly _manageResize: (add: boolean) => void = add => {
-    const handlers = this._handlers,
-      container = this.container,
+  readonly #manageResize: (add: boolean) => void = add => {
+    const handlers = this.#handlers,
+      container = this.#container,
       options = container.actualOptions;
 
     if (!options.resize.enable) {
@@ -123,26 +125,26 @@ export class EventListeners {
 
     const canvasEl = container.canvas.domElement;
 
-    if (this._resizeObserver && !add) {
+    if (this.#resizeObserver && !add) {
       if (canvasEl) {
-        this._resizeObserver.unobserve(canvasEl);
+        this.#resizeObserver.unobserve(canvasEl);
       }
 
-      this._resizeObserver.disconnect();
+      this.#resizeObserver.disconnect();
 
-      delete this._resizeObserver;
-    } else if (!this._resizeObserver && add && canvasEl) {
-      this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
+      this.#resizeObserver = undefined;
+    } else if (!this.#resizeObserver && add && canvasEl) {
+      this.#resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
         const entry = entries.find(e => e.target === canvasEl);
 
         if (!entry) {
           return;
         }
 
-        this._handleWindowResize();
+        this.#handleWindowResize();
       });
 
-      this._resizeObserver.observe(canvasEl);
+      this.#resizeObserver.observe(canvasEl);
     }
   };
 }

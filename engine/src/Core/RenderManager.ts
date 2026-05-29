@@ -36,29 +36,29 @@ function setTransformValue(
  * Canvas manager
  */
 export class RenderManager {
-  private _canvasClearPlugins: IContainerPlugin[];
-  private readonly _canvasManager: CanvasManager;
-  private _canvasPaintPlugins: IContainerPlugin[];
-  private _clearDrawPlugins: IContainerPlugin[];
-  private _colorPlugins: IContainerPlugin[];
-  private readonly _container;
+  #canvasClearPlugins: IContainerPlugin[];
+  readonly #canvasManager: CanvasManager;
+  #canvasPaintPlugins: IContainerPlugin[];
+  #clearDrawPlugins: IContainerPlugin[];
+  #colorPlugins: IContainerPlugin[];
+  readonly #container;
   /**
    * The particles canvas context
    */
-  private _context: OffscreenCanvasRenderingContext2D | null;
-  private _contextSettings?: CanvasRenderingContext2DSettings;
-  private _drawParticlePlugins: IContainerPlugin[];
-  private _drawParticlesCleanupPlugins: IContainerPlugin[];
-  private _drawParticlesSetupPlugins: IContainerPlugin[];
-  private _drawPlugins: IContainerPlugin[];
-  private _drawSettingsCleanupPlugins: IContainerPlugin[];
-  private _drawSettingsSetupPlugins: IContainerPlugin[];
-  private readonly _pluginManager;
-  private _postDrawUpdaters: IParticleUpdater[];
-  private _preDrawUpdaters: IParticleUpdater[];
-  private readonly _reusableColorStyles: IParticleColorStyle = {};
-  private readonly _reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
-  private readonly _reusableTransform: Partial<IParticleTransformValues> = {};
+  #context: OffscreenCanvasRenderingContext2D | null;
+  #contextSettings?: CanvasRenderingContext2DSettings;
+  #drawParticlePlugins: IContainerPlugin[];
+  #drawParticlesCleanupPlugins: IContainerPlugin[];
+  #drawParticlesSetupPlugins: IContainerPlugin[];
+  #drawPlugins: IContainerPlugin[];
+  #drawSettingsCleanupPlugins: IContainerPlugin[];
+  #drawSettingsSetupPlugins: IContainerPlugin[];
+  readonly #pluginManager;
+  #postDrawUpdaters: IParticleUpdater[];
+  #preDrawUpdaters: IParticleUpdater[];
+  readonly #reusableColorStyles: IParticleColorStyle = {};
+  readonly #reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
+  readonly #reusableTransform: Partial<IParticleTransformValues> = {};
 
   /**
    * Constructor of canvas manager
@@ -67,37 +67,40 @@ export class RenderManager {
    * @param canvasManager -
    */
   constructor(pluginManager: PluginManager, container: Container, canvasManager: CanvasManager) {
-    this._pluginManager = pluginManager;
-    this._container = container;
-    this._canvasManager = canvasManager;
-    this._context = null;
-    this._preDrawUpdaters = [];
-    this._postDrawUpdaters = [];
-    this._colorPlugins = [];
-    this._canvasClearPlugins = [];
-    this._canvasPaintPlugins = [];
-    this._clearDrawPlugins = [];
-    this._drawParticlePlugins = [];
-    this._drawParticlesCleanupPlugins = [];
-    this._drawParticlesSetupPlugins = [];
-    this._drawPlugins = [];
-    this._drawSettingsSetupPlugins = [];
-    this._drawSettingsCleanupPlugins = [];
+    this.#pluginManager = pluginManager;
+    this.#container = container;
+    this.#canvasManager = canvasManager;
+    this.#context = null;
+    this.#preDrawUpdaters = [];
+    this.#postDrawUpdaters = [];
+    this.#colorPlugins = [];
+    this.#canvasClearPlugins = [];
+    this.#canvasPaintPlugins = [];
+    this.#clearDrawPlugins = [];
+    this.#drawParticlePlugins = [];
+    this.#drawParticlesCleanupPlugins = [];
+    this.#drawParticlesSetupPlugins = [];
+    this.#drawPlugins = [];
+    this.#drawSettingsSetupPlugins = [];
+    this.#drawSettingsCleanupPlugins = [];
   }
 
-  /** Canvas rendering context settings */
+  /**
+   * Canvas rendering context settings
+   * @returns the canvas context settings
+   */
   get settings(): CanvasRenderingContext2DSettings | undefined {
-    return this._contextSettings;
+    return this.#contextSettings;
   }
 
   /** Clears the canvas directly */
   canvasClear(): void {
-    if (!this._container.actualOptions.clear) {
+    if (!this.#container.actualOptions.clear) {
       return;
     }
 
     this.draw(ctx => {
-      clear(ctx, this._canvasManager.size);
+      clear(ctx, this.#canvasManager.size);
     });
   }
 
@@ -107,7 +110,7 @@ export class RenderManager {
   clear(): void {
     let pluginHandled = false;
 
-    for (const plugin of this._canvasClearPlugins) {
+    for (const plugin of this.#canvasClearPlugins) {
       pluginHandled = plugin.canvasClear?.() ?? false;
 
       if (pluginHandled) {
@@ -128,18 +131,18 @@ export class RenderManager {
   destroy(): void {
     this.stop();
 
-    this._preDrawUpdaters = [];
-    this._postDrawUpdaters = [];
-    this._colorPlugins = [];
-    this._canvasClearPlugins = [];
-    this._canvasPaintPlugins = [];
-    this._clearDrawPlugins = [];
-    this._drawParticlePlugins = [];
-    this._drawParticlesCleanupPlugins = [];
-    this._drawParticlesSetupPlugins = [];
-    this._drawPlugins = [];
-    this._drawSettingsSetupPlugins = [];
-    this._drawSettingsCleanupPlugins = [];
+    this.#preDrawUpdaters = [];
+    this.#postDrawUpdaters = [];
+    this.#colorPlugins = [];
+    this.#canvasClearPlugins = [];
+    this.#canvasPaintPlugins = [];
+    this.#clearDrawPlugins = [];
+    this.#drawParticlePlugins = [];
+    this.#drawParticlesCleanupPlugins = [];
+    this.#drawParticlesSetupPlugins = [];
+    this.#drawPlugins = [];
+    this.#drawSettingsSetupPlugins = [];
+    this.#drawSettingsCleanupPlugins = [];
   }
 
   /**
@@ -148,7 +151,7 @@ export class RenderManager {
    * @returns the result of the callback
    */
   draw<T>(cb: (context: OffscreenCanvasRenderingContext2D) => T): T | undefined {
-    const ctx = this._context;
+    const ctx = this.#context;
 
     if (!ctx) {
       return;
@@ -176,7 +179,7 @@ export class RenderManager {
     const pfColor = particle.getFillColor(),
       psColor = particle.getStrokeColor();
 
-    let [fColor, sColor] = this._getPluginParticleColors(particle);
+    let [fColor, sColor] = this.#getPluginParticleColors(particle);
 
     fColor ??= pfColor;
     sColor ??= psColor;
@@ -185,12 +188,12 @@ export class RenderManager {
       return;
     }
 
-    const container = this._container,
+    const container = this.#container,
       zIndexOptions = particle.options.zIndex,
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
-      transform = this._reusableTransform,
-      colorStyles = this._reusableColorStyles,
+      transform = this.#reusableTransform,
+      colorStyles = this.#reusableColorStyles,
       fill = fColor ? getStyleFromHsl(fColor, container.hdr, fillOpacity * opacity) : undefined,
       stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity * opacity) : fill;
 
@@ -200,11 +203,11 @@ export class RenderManager {
     colorStyles.stroke = stroke;
 
     this.draw((context): void => {
-      for (const plugin of this._drawParticlesSetupPlugins) {
+      for (const plugin of this.#drawParticlesSetupPlugins) {
         plugin.drawParticleSetup?.(context, particle, delta);
       }
 
-      this._applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
+      this.#applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
 
       drawParticle({
         container,
@@ -217,9 +220,9 @@ export class RenderManager {
         transform,
       });
 
-      this._applyPostDrawUpdaters(particle);
+      this.#applyPostDrawUpdaters(particle);
 
-      for (const plugin of this._drawParticlesCleanupPlugins) {
+      for (const plugin of this.#drawParticlesCleanupPlugins) {
         plugin.drawParticleCleanup?.(context, particle, delta);
       }
     });
@@ -232,7 +235,7 @@ export class RenderManager {
    */
   drawParticlePlugins(particle: Particle, delta: IDelta): void {
     this.draw(ctx => {
-      for (const plugin of this._drawParticlePlugins) {
+      for (const plugin of this.#drawParticlePlugins) {
         drawParticlePlugin(ctx, plugin, particle, delta);
       }
     });
@@ -240,10 +243,10 @@ export class RenderManager {
 
   /**
    * Draws all particles for the current frame
-   * @param delta
+   * @param delta -
    */
   drawParticles(delta: IDelta): void {
-    const { particles } = this._container;
+    const { particles } = this.#container;
 
     this.clear();
 
@@ -251,21 +254,21 @@ export class RenderManager {
     particles.update(delta);
 
     this.draw(ctx => {
-      for (const plugin of this._drawSettingsSetupPlugins) {
+      for (const plugin of this.#drawSettingsSetupPlugins) {
         plugin.drawSettingsSetup?.(ctx, delta);
       }
 
-      for (const plugin of this._drawPlugins) {
+      for (const plugin of this.#drawPlugins) {
         plugin.draw?.(ctx, delta);
       }
 
       particles.drawParticles(delta);
 
-      for (const plugin of this._clearDrawPlugins) {
+      for (const plugin of this.#clearDrawPlugins) {
         plugin.clearDraw?.(ctx, delta);
       }
 
-      for (const plugin of this._drawSettingsCleanupPlugins) {
+      for (const plugin of this.#drawSettingsCleanupPlugins) {
         plugin.drawSettingsCleanup?.(ctx, delta);
       }
     });
@@ -284,56 +287,56 @@ export class RenderManager {
    * Initializes the plugins needed by canvas
    */
   initPlugins(): void {
-    this._colorPlugins = [];
-    this._canvasClearPlugins = [];
-    this._canvasPaintPlugins = [];
-    this._clearDrawPlugins = [];
-    this._drawParticlePlugins = [];
-    this._drawParticlesSetupPlugins = [];
-    this._drawParticlesCleanupPlugins = [];
-    this._drawPlugins = [];
-    this._drawSettingsSetupPlugins = [];
-    this._drawSettingsCleanupPlugins = [];
+    this.#colorPlugins = [];
+    this.#canvasClearPlugins = [];
+    this.#canvasPaintPlugins = [];
+    this.#clearDrawPlugins = [];
+    this.#drawParticlePlugins = [];
+    this.#drawParticlesSetupPlugins = [];
+    this.#drawParticlesCleanupPlugins = [];
+    this.#drawPlugins = [];
+    this.#drawSettingsSetupPlugins = [];
+    this.#drawSettingsCleanupPlugins = [];
 
-    for (const plugin of this._container.plugins) {
+    for (const plugin of this.#container.plugins) {
       if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
-        this._colorPlugins.push(plugin);
+        this.#colorPlugins.push(plugin);
       }
 
       if (plugin.canvasClear) {
-        this._canvasClearPlugins.push(plugin);
+        this.#canvasClearPlugins.push(plugin);
       }
 
       if (plugin.canvasPaint) {
-        this._canvasPaintPlugins.push(plugin);
+        this.#canvasPaintPlugins.push(plugin);
       }
 
       if (plugin.drawParticle) {
-        this._drawParticlePlugins.push(plugin);
+        this.#drawParticlePlugins.push(plugin);
       }
 
       if (plugin.drawParticleSetup) {
-        this._drawParticlesSetupPlugins.push(plugin);
+        this.#drawParticlesSetupPlugins.push(plugin);
       }
 
       if (plugin.drawParticleCleanup) {
-        this._drawParticlesCleanupPlugins.push(plugin);
+        this.#drawParticlesCleanupPlugins.push(plugin);
       }
 
       if (plugin.draw) {
-        this._drawPlugins.push(plugin);
+        this.#drawPlugins.push(plugin);
       }
 
       if (plugin.drawSettingsSetup) {
-        this._drawSettingsSetupPlugins.push(plugin);
+        this.#drawSettingsSetupPlugins.push(plugin);
       }
 
       if (plugin.drawSettingsCleanup) {
-        this._drawSettingsCleanupPlugins.push(plugin);
+        this.#drawSettingsCleanupPlugins.push(plugin);
       }
 
       if (plugin.clearDraw) {
-        this._clearDrawPlugins.push(plugin);
+        this.#clearDrawPlugins.push(plugin);
       }
     }
   }
@@ -342,16 +345,16 @@ export class RenderManager {
    * Initializes the updaters needed by canvas
    */
   initUpdaters(): void {
-    this._preDrawUpdaters = [];
-    this._postDrawUpdaters = [];
+    this.#preDrawUpdaters = [];
+    this.#postDrawUpdaters = [];
 
-    for (const updater of this._container.particleUpdaters) {
+    for (const updater of this.#container.particleUpdaters) {
       if (updater.afterDraw) {
-        this._postDrawUpdaters.push(updater);
+        this.#postDrawUpdaters.push(updater);
       }
 
       if (updater.getColorStyles ?? updater.getTransformValues ?? updater.beforeDraw) {
-        this._preDrawUpdaters.push(updater);
+        this.#preDrawUpdaters.push(updater);
       }
     }
   }
@@ -362,7 +365,7 @@ export class RenderManager {
   paint(): void {
     let handled = false;
 
-    for (const plugin of this._canvasPaintPlugins) {
+    for (const plugin of this.#canvasPaintPlugins) {
       handled = plugin.canvasPaint?.() ?? false;
 
       if (handled) {
@@ -379,59 +382,59 @@ export class RenderManager {
 
   /**
    * Paints the canvas background with an optional base color
-   * @param baseColor
+   * @param baseColor -
    */
   paintBase(baseColor?: string): void {
     this.draw(ctx => {
-      paintBase(ctx, this._canvasManager.size, baseColor);
+      paintBase(ctx, this.#canvasManager.size, baseColor);
     });
   }
 
   /**
    * Paints an image on the canvas with the given opacity
-   * @param image
-   * @param opacity
+   * @param image -
+   * @param opacity -
    */
   paintImage(image: HTMLImageElement, opacity: number): void {
     this.draw(ctx => {
-      paintImage(ctx, this._canvasManager.size, image, opacity);
+      paintImage(ctx, this.#canvasManager.size, image, opacity);
     });
   }
 
   /**
    * Sets the canvas rendering context
-   * @param context
+   * @param context -
    */
   setContext(context: OffscreenCanvasRenderingContext2D | null): void {
-    this._context = context;
+    this.#context = context;
 
-    if (this._context) {
-      this._context.globalCompositeOperation = defaultCompositeValue;
+    if (this.#context) {
+      this.#context.globalCompositeOperation = defaultCompositeValue;
     }
   }
 
   /**
    * Sets the canvas rendering context settings
-   * @param settings
+   * @param settings -
    */
   setContextSettings(settings: CanvasRenderingContext2DSettings): void {
-    this._contextSettings = settings;
+    this.#contextSettings = settings;
   }
 
   /** Stops the renderer and clears the canvas */
   stop(): void {
     this.draw(ctx => {
-      clear(ctx, this._canvasManager.size);
+      clear(ctx, this.#canvasManager.size);
     });
   }
 
-  private readonly _applyPostDrawUpdaters: (particle: Particle) => void = particle => {
-    for (const updater of this._postDrawUpdaters) {
+  readonly #applyPostDrawUpdaters: (particle: Particle) => void = particle => {
+    for (const updater of this.#postDrawUpdaters) {
       updater.afterDraw?.(particle);
     }
   };
 
-  private readonly _applyPreDrawUpdaters: (
+  readonly #applyPreDrawUpdaters: (
     ctx: OffscreenCanvasRenderingContext2D,
     particle: Particle,
     radius: number,
@@ -439,7 +442,7 @@ export class RenderManager {
     colorStyles: IParticleColorStyle,
     transform: Partial<IParticleTransformValues>,
   ) => void = (ctx, particle, radius, zOpacity, colorStyles, transform) => {
-    for (const updater of this._preDrawUpdaters) {
+    for (const updater of this.#preDrawUpdaters) {
       if (updater.getColorStyles) {
         const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
 
@@ -464,16 +467,16 @@ export class RenderManager {
     }
   };
 
-  private readonly _getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = particle => {
+  readonly #getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = particle => {
     let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
-    for (const plugin of this._colorPlugins) {
+    for (const plugin of this.#colorPlugins) {
       if (!fColor && plugin.particleFillColor) {
-        fColor = rangeColorToHsl(this._pluginManager, plugin.particleFillColor(particle));
+        fColor = rangeColorToHsl(this.#pluginManager, plugin.particleFillColor(particle));
       }
 
       if (!sColor && plugin.particleStrokeColor) {
-        sColor = rangeColorToHsl(this._pluginManager, plugin.particleStrokeColor(particle));
+        sColor = rangeColorToHsl(this.#pluginManager, plugin.particleStrokeColor(particle));
       }
 
       if (fColor && sColor) {
@@ -481,9 +484,9 @@ export class RenderManager {
       }
     }
 
-    this._reusablePluginColors[fColorIndex] = fColor;
-    this._reusablePluginColors[sColorIndex] = sColor;
+    this.#reusablePluginColors[fColorIndex] = fColor;
+    this.#reusablePluginColors[sColorIndex] = sColor;
 
-    return this._reusablePluginColors;
+    return this.#reusablePluginColors;
   };
 }

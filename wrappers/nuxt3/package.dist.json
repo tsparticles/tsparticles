@@ -1,0 +1,26 @@
+{
+  "name": "@tsparticles/nuxt3",
+  "version": "4.0.5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "wrappers/nuxt3"
+  },
+  "license": "MIT",
+  "type": "module",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "nuxt": "^3.0.0",
+    "@tsparticles/engine": "__VERSION__"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

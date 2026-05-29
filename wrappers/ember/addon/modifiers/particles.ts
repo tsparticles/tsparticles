@@ -1,4 +1,5 @@
-import Modifier, { NamedArgs, PositionalArgs } from 'ember-modifier';
+import Modifier from 'ember-modifier';
+import type { NamedArgs, PositionalArgs } from 'ember-modifier';
 import type { Container, Options } from '@tsparticles/engine';
 import { tsParticles } from '@tsparticles/engine';
 import {

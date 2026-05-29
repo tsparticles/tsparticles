@@ -4,13 +4,12 @@ import { Circle, type ICoordinates, type IDimension, Rectangle } from "@tspartic
  * Specialized Circle for Warp effect, checks for points across canvas edges
  */
 export class CircleWarp extends Circle {
-  constructor(
-    x: number,
-    y: number,
-    radius: number,
-    private readonly canvasSize: IDimension,
-  ) {
+  readonly #canvasSize: IDimension;
+
+  constructor(x: number, y: number, radius: number, canvasSize: IDimension) {
     super(x, y, radius);
+
+    this.#canvasSize = canvasSize;
   }
 
   /**
@@ -21,7 +20,7 @@ export class CircleWarp extends Circle {
   override contains(point: ICoordinates): boolean {
     if (super.contains(point)) return true;
 
-    const { width, height } = this.canvasSize,
+    const { width, height } = this.#canvasSize,
       { x, y } = point;
 
     /* Check phantom positions in all neighboring virtual sectors */
@@ -45,7 +44,7 @@ export class CircleWarp extends Circle {
   override intersects(range: Rectangle | Circle): boolean {
     if (super.intersects(range)) return true;
 
-    const { width, height } = this.canvasSize,
+    const { width, height } = this.#canvasSize,
       pos = range.position,
       /* Define potential shift offsets for warp checking */
       shifts = [

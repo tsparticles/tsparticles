@@ -4,5 +4,8 @@ module.exports = {
             "polyfills": [ "es7.object.entries", "es6.promise" ],
             "useBuiltIns": "entry"
         } ],
-    ]
+    ],
+    plugins: [
+        '@babel/plugin-transform-private-methods',
+    ],
 }

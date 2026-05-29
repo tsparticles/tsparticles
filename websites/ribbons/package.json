@@ -1,0 +1,64 @@
+{
+  "name": "@tsparticles/ribbons-website",
+  "version": "4.1.0",
+  "description": "tsParticles ribbons webpage",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm run format && pnpm run lint:fix && vite build",
+    "build:ci": "pnpm run format:check && pnpm run lint && vite build",
+    "preview": "vite preview",
+    "deploy": "node deploy.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "websites/ribbons"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "homepage": "https://ribbons.js.org",
+  "dependencies": {
+    "@tsparticles/ribbons": "workspace:*",
+    "ace-builds": "^1.37.5",
+    "js-beautify": "^1.15.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3",
+    "vite": "^8.0.14"
+  },
+  "nx": {
+    "implicitDependencies": [
+      "*",
+      "!@tsparticles/website",
+      "!@tsparticles/confetti-website",
+      "!@tsparticles/*-demo"
+    ],
+    "targets": {
+      "build": {
+        "inputs": [
+          "{projectRoot}/vite.config.js",
+          "production",
+          "^production"
+        ]
+      }
+    }
+  }
+}

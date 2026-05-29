@@ -13,12 +13,12 @@ import { Light } from "./Options/Classes/Light.js";
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
   /** @inheritDoc */
   readonly maxDistance = 0;
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: LightContainer) {
     super(container);
 
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   /** @inheritDoc */
@@ -69,8 +69,8 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
       const lightGradient = interactivity.modes.light.area.gradient;
 
       container.canvas.mouseLight = {
-        start: rangeColorToRgb(this._pluginManager, lightGradient.start),
-        stop: rangeColorToRgb(this._pluginManager, lightGradient.stop),
+        start: rangeColorToRgb(this.#pluginManager, lightGradient.start),
+        stop: rangeColorToRgb(this.#pluginManager, lightGradient.stop),
       };
     }
 

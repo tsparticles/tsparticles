@@ -8,9 +8,9 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   readonly interactionManager: InteractionManager;
 
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * Creates a new InteractivityPluginInstance
@@ -18,11 +18,11 @@ export class InteractivityPluginInstance implements IContainerPlugin {
    * @param container - the particles container
    */
   constructor(pluginManager: InteractivityPluginManager, container: InteractivityContainer) {
-    this._container = container;
-    this._pluginManager = pluginManager;
+    this.#container = container;
+    this.#pluginManager = pluginManager;
     this.interactionManager = new InteractionManager(pluginManager, container);
 
-    this._container.addClickHandler = (callback: (evt: Event, particles?: Particle[]) => void): void => {
+    this.#container.addClickHandler = (callback: (evt: Event, particles?: Particle[]) => void): void => {
       this.interactionManager.addClickHandler(callback);
     };
   }
@@ -44,15 +44,15 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   destroy(): void {
     this.clearClickHandlers();
 
-    this._pluginManager.interactors?.delete(this._container);
+    this.#pluginManager.interactors?.delete(this.#container);
   }
 
   /** @inheritDoc */
   particleCreated(particle: Particle): void {
     const interactivityParticle = particle as InteractivityParticle,
-      interactivity = new Interactivity(this._pluginManager, this._container);
+      interactivity = new Interactivity(this.#pluginManager, this.#container);
 
-    interactivity.load(this._container.actualOptions.interactivity);
+    interactivity.load(this.#container.actualOptions.interactivity);
     interactivity.load(interactivityParticle.options.interactivity);
 
     interactivityParticle.interactivity = interactivity;

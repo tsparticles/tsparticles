@@ -140,26 +140,26 @@ export class EmitterInstance {
    */
   spawnStrokeWidth?: number;
 
-  private readonly _container;
-  private _currentDuration;
-  private _currentEmitDelay;
-  private _currentSpawnDelay;
-  private _duration?: number;
-  private _emitDelay?: number;
-  private _firstSpawn;
-  private readonly _immortal;
-  private readonly _initialPosition?: ICoordinates;
-  private _lifeCount;
-  private _mutationObserver?: MutationObserver;
-  private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
-  private _paused;
-  private readonly _pluginManager;
-  private readonly _removeCallback;
-  private _resizeObserver?: ResizeObserver;
-  private readonly _shape?: IEmitterShape;
-  private _size;
-  private _spawnDelay?: number;
-  private _startParticlesAdded;
+  readonly #container;
+  #currentDuration;
+  #currentEmitDelay;
+  #currentSpawnDelay;
+  #duration?: number;
+  #emitDelay?: number;
+  #firstSpawn;
+  readonly #immortal;
+  readonly #initialPosition?: ICoordinates;
+  #lifeCount;
+  #mutationObserver?: MutationObserver;
+  readonly #particlesOptions: RecursivePartial<IParticlesOptions>;
+  #paused;
+  readonly #pluginManager;
+  readonly #removeCallback;
+  #resizeObserver?: ResizeObserver;
+  readonly #shape?: IEmitterShape;
+  #size;
+  #spawnDelay?: number;
+  #startParticlesAdded;
 
   constructor(
     pluginManager: EmittersPluginManager,
@@ -168,13 +168,13 @@ export class EmitterInstance {
     options: Emitter | RecursivePartial<IEmitter>,
     position?: ICoordinates,
   ) {
-    this._pluginManager = pluginManager;
-    this._container = container;
-    this._removeCallback = removeCallback;
-    this._currentDuration = 0;
-    this._currentEmitDelay = 0;
-    this._currentSpawnDelay = 0;
-    this._initialPosition = position;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
+    this.#removeCallback = removeCallback;
+    this.#currentDuration = 0;
+    this.#currentEmitDelay = 0;
+    this.#currentSpawnDelay = 0;
+    this.#initialPosition = position;
 
     if (options instanceof Emitter) {
       this.options = options;
@@ -183,17 +183,17 @@ export class EmitterInstance {
       this.options.load(options);
     }
 
-    this._spawnDelay = container.retina.reduceFactor
+    this.#spawnDelay = container.retina.reduceFactor
       ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
         container.retina.reduceFactor
       : Infinity;
-    this.position = this._initialPosition ?? this._calcPosition();
+    this.position = this.#initialPosition ?? this.#calcPosition();
     this.name = this.options.name;
 
     this.fill = this.options.fill;
 
-    this._firstSpawn = !this.options.life.wait;
-    this._startParticlesAdded = false;
+    this.#firstSpawn = !this.options.life.wait;
+    this.#startParticlesAdded = false;
 
     const particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
 
@@ -201,48 +201,48 @@ export class EmitterInstance {
     particlesOptions.move.direction ??= this.options.direction;
 
     if (this.options.spawn.fill?.color) {
-      this.spawnFillColor = rangeColorToHsl(this._pluginManager, this.options.spawn.fill.color);
+      this.spawnFillColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.fill.color);
     }
 
     if (this.options.spawn.stroke?.color) {
-      this.spawnStrokeColor = rangeColorToHsl(this._pluginManager, this.options.spawn.stroke.color);
+      this.spawnStrokeColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.stroke.color);
     }
 
-    this._paused = !this.options.autoPlay;
-    this._particlesOptions = particlesOptions;
-    this._size = this._calcSize();
-    this.size = getSize(this._size, this._container.canvas.size);
-    this._lifeCount = this.options.life.count ?? defaultLifeCount;
-    this._immortal = this._lifeCount <= minLifeCount;
+    this.#paused = !this.options.autoPlay;
+    this.#particlesOptions = particlesOptions;
+    this.#size = this.#calcSize();
+    this.size = getSize(this.#size, this.#container.canvas.size);
+    this.#lifeCount = this.options.life.count ?? defaultLifeCount;
+    this.#immortal = this.#lifeCount <= minLifeCount;
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
 
       if (element) {
-        this._mutationObserver = new MutationObserver(() => {
+        this.#mutationObserver = new MutationObserver(() => {
           this.resize();
         });
 
-        this._resizeObserver = new ResizeObserver(() => {
+        this.#resizeObserver = new ResizeObserver(() => {
           this.resize();
         });
 
-        this._mutationObserver.observe(element, {
+        this.#mutationObserver.observe(element, {
           attributes: true,
           attributeFilter: ["style", "width", "height"],
         });
-        this._resizeObserver.observe(element);
+        this.#resizeObserver.observe(element);
       }
     }
 
     const shapeOptions = this.options.shape,
-      shapeGenerator = this._pluginManager.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+      shapeGenerator = this.#pluginManager.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
 
     if (shapeGenerator) {
-      this._shape = shapeGenerator.generate(this._container, this.position, this.size, this.fill, shapeOptions.options);
+      this.#shape = shapeGenerator.generate(this.#container, this.position, this.size, this.fill, shapeOptions.options);
     }
 
-    this._container.dispatchEvent("emitterCreated", {
+    this.#container.dispatchEvent("emitterCreated", {
       emitter: this,
     });
 
@@ -253,7 +253,7 @@ export class EmitterInstance {
    * Pauses the emitter from external calls
    */
   externalPause(): void {
-    this._paused = true;
+    this.#paused = true;
 
     this.pause();
   }
@@ -262,7 +262,7 @@ export class EmitterInstance {
    * Resumes the emitter from external calls
    */
   externalPlay(): void {
-    this._paused = false;
+    this.#paused = false;
 
     this.play();
   }
@@ -271,49 +271,49 @@ export class EmitterInstance {
    * Initializes the emitter shape
    */
   async init(): Promise<void> {
-    await this._shape?.init();
+    await this.#shape?.init();
   }
 
   /**
    * Pauses the emitter
    */
   pause(): void {
-    if (this._paused) {
+    if (this.#paused) {
       return;
     }
 
-    delete this._emitDelay;
+    this.#emitDelay = undefined;
   }
 
   /**
    * Starts or resumes the emitter
    */
   play(): void {
-    if (this._paused) {
+    if (this.#paused) {
       return;
     }
 
     if (
       !(
-        (this._lifeCount > minLifeCount || this._immortal || !this.options.life.count) &&
-        (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? defaultSpawnDelay))
+        (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
+        (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
       )
     ) {
       return;
     }
 
-    const container = this._container;
+    const container = this.#container;
 
-    if (this._emitDelay === undefined) {
+    if (this.#emitDelay === undefined) {
       const delay = getRangeValue(this.options.rate.delay);
 
-      this._emitDelay = container.retina.reduceFactor
+      this.#emitDelay = container.retina.reduceFactor
         ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
         : Infinity;
     }
 
-    if (this._lifeCount > minLifeCount || this._immortal) {
-      this._prepareToDie();
+    if (this.#lifeCount > minLifeCount || this.#immortal) {
+      this.#prepareToDie();
     }
   }
 
@@ -321,18 +321,18 @@ export class EmitterInstance {
    * Resizes the emitter, recalculating position and size, and notifying the shape
    */
   resize(): void {
-    const initialPosition = this._initialPosition,
-      container = this._container;
+    const initialPosition = this.#initialPosition,
+      container = this.#container;
 
     this.position =
       initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
         ? initialPosition
-        : this._calcPosition();
+        : this.#calcPosition();
 
-    this._size = this._calcSize();
-    this.size = getSize(this._size, container.canvas.size);
+    this.#size = this.#calcSize();
+    this.size = getSize(this.#size, container.canvas.size);
 
-    this._shape?.resize(this.position, this.size);
+    this.#shape?.resize(this.position, this.size);
   }
 
   /**
@@ -340,84 +340,84 @@ export class EmitterInstance {
    * @param delta - the delta time of the frame
    */
   update(delta: IDelta): void {
-    if (this._paused) {
+    if (this.#paused) {
       return;
     }
 
-    const container = this._container;
+    const container = this.#container;
 
-    if (this._firstSpawn) {
-      this._firstSpawn = false;
+    if (this.#firstSpawn) {
+      this.#firstSpawn = false;
 
-      this._currentSpawnDelay = this._spawnDelay ?? defaultSpawnDelay;
-      this._currentEmitDelay = this._emitDelay ?? defaultEmitDelay;
+      this.#currentSpawnDelay = this.#spawnDelay ?? defaultSpawnDelay;
+      this.#currentEmitDelay = this.#emitDelay ?? defaultEmitDelay;
     }
 
-    if (!this._startParticlesAdded) {
-      this._startParticlesAdded = true;
+    if (!this.#startParticlesAdded) {
+      this.#startParticlesAdded = true;
 
-      this._emitParticles(this.options.startCount);
+      this.#emitParticles(this.options.startCount);
     }
 
-    if (this._duration !== undefined) {
-      this._currentDuration += delta.value;
+    if (this.#duration !== undefined) {
+      this.#currentDuration += delta.value;
 
-      if (this._currentDuration >= this._duration) {
+      if (this.#currentDuration >= this.#duration) {
         this.pause();
 
-        if (this._spawnDelay !== undefined) {
-          delete this._spawnDelay;
+        if (this.#spawnDelay !== undefined) {
+          this.#spawnDelay = undefined;
         }
 
-        if (!this._immortal) {
-          this._lifeCount--;
+        if (!this.#immortal) {
+          this.#lifeCount--;
         }
 
-        if (this._lifeCount > minLifeCount || this._immortal) {
-          this.position = this._calcPosition();
+        if (this.#lifeCount > minLifeCount || this.#immortal) {
+          this.position = this.#calcPosition();
 
-          this._shape?.resize(this.position, this.size);
+          this.#shape?.resize(this.position, this.size);
 
-          this._spawnDelay = container.retina.reduceFactor
+          this.#spawnDelay = container.retina.reduceFactor
             ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
               container.retina.reduceFactor
             : Infinity;
         } else {
-          this._destroy();
+          this.#destroy();
         }
 
-        this._currentDuration -= this._duration;
+        this.#currentDuration -= this.#duration;
 
-        delete this._duration;
+        this.#duration = undefined;
       }
     }
 
-    if (this._spawnDelay !== undefined) {
-      this._currentSpawnDelay += delta.value;
+    if (this.#spawnDelay !== undefined) {
+      this.#currentSpawnDelay += delta.value;
 
-      if (this._currentSpawnDelay >= this._spawnDelay) {
-        this._container.dispatchEvent("emitterPlay");
+      if (this.#currentSpawnDelay >= this.#spawnDelay) {
+        this.#container.dispatchEvent("emitterPlay");
 
         this.play();
 
-        this._currentSpawnDelay -= this._spawnDelay;
+        this.#currentSpawnDelay -= this.#spawnDelay;
 
-        delete this._spawnDelay;
+        this.#spawnDelay = undefined;
       }
     }
 
-    if (this._emitDelay !== undefined) {
-      this._currentEmitDelay += delta.value;
+    if (this.#emitDelay !== undefined) {
+      this.#currentEmitDelay += delta.value;
 
-      if (this._currentEmitDelay >= this._emitDelay) {
-        this._emit();
-        this._currentEmitDelay -= this._emitDelay;
+      if (this.#currentEmitDelay >= this.#emitDelay) {
+        this.#emit();
+        this.#currentEmitDelay -= this.#emitDelay;
       }
     }
   }
 
-  private _calcPosition(): ICoordinates {
-    const container = this._container;
+  #calcPosition(): ICoordinates {
+    const container = this.#container;
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
@@ -439,8 +439,8 @@ export class EmitterInstance {
     });
   }
 
-  private _calcSize(): IDimensionWithMode {
-    const container = this._container;
+  #calcSize(): IDimensionWithMode {
+    const container = this.#container;
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
@@ -472,32 +472,32 @@ export class EmitterInstance {
     );
   }
 
-  private readonly _destroy: () => void = () => {
-    this._mutationObserver?.disconnect();
-    this._mutationObserver = undefined;
+  readonly #destroy: () => void = () => {
+    this.#mutationObserver?.disconnect();
+    this.#mutationObserver = undefined;
 
-    this._resizeObserver?.disconnect();
-    this._resizeObserver = undefined;
+    this.#resizeObserver?.disconnect();
+    this.#resizeObserver = undefined;
 
-    this._removeCallback(this);
+    this.#removeCallback(this);
 
-    this._container.dispatchEvent("emitterDestroyed", {
+    this.#container.dispatchEvent("emitterDestroyed", {
       emitter: this,
     });
   };
 
-  private _emit(): void {
-    if (this._paused) {
+  #emit(): void {
+    if (this.#paused) {
       return;
     }
 
     const quantity = getRangeValue(this.options.rate.quantity);
 
-    this._emitParticles(quantity);
+    this.#emitParticles(quantity);
   }
 
-  private _emitParticles(quantity: number): void {
-    const singleParticlesOptions = (itemFromSingleOrMultiple(this._particlesOptions) ??
+  #emitParticles(quantity: number): void {
+    const singleParticlesOptions = (itemFromSingleOrMultiple(this.#particlesOptions) ??
         {}) as RecursivePartial<IParticlesOptions>,
       fillHslAnimation = this.options.spawn.fill?.color?.animation,
       fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
@@ -514,10 +514,10 @@ export class EmitterInstance {
         this.options.spawn.stroke?.width === undefined
           ? defaultStrokeWidth
           : getRangeValue(this.options.spawn.stroke.width),
-      reduceFactor = this._container.retina.reduceFactor,
+      reduceFactor = this.#container.retina.reduceFactor,
       needsFillColorAnimation = !!fillHslAnimation,
       needsStrokeColorAnimation = !!strokeHslAnimation,
-      needsShapeData = !!this._shape,
+      needsShapeData = !!this.#shape,
       needsColorAnimation = needsFillColorAnimation || needsStrokeColorAnimation,
       needsCopy = needsColorAnimation || needsShapeData,
       maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
@@ -535,14 +535,14 @@ export class EmitterInstance {
 
       if (this.spawnFillColor) {
         if (fillHslAnimation && maxValues) {
-          this.spawnFillColor.h = this._setColorAnimation(
+          this.spawnFillColor.h = this.#setColorAnimation(
             fillHslAnimation.h,
             this.spawnFillColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnFillColor.s = this._setColorAnimation(fillHslAnimation.s, this.spawnFillColor.s, maxValues.s);
-          this.spawnFillColor.l = this._setColorAnimation(fillHslAnimation.l, this.spawnFillColor.l, maxValues.l);
+          this.spawnFillColor.s = this.#setColorAnimation(fillHslAnimation.s, this.spawnFillColor.s, maxValues.s);
+          this.spawnFillColor.l = this.#setColorAnimation(fillHslAnimation.l, this.spawnFillColor.l, maxValues.l);
         }
 
         setParticlesOptionsFillColor(
@@ -555,14 +555,14 @@ export class EmitterInstance {
 
       if (this.spawnStrokeColor) {
         if (strokeHslAnimation && maxValues) {
-          this.spawnStrokeColor.h = this._setColorAnimation(
+          this.spawnStrokeColor.h = this.#setColorAnimation(
             strokeHslAnimation.h,
             this.spawnStrokeColor.h,
             maxValues.h,
             colorFactor,
           );
-          this.spawnStrokeColor.s = this._setColorAnimation(strokeHslAnimation.s, this.spawnStrokeColor.s, maxValues.s);
-          this.spawnStrokeColor.l = this._setColorAnimation(strokeHslAnimation.l, this.spawnStrokeColor.l, maxValues.l);
+          this.spawnStrokeColor.s = this.#setColorAnimation(strokeHslAnimation.s, this.spawnStrokeColor.s, maxValues.s);
+          this.spawnStrokeColor.l = this.#setColorAnimation(strokeHslAnimation.l, this.spawnStrokeColor.l, maxValues.l);
         }
 
         setParticlesOptionsStrokeColor(
@@ -575,8 +575,8 @@ export class EmitterInstance {
 
       let position: ICoordinates | null = this.position;
 
-      if (this._shape) {
-        const shapePosData = this._shape.randomPosition();
+      if (this.#shape) {
+        const shapePosData = this.#shape.randomPosition();
 
         if (shapePosData) {
           position = shapePosData.position;
@@ -597,13 +597,13 @@ export class EmitterInstance {
       }
 
       if (position) {
-        this._container.particles.addParticle(position, particlesOptions);
+        this.#container.particles.addParticle(position, particlesOptions);
       }
     }
   }
 
-  private readonly _prepareToDie: () => void = () => {
-    if (this._paused) {
+  readonly #prepareToDie: () => void = () => {
+    if (this.#paused) {
       return;
     }
 
@@ -611,18 +611,18 @@ export class EmitterInstance {
       minDuration = 0,
       minLifeCount = 0;
 
-    if ((this._lifeCount > minLifeCount || this._immortal) && duration !== undefined && duration > minDuration) {
-      this._duration = duration * millisecondsToSeconds;
+    if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
+      this.#duration = duration * millisecondsToSeconds;
     }
   };
 
-  private readonly _setColorAnimation = (
+  readonly #setColorAnimation = (
     animation: IColorAnimation,
     initValue: number,
     maxValue: number,
     factor: number = defaultColorAnimationFactor,
   ): number => {
-    const container = this._container;
+    const container = this.#container;
 
     if (!animation.enable) {
       return initValue;

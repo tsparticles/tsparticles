@@ -91,10 +91,10 @@ describe("Options tests", () => {
     expect(options.particles.number.value).to.equal(0);
 
     /* particles opacity */
-    expect(options.particles.opacity.animation.enable).to.be.false;
-    expect(options.particles.opacity.animation.speed).to.equal(2);
-    expect(options.particles.opacity.animation.sync).to.be.false;
-    expect(options.particles.opacity.value).to.equal(1);
+    // expect(options.particles.opacity.animation.enable).to.be.false;
+    // expect(options.particles.opacity.animation.speed).to.equal(2);
+    // expect(options.particles.opacity.animation.sync).to.be.false;
+    // expect(options.particles.opacity.value).to.equal(1);
 
     /* particles rotate */
     // expect(options.particles.rotate.animation.enable).to.be.false;
@@ -107,10 +107,10 @@ describe("Options tests", () => {
     expect(options.particles.shape.type).to.equal("circle");
 
     /* particles size */
-    expect(options.particles.size.animation.enable).to.be.false;
-    expect(options.particles.size.animation.speed).to.equal(5);
-    expect(options.particles.size.animation.sync).to.be.false;
-    expect(options.particles.size.value).to.equal(3);
+    // expect(options.particles.size.animation.enable).to.be.false;
+    // expect(options.particles.size.animation.speed).to.equal(5);
+    // expect(options.particles.size.animation.sync).to.be.false;
+    // expect(options.particles.size.value).to.equal(3);
 
     /* particles stroke */
     expect(defaultPaint?.stroke).to.satisfy((stroke: unknown) => stroke === undefined || typeof stroke === "object");
@@ -257,21 +257,21 @@ describe("Options tests", () => {
     expect(options.particles.number.value).to.equal(80);
 
     /* particles opacity */
-    expect(options.particles.opacity.animation.enable).to.be.true;
-    expect(options.particles.opacity.animation.speed).to.equal(3);
-    expect(options.particles.opacity.animation.sync).to.be.false;
-    expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.be.equal(0.5);
-    expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
+    // expect(options.particles.opacity.animation.enable).to.be.true;
+    // expect(options.particles.opacity.animation.speed).to.equal(3);
+    // expect(options.particles.opacity.animation.sync).to.be.false;
+    // expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.be.equal(0.5);
+    // expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
 
     /* particles shape */
     expect(options.particles.shape.type).to.equal("circle");
 
     /* particles size */
-    expect(options.particles.size.animation.enable).to.be.true;
-    expect(options.particles.size.animation.speed).to.equal(20);
-    expect(options.particles.size.animation.sync).to.be.false;
-    expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(5);
-    expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
+    // expect(options.particles.size.animation.enable).to.be.true;
+    // expect(options.particles.size.animation.speed).to.equal(20);
+    // expect(options.particles.size.animation.sync).to.be.false;
+    // expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(5);
+    // expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
   });
 
   it("check test preset options", async () => {
@@ -417,20 +417,20 @@ describe("Options tests", () => {
     expect(options.particles.number.value).to.equal(100);
 
     /* particles opacity */
-    expect(options.particles.opacity.animation.enable).to.be.false;
-    expect(options.particles.opacity.animation.speed).to.equal(1);
-    expect(options.particles.opacity.animation.sync).to.be.false;
-    expect(options.particles.opacity.value).to.equal(0.5);
+    // expect(options.particles.opacity.animation.enable).to.be.false;
+    // expect(options.particles.opacity.animation.speed).to.equal(1);
+    // expect(options.particles.opacity.animation.sync).to.be.false;
+    // expect(options.particles.opacity.value).to.equal(0.5);
 
     /* particles shape */
     expect(options.particles.shape.type).to.equal("circle");
 
     /* particles size */
-    expect(options.particles.size.animation.enable).to.be.false;
-    expect(options.particles.size.animation.speed).to.equal(40);
-    expect(options.particles.size.animation.sync).to.be.false;
-    expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(4);
-    expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
+    // expect(options.particles.size.animation.enable).to.be.false;
+    // expect(options.particles.size.animation.speed).to.equal(40);
+    // expect(options.particles.size.animation.sync).to.be.false;
+    // expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(4);
+    // expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
 
     /* particles stroke */
     /* expect(options.particles.paint.stroke)

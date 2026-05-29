@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/confetti-website",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "tsParticles confetti webpage",
   "private": true,
   "type": "module",
@@ -42,12 +42,13 @@
     "gh-pages": "^6.3.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.3",
-    "vite": "^8.0.13"
+    "vite": "^8.0.14"
   },
   "nx": {
     "implicitDependencies": [
       "*",
       "!@tsparticles/website",
+      "!@tsparticles/ribbons-website",
       "!@tsparticles/*-demo"
     ],
     "targets": {

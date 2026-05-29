@@ -3,6 +3,7 @@ import { confetti } from "@tsparticles/confetti";
 import { tsParticles, type Engine } from "@tsparticles/engine";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 import { loadAmbientPreset } from "@tsparticles/preset-ambient";
 import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
@@ -458,7 +459,7 @@ async function runLoaders(engine: Engine, loaders: readonly ((engine: Engine) =>
 
 export async function preloadPlaygroundFeatures(engine: Engine): Promise<void> {
   await loadAll(engine);
-  await Promise.all([confetti.init(), fireworks.init(), particles.init()]);
+  await Promise.all([confetti.init(), fireworks.init(), particles.init(), ribbons.init()]);
   await runLoaders(engine, presetLoaders);
   await runLoaders(engine, paletteLoaders);
 }

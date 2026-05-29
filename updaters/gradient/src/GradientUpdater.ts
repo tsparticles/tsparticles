@@ -32,9 +32,9 @@ import { updateGradient } from "./Utils.js";
 /** Gradient updater plugin */
 export class GradientUpdater implements IParticleUpdater {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   /**
    * GradientUpdater constructor
@@ -42,8 +42,8 @@ export class GradientUpdater implements IParticleUpdater {
    * @param container
    */
   constructor(pluginManager: PluginManager, container: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
   }
 
   /**
@@ -65,7 +65,7 @@ export class GradientUpdater implements IParticleUpdater {
       return {};
     }
 
-    const { _container: container } = this,
+    const container = this.#container,
       gradientAngle = gradient.angle.value,
       origin: ICoordinates = { x: 0, y: 0 },
       minRadius = 0,
@@ -103,7 +103,7 @@ export class GradientUpdater implements IParticleUpdater {
       return;
     }
 
-    const container = this._container,
+    const container = this.#container,
       { angle } = gradient,
       speedFactor = 360,
       delayOffset = 1;
@@ -145,7 +145,7 @@ export class GradientUpdater implements IParticleUpdater {
     const reduceDuplicates = particle.options.reduceDuplicates;
 
     for (const grColor of gradient.colors) {
-      const grHslColor = rangeColorToHsl(this._pluginManager, grColor.value, particle.id, reduceDuplicates);
+      const grHslColor = rangeColorToHsl(this.#pluginManager, grColor.value, particle.id, reduceDuplicates);
 
       if (!grHslColor) {
         continue;

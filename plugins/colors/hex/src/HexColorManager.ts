@@ -41,7 +41,7 @@ export class HexColorManager implements IColorManager {
    * @param color
    */
   handleColor(color: IColor): IRgb | undefined {
-    return this._parseString(color.value);
+    return this.#parseString(color.value);
   }
 
   /**
@@ -49,7 +49,7 @@ export class HexColorManager implements IColorManager {
    * @param color
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
-    return this._parseString(color.value);
+    return this.#parseString(color.value);
   }
 
   /**
@@ -57,10 +57,10 @@ export class HexColorManager implements IColorManager {
    * @param input
    */
   parseString(input: string): IRgba | undefined {
-    return this._parseString(input);
+    return this.#parseString(input);
   }
 
-  private _parseString(hexColor: unknown): IRgba | undefined {
+  #parseString(hexColor: unknown): IRgba | undefined {
     if (typeof hexColor !== "string" || !this.accepts(hexColor)) {
       return;
     }

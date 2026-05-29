@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-big-circles",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -105,8 +105,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.5",
-    "@tsparticles/engine": "4.0.5"
+    "@tsparticles/basic": "4.1.0",
+    "@tsparticles/engine": "4.1.0"
   },
   "publishConfig": {
     "access": "public"

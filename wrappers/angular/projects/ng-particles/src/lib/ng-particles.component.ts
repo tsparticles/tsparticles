@@ -16,37 +16,40 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
   @Input() id = "tsparticles";
   @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
 
-  private container?: Container;
-  private loadingPromise?: Promise<void>;
+  #container?: Container;
+  #loadingPromise?: Promise<void>;
+  readonly #particlesService: NgParticlesService;
 
   constructor(
     @Inject(PLATFORM_ID) protected platformId: string,
-    private readonly particlesService: NgParticlesService,
-  ) {}
+    particlesService: NgParticlesService,
+  ) {
+    this.#particlesService = particlesService;
+  }
 
   public ngAfterViewInit(): void {
     if (isPlatformServer(this.platformId)) {
       return;
     }
 
-    this.loadingPromise = this.loadParticles();
+    this.#loadingPromise = this.#loadParticles();
   }
 
   public ngOnDestroy(): void {
-    this.container?.destroy();
+    this.#container?.destroy();
 
-    this.loadingPromise = undefined;
+    this.#loadingPromise = undefined;
   }
 
-  private async loadParticles(): Promise<void> {
-    await this.particlesService.waitForInitialization();
-    this.particlesService.assertInitialized();
+  async #loadParticles(): Promise<void> {
+    await this.#particlesService.waitForInitialization();
+    this.#particlesService.assertInitialized();
 
-    this.container?.destroy();
+    this.#container?.destroy();
 
     const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
 
-    this.container = container;
+    this.#container = container;
     this.particlesLoaded.emit(container);
   }
 }

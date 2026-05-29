@@ -8,16 +8,16 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 export class PolygonMaskPlugin implements IPlugin {
   readonly id = "polygon-mask";
 
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { PolygonMaskInstance } = await import("./PolygonMaskInstance.js");
 
-    return new PolygonMaskInstance(this._pluginManager, container);
+    return new PolygonMaskInstance(this.#pluginManager, container);
   }
 
   loadOptions(
@@ -32,7 +32,7 @@ export class PolygonMaskPlugin implements IPlugin {
     let polygonOptions = options.polygon;
 
     if (polygonOptions?.load === undefined) {
-      options.polygon = polygonOptions = new PolygonMask(this._pluginManager);
+      options.polygon = polygonOptions = new PolygonMask(this.#pluginManager);
     }
 
     polygonOptions.load(source?.polygon);

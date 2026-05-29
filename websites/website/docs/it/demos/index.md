@@ -49,6 +49,7 @@ export function resume(): void {
 - [`Snow`](/it/demos/recipes/snow)
 - [`Squares`](/it/demos/recipes/squares)
 - [`Stars`](/it/demos/recipes/stars)
+- [`Ribbons`](/it/demos/recipes/ribbons)
 - [`Triangles`](/it/demos/recipes/triangles)
 
 Per testarli immediatamente nell'interfaccia utente, utilizza [`Playground`](/it/playground/) e avviali con `Start` solo quando necessario.

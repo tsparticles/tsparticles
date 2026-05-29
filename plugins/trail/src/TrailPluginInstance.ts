@@ -24,11 +24,11 @@ interface ITrailFillData {
 
 export class TrailPluginInstance implements IContainerPlugin {
   /** The particles container */
-  private readonly _container;
+  readonly #container;
   /** The plugin manager */
-  private readonly _pluginManager;
+  readonly #pluginManager;
   /** The trail fill data */
-  private _trailFill?: ITrailFillData;
+  #trailFill?: ITrailFillData;
 
   /**
    * Creates a new TrailPluginInstance
@@ -36,14 +36,14 @@ export class TrailPluginInstance implements IContainerPlugin {
    * @param container - the trail container
    */
   constructor(pluginManager: PluginManager, container: TrailContainer) {
-    this._container = container;
-    this._pluginManager = pluginManager;
+    this.#container = container;
+    this.#pluginManager = pluginManager;
   }
 
   canvasClear(): boolean {
-    const container = this._container,
+    const container = this.#container,
       trail = container.actualOptions.trail,
-      trailFill = this._trailFill;
+      trailFill = this.#trailFill;
 
     if (!trail?.enable || !trailFill || trail.length <= minimumLength) {
       return false;
@@ -68,14 +68,14 @@ export class TrailPluginInstance implements IContainerPlugin {
 
   async init(): Promise<void> {
     try {
-      await this._initTrail();
+      await this.#initTrail();
     } catch (e) {
       getLogger().error(e);
     }
   }
 
-  private readonly _initTrail: () => Promise<void> = async () => {
-    const options = this._container.actualOptions,
+  readonly #initTrail: () => Promise<void> = async () => {
+    const options = this.#container.actualOptions,
       trail = options.trail;
 
     if (!trail?.enable) {
@@ -86,13 +86,13 @@ export class TrailPluginInstance implements IContainerPlugin {
       opacity = inverseFactorNumerator / trail.length;
 
     if (trailFill.color) {
-      const fillColor = rangeColorToRgb(this._pluginManager, trailFill.color);
+      const fillColor = rangeColorToRgb(this.#pluginManager, trailFill.color);
 
       if (!fillColor) {
         return;
       }
 
-      this._trailFill = {
+      this.#trailFill = {
         color: {
           ...fillColor,
         },
@@ -107,7 +107,7 @@ export class TrailPluginInstance implements IContainerPlugin {
         const img = safeDocument().createElement("img");
 
         img.addEventListener("load", () => {
-          this._trailFill = {
+          this.#trailFill = {
             image: img,
             opacity,
           };

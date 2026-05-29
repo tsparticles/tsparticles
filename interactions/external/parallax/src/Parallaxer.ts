@@ -36,7 +36,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
   /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
-      this._parallaxInteract(interactivityData, particle);
+      this.#parallaxInteract(interactivityData, particle);
     }
   }
 
@@ -66,7 +66,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     // no-op
   }
 
-  private _parallaxInteract(interactivityData: IInteractivityData, particle: Particle): void {
+  #parallaxInteract(interactivityData: IInteractivityData, particle: Particle): void {
     if (!this.isEnabled(interactivityData, particle)) {
       return;
     }

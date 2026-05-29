@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Features
+
+- add ribbons bundle with examples and configuration ([be8304a](https://github.com/tsparticles/tsparticles/commit/be8304a7d8940e6d72b75463ab61e4cfdde032b9))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 **Note:** Version bump only for package @tsparticles/vite-demo

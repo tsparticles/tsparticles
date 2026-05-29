@@ -39,19 +39,19 @@ function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDi
 
 /** Particles link interactor */
 export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
-  private _maxDistance;
-  private readonly _pluginManager;
+  #maxDistance;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: LinkContainer) {
     super(container);
 
-    this._pluginManager = pluginManager;
-    this._maxDistance = 0;
+    this.#pluginManager = pluginManager;
+    this.#maxDistance = 0;
   }
 
   /** @inheritDoc */
   get maxDistance(): number {
-    return this._maxDistance;
+    return this.#maxDistance;
   }
 
   /** @inheritDoc */
@@ -73,8 +73,8 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
 
     p1.links = [];
 
-    if (p1.linksDistance && p1.linksDistance > this._maxDistance) {
-      this._maxDistance = p1.linksDistance;
+    if (p1.linksDistance && p1.linksDistance > this.#maxDistance) {
+      this.#maxDistance = p1.linksDistance;
     }
 
     const pos1 = p1.getPosition(),
@@ -125,12 +125,12 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
 
       const opacityLine = (opacityOffset - distance / optDistance) * optOpacity;
 
-      this._setColor(p1);
+      this.#setColor(p1);
 
       p1.links.push({
         destination: p2,
         opacity: opacityLine,
-        color: this._getLinkColor(p1, p2),
+        color: this.#getLinkColor(p1, p2),
         /* the link is warped if the shortest path crosses boundaries */
         isWarped: distWarp < distDirect,
       });
@@ -158,7 +158,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     // do nothing
   }
 
-  private _getLinkColor(p1: LinkParticle, p2: LinkParticle): IRgb | undefined {
+  #getLinkColor(p1: LinkParticle, p2: LinkParticle): IRgb | undefined {
     const container = this.container,
       linksOptions = p1.options.links;
 
@@ -174,7 +174,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     return getLinkColor(p1, p2, linkColor);
   }
 
-  private _setColor(p1: LinkParticle): void {
+  #setColor(p1: LinkParticle): void {
     if (!p1.options.links) {
       return;
     }
@@ -191,7 +191,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       return;
     }
 
-    linkColor = getLinkRandomColor(this._pluginManager, linksOptions.color, linksOptions.blink, linksOptions.consent);
+    linkColor = getLinkRandomColor(this.#pluginManager, linksOptions.color, linksOptions.blink, linksOptions.consent);
 
     if (linksOptions.id === undefined) {
       container.particles.linksColor = linkColor;

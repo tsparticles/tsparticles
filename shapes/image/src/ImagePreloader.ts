@@ -5,16 +5,16 @@ import { Preload } from "./Options/Classes/Preload.js";
 export class ImagePreloaderPlugin implements IPlugin {
   readonly id = "image-preloader";
 
-  private readonly _engine;
+  readonly #engine;
 
   constructor(engine: ImageEngine) {
-    this._engine = engine;
+    this.#engine = engine;
   }
 
   async getPlugin(container: ImageContainer): Promise<IContainerPlugin> {
     const { ImagePreloaderInstance } = await import("./ImagePreloaderInstance.js");
 
-    return new ImagePreloaderInstance(this._engine, container);
+    return new ImagePreloaderInstance(this.#engine, container);
   }
 
   loadOptions(_container: Container, options: PreloadOptions, source?: RecursivePartial<IPreloadOptions>): void {

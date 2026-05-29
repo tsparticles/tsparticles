@@ -6,12 +6,12 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 const defaultIndex = 0;
 
 export class AbsorbersInstancesManager {
-  private readonly _containerArrays;
-  private readonly _pluginManager;
+  readonly #containerArrays;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
-    this._containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
+    this.#pluginManager = pluginManager;
+    this.#containerArrays = new Map<AbsorberContainer, AbsorberInstance[]>();
   }
 
   async addAbsorber(
@@ -20,7 +20,7 @@ export class AbsorbersInstancesManager {
     position?: ICoordinates,
   ): Promise<AbsorberInstance> {
     const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-      absorber = new AbsorberInstance(this._pluginManager, container, options, position),
+      absorber = new AbsorberInstance(this.#pluginManager, container, options, position),
       array = this.getArray(container);
 
     array.push(absorber);
@@ -31,29 +31,29 @@ export class AbsorbersInstancesManager {
   clear(container: AbsorberContainer): void {
     this.initContainer(container);
 
-    this._containerArrays.set(container, []);
+    this.#containerArrays.set(container, []);
   }
 
   getArray(container: AbsorberContainer): AbsorberInstance[] {
     this.initContainer(container);
 
-    let array = this._containerArrays.get(container);
+    let array = this.#containerArrays.get(container);
 
     if (!array) {
       array = [];
 
-      this._containerArrays.set(container, array);
+      this.#containerArrays.set(container, array);
     }
 
     return array;
   }
 
   initContainer(container: AbsorberContainer): void {
-    if (this._containerArrays.has(container)) {
+    if (this.#containerArrays.has(container)) {
       return;
     }
 
-    this._containerArrays.set(container, []);
+    this.#containerArrays.set(container, []);
 
     container.getAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined => {
       const array = this.getArray(container);

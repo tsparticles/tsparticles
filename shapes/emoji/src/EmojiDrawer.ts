@@ -21,16 +21,16 @@ const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", 
 /** Emoji shape drawer plugin */
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
   /** Cached emoji renderings mapped by value and font */
-  private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
+  readonly #emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
   /** Clears the emoji cache */
   destroy(): void {
-    for (const [key, data] of this._emojiShapeDict) {
+    for (const [key, data] of this.#emojiShapeDict) {
       if (data instanceof ImageBitmap) {
         data.close();
       }
 
-      this._emojiShapeDict.delete(key);
+      this.#emojiShapeDict.delete(key);
     }
   }
 
@@ -45,7 +45,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       return;
     }
 
-    const image = this._emojiShapeDict.get(key);
+    const image = this.#emojiShapeDict.get(key);
 
     if (!image) {
       return;
@@ -121,7 +121,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       value = emojiOptions.value,
       cacheKey = `${value}_${font}`;
 
-    if (this._emojiShapeDict.has(cacheKey)) {
+    if (this.#emojiShapeDict.has(cacheKey)) {
       particle.emojiDataKey = cacheKey;
 
       return;
@@ -146,7 +146,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
     const image = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
 
-    this._emojiShapeDict.set(cacheKey, image);
+    this.#emojiShapeDict.set(cacheKey, image);
 
     particle.emojiDataKey = cacheKey;
   }

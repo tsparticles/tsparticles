@@ -4,16 +4,16 @@ import type { LinkInstance } from "./LinkInstance.js";
 
 export class LinksPlugin implements IPlugin {
   readonly id = "links";
-  private readonly _pluginManager;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
-    this._pluginManager = pluginManager;
+    this.#pluginManager = pluginManager;
   }
 
   async getPlugin(container: LinkContainer): Promise<LinkInstance> {
     const { LinkInstance } = await import("./LinkInstance.js");
 
-    return new LinkInstance(this._pluginManager, container);
+    return new LinkInstance(this.#pluginManager, container);
   }
 
   loadOptions(): void {

@@ -8,7 +8,6 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
-import { Opacity } from "./Opacity/Opacity.js";
 import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
@@ -17,7 +16,6 @@ import type { PluginManager } from "../../../Core/Utils/PluginManager.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
-import { Size } from "./Size/Size.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
 
 /**
@@ -31,27 +29,24 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   readonly groups: ParticlesGroups;
   readonly move;
   readonly number;
-  readonly opacity;
   paint: SingleOrMultiple<Paint>;
   palette?: string;
   reduceDuplicates;
   readonly shape;
-  readonly size;
   readonly zIndex;
 
-  private readonly _container;
-  private readonly _pluginManager;
+  readonly #container;
+  readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container?: Container) {
-    this._pluginManager = pluginManager;
-    this._container = container;
+    this.#pluginManager = pluginManager;
+    this.#container = container;
 
     this.bounce = new ParticlesBounce();
     this.effect = new Effect();
     this.groups = {};
     this.move = new Move();
     this.number = new ParticlesNumber();
-    this.opacity = new Opacity();
     this.paint = new Paint();
     this.paint.color = new AnimatableColor();
     this.paint.color.value = "#fff";
@@ -59,7 +54,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.paint.fill.enable = true;
     this.reduceDuplicates = false;
     this.shape = new Shape();
-    this.size = new Size();
     this.zIndex = new ZIndex();
   }
 
@@ -71,7 +65,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     if (data.palette) {
       this.palette = data.palette;
 
-      this._importPalette(this.palette);
+      this.#importPalette(this.palette);
     }
 
     if (data.groups !== undefined) {
@@ -96,7 +90,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.effect.load(data.effect);
     this.move.load(data.move);
     this.number.load(data.number);
-    this.opacity.load(data.opacity);
     const paintToLoad = data.paint;
 
     if (paintToLoad) {
@@ -118,17 +111,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     this.shape.load(data.shape);
-    this.size.load(data.size);
     this.zIndex.load(data.zIndex);
 
-    if (this._container) {
-      for (const plugin of this._pluginManager.plugins) {
+    if (this.#container) {
+      for (const plugin of this.#pluginManager.plugins) {
         if (plugin.loadParticlesOptions) {
-          plugin.loadParticlesOptions(this._container, this, data);
+          plugin.loadParticlesOptions(this.#container, this, data);
         }
       }
 
-      const updaters = this._pluginManager.updaters.get(this._container);
+      const updaters = this.#pluginManager.updaters.get(this.#container);
 
       if (updaters) {
         for (const updater of updaters) {
@@ -140,8 +132,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
   }
 
-  private readonly _importPalette = (palette: string): void => {
-    const paletteData = this._pluginManager.getPalette(palette);
+  readonly #importPalette = (palette: string): void => {
+    const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
       return;

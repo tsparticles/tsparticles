@@ -61,6 +61,7 @@ import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 import { loadPolygonPath } from "@tsparticles/path-polygon";
 import { loadRandomPath } from "@tsparticles/path-random";
 import { loadResponsivePlugin } from "@tsparticles/plugin-responsive";
+import { loadRibbonShape } from "@tsparticles/shape-ribbon";
 import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
 import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
 import { loadSVGPath } from "@tsparticles/path-svg";
@@ -180,6 +181,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadInfinityShape(e),
       loadMatrixShape(e),
       loadPathShape(e),
+      loadRibbonShape(e),
       loadRoundedPolygonShape(e),
       loadRoundedRectShape(e),
       loadSpiralShape(e),
