@@ -652,32 +652,32 @@ importers:
   bundles/ribbons:
     dependencies:
       '@tsparticles/basic':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../basic/dist
       '@tsparticles/engine':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../engine/dist
       '@tsparticles/plugin-emitters':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../plugins/emitters/dist
       '@tsparticles/plugin-emitters-shape-square':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../plugins/emittersShapes/square/dist
       '@tsparticles/plugin-motion':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../plugins/motion/dist
       '@tsparticles/shape-ribbon':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../shapes/ribbon/dist
       '@tsparticles/updater-life':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../updaters/life/dist
     devDependencies:
       '@tsparticles/cli-build':
-        specifier: workspace:^
+        specifier: ^4.0.5
         version: link:../../cli/packages/cli-build
       '@tsparticles/cli-command-build':
-        specifier: workspace:^
+        specifier: ^4.0.5
         version: link:../../cli/commands/build
     publishDirectory: dist
 
@@ -11123,10 +11123,10 @@ importers:
   shapes/ribbon:
     devDependencies:
       '@tsparticles/cli-build':
-        specifier: workspace:^
+        specifier: ^4.0.5
         version: link:../../cli/packages/cli-build
       '@tsparticles/engine':
-        specifier: workspace:*
+        specifier: 4.0.5
         version: link:../../engine/dist
     publishDirectory: dist
 
@@ -13575,7 +13575,7 @@ importers:
   wrappers/stencil:
     dependencies:
       '@tsparticles/engine':
-        specifier: workspace:^
+        specifier: ^4.0.5
         version: link:../../engine/dist
     devDependencies:
       '@stencil/core':
