@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue2",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "main": "dist/vue2-particles.umd.js",
   "module": "dist/vue2-particles.es.js",
   "types": "dist/index.d.ts",
@@ -113,8 +113,8 @@
   ],
   "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
-    "vue": "^2.7.0",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "vue": "^2.7.0"
   },
   "publishConfig": {
     "access": "public",

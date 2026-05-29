@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Features
+
+- added ribbon shape ([a4d9933](https://github.com/tsparticles/tsparticles/commit/a4d9933c4262fdc8a6b97fead7da8736b0754fbe))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 **Note:** Version bump only for package @tsparticles/all

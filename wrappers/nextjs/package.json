@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nextjs",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -30,11 +30,11 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@tsparticles/engine": "workspace:*",
     "@tsparticles/react": "workspace:^",
     "next": ">=13.0.0",
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
-    "@tsparticles/engine": "workspace:*"
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@tsparticles/react": "workspace:^",

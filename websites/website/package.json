@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "4.0.5",
+    "version": "4.1.0",
     "private": true,
     "description": "tsParticles Website (VitePress)",
     "main": "docs/index.md",
@@ -229,8 +229,6 @@
         "@tsparticles/palette-water-splash": "workspace:*",
         "@tsparticles/palette-watermelon": "workspace:*",
         "@tsparticles/particles": "workspace:*",
-        "@tsparticles/ribbons": "workspace:*",
-        "@tsparticles/shape-ribbon": "workspace:*",
         "@tsparticles/preset-ambient": "workspace:*",
         "@tsparticles/preset-big-circles": "workspace:*",
         "@tsparticles/preset-bubbles": "workspace:*",
@@ -251,6 +249,8 @@
         "@tsparticles/preset-squares": "workspace:*",
         "@tsparticles/preset-stars": "workspace:*",
         "@tsparticles/preset-triangles": "workspace:*",
+        "@tsparticles/ribbons": "workspace:*",
+        "@tsparticles/shape-ribbon": "workspace:*",
         "@tsparticles/slim": "workspace:*",
         "tsparticles": "workspace:*"
     },

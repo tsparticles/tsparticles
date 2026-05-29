@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Bug Fixes
+
+- fixed peer deps versions when using workspace syntax, fixes [#5799](https://github.com/tsparticles/tsparticles/issues/5799) ([4580105](https://github.com/tsparticles/tsparticles/commit/458010590850eefb93eebab14f8ada65a9ec5498))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 **Note:** Version bump only for package @tsparticles/lit

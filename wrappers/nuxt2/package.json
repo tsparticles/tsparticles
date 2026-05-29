@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt2",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
@@ -27,8 +27,8 @@
     "@tsparticles/vue2": "workspace:^"
   },
   "peerDependencies": {
-    "nuxt": ">=2.0.0 <3.0.0",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "nuxt": ">=2.0.0 <3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

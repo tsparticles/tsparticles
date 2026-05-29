@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Bug Fixes
+
+- fixed color managers ([74688f4](https://github.com/tsparticles/tsparticles/commit/74688f433ab40bdee205c2c64a16ea041e6a7a5b))
+- fixed stencil wrapper (improved init) and demo ([4f83fb0](https://github.com/tsparticles/tsparticles/commit/4f83fb04150026304d1d54cbcd51aafeb58ef5b4))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 **Note:** Version bump only for package @tsparticles/plugin-oklab-color

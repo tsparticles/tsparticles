@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt3",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -33,8 +33,8 @@
     "@tsparticles/vue3": "workspace:^"
   },
   "peerDependencies": {
-    "nuxt": "^3.0.0",
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "nuxt": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

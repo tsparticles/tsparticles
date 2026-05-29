@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Bug Fixes
+
+- fixed behavior when cannon has maxDistance 0 ([9742680](https://github.com/tsparticles/tsparticles/commit/97426807e97e6dcf2525cd3106d0a958f3ac54b0))
+
+### Features
+
+- improved ribbon shape ([58a9a57](https://github.com/tsparticles/tsparticles/commit/58a9a57ad24be862e7993d8d02b2494410c746bf))
+- improved ribbon shape ([dff3e87](https://github.com/tsparticles/tsparticles/commit/dff3e875c2c64a62e34deafd07027066d3b33178))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 **Note:** Version bump only for package @tsparticles/engine

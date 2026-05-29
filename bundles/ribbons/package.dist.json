@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "Easily create ready to use animated ribbons effects.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -73,13 +73,13 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.5",
-    "@tsparticles/engine": "4.0.5",
-    "@tsparticles/plugin-emitters": "4.0.5",
-    "@tsparticles/plugin-emitters-shape-square": "4.0.5",
-    "@tsparticles/plugin-motion": "4.0.5",
-    "@tsparticles/shape-ribbon": "4.0.5",
-    "@tsparticles/updater-life": "4.0.5"
+    "@tsparticles/basic": "4.1.0",
+    "@tsparticles/engine": "4.1.0",
+    "@tsparticles/plugin-emitters": "4.1.0",
+    "@tsparticles/plugin-emitters-shape-square": "4.1.0",
+    "@tsparticles/plugin-motion": "4.1.0",
+    "@tsparticles/shape-ribbon": "4.1.0",
+    "@tsparticles/updater-life": "4.1.0"
   },
   "publishConfig": {
     "access": "public"

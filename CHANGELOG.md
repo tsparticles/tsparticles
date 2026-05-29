@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
+
+### Bug Fixes
+
+- fixed behavior when cannon has maxDistance 0 ([9742680](https://github.com/tsparticles/tsparticles/commit/97426807e97e6dcf2525cd3106d0a958f3ac54b0))
+- fixed cannon options ([ff41736](https://github.com/tsparticles/tsparticles/commit/ff41736c5495c3fad004e707e1ec5df7cb1b9a80))
+- fixed color managers ([74688f4](https://github.com/tsparticles/tsparticles/commit/74688f433ab40bdee205c2c64a16ea041e6a7a5b))
+- fixed peer deps versions when using workspace syntax, fixes [#5799](https://github.com/tsparticles/tsparticles/issues/5799) ([4580105](https://github.com/tsparticles/tsparticles/commit/458010590850eefb93eebab14f8ada65a9ec5498))
+- fixed stencil demo and wrapper ([651687b](https://github.com/tsparticles/tsparticles/commit/651687b2b81fa3f7d4057e7526f5b69b1c22d312))
+- fixed stencil wrapper (improved init) and demo ([4f83fb0](https://github.com/tsparticles/tsparticles/commit/4f83fb04150026304d1d54cbcd51aafeb58ef5b4))
+- some fixes in stencil particles ([dad5f09](https://github.com/tsparticles/tsparticles/commit/dad5f099ac89dc040e12cf7afdcbe32f287ddc9a))
+
+### Features
+
+- add ribbons bundle with examples and configuration ([be8304a](https://github.com/tsparticles/tsparticles/commit/be8304a7d8940e6d72b75463ab61e4cfdde032b9))
+- add Ribbons bundle with usage examples and configuration updates ([e7d19f4](https://github.com/tsparticles/tsparticles/commit/e7d19f4df46103883f3ad528751ec35a6b373dba))
+- added ribbon shape ([a4d9933](https://github.com/tsparticles/tsparticles/commit/a4d9933c4262fdc8a6b97fead7da8736b0754fbe))
+- added stencil wrapper ([4e7f906](https://github.com/tsparticles/tsparticles/commit/4e7f906ff208ce728d930b8bf092b57536ec2e1a))
+- improved ribbon shape ([525c3f9](https://github.com/tsparticles/tsparticles/commit/525c3f950592ded88e9f026a2e8f48b3767cf13b))
+- improved ribbon shape ([58a9a57](https://github.com/tsparticles/tsparticles/commit/58a9a57ad24be862e7993d8d02b2494410c746bf))
+- improved ribbon shape ([591c61f](https://github.com/tsparticles/tsparticles/commit/591c61f70c0a6e1544b876ce13911dae97288f16))
+- improved ribbon shape ([63df06e](https://github.com/tsparticles/tsparticles/commit/63df06e401032b7bee63ee6e356cae4f25390b14))
+- improved ribbon shape ([072674b](https://github.com/tsparticles/tsparticles/commit/072674be5b2e02de9234cc58fec160f1586dead0))
+- improved ribbon shape ([4f457ae](https://github.com/tsparticles/tsparticles/commit/4f457ae0cd0e630203010ce64a586aca81966f02))
+- improved ribbon shape ([dff3e87](https://github.com/tsparticles/tsparticles/commit/dff3e875c2c64a62e34deafd07027066d3b33178))
+
 ## [4.0.5](https://github.com/tsparticles/tsparticles/compare/v4.0.4...v4.0.5) (2026-05-19)
 
 ### Bug Fixes

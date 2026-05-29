@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "Easily create ready to use animated ribbons effects.",
   "homepage": "https://particles.js.org",
   "scripts": {
