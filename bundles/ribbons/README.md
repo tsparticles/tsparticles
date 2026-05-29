@@ -6,6 +6,8 @@
 
 [tsParticles](https://github.com/tsparticles/tsparticles) ribbons bundle to create animated ribbons effects with a single API.
 
+Demo website: <https://ribbons.js.org>
+
 ## Exposed API
 
 The package API is centered on `ribbons`.

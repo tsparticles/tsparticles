@@ -5,6 +5,9 @@ Use esta página para testar as APIs focadas destes pacotes:
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
+
+Site do Ribbons: <https://ribbons.js.org>
 
 Cada seção tem sua própria tela, editor JSON e controles.
 

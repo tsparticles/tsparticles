@@ -2,6 +2,8 @@
 
 `bundles/ribbons` कार्यक्षेत्र से आधिकारिक बंडल।
 
+वेबसाइट: <https://ribbons.js.org>
+
 ## इंस्टॉल करें
 
 ```bash

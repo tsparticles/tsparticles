@@ -13,6 +13,7 @@
 | `@tsparticles/confetti`  | Эффекты конфетти в один вызов                            | `await confetti(options)`                      |
 | `@tsparticles/fireworks` | Эффекты фейерверков в один вызов                         | `await fireworks(options)`                     |
 | `@tsparticles/particles` | Простое API для фоновых частиц                           | `await particles(options)`                     |
+| `@tsparticles/ribbons`   | Эффекты ribbons в один вызов                             | `await ribbons(options)`                       |
 
 ## Руководства по bundle
 
@@ -23,6 +24,7 @@
 - Confetti: [`/guide/bundles-confetti`](/ru/guide/bundles-confetti)
 - Fireworks: [`/guide/bundles-fireworks`](/ru/guide/bundles-fireworks)
 - Particles: [`/guide/bundles-particles`](/ru/guide/bundles-particles)
+- Ribbons (демо + документация): [`/demos/recipes/ribbons`](/ru/demos/recipes/ribbons) · <https://ribbons.js.org>
 
 ## Установка
 
@@ -36,6 +38,7 @@ pnpm add @tsparticles/engine @tsparticles/all
 pnpm add @tsparticles/confetti
 pnpm add @tsparticles/fireworks
 pnpm add @tsparticles/particles
+pnpm add @tsparticles/ribbons
 ```
 
 Нужны CDN-ссылки и другие варианты package manager?
@@ -69,16 +72,18 @@ await tsParticles.load({
 - `tsparticles` -> `loadFull`
 - `@tsparticles/all` -> `loadAll`
 
-### Фокусные API (`confetti`, `fireworks`, `particles`)
+### Фокусные API (`confetti`, `fireworks`, `particles`, `ribbons`)
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 await confetti({ count: 80, spread: 60 });
 await fireworks({ sounds: false });
 await particles({ count: 100, links: true });
+await ribbons({ count: 5, spread: 0 });
 ```
 
 Эти API удобны, когда нужна быстрая интеграция без ручного подключения большого числа плагинов engine.
@@ -89,7 +94,7 @@ await particles({ count: 100, links: true });
 2. Используйте `@tsparticles/basic`, если размер bundle критичен и нужны только простые возможности.
 3. Используйте `tsparticles`, когда нужна full-база с широкими возможностями и `loadFull`.
 4. Используйте `@tsparticles/all` для прототипирования или когда сразу нужен широкий набор возможностей.
-5. Используйте `@tsparticles/confetti`, `@tsparticles/fireworks` или `@tsparticles/particles`, когда интерфейсу нужен один специализированный эффект с минимальной настройкой.
+5. Используйте `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` или `@tsparticles/ribbons`, когда интерфейсу нужен один специализированный эффект с минимальной настройкой.
 
 ## Связанные страницы
 

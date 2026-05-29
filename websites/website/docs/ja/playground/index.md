@@ -6,7 +6,7 @@
 - [`Shapes Playground`](/ja/playground/shapes): `shape.type` に特化したデモ。利用可能な場合は形状固有のオプションも含みます。
 - [`Presets Playground`](/ja/playground/presets): 公式プリセット名のデモ (`{ preset: "..." }`)。
 - [`Palettes Playground`](/ja/playground/palettes): プリセット プロジェクトからのパレットに焦点を当てたデモ。
-- [`Bundles Playground`](/ja/playground/bundles): `@tsparticles/confetti`、`@tsparticles/fireworks`、および `@tsparticles/particles` の専用プレイグラウンド。
+- [`Bundles Playground`](/ja/playground/bundles): `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles`、および `@tsparticles/ribbons` の専用プレイグラウンド。
 
 実行は常に **ユーザーによるトリガーのみ** (自動再生はありません)。
 

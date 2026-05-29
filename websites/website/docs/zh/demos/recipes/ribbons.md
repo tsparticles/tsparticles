@@ -2,6 +2,8 @@
 
 来自 `bundles/ribbons` 工作区的官方捆绑包。
 
+网站：<https://ribbons.js.org>
+
 ## 安装
 
 ```bash

@@ -5,6 +5,9 @@
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
+
+Ribbons वेबसाइट: <https://ribbons.js.org>
 
 प्रत्येक अनुभाग का अपना कैनवास, JSON संपादक और नियंत्रण होते हैं।
 

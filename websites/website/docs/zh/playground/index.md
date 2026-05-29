@@ -6,7 +6,7 @@
 - [`Shapes Playground`](/zh/playground/shapes)：聚焦 `shape.type` 的演示，在可用时提供形状专属选项。
 - [`Presets Playground`](/zh/playground/presets)：官方预设名称演示 (`{ preset: "..." }`)。
 - [`Palettes Playground`](/zh/playground/palettes)：来自预设项目的以调色板为中心的演示。
-- [`Bundles Playground`](/zh/playground/bundles)：`@tsparticles/confetti`、`@tsparticles/fireworks` 和 `@tsparticles/particles` 的专用游乐场。
+- [`Bundles Playground`](/zh/playground/bundles)：`@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles` 和 `@tsparticles/ribbons` 的专用游乐场。
 
 执行始终**仅由用户触发**（无自动播放）。
 

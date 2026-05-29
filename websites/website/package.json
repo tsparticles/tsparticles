@@ -269,7 +269,8 @@
     },
     "nx": {
         "implicitDependencies": [
-            "@tsparticles/confetti-website"
+            "@tsparticles/confetti-website",
+            "@tsparticles/ribbons-website"
         ],
         "targets": {
             "build": {

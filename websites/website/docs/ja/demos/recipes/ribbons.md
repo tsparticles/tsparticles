@@ -2,6 +2,8 @@
 
 `bundles/ribbons` ワークスペースの公式バンドル。
 
+Web サイト: <https://ribbons.js.org>
+
 ## インストール
 
 ```bash

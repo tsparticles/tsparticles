@@ -6,7 +6,7 @@ Aufgeteilt nach Anwendungsfall:
 - [`Shapes Playground`](/de/playground/shapes): fokussierte Demos fur `shape.type` mit formspezifischen Optionen, wenn verfugbar.
 - [`Presets Playground`](/de/playground/presets): offizielle Demos für voreingestellte Namen (`{ preset: "..." }`).
 - [`Palettes Playground`](/de/playground/palettes): Palettenorientierte Demos aus dem Preset-Projekt.
-- [`Bundles Playground`](/de/playground/bundles): dedizierte Spielplätze für `@tsparticles/confetti`, `@tsparticles/fireworks` und `@tsparticles/particles`.
+- [`Bundles Playground`](/de/playground/bundles): dedizierte Spielplätze für `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` und `@tsparticles/ribbons`.
 
 Die Ausführung erfolgt immer **nur vom Benutzer ausgelöst** (keine automatische Wiedergabe).
 

@@ -364,6 +364,7 @@ css/*.map
 # VitePress generated artifacts
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/.vitepress/temp/
 
 # TypeDoc generated API docs (HTML output)
 typedoc-dist/
