@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'websites/confetti/**'
+      - 'websites/ribbons/**'
       - 'websites/website/**'
       - '.github/workflows/deploy-websites.yml'
   workflow_dispatch:
@@ -49,7 +50,7 @@ jobs:
         run: pnpm install
 
       - name: Build workspace packages
-        run: pnpm exec nx run-many -t build --projects="@tsparticles/confetti-website,@tsparticles/website"
+        run: pnpm exec nx run-many -t build --projects="@tsparticles/confetti-website,@tsparticles/ribbons-website,@tsparticles/website"
 
       - name: Generate GitHub App token (confetti)
         id: token-confetti
@@ -61,6 +62,16 @@ jobs:
           repositories: |
             confetti
 
+      - name: Generate GitHub App token (ribbons)
+        id: token-ribbons
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.PAGES_APP_ID }}
+          private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
+          owner: tsparticles
+          repositories: |
+            ribbons
+
       - name: Generate GitHub App token (website)
         id: token-website
         uses: actions/create-github-app-token@v1
@@ -71,17 +82,17 @@ jobs:
           repositories: |
             website
 
-      - name: Deploy to tsparticles/confetti main
+      - name: Deploy to tsparticles/ribbons main
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ steps.token-confetti.outputs.token }}
-          external_repository: tsparticles/confetti
+          personal_token: ${{ steps.token-ribbons.outputs.token }}
+          external_repository: tsparticles/ribbons
           publish_branch: main
-          publish_dir: websites/confetti/dist
-          cname: confetti.js.org
+          publish_dir: websites/ribbons/dist
+          cname: ribbons.js.org
           user_name: 'github-actions-bot'
           user_email: 'support+actions@github.com'
-          commit_message: 'build: website updated'
+          commit_message: 'build: ribbons website updated'
           force_orphan: true
 
       - name: Deploy to tsparticles/website main
