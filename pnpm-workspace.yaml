@@ -121,3 +121,5 @@ minimumReleaseAgeExclude:
   - '@commitlint/read@21.0.2'
   - '@commitlint/rules@21.0.2'
   - '@commitlint/top-level@21.0.2'
+  - '@stencil/core@4.43.5'
+  - tsdown@0.22.1

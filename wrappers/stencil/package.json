@@ -41,7 +41,7 @@
     "@tsparticles/engine": "workspace:^"
   },
   "devDependencies": {
-    "@stencil/core": "^4.43.4",
+    "@stencil/core": "^4.43.5",
     "typescript": "^6.0.3"
   },
 	"publishConfig": {
