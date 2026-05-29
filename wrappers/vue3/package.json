@@ -133,7 +133,7 @@
     "prettier": "^3.8.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.8",
-    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-dts": "^5.0.1",
     "vue-eslint-parser": "^10.4.0",
     "vue-tsc": "^3.2.6"
   },
