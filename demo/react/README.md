@@ -13,7 +13,7 @@ pnpm run preview
 
 ## Architecture
 
-- `src/main.jsx` wraps the app in `ParticlesProvider`.
+- `src/main.jsx` wraps the app in `ParticlesProvider` at the root level (required — must not be placed inside a component that may unmount).
 - `src/particlesInit.js` exports the async callback passed to `ParticlesProvider`.
 - `src/App.jsx` renders `Particles` instances after provider init completes.
 

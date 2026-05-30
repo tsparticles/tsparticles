@@ -13,14 +13,23 @@ const Particles: FC<IParticlesProps> = props => {
     }
 
     let container: Container | undefined;
+    let cancelled = false;
 
     tsParticles.load({ id: id ?? "tsparticles", url, options }).then(c => {
+      if (cancelled) {
+        c?.destroy();
+
+        return;
+      }
+
       container = c;
 
       particlesLoaded?.(c);
     });
 
     return () => {
+      cancelled = true;
+
       container?.destroy();
     };
   }, [id, loaded, options, particlesLoaded, url]);

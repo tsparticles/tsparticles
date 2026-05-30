@@ -64,6 +64,10 @@ $ create-react-app your_app --template particles-typescript
 `ParticlesProvider` is required and receives one async `init` callback.
 That callback is executed only once for the app lifecycle.
 
+> [!IMPORTANT]
+> Place `ParticlesProvider` at the **root of your application** (e.g., `main.tsx`, `index.jsx`, or `layout.tsx`), not inside a component that conditionally mounts or unmounts.
+> The provider must be rendered only once for the entire app lifecycle. If it is placed inside a component that hides or removes its children (e.g., conditional rendering, route transitions), the engine initialization runs correctly only the first time — re-mounting with a different `init` callback throws an error, and re-mounting with the same callback is silently ignored, which can lead to containers not being properly managed.
+
 Examples:
 
 #### Options object

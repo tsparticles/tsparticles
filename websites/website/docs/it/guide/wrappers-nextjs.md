@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. Installa il wrapper e le dipendenze Next.js.
 2. Continua a eseguire il rendering lato client solo per il Canvas delle particelle.
-3. Inizializzare il motore una volta ed eseguire il rendering del componente wrapper.
+3. Posiziona `NextParticlesProvider` alla radice della tua app (`layout.tsx` o `_app.tsx`) — deve essere renderizzato una sola volta.
+4. Inizializzare il motore una volta ed eseguire il rendering del componente wrapper.
 
 ## Riferimenti a Monorepo
 

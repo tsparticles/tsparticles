@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. Installieren Sie den Next.js-Wrapper und die Abhängigkeiten.
 2. Rendern Sie weiterhin clientseitig nur für den Partikel-Canvas.
-3. Initialisieren Sie die Engine einmal und rendern Sie die Wrapper-Komponente.
+3. Platzieren Sie `NextParticlesProvider` im Stammverzeichnis Ihrer App (`layout.tsx` oder `_app.tsx`) — es muss nur einmal gerendert werden.
+4. Initialisieren Sie die Engine einmal und rendern Sie die Wrapper-Komponente.
 
 ## Monorepo-Referenzen
 

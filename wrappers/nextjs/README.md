@@ -28,6 +28,10 @@ or
 yarn add @tsparticles/nextjs @tsparticles/react @tsparticles/engine
 ```
 
+> [!IMPORTANT]
+> Place `NextParticlesProvider` at your app root (`layout.tsx` or `_app.tsx`), not inside a component that may unmount.
+> The provider must be rendered only once for the entire app lifecycle.
+
 ## Usage (App Router)
 
 ```tsx

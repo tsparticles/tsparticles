@@ -23,6 +23,10 @@
 
 ### React
 
+> [!IMPORTANT]
+> Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`), not inside a component that may unmount.
+> The `init` callback runs only once for the entire app lifecycle.
+
 ```tsx
 import { useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";

@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. Installez le wrapper Next.js et les dépendances.
 2. Continuez le rendu côté client uniquement pour le canevas de particules.
-3. Initialisez le moteur une fois et restituez le composant wrapper.
+3. Placez `NextParticlesProvider` à la racine de votre application (`layout.tsx` ou `_app.tsx`) — il ne doit être rendu qu'une seule fois.
+4. Initialisez le moteur une fois et restituez le composant wrapper.
 
 ## Références Monorepo
 

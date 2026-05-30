@@ -11,8 +11,9 @@ pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ## Flujo de configuración rápida
 
 1. Instale el paquete wrapper + engine + loader.
-2. Inicialice una vez con `ParticlesProvider` y `loadSlim`.
-3. Renderice el componente `Particles` con opciones tipadas.
+2. Coloque `ParticlesProvider` en la raíz de su aplicación (p. ej., `main.tsx` o `layout.tsx`) — solo debe renderizarse una vez durante todo el ciclo de vida de la aplicación.
+3. Inicialice una vez con `ParticlesProvider` y `loadSlim`.
+4. Renderice el componente `Particles` con opciones tipadas.
 
 ## Referencias de Monorepo
 
