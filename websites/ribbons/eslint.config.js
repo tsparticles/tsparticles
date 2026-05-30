@@ -25,6 +25,7 @@ export default [
       "prettier/prettier": "error",
       "no-unused-vars": "warn",
       "no-console": "off",
+      "no-extra-boolean-cast": "off",
     },
   },
 ];
