@@ -1,5 +1,5 @@
 const CONSENT_KEY = "tsparticles-ribbons/cookie-consent-v1";
-const GA_MEASUREMENT_ID = "G-80MY3TZM79";
+const GA_MEASUREMENT_ID = "G-CQTMTXX07T";
 const ADSENSE_CLIENT_ID = "ca-pub-1784552607103901";
 
 const defaultConsent = {

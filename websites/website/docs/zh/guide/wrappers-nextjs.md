@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. 安装 Next.js 包装器和依赖项。
 2. 只为粒子画布保留客户端渲染。
-3. 初始化引擎一次并渲染包装器组件。
+3. 将 `NextParticlesProvider` 放置在应用根目录（`layout.tsx` 或 `_app.tsx`）——它只需渲染一次。
+4. 初始化引擎一次并渲染包装器组件。
 
 ## Monorepo 参考资料
 

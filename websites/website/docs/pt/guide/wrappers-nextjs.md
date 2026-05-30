@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. Instale o wrapper e as dependências Next.js.
 2. Continue renderizando do lado do cliente apenas para tela de partículas.
-3. Inicialize o mecanismo uma vez e renderize o componente wrapper.
+3. Coloque `NextParticlesProvider` na raiz do seu aplicativo (`layout.tsx` ou `_app.tsx`) — ele deve ser renderizado apenas uma vez.
+4. Inicialize o mecanismo uma vez e renderize o componente wrapper.
 
 ## Referências Monorepo
 

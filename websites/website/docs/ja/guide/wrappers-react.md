@@ -11,8 +11,9 @@ pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ## 簡単なセットアップの流れ
 
 1. ラッパー + エンジン + ローダー パッケージをインストールします。
-2. `ParticlesProvider` および `loadSlim` を使用して 1 回初期化します。
-3. 型指定されたオプションを使用して `Particles` コンポーネントをレンダリングします。
+2. `ParticlesProvider` をアプリのルート（例：`main.tsx` または `layout.tsx`）に配置します — アプリのライフサイクル全体で 1 回だけレンダリングする必要があります。
+3. `ParticlesProvider` および `loadSlim` を使用して 1 回初期化します。
+4. 型指定されたオプションを使用して `Particles` コンポーネントをレンダリングします。
 
 ## モノリポジトリ参照
 

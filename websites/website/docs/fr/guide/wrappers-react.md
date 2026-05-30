@@ -11,8 +11,9 @@ pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ## Flux de configuration rapide
 
 1. Installez le package wrapper + moteur + chargeur.
-2. Initialisez une fois avec `ParticlesProvider` et `loadSlim`.
-3. Rendre le composant `Particles` avec les options saisies.
+2. Placez `ParticlesProvider` à la racine de votre application (p. ex., `main.tsx` ou `layout.tsx`) — il ne doit être rendu qu'une seule fois pour tout le cycle de vie de l'application.
+3. Initialisez une fois avec `ParticlesProvider` et `loadSlim`.
+4. Rendre le composant `Particles` avec les options saisies.
 
 ## Références Monorepo
 

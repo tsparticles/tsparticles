@@ -10,7 +10,10 @@ pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 
 ## 快速设置流程
 
-1.安装wrapper+engine+loader包。2. 使用 `ParticlesProvider` 和 `loadSlim` 初始化一次。3. 使用类型化选项渲染 `Particles` 组件。
+1. 安装wrapper+engine+loader包。
+2. 将 `ParticlesProvider` 放置在应用根目录（例如 `main.tsx` 或 `layout.tsx`）——它只需在整个应用生命周期内渲染一次。
+3. 使用 `ParticlesProvider` 和 `loadSlim` 初始化一次。
+4. 使用类型化选项渲染 `Particles` 组件。
 
 ## Monorepo 参考资料
 

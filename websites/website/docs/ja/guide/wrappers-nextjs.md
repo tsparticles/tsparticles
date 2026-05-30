@@ -12,7 +12,8 @@ pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 
 1. Next.js ラッパーと依存関係をインストールします。
 2. パーティクル キャンバスに対してのみクライアント側でレンダリングを続けます。
-3. エンジンを一度初期化し、ラッパー コンポーネントをレンダリングします。
+3. `NextParticlesProvider` をアプリのルート（`layout.tsx` または `_app.tsx`）に配置します — 1 回だけレンダリングする必要があります。
+4. エンジンを一度初期化し、ラッパー コンポーネントをレンダリングします。
 
 ## モノリポジトリ参照
 

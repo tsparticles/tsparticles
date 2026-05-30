@@ -13,6 +13,6 @@ pnpm run start
 
 ## Notes
 
-- `app/providers.tsx` mounts `NextParticlesProvider` and runs async init once.
+- `app/providers.tsx` mounts `NextParticlesProvider` at the root level (required — must not be placed inside a component that may unmount) and runs async init once.
 - `app/particles.tsx` renders `NextParticles` with client-only safety.
 - `pages/api/hello.ts` remains as API route sample.

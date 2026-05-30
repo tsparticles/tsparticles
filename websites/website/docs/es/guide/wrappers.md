@@ -153,6 +153,10 @@ Carpeta fuente de demos: <https://github.com/tsparticles/tsparticles/tree/main/d
 
 ### Provider estilo React / Next.js
 
+> [!IMPORTANT]
+> Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`), not inside a component that may unmount.
+> The `init` callback runs only once for the entire app lifecycle.
+
 ```tsx
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import type { Engine } from "@tsparticles/engine";
