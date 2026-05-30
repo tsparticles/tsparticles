@@ -2,6 +2,8 @@
 
 Official bundle from the `bundles/ribbons` workspace.
 
+Live website: <https://ribbons.js.org>
+
 ## Install
 
 ```bash

@@ -15,6 +15,7 @@ const nav: DefaultTheme.NavItem[] = [
   { text: "Options", link: "/options/" },
   { text: "API", link: "/docs/", target: "_blank" },
   { text: "Confetti", link: "https://confetti.js.org", target: "_blank" },
+  { text: "Ribbons", link: "https://ribbons.js.org", target: "_blank" },
   {
     text: "Sponsor",
     items: [

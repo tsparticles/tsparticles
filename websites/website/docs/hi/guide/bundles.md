@@ -13,6 +13,7 @@
 | `@tsparticles/confetti`  | one-call confetti effects                | `await confetti(options)`                      |
 | `@tsparticles/fireworks` | one-call fireworks effects               | `await fireworks(options)`                     |
 | `@tsparticles/particles` | सरल particles background API             | `await particles(options)`                     |
+| `@tsparticles/ribbons`   | one-call ribbons effects                 | `await ribbons(options)`                       |
 
 ## Bundle guides
 
@@ -23,6 +24,7 @@
 - Confetti: [`/guide/bundles-confetti`](/hi/guide/bundles-confetti)
 - Fireworks: [`/guide/bundles-fireworks`](/hi/guide/bundles-fireworks)
 - Particles: [`/guide/bundles-particles`](/hi/guide/bundles-particles)
+- Ribbons (demo + docs): [`/demos/recipes/ribbons`](/hi/demos/recipes/ribbons) · <https://ribbons.js.org>
 
 ## इंस्टॉलेशन
 
@@ -36,6 +38,7 @@ pnpm add @tsparticles/engine @tsparticles/all
 pnpm add @tsparticles/confetti
 pnpm add @tsparticles/fireworks
 pnpm add @tsparticles/particles
+pnpm add @tsparticles/ribbons
 ```
 
 CDN links और दूसरे package-manager variants चाहिए?
@@ -69,16 +72,18 @@ await tsParticles.load({
 - `tsparticles` -> `loadFull`
 - `@tsparticles/all` -> `loadAll`
 
-### Focused APIs (`confetti`, `fireworks`, `particles`)
+### Focused APIs (`confetti`, `fireworks`, `particles`, `ribbons`)
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 await confetti({ count: 80, spread: 60 });
 await fireworks({ sounds: false });
 await particles({ count: 100, links: true });
+await ribbons({ count: 5, spread: 0 });
 ```
 
 ये APIs तब शानदार हैं जब आप बहुत सारे engine plugins manually wire किए बिना जल्दी integration चाहते हैं।
@@ -89,7 +94,7 @@ await particles({ count: 100, links: true });
 2. अगर bundle size आपकी top priority है और features सरल हैं, तो `@tsparticles/basic` चुनें।
 3. full baseline और `loadFull` चाहिए हो तो `tsparticles` चुनें।
 4. prototyping के लिए या तुरंत ज्यादा features चाहिए हों तो `@tsparticles/all` चुनें।
-5. UI में focused effect और minimal setup चाहिए हो तो `@tsparticles/confetti`, `@tsparticles/fireworks` या `@tsparticles/particles` चुनें।
+5. UI में focused effect और minimal setup चाहिए हो तो `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` या `@tsparticles/ribbons` चुनें।
 
 ## संबंधित पेज
 

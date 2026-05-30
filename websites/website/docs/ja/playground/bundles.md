@@ -5,6 +5,9 @@
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
+
+Ribbons サイト: <https://ribbons.js.org>
 
 各セクションには独自のキャンバス、JSON エディター、およびコントロールがあります。
 

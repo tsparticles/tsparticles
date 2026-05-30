@@ -6,7 +6,7 @@
 - [`Shapes Playground`](/hi/playground/shapes): `shape.type` के लिए केंद्रित डेमो, जहां उपलब्ध हो वहां आकार-विशिष्ट विकल्पों के साथ।
 - [`Presets Playground`](/hi/playground/presets): आधिकारिक प्रीसेट-नाम डेमो (`{ preset: "..." }`)।
 - [`Palettes Playground`](/hi/playground/palettes): प्रीसेट प्रोजेक्ट से पैलेट-केंद्रित डेमो।
-- [`Bundles Playground`](/hi/playground/bundles): `@tsparticles/confetti`, `@tsparticles/fireworks`, और `@tsparticles/particles` के लिए समर्पित खेल के मैदान।
+- [`Bundles Playground`](/hi/playground/bundles): `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, और `@tsparticles/ribbons` के लिए समर्पित खेल के मैदान।
 
 निष्पादन हमेशा **केवल उपयोगकर्ता-ट्रिगर** होता है (कोई ऑटोप्ले नहीं)।
 

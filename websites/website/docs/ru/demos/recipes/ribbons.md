@@ -2,6 +2,8 @@
 
 Официальный бандл из рабочей области `bundles/ribbons`.
 
+Сайт: <https://ribbons.js.org>
+
 ## Установка
 
 ```bash

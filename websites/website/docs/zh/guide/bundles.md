@@ -13,6 +13,7 @@
 | `@tsparticles/confetti`  | 一次调用的彩纸效果                 | `await confetti(options)`                      |
 | `@tsparticles/fireworks` | 一次调用的烟花效果                 | `await fireworks(options)`                     |
 | `@tsparticles/particles` | 简化的粒子背景 API                 | `await particles(options)`                     |
+| `@tsparticles/ribbons`   | 一次调用的 ribbons 效果            | `await ribbons(options)`                       |
 
 ## Bundle 分页指南
 
@@ -23,6 +24,7 @@
 - Confetti: [`/guide/bundles-confetti`](/zh/guide/bundles-confetti)
 - Fireworks: [`/guide/bundles-fireworks`](/zh/guide/bundles-fireworks)
 - Particles: [`/guide/bundles-particles`](/zh/guide/bundles-particles)
+- Ribbons（demo + docs）: [`/demos/recipes/ribbons`](/zh/demos/recipes/ribbons) · <https://ribbons.js.org>
 
 ## 安装
 
@@ -36,6 +38,7 @@ pnpm add @tsparticles/engine @tsparticles/all
 pnpm add @tsparticles/confetti
 pnpm add @tsparticles/fireworks
 pnpm add @tsparticles/particles
+pnpm add @tsparticles/ribbons
 ```
 
 需要 CDN 链接和更多包管理器变体？
@@ -69,16 +72,18 @@ await tsParticles.load({
 - `tsparticles` -> `loadFull`
 - `@tsparticles/all` -> `loadAll`
 
-### 聚焦 API (`confetti`, `fireworks`, `particles`)
+### 聚焦 API (`confetti`, `fireworks`, `particles`, `ribbons`)
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 await confetti({ count: 80, spread: 60 });
 await fireworks({ sounds: false });
 await particles({ count: 100, links: true });
+await ribbons({ count: 5, spread: 0 });
 ```
 
 当你希望快速接入、又不想手动串联大量 engine 插件时，这些 API 很合适。
@@ -89,7 +94,7 @@ await particles({ count: 100, links: true });
 2. 若 bundle 体积是首要目标且功能需求简单，使用 `@tsparticles/basic`。
 3. 若你需要 full 基线并通过 `loadFull` 获得广泛能力，使用 `tsparticles`。
 4. 若是快速原型或立即需要大量功能，使用 `@tsparticles/all`。
-5. 若 UI 只需要单一聚焦效果并且希望最小 setup，使用 `@tsparticles/confetti`、`@tsparticles/fireworks` 或 `@tsparticles/particles`。
+5. 若 UI 只需要单一聚焦效果并且希望最小 setup，使用 `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles` 或 `@tsparticles/ribbons`。
 
 ## 相关页面
 

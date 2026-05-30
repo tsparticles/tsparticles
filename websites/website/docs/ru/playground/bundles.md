@@ -5,6 +5,9 @@
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
+
+Сайт Ribbons: <https://ribbons.js.org>
 
 Каждый раздел имеет собственный холст, редактор JSON и элементы управления.
 

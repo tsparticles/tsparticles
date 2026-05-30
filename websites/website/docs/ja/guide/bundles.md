@@ -13,6 +13,7 @@
 | `@tsparticles/confetti`  | 1 回の呼び出しで紙吹雪演出                       | `await confetti(options)`                      |
 | `@tsparticles/fireworks` | 1 回の呼び出しで花火演出                         | `await fireworks(options)`                     |
 | `@tsparticles/particles` | シンプルな粒子背景 API                           | `await particles(options)`                     |
+| `@tsparticles/ribbons`   | 1 回の呼び出しで ribbons 演出                    | `await ribbons(options)`                       |
 
 ## Bundle ガイド
 
@@ -23,6 +24,7 @@
 - Confetti: [`/guide/bundles-confetti`](/ja/guide/bundles-confetti)
 - Fireworks: [`/guide/bundles-fireworks`](/ja/guide/bundles-fireworks)
 - Particles: [`/guide/bundles-particles`](/ja/guide/bundles-particles)
+- Ribbons（demo + docs）: [`/demos/recipes/ribbons`](/ja/demos/recipes/ribbons) · <https://ribbons.js.org>
 
 ## インストール
 
@@ -36,6 +38,7 @@ pnpm add @tsparticles/engine @tsparticles/all
 pnpm add @tsparticles/confetti
 pnpm add @tsparticles/fireworks
 pnpm add @tsparticles/particles
+pnpm add @tsparticles/ribbons
 ```
 
 CDN リンクや他の package manager の例が必要な場合:
@@ -69,16 +72,18 @@ await tsParticles.load({
 - `tsparticles` -> `loadFull`
 - `@tsparticles/all` -> `loadAll`
 
-### 特化 API (`confetti`, `fireworks`, `particles`)
+### 特化 API (`confetti`, `fireworks`, `particles`, `ribbons`)
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 await confetti({ count: 80, spread: 60 });
 await fireworks({ sounds: false });
 await particles({ count: 100, links: true });
+await ribbons({ count: 5, spread: 0 });
 ```
 
 これらの API は、多数の engine plugin を手動接続せずに素早く統合したい場合に最適です。
@@ -89,7 +94,7 @@ await particles({ count: 100, links: true });
 2. bundle サイズ最優先で機能要件がシンプルなら `@tsparticles/basic` を使う。
 3. 幅広い機能を持つ full な土台を `loadFull` で使いたい場合は `tsparticles` を使う。
 4. プロトタイピングや、多くの機能をすぐ使いたい場合は `@tsparticles/all` を使う。
-5. UI に特化した 1 つの演出を最小セットアップで入れたい場合は `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles` を使う。
+5. UI に特化した 1 つの演出を最小セットアップで入れたい場合は `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles`、`@tsparticles/ribbons` を使う。
 
 ## 関連ページ
 

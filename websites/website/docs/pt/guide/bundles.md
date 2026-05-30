@@ -13,6 +13,7 @@ Esta pagina ajuda voce a escolher o bundle certo do `tsParticles` e configurar t
 | `@tsparticles/confetti`  | Efeitos de confete com uma chamada                            | `await confetti(options)`                      |
 | `@tsparticles/fireworks` | Efeitos de fogos com uma chamada                              | `await fireworks(options)`                     |
 | `@tsparticles/particles` | API simples para fundo de particulas                          | `await particles(options)`                     |
+| `@tsparticles/ribbons`   | Efeitos de ribbons com uma chamada                            | `await ribbons(options)`                       |
 
 ## Guias por bundle
 
@@ -23,6 +24,7 @@ Esta pagina ajuda voce a escolher o bundle certo do `tsParticles` e configurar t
 - Confetti: [`/guide/bundles-confetti`](/pt/guide/bundles-confetti)
 - Fireworks: [`/guide/bundles-fireworks`](/pt/guide/bundles-fireworks)
 - Particles: [`/guide/bundles-particles`](/pt/guide/bundles-particles)
+- Ribbons (demo + docs): [`/demos/recipes/ribbons`](/pt/demos/recipes/ribbons) · <https://ribbons.js.org>
 
 ## Instalacao
 
@@ -36,6 +38,7 @@ pnpm add @tsparticles/engine @tsparticles/all
 pnpm add @tsparticles/confetti
 pnpm add @tsparticles/fireworks
 pnpm add @tsparticles/particles
+pnpm add @tsparticles/ribbons
 ```
 
 Precisa de links CDN e de outras variantes de gerenciador de pacotes?
@@ -69,16 +72,18 @@ Para os outros presets, troque apenas o import/funcao do loader:
 - `tsparticles` -> `loadFull`
 - `@tsparticles/all` -> `loadAll`
 
-### APIs focadas (`confetti`, `fireworks`, `particles`)
+### APIs focadas (`confetti`, `fireworks`, `particles`, `ribbons`)
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
 import { fireworks } from "@tsparticles/fireworks";
 import { particles } from "@tsparticles/particles";
+import { ribbons } from "@tsparticles/ribbons";
 
 await confetti({ count: 80, spread: 60 });
 await fireworks({ sounds: false });
 await particles({ count: 100, links: true });
+await ribbons({ count: 5, spread: 0 });
 ```
 
 Essas APIs sao ideais quando voce quer integrar rapido sem conectar manualmente varios plugins do engine.
@@ -89,7 +94,7 @@ Essas APIs sao ideais quando voce quer integrar rapido sem conectar manualmente 
 2. Use `@tsparticles/basic` se o tamanho do bundle for a prioridade principal e os recursos forem simples.
 3. Use `tsparticles` quando precisar de uma base full com muitos recursos e `loadFull`.
 4. Use `@tsparticles/all` para prototipagem ou quando precisar de muitos recursos imediatamente.
-5. Use `@tsparticles/confetti`, `@tsparticles/fireworks` ou `@tsparticles/particles` quando sua UI precisar de um efeito focado com setup minimo.
+5. Use `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` ou `@tsparticles/ribbons` quando sua UI precisar de um efeito focado com setup minimo.
 
 ## Paginas relacionadas
 

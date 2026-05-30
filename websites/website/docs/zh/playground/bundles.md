@@ -5,6 +5,9 @@
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
+- `@tsparticles/ribbons`
+
+Ribbons 网站：<https://ribbons.js.org>
 
 每个部分都有自己的画布、JSON 编辑器和控件。
 
