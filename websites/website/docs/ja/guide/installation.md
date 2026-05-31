@@ -8,7 +8,7 @@
 
 - **高速デフォルト**: `@tsparticles/engine` + `@tsparticles/slim`
 - **より軽いカスタム runtime**: `@tsparticles/engine` + 必要な plugins のみ
-- **用途別 API**: `@tsparticles/particles`、`@tsparticles/confetti`、`@tsparticles/fireworks`
+- **用途別 API**: `@tsparticles/particles`、`@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/ribbons`
 - **全機能入り**: `@tsparticles/all`
 
 ## ホスティング / CDN

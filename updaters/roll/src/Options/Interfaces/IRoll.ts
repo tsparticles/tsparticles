@@ -2,7 +2,10 @@ import type { IOptionsColor, RangeValue, SingleOrMultiple } from "@tsparticles/e
 import type { IRollLight } from "./IRollLight.js";
 import type { RollMode } from "../../RollMode.js";
 
-/** The roll options */
+/**
+ * The roll options
+ * [[include:Options/Particles/Roll.md]]
+ */
 export interface IRoll {
   /** The roll back color */
   backColor?: SingleOrMultiple<string> | IOptionsColor;

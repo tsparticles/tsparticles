@@ -1,22 +1,34 @@
 # Emitters
 
-Defines particle emitters that continuously or periodically spawn particles.
+The `emitters` plugin provides particle emitters: objects that generate particles over time with options for position, shape, emission rate, life cycle, and particle customization.
 
-## Properties
+## Core properties
 
-| Key             | Type     | Example                                                                                                            | Notes                                                   |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| `direction`     | `string` | `"none"`, `"top"`, `"top-right"`, `"right"`, `"bottom-right"`, `"bottom"`, `"bottom-left"`, `"left"`, `"top-left"` | Spawn direction                                         |
-| `life.count`    | `number` | `1`                                                                                                                | Number of emitter cycles                                |
-| `life.duration` | `number` | `5`                                                                                                                | Emitter active duration (seconds)                       |
-| `life.delay`    | `number` | `0.1`                                                                                                              | Delay between cycles (seconds)                          |
-| `particles`     | `object` |                                                                                                                    | Spawned particle options, see {@link IParticlesOptions} |
-| `position`      | `object` | `{ "x": 50, "y": 50 }`                                                                                             | Position in canvas percent values                       |
-| `size.width`    | `number` | `10`                                                                                                               | Emitter area width                                      |
-| `size.height`   | `number` | `10`                                                                                                               | Emitter area height                                     |
-| `size.mode`     | `string` | `"precise"` / `"percent"`                                                                                          | `precise`: pixels, `percent`: relative to canvas size   |
-| `rate.quantity` | `number` | `1`                                                                                                                | Particles generated per emission                        |
-| `rate.delay`    | `number` | `0.1`                                                                                                              | Delay between emissions (seconds)                       |
+| Property           | Type                                                   | Default                             | Notes                                                         |
+| ------------------ | ------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------ | ---------- | ----------- | ----------------------------------- |
+| `autoPlay`         | `boolean`                                              | `true`                              | Auto-starts the emitter                                       |
+| `direction`        | `MoveDirection                                         | keyof typeof MoveDirection          | MoveDirectionAlt                                              | number                                                 | undefined` | `undefined` | Emission direction (enum or number) |
+| `domId`            | `string                                                | undefined`                          | `undefined`                                                   | ID of the connected DOM element                        |
+| `fill`             | `boolean`                                              | `true`                              | When `true` particles spawn inside the area                   |
+| `life`             | `EmitterLife`                                          | `wait: false`                       | Life options (count, delay, duration, wait)                   |
+| `name`             | `string                                                | undefined`                          | `undefined`                                                   | Emitter name                                           |
+| `particles`        | `SingleOrMultiple<RecursivePartial<IParticlesOptions>> | undefined`                          | `undefined`                                                   | Options for emitted particles (can be single or array) |
+| `position`         | `RecursivePartial<IRangedCoordinates>                  | undefined`                          | `undefined`                                                   | Relative emitter position                              |
+| `rate`             | `EmitterRate`                                          | `{ quantity: 1, delay: 0.1 }`       | Rate options (quantity per emission, delay between emissions) |
+| `shape`            | `EmitterShape`                                         | `{ type: "square", "options": {} }` | Emitter shape (type and options)                              |
+| `size`             | `EmitterSize                                           | undefined`                          | `undefined`                                                   | Emitter area size (mode, width, height)                |
+| `spawn`            | `EmitterSpawn`                                         | `{}`                                | Spawn options (fill/stroke)                                   |
+| `spawnFillColor`   | `AnimatableColor                                       | undefined`                          | `undefined`                                                   | Fill color for spawned particles                       |
+| `spawnStrokeColor` | `AnimatableColor                                       | undefined`                          | `undefined`                                                   | Stroke color for spawned particles                     |
+| `startCount`       | `number`                                               | `0`                                 | Number of initial particles generated by the emitter          |
+
+## Sub-object defaults
+
+- EmitterRate: `{ "quantity": 1, "delay": 0.1 }`
+- EmitterSize: `{ "mode": "percent", "width": 0, "height": 0 }`
+- EmitterShape: `{ "type": "square", "options": {} }`
+- EmitterLife: `{ "wait": false }`
+- EmitterSpawn: `{}` (can contain `fill` and `stroke` if specified)
 
 ## Quick example
 
@@ -24,24 +36,21 @@ Defines particle emitters that continuously or periodically spawn particles.
 {
   "emitters": {
     "direction": "top",
-    "position": {
-      "x": 50,
-      "y": 90
-    },
-    "size": {
-      "width": 40,
-      "height": 0,
-      "mode": "percent"
-    },
-    "rate": {
-      "quantity": 4,
-      "delay": 0.15
-    },
-    "particles": {
-      "move": {
-        "speed": 2
-      }
-    }
+    "position": { "x": 50, "y": 90 },
+    "size": { "width": 40, "height": 0, "mode": "percent" },
+    "rate": { "quantity": 4, "delay": 0.15 },
+    "particles": { "move": { "speed": 2 } }
   }
 }
 ```
+
+## Notes
+
+- `particles` is deep-cloned on `load` and can be a single object or an array.
+- `size` is optional and auto-initialized inside `load` if provided in the input data.
+- For full details of nested fields see the classes under `plugins/emitters/src/Options/Classes/`.
+
+## Related source
+
+- Source class: `plugins/emitters/src/Options/Classes/Emitter.ts`
+- Sub-classes: `EmitterRate.ts`, `EmitterSize.ts`, `EmitterShape.ts`, `EmitterSpawn.ts`, `EmitterLife.ts`

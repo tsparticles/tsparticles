@@ -24,7 +24,10 @@ export interface IGradientAngle {
   value: RangeValue;
 }
 
-/** The gradient options */
+/**
+ * The gradient options
+ * [[include:Options/Particles/Gradient.md]]
+ */
 export interface IGradient {
   /** The gradient angle */
   angle?: IGradientAngle;

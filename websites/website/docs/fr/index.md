@@ -30,7 +30,7 @@ features:
   - title: Oriente production
     details: Maitrisez la taille du bundle avec @tsparticles/basic, @tsparticles/slim, tsparticles ou @tsparticles/all.
   - title: APIs ciblees
-    details: Utilisez @tsparticles/particles, @tsparticles/confetti et @tsparticles/fireworks pour une integration en un seul appel.
+    details: Utilisez @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks et @tsparticles/ribbons pour une integration en un seul appel.
 ---
 
 ## Pourquoi cette experience docs

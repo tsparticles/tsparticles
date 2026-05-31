@@ -12,7 +12,7 @@ import { CollisionsOverlap } from "./CollisionsOverlap.js";
 import type { ICollisions } from "../Interfaces/ICollisions.js";
 
 /**
- * [[include:Collisions.md]]
+ * [[include:Options/Particles/Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
   /** The collisions absorb options */

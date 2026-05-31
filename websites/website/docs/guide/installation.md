@@ -8,7 +8,7 @@ Source of truth: <https://github.com/tsparticles/tsparticles/blob/main/README.md
 
 - **Fast default**: `@tsparticles/engine` + `@tsparticles/slim`
 - **Smaller custom runtime**: `@tsparticles/engine` + only required plugins
-- **Focused APIs**: `@tsparticles/particles`, `@tsparticles/confetti`, or `@tsparticles/fireworks`
+- **Focused APIs**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks`, or `@tsparticles/ribbons`
 - **All features included**: `@tsparticles/all`
 
 ## Hosting / CDN

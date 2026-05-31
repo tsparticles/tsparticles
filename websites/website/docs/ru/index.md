@@ -30,7 +30,7 @@ features:
   - title: Фокус на продакшен
     details: Контролируйте размер bundle с @tsparticles/basic, @tsparticles/slim, tsparticles или @tsparticles/all.
   - title: Фокусные API
-    details: Используйте @tsparticles/particles, @tsparticles/confetti и @tsparticles/fireworks для setup в один вызов.
+    details: Используйте @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks и @tsparticles/ribbons для setup в один вызов.
 ---
 
 ## Зачем эта документация

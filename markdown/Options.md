@@ -67,11 +67,21 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 
 ## Plugin options (not included in slim)
 
-| Property      | Type               | Example | Notes                    |
-| ------------- | ------------------ | ------- | ------------------------ |
-| `absorbers`   | `object` / `array` |         | See {@link IAbsorber}    |
-| `emitters`    | `object` / `array` |         | See {@link IEmitter}     |
-| `polygonMask` | `object`           |         | See {@link IPolygonMask} |
+| Property         | Type               | Example | Notes                                                     |
+| ---------------- | ------------------ | ------- | --------------------------------------------------------- |
+| `absorbers`      | `object` / `array` |         | See [Absorbers](./Options/Plugins/Absorbers.md)           |
+| `backgroundMask` | `object`           |         | See [BackgroundMask](./Options/Plugins/BackgroundMask.md) |
+| `blend`          | `object`           |         | See [Blend](./Options/Blend.md)                           |
+| `canvasMask`     | `object`           |         | See [CanvasMask](./Options/Plugins/CanvasMask.md)         |
+| `emitters`       | `object` / `array` |         | See [Emitters](./Options/Plugins/Emitters.md)             |
+| `infection`      | `object`           |         | See [Infection](./Options/Plugins/Infection.md)           |
+| `motion`         | `object`           |         | See [Motion](./Options/Plugins/Motion.md)                 |
+| `poisson`        | `object`           |         | See [Poisson](./Options/Plugins/Poisson.md)               |
+| `polygonMask`    | `object`           |         | See [PolygonMask](./Options/Plugins/PolygonMask.md)       |
+| `sounds`         | `object`           |         | See [Sounds](./Options/Plugins/Sounds.md)                 |
+| `themes`         | `array`            |         | See [Themes](./Options/Plugins/Themes.md)                 |
+| `trail`          | `object`           |         | See [Trail](./Options/Plugins/Trail.md)                   |
+| `zoom`           | `object`           |         | See [Zoom](./Options/Plugins/Zoom.md)                     |
 
 ## Deep links for option groups
 
@@ -93,18 +103,29 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 
 ### Particle visuals and behavior
 
-- [Color](./Options/Particles/Color.md)
 - [Bounce](./Options/Particles/Bounce.md)
 - [Collisions](./Options/Particles/Collisions.md)
+- [Color](./Options/Particles/Color.md)
 - [Destroy](./Options/Particles/Destroy.md)
+- [Effect](./Options/Particles/Effect.md)
+- [Fill](./Options/Particles/Fill.md)
+- [Gradient](./Options/Particles/Gradient.md)
 - [Group](./Options/Particles/Group.md)
 - [Life](./Options/Particles/Life.md)
+- [Links](./Options/Particles/Links.md)
+- [Move](./Options/Particles/Move.md)
+- [Number](./Options/Particles/Number.md)
+- [Opacity](./Options/Particles/Opacity.md)
 - [Orbit](./Options/Particles/Orbit.md)
+- [Out Modes](./Options/Particles/OutModes.md)
+- [Paint](./Options/Particles/Paint.md)
 - [Palette](./Options/Particles/Palette.md)
 - [Repulse](./Options/Particles/Repulse.md)
 - [Roll](./Options/Particles/Roll.md)
 - [Rotate](./Options/Particles/Rotate.md)
 - [Shadow](./Options/Particles/Shadow.md)
+- [Shape](./Options/Particles/Shape.md)
+- [Size](./Options/Particles/Size.md)
 - [Stroke](./Options/Particles/Stroke.md)
 - [Tilt](./Options/Particles/Tilt.md)
 - [Twinkle](./Options/Particles/Twinkle.md)
@@ -114,9 +135,28 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 ### Plugin-powered options
 
 - [Absorbers](./Options/Plugins/Absorbers.md)
+- [Background Mask](./Options/Plugins/BackgroundMask.md)
+- [Blend](./Options/Blend.md)
+- [Canvas Mask](./Options/Plugins/CanvasMask.md)
+- [Colors](./Options/Plugins/Colors.md)
+- [Easings](./Options/Plugins/Easings.md)
+- [Effects (drawers)](./Options/Plugins/Effects.md)
 - [Emitters](./Options/Plugins/Emitters.md)
+- [Emitter Shapes](./Options/Plugins/EmittersShapes.md)
+- [Exports](./Options/Plugins/Exports.md)
 - [Infection](./Options/Plugins/Infection.md)
+- [Interactions](./Options/Plugins/Interactions.md)
+- [Motion](./Options/Plugins/Motion.md)
+- [Path Generators](./Options/Plugins/PathGenerators.md)
+- [Poisson](./Options/Plugins/Poisson.md)
 - [Polygon Mask](./Options/Plugins/PolygonMask.md)
+- [Responsive](./Options/Plugins/Responsive.md)
+- [Shapes](./Options/Plugins/Shapes.md)
+- [Sounds](./Options/Plugins/Sounds.md)
+- [Themes](./Options/Plugins/Themes.md)
+- [Trail](./Options/Plugins/Trail.md)
+- [Updaters](./Options/Plugins/Updaters.md)
+- [Zoom](./Options/Plugins/Zoom.md)
 
 ## Recommended starting sources
 

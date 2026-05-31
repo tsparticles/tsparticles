@@ -4,6 +4,10 @@ import { SoundsEvent } from "./SoundsEvent.js";
 import { SoundsIcons } from "./SoundsIcons.js";
 import { SoundsVolume } from "./SoundsVolume.js";
 
+/**
+ * Sounds options class
+ * [[include:Options/Plugins/Sounds.md]]
+ */
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
   /** Enables auto play */
   autoPlay: boolean;

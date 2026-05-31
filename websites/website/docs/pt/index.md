@@ -30,7 +30,7 @@ features:
   - title: Foco em producao
     details: Controle o tamanho do bundle com @tsparticles/basic, @tsparticles/slim, tsparticles ou @tsparticles/all.
   - title: APIs focadas
-    details: Use @tsparticles/particles, @tsparticles/confetti e @tsparticles/fireworks para setups de chamada unica.
+    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks e @tsparticles/ribbons para setups de chamada unica.
 ---
 
 ## Por que esta experiencia de documentacao

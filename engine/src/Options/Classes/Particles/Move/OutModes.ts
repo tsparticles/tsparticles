@@ -4,7 +4,10 @@ import { OutMode } from "../../../../Enums/Modes/OutMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
-/** Out modes options class */
+/**
+ * Out modes options class
+ * [[include:Options/Particles/OutModes.md]]
+ */
 export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
   /** Out mode for the bottom edge */
   bottom?: OutMode | keyof typeof OutMode;

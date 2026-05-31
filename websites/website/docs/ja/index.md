@@ -30,7 +30,7 @@ features:
   - title: 本番運用を重視
     details: "@tsparticles/basic、@tsparticles/slim、tsparticles、@tsparticles/all で bundle サイズを調整できます。"
   - title: 用途別 API
-    details: "@tsparticles/particles、@tsparticles/confetti、@tsparticles/fireworks を 1 回の呼び出しで導入できます。"
+    details: "@tsparticles/particles、@tsparticles/confetti、@tsparticles/fireworks、@tsparticles/ribbons を 1 回の呼び出しで導入できます。"
 ---
 
 ## このドキュメントの狙い

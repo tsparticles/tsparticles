@@ -10,7 +10,10 @@ import type { IRoll } from "../Interfaces/IRoll.js";
 import { RollLight } from "./RollLight.js";
 import { RollMode } from "../../RollMode.js";
 
-/** Roll options class */
+/**
+ * Roll options class
+ * [[include:Options/Particles/Roll.md]]
+ */
 export class Roll implements IRoll, IOptionLoader<IRoll> {
   /** Roll back color */
   backColor?: OptionsColor;

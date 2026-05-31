@@ -30,7 +30,7 @@ features:
   - title: production-focused
     details: "@tsparticles/basic, @tsparticles/slim, tsparticles या @tsparticles/all से bundle size नियंत्रित करें।"
   - title: focused APIs
-    details: "@tsparticles/particles, @tsparticles/confetti और @tsparticles/fireworks के साथ एक ही call में setup करें।"
+    details: "@tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks और @tsparticles/ribbons के साथ एक ही call में setup करें।"
 ---
 
 ## यह docs अनुभव क्यों

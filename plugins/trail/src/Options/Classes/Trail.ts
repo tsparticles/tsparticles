@@ -3,6 +3,8 @@ import { type ITrail } from "../Interfaces/ITrail.js";
 import { TrailFill } from "./TrailFill.js";
 
 /**
+ * Trail options class
+ * [[include:Options/Plugins/Trail.md]]
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
   /** Enables the trail */

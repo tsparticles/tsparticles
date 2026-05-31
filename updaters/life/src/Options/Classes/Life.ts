@@ -3,7 +3,10 @@ import type { ILife } from "../Interfaces/ILife.js";
 import { LifeDelay } from "./LifeDelay.js";
 import { LifeDuration } from "./LifeDuration.js";
 
-/** Life options class */
+/**
+ * Life options class
+ * [[include:Options/Particles/Life.md]]
+ */
 export class Life implements ILife, IOptionLoader<ILife> {
   /** Life count */
   count;

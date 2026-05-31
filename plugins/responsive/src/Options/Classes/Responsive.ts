@@ -8,6 +8,10 @@ import {
 import type { IResponsive } from "../Interfaces/IResponsive.js";
 import { ResponsiveMode } from "../../ResponsiveMode.js";
 
+/**
+ * Responsive options class
+ * [[include:Options/Plugins/Responsive.md]]
+ */
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
   maxWidth: number;
   mode: ResponsiveMode | keyof typeof ResponsiveMode;

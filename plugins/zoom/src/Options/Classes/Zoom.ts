@@ -4,6 +4,10 @@ import type { IZoom } from "../Interfaces/IZoom.js";
 
 const defaultZoom = 1;
 
+/**
+ * Zoom options class
+ * [[include:Options/Plugins/Zoom.md]]
+ */
 export class Zoom implements IZoom, IOptionLoader<IZoom> {
   /** Enables or disables zoom interactions */
   enable;
