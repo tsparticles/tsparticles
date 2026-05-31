@@ -14,7 +14,7 @@
   --theme-switch: var(--switch-moon-white);
 }
 
-[data-theme="light"] {
+[data-theme='light'] {
   --primary-color: #212121;
   --secondary-color: #ffffff;
   --background-color: #f0f0f0;
@@ -27,7 +27,7 @@
   --theme-switch: var(--switch-auto-white);
 }
 
-[data-theme="light"][auto-theme] {
+[data-theme='light'][auto-theme] {
   --theme-switch: var(--switch-auto-black);
 }
 
@@ -47,7 +47,7 @@ body {
   background: var(--background-color);
   color: var(--primary-color);
   font-size: 1em;
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 * {
@@ -86,7 +86,7 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
   width: var(--size);
   height: var(--size);
   background-repeat: no-repeat;
@@ -213,7 +213,7 @@ a.anchor {
 }
 
 a.anchor:hover::before {
-  content: "🔗";
+  content: '🔗';
   color: currentColor;
   position: absolute;
   left: -2rem;
@@ -322,37 +322,37 @@ footer a:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.social-share-button[data-share-link="facebook"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='facebook']:hover .social-share-button-icon {
   color: #1877f2;
   background: rgba(24, 119, 242, 0.2);
 }
 
-.social-share-button[data-share-link="x"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='x']:hover .social-share-button-icon {
   color: #111111;
   background: rgba(17, 17, 17, 0.18);
 }
 
-.social-share-button[data-share-link="linkedin"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='linkedin']:hover .social-share-button-icon {
   color: #0a66c2;
   background: rgba(10, 102, 194, 0.2);
 }
 
-.social-share-button[data-share-link="reddit"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='reddit']:hover .social-share-button-icon {
   color: #ff4500;
   background: rgba(255, 69, 0, 0.2);
 }
 
-.social-share-button[data-share-link="telegram"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='telegram']:hover .social-share-button-icon {
   color: #229ed9;
   background: rgba(34, 158, 217, 0.2);
 }
 
-.social-share-button[data-share-link="whatsapp"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='whatsapp']:hover .social-share-button-icon {
   color: #25d366;
   background: rgba(37, 211, 102, 0.2);
 }
 
-.social-share-button[data-share-link="email"]:hover .social-share-button-icon {
+.social-share-button[data-share-link='email']:hover .social-share-button-icon {
   color: #7c3aed;
   background: rgba(124, 58, 237, 0.2);
 }

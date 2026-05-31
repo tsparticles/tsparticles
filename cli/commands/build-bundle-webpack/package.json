@@ -31,20 +31,20 @@
     "prepack": "pnpm run build"
   },
   "peerDependencies": {
-    "commander": "^14"
+    "commander": "^15"
   },
   "dependencies": {
-    "@swc/core": "^1.15.33",
+    "@swc/core": "^1.15.40",
     "@tsparticles/depcruise-config": "workspace:^",
     "@tsparticles/eslint-config": "workspace:^",
     "@tsparticles/prettier-config": "workspace:^",
     "@tsparticles/tsconfig": "workspace:^",
     "@tsparticles/webpack-plugin": "workspace:^",
-    "dependency-cruiser": "^17.4.0",
-    "eslint": "^10.4.0",
+    "dependency-cruiser": "^17.4.3",
+    "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^62.9.0",
-    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-jsdoc": "^63.0.0",
+    "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.2",
     "klaw": "^4.1.0",
     "lookpath": "^1.2.3",
@@ -55,24 +55,24 @@
     "rimraf": "^6.1.3",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.3",
-    "webpack": "^5.106.2"
+    "typescript-eslint": "^8.60.0",
+    "webpack": "^5.107.2"
   },
   "devDependencies": {
     "@types/estree": "^1.0.9",
     "@types/klaw": "^3.0.7",
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.1",
     "@types/prompts": "^2.4.9",
     "@types/webpack-env": "^1.18.8",
     "browserslist": "^4.28.2",
-    "commander": "^14.0.3",
+    "commander": "^15.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
-    "terser-webpack-plugin": "^5.6.0",
+    "terser-webpack-plugin": "^5.6.1",
     "ts-node": "^10.9.2",
-    "vitest": "^4.1.6",
+    "vitest": "^4.1.7",
     "webpack-bundle-analyzer": "^5.3.0",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.3"
   },
   "description": "tsParticles CLI",
   "main": "dist/bundle-webpack.js",

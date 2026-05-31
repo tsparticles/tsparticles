@@ -1,42 +1,42 @@
-import { execSync } from "node:child_process";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { execSync } from 'node:child_process';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import ghpages from "gh-pages";
+import ghpages from 'gh-pages';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootDir = resolve(__dirname, ".");
+const rootDir = resolve(__dirname, '.');
 
-execSync("npx vite build", { cwd: rootDir, stdio: "inherit" });
+execSync('npx vite build', { cwd: rootDir, stdio: 'inherit' });
 
 const ghToken = process.env.GITHUB_TOKEN,
   gitUser = ghToken
     ? {
-        name: "github-actions-bot",
-        email: "support+actions@github.com",
+        name: 'github-actions-bot',
+        email: 'support+actions@github.com',
       }
     : {
-        name: "Matteo Bruni",
-        email: "176620+matteobruni@users.noreply.github.com",
+        name: 'Matteo Bruni',
+        email: '176620+matteobruni@users.noreply.github.com',
       };
 
 ghpages.publish(
-  "./dist",
+  './dist',
   {
     repo: ghToken
       ? `https://git:${ghToken}@github.com/tsparticles/ribbons.git`
-      : "https://git:github.com/tsparticles/ribbons.git",
-    branch: "main",
+      : 'https://git:github.com/tsparticles/ribbons.git',
+    branch: 'main',
     dotfiles: true,
     history: false,
-    message: "build: website updated",
+    message: 'build: website updated',
     user: gitUser,
   },
-  publishErr => {
+  (publishErr) => {
     if (!publishErr) {
-      console.log("Website published successfully");
+      console.log('Website published successfully');
     } else {
       console.log(`Error publishing website: ${publishErr}`);
     }
-  },
+  }
 );

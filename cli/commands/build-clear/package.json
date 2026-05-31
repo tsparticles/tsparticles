@@ -31,7 +31,7 @@
     "prepack": "pnpm run build"
   },
   "peerDependencies": {
-    "commander": "^14"
+    "commander": "^15"
   },
   "dependencies": {
     "@swc/core": "^1.15.40",
@@ -39,11 +39,11 @@
     "@tsparticles/eslint-config": "workspace:^",
     "@tsparticles/prettier-config": "workspace:^",
     "@tsparticles/tsconfig": "workspace:^",
-    "dependency-cruiser": "^17.4.2",
-    "eslint": "^10.4.0",
+    "dependency-cruiser": "^17.4.3",
+    "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^63.0.0",
-    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.2",
     "klaw": "^4.1.0",
     "lookpath": "^1.2.3",
@@ -62,7 +62,7 @@
     "@types/node": "^25.9.1",
     "@types/prompts": "^2.4.9",
     "browserslist": "^4.28.2",
-    "commander": "^14.0.3",
+    "commander": "^15.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "ts-node": "^10.9.2"

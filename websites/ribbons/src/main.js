@@ -1,62 +1,62 @@
-import { ribbons } from "@tsparticles/ribbons";
-import "./style.css";
-import "./cookie-consent.js";
-import ace from "ace-builds";
-import { js_beautify } from "js-beautify";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/theme-xcode";
-import javascriptWorkerUrl from "ace-builds/src-noconflict/worker-javascript.js?url";
-import htmlWorkerUrl from "ace-builds/src-noconflict/worker-html.js?url";
-import cssWorkerUrl from "ace-builds/src-noconflict/worker-css.js?url";
+import { ribbons } from '@tsparticles/ribbons';
+import './style.css';
+import './cookie-consent.js';
+import ace from 'ace-builds';
+import { js_beautify } from 'js-beautify';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/mode-html';
+import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-xcode';
+import javascriptWorkerUrl from 'ace-builds/src-noconflict/worker-javascript.js?url';
+import htmlWorkerUrl from 'ace-builds/src-noconflict/worker-html.js?url';
+import cssWorkerUrl from 'ace-builds/src-noconflict/worker-css.js?url';
 
-ace.config.setModuleUrl("ace/mode/javascript_worker", javascriptWorkerUrl);
-ace.config.setModuleUrl("ace/mode/html_worker", htmlWorkerUrl);
-ace.config.setModuleUrl("ace/mode/css_worker", cssWorkerUrl);
+ace.config.setModuleUrl('ace/mode/javascript_worker', javascriptWorkerUrl);
+ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
+ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
 
 window.ribbons = ribbons;
 
 const editors = [];
 
 const sharePlatformTemplates = {
-  facebook: url => `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+  facebook: (url) => `https://www.facebook.com/sharer/sharer.php?u=${url}`,
   x: (url, text) => `https://x.com/intent/tweet?url=${url}&text=${text}`,
-  linkedin: url => `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+  linkedin: (url) => `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
   reddit: (url, text) => `https://www.reddit.com/submit?url=${url}&title=${text}`,
   telegram: (url, text) => `https://t.me/share/url?url=${url}&text=${text}`,
   whatsapp: (url, text) => `https://wa.me/?text=${text}%20${url}`,
   email: (url, text) => `mailto:?subject=${text}&body=${url}`,
 };
-const shareDesktopOrder = ["facebook", "x", "linkedin", "reddit", "telegram", "whatsapp", "email"];
-const shareMobileOrder = ["x", "whatsapp", "telegram", "facebook", "linkedin", "reddit", "email"];
+const shareDesktopOrder = ['facebook', 'x', 'linkedin', 'reddit', 'telegram', 'whatsapp', 'email'];
+const shareMobileOrder = ['x', 'whatsapp', 'telegram', 'facebook', 'linkedin', 'reddit', 'email'];
 
-let activeTheme = "dark";
-let currentStep = parseInt(localStorage.getItem("tsparticles-ribbons/theme"), 10) || 0;
+let activeTheme = 'dark';
+let currentStep = parseInt(localStorage.getItem('tsparticles-ribbons/theme'), 10) || 0;
 
-const prefersLightTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
+const prefersLightTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
 const themes = {
-  light: "ace/theme/xcode",
-  dark: "ace/theme/monokai",
+  light: 'ace/theme/xcode',
+  dark: 'ace/theme/monokai',
 };
 
 const getPreferedTheme = function () {
-  return prefersLightTheme ? (prefersLightTheme.matches ? "light" : "dark") : "dark";
+  return prefersLightTheme ? (prefersLightTheme.matches ? 'light' : 'dark') : 'dark';
 };
 
 const updateShareLinks = function () {
   const encodedUrl = encodeURIComponent(window.location.href);
-  const encodedText = encodeURIComponent(document.title || "tsParticles Ribbons");
+  const encodedText = encodeURIComponent(document.title || 'tsParticles Ribbons');
 
-  Array.from(document.querySelectorAll("[data-share-link]")).forEach(link => {
-    const platform = link.getAttribute("data-share-link");
+  Array.from(document.querySelectorAll('[data-share-link]')).forEach((link) => {
+    const platform = link.getAttribute('data-share-link');
     const template = sharePlatformTemplates[platform];
 
     if (!template) {
       return;
     }
 
-    link.setAttribute("href", template(encodedUrl, encodedText));
+    link.setAttribute('href', template(encodedUrl, encodedText));
   });
 };
 
@@ -69,7 +69,7 @@ const trackShare = function (platform) {
     return;
   }
 
-  window.gtag("event", "share_click", {
+  window.gtag('event', 'share_click', {
     method: platform,
     page_path: window.location.pathname,
     page_title: document.title,
@@ -81,28 +81,30 @@ const trackCopyLink = function () {
     return;
   }
 
-  window.gtag("event", "share_copy_link", {
-    method: "copy_link",
+  window.gtag('event', 'share_copy_link', {
+    method: 'copy_link',
     page_path: window.location.pathname,
     page_title: document.title,
   });
 };
 
 const updateShareOrder = function () {
-  const currentOrder = window.matchMedia("(max-width: 768px)").matches ? shareMobileOrder : shareDesktopOrder;
+  const currentOrder = window.matchMedia('(max-width: 768px)').matches
+    ? shareMobileOrder
+    : shareDesktopOrder;
 
-  Array.from(document.querySelectorAll(".social-share")).forEach(shareContainer => {
+  Array.from(document.querySelectorAll('.social-share')).forEach((shareContainer) => {
     const linksByPlatform = {};
 
-    Array.from(shareContainer.querySelectorAll("[data-share-link]")).forEach(link => {
-      const platform = link.getAttribute("data-share-link");
+    Array.from(shareContainer.querySelectorAll('[data-share-link]')).forEach((link) => {
+      const platform = link.getAttribute('data-share-link');
 
       if (platform) {
         linksByPlatform[platform] = link;
       }
     });
 
-    currentOrder.forEach(platform => {
+    currentOrder.forEach((platform) => {
       const link = linksByPlatform[platform];
 
       if (link) {
@@ -110,7 +112,7 @@ const updateShareOrder = function () {
       }
     });
 
-    const copyButton = shareContainer.querySelector("#shareCopyLinkButton");
+    const copyButton = shareContainer.querySelector('#shareCopyLinkButton');
 
     if (copyButton) {
       shareContainer.appendChild(copyButton);
@@ -119,32 +121,32 @@ const updateShareOrder = function () {
 };
 
 const setupShareActions = function () {
-  const shareDropdown = document.querySelector(".share-menu");
+  const shareDropdown = document.querySelector('.share-menu');
 
   if (shareDropdown) {
-    document.addEventListener("click", event => {
+    document.addEventListener('click', (event) => {
       if (!shareDropdown.contains(event.target)) {
-        shareDropdown.removeAttribute("open");
+        shareDropdown.removeAttribute('open');
       }
     });
   }
 
-  Array.from(document.querySelectorAll("[data-share-link]")).forEach(link => {
-    const platform = link.getAttribute("data-share-link") || "unknown";
+  Array.from(document.querySelectorAll('[data-share-link]')).forEach((link) => {
+    const platform = link.getAttribute('data-share-link') || 'unknown';
 
-    link.addEventListener("click", () => {
+    link.addEventListener('click', () => {
       trackShare(platform);
     });
   });
 
-  Array.from(document.querySelectorAll("#shareCopyLinkButton")).forEach(copyButton => {
-    copyButton.addEventListener("click", async () => {
+  Array.from(document.querySelectorAll('#shareCopyLinkButton')).forEach((copyButton) => {
+    copyButton.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
 
         const originalLabel = copyButton.textContent;
 
-        copyButton.textContent = "Copied";
+        copyButton.textContent = 'Copied';
 
         trackCopyLink();
 
@@ -152,7 +154,7 @@ const setupShareActions = function () {
           copyButton.textContent = originalLabel;
         }, 1800);
       } catch (err) {
-        console.error("Unable to copy share link.", err);
+        console.error('Unable to copy share link.', err);
       }
     });
   });
@@ -160,16 +162,16 @@ const setupShareActions = function () {
 
 const setTheme = function (isAuto, theme) {
   if (isAuto) {
-    document.body.setAttribute("auto-theme", true);
+    document.body.setAttribute('auto-theme', true);
 
     activeTheme = getPreferedTheme();
   } else {
-    document.body.removeAttribute("auto-theme");
+    document.body.removeAttribute('auto-theme');
 
     activeTheme = theme;
   }
 
-  document.body.setAttribute("data-theme", activeTheme);
+  document.body.setAttribute('data-theme', activeTheme);
 
   editors.forEach(function (editor) {
     editor.setTheme(themes[activeTheme]);
@@ -189,36 +191,36 @@ const updateTheme = function (step) {
     case 0:
       setTheme(true);
 
-      prefersLightTheme && prefersLightTheme.addEventListener("change", handleSystemThemeChange);
+      prefersLightTheme && prefersLightTheme.addEventListener('change', handleSystemThemeChange);
 
       break;
 
     case 1:
     case 2:
-      setTheme(false, step === 1 ? "dark" : "light");
+      setTheme(false, step === 1 ? 'dark' : 'light');
 
-      prefersLightTheme && prefersLightTheme.removeEventListener("change", handleSystemThemeChange);
+      prefersLightTheme && prefersLightTheme.removeEventListener('change', handleSystemThemeChange);
 
       break;
   }
 
-  localStorage.setItem("tsparticles-ribbons/theme", currentStep);
+  localStorage.setItem('tsparticles-ribbons/theme', currentStep);
 };
 
 updateTheme(currentStep);
 
-document.getElementById("themeToggle").addEventListener("click", function () {
+document.getElementById('themeToggle').addEventListener('click', function () {
   updateTheme(++currentStep % 3);
 });
 
 const modes = [
   {
-    id: "basic",
-    name: "Basic Ribbons",
+    id: 'basic',
+    name: 'Basic Ribbons',
     description: [
       {
-        cssClass: "",
-        text: "The default mode... ribbons fall from random positions across the top of the page with default colors and physics.",
+        cssClass: '',
+        text: 'The default mode... ribbons fall from random positions across the top of the page with default colors and physics.',
       },
     ],
     fn: function () {
@@ -227,38 +229,38 @@ const modes = [
   },
 
   {
-    id: "colors",
-    name: "Custom Colors",
+    id: 'colors',
+    name: 'Custom Colors',
     description: [
       {
-        cssClass: "",
-        text: "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
+        cssClass: '',
+        text: 'You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.',
       },
       {
-        cssClass: "center",
-        text: "🔥 Ocean to flame color transition! 🔥",
+        cssClass: 'center',
+        text: '🔥 Ocean to flame color transition! 🔥',
       },
     ],
     fn: function () {
       ribbons({
-        colors: ["#FF4500", "#FF6347", "#FFD700", "#FF8C00", "#FF0000"],
+        colors: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00', '#FF0000'],
       });
 
       setTimeout(() => {
         ribbons({
-          colors: ["#00BFFF", "#1E90FF", "#00CED1", "#7FFFD4", "#E0FFFF"],
+          colors: ['#00BFFF', '#1E90FF', '#00CED1', '#7FFFD4', '#E0FFFF'],
         });
       }, 1200);
     },
   },
 
   {
-    id: "spread",
-    name: "Wide Spread",
+    id: 'spread',
+    name: 'Wide Spread',
     description: [
       {
-        cssClass: "",
-        text: "Create a cascading ribbon waterfall effect by combining spread, angle, and multiple counts.",
+        cssClass: '',
+        text: 'Create a cascading ribbon waterfall effect by combining spread, angle, and multiple counts.',
       },
     ],
     fn: function () {
@@ -286,12 +288,12 @@ const modes = [
   },
 
   {
-    id: "continuous",
-    name: "Continuous Fall",
+    id: 'continuous',
+    name: 'Continuous Fall',
     description: [
       {
-        cssClass: "",
-        text: "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions.",
+        cssClass: '',
+        text: 'Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions.',
       },
     ],
     fn: function () {
@@ -311,12 +313,12 @@ const modes = [
   },
 
   {
-    id: "fixed-position",
-    name: "Fixed Position",
+    id: 'fixed-position',
+    name: 'Fixed Position',
     description: [
       {
-        cssClass: "",
-        text: "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element.",
+        cssClass: '',
+        text: 'A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element.',
       },
     ],
     fn: function () {
@@ -328,17 +330,17 @@ const modes = [
   },
 
   {
-    id: "custom-canvas",
-    name: "Custom Canvas",
+    id: 'custom-canvas',
+    name: 'Custom Canvas',
     description: [
       {
-        cssClass: "",
-        text: "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page.",
+        cssClass: '',
+        text: 'You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page.',
       },
     ],
     fn: function () {
       (async () => {
-        const canvas = document.getElementById("my-canvas");
+        const canvas = document.getElementById('my-canvas');
 
         canvas.ribbons =
           canvas.ribbons ||
@@ -364,7 +366,7 @@ const modes = [
 function renderModes(modes) {
   return modes
     .map(
-      mode => `
+      (mode) => `
     <div class="container">
       <div class="group" data-name="${mode.id}">
         <div class="flex-rows">
@@ -384,12 +386,12 @@ function renderModes(modes) {
             </button>
           </div>
           <div class="description">
-            ${mode.description.map(d => `<p class="${d.cssClass}">${d.text}</p>`).join("")}
+            ${mode.description.map((d) => `<p class="${d.cssClass}">${d.text}</p>`).join('')}
           </div>
         </div>
         <div class="editor"></div>
         ${
-          mode.id === "custom-canvas"
+          mode.id === 'custom-canvas'
             ? `
           <div class="flex-rows">
             <canvas
@@ -399,80 +401,80 @@ function renderModes(modes) {
             ></canvas>
           </div>
         `
-            : ""
+            : ''
         }
       </div>
     </div>
-  `,
+  `
     )
-    .join("\n");
+    .join('\n');
 }
 
 function pretty(val) {
   return js_beautify(val, {
     indent_size: 2,
-    brace_style: "preserve-inline",
+    brace_style: 'preserve-inline',
   });
 }
 
 function getCode(name) {
-  const mode = modes.find(t => t.id === name);
+  const mode = modes.find((t) => t.id === name);
 
   let code = pretty(mode.fn.toString());
 
   code = code
-    .split("\n")
+    .split('\n')
     .slice(1)
     .slice(0, -1)
     .map(function (s) {
       return s.trim();
     })
-    .join("\n");
+    .join('\n');
 
   return pretty(code);
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   await ribbons.init();
 
   updateShareLinks();
   updateShareOrder();
   setupShareActions();
 
-  window.addEventListener("resize", updateShareOrder);
+  window.addEventListener('resize', updateShareOrder);
 
-  Array.from(document.querySelectorAll(".html-group")).forEach(function (group) {
-    const codeElem = group.querySelector(".editor"),
+  Array.from(document.querySelectorAll('.html-group')).forEach(function (group) {
+    const codeElem = group.querySelector('.editor'),
       editor = ace.edit(codeElem);
 
     editor.setTheme(themes[activeTheme]);
 
-    editor.session.setMode("ace/mode/html");
+    editor.session.setMode('ace/mode/html');
     editor.session.setUseSoftTabs(true);
     editor.session.setTabSize(2);
 
     const count = editor.session.getLength();
 
-    codeElem.style.minHeight = 14 * count + 1 + "px";
-    codeElem.style.height = count + "rem";
+    codeElem.style.minHeight = 14 * count + 1 + 'px';
+    codeElem.style.height = count + 'rem';
 
     editors.push(editor);
   });
 
-  document.getElementById("ribbons-modes").innerHTML = renderModes(modes);
+  document.getElementById('ribbons-modes').innerHTML = renderModes(modes);
 
-  Array.from(document.querySelectorAll(".group")).forEach(function (group) {
-    const name = group.getAttribute("data-name"),
-      button = group.querySelector(".run"),
-      codeElem = group.querySelector(".editor"),
+  Array.from(document.querySelectorAll('.group')).forEach(function (group) {
+    const name = group.getAttribute('data-name'),
+      button = group.querySelector('.run'),
+      codeElem = group.querySelector('.editor'),
       editor = ace.edit(codeElem);
 
     editor.setTheme(themes[activeTheme]);
 
-    editor.session.on("changeMode", function (e, session) {
-      if ("ace/mode/javascript" === session.getMode().$id) {
+    editor.session.on('changeMode', function (e, session) {
+      if ('ace/mode/javascript' === session.getMode().$id) {
         if (session.$worker) {
-          session.$worker.send("setOptions", [
+          session.$worker.send('setOptions', [
             {
               esversion: 9,
               esnext: false,
@@ -482,18 +484,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    editor.session.setMode("ace/mode/javascript");
+    editor.session.setMode('ace/mode/javascript');
     editor.session.setUseSoftTabs(true);
     editor.session.setTabSize(2);
     editor.session.setValue(getCode(name));
 
     const count = editor.session.getLength();
 
-    codeElem.style.minHeight = 14 * count + 1 + "px";
-    codeElem.style.height = count + "rem";
+    codeElem.style.minHeight = 14 * count + 1 + 'px';
+    codeElem.style.height = count + 'rem';
 
-    button.addEventListener("click", ev => {
-      if (ev && typeof ev.preventDefault === "function") {
+    button.addEventListener('click', (ev) => {
+      if (ev && typeof ev.preventDefault === 'function') {
         ev.preventDefault();
       }
 
