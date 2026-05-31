@@ -4,13 +4,13 @@
 
 ## Available effects
 
-| Package | Effect name | Description |
-| ------- | ----------- | ----------- |
-| `effect-bubble` | `bubble` | Bubble/balloon appearance |
-| `effect-filter` | `filter` | CSS filter effects |
-| `effect-particles` | `particles` | Nested particle effects |
-| `effect-shadow` | `shadow` | Drop shadow effect |
-| `effect-trail` | `trail` | Motion trail effect |
+| Package            | Effect name | Description               |
+| ------------------ | ----------- | ------------------------- |
+| `effect-bubble`    | `bubble`    | Bubble/balloon appearance |
+| `effect-filter`    | `filter`    | CSS filter effects        |
+| `effect-particles` | `particles` | Nested particle effects   |
+| `effect-shadow`    | `shadow`    | Drop shadow effect        |
+| `effect-trail`     | `trail`     | Motion trail effect       |
 
 ## Notes
 

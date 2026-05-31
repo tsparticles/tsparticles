@@ -4,13 +4,13 @@
 
 ## Available shapes
 
-| Package | Shape name | Description |
-| ------- | ---------- | ----------- |
-| `plugin-emitter-shape-canvas` | `canvas` | Canvas-based emitter area |
-| `plugin-emitter-shape-circle` | `circle` | Circular emitter area |
-| `plugin-emitter-shape-path` | `path` | SVG path-based emitter area |
-| `plugin-emitter-shape-polygon` | `polygon` | Polygon-shaped emitter area |
-| `plugin-emitter-shape-square` | `square` | Square emitter area |
+| Package                        | Shape name | Description                 |
+| ------------------------------ | ---------- | --------------------------- |
+| `plugin-emitter-shape-canvas`  | `canvas`   | Canvas-based emitter area   |
+| `plugin-emitter-shape-circle`  | `circle`   | Circular emitter area       |
+| `plugin-emitter-shape-path`    | `path`     | SVG path-based emitter area |
+| `plugin-emitter-shape-polygon` | `polygon`  | Polygon-shaped emitter area |
+| `plugin-emitter-shape-square`  | `square`   | Square emitter area         |
 
 ## Notes
 

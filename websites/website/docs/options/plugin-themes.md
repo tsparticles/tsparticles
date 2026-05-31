@@ -16,7 +16,7 @@ themes: [
       background: { color: "#111" },
     },
   },
-]
+];
 ```
 
 ## Notes

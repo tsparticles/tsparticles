@@ -15,7 +15,7 @@ responsive: [
       },
     },
   },
-]
+];
 ```
 
 ## Notes

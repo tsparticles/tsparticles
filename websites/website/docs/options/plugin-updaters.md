@@ -4,21 +4,21 @@
 
 ## Available updaters
 
-| Package | Options key | Description |
-| ------- | ----------- | ----------- |
-| `updater-destroy` | `particles.destroy` | Destroy/split particles on exit |
-| `updater-gradient` | `particles.gradient` | Gradient color animations |
-| `updater-life` | `particles.life` | Particle life cycle |
-| `updater-opacity` | `particles.opacity` | Opacity animation |
-| `updater-orbit` | `particles.orbit` | Orbiting movement |
-| `updater-out-modes` | `particles.move.outModes` | Boundary behavior |
-| `updater-paint` | `particles.paint` | Paint/stroke effects |
-| `updater-roll` | `particles.roll` | Rolling rotation |
-| `updater-rotate` | `particles.rotate` | Rotation animation |
-| `updater-size` | `particles.size` | Size animation |
-| `updater-tilt` | `particles.tilt` | Tilt animation |
-| `updater-twinkle` | `particles.twinkle` | Twinkle/flash effect |
-| `updater-wobble` | `particles.wobble` | Wobble effect |
+| Package             | Options key               | Description                     |
+| ------------------- | ------------------------- | ------------------------------- |
+| `updater-destroy`   | `particles.destroy`       | Destroy/split particles on exit |
+| `updater-gradient`  | `particles.gradient`      | Gradient color animations       |
+| `updater-life`      | `particles.life`          | Particle life cycle             |
+| `updater-opacity`   | `particles.opacity`       | Opacity animation               |
+| `updater-orbit`     | `particles.orbit`         | Orbiting movement               |
+| `updater-out-modes` | `particles.move.outModes` | Boundary behavior               |
+| `updater-paint`     | `particles.paint`         | Paint/stroke effects            |
+| `updater-roll`      | `particles.roll`          | Rolling rotation                |
+| `updater-rotate`    | `particles.rotate`        | Rotation animation              |
+| `updater-size`      | `particles.size`          | Size animation                  |
+| `updater-tilt`      | `particles.tilt`          | Tilt animation                  |
+| `updater-twinkle`   | `particles.twinkle`       | Twinkle/flash effect            |
+| `updater-wobble`    | `particles.wobble`        | Wobble effect                   |
 
 ## Notes
 

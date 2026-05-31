@@ -4,18 +4,18 @@
 
 ## Available easing packages
 
-| Package | Functions |
-| ------- | --------- |
-| `plugin-easing-back` | `easeInBack`, `easeOutBack`, `easeInOutBack` |
-| `plugin-easing-bounce` | `easeInBounce`, `easeOutBounce`, `easeInOutBounce` |
-| `plugin-easing-circ` | `easeInCirc`, `easeOutCirc`, `easeInOutCirc` |
-| `plugin-easing-cubic` | `easeInCubic`, `easeOutCubic`, `easeInOutCubic` |
+| Package                 | Functions                                             |
+| ----------------------- | ----------------------------------------------------- |
+| `plugin-easing-back`    | `easeInBack`, `easeOutBack`, `easeInOutBack`          |
+| `plugin-easing-bounce`  | `easeInBounce`, `easeOutBounce`, `easeInOutBounce`    |
+| `plugin-easing-circ`    | `easeInCirc`, `easeOutCirc`, `easeInOutCirc`          |
+| `plugin-easing-cubic`   | `easeInCubic`, `easeOutCubic`, `easeInOutCubic`       |
 | `plugin-easing-elastic` | `easeInElastic`, `easeOutElastic`, `easeInOutElastic` |
-| `plugin-easing-expo` | `easeInExpo`, `easeOutExpo`, `easeInOutExpo` |
-| `plugin-easing-quad` | `easeInQuad`, `easeOutQuad`, `easeInOutQuad` |
-| `plugin-easing-quart` | `easeInQuart`, `easeOutQuart`, `easeInOutQuart` |
-| `plugin-easing-quint` | `easeInQuint`, `easeOutQuint`, `easeInOutQuint` |
-| `plugin-easing-sine` | `easeInSine`, `easeOutSine`, `easeInOutSine` |
+| `plugin-easing-expo`    | `easeInExpo`, `easeOutExpo`, `easeInOutExpo`          |
+| `plugin-easing-quad`    | `easeInQuad`, `easeOutQuad`, `easeInOutQuad`          |
+| `plugin-easing-quart`   | `easeInQuart`, `easeOutQuart`, `easeInOutQuart`       |
+| `plugin-easing-quint`   | `easeInQuint`, `easeOutQuint`, `easeInOutQuint`       |
+| `plugin-easing-sine`    | `easeInSine`, `easeOutSine`, `easeInOutSine`          |
 
 ## Notes
 

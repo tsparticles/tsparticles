@@ -4,18 +4,18 @@
 
 ## Available color spaces
 
-| Package | Color space |
-| ------- | ----------- |
-| `plugin-color-hex` | Hexadecimal |
-| `plugin-color-hsl` | HSL |
-| `plugin-color-hsv` | HSV |
-| `plugin-color-hwb` | HWB |
-| `plugin-color-lab` | CIE Lab |
-| `plugin-color-lch` | CIE Lch |
+| Package              | Color space      |
+| -------------------- | ---------------- |
+| `plugin-color-hex`   | Hexadecimal      |
+| `plugin-color-hsl`   | HSL              |
+| `plugin-color-hsv`   | HSV              |
+| `plugin-color-hwb`   | HWB              |
+| `plugin-color-lab`   | CIE Lab          |
+| `plugin-color-lch`   | CIE Lch          |
 | `plugin-color-named` | Named CSS colors |
-| `plugin-color-oklab` | Oklab |
-| `plugin-color-oklch` | Oklch |
-| `plugin-color-rgb` | RGB |
+| `plugin-color-oklab` | Oklab            |
+| `plugin-color-oklch` | Oklch            |
+| `plugin-color-rgb`   | RGB              |
 
 ## Notes
 

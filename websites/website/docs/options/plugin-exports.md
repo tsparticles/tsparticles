@@ -4,11 +4,11 @@
 
 ## Available exports
 
-| Package | Export type | Description |
-| ------- | ----------- | ----------- |
-| `plugin-export-image` | Image | Export canvas frame as PNG/JPEG |
-| `plugin-export-json` | JSON | Export particle configuration as JSON |
-| `plugin-export-video` | Video | Export animation as video |
+| Package               | Export type | Description                           |
+| --------------------- | ----------- | ------------------------------------- |
+| `plugin-export-image` | Image       | Export canvas frame as PNG/JPEG       |
+| `plugin-export-json`  | JSON        | Export particle configuration as JSON |
+| `plugin-export-video` | Video       | Export animation as video             |
 
 ## Notes
 
