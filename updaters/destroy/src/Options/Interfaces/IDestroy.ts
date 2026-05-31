@@ -5,7 +5,7 @@ import type { ISplit } from "./ISplit.js";
 
 /**
  * The destroy updater options
- * [[include:Destroy.md]]
+ * [[include:Options/Particles/Destroy.md]]
  */
 export interface IDestroy {
   /** The destroy bounds options */
