@@ -1,21 +1,37 @@
 # Blend Plugin Options
 
-This document describes configuration used by the blend plugin. If you are looking for plugin runtime docs, see the plugin's README.
+The `blend` plugin provides canvas blend/composite operations for particles, letting you use different blend modes when drawing particles on the canvas.
 
-Typical options
+## Properties
+
+| Key      | Type      | Default             | Notes                                                                                                                                                                                      |
+| -------- | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `enable` | `boolean` | `false`             | Enables the blend mode, applying the `composite` option to all drawn elements                                                                                                              |
+| `mode`   | `string`  | `"destination-out"` | The composition mode for the blend effect, see [MDN globalCompositeOperation](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D/globalCompositeOperation) |
+
+## Quick example
 
 ```json
 {
   "blend": {
     "enable": true,
-    "mode": "multiply",
-    "opacity": 0.8
+    "mode": "source-over"
   }
 }
 ```
 
-Notes
+## Common blend modes
 
-- The available `mode` values depend on the plugin implementation and the rendering backend.
-- This file exists to satisfy `[[include:Options/Blend.md]]` includes used by option classes; adjust or extend as the plugin evolves.
+| Mode                | Effect                                  |
+| ------------------- | --------------------------------------- |
+| `"source-over"`     | Default — draws new over old            |
+| `"destination-out"` | Unveils background below drawn elements |
+| `"source-atop"`     | New drawn only where old is opaque      |
+| `"lighter"`         | Sums colors (additive blending)         |
+| `"multiply"`        | Multiplies colors                       |
+| `"screen"`          | Invert, multiply, invert (brightening)  |
+| `"overlay"`         | Mix of multiply and screen              |
 
+## Related docs
+
+- Options root: [Options](../../Options.md)

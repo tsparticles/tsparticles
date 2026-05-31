@@ -1,6 +1,9 @@
 import type { OutMode } from "../../../../Enums/Modes/OutMode.js";
 
-/** Out modes configuration for each canvas edge */
+/**
+ * Out modes configuration for each canvas edge
+ * [[include:Options/Particles/OutModes.md]]
+ */
 export interface IOutModes {
   /** Out mode for the bottom edge */
   bottom?: OutMode | keyof typeof OutMode;

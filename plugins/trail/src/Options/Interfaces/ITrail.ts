@@ -1,6 +1,9 @@
 import type { ITrailFill } from "./ITrailFill.js";
 
-/** The trail mode options */
+/**
+ * The trail mode options
+ * [[include:Options/Plugins/Trail.md]]
+ */
 export interface ITrail {
   /** Enables the trail */
   enable: boolean;

@@ -1,21 +1,28 @@
 # Particle Fill
 
-Controls how particles are filled with color. This document describes the options referenced by the engine
-interfaces (`IFill`) and is included from option interface documentation.
+Controls how particles are filled with an inner color. This document mirrors the `IFill`/`Fill` options used by the engine.
 
-| Property | Type | Default | Description |
-|---|---|---|---|
-| `enable` | `boolean` | `true` | When `true`, the particle interior is filled. When `false`, only stroke (outline) is used. |
-| `color` | `IAnimatableColor` / `IRangeColor` | `#ffffff` | The base fill color. Can be an animatable color object or a color range for randomization. |
-| `opacity` | `number` / `RangeValue` | `1` | Fill opacity (0..1). Can be animated when using animatable color/opacity settings. |
+Properties
+
+- `enable` (boolean) — Default: `true`
+  - When `true`, the particle interior is filled. When `false`, only stroke (outline) is used.
+- `color` (IAnimatableColor | IRangeColor)
+  - Fill color. Can be an `IAnimatableColor` (allows color animation) or an `IRangeColor` for randomized ranges.
+- `opacity` (number | RangeValue) — Default: `1`
+  - Fill opacity (0..1). Accepts static values or range objects used by engine utilities.
+
+Default behavior
+
+- `enable` defaults to `true` in `Fill` class constructor.
+- `opacity` defaults to `1`.
+- If `paint.fill` is omitted, the engine historically uses filled particles (white) unless overridden by `paint.stroke` or palettes.
 
 Notes
 
-- The `paint.fill` option aggregates fill settings for palettes and paint presets.
-- When `paint.fill.enable` is omitted, the engine falls back to historical default (`true`).
-- Use palette imports (`particles.palette`) to apply coordinated `fill`/`stroke` defaults from registered palettes.
+- `paint` groups both `fill` and `stroke` options; palettes may supply default `fill` values when `particles.palette` is used.
+- Use `IAnimatableColor` when you want color animations (see `AnimatableColor` options documentation).
 
-Examples
+Example
 
 ```json
 {
@@ -30,4 +37,3 @@ Examples
   }
 }
 ```
-

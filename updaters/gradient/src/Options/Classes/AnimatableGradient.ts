@@ -3,7 +3,10 @@ import { AnimatableGradientColor } from "./AnimatableGradientColor.js";
 import { GradientAngle } from "./GradientAngle.js";
 import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient.js";
 
-/** Animatable gradient options class */
+/**
+ * Animatable gradient options class
+ * [[include:Options/Particles/Gradient.md]]
+ */
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
   /** Gradient angle */
   angle: GradientAngle;

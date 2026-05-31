@@ -11,7 +11,10 @@ import type { IWobble } from "../Interfaces/IWobble.js";
 import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed.js";
 import { WobbleSpeed } from "./WobbleSpeed.js";
 
-/** Wobble options class */
+/**
+ * Wobble options class
+ * [[include:Options/Particles/Wobble.md]]
+ */
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
   /** Wobble distance */
   distance: RangeValue;
