@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/electron-demo",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "",
   "main": "app/index.cjs",
   "private": true,
@@ -84,16 +84,16 @@
     "@electron/windows-sign": "^2.0.3",
     "@malept/cross-spawn-promise": "^2.0.0",
     "@sec-ant/readable-stream": "^0.7.0",
-    "@types/node": "^25.8.0",
+    "@types/node": "^25.9.1",
     "@xmldom/xmldom": "^0.9.10",
     "author-regex": "^1.0.0",
     "balanced-match": "^4.0.4",
     "brace-expansion": "^5.0.6",
     "buffer-crc32": "^1.0.0",
-    "commander": "^14.0.3",
+    "commander": "^15.0.0",
     "cross-spawn": "^7.0.6",
     "debug": "^4.4.3",
-    "electron": "^41.6.1",
+    "electron": "^41.7.1",
     "env-paths": "^4.0.0",
     "err-code": "^3.0.1",
     "extract-zip": "^2.0.1",
@@ -109,7 +109,7 @@
     "isbinaryfile": "^6.0.0",
     "isexe": "^4.0.0",
     "junk": "^4.0.1",
-    "lru-cache": "^11.4.0",
+    "lru-cache": "^11.5.1",
     "minimatch": "^10.2.5",
     "minipass": "^7.1.3",
     "ms": "^2.1.3",
@@ -132,7 +132,7 @@
     "which": "^7.0.0",
     "xmlbuilder": "^15.1.1",
     "yargs-parser": "^22.0.0",
-    "yauzl": "^3.3.0"
+    "yauzl": "^3.3.1"
   },
   "type": "module"
 }

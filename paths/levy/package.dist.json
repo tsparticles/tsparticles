@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-levy",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "tsParticles levy path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -110,8 +110,8 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.1.0",
-    "@tsparticles/plugin-move": "4.1.0"
+    "@tsparticles/engine": "4.1.1",
+    "@tsparticles/plugin-move": "4.1.1"
   },
   "type": "module"
 }

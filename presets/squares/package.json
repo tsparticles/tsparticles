@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-squares",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "tsParticles squares preset",
   "homepage": "https://particles.js.org",
   "scripts": {

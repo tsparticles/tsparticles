@@ -1,19 +1,19 @@
-import { readFileSync } from "node:fs";
-import { defineConfig } from "vite";
+import { readFileSync } from 'node:fs';
+import { defineConfig } from 'vite';
 
-const ribbonsPkg = JSON.parse(readFileSync("./package.json", "utf8"));
+const ribbonsPkg = JSON.parse(readFileSync('./package.json', 'utf8'));
 
 export default defineConfig({
   plugins: [
     {
-      name: "html-transform",
+      name: 'html-transform',
       transformIndexHtml(html) {
         return html.replace(/__RIBBONS_VERSION__/g, ribbonsPkg.version);
       },
     },
   ],
   build: {
-    outDir: "dist",
+    outDir: 'dist',
     minify: false,
   },
 });
