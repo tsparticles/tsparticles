@@ -8,7 +8,7 @@ Offizielle Referenz: <https://github.com/tsparticles/tsparticles/blob/main/READM
 
 - **Schneller Standard**: `@tsparticles/engine` + `@tsparticles/slim`
 - **Leichteres Custom-Runtime**: `@tsparticles/engine` + nur benotigte Plugins
-- **Fokussierte APIs**: `@tsparticles/particles`, `@tsparticles/confetti` oder `@tsparticles/fireworks`
+- **Fokussierte APIs**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks` oder `@tsparticles/ribbons`
 - **Alle Features enthalten**: `@tsparticles/all`
 
 ## Hosting / CDN

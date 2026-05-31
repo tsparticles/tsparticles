@@ -1,13 +1,15 @@
 import type { EmittersEngine } from "./EmittersEngine.js";
-import { loadEmittersInteraction } from "./interaction.lazy.js";
-import { loadEmittersPluginSimple } from "./plugin.lazy.js";
 
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  */
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
-  await loadEmittersPluginSimple(engine);
-  await loadEmittersInteraction(engine);
+  const [{ loadEmittersInteraction }, { loadEmittersPluginSimple }] = await Promise.all([
+    import("./interaction.lazy.js"),
+    import("./plugin.lazy.js"),
+  ]);
+
+  await Promise.all([loadEmittersPluginSimple(engine), loadEmittersInteraction(engine)]);
 }
 
 export * from "./ensureEmittersPluginLoaded.js";

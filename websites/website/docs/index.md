@@ -27,7 +27,7 @@ features:
   - title: Production focused
     details: Control bundle size with @tsparticles/basic, @tsparticles/slim, tsparticles, or @tsparticles/all.
   - title: Focused APIs
-    details: Use @tsparticles/particles, @tsparticles/confetti, and @tsparticles/fireworks for one-call setups.
+    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks, and @tsparticles/ribbons for one-call setups.
 ---
 
 ## Why this docs experience

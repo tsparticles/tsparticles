@@ -8,7 +8,7 @@
 
 - **Быстрый старт по умолчанию**: `@tsparticles/engine` + `@tsparticles/slim`
 - **Более легкий кастомный runtime**: `@tsparticles/engine` + только нужные plugins
-- **Фокусные API**: `@tsparticles/particles`, `@tsparticles/confetti` или `@tsparticles/fireworks`
+- **Фокусные API**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks` или `@tsparticles/ribbons`
 - **Все функции включены**: `@tsparticles/all`
 
 ## Хостинг / CDN

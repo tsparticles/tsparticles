@@ -8,7 +8,7 @@ Riferimento ufficiale: <https://github.com/tsparticles/tsparticles/blob/main/REA
 
 - **Default rapido**: `@tsparticles/engine` + `@tsparticles/slim`
 - **Runtime custom piu leggero**: `@tsparticles/engine` + solo plugin necessari
-- **API focalizzate**: `@tsparticles/particles`, `@tsparticles/confetti` o `@tsparticles/fireworks`
+- **API focalizzate**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks` o `@tsparticles/ribbons`
 - **Tutte le feature incluse**: `@tsparticles/all`
 
 ## Hosting / CDN

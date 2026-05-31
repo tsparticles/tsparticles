@@ -30,7 +30,7 @@ features:
   - title: Ottimizzato per produzione
     details: Controlla la dimensione del bundle con @tsparticles/basic, @tsparticles/slim, tsparticles o @tsparticles/all.
   - title: API focalizzate
-    details: Usa @tsparticles/particles, @tsparticles/confetti e @tsparticles/fireworks per setup in una sola chiamata.
+    details: Usa @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks e @tsparticles/ribbons per setup in una sola chiamata.
 ---
 
 ## Perché questa esperienza docs

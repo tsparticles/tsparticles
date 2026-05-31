@@ -8,7 +8,7 @@
 
 - **快速默认**: `@tsparticles/engine` + `@tsparticles/slim`
 - **更小的自定义 runtime**: `@tsparticles/engine` + 仅所需 plugins
-- **聚焦 API**: `@tsparticles/particles`、`@tsparticles/confetti` 或 `@tsparticles/fireworks`
+- **聚焦 API**: `@tsparticles/particles`、`@tsparticles/confetti`、`@tsparticles/fireworks` 或 `@tsparticles/ribbons`
 - **包含全部功能**: `@tsparticles/all`
 
 ## 托管 / CDN

@@ -30,7 +30,7 @@ features:
   - title: Pensado para produccion
     details: Controla el tamano del bundle con @tsparticles/basic, @tsparticles/slim, tsparticles o @tsparticles/all.
   - title: APIs enfocadas
-    details: Usa @tsparticles/particles, @tsparticles/confetti y @tsparticles/fireworks para setups de una sola llamada.
+    details: Usa @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks y @tsparticles/ribbons para setups de una sola llamada.
 ---
 
 ## Por que esta experiencia de documentacion

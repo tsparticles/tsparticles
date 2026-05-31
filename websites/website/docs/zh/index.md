@@ -30,7 +30,7 @@ features:
   - title: 面向生产
     details: 通过 @tsparticles/basic、@tsparticles/slim、tsparticles 或 @tsparticles/all 控制 bundle 大小。
   - title: 专注 API
-    details: 使用 @tsparticles/particles、@tsparticles/confetti 和 @tsparticles/fireworks 一次调用即可完成集成。
+    details: 使用 @tsparticles/particles、@tsparticles/confetti、@tsparticles/fireworks 和 @tsparticles/ribbons 一次调用即可完成集成。
 ---
 
 ## 为什么这样组织文档

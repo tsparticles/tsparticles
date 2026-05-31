@@ -8,7 +8,7 @@ Referencia oficial: <https://github.com/tsparticles/tsparticles/blob/main/README
 
 - **Inicio rapido**: `@tsparticles/engine` + `@tsparticles/slim`
 - **Runtime personalizado mas ligero**: `@tsparticles/engine` + solo los plugins necesarios
-- **APIs enfocadas**: `@tsparticles/particles`, `@tsparticles/confetti` o `@tsparticles/fireworks`
+- **APIs enfocadas**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks` o `@tsparticles/ribbons`
 - **Todas las funcionalidades incluidas**: `@tsparticles/all`
 
 ## Hosting / CDN

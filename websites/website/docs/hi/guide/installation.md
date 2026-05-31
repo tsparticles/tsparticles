@@ -8,7 +8,7 @@ Official reference: <https://github.com/tsparticles/tsparticles/blob/main/README
 
 - **Fast default**: `@tsparticles/engine` + `@tsparticles/slim`
 - **छोटा custom runtime**: `@tsparticles/engine` + केवल required plugins
-- **Focused APIs**: `@tsparticles/particles`, `@tsparticles/confetti`, या `@tsparticles/fireworks`
+- **Focused APIs**: `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks`, या `@tsparticles/ribbons`
 - **All features included**: `@tsparticles/all`
 
 ## Hosting / CDN
