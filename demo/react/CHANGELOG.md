@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/tsparticles/tsparticles/compare/v4.1.0...v4.1.1) (2026-05-31)
+
+### Bug Fixes
+
+- fixed issue [#5805](https://github.com/tsparticles/tsparticles/issues/5805) ([3e83574](https://github.com/tsparticles/tsparticles/commit/3e83574a226b9a6958d828ff8f86c638b7c354fa))
+
 # [4.1.0](https://github.com/tsparticles/tsparticles/compare/v4.0.5...v4.1.0) (2026-05-29)
 
 **Note:** Version bump only for package @tsparticles/react-demo
