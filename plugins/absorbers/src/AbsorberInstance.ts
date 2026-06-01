@@ -20,15 +20,16 @@ import {
   identity,
   isPointInside,
   millisecondsToSeconds,
+  minVelocity,
   originPoint,
   rangeColorToRgb,
+  squareExp,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit.js";
 
-const squareExp = 2,
-  absorbFactor = 0.033,
+const absorbFactor = 0.033,
   minOrbitLength = 0,
   minRadius = 0,
   minMass = 0,
@@ -36,7 +37,6 @@ const squareExp = 2,
   maxAngle = doublePI,
   maxDegreeAngle = 360,
   angleIncrementFactor = identity / maxDegreeAngle,
-  minVelocity = 0,
   defaultLifeDelay = 0,
   minLifeCount = 0,
   defaultSpawnDelay = 0,

@@ -9,14 +9,14 @@ import {
   calculateBounds,
   getDistances,
   getRandom,
+  minDistance,
+  minVelocity,
   originPoint,
   randomInRangeValue,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
-const minVelocity = 0,
-  minDistance = 0,
-  updateVector = Vector.origin;
+const updateVector = Vector.origin;
 
 export class OutOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];

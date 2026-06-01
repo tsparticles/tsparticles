@@ -29,14 +29,28 @@ const _animationLoop: AnimationLoop = {
 /**
  * Replaces the library random function with a custom one.
  * @param rnd - A random function that returns a number between 0 and 1.
+ * @remarks
+ * Also available on globalThis as `setParticlesRandom` in UMD/browser builds.
  */
 export function setRandom(rnd: () => number = Math.random): void {
   _random = rnd;
 }
 
 /**
+ * Returns the current random function used by the library.
+ * @returns the current random function
+ * @remarks
+ * Also available on globalThis as `getParticlesRandomFn` in UMD/browser builds.
+ */
+export function getRandomFn(): () => number {
+  return _random;
+}
+
+/**
  * Returns a random number between 0 and 1 using the library random function.
  * @returns a random number between 0 and 1
+ * @remarks
+ * Also available on globalThis as `getParticlesRandom` in UMD/browser builds.
  */
 export function getRandom(): number {
   const min = 0,

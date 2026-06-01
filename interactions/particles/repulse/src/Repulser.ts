@@ -1,12 +1,18 @@
 import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
 import { type InteractivityContainer, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
-import { type Particle, type RecursivePartial, Vector, clamp, getDistances, getRangeValue } from "@tsparticles/engine";
+import {
+  type Particle,
+  type RecursivePartial,
+  Vector,
+  clamp,
+  getDistances,
+  getRangeValue,
+  identity,
+  minDistance,
+  minVelocity,
+  squareExp,
+} from "@tsparticles/engine";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
-
-const minDistance = 0,
-  identity = 1,
-  squareExp = 2,
-  minVelocity = 0;
 
 /** Repulse particle extension type */
 export type RepulseParticle = Particle & {

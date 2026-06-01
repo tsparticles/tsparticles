@@ -6,10 +6,9 @@ import {
   type Particle,
   ParticleOutType,
   getDistances,
+  minVelocity,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
-
-const minVelocity = 0;
 
 export class DestroyOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];

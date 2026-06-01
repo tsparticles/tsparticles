@@ -482,6 +482,58 @@ await loadAppUpdater(tsParticles);
 - behavior reuse के लिए **preset** और visual identity reuse के लिए **palette** का उपयोग करें।
 - पहले custom extension को app-local रखें, और केवल तभी publish करें जब वे कई project में reuse हों।
 
+## वैश्विक रनटाइम कॉन्फ़िगरेशन
+
+tsParticles उन्नत रनटाइम अनुकूलन के लिए वैश्विक `tsParticles` ऑब्जेक्ट पर कुछ उपयोगिताएँ प्रदान करता है।
+
+### कस्टम रैंडम नंबर जनरेटर
+
+आंतरिक रैंडम फ़ंक्शन को अपने स्वयं के फ़ंक्शन से बदलें (कस्टम प्लगइन्स में नियंत्रित यादृच्छिकता के लिए उपयोगी):
+
+```js
+// कस्टम रैंडम फ़ंक्शन सेट करें
+tsParticles.setParticlesRandom(() => {
+  // आपका कस्टम रैंडम लॉजिक
+  return Math.random();
+});
+
+// वर्तमान फ़ंक्शन का उपयोग करके रैंडम नंबर प्राप्त करें
+const value = tsParticles.getParticlesRandom();
+
+// वर्तमान रैंडम फ़ंक्शन का संदर्भ प्राप्त करें
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### कस्टम लॉगर
+
+आंतरिक लॉगर को अपने स्वयं के लॉगर से बदलें (साइलेंट मोड या कस्टम लॉग हैंडलिंग के लिए उपयोगी):
+
+```js
+// कस्टम लॉगर सेट करें
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// वर्तमान लॉगर प्राप्त करें
+const logger = tsParticles.getParticlesLogger();
+```
+
+UMD स्क्रिप्ट टैग के माध्यम से लाइब्रेरी का उपयोग करते समय, ये फ़ंक्शन सीधे `globalThis` पर भी उपलब्ध हैं:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## व्यावहारिक नियम
 
 - extension name unique रखें (उदाहरण: `app-*` या company prefix)।

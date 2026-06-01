@@ -482,6 +482,58 @@ await loadAppUpdater(tsParticles);
 - 動作の再利用には **preset**、見た目の再利用には **palette** を使います。
 - まずはアプリ内ローカルのカスタム拡張として保持し、複数プロジェクトで再利用する段階で公開します。
 
+## グローバルランタイム設定
+
+tsParticles は、高度なランタイムカスタマイズのために、グローバル `tsParticles` オブジェクトにいくつかのユーティリティを公開しています。
+
+### カスタム乱数生成器
+
+内部の random 関数を独自のものに置き換えます（カスタムプラグインでの制御されたランダム性に便利）：
+
+```js
+// カスタム乱数関数を設定
+tsParticles.setParticlesRandom(() => {
+  // カスタム乱数ロジック
+  return Math.random();
+});
+
+// 現在の関数で乱数を取得
+const value = tsParticles.getParticlesRandom();
+
+// 現在の乱数関数の参照を取得
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### カスタムロガー
+
+内部のロガーを独自のものに置き換えます（サイレントモードやカスタムログ処理に便利）：
+
+```js
+// カスタムロガーを設定
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// 現在のロガーを取得
+const logger = tsParticles.getParticlesLogger();
+```
+
+UMD script タグでライブラリを使用する場合、これらの関数は `globalThis` から直接利用できます：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## 実践ルール
 
 - 拡張名は一意に保ちます（例: `app-*` や会社プレフィックス）。

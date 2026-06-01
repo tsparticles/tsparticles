@@ -482,6 +482,58 @@ await loadAppUpdater(tsParticles);
 - Используйте **preset** для повторного использования поведения, а **palette** - для повторного использования визуального стиля.
 - Сначала держите пользовательские расширения локально в приложении, публикуйте только при повторном использовании между проектами.
 
+## Глобальная конфигурация runtime
+
+tsParticles предоставляет несколько утилит на глобальном объекте `tsParticles` для продвинутой настройки во время выполнения.
+
+### Пользовательский генератор случайных чисел
+
+Замените внутреннюю функцию random на свою (полезно для контролируемой случайности в пользовательских плагинах):
+
+```js
+// Установить пользовательскую функцию random
+tsParticles.setParticlesRandom(() => {
+  // ваша логика random
+  return Math.random();
+});
+
+// Получить случайное число с помощью текущей функции
+const value = tsParticles.getParticlesRandom();
+
+// Получить ссылку на текущую функцию random
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Пользовательский логгер
+
+Замените внутренний логгер на свой (полезно для тихого режима или пользовательской обработки логов):
+
+```js
+// Установить пользовательский логгер
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Получить текущий логгер
+const logger = tsParticles.getParticlesLogger();
+```
+
+При использовании библиотеки через UMD script tag эти функции также доступны напрямую через `globalThis`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Практические правила
 
 - Используйте уникальные имена расширений (например `app-*` или префикс компании).
