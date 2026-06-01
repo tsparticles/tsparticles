@@ -207,8 +207,8 @@ export function convertOptions(
         random: true,
         straight: false,
         outModes: {
-          default: "none",
-          bottom: "destroy",
+          top: "none",
+          default: "destroy",
         },
       },
       rotate: {
@@ -293,7 +293,7 @@ export async function setConfetti(engine: Engine, params: ConfettiParams): Promi
 
   const fpsLimit = 120,
     fpsLimitFactor = 3.6,
-    opacitySpeed = (actualOptions.ticks * millisecondsToSeconds) / (fpsLimitFactor * millisecondsToSeconds * fpsLimit);
+    opacitySpeed = (fpsLimitFactor * fpsLimit * millisecondsToSeconds) / (actualOptions.ticks * millisecondsToSeconds);
 
   /* Check if there is already an entry for this ID */
   let containerOrPromise = ids.get(params.id);
