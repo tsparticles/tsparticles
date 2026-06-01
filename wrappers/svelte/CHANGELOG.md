@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @tsparticles/svelte
 
-
-
-
-
 ## [4.1.1](https://github.com/tsparticles/tsparticles/compare/v4.1.0...v4.1.1) (2026-05-31)
 
 **Note:** Version bump only for package @tsparticles/svelte
