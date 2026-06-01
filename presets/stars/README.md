@@ -25,7 +25,7 @@
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@3/tsparticles.preset.stars.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@4/tsparticles.preset.stars.bundle.min.js"></script>
 ```
 
 ### Usage

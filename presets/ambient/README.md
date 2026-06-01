@@ -25,7 +25,7 @@
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-ambient@3/tsparticles.preset.ambient.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-ambient@4/tsparticles.preset.ambient.bundle.min.js"></script>
 ```
 
 ### Usage

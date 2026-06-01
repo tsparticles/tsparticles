@@ -25,7 +25,7 @@
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-party@3/tsparticles.preset.party.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-party@4/tsparticles.preset.party.bundle.min.js"></script>
 ```
 
 ### Usage

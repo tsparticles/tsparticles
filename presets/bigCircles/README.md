@@ -25,7 +25,7 @@
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-big-circles@3/tsparticles.preset.bigCircles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-big-circles@4/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
 ### Usage

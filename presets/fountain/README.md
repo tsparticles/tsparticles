@@ -26,7 +26,7 @@ that break when hitting the ground.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-fountain@3/tsparticles.preset.fountain.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-fountain@4/tsparticles.preset.fountain.bundle.min.js"></script>
 ```
 
 ### Usage

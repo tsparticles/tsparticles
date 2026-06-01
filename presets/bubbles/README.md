@@ -26,7 +26,7 @@ screen on a white background.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-bubbles@3/tsparticles.preset.bubbles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-bubbles@4/tsparticles.preset.bubbles.bundle.min.js"></script>
 ```
 
 ### Usage

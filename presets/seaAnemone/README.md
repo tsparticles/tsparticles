@@ -26,7 +26,7 @@ particles spawned in the canvas center.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-sea-anemone@3/tsparticles.preset.seaAnemone.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-sea-anemone@4/tsparticles.preset.seaAnemone.bundle.min.js"></script>
 ```
 
 ### Usage
