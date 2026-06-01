@@ -1,0 +1,13 @@
+{
+    "projectDocuments": ["./markdown/*.md"],
+    "entryPoints": ["./src/"],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles Party Preset",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}

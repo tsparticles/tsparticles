@@ -1,12 +1,14 @@
 import { loadFireflyPreset } from "./index.js";
-
+import { tsParticles } from "@tsparticles/engine";
 export { loadFireflyPreset } from "./index.js";
-export { tsParticles } from "@tsparticles/engine";
+export { tsParticles };
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadFireflyPreset?: typeof loadFireflyPreset;
+  tsParticles?: typeof tsParticles;
 };
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 
 globalObject.loadFireflyPreset = loadFireflyPreset;
+
+globalObject.tsParticles = tsParticles;

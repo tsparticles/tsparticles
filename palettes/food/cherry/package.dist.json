@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-cherry",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "tsParticles cherry palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.1.1"
+    "@tsparticles/engine": "4.1.2"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

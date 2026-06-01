@@ -1,12 +1,14 @@
 import { loadMatrixPreset } from "./index.js";
-
+import { tsParticles } from "@tsparticles/engine";
 export { loadMatrixPreset } from "./index.js";
-export { tsParticles } from "@tsparticles/engine";
+export { tsParticles };
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadMatrixPreset?: typeof loadMatrixPreset;
+  tsParticles?: typeof tsParticles;
 };
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 
 globalObject.loadMatrixPreset = loadMatrixPreset;
+
+globalObject.tsParticles = tsParticles;

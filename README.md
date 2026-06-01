@@ -86,6 +86,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
     - [Confetti Explosions](#confetti-explosions)
     - [Confetti Falling](#confetti-falling)
     - [Confetti Parade](#confetti-parade)
+    - [Party](#party)
     - [Fire](#fire)
     - [Firefly](#firefly)
     - [Fireworks](#fireworks)
@@ -632,6 +633,16 @@ This preset loads confetti moving horizontally across the screen like a parade.
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/confettiParade/images/sample.png)](https://particles.js.org/samples/presets/confettiParade)
 
 You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confettiParade#readme)
+
+### Party
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-party/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-party) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-party.svg)](https://www.npmjs.com/package/@tsparticles/preset-party) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-party)](https://www.npmjs.com/package/@tsparticles/preset-party)
+
+This preset creates an animated confetti-like celebration effect.
+
+[![demo](https://github.com/tsparticles/presets/raw/main/presets/party/images/sample.png)](https://particles.js.org/samples/presets/party)
+
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/party#readme)
 
 ### Fire
 

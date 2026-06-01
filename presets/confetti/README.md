@@ -26,7 +26,7 @@ center on a transparent background.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-confetti@3/tsparticles.preset.confetti.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-confetti@4/tsparticles.preset.confetti.bundle.min.js"></script>
 ```
 
 ### Usage

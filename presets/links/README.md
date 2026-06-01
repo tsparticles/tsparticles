@@ -26,7 +26,7 @@ between them.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@3/tsparticles.preset.links.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@4/tsparticles.preset.links.min.js"></script>
 ```
 
 ### Usage

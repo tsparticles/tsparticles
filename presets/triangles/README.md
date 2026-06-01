@@ -26,7 +26,7 @@ between them.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-triangles@3/tsparticles.preset.triangles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-triangles@4/tsparticles.preset.triangles.bundle.min.js"></script>
 ```
 
 ### Usage

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-out-modes",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "tsParticles particles out modes updater",
   "homepage": "https://particles.js.org",
   "scripts": {

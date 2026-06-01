@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/tsparticles/tsparticles/compare/v4.1.1...v4.1.2) (2026-06-01)
+
+### Bug Fixes
+
+- bundle exports fix ([429c147](https://github.com/tsparticles/tsparticles/commit/429c147d108cb2121a8efbc70fc373076576da57))
+- fixed lazy loading of absorbers and emitters lazy indexes ([5cdf18b](https://github.com/tsparticles/tsparticles/commit/5cdf18b5a91e629106a7ff84ad754b534ada43c3))
+- fixed ticks issue in confetti bundle ([0d88bf1](https://github.com/tsparticles/tsparticles/commit/0d88bf173b4a12512b99ab70cdfb3f493f70aafe))
+
 ## [4.1.1](https://github.com/tsparticles/tsparticles/compare/v4.1.0...v4.1.1) (2026-05-31)
 
 ### Bug Fixes

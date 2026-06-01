@@ -176,6 +176,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Confetti Explosions", link: "/demos/recipes/confetti-explosions" },
         { text: "Confetti Falling", link: "/demos/recipes/confetti-falling" },
         { text: "Confetti Parade", link: "/demos/recipes/confetti-parade" },
+        { text: "Party", link: "/demos/recipes/party" },
         { text: "Fire", link: "/demos/recipes/fire" },
         { text: "Firefly", link: "/demos/recipes/firefly" },
         { text: "Fireworks", link: "/demos/recipes/fireworks" },

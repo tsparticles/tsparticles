@@ -26,7 +26,7 @@ colored like fire and ash sparks.
 ### CDN / Vanilla JS / jQuery
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-fire@3/tsparticles.preset.fire.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-fire@4/tsparticles.preset.fire.bundle.min.js"></script>
 ```
 
 ### Usage

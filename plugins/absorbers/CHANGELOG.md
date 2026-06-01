@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/tsparticles/tsparticles/compare/v4.1.1...v4.1.2) (2026-06-01)
+
+### Bug Fixes
+
+- fixed lazy loading of absorbers and emitters lazy indexes ([5cdf18b](https://github.com/tsparticles/tsparticles/commit/5cdf18b5a91e629106a7ff84ad754b534ada43c3))
+
 ## [4.1.1](https://github.com/tsparticles/tsparticles/compare/v4.1.0...v4.1.1) (2026-05-31)
 
 **Note:** Version bump only for package @tsparticles/plugin-absorbers

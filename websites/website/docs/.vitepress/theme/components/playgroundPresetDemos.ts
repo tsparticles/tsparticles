@@ -90,6 +90,17 @@ export const presetDemos: DemoPreset[] = [
     },
   },
   {
+    key: "party",
+    title: "Party Preset",
+    description: "Official party preset with confetti-like celebration effects.",
+    category: "interactive",
+    kind: "preset",
+    recipePath: "/demos/recipes/party",
+    options: {
+      preset: "party",
+    },
+  },
+  {
     key: "fire",
     title: "Fire Preset",
     description: "Official fire preset with flame and heat effects.",

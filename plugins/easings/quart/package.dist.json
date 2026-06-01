@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-quart",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "tsParticles easing quart plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.1.1"
+    "@tsparticles/engine": "4.1.2"
   },
   "publishConfig": {
     "access": "public"
