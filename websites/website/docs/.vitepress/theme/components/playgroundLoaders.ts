@@ -13,6 +13,7 @@ import { loadConfettiCannonPreset } from "@tsparticles/preset-confetti-cannon";
 import { loadConfettiExplosionsPreset } from "@tsparticles/preset-confetti-explosions";
 import { loadConfettiFallingPreset } from "@tsparticles/preset-confetti-falling";
 import { loadConfettiParadePreset } from "@tsparticles/preset-confetti-parade";
+import { loadPartyPreset } from "@tsparticles/preset-party";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 import { loadFireflyPreset } from "@tsparticles/preset-firefly";
 import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
@@ -241,6 +242,7 @@ const presetLoaders: readonly ((engine: Engine) => Promise<void>)[] = [
   loadConfettiExplosionsPreset,
   loadConfettiFallingPreset,
   loadConfettiParadePreset,
+  loadPartyPreset,
   loadFirePreset,
   loadFireflyPreset,
   loadFireworksPreset,

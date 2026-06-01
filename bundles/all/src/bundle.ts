@@ -1,12 +1,14 @@
-import { loadAll } from "./index.js";
-
 export * from "@tsparticles/engine";
+import { loadAll } from "./index.js";
+import { tsParticles } from "@tsparticles/engine";
 export { loadAll } from "./index.js";
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadAll?: typeof loadAll;
+  tsParticles?: typeof tsParticles;
 };
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 
 globalObject.loadAll = loadAll;
+
+globalObject.tsParticles = tsParticles;

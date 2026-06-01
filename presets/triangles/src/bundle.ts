@@ -1,12 +1,14 @@
 import { loadTrianglesPreset } from "./index.js";
-
+import { tsParticles } from "@tsparticles/engine";
 export { loadTrianglesPreset } from "./index.js";
-export { tsParticles } from "@tsparticles/engine";
+export { tsParticles };
 
 const globalObject = globalThis as typeof globalThis & {
   __tsParticlesInternals?: Record<string, unknown>;
   loadTrianglesPreset?: typeof loadTrianglesPreset;
+  tsParticles?: typeof tsParticles;
 };
-globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 
 globalObject.loadTrianglesPreset = loadTrianglesPreset;
+
+globalObject.tsParticles = tsParticles;

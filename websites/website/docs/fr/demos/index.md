@@ -38,6 +38,7 @@ export function resume(): void {
 - [`Confetti Explosions`](/fr/demos/recipes/confetti-explosions)
 - [`Confetti Falling`](/fr/demos/recipes/confetti-falling)
 - [`Confetti Parade`](/fr/demos/recipes/confetti-parade)
+- [`Party`](/fr/demos/recipes/party)
 - [`Fire`](/fr/demos/recipes/fire)
 - [`Firefly`](/fr/demos/recipes/firefly)
 - [`Fireworks`](/fr/demos/recipes/fireworks)

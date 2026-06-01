@@ -95,6 +95,7 @@ Main preset catalog:
 - Confetti Explosions
 - Confetti Falling
 - Confetti Parade
+- Party
 - Fire
 - Firefly
 - Fireworks

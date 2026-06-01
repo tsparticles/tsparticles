@@ -237,6 +237,7 @@
         "@tsparticles/preset-confetti-explosions": "workspace:*",
         "@tsparticles/preset-confetti-falling": "workspace:*",
         "@tsparticles/preset-confetti-parade": "workspace:*",
+    "@tsparticles/preset-party": "workspace:*",
         "@tsparticles/preset-fire": "workspace:*",
         "@tsparticles/preset-firefly": "workspace:*",
         "@tsparticles/preset-fireworks": "workspace:*",
