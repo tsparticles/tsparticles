@@ -1,5 +1,5 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IAttract, IAttractRestore } from "../Interfaces/IAttract.js";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 
 /** Attract mode options class */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
