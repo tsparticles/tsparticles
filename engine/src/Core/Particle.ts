@@ -738,22 +738,19 @@ export class Particle {
     const angle = this.roll.angle;
 
     if (this.roll.horizontal && this.roll.vertical) {
-      const normalizedAngle = angle % doublePI,
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + doublePI : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle, doublePI);
 
       return adjustedAngle >= Math.PI * half && adjustedAngle < Math.PI * triple * half;
     }
 
     if (this.roll.horizontal) {
-      const normalizedAngle = (angle + Math.PI * half) % (Math.PI * double),
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle + Math.PI * half, Math.PI * double);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }
 
     if (this.roll.vertical) {
-      const normalizedAngle = angle % (Math.PI * double),
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle, Math.PI * double);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }
@@ -1045,4 +1042,15 @@ export class Particle {
       reason: result.reason ?? reason,
     };
   }
+}
+
+/**
+ *
+ * @param angle
+ * @param modulus
+ */
+function normalizeAngle(angle: number, modulus: number): number {
+  const normalized = angle % modulus;
+
+  return normalized < defaultAngle ? normalized + modulus : normalized;
 }
