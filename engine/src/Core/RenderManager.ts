@@ -428,20 +428,20 @@ export class RenderManager {
     });
   }
 
-  readonly #applyPostDrawUpdaters: (particle: Particle) => void = particle => {
+  #applyPostDrawUpdaters(particle: Particle): void {
     for (const updater of this.#postDrawUpdaters) {
       updater.afterDraw?.(particle);
     }
-  };
+  }
 
-  readonly #applyPreDrawUpdaters: (
+  #applyPreDrawUpdaters(
     ctx: OffscreenCanvasRenderingContext2D,
     particle: Particle,
     radius: number,
     zOpacity: number,
     colorStyles: IParticleColorStyle,
     transform: Partial<IParticleTransformValues>,
-  ) => void = (ctx, particle, radius, zOpacity, colorStyles, transform) => {
+  ): void {
     for (const updater of this.#preDrawUpdaters) {
       if (updater.getColorStyles) {
         const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
@@ -465,9 +465,9 @@ export class RenderManager {
 
       updater.beforeDraw?.(particle);
     }
-  };
+  }
 
-  readonly #getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = particle => {
+  #getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
     let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
     for (const plugin of this.#colorPlugins) {
@@ -488,5 +488,5 @@ export class RenderManager {
     this.#reusablePluginColors[sColorIndex] = sColor;
 
     return this.#reusablePluginColors;
-  };
+  }
 }

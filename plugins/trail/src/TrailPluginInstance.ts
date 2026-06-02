@@ -74,7 +74,7 @@ export class TrailPluginInstance implements IContainerPlugin {
     }
   }
 
-  readonly #initTrail: () => Promise<void> = async () => {
+  async #initTrail(): Promise<void> {
     const options = this.#container.actualOptions,
       trail = options.trail;
 
@@ -124,5 +124,5 @@ export class TrailPluginInstance implements IContainerPlugin {
         img.src = trailFill.image;
       });
     }
-  };
+  }
 }

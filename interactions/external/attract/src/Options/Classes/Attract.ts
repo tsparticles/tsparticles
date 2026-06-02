@@ -1,4 +1,4 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IAttract, IAttractRestore } from "../Interfaces/IAttract.js";
 
 /** Attract mode options class */
@@ -10,7 +10,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
   duration;
 
   /** Easing type used for the attraction animation */
-  easing: EasingType | EasingTypeAlt;
+  easing: string;
 
   /** Attraction factor multiplier */
   factor;
@@ -27,7 +27,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
   constructor() {
     this.distance = 200;
     this.duration = 0.4;
-    this.easing = EasingType.easeOutQuad;
+    this.easing = "ease-out-quad";
     this.factor = 1;
     this.maxSpeed = 50;
     this.speed = 1;

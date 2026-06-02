@@ -79,7 +79,7 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
     return res;
   }
 
-  readonly #exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async data => {
+  async #exportVideo(data: IExportVideoData): Promise<Blob | undefined> {
     const element = this.#container.canvas.domElement;
 
     if (!element) {
@@ -113,5 +113,5 @@ export class ExportVideoPluginInstance implements IContainerPlugin {
         data.duration ?? defaultDuration * millisecondsToSeconds,
       );
     });
-  };
+  }
 }

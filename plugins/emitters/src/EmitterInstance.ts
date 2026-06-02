@@ -472,7 +472,7 @@ export class EmitterInstance {
     );
   }
 
-  readonly #destroy: () => void = () => {
+  #destroy(): void {
     this.#mutationObserver?.disconnect();
     this.#mutationObserver = undefined;
 
@@ -484,7 +484,7 @@ export class EmitterInstance {
     this.#container.dispatchEvent("emitterDestroyed", {
       emitter: this,
     });
-  };
+  }
 
   #emit(): void {
     if (this.#paused) {
@@ -602,7 +602,7 @@ export class EmitterInstance {
     }
   }
 
-  readonly #prepareToDie: () => void = () => {
+  #prepareToDie(): void {
     if (this.#paused) {
       return;
     }
@@ -614,14 +614,14 @@ export class EmitterInstance {
     if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
       this.#duration = duration * millisecondsToSeconds;
     }
-  };
+  }
 
-  readonly #setColorAnimation = (
+  #setColorAnimation(
     animation: IColorAnimation,
     initValue: number,
     maxValue: number,
     factor: number = defaultColorAnimationFactor,
-  ): number => {
+  ): number {
     const container = this.#container;
 
     if (!animation.enable) {
@@ -636,5 +636,5 @@ export class EmitterInstance {
       colorSpeed = getRangeValue(animation.speed);
 
     return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
-  };
+  }
 }

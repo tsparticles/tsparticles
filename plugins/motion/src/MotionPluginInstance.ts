@@ -58,7 +58,7 @@ export class MotionPluginInstance implements IContainerPlugin {
     await Promise.resolve();
   }
 
-  readonly #handleMotionChange: (mediaQuery: MediaQueryList) => void = mediaQuery => {
+  #handleMotionChange(mediaQuery: MediaQueryList): void {
     const container = this.#container,
       motion = container.actualOptions.motion;
 
@@ -75,5 +75,5 @@ export class MotionPluginInstance implements IContainerPlugin {
     } else {
       container.retina.reduceFactor = defaultReduce;
     }
-  };
+  }
 }

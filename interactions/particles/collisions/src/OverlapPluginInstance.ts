@@ -14,11 +14,7 @@ export class OverlapPluginInstance implements IContainerPlugin {
     return !this.#hasOverlaps(particle, position, tryCount);
   }
 
-  readonly #hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean = (
-    particle,
-    pos,
-    tryCount,
-  ) => {
+  #hasOverlaps(particle: CollisionParticle, pos: ICoordinates, tryCount: number): boolean {
     const collisionsOptions = particle.options.collisions;
 
     if (!collisionsOptions?.enable) {
@@ -38,5 +34,5 @@ export class OverlapPluginInstance implements IContainerPlugin {
     }
 
     return !!this.#container.particles.find(p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius());
-  };
+  }
 }

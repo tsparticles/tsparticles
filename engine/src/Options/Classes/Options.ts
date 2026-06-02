@@ -196,7 +196,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     });
   }
 
-  readonly #importPalette: (palette: string) => void = palette => {
+  #importPalette(palette: string): void {
     const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
@@ -215,9 +215,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         palette,
       },
     });
-  };
+  }
 
-  readonly #importPreset: (preset: string) => void = preset => {
+  #importPreset(preset: string): void {
     this.load(this.#pluginManager.getPreset(preset));
-  };
+  }
 }

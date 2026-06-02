@@ -459,13 +459,13 @@ export class CanvasManager {
     }
   }
 
-  readonly #applyResizePlugins: () => void = () => {
+  #applyResizePlugins(): void {
     for (const plugin of this.#resizePlugins) {
       plugin.resize?.();
     }
-  };
+  }
 
-  readonly #initStyle: () => void = () => {
+  #initStyle(): void {
     const element = this.domElement,
       options = this.#container.actualOptions;
 
@@ -492,9 +492,9 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
-  };
+  }
 
-  readonly #repairStyle: () => void = () => {
+  #repairStyle(): void {
     const element = this.domElement;
 
     if (!element) {
@@ -519,9 +519,9 @@ export class CanvasManager {
 
       observer.observe(element, { attributes: true });
     });
-  };
+  }
 
-  readonly #resetOriginalStyle: () => void = () => {
+  #resetOriginalStyle(): void {
     const element = this.domElement,
       originalStyle = this.#originalStyle;
 
@@ -530,17 +530,17 @@ export class CanvasManager {
     }
 
     setStyle(element, originalStyle, true);
-  };
+  }
 
-  readonly #safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
+  #safeMutationObserver(callback: (observer: MutationObserver) => void): void {
     if (!this.#mutationObserver) {
       return;
     }
 
     callback(this.#mutationObserver);
-  };
+  }
 
-  readonly #setFullScreenStyle: () => void = () => {
+  #setFullScreenStyle(): void {
     const element = this.domElement;
 
     if (!element) {
@@ -548,5 +548,5 @@ export class CanvasManager {
     }
 
     setStyle(element, getFullScreenStyle(this.#container.actualOptions.fullScreen.zIndex), true);
-  };
+  }
 }

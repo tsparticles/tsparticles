@@ -132,7 +132,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
   }
 
-  readonly #importPalette = (palette: string): void => {
+  #importPalette(palette: string): void {
     const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
@@ -191,5 +191,5 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         mode: paletteData.blendMode,
       },
     });
-  };
+  }
 }

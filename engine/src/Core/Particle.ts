@@ -778,10 +778,7 @@ export class Particle {
     }
   }
 
-  readonly #calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
-    position,
-    zIndex,
-  ) => {
+  #calcPosition(position: ICoordinates | undefined, zIndex: number): Vector3d | undefined {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
@@ -789,11 +786,9 @@ export class Particle {
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
-      canvasSize = container.canvas.size,
-      abortController = new AbortController(),
-      { signal } = abortController;
+      canvasSize = container.canvas.size;
 
-    while (!signal.aborted) {
+    for (;;) {
       for (const plugin of plugins) {
         const pluginPos = plugin.particlePosition?.(posVec, this);
 
@@ -832,11 +827,9 @@ export class Particle {
 
       posVec = undefined;
     }
+  }
 
-    return posVec;
-  };
-
-  readonly #calculateVelocity: () => Vector = () => {
+  #calculateVelocity(): Vector {
     const moveOptions = this.options.move,
       baseVelocity = getParticleBaseVelocity(this.direction),
       res = baseVelocity.copy();
@@ -861,9 +854,9 @@ export class Particle {
     }
 
     return res;
-  };
+  }
 
-  readonly #fixHorizontal = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
+  #fixHorizontal(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -872,9 +865,9 @@ export class Particle {
       setCb: (value: number) => (pos.x += value),
       radius,
     });
-  };
+  }
 
-  readonly #fixVertical = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
+  #fixVertical(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -883,12 +876,12 @@ export class Particle {
       setCb: (value: number) => (pos.y += value),
       radius,
     });
-  };
+  }
 
-  readonly #getDefaultInsideCanvasResult = (
+  #getDefaultInsideCanvasResult(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
-  ): IParticleCanvasBoundsResult => {
+  ): IParticleCanvasBoundsResult {
     const radius = this.getRadius(),
       canvasSize = this.#container.canvas.size,
       position = this.position,
@@ -930,12 +923,12 @@ export class Particle {
         position.x <= canvasSize.width + radius,
       reason: "default",
     };
-  };
+  }
 
-  readonly #getInsideCanvasCallbackData = (
+  #getInsideCanvasCallbackData(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
-  ): IParticleCanvasBoundsData => {
+  ): IParticleCanvasBoundsData {
     return {
       canvasSize: this.#container.canvas.size,
       direction,
@@ -943,12 +936,12 @@ export class Particle {
       particle: this,
       radius: this.getRadius(),
     };
-  };
+  }
 
-  readonly #getInsideCanvasResult = (data: {
+  #getInsideCanvasResult(data: {
     direction?: OutModeDirection;
     outMode?: OutMode | keyof typeof OutMode;
-  }): IParticleCanvasBoundsResult => {
+  }): IParticleCanvasBoundsResult {
     const defaultResult = this.#getDefaultInsideCanvasResult(data.direction, data.outMode),
       container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
@@ -975,9 +968,9 @@ export class Particle {
     }
 
     return shapeResult ?? effectResult ?? defaultResult;
-  };
+  }
 
-  readonly #getRollColor: (color?: IHsl) => IHsl | undefined = color => {
+  #getRollColor(color?: IHsl): IHsl | undefined {
     if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
       return color;
     }
@@ -995,9 +988,9 @@ export class Particle {
     }
 
     return color;
-  };
+  }
 
-  readonly #initPosition: (position?: ICoordinates) => void = position => {
+  #initPosition(position?: ICoordinates): void {
     const container = this.#container,
       zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value)),
       initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
@@ -1033,12 +1026,12 @@ export class Particle {
 
     /* parallax */
     this.offset = Vector.origin;
-  };
+  }
 
-  readonly #normalizeInsideCanvasResult = (
+  #normalizeInsideCanvasResult(
     result: boolean | IParticleCanvasBoundsResult,
     reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,
-  ): IParticleCanvasBoundsResult => {
+  ): IParticleCanvasBoundsResult {
     if (typeof result === "boolean") {
       return {
         inside: result,
@@ -1051,5 +1044,5 @@ export class Particle {
       margin: result.margin,
       reason: result.reason ?? reason,
     };
-  };
+  }
 }

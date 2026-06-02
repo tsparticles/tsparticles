@@ -1,4 +1,4 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IRepulseBase, IRepulseRestore } from "../Interfaces/IRepulseBase.js";
 
 /**
@@ -10,7 +10,7 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
   /** Repulse animation duration in seconds */
   duration;
   /** Easing type used for the repulse animation */
-  easing: EasingType | EasingTypeAlt;
+  easing: string;
   /** Repulse factor multiplier */
   factor;
   /** Maximum repulse speed */
@@ -26,7 +26,7 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
     this.factor = 100;
     this.speed = 1;
     this.maxSpeed = 50;
-    this.easing = EasingType.easeOutQuad;
+    this.easing = "ease-out-quad";
     this.restore = {
       enable: false,
       delay: 0,

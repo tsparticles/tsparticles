@@ -75,26 +75,26 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     this.#updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
   }
 
-  readonly #addUpdaterIfMissing = (
+  #addUpdaterIfMissing(
     particle: Particle,
     outMode: OutMode,
     getUpdater: (container: Container) => IOutModeManager,
-  ): void => {
+  ): void {
     const outModes = particle.options.move.outModes;
 
     if (!this.updaters.has(outMode) && checkOutMode(outModes, outMode)) {
       this.updaters.set(outMode, getUpdater(this.#container));
     }
-  };
+  }
 
-  readonly #updateOutMode = (
+  #updateOutMode(
     particle: Particle,
     delta: IDelta,
     outMode: OutMode | keyof typeof OutMode,
     direction: OutModeDirection,
-  ): void => {
+  ): void {
     for (const updater of this.updaters.values()) {
       updater.update(particle, direction, delta, outMode);
     }
-  };
+  }
 }

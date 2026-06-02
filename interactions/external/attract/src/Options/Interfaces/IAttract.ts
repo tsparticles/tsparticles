@@ -1,4 +1,4 @@
-import type { EasingType, EasingTypeAlt } from "@tsparticles/engine";
+
 
 /** Restore behavior options after attract interaction */
 export interface IAttractRestore {
@@ -19,7 +19,7 @@ export interface IAttract {
   /** Attract animation duration in seconds */
   duration: number;
   /** Attract animation easing type */
-  easing: EasingType | EasingTypeAlt;
+  easing: string;
   /** Attract factor multiplier */
   factor: number;
   /** Maximum attract speed */

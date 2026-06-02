@@ -16,7 +16,7 @@ export * from "./Enums/Types/DestroyType.js";
 export * from "./Enums/Types/GradientType.js";
 export * from "./Enums/Types/ParticleOutType.js";
 export * from "./Enums/Types/StartValueType.js";
-export * from "./Enums/Types/EasingType.js";
+
 export * from "./Enums/Types/EventType.js";
 
 export * from "./Enums/AnimationStatus.js";

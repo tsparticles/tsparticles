@@ -362,7 +362,7 @@ export class InteractionManager {
     container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
-  readonly #intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
+  #intersectionManager(entries: IntersectionObserverEntry[]): void {
     const container = this.#container;
 
     if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
@@ -380,5 +380,5 @@ export class InteractionManager {
         container.pause();
       }
     }
-  };
+  }
 }

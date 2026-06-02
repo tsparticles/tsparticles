@@ -1,4 +1,3 @@
-import type { EasingType, EasingTypeAlt } from "../../Enums/Types/EasingType.js";
 import type {
   EffectInitializer,
   Initializers,
@@ -44,7 +43,7 @@ export class PluginManager {
   readonly colorManagers = new Map<string, IColorManager>();
 
   /** The easing functions map */
-  readonly easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+  readonly easingFunctions = new Map<string, EasingFunction>();
 
   /**
    * The drawers (additional effects) array
@@ -142,7 +141,7 @@ export class PluginManager {
    * @param name - Easing identifier.
    * @param easing - Easing function implementation.
    */
-  addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
+  addEasing(name: string, easing: EasingFunction): void {
     if (this.easingFunctions.get(name)) {
       return;
     }
@@ -229,7 +228,7 @@ export class PluginManager {
    * @param name - Easing identifier.
    * @returns The easing function, or a passthrough easing if not found.
    */
-  getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
+  getEasing(name: string): EasingFunction {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
   }
 

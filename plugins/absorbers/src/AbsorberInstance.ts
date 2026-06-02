@@ -301,19 +301,19 @@ export class AbsorberInstance {
    * @internal
    * @returns the calculated position for the absorber
    */
-  readonly #calcPosition: () => Vector = () => {
+  #calcPosition(): Vector {
     const exactPosition = calcPositionOrRandomFromSizeRanged({
       size: this.#container.canvas.size,
       position: this.options.position,
     });
 
     return Vector.create(exactPosition.x, exactPosition.y);
-  };
+  }
 
   /**
    * Play method that prepares the absorber to be drawn and updated
    */
-  readonly #play: () => void = () => {
+  #play(): void {
     if (
       !(
         (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
@@ -326,20 +326,20 @@ export class AbsorberInstance {
     if (this.#lifeCount > minLifeCount || this.#immortal) {
       this.#prepareToDie();
     }
-  };
+  }
 
   /**
    * Prepares the absorber to die by calculating its life duration
    * @internal
    */
-  readonly #prepareToDie: () => void = () => {
+  #prepareToDie(): void {
     const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
       minDuration = 0;
 
     if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
       this.#duration = duration * millisecondsToSeconds;
     }
-  };
+  }
 
   /**
    * Updates the particle position, if the particle needs a new position
@@ -348,11 +348,7 @@ export class AbsorberInstance {
    * @param v - the vector used for calculating the distance between the Absorber and the particle
    * @internal
    */
-  readonly #updateParticlePosition: (particle: OrbitingParticle, delta: IDelta, v: Vector) => void = (
-    particle,
-    delta,
-    v,
-  ) => {
+  #updateParticlePosition(particle: OrbitingParticle, delta: IDelta, v: Vector): void {
     if (particle.destroyed) {
       return;
     }
@@ -410,5 +406,5 @@ export class AbsorberInstance {
     } else {
       particle.velocity.addTo(v);
     }
-  };
+  }
 }
