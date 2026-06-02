@@ -201,25 +201,6 @@ export function colorToRgb(
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
-export function colorToHsl(
-  pluginManager: PluginManager,
-  color: string | IColor | undefined,
-  index?: number,
-  useIndex = true,
-): IHsl | undefined {
-  const rgb = colorToRgb(pluginManager, color, index, useIndex);
-
-  return rgb ? rgbToHsl(rgb) : undefined;
-}
-
-/**
- * Gets the particles color
- * @param pluginManager - the plugin manager
- * @param color - the input color to convert in {@link IHsl} object
- * @param index - the array index, if needed
- * @param useIndex - set to false to ignore the index parameter
- * @returns the {@link IHsl} object
- */
 export function rangeColorToHsl(
   pluginManager: PluginManager,
   color: string | IRangeColor | undefined,

@@ -160,7 +160,7 @@ export function memoize<TArgs extends unknown[], Result>(
 /**
  * @returns true if the environment supports matchMedia feature
  */
-export function hasMatchMedia(): boolean {
+function hasMatchMedia(): boolean {
   return typeof matchMedia !== "undefined";
 }
 

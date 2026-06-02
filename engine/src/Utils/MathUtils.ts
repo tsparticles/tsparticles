@@ -359,20 +359,6 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
 }
 
 /**
- * Gets exact position from exact position, or a random one if not specified, based on the given size
- * @param data - the data to use for calculating the position
- * @returns the exact position
- */
-export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
-  const position = {
-    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
-  };
-
-  return calcExactPositionOrRandomFromSize({ size: data.size, position });
-}
-
-/**
  * @param input -
  * @returns the parsed color
  */

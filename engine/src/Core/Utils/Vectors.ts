@@ -142,16 +142,6 @@ export class Vector3d implements ICoordinates3d {
   }
 
   /**
-   * Divides the given scalar from the current vector, modifying it
-   * @param n - the scalar value to divide from the current vector
-   */
-  divTo(n: number): void {
-    this.x /= n;
-    this.y /= n;
-    this.z /= n;
-  }
-
-  /**
    * Get the squared length value
    * @returns the squared length value
    */
