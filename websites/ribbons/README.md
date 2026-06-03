@@ -6,7 +6,7 @@ tsParticles official ribbons website examples.
 
 - Basic Ribbons
 - Custom Colors
-- Wide Spread
+- Multiple Bursts
 - Continuous Fall
 - Custom Canvas
 - Fixed Position

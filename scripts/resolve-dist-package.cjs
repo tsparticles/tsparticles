@@ -10,7 +10,13 @@ const distPkgOut = path.join(distDir, "package.json");
 
 const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
 const distPkg = JSON.parse(fs.readFileSync(distPkgPath, "utf8"));
+const srcPkg = JSON.parse(fs.readFileSync(distPkgPath, "utf8"));
 
+/* sync version back to source template, but keep __VERSION__ placeholders intact */
+srcPkg.version = pkg.version;
+fs.writeFileSync(distPkgPath, JSON.stringify(srcPkg, null, 2) + "\n");
+
+/* resolve __VERSION__ for the published dist/package.json */
 distPkg.version = pkg.version;
 
 for (const key of ["dependencies", "peerDependencies", "optionalDependencies"]) {
