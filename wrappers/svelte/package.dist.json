@@ -63,7 +63,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "type": "module",
-  "types": "/index.d.ts",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",

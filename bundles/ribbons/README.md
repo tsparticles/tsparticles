@@ -64,8 +64,8 @@ Main options:
 
 - `count` _Integer (default: 5)_
 - `ticks` _Number (default: 200)_
-- `position` _Object_ (`x`/`y`, default 50/0, in percent)
-- `emitterSize` _Object_ (`width`/`height`, default 100/0, in percent)
+- `position` _Object_ (`x`/`y`, default 50/0, in percent) — only `position.x` is used; `position.y` is ignored (emitter always spawns at top-of-canvas)
+- `emitterSize` _Object_ (`width`/`height`, default 100/0, in percent) — spawn width is controlled by `emitterSize.width` (default 100); not always full width
 - `colors` _Array&lt;String&gt;_
 - `ribbonOptions` _Object_ (`particles.shape.options.ribbon`)
   - Includes `darken: { enable: true, value: 30 }` by default
@@ -74,7 +74,7 @@ Main options:
 - `disableForReducedMotion` _Boolean (default: true)_
 
 The `ribbons` bundle disables `roll`, `rotate`, `tilt`, and `wobble` on ribbon particles by default for better shape stability.
-The emitter spawns from the configured `position` using a full-width strip and downward movement for a falling-from-top effect.
+The emitter spawns from `position.x` across a strip whose width is controlled by `emitterSize.width` (default 100%), with downward movement for a falling-from-top effect. `position.y` is ignored — the emitter is always positioned at the top of the canvas.
 
 Deprecated aliases still accepted:
 
