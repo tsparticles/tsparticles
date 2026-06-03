@@ -9,6 +9,9 @@
   "license": "MIT",
   "types": "index.d.ts",
   "main": "index.js",
+  "dependencies": {
+    "@tsparticles/vue2": "__VERSION__"
+  },
   "peerDependencies": {
     "nuxt": ">=2.0.0 <3.0.0",
     "@tsparticles/engine": "__VERSION__"

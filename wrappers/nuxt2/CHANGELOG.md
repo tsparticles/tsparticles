@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
+
+### Bug Fixes
+
+- various fixes after deeper review ([f1733a5](https://github.com/tsparticles/tsparticles/commit/f1733a5e56f4e021c416874fe9b3d7cde393d4a1))
+
 ## [4.1.2](https://github.com/tsparticles/tsparticles/compare/v4.1.1...v4.1.2) (2026-06-01)
 
 **Note:** Version bump only for package @tsparticles/nuxt2

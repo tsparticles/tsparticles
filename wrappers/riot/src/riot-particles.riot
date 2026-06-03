@@ -48,7 +48,7 @@
         }
 
         export async function waitForParticlesEngineInitialization() {
-            await (initPromise ?? Promise.resolve());
+            await (initPromise ? initPromise : Promise.resolve());
         }
 
         export default {

@@ -1,4 +1,4 @@
-import { type Container, type Engine, type ISourceOptions, millisecondsToSeconds } from "@tsparticles/engine";
+import { type Container, type Engine, type ISourceOptions, defaultFps, percentDenominator } from "@tsparticles/engine";
 import { ConfettiOptions } from "./ConfettiOptions.js";
 import type { ConfettiParams } from "./ConfettiParams.js";
 import type { EmitterContainer } from "@tsparticles/plugin-emitters";
@@ -9,7 +9,9 @@ const defaultGravity = 9.81,
   decayOffset = 1,
   disableRotate = 0,
   disableTilt = 0,
-  ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
+  noOpacityChange = 0,
+  ids = new Map<string, Container | Promise<Container | undefined> | undefined>(),
+  minTicks = 0;
 
 /**
  * Adds an emitter to the container for confetti particles
@@ -292,8 +294,10 @@ export async function setConfetti(engine: Engine, params: ConfettiParams): Promi
   actualOptions.load(params.options);
 
   const fpsLimit = 120,
-    fpsLimitFactor = 3.6,
-    opacitySpeed = (fpsLimitFactor * fpsLimit * millisecondsToSeconds) / (actualOptions.ticks * millisecondsToSeconds);
+    safeTicks =
+      Number.isFinite(actualOptions.ticks) && actualOptions.ticks > minTicks ? actualOptions.ticks : undefined,
+    opacitySpeed =
+      safeTicks === undefined ? noOpacityChange : (fpsLimit * percentDenominator) / (defaultFps * safeTicks);
 
   /* Check if there is already an entry for this ID */
   let containerOrPromise = ids.get(params.id);

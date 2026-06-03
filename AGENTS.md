@@ -148,6 +148,24 @@ PRs
 
 If you are an automated agent making changes: run the full test suite locally (`pnpm exec vitest`) and ensure lint + format pass before proposing a commit. When in doubt, open a short PR with a clear testing checklist.
 
+## Cross-package impact awareness
+
+When editing the engine (`engine/src/`), changes can break downstream packages (updaters, plugins, interactions, bundles) that re-export or extend engine types. Always verify:
+
+1. **Exported types**: If you rename or restructure an API, update `engine/src/exports.ts` and `engine/src/export-types.ts` so symbols remain reachable from `@tsparticles/engine`.
+2. **Plugin option classes**: Many plugins implement `IOptionLoader` from the engine with their own `load()` method. Changing that interface breaks them all.
+3. **Inheritance chains**: Classes like `RangedAnimationValueWithRandom` and `AnimationOptions` are extended by multiple plugins. Their public API must remain stable.
+4. **Build impacted packages**: After engine changes, run `pnpm nx show projects --json | jq -r '.[]' | grep -vE "cli|website|palette" | xargs pnpm nx run-many -t build --projects` to rebuild all non-CLI/non-website packages from scratch.
+
+## sort-imports rule specifics
+
+This repo enforces ESLint's built-in `sort-imports` rule, which follows these sorting rules:
+
+- **Sort by member syntax**: The rule uses `memberSyntaxSortOrder: ["none", "all", "multiple", "single"]`. Imports with multiple named specifiers (`import { a, b }`) must come before single-specifier imports (`import { a }`).
+- **Sort by first local member name**: Within the same syntax group, imports are sorted alphabetically by the **first imported name** (case-sensitive). Uppercase letters (65-90) come before lowercase (97-122). The `from` path is NOT used for sorting.
+- **Member ordering**: Within each `import { ... }` statement, named specifiers must also be sorted alphabetically.
+- **No auto-fix**: ESLint cannot auto-fix declaration ordering; you must reorder manually or with a script.
+
 <!-- nx configuration start-->
 <!-- Leave the start & end comments to automatically receive updates. -->
 

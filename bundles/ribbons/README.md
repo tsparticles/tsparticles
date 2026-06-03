@@ -38,7 +38,6 @@ import { ribbons } from "@tsparticles/ribbons";
 
 await ribbons({
   count: 5,
-  spread: 0,
   position: { x: 50, y: 0 },
 });
 ```
@@ -64,9 +63,6 @@ await ribbons({
 Main options:
 
 - `count` _Integer (default: 5)_
-- `angle` _Number (default: 90)_
-- `spread` _Number (default: 0)_
-- `drift` _Number (default: 0)_
 - `ticks` _Number (default: 200)_
 - `position` _Object_ (`x`/`y`, default 50/0)
 - `colors` _Array&lt;String&gt;_
