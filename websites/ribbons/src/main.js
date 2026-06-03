@@ -255,34 +255,23 @@ const modes = [
   },
 
   {
-    id: 'spread',
-    name: 'Wide Spread',
+    id: 'multiple',
+    name: 'Multiple Bursts',
     description: [
       {
         cssClass: '',
-        text: 'Create a cascading ribbon waterfall effect by combining spread, angle, and multiple counts.',
+        text: 'Spawn multiple ribbon bursts with staggered timing for a layered cascading effect.',
       },
     ],
     fn: function () {
-      ribbons({
-        count: 2,
-        spread: 60,
-      });
+      ribbons();
 
       setTimeout(() => {
-        ribbons({
-          count: 2,
-          spread: 60,
-          angle: 60,
-        });
+        ribbons();
       }, 300);
 
       setTimeout(() => {
-        ribbons({
-          count: 2,
-          spread: 60,
-          angle: 120,
-        });
+        ribbons();
       }, 600);
     },
   },

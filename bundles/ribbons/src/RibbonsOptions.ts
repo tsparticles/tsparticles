@@ -14,9 +14,6 @@ import type { IRibbonsOptions } from "./IRibbonsOptions.js";
 
 /** Ribbons options class */
 export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOptions> {
-  /** Ribbons angle */
-  angle: number;
-
   /** Ribbon colors */
   colors: SingleOrMultiple<string>;
 
@@ -25,9 +22,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
   /** Disables ribbons for users who prefer reduced motion */
   disableForReducedMotion: boolean;
-
-  /** Ribbons drift offset */
-  drift: number;
 
   /** Emitter size for particle spawn area */
   emitterSize: IDimension;
@@ -41,9 +35,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Ribbons size scalar */
   scalar: number;
 
-  /** Ribbons spread angle */
-  spread: number;
-
   /** Ribbons animation ticks */
   ticks: number;
 
@@ -52,10 +43,7 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
   /** Creates a new RibbonsOptions instance with default values */
   constructor() {
-    this.angle = 90;
     this.count = 5;
-    this.spread = 0;
-    this.drift = 0;
     this.emitterSize = {
       width: 100,
       height: 0,
@@ -137,23 +125,11 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       return;
     }
 
-    if (data.angle !== undefined) {
-      this.angle = data.angle;
-    }
-
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const count = data.count ?? data.particleCount;
 
     if (count !== undefined) {
       this.count = count;
-    }
-
-    if (data.spread !== undefined) {
-      this.spread = data.spread;
-    }
-
-    if (data.drift !== undefined) {
-      this.drift = data.drift;
     }
 
     if (data.ticks !== undefined) {
