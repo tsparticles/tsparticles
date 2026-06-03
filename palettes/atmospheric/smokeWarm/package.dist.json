@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-smoke-warm",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "tsParticles smoke - warm palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.1.2"
+    "@tsparticles/engine": "4.1.3"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

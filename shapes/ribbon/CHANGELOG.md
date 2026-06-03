@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
+
+### Bug Fixes
+
+- various fixes after deeper review ([37ecd22](https://github.com/tsparticles/tsparticles/commit/37ecd2203c2574cc30055cdc3ef5c0f86a57bcd9))
+- various fixes after deeper review ([d1a1e59](https://github.com/tsparticles/tsparticles/commit/d1a1e59980d949e5f592631844d17f1a9ba5a145))
+
 ## [4.1.2](https://github.com/tsparticles/tsparticles/compare/v4.1.1...v4.1.2) (2026-06-01)
 
 **Note:** Version bump only for package @tsparticles/shape-ribbon

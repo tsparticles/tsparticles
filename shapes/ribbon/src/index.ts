@@ -10,6 +10,6 @@ export async function loadRibbonShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.pluginManager.register(e => {
-    e.pluginManager.addShape(["ribbon"], (container: Container) => Promise.resolve(new RibbonDrawer(container.hdr)));
+    e.pluginManager.addShape(["ribbon"], (container: Container) => Promise.resolve(new RibbonDrawer(container)));
   });
 }

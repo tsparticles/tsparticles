@@ -82,6 +82,19 @@ jobs:
           repositories: |
             website
 
+      - name: Deploy to tsparticles/confetti main
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ steps.token-confetti.outputs.token }}
+          external_repository: tsparticles/confetti
+          publish_branch: main
+          publish_dir: websites/confetti/dist
+          cname: confetti.js.org
+          user_name: 'github-actions-bot'
+          user_email: 'support+actions@github.com'
+          commit_message: 'build: confetti website updated'
+          force_orphan: true
+
       - name: Deploy to tsparticles/ribbons main
         uses: peaceiris/actions-gh-pages@v4
         with:

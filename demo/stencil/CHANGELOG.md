@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
+
+### Bug Fixes
+
+- fixed issue with react component after previous fix, not loading correctly in strict mode ([7eee06a](https://github.com/tsparticles/tsparticles/commit/7eee06a02bb352fac4739ec66d718415521e5167))
+
 ## [4.1.2](https://github.com/tsparticles/tsparticles/compare/v4.1.1...v4.1.2) (2026-06-01)
 
 **Note:** Version bump only for package @tsparticles/stencil-demo

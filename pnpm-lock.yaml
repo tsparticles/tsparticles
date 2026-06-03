@@ -12894,6 +12894,9 @@ importers:
       "@babel/plugin-proposal-class-properties":
         specifier: ^7.18.6
         version: 7.18.6(@babel/core@7.29.0)
+      "@babel/plugin-transform-private-property-in-object":
+        specifier: ^7.25.9
+        version: 7.28.6(@babel/core@7.29.0)
       "@babel/plugin-transform-runtime":
         specifier: ^7.29.0
         version: 7.29.0(@babel/core@7.29.0)

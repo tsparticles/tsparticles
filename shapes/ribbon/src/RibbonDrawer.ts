@@ -17,17 +17,6 @@ const defaultSides = 12,
   minRadius = 0,
   insideMargin = 0;
 
-interface ParticleContainerRef {
-  _container?: {
-    canvas?: {
-      size?: {
-        height?: number;
-        width?: number;
-      };
-    };
-  };
-}
-
 /**
  *
  * @param particle -
@@ -40,24 +29,6 @@ function prepareRibbonParticle(particle: RibbonParticle, width: number, height: 
   if (!particle.ribbonPoints?.length) {
     createRibbonState(particle);
   }
-}
-
-/**
- *
- * @param particle -
- * @returns particle container canvas bounds if available
- */
-function getParticleBounds(particle: RibbonParticle): { height: number; width: number } | undefined {
-  const ref = particle as unknown as ParticleContainerRef,
-    size = ref._container?.canvas?.size,
-    width = size?.width,
-    height = size?.height;
-
-  if (width === undefined || height === undefined) {
-    return undefined;
-  }
-
-  return { height, width };
 }
 
 /**
@@ -110,10 +81,10 @@ function isInsideByDirection(
 
 /** Ribbon shape drawer plugin */
 export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
-  readonly #hdr: boolean;
+  readonly #container: Container;
 
-  constructor(hdr: boolean) {
-    this.#hdr = hdr;
+  constructor(container: Container) {
+    this.#container = container;
   }
 
   /**
@@ -121,18 +92,16 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
    * @param data -
    */
   draw(data: IShapeDrawData<RibbonParticle>): void {
-    const bounds = getParticleBounds(data.particle);
+    const bounds = this.#container.canvas.size;
 
-    if (bounds) {
-      prepareRibbonParticle(data.particle, bounds.width, bounds.height);
-    }
+    prepareRibbonParticle(data.particle, bounds.width, bounds.height);
 
     if (data.particle.ribbonPoints && data.particle.ribbonPoints.length !== getRibbonCount(data.particle)) {
       createRibbonState(data.particle);
     }
 
     updateRibbon(data);
-    drawRibbon(data, this.#hdr);
+    drawRibbon(data, this.#container.hdr);
   }
 
   /**

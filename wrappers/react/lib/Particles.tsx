@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import type { IParticlesProps } from "./IParticlesProps";
 import { tsParticles, type Container } from "@tsparticles/engine";
 import { useParticlesProvider } from "./ParticlesProvider";
@@ -6,31 +6,35 @@ import { useParticlesProvider } from "./ParticlesProvider";
 const Particles: FC<IParticlesProps> = props => {
   const { className, id, options, particlesLoaded, style, url } = props;
   const { loaded } = useParticlesProvider();
+  const containerRef = useRef<Container | undefined>(undefined);
 
   useEffect(() => {
     if (!loaded) {
       return;
     }
 
-    let container: Container | undefined;
-    let cancelled = false;
+    const particleId = id ?? "tsparticles";
 
-    tsParticles.load({ id: id ?? "tsparticles", url, options }).then(c => {
-      if (cancelled) {
+    tsParticles.load({ id: particleId, url, options }).then(c => {
+      if (c?.destroyed) {
+        return;
+      }
+
+      if (!document.getElementById(particleId)) {
         c?.destroy();
 
         return;
       }
 
-      container = c;
+      containerRef.current = c;
 
       particlesLoaded?.(c);
     });
 
     return () => {
-      cancelled = true;
+      containerRef.current?.destroy();
 
-      container?.destroy();
+      containerRef.current = undefined;
     };
   }, [id, loaded, options, particlesLoaded, url]);
 
