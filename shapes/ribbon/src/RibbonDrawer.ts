@@ -82,11 +82,9 @@ function isInsideByDirection(
 /** Ribbon shape drawer plugin */
 export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
   readonly #container: Container;
-  readonly #hdr: boolean;
 
-  constructor(container: Container, hdr: boolean) {
+  constructor(container: Container) {
     this.#container = container;
-    this.#hdr = hdr;
   }
 
   /**
@@ -103,7 +101,7 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
     }
 
     updateRibbon(data);
-    drawRibbon(data, this.#hdr);
+    drawRibbon(data, this.#container.hdr);
   }
 
   /**

@@ -9,7 +9,9 @@ const defaultGravity = 9.81,
   decayOffset = 1,
   disableRotate = 0,
   disableTilt = 0,
-  ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
+  noOpacityChange = 0,
+  ids = new Map<string, Container | Promise<Container | undefined> | undefined>(),
+  minTicks = 0;
 
 /**
  * Adds an emitter to the container for confetti particles
@@ -292,7 +294,10 @@ export async function setConfetti(engine: Engine, params: ConfettiParams): Promi
   actualOptions.load(params.options);
 
   const fpsLimit = 120,
-    opacitySpeed = (fpsLimit * percentDenominator) / (defaultFps * actualOptions.ticks);
+    safeTicks =
+      Number.isFinite(actualOptions.ticks) && actualOptions.ticks > minTicks ? actualOptions.ticks : undefined,
+    opacitySpeed =
+      safeTicks === undefined ? noOpacityChange : (fpsLimit * percentDenominator) / (defaultFps * safeTicks);
 
   /* Check if there is already an entry for this ID */
   let containerOrPromise = ids.get(params.id);
