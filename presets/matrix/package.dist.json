@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-matrix",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "tsParticles matrix preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,12 +106,12 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.1.2",
-    "@tsparticles/effect-shadow": "4.1.2",
-    "@tsparticles/engine": "4.1.2",
-    "@tsparticles/plugin-poisson-disc": "4.1.2",
-    "@tsparticles/plugin-trail": "4.1.2",
-    "@tsparticles/shape-matrix": "4.1.2"
+    "@tsparticles/basic": "4.1.3",
+    "@tsparticles/effect-shadow": "4.1.3",
+    "@tsparticles/engine": "4.1.3",
+    "@tsparticles/plugin-poisson-disc": "4.1.3",
+    "@tsparticles/plugin-trail": "4.1.3",
+    "@tsparticles/shape-matrix": "4.1.3"
   },
   "publishConfig": {
     "access": "public"

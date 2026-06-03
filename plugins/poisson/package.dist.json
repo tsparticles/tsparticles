@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-poisson-disc",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "tsParticles poisson disc plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -91,7 +91,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.1.2"
+    "@tsparticles/engine": "4.1.3"
   },
   "publishConfig": {
     "access": "public"
