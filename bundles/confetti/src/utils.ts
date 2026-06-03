@@ -1,4 +1,4 @@
-import { type Container, type Engine, type ISourceOptions, millisecondsToSeconds } from "@tsparticles/engine";
+import { type Container, type Engine, type ISourceOptions, defaultFps, percentDenominator } from "@tsparticles/engine";
 import { ConfettiOptions } from "./ConfettiOptions.js";
 import type { ConfettiParams } from "./ConfettiParams.js";
 import type { EmitterContainer } from "@tsparticles/plugin-emitters";
@@ -292,8 +292,7 @@ export async function setConfetti(engine: Engine, params: ConfettiParams): Promi
   actualOptions.load(params.options);
 
   const fpsLimit = 120,
-    fpsLimitFactor = 3.6,
-    opacitySpeed = (fpsLimitFactor * fpsLimit * millisecondsToSeconds) / (actualOptions.ticks * millisecondsToSeconds);
+    opacitySpeed = (fpsLimit * percentDenominator) / (defaultFps * actualOptions.ticks);
 
   /* Check if there is already an entry for this ID */
   let containerOrPromise = ids.get(params.id);

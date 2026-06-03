@@ -12,6 +12,8 @@ export async function loadRibbonShape(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {
     const { RibbonDrawer } = await import("./RibbonDrawer.js");
 
-    e.pluginManager.addShape(["ribbon"], (container: Container) => Promise.resolve(new RibbonDrawer(container.hdr)));
+    e.pluginManager.addShape(["ribbon"], (container: Container) =>
+      Promise.resolve(new RibbonDrawer(container, container.hdr)),
+    );
   });
 }

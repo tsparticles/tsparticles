@@ -589,26 +589,32 @@ export class Particle {
       shapeOptions = particlesOptions.shape;
 
     if (overrideOptions) {
-      if (overrideOptions.effect?.type && overrideOptions.effect.type !== this.effect) {
-        const overrideEffectType = overrideOptions.effect.type,
-          effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
+      if (overrideOptions.effect) {
+        const overrideEffectType = overrideOptions.effect.type;
 
-        if (effect) {
-          this.effect = effect;
+        if (overrideEffectType && overrideEffectType !== this.effect) {
+          const effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
 
-          effectOptions.load(overrideOptions.effect);
+          if (effect) {
+            this.effect = effect;
+          }
         }
+
+        effectOptions.load(overrideOptions.effect);
       }
 
-      if (overrideOptions.shape?.type && overrideOptions.shape.type !== this.shape) {
-        const overrideShapeType = overrideOptions.shape.type,
-          shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
+      if (overrideOptions.shape) {
+        const overrideShapeType = overrideOptions.shape.type;
 
-        if (shape) {
-          this.shape = shape;
+        if (overrideShapeType && overrideShapeType !== this.shape) {
+          const shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
 
-          shapeOptions.load(overrideOptions.shape);
+          if (shape) {
+            this.shape = shape;
+          }
         }
+
+        shapeOptions.load(overrideOptions.shape);
       }
     }
 
