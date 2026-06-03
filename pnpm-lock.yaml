@@ -4986,8 +4986,8 @@ importers:
         specifier: ^10.1.8
         version: 10.1.8(eslint@10.4.1(jiti@2.7.0))
       eslint-plugin-svelte:
-        specifier: ^2.39.0
-        version: 2.46.1(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@5.9.3))
+        specifier: ^3.19.0
+        version: 3.19.0(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@5.9.3))
       prettier:
         specifier: ^3.2.5
         version: 3.8.3
@@ -13559,7 +13559,7 @@ importers:
         version: 10.1.8(eslint@10.4.1(jiti@2.7.0))
       eslint-plugin-svelte:
         specifier: ^3.17.0
-        version: 3.17.1(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@6.0.3))
+        version: 3.19.0(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@6.0.3))
       prettier:
         specifier: ^3.8.2
         version: 3.8.3
@@ -28609,12 +28609,6 @@ packages:
     engines: {node: '>=6.0'}
     hasBin: true
 
-  eslint-compat-utils@0.5.1:
-    resolution: {integrity: sha512-3z3vFexKIEnjHE3zCMRo6fn/e44U7T1khUjg+Hp0ZQMCigh28rALD0nPFBcGZuiLC5rLZa2ubQHDRln09JfU2Q==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      eslint: '>=6.0.0'
-
   eslint-config-next@16.2.6:
     resolution: {integrity: sha512-z2ELYSkyrrJ6cuunTU8vhsT/RpouPkjaSah06nVW6Rg2Hpg0Vs8s497/e5s8G8qtdp4ccsiovz5P1rv+5VSW2Q==}
     peerDependencies:
@@ -28893,18 +28887,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-svelte@2.46.1:
-    resolution: {integrity: sha512-7xYr2o4NID/f9OEYMqxsEQsCsj4KaMy4q5sANaKkAb6/QeCjYFxRmDm2S3YC3A3pl1kyPZ/syOx/i7LcWYSbIw==}
-    engines: {node: ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^7.0.0 || ^8.0.0-0 || ^9.0.0-0
-      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0
-    peerDependenciesMeta:
-      svelte:
-        optional: true
-
-  eslint-plugin-svelte@3.17.1:
-    resolution: {integrity: sha512-NyiXHtS3Ni7e532RBwS9OXlMKDIrENg3gY+/+ODjZzQx2xhU3NlJ+nIl1a93iUUQeiJL3lS8KLmY+W8hklzweQ==}
+  eslint-plugin-svelte@3.19.0:
+    resolution: {integrity: sha512-t3rNaZeXz4d2gG4uJyMEYfJCFKf22+SWbSizIIXIWKu4wM+XPLiMWuSSr/C5821JmFeN9ogK+eExbG+z+twyxw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.1 || ^9.0.0 || ^10.0.0
@@ -32274,9 +32258,6 @@ packages:
 
   knitwork@1.3.0:
     resolution: {integrity: sha512-4LqMNoONzR43B1W0ek0fhXMsDNW/zxa1NdFAVMY+k28pgZLovR4G3PB5MrpTxCy1QaZCqNoiaKPr5w5qZHfSNw==}
-
-  known-css-properties@0.35.0:
-    resolution: {integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==}
 
   known-css-properties@0.37.0:
     resolution: {integrity: sha512-JCDrsP4Z1Sb9JwG0aJ8Eo2r7k4Ou5MwmThS/6lcIe1ICyb7UBJKGRIUUdqc2ASdE/42lgz6zFUnzAIhtXnBVrQ==}
@@ -36088,12 +36069,6 @@ packages:
   postcss-resolve-nested-selector@0.1.6:
     resolution: {integrity: sha512-0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw==}
 
-  postcss-safe-parser@6.0.0:
-    resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.3.3
-
   postcss-safe-parser@7.0.1:
     resolution: {integrity: sha512-0AioNCJZ2DPYz5ABT6bddIqlhgwhpHZ/l65YAYo0BCIn0xiDpsnTHz0gnoTGk0OXZW0JRs+cDwL8u/teRdz+8A==}
     engines: {node: '>=18.0'}
@@ -38905,15 +38880,6 @@ packages:
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
-
-  svelte-eslint-parser@0.43.0:
-    resolution: {integrity: sha512-GpU52uPKKcVnh8tKN5P4UZpJ/fUDndmq7wfsvoVXsyP+aY0anol7Yqo01fyrlaWGMFfm4av5DyrjlaXdLRJvGA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0
-    peerDependenciesMeta:
-      svelte:
-        optional: true
 
   svelte-eslint-parser@1.7.1:
     resolution: {integrity: sha512-mmwwKL9L/MB0QyBKdfyWxGjDuQfEyzxWy5S9Kkd0O/V5XD57MQ33KQtXrO6vKLuP6PIt8CRozvOX1mxpcRTqUg==}
@@ -47974,7 +47940,7 @@ snapshots:
 
   '@npmcli/fs@5.0.0':
     dependencies:
-      semver: 7.7.2
+      semver: 7.8.1
 
   '@npmcli/git@4.1.0':
     dependencies:
@@ -47997,7 +47963,7 @@ snapshots:
       npm-pick-manifest: 10.0.0
       proc-log: 5.0.0
       promise-retry: 2.0.1
-      semver: 7.7.2
+      semver: 7.8.1
       which: 5.0.0
 
   '@npmcli/git@7.0.2':
@@ -48080,7 +48046,7 @@ snapshots:
       hosted-git-info: 9.0.3
       json-parse-even-better-errors: 5.0.0
       proc-log: 6.1.0
-      semver: 7.7.4
+      semver: 7.8.1
       spdx-expression-parse: 4.0.0
 
   '@npmcli/promise-spawn@6.0.2':
@@ -57437,9 +57403,9 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.1.0
       picocolors: 1.1.1
-      postcss: 8.5.12
+      postcss: 8.5.15
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.0.1(postcss@8.5.12)
+      postcss-safe-parser: 7.0.1(postcss@8.5.15)
 
   before-after-hook@2.2.3: {}
 
@@ -59206,7 +59172,7 @@ snapshots:
       handlebars: 4.7.9
       json-stringify-safe: 5.0.1
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.8.1
       split: 1.0.1
 
   conventional-commits-filter@3.0.0:
@@ -61888,11 +61854,6 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-compat-utils@0.5.1(eslint@10.4.1(jiti@2.7.0)):
-    dependencies:
-      eslint: 10.4.1(jiti@2.7.0)
-      semver: 7.8.1
-
   eslint-config-next@16.2.6(@typescript-eslint/parser@8.60.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3))(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3):
     dependencies:
       '@next/eslint-plugin-next': 16.2.6
@@ -62393,26 +62354,25 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-svelte@2.46.1(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@5.9.3)):
+  eslint-plugin-svelte@3.19.0(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@5.9.3)):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.4.1(jiti@2.7.0))
       '@jridgewell/sourcemap-codec': 1.5.5
       eslint: 10.4.1(jiti@2.7.0)
-      eslint-compat-utils: 0.5.1(eslint@10.4.1(jiti@2.7.0))
       esutils: 2.0.3
-      known-css-properties: 0.35.0
+      globals: 16.5.0
+      known-css-properties: 0.37.0
       postcss: 8.5.15
       postcss-load-config: 3.1.4(postcss@8.5.15)(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@5.9.3))
-      postcss-safe-parser: 6.0.0(postcss@8.5.15)
-      postcss-selector-parser: 6.1.2
+      postcss-safe-parser: 7.0.1(postcss@8.5.15)
       semver: 7.8.1
-      svelte-eslint-parser: 0.43.0(svelte@5.55.9(@typescript-eslint/types@8.60.0))
+      svelte-eslint-parser: 1.7.1(svelte@5.55.9(@typescript-eslint/types@8.60.0))
     optionalDependencies:
       svelte: 5.55.9(@typescript-eslint/types@8.60.0)
     transitivePeerDependencies:
       - ts-node
 
-  eslint-plugin-svelte@3.17.1(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@6.0.3)):
+  eslint-plugin-svelte@3.19.0(eslint@10.4.1(jiti@2.7.0))(svelte@5.55.9(@typescript-eslint/types@8.60.0))(ts-node@10.9.2(@swc/core@1.15.40)(@types/node@25.9.1)(typescript@6.0.3)):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.4.1(jiti@2.7.0))
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -63845,7 +63805,7 @@ snapshots:
   git-semver-tags@5.0.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.7.2
+      semver: 7.8.1
 
   git-up@7.0.0:
     dependencies:
@@ -66685,8 +66645,6 @@ snapshots:
 
   knitwork@1.3.0: {}
 
-  known-css-properties@0.35.0: {}
-
   known-css-properties@0.37.0: {}
 
   koa-compose@4.1.0: {}
@@ -69033,7 +68991,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.2
+      semver: 7.8.1
       tar: 7.5.11
       tinyglobby: 0.2.16
       undici: 6.25.0
@@ -69174,7 +69132,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.2
-      semver: 7.7.2
+      semver: 7.8.1
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@5.0.0:
@@ -69319,7 +69277,7 @@ snapshots:
     dependencies:
       hosted-git-info: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.2
+      semver: 7.8.1
       validate-npm-package-name: 6.0.2
 
   npm-package-arg@13.0.1:
@@ -69385,7 +69343,7 @@ snapshots:
       npm-install-checks: 7.1.2
       npm-normalize-package-bin: 4.0.0
       npm-package-arg: 12.0.2
-      semver: 7.7.2
+      semver: 7.8.1
 
   npm-pick-manifest@11.0.3:
     dependencies:
@@ -72573,14 +72531,6 @@ snapshots:
       postcss: 8.5.15
 
   postcss-resolve-nested-selector@0.1.6: {}
-
-  postcss-safe-parser@6.0.0(postcss@8.5.15):
-    dependencies:
-      postcss: 8.5.15
-
-  postcss-safe-parser@7.0.1(postcss@8.5.12):
-    dependencies:
-      postcss: 8.5.12
 
   postcss-safe-parser@7.0.1(postcss@8.5.15):
     dependencies:
@@ -76202,16 +76152,6 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
-  svelte-eslint-parser@0.43.0(svelte@5.55.9(@typescript-eslint/types@8.60.0)):
-    dependencies:
-      eslint-scope: 7.2.2
-      eslint-visitor-keys: 3.4.3
-      espree: 9.6.1
-      postcss: 8.5.15
-      postcss-scss: 4.0.9(postcss@8.5.15)
-    optionalDependencies:
-      svelte: 5.55.9(@typescript-eslint/types@8.60.0)
-
   svelte-eslint-parser@1.7.1(svelte@5.55.9(@typescript-eslint/types@8.60.0)):
     dependencies:
       eslint-scope: 8.4.0
@@ -78600,7 +78540,7 @@ snapshots:
       esbuild: 0.27.3
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
-      postcss: 8.5.12
+      postcss: 8.5.15
       rollup: 4.60.4
       tinyglobby: 0.2.16
     optionalDependencies:
