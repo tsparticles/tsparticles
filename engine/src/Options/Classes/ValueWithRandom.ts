@@ -1,29 +1,21 @@
 import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions.js";
-import type {
-  IAnimationValueWithRandom,
-  IRangedAnimationValueWithRandom,
-  IValueWithRandom,
-} from "../Interfaces/IValueWithRandom.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IAnimationValueWithRandom, IValueWithRandom } from "../Interfaces/IValueWithRandom.js";
+import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Value with random range option class */
-export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
-  /** The value or range of values */
+export class ValueWithRandom extends OptionLoader<IValueWithRandom> implements IValueWithRandom {
   value: RangeValue;
 
   constructor() {
+    super();
     this.value = 0;
   }
 
-  load(data?: RecursivePartial<IValueWithRandom>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IValueWithRandom>): void {
     if (!isNull(data.value)) {
       this.value = setRangeValue(data.value);
     }
@@ -31,16 +23,11 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
 }
 
 /** Animation value with random range option class */
-export class AnimationValueWithRandom extends ValueWithRandom implements IOptionLoader<IAnimationValueWithRandom> {
-  /** Animation options */
+export class AnimationValueWithRandom extends ValueWithRandom {
   readonly animation = new AnimationOptions();
 
-  override load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
-    super.load(data);
-
-    if (isNull(data)) {
-      return;
-    }
+  override doLoad(data: RecursivePartial<IAnimationValueWithRandom>): void {
+    super.doLoad(data);
 
     const animation = data.animation;
 
@@ -51,19 +38,12 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
 }
 
 /** Ranged animation value with random range option class */
-export class RangedAnimationValueWithRandom
-  extends AnimationValueWithRandom
-  implements IOptionLoader<IRangedAnimationValueWithRandom>
-{
+export class RangedAnimationValueWithRandom extends AnimationValueWithRandom {
   override readonly animation: RangedAnimationOptions;
 
   constructor() {
     super();
 
     this.animation = new RangedAnimationOptions();
-  }
-
-  override load(data?: RecursivePartial<IRangedAnimationValueWithRandom>): void {
-    super.load(data);
   }
 }

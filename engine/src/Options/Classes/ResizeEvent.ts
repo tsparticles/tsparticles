@@ -1,22 +1,18 @@
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IResizeEvent } from "../Interfaces/IResizeEvent.js";
+import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { isNull } from "../../Utils/TypeUtils.js";
 
-export class ResizeEvent implements IResizeEvent, IOptionLoader<IResizeEvent> {
+export class ResizeEvent extends OptionLoader<IResizeEvent> implements IResizeEvent {
   delay;
   enable;
 
   constructor() {
+    super();
     this.delay = 0.5;
     this.enable = true;
   }
 
-  load(data?: RecursivePartial<IResizeEvent>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IResizeEvent>): void {
     if (data.delay !== undefined) {
       this.delay = data.delay;
     }

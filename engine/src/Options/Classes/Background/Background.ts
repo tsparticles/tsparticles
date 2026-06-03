@@ -1,13 +1,12 @@
 import type { IBackground } from "../../Interfaces/Background/IBackground.js";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Background.md]]
  */
-export class Background implements IBackground, IOptionLoader<IBackground> {
+export class Background extends OptionLoader<IBackground> implements IBackground {
   color;
   image;
   opacity;
@@ -16,6 +15,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
   size;
 
   constructor() {
+    super();
     this.color = new OptionsColor();
     this.color.value = "";
     this.image = "";
@@ -25,11 +25,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
     this.opacity = 1;
   }
 
-  load(data?: RecursivePartial<IBackground>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IBackground>): void {
     if (data.color !== undefined) {
       this.color = OptionsColor.create(this.color, data.color);
     }

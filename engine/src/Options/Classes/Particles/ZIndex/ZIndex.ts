@@ -1,13 +1,11 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IZIndex } from "../../../Interfaces/Particles/ZIndex/IZIndex.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { ValueWithRandom } from "../../ValueWithRandom.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * Z-index related particle behavior options.
  */
-export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZIndex> {
+export class ZIndex extends ValueWithRandom implements IZIndex {
   opacityRate;
   sizeRate;
   velocityRate;
@@ -19,12 +17,8 @@ export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZ
     this.velocityRate = 1;
   }
 
-  override load(data?: RecursivePartial<IZIndex>): void {
-    super.load(data);
-
-    if (isNull(data)) {
-      return;
-    }
+  override doLoad(data: RecursivePartial<IZIndex>): void {
+    super.doLoad(data);
 
     if (data.opacityRate !== undefined) {
       this.opacityRate = data.opacityRate;

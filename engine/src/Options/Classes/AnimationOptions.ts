@@ -1,14 +1,13 @@
 import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation.js";
 import { AnimationMode } from "../../Enums/Modes/AnimationMode.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { StartValueType } from "../../Enums/Types/StartValueType.js";
-import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Animation options configuration class */
-export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
+export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
   /** Number of animation loops (0 = infinite) */
   count: RangeValue;
   /** Animation decay factor */
@@ -23,6 +22,8 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
   sync;
 
   constructor() {
+    super();
+
     this.count = 0;
     this.enable = false;
     this.speed = 1;
@@ -31,11 +32,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     this.sync = false;
   }
 
-  load(data?: RecursivePartial<IAnimation>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IAnimation>): void {
     if (data.count !== undefined) {
       this.count = setRangeValue(data.count);
     }
@@ -63,7 +60,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
 }
 
 /** Ranged animation options with mode and start value */
-export class RangedAnimationOptions extends AnimationOptions implements IOptionLoader<IRangedAnimation> {
+export class RangedAnimationOptions extends AnimationOptions {
   /** Animation mode (auto, increase, decrease, random) */
   mode: AnimationMode | keyof typeof AnimationMode;
 
@@ -77,12 +74,8 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
     this.startValue = StartValueType.random;
   }
 
-  override load(data?: RecursivePartial<IRangedAnimation>): void {
-    super.load(data);
-
-    if (isNull(data)) {
-      return;
-    }
+  override doLoad(data: RecursivePartial<IRangedAnimation>): void {
+    super.doLoad(data);
 
     if (data.mode !== undefined) {
       this.mode = data.mode;

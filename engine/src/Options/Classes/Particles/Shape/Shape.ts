@@ -1,31 +1,27 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape.js";
 import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues.js";
+import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { ShapeData } from "../../../../Types/ShapeData.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Shape.md]]
  */
-export class Shape implements IShape, IOptionLoader<IShape> {
+export class Shape extends OptionLoader<IShape> implements IShape {
   close;
   options: ShapeData;
   type: SingleOrMultiple<string>;
 
   constructor() {
+    super();
     this.close = true;
     this.options = {};
     this.type = "circle";
   }
 
-  load(data?: RecursivePartial<IShape>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IShape>): void {
     const options = data.options;
 
     if (options !== undefined) {

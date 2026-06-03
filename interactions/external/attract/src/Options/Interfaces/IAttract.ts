@@ -1,5 +1,3 @@
-
-
 /** Restore behavior options after attract interaction */
 export interface IAttractRestore {
   /** Delay in seconds before restoring starts */

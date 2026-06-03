@@ -1,13 +1,12 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
-import { isArray, isNull } from "../../../Utils/TypeUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import { Fill } from "./Fill.js";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
+import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
@@ -17,11 +16,12 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
+import { isArray } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
  */
-export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
+export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements IParticlesOptions {
   [name: string]: unknown;
 
   readonly bounce;
@@ -39,6 +39,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container?: Container) {
+    super();
     this.#pluginManager = pluginManager;
     this.#container = container;
 
@@ -57,11 +58,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.zIndex = new ZIndex();
   }
 
-  load(data?: RecursivePartial<IParticlesOptions>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IParticlesOptions>): void {
     if (data.palette) {
       this.palette = data.palette;
 

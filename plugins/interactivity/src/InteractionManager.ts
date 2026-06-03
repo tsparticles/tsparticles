@@ -1,10 +1,4 @@
-import {
-  type Container,
-  type ICoordinates,
-  type IDelta,
-  type Particle,
-  safeIntersectionObserver,
-} from "@tsparticles/engine";
+import { type Container, type ICoordinates, type IDelta, type Particle } from "@tsparticles/engine";
 import {
   clickEvent,
   touchCancelEvent,
@@ -26,6 +20,21 @@ const clickRadius = 1,
 
 /** Container click handler type */
 type ContainerClickHandler = (evt: Event) => void;
+
+/**
+ * Safely creates an IntersectionObserver if supported
+ * @param callback - the observer callback
+ * @returns the intersection observer, if supported
+ */
+function safeIntersectionObserver(
+  callback: (records: IntersectionObserverEntry[]) => void,
+): IntersectionObserver | undefined {
+  if (typeof IntersectionObserver === "undefined") {
+    return;
+  }
+
+  return new IntersectionObserver(callback);
+}
 
 export class InteractionManager {
   /** The current interactivity state data */

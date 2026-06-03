@@ -65,6 +65,7 @@ export * from "./Options/Classes/ValueWithRandom.js";
 export * from "./Utils/ColorUtils.js";
 export * from "./Utils/LogUtils.js";
 export * from "./Utils/MathUtils.js";
+export * from "./Utils/OptionLoader.js";
 export * from "./Utils/OptionsUtils.js";
 export * from "./Utils/Utils.js";
 export * from "./Utils/TypeUtils.js";

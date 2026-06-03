@@ -1,12 +1,12 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import { isNull, isNumber, isObject } from "../../../../Utils/TypeUtils.js";
+import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { MoveAngle } from "./MoveAngle.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
+import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
@@ -16,7 +16,7 @@ import { setRangeValue } from "../../../../Utils/MathUtils.js";
 /**
  * [[include:Options/Particles/Move.md]]
  */
-export class Move implements IMove, IOptionLoader<IMove> {
+export class Move extends OptionLoader<IMove> implements IMove {
   readonly angle;
   readonly center: MoveCenter;
   decay: RangeValue;
@@ -36,6 +36,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
   warp;
 
   constructor() {
+    super();
     this.angle = new MoveAngle();
     this.center = new MoveCenter();
     this.decay = 0;
@@ -55,11 +56,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     this.warp = false;
   }
 
-  load(data?: RecursivePartial<IMove>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IMove>): void {
     this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);
 
     this.center.load(data.center);

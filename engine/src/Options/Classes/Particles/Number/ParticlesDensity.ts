@@ -1,27 +1,23 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity.js";
+import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * Density options used to scale particle count with area.
  */
-export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
+export class ParticlesDensity extends OptionLoader<IParticlesDensity> implements IParticlesDensity {
   enable;
   height;
   width;
 
   constructor() {
+    super();
     this.enable = false;
     this.width = 1920;
     this.height = 1080;
   }
 
-  load(data?: RecursivePartial<IParticlesDensity>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IParticlesDensity>): void {
     if (data.enable !== undefined) {
       this.enable = data.enable;
     }

@@ -1,5 +1,3 @@
-
-
 /** Restore behavior options after repulse interaction */
 export interface IRepulseRestore {
   /** Delay in seconds before restoring starts */

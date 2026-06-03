@@ -10,15 +10,15 @@ import type {
   IRangeValueColor,
 } from "../../Core/Interfaces/Colors.js";
 import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
+import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Color.md]]
  */
-export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {
+export class OptionsColor extends OptionLoader<IOptionsColor> implements IOptionsColor {
   value: SingleOrMultiple<
     | SingleOrMultiple<string>
     | IRangeValueColor
@@ -33,6 +33,7 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
   >;
 
   constructor() {
+    super();
     this.value = "";
   }
 
@@ -61,11 +62,7 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
     return color;
   }
 
-  load(data?: RecursivePartial<IOptionsColor>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IOptionsColor>): void {
     if (!isNull(data.value)) {
       this.value = data.value;
     }

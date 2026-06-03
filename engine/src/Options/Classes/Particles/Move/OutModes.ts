@@ -1,14 +1,13 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IOutModes } from "../../../Interfaces/Particles/Move/IOutModes.js";
+import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import { OutMode } from "../../../../Enums/Modes/OutMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * Out modes options class
  * [[include:Options/Particles/OutModes.md]]
  */
-export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
+export class OutModes extends OptionLoader<IOutModes> implements IOutModes {
   /** Out mode for the bottom edge */
   bottom?: OutMode | keyof typeof OutMode;
   /** Default out mode used when per-edge modes are not set */
@@ -21,6 +20,7 @@ export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
   top?: OutMode | keyof typeof OutMode;
 
   constructor() {
+    super();
     this.default = OutMode.out;
   }
 
@@ -28,11 +28,7 @@ export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
    * Loads out modes from the given data
    * @param data -
    */
-  load(data?: RecursivePartial<IOutModes>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IOutModes>): void {
     if (data.default !== undefined) {
       this.default = data.default;
     }

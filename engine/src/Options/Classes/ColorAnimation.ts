@@ -1,18 +1,13 @@
 import { AnimationOptions } from "./AnimationOptions.js";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Color animation options class */
-export class ColorAnimation extends AnimationOptions implements IColorAnimation, IOptionLoader<IColorAnimation> {
-  /** Maximum color value */
+export class ColorAnimation extends AnimationOptions implements IColorAnimation {
   max;
-  /** Minimum color value */
   min;
-  /** Color value offset */
   offset: RangeValue;
 
   constructor(min: number, max: number) {
@@ -24,16 +19,8 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
     this.sync = true;
   }
 
-  /**
-   * Loads color animation options from the given data
-   * @param data -
-   */
-  override load(data?: RecursivePartial<IColorAnimation>): void {
-    super.load(data);
-
-    if (isNull(data)) {
-      return;
-    }
+  override doLoad(data: RecursivePartial<IColorAnimation>): void {
+    super.doLoad(data);
 
     if (data.max !== undefined) {
       this.max = data.max;

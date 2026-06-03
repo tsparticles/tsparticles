@@ -1,9 +1,8 @@
+import { OptionLoader, loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
-import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { PluginManager } from "../../Core/Utils/PluginManager.js";
@@ -11,7 +10,7 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
-import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
+import { isBoolean } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Default themes configuration */
@@ -25,7 +24,7 @@ export interface DefaultThemes {
 /**
  * [[include:Options.md]]
  */
-export class Options implements IOptions, IOptionLoader<IOptions> {
+export class Options extends OptionLoader<IOptions> implements IOptions {
   [name: string]: unknown;
 
   /** The autoPlay flag */
@@ -75,6 +74,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: Container) {
+    super();
     this.#pluginManager = pluginManager;
     this.#container = container;
     this.autoPlay = true;
@@ -100,11 +100,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
    * This method loads the source object in the current instance
    * @param data - the source data to load into the instance
    */
-  load(data?: ISourceOptions): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: ISourceOptions): void {
     if (data.preset !== undefined) {
       this.preset = data.preset;
 

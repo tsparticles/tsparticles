@@ -1,14 +1,13 @@
 import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen.js";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * The options to set the particles in the background using CSS `fixed` position
  * The {@link FullScreen.zIndex} property sets the background CSS `z-index` property
  * [[include:Options/FullScreen.md]]
  */
-export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
+export class FullScreen extends OptionLoader<IFullScreen> implements IFullScreen {
   /**
    * This property sets the canvas to a full window size acting like a background, the most common configuration. The default value is `false` since many already have different configurations.
    *
@@ -24,15 +23,12 @@ export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
   zIndex;
 
   constructor() {
+    super();
     this.enable = true;
     this.zIndex = 0;
   }
 
-  load(data?: RecursivePartial<IFullScreen>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  doLoad(data: RecursivePartial<IFullScreen>): void {
     if (data.enable !== undefined) {
       this.enable = data.enable;
     }

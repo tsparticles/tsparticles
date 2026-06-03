@@ -185,21 +185,6 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 }
 
 /**
- * Safely creates an IntersectionObserver if supported
- * @param callback - the observer callback
- * @returns the intersection observer, if supported
- */
-export function safeIntersectionObserver(
-  callback: (records: IntersectionObserverEntry[]) => void,
-): IntersectionObserver | undefined {
-  if (typeof IntersectionObserver === "undefined") {
-    return;
-  }
-
-  return new IntersectionObserver(callback);
-}
-
-/**
  * Safely creates a MutationObserver if supported
  * @param callback - the observer callback
  * @returns the mutation observer, if supported
