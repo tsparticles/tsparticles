@@ -16,6 +16,10 @@ const Particles: FC<IParticlesProps> = props => {
     const particleId = id ?? "tsparticles";
 
     tsParticles.load({ id: particleId, url, options }).then(c => {
+      if (c?.destroyed) {
+        return;
+      }
+
       if (!document.getElementById(particleId)) {
         c?.destroy();
 
