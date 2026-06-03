@@ -64,7 +64,8 @@ Main options:
 
 - `count` _Integer (default: 5)_
 - `ticks` _Number (default: 200)_
-- `position` _Object_ (`x`/`y`, default 50/0)
+- `position` _Object_ (`x`/`y`, default 50/0, in percent)
+- `emitterSize` _Object_ (`width`/`height`, default 100/0, in percent)
 - `colors` _Array&lt;String&gt;_
 - `ribbonOptions` _Object_ (`particles.shape.options.ribbon`)
   - Includes `darken: { enable: true, value: 30 }` by default
@@ -73,7 +74,7 @@ Main options:
 - `disableForReducedMotion` _Boolean (default: true)_
 
 The `ribbons` bundle disables `roll`, `rotate`, `tilt`, and `wobble` on ribbon particles by default for better shape stability.
-The emitter uses a full-width top strip (`width: 100`, `height: 0`) and downward movement speed range (`4..6`) for a falling-from-top behavior.
+The emitter spawns from the configured `position` using a full-width strip and downward movement for a falling-from-top effect.
 
 Deprecated aliases still accepted:
 

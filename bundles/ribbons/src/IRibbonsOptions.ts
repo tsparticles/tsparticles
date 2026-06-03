@@ -2,9 +2,6 @@ import type { ICoordinates, IDimension, IShapeValues, SingleOrMultiple } from "@
 
 /** Ribbons options interface */
 export interface IRibbonsOptions {
-  /** Ribbons emission angle */
-  angle: number;
-
   /** Ribbon colors */
   colors: SingleOrMultiple<string>;
 
@@ -13,9 +10,6 @@ export interface IRibbonsOptions {
 
   /** Disables ribbons for users who prefer reduced motion */
   disableForReducedMotion: boolean;
-
-  /** Ribbons drift */
-  drift: number;
 
   /** Emitter size for particle spawn area (in percent). Default: { width: 100, height: 0 } */
   emitterSize: IDimension;
@@ -38,9 +32,6 @@ export interface IRibbonsOptions {
 
   /** Ribbons size scalar */
   scalar: number;
-
-  /** Ribbons spread */
-  spread: number;
 
   /** Number of animation ticks */
   ticks: number;

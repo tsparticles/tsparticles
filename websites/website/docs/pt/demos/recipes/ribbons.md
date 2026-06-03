@@ -17,7 +17,6 @@ import { ribbons } from "@tsparticles/ribbons";
 
 await ribbons({
   count: 5,
-  spread: 0,
   colors: ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"],
 });
 ```
