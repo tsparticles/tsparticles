@@ -26,8 +26,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Emitter size for particle spawn area */
   emitterSize: IDimension;
 
-  /** Ribbons position, in percent values */
-  position: ICoordinates;
+  /** Ribbons horizontal spawn position (percent) */
+  positionX: number;
 
   /** Ribbon shape options */
   ribbonOptions: SingleOrMultiple<IShapeValues>;
@@ -48,11 +48,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       width: 100,
       height: 0,
     };
+    this.positionX = 50;
     this.ticks = 200;
-    this.position = {
-      x: 50,
-      y: 0,
-    };
     this.colors = ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"];
     this.ribbonOptions = {
       angle: 45,
@@ -83,22 +80,21 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   }
 
   /**
-   * @deprecated use position instead
+   * @deprecated use positionX instead
    * @returns the origin of the ribbons
    */
   get origin(): ICoordinates {
     return {
-      x: this.position.x / percentDenominator,
-      y: this.position.y / percentDenominator,
+      x: this.positionX / percentDenominator,
+      y: 0,
     };
   }
 
   /**
-   * @deprecated use position instead
+   * @deprecated use positionX instead
    */
   set origin(value: ICoordinates) {
-    this.position.x = value.x * percentDenominator;
-    this.position.y = value.y * percentDenominator;
+    this.positionX = value.x * percentDenominator;
   }
 
   /**
@@ -114,6 +110,24 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
    */
   set particleCount(value: number) {
     this.count = value;
+  }
+
+  /**
+   * @deprecated use positionX instead
+   * @returns the ribbons horizontal position
+   */
+  get position(): ICoordinates {
+    return {
+      x: this.positionX,
+      y: 0,
+    };
+  }
+
+  /**
+   * @deprecated use positionX instead
+   */
+  set position(value: ICoordinates) {
+    this.positionX = value.x;
   }
 
   /**
@@ -146,25 +160,28 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       }
     }
 
+    if (data.positionX !== undefined) {
+      this.positionX = data.positionX;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const origin = data.origin;
 
-    if (origin && !data.position) {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    if (origin && data.positionX === undefined && !data.position) {
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       data.position = {
         x: origin.x === undefined ? undefined : origin.x * percentDenominator,
-        y: origin.y === undefined ? undefined : origin.y * percentDenominator,
+        y: 0,
       };
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const position = data.position;
 
-    if (position) {
+    if (position && data.positionX === undefined) {
       if (position.x !== undefined) {
-        this.position.x = position.x;
-      }
-
-      if (position.y !== undefined) {
-        this.position.y = position.y;
+        this.positionX = position.x;
       }
     }
 
