@@ -11,10 +11,11 @@ const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
   { text: "Playground", link: "/playground/" },
   { text: "Guides", link: "/guides/" },
+  { text: "Showcase", link: "/showcase/" },
   { text: "Demos", link: "/demos/" },
   { text: "Wrappers", link: "/guide/wrappers" },
   { text: "Options", link: "/options/" },
-  { text: "API", link: "/docs/", target: "_blank" },
+  { text: "API", link: "/api/" },
   { text: "Confetti", link: "https://confetti.js.org", target: "_blank" },
   { text: "Ribbons", link: "https://ribbons.js.org", target: "_blank" },
   {
@@ -108,6 +109,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Templates & Resources", link: "/guide/templates-resources" },
         { text: "Video Tutorials", link: "/guide/video-tutorials" },
         { text: "Dependency Graph", link: "/guide/dependency-graph" },
+        { text: "Troubleshooting & FAQ", link: "/guide/troubleshooting" },
       ],
     },
   ],
@@ -298,6 +300,15 @@ const baseSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
+  "/api/": [
+    {
+      text: "API Reference",
+      items: [
+        { text: "Overview", link: "/api/" },
+        { text: "Full typedoc", link: "/docs/" },
+      ],
+    },
+  ],
   "/guides/": [
     {
       text: "Guides",
@@ -366,7 +377,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
   base,
-  ignoreDeadLinks: [],
+  ignoreDeadLinks: [/^\/docs\//],
   transformHead: ({ pageData }) => {
     let path = pageData.relativePath.replace(/\.md$/, "").replace(/\/?index$/, "");
     const localePrefixesMap: Record<string, string> = {
@@ -538,7 +549,6 @@ export default defineConfig({
         "vue",
         "svelte",
         "astro",
-        "riot",
         "hbs",
         "php",
       ],
