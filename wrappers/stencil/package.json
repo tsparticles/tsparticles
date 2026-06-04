@@ -11,7 +11,7 @@
     "directory": "wrappers/stencil"
   },
   "bugs": {
-    "url": "https://github.com/tsparticles/stencil/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "files": [
     "dist",

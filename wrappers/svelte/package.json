@@ -7,9 +7,13 @@
 		"url": "git+https://github.com/tsparticles/tsparticles.git",
 		"directory": "wrappers/svelte"
 	},
-	"author": "Matteo Bruni <matteo.bruni@me.com>",
-	"license": "MIT",
-	"keywords": [
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "homepage": "https://particles.js.org",
+  "keywords": [
 		"front-end",
 		"frontend",
 		"tsparticles",

@@ -78,6 +78,10 @@
     "directory": "dist/ng-confetti",
     "linkDirectory": true
   },
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "homepage": "https://particles.js.org",
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "@angular/animations": "~21.2.9",

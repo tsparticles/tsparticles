@@ -77,7 +77,7 @@
     "canvas-confetti"
   ],
   "bugs": {
-    "url": "https://github.com/tsparticles/preact/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
