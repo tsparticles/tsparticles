@@ -29,133 +29,7 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 
-const minRadius = 0,
-  minMemoizeSize = 0;
-
-/**
- * Memoize function options
- */
-export interface MemoizeOptions<TArgs> {
-  /** Custom key function for cache lookups */
-  keyFn?: (args: TArgs) => string;
-  /** Maximum cache size */
-  maxSize?: number;
-  /** Time-to-live in milliseconds */
-  ttlMs?: number;
-}
-
-/**
- * Memoize a function's results with optional bounded size and TTL.
- *
- * Backward compatible: callers using `memoize(fn)` keep the same semantics.
- * Options: \{ maxSize?: number, ttlMs?: number, keyFn?: (args) =\> string \}
- * Default keyer uses a stable serialization of the arguments (sorted keys)
- * which makes equal-shaped objects produce the same cache key.
- *
- * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
- * @param fn -
- * @param options -
- * @returns the memoized function
- */
-export function memoize<TArgs extends unknown[], Result>(
-  fn: (...args: TArgs) => Result,
-  options?: MemoizeOptions<TArgs>,
-): (...args: TArgs) => Result {
-  const cache = new Map<string, { ts: number; value: Result }>(),
-    maxSize = options?.maxSize,
-    ttlMs = options?.ttlMs,
-    keyFn = options?.keyFn,
-    stableStringify = (obj: unknown, seen = new WeakSet()): string => {
-      if (obj === null) {
-        return "null";
-      }
-
-      const t = typeof obj;
-
-      if (t === "undefined") {
-        return "undefined";
-      }
-
-      if (t === "number" || t === "boolean" || t === "string") {
-        return JSON.stringify(obj);
-      }
-
-      if (t === "function") {
-        try {
-          const fn = obj as unknown as (...args: unknown[]) => unknown;
-
-          return fn.toString();
-        } catch {
-          return '"[Function]"';
-        }
-      }
-
-      if (t === "symbol") {
-        try {
-          return (obj as symbol).toString();
-        } catch {
-          // Avoid default object stringification which yields "[object Object]".
-          return '"[Symbol]"';
-        }
-      }
-
-      if (Array.isArray(obj)) {
-        return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
-      }
-
-      // object
-      if (seen.has(obj as object)) {
-        return '"[Circular]"';
-      }
-
-      seen.add(obj as object);
-
-      const keys = Object.keys(obj as Record<string, unknown>).sort();
-
-      return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
-    },
-    defaultKeyer = (args: TArgs): string => stableStringify(args),
-    makeKey = (args: TArgs): string => (keyFn ? keyFn(args) : defaultKeyer(args)),
-    ensureBounds = (): void => {
-      if (typeof maxSize === "number" && maxSize >= minMemoizeSize) {
-        while (cache.size > maxSize) {
-          // evict oldest entry (Map preserves insertion order)
-          const firstKey = cache.keys().next().value;
-
-          if (firstKey === undefined) break;
-
-          cache.delete(firstKey);
-        }
-      }
-    };
-
-  return (...args: TArgs): Result => {
-    const key = makeKey(args),
-      now = Date.now(),
-      entry = cache.get(key);
-
-    if (entry !== undefined) {
-      if (ttlMs && now - entry.ts > ttlMs) {
-        // expired
-        cache.delete(key);
-      } else {
-        // refresh insertion order: delete then set to move to newest
-        cache.delete(key);
-        cache.set(key, { value: entry.value, ts: entry.ts });
-
-        return entry.value;
-      }
-    }
-
-    const result = fn(...args);
-
-    cache.set(key, { value: result, ts: now });
-
-    ensureBounds();
-
-    return result;
-  };
-}
+const minRadius = 0;
 
 /**
  * @returns true if the environment supports matchMedia feature
@@ -774,45 +648,48 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
   return clonedStyle;
 }
 
+let _cachedZIndex: number | undefined, _cachedStyle: CSSStyleDeclaration | undefined;
+
 /**
- * Computes full-screen canvas style for a given z-index.
+ * Full-screen canvas style builder with inline cache.
  * @param zIndex - The z-index value.
  * @returns Full-screen CSS style declaration.
  */
-function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
-  const fullScreenStyle = safeDocument().createElement("div").style,
-    radix = 10,
-    style: Record<string, string> = {
-      width: "100%",
-      height: "100%",
-      margin: "0",
-      padding: "0",
-      borderWidth: "0",
-      position: "fixed",
-      zIndex: zIndex.toString(radix),
-      "z-index": zIndex.toString(radix),
-      top: "0",
-      left: "0",
-      "pointer-events": "none",
-    };
+export function getFullScreenStyle(zIndex: number): CSSStyleDeclaration {
+  if (_cachedZIndex !== zIndex || !_cachedStyle) {
+    _cachedZIndex = zIndex;
 
-  for (const key in style) {
-    const value = style[key];
+    const fullScreenStyle = safeDocument().createElement("div").style,
+      radix = 10,
+      style: Record<string, string> = {
+        width: "100%",
+        height: "100%",
+        margin: "0",
+        padding: "0",
+        borderWidth: "0",
+        position: "fixed",
+        zIndex: zIndex.toString(radix),
+        "z-index": zIndex.toString(radix),
+        top: "0",
+        left: "0",
+        "pointer-events": "none",
+      };
 
-    if (value === undefined) {
-      continue;
+    for (const key in style) {
+      const value = style[key];
+
+      if (value === undefined) {
+        continue;
+      }
+
+      fullScreenStyle.setProperty(key, value);
     }
 
-    fullScreenStyle.setProperty(key, value);
+    _cachedStyle = fullScreenStyle;
   }
 
-  return fullScreenStyle;
+  return _cachedStyle;
 }
-
-/**
- * Memoized full-screen style builder.
- */
-export const getFullScreenStyle = memoize(computeFullScreenStyle);
 
 /**
  * Manage the given event listeners
