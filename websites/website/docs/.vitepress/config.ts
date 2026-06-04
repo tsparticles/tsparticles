@@ -185,6 +185,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Hyperspace", link: "/demos/recipes/hyperspace" },
         { text: "Links", link: "/demos/recipes/links" },
         { text: "Matrix", link: "/demos/recipes/matrix" },
+        { text: "Meteors", link: "/demos/recipes/meteors" },
         { text: "Ribbons", link: "/demos/recipes/ribbons" },
         { text: "Sea Anemone", link: "/demos/recipes/sea-anemone" },
         { text: "Snow", link: "/demos/recipes/snow" },

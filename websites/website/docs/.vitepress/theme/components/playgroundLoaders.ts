@@ -21,6 +21,7 @@ import { loadFountainPreset } from "@tsparticles/preset-fountain";
 import { loadHyperspacePreset } from "@tsparticles/preset-hyperspace";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import { loadMatrixPreset } from "@tsparticles/preset-matrix";
+import { loadMeteorsPreset } from "@tsparticles/preset-meteors";
 import { loadSeaAnemonePreset } from "@tsparticles/preset-sea-anemone";
 import { loadSnowPreset } from "@tsparticles/preset-snow";
 import { loadSquaresPreset } from "@tsparticles/preset-squares";
@@ -250,6 +251,7 @@ const presetLoaders: readonly ((engine: Engine) => Promise<void>)[] = [
   loadHyperspacePreset,
   loadLinksPreset,
   loadMatrixPreset,
+  loadMeteorsPreset,
   loadSeaAnemonePreset,
   loadSnowPreset,
   loadSquaresPreset,

@@ -60,13 +60,13 @@ Add a `<div>` placeholder and a script tag in your HTML:
 ### npm
 
 ```bash
-npm install tsparticles
+npm install @tsparticles/engine
 ```
 
 Then import and use it:
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "@tsparticles/engine";
 
 tsParticles.load({
   id: "tsparticles",

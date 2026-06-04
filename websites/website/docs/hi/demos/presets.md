@@ -22,6 +22,7 @@
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - <https://particles.js.org/samples/presets/hyperspace>
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - <https://particles.js.org/samples/presets/links>
 - `matrix` - स्थानीय वेबसाइट डेमो रेसिपी [`/demos/recipes/matrix`](/hi/demos/recipes/matrix) में उपलब्ध है
+- `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - <https://particles.js.org/samples/presets/meteors>
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - <https://particles.js.org/samples/presets/seaAnemone>
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - <https://particles.js.org/samples/presets/snow>
 - `squares` - <https://www.npmjs.com/package/@tsparticles/preset-squares> - <https://particles.js.org/samples/presets/squares>
