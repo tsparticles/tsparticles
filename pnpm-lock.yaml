@@ -3580,7 +3580,7 @@ importers:
         version: 22.0.0
       yauzl:
         specifier: ^3.3.1
-        version: 3.3.1
+        version: 3.3.2
 
   demo/ember:
     dependencies:
@@ -42106,8 +42106,8 @@ packages:
   yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
 
-  yauzl@3.3.1:
-    resolution: {integrity: sha512-RNPCUkiE/ZgO4w8i9U5yDQVHaFDdnzaFANElRvpJteCspvmv2VqrRb9lvS6odVD+jqI/zDsxAHJVsafpcheVQQ==}
+  yauzl@3.3.2:
+    resolution: {integrity: sha512-Md9ankxxN23wncAN8s7+Tn3Co52zLUPMtnrLAbVCnfG5d2tKBFfmygYSgXlqFgXObtzIgqkx7aNgDBpso9+4qA==}
     engines: {node: '>=12'}
 
   yeast@0.1.2:
@@ -81182,9 +81182,8 @@ snapshots:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
 
-  yauzl@3.3.1:
+  yauzl@3.3.2:
     dependencies:
-      buffer-crc32: 0.2.13
       pend: 1.2.0
 
   yeast@0.1.2: {}
