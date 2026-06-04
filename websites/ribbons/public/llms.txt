@@ -1,0 +1,15 @@
+# tsParticles Ribbons
+
+> Interactive showcase and playground for tsParticles ribbon animations. Explore ribbon modes (basic, custom colors, multiple bursts, continuous fall, custom canvas, fixed position) with a live code editor. Hosted at ribbons.js.org.
+
+## Docs
+
+- [Ribbons Modes](https://ribbons.js.org/): Interactive ribbon animation demos with live code editor
+- [tsParticles Documentation](https://particles.js.org/): Main tsParticles documentation site
+- [tsParticles GitHub](https://github.com/tsparticles/tsparticles): Source code and issue tracker
+
+## Core
+
+- [Ribbons Preset](https://particles.js.org/demos/recipes/ribbons): Ribbon animation demo and recipe
+- [Ribbon Shape Plugin](https://particles.js.org/options/plugin-shapes): Documentation for the ribbon shape plugin options
+- [npm: @tsparticles/ribbons](https://www.npmjs.com/package/@tsparticles/ribbons): npm package for @tsparticles/ribbons

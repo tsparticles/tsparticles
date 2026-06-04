@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://confetti.js.org/sitemap.xml
