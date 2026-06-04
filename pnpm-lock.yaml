@@ -10756,26 +10756,26 @@ importers:
   presets/meteors:
     dependencies:
       '@tsparticles/basic':
-        specifier: workspace:*
+        specifier: 4.1.3
         version: link:../../bundles/basic/dist
       '@tsparticles/effect-trail':
-        specifier: workspace:*
+        specifier: 4.1.3
         version: link:../../effects/trail/dist
       '@tsparticles/engine':
-        specifier: workspace:*
+        specifier: 4.1.3
         version: link:../../engine/dist
       '@tsparticles/plugin-emitters':
-        specifier: workspace:*
+        specifier: 4.1.3
         version: link:../../plugins/emitters/dist
       '@tsparticles/plugin-emitters-shape-square':
-        specifier: workspace:*
+        specifier: 4.1.3
         version: link:../../plugins/emittersShapes/square/dist
     devDependencies:
       '@tsparticles/cli-build':
-        specifier: workspace:^
+        specifier: ^4.1.3
         version: link:../../cli/packages/cli-build
       '@tsparticles/cli-command-build':
-        specifier: workspace:^
+        specifier: ^4.1.3
         version: link:../../cli/commands/build
     publishDirectory: dist
 
