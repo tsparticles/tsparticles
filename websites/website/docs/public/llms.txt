@@ -1,0 +1,199 @@
+# tsParticles Documentation
+
+> Official documentation for tsParticles — a lightweight, performant TypeScript library for creating highly customizable particle animations, confetti, fireworks, and ribbon effects. Supports React, Vue, Angular, Svelte, Next.js, Nuxt, Solid, Preact, Lit, Qwik, Ember, Riot, Inferno, jQuery, Astro, Web Components, WordPress, Stencil, and many other frameworks. Hosted at particles.js.org.
+
+## Getting Started
+
+- [Getting Started](https://particles.js.org/guide/getting-started): Quickstart guide for tsParticles
+- [Installation](https://particles.js.org/guide/installation): Install tsParticles via npm, yarn, pnpm, or CDN
+- [Bundle Overview](https://particles.js.org/guide/bundles): Comparison of available bundles (basic, slim, full, all, confetti, fireworks, particles)
+- [Basic Bundle](https://particles.js.org/guide/bundles-basic): Lightweight bundle with core features
+- [Slim Bundle](https://particles.js.org/guide/bundles-slim): Bundle without external plugins
+- [Full Bundle](https://particles.js.org/guide/bundles-full): The full tsparticles bundle
+- [All Bundle](https://particles.js.org/guide/bundles-all): All-inclusive bundle with every plugin
+- [Confetti Bundle](https://particles.js.org/guide/bundles-confetti): Confetti-specific bundle
+- [Fireworks Bundle](https://particles.js.org/guide/bundles-fireworks): Fireworks-specific bundle
+- [Particles Bundle](https://particles.js.org/guide/bundles-particles): Minimal particles-only bundle
+
+## Playground
+
+- [Playground Overview](https://particles.js.org/playground/): Interactive playground to experiment with tsParticles configurations
+- [Bundle Playground](https://particles.js.org/playground/bundles): Compare different tsParticles bundles
+- [Configs Playground](https://particles.js.org/playground/configs): Browse built-in configuration examples
+- [Shapes Playground](https://particles.js.org/playground/shapes): Explore available particle shapes
+- [Presets Playground](https://particles.js.org/playground/presets): Try out preset configurations
+- [Palettes Playground](https://particles.js.org/playground/palettes): Browse and test color palettes
+
+## Demos & Recipes
+
+- [Demos Overview](https://particles.js.org/demos/): Ready-to-use demonstration recipes
+- [Presets Catalog](https://particles.js.org/demos/presets): Full catalog of available presets
+- [Palettes Catalog](https://particles.js.org/demos/palettes): Full catalog of color palettes
+- [Shapes Catalog](https://particles.js.org/demos/shapes): Full catalog of particle shapes
+- [Ambient Recipe](https://particles.js.org/demos/recipes/ambient): Ambient particle effect
+- [Big Circles Recipe](https://particles.js.org/demos/recipes/big-circles): Big circles particle effect
+- [Bubbles Recipe](https://particles.js.org/demos/recipes/bubbles): Bubbles particle effect
+- [Confetti Recipe](https://particles.js.org/demos/recipes/confetti): Confetti particle effect
+- [Confetti Cannon Recipe](https://particles.js.org/demos/recipes/confetti-cannon): Confetti cannon effect
+- [Confetti Explosions Recipe](https://particles.js.org/demos/recipes/confetti-explosions): Confetti explosions effect
+- [Confetti Falling Recipe](https://particles.js.org/demos/recipes/confetti-falling): Falling confetti effect
+- [Confetti Parade Recipe](https://particles.js.org/demos/recipes/confetti-parade): Confetti parade effect
+- [Party Recipe](https://particles.js.org/demos/recipes/party): Party particle effect
+- [Fire Recipe](https://particles.js.org/demos/recipes/fire): Fire particle effect
+- [Firefly Recipe](https://particles.js.org/demos/recipes/firefly): Firefly particle effect
+- [Fireworks Recipe](https://particles.js.org/demos/recipes/fireworks): Fireworks particle effect
+- [Fountain Recipe](https://particles.js.org/demos/recipes/fountain): Fountain particle effect
+- [Hyperspace Recipe](https://particles.js.org/demos/recipes/hyperspace): Hyperspace particle effect
+- [Links Recipe](https://particles.js.org/demos/recipes/links): Connecting links particle effect
+- [Matrix Recipe](https://particles.js.org/demos/recipes/matrix): Matrix rain particle effect
+- [Ribbons Recipe](https://particles.js.org/demos/recipes/ribbons): Ribbon particle effect
+- [Sea Anemone Recipe](https://particles.js.org/demos/recipes/sea-anemone): Sea anemone particle effect
+- [Snow Recipe](https://particles.js.org/demos/recipes/snow): Snowfall particle effect
+- [Squares Recipe](https://particles.js.org/demos/recipes/squares): Squares particle effect
+- [Stars Recipe](https://particles.js.org/demos/recipes/stars): Stars particle effect
+- [Triangles Recipe](https://particles.js.org/demos/recipes/triangles): Triangles particle effect
+
+## Configuration Options
+
+- [Options Reference](https://particles.js.org/options/): Complete configuration reference index
+- [Background & Canvas](https://particles.js.org/options/background): Background color, image, and canvas sizing
+- [Background Mask](https://particles.js.org/options/background-mask): Background masking options
+- [Full Screen](https://particles.js.org/options/fullscreen): Full-screen mode configuration
+- [Motion](https://particles.js.org/options/motion): Motion preferences and reduced motion support
+- [Manual Particles](https://particles.js.org/options/manual-particles): Manual particle placement
+- [Themes](https://particles.js.org/options/themes): Theme configuration for dark/light mode
+- [Performance Guide](https://particles.js.org/options/performance): Performance optimization tips and best practices
+- [Particles](https://particles.js.org/options/particles): Core particle configuration
+- [Particles Number](https://particles.js.org/options/particles-number): Particle count and density
+- [Particles Move](https://particles.js.org/options/particles-move): Particle movement and speed
+- [Particles Links](https://particles.js.org/options/particles-links): Particle linking lines
+- [Particles Shape](https://particles.js.org/options/particles-shape): Particle shape (circle, square, star, etc.)
+- [Particles Color](https://particles.js.org/options/particles-color): Particle color configuration
+- [Particles Size](https://particles.js.org/options/particles-size): Particle size configuration
+- [Particles Opacity](https://particles.js.org/options/particles-opacity): Particle opacity
+- [Particles ZIndex](https://particles.js.org/options/particles-zindex): Particle z-index layering
+- [Particles Palette](https://particles.js.org/options/particles-palette): Particle color palettes
+- [Particles Bounce](https://particles.js.org/options/particles-bounce): Particle bounce behavior
+- [Particles Collisions](https://particles.js.org/options/particles-collisions): Particle collision detection
+- [Particles Destroy](https://particles.js.org/options/particles-destroy): Particle destruction on boundaries
+- [Particles Group](https://particles.js.org/options/particles-group): Particle grouping
+- [Particles Life](https://particles.js.org/options/particles-life): Particle lifecycle duration
+- [Particles Orbit](https://particles.js.org/options/particles-orbit): Particle orbit motion
+- [Particles Repulse](https://particles.js.org/options/particles-repulse): Particle repulsion
+- [Particles Roll](https://particles.js.org/options/particles-roll): Particle rolling effect
+- [Particles Rotate](https://particles.js.org/options/particles-rotate): Particle rotation
+- [Particles Shadow](https://particles.js.org/options/particles-shadow): Particle shadows
+- [Particles Stroke](https://particles.js.org/options/particles-stroke): Particle stroke/outline
+- [Particles Tilt](https://particles.js.org/options/particles-tilt): Particle tilt
+- [Particles Twinkle](https://particles.js.org/options/particles-twinkle): Particle twinkle effect
+- [Particles Wobble](https://particles.js.org/options/particles-wobble): Particle wobble effect
+- [Particles Paint](https://particles.js.org/options/particles-paint): Particle paint effect
+- [Interactivity](https://particles.js.org/options/interactivity): Mouse/touch interactivity overview
+- [Interactivity Events](https://particles.js.org/options/interactivity-events): Event configuration for interactivity
+- [Interactivity Modes](https://particles.js.org/options/interactivity-modes): Interaction mode configuration
+- [Interactivity Click](https://particles.js.org/options/interactivity-click): Click interaction modes
+- [Interactivity Hover](https://particles.js.org/options/interactivity-hover): Hover interaction modes
+- [Interactivity Div](https://particles.js.org/options/interactivity-div): Div element interaction modes
+
+### Plugin Options
+
+- [Plugin: Absorbers](https://particles.js.org/options/plugin-absorbers): Absorber plugin options
+- [Plugin: Background Mask](https://particles.js.org/options/plugin-background-mask): Background mask plugin options
+- [Plugin: Blend](https://particles.js.org/options/plugin-blend): Blend mode plugin
+- [Plugin: Canvas Mask](https://particles.js.org/options/plugin-canvas-mask): Canvas mask plugin
+- [Plugin: Colors](https://particles.js.org/options/plugin-colors): Color plugin options
+- [Plugin: Easings](https://particles.js.org/options/plugin-easings): Easing functions plugin
+- [Plugin: Effects](https://particles.js.org/options/plugin-effects): Effects plugin options
+- [Plugin: Emitter Shapes](https://particles.js.org/options/plugin-emitter-shapes): Emitter shape plugin
+- [Plugin: Emitters](https://particles.js.org/options/plugin-emitters): Emitter plugin (continuous particle spawning)
+- [Plugin: Exports](https://particles.js.org/options/plugin-exports): Export plugin (image/video capture)
+- [Plugin: Infection](https://particles.js.org/options/plugin-infection): Infection plugin
+- [Plugin: Interactions](https://particles.js.org/options/plugin-interactions): Custom interaction plugin
+- [Plugin: Motion](https://particles.js.org/options/plugin-motion): Motion plugin
+- [Plugin: Path Generators](https://particles.js.org/options/plugin-path-generators): Custom path generation plugin
+- [Plugin: Poisson](https://particles.js.org/options/plugin-poisson): Poisson disc sampling plugin
+- [Plugin: Polygon Mask](https://particles.js.org/options/plugin-polygon-mask): Polygon mask plugin (image-based masks)
+- [Plugin: Responsive](https://particles.js.org/options/plugin-responsive): Responsive breakpoints plugin
+- [Plugin: Shapes](https://particles.js.org/options/plugin-shapes): Custom shape plugin
+- [Plugin: Sounds](https://particles.js.org/options/plugin-sounds): Sound effects plugin
+- [Plugin: Themes](https://particles.js.org/options/plugin-themes): Theme management plugin
+- [Plugin: Trail](https://particles.js.org/options/plugin-trail): Particle trail plugin
+- [Plugin: Updaters](https://particles.js.org/options/plugin-updaters): Custom updater plugin
+- [Plugin: Zoom](https://particles.js.org/options/plugin-zoom): Zoom interaction plugin
+
+## Framework Wrappers
+
+- [Wrappers Overview](https://particles.js.org/guide/wrappers): Official framework wrappers overview
+- [Framework Integrations](https://particles.js.org/guide/frameworks): How to integrate tsParticles with frameworks
+- [React](https://particles.js.org/guide/wrappers-react): React.js wrapper (react-tsparticles)
+- [Vue 3](https://particles.js.org/guide/wrappers-vue3): Vue.js 3.x wrapper
+- [Vue 2](https://particles.js.org/guide/wrappers-vue2): Vue.js 2.x wrapper
+- [Angular](https://particles.js.org/guide/wrappers-angular): Angular wrapper
+- [Angular Confetti](https://particles.js.org/guide/wrappers-angular-confetti): Angular confetti component
+- [Angular Fireworks](https://particles.js.org/guide/wrappers-angular-fireworks): Angular fireworks component
+- [Svelte](https://particles.js.org/guide/wrappers-svelte): Svelte wrapper
+- [Next.js](https://particles.js.org/guide/wrappers-nextjs): Next.js wrapper
+- [Nuxt 2](https://particles.js.org/guide/wrappers-nuxt2): Nuxt 2 wrapper
+- [Nuxt 3](https://particles.js.org/guide/wrappers-nuxt3): Nuxt 3 wrapper
+- [Nuxt 4](https://particles.js.org/guide/wrappers-nuxt4): Nuxt 4 wrapper
+- [Astro](https://particles.js.org/guide/wrappers-astro): Astro integration
+- [Solid](https://particles.js.org/guide/wrappers-solid): SolidJS wrapper
+- [Preact](https://particles.js.org/guide/wrappers-preact): Preact wrapper
+- [Lit](https://particles.js.org/guide/wrappers-lit): Lit (Web Components) wrapper
+- [Qwik](https://particles.js.org/guide/wrappers-qwik): Qwik wrapper
+- [Ember](https://particles.js.org/guide/wrappers-ember): Ember.js wrapper
+- [Riot](https://particles.js.org/guide/wrappers-riot): Riot.js wrapper
+- [Inferno](https://particles.js.org/guide/wrappers-inferno): Inferno wrapper
+- [jQuery](https://particles.js.org/guide/wrappers-jquery): jQuery plugin
+- [Stencil](https://particles.js.org/guide/wrappers-stencil): Stencil.js wrapper
+- [Web Components](https://particles.js.org/guide/wrappers-webcomponents): Vanilla Web Components wrapper
+- [WordPress](https://particles.js.org/guide/wrappers-wordpress): WordPress plugin integration
+
+## Plugin & Customization Development
+
+- [Customization Overview](https://particles.js.org/guide/plugins-customization): Guide for extending tsParticles
+- [Custom Plugin](https://particles.js.org/guide/plugins-customization-plugin): Creating custom plugins
+- [Custom Shape](https://particles.js.org/guide/plugins-customization-shape): Creating custom shapes
+- [Custom Preset](https://particles.js.org/guide/plugins-customization-preset): Creating custom presets
+- [Custom Updater](https://particles.js.org/guide/plugins-customization-updater): Creating custom updaters
+- [Custom Effect](https://particles.js.org/guide/plugins-customization-effect): Creating custom effects
+- [Custom Interaction](https://particles.js.org/guide/plugins-customization-interaction): Creating custom interactions
+- [Custom Path](https://particles.js.org/guide/plugins-customization-path): Creating custom path generators
+- [Custom Palette](https://particles.js.org/guide/plugins-customization-palette): Creating custom color palettes
+- [Custom Bundle](https://particles.js.org/guide/plugins-customization-bundle): Creating custom bundles
+
+## Migration & Versioning
+
+- [Versioning Overview](https://particles.js.org/migrations/): Versioning and migration guides
+- [Migrate from v3.x](https://particles.js.org/migrations/from-v3): Upgrade guide from v3.x to v4
+- [Migrate from v2.x](https://particles.js.org/migrations/from-v2): Upgrade guide from v2.x to v4
+- [Migrate from v1.x](https://particles.js.org/migrations/from-v1): Upgrade guide from v1.x to v4
+- [Option Rename Matrix](https://particles.js.org/migrations/option-rename-matrix): Cross-version option name mapping
+- [particles.js Migration](https://particles.js.org/migrations/particles-js): Migrate from particles.js to tsParticles
+- [Changelog](https://particles.js.org/migrations/changelog): Full release changelog
+- [Releases](https://particles.js.org/migrations/releases): Release announcements and notes
+
+## Additional Resources
+
+- [Color Formats](https://particles.js.org/guide/color-formats): Supported color formats in tsParticles
+- [Container Lifecycle](https://particles.js.org/guide/container-lifecycle): Understanding the container lifecycle
+- [Templates & Resources](https://particles.js.org/guide/templates-resources): Starter templates and additional resources
+- [Video Tutorials](https://particles.js.org/guide/video-tutorials): Video tutorials for tsParticles
+- [Dependency Graph](https://particles.js.org/guide/dependency-graph): Visual dependency graph of tsParticles packages
+- [Showcase](https://particles.js.org/showcase/): Community showcase of tsParticles in action
+
+## API Reference
+
+- [TypeDoc API](https://particles.js.org/docs/): Full TypeScript API reference documentation (auto-generated with TypeDoc)
+
+## External Sites
+
+- [Confetti Website](https://confetti.js.org): Interactive confetti animation playground
+- [Ribbons Website](https://ribbons.js.org): Interactive ribbon animation playground
+- [GitHub Repository](https://github.com/tsparticles/tsparticles): Source code, issues, and contributions
+- [npm @tsparticles/engine](https://www.npmjs.com/package/@tsparticles/engine): Core engine package
+- [npm tsparticles](https://www.npmjs.com/package/tsparticles): Full bundle package
+
+## Localized Documentation
+
+The website is available in 10 languages (English, Italian, French, Spanish, German, Portuguese, Russian, Chinese, Japanese, Hindi). All pages listed above are available under each language prefix: `/it/`, `/fr/`, `/es/`, `/de/`, `/pt/`, `/ru/`, `/zh/`, `/ja/`, `/hi/`.
