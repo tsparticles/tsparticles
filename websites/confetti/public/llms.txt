@@ -1,0 +1,19 @@
+# tsParticles Confetti
+
+> Interactive showcase and playground for tsParticles confetti animations. Explore confetti modes, customize settings with a live editor, and generate code snippets for your own projects. Hosted at confetti.js.org.
+
+## Docs
+
+- [Confetti Modes](https://confetti.js.org/): Interactive confetti animation demos with live code editor
+- [tsParticles Documentation](https://particles.js.org/): Main tsParticles documentation site
+- [tsParticles GitHub](https://github.com/tsparticles/tsparticles): Source code and issue tracker
+
+## Core
+
+- [Confetti Bundle](https://particles.js.org/guide/bundles-confetti): Guide for using the @tsparticles/confetti bundle
+- [Confetti Presets](https://particles.js.org/demos/recipes/confetti): Confetti preset demos and recipes
+- [Confetti Cannon Preset](https://particles.js.org/demos/recipes/confetti-cannon): Confetti cannon recipe
+- [Confetti Explosions Preset](https://particles.js.org/demos/recipes/confetti-explosions): Confetti explosions recipe
+- [Confetti Falling Preset](https://particles.js.org/demos/recipes/confetti-falling): Confetti falling animation recipe
+- [Confetti Parade Preset](https://particles.js.org/demos/recipes/confetti-parade): Confetti parade recipe
+- [npm: @tsparticles/confetti](https://www.npmjs.com/package/@tsparticles/confetti): npm package for @tsparticles/confetti

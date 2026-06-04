@@ -10,6 +10,7 @@ const gaMeasurementId = loadedEnv.VITE_GA_MEASUREMENT_ID ?? "";
 const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
   { text: "Playground", link: "/playground/" },
+  { text: "Guides", link: "/guides/" },
   { text: "Demos", link: "/demos/" },
   { text: "Wrappers", link: "/guide/wrappers" },
   { text: "Options", link: "/options/" },
@@ -296,6 +297,33 @@ const baseSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
+  "/guides/": [
+    {
+      text: "Guides",
+      items: [
+        { text: "Overview", link: "/guides/" },
+        { text: "Vanilla JS", link: "/guides/vanilla" },
+        { text: "React", link: "/guides/react" },
+        { text: "Vue 3", link: "/guides/vue3" },
+        { text: "Angular", link: "/guides/angular" },
+        { text: "Svelte", link: "/guides/svelte" },
+        { text: "Next.js", link: "/guides/nextjs" },
+        { text: "Nuxt", link: "/guides/nuxt" },
+        { text: "Solid", link: "/guides/solid" },
+        { text: "Preact", link: "/guides/preact" },
+        { text: "Lit", link: "/guides/lit" },
+        { text: "Qwik", link: "/guides/qwik" },
+        { text: "jQuery", link: "/guides/jquery" },
+        { text: "Astro", link: "/guides/astro" },
+        { text: "Web Components", link: "/guides/webcomponents" },
+        { text: "Stencil", link: "/guides/stencil" },
+        { text: "Ember", link: "/guides/ember" },
+        { text: "Riot", link: "/guides/riot" },
+        { text: "Inferno", link: "/guides/inferno" },
+        { text: "WordPress", link: "/guides/wordpress" },
+      ],
+    },
+  ],
 };
 
 function prefixSidebarItems(items: DefaultTheme.SidebarItem[], prefix: string): DefaultTheme.SidebarItem[] {
@@ -338,6 +366,35 @@ export default defineConfig({
   lastUpdated: false,
   base,
   ignoreDeadLinks: [],
+  transformHead: ({ pageData }) => {
+    const path = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
+    const canonical = `https://particles.js.org/${path}`;
+    const localePrefixesMap: Record<string, string> = {
+      root: "x-default",
+      it: "it",
+      fr: "fr",
+      es: "es",
+      de: "de",
+      pt: "pt",
+      ru: "ru",
+      zh: "zh",
+      ja: "ja",
+      hi: "hi",
+    };
+    const head: any[] = [];
+    for (const [locale, hreflang] of Object.entries(localePrefixesMap)) {
+      const prefix = locale === "root" ? "" : `/${locale}`;
+      head.push([
+        "link",
+        {
+          rel: "alternate",
+          href: `https://particles.js.org${prefix}/${path}`,
+          hreflang,
+        },
+      ]);
+    }
+    return head;
+  },
   locales: {
     root: {
       label: "English",
@@ -464,6 +521,9 @@ export default defineConfig({
         "vue",
         "svelte",
         "astro",
+        "riot",
+        "hbs",
+        "php",
       ],
     },
   },
@@ -475,6 +535,32 @@ export default defineConfig({
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:title", content: "tsParticles" }],
     ["meta", { property: "og:description", content: "TypeScript particle engine for websites and apps" }],
+    ["meta", { property: "og:url", content: "https://particles.js.org" }],
+    ["meta", { property: "og:site_name", content: "tsParticles" }],
+    ["meta", { property: "og:locale", content: "en_US" }],
+    ["meta", { property: "og:image", content: "https://particles.js.org/images/banner3.png" }],
+    ["meta", { property: "og:image:width", content: "1200" }],
+    ["meta", { property: "og:image:height", content: "630" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:title", content: "tsParticles" }],
+    ["meta", { name: "twitter:description", content: "TypeScript particle engine for websites and apps" }],
+    ["meta", { name: "twitter:image", content: "https://particles.js.org/images/banner3.png" }],
+    [
+      "script",
+      { type: "application/ld+json" },
+      JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "tsParticles",
+        url: "https://particles.js.org",
+        description: "Modern particle animations for the web. TypeScript particle engine for websites and apps.",
+        author: {
+          "@type": "Person",
+          name: "Matteo Bruni",
+          url: "https://github.com/matteobruni",
+        },
+      }),
+    ],
     ...(gaMeasurementId
       ? [
           [
