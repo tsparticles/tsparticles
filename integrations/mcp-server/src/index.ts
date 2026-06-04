@@ -1,0 +1,397 @@
+#!/usr/bin/env node
+
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
+  ListPromptsRequestSchema,
+  GetPromptRequestSchema,
+} from "@modelcontextprotocol/sdk/types.js";
+
+import { suggestPlugins } from "./tools/suggestPlugins.js";
+import { listPackages } from "./tools/listPackages.js";
+import { getPackageInfo } from "./tools/getPackageInfo.js";
+import { getPackageCatalogResource } from "./resources/packageCatalog.js";
+import { getOptionsGuideResource } from "./resources/optionsGuide.js";
+import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
+import { generateOptionsPrompt } from "./prompts/generateOptions.js";
+
+import { createServer } from "node:http";
+import { randomUUID } from "node:crypto";
+
+const PACKAGE_VERSION = "0.1.0";
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const result: { mode: "stdio" | "http"; port?: number } = { mode: "stdio" };
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "--stdio") {
+      result.mode = "stdio";
+    } else if (args[i] === "--port" && i + 1 < args.length) {
+      result.mode = "http";
+      result.port = parseInt(args[++i], 10);
+    } else if (args[i].startsWith("--port=")) {
+      result.mode = "http";
+      result.port = parseInt(args[i].split("=")[1], 10);
+    }
+  }
+
+  return result;
+}
+
+const server = new Server(
+  {
+    name: "@tsparticles/mcp-server",
+    version: PACKAGE_VERSION,
+  },
+  {
+    capabilities: {
+      tools: {},
+      resources: {},
+      prompts: {},
+    },
+  },
+);
+
+// ── Tools ──────────────────────────────────────────────────────────
+
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "suggest_plugins",
+        description:
+          "Given a tsParticles options object, suggests the npm packages and imports required to use those options. Detects which plugins, interactions, updaters, and shapes are needed.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            options: {
+              type: "object",
+              description: "The tsParticles options object (ISourceOptions)",
+            },
+          },
+          required: ["options"],
+        },
+      },
+      {
+        name: "list_packages",
+        description:
+          "List all available tsParticles packages, optionally filtered by category or search query. Categories: bundle, plugin, interaction-external, interaction-particles, interaction-light, updater, shape, effect, path, emitter-shape, color, easing, preset.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            category: {
+              type: "string",
+              description: "Filter by category (optional)",
+              enum: [
+                "bundle",
+                "plugin",
+                "interaction-external",
+                "interaction-particles",
+                "updater",
+                "shape",
+                "effect",
+                "path",
+                "emitter-shape",
+                "color",
+                "easing",
+                "preset",
+              ],
+            },
+            query: {
+              type: "string",
+              description: "Search query for package name or description",
+            },
+          },
+        },
+      },
+      {
+        name: "get_package_info",
+        description:
+          "Get detailed information about a specific tsParticles package, including its category, load function, option keys, and which bundles include it.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            package: {
+              type: "string",
+              description:
+                "Package name (e.g., @tsparticles/plugin-absorbers, @tsparticles/slim)",
+            },
+          },
+          required: ["package"],
+        },
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  switch (name) {
+    case "suggest_plugins": {
+      const options = args?.options as Record<string, unknown>;
+      if (!options) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "Missing required argument: options",
+            },
+          ],
+          isError: true,
+        };
+      }
+      const result = suggestPlugins(options);
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "list_packages": {
+      const filters: { category?: string; query?: string } = {};
+      if (args?.category) filters.category = args.category as string;
+      if (args?.query) filters.query = args.query as string;
+      const result = listPackages(filters);
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "get_package_info": {
+      const pkg = args?.package as string;
+      if (!pkg) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "Missing required argument: package",
+            },
+          ],
+          isError: true,
+        };
+      }
+      const result = getPackageInfo(pkg);
+      if (!result) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Package "${pkg}" not found. Use list_packages to see all available packages.`,
+            },
+          ],
+          isError: true,
+        };
+      }
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    default:
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Unknown tool: ${name}`,
+          },
+        ],
+        isError: true,
+      };
+  }
+});
+
+// ── Resources ──────────────────────────────────────────────────────
+
+const RESOURCES = [
+  {
+    uri: "tsparticles://packages",
+    name: "Complete tsParticles Package Catalog",
+    description:
+      "Every tsParticles package organized by category with descriptions, load functions, and bundle inclusion info",
+    mimeType: "text/markdown",
+    getText: getPackageCatalogResource,
+  },
+  {
+    uri: "tsparticles://options/guide",
+    name: "tsParticles Options Guide",
+    description:
+      "Complete structural guide to tsParticles options with tables, defaults, and examples",
+    mimeType: "text/markdown",
+    getText: getOptionsGuideResource,
+  },
+  {
+    uri: "tsparticles://bundles",
+    name: "tsParticles Bundle Guide",
+    description:
+      "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
+    mimeType: "text/markdown",
+    getText: getBundlesGuideResource,
+  },
+];
+
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  return {
+    resources: RESOURCES.map((r) => ({
+      uri: r.uri,
+      name: r.name,
+      description: r.description,
+      mimeType: r.mimeType,
+    })),
+  };
+});
+
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  const uri = request.params.uri;
+  const resource = RESOURCES.find((r) => r.uri === uri);
+
+  if (!resource) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Resource not found: ${uri}`,
+        },
+      ],
+      isError: true,
+    };
+  }
+
+  return {
+    contents: [
+      {
+        uri: resource.uri,
+        mimeType: resource.mimeType,
+        text: resource.getText(),
+      },
+    ],
+  };
+});
+
+// ── Prompts ────────────────────────────────────────────────────────
+
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+  return {
+    prompts: [generateOptionsPrompt],
+  };
+});
+
+server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+  const promptName = request.params.name;
+
+  if (promptName !== "generate-options") {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Unknown prompt: ${promptName}`,
+        },
+      ],
+      isError: true,
+    };
+  }
+
+  const description =
+    request.params.arguments?.description || "a particle animation";
+
+  return {
+    messages: [
+      {
+        role: "system",
+        content: {
+          type: "text",
+          text: generateOptionsPrompt.messages[0].content.text,
+        },
+      },
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `Generate tsParticles options for: ${description}`,
+        },
+      },
+    ],
+  };
+});
+
+// ── Start Server ───────────────────────────────────────────────────
+
+async function startStdio() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("tsParticles MCP server running on stdio");
+}
+
+async function startHttp(port: number) {
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () => randomUUID(),
+  });
+
+  const httpServer = createServer(async (req, res) => {
+    // Health check endpoint
+    if (req.method === "GET" && req.url === "/health") {
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ status: "ok", version: PACKAGE_VERSION }));
+      return;
+    }
+
+    // MCP endpoint — accept POST with JSON body
+    if (req.method === "POST" && req.url === "/mcp") {
+      const body = await new Promise<string>((resolve, reject) => {
+        const chunks: Buffer[] = [];
+        req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+        req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+        req.on("error", reject);
+      });
+
+      const parsedBody = body ? JSON.parse(body) : undefined;
+      await transport.handleRequest(req, res, parsedBody);
+      return;
+    }
+
+    res.writeHead(404);
+    res.end("Not found");
+  });
+
+  httpServer.listen(port, "0.0.0.0", () => {
+    console.error(`tsParticles MCP server running on http://0.0.0.0:${port}/mcp`);
+    console.error(`Health check: http://0.0.0.0:${port}/health`);
+  });
+
+  await server.connect(transport);
+}
+
+async function main() {
+  const args = parseArgs();
+
+  if (args.mode === "http" && args.port) {
+    await startHttp(args.port);
+  } else {
+    await startStdio();
+  }
+}
+
+main().catch((error) => {
+  console.error("Fatal error:", error);
+  process.exit(1);
+});

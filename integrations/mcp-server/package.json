@@ -1,0 +1,50 @@
+{
+  "name": "@tsparticles/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for tsParticles - generate options from natural language and suggest required plugins",
+  "homepage": "https://particles.js.org",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "tsparticles-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "start:http": "node dist/index.js --port 3000",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "integrations/mcp-server"
+  },
+  "keywords": [
+    "tsparticles",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "particles"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "4.1.7"
+  }
+}
