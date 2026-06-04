@@ -6,6 +6,7 @@ packages:
   - demo/*
   - effects/*
   - engine
+  - integrations/*
   - interactions/*
   - interactions/external/*
   - interactions/particles/*
