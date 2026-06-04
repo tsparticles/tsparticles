@@ -12,6 +12,7 @@ export class StencilParticles {
   @Prop() options?: ISourceOptions;
   @Prop() url?: string;
   @Prop() init?: ParticlesPluginRegistrar;
+  @Prop() containerId?: string;
 
   private container?: Container;
   private renderId = 0;
@@ -57,9 +58,10 @@ export class StencilParticles {
       }
 
       // Load particles directly onto the DOM element.
-      // tsParticles will auto-generate a unique internal ID, preventing collisions.
-      const loadParams = {
+      // If a container-id is provided, use it so consumers can retrieve the container later.
+      const loadParams: Record<string, unknown> = {
         element: this.containerElement,
+        ...(this.containerId ? { id: this.containerId } : {}),
         ...(this.options ? { options: this.options } : { url: this.url! }),
       };
 
@@ -81,6 +83,7 @@ export class StencilParticles {
   render(): JSX.Element {
     return (
       <div
+        id={this.containerId}
         ref={el => {
           this.containerElement = el as HTMLDivElement;
         }}

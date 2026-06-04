@@ -67,7 +67,7 @@ After initializing the engine, use the `<riot-particles>` component in your temp
 
 ```riot
 <my-component>
-  <riot-particles id="tsparticles" options='{particlesConfig}' />
+  <riot-particles id="tsparticles" options={particlesConfig} />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -119,7 +119,7 @@ Use Riot's `if={}` directive with a state property to delay rendering the partic
 
 ```riot
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options='{particlesConfig}' />
+  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -162,7 +162,7 @@ The `@tsparticles/configs` package provides pre-built configurations for common 
 
 ```riot
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options='{particlesConfig}' />
+  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -196,7 +196,7 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
 
 ```riot
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options='{particlesConfig}' />
+  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -279,7 +279,7 @@ Below is a complete `.riot` file that ties everything together: engine initializ
     {#if state.particlesInitialized}
       <riot-particles
         id="tsparticles"
-        options='{particlesConfig}'
+        options={particlesConfig}
       />
     {:else}
       <p>Loading particle engine...</p>

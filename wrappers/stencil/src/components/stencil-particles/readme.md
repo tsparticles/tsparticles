@@ -5,11 +5,12 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                                        | Default     |
-| --------- | --------- | ----------- | ------------------------------------------- | ----------- |
-| `init`    | --        |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
-| `options` | --        |             | `IOptions`                                  | `undefined` |
-| `url`     | `url`     |             | `string`                                    | `undefined` |
+| Property      | Attribute      | Description | Type                                        | Default     |
+| ------------- | -------------- | ----------- | ------------------------------------------- | ----------- |
+| `containerId` | `container-id` |             | `string`                                    | `undefined` |
+| `init`        | --             |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
+| `options`     | --             |             | `IOptions`                                  | `undefined` |
+| `url`         | `url`          |             | `string`                                    | `undefined` |
 
 
 ----------------------------------------------
