@@ -10,9 +10,9 @@ tsParticles has 23 framework wrappers but only 2 CRA templates (React JS + React
 
 Create a template ecosystem for tsParticles with two dimensions:
 
-| Dimension | Description | Examples |
-|-----------|-------------|----------|
-| **Scaffold** | Minimal framework skeleton | vanilla, react, vue3, angular, svelte, solid |
+| Dimension    | Description                  | Examples                                                               |
+|--------------|------------------------------|------------------------------------------------------------------------|
+| **Scaffold** | Minimal framework skeleton   | vanilla, react, vue3, angular, svelte, solid                           |
 | **Use-case** | Complete example application | login, portfolio, landing, tictactoe, 404, coming-soon, birthday, quiz |
 
 Each use-case template exists in **versions per framework** (e.g. login for vanilla, react, vue3, angular, svelte, solid).
