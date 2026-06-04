@@ -57,7 +57,7 @@ Standardmäßig wird jedes Ribbon-Partikel an einer zufälligen x-Position über
 import { ribbons } from "@tsparticles/ribbons";
 
 await ribbons({
-  position: { x: 50, y: 0 },
+  positionX: 50,
   emitterSize: { width: 0, height: 0 },
 });
 ```

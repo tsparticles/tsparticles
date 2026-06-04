@@ -57,7 +57,7 @@ Di default ogni particella ribbon parte da una posizione x casuale su tutta la l
 import { ribbons } from "@tsparticles/ribbons";
 
 await ribbons({
-  position: { x: 50, y: 0 },
+  positionX: 50,
   emitterSize: { width: 0, height: 0 },
 });
 ```
