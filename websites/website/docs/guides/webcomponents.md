@@ -301,10 +301,10 @@ A complete HTML page using the Web Components module with CDN scripts:
         defineParticlesElement,
       } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js";
 
-      const tsparticles = window.tsparticles;
+      const tsParticles = window.tPparticles;
 
       await initParticlesEngine(async (engine) => {
-        await tsparticles.loadFull(engine);
+        await tsParticles.loadFull(engine);
       });
 
       defineParticlesElement();
