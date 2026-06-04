@@ -1,5 +1,6 @@
-import { loadMeteorsPreset } from "./index.js";
 import { tsParticles } from "@tsparticles/engine";
+
+import { loadMeteorsPreset } from "./index.js";
 export { loadMeteorsPreset } from "./index.js";
 export { tsParticles };
 

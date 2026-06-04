@@ -8,7 +8,7 @@
 
 [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img alt="Buy me a beer — support the project" src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Sample
 
@@ -55,8 +55,8 @@ tsParticles.load({
   id: "tsparticles",
   options: {
     particles: {
-      shape: {
-        type: "square", // starting from v2, this require the square shape script
+    shape: {
+        type: "square", // the square shape requires the square shape script (required since v2, current v4+)
       },
     },
     preset: "meteors",
@@ -81,7 +81,7 @@ This preset loads and combines the following packages:
 | `@tsparticles/basic`           | Base runtime bundle        | <https://www.npmjs.com/package/@tsparticles/basic>           |
 | `@tsparticles/engine`          | tsParticles engine         | <https://www.npmjs.com/package/@tsparticles/engine>          |
 | `@tsparticles/plugin-emitters` | Adds particle emitters     | <https://www.npmjs.com/package/@tsparticles/plugin-emitters> |
-| `@tsparticles/plugin-trail`    | Adds particle trail effect | <https://www.npmjs.com/package/@tsparticles/plugin-trail>    |
+| `@tsparticles/effect-trail`    | Adds particle trail effect | <https://www.npmjs.com/package/@tsparticles/effect-trail>    |
 
 If you want to customize one specific behavior, start from the related package README above.
 
@@ -108,12 +108,15 @@ bb --> pl
 
 subgraph pl [Plugins]
 ple[Emitters]
-plt[Trail]
 end
 
-bb & ple & plt --> prm
+subgraph ef [Effects]
+ef_tr[Trail]
+end
 
 subgraph pr [Presets]
 prm[Meteors]
 end
+
+bb & ple & ef_tr --> prm
 ```
