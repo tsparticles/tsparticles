@@ -43,7 +43,6 @@ The simplest setup: render the `<Particles />` component with an options object.
 ```jsx
 import { useCallback } from "react";
 import Particles from "@tsparticles/react";
-import { loadSlim } from "tsparticles";
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
@@ -71,7 +70,7 @@ export default function App() {
 }
 ```
 
-**Important**: The `Particles` component automatically calls `loadSlim` internally when you pass the `tsparticles` engine. You do not need to call `init` yourself unless you are using custom presets.
+**Important**: The `<Particles />` component requires the engine to be initialized first. Use `initParticlesEngine` from `@tsparticles/react` or the `<ParticlesProvider>` to load your presets before rendering the component.
 
 ---
 
@@ -366,7 +365,7 @@ Use `ParticlesProvider` to initialize the engine once at the app root. This is t
 ```jsx
 // App.jsx
 import { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "tsparticles";
+import { loadSlim } from "@tsparticles/slim";
 import Home from "./Home";
 
 const engineInit = async (engine) => {

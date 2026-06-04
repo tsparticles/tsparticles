@@ -42,6 +42,7 @@ Register the plugin in your app entry point, then use the `<vue-particles>` comp
 ```typescript
 import { createApp } from "vue";
 import App from "./App.vue";
+import type { Engine } from "@tsparticles/engine";
 import { ParticlesPlugin } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 
@@ -456,6 +457,7 @@ There are two ways to initialise the engine:
 // main.ts
 import { createApp } from "vue";
 import App from "./App.vue";
+import type { Engine } from "@tsparticles/engine";
 import { ParticlesPlugin } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 

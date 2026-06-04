@@ -367,8 +367,7 @@ export default defineConfig({
   base,
   ignoreDeadLinks: [],
   transformHead: ({ pageData }) => {
-    const path = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
-    const canonical = `https://particles.js.org/${path}`;
+    let path = pageData.relativePath.replace(/\.md$/, "").replace(/\/?index$/, "");
     const localePrefixesMap: Record<string, string> = {
       root: "x-default",
       it: "it",
@@ -381,18 +380,35 @@ export default defineConfig({
       ja: "ja",
       hi: "hi",
     };
+    let detectedLocale = "root";
+    for (const locale of Object.keys(localePrefixesMap)) {
+      if (locale === "root") continue;
+      if (path === locale || path.startsWith(locale + "/")) {
+        detectedLocale = locale;
+        path = path.slice(locale.length).replace(/^\//, "");
+        break;
+      }
+    }
     const head: any[] = [];
     for (const [locale, hreflang] of Object.entries(localePrefixesMap)) {
-      const prefix = locale === "root" ? "" : `/${locale}`;
+      const hrefPath = locale === "root" ? path : `${locale}/${path}`;
       head.push([
         "link",
         {
           rel: "alternate",
-          href: `https://particles.js.org${prefix}/${path}`,
+          href: `https://particles.js.org/${hrefPath}`,
           hreflang,
         },
       ]);
     }
+    const canonicalPath = detectedLocale === "root" ? path : `${detectedLocale}/${path}`;
+    head.push([
+      "link",
+      {
+        rel: "canonical",
+        href: `https://particles.js.org/${canonicalPath}`,
+      },
+    ]);
     return head;
   },
   locales: {

@@ -495,7 +495,7 @@ No `NgModule` wrapper needed — just import `NgParticlesModule` in the componen
 ```typescript
 import { Component, OnInit } from "@angular/core";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSlim } from "tsparticles";
+import { loadSlim } from "@tsparticles/slim";
 import { NgParticlesService } from "@tsparticles/angular";
 
 @Component({
