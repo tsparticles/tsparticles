@@ -299,7 +299,7 @@ A complete HTML page using the Web Components module with CDN scripts:
       import {
         initParticlesEngine,
         defineParticlesElement,
-      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@3/tsparticles.webcomponents.min.js";
+      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js";
 
       const tsparticles = window.tsparticles;
 

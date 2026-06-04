@@ -8,13 +8,21 @@ Integrate tsParticles into your jQuery-based projects with the official jQuery p
 
 Include jQuery, tsParticles, and the jQuery plugin via script tags:
 
-````html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/jquery@4/tsparticles.jquery.min.js"></script>
+```
 
---- ### Via npm + Build Install the required packages: ```bash npm install jquery @tsparticles/jquery tsparticles
-````
+---
+
+### Via npm + Build
+
+Install the required packages:
+
+```bash
+npm install jquery @tsparticles/jquery tsparticles
+```
 
 Import into your project:
 
@@ -212,8 +220,7 @@ Below is a complete, self-contained HTML page that loads tsParticles via CDN and
     <script>
       $(document).ready(async () => {
         await $.particles.init(async (engine) => {
-          const { loadFull } = window.tsparticles;
-          await loadFull(engine);
+          await tsParticles.loadFull(engine);
         });
 
         $("#tsparticles")

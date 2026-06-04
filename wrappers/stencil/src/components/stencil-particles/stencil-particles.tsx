@@ -30,6 +30,7 @@ export class StencilParticles {
   @Watch("options")
   @Watch("url")
   @Watch("init")
+  @Watch("containerId")
   protected async onPropsChange(): Promise<void> {
     await this.loadParticles(++this.renderId);
   }
