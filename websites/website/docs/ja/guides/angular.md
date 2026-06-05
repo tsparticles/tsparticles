@@ -1,6 +1,6 @@
 ---
 title: Angular インテグレーション
-description: @tsparticles/angular を使用して tsParticles を Angular アプリケーションに統合するためのステップバイステップガイド。
+description: "@tsparticles/angular を使用して tsParticles を Angular アプリケーションに統合するためのステップバイステップガイド。"
 ---
 
 # Angular インテグレーション
@@ -151,12 +151,12 @@ export class AppComponent implements OnInit {
 
 `tsparticles` から利用可能なローダー関数:
 
-| 関数               | 説明                                                |
-| ----------------- | --------------------------------------------------- |
-| `loadFull(engine)`  | すべての機能（最大のバンドル）                          |
-| `loadBasic(engine)` | コアシェイプ（円、四角、多角形など）                     |
-| `loadSlim(engine)`  | ほとんどの機能からレアに使われるプラグインを除外           |
-| `loadAll(engine)`   | `loadFull` の非推奨エイリアス                           |
+| 関数                | 説明                                             |
+| ------------------- | ------------------------------------------------ |
+| `loadFull(engine)`  | すべての機能（最大のバンドル）                   |
+| `loadBasic(engine)` | コアシェイプ（円、四角、多角形など）             |
+| `loadSlim(engine)`  | ほとんどの機能からレアに使われるプラグインを除外 |
+| `loadAll(engine)`   | `loadFull` の非推奨エイリアス                    |
 
 ---
 
@@ -601,24 +601,24 @@ export class AppComponent implements OnInit {
 
 ## API リファレンス
 
-| コンポーネント | セレクタ         | 説明                             |
-| ---------- | ---------------- | -------------------------------- |
-| Particles  | `ngx-particles`  | 完全なパーティクルシステムコンポーネント |
-| Confetti   | `ngx-confetti`   | プリ設定されたクラッカーエフェクト      |
-| Fireworks  | `ngx-fireworks`  | プリ設定された花火エフェクト           |
+| コンポーネント | セレクタ        | 説明                                     |
+| -------------- | --------------- | ---------------------------------------- |
+| Particles      | `ngx-particles` | 完全なパーティクルシステムコンポーネント |
+| Confetti       | `ngx-confetti`  | プリ設定されたクラッカーエフェクト       |
+| Fireworks      | `ngx-fireworks` | プリ設定された花火エフェクト             |
 
 ### `ngx-particles` 入力
 
-| 入力      | タイプ           | デフォルト        | 説明                   |
-| --------- | ---------------- | ---------------- | ---------------------- |
-| `id`      | `string`         | `"tsparticles"`  | キャンバス要素 ID        |
-| `options` | `ISourceOptions` | `{}`             | パーティクル設定         |
-| `url`     | `string`         | —                | リモート JSON 設定 URL   |
+| 入力      | タイプ           | デフォルト      | 説明                   |
+| --------- | ---------------- | --------------- | ---------------------- |
+| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID      |
+| `options` | `ISourceOptions` | `{}`            | パーティクル設定       |
+| `url`     | `string`         | —               | リモート JSON 設定 URL |
 
 ### `ngx-particles` 出力
 
-| 出力              | ペイロード   | 説明                               |
-| ----------------- | ----------- | ---------------------------------- |
+| 出力              | ペイロード  | 説明                                     |
+| ----------------- | ----------- | ---------------------------------------- |
 | `particlesLoaded` | `Container` | コンテナが初期化されたときに発行されます |
 
 ---

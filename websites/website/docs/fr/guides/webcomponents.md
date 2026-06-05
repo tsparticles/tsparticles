@@ -349,11 +349,11 @@ Une page HTML complète utilisant le module Web Components avec des scripts CDN 
 
 ## Référence API
 
-| Export / Propriété              | Type                     | Description                                           |
-| ------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | Initialise le moteur tsParticles avec des chargeurs de plugins |
-| `defineParticlesElement()`      | `function`               | Enregistre l'élément personnalisé `<web-particles>`    |
+| Export / Propriété              | Type                     | Description                                                            |
+| ------------------------------- | ------------------------ | ---------------------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Initialise le moteur tsParticles avec des chargeurs de plugins         |
+| `defineParticlesElement()`      | `function`               | Enregistre l'élément personnalisé `<web-particles>`                    |
 | `ParticlesElement`              | `class`                  | Classe de base que vous pouvez étendre pour des éléments personnalisés |
-| `element.options`               | `ISourceOptions`         | Obtenir/définir l'objet de configuration des particules |
-| `element.container`             | `Container \| undefined` | Référence en lecture seule au `Container` sous-jacent |
-| `element.dispose()`             | `function`               | Détruire l'instance de particules et nettoyer les ressources |
+| `element.options`               | `ISourceOptions`         | Obtenir/définir l'objet de configuration des particules                |
+| `element.container`             | `Container \| undefined` | Référence en lecture seule au `Container` sous-jacent                  |
+| `element.dispose()`             | `function`               | Détruire l'instance de particules et nettoyer les ressources           |

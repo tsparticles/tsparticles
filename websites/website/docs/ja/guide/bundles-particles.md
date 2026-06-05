@@ -74,17 +74,17 @@ await particles({
 
 ### 主要パラメーター
 
-| パラメーター | 型 | デフォルト | 説明 |
-|---|---|---|---|
-| `count` | number | 50 | パーティクルの数 |
-| `radius` | number | 3 | パーティクルの半径 |
-| `speed` | number | 2 | 移動速度 |
-| `opacity` | number | 0.8 | 不透明度（0-1） |
-| `color` | string \| string[] | "#ffffff" | パーティクルの色 |
-| `links` | boolean | false | リンクを表示 |
-| `linksColor` | string | "#ffffff" | リンクの色 |
-| `linksWidth` | number | 1 | リンクの太さ |
-| `shape` | string[] | ["circle"] | パーティクルの形状 |
+| パラメーター | 型                 | デフォルト | 説明               |
+| ------------ | ------------------ | ---------- | ------------------ |
+| `count`      | number             | 50         | パーティクルの数   |
+| `radius`     | number             | 3          | パーティクルの半径 |
+| `speed`      | number             | 2          | 移動速度           |
+| `opacity`    | number             | 0.8        | 不透明度（0-1）    |
+| `color`      | string \| string[] | "#ffffff"  | パーティクルの色   |
+| `links`      | boolean            | false      | リンクを表示       |
+| `linksColor` | string             | "#ffffff"  | リンクの色         |
+| `linksWidth` | number             | 1          | リンクの太さ       |
+| `shape`      | string[]           | ["circle"] | パーティクルの形状 |
 
 ## よくある間違い
 

@@ -600,17 +600,17 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Referencia de API
 
-| Prop      | Tipo                                | Por Defecto         | Descripción                    |
-| --------- | ----------------------------------- | --------------- | ------------------------------ |
-| `id`      | `string`                            | `"tsparticles"` | ID del elemento canvas              |
-| `options` | `ISourceOptions`                    | `{}`            | Configuración de partículas         |
+| Prop      | Tipo                                | Por Defecto     | Descripción                          |
+| --------- | ----------------------------------- | --------------- | ------------------------------------ |
+| `id`      | `string`                            | `"tsparticles"` | ID del elemento canvas               |
+| `options` | `ISourceOptions`                    | `{}`            | Configuración de partículas          |
 | `init`    | `(engine: Engine) => Promise<void>` | —               | Callback de inicialización del motor |
 | `url`     | `string`                            | —               | URL para cargar configuración JSON   |
 
-| Evento               | Carga     | Descripción                                   |
-| ------------------- | ----------- | --------------------------------------------- |
+| Evento              | Carga       | Descripción                                                     |
+| ------------------- | ----------- | --------------------------------------------------------------- |
 | `@particles-loaded` | `Container` | Se dispara cuando el contenedor está completamente inicializado |
-| `@particles-init`   | `Engine`    | Se dispara después de que el motor se inicializa         |
+| `@particles-init`   | `Engine`    | Se dispara después de que el motor se inicializa                |
 
 ---
 

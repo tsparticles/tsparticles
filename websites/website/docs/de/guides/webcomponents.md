@@ -349,11 +349,11 @@ Eine vollständige HTML-Seite mit dem Web Components-Modul und CDN-Skripten:
 
 ## API-Referenz
 
-| Export / Eigenschaft              | Typ                     | Beschreibung                                            |
-| --------------------------------- | ----------------------- | ------------------------------------------------------- |
-| `initParticlesEngine(callback)`   | `function`              | Initialisiert die tsParticles-Engine mit Plugin-Ladern  |
-| `defineParticlesElement()`        | `function`              | Registriert das `<web-particles>`-Element               |
-| `ParticlesElement`                | `class`                 | Basisklasse, die Sie für benutzerdefinierte Elemente erweitern können |
-| `element.options`                 | `ISourceOptions`        | Partikel-Konfigurationsobjekt abrufen/setzen             |
-| `element.container`               | `Container \| undefined`| Nur-Lesen-Referenz auf den zugrunde liegenden `Container`|
-| `element.dispose()`               | `function`              | Zerstört die Partikel-Instanz und gibt Ressourcen frei   |
+| Export / Eigenschaft            | Typ                      | Beschreibung                                                          |
+| ------------------------------- | ------------------------ | --------------------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Initialisiert die tsParticles-Engine mit Plugin-Ladern                |
+| `defineParticlesElement()`      | `function`               | Registriert das `<web-particles>`-Element                             |
+| `ParticlesElement`              | `class`                  | Basisklasse, die Sie für benutzerdefinierte Elemente erweitern können |
+| `element.options`               | `ISourceOptions`         | Partikel-Konfigurationsobjekt abrufen/setzen                          |
+| `element.container`             | `Container \| undefined` | Nur-Lesen-Referenz auf den zugrunde liegenden `Container`             |
+| `element.dispose()`             | `function`               | Zerstört die Partikel-Instanz und gibt Ressourcen frei                |

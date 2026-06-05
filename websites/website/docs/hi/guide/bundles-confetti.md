@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### मुख्य पैरामीटर
 
-| पैरामीटर | टाइप | डिफ़ॉल्ट | विवरण |
-|---|---|---|---|
-| `particleCount` | number | 50 | कॉनफ़ेटी टुकड़ों की संख्या |
-| `spread` | number | 60 | फैलाव कोण (डिग्री) |
-| `angle` | number | 90 | दिशा (डिग्री, 90 = नीचे) |
-| `startVelocity` | number | 30 | प्रारंभिक वेग |
-| `colors` | string[] | — | कॉनफ़ेटी रंग |
-| `origin` | { x, y } | { 0.5, 0.5 } | मूल बिंदु (0-1) |
-| `drift` | number | 0 | क्षैतिज बहाव |
-| `shapes` | string[] | — | शेप: "circle", "heart", "square", "star", "cards" |
+| पैरामीटर        | टाइप     | डिफ़ॉल्ट     | विवरण                                             |
+| --------------- | -------- | ------------ | ------------------------------------------------- |
+| `particleCount` | number   | 50           | कॉनफ़ेटी टुकड़ों की संख्या                        |
+| `spread`        | number   | 60           | फैलाव कोण (डिग्री)                                |
+| `angle`         | number   | 90           | दिशा (डिग्री, 90 = नीचे)                          |
+| `startVelocity` | number   | 30           | प्रारंभिक वेग                                     |
+| `colors`        | string[] | —            | कॉनफ़ेटी रंग                                      |
+| `origin`        | { x, y } | { 0.5, 0.5 } | मूल बिंदु (0-1)                                   |
+| `drift`         | number   | 0            | क्षैतिज बहाव                                      |
+| `shapes`        | string[] | —            | शेप: "circle", "heart", "square", "star", "cards" |
 
 ## सामान्य गलतियाँ
 

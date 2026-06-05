@@ -9,10 +9,12 @@ Hereda todo de `@tsparticles/slim` más:
 **Formas adicionales:** text (texto con fuentes personalizadas)
 
 **Interacciones externas adicionales:**
+
 - drag (arrastrar partículas con el mouse)
 - trail (estela detrás del mouse)
 
 **Updaters adicionales:**
+
 - destroy (destrucción de partículas con animación)
 - roll (rodamiento)
 - tilt (inclinación 3D)
@@ -20,6 +22,7 @@ Hereda todo de `@tsparticles/slim` más:
 - wobble (oscilación)
 
 **Plugins:**
+
 - absorbers (absorbedores — agujeros negros que succionan partículas)
 - emitters (emisores — fuentes continuas de partículas)
 - emitters-shape-circle, emitters-shape-square (formas para emisores)
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## Diferencia entre `tsparticles` y `@tsparticles/all`
 
-| Aspecto | `tsparticles` (full) | `@tsparticles/all` |
-|---|---|---|
-| Tamaño | Contenido | Muy grande |
-| Formas | circle, square, star, polygon, line, image, emoji, text | Todas las formas (corazón, cartas, flechas, espirales, cog, rounded-rect, etc.) |
-| Interacciones | Slim + drag + trail | Todas (cannon, light, pop, particle, repulse) |
-| Path | Solo easing quad | 14 generadores de path |
-| Efectos | Ninguno | 5 efectos (bubble, filter, shadow, etc.) |
-| Exportaciones | Ninguna | Image, JSON, Video |
-| Plugins extra | absorbers, emitters | Todos (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing | Quad | 15 easing |
+| Aspecto       | `tsparticles` (full)                                    | `@tsparticles/all`                                                                    |
+| ------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Tamaño        | Contenido                                               | Muy grande                                                                            |
+| Formas        | circle, square, star, polygon, line, image, emoji, text | Todas las formas (corazón, cartas, flechas, espirales, cog, rounded-rect, etc.)       |
+| Interacciones | Slim + drag + trail                                     | Todas (cannon, light, pop, particle, repulse)                                         |
+| Path          | Solo easing quad                                        | 14 generadores de path                                                                |
+| Efectos       | Ninguno                                                 | 5 efectos (bubble, filter, shadow, etc.)                                              |
+| Exportaciones | Ninguna                                                 | Image, JSON, Video                                                                    |
+| Plugins extra | absorbers, emitters                                     | Todos (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
+| Easing        | Quad                                                    | 15 easing                                                                             |
 
 ## Errores comunes
 

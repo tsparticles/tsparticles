@@ -7,17 +7,20 @@
 **Shapes:** circle
 
 **Updaters:**
+
 - paint (color)
 - opacity
 - out-modes (behavior when leaving the screen)
 - size
 
 **Plugins:**
+
 - move
 - blend (color blending)
 - HEX, HSL, RGB color plugins
 
 **Not included:**
+
 - Mouse/touch interactions
 - Particle links
 - Other shapes (squares, stars, images, polygons, etc.)

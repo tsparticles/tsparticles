@@ -151,12 +151,12 @@ export class AppComponent implements OnInit {
 
 从 `tsparticles` 可用的加载函数：
 
-| 函数                 | 描述                           |
-| -------------------- | ------------------------------ |
-| `loadFull(engine)`   | 所有功能（最大包）             |
-| `loadBasic(engine)`  | 核心形状（圆形、方形、多边形等） |
-| `loadSlim(engine)`   | 大部分功能，移除不常用插件     |
-| `loadAll(engine)`    | `loadFull` 的已弃用别名        |
+| 函数                | 描述                             |
+| ------------------- | -------------------------------- |
+| `loadFull(engine)`  | 所有功能（最大包）               |
+| `loadBasic(engine)` | 核心形状（圆形、方形、多边形等） |
+| `loadSlim(engine)`  | 大部分功能，移除不常用插件       |
+| `loadAll(engine)`   | `loadFull` 的已弃用别名          |
 
 ---
 
@@ -601,11 +601,11 @@ export class AppComponent implements OnInit {
 
 ## API 参考
 
-| 组件     | 选择器           | 描述                   |
-| -------- | ---------------- | ---------------------- |
-| 粒子     | `ngx-particles`  | 完整的粒子系统组件     |
-| 五彩纸屑 | `ngx-confetti`   | 预配置的五彩纸屑效果   |
-| 烟花     | `ngx-fireworks`  | 预配置的烟花效果       |
+| 组件     | 选择器          | 描述                 |
+| -------- | --------------- | -------------------- |
+| 粒子     | `ngx-particles` | 完整的粒子系统组件   |
+| 五彩纸屑 | `ngx-confetti`  | 预配置的五彩纸屑效果 |
+| 烟花     | `ngx-fireworks` | 预配置的烟花效果     |
 
 ### `ngx-particles` 输入属性
 
@@ -617,9 +617,9 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` 输出事件
 
-| 输出事件          | 负载类型    | 描述                           |
-| ----------------- | ----------- | ------------------------------ |
-| `particlesLoaded` | `Container` | 当容器初始化完成时触发         |
+| 输出事件          | 负载类型    | 描述                   |
+| ----------------- | ----------- | ---------------------- |
+| `particlesLoaded` | `Container` | 当容器初始化完成时触发 |
 
 ---
 

@@ -151,12 +151,12 @@ export class AppComponent implements OnInit {
 
 Funzioni di caricamento disponibili da `tsparticles`:
 
-| Funzione            | Descrizione                                 |
-| ------------------- | ------------------------------------------- |
-| `loadFull(engine)`  | Tutte le funzionalità (bundle più grande)   |
-| `loadBasic(engine)` | Forme base (cerchio, quadrato, poligono, ecc.) |
+| Funzione            | Descrizione                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `loadFull(engine)`  | Tutte le funzionalità (bundle più grande)                        |
+| `loadBasic(engine)` | Forme base (cerchio, quadrato, poligono, ecc.)                   |
 | `loadSlim(engine)`  | La maggior parte delle funzionalità senza plugin usati raramente |
-| `loadAll(engine)`   | Alias deprecato per `loadFull`              |
+| `loadAll(engine)`   | Alias deprecato per `loadFull`                                   |
 
 ---
 
@@ -601,25 +601,25 @@ export class AppComponent implements OnInit {
 
 ## Riferimento API
 
-| Componente | Selettore      | Descrizione                         |
-| ---------- | -------------- | ----------------------------------- |
-| Particelle | `ngx-particles` | Componente sistema particelle completo |
-| Coriandoli | `ngx-confetti` | Effetto coriandoli preconfigurato     |
+| Componente         | Selettore       | Descrizione                               |
+| ------------------ | --------------- | ----------------------------------------- |
+| Particelle         | `ngx-particles` | Componente sistema particelle completo    |
+| Coriandoli         | `ngx-confetti`  | Effetto coriandoli preconfigurato         |
 | Fuochi d'Artificio | `ngx-fireworks` | Effetto fuochi d'artificio preconfigurato |
 
 ### Input di `ngx-particles`
 
-| Input     | Tipo             | Default          | Descrizione                  |
-| --------- | ---------------- | ---------------- | ---------------------------- |
-| `id`      | `string`         | `"tsparticles"`  | ID dell'elemento canvas      |
-| `options` | `ISourceOptions` | `{}`             | Configurazione particelle    |
-| `url`     | `string`         | —                | URL config JSON remota       |
+| Input     | Tipo             | Default         | Descrizione               |
+| --------- | ---------------- | --------------- | ------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID dell'elemento canvas   |
+| `options` | `ISourceOptions` | `{}`            | Configurazione particelle |
+| `url`     | `string`         | —               | URL config JSON remota    |
 
 ### Output di `ngx-particles`
 
-| Output           | Payload     | Descrizione                                 |
-| ---------------- | ----------- | ------------------------------------------- |
-| `particlesLoaded` | `Container` | Emesso quando il container è inizializzato  |
+| Output            | Payload     | Descrizione                                |
+| ----------------- | ----------- | ------------------------------------------ |
+| `particlesLoaded` | `Container` | Emesso quando il container è inizializzato |
 
 ---
 

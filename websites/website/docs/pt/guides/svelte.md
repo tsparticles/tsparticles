@@ -328,9 +328,9 @@ Adicione interatividade de hover e clique do mouse:
 />
 ```
 
-| Evento               | Detalhe     | Dispara                             |
-| -------------------- | ----------- | ----------------------------------- |
-| `on:init`            | `Engine`    | Após o motor ser inicializado       |
+| Evento               | Detalhe     | Dispara                                  |
+| -------------------- | ----------- | ---------------------------------------- |
+| `on:init`            | `Engine`    | Após o motor ser inicializado            |
 | `on:particlesLoaded` | `Container` | Após o container estar totalmente pronto |
 
 ---
@@ -558,16 +558,16 @@ Ou envolva a importação em um componente client-side. Para SvelteKit 2+, você
 
 ## Referência da API
 
-| Prop      | Tipo             | Padrão            | Descrição                    |
-| --------- | ---------------- | ----------------- | ---------------------------- |
-| `id`      | `string`         | `"tsparticles"`   | ID do elemento canvas        |
-| `options` | `ISourceOptions` | `{}`              | Objeto de configuração das partículas |
-| `url`     | `string`         | —                 | URL para uma configuração JSON remota |
+| Prop      | Tipo             | Padrão          | Descrição                             |
+| --------- | ---------------- | --------------- | ------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID do elemento canvas                 |
+| `options` | `ISourceOptions` | `{}`            | Objeto de configuração das partículas |
+| `url`     | `string`         | —               | URL para uma configuração JSON remota |
 
-| Evento               | Detalhe     | Descrição                                                 |
-| -------------------- | ----------- | --------------------------------------------------------- |
+| Evento               | Detalhe     | Descrição                                                         |
+| -------------------- | ----------- | ----------------------------------------------------------------- |
 | `on:init`            | `Engine`    | Dispara quando o motor é inicializado (use para carregar plugins) |
-| `on:particlesLoaded` | `Container` | Dispara quando o container está totalmente pronto         |
+| `on:particlesLoaded` | `Container` | Dispara quando o container está totalmente pronto                 |
 
 ---
 

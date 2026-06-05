@@ -59,15 +59,15 @@ await fireworks("my-canvas", {
 
 ### 主要参数
 
-| 参数 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `colors` | string[] | — | 爆炸颜色 |
-| `rate` | number | — | 每秒烟花数 |
-| `speed` | { min, max } | — | 粒子速度 |
-| `sounds` | boolean | true | 启用音效 |
-| `gravity` | number | — | 重力（默认：0） |
-| `opacity` | number | — | 不透明度（0-1） |
-| `brightness` | { min, max } | — | 爆炸亮度 |
+| 参数         | 类型         | 默认值 | 描述            |
+| ------------ | ------------ | ------ | --------------- |
+| `colors`     | string[]     | —      | 爆炸颜色        |
+| `rate`       | number       | —      | 每秒烟花数      |
+| `speed`      | { min, max } | —      | 粒子速度        |
+| `sounds`     | boolean      | true   | 启用音效        |
+| `gravity`    | number       | —      | 重力（默认：0） |
+| `opacity`    | number       | —      | 不透明度（0-1） |
+| `brightness` | { min, max } | —      | 爆炸亮度        |
 
 ## 常见错误
 

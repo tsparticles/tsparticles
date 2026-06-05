@@ -1,6 +1,6 @@
 ---
 title: React गाइड
-description: @tsparticles/react का उपयोग करके React के साथ tsParticles को एकीकृत करने के लिए पूर्ण मार्गदर्शिका।
+description: "@tsparticles/react का उपयोग करके React के साथ tsParticles को एकीकृत करने के लिए पूर्ण मार्गदर्शिका।"
 ---
 
 # React गाइड

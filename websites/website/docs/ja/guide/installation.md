@@ -2,16 +2,16 @@
 
 ## パスの選択
 
-| シナリオ | コマンド |
-|---|---|
-| クイックスタート（推奨） | `pnpm add @tsparticles/engine @tsparticles/slim` |
-| 最小構成 | `pnpm add @tsparticles/engine @tsparticles/basic` |
-| フル機能 | `pnpm add @tsparticles/engine tsparticles` |
-| リポジトリのすべて | `pnpm add @tsparticles/engine @tsparticles/all` |
-| 紙吹雪のみ | `pnpm add @tsparticles/confetti` |
-| 花火のみ | `pnpm add @tsparticles/fireworks` |
-| パーティクル背景 | `pnpm add @tsparticles/particles` |
-| リボンエフェクト | `pnpm add @tsparticles/ribbons` |
+| シナリオ                 | コマンド                                          |
+| ------------------------ | ------------------------------------------------- |
+| クイックスタート（推奨） | `pnpm add @tsparticles/engine @tsparticles/slim`  |
+| 最小構成                 | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| フル機能                 | `pnpm add @tsparticles/engine tsparticles`        |
+| リポジトリのすべて       | `pnpm add @tsparticles/engine @tsparticles/all`   |
+| 紙吹雪のみ               | `pnpm add @tsparticles/confetti`                  |
+| 花火のみ                 | `pnpm add @tsparticles/fireworks`                 |
+| パーティクル背景         | `pnpm add @tsparticles/particles`                 |
+| リボンエフェクト         | `pnpm add @tsparticles/ribbons`                   |
 
 > **重要**: `@tsparticles/engine` 単体では何も描画しません。必ずバンドル（形状とアニメーションを読み込むため）または個別のプラグインを追加してください。[バンドルガイド](/ja/guide/bundles)を参照してください。
 
@@ -57,18 +57,18 @@ pnpm add @tsparticles/engine @tsparticles/slim
 
 ### jsDelivr
 
-| バンドル | URL |
-|---|---|
-| Engine | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js` |
-| Basic | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js` |
-| Slim | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js` |
-| Full（`tsparticles`） | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js` |
-| All | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js` |
-| Confetti | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js` |
-| Fireworks | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
-| Particles | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
-| Ribbons | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js` |
-| particles.js 互換 | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js` |
+| バンドル              | URL                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| Engine                | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
+| Basic                 | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
+| Slim                  | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
+| Full（`tsparticles`） | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
+| All                   | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
+| Confetti              | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
+| Fireworks             | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| Particles             | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| Ribbons               | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
+| particles.js 互換     | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
 
 ### unpkg
 
@@ -116,7 +116,7 @@ const { loadSlim } = require("@tsparticles/slim");
 <!-- 3. スクリプト -->
 <script>
   (async () => {
-    await loadSlim(tsParticles);  // 機能を登録
+    await loadSlim(tsParticles); // 機能を登録
     await tsParticles.load({
       id: "tsparticles",
       options: {

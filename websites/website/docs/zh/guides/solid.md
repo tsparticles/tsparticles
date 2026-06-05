@@ -496,13 +496,13 @@ export default App;
 
 ## 故障排除
 
-| 症状                        | 原因                                   | 解决方法                                                              |
-| --------------------------- | -------------------------------------- | --------------------------------------------------------------------- |
-| 空白 DOM 元素               | 渲染前引擎未初始化                     | 将 `<Particles>` 包裹在 `<Show when={initialized()}>` 中              |
-| 没有可见粒子                | 缺少 `move.enable` 或 `number.value`   | 确保 `particles.move.enable: true` 且 `particles.number.value > 0`    |
-| 画布在内容后面              | fullScreen 缺少 `zIndex`               | 使用 `fullScreen: { zIndex: -1 }`                                     |
-| 选项更改未反映              | 对象引用未更改                         | 将选项包裹在函数或 store 中；避免使用静态对象                          |
-| 引擎未找到                  | 缺少 `loadFull` 或 `loadSlim` 导入     | 安装 `tsparticles` 或 `@tsparticles/slim` 并调用 `loadFull(engine)`   |
+| 症状           | 原因                                 | 解决方法                                                            |
+| -------------- | ------------------------------------ | ------------------------------------------------------------------- |
+| 空白 DOM 元素  | 渲染前引擎未初始化                   | 将 `<Particles>` 包裹在 `<Show when={initialized()}>` 中            |
+| 没有可见粒子   | 缺少 `move.enable` 或 `number.value` | 确保 `particles.move.enable: true` 且 `particles.number.value > 0`  |
+| 画布在内容后面 | fullScreen 缺少 `zIndex`             | 使用 `fullScreen: { zIndex: -1 }`                                   |
+| 选项更改未反映 | 对象引用未更改                       | 将选项包裹在函数或 store 中；避免使用静态对象                       |
+| 引擎未找到     | 缺少 `loadFull` 或 `loadSlim` 导入   | 安装 `tsparticles` 或 `@tsparticles/slim` 并调用 `loadFull(engine)` |
 
 ## 下一步
 

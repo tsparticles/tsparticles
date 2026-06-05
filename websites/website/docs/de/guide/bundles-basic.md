@@ -7,17 +7,20 @@
 **Formen:** Kreis
 
 **Aktualisierer:**
+
 - Farbe
 - Opazität
 - Aus-Modi (Verhalten beim Verlassen des Bildschirms)
 - Größe
 
 **Plugins:**
+
 - Bewegung
 - Mischung (Farbmischung)
 - HEX-, HSL-, RGB-Farb-Plugins
 
 **Nicht enthalten:**
+
 - Maus-/Touch-Interaktionen
 - Partikelverbindungen
 - Andere Formen (Quadrate, Sterne, Bilder, Polygone etc.)

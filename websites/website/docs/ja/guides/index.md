@@ -11,27 +11,27 @@ tsParticles ガイドセクションへようこそ。Vanilla JS の静的サイ
 
 ## 利用可能なガイド
 
-| フレームワーク / ラッパー           | パッケージ                            | 説明                                                  |
-| --------------------------------- | ------------------------------------- | --------------------------------------------------- |
-| [Vanilla JS](./vanilla)           | `tsparticles`（CDN または npm）        | `tsParticles.load()` を使用した直接 DOM 統合          |
-| [React](./react)                  | `@tsparticles/react`                  | フックとコンポーネント API を備えた公式 React ラッパー |
-| [Vue 3](./vue3)                   | `@tsparticles/vue3`                   | コンポーザブルを備えた公式 Vue 3 プラグイン             |
-| [Angular](./angular)              | `@tsparticles/angular`                | 公式 Angular コンポーネントとモジュール                 |
-| [Svelte](./svelte)                | `@tsparticles/svelte`                 | 公式 Svelte コンポーネント                            |
-| [Next.js](./nextjs)               | `@tsparticles/react`（Next.js 使用）   | サーバーサイドレンダリングと動的インポート              |
-| [Nuxt](./nuxt)                    | `@tsparticles/vue3`（Nuxt 使用）       | Nuxt プラグインとしての SSR セーフな統合               |
-| [Solid](./solid)                  | `@tsparticles/solid`                  | 公式 SolidJS ラッパー                                 |
-| [Preact](./preact)                | `@tsparticles/preact`                 | Preact 互換コンポーネント                             |
-| [Lit](./lit)                      | `@tsparticles/lit`                    | Lit Web コンポーネントラッパー                         |
-| [Qwik](./qwik)                    | `@tsparticles/qwik`                   | Qwik 最適化統合                                       |
-| [jQuery](./jquery)                | `@tsparticles/jquery`                 | レガシープロジェクト向け jQuery プラグイン              |
-| [Astro](./astro)                  | `@tsparticles/react`（または任意のラッパー）| クライアントディレクティブを使用したアイランドアーキテクチャ |
-| [Web Components](./webcomponents) | `@tsparticles/webcomponents`          | Custom Elements API 統合                              |
-| [Stencil](./stencil)              | `@tsparticles/stencil`                | Stencil コンポーネントラッパー                         |
-| [Ember](./ember)                  | `@tsparticles/ember`                  | Ember アドオン統合                                    |
-| [Riot](./riot)                    | `@tsparticles/riot`                   | Riot.js ラッパー                                      |
-| [Inferno](./inferno)              | `@tsparticles/inferno`                | Inferno 互換コンポーネント                             |
-| [WordPress](./wordpress)          | プラグイン + `tsparticles`             | ブロックエディター / ショートコード統合                |
+| フレームワーク / ラッパー         | パッケージ                                   | 説明                                                         |
+| --------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
+| [Vanilla JS](./vanilla)           | `tsparticles`（CDN または npm）              | `tsParticles.load()` を使用した直接 DOM 統合                 |
+| [React](./react)                  | `@tsparticles/react`                         | フックとコンポーネント API を備えた公式 React ラッパー       |
+| [Vue 3](./vue3)                   | `@tsparticles/vue3`                          | コンポーザブルを備えた公式 Vue 3 プラグイン                  |
+| [Angular](./angular)              | `@tsparticles/angular`                       | 公式 Angular コンポーネントとモジュール                      |
+| [Svelte](./svelte)                | `@tsparticles/svelte`                        | 公式 Svelte コンポーネント                                   |
+| [Next.js](./nextjs)               | `@tsparticles/react`（Next.js 使用）         | サーバーサイドレンダリングと動的インポート                   |
+| [Nuxt](./nuxt)                    | `@tsparticles/vue3`（Nuxt 使用）             | Nuxt プラグインとしての SSR セーフな統合                     |
+| [Solid](./solid)                  | `@tsparticles/solid`                         | 公式 SolidJS ラッパー                                        |
+| [Preact](./preact)                | `@tsparticles/preact`                        | Preact 互換コンポーネント                                    |
+| [Lit](./lit)                      | `@tsparticles/lit`                           | Lit Web コンポーネントラッパー                               |
+| [Qwik](./qwik)                    | `@tsparticles/qwik`                          | Qwik 最適化統合                                              |
+| [jQuery](./jquery)                | `@tsparticles/jquery`                        | レガシープロジェクト向け jQuery プラグイン                   |
+| [Astro](./astro)                  | `@tsparticles/react`（または任意のラッパー） | クライアントディレクティブを使用したアイランドアーキテクチャ |
+| [Web Components](./webcomponents) | `@tsparticles/webcomponents`                 | Custom Elements API 統合                                     |
+| [Stencil](./stencil)              | `@tsparticles/stencil`                       | Stencil コンポーネントラッパー                               |
+| [Ember](./ember)                  | `@tsparticles/ember`                         | Ember アドオン統合                                           |
+| [Riot](./riot)                    | `@tsparticles/riot`                          | Riot.js ラッパー                                             |
+| [Inferno](./inferno)              | `@tsparticles/inferno`                       | Inferno 互換コンポーネント                                   |
+| [WordPress](./wordpress)          | プラグイン + `tsparticles`                   | ブロックエディター / ショートコード統合                      |
 
 ## ガイドを選ぶ
 

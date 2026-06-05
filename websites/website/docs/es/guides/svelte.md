@@ -328,9 +328,9 @@ Añade interactividad de hover y clic del ratón:
 />
 ```
 
-| Evento                | Detalle      | Se dispara                              |
-| -------------------- | ----------- | ---------------------------------- |
-| `on:init`            | `Engine`    | Después de que el motor se inicializa    |
+| Evento               | Detalle     | Se dispara                                            |
+| -------------------- | ----------- | ----------------------------------------------------- |
+| `on:init`            | `Engine`    | Después de que el motor se inicializa                 |
 | `on:particlesLoaded` | `Container` | Después de que el contenedor está completamente listo |
 
 ---
@@ -558,16 +558,16 @@ O envuelve la importación en un componente solo de cliente. Para SvelteKit 2+, 
 
 ## Referencia de API
 
-| Prop      | Tipo             | Por Defecto         | Descripción                   |
-| --------- | ---------------- | --------------- | ----------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas             |
+| Prop      | Tipo             | Por Defecto     | Descripción                           |
+| --------- | ---------------- | --------------- | ------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas                |
 | `options` | `ISourceOptions` | `{}`            | Objeto de configuración de partículas |
 | `url`     | `string`         | —               | URL a una configuración JSON remota   |
 
-| Evento                | Detalle      | Descripción                                                |
-| -------------------- | ----------- | ---------------------------------------------------------- |
+| Evento               | Detalle     | Descripción                                                          |
+| -------------------- | ----------- | -------------------------------------------------------------------- |
 | `on:init`            | `Engine`    | Se dispara cuando el motor se inicializa (úsalo para cargar plugins) |
-| `on:particlesLoaded` | `Container` | Se dispara cuando el contenedor está completamente listo                    |
+| `on:particlesLoaded` | `Container` | Se dispara cuando el contenedor está completamente listo             |
 
 ---
 

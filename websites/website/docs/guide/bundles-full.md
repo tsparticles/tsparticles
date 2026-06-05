@@ -9,10 +9,12 @@ Inherits everything from `@tsparticles/slim` plus:
 **Additional shapes:** text (with custom fonts)
 
 **Additional external interactions:**
+
 - drag (drag particles with mouse)
 - trail (particle trail behind mouse)
 
 **Additional updaters:**
+
 - destroy (particle destruction animation)
 - roll (rolling)
 - tilt (3D tilt)
@@ -20,6 +22,7 @@ Inherits everything from `@tsparticles/slim` plus:
 - wobble (oscillation)
 
 **Plugins:**
+
 - absorbers (black holes that suck in particles)
 - emitters (continuous particle sources)
 - emitters-shape-circle, emitters-shape-square (emitter shapes)
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## Difference between `tsparticles` and `@tsparticles/all`
 
-| Aspect | `tsparticles` (full) | `@tsparticles/all` |
-|---|---|---|
-| Size | Moderate | Very large |
-| Shapes | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.) |
-| Interactions | Slim + drag + trail | All (cannon, light, pop, particle, repulse) |
-| Paths | Quad easing only | 14 path generators |
-| Effects | None | 5 effects (bubble, filter, shadow, etc.) |
-| Exports | None | Image, JSON, Video |
-| Extra plugins | absorbers, emitters | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing | Quad | 15 easings |
+| Aspect        | `tsparticles` (full)                                    | `@tsparticles/all`                                                                  |
+| ------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Size          | Moderate                                                | Very large                                                                          |
+| Shapes        | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.)                   |
+| Interactions  | Slim + drag + trail                                     | All (cannon, light, pop, particle, repulse)                                         |
+| Paths         | Quad easing only                                        | 14 path generators                                                                  |
+| Effects       | None                                                    | 5 effects (bubble, filter, shadow, etc.)                                            |
+| Exports       | None                                                    | Image, JSON, Video                                                                  |
+| Extra plugins | absorbers, emitters                                     | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
+| Easing        | Quad                                                    | 15 easings                                                                          |
 
 ## Common mistakes
 

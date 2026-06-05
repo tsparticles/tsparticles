@@ -74,17 +74,17 @@ await particles({
 
 ### Hauptparameter
 
-| Parameter | Typ | Standard | Beschreibung |
-|---|---|---|---|
-| `count` | number | 50 | Anzahl der Partikel |
-| `radius` | number | 3 | Partikelradius |
-| `speed` | number | 2 | Bewegungsgeschwindigkeit |
-| `opacity` | number | 0.8 | Opazität (0-1) |
-| `color` | string \| string[] | "#ffffff" | Partikelfarbe(n) |
-| `links` | boolean | false | Verbindungen anzeigen |
-| `linksColor` | string | "#ffffff" | Verbindungsfarbe |
-| `linksWidth` | number | 1 | Verbindungsstärke |
-| `shape` | string[] | ["circle"] | Partikelformen |
+| Parameter    | Typ                | Standard   | Beschreibung             |
+| ------------ | ------------------ | ---------- | ------------------------ |
+| `count`      | number             | 50         | Anzahl der Partikel      |
+| `radius`     | number             | 3          | Partikelradius           |
+| `speed`      | number             | 2          | Bewegungsgeschwindigkeit |
+| `opacity`    | number             | 0.8        | Opazität (0-1)           |
+| `color`      | string \| string[] | "#ffffff"  | Partikelfarbe(n)         |
+| `links`      | boolean            | false      | Verbindungen anzeigen    |
+| `linksColor` | string             | "#ffffff"  | Verbindungsfarbe         |
+| `linksWidth` | number             | 1          | Verbindungsstärke        |
+| `shape`      | string[]           | ["circle"] | Partikelformen           |
 
 ## Häufige Fehler
 

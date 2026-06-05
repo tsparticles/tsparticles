@@ -74,17 +74,17 @@ await particles({
 
 ### 主要参数
 
-| 参数 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `count` | number | 50 | 粒子数量 |
-| `radius` | number | 3 | 粒子半径 |
-| `speed` | number | 2 | 移动速度 |
-| `opacity` | number | 0.8 | 不透明度（0-1） |
-| `color` | string \| string[] | "#ffffff" | 粒子颜色 |
-| `links` | boolean | false | 显示连线 |
-| `linksColor` | string | "#ffffff" | 连线颜色 |
-| `linksWidth` | number | 1 | 连线粗细 |
-| `shape` | string[] | ["circle"] | 粒子形状 |
+| 参数         | 类型               | 默认值     | 描述            |
+| ------------ | ------------------ | ---------- | --------------- |
+| `count`      | number             | 50         | 粒子数量        |
+| `radius`     | number             | 3          | 粒子半径        |
+| `speed`      | number             | 2          | 移动速度        |
+| `opacity`    | number             | 0.8        | 不透明度（0-1） |
+| `color`      | string \| string[] | "#ffffff"  | 粒子颜色        |
+| `links`      | boolean            | false      | 显示连线        |
+| `linksColor` | string             | "#ffffff"  | 连线颜色        |
+| `linksWidth` | number             | 1          | 连线粗细        |
+| `shape`      | string[]           | ["circle"] | 粒子形状        |
 
 ## 常见错误
 

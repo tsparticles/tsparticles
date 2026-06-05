@@ -328,9 +328,9 @@ Aggiungi interattività al passaggio del mouse e al click:
 />
 ```
 
-| Evento               | Dettaglio   | Viene attivato                       |
-| -------------------- | ----------- | ------------------------------------ |
-| `on:init`            | `Engine`    | Dopo che il motore è inizializzato   |
+| Evento               | Dettaglio   | Viene attivato                               |
+| -------------------- | ----------- | -------------------------------------------- |
+| `on:init`            | `Engine`    | Dopo che il motore è inizializzato           |
 | `on:particlesLoaded` | `Container` | Dopo che il container è completamente pronto |
 
 ---
@@ -558,16 +558,16 @@ Oppure avvolgi l'import in un componente solo client. Per SvelteKit 2+, puoi anc
 
 ## Riferimento API
 
-| Prop      | Tipo             | Default          | Descrizione                      |
-| --------- | ---------------- | ---------------- | -------------------------------- |
-| `id`      | `string`         | `"tsparticles"`  | ID dell'elemento canvas          |
-| `options` | `ISourceOptions` | `{}`             | Oggetto di configurazione particelle |
-| `url`     | `string`         | —                | URL per una configurazione JSON remota |
+| Prop      | Tipo             | Default         | Descrizione                            |
+| --------- | ---------------- | --------------- | -------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID dell'elemento canvas                |
+| `options` | `ISourceOptions` | `{}`            | Oggetto di configurazione particelle   |
+| `url`     | `string`         | —               | URL per una configurazione JSON remota |
 
-| Evento              | Dettaglio   | Descrizione                                                   |
-| ------------------- | ----------- | ------------------------------------------------------------- |
-| `on:init`           | `Engine`    | Viene attivato quando il motore è inizializzato (usa per caricare plugin) |
-| `on:particlesLoaded`| `Container` | Viene attivato quando il container è completamente pronto     |
+| Evento               | Dettaglio   | Descrizione                                                               |
+| -------------------- | ----------- | ------------------------------------------------------------------------- |
+| `on:init`            | `Engine`    | Viene attivato quando il motore è inizializzato (usa per caricare plugin) |
+| `on:particlesLoaded` | `Container` | Viene attivato quando il container è completamente pronto                 |
 
 ---
 

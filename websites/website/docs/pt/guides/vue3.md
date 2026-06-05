@@ -600,17 +600,17 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Referência da API
 
-| Prop      | Tipo                                | Padrão            | Descrição                     |
-| --------- | ----------------------------------- | ----------------- | ----------------------------- |
-| `id`      | `string`                            | `"tsparticles"`   | ID do elemento canvas         |
-| `options` | `ISourceOptions`                    | `{}`              | Configuração das partículas   |
-| `init`    | `(engine: Engine) => Promise<void>` | —                 | Callback de inicialização do motor |
-| `url`     | `string`                            | —                 | URL para carregar configuração JSON |
+| Prop      | Tipo                                | Padrão          | Descrição                           |
+| --------- | ----------------------------------- | --------------- | ----------------------------------- |
+| `id`      | `string`                            | `"tsparticles"` | ID do elemento canvas               |
+| `options` | `ISourceOptions`                    | `{}`            | Configuração das partículas         |
+| `init`    | `(engine: Engine) => Promise<void>` | —               | Callback de inicialização do motor  |
+| `url`     | `string`                            | —               | URL para carregar configuração JSON |
 
-| Evento              | Payload     | Descrição                                    |
-| ------------------- | ----------- | -------------------------------------------- |
+| Evento              | Payload     | Descrição                                            |
+| ------------------- | ----------- | ---------------------------------------------------- |
 | `@particles-loaded` | `Container` | Dispara quando o container é totalmente inicializado |
-| `@particles-init`   | `Engine`    | Dispara após o motor ser inicializado         |
+| `@particles-init`   | `Engine`    | Dispara após o motor ser inicializado                |
 
 ---
 

@@ -478,12 +478,12 @@ Beachten Sie, dass der Pages Router **nicht** `"use client"` erfordert, da Seite
 
 ## Fehlerbehebung
 
-| Symptom                      | Ursache                                  | Lösung                                                             |
-| ---------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
-| Leere weiße Seite            | SSR rendert eine Canvas-abhängiges Modul | Verwenden Sie `dynamic(..., { ssr: false })` oder umschließen Sie es in einer Client-Komponente |
-| Canvas wird nicht angezeigt  | Container hat keine Höhe                 | Setzen Sie `fullScreen: { zIndex: -1 }` oder geben Sie explizite Maße an |
-| Optionsänderung nicht sichtbar | Keine neue Objektreferenz erstellt      | Verwenden Sie `useMemo` mit korrektem Abhängigkeitsarray            |
-| Preset funktioniert nicht    | Preset vor Container-Init nicht geladen  | Rufen Sie `loadXPreset(engine)` innerhalb des `init`-Callbacks auf  |
+| Symptom                        | Ursache                                  | Lösung                                                                                          |
+| ------------------------------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Leere weiße Seite              | SSR rendert eine Canvas-abhängiges Modul | Verwenden Sie `dynamic(..., { ssr: false })` oder umschließen Sie es in einer Client-Komponente |
+| Canvas wird nicht angezeigt    | Container hat keine Höhe                 | Setzen Sie `fullScreen: { zIndex: -1 }` oder geben Sie explizite Maße an                        |
+| Optionsänderung nicht sichtbar | Keine neue Objektreferenz erstellt       | Verwenden Sie `useMemo` mit korrektem Abhängigkeitsarray                                        |
+| Preset funktioniert nicht      | Preset vor Container-Init nicht geladen  | Rufen Sie `loadXPreset(engine)` innerhalb des `init`-Callbacks auf                              |
 
 ## Nächste Schritte
 

@@ -497,13 +497,13 @@ Il preset fornisce valori predefiniti per ogni opzione, e le tue sovrascritture 
 
 ## Risoluzione dei Problemi
 
-| Sintomo                       | Causa                                    | Rimedio                                                                       |
-| ----------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
-| Elemento DOM vuoto            | Motore non inizializzato prima del render | Avvolgi `<Particles>` in `<Show when={initialized()}>`                        |
-| Nessuna particella visibile   | Manca `move.enable` o `number.value`     | Assicurati `particles.move.enable: true` e `particles.number.value > 0`       |
-| Canvas dietro il contenuto    | Manca `zIndex` in fullScreen             | Usa `fullScreen: { zIndex: -1 }`                                             |
-| Cambio opzioni non riflesso   | Riferimento oggetto non cambiato         | Avvolgi le opzioni in una funzione o store; evita oggetti statici             |
-| Motore non trovato            | Manca import di `loadFull` o `loadSlim`  | Installa `tsparticles` o `@tsparticles/slim` e chiama `loadFull(engine)`      |
+| Sintomo                     | Causa                                     | Rimedio                                                                  |
+| --------------------------- | ----------------------------------------- | ------------------------------------------------------------------------ |
+| Elemento DOM vuoto          | Motore non inizializzato prima del render | Avvolgi `<Particles>` in `<Show when={initialized()}>`                   |
+| Nessuna particella visibile | Manca `move.enable` o `number.value`      | Assicurati `particles.move.enable: true` e `particles.number.value > 0`  |
+| Canvas dietro il contenuto  | Manca `zIndex` in fullScreen              | Usa `fullScreen: { zIndex: -1 }`                                         |
+| Cambio opzioni non riflesso | Riferimento oggetto non cambiato          | Avvolgi le opzioni in una funzione o store; evita oggetti statici        |
+| Motore non trovato          | Manca import di `loadFull` o `loadSlim`   | Installa `tsparticles` o `@tsparticles/slim` e chiama `loadFull(engine)` |
 
 ## Prossimi Passi
 

@@ -9,6 +9,7 @@ Erbt alles von `@tsparticles/basic` plus:
 **Formen:** Kreis, Quadrat, Stern, Polygon, Linie, Bild, Emoji
 
 **Externe Interaktionen (Maus/Touch):**
+
 - Anziehen
 - Abprallen
 - Blase
@@ -23,15 +24,18 @@ Erbt alles von `@tsparticles/basic` plus:
 - Verlangsamen
 
 **Partikel-Interaktionen:**
+
 - Anziehen
 - Kollisionen
 - Verbindungen (Partikel-Links)
 
 **Zusätzliche Aktualisierer:**
+
 - Lebenszyklus
 - Drehen
 
 **Plugins:**
+
 - Interaktivität
 - Easing-Quad
 - HEX-, HSL-, RGB-Farb-Plugins

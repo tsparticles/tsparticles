@@ -349,11 +349,11 @@ Una pagina HTML completa che usa il modulo Web Components con script CDN:
 
 ## Riferimento API
 
-| Esportazione / Proprietà         | Tipo                     | Descrizione                                           |
-| -------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)`  | `function`               | Inizializza il motore tsParticles con caricatori plugin |
-| `defineParticlesElement()`       | `function`               | Registra l'elemento personalizzato `<web-particles>`  |
-| `ParticlesElement`               | `class`                  | Classe base che puoi estendere per elementi personalizzati |
-| `element.options`                | `ISourceOptions`         | Legge/imposta l'oggetto di configurazione particelle  |
-| `element.container`              | `Container \| undefined` | Riferimento in sola lettura al `Container` sottostante |
-| `element.dispose()`              | `function`               | Distrugge l'istanza delle particelle e libera risorse |
+| Esportazione / Proprietà        | Tipo                     | Descrizione                                                |
+| ------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Inizializza il motore tsParticles con caricatori plugin    |
+| `defineParticlesElement()`      | `function`               | Registra l'elemento personalizzato `<web-particles>`       |
+| `ParticlesElement`              | `class`                  | Classe base che puoi estendere per elementi personalizzati |
+| `element.options`               | `ISourceOptions`         | Legge/imposta l'oggetto di configurazione particelle       |
+| `element.container`             | `Container \| undefined` | Riferimento in sola lettura al `Container` sottostante     |
+| `element.dispose()`             | `function`               | Distrugge l'istanza delle particelle e libera risorse      |

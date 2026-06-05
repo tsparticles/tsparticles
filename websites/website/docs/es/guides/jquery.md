@@ -265,10 +265,10 @@ A continuación se muestra una página HTML completa y autónoma que carga tsPar
 
 ## Referencia de API
 
-| Método                             | Descripción                                              |
-| ---------------------------------- | -------------------------------------------------------- |
-| `$.particles.init(fn)`             | Inicializa el motor con un callback de carga             |
-| `$(el).particles()`                | Crea una instancia del plugin de partículas en el elemento        |
-| `$(el).particles().load(opts)`     | Carga e inicia la configuración de partículas                |
+| Método                             | Descripción                                                |
+| ---------------------------------- | ---------------------------------------------------------- |
+| `$.particles.init(fn)`             | Inicializa el motor con un callback de carga               |
+| `$(el).particles()`                | Crea una instancia del plugin de partículas en el elemento |
+| `$(el).particles().load(opts)`     | Carga e inicia la configuración de partículas              |
 | `$(el).particles().destroy()`      | Destruye la instancia de partículas y limpia               |
 | `$(el).particles().getContainer()` | Devuelve el `Container` subyacente para control imperativo |

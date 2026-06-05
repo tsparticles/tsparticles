@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### Hauptparameter
 
-| Parameter | Typ | Standard | Beschreibung |
-|---|---|---|---|
-| `particleCount` | number | 50 | Anzahl der Konfettiteilchen |
-| `spread` | number | 60 | Streuwinkel (Grad) |
-| `angle` | number | 90 | Richtung (Grad, 90 = nach unten) |
-| `startVelocity` | number | 30 | Anfangsgeschwindigkeit |
-| `colors` | string[] | — | Konfettifarben |
-| `origin` | { x, y } | { 0.5, 0.5 } | Ursprungspunkt (0-1) |
-| `drift` | number | 0 | Horizontale Drift |
-| `shapes` | string[] | — | Formen: "circle", "heart", "square", "star", "cards" |
+| Parameter       | Typ      | Standard     | Beschreibung                                         |
+| --------------- | -------- | ------------ | ---------------------------------------------------- |
+| `particleCount` | number   | 50           | Anzahl der Konfettiteilchen                          |
+| `spread`        | number   | 60           | Streuwinkel (Grad)                                   |
+| `angle`         | number   | 90           | Richtung (Grad, 90 = nach unten)                     |
+| `startVelocity` | number   | 30           | Anfangsgeschwindigkeit                               |
+| `colors`        | string[] | —            | Konfettifarben                                       |
+| `origin`        | { x, y } | { 0.5, 0.5 } | Ursprungspunkt (0-1)                                 |
+| `drift`         | number   | 0            | Horizontale Drift                                    |
+| `shapes`        | string[] | —            | Formen: "circle", "heart", "square", "star", "cards" |
 
 ## Häufige Fehler
 

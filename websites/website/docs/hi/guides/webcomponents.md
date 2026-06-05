@@ -349,11 +349,11 @@ CDN स्क्रिप्ट के साथ वेब कम्पोने
 
 ## API संदर्भ
 
-| निर्यात / प्रॉपर्टी              | प्रकार                     | विवरण                                              |
-| ------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | प्लगइन लोडर के साथ tsParticles इंजन आरंभीकृत करें |
-| `defineParticlesElement()`      | `function`               | `<web-particles>` कस्टम तत्व पंजीकृत करें         |
+| निर्यात / प्रॉपर्टी             | प्रकार                   | विवरण                                                       |
+| ------------------------------- | ------------------------ | ----------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | प्लगइन लोडर के साथ tsParticles इंजन आरंभीकृत करें           |
+| `defineParticlesElement()`      | `function`               | `<web-particles>` कस्टम तत्व पंजीकृत करें                   |
 | `ParticlesElement`              | `class`                  | आधार वर्ग जिसे आप कस्टम तत्वों के लिए विस्तारित कर सकते हैं |
-| `element.options`               | `ISourceOptions`         | कण कॉन्फ़िगरेशन ऑब्जेक्ट प्राप्त/सेट करें         |
-| `element.container`             | `Container \| undefined` | अंतर्निहित `Container` का केवल-पढ़ने योग्य संदर्भ  |
-| `element.dispose()`             | `function`               | कण इंस्टेंस नष्ट करें और संसाधन साफ करें           |
+| `element.options`               | `ISourceOptions`         | कण कॉन्फ़िगरेशन ऑब्जेक्ट प्राप्त/सेट करें                   |
+| `element.container`             | `Container \| undefined` | अंतर्निहित `Container` का केवल-पढ़ने योग्य संदर्भ           |
+| `element.dispose()`             | `function`               | कण इंस्टेंस नष्ट करें और संसाधन साफ करें                    |

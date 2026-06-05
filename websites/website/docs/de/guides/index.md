@@ -11,27 +11,27 @@ Jede Anleitung ist in sich geschlossen und enthält kopierbare Code-Beispiele, d
 
 ## Verfügbare Anleitungen
 
-| Framework / Wrapper                | Paket                                | Beschreibung                                          |
-| ---------------------------------- | ------------------------------------ | ----------------------------------------------------- |
-| [Vanilla JS](./vanilla)            | `tsparticles` (CDN oder npm)         | Direkte DOM-Integration mit `tsParticles.load()`      |
-| [React](./react)                   | `@tsparticles/react`                 | Offizieller React-Wrapper mit Hooks und Komponenten   |
-| [Vue 3](./vue3)                    | `@tsparticles/vue3`                  | Offizielles Vue-3-Plugin mit Composables              |
-| [Angular](./angular)               | `@tsparticles/angular`               | Offizielle Angular-Komponente und -Modul              |
-| [Svelte](./svelte)                 | `@tsparticles/svelte`                | Offizielle Svelte-Komponente                          |
-| [Next.js](./nextjs)                | `@tsparticles/react` (mit Next.js)   | Serverseitiges Rendern und dynamische Importe         |
-| [Nuxt](./nuxt)                     | `@tsparticles/vue3` (mit Nuxt)       | SSR-sichere Integration als Nuxt-Plugin               |
-| [Solid](./solid)                   | `@tsparticles/solid`                 | Offizieller SolidJS-Wrapper                           |
-| [Preact](./preact)                 | `@tsparticles/preact`                | Preact-kompatible Komponente                          |
-| [Lit](./lit)                       | `@tsparticles/lit`                   | Lit-Webkomponenten-Wrapper                           |
-| [Qwik](./qwik)                     | `@tsparticles/qwik`                  | Qwik-optimierte Integration                           |
-| [jQuery](./jquery)                 | `@tsparticles/jquery`                | jQuery-Plugin für Legacy-Projekte                     |
-| [Astro](./astro)                   | `@tsparticles/react` (oder beliebig) | Island-Architektur mit Client-Direktiven              |
-| [Web Components](./webcomponents)  | `@tsparticles/webcomponents`         | Custom-Elements-API-Integration                       |
-| [Stencil](./stencil)               | `@tsparticles/stencil`               | Stencil-Komponenten-Wrapper                          |
-| [Ember](./ember)                   | `@tsparticles/ember`                 | Ember-Addon-Integration                              |
-| [Riot](./riot)                     | `@tsparticles/riot`                  | Riot.js-Wrapper                                       |
-| [Inferno](./inferno)               | `@tsparticles/inferno`               | Inferno-kompatible Komponente                         |
-| [WordPress](./wordpress)           | Plugin + `tsparticles`               | Block-Editor-/Shortcode-Integration                   |
+| Framework / Wrapper               | Paket                                | Beschreibung                                        |
+| --------------------------------- | ------------------------------------ | --------------------------------------------------- |
+| [Vanilla JS](./vanilla)           | `tsparticles` (CDN oder npm)         | Direkte DOM-Integration mit `tsParticles.load()`    |
+| [React](./react)                  | `@tsparticles/react`                 | Offizieller React-Wrapper mit Hooks und Komponenten |
+| [Vue 3](./vue3)                   | `@tsparticles/vue3`                  | Offizielles Vue-3-Plugin mit Composables            |
+| [Angular](./angular)              | `@tsparticles/angular`               | Offizielle Angular-Komponente und -Modul            |
+| [Svelte](./svelte)                | `@tsparticles/svelte`                | Offizielle Svelte-Komponente                        |
+| [Next.js](./nextjs)               | `@tsparticles/react` (mit Next.js)   | Serverseitiges Rendern und dynamische Importe       |
+| [Nuxt](./nuxt)                    | `@tsparticles/vue3` (mit Nuxt)       | SSR-sichere Integration als Nuxt-Plugin             |
+| [Solid](./solid)                  | `@tsparticles/solid`                 | Offizieller SolidJS-Wrapper                         |
+| [Preact](./preact)                | `@tsparticles/preact`                | Preact-kompatible Komponente                        |
+| [Lit](./lit)                      | `@tsparticles/lit`                   | Lit-Webkomponenten-Wrapper                          |
+| [Qwik](./qwik)                    | `@tsparticles/qwik`                  | Qwik-optimierte Integration                         |
+| [jQuery](./jquery)                | `@tsparticles/jquery`                | jQuery-Plugin für Legacy-Projekte                   |
+| [Astro](./astro)                  | `@tsparticles/react` (oder beliebig) | Island-Architektur mit Client-Direktiven            |
+| [Web Components](./webcomponents) | `@tsparticles/webcomponents`         | Custom-Elements-API-Integration                     |
+| [Stencil](./stencil)              | `@tsparticles/stencil`               | Stencil-Komponenten-Wrapper                         |
+| [Ember](./ember)                  | `@tsparticles/ember`                 | Ember-Addon-Integration                             |
+| [Riot](./riot)                    | `@tsparticles/riot`                  | Riot.js-Wrapper                                     |
+| [Inferno](./inferno)              | `@tsparticles/inferno`               | Inferno-kompatible Komponente                       |
+| [WordPress](./wordpress)          | Plugin + `tsparticles`               | Block-Editor-/Shortcode-Integration                 |
 
 ## Wählen Sie Ihre Anleitung
 

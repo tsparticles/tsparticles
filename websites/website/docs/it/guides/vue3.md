@@ -600,17 +600,17 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Riferimento API
 
-| Prop      | Tipo                                | Default          | Descrizione                        |
-| --------- | ----------------------------------- | ---------------- | ---------------------------------- |
-| `id`      | `string`                            | `"tsparticles"`  | ID dell'elemento canvas            |
-| `options` | `ISourceOptions`                    | `{}`             | Configurazione particelle          |
-| `init`    | `(engine: Engine) => Promise<void>` | —                | Callback di inizializzazione motore |
-| `url`     | `string`                            | —                | URL per caricare configurazione JSON |
+| Prop      | Tipo                                | Default         | Descrizione                          |
+| --------- | ----------------------------------- | --------------- | ------------------------------------ |
+| `id`      | `string`                            | `"tsparticles"` | ID dell'elemento canvas              |
+| `options` | `ISourceOptions`                    | `{}`            | Configurazione particelle            |
+| `init`    | `(engine: Engine) => Promise<void>` | —               | Callback di inizializzazione motore  |
+| `url`     | `string`                            | —               | URL per caricare configurazione JSON |
 
-| Evento              | Payload     | Descrizione                                    |
-| ------------------- | ----------- | ---------------------------------------------- |
+| Evento              | Payload     | Descrizione                                                      |
+| ------------------- | ----------- | ---------------------------------------------------------------- |
 | `@particles-loaded` | `Container` | Viene attivato quando il container è completamente inizializzato |
-| `@particles-init`   | `Engine`    | Viene attivato dopo che il motore è inizializzato |
+| `@particles-init`   | `Engine`    | Viene attivato dopo che il motore è inizializzato                |
 
 ---
 

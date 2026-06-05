@@ -2,16 +2,16 @@
 
 ## अपना रास्ता चुनें
 
-| परिदृश्य | कमांड |
-|---|---|
-| त्वरित शुरुआत (अनुशंसित) | `pnpm add @tsparticles/engine @tsparticles/slim` |
-| न्यूनतम सेटअप | `pnpm add @tsparticles/engine @tsparticles/basic` |
-| पूर्ण फीचर सेट | `pnpm add @tsparticles/engine tsparticles` |
-| रिपॉजिटरी में सब कुछ | `pnpm add @tsparticles/engine @tsparticles/all` |
-| केवल कॉनफ़ेटी | `pnpm add @tsparticles/confetti` |
-| केवल आतिशबाज़ी | `pnpm add @tsparticles/fireworks` |
-| कण पृष्ठभूमि | `pnpm add @tsparticles/particles` |
-| रिबन प्रभाव | `pnpm add @tsparticles/ribbons` |
+| परिदृश्य                 | कमांड                                             |
+| ------------------------ | ------------------------------------------------- |
+| त्वरित शुरुआत (अनुशंसित) | `pnpm add @tsparticles/engine @tsparticles/slim`  |
+| न्यूनतम सेटअप            | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| पूर्ण फीचर सेट           | `pnpm add @tsparticles/engine tsparticles`        |
+| रिपॉजिटरी में सब कुछ     | `pnpm add @tsparticles/engine @tsparticles/all`   |
+| केवल कॉनफ़ेटी            | `pnpm add @tsparticles/confetti`                  |
+| केवल आतिशबाज़ी           | `pnpm add @tsparticles/fireworks`                 |
+| कण पृष्ठभूमि             | `pnpm add @tsparticles/particles`                 |
+| रिबन प्रभाव              | `pnpm add @tsparticles/ribbons`                   |
 
 > **महत्वपूर्ण**: `@tsparticles/engine` अकेला कुछ नहीं बनाता। आपको हमेशा एक बंडल (शेप और एनिमेशन लोड करने के लिए) या व्यक्तिगत प्लगइन जोड़ना होगा। बंडल गाइड देखें: [`/hi/guide/bundles`](/hi/guide/bundles)।
 
@@ -57,18 +57,18 @@ pnpm add @tsparticles/engine @tsparticles/slim
 
 ### jsDelivr
 
-| बंडल | URL |
-|---|---|
-| इंजन | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js` |
-| Basic | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js` |
-| Slim | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js` |
-| Full (`tsparticles`) | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js` |
-| All | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js` |
-| Confetti | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js` |
-| Fireworks | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
-| Particles | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
-| Ribbons | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js` |
-| particles.js अनुकूलता | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js` |
+| बंडल                  | URL                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| इंजन                  | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
+| Basic                 | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
+| Slim                  | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
+| Full (`tsparticles`)  | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
+| All                   | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
+| Confetti              | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
+| Fireworks             | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| Particles             | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| Ribbons               | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
+| particles.js अनुकूलता | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
 
 ### unpkg
 
@@ -116,7 +116,7 @@ const { loadSlim } = require("@tsparticles/slim");
 <!-- 3. आपकी स्क्रिप्ट -->
 <script>
   (async () => {
-    await loadSlim(tsParticles);  // सुविधाएँ पंजीकृत करें
+    await loadSlim(tsParticles); // सुविधाएँ पंजीकृत करें
     await tsParticles.load({
       id: "tsparticles",
       options: {

@@ -6,11 +6,11 @@ tsParticles is a JavaScript/TypeScript library for creating particle animations,
 
 `@tsparticles/engine` alone **does nothing visible**. It contains only the core engine (animation loop, canvas, event management) but **no shapes, no interactions, no visual effects**. To see something you must load at least a **bundle** or individual **plugins**.
 
-| Concept | Role |
-|---|---|
-| `@tsparticles/engine` | Core engine. Exports `tsParticles`, types, options. Alone it draws nothing. |
-| Bundle (`@tsparticles/basic`, `@tsparticles/slim`, etc.) | Pre-assembled package that registers shapes, interactions, and updaters on the engine. |
-| Individual plugins (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity`, etc.) | Single packages you can combine for a custom bundle. |
+| Concept                                                                                | Role                                                                                   |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `@tsparticles/engine`                                                                  | Core engine. Exports `tsParticles`, types, options. Alone it draws nothing.            |
+| Bundle (`@tsparticles/basic`, `@tsparticles/slim`, etc.)                               | Pre-assembled package that registers shapes, interactions, and updaters on the engine. |
+| Individual plugins (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity`, etc.) | Single packages you can combine for a custom bundle.                                   |
 
 ## Choose your path
 
@@ -34,7 +34,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   // 2. Create the animation
   await tsParticles.load({
-    id: "tsparticles",       // HTML container ID
+    id: "tsparticles", // HTML container ID
     options: {
       background: {
         color: "#0b1020",
@@ -69,33 +69,33 @@ Load the engine first, then the bundle. CDN files expose everything on `window` 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- tsParticles engine -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-  <!-- Slim bundle (exposes loadSlim globally) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
-</head>
-<body>
-  <div id="tsparticles"></div>
-  <script>
-    (async () => {
-      // loadSlim is available globally from the CDN bundle
-      await loadSlim(tsParticles);
+  <head>
+    <!-- tsParticles engine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <!-- Slim bundle (exposes loadSlim globally) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+  </head>
+  <body>
+    <div id="tsparticles"></div>
+    <script>
+      (async () => {
+        // loadSlim is available globally from the CDN bundle
+        await loadSlim(tsParticles);
 
-      await tsParticles.load({
-        id: "tsparticles",
-        options: {
-          background: { color: "#0b1020" },
-          particles: {
-            number: { value: 80 },
-            links: { enable: true, distance: 150 },
-            move: { enable: true, speed: 2 },
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            background: { color: "#0b1020" },
+            particles: {
+              number: { value: 80 },
+              links: { enable: true, distance: 150 },
+              move: { enable: true, speed: 2 },
+            },
           },
-        },
-      });
-    })();
-  </script>
-</body>
+        });
+      })();
+    </script>
+  </body>
 </html>
 ```
 
@@ -110,14 +110,14 @@ Some bundles have their own simplified API, no need to use `tsParticles.load()`:
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
-</head>
-<body>
-  <script>
-    confetti({ particleCount: 100, spread: 70 });
-  </script>
-</body>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+  </head>
+  <body>
+    <script>
+      confetti({ particleCount: 100, spread: 70 });
+    </script>
+  </body>
 </html>
 ```
 
@@ -125,16 +125,16 @@ Same for `fireworks()`, `particles()`, `ribbons()`.
 
 ## Which bundle to choose?
 
-| Bundle | npm | When to use |
-|---|---|---|
-| `@tsparticles/basic` | `loadBasic(tsParticles)` | Minimum: circles, movement, opacity, size. No interactions. |
-| `@tsparticles/slim` | `loadSlim(tsParticles)` | **Recommended for most projects.** Adds interactions (click/hover), particle links, images, stars, polygons. |
-| `tsparticles` | `loadFull(tsParticles)` | Full official feature set: emitters, absorbers, text shapes, roll, wobble, trail. |
-| `@tsparticles/all` | `loadAll(tsParticles)` | **Everything** in the repo: every shape, interaction, effect, easing, path, export. Prototyping only. |
-| `@tsparticles/confetti` | `confetti(options)` | Confetti in one function call. Dedicated API. |
-| `@tsparticles/fireworks` | `fireworks(options)` | Fireworks in one function call. Dedicated API. |
-| `@tsparticles/particles` | `particles(options)` | Simplified particle background. Dedicated API. |
-| `@tsparticles/ribbons` | `ribbons(options)` | Ribbon effect. Dedicated API. |
+| Bundle                   | npm                      | When to use                                                                                                  |
+| ------------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `@tsparticles/basic`     | `loadBasic(tsParticles)` | Minimum: circles, movement, opacity, size. No interactions.                                                  |
+| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **Recommended for most projects.** Adds interactions (click/hover), particle links, images, stars, polygons. |
+| `tsparticles`            | `loadFull(tsParticles)`  | Full official feature set: emitters, absorbers, text shapes, roll, wobble, trail.                            |
+| `@tsparticles/all`       | `loadAll(tsParticles)`   | **Everything** in the repo: every shape, interaction, effect, easing, path, export. Prototyping only.        |
+| `@tsparticles/confetti`  | `confetti(options)`      | Confetti in one function call. Dedicated API.                                                                |
+| `@tsparticles/fireworks` | `fireworks(options)`     | Fireworks in one function call. Dedicated API.                                                               |
+| `@tsparticles/particles` | `particles(options)`     | Simplified particle background. Dedicated API.                                                               |
+| `@tsparticles/ribbons`   | `ribbons(options)`       | Ribbon effect. Dedicated API.                                                                                |
 
 More details: [`/guide/bundles`](/guide/bundles).
 
@@ -187,11 +187,11 @@ With CDN:
 
 ## Troubleshooting
 
-| Problem | Likely cause | Solution |
-|---|---|---|
-| Blank screen, no particles | `#tsparticles` doesn't exist in the DOM when calling `tsParticles.load()` | Ensure the DIV exists before the script, or use `DOMContentLoaded` |
-| Blank screen, no particles | Installed only `@tsparticles/engine` | Also install a bundle (`@tsparticles/slim`) or plugins — engine alone has no shapes to draw |
-| "loadBasic/loadSlim/loadFull is not a function" error | Bundle not installed or wrong import | `pnpm add @tsparticles/slim` and import `{ loadSlim }` |
-| Particles don't move | `move.enable` not set to `true` | Add `move: { enable: true, speed: 2 }` |
-| Missing feature (e.g. links, collisions) | Chosen bundle doesn't include it | Switch to a richer bundle (`@tsparticles/slim` or `tsparticles`) or install the specific plugin |
-| TypeScript type errors | Package versions out of sync | Keep engine and bundle on the same major/minor version |
+| Problem                                               | Likely cause                                                              | Solution                                                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Blank screen, no particles                            | `#tsparticles` doesn't exist in the DOM when calling `tsParticles.load()` | Ensure the DIV exists before the script, or use `DOMContentLoaded`                              |
+| Blank screen, no particles                            | Installed only `@tsparticles/engine`                                      | Also install a bundle (`@tsparticles/slim`) or plugins — engine alone has no shapes to draw     |
+| "loadBasic/loadSlim/loadFull is not a function" error | Bundle not installed or wrong import                                      | `pnpm add @tsparticles/slim` and import `{ loadSlim }`                                          |
+| Particles don't move                                  | `move.enable` not set to `true`                                           | Add `move: { enable: true, speed: 2 }`                                                          |
+| Missing feature (e.g. links, collisions)              | Chosen bundle doesn't include it                                          | Switch to a richer bundle (`@tsparticles/slim` or `tsparticles`) or install the specific plugin |
+| TypeScript type errors                                | Package versions out of sync                                              | Keep engine and bundle on the same major/minor version                                          |

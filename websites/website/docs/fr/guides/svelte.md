@@ -328,10 +328,10 @@ Ajoutez de l'interactivité au survol de la souris et au clic :
 />
 ```
 
-| Événement             | Détail      | Se déclenche                          |
-| -------------------- | ----------- | ---------------------------------- |
-| `on:init`            | `Engine`    | Après l'initialisation du moteur    |
-| `on:particlesLoaded` | `Container` | Lorsque le conteneur est prêt |
+| Événement            | Détail      | Se déclenche                     |
+| -------------------- | ----------- | -------------------------------- |
+| `on:init`            | `Engine`    | Après l'initialisation du moteur |
+| `on:particlesLoaded` | `Container` | Lorsque le conteneur est prêt    |
 
 ---
 
@@ -558,16 +558,16 @@ Ou encapsulez l'importation dans un composant client-only. Pour SvelteKit 2+, vo
 
 ## Référence API
 
-| Prop      | Type             | Défaut          | Description                   |
-| --------- | ---------------- | --------------- | ----------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas        |
+| Prop      | Type             | Défaut          | Description                           |
+| --------- | ---------------- | --------------- | ------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                |
 | `options` | `ISourceOptions` | `{}`            | Objet de configuration des particules |
 | `url`     | `string`         | —               | URL d'une configuration JSON distante |
 
-| Événement             | Détail      | Description                                                |
-| -------------------- | ----------- | ---------------------------------------------------------- |
+| Événement            | Détail      | Description                                                                     |
+| -------------------- | ----------- | ------------------------------------------------------------------------------- |
 | `on:init`            | `Engine`    | Se déclenche quand le moteur est initialisé (utilisez pour charger des plugins) |
-| `on:particlesLoaded` | `Container` | Se déclenche quand le conteneur est complètement prêt       |
+| `on:particlesLoaded` | `Container` | Se déclenche quand le conteneur est complètement prêt                           |
 
 ---
 

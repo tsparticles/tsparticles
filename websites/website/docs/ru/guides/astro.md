@@ -375,10 +375,10 @@ const options: ISourceOptions = {
 
 ## Свойства компонента
 
-| Свойство             | Тип             | По умолчанию               | Описание                                      |
-| -------------------- | --------------- | -------------------------- | --------------------------------------------- |
-| `id`                 | `string`        | `"tsparticles"`            | ID DOM-элемента для контейнера                |
-| `options`            | `ISourceOptions`| `{}`                       | Полный объект конфигурации tsParticles        |
-| `url`                | `string`        | —                          | Загрузить конфигурацию из удалённого JSON URL |
-| `particlesClassName` | `string`        | `"tsparticles-canvas-el"`  | CSS-класс для элемента canvas                 |
-| `container`          | `object`        | —                          | Существующий экземпляр `Container` (продвинутое) |
+| Свойство             | Тип              | По умолчанию              | Описание                                         |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------ |
+| `id`                 | `string`         | `"tsparticles"`           | ID DOM-элемента для контейнера                   |
+| `options`            | `ISourceOptions` | `{}`                      | Полный объект конфигурации tsParticles           |
+| `url`                | `string`         | —                         | Загрузить конфигурацию из удалённого JSON URL    |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS-класс для элемента canvas                    |
+| `container`          | `object`         | —                         | Существующий экземпляр `Container` (продвинутое) |

@@ -375,10 +375,10 @@ const options: ISourceOptions = {
 
 ## コンポーネントプロップ
 
-| プロップ              | タイプ             | デフォルト                   | 説明                                  |
-| -------------------- | ---------------- | ------------------------- | -------------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | コンテナの DOM 要素 ID             |
-| `options`            | `ISourceOptions` | `{}`                      | 完全な tsParticles 設定オブジェクト        |
-| `url`                | `string`         | —                         | リモート JSON URL から設定をロード    |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | キャンバス要素の CSS クラス             |
+| プロップ             | タイプ           | デフォルト                | 説明                                          |
+| -------------------- | ---------------- | ------------------------- | --------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | コンテナの DOM 要素 ID                        |
+| `options`            | `ISourceOptions` | `{}`                      | 完全な tsParticles 設定オブジェクト           |
+| `url`                | `string`         | —                         | リモート JSON URL から設定をロード            |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | キャンバス要素の CSS クラス                   |
 | `container`          | `object`         | —                         | 既存の `Container` インスタンス（上級者向け） |

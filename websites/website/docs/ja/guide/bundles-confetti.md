@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### 主要パラメーター
 
-| パラメーター | 型 | デフォルト | 説明 |
-|---|---|---|---|
-| `particleCount` | number | 50 | 紙吹雪の数 |
-| `spread` | number | 60 | 拡散角度（度） |
-| `angle` | number | 90 | 方向（度、90 = 下向き） |
-| `startVelocity` | number | 30 | 初速度 |
-| `colors` | string[] | — | 紙吹雪の色 |
-| `origin` | { x, y } | { 0.5, 0.5 } | 発生点（0-1） |
-| `drift` | number | 0 | 水平方向のドリフト |
-| `shapes` | string[] | — | 形状: "circle"、"heart"、"square"、"star"、"cards" |
+| パラメーター    | 型       | デフォルト   | 説明                                               |
+| --------------- | -------- | ------------ | -------------------------------------------------- |
+| `particleCount` | number   | 50           | 紙吹雪の数                                         |
+| `spread`        | number   | 60           | 拡散角度（度）                                     |
+| `angle`         | number   | 90           | 方向（度、90 = 下向き）                            |
+| `startVelocity` | number   | 30           | 初速度                                             |
+| `colors`        | string[] | —            | 紙吹雪の色                                         |
+| `origin`        | { x, y } | { 0.5, 0.5 } | 発生点（0-1）                                      |
+| `drift`         | number   | 0            | 水平方向のドリフト                                 |
+| `shapes`        | string[] | —            | 形状: "circle"、"heart"、"square"、"star"、"cards" |
 
 ## よくある間違い
 

@@ -497,13 +497,13 @@ El preset proporciona valores por defecto para cada opción, y tus personalizaci
 
 ## Solución de Problemas
 
-| Síntoma                      | Causa                                   | Solución                                                                      |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
-| Elemento DOM en blanco            | Motor no inicializado antes del renderizado    | Envuelve `<Particles>` en `<Show when={initialized()}>`                      |
-| No se ven partículas         | Falta `move.enable` o `number.value` | Asegúrate de `particles.move.enable: true` y `particles.number.value > 0`    |
-| Canvas detrás del contenido        | Falta `zIndex` en fullScreen          | Usa `fullScreen: { zIndex: -1 }`                                         |
-| El cambio de opciones no se refleja | La referencia del objeto no cambia           | Envuelve las opciones en una función o store; evita objetos estáticos                |
-| Motor no encontrado             | Falta la importación de `loadFull` o `loadSlim` | Instala `tsparticles` o `@tsparticles/slim` y llama a `loadFull(engine)` |
+| Síntoma                             | Causa                                           | Solución                                                                  |
+| ----------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------- |
+| Elemento DOM en blanco              | Motor no inicializado antes del renderizado     | Envuelve `<Particles>` en `<Show when={initialized()}>`                   |
+| No se ven partículas                | Falta `move.enable` o `number.value`            | Asegúrate de `particles.move.enable: true` y `particles.number.value > 0` |
+| Canvas detrás del contenido         | Falta `zIndex` en fullScreen                    | Usa `fullScreen: { zIndex: -1 }`                                          |
+| El cambio de opciones no se refleja | La referencia del objeto no cambia              | Envuelve las opciones en una función o store; evita objetos estáticos     |
+| Motor no encontrado                 | Falta la importación de `loadFull` o `loadSlim` | Instala `tsparticles` o `@tsparticles/slim` y llama a `loadFull(engine)`  |
 
 ## Próximos Pasos
 

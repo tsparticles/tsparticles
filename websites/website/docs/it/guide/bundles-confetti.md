@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### Parametri principali
 
-| Parametro | Tipo | Default | Descrizione |
-|---|---|---|---|
-| `particleCount` | number | 50 | Numero di coriandoli |
-| `spread` | number | 60 | Angolo di diffusione (gradi) |
-| `angle` | number | 90 | Direzione (gradi, 90 = giù) |
-| `startVelocity` | number | 30 | Velocità iniziale |
-| `colors` | string[] | — | Colori dei coriandoli |
-| `origin` | { x, y } | { 0.5, 0.5 } | Punto di origine (0-1) |
-| `drift` | number | 0 | Deriva orizzontale |
-| `shapes` | string[] | — | Forme: "circle", "heart", "square", "star", "cards" |
+| Parametro       | Tipo     | Default      | Descrizione                                         |
+| --------------- | -------- | ------------ | --------------------------------------------------- |
+| `particleCount` | number   | 50           | Numero di coriandoli                                |
+| `spread`        | number   | 60           | Angolo di diffusione (gradi)                        |
+| `angle`         | number   | 90           | Direzione (gradi, 90 = giù)                         |
+| `startVelocity` | number   | 30           | Velocità iniziale                                   |
+| `colors`        | string[] | —            | Colori dei coriandoli                               |
+| `origin`        | { x, y } | { 0.5, 0.5 } | Punto di origine (0-1)                              |
+| `drift`         | number   | 0            | Deriva orizzontale                                  |
+| `shapes`        | string[] | —            | Forme: "circle", "heart", "square", "star", "cards" |
 
 ## Errori comuni
 

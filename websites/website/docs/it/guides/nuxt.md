@@ -272,11 +272,11 @@ const onDestroy = () => {
 </script>
 ```
 
-| Evento               | Payload     | Descrizione                                                   |
-| -------------------- | ----------- | ------------------------------------------------------------- |
-| `@particles-init`    | `Engine`    | Viene attivato una volta quando il motore tsParticles si inizializza |
+| Evento               | Payload     | Descrizione                                                                 |
+| -------------------- | ----------- | --------------------------------------------------------------------------- |
+| `@particles-init`    | `Engine`    | Viene attivato una volta quando il motore tsParticles si inizializza        |
 | `@particles-loaded`  | `Container` | Viene attivato ogni volta che il container finisce di caricare o ricaricare |
-| `@particles-destroy` | nessuno     | Viene attivato quando il container viene distrutto            |
+| `@particles-destroy` | nessuno     | Viene attivato quando il container viene distrutto                          |
 
 ## Esempio TypeScript Completo
 
@@ -423,14 +423,14 @@ Se esegui l'upgrade da Nuxt 2 con il pacchetto `@tsparticles/vue` (vue 2), devi 
 
 Combina il pattern sopra con uno qualsiasi di questi preset ufficiali:
 
-| Preset    | Package                         | Effetto                   |
-| --------- | ------------------------------- | ------------------------- |
-| Confetti  | `@tsparticles/preset-confetti`  | Esplosione di coriandoli  |
-| Fireworks | `@tsparticles/preset-fireworks` | Esplosioni pirotecniche   |
-| Snow      | `@tsparticles/preset-snow`      | Fiocchi di neve cadenti   |
-| Stars     | `@tsparticles/preset-stars`     | Cielo notturno stellato   |
-| Links     | `@tsparticles/preset-links`     | Rete di nodi connessi     |
-| Bubbles   | `@tsparticles/preset-bubbles`   | Bolle fluttuanti          |
+| Preset    | Package                         | Effetto                  |
+| --------- | ------------------------------- | ------------------------ |
+| Confetti  | `@tsparticles/preset-confetti`  | Esplosione di coriandoli |
+| Fireworks | `@tsparticles/preset-fireworks` | Esplosioni pirotecniche  |
+| Snow      | `@tsparticles/preset-snow`      | Fiocchi di neve cadenti  |
+| Stars     | `@tsparticles/preset-stars`     | Cielo notturno stellato  |
+| Links     | `@tsparticles/preset-links`     | Rete di nodi connessi    |
+| Bubbles   | `@tsparticles/preset-bubbles`   | Bolle fluttuanti         |
 
 ```vue
 <template>
@@ -449,12 +449,12 @@ await loadStarsPreset(tsParticles);
 
 ## Risoluzione dei Problemi
 
-| Sintomo                            | Causa                                     | Rimedio                                                        |
-| ---------------------------------- | ----------------------------------------- | -------------------------------------------------------------- |
-| Schermata bianca / errore idratazione | `<vue-particles>` renderizzato lato server | Avvolgi in `<client-only>`                                     |
-| Il preset non ha effetto           | Preset non caricato prima del montaggio   | Chiama `loadXPreset()` con await di primo livello in `<script setup>` |
-| Il canvas non riempie il viewport  | `fullScreen` non abilitato                | Aggiungi `fullScreen: { zIndex: -1 }` alle opzioni             |
-| I controlli non mettono in pausa/riprendono | Riferimento container non impostato      | Assegna il container nel gestore `@particles-loaded`           |
+| Sintomo                                     | Causa                                      | Rimedio                                                               |
+| ------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| Schermata bianca / errore idratazione       | `<vue-particles>` renderizzato lato server | Avvolgi in `<client-only>`                                            |
+| Il preset non ha effetto                    | Preset non caricato prima del montaggio    | Chiama `loadXPreset()` con await di primo livello in `<script setup>` |
+| Il canvas non riempie il viewport           | `fullScreen` non abilitato                 | Aggiungi `fullScreen: { zIndex: -1 }` alle opzioni                    |
+| I controlli non mettono in pausa/riprendono | Riferimento container non impostato        | Assegna il container nel gestore `@particles-loaded`                  |
 
 ## Prossimi Passi
 

@@ -349,11 +349,11 @@ Uma página HTML completa usando o módulo de Web Components com scripts CDN:
 
 ## Referência da API
 
-| Export / Property               | Tipo                     | Descrição                                            |
-| ------------------------------- | ------------------------ | ---------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | Inicializar o motor tsParticles com carregadores de plugins |
-| `defineParticlesElement()`      | `function`               | Registrar o elemento personalizado `<web-particles>` |
+| Export / Property               | Tipo                     | Descrição                                                        |
+| ------------------------------- | ------------------------ | ---------------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Inicializar o motor tsParticles com carregadores de plugins      |
+| `defineParticlesElement()`      | `function`               | Registrar o elemento personalizado `<web-particles>`             |
 | `ParticlesElement`              | `class`                  | Classe base que você pode estender para elementos personalizados |
-| `element.options`               | `ISourceOptions`         | Obter/definir o objeto de configuração das partículas |
-| `element.container`             | `Container \| undefined` | Referência somente leitura ao `Container` subjacente |
-| `element.dispose()`             | `function`               | Destruir a instância de partículas e limpar recursos |
+| `element.options`               | `ISourceOptions`         | Obter/definir o objeto de configuração das partículas            |
+| `element.container`             | `Container \| undefined` | Referência somente leitura ao `Container` subjacente             |
+| `element.dispose()`             | `function`               | Destruir a instância de partículas e limpar recursos             |

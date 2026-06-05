@@ -9,10 +9,12 @@
 **अतिरिक्त शेप:** text (कस्टम फ़ॉन्ट के साथ)
 
 **अतिरिक्त बाहरी इंटरैक्शन:**
+
 - drag (कणों को माउस से खींचें)
 - trail (माउस के पीछे कण ट्रेल)
 
 **अतिरिक्त अपडेटर:**
+
 - destroy (कण विनाश एनिमेशन)
 - roll (रोलिंग)
 - tilt (3D झुकाव)
@@ -20,6 +22,7 @@
 - wobble (दोलन)
 
 **प्लगइन:**
+
 - absorbers (ब्लैक होल जो कणों को सोख लेते हैं)
 - emitters (निरंतर कण स्रोत)
 - emitters-shape-circle, emitters-shape-square (एमिटर शेप)
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## `tsparticles` और `@tsparticles/all` के बीच अंतर
 
-| पहलू | `tsparticles` (full) | `@tsparticles/all` |
-|---|---|---|
-| आकार | मध्यम | बहुत बड़ा |
-| शेप | circle, square, star, polygon, line, image, emoji, text | सभी शेप (heart, cards, arrow, spiral, cog, rounded-rect, आदि) |
-| इंटरैक्शन | Slim + drag + trail | सभी (cannon, light, pop, particle, repulse) |
-| पथ | केवल Quad easing | 14 पथ जनरेटर |
-| इफ़ेक्ट | कोई नहीं | 5 इफ़ेक्ट (bubble, filter, shadow, आदि) |
-| एक्सपोर्ट | कोई नहीं | Image, JSON, Video |
-| अतिरिक्त प्लगइन | absorbers, emitters | सभी (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, आदि) |
-| ईज़िंग | Quad | 15 ईज़िंग |
+| पहलू            | `tsparticles` (full)                                    | `@tsparticles/all`                                                                 |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| आकार            | मध्यम                                                   | बहुत बड़ा                                                                          |
+| शेप             | circle, square, star, polygon, line, image, emoji, text | सभी शेप (heart, cards, arrow, spiral, cog, rounded-rect, आदि)                      |
+| इंटरैक्शन       | Slim + drag + trail                                     | सभी (cannon, light, pop, particle, repulse)                                        |
+| पथ              | केवल Quad easing                                        | 14 पथ जनरेटर                                                                       |
+| इफ़ेक्ट         | कोई नहीं                                                | 5 इफ़ेक्ट (bubble, filter, shadow, आदि)                                            |
+| एक्सपोर्ट       | कोई नहीं                                                | Image, JSON, Video                                                                 |
+| अतिरिक्त प्लगइन | absorbers, emitters                                     | सभी (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, आदि) |
+| ईज़िंग          | Quad                                                    | 15 ईज़िंग                                                                          |
 
 ## सामान्य गलतियाँ
 

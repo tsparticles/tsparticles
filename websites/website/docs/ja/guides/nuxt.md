@@ -272,11 +272,11 @@ const onDestroy = () => {
 </script>
 ```
 
-| イベント               | ペイロード   | 説明                                                  |
-| -------------------- | ----------- | ------------------------------------------------------------ |
-| `@particles-init`    | `Engine`    | tsParticles エンジンが初期化されたときに1回発生           |
+| イベント             | ペイロード  | 説明                                               |
+| -------------------- | ----------- | -------------------------------------------------- |
+| `@particles-init`    | `Engine`    | tsParticles エンジンが初期化されたときに1回発生    |
 | `@particles-loaded`  | `Container` | コンテナのロードまたはリロードが完了するたびに発生 |
-| `@particles-destroy` | なし        | コンテナが破棄されたときに発生                        |
+| `@particles-destroy` | なし        | コンテナが破棄されたときに発生                     |
 
 ## 完全な TypeScript の例
 
@@ -423,14 +423,14 @@ Nuxt 2 から `@tsparticles/vue` パッケージ（vue 2）を使用してアッ
 
 上記のパターンを任意の公式プリセットと組み合わせます:
 
-| プリセット  | パッケージ                          | エフェクト              |
-| --------- | -------------------------------- | ----------------------- |
-| Confetti  | `@tsparticles/preset-confetti`   | カラフルなクラッカーバースト |
-| Fireworks | `@tsparticles/preset-fireworks`  | 花火の爆発               |
-| Snow      | `@tsparticles/preset-snow`       | 降る雪の結晶             |
-| Stars     | `@tsparticles/preset-stars`      | きらめく夜空             |
-| Links     | `@tsparticles/preset-links`      | 接続されたノードネットワーク |
-| Bubbles   | `@tsparticles/preset-bubbles`    | 浮遊する泡               |
+| プリセット | パッケージ                      | エフェクト                   |
+| ---------- | ------------------------------- | ---------------------------- |
+| Confetti   | `@tsparticles/preset-confetti`  | カラフルなクラッカーバースト |
+| Fireworks  | `@tsparticles/preset-fireworks` | 花火の爆発                   |
+| Snow       | `@tsparticles/preset-snow`      | 降る雪の結晶                 |
+| Stars      | `@tsparticles/preset-stars`     | きらめく夜空                 |
+| Links      | `@tsparticles/preset-links`     | 接続されたノードネットワーク |
+| Bubbles    | `@tsparticles/preset-bubbles`   | 浮遊する泡                   |
 
 ```vue
 <template>
@@ -449,12 +449,12 @@ await loadStarsPreset(tsParticles);
 
 ## トラブルシューティング
 
-| 症状                           | 原因                                    | 修正                                                           |
-| -------------------------------- | ---------------------------------------- | ------------------------------------------------------------- |
-| 空白画面 / ハイドレーションエラー | `<vue-particles>` がサーバー上でレンダリング | `<client-only>` でラップ                                       |
-| プリセットが効果を発揮しない     | コンポーネントマウント前にプリセットがロードされていない | `<script setup>` でトップレベル await を使用して `loadXPreset()` を呼び出す |
-| キャンバスがビューポートを埋めない | `fullScreen` が有効になっていない         | オプションに `fullScreen: { zIndex: -1 }` を追加               |
-| コントロールで一時停止/再開できない | コンテナ参照が設定されていない             | `@particles-loaded` ハンドラーでコンテナを割り当て              |
+| 症状                                | 原因                                                     | 修正                                                                        |
+| ----------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 空白画面 / ハイドレーションエラー   | `<vue-particles>` がサーバー上でレンダリング             | `<client-only>` でラップ                                                    |
+| プリセットが効果を発揮しない        | コンポーネントマウント前にプリセットがロードされていない | `<script setup>` でトップレベル await を使用して `loadXPreset()` を呼び出す |
+| キャンバスがビューポートを埋めない  | `fullScreen` が有効になっていない                        | オプションに `fullScreen: { zIndex: -1 }` を追加                            |
+| コントロールで一時停止/再開できない | コンテナ参照が設定されていない                           | `@particles-loaded` ハンドラーでコンテナを割り当て                          |
 
 ## 次のステップ
 

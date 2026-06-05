@@ -478,12 +478,12 @@ Note que o Pages Router não requer `"use client"` porque os componentes da pág
 
 ## Solução de Problemas
 
-| Sintoma                       | Causa                                    | Correção                                                          |
-| ----------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
-| Página em branco              | SSR renderizando um módulo dependente de canvas | Use `dynamic(..., { ssr: false })` ou envolva em um componente cliente |
-| Canvas não aparecendo         | Container com altura zero                | Defina `fullScreen: { zIndex: -1 }` ou dê dimensões explícitas    |
-| Mudança de opções não refletida | Nova referência de objeto não criada    | Use `useMemo` com array de dependências adequado                  |
-| Preset não funcionando        | Preset não carregado antes da inicialização do container | Chame `loadXPreset(engine)` dentro do callback `init`             |
+| Sintoma                         | Causa                                                    | Correção                                                               |
+| ------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Página em branco                | SSR renderizando um módulo dependente de canvas          | Use `dynamic(..., { ssr: false })` ou envolva em um componente cliente |
+| Canvas não aparecendo           | Container com altura zero                                | Defina `fullScreen: { zIndex: -1 }` ou dê dimensões explícitas         |
+| Mudança de opções não refletida | Nova referência de objeto não criada                     | Use `useMemo` com array de dependências adequado                       |
+| Preset não funcionando          | Preset não carregado antes da inicialização do container | Chame `loadXPreset(engine)` dentro do callback `init`                  |
 
 ## Próximos Passos
 

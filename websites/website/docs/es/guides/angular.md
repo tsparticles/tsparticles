@@ -151,12 +151,12 @@ export class AppComponent implements OnInit {
 
 Funciones de carga disponibles desde `tsparticles`:
 
-| Función            | Descripción                                 |
-| ------------------- | ------------------------------------------- |
-| `loadFull(engine)`  | Todas las funcionalidades (paquete más grande)               |
-| `loadBasic(engine)` | Formas básicas (círculo, cuadrado, polígono, etc.) |
-| `loadSlim(engine)`  | La mayoría de funcionalidades sin plugins de uso poco frecuente     |
-| `loadAll(engine)`   | Alias obsoleto de `loadFull`             |
+| Función             | Descripción                                                     |
+| ------------------- | --------------------------------------------------------------- |
+| `loadFull(engine)`  | Todas las funcionalidades (paquete más grande)                  |
+| `loadBasic(engine)` | Formas básicas (círculo, cuadrado, polígono, etc.)              |
+| `loadSlim(engine)`  | La mayoría de funcionalidades sin plugins de uso poco frecuente |
+| `loadAll(engine)`   | Alias obsoleto de `loadFull`                                    |
 
 ---
 
@@ -601,24 +601,24 @@ export class AppComponent implements OnInit {
 
 ## Referencia de API
 
-| Componente | Selector        | Descripción                     |
-| --------- | --------------- | ------------------------------- |
-| Particles | `ngx-particles` | Componente completo del sistema de partículas  |
-| Confetti  | `ngx-confetti`  | Efecto de confeti preconfigurado  |
-| Fireworks | `ngx-fireworks` | Efecto de fuegos artificiales preconfigurado |
+| Componente | Selector        | Descripción                                   |
+| ---------- | --------------- | --------------------------------------------- |
+| Particles  | `ngx-particles` | Componente completo del sistema de partículas |
+| Confetti   | `ngx-confetti`  | Efecto de confeti preconfigurado              |
+| Fireworks  | `ngx-fireworks` | Efecto de fuegos artificiales preconfigurado  |
 
 ### Entradas de `ngx-particles`
 
-| Entrada     | Tipo             | Por Defecto         | Descripción            |
-| --------- | ---------------- | --------------- | ---------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas      |
-| `options` | `ISourceOptions` | `{}`            | Configuración de partículas |
+| Entrada   | Tipo             | Por Defecto     | Descripción                      |
+| --------- | ---------------- | --------------- | -------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas           |
+| `options` | `ISourceOptions` | `{}`            | Configuración de partículas      |
 | `url`     | `string`         | —               | URL remota de configuración JSON |
 
 ### Salidas de `ngx-particles`
 
-| Salida            | Carga     | Descripción                               |
-| ----------------- | ----------- | ----------------------------------------- |
+| Salida            | Carga       | Descripción                                 |
+| ----------------- | ----------- | ------------------------------------------- |
 | `particlesLoaded` | `Container` | Se emite cuando el contenedor se inicializa |
 
 ---

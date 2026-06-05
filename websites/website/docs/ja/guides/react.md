@@ -1,6 +1,6 @@
 ---
 title: React ガイド
-description: @tsparticles/react を使用して tsParticles を React と統合するための完全ガイド。
+description: "@tsparticles/react を使用して tsParticles を React と統合するための完全ガイド。"
 ---
 
 # React ガイド

@@ -496,13 +496,13 @@ export default App;
 
 ## トラブルシューティング
 
-| 症状                      | 原因                                   | 修正                                                                      |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
-| 空の DOM 要素            | レンダリング前にエンジンが初期化されていない | `<Particles>` を `<Show when={initialized()}>` でラップ                      |
-| パーティクルが表示されない         | `move.enable` または `number.value` がない | `particles.move.enable: true` と `particles.number.value > 0` を確認    |
-| キャンバスがコンテンツの背後 | fullScreen に `zIndex` がない          | `fullScreen: { zIndex: -1 }` を使用                                         |
-| オプションの変更が反映されない | オブジェクト参照が変更されていない           | オプションを関数またはストアでラップ; 静的オブジェクトを避ける                |
-| エンジンが見つからない     | `loadFull` または `loadSlim` のインポートがない | `tsparticles` または `@tsparticles/slim` をインストールし、`loadFull(engine)` を呼び出す |
+| 症状                           | 原因                                            | 修正                                                                                     |
+| ------------------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 空の DOM 要素                  | レンダリング前にエンジンが初期化されていない    | `<Particles>` を `<Show when={initialized()}>` でラップ                                  |
+| パーティクルが表示されない     | `move.enable` または `number.value` がない      | `particles.move.enable: true` と `particles.number.value > 0` を確認                     |
+| キャンバスがコンテンツの背後   | fullScreen に `zIndex` がない                   | `fullScreen: { zIndex: -1 }` を使用                                                      |
+| オプションの変更が反映されない | オブジェクト参照が変更されていない              | オプションを関数またはストアでラップ; 静的オブジェクトを避ける                           |
+| エンジンが見つからない         | `loadFull` または `loadSlim` のインポートがない | `tsparticles` または `@tsparticles/slim` をインストールし、`loadFull(engine)` を呼び出す |
 
 ## 次のステップ
 

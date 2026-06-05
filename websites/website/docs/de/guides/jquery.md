@@ -265,10 +265,10 @@ Nachfolgend eine vollständige, in sich geschlossene HTML-Seite, die tsParticles
 
 ## API-Referenz
 
-| Methode                            | Beschreibung                                               |
-| ---------------------------------- | ---------------------------------------------------------- |
-| `$.particles.init(fn)`             | Engine mit einem Loader-Callback initialisieren            |
-| `$(el).particles()`                | Plugin-Instanz auf dem Element erstellen                   |
-| `$(el).particles().load(opts)`     | Partikel-Konfiguration laden und starten                   |
-| `$(el).particles().destroy()`      | Partikel-Instanz zerstören und aufräumen                   |
+| Methode                            | Beschreibung                                                        |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| `$.particles.init(fn)`             | Engine mit einem Loader-Callback initialisieren                     |
+| `$(el).particles()`                | Plugin-Instanz auf dem Element erstellen                            |
+| `$(el).particles().load(opts)`     | Partikel-Konfiguration laden und starten                            |
+| `$(el).particles().destroy()`      | Partikel-Instanz zerstören und aufräumen                            |
 | `$(el).particles().getContainer()` | Zugrunde liegenden `Container` für imperative Steuerung zurückgeben |

@@ -9,10 +9,12 @@
 **额外的形状：** 文本（支持自定义字体）
 
 **额外的外部交互：**
+
 - drag（用鼠标拖拽粒子）
 - trail（鼠标后的粒子拖尾）
 
 **额外的更新器：**
+
 - destroy（粒子销毁动画）
 - roll（滚动）
 - tilt（3D 倾斜）
@@ -20,6 +22,7 @@
 - wobble（摆动）
 
 **插件：**
+
 - absorbers（吸收粒子黑洞）
 - emitters（持续粒子源）
 - emitters-shape-circle、emitters-shape-square（发射器形状）
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## `tsparticles` 与 `@tsparticles/all` 的区别
 
-| 方面 | `tsparticles`（full） | `@tsparticles/all` |
-|---|---|---|
-| 大小 | 适中 | 非常大 |
-| 形状 | 圆形、方形、星形、多边形、线条、图片、emoji、文本 | 所有形状（心形、扑克花色、箭头、螺旋、齿轮、圆角矩形等） |
-| 交互 | Slim + drag + trail | 全部（cannon、light、pop、particle、repulse） |
-| 路径 | 仅 Quad 缓动 | 14 种路径生成器 |
-| 效果 | 无 | 5 种效果（气泡、滤镜、阴影等） |
-| 导出 | 无 | 图片、JSON、视频 |
-| 额外插件 | absorbers、emitters | 全部（声音、主题、拖尾、缩放、多边形遮罩、画布遮罩、背景遮罩等） |
-| 缓动 | Quad | 15 种缓动 |
+| 方面     | `tsparticles`（full）                             | `@tsparticles/all`                                               |
+| -------- | ------------------------------------------------- | ---------------------------------------------------------------- |
+| 大小     | 适中                                              | 非常大                                                           |
+| 形状     | 圆形、方形、星形、多边形、线条、图片、emoji、文本 | 所有形状（心形、扑克花色、箭头、螺旋、齿轮、圆角矩形等）         |
+| 交互     | Slim + drag + trail                               | 全部（cannon、light、pop、particle、repulse）                    |
+| 路径     | 仅 Quad 缓动                                      | 14 种路径生成器                                                  |
+| 效果     | 无                                                | 5 种效果（气泡、滤镜、阴影等）                                   |
+| 导出     | 无                                                | 图片、JSON、视频                                                 |
+| 额外插件 | absorbers、emitters                               | 全部（声音、主题、拖尾、缩放、多边形遮罩、画布遮罩、背景遮罩等） |
+| 缓动     | Quad                                              | 15 种缓动                                                        |
 
 ## 常见错误
 

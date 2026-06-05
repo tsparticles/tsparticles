@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### 主要参数
 
-| 参数 | 类型 | 默认值 | 描述 |
-|---|---|---|---|
-| `particleCount` | number | 50 | 彩纸数量 |
-| `spread` | number | 60 | 扩散角度（度） |
-| `angle` | number | 90 | 方向（度，90 = 向下） |
-| `startVelocity` | number | 30 | 初始速度 |
-| `colors` | string[] | — | 彩纸颜色 |
-| `origin` | { x, y } | { 0.5, 0.5 } | 原点（0-1） |
-| `drift` | number | 0 | 水平漂移 |
-| `shapes` | string[] | — | 形状："circle"、"heart"、"square"、"star"、"cards" |
+| 参数            | 类型     | 默认值       | 描述                                               |
+| --------------- | -------- | ------------ | -------------------------------------------------- |
+| `particleCount` | number   | 50           | 彩纸数量                                           |
+| `spread`        | number   | 60           | 扩散角度（度）                                     |
+| `angle`         | number   | 90           | 方向（度，90 = 向下）                              |
+| `startVelocity` | number   | 30           | 初始速度                                           |
+| `colors`        | string[] | —            | 彩纸颜色                                           |
+| `origin`        | { x, y } | { 0.5, 0.5 } | 原点（0-1）                                        |
+| `drift`         | number   | 0            | 水平漂移                                           |
+| `shapes`        | string[] | —            | 形状："circle"、"heart"、"square"、"star"、"cards" |
 
 ## 常见错误
 

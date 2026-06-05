@@ -478,12 +478,12 @@ Nota che il Pages Router **non** richiede `"use client"` perché i componenti de
 
 ## Risoluzione dei Problemi
 
-| Sintomo                       | Causa                                    | Rimedio                                                         |
-| ----------------------------- | ---------------------------------------- | --------------------------------------------------------------- |
-| Pagina bianca                 | SSR di un modulo dipendente dal canvas   | Usa `dynamic(..., { ssr: false })` o avvolgi in un componente client |
-| Canvas non visibile           | Il container ha altezza zero             | Imposta `fullScreen: { zIndex: -1 }` o dagli dimensioni esplicite |
-| Cambio opzioni non riflesso   | Nuovo riferimento oggetto non creato     | Usa `useMemo` con l'array di dipendenze corretto                 |
-| Preset non funzionante        | Preset non caricato prima dell'init del container | Chiama `loadXPreset(engine)` dentro la callback `init`        |
+| Sintomo                     | Causa                                             | Rimedio                                                              |
+| --------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
+| Pagina bianca               | SSR di un modulo dipendente dal canvas            | Usa `dynamic(..., { ssr: false })` o avvolgi in un componente client |
+| Canvas non visibile         | Il container ha altezza zero                      | Imposta `fullScreen: { zIndex: -1 }` o dagli dimensioni esplicite    |
+| Cambio opzioni non riflesso | Nuovo riferimento oggetto non creato              | Usa `useMemo` con l'array di dipendenze corretto                     |
+| Preset non funzionante      | Preset non caricato prima dell'init del container | Chiama `loadXPreset(engine)` dentro la callback `init`               |
 
 ## Prossimi Passi
 

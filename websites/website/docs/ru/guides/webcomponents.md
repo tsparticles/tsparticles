@@ -349,11 +349,11 @@ el.dispose();
 
 ## Справочник API
 
-| Экспорт / Свойство                | Тип                      | Описание                                              |
-| --------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)`   | `function`               | Инициализация движка tsParticles с загрузчиками плагинов |
-| `defineParticlesElement()`        | `function`               | Регистрация пользовательского элемента `<web-particles>` |
-| `ParticlesElement`                | `class`                  | Базовый класс для расширения пользовательскими элементами |
-| `element.options`                 | `ISourceOptions`         | Получить/установить объект конфигурации частиц        |
-| `element.container`               | `Container \| undefined` | Ссылка только для чтения на базовый `Container`       |
-| `element.dispose()`               | `function`               | Уничтожить экземпляр частиц и очистить ресурсы        |
+| Экспорт / Свойство              | Тип                      | Описание                                                  |
+| ------------------------------- | ------------------------ | --------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Инициализация движка tsParticles с загрузчиками плагинов  |
+| `defineParticlesElement()`      | `function`               | Регистрация пользовательского элемента `<web-particles>`  |
+| `ParticlesElement`              | `class`                  | Базовый класс для расширения пользовательскими элементами |
+| `element.options`               | `ISourceOptions`         | Получить/установить объект конфигурации частиц            |
+| `element.container`             | `Container \| undefined` | Ссылка только для чтения на базовый `Container`           |
+| `element.dispose()`             | `function`               | Уничтожить экземпляр частиц и очистить ресурсы            |

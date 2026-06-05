@@ -11,27 +11,27 @@ description: Изучите руководства по интеграции tsP
 
 ## Доступные руководства
 
-| Фреймворк / Обёртка               | Пакет                                  | Описание                                              |
-| --------------------------------- | -------------------------------------- | ----------------------------------------------------- |
-| [Vanilla JS](./vanilla)           | `tsparticles` (CDN или npm)            | Прямая DOM-интеграция с `tsParticles.load()`          |
-| [React](./react)                  | `@tsparticles/react`                   | Официальная обёртка React с хуками и компонентами     |
-| [Vue 3](./vue3)                   | `@tsparticles/vue3`                    | Официальный плагин Vue 3 с composables                |
-| [Angular](./angular)              | `@tsparticles/angular`                 | Официальный компонент и модуль Angular                |
-| [Svelte](./svelte)                | `@tsparticles/svelte`                  | Официальный компонент Svelte                          |
-| [Next.js](./nextjs)               | `@tsparticles/react` (с Next.js)       | Серверный рендеринг и динамические импорты            |
-| [Nuxt](./nuxt)                    | `@tsparticles/vue3` (с Nuxt)           | SSR-безопасная интеграция как плагин Nuxt             |
-| [Solid](./solid)                  | `@tsparticles/solid`                   | Официальная обёртка SolidJS                           |
-| [Preact](./preact)                | `@tsparticles/preact`                  | Совместимый компонент Preact                          |
-| [Lit](./lit)                      | `@tsparticles/lit`                     | Обёртка веб-компонента Lit                            |
-| [Qwik](./qwik)                    | `@tsparticles/qwik`                    | Оптимизированная интеграция для Qwik                  |
-| [jQuery](./jquery)                | `@tsparticles/jquery`                  | Плагин jQuery для легаси-проектов                     |
-| [Astro](./astro)                  | `@tsparticles/react` (или любая обёртка)| Архитектура Island с клиентскими директивами          |
-| [Web Components](./webcomponents) | `@tsparticles/webcomponents`           | Интеграция через Custom Elements API                  |
-| [Stencil](./stencil)              | `@tsparticles/stencil`                 | Обёртка компонента Stencil                            |
-| [Ember](./ember)                  | `@tsparticles/ember`                   | Интеграция аддона Ember                               |
-| [Riot](./riot)                    | `@tsparticles/riot`                    | Обёртка Riot.js                                       |
-| [Inferno](./inferno)              | `@tsparticles/inferno`                 | Совместимый компонент Inferno                         |
-| [WordPress](./wordpress)          | Плагин + `tsparticles`                 | Интеграция через блочный редактор / шорткоды          |
+| Фреймворк / Обёртка               | Пакет                                    | Описание                                          |
+| --------------------------------- | ---------------------------------------- | ------------------------------------------------- |
+| [Vanilla JS](./vanilla)           | `tsparticles` (CDN или npm)              | Прямая DOM-интеграция с `tsParticles.load()`      |
+| [React](./react)                  | `@tsparticles/react`                     | Официальная обёртка React с хуками и компонентами |
+| [Vue 3](./vue3)                   | `@tsparticles/vue3`                      | Официальный плагин Vue 3 с composables            |
+| [Angular](./angular)              | `@tsparticles/angular`                   | Официальный компонент и модуль Angular            |
+| [Svelte](./svelte)                | `@tsparticles/svelte`                    | Официальный компонент Svelte                      |
+| [Next.js](./nextjs)               | `@tsparticles/react` (с Next.js)         | Серверный рендеринг и динамические импорты        |
+| [Nuxt](./nuxt)                    | `@tsparticles/vue3` (с Nuxt)             | SSR-безопасная интеграция как плагин Nuxt         |
+| [Solid](./solid)                  | `@tsparticles/solid`                     | Официальная обёртка SolidJS                       |
+| [Preact](./preact)                | `@tsparticles/preact`                    | Совместимый компонент Preact                      |
+| [Lit](./lit)                      | `@tsparticles/lit`                       | Обёртка веб-компонента Lit                        |
+| [Qwik](./qwik)                    | `@tsparticles/qwik`                      | Оптимизированная интеграция для Qwik              |
+| [jQuery](./jquery)                | `@tsparticles/jquery`                    | Плагин jQuery для легаси-проектов                 |
+| [Astro](./astro)                  | `@tsparticles/react` (или любая обёртка) | Архитектура Island с клиентскими директивами      |
+| [Web Components](./webcomponents) | `@tsparticles/webcomponents`             | Интеграция через Custom Elements API              |
+| [Stencil](./stencil)              | `@tsparticles/stencil`                   | Обёртка компонента Stencil                        |
+| [Ember](./ember)                  | `@tsparticles/ember`                     | Интеграция аддона Ember                           |
+| [Riot](./riot)                    | `@tsparticles/riot`                      | Обёртка Riot.js                                   |
+| [Inferno](./inferno)              | `@tsparticles/inferno`                   | Совместимый компонент Inferno                     |
+| [WordPress](./wordpress)          | Плагин + `tsparticles`                   | Интеграция через блочный редактор / шорткоды      |
 
 ## Выберите руководство
 

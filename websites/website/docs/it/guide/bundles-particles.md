@@ -74,17 +74,17 @@ await particles({
 
 ### Parametri principali
 
-| Parametro | Tipo | Default | Descrizione |
-|---|---|---|---|
-| `count` | number | 50 | Numero particelle |
-| `radius` | number | 3 | Raggio particelle |
-| `speed` | number | 2 | Velocità movimento |
-| `opacity` | number | 0.8 | Opacità (0-1) |
-| `color` | string \| string[] | "#ffffff" | Colore/i particelle |
-| `links` | boolean | false | Mostra collegamenti |
-| `linksColor` | string | "#ffffff" | Colore collegamenti |
-| `linksWidth` | number | 1 | Spessore collegamenti |
-| `shape` | string[] | ["circle"] | Forme particelle |
+| Parametro    | Tipo               | Default    | Descrizione           |
+| ------------ | ------------------ | ---------- | --------------------- |
+| `count`      | number             | 50         | Numero particelle     |
+| `radius`     | number             | 3          | Raggio particelle     |
+| `speed`      | number             | 2          | Velocità movimento    |
+| `opacity`    | number             | 0.8        | Opacità (0-1)         |
+| `color`      | string \| string[] | "#ffffff"  | Colore/i particelle   |
+| `links`      | boolean            | false      | Mostra collegamenti   |
+| `linksColor` | string             | "#ffffff"  | Colore collegamenti   |
+| `linksWidth` | number             | 1          | Spessore collegamenti |
+| `shape`      | string[]           | ["circle"] | Forme particelle      |
 
 ## Errori comuni
 

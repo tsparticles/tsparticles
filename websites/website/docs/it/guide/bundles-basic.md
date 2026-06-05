@@ -7,17 +7,20 @@
 **Forme:** cerchio
 
 **Updater (animazioni):**
+
 - paint (colore)
 - opacity (opacità)
 - out-modes (comportamento all'uscita dallo schermo)
 - size (dimensione)
 
 **Plugin:**
+
 - move (movimento)
 - blend (miscelazione colore)
 - Colori HEX, HSL, RGB
 
 **Non include:**
+
 - Interazioni mouse/touch (click, hover, ecc.)
 - Collegamenti tra particelle (links)
 - Altre forme (quadrati, stelle, immagini, poligoni, ecc.)

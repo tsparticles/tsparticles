@@ -74,17 +74,17 @@ await particles({
 
 ### मुख्य पैरामीटर
 
-| पैरामीटर | टाइप | डिफ़ॉल्ट | विवरण |
-|---|---|---|---|
-| `count` | number | 50 | कणों की संख्या |
-| `radius` | number | 3 | कण त्रिज्या |
-| `speed` | number | 2 | गति |
-| `opacity` | number | 0.8 | अपारदर्शिता (0-1) |
-| `color` | string \| string[] | "#ffffff" | कण रंग |
-| `links` | boolean | false | लिंक दिखाएँ |
-| `linksColor` | string | "#ffffff" | लिंक रंग |
-| `linksWidth` | number | 1 | लिंक मोटाई |
-| `shape` | string[] | ["circle"] | कण शेप |
+| पैरामीटर     | टाइप               | डिफ़ॉल्ट   | विवरण             |
+| ------------ | ------------------ | ---------- | ----------------- |
+| `count`      | number             | 50         | कणों की संख्या    |
+| `radius`     | number             | 3          | कण त्रिज्या       |
+| `speed`      | number             | 2          | गति               |
+| `opacity`    | number             | 0.8        | अपारदर्शिता (0-1) |
+| `color`      | string \| string[] | "#ffffff"  | कण रंग            |
+| `links`      | boolean            | false      | लिंक दिखाएँ       |
+| `linksColor` | string             | "#ffffff"  | लिंक रंग          |
+| `linksWidth` | number             | 1          | लिंक मोटाई        |
+| `shape`      | string[]           | ["circle"] | कण शेप            |
 
 ## सामान्य गलतियाँ
 

@@ -6,11 +6,11 @@ tsParticles 是一个用于创建粒子动画、彩纸、烟花等的 JavaScript
 
 `@tsparticles/engine` 单独使用**不会显示任何内容**。它只包含核心引擎（动画循环、画布、事件管理），但**没有形状、没有交互、没有视觉效果**。要看到效果，你必须至少加载一个**捆绑包**或单独的**插件**。
 
-| 概念 | 作用 |
-|---|---|
-| `@tsparticles/engine` | 核心引擎。导出 `tsParticles`、类型、选项。单独使用不绘制任何内容。 |
-| 捆绑包（`@tsparticles/basic`、`@tsparticles/slim` 等） | 预组装的包，在引擎上注册形状、交互和更新器。 |
-| 单个插件（`@tsparticles/shape-circle`、`@tsparticles/updater-opacity` 等） | 可自由组合成自定义捆绑包的独立包。 |
+| 概念                                                                       | 作用                                                               |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `@tsparticles/engine`                                                      | 核心引擎。导出 `tsParticles`、类型、选项。单独使用不绘制任何内容。 |
+| 捆绑包（`@tsparticles/basic`、`@tsparticles/slim` 等）                     | 预组装的包，在引擎上注册形状、交互和更新器。                       |
+| 单个插件（`@tsparticles/shape-circle`、`@tsparticles/updater-opacity` 等） | 可自由组合成自定义捆绑包的独立包。                                 |
 
 ## 选择你的路径
 
@@ -34,7 +34,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   // 2. 创建动画
   await tsParticles.load({
-    id: "tsparticles",       // HTML 容器 ID
+    id: "tsparticles", // HTML 容器 ID
     options: {
       background: {
         color: "#0b1020",
@@ -69,33 +69,33 @@ HTML 容器：
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- tsParticles 引擎 -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-  <!-- Slim 捆绑包（全局暴露 loadSlim） -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
-</head>
-<body>
-  <div id="tsparticles"></div>
-  <script>
-    (async () => {
-      // loadSlim 可从 CDN 捆绑包全局获取
-      await loadSlim(tsParticles);
+  <head>
+    <!-- tsParticles 引擎 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <!-- Slim 捆绑包（全局暴露 loadSlim） -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+  </head>
+  <body>
+    <div id="tsparticles"></div>
+    <script>
+      (async () => {
+        // loadSlim 可从 CDN 捆绑包全局获取
+        await loadSlim(tsParticles);
 
-      await tsParticles.load({
-        id: "tsparticles",
-        options: {
-          background: { color: "#0b1020" },
-          particles: {
-            number: { value: 80 },
-            links: { enable: true, distance: 150 },
-            move: { enable: true, speed: 2 },
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            background: { color: "#0b1020" },
+            particles: {
+              number: { value: 80 },
+              links: { enable: true, distance: 150 },
+              move: { enable: true, speed: 2 },
+            },
           },
-        },
-      });
-    })();
-  </script>
-</body>
+        });
+      })();
+    </script>
+  </body>
 </html>
 ```
 
@@ -110,14 +110,14 @@ HTML 容器：
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
-</head>
-<body>
-  <script>
-    confetti({ particleCount: 100, spread: 70 });
-  </script>
-</body>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+  </head>
+  <body>
+    <script>
+      confetti({ particleCount: 100, spread: 70 });
+    </script>
+  </body>
 </html>
 ```
 
@@ -125,16 +125,16 @@ HTML 容器：
 
 ## 选择哪个捆绑包？
 
-| 捆绑包 | npm | 何时使用 |
-|---|---|---|
-| `@tsparticles/basic` | `loadBasic(tsParticles)` | 最简：圆形、移动、透明度、大小。无交互。 |
-| `@tsparticles/slim` | `loadSlim(tsParticles)` | **推荐用于大多数项目。** 添加交互（点击/悬停）、粒子连线、图片、星形、多边形。 |
-| `tsparticles` | `loadFull(tsParticles)` | 完整的官方功能集：发射器、吸收器、文本形状、滚动、摆动、拖尾。 |
-| `@tsparticles/all` | `loadAll(tsParticles)` | **仓库中的所有内容**：每种形状、交互、效果、缓动、路径、导出。仅限原型设计。 |
-| `@tsparticles/confetti` | `confetti(options)` | 一次函数调用即可实现彩纸效果。专用 API。 |
-| `@tsparticles/fireworks` | `fireworks(options)` | 一次函数调用即可实现烟花效果。专用 API。 |
-| `@tsparticles/particles` | `particles(options)` | 简化的粒子背景。专用 API。 |
-| `@tsparticles/ribbons` | `ribbons(options)` | 丝带效果。专用 API。 |
+| 捆绑包                   | npm                      | 何时使用                                                                       |
+| ------------------------ | ------------------------ | ------------------------------------------------------------------------------ |
+| `@tsparticles/basic`     | `loadBasic(tsParticles)` | 最简：圆形、移动、透明度、大小。无交互。                                       |
+| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **推荐用于大多数项目。** 添加交互（点击/悬停）、粒子连线、图片、星形、多边形。 |
+| `tsparticles`            | `loadFull(tsParticles)`  | 完整的官方功能集：发射器、吸收器、文本形状、滚动、摆动、拖尾。                 |
+| `@tsparticles/all`       | `loadAll(tsParticles)`   | **仓库中的所有内容**：每种形状、交互、效果、缓动、路径、导出。仅限原型设计。   |
+| `@tsparticles/confetti`  | `confetti(options)`      | 一次函数调用即可实现彩纸效果。专用 API。                                       |
+| `@tsparticles/fireworks` | `fireworks(options)`     | 一次函数调用即可实现烟花效果。专用 API。                                       |
+| `@tsparticles/particles` | `particles(options)`     | 简化的粒子背景。专用 API。                                                     |
+| `@tsparticles/ribbons`   | `ribbons(options)`       | 丝带效果。专用 API。                                                           |
 
 更多详情：[`/zh/guide/bundles`](/zh/guide/bundles)。
 
@@ -187,11 +187,11 @@ await tsParticles.load({
 
 ## 故障排除
 
-| 问题 | 可能原因 | 解决方案 |
-|---|---|---|
-| 空白屏幕，无粒子 | 调用 `tsParticles.load()` 时 `#tsparticles` 在 DOM 中不存在 | 确保 DIV 在脚本之前存在，或使用 `DOMContentLoaded` |
-| 空白屏幕，无粒子 | 只安装了 `@tsparticles/engine` | 同时安装一个捆绑包（`@tsparticles/slim`）或插件——引擎本身没有可绘制的形状 |
-| "loadBasic/loadSlim/loadFull is not a function" 错误 | 未安装捆绑包或导入错误 | `pnpm add @tsparticles/slim` 并导入 `{ loadSlim }` |
-| 粒子不移动 | `move.enable` 未设置为 `true` | 添加 `move: { enable: true, speed: 2 }` |
-| 缺少功能（如连线、碰撞） | 选择的捆绑包不包含该功能 | 切换到更丰富的捆绑包（`@tsparticles/slim` 或 `tsparticles`）或安装特定插件 |
-| TypeScript 类型错误 | 包版本不同步 | 保持引擎和捆绑包的主/次版本一致 |
+| 问题                                                 | 可能原因                                                    | 解决方案                                                                   |
+| ---------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 空白屏幕，无粒子                                     | 调用 `tsParticles.load()` 时 `#tsparticles` 在 DOM 中不存在 | 确保 DIV 在脚本之前存在，或使用 `DOMContentLoaded`                         |
+| 空白屏幕，无粒子                                     | 只安装了 `@tsparticles/engine`                              | 同时安装一个捆绑包（`@tsparticles/slim`）或插件——引擎本身没有可绘制的形状  |
+| "loadBasic/loadSlim/loadFull is not a function" 错误 | 未安装捆绑包或导入错误                                      | `pnpm add @tsparticles/slim` 并导入 `{ loadSlim }`                         |
+| 粒子不移动                                           | `move.enable` 未设置为 `true`                               | 添加 `move: { enable: true, speed: 2 }`                                    |
+| 缺少功能（如连线、碰撞）                             | 选择的捆绑包不包含该功能                                    | 切换到更丰富的捆绑包（`@tsparticles/slim` 或 `tsparticles`）或安装特定插件 |
+| TypeScript 类型错误                                  | 包版本不同步                                                | 保持引擎和捆绑包的主/次版本一致                                            |

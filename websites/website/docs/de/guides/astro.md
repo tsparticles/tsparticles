@@ -375,10 +375,10 @@ const options: ISourceOptions = {
 
 ## Komponenten-Eigenschaften
 
-| Eigenschaft         | Typ             | Standard                   | Beschreibung                                   |
-| ------------------- | --------------- | -------------------------- | ---------------------------------------------- |
-| `id`                | `string`        | `"tsparticles"`            | DOM-Element-ID für den Container               |
-| `options`           | `ISourceOptions`| `{}`                       | Vollständiges tsParticles-Konfigurationsobjekt |
-| `url`               | `string`        | —                          | Konfiguration von einer Remote-JSON-URL laden  |
-| `particlesClassName`| `string`        | `"tsparticles-canvas-el"`  | CSS-Klasse für das Canvas-Element              |
-| `container`         | `object`        | —                          | Vorhandene `Container`-Instanz (fortgeschritten) |
+| Eigenschaft          | Typ              | Standard                  | Beschreibung                                     |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------ |
+| `id`                 | `string`         | `"tsparticles"`           | DOM-Element-ID für den Container                 |
+| `options`            | `ISourceOptions` | `{}`                      | Vollständiges tsParticles-Konfigurationsobjekt   |
+| `url`                | `string`         | —                         | Konfiguration von einer Remote-JSON-URL laden    |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS-Klasse für das Canvas-Element                |
+| `container`          | `object`         | —                         | Vorhandene `Container`-Instanz (fortgeschritten) |

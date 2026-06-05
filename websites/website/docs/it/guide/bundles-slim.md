@@ -9,6 +9,7 @@ Eredita tutto da `@tsparticles/basic` più:
 **Forme:** cerchio, quadrato, stella, poligono, linea, immagine, emoji
 
 **Interazioni esterne (mouse/touch):**
+
 - attract
 - bounce
 - bubble
@@ -23,15 +24,18 @@ Eredita tutto da `@tsparticles/basic` più:
 - slow
 
 **Interazioni tra particelle:**
+
 - attract
 - collisions (collisioni)
 - links (collegamenti tra particelle)
 
 **Updater aggiuntivi:**
+
 - life (vita/ciclo)
 - rotate (rotazione)
 
 **Plugin:**
+
 - interactivity (plugin per abilitare le interazioni)
 - easing-quad (easing quadratico per animazioni)
 - Colori HEX, HSL, RGB

@@ -478,12 +478,12 @@ Notez que le Pages Router ne nécessite **pas** `"use client"` car les composant
 
 ## Dépannage
 
-| Symptôme                      | Cause                                   | Solution                                                          |
-| ---------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-| Page blanche                  | SSR d'un module dépendant du canvas     | Utilisez `dynamic(..., { ssr: false })` ou encapsulez dans un composant client |
-| Canvas non affiché            | Conteneur a une hauteur nulle           | Définissez `fullScreen: { zIndex: -1 }` ou donnez-lui des dimensions explicites |
-| Changement d'options sans effet | Nouvelle référence d'objet non créée    | Utilisez `useMemo` avec un tableau de dépendances approprié      |
-| Préréglage non fonctionnel    | Préréglage non chargé avant init du conteneur | Appelez `loadXPreset(engine)` dans le callback `init`            |
+| Symptôme                        | Cause                                         | Solution                                                                        |
+| ------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
+| Page blanche                    | SSR d'un module dépendant du canvas           | Utilisez `dynamic(..., { ssr: false })` ou encapsulez dans un composant client  |
+| Canvas non affiché              | Conteneur a une hauteur nulle                 | Définissez `fullScreen: { zIndex: -1 }` ou donnez-lui des dimensions explicites |
+| Changement d'options sans effet | Nouvelle référence d'objet non créée          | Utilisez `useMemo` avec un tableau de dépendances approprié                     |
+| Préréglage non fonctionnel      | Préréglage non chargé avant init du conteneur | Appelez `loadXPreset(engine)` dans le callback `init`                           |
 
 ## Prochaines étapes
 

@@ -9,6 +9,7 @@
 **形状：** 圆形、方形、星形、多边形、线条、图片、emoji
 
 **外部交互（鼠标/触摸）：**
+
 - attract（吸引）
 - bounce（弹跳）
 - bubble（气泡）
@@ -23,15 +24,18 @@
 - slow（减速）
 
 **粒子交互：**
+
 - attract（吸引）
 - collisions（碰撞）
 - links（粒子连线）
 
 **额外的更新器：**
+
 - life（生命周期）
 - rotate（旋转）
 
 **插件：**
+
 - interactivity（交互）
 - easing-quad（二次缓动）
 - HEX、HSL、RGB 颜色插件

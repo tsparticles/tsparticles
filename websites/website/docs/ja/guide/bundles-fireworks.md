@@ -59,15 +59,15 @@ await fireworks("my-canvas", {
 
 ### 主要パラメーター
 
-| パラメーター | 型 | デフォルト | 説明 |
-|---|---|---|---|
-| `colors` | string[] | — | 爆発の色 |
-| `rate` | number | — | 1 秒あたりの花火数 |
-| `speed` | { min, max } | — | パーティクルの速度 |
-| `sounds` | boolean | true | 効果音を有効にする |
-| `gravity` | number | — | 重力（デフォルト: 0） |
-| `opacity` | number | — | 不透明度（0-1） |
-| `brightness` | { min, max } | — | 爆発の明るさ |
+| パラメーター | 型           | デフォルト | 説明                  |
+| ------------ | ------------ | ---------- | --------------------- |
+| `colors`     | string[]     | —          | 爆発の色              |
+| `rate`       | number       | —          | 1 秒あたりの花火数    |
+| `speed`      | { min, max } | —          | パーティクルの速度    |
+| `sounds`     | boolean      | true       | 効果音を有効にする    |
+| `gravity`    | number       | —          | 重力（デフォルト: 0） |
+| `opacity`    | number       | —          | 不透明度（0-1）       |
+| `brightness` | { min, max } | —          | 爆発の明るさ          |
 
 ## よくある間違い
 

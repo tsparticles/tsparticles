@@ -9,10 +9,12 @@ Erbt alles von `@tsparticles/slim` plus:
 **Zusätzliche Formen:** Text (mit benutzerdefinierten Schriftarten)
 
 **Zusätzliche externe Interaktionen:**
+
 - Ziehen (Partikel mit der Maus ziehen)
 - Spur (Partikelspur hinter der Maus)
 
 **Zusätzliche Aktualisierer:**
+
 - Zerstören (Partikelzerstörungs-Animation)
 - Rollen
 - Neigen (3D-Neigung)
@@ -20,6 +22,7 @@ Erbt alles von `@tsparticles/slim` plus:
 - Wackeln (Oszillation)
 
 **Plugins:**
+
 - Absorber (schwarze Löcher, die Partikel einsaugen)
 - Emitter (kontinuierliche Partikelquellen)
 - Emitter-Form-Kreis, Emitter-Form-Quadrat (Emitterformen)
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## Unterschied zwischen `tsparticles` und `@tsparticles/all`
 
-| Aspekt | `tsparticles` (full) | `@tsparticles/all` |
-|---|---|---|
-| Größe | Mittel | Sehr groß |
-| Formen | Kreis, Quadrat, Stern, Polygon, Linie, Bild, Emoji, Text | Alle Formen (Herz, Karten, Pfeil, Spirale, Zahnrad, abgerundetes Rechteck etc.) |
-| Interaktionen | Slim + Ziehen + Spur | Alle (Kanone, Licht, Pop, Partikel, Abstoßen) |
-| Pfade | Nur Quad-Easing | 14 Pfadgeneratoren |
-| Effekte | Keine | 5 Effekte (Blase, Filter, Schatten etc.) |
-| Exporte | Keine | Bild, JSON, Video |
-| Zusätzliche Plugins | Absorber, Emitter | Alle (Töne, Themes, Spur, Zoom, Polygon-Maske, Canvas-Maske, Hintergrundmaske etc.) |
-| Easing | Quad | 15 Easings |
+| Aspekt              | `tsparticles` (full)                                     | `@tsparticles/all`                                                                  |
+| ------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Größe               | Mittel                                                   | Sehr groß                                                                           |
+| Formen              | Kreis, Quadrat, Stern, Polygon, Linie, Bild, Emoji, Text | Alle Formen (Herz, Karten, Pfeil, Spirale, Zahnrad, abgerundetes Rechteck etc.)     |
+| Interaktionen       | Slim + Ziehen + Spur                                     | Alle (Kanone, Licht, Pop, Partikel, Abstoßen)                                       |
+| Pfade               | Nur Quad-Easing                                          | 14 Pfadgeneratoren                                                                  |
+| Effekte             | Keine                                                    | 5 Effekte (Blase, Filter, Schatten etc.)                                            |
+| Exporte             | Keine                                                    | Bild, JSON, Video                                                                   |
+| Zusätzliche Plugins | Absorber, Emitter                                        | Alle (Töne, Themes, Spur, Zoom, Polygon-Maske, Canvas-Maske, Hintergrundmaske etc.) |
+| Easing              | Quad                                                     | 15 Easings                                                                          |
 
 ## Häufige Fehler
 

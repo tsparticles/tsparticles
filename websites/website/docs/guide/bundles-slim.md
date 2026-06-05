@@ -9,6 +9,7 @@ Inherits everything from `@tsparticles/basic` plus:
 **Shapes:** circle, square, star, polygon, line, image, emoji
 
 **External interactions (mouse/touch):**
+
 - attract
 - bounce
 - bubble
@@ -23,15 +24,18 @@ Inherits everything from `@tsparticles/basic` plus:
 - slow
 
 **Particle interactions:**
+
 - attract
 - collisions
 - links (particle connections)
 
 **Additional updaters:**
+
 - life (lifecycle)
 - rotate
 
 **Plugins:**
+
 - interactivity
 - easing-quad
 - HEX, HSL, RGB color plugins

@@ -600,17 +600,17 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API-Referenz
 
-| Eigenschaft | Typ                                | Standard          | Beschreibung                        |
-| ----------- | ----------------------------------- | ----------------- | ---------------------------------- |
-| `id`        | `string`                            | `"tsparticles"`   | Canvas-Element-ID                   |
-| `options`   | `ISourceOptions`                    | `{}`              | Partikel-Konfiguration              |
-| `init`      | `(engine: Engine) => Promise<void>` | —                 | Engine-Initialisierungs-Callback    |
-| `url`       | `string`                            | —                 | URL zum Laden einer JSON-Konfiguration |
+| Eigenschaft | Typ                                 | Standard        | Beschreibung                           |
+| ----------- | ----------------------------------- | --------------- | -------------------------------------- |
+| `id`        | `string`                            | `"tsparticles"` | Canvas-Element-ID                      |
+| `options`   | `ISourceOptions`                    | `{}`            | Partikel-Konfiguration                 |
+| `init`      | `(engine: Engine) => Promise<void>` | —               | Engine-Initialisierungs-Callback       |
+| `url`       | `string`                            | —               | URL zum Laden einer JSON-Konfiguration |
 
-| Ereignis             | Payload     | Beschreibung                                    |
-| ------------------- | ----------- | ----------------------------------------------- |
+| Ereignis            | Payload     | Beschreibung                                                     |
+| ------------------- | ----------- | ---------------------------------------------------------------- |
 | `@particles-loaded` | `Container` | Wird ausgelöst, wenn der Container vollständig initialisiert ist |
-| `@particles-init`   | `Engine`    | Wird ausgelöst, nachdem die Engine initialisiert wurde |
+| `@particles-init`   | `Engine`    | Wird ausgelöst, nachdem die Engine initialisiert wurde           |
 
 ---
 

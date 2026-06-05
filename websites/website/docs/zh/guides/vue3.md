@@ -600,17 +600,17 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API 参考
 
-| 属性      | 类型                                | 默认值          | 描述                       |
-| --------- | ----------------------------------- | --------------- | -------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | 画布元素 ID                |
-| `options` | `ISourceOptions`                    | `{}`            | 粒子配置                   |
-| `init`    | `(engine: Engine) => Promise<void>` | —               | 引擎初始化回调             |
-| `url`     | `string`                            | —               | 要加载 JSON 配置的 URL     |
+| 属性      | 类型                                | 默认值          | 描述                   |
+| --------- | ----------------------------------- | --------------- | ---------------------- |
+| `id`      | `string`                            | `"tsparticles"` | 画布元素 ID            |
+| `options` | `ISourceOptions`                    | `{}`            | 粒子配置               |
+| `init`    | `(engine: Engine) => Promise<void>` | —               | 引擎初始化回调         |
+| `url`     | `string`                            | —               | 要加载 JSON 配置的 URL |
 
-| 事件                 | 负载类型    | 描述                           |
-| -------------------- | ----------- | ------------------------------ |
-| `@particles-loaded`  | `Container` | 容器完全初始化时触发           |
-| `@particles-init`    | `Engine`    | 引擎初始化后触发               |
+| 事件                | 负载类型    | 描述                 |
+| ------------------- | ----------- | -------------------- |
+| `@particles-loaded` | `Container` | 容器完全初始化时触发 |
+| `@particles-init`   | `Engine`    | 引擎初始化后触发     |
 
 ---
 

@@ -265,10 +265,10 @@ Ecco una pagina HTML completa e autonoma che carica tsParticles via CDN e render
 
 ## Riferimento API
 
-| Metodo                             | Descrizione                                               |
-| ---------------------------------- | --------------------------------------------------------- |
-| `$.particles.init(fn)`             | Inizializza il motore con una callback di caricamento     |
-| `$(el).particles()`                | Crea un'istanza del plugin particelle sull'elemento       |
-| `$(el).particles().load(opts)`     | Carica e avvia la configurazione delle particelle         |
-| `$(el).particles().destroy()`      | Distrugge l'istanza delle particelle e pulisce            |
+| Metodo                             | Descrizione                                                     |
+| ---------------------------------- | --------------------------------------------------------------- |
+| `$.particles.init(fn)`             | Inizializza il motore con una callback di caricamento           |
+| `$(el).particles()`                | Crea un'istanza del plugin particelle sull'elemento             |
+| `$(el).particles().load(opts)`     | Carica e avvia la configurazione delle particelle               |
+| `$(el).particles().destroy()`      | Distrugge l'istanza delle particelle e pulisce                  |
 | `$(el).particles().getContainer()` | Restituisce il `Container` sottostante per controllo imperativo |

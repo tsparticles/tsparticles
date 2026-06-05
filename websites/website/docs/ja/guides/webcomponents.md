@@ -349,11 +349,11 @@ CDN スクリプトで Web Components モジュールを使用した完全な HT
 
 ## API リファレンス
 
-| エクスポート / プロパティ          | タイプ                     | 説明                                           |
-| ------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | プラグインローダーで tsParticles エンジンを初期化します |
-| `defineParticlesElement()`      | `function`               | `<web-particles>` カスタム要素を登録します         |
-| `ParticlesElement`              | `class`                  | カスタム要素を拡張するための基底クラス         |
-| `element.options`               | `ISourceOptions`         | パーティクル設定オブジェクトの取得/設定              |
-| `element.container`             | `Container \| undefined` | 基礎となる `Container` への読み取り専用参照     |
+| エクスポート / プロパティ       | タイプ                   | 説明                                                       |
+| ------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | プラグインローダーで tsParticles エンジンを初期化します    |
+| `defineParticlesElement()`      | `function`               | `<web-particles>` カスタム要素を登録します                 |
+| `ParticlesElement`              | `class`                  | カスタム要素を拡張するための基底クラス                     |
+| `element.options`               | `ISourceOptions`         | パーティクル設定オブジェクトの取得/設定                    |
+| `element.container`             | `Container \| undefined` | 基礎となる `Container` への読み取り専用参照                |
 | `element.dispose()`             | `function`               | パーティクルインスタンスを破棄してリソースをクリーンアップ |

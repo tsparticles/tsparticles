@@ -151,7 +151,7 @@ export class AppComponent implements OnInit {
 
 Verfügbare Ladefunktionen aus `tsparticles`:
 
-| Funktion            | Beschreibung                                 |
+| Funktion            | Beschreibung                                |
 | ------------------- | ------------------------------------------- |
 | `loadFull(engine)`  | Alle Funktionen (größtes Bundle)            |
 | `loadBasic(engine)` | Kernformen (Kreis, Quadrat, Polygon usw.)   |
@@ -601,24 +601,24 @@ export class AppComponent implements OnInit {
 
 ## API-Referenz
 
-| Komponente | Selektor         | Beschreibung                          |
-| ---------- | ---------------- | ------------------------------------- |
-| Particles  | `ngx-particles`  | Vollständiges Partikelsystem          |
-| Confetti   | `ngx-confetti`   | Vorkonfigurierter Konfetti-Effekt     |
-| Fireworks  | `ngx-fireworks`  | Vorkonfigurierter Feuerwerks-Effekt   |
+| Komponente | Selektor        | Beschreibung                        |
+| ---------- | --------------- | ----------------------------------- |
+| Particles  | `ngx-particles` | Vollständiges Partikelsystem        |
+| Confetti   | `ngx-confetti`  | Vorkonfigurierter Konfetti-Effekt   |
+| Fireworks  | `ngx-fireworks` | Vorkonfigurierter Feuerwerks-Effekt |
 
 ### `ngx-particles` Eingaben
 
-| Eingabe   | Typ              | Standard          | Beschreibung                   |
-| --------- | ---------------- | ----------------- | ------------------------------ |
-| `id`      | `string`         | `"tsparticles"`   | Canvas-Element-ID              |
-| `options` | `ISourceOptions` | `{}`              | Partikel-Konfiguration         |
-| `url`     | `string`         | —                 | Remote-JSON-Konfigurations-URL |
+| Eingabe   | Typ              | Standard        | Beschreibung                   |
+| --------- | ---------------- | --------------- | ------------------------------ |
+| `id`      | `string`         | `"tsparticles"` | Canvas-Element-ID              |
+| `options` | `ISourceOptions` | `{}`            | Partikel-Konfiguration         |
+| `url`     | `string`         | —               | Remote-JSON-Konfigurations-URL |
 
 ### `ngx-particles` Ausgaben
 
-| Ausgabe           | Payload     | Beschreibung                                   |
-| ----------------- | ----------- | ---------------------------------------------- |
+| Ausgabe           | Payload     | Beschreibung                                          |
+| ----------------- | ----------- | ----------------------------------------------------- |
 | `particlesLoaded` | `Container` | Wird ausgegeben, wenn der Container initialisiert ist |
 
 ---

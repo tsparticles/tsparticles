@@ -59,15 +59,15 @@ await fireworks("my-canvas", {
 
 ### Paramètres principaux
 
-| Paramètre | Type | Défaut | Description |
-|---|---|---|---|
-| `colors` | string[] | — | Couleurs d'explosion |
-| `rate` | number | — | Feux par seconde |
-| `speed` | { min, max } | — | Vitesse des particules |
-| `sounds` | boolean | true | Active les effets sonores |
-| `gravity` | number | — | Gravité (défaut : 0) |
-| `opacity` | number | — | Opacité (0-1) |
-| `brightness` | { min, max } | — | Luminosité de l'explosion |
+| Paramètre    | Type         | Défaut | Description               |
+| ------------ | ------------ | ------ | ------------------------- |
+| `colors`     | string[]     | —      | Couleurs d'explosion      |
+| `rate`       | number       | —      | Feux par seconde          |
+| `speed`      | { min, max } | —      | Vitesse des particules    |
+| `sounds`     | boolean      | true   | Active les effets sonores |
+| `gravity`    | number       | —      | Gravité (défaut : 0)      |
+| `opacity`    | number       | —      | Opacité (0-1)             |
+| `brightness` | { min, max } | —      | Luminosité de l'explosion |
 
 ## Erreurs courantes
 

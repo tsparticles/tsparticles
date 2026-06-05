@@ -7,17 +7,20 @@
 **Formas:** círculo
 
 **Atualizadores:**
+
 - paint (cor)
 - opacidade
 - out-modes (comportamento ao sair da tela)
 - tamanho
 
 **Plugins:**
+
 - move
 - blend (mesclagem de cores)
 - Plugins de cor HEX, HSL, RGB
 
 **Não incluídos:**
+
 - Interações com mouse/toque
 - Links entre partículas
 - Outras formas (quadrados, estrelas, imagens, polígonos, etc.)

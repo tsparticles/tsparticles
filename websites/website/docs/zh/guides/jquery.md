@@ -265,10 +265,10 @@ setTimeout(() => {
 
 ## API 参考
 
-| 方法                               | 描述                                        |
-| ---------------------------------- | ------------------------------------------- |
-| `$.particles.init(fn)`             | 使用加载器回调初始化引擎                    |
-| `$(el).particles()`                | 在元素上创建粒子插件实例                    |
-| `$(el).particles().load(opts)`     | 加载并启动粒子配置                          |
-| `$(el).particles().destroy()`      | 销毁粒子实例并清理                          |
-| `$(el).particles().getContainer()` | 返回底层的 `Container` 以进行命令式控制     |
+| 方法                               | 描述                                    |
+| ---------------------------------- | --------------------------------------- |
+| `$.particles.init(fn)`             | 使用加载器回调初始化引擎                |
+| `$(el).particles()`                | 在元素上创建粒子插件实例                |
+| `$(el).particles().load(opts)`     | 加载并启动粒子配置                      |
+| `$(el).particles().destroy()`      | 销毁粒子实例并清理                      |
+| `$(el).particles().getContainer()` | 返回底层的 `Container` 以进行命令式控制 |

@@ -7,17 +7,20 @@
 **Formes :** cercle
 
 **Updaters (animations) :**
+
 - paint (couleur)
 - opacity (opacité)
 - out-modes (comportement à la sortie de l'écran)
 - size (taille)
 
 **Plugins :**
+
 - move (mouvement)
 - blend (mélange de couleurs)
 - Couleurs HEX, HSL, RGB
 
 **N'inclut pas :**
+
 - Interactions souris/tactile (clic, survol, etc.)
 - Liens entre particules (links)
 - Autres formes (carrés, étoiles, images, polygones, etc.)

@@ -74,17 +74,17 @@ await particles({
 
 ### Paramètres principaux
 
-| Paramètre | Type | Défaut | Description |
-|---|---|---|---|
-| `count` | number | 50 | Nombre de particules |
-| `radius` | number | 3 | Rayon des particules |
-| `speed` | number | 2 | Vitesse de déplacement |
-| `opacity` | number | 0.8 | Opacité (0-1) |
-| `color` | string \| string[] | "#ffffff" | Couleur(s) des particules |
-| `links` | boolean | false | Afficher les liens |
-| `linksColor` | string | "#ffffff" | Couleur des liens |
-| `linksWidth` | number | 1 | Épaisseur des liens |
-| `shape` | string[] | ["circle"] | Formes des particules |
+| Paramètre    | Type               | Défaut     | Description               |
+| ------------ | ------------------ | ---------- | ------------------------- |
+| `count`      | number             | 50         | Nombre de particules      |
+| `radius`     | number             | 3          | Rayon des particules      |
+| `speed`      | number             | 2          | Vitesse de déplacement    |
+| `opacity`    | number             | 0.8        | Opacité (0-1)             |
+| `color`      | string \| string[] | "#ffffff"  | Couleur(s) des particules |
+| `links`      | boolean            | false      | Afficher les liens        |
+| `linksColor` | string             | "#ffffff"  | Couleur des liens         |
+| `linksWidth` | number             | 1          | Épaisseur des liens       |
+| `shape`      | string[]           | ["circle"] | Formes des particules     |
 
 ## Erreurs courantes
 

@@ -9,6 +9,7 @@
 **शेप:** circle, square, star, polygon, line, image, emoji
 
 **बाहरी इंटरैक्शन (माउस/टच):**
+
 - attract
 - bounce
 - bubble
@@ -23,15 +24,18 @@
 - slow
 
 **कण इंटरैक्शन:**
+
 - attract
 - collisions
 - links (कण कनेक्शन)
 
 **अतिरिक्त अपडेटर:**
+
 - life (जीवनचक्र)
 - rotate
 
 **प्लगइन:**
+
 - interactivity
 - easing-quad
 - HEX, HSL, RGB रंग प्लगइन

@@ -349,11 +349,11 @@ el.dispose();
 
 ## API 参考
 
-| 导出 / 属性                      | 类型                     | 描述                               |
-| ------------------------------- | ------------------------ | ---------------------------------- |
+| 导出 / 属性                     | 类型                     | 描述                                  |
+| ------------------------------- | ------------------------ | ------------------------------------- |
 | `initParticlesEngine(callback)` | `function`               | 使用插件加载器初始化 tsParticles 引擎 |
-| `defineParticlesElement()`      | `function`               | 注册 `<web-particles>` 自定义元素    |
-| `ParticlesElement`              | `class`                  | 可继承的基础类用于创建自定义元素    |
-| `element.options`               | `ISourceOptions`         | 获取/设置粒子配置对象              |
-| `element.container`             | `Container \| undefined` | 底层 `Container` 的只读引用        |
-| `element.dispose()`             | `function`               | 销毁粒子实例并清理资源             |
+| `defineParticlesElement()`      | `function`               | 注册 `<web-particles>` 自定义元素     |
+| `ParticlesElement`              | `class`                  | 可继承的基础类用于创建自定义元素      |
+| `element.options`               | `ISourceOptions`         | 获取/设置粒子配置对象                 |
+| `element.container`             | `Container \| undefined` | 底层 `Container` 的只读引用           |
+| `element.dispose()`             | `function`               | 销毁粒子实例并清理资源                |

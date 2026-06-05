@@ -478,12 +478,12 @@ Ten en cuenta que el Pages Router **no** requiere `"use client"` porque los comp
 
 ## Solución de Problemas
 
-| Síntoma                      | Causa                                   | Solución                                                              |
-| ---------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-| Página blanca vacía             | SSR renderizando un módulo dependiente de canvas | Usa `dynamic(..., { ssr: false })` o envuélvelo en un componente de cliente |
-| Canvas no se muestra           | El contenedor tiene altura cero               | Establece `fullScreen: { zIndex: -1 }` o asígnale dimensiones explícitas  |
-| El cambio de opciones no se refleja | No se creó una nueva referencia del objeto        | Usa `useMemo` con el arreglo de dependencias adecuado                       |
-| El preset no funciona           | El preset no se cargó antes de la inicialización del contenedor | Llama a `loadXPreset(engine)` dentro del callback `init`            |
+| Síntoma                             | Causa                                                           | Solución                                                                    |
+| ----------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Página blanca vacía                 | SSR renderizando un módulo dependiente de canvas                | Usa `dynamic(..., { ssr: false })` o envuélvelo en un componente de cliente |
+| Canvas no se muestra                | El contenedor tiene altura cero                                 | Establece `fullScreen: { zIndex: -1 }` o asígnale dimensiones explícitas    |
+| El cambio de opciones no se refleja | No se creó una nueva referencia del objeto                      | Usa `useMemo` con el arreglo de dependencias adecuado                       |
+| El preset no funciona               | El preset no se cargó antes de la inicialización del contenedor | Llama a `loadXPreset(engine)` dentro del callback `init`                    |
 
 ## Próximos Pasos
 

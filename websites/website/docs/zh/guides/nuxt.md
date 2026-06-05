@@ -272,11 +272,11 @@ const onDestroy = () => {
 </script>
 ```
 
-| 事件                  | 负载类型    | 描述                               |
-| --------------------- | ----------- | ---------------------------------- |
-| `@particles-init`     | `Engine`    | tsParticles 引擎初始化时触发一次   |
-| `@particles-loaded`   | `Container` | 容器完成加载或重新加载时触发       |
-| `@particles-destroy`  | 无          | 容器销毁时触发                     |
+| 事件                 | 负载类型    | 描述                             |
+| -------------------- | ----------- | -------------------------------- |
+| `@particles-init`    | `Engine`    | tsParticles 引擎初始化时触发一次 |
+| `@particles-loaded`  | `Container` | 容器完成加载或重新加载时触发     |
+| `@particles-destroy` | 无          | 容器销毁时触发                   |
 
 ## 完整 TypeScript 示例
 
@@ -423,14 +423,14 @@ Nuxt 4 的关键考虑因素：
 
 将上述模式与以下任一官方预设结合使用：
 
-| 预设     | 包                                  | 效果                 |
-| -------- | ----------------------------------- | -------------------- |
-| 五彩纸屑 | `@tsparticles/preset-confetti`      | 彩色纸屑爆发         |
-| 烟花     | `@tsparticles/preset-fireworks`     | 烟花爆炸             |
-| 雪花     | `@tsparticles/preset-snow`          | 飘落的雪花           |
-| 星星     | `@tsparticles/preset-stars`         | 闪烁的夜空           |
-| 连线     | `@tsparticles/preset-links`         | 连接的节点网络       |
-| 气泡     | `@tsparticles/preset-bubbles`       | 浮动气泡             |
+| 预设     | 包                              | 效果           |
+| -------- | ------------------------------- | -------------- |
+| 五彩纸屑 | `@tsparticles/preset-confetti`  | 彩色纸屑爆发   |
+| 烟花     | `@tsparticles/preset-fireworks` | 烟花爆炸       |
+| 雪花     | `@tsparticles/preset-snow`      | 飘落的雪花     |
+| 星星     | `@tsparticles/preset-stars`     | 闪烁的夜空     |
+| 连线     | `@tsparticles/preset-links`     | 连接的节点网络 |
+| 气泡     | `@tsparticles/preset-bubbles`   | 浮动气泡       |
 
 ```vue
 <template>
@@ -449,12 +449,12 @@ await loadStarsPreset(tsParticles);
 
 ## 故障排除
 
-| 症状                               | 原因                               | 解决方法                                               |
-| ---------------------------------- | ---------------------------------- | ------------------------------------------------------ |
-| 黑屏 / 水合错误                    | `<vue-particles>` 在服务端渲染    | 包裹在 `<client-only>` 中                              |
-| 预设无效果                         | 组件挂载前未加载预设               | 在 `<script setup>` 中使用顶级 await 调用 `loadXPreset()` |
-| 画布未填满视口                     | 未启用 `fullScreen`                | 在选项中添加 `fullScreen: { zIndex: -1 }`              |
-| 控制按钮无法暂停/恢复              | 未设置容器引用                     | 在 `@particles-loaded` 处理程序中分配容器              |
+| 症状                  | 原因                           | 解决方法                                                  |
+| --------------------- | ------------------------------ | --------------------------------------------------------- |
+| 黑屏 / 水合错误       | `<vue-particles>` 在服务端渲染 | 包裹在 `<client-only>` 中                                 |
+| 预设无效果            | 组件挂载前未加载预设           | 在 `<script setup>` 中使用顶级 await 调用 `loadXPreset()` |
+| 画布未填满视口        | 未启用 `fullScreen`            | 在选项中添加 `fullScreen: { zIndex: -1 }`                 |
+| 控制按钮无法暂停/恢复 | 未设置容器引用                 | 在 `@particles-loaded` 处理程序中分配容器                 |
 
 ## 下一步
 

@@ -265,10 +265,10 @@ Abaixo está uma página HTML completa e autocontida que carrega tsParticles via
 
 ## Referência da API
 
-| Método                             | Descrição                                               |
-| ---------------------------------- | ------------------------------------------------------- |
-| `$.particles.init(fn)`             | Inicializar o motor com um callback de carregamento     |
-| `$(el).particles()`                | Criar uma instância do plugin de partículas no elemento |
-| `$(el).particles().load(opts)`     | Carregar e iniciar a configuração de partículas         |
-| `$(el).particles().destroy()`      | Destruir a instância de partículas e limpar             |
+| Método                             | Descrição                                                  |
+| ---------------------------------- | ---------------------------------------------------------- |
+| `$.particles.init(fn)`             | Inicializar o motor com um callback de carregamento        |
+| `$(el).particles()`                | Criar uma instância do plugin de partículas no elemento    |
+| `$(el).particles().load(opts)`     | Carregar e iniciar a configuração de partículas            |
+| `$(el).particles().destroy()`      | Destruir a instância de partículas e limpar                |
 | `$(el).particles().getContainer()` | Retornar o `Container` subjacente para controle imperativo |

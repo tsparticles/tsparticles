@@ -272,11 +272,11 @@ const onDestroy = () => {
 </script>
 ```
 
-| Événement             | Payload     | Description                                                  |
-| -------------------- | ----------- | ------------------------------------------------------------ |
-| `@particles-init`    | `Engine`    | Se déclenche une fois lorsque le moteur tsParticles s'initialise |
+| Événement            | Payload     | Description                                                             |
+| -------------------- | ----------- | ----------------------------------------------------------------------- |
+| `@particles-init`    | `Engine`    | Se déclenche une fois lorsque le moteur tsParticles s'initialise        |
 | `@particles-loaded`  | `Container` | Se déclenche chaque fois que le conteneur finit de charger ou recharger |
-| `@particles-destroy` | aucun       | Se déclenche lorsque le conteneur est détruit                |
+| `@particles-destroy` | aucun       | Se déclenche lorsque le conteneur est détruit                           |
 
 ## Exemple TypeScript complet
 
@@ -423,14 +423,14 @@ Si vous effectuez une mise à niveau depuis Nuxt 2 avec le package `@tsparticles
 
 Combinez le modèle ci-dessus avec l'un de ces préréglages officiels :
 
-| Préréglage | Package                         | Effet                  |
-| --------- | ------------------------------- | ----------------------- |
-| Confetti  | `@tsparticles/preset-confetti`  | Explosion de confettis colorés |
-| Feux d'artifice | `@tsparticles/preset-fireworks` | Explosions de feux d'artifice |
-| Neige     | `@tsparticles/preset-snow`      | Chute de flocons de neige |
-| Étoiles   | `@tsparticles/preset-stars`     | Ciel étoilé scintillant |
-| Liens     | `@tsparticles/preset-links`     | Réseau de nœuds connectés |
-| Bulles    | `@tsparticles/preset-bubbles`   | Bulles flottantes       |
+| Préréglage      | Package                         | Effet                          |
+| --------------- | ------------------------------- | ------------------------------ |
+| Confetti        | `@tsparticles/preset-confetti`  | Explosion de confettis colorés |
+| Feux d'artifice | `@tsparticles/preset-fireworks` | Explosions de feux d'artifice  |
+| Neige           | `@tsparticles/preset-snow`      | Chute de flocons de neige      |
+| Étoiles         | `@tsparticles/preset-stars`     | Ciel étoilé scintillant        |
+| Liens           | `@tsparticles/preset-links`     | Réseau de nœuds connectés      |
+| Bulles          | `@tsparticles/preset-bubbles`   | Bulles flottantes              |
 
 ```vue
 <template>
@@ -449,12 +449,12 @@ await loadStarsPreset(tsParticles);
 
 ## Dépannage
 
-| Symptôme                           | Cause                                    | Solution                                                       |
-| --------------------------------- | ---------------------------------------- | ------------------------------------------------------------- |
-| Écran blanc / erreur d'hydratation | `<vue-particles>` rendu sur le serveur   | Encapsulez dans `<client-only>`                                |
-| Le préréglage n'a aucun effet     | Préréglage non chargé avant le montage   | Appelez `loadXPreset()` avec await au niveau supérieur dans `<script setup>` |
-| Le canvas ne remplit pas la fenêtre | `fullScreen` pas activé                 | Ajoutez `fullScreen: { zIndex: -1 }` aux options               |
-| Les contrôles ne font pas pause/reprise | Référence du conteneur non définie    | Assignez le conteneur dans le gestionnaire `@particles-loaded` |
+| Symptôme                                | Cause                                  | Solution                                                                     |
+| --------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------- |
+| Écran blanc / erreur d'hydratation      | `<vue-particles>` rendu sur le serveur | Encapsulez dans `<client-only>`                                              |
+| Le préréglage n'a aucun effet           | Préréglage non chargé avant le montage | Appelez `loadXPreset()` avec await au niveau supérieur dans `<script setup>` |
+| Le canvas ne remplit pas la fenêtre     | `fullScreen` pas activé                | Ajoutez `fullScreen: { zIndex: -1 }` aux options                             |
+| Les contrôles ne font pas pause/reprise | Référence du conteneur non définie     | Assignez le conteneur dans le gestionnaire `@particles-loaded`               |
 
 ## Prochaines étapes
 

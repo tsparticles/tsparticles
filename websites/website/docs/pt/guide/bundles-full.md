@@ -9,10 +9,12 @@ Herda tudo de `@tsparticles/slim` mais:
 **Formas adicionais:** texto (com fontes personalizadas)
 
 **Interações externas adicionais:**
+
 - drag (arrastar partículas com o mouse)
 - trail (rastro de partículas atrás do mouse)
 
 **Atualizadores adicionais:**
+
 - destroy (animação de destruição de partículas)
 - roll (rolamento)
 - tilt (inclinação 3D)
@@ -20,6 +22,7 @@ Herda tudo de `@tsparticles/slim` mais:
 - wobble (oscilação)
 
 **Plugins:**
+
 - absorbers (buracos negros que sugam partículas)
 - emitters (fontes contínuas de partículas)
 - emitters-shape-circle, emitters-shape-square (formas de emissores)
@@ -90,16 +93,16 @@ await tsParticles.load({
 
 ## Diferença entre `tsparticles` e `@tsparticles/all`
 
-| Aspecto | `tsparticles` (full) | `@tsparticles/all` |
-|---|---|---|
-| Tamanho | Moderado | Muito grande |
-| Formas | círculo, quadrado, estrela, polígono, linha, imagem, emoji, texto | Todas as formas (coração, cartas, seta, espiral, engrenagem, retângulo arredondado, etc.) |
-| Interações | Slim + drag + trail | Todas (cannon, light, pop, particle, repulse) |
-| Caminhos | Apenas easing quad | 14 geradores de caminho |
-| Efeitos | Nenhum | 5 efeitos (bolha, filtro, sombra, etc.) |
-| Exportações | Nenhuma | Imagem, JSON, Vídeo |
-| Plugins extras | absorvedores, emissores | Todos (sons, temas, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing | Quad | 15 easings |
+| Aspecto        | `tsparticles` (full)                                              | `@tsparticles/all`                                                                        |
+| -------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Tamanho        | Moderado                                                          | Muito grande                                                                              |
+| Formas         | círculo, quadrado, estrela, polígono, linha, imagem, emoji, texto | Todas as formas (coração, cartas, seta, espiral, engrenagem, retângulo arredondado, etc.) |
+| Interações     | Slim + drag + trail                                               | Todas (cannon, light, pop, particle, repulse)                                             |
+| Caminhos       | Apenas easing quad                                                | 14 geradores de caminho                                                                   |
+| Efeitos        | Nenhum                                                            | 5 efeitos (bolha, filtro, sombra, etc.)                                                   |
+| Exportações    | Nenhuma                                                           | Imagem, JSON, Vídeo                                                                       |
+| Plugins extras | absorvedores, emissores                                           | Todos (sons, temas, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.)        |
+| Easing         | Quad                                                              | 15 easings                                                                                |
 
 ## Erros comuns
 

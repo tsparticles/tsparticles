@@ -60,16 +60,16 @@ await confetti("my-canvas-id", {
 
 ### Paramètres principaux
 
-| Paramètre | Type | Défaut | Description |
-|---|---|---|---|
-| `particleCount` | number | 50 | Nombre de confettis |
-| `spread` | number | 60 | Angle de diffusion (degrés) |
-| `angle` | number | 90 | Direction (degrés, 90 = vers le bas) |
-| `startVelocity` | number | 30 | Vitesse initiale |
-| `colors` | string[] | — | Couleurs des confettis |
-| `origin` | { x, y } | { 0.5, 0.5 } | Point d'origine (0-1) |
-| `drift` | number | 0 | Dérive horizontale |
-| `shapes` | string[] | — | Formes : "circle", "heart", "square", "star", "cards" |
+| Paramètre       | Type     | Défaut       | Description                                           |
+| --------------- | -------- | ------------ | ----------------------------------------------------- |
+| `particleCount` | number   | 50           | Nombre de confettis                                   |
+| `spread`        | number   | 60           | Angle de diffusion (degrés)                           |
+| `angle`         | number   | 90           | Direction (degrés, 90 = vers le bas)                  |
+| `startVelocity` | number   | 30           | Vitesse initiale                                      |
+| `colors`        | string[] | —            | Couleurs des confettis                                |
+| `origin`        | { x, y } | { 0.5, 0.5 } | Point d'origine (0-1)                                 |
+| `drift`         | number   | 0            | Dérive horizontale                                    |
+| `shapes`        | string[] | —            | Formes : "circle", "heart", "square", "star", "cards" |
 
 ## Erreurs courantes
 

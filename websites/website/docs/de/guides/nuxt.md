@@ -272,11 +272,11 @@ const onDestroy = () => {
 </script>
 ```
 
-| Ereignis              | Payload     | Beschreibung                                                  |
-| -------------------- | ----------- | ------------------------------------------------------------ |
-| `@particles-init`    | `Engine`    | Wird einmal ausgelöst, wenn die tsParticles-Engine initialisiert wird |
+| Ereignis             | Payload     | Beschreibung                                                                    |
+| -------------------- | ----------- | ------------------------------------------------------------------------------- |
+| `@particles-init`    | `Engine`    | Wird einmal ausgelöst, wenn die tsParticles-Engine initialisiert wird           |
 | `@particles-loaded`  | `Container` | Wird jedes Mal ausgelöst, wenn der Container das Laden oder Neuladen abschließt |
-| `@particles-destroy` | keins       | Wird ausgelöst, wenn der Container zerstört wird             |
+| `@particles-destroy` | keins       | Wird ausgelöst, wenn der Container zerstört wird                                |
 
 ## Vollständiges TypeScript-Beispiel
 
@@ -423,14 +423,14 @@ Wenn Sie von Nuxt 2 mit dem `@tsparticles/vue`-Paket (Vue 2) aktualisieren, müs
 
 Kombinieren Sie das obige Muster mit einem dieser offiziellen Presets:
 
-| Preset    | Paket                            | Effekt                  |
-| --------- | -------------------------------- | ----------------------- |
-| Confetti  | `@tsparticles/preset-confetti`   | Bunter Konfetti-Ausbruch |
-| Fireworks | `@tsparticles/preset-fireworks`  | Feuerwerksexplosionen   |
-| Snow      | `@tsparticles/preset-snow`       | Fallende Schneeflocken  |
-| Stars     | `@tsparticles/preset-stars`      | Funkelnder Nachthimmel  |
-| Links     | `@tsparticles/preset-links`      | Verbundenes Knotennetzwerk |
-| Bubbles   | `@tsparticles/preset-bubbles`    | Schwimmende Blasen      |
+| Preset    | Paket                           | Effekt                     |
+| --------- | ------------------------------- | -------------------------- |
+| Confetti  | `@tsparticles/preset-confetti`  | Bunter Konfetti-Ausbruch   |
+| Fireworks | `@tsparticles/preset-fireworks` | Feuerwerksexplosionen      |
+| Snow      | `@tsparticles/preset-snow`      | Fallende Schneeflocken     |
+| Stars     | `@tsparticles/preset-stars`     | Funkelnder Nachthimmel     |
+| Links     | `@tsparticles/preset-links`     | Verbundenes Knotennetzwerk |
+| Bubbles   | `@tsparticles/preset-bubbles`   | Schwimmende Blasen         |
 
 ```vue
 <template>
@@ -449,12 +449,12 @@ await loadStarsPreset(tsParticles);
 
 ## Fehlerbehebung
 
-| Symptom                           | Ursache                                    | Lösung                                                           |
-| --------------------------------- | ------------------------------------------ | ---------------------------------------------------------------- |
-| Leerer Bildschirm / Hydrierungsfehler | `<vue-particles>` auf dem Server gerendert | In `<client-only>` einwickeln                                    |
-| Preset hat keine Wirkung          | Preset vor Komponenten-Mount nicht geladen | Rufen Sie `loadXPreset()` mit top-level await im `<script setup>` auf |
-| Canvas füllt Viewport nicht aus   | `fullScreen` nicht aktiviert               | Fügen Sie `fullScreen: { zIndex: -1 }` zu den Optionen hinzu     |
-| Steuerelemente pausieren/setzen nicht fort | Container-Ref nicht gesetzt           | Weisen Sie den Container im `@particles-loaded`-Handler zu       |
+| Symptom                                    | Ursache                                    | Lösung                                                                |
+| ------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------------- |
+| Leerer Bildschirm / Hydrierungsfehler      | `<vue-particles>` auf dem Server gerendert | In `<client-only>` einwickeln                                         |
+| Preset hat keine Wirkung                   | Preset vor Komponenten-Mount nicht geladen | Rufen Sie `loadXPreset()` mit top-level await im `<script setup>` auf |
+| Canvas füllt Viewport nicht aus            | `fullScreen` nicht aktiviert               | Fügen Sie `fullScreen: { zIndex: -1 }` zu den Optionen hinzu          |
+| Steuerelemente pausieren/setzen nicht fort | Container-Ref nicht gesetzt                | Weisen Sie den Container im `@particles-loaded`-Handler zu            |
 
 ## Nächste Schritte
 

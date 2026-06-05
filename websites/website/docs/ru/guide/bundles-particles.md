@@ -74,17 +74,17 @@ await particles({
 
 ### Основные параметры
 
-| Параметр | Тип | По умолчанию | Описание |
-|---|---|---|---|
-| `count` | number | 50 | Количество частиц |
-| `radius` | number | 3 | Радиус частицы |
-| `speed` | number | 2 | Скорость движения |
-| `opacity` | number | 0.8 | Прозрачность (0-1) |
-| `color` | string \| string[] | "#ffffff" | Цвет(а) частиц |
-| `links` | boolean | false | Показывать связи |
-| `linksColor` | string | "#ffffff" | Цвет связей |
-| `linksWidth` | number | 1 | Толщина связей |
-| `shape` | string[] | ["circle"] | Формы частиц |
+| Параметр     | Тип                | По умолчанию | Описание           |
+| ------------ | ------------------ | ------------ | ------------------ |
+| `count`      | number             | 50           | Количество частиц  |
+| `radius`     | number             | 3            | Радиус частицы     |
+| `speed`      | number             | 2            | Скорость движения  |
+| `opacity`    | number             | 0.8          | Прозрачность (0-1) |
+| `color`      | string \| string[] | "#ffffff"    | Цвет(а) частиц     |
+| `links`      | boolean            | false        | Показывать связи   |
+| `linksColor` | string             | "#ffffff"    | Цвет связей        |
+| `linksWidth` | number             | 1            | Толщина связей     |
+| `shape`      | string[]           | ["circle"]   | Формы частиц       |
 
 ## Частые ошибки
 
