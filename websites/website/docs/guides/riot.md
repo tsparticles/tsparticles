@@ -38,7 +38,7 @@ npm install @tsparticles/slim
 
 The Riot wrapper exports an `initParticlesEngine` function. Call it in your component's `onBeforeMount` lifecycle hook to prepare the engine before the particles component renders.
 
-```riot
+```html
 <my-component>
   <script>
     import { initParticlesEngine } from "@tsparticles/riot";
@@ -52,7 +52,7 @@ The Riot wrapper exports an `initParticlesEngine` function. Call it in your comp
           });
         }
       },
-    }
+    };
   </script>
 </my-component>
 ```
@@ -65,9 +65,9 @@ The engine initializes once and is shared across all `<riot-particles>` instance
 
 After initializing the engine, use the `<riot-particles>` component in your template. Pass the configuration as a JSON-stringified options object or a reference to a property on your component.
 
-```riot
+```html
 <my-component>
-  <riot-particles id="tsparticles" options={particlesConfig} />
+  <riot-particles id="tsparticles" options="{particlesConfig}" />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -106,7 +106,7 @@ After initializing the engine, use the `<riot-particles>` component in your temp
           });
         }
       },
-    }
+    };
   </script>
 </my-component>
 ```
@@ -117,9 +117,9 @@ After initializing the engine, use the `<riot-particles>` component in your temp
 
 Use Riot's `if={}` directive with a state property to delay rendering the particles component until the engine has finished initializing. This avoids layout shifts and ensures the component receives a ready engine.
 
-```riot
+```html
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -147,7 +147,7 @@ Use Riot's `if={}` directive with a state property to delay rendering the partic
           });
         }
       },
-    }
+    };
   </script>
 </my-component>
 ```
@@ -160,9 +160,9 @@ Calling `this.update()` triggers a re-render so the `<riot-particles>` tag appea
 
 The `@tsparticles/configs` package provides pre-built configurations for common effects like confetti, fireworks, snow, and stars. Use them directly as your options object.
 
-```riot
+```html
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -181,7 +181,7 @@ The `@tsparticles/configs` package provides pre-built configurations for common 
           });
         }
       },
-    }
+    };
   </script>
 </my-component>
 ```
@@ -194,9 +194,9 @@ Available presets include `basic`, `confetti`, `fireworks`, `snow`, `stars`, and
 
 Build a custom configuration with interactivity, multiple shapes, and advanced animation options.
 
-```riot
+```html
 <my-component>
-  <riot-particles if={state.particlesInitialized} id="tsparticles" options={particlesConfig} />
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
 
   <script>
     import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
@@ -260,7 +260,7 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
           });
         }
       },
-    }
+    };
   </script>
 </my-component>
 ```
@@ -271,18 +271,15 @@ Build a custom configuration with interactivity, multiple shapes, and advanced a
 
 Below is a complete `.riot` file that ties everything together: engine initialization in `onBeforeMount`, conditional rendering with state, a rich configuration with interactivity, and a `particlesLoaded` callback via the component's built-in support for loaded events.
 
-```riot
+```html
 <my-component>
   <div class="particles-wrapper">
     <h1>tsParticles + Riot.js</h1>
 
     {#if state.particlesInitialized}
-      <riot-particles
-        id="tsparticles"
-        options={particlesConfig}
-      />
+    <riot-particles id="tsparticles" options="{particlesConfig}" />
     {:else}
-      <p>Loading particle engine...</p>
+    <p>Loading particle engine...</p>
     {/if}
   </div>
 
@@ -340,7 +337,7 @@ Below is a complete `.riot` file that ties everything together: engine initializ
           });
         }
       },
-    }
+    };
   </script>
 
   <style scoped>

@@ -362,6 +362,7 @@
     "@tsparticles/preset-hyperspace": "workspace:*",
     "@tsparticles/preset-links": "workspace:*",
     "@tsparticles/preset-matrix": "workspace:*",
+    "@tsparticles/preset-meteors": "workspace:*",
     "@tsparticles/preset-party": "workspace:*",
     "@tsparticles/preset-sea-anemone": "workspace:*",
     "@tsparticles/preset-snow": "workspace:*",

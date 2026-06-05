@@ -178,6 +178,17 @@ export const presetDemos: DemoPreset[] = [
     },
   },
   {
+    key: "meteors",
+    title: "Meteors Preset",
+    description: "Official meteors preset for shooting star effects with particle trails.",
+    category: "background",
+    kind: "preset",
+    recipePath: "/demos/recipes/meteors",
+    options: {
+      preset: "meteors",
+    },
+  },
+  {
     key: "sea-anemone",
     title: "Sea Anemone Preset",
     description: "Official sea-anemone preset for organic flowing effects.",
