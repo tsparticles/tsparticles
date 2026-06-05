@@ -1,6 +1,6 @@
 # 颜色格式
 
-tsParticles 接受跨选项（例如 `background`、`particles.color` 和插件设置）的多种颜色格式。
+tsParticles 接受跨选项（例如 `background`、`particles.paint` 和插件设置）的多种颜色格式。
 
 ## 常用格式
 

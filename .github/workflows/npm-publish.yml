@@ -22,6 +22,7 @@ env:
   RELEASE_UPLOAD_RETRIES: 6
   RELEASE_RETRY_BASE_DELAY: 10
   IS_STABLE: ${{ !contains(github.ref, '-alpha.') && !contains(github.ref, '-beta.') }}
+  NODE_OPTIONS: "--max-old-space-size=4096"
 
 jobs:
   publish:
@@ -51,8 +52,6 @@ jobs:
 
       - name: Build All Packages
         run: pnpm run build:ci
-        env:
-          CI: true
 
       # 📦 ZIP artifacts (solo stable)
       - name: Generate zip artifacts

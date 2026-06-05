@@ -1,20 +1,41 @@
 # Bundle: All
 
-`@tsparticles/all` सभी official features लोड करता है और तेज prototyping के लिए ideal है।
+`@tsparticles/all` tsParticles रिपॉजिटरी से **सब कुछ** लोड करता है: हर शेप, इंटरैक्शन, अपडेटर, इफ़ेक्ट, पथ, ईज़िंग, प्लगइन और एक्सपोर्ट। यह सबसे बड़ा बंडल है, जो प्रोटोटाइप और डेमो के लिए है।
 
-## All कब चुनें
+## शामिल सुविधाएँ
 
-- आपको सभी features तुरंत चाहिए।
-- आप जल्दी-जल्दी options explore कर रहे हैं।
-- bundle size से ज्यादा setup speed महत्वपूर्ण है।
+`tsparticles` (full) से सब कुछ इनहेरिट करता है, साथ ही:
+
+**सभी शेप:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
+
+**सभी बाहरी इंटरैक्शन:** cannon, light, particle, pop, particles-repulse
+
+**सभी इफ़ेक्ट:** bubble, filter, particles, shadow, trail
+
+**सभी पथ जनरेटर:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+
+**सभी ईज़िंग:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+
+**सभी रंग प्लगइन:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+
+**सभी प्लगइन:** absorbers, background-mask, canvas-mask, emitters (सभी शेप), easings (सभी), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+
+**सभी अपडेटर:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+
+## कब उपयोग करें
+
+- संभावनाओं का पता लगाने के लिए त्वरित प्रोटोटाइप
+- डेमो और शोकेस
+- डेवलपमेंट वातावरण जहाँ आकार मायने नहीं रखता
+- **प्रोडक्शन के लिए अनुशंसित नहीं** — अधिक लक्षित बंडल पसंद करें
 
 ## इंस्टॉलेशन
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/all
 ```
-
-## Setup example
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -25,20 +46,48 @@ await loadAll(tsParticles);
 await tsParticles.load({
   id: "tsparticles",
   options: {
+    background: { color: "#000" },
     particles: {
       number: { value: 100 },
+      shape: { type: "heart" },
       move: { enable: true, speed: 2 },
     },
   },
 });
 ```
 
-## Common pitfalls
+### CDN (script टैग)
 
-- production में `all` इस्तेमाल करना जबकि smaller focused bundle बेहतर हो।
-- `loadAll(...)` से पहले `tsParticles.load(...)` कॉल करना।
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadAll(tsParticles);
 
-## Related pages
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 100 },
+          move: { enable: true, speed: 2 },
+        },
+      },
+    });
+  })();
+</script>
+```
 
-- Overview: [`/guide/bundles`](/hi/guide/bundles)
-- Installation matrix: [`/guide/installation`](/hi/guide/installation)
+## `tsparticles` और `@tsparticles/all` के बीच अंतर
+
+विस्तृत तुलना के लिए [bundles-full पेज](/hi/guide/bundles-full) पर तुलना तालिका देखें।
+
+## सामान्य गलतियाँ
+
+- प्रोडक्शन में इसका उपयोग करना — छोटे बंडलों के लिए `@tsparticles/slim` या `tsparticles` पसंद करें।
+- `loadAll(tsParticles)` से पहले `tsParticles.load()` कॉल करना।
+
+## यह भी देखें
+
+- [बंडल अवलोकन](/hi/guide/bundles)
+- [इंस्टॉलेशन गाइड](/hi/guide/installation)

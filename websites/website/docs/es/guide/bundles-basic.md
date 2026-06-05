@@ -1,20 +1,45 @@
 # Bundle: Basic
 
-`@tsparticles/basic` esta pensado para configuraciones muy ligeras con runtime minimo.
+`@tsparticles/basic` es el bundle más ligero. Incluye solo lo esencial: círculos que se mueven con opacidad y tamaño animables.
 
-## Cuando elegir Basic
+## Funcionalidades incluidas
 
-- El tamano del bundle es tu prioridad principal.
-- Solo necesitas efectos base.
-- No necesitas plugins avanzados.
+**Formas:** círculo
 
-## Instalacion
+**Updaters (animaciones):**
+
+- paint (color)
+- opacity (opacidad)
+- out-modes (comportamiento al salir de la pantalla)
+- size (tamaño)
+
+**Plugins:**
+
+- move (movimiento)
+- blend (mezcla de color)
+- Colores HEX, HSL, RGB
+
+**No incluye:**
+
+- Interacciones mouse/touch (click, hover, etc.)
+- Enlaces entre partículas (links)
+- Otras formas (cuadrados, estrellas, imágenes, polígonos, etc.)
+- Emisores, absorbedores, sonidos
+- Rotación, vida, roll, tilt, wobble
+
+## Cuándo usarlo
+
+- El tamaño del bundle es la prioridad absoluta
+- Solo se necesitan puntos que se muevan
+- No se necesitan interacciones ni formas complejas
+
+## Instalación
+
+### Con npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/basic
 ```
-
-## Ejemplo de setup
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -25,20 +50,48 @@ await loadBasic(tsParticles);
 await tsParticles.load({
   id: "tsparticles",
   options: {
+    background: { color: "#ffffff" },
     particles: {
       number: { value: 50 },
-      move: { enable: true, speed: 1.5 },
+      color: { value: ["#5bc0eb", "#fde74c", "#9bc53d"] },
+      size: {
+        value: { min: 300, max: 400 },
+        animation: { enable: true, speed: 100 },
+      },
+      move: { enable: true, speed: 10 },
     },
   },
 });
 ```
 
+### Con CDN (etiqueta `<script>`)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadBasic(tsParticles);
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 50 },
+          move: { enable: true, speed: 1.5 },
+        },
+      },
+    });
+  })();
+</script>
+```
+
 ## Errores comunes
 
-- Esperar funciones que dependen de plugins no incluidos.
-- Llamar `tsParticles.load(...)` antes de `loadBasic(...)`.
+- Esperar funcionalidades que no están incluidas (ej. `links`, interacciones mouse), que requieren bundles superiores.
+- Llamar `tsParticles.load()` antes de `loadBasic(tsParticles)`: las formas y updaters aún no están registrados.
+- Instalar solo `@tsparticles/engine` sin un bundle: el engine por sí solo no dibuja nada.
 
-## Paginas relacionadas
+## Ver también
 
-- Vista general: [`/guide/bundles`](/es/guide/bundles)
-- Matriz de instalacion: [`/guide/installation`](/es/guide/installation)
+- [Panorámica de bundles](/es/guide/bundles)
+- [Guía de instalación](/es/guide/installation)

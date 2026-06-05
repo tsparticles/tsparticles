@@ -1,20 +1,45 @@
 # Bundle: Basic
 
-`@tsparticles/basic` подходит для максимально легких setup с минимальным runtime.
+`@tsparticles/basic` — самый лёгкий bundle. Включает только самое необходимое: круги, которые двигаются с анимируемой прозрачностью и размером.
 
-## Когда выбирать Basic
+## Включённые возможности
 
-- Размер bundle - главный приоритет.
-- Нужны только базовые эффекты.
-- Расширенные plugins не требуются.
+**Формы:** круг
+
+**Обновления:**
+
+- paint (цвет)
+- прозрачность
+- out-modes (поведение при выходе за экран)
+- размер
+
+**Плагины:**
+
+- move
+- blend (смешивание цветов)
+- HEX, HSL, RGB цветовые плагины
+
+**Не включено:**
+
+- Взаимодействия мыши/тача
+- Связи частиц
+- Другие формы (квадраты, звёзды, изображения, полигоны и т.д.)
+- Эмиттеры, абсорберы, звуки
+- Вращение, жизнь, roll, tilt, wobble
+
+## Когда использовать
+
+- Размер bundle — ваш главный приоритет
+- Вам нужны только движущиеся точки
+- Не нужны взаимодействия или сложные формы
 
 ## Установка
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/basic
 ```
-
-## Пример настройки
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -25,20 +50,48 @@ await loadBasic(tsParticles);
 await tsParticles.load({
   id: "tsparticles",
   options: {
+    background: { color: "#ffffff" },
     particles: {
       number: { value: 50 },
-      move: { enable: true, speed: 1.5 },
+      color: { value: ["#5bc0eb", "#fde74c", "#9bc53d"] },
+      size: {
+        value: { min: 300, max: 400 },
+        animation: { enable: true, speed: 100 },
+      },
+      move: { enable: true, speed: 10 },
     },
   },
 });
 ```
 
+### CDN (теги script)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadBasic(tsParticles);
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 50 },
+          move: { enable: true, speed: 1.5 },
+        },
+      },
+    });
+  })();
+</script>
+```
+
 ## Частые ошибки
 
-- Ожидать функции из plugins, которые не входят в basic.
-- Вызывать `tsParticles.load(...)` до `loadBasic(...)`.
+- Ожидание функций, не входящих в basic (например, `links`, взаимодействия мыши) — для них нужны более полные bundle.
+- Вызов `tsParticles.load()` до `loadBasic(tsParticles)` — формы и обновления ещё не зарегистрированы.
+- Установка только `@tsparticles/engine` без bundle — движок сам по себе ничего не рисует.
 
-## Связанные страницы
+## См. также
 
-- Обзор: [`/guide/bundles`](/ru/guide/bundles)
-- Матрица установки: [`/guide/installation`](/ru/guide/installation)
+- [Обзор bundle](/ru/guide/bundles)
+- [Руководство по установке](/ru/guide/installation)

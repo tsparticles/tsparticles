@@ -20,7 +20,7 @@
 ## Notes
 
 - Load the desired color space plugin to enable its notation.
-- Used through the standard `particles.color` options.
+- Used through `particles.paint.fill.color` and other color options throughout tsParticles.
 
 ## Source reference
 

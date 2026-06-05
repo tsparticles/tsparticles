@@ -14,6 +14,7 @@ env:
   NODE_VERSION: "24"
   NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
   firebaseToken: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
+  NODE_OPTIONS: "--max-old-space-size=4096"
 
 jobs:
   build-and-deploy:

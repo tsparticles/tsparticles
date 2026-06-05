@@ -1,44 +1,81 @@
 # Bundle: Fireworks
 
-`@tsparticles/fireworks` предоставляет специализированное API для эффектов фейерверка с минимальным setup.
+`@tsparticles/fireworks` предоставляет упрощённое API для создания эффектов фейерверков одним вызовом функции. Поддерживает звуки, пользовательские цвета и управление экземпляром (пауза/воспроизведение).
 
-## Когда выбирать Fireworks
+## Включённые возможности
 
-- Нужны fireworks-анимации в один вызов.
-- Не нужен прямой wiring движка.
-- Нужен компактный API для праздничных сценариев.
+**Формы:** линия, круг (из basic)
+
+**Внутренние плагины:** эмиттеры, emitters-shape-square, blend (смешивание), звуки
+
+**Обновления:** destroy, жизнь, paint, вращение
+
+**API:** `fireworks(options)` — возвращает управляемый экземпляр
+
+## Когда использовать
+
+- Эффект для Нового года или праздника
+- Праздничный интерфейс
+- Вы не хотите настраивать движок вручную
 
 ## Установка
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/fireworks
 ```
 
-## Пример настройки
-
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
+// Базовый эффект
 const instance = await fireworks({
-  colors: ["#ffffff", "#ff0000"],
-  sounds: false,
+  colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
+  sounds: true,
 });
 
+// Управление экземпляром
 instance?.pause();
 instance?.play();
 
-await fireworks("canvas-id", {
+// На конкретном canvas
+await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
+  sounds: false,
 });
 ```
 
+### CDN (тег script)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
+<script>
+  // Немедленный запуск фейерверков
+  fireworks();
+</script>
+```
+
+### Основные параметры
+
+| Параметр     | Тип          | По умолчанию | Описание                     |
+| ------------ | ------------ | ------------ | ---------------------------- |
+| `colors`     | string[]     | —            | Цвета взрывов                |
+| `rate`       | number       | —            | Фейерверков в секунду        |
+| `speed`      | { min, max } | —            | Скорость частиц              |
+| `sounds`     | boolean      | true         | Включить звуковые эффекты    |
+| `gravity`    | number       | —            | Гравитация (по умолчанию: 0) |
+| `opacity`    | number       | —            | Прозрачность (0-1)           |
+| `brightness` | { min, max } | —            | Яркость взрыва               |
+
 ## Частые ошибки
 
-- Считать, что `tsParticles` экспортируется из `@tsparticles/fireworks`.
-- Вызывать `fireworks(...)` много раз без управления возвращенной instance.
+- Думать, что `tsParticles` экспортируется из `@tsparticles/fireworks` — это не так.
+- Вызов `fireworks()` в цикле без управления экземпляром — эффект уже непрерывный.
+- Остановка экземпляра при уходе со страницы не производится — вызывайте `instance?.pause()` или `instance?.stop()`.
 
-## Связанные страницы
+## См. также
 
-- Обзор: [`/guide/bundles`](/ru/guide/bundles)
-- Bundle playground: [`/playground/bundles`](/ru/playground/bundles)
+- [Обзор bundle](/ru/guide/bundles)
+- [Bundle конфетти](/ru/guide/bundles-confetti)
