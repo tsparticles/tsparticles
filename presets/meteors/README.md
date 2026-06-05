@@ -55,7 +55,7 @@ tsParticles.load({
   id: "tsparticles",
   options: {
     particles: {
-    shape: {
+      shape: {
         type: "square", // the square shape requires the square shape script (required since v2, current v4+)
       },
     },
