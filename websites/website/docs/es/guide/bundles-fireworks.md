@@ -1,44 +1,81 @@
 # Bundle: Fireworks
 
-`@tsparticles/fireworks` expone una API enfocada para efectos de fuegos artificiales con setup minimo.
+`@tsparticles/fireworks` expone una API simplificada para crear efectos de fuegos artificiales con una sola llamada. Soporta sonidos, colores personalizados y control de la instancia (pause/play).
 
-## Cuando elegir Fireworks
+## Funcionalidades incluidas
 
-- Quieres animaciones fireworks en una sola llamada.
-- No necesitas wiring directo del engine.
-- Prefieres una API compacta para momentos de celebracion.
+**Formas:** línea, círculo (de basic)
 
-## Instalacion
+**Plugins internos:** emisores, emitters-shape-square, blend (mezcla), sonidos (sounds)
+
+**Updaters:** destroy, life, paint, rotate
+
+**API:** `fireworks(options)`, devuelve una instancia controlable
+
+## Cuándo usarlo
+
+- Efecto de Año Nuevo o fiesta
+- UI de celebración
+- No quieres configurar el engine manualmente
+
+## Instalación
+
+### Con npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/fireworks
 ```
 
-## Ejemplo de setup
-
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
+// Efecto base
 const instance = await fireworks({
-  colors: ["#ffffff", "#ff0000"],
-  sounds: false,
+  colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
+  sounds: true,
 });
 
+// Control de instancia
 instance?.pause();
 instance?.play();
 
-await fireworks("canvas-id", {
+// En un canvas específico
+await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
+  sounds: false,
 });
 ```
 
+### Con CDN (etiqueta `<script>`)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
+<script>
+  // Fuegos artificiales inmediatos
+  fireworks();
+</script>
+```
+
+### Parámetros principales
+
+| Parámetro | Tipo | Default | Descripción |
+|---|---|---|---|
+| `colors` | string[] | — | Colores de explosión |
+| `rate` | number | — | Fuegos por segundo |
+| `speed` | { min, max } | — | Velocidad de partículas |
+| `sounds` | boolean | true | Habilita efectos de sonido |
+| `gravity` | number | — | Gravedad (default: 0) |
+| `opacity` | number | — | Opacidad (0-1) |
+| `brightness` | { min, max } | — | Brillo de explosión |
+
 ## Errores comunes
 
-- Asumir que `tsParticles` se exporta desde `@tsparticles/fireworks`.
-- Llamar `fireworks(...)` repetidamente sin manejar la instancia.
+- Pensar que `tsParticles` se exporta desde `@tsparticles/fireworks` — no es así.
+- Llamar `fireworks()` en bucle sin gestionar la instancia: el efecto ya es continuo, no hace falta un intervalo.
+- No detener la instancia cuando el usuario cambia de página: llama `instance?.pause()` o `instance?.stop()`.
 
-## Paginas relacionadas
+## Ver también
 
-- Vista general: [`/guide/bundles`](/es/guide/bundles)
-- Bundles del playground: [`/playground/bundles`](/es/playground/bundles)
+- [Panorámica de bundles](/es/guide/bundles)
+- [Bundle confetti](/es/guide/bundles-confetti)

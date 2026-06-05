@@ -1,104 +1,179 @@
-# Bundles Guide
+# Bundle Guide
 
-This page helps you pick the right `tsParticles` bundle and set it up quickly.
+tsParticles is modular. The `@tsparticles/engine` package contains only the core engine; to get visible effects you must register **shapes** (what to draw), **updaters** (how to animate), **interactions** (how to react to mouse/touch), and **plugins** (extra features). All this happens through **bundles**.
 
-## Package comparison
+## Bundle categories
 
-| Package                  | Best for                                      | Setup style                                    |
-| ------------------------ | --------------------------------------------- | ---------------------------------------------- |
-| `@tsparticles/basic`     | Extra-light setups                            | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim`      | Most websites/apps                            | `tsParticles` + `await loadSlim(tsParticles)`  |
-| `tsparticles`            | Full official feature set with engine control | `tsParticles` + `await loadFull(tsParticles)`  |
-| `@tsparticles/all`       | Full features, fastest prototyping            | `tsParticles` + `await loadAll(tsParticles)`   |
-| `@tsparticles/confetti`  | One-call confetti effects                     | `await confetti(options)`                      |
-| `@tsparticles/fireworks` | One-call fireworks effects                    | `await fireworks(options)`                     |
-| `@tsparticles/particles` | Simple particles background API               | `await particles(options)`                     |
-| `@tsparticles/ribbons`   | One-call ribbons effects                      | `await ribbons(options)`                       |
+| Category | Bundle | API |
+|---|---|---|
+| Engine + loader | `@tsparticles/basic`, `@tsparticles/slim`, `tsparticles`, `@tsparticles/all` | `tsParticles.load({ id, options })` |
+| Dedicated API | `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, `@tsparticles/ribbons` | `confetti({...})`, `fireworks({...})`, etc. |
 
-## Bundle guides
+## Complete feature comparison
 
-- Basic: [`/guide/bundles-basic`](/guide/bundles-basic)
-- Slim: [`/guide/bundles-slim`](/guide/bundles-slim)
-- tsparticles (Full): [`/guide/bundles-full`](/guide/bundles-full)
-- All: [`/guide/bundles-all`](/guide/bundles-all)
-- Confetti: [`/guide/bundles-confetti`](/guide/bundles-confetti)
-- Fireworks: [`/guide/bundles-fireworks`](/guide/bundles-fireworks)
-- Particles: [`/guide/bundles-particles`](/guide/bundles-particles)
-- Ribbons (demo + docs): [`/demos/recipes/ribbons`](/demos/recipes/ribbons) · <https://ribbons.js.org>
+Legend: ● = included, ○ = not included
 
-## Installation
+| Feature | basic | slim | full (`tsparticles`) | all |
+|---|---|---|---|---|
+| **Shapes** | | | | |
+| Circle | ● | ● | ● | ● |
+| Square | ○ | ● | ● | ● |
+| Star | ○ | ● | ● | ● |
+| Polygon | ○ | ● | ● | ● |
+| Line | ○ | ● | ● | ● |
+| Image | ○ | ● | ● | ● |
+| Emoji | ○ | ● | ● | ● |
+| Text | ○ | ○ | ● | ● |
+| Cards (suits) | ○ | ○ | ○ | ● |
+| Heart | ○ | ○ | ○ | ● |
+| Arrow | ○ | ○ | ○ | ● |
+| Rounded rect | ○ | ○ | ○ | ● |
+| Rounded polygon | ○ | ○ | ○ | ● |
+| Spiral | ○ | ○ | ○ | ● |
+| Squircle | ○ | ○ | ○ | ● |
+| Cog | ○ | ○ | ○ | ● |
+| Infinity | ○ | ○ | ○ | ● |
+| Matrix | ○ | ○ | ○ | ● |
+| Path | ○ | ○ | ○ | ● |
+| Ribbon | ○ | ○ | ○ | ● |
+| **External interactions (mouse/touch)** | | | | |
+| Attract | ○ | ● | ● | ● |
+| Bounce | ○ | ● | ● | ● |
+| Bubble | ○ | ● | ● | ● |
+| Connect | ○ | ● | ● | ● |
+| Destroy | ○ | ● | ● | ● |
+| Grab | ○ | ● | ● | ● |
+| Parallax | ○ | ● | ● | ● |
+| Pause | ○ | ● | ● | ● |
+| Push | ○ | ● | ● | ● |
+| Remove | ○ | ● | ● | ● |
+| Repulse | ○ | ● | ● | ● |
+| Slow | ○ | ● | ● | ● |
+| Drag | ○ | ○ | ● | ● |
+| Trail | ○ | ○ | ● | ● |
+| Cannon | ○ | ○ | ○ | ● |
+| Particle | ○ | ○ | ○ | ● |
+| Pop | ○ | ○ | ○ | ● |
+| Light | ○ | ○ | ○ | ● |
+| **Particle interactions** | | | | |
+| Links | ○ | ● | ● | ● |
+| Collisions | ○ | ● | ● | ● |
+| Attract | ○ | ● | ● | ● |
+| Repulse | ○ | ○ | ○ | ● |
+| **Updaters (animations)** | | | | |
+| Opacity | ● | ● | ● | ● |
+| Size | ● | ● | ● | ● |
+| Out modes | ● | ● | ● | ● |
+| Paint (color) | ● | ● | ● | ● |
+| Rotate | ○ | ● | ● | ● |
+| Life | ○ | ● | ● | ● |
+| Destroy | ○ | ○ | ● | ● |
+| Roll | ○ | ○ | ● | ● |
+| Tilt | ○ | ○ | ● | ● |
+| Twinkle | ○ | ○ | ● | ● |
+| Wobble | ○ | ○ | ● | ● |
+| Gradient | ○ | ○ | ○ | ● |
+| Orbit | ○ | ○ | ○ | ● |
+| **Plugins** | | | | |
+| Move | ● | ● | ● | ● |
+| Blend | ● | ● | ● | ● |
+| Emitters | ○ | ○ | ● | ● |
+| Absorbers | ○ | ○ | ● | ● |
+| Sounds | ○ | ○ | ○ | ● |
+| Motion (user prefs) | ○ | ○ | ○ | ● |
+| Themes | ○ | ○ | ○ | ● |
+| Polygon mask | ○ | ○ | ○ | ● |
+| Canvas mask | ○ | ○ | ○ | ● |
+| Background mask | ○ | ○ | ○ | ● |
+| Export (image, json, video) | ○ | ○ | ○ | ● |
+| Manual particles | ○ | ○ | ○ | ● |
+| Responsive | ○ | ○ | ○ | ● |
+| Trail | ○ | ○ | ○ | ● |
+| Zoom | ○ | ○ | ○ | ● |
+| Poisson disc | ○ | ○ | ○ | ● |
+| **Paths** | | | | |
+| Any path | ○ | ○ | ○ | ● (14 generators) |
+| **Effects** | | | | |
+| Bubble, Filter, Shadow, etc. | ○ | ○ | ○ | ● (5 effects) |
+| **Easing** | | | | |
+| Quad | ○ | ● | ● | ● |
+| Back, Bounce, Circ, Cubic, Elastic, Expo, Gaussian, Linear, Quart, Quint, Sigmoid, Sine, Smoothstep | ○ | ○ | ○ | ● |
+| **Color plugins** | | | | |
+| HEX, HSL, RGB | ● | ● | ● | ● |
+| HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH | ○ | ○ | ○ | ● |
 
-Install the package path that matches your use case.
+### Dedicated API bundles
 
-```bash
-pnpm add @tsparticles/engine @tsparticles/basic
-pnpm add @tsparticles/engine @tsparticles/slim
-pnpm add @tsparticles/engine tsparticles
-pnpm add @tsparticles/engine @tsparticles/all
-pnpm add @tsparticles/confetti
-pnpm add @tsparticles/fireworks
-pnpm add @tsparticles/particles
-pnpm add @tsparticles/ribbons
+| Feature | confetti | fireworks | particles | ribbons |
+|---|---|---|---|---|
+| Shapes | circle, heart, cards, emoji, image, polygon, square, star | line | (from basic) | ribbon |
+| Interactions | — | — | links + collisions | — |
+| Special plugins | emitters, motion | emitters, sounds, blend | — | emitters, motion |
+| API call | `confetti(opts)` | `fireworks(opts)` | `particles(opts)` | `ribbons(opts)` |
+
+## Selection guide
+
+```mermaid
+flowchart TD
+    A[Need to start fast?] -->|Yes| B[Use a preset?]
+    A -->|No| C[What bundle size?]
+    B -->|Yes| D["@tsparticles/configs + @tsparticles/slim"]
+    B -->|No| E["Confetti? → @tsparticles/confetti"]
+    B -->|No| F["Fireworks? → @tsparticles/fireworks"]
+    B -->|No| G["Particle BG? → @tsparticles/particles"]
+    B -->|No| H["Ribbons? → @tsparticles/ribbons"]
+    C -->|"Minimal (circles only)"| I["@tsparticles/basic"]
+    C -->|"Medium (shapes + interactions)"| J["@tsparticles/slim"]
+    C -->|"Maximum (all features)"| K["tsparticles (loadFull)"]
+    C -->|"Whole repository"| L["@tsparticles/all"]
 ```
 
-Need CDN links and more package-manager variants?
+**Rules of thumb:**
+1. Most projects start with `@tsparticles/slim`.
+2. If bundle size is critical and you only need circles: `@tsparticles/basic`.
+3. If you need emitters, absorbers, text, wobble/tilt/roll: `tsparticles` with `loadFull`.
+4. For quick prototyping with all features: `@tsparticles/all`.
+5. For targeted effects (confetti, fireworks, particle BG, ribbons) with minimal setup: dedicated API bundles.
 
-- See [`/guide/installation`](/guide/installation).
+## Quick install
 
-## Setup examples
+| Bundle | npm command | Loader function | CDN URL |
+|---|---|---|---|
+| `@tsparticles/basic` | `pnpm add @tsparticles/engine @tsparticles/basic` | `loadBasic(tsParticles)` | `@tsparticles/basic@4/tsparticles.basic.bundle.min.js` |
+| `@tsparticles/slim` | `pnpm add @tsparticles/engine @tsparticles/slim` | `loadSlim(tsParticles)` | `@tsparticles/slim@4/tsparticles.slim.bundle.min.js` |
+| `tsparticles` (full) | `pnpm add @tsparticles/engine tsparticles` | `loadFull(tsParticles)` | `tsparticles@4/tsparticles.bundle.min.js` |
+| `@tsparticles/all` | `pnpm add @tsparticles/engine @tsparticles/all` | `loadAll(tsParticles)` | `@tsparticles/all@4/tsparticles.all.bundle.min.js` |
+| `@tsparticles/confetti` | `pnpm add @tsparticles/confetti` | `confetti(opts)` | `@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js` |
+| `@tsparticles/fireworks` | `pnpm add @tsparticles/fireworks` | `fireworks(opts)` | `@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| `@tsparticles/particles` | `pnpm add @tsparticles/particles` | `particles(opts)` | `@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| `@tsparticles/ribbons` | `pnpm add @tsparticles/ribbons` | `ribbons(opts)` | `@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js` |
 
-### Engine + loader bundles (`basic`, `slim`, `full`, `all`)
+**Note:** for basic/slim/full/all bundles you MUST call `load*` before `tsParticles.load()`. CDN files expose the loader function globally but do NOT auto-call it. The confetti/fireworks/particles/ribbons bundles have self-contained APIs — call `confetti()`, `fireworks()`, etc. directly.
 
-```ts
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-
-await loadSlim(tsParticles);
-
-await tsParticles.load({
-  id: "tsparticles",
-  options: {
-    particles: {
-      number: { value: 80 },
-      move: { enable: true, speed: 2 },
-    },
-  },
-});
+CDN example for `@tsparticles/slim`:
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadSlim(tsParticles);
+    await tsParticles.load({ id: "tsparticles", options: { ... } });
+  })();
+</script>
 ```
 
-For the other presets, swap only the loader import/function:
-
-- `@tsparticles/basic` -> `loadBasic`
-- `tsparticles` -> `loadFull`
-- `@tsparticles/all` -> `loadAll`
-
-### Focused APIs (`confetti`, `fireworks`, `particles`, `ribbons`)
-
-```ts
-import { confetti } from "@tsparticles/confetti";
-import { fireworks } from "@tsparticles/fireworks";
-import { particles } from "@tsparticles/particles";
-import { ribbons } from "@tsparticles/ribbons";
-
-await confetti({ count: 80, spread: 60 });
-await fireworks({ sounds: false });
-await particles({ count: 100, links: true });
-await ribbons({ count: 5, spread: 0 });
+CDN example for `@tsparticles/confetti`:
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+<script>confetti({ particleCount: 100 });</script>
 ```
 
-These APIs are great when you want fast integration without manually wiring many engine plugins.
-
-## Practical selection rules
-
-1. Start with `@tsparticles/slim` in most projects.
-2. Use `@tsparticles/basic` if bundle size is your top priority and features are simple.
-3. Use `tsparticles` when you need a broad full-feature baseline with `loadFull`.
-4. Use `@tsparticles/all` for prototyping or when you need many features immediately.
-5. Use `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, or `@tsparticles/ribbons` when your UI needs one focused effect with minimal setup.
+See also the [installation guide](/guide/installation) for CDN, npm, yarn, and file details.
 
 ## Related pages
 
-- Playground focused bundles: [`/playground/bundles`](/playground/bundles)
-- Getting started path: [`/guide/getting-started`](/guide/getting-started)
-- Installation matrix: [`/guide/installation`](/guide/installation)
-- Wrappers overview: [`/guide/wrappers`](/guide/wrappers)
+- [Getting started](/guide/getting-started)
+- [Installation guide](/guide/installation)
+- [Presets catalog](/demos/presets)
+- [Palettes catalog](/demos/palettes)
+- [Shapes catalog](/demos/shapes)

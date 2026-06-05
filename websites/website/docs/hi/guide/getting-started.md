@@ -1,106 +1,197 @@
 # आरंभ करना
 
-यह पथ 2026 में `tsParticles` के लिए सबसे तेज़ विश्वसनीय सेटअप है।
+tsParticles एक JavaScript/TypeScript लाइब्रेरी है जो कण एनिमेशन, कॉनफ़ेटी, आतिशबाज़ी और बहुत कुछ बनाने के लिए है। यह किसी भी आधुनिक ब्राउज़र में काम करता है और npm पैकेज और CDN दोनों के रूप में `<script>` टैग के साथ उपलब्ध है।
 
-## त्वरित जांच सूची
+## आर्किटेक्चर: इंजन + बंडल
 
-1. `@tsparticles/engine` इंस्टॉल करें।
-2. एक रनटाइम पथ चुनें (`@tsparticles/slim`, `@tsparticles/all`, केंद्रित API जैसे `@tsparticles/particles`, या केवल कस्टम पैकेज)।
-3. अपना बंडल एक बार लोड करें.
-4. मैन्युअल विकल्प, कॉन्फिग ऑब्जेक्ट या प्रीसेट से प्रारंभ करें।
+`@tsparticles/engine` अकेला **कुछ भी दृश्य नहीं बनाता**। इसमें केवल कोर इंजन (एनिमेशन लूप, कैनवास, इवेंट मैनेजमेंट) है, लेकिन **कोई शेप, कोई इंटरैक्शन, कोई दृश्य प्रभाव नहीं**। कुछ देखने के लिए आपको कम से कम एक **बंडल** या व्यक्तिगत **प्लगइन** लोड करना होगा।
 
-## 1) इंजन + एक बंडल प्रीसेट स्थापित करें
+| अवधारणा | भूमिका |
+|---|---|
+| `@tsparticles/engine` | कोर इंजन। `tsParticles`, टाइप्स, ऑप्शन एक्सपोर्ट करता है। अकेला कुछ नहीं बनाता। |
+| बंडल (`@tsparticles/basic`, `@tsparticles/slim`, आदि) | पूर्व-निर्मित पैकेज जो इंजन पर शेप, इंटरैक्शन और अपडेटर पंजीकृत करता है। |
+| व्यक्तिगत प्लगइन (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity`, आदि) | एकल पैकेज जिन्हें आप कस्टम बंडल के लिए जोड़ सकते हैं। |
 
-बेहतरीन डिफ़ॉल्ट आकार/सुविधा संतुलन के लिए `@tsparticles/engine` प्लस `@tsparticles/slim` का उपयोग करें।
+## अपना रास्ता चुनें
+
+### पथ A — npm/pnpm/yarn (आधुनिक प्रोजेक्ट बंडलर के साथ)
+
+इंजन + एक बंडल इंस्टॉल करें:
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
 ```
 
-CDN लिंक, `npm`/`yarn` वेरिएंट, या `require(...)` उदाहरण चाहिए?
-
-- देखें [`/guide/installation`](/hi/guide/installation)।
-
-## 2) HTML में एक कंटेनर बनाएं
-
-```html
-<div id="tsparticles"></div>
-```
-
-## 3) tsParticles initialize करें
+फिर अपने कोड में:
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
-const options = {
-  background: {
-    color: "#0b1020",
-  },
-  particles: {
-    number: {
-      value: 80,
-    },
-    links: {
-      enable: true,
-      distance: 150,
-      opacity: 0.35,
-    },
-    move: {
-      enable: true,
-      speed: 2,
-    },
-  },
-};
-
 (async () => {
+  // 1. सभी स्लिम बंडल सुविधाओं को इंजन पर पंजीकृत करें
   await loadSlim(tsParticles);
 
+  // 2. एनिमेशन बनाएं
   await tsParticles.load({
-    id: "tsparticles",
-    options,
+    id: "tsparticles",       // HTML कंटेनर ID
+    options: {
+      background: {
+        color: "#0b1020",
+      },
+      particles: {
+        number: { value: 80 },
+        links: {
+          enable: true,
+          distance: 150,
+          opacity: 0.35,
+        },
+        move: {
+          enable: true,
+          speed: 2,
+        },
+      },
+    },
   });
 })();
 ```
 
-## 4) सही बंडल चुनें
+HTML कंटेनर:
 
-- `@tsparticles/slim`: अधिकांश ऐप्स को यहां प्रारंभ करना चाहिए।
-- `@tsparticles/basic`: बहुत हल्के सेटअप के लिए छोटा फीचर सेट।
-- `@tsparticles/all`: सब कुछ शामिल है, तेज़ प्रोटोटाइप के लिए सबसे आसान।
-
-यदि आपको सीधे `tsParticles` सेटअप के बजाय एक केंद्रित API की आवश्यकता है:
-
-- `@tsparticles/particles`: सरलीकृत कण पृष्ठभूमि एपीआई
-- `@tsparticles/confetti`: एक call में confetti API
-- `@tsparticles/fireworks`: एक call में fireworks API
-
-## 5) जब आपको गति की आवश्यकता हो तो प्रीसेट/कॉन्फ़िगरेशन का उपयोग करें
-
-यदि आप पूर्वनिर्मित प्रभाव पसंद करते हैं:
-
-```bash
-pnpm add @tsparticles/configs
+```html
+<div id="tsparticles"></div>
 ```
 
-फिर कुंजी द्वारा एक कॉन्फ़िगरेशन लोड करें, जैसे [`demo/vite` ऐप](https://github.com/tsparticles/tsparticles/blob/main/demo/vite/src/main.ts)।
+### पथ B — CDN `<script>` टैग के साथ (बिना बंडलर, वेनिला HTML)
 
-यदि आप प्रीसेट-नाम आधारित सेटअप पसंद करते हैं, तो [`/demos/presets`](/hi/demos/presets) में आधिकारिक प्रीसेट कैटलॉग का उपयोग करें।
+पहले इंजन लोड करें, फिर बंडल। CDN फ़ाइलें सब कुछ `window` पर एक्सपोज़ करती हैं — `import` की ज़रूरत नहीं।
 
-## त्वरित दस्तावेज़ीकरण मानचित्र
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- tsParticles इंजन -->
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+  <!-- स्लिम बंडल (loadSlim को ग्लोबली एक्सपोज़ करता है) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <script>
+    (async () => {
+      // loadSlim CDN बंडल से ग्लोबली उपलब्ध है
+      await loadSlim(tsParticles);
 
-- रूट विकल्प: [`/options/`](/hi/options/)
-- रैपर संदर्भ: [`/guide/wrappers`](/hi/guide/wrappers)
-- प्रीसेट कैटलॉग: [`/demos/presets`](/hi/demos/presets)
-- पैलेट कैटलॉग: [`/demos/palettes`](/hi/demos/palettes)
-- शेप कैटलॉग: [`/demos/shapes`](/hi/demos/shapes)
-- particles.js से माइग्रेशन: [`/migrations/particles-js`](/hi/migrations/particles-js)
-- रंग प्रारूप: [`/guide/color-formats`](/hi/guide/color-formats)
-- कंटेनर जीवनचक्र: [`/guide/container-lifecycle`](/hi/guide/container-lifecycle)
-- प्लगइन्स और अनुकूलन: [`/guide/plugins-customization`](/hi/guide/plugins-customization)
+      await tsParticles.load({
+        id: "tsparticles",
+        options: {
+          background: { color: "#0b1020" },
+          particles: {
+            number: { value: 80 },
+            links: { enable: true, distance: 150 },
+            move: { enable: true, speed: 2 },
+          },
+        },
+      });
+    })();
+  </script>
+</body>
+</html>
+```
+
+> **नोट**: CDN बंडल के साथ भी आपको `tsParticles.load()` से पहले `loadSlim(tsParticles)` (या `loadBasic` / `loadFull` / `loadAll`) कॉल करना होगा। CDN बंडल लोडर फ़ंक्शन को ग्लोबली एक्सपोज़ करते हैं लेकिन इसे ऑटो-कॉल नहीं करते।
+
+यही पैटर्न `@tsparticles/basic` → `loadBasic`, `tsparticles` → `loadFull`, `@tsparticles/all` → `loadAll` पर लागू होता है।
+
+### पथ C — समर्पित API वाले विशेष बंडल (confetti, fireworks, particles)
+
+कुछ बंडलों का अपना सरलीकृत API होता है, `tsParticles.load()` का उपयोग करने की आवश्यकता नहीं:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+</head>
+<body>
+  <script>
+    confetti({ particleCount: 100, spread: 70 });
+  </script>
+</body>
+</html>
+```
+
+यही `fireworks()`, `particles()`, `ribbons()` के लिए भी है।
+
+## कौन सा बंडल चुनें?
+
+| बंडल | npm | कब उपयोग करें |
+|---|---|---|
+| `@tsparticles/basic` | `loadBasic(tsParticles)` | न्यूनतम: सर्कल, मूवमेंट, ओपेसिटी, साइज़। कोई इंटरैक्शन नहीं। |
+| `@tsparticles/slim` | `loadSlim(tsParticles)` | **अधिकांश प्रोजेक्ट्स के लिए अनुशंसित।** इंटरैक्शन (क्लिक/होवर), कण लिंक, इमेज, स्टार, पॉलीगॉन जोड़ता है। |
+| `tsparticles` | `loadFull(tsParticles)` | पूर्ण आधिकारिक फीचर सेट: एमिटर, एब्ज़ॉर्बर, टेक्स्ट शेप, रोल, वॉबल, ट्रेल। |
+| `@tsparticles/all` | `loadAll(tsParticles)` | रिपॉजिटरी में **सब कुछ**: हर शेप, इंटरैक्शन, इफ़ेक्ट, ईज़िंग, पथ, एक्सपोर्ट। केवल प्रोटोटाइप के लिए। |
+| `@tsparticles/confetti` | `confetti(options)` | एक फ़ंक्शन कॉल में कॉनफ़ेटी। समर्पित API। |
+| `@tsparticles/fireworks` | `fireworks(options)` | एक फ़ंक्शन कॉल में आतिशबाज़ी। समर्पित API। |
+| `@tsparticles/particles` | `particles(options)` | सरलीकृत कण पृष्ठभूमि। समर्पित API। |
+| `@tsparticles/ribbons` | `ribbons(options)` | रिबन प्रभाव। समर्पित API। |
+
+अधिक जानकारी: [`/hi/guide/bundles`](/hi/guide/bundles)।
+
+## प्रीसेट का उपयोग करना
+
+`@tsparticles/configs` पैकेज में दर्जनों तैयार कॉन्फ़िगरेशन हैं (एब्ज़ॉर्बर, बबल, स्नो, स्टार, ग्रैविटी, कोलिज़न, आदि)।
+
+```bash
+pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
+```
+
+```ts
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import "@tsparticles/configs";
+
+await loadSlim(tsParticles);
+
+await tsParticles.load({
+  id: "tsparticles",
+  options: { preset: "snow" },
+});
+```
+
+CDN के साथ:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/configs@4/tsparticles.configs.min.js"></script>
+<script>
+  (async () => {
+    await loadSlim(tsParticles);
+    tsParticles.load({ id: "tsparticles", options: { preset: "snow" } });
+  })();
+</script>
+```
+
+## त्वरित संदर्भ
+
+- ऑप्शन दस्तावेज़ीकरण: [`/hi/options/`](/hi/options/)
+- बंडल गाइड: [`/hi/guide/bundles`](/hi/guide/bundles)
+- प्रीसेट कैटलॉग: [`/hi/demos/presets`](/hi/demos/presets)
+- पैलेट कैटलॉग: [`/hi/demos/palettes`](/hi/demos/palettes)
+- शेप कैटलॉग: [`/hi/demos/shapes`](/hi/demos/shapes)
+- फ्रेमवर्क रैपर: [`/hi/guide/wrappers`](/hi/guide/wrappers)
+- रंग प्रारूप: [`/hi/guide/color-formats`](/hi/guide/color-formats)
+- कंटेनर जीवनचक्र: [`/hi/guide/container-lifecycle`](/hi/guide/container-lifecycle)
+- प्लगइन और अनुकूलन: [`/hi/guide/plugins-customization`](/hi/guide/plugins-customization)
 
 ## समस्या निवारण
 
-- खाली स्क्रीन: `tsParticles.load` पर कॉल करने से पहले सत्यापित करें कि `#tsparticles` मौजूद है।
-- अनुपलब्ध सुविधा: आपको संभवतः किसी अन्य प्लगइन/पैकेज (आकार, इंटरेक्शन, अपडेटर) की आवश्यकता होगी।
-- विकल्पों पर त्रुटियाँ टाइप करें: अपने पैकेजों को उसी प्रमुख/लघु संस्करण के साथ संरेखित रखें।
+| समस्या | संभावित कारण | समाधान |
+|---|---|---|
+| खाली स्क्रीन, कोई कण नहीं | `#tsparticles` DOM में मौजूद नहीं है जब `tsParticles.load()` कॉल किया गया | स्क्रिप्ट से पहले DIV मौजूद होना सुनिश्चित करें, या `DOMContentLoaded` का उपयोग करें |
+| खाली स्क्रीन, कोई कण नहीं | केवल `@tsparticles/engine` इंस्टॉल किया | एक बंडल (`@tsparticles/slim`) या प्लगइन भी इंस्टॉल करें — इंजन अकेले कोई शेप नहीं बनाता |
+| "loadBasic/loadSlim/loadFull is not a function" त्रुटि | बंडल इंस्टॉल नहीं या गलत import | `pnpm add @tsparticles/slim` और `{ loadSlim }` import करें |
+| कण हिलते नहीं हैं | `move.enable` `true` पर सेट नहीं है | `move: { enable: true, speed: 2 }` जोड़ें |
+| लापता सुविधा (जैसे लिंक, कोलिज़न) | चुने गए बंडल में वह शामिल नहीं है | एक समृद्ध बंडल (`@tsparticles/slim` या `tsparticles`) पर स्विच करें या विशिष्ट प्लगइन इंस्टॉल करें |
+| TypeScript टाइप त्रुटियाँ | पैकेज संस्करण बेमेल हैं | इंजन और बंडल को एक ही मेजर/माइनर संस्करण पर रखें |

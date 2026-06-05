@@ -1,42 +1,83 @@
 # Bundle: Confetti
 
-`@tsparticles/confetti` предоставляет специализированное API для эффектов конфетти с минимальным setup.
+`@tsparticles/confetti` предоставляет упрощённое API для создания эффектов конфетти одним вызовом функции. Не требуется напрямую взаимодействовать с `tsParticles`.
 
-## Когда выбирать Confetti
+## Включённые возможности
 
-- Нужны праздничные эффекты в один вызов.
-- Не хотите вручную подключать engine.
-- Предпочитаете компактный API для UI-событий.
+**Формы:** круг, сердце, карты (французские масти: черви, бубны, трефы, пики), эмодзи, изображения, полигон, квадрат, звезда
+
+**Внутренние плагины:** эмиттеры, motion (учитывает предпочтение пользователя по уменьшению движения)
+
+**Обновления:** жизнь, roll, вращение, tilt, wobble
+
+**API:** `confetti(options)` или `confetti(идентификаторCanvas, options)`
+
+## Когда использовать
+
+- Кнопка "Поздравляем!" или "С днём рождения!"
+- Быстрый праздничный эффект
+- Вы не хотите настраивать движок вручную
 
 ## Установка
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/confetti
 ```
 
-## Пример настройки
-
 ```ts
 import { confetti } from "@tsparticles/confetti";
 
+// Базовый эффект
 await confetti({
-  count: 80,
-  spread: 60,
+  particleCount: 100,
+  spread: 70,
+  origin: { x: 0.5, y: 0.5 },
 });
 
-await confetti("canvas-id", {
-  count: 50,
+// На конкретном canvas
+await confetti("my-canvas-id", {
+  particleCount: 50,
   angle: 90,
   spread: 45,
+  colors: ["#ff0000", "#00ff00", "#0000ff"],
 });
 ```
 
+### CDN (тег script)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+<script>
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    colors: ["#bb0000", "#ffffff"],
+  });
+</script>
+```
+
+### Основные параметры
+
+| Параметр | Тип | По умолчанию | Описание |
+|---|---|---|---|
+| `particleCount` | number | 50 | Количество частиц конфетти |
+| `spread` | number | 60 | Угол разброса (градусы) |
+| `angle` | number | 90 | Направление (градусы, 90 = вниз) |
+| `startVelocity` | number | 30 | Начальная скорость |
+| `colors` | string[] | — | Цвета конфетти |
+| `origin` | { x, y } | { 0.5, 0.5 } | Точка начала (0-1) |
+| `drift` | number | 0 | Горизонтальный снос |
+| `shapes` | string[] | — | Формы: "circle", "heart", "square", "star", "cards" |
+
 ## Частые ошибки
 
-- Считать, что `tsParticles` экспортируется из `@tsparticles/confetti`.
-- Непреднамеренно использовать один и тот же canvas id повторно.
+- Думать, что `tsParticles` экспортируется из `@tsparticles/confetti` — это не так.
+- Непреднамеренное повторное использование одного и того же ID canvas.
+- Вызов `confetti` в цикле без управления производительностью — используйте разумный интервал или остановите анимацию по завершении.
 
-## Связанные страницы
+## См. также
 
-- Обзор: [`/guide/bundles`](/ru/guide/bundles)
-- Bundle playground: [`/playground/bundles`](/ru/playground/bundles)
+- [Обзор bundle](/ru/guide/bundles)
+- [Bundle фейерверков](/ru/guide/bundles-fireworks)

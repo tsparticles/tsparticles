@@ -1,0 +1,367 @@
+---
+title: Guida Riot
+description: Guida completa per integrare tsParticles con componenti Riot.js.
+---
+
+# Guida Riot
+
+## Indice dei Contenuti
+
+1. [Installazione](#installazione)
+2. [Inizializzazione del Motore](#inizializzazione-del-motore)
+3. [Utilizzo Base](#utilizzo-base)
+4. [Rendering Condizionale](#rendering-condizionale)
+5. [Uso dei Preset](#uso-dei-preset)
+6. [Configurazione Personalizzata](#configurazione-personalizzata)
+7. [Componente Completo](#componente-completo)
+
+---
+
+## Installazione
+
+Installa il wrapper Riot e il motore tsParticles tramite npm:
+
+```bash
+npm install @tsparticles/riot tsparticles
+```
+
+Installa opzionalmente le configurazioni preset per una configurazione rapida:
+
+```bash
+npm install @tsparticles/configs
+npm install @tsparticles/slim
+```
+
+---
+
+## Inizializzazione del Motore
+
+Il wrapper Riot esporta una funzione `initParticlesEngine`. Chiamala nell'hook `onBeforeMount` del tuo componente per preparare il motore prima che il componente particelle venga renderizzato.
+
+```html
+<my-component>
+  <script>
+    import { initParticlesEngine } from "@tsparticles/riot";
+    import { loadSlim } from "@tsparticles/slim";
+
+    export default {
+      onBeforeMount() {
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          });
+        }
+      },
+    };
+  </script>
+</my-component>
+```
+
+Il motore si inizializza una volta e viene condiviso tra tutte le istanze `<riot-particles>` nella tua app.
+
+---
+
+## Utilizzo Base
+
+Dopo aver inizializzato il motore, usa il componente `<riot-particles>` nel tuo template. Passa la configurazione come oggetto opzioni in formato JSON o come riferimento a una proprietà del tuo componente.
+
+```html
+<my-component>
+  <riot-particles id="tsparticles" options="{particlesConfig}" />
+
+  <script>
+    import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+    import { loadSlim } from "@tsparticles/slim";
+
+    export default {
+      particlesConfig: {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80 },
+          color: { value: "#00d4ff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.6 },
+          size: { value: { min: 2, max: 5 } },
+          links: {
+            enable: true,
+            distance: 150,
+            color: "#00d4ff",
+            opacity: 0.3,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1.5,
+            direction: "none",
+            random: true,
+            outModes: { default: "bounce" },
+          },
+        },
+        background: { color: "#0d1117" },
+      },
+      onBeforeMount() {
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          });
+        }
+      },
+    };
+  </script>
+</my-component>
+```
+
+---
+
+## Rendering Condizionale
+
+Usa la direttiva `if={}` di Riot con una proprietà di stato per ritardare il rendering del componente particelle fino a quando il motore non ha terminato l'inizializzazione. Questo evita spostamenti del layout e garantisce che il componente riceva un motore pronto.
+
+```html
+<my-component>
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+
+  <script>
+    import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+    import { loadSlim } from "@tsparticles/slim";
+
+    export default {
+      particlesConfig: {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.6 },
+          size: { value: { min: 1, max: 4 } },
+          move: { enable: true, speed: 1, outModes: { default: "bounce" } },
+        },
+        background: { color: "#1a1a2e" },
+      },
+      onBeforeMount() {
+        this.state.particlesInitialized = false;
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          }).then(() => {
+            this.update({ particlesInitialized: true });
+          });
+        }
+      },
+    };
+  </script>
+</my-component>
+```
+
+Chiamare `this.update()` attiva un re-render cosicché il tag `<riot-particles>` appaia una volta che la promise si risolve.
+
+---
+
+## Uso dei Preset
+
+Il pacchetto `@tsparticles/configs` fornisce configurazioni predefinite per effetti comuni come coriandoli, fuochi d'artificio, neve e stelle. Usali direttamente come oggetto options.
+
+```html
+<my-component>
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+
+  <script>
+    import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+    import { loadFull } from "tsparticles";
+    import configs from "@tsparticles/configs";
+
+    export default {
+      particlesConfig: configs.basic,
+      onBeforeMount() {
+        this.state.particlesInitialized = false;
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadFull(engine);
+          }).then(() => {
+            this.update({ particlesInitialized: true });
+          });
+        }
+      },
+    };
+  </script>
+</my-component>
+```
+
+I preset disponibili includono `basic`, `confetti`, `fireworks`, `snow`, `stars` e altri. Ogni preset richiede che il corrispondente pacchetto preset sia caricato nella callback del motore. Ad esempio, `configs.fireworks` richiede `loadFireworksPreset`.
+
+---
+
+## Configurazione Personalizzata
+
+Costruisci una configurazione personalizzata con interattività, forme multiple e opzioni di animazione avanzate.
+
+```html
+<my-component>
+  <riot-particles if="{state.particlesInitialized}" id="tsparticles" options="{particlesConfig}" />
+
+  <script>
+    import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+    import { loadSlim } from "@tsparticles/slim";
+
+    export default {
+      particlesConfig: {
+        fullScreen: { enable: true, zIndex: -1 },
+        fpsLimit: 60,
+        particles: {
+          number: {
+            value: 60,
+            density: { enable: true, width: 800, height: 800 },
+          },
+          color: {
+            value: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
+          },
+          shape: {
+            type: ["circle", "triangle", "polygon"],
+            options: {
+              polygon: { sides: 6 },
+            },
+          },
+          opacity: { value: { min: 0.4, max: 0.8 } },
+          size: { value: { min: 3, max: 8 } },
+          links: {
+            enable: true,
+            distance: 200,
+            color: "#ffffff",
+            opacity: 0.15,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: { default: "out" },
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "attract" },
+            onClick: { enable: true, mode: "repulse" },
+          },
+          modes: {
+            attract: { distance: 200, duration: 0.4, factor: 1 },
+            repulse: { distance: 200, duration: 0.4 },
+          },
+        },
+        background: { color: "#0f0f23" },
+      },
+      onBeforeMount() {
+        this.state.particlesInitialized = false;
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          }).then(() => {
+            this.update({ particlesInitialized: true });
+          });
+        }
+      },
+    };
+  </script>
+</my-component>
+```
+
+---
+
+## Componente Completo
+
+Ecco un file `.riot` completo che unisce tutto: inizializzazione del motore in `onBeforeMount`, rendering condizionale con stato, una configurazione ricca con interattività e una callback `particlesLoaded` tramite il supporto integrato del componente per gli eventi caricati.
+
+```html
+<my-component>
+  <div class="particles-wrapper">
+    <h1>tsParticles + Riot.js</h1>
+
+    {#if state.particlesInitialized}
+    <riot-particles id="tsparticles" options="{particlesConfig}" />
+    {:else}
+    <p>Caricamento motore particelle...</p>
+    {/if}
+  </div>
+
+  <script>
+    import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+    import { loadSlim } from "@tsparticles/slim";
+
+    export default {
+      state: {
+        particlesInitialized: false,
+      },
+      particlesConfig: {
+        fullScreen: { enable: true, zIndex: -1 },
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80, density: { enable: true } },
+          color: { value: "#6366f1" },
+          shape: { type: "circle" },
+          opacity: { value: { min: 0.3, max: 0.7 } },
+          size: { value: { min: 2, max: 6 } },
+          links: {
+            enable: true,
+            distance: 160,
+            color: "#6366f1",
+            opacity: 0.25,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1.2,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: { default: "bounce" },
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "grab" },
+            onClick: { enable: true, mode: "push" },
+          },
+          modes: {
+            grab: { distance: 180, links: { opacity: 0.6 } },
+            push: { quantity: 3 },
+          },
+        },
+        background: { color: "#0a0a1a" },
+      },
+      onBeforeMount() {
+        if (typeof window !== "undefined") {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          }).then(() => {
+            this.update({ particlesInitialized: true });
+          });
+        }
+      },
+    };
+  </script>
+
+  <style scoped>
+    .particles-wrapper {
+      position: relative;
+      min-height: 100vh;
+    }
+    .particles-wrapper h1 {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+      padding-top: 2rem;
+    }
+    .particles-wrapper p {
+      position: relative;
+      z-index: 1;
+      color: #aaa;
+      text-align: center;
+    }
+  </style>
+</my-component>
+```
+
+---
+
+Ora hai tutto il necessario per integrare tsParticles in un'applicazione Riot.js. Ogni esempio è autonomo e pronto per essere copiato nel tuo progetto.

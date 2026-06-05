@@ -1,20 +1,44 @@
 # Bundle: tsparticles (Full)
 
-`tsparticles` e o bundle full e inclui um conjunto amplo de recursos oficiais com um unico loader.
+`tsparticles` (npm: `tsparticles`, loader: `loadFull`) é o bundle completo oficial. Inclui tudo do Slim mais emissores, absorvedores, formas de texto e animações avançadas (wobble, roll, tilt, twinkle, destroy).
 
-## Quando escolher tsparticles (Full)
+## Funcionalidades incluídas
 
-- Voce precisa de muitos recursos oficiais sem selecionar plugins manualmente.
-- Voce quer uma base completa pronta para producao antes de ajustar.
-- Voce prefere controle do engine pela API `tsParticles`.
+Herda tudo de `@tsparticles/slim` mais:
 
-## Instalacao
+**Formas adicionais:** texto (com fontes personalizadas)
+
+**Interações externas adicionais:**
+- drag (arrastar partículas com o mouse)
+- trail (rastro de partículas atrás do mouse)
+
+**Atualizadores adicionais:**
+- destroy (animação de destruição de partículas)
+- roll (rolamento)
+- tilt (inclinação 3D)
+- twinkle (brilho intermitente)
+- wobble (oscilação)
+
+**Plugins:**
+- absorbers (buracos negros que sugam partículas)
+- emitters (fontes contínuas de partículas)
+- emitters-shape-circle, emitters-shape-square (formas de emissores)
+
+## Quando usar
+
+- Precisa de emissores (partículas gerando continuamente)
+- Precisa de absorvedores (partículas sendo sugadas)
+- Precisa de formas de texto com fontes personalizadas
+- Precisa de animações avançadas (wobble, tilt, roll, twinkle)
+- Bom passo intermediário antes de ir para plugins individuais
+
+## Instalação
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine tsparticles
 ```
-
-## Exemplo de setup
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -25,20 +49,65 @@ await loadFull(tsParticles);
 await tsParticles.load({
   id: "tsparticles",
   options: {
+    background: { color: "#000" },
     particles: {
-      number: { value: 100 },
-      move: { enable: true, speed: 2 },
+      number: { value: 50 },
+      shape: { type: "text", options: { text: ["🔥", "✨", "⭐"] } },
+      size: { value: 24 },
+      move: { enable: true, speed: 1 },
+      wobble: { enable: true, distance: 10 },
+    },
+    emitters: {
+      direction: "top",
+      rate: { quantity: 2, delay: 0.3 },
     },
   },
 });
 ```
 
+### CDN (script tags)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadFull(tsParticles);
+
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 80 },
+          move: { enable: true, speed: 2 },
+        },
+        absorbers: [{ color: "#ff0000", size: { value: 50 } }],
+      },
+    });
+  })();
+</script>
+```
+
+## Diferença entre `tsparticles` e `@tsparticles/all`
+
+| Aspecto | `tsparticles` (full) | `@tsparticles/all` |
+|---|---|---|
+| Tamanho | Moderado | Muito grande |
+| Formas | círculo, quadrado, estrela, polígono, linha, imagem, emoji, texto | Todas as formas (coração, cartas, seta, espiral, engrenagem, retângulo arredondado, etc.) |
+| Interações | Slim + drag + trail | Todas (cannon, light, pop, particle, repulse) |
+| Caminhos | Apenas easing quad | 14 geradores de caminho |
+| Efeitos | Nenhum | 5 efeitos (bolha, filtro, sombra, etc.) |
+| Exportações | Nenhuma | Imagem, JSON, Vídeo |
+| Plugins extras | absorvedores, emissores | Todos (sons, temas, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
+| Easing | Quad | 15 easings |
+
 ## Erros comuns
 
-- Chamar `tsParticles.load(...)` antes de `loadFull(...)`.
-- Assumir que e o mesmo pacote que `@tsparticles/all` (sao bundles diferentes).
+- Confundir `tsparticles` com `@tsparticles/all` — são pacotes diferentes.
+- Chamar `tsParticles.load()` antes de `loadFull(tsParticles)`.
+- O pacote npm é `tsparticles` (não `@tsparticles/full`), o loader é `loadFull`.
 
-## Paginas relacionadas
+## Veja também
 
-- Visao geral: [`/guide/bundles`](/pt/guide/bundles)
-- Matriz de instalacao: [`/guide/installation`](/pt/guide/installation)
+- [Visão geral de bundles](/pt/guide/bundles)
+- [Guia de instalação](/pt/guide/installation)

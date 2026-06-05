@@ -1,6 +1,6 @@
 # カラーフォーマット
 
-tsParticles は、`background`、`particles.color`、プラグイン設定などのオプションにわたって複数のカラー形式を受け入れます。
+tsParticles は、`background`、`particles.paint`、プラグイン設定などのオプションにわたって複数のカラー形式を受け入れます。
 
 ## 一般的な形式
 

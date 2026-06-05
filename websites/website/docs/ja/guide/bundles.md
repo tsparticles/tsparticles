@@ -1,104 +1,179 @@
-# Bundles ガイド
+# バンドルガイド
 
-このページでは、`tsParticles` の適切な bundle を選び、素早くセットアップする方法をまとめています。
+tsParticles はモジュール式です。`@tsparticles/engine` パッケージはコアエンジンのみを含みます。視覚効果を得るには、**形状**（何を描画するか）、**アップデーター**（アニメーション方法）、**インタラクション**（マウス/タッチへの反応）、**プラグイン**（追加機能）を登録する必要があります。これらはすべて**バンドル**を通じて行われます。
 
-## パッケージ比較
+## バンドルのカテゴリ
 
-| パッケージ               | 向いている用途                                   | セットアップ方式                               |
-| ------------------------ | ------------------------------------------------ | ---------------------------------------------- |
-| `@tsparticles/basic`     | さらに軽量な構成                                 | `tsParticles` + `await loadBasic(tsParticles)` |
-| `@tsparticles/slim`      | ほとんどの Web サイト/アプリ                     | `tsParticles` + `await loadSlim(tsParticles)`  |
-| `tsparticles`            | 公式機能を広く含む full 構成を engine 制御で使う | `tsParticles` + `await loadFull(tsParticles)`  |
-| `@tsparticles/all`       | 全機能を使った高速プロトタイプ                   | `tsParticles` + `await loadAll(tsParticles)`   |
-| `@tsparticles/confetti`  | 1 回の呼び出しで紙吹雪演出                       | `await confetti(options)`                      |
-| `@tsparticles/fireworks` | 1 回の呼び出しで花火演出                         | `await fireworks(options)`                     |
-| `@tsparticles/particles` | シンプルな粒子背景 API                           | `await particles(options)`                     |
-| `@tsparticles/ribbons`   | 1 回の呼び出しで ribbons 演出                    | `await ribbons(options)`                       |
+| カテゴリ | バンドル | API |
+|---|---|---|
+| エンジン + ローダー | `@tsparticles/basic`、`@tsparticles/slim`、`tsparticles`、`@tsparticles/all` | `tsParticles.load({ id, options })` |
+| 専用 API | `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles`、`@tsparticles/ribbons` | `confetti({...})`、`fireworks({...})` など |
 
-## Bundle ガイド
+## 機能比較
 
-- Basic: [`/guide/bundles-basic`](/ja/guide/bundles-basic)
-- Slim: [`/guide/bundles-slim`](/ja/guide/bundles-slim)
-- tsparticles (Full): [`/guide/bundles-full`](/ja/guide/bundles-full)
-- All: [`/guide/bundles-all`](/ja/guide/bundles-all)
-- Confetti: [`/guide/bundles-confetti`](/ja/guide/bundles-confetti)
-- Fireworks: [`/guide/bundles-fireworks`](/ja/guide/bundles-fireworks)
-- Particles: [`/guide/bundles-particles`](/ja/guide/bundles-particles)
-- Ribbons（demo + docs）: [`/demos/recipes/ribbons`](/ja/demos/recipes/ribbons) · <https://ribbons.js.org>
+凡例: ● = 含む、○ = 含まない
 
-## インストール
+| 機能 | basic | slim | full（`tsparticles`） | all |
+|---|---|---|---|---|
+| **形状** | | | | |
+| 円 | ● | ● | ● | ● |
+| 四角 | ○ | ● | ● | ● |
+| 星 | ○ | ● | ● | ● |
+| 多角形 | ○ | ● | ● | ● |
+| 線 | ○ | ● | ● | ● |
+| 画像 | ○ | ● | ● | ● |
+| 絵文字 | ○ | ● | ● | ● |
+| テキスト | ○ | ○ | ● | ● |
+| カード（スート） | ○ | ○ | ○ | ● |
+| ハート | ○ | ○ | ○ | ● |
+| 矢印 | ○ | ○ | ○ | ● |
+| 角丸四角 | ○ | ○ | ○ | ● |
+| 角丸多角形 | ○ | ○ | ○ | ● |
+| スパイラル | ○ | ○ | ○ | ● |
+| スクワークル | ○ | ○ | ○ | ● |
+| Cog | ○ | ○ | ○ | ● |
+| Infinity | ○ | ○ | ○ | ● |
+| Matrix | ○ | ○ | ○ | ● |
+| Path | ○ | ○ | ○ | ● |
+| リボン | ○ | ○ | ○ | ● |
+| **外部インタラクション（マウス/タッチ）** | | | | |
+| Attract | ○ | ● | ● | ● |
+| Bounce | ○ | ● | ● | ● |
+| Bubble | ○ | ● | ● | ● |
+| Connect | ○ | ● | ● | ● |
+| Destroy | ○ | ● | ● | ● |
+| Grab | ○ | ● | ● | ● |
+| Parallax | ○ | ● | ● | ● |
+| Pause | ○ | ● | ● | ● |
+| Push | ○ | ● | ● | ● |
+| Remove | ○ | ● | ● | ● |
+| Repulse | ○ | ● | ● | ● |
+| Slow | ○ | ● | ● | ● |
+| Drag | ○ | ○ | ● | ● |
+| Trail | ○ | ○ | ● | ● |
+| Cannon | ○ | ○ | ○ | ● |
+| Particle | ○ | ○ | ○ | ● |
+| Pop | ○ | ○ | ○ | ● |
+| Light | ○ | ○ | ○ | ● |
+| **パーティクルインタラクション** | | | | |
+| リンク | ○ | ● | ● | ● |
+| 衝突 | ○ | ● | ● | ● |
+| Attract | ○ | ● | ● | ● |
+| Repulse | ○ | ○ | ○ | ● |
+| **アップデーター（アニメーション）** | | | | |
+| 不透明度 | ● | ● | ● | ● |
+| サイズ | ● | ● | ● | ● |
+| Out modes | ● | ● | ● | ● |
+| 色（Paint） | ● | ● | ● | ● |
+| 回転 | ○ | ● | ● | ● |
+| Life | ○ | ● | ● | ● |
+| Destroy | ○ | ○ | ● | ● |
+| Roll | ○ | ○ | ● | ● |
+| Tilt | ○ | ○ | ● | ● |
+| Twinkle | ○ | ○ | ● | ● |
+| Wobble | ○ | ○ | ● | ● |
+| Gradient | ○ | ○ | ○ | ● |
+| Orbit | ○ | ○ | ○ | ● |
+| **プラグイン** | | | | |
+| Move | ● | ● | ● | ● |
+| Blend | ● | ● | ● | ● |
+| エミッター | ○ | ○ | ● | ● |
+| アブソーバー | ○ | ○ | ● | ● |
+| Sounds | ○ | ○ | ○ | ● |
+| Motion（ユーザー設定） | ○ | ○ | ○ | ● |
+| Themes | ○ | ○ | ○ | ● |
+| ポリゴンマスク | ○ | ○ | ○ | ● |
+| キャンバスマスク | ○ | ○ | ○ | ● |
+| 背景マスク | ○ | ○ | ○ | ● |
+| エクスポート（画像、JSON、動画） | ○ | ○ | ○ | ● |
+| Manual particles | ○ | ○ | ○ | ● |
+| Responsive | ○ | ○ | ○ | ● |
+| Trail | ○ | ○ | ○ | ● |
+| Zoom | ○ | ○ | ○ | ● |
+| Poisson disc | ○ | ○ | ○ | ● |
+| **パス** | | | | |
+| 任意のパス | ○ | ○ | ○ | ●（14 ジェネレーター） |
+| **エフェクト** | | | | |
+| バブル、フィルター、シャドウなど | ○ | ○ | ○ | ●（5 エフェクト） |
+| **イージング** | | | | |
+| Quad | ○ | ● | ● | ● |
+| Back、Bounce、Circ、Cubic、Elastic、Expo、Gaussian、Linear、Quart、Quint、Sigmoid、Sine、Smoothstep | ○ | ○ | ○ | ● |
+| **カラープラグイン** | | | | |
+| HEX、HSL、RGB | ● | ● | ● | ● |
+| HSV、HWB、LAB、LCH、Named、OKLAB、OKLCH | ○ | ○ | ○ | ● |
 
-用途に合うパッケージ経路をインストールします。
+### 専用 API バンドル
 
-```bash
-pnpm add @tsparticles/engine @tsparticles/basic
-pnpm add @tsparticles/engine @tsparticles/slim
-pnpm add @tsparticles/engine tsparticles
-pnpm add @tsparticles/engine @tsparticles/all
-pnpm add @tsparticles/confetti
-pnpm add @tsparticles/fireworks
-pnpm add @tsparticles/particles
-pnpm add @tsparticles/ribbons
+| 機能 | confetti | fireworks | particles | ribbons |
+|---|---|---|---|---|
+| 形状 | 円、ハート、カード、絵文字、画像、多角形、四角、星 | 線 |（basic から） | リボン |
+| インタラクション | — | — | リンク + 衝突 | — |
+| 特殊プラグイン | エミッター、motion | エミッター、sounds、blend | — | エミッター、motion |
+| API 呼び出し | `confetti(opts)` | `fireworks(opts)` | `particles(opts)` | `ribbons(opts)` |
+
+## 選択ガイド
+
+```mermaid
+flowchart TD
+    A[素早く始めたい?] -->|はい| B[プリセットを使う?]
+    A -->|いいえ| C[バンドルサイズは?]
+    B -->|はい| D["@tsparticles/configs + @tsparticles/slim"]
+    B -->|いいえ| E["紙吹雪? → @tsparticles/confetti"]
+    B -->|いいえ| F["花火? → @tsparticles/fireworks"]
+    B -->|いいえ| G["パーティクル背景? → @tsparticles/particles"]
+    B -->|いいえ| H["リボン? → @tsparticles/ribbons"]
+    C -->|"最小（円のみ）"| I["@tsparticles/basic"]
+    C -->|"中程度（形状 + インタラクション）"| J["@tsparticles/slim"]
+    C -->|"最大（全機能）"| K["tsparticles（loadFull）"]
+    C -->|"リポジトリ全体"| L["@tsparticles/all"]
 ```
 
-CDN リンクや他の package manager の例が必要な場合:
+**経験則:**
+1. ほとんどのプロジェクトは `@tsparticles/slim` から始めます。
+2. バンドルサイズが重要で円のみ必要な場合: `@tsparticles/basic`。
+3. エミッター、アブソーバー、テキスト、ウィブル/ティルト/ロールが必要な場合: `tsparticles` で `loadFull`。
+4. 全機能を使った迅速なプロトタイピング: `@tsparticles/all`。
+5. 最小セットアップで目的別エフェクト（紙吹雪、花火、パーティクル背景、リボン）: 専用 API バンドル。
 
-- [`/guide/installation`](/ja/guide/installation) を参照してください。
+## クイックインストール
 
-## セットアップ例
+| バンドル | npm コマンド | ローダー関数 | CDN URL |
+|---|---|---|---|
+| `@tsparticles/basic` | `pnpm add @tsparticles/engine @tsparticles/basic` | `loadBasic(tsParticles)` | `@tsparticles/basic@4/tsparticles.basic.bundle.min.js` |
+| `@tsparticles/slim` | `pnpm add @tsparticles/engine @tsparticles/slim` | `loadSlim(tsParticles)` | `@tsparticles/slim@4/tsparticles.slim.bundle.min.js` |
+| `tsparticles`（full） | `pnpm add @tsparticles/engine tsparticles` | `loadFull(tsParticles)` | `tsparticles@4/tsparticles.bundle.min.js` |
+| `@tsparticles/all` | `pnpm add @tsparticles/engine @tsparticles/all` | `loadAll(tsParticles)` | `@tsparticles/all@4/tsparticles.all.bundle.min.js` |
+| `@tsparticles/confetti` | `pnpm add @tsparticles/confetti` | `confetti(opts)` | `@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js` |
+| `@tsparticles/fireworks` | `pnpm add @tsparticles/fireworks` | `fireworks(opts)` | `@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| `@tsparticles/particles` | `pnpm add @tsparticles/particles` | `particles(opts)` | `@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| `@tsparticles/ribbons` | `pnpm add @tsparticles/ribbons` | `ribbons(opts)` | `@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js` |
 
-### engine + loader bundles (`basic`, `slim`, `full`, `all`)
+**注意:** basic/slim/full/all バンドルでは、`tsParticles.load()` の前に `load*` を呼び出す必要があります。CDN ファイルはローダー関数をグローバルに公開しますが、自動実行はしません。confetti/fireworks/particles/ribbons バンドルは自己完結型 API を持ち、`confetti()`、`fireworks()` などを直接呼び出します。
 
-```ts
-import { tsParticles } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-
-await loadSlim(tsParticles);
-
-await tsParticles.load({
-  id: "tsparticles",
-  options: {
-    particles: {
-      number: { value: 80 },
-      move: { enable: true, speed: 2 },
-    },
-  },
-});
+`@tsparticles/slim` の CDN 例:
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadSlim(tsParticles);
+    await tsParticles.load({ id: "tsparticles", options: { ... } });
+  })();
+</script>
 ```
 
-他の preset を使う場合は、loader の import/関数名だけ差し替えます:
-
-- `@tsparticles/basic` -> `loadBasic`
-- `tsparticles` -> `loadFull`
-- `@tsparticles/all` -> `loadAll`
-
-### 特化 API (`confetti`, `fireworks`, `particles`, `ribbons`)
-
-```ts
-import { confetti } from "@tsparticles/confetti";
-import { fireworks } from "@tsparticles/fireworks";
-import { particles } from "@tsparticles/particles";
-import { ribbons } from "@tsparticles/ribbons";
-
-await confetti({ count: 80, spread: 60 });
-await fireworks({ sounds: false });
-await particles({ count: 100, links: true });
-await ribbons({ count: 5, spread: 0 });
+`@tsparticles/confetti` の CDN 例:
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+<script>confetti({ particleCount: 100 });</script>
 ```
 
-これらの API は、多数の engine plugin を手動接続せずに素早く統合したい場合に最適です。
-
-## 実践的な選び方
-
-1. ほとんどのプロジェクトでは `@tsparticles/slim` から開始する。
-2. bundle サイズ最優先で機能要件がシンプルなら `@tsparticles/basic` を使う。
-3. 幅広い機能を持つ full な土台を `loadFull` で使いたい場合は `tsparticles` を使う。
-4. プロトタイピングや、多くの機能をすぐ使いたい場合は `@tsparticles/all` を使う。
-5. UI に特化した 1 つの演出を最小セットアップで入れたい場合は `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles`、`@tsparticles/ribbons` を使う。
+インストールの詳細は[インストールガイド](/ja/guide/installation)を参照してください。
 
 ## 関連ページ
 
-- playground の特化 bundles: [`/playground/bundles`](/ja/playground/bundles)
-- スタートガイド: [`/guide/getting-started`](/ja/guide/getting-started)
-- インストール一覧: [`/guide/installation`](/ja/guide/installation)
-- wrappers 概要: [`/guide/wrappers`](/ja/guide/wrappers)
+- [はじめに](/ja/guide/getting-started)
+- [インストールガイド](/ja/guide/installation)
+- [プリセットカタログ](/ja/demos/presets)
+- [パレットカタログ](/ja/demos/palettes)
+- [形状カタログ](/ja/demos/shapes)

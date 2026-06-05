@@ -1,51 +1,98 @@
-# Particles
+# Bundle: Particles
 
-`@tsparticles/particles` exposes a focused API for simple particles backgrounds.
+`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
 
-## When to choose Particles
+## Included features
 
-- You want a quick particles background API.
-- You do not need direct engine setup for every feature.
-- You prefer a compact, app-like API.
+**Shapes:** circle (from basic)
+
+**Internal plugins:** interactivity (links, collisions)
+
+**Interactions:** links (particle connections), collisions
+
+**API:** `particles(options)` or `particles(canvasId, options)`
+
+## When to use
+
+- Particle background for a website
+- Background with particle links (node-style effect)
+- You don't want to configure the engine manually
 
 ## Installation
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/particles
 ```
 
-## Setup
-
 ```ts
 import { particles } from "@tsparticles/particles";
 
-const instance = await particles({
+// Background with links
+await particles({
   count: 120,
-  color: "#00f",
   links: true,
-  linksColor: "#0ff",
-  linksLength: 140,
-  radius: 4,
-  shape: ["circle", "square"],
+  color: "#ffffff",
+  linksColor: "#00d8ff",
+  radius: 3,
+  speed: 2,
+  opacity: 0.8,
 });
 
-instance?.pause();
-instance?.play();
+// On a specific canvas
+await particles("my-canvas", {
+  count: 80,
+  shape: ["circle", "square"],
+  links: true,
+});
+
+// With custom colors
+await particles({
+  count: 100,
+  color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
+  links: false,
+});
 ```
 
-Custom canvas:
+### CDN (script tag)
 
-```ts
-const canvas = document.getElementById("my-canvas") as HTMLCanvasElement;
-await particles.create(canvas, { links: true });
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
+<script>
+  particles({
+    radius: 3,
+    speed: 2,
+    opacity: 0.8,
+    links: true,
+    linksWidth: 140,
+    color: "#ffffff",
+    linksColor: "#00d8ff",
+  });
+</script>
 ```
 
-## Common pitfalls
+### Main parameters
 
-- Assuming `tsParticles` is exported from `@tsparticles/particles`.
-- Reusing the same id unintentionally.
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `count` | number | 50 | Number of particles |
+| `radius` | number | 3 | Particle radius |
+| `speed` | number | 2 | Movement speed |
+| `opacity` | number | 0.8 | Opacity (0-1) |
+| `color` | string \| string[] | "#ffffff" | Particle color(s) |
+| `links` | boolean | false | Show links |
+| `linksColor` | string | "#ffffff" | Link color |
+| `linksWidth` | number | 1 | Link thickness |
+| `shape` | string[] | ["circle"] | Particle shapes |
 
-## Related pages
+## Common mistakes
 
-- Overview: [`/guide/bundles`](/guide/bundles)
-- Playground bundles: [`/playground/bundles`](/playground/bundles)
+- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
+
+## See also
+
+- [Bundle overview](/guide/bundles)
+- [Getting started](/guide/getting-started)

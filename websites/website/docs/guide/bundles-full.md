@@ -1,20 +1,44 @@
-# tsparticles (Full)
+# Bundle: tsparticles (Full)
 
-`tsparticles` is the full bundle and includes a broad set of official features with one loader.
+`tsparticles` (npm: `tsparticles`, loader: `loadFull`) is the official full bundle. Includes everything from Slim plus emitters, absorbers, text shapes, and advanced animations (wobble, roll, tilt, twinkle, destroy).
 
-## When to choose tsparticles (Full)
+## Included features
 
-- You need many official features without manually selecting plugins.
-- You want a complete production-ready baseline before fine-tuning.
-- You prefer engine control through the `tsParticles` API.
+Inherits everything from `@tsparticles/slim` plus:
+
+**Additional shapes:** text (with custom fonts)
+
+**Additional external interactions:**
+- drag (drag particles with mouse)
+- trail (particle trail behind mouse)
+
+**Additional updaters:**
+- destroy (particle destruction animation)
+- roll (rolling)
+- tilt (3D tilt)
+- twinkle (intermittent sparkle)
+- wobble (oscillation)
+
+**Plugins:**
+- absorbers (black holes that suck in particles)
+- emitters (continuous particle sources)
+- emitters-shape-circle, emitters-shape-square (emitter shapes)
+
+## When to use
+
+- Need emitters (particles spawning continuously)
+- Need absorbers (particles being sucked in)
+- Need text shapes with custom fonts
+- Need advanced animations (wobble, tilt, roll, twinkle)
+- Good stepping stone before going to individual plugins
 
 ## Installation
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine tsparticles
 ```
-
-## Setup
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -25,20 +49,65 @@ await loadFull(tsParticles);
 await tsParticles.load({
   id: "tsparticles",
   options: {
+    background: { color: "#000" },
     particles: {
-      number: { value: 100 },
-      move: { enable: true, speed: 2 },
+      number: { value: 50 },
+      shape: { type: "text", options: { text: ["🔥", "✨", "⭐"] } },
+      size: { value: 24 },
+      move: { enable: true, speed: 1 },
+      wobble: { enable: true, distance: 10 },
+    },
+    emitters: {
+      direction: "top",
+      rate: { quantity: 2, delay: 0.3 },
     },
   },
 });
 ```
 
-## Common pitfalls
+### CDN (script tags)
 
-- Calling `tsParticles.load(...)` before `loadFull(...)`.
-- Assuming this is the same package as `@tsparticles/all` (they are different bundles).
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js"></script>
+<script>
+  (async () => {
+    await loadFull(tsParticles);
 
-## Related pages
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 80 },
+          move: { enable: true, speed: 2 },
+        },
+        absorbers: [{ color: "#ff0000", size: { value: 50 } }],
+      },
+    });
+  })();
+</script>
+```
 
-- Overview: [`/guide/bundles`](/guide/bundles)
-- Installation matrix: [`/guide/installation`](/guide/installation)
+## Difference between `tsparticles` and `@tsparticles/all`
+
+| Aspect | `tsparticles` (full) | `@tsparticles/all` |
+|---|---|---|
+| Size | Moderate | Very large |
+| Shapes | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.) |
+| Interactions | Slim + drag + trail | All (cannon, light, pop, particle, repulse) |
+| Paths | Quad easing only | 14 path generators |
+| Effects | None | 5 effects (bubble, filter, shadow, etc.) |
+| Exports | None | Image, JSON, Video |
+| Extra plugins | absorbers, emitters | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
+| Easing | Quad | 15 easings |
+
+## Common mistakes
+
+- Confusing `tsparticles` with `@tsparticles/all` — they are different packages.
+- Calling `tsParticles.load()` before `loadFull(tsParticles)`.
+- The npm package is `tsparticles` (not `@tsparticles/full`), the loader is `loadFull`.
+
+## See also
+
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

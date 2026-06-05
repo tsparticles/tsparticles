@@ -1,42 +1,83 @@
-# Confetti
+# Bundle: Confetti
 
-`@tsparticles/confetti` exposes a focused API for confetti effects with minimal setup.
+`@tsparticles/confetti` provides a simplified API for creating confetti effects with a single function call. No need to interact with `tsParticles` directly.
 
-## When to choose Confetti
+## Included features
 
-- You want one-call celebratory effects.
-- You do not need to wire the engine manually.
-- You prefer a compact API for UI events.
+**Shapes:** circle, heart, cards (French suits: hearts, diamonds, clubs, spades), emoji, images, polygon, square, star
+
+**Internal plugins:** emitters, motion (respects user's reduced motion preference)
+
+**Updaters:** life, roll, rotate, tilt, wobble
+
+**API:** `confetti(options)` or `confetti(canvasId, options)`
+
+## When to use
+
+- "Congratulations!" or "Happy Birthday!" button
+- Quick celebration effect
+- You don't want to configure the engine manually
 
 ## Installation
+
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/confetti
 ```
 
-## Setup example
-
 ```ts
 import { confetti } from "@tsparticles/confetti";
 
+// Basic effect
 await confetti({
-  count: 80,
-  spread: 60,
+  particleCount: 100,
+  spread: 70,
+  origin: { x: 0.5, y: 0.5 },
 });
 
-await confetti("canvas-id", {
-  count: 50,
+// On a specific canvas
+await confetti("my-canvas-id", {
+  particleCount: 50,
   angle: 90,
   spread: 45,
+  colors: ["#ff0000", "#00ff00", "#0000ff"],
 });
 ```
 
-## Common pitfalls
+### CDN (script tag)
 
-- Assuming `tsParticles` is exported from `@tsparticles/confetti`.
-- Reusing the same canvas id unintentionally.
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+<script>
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    colors: ["#bb0000", "#ffffff"],
+  });
+</script>
+```
 
-## Related pages
+### Main parameters
 
-- Overview: [`/guide/bundles`](/guide/bundles)
-- Playground bundles: [`/playground/bundles`](/playground/bundles)
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `particleCount` | number | 50 | Number of confetti pieces |
+| `spread` | number | 60 | Spread angle (degrees) |
+| `angle` | number | 90 | Direction (degrees, 90 = down) |
+| `startVelocity` | number | 30 | Initial velocity |
+| `colors` | string[] | — | Confetti colors |
+| `origin` | { x, y } | { 0.5, 0.5 } | Origin point (0-1) |
+| `drift` | number | 0 | Horizontal drift |
+| `shapes` | string[] | — | Shapes: "circle", "heart", "square", "star", "cards" |
+
+## Common mistakes
+
+- Thinking `tsParticles` is exported by `@tsparticles/confetti` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Calling `confetti` in a loop without managing performance — use a reasonable interval or stop the animation when done.
+
+## See also
+
+- [Bundle overview](/guide/bundles)
+- [Fireworks bundle](/guide/bundles-fireworks)

@@ -1,109 +1,147 @@
 # Installation
 
-Cette page reprend la matrice d'installation du README principal de `tsParticles`.
+## Choisissez votre parcours
 
-Reference officielle : <https://github.com/tsparticles/tsparticles/blob/main/README.md#library-installation>
+| Scénario | Commande |
+|---|---|
+| Démarrage rapide (recommandé) | `pnpm add @tsparticles/engine @tsparticles/slim` |
+| Minimum indispensable | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| Ensemble complet de fonctionnalités | `pnpm add @tsparticles/engine tsparticles` |
+| Tout l'écosystème | `pnpm add @tsparticles/engine @tsparticles/all` |
+| Confettis uniquement | `pnpm add @tsparticles/confetti` |
+| Feux d'artifice uniquement | `pnpm add @tsparticles/fireworks` |
+| Fond de particules | `pnpm add @tsparticles/particles` |
+| Effet rubans | `pnpm add @tsparticles/ribbons` |
 
-## Choisir votre parcours
+> **Important** : `@tsparticles/engine` seul ne dessine rien. Vous devez toujours ajouter un bundle (pour charger les formes et animations) ou des plugins individuels. Voir le [guide des bundles](/fr/guide/bundles).
 
-- **Demarrage rapide** : `@tsparticles/engine` + `@tsparticles/slim`
-- **Runtime personnalise plus leger** : `@tsparticles/engine` + seulement les plugins necessaires
-- **API ciblees** : `@tsparticles/particles`, `@tsparticles/confetti`, `@tsparticles/fireworks`, ou `@tsparticles/ribbons`
-- **Toutes les fonctionnalites incluses** : `@tsparticles/all`
+## Avec npm
 
-## Hebergement / CDN
+```bash
+# engine + slim (recommandé pour la plupart des projets)
+npm install @tsparticles/engine @tsparticles/slim
 
-Utilisez l'un de ces fournisseurs (ou hebergez vos fichiers buildes vous-meme).
+# engine + basic (minimum)
+npm install @tsparticles/engine @tsparticles/basic
+
+# engine + full (tsparticles)
+npm install @tsparticles/engine tsparticles
+
+# engine + all (tout)
+npm install @tsparticles/engine @tsparticles/all
+
+# Bundle à API dédiée (pas besoin d'engine explicite)
+npm install @tsparticles/confetti
+npm install @tsparticles/fireworks
+npm install @tsparticles/particles
+npm install @tsparticles/ribbons
+```
+
+## Avec yarn
+
+```bash
+yarn add @tsparticles/engine @tsparticles/slim
+# ... même schéma pour les autres bundles
+```
+
+## Avec pnpm
+
+```bash
+pnpm add @tsparticles/engine @tsparticles/slim
+# ... même schéma pour les autres bundles
+```
+
+## Avec CDN (balise `<script>`)
+
+Tous les packages sont disponibles sur jsDelivr, unpkg et cdnjs.
 
 ### jsDelivr
 
-- <https://www.jsdelivr.com/package/npm/@tsparticles/confetti>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/particles>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/engine>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/fireworks>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/basic>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/slim>
-- <https://www.jsdelivr.com/package/npm/tsparticles>
-- <https://www.jsdelivr.com/package/npm/@tsparticles/all>
-
-### cdnjs
-
-- <https://cdnjs.com/libraries/tsparticles>
+| Bundle | URL |
+|---|---|
+| Engine | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js` |
+| Basic | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js` |
+| Slim | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js` |
+| Full (`tsparticles`) | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js` |
+| All | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js` |
+| Confetti | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js` |
+| Fireworks | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| Particles | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| Ribbons | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js` |
+| Compatibilité particles.js | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js` |
 
 ### unpkg
 
-- <https://unpkg.com/@tsparticles/confetti/>
-- <https://unpkg.com/@tsparticles/particles/>
-- <https://unpkg.com/@tsparticles/engine/>
-- <https://unpkg.com/@tsparticles/fireworks/>
-- <https://unpkg.com/@tsparticles/basic/>
-- <https://unpkg.com/@tsparticles/slim/>
-- <https://unpkg.com/tsparticles/>
-- <https://unpkg.com/@tsparticles/all/>
+Même structure : `https://unpkg.com/{package-name}@{version}/{filename}`
 
-## Installation via gestionnaire de packages
+Exemple :
+`https://unpkg.com/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`
 
-### npm
+### cdnjs
 
-```bash
-npm install @tsparticles/engine
-```
+`https://cdnjs.com/libraries/tsparticles`
 
-### yarn
+## Exemples d'import
 
-```bash
-yarn add @tsparticles/engine
-```
-
-### pnpm
-
-```bash
-pnpm add @tsparticles/engine
-```
-
-## Import et require
+### Avec bundler (import ES module)
 
 ```ts
-const tsParticles = require("@tsparticles/engine");
-
-// or
-
-import { tsParticles } from "@tsparticles/engine";
-```
-
-## Configuration runtime minimale (`@tsparticles/slim`)
-
-```ts
+// Engine + bundle loader
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 await loadSlim(tsParticles);
-
-await tsParticles.load({
-  id: "tsparticles",
-  options: {
-    particles: {
-      move: {
-        enable: true,
-      },
-      number: {
-        value: 60,
-      },
-    },
-  },
-});
+await tsParticles.load({ id: "tsparticles", options: { ... } });
 ```
 
-## Pages liees
+### Avec CommonJS (require)
 
-- [`/guide/getting-started`](/fr/guide/getting-started)
-- [`/guide/wrappers`](/fr/guide/wrappers)
-- [`/demos/presets`](/fr/demos/presets)
-- [`/migrations/particles-js`](/fr/migrations/particles-js)
+```ts
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSlim } = require("@tsparticles/slim");
 
-## Compatibilite legacy
+(async () => {
+  await loadSlim(tsParticles);
+  await tsParticles.load({ id: "tsparticles", options: { ... } });
+})();
+```
 
-Si vous migrez d'anciennes integrations particles.js, utilisez le package de compatibilite :
+### Avec CDN (balise script)
 
-- npm : <https://www.npmjs.com/package/@tsparticles/pjs>
-- jsDelivr : <https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
+```html
+<!-- 1. Engine -->
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<!-- 2. Bundle (expose loadBasic/loadSlim/loadFull/loadAll globalement) -->
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<!-- 3. Votre script -->
+<script>
+  (async () => {
+    await loadSlim(tsParticles);  // enregistre les fonctionnalités
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        particles: {
+          number: { value: 60 },
+          move: { enable: true },
+        },
+      },
+    });
+  })();
+</script>
+```
+
+Avec les bundles à API dédiée :
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+<script>
+  confetti({ particleCount: 100, spread: 70 });
+</script>
+```
+
+## Pages associées
+
+- [Pour démarrer](/fr/guide/getting-started)
+- [Guide des bundles](/fr/guide/bundles)
+- [Catalogue de préréglages](/demos/presets)
+- [Wrappers framework](/fr/guide/wrappers)
