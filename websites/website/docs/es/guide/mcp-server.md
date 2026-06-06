@@ -26,25 +26,26 @@ Añade a `claude_desktop_config.json`:
 ### Cursor
 
 En la configuración de Cursor, añade un nuevo servidor MCP con:
+
 - **Nombre**: `tsparticles`
 - **Tipo**: `command`
 - **Comando**: `npx @tsparticles/mcp-server`
 
 ## Herramientas
 
-| Herramienta | Descripción |
-|-------------|-------------|
-| `suggest_plugins` | Dado un objeto options de tsParticles, devuelve los paquetes npm e imports necesarios |
-| `list_packages` | Lista los paquetes disponibles, filtrados por categoría o búsqueda |
-| `get_package_info` | Devuelve información detallada de un paquete específico |
+| Herramienta        | Descripción                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Dado un objeto options de tsParticles, devuelve los paquetes npm e imports necesarios |
+| `list_packages`    | Lista los paquetes disponibles, filtrados por categoría o búsqueda                    |
+| `get_package_info` | Devuelve información detallada de un paquete específico                               |
 
 ## Recursos
 
-| URI | Descripción |
-|-----|-------------|
-| `tsparticles://packages` | Catálogo completo de paquetes por categoría |
+| URI                           | Descripción                                                  |
+| ----------------------------- | ------------------------------------------------------------ |
+| `tsparticles://packages`      | Catálogo completo de paquetes por categoría                  |
 | `tsparticles://options/guide` | Guía completa de opciones con valores por defecto y ejemplos |
-| `tsparticles://bundles` | Jerarquía de bundles y guía de selección |
+| `tsparticles://bundles`       | Jerarquía de bundles y guía de selección                     |
 
 ## Despliegue remoto
 

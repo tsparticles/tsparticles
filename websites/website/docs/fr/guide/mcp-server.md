@@ -26,6 +26,7 @@ Ajoutez à `claude_desktop_config.json` :
 ### Cursor
 
 Dans les paramètres de Cursor, ajoutez un nouveau serveur MCP avec :
+
 - **Nom** : `tsparticles`
 - **Type** : `command`
 - **Commande** : `npx @tsparticles/mcp-server`
@@ -34,21 +35,21 @@ Dans les paramètres de Cursor, ajoutez un nouveau serveur MCP avec :
 
 Une fois connecté, l'assistant IA peut utiliser ces outils :
 
-| Outil | Description |
-|-------|-------------|
-| `suggest_plugins` | À partir d'un objet options tsParticles, retourne les paquets npm et imports nécessaires |
-| `list_packages` | Liste les paquets disponibles, filtrés par catégorie ou recherche |
-| `get_package_info` | Retourne les détails d'un paquet spécifique |
+| Outil              | Description                                                                              |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | À partir d'un objet options tsParticles, retourne les paquets npm et imports nécessaires |
+| `list_packages`    | Liste les paquets disponibles, filtrés par catégorie ou recherche                        |
+| `get_package_info` | Retourne les détails d'un paquet spécifique                                              |
 
 ## Ressources
 
 Le serveur expose également des ressources de référence :
 
-| URI | Description |
-|-----|-------------|
-| `tsparticles://packages` | Catalogue complet des paquets par catégorie |
+| URI                           | Description                                                        |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `tsparticles://packages`      | Catalogue complet des paquets par catégorie                        |
 | `tsparticles://options/guide` | Structure complète des options avec valeurs par défaut et exemples |
-| `tsparticles://bundles` | Hiérarchie des bundles et guide de sélection |
+| `tsparticles://bundles`       | Hiérarchie des bundles et guide de sélection                       |
 
 ## Prompt
 

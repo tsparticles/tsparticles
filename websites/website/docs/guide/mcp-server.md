@@ -26,6 +26,7 @@ Add to `claude_desktop_config.json`:
 ### Cursor
 
 In Cursor settings, add a new MCP server with:
+
 - **Name**: `tsparticles`
 - **Type**: `command`
 - **Command**: `npx @tsparticles/mcp-server`
@@ -34,21 +35,21 @@ In Cursor settings, add a new MCP server with:
 
 Once connected, the AI assistant can use these tools:
 
-| Tool | Description |
-|------|-------------|
-| `suggest_plugins` | Given a tsParticles options object, returns the npm packages and imports needed |
-| `list_packages` | Lists available packages, optionally filtered by category or search query |
-| `get_package_info` | Returns detailed info about a specific package |
+| Tool               | Description                                                                     |
+| ------------------ | ------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed |
+| `list_packages`    | Lists available packages, optionally filtered by category or search query       |
+| `get_package_info` | Returns detailed info about a specific package                                  |
 
 ## Resources
 
 The server also exposes reference resources that the AI can read:
 
-| URI | Description |
-|-----|-------------|
-| `tsparticles://packages` | Complete package catalog by category |
+| URI                           | Description                                       |
+| ----------------------------- | ------------------------------------------------- |
+| `tsparticles://packages`      | Complete package catalog by category              |
 | `tsparticles://options/guide` | Full options structure with defaults and examples |
-| `tsparticles://bundles` | Bundle hierarchy and selection guide |
+| `tsparticles://bundles`       | Bundle hierarchy and selection guide              |
 
 ## Prompt
 

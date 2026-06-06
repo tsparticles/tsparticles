@@ -25,11 +25,11 @@ npx @tsparticles/mcp-server
 
 ## 工具
 
-| 工具 | 描述 |
-|------|-------------|
-| `suggest_plugins` | 从 tsParticles 选项对象返回所需的 npm 包和导入 |
-| `list_packages` | 列出可用包，可按类别或搜索过滤 |
-| `get_package_info` | 返回特定包的详细信息 |
+| 工具               | 描述                                           |
+| ------------------ | ---------------------------------------------- |
+| `suggest_plugins`  | 从 tsParticles 选项对象返回所需的 npm 包和导入 |
+| `list_packages`    | 列出可用包，可按类别或搜索过滤                 |
+| `get_package_info` | 返回特定包的详细信息                           |
 
 ## 部署
 

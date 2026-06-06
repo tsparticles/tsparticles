@@ -25,19 +25,19 @@ Add to `claude_desktop_config.json`:
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `suggest_plugins` | Returns needed npm packages and imports from a tsParticles options object |
-| `list_packages` | Lists available packages, filtered by category or search |
-| `get_package_info` | Returns detailed info about a specific package |
+| Tool               | Description                                                               |
+| ------------------ | ------------------------------------------------------------------------- |
+| `suggest_plugins`  | Returns needed npm packages and imports from a tsParticles options object |
+| `list_packages`    | Lists available packages, filtered by category or search                  |
+| `get_package_info` | Returns detailed info about a specific package                            |
 
 ## Resources
 
-| URI | Description |
-|-----|-------------|
-| `tsparticles://packages` | Complete package catalog by category |
+| URI                           | Description                                       |
+| ----------------------------- | ------------------------------------------------- |
+| `tsparticles://packages`      | Complete package catalog by category              |
 | `tsparticles://options/guide` | Full options structure with defaults and examples |
-| `tsparticles://bundles` | Bundle hierarchy and selection guide |
+| `tsparticles://bundles`       | Bundle hierarchy and selection guide              |
 
 ## Deploy
 

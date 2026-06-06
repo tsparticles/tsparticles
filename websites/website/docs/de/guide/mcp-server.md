@@ -25,11 +25,11 @@ Zu `claude_desktop_config.json` hinzufügen:
 
 ## Werkzeuge
 
-| Werkzeug | Beschreibung |
-|----------|--------------|
-| `suggest_plugins` | Ermittelt benötigte npm-Pakete und Imports aus einem tsParticles-Optionsobjekt |
-| `list_packages` | Listet verfügbare Pakete auf, gefiltert nach Kategorie oder Suchbegriff |
-| `get_package_info` | Zeigt detaillierte Informationen zu einem bestimmten Paket |
+| Werkzeug           | Beschreibung                                                                   |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `suggest_plugins`  | Ermittelt benötigte npm-Pakete und Imports aus einem tsParticles-Optionsobjekt |
+| `list_packages`    | Listet verfügbare Pakete auf, gefiltert nach Kategorie oder Suchbegriff        |
+| `get_package_info` | Zeigt detaillierte Informationen zu einem bestimmten Paket                     |
 
 ## Deployment
 

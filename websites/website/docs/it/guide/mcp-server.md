@@ -26,6 +26,7 @@ Aggiungi a `claude_desktop_config.json`:
 ### Cursor
 
 Nelle impostazioni di Cursor, aggiungi un nuovo server MCP con:
+
 - **Nome**: `tsparticles`
 - **Tipo**: `command`
 - **Comando**: `npx @tsparticles/mcp-server`
@@ -34,21 +35,21 @@ Nelle impostazioni di Cursor, aggiungi un nuovo server MCP con:
 
 Una volta connesso, l'assistente AI può usare questi strumenti:
 
-| Strumento | Descrizione |
-|-----------|-------------|
-| `suggest_plugins` | Dato un oggetto options tsParticles, restituisce i pacchetti npm e gli import necessari |
-| `list_packages` | Elenca i pacchetti disponibili, opzionalmente filtrati per categoria o ricerca |
-| `get_package_info` | Restituisce informazioni dettagliate su un pacchetto specifico |
+| Strumento          | Descrizione                                                                             |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Dato un oggetto options tsParticles, restituisce i pacchetti npm e gli import necessari |
+| `list_packages`    | Elenca i pacchetti disponibili, opzionalmente filtrati per categoria o ricerca          |
+| `get_package_info` | Restituisce informazioni dettagliate su un pacchetto specifico                          |
 
 ## Risorse
 
 Il server espone anche risorse di riferimento che l'AI può leggere:
 
-| URI | Descrizione |
-|-----|-------------|
-| `tsparticles://packages` | Catalogo completo dei pacchetti per categoria |
+| URI                           | Descrizione                                                                  |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| `tsparticles://packages`      | Catalogo completo dei pacchetti per categoria                                |
 | `tsparticles://options/guide` | Guida completa alla struttura delle opzioni con valori predefiniti ed esempi |
-| `tsparticles://bundles` | Gerarchia dei bundle e guida alla selezione |
+| `tsparticles://bundles`       | Gerarchia dei bundle e guida alla selezione                                  |
 
 ## Prompt
 

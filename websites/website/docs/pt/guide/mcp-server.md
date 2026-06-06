@@ -25,19 +25,19 @@ Adicione ao `claude_desktop_config.json`:
 
 ## Ferramentas
 
-| Ferramenta | Descrição |
-|------------|-------------|
-| `suggest_plugins` | A partir de um objeto options tsParticles, retorna os pacotes npm e imports necessários |
-| `list_packages` | Lista pacotes disponíveis, filtrados por categoria ou pesquisa |
-| `get_package_info` | Retorna informações detalhadas de um pacote específico |
+| Ferramenta         | Descrição                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | A partir de um objeto options tsParticles, retorna os pacotes npm e imports necessários |
+| `list_packages`    | Lista pacotes disponíveis, filtrados por categoria ou pesquisa                          |
+| `get_package_info` | Retorna informações detalhadas de um pacote específico                                  |
 
 ## Recursos
 
-| URI | Descrição |
-|-----|-------------|
-| `tsparticles://packages` | Catálogo completo de pacotes por categoria |
+| URI                           | Descrição                                             |
+| ----------------------------- | ----------------------------------------------------- |
+| `tsparticles://packages`      | Catálogo completo de pacotes por categoria            |
 | `tsparticles://options/guide` | Guia completa de opções com valores padrão e exemplos |
-| `tsparticles://bundles` | Hierarquia de bundles e guia de seleção |
+| `tsparticles://bundles`       | Hierarquia de bundles e guia de seleção               |
 
 ## Implantação remota
 
