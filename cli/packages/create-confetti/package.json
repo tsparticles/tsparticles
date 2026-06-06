@@ -1,0 +1,32 @@
+{
+  "name": "create-confetti",
+  "version": "0.0.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-confetti": "bin/create-confetti.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tagVersionPrefix": "v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "cli/packages/create-confetti"
+  },
+  "prettier": "@tsparticles/prettier-config",
+  "scripts": {
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:readme": "prettier --write ./README.md",
+    "build": "pnpm run prettify:readme",
+    "build:ci": "pnpm run prettify:ci:readme",
+    "prepack": "pnpm run build"
+  },
+  "devDependencies": {
+    "@tsparticles/prettier-config": "workspace:^"
+  },
+  "description": "Scaffold a @tsparticles/confetti project — npm create confetti",
+  "author": "Matteo Bruni <matteo.bruni@me.com>"
+}
