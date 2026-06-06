@@ -2644,25 +2644,25 @@ importers:
   cli/packages/create-confetti:
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-particles:
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-ribbons:
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-tsparticles:
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/nx-plugin:

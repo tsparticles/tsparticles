@@ -878,23 +878,186 @@ createCommand.addCommand(appCommand);
 
 **Goal**: Create thin npm packages enabling `npm create tsparticles`, `npm create confetti`, `npm create ribbons`, and `npm create particles`. Each delegates to `tsparticles-create app` with the corresponding template pre-selected.
 
-**Status**: Placeholder packages already exist at `cli/packages/create-*/` with v0.0.0. They print a "coming soon" message. The following describes the final implementation once the CLI (Step 3) is ready.
+**Status**: Placeholder packages already exist at `cli/packages/create-*/` with v0.0.0. They print a "coming soon" message. The following splits the work into two sub-steps: first align them to monorepo conventions, then wire up the real CLI.
 
 **Architecture**: Each package is identical in structure, only differing in:
 - npm package name (`create-tsparticles`, `create-particles`, `create-confetti`, `create-ribbons`)
 - Binary name (must match package name for `npm create`)
 - Template parameter passed to the CLI
 
-**All packages** live under `cli/packages/create-*` and have the same structure:
-```
-cli/packages/create-<name>/
-  package.json
-  bin/
-    create-<name>.js           # Thin wrapper that calls tsparticles-create app
-  README.md
+---
+
+#### Step 4a — Complete package metadata and files (independent, can run anytime)
+
+**Goal**: Turn the placeholder stubs into proper packages aligned with monorepo conventions — add LICENSE, CHANGELOG.md, project.json, and augment package.json with homepage, bugs, funding, keywords. The bin scripts remain "coming soon" stubs for now (wired in Step 4b).
+
+**Dependencies**: None (fully independent — can even run before Steps 1–3).
+
+**Files to update/create in each of `cli/packages/create-tsparticles/`, `cli/packages/create-particles/`, `cli/packages/create-confetti/`, `cli/packages/create-ribbons/`:**
+
+**`package.json`** — augment with standard metadata fields (keeping existing `name`, `version: "0.0.0"`, `private: false`, `license`, `type`, `bin`, `publishConfig`, `repository`, `prettier`, `scripts`, `devDependencies`, `author`, `description`):
+```json
+{
+  "name": "create-<name>",
+  "version": "0.0.0",
+  "description": "Scaffold a <bundle> project — npm create <name>",
+  "homepage": "https://particles.js.org",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-<name>": "bin/create-<name>.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tagVersionPrefix": "v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "cli/packages/create-<name>"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "confetti",
+    "ribbons",
+    "front-end",
+    "web",
+    "animation",
+    "canvas",
+    "html5",
+    "cli",
+    "scaffold",
+    "create",
+    "template"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "scripts": {
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:readme": "prettier --write ./README.md",
+    "build": "pnpm run prettify:readme",
+    "build:ci": "pnpm run prettify:ci:readme",
+    "prepack": "pnpm run build"
+  },
+  "devDependencies": {
+    "@tsparticles/prettier-config": "workspace:^"
+  }
+}
 ```
 
-**Final `bin/create-<name>.js`** (replace placeholder when CLI is ready):
+**`LICENSE`** — standard MIT license file (same content as repo root):
+```
+MIT License
+
+Copyright (c) 2020 Matteo Bruni
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+**`CHANGELOG.md`** — standard initial changelog:
+```markdown
+# Changelog
+
+## 0.0.0
+
+- Initial placeholder release
+```
+
+**`project.json`** — Nx project configuration (same pattern as `cli/packages/cli-create/project.json`):
+```json
+{
+  "name": "create-<name>",
+  "$schema": "https://json.schemastore.org/nx-project.json",
+  "projectType": "library",
+  "sourceRoot": "cli/packages/create-<name>",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["pnpm run build"],
+        "cwd": "cli/packages/create-<name>"
+      },
+      "dependsOn": ["^build"]
+    }
+  }
+}
+```
+
+**All packages** now look like:
+```
+cli/packages/create-<name>/
+  LICENSE
+  CHANGELOG.md
+  project.json
+  package.json
+  README.md
+  bin/
+    create-<name>.js           # Stub (prints "coming soon")
+```
+
+**Acceptance criteria (Step 4a):**
+- `pnpm install` resolves all 4 packages without errors
+- `pnpm run build` and `build:ci` pass
+- `pnpm nx run create-tsparticles:build` succeeds (Nx project registered)
+- `ls cli/packages/create-<name>/` shows LICENSE, CHANGELOG.md, project.json
+- `node cli/packages/create-<name>/bin/create-<name>.js` prints "coming soon" message (stub still works)
+
+---
+
+#### Step 4b — Wire up CLI delegation (after Step 3)
+
+**Goal**: Replace stub bin scripts with real `tsparticles-create app` delegation, bump version to 4.1.3, add `@tsparticles/cli-create` dependency.
+
+**Dependencies**: Step 3 (`tsparticles-create app` command must exist).
+
+**All packages** have the same structure (unchanged from Step 4a):
+```
+cli/packages/create-<name>/
+  LICENSE
+  CHANGELOG.md
+  project.json
+  package.json
+  README.md
+  bin/
+    create-<name>.js           # Real wrapper that calls tsparticles-create app
+```
+
+**Final `bin/create-<name>.js`** (replace stub):
 ```js
 #!/usr/bin/env node
 import { execSync } from "child_process";
@@ -903,22 +1066,23 @@ const template = "<bundle>"; // e.g. "confetti", "ribbons", "particles"
 execSync(`npx tsparticles-create app ${args} --template ${template} --framework vanilla`, { stdio: "inherit" });
 ```
 
-**Final `package.json`** (update from 0.0.0 when publishing):
+**For `create-tsparticles`** (interactive, no fixed template):
+```js
+#!/usr/bin/env node
+import { execSync } from "child_process";
+const args = process.argv.slice(2).join(" ");
+execSync(`npx tsparticles-create app ${args}`, { stdio: "inherit" });
+```
+
+**Update `package.json`** — add `@tsparticles/cli-create` dependency and bump version:
 ```json
 {
   "name": "create-<name>",
   "version": "4.1.3",
-  "type": "module",
-  "bin": {
-    "create-<name>": "bin/create-<name>.js"
-  },
   "dependencies": {
     "@tsparticles/cli-create": "workspace:^"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "description": "Scaffold a <bundle> project — npm create <name>"
+  }
+  // all other fields preserved from Step 4a
 }
 ```
 
@@ -931,7 +1095,7 @@ execSync(`npx tsparticles-create app ${args} --template ${template} --framework 
 | `create-confetti` | `create-confetti` | `confetti` | `@tsparticles/confetti` | `npm create confetti` |
 | `create-ribbons` | `create-ribbons` | `ribbons` | `@tsparticles/ribbons` | `npm create ribbons` |
 
-**Acceptance criteria (all 4 packages, once implemented):**
+**Acceptance criteria (Step 4b):**
 - `node cli/packages/create-<name>/bin/create-<name>.js` invokes `tsparticles-create app --template <bundle>`
 - Generated project installs and runs with `npm install && npm run dev`
 - The specific bundle effect (confetti, ribbons, particles) works out of the box
@@ -1043,10 +1207,9 @@ Step 3 ──┬── Step 3a (types + resolver)
           ├── Step 3b (prompts + scaffold)
           └── Step 3c (commander + registration) ← depends on 3a+3b
           
-Step 4 ──┬── (create-tsparticles)    ← interactive
-          ├── (create-particles)     ← delegates to template particles
-          ├── (create-confetti)      ← delegates to template confetti
-          └── (create-ribbons)       ← delegates to template ribbons
+Step 4 ──┬── Step 4a (metadata + files)   ← independent, can run anytime
+          │
+          └── Step 4b (CLI delegation)     ← after Step 3
           
 Step 5 ── (independent)
 Step 6 ── (independent)
@@ -1056,7 +1219,8 @@ Step 6 ── (independent)
 - All of Step 1a-1f can be fully parallel after Step 1
 - All of Step 2 (2a-2g) can be fully parallel
 - Step 3a → 3b (sequential) → 3c (after both)
-- All of Step 4 (4a-4d) can be fully parallel after Step 3
+- Step 4a can run anytime (independent of all other steps)
+- Step 4b after Step 3 (and after Step 4a)
 - Steps 5 and 6 can run anytime
 
 ## Existing reference files
