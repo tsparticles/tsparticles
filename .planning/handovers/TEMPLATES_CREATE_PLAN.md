@@ -276,7 +276,7 @@ templates/scaffold/template/vue3/
 
 **Goal**: Create the Angular framework sub-template. Angular uses Angular CLI (not plain Vite), so this has a different structure.
 
-**Dependencies**: Step 1 (package infrastructure). Independent of 1b and 1d.
+**Dependencies**: Step 1 (package infrastructure). Independent of 1b, 1c, 1e, 1f.
 
 **Files to create:**
 ```
@@ -702,8 +702,6 @@ templates/particles/
 
 ---
 
----
-
 ### Step 3a — CLI command: package scaffolding + types + template-resolver
 
 **Goal**: Create the `@tsparticles/cli-command-create-app` package directory, install dependencies, define TypeScript types, and implement the template-resolver module.
@@ -840,7 +838,7 @@ import { Command } from "commander";
 // Create command
 const appCommand = new Command("app")
   .argument("[project-name]", "Project name")
-  .option("--template <name>", "Template to use (scaffold|login|portfolio|landing|tictactoe)")
+  .option("--template <name>", "Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)")
   .option("--framework <name>", "Framework (vanilla|react|vue3|angular|svelte|solid)")
   .option("--skip-install", "Skip npm install")
   .action(async (projectName, options) => {
@@ -880,6 +878,8 @@ createCommand.addCommand(appCommand);
 
 **Goal**: Create thin npm packages enabling `npm create tsparticles`, `npm create confetti`, `npm create ribbons`, and `npm create particles`. Each delegates to `tsparticles-create app` with the corresponding template pre-selected.
 
+**Status**: Placeholder packages already exist at `cli/packages/create-*/` with v0.0.0. They print a "coming soon" message. The following describes the final implementation once the CLI (Step 3) is ready.
+
 **Architecture**: Each package is identical in structure, only differing in:
 - npm package name (`create-tsparticles`, `create-particles`, `create-confetti`, `create-ribbons`)
 - Binary name (must match package name for `npm create`)
@@ -894,7 +894,7 @@ cli/packages/create-<name>/
   README.md
 ```
 
-**General pattern** for `bin/create-<name>.js`:
+**Final `bin/create-<name>.js`** (replace placeholder when CLI is ready):
 ```js
 #!/usr/bin/env node
 import { execSync } from "child_process";
@@ -903,7 +903,7 @@ const template = "<bundle>"; // e.g. "confetti", "ribbons", "particles"
 execSync(`npx tsparticles-create app ${args} --template ${template} --framework vanilla`, { stdio: "inherit" });
 ```
 
-**General pattern** for `package.json`:
+**Final `package.json`** (update from 0.0.0 when publishing):
 ```json
 {
   "name": "create-<name>",
@@ -931,11 +931,17 @@ execSync(`npx tsparticles-create app ${args} --template ${template} --framework 
 | `create-confetti` | `create-confetti` | `confetti` | `@tsparticles/confetti` | `npm create confetti` |
 | `create-ribbons` | `create-ribbons` | `ribbons` | `@tsparticles/ribbons` | `npm create ribbons` |
 
-**Acceptance criteria (all 4 packages):**
+**Acceptance criteria (all 4 packages, once implemented):**
 - `node cli/packages/create-<name>/bin/create-<name>.js` invokes `tsparticles-create app --template <bundle>`
 - Generated project installs and runs with `npm install && npm run dev`
 - The specific bundle effect (confetti, ribbons, particles) works out of the box
 - No v3 references
+
+**Steps to finalize (when CLI is ready):**
+1. Update `bin/create-<name>.js` from placeholder message → delegation to CLI
+2. Add `@tsparticles/cli-create` to `dependencies` in `package.json`
+3. Bump `version` from `0.0.0` to `4.1.3`
+4. Publish to npm
 
 ---
 
@@ -1017,7 +1023,7 @@ execSync(`npx tsparticles-create app ${args} --template ${template} --framework 
 ## Dependency graph with sub-steps
 
 ```
-Step 1 ──┬── Step 1  (package infra)
+Step 1 ──┬── (package infra)
           ├── Step 1a (template/vanilla/) ──┐
           │                                  ├── Step 1b (react)
           │                                  ├── Step 1c (vue3)
@@ -1037,10 +1043,10 @@ Step 3 ──┬── Step 3a (types + resolver)
           ├── Step 3b (prompts + scaffold)
           └── Step 3c (commander + registration) ← depends on 3a+3b
           
-Step 4 ──┬── Step 4a (create-tsparticles)    ← interactive
-          ├── Step 4b (create-particles)     ← delegates to template particles
-          ├── Step 4c (create-confetti)      ← delegates to template confetti
-          └── Step 4d (create-ribbons)       ← delegates to template ribbons
+Step 4 ──┬── (create-tsparticles)    ← interactive
+          ├── (create-particles)     ← delegates to template particles
+          ├── (create-confetti)      ← delegates to template confetti
+          └── (create-ribbons)       ← delegates to template ribbons
           
 Step 5 ── (independent)
 Step 6 ── (independent)
