@@ -38,6 +38,9 @@
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "zod": "^3.24.0"
