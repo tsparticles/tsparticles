@@ -107,6 +107,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
           ],
         },
         { text: "Templates & Resources", link: "/guide/templates-resources" },
+        { text: "MCP Server (AI Integration)", link: "/guide/mcp-server" },
         { text: "Video Tutorials", link: "/guide/video-tutorials" },
         { text: "Dependency Graph", link: "/guide/dependency-graph" },
         { text: "Troubleshooting & FAQ", link: "/guide/troubleshooting" },
