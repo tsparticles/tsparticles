@@ -25,7 +25,7 @@ export class Background extends OptionLoader<IBackground> implements IBackground
     this.opacity = 1;
   }
 
-  doLoad(data: RecursivePartial<IBackground>): void {
+  protected doLoad(data: RecursivePartial<IBackground>): void {
     if (data.color !== undefined) {
       this.color = OptionsColor.create(this.color, data.color);
     }

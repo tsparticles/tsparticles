@@ -100,7 +100,7 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
    * This method loads the source object in the current instance
    * @param data - the source data to load into the instance
    */
-  doLoad(data: ISourceOptions): void {
+  protected doLoad(data: ISourceOptions): void {
     if (data.preset !== undefined) {
       this.preset = data.preset;
 

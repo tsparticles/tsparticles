@@ -17,7 +17,7 @@ export class Spin extends OptionLoader<ISpin> implements ISpin {
     this.enable = false;
   }
 
-  doLoad(data: RecursivePartial<ISpin>): void {
+  protected doLoad(data: RecursivePartial<ISpin>): void {
     if (data.acceleration !== undefined) {
       this.acceleration = setRangeValue(data.acceleration);
     }

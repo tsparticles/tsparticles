@@ -21,7 +21,7 @@ export class Shape extends OptionLoader<IShape> implements IShape {
     this.type = "circle";
   }
 
-  doLoad(data: RecursivePartial<IShape>): void {
+  protected doLoad(data: RecursivePartial<IShape>): void {
     const options = data.options;
 
     if (options !== undefined) {

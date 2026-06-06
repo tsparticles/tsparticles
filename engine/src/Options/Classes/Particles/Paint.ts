@@ -13,7 +13,7 @@ export class Paint extends OptionLoader<IPaint> implements IPaint {
   fill?: Fill;
   stroke?: Stroke;
 
-  doLoad(data: RecursivePartial<IPaint>): void {
+  protected doLoad(data: RecursivePartial<IPaint>): void {
     if (data.color !== undefined) {
       this.color = AnimatableColor.create(this.color, data.color);
     }

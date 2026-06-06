@@ -17,7 +17,7 @@ export class ZIndex extends ValueWithRandom implements IZIndex {
     this.velocityRate = 1;
   }
 
-  override doLoad(data: RecursivePartial<IZIndex>): void {
+  protected override doLoad(data: RecursivePartial<IZIndex>): void {
     super.doLoad(data);
 
     if (data.opacityRate !== undefined) {

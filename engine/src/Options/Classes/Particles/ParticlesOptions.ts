@@ -58,7 +58,7 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
     this.zIndex = new ZIndex();
   }
 
-  doLoad(data: RecursivePartial<IParticlesOptions>): void {
+  protected doLoad(data: RecursivePartial<IParticlesOptions>): void {
     if (data.palette) {
       this.palette = data.palette;
 

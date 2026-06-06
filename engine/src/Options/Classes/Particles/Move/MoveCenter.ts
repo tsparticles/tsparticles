@@ -17,7 +17,7 @@ export class MoveCenter extends OptionLoader<IMoveCenter> implements IMoveCenter
     this.radius = 0;
   }
 
-  doLoad(data: RecursivePartial<IMoveCenter>): void {
+  protected doLoad(data: RecursivePartial<IMoveCenter>): void {
     if (data.x !== undefined) {
       this.x = data.x;
     }

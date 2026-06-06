@@ -9,7 +9,7 @@ export class HslAnimation extends OptionLoader<IHslAnimation> implements IHslAni
   readonly l = new ColorAnimation(lMin, lMax);
   readonly s = new ColorAnimation(sMin, sMax);
 
-  doLoad(data: RecursivePartial<IHslAnimation>): void {
+  protected doLoad(data: RecursivePartial<IHslAnimation>): void {
     this.h.load(data.h);
     this.s.load(data.s);
     this.l.load(data.l);

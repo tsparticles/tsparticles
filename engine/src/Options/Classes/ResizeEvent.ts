@@ -12,7 +12,7 @@ export class ResizeEvent extends OptionLoader<IResizeEvent> implements IResizeEv
     this.enable = true;
   }
 
-  doLoad(data: RecursivePartial<IResizeEvent>): void {
+  protected doLoad(data: RecursivePartial<IResizeEvent>): void {
     if (data.delay !== undefined) {
       this.delay = data.delay;
     }

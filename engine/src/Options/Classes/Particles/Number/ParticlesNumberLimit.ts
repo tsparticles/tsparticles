@@ -13,7 +13,7 @@ export class ParticlesNumberLimit extends OptionLoader<IParticlesNumberLimit> im
     this.value = 0;
   }
 
-  doLoad(data: RecursivePartial<IParticlesNumberLimit>): void {
+  protected doLoad(data: RecursivePartial<IParticlesNumberLimit>): void {
     if (data.mode !== undefined) {
       this.mode = data.mode;
     }

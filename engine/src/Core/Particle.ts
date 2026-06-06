@@ -750,13 +750,13 @@ export class Particle {
     }
 
     if (this.roll.horizontal) {
-      const adjustedAngle = normalizeAngle(angle + Math.PI * half, Math.PI * double);
+      const adjustedAngle = normalizeAngle(angle + Math.PI * half, doublePI);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }
 
     if (this.roll.vertical) {
-      const adjustedAngle = normalizeAngle(angle, Math.PI * double);
+      const adjustedAngle = normalizeAngle(angle, doublePI);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }

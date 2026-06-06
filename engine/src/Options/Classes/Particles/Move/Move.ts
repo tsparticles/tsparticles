@@ -56,7 +56,7 @@ export class Move extends OptionLoader<IMove> implements IMove {
     this.warp = false;
   }
 
-  doLoad(data: RecursivePartial<IMove>): void {
+  protected doLoad(data: RecursivePartial<IMove>): void {
     this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);
 
     this.center.load(data.center);

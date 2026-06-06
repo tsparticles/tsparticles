@@ -13,7 +13,7 @@ export class ParticlesBounce extends OptionLoader<IParticlesBounce> implements I
     this.vertical = new ParticlesBounceFactor();
   }
 
-  doLoad(data: RecursivePartial<IParticlesBounce>): void {
+  protected doLoad(data: RecursivePartial<IParticlesBounce>): void {
     this.horizontal.load(data.horizontal);
     this.vertical.load(data.vertical);
   }

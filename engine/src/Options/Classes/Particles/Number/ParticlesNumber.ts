@@ -19,7 +19,7 @@ export class ParticlesNumber extends OptionLoader<IParticlesNumber> implements I
     this.value = 0;
   }
 
-  doLoad(data: RecursivePartial<IParticlesNumber>): void {
+  protected doLoad(data: RecursivePartial<IParticlesNumber>): void {
     this.density.load(data.density);
     this.limit.load(data.limit);
 

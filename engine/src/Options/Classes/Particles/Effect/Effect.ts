@@ -21,7 +21,7 @@ export class Effect extends OptionLoader<IEffect> implements IEffect {
     this.type = [];
   }
 
-  doLoad(data: RecursivePartial<IEffect>): void {
+  protected doLoad(data: RecursivePartial<IEffect>): void {
     const options = data.options;
 
     if (options !== undefined) {

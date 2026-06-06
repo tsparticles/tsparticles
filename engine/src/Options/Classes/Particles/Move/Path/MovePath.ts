@@ -23,7 +23,7 @@ export class MovePath extends OptionLoader<IMovePath> implements IMovePath {
     this.options = {};
   }
 
-  doLoad(data: RecursivePartial<IMovePath>): void {
+  protected doLoad(data: RecursivePartial<IMovePath>): void {
     if (data.clamp !== undefined) {
       this.clamp = data.clamp;
     }

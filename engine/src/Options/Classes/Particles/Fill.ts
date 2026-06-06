@@ -19,7 +19,7 @@ export class Fill extends OptionLoader<IFill> implements IFill {
     this.opacity = 1;
   }
 
-  doLoad(data: RecursivePartial<IFill>): void {
+  protected doLoad(data: RecursivePartial<IFill>): void {
     if (data.color !== undefined) {
       this.color = AnimatableColor.create(this.color, data.color);
     }

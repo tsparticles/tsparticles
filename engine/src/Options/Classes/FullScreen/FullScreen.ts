@@ -28,7 +28,7 @@ export class FullScreen extends OptionLoader<IFullScreen> implements IFullScreen
     this.zIndex = 0;
   }
 
-  doLoad(data: RecursivePartial<IFullScreen>): void {
+  protected doLoad(data: RecursivePartial<IFullScreen>): void {
     if (data.enable !== undefined) {
       this.enable = data.enable;
     }

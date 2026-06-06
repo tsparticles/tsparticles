@@ -17,7 +17,7 @@ export class ParticlesDensity extends OptionLoader<IParticlesDensity> implements
     this.height = 1080;
   }
 
-  doLoad(data: RecursivePartial<IParticlesDensity>): void {
+  protected doLoad(data: RecursivePartial<IParticlesDensity>): void {
     if (data.enable !== undefined) {
       this.enable = data.enable;
     }

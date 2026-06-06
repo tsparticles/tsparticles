@@ -62,7 +62,7 @@ export class OptionsColor extends OptionLoader<IOptionsColor> implements IOption
     return color;
   }
 
-  doLoad(data: RecursivePartial<IOptionsColor>): void {
+  protected doLoad(data: RecursivePartial<IOptionsColor>): void {
     if (!isNull(data.value)) {
       this.value = data.value;
     }

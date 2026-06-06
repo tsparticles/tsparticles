@@ -15,7 +15,7 @@ export class ValueWithRandom extends OptionLoader<IValueWithRandom> implements I
     this.value = 0;
   }
 
-  doLoad(data: RecursivePartial<IValueWithRandom>): void {
+  protected doLoad(data: RecursivePartial<IValueWithRandom>): void {
     if (!isNull(data.value)) {
       this.value = setRangeValue(data.value);
     }
@@ -26,7 +26,7 @@ export class ValueWithRandom extends OptionLoader<IValueWithRandom> implements I
 export class AnimationValueWithRandom extends ValueWithRandom {
   readonly animation = new AnimationOptions();
 
-  override doLoad(data: RecursivePartial<IAnimationValueWithRandom>): void {
+  protected override doLoad(data: RecursivePartial<IAnimationValueWithRandom>): void {
     super.doLoad(data);
 
     const animation = data.animation;

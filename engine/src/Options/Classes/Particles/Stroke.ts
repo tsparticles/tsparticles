@@ -18,7 +18,7 @@ export class Stroke extends OptionLoader<IStroke> implements IStroke {
     this.width = 0;
   }
 
-  doLoad(data: RecursivePartial<IStroke>): void {
+  protected doLoad(data: RecursivePartial<IStroke>): void {
     if (data.color !== undefined) {
       this.color = AnimatableColor.create(this.color, data.color);
     }

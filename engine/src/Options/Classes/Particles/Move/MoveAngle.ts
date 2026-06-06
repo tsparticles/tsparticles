@@ -21,7 +21,7 @@ export class MoveAngle extends OptionLoader<IMoveAngle> implements IMoveAngle {
    * Loads move angle options from the given data
    * @param data -
    */
-  doLoad(data: RecursivePartial<IMoveAngle>): void {
+  protected doLoad(data: RecursivePartial<IMoveAngle>): void {
     if (data.offset !== undefined) {
       this.offset = setRangeValue(data.offset);
     }

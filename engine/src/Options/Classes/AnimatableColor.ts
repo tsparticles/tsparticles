@@ -44,7 +44,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor {
     return color;
   }
 
-  override doLoad(data: RecursivePartial<IAnimatableColor>): void {
+  protected override doLoad(data: RecursivePartial<IAnimatableColor>): void {
     super.doLoad(data);
 
     const colorAnimation = data.animation as RecursivePartial<IColorAnimation | undefined>;

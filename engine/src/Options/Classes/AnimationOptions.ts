@@ -32,7 +32,7 @@ export class AnimationOptions extends OptionLoader<IAnimation> implements IAnima
     this.sync = false;
   }
 
-  doLoad(data: RecursivePartial<IAnimation>): void {
+  protected doLoad(data: RecursivePartial<IAnimation>): void {
     if (data.count !== undefined) {
       this.count = setRangeValue(data.count);
     }
@@ -74,7 +74,7 @@ export class RangedAnimationOptions extends AnimationOptions {
     this.startValue = StartValueType.random;
   }
 
-  override doLoad(data: RecursivePartial<IRangedAnimation>): void {
+  protected override doLoad(data: RecursivePartial<IRangedAnimation>): void {
     super.doLoad(data);
 
     if (data.mode !== undefined) {
