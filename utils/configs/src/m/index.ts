@@ -1,5 +1,6 @@
 import manual from "./manual.js";
 import matrix from "./matrix.js";
+import meteors from "./meteors.js";
 import motionDisable from "./motionDisable.js";
 import motionReduce from "./motionReduce.js";
 import mouseAttract from "./mouseAttract.js";
@@ -25,6 +26,7 @@ import musicEmitter from "./musicEmitter.js";
 export default {
   manual,
   matrix,
+  meteors,
   motionDisable,
   motionReduce,
   mouseAttract,

@@ -11,10 +11,11 @@ const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
   { text: "Playground", link: "/playground/" },
   { text: "Guides", link: "/guides/" },
+  { text: "Showcase", link: "/showcase/" },
   { text: "Demos", link: "/demos/" },
   { text: "Wrappers", link: "/guide/wrappers" },
   { text: "Options", link: "/options/" },
-  { text: "API", link: "/docs/", target: "_blank" },
+  { text: "API", link: "/api/" },
   { text: "Confetti", link: "https://confetti.js.org", target: "_blank" },
   { text: "Ribbons", link: "https://ribbons.js.org", target: "_blank" },
   {
@@ -108,6 +109,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Templates & Resources", link: "/guide/templates-resources" },
         { text: "Video Tutorials", link: "/guide/video-tutorials" },
         { text: "Dependency Graph", link: "/guide/dependency-graph" },
+        { text: "Troubleshooting & FAQ", link: "/guide/troubleshooting" },
       ],
     },
   ],
@@ -185,6 +187,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
         { text: "Hyperspace", link: "/demos/recipes/hyperspace" },
         { text: "Links", link: "/demos/recipes/links" },
         { text: "Matrix", link: "/demos/recipes/matrix" },
+        { text: "Meteors", link: "/demos/recipes/meteors" },
         { text: "Ribbons", link: "/demos/recipes/ribbons" },
         { text: "Sea Anemone", link: "/demos/recipes/sea-anemone" },
         { text: "Snow", link: "/demos/recipes/snow" },
@@ -297,6 +300,15 @@ const baseSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
+  "/api/": [
+    {
+      text: "API Reference",
+      items: [
+        { text: "Overview", link: "/api/" },
+        { text: "Full typedoc", link: "/docs/" },
+      ],
+    },
+  ],
   "/guides/": [
     {
       text: "Guides",
@@ -365,10 +377,9 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
   base,
-  ignoreDeadLinks: [],
+  ignoreDeadLinks: [/^\/docs\//],
   transformHead: ({ pageData }) => {
-    const path = pageData.relativePath.replace(/\.md$/, "").replace(/index$/, "");
-    const canonical = `https://particles.js.org/${path}`;
+    let path = pageData.relativePath.replace(/\.md$/, "").replace(/\/?index$/, "");
     const localePrefixesMap: Record<string, string> = {
       root: "x-default",
       it: "it",
@@ -381,18 +392,35 @@ export default defineConfig({
       ja: "ja",
       hi: "hi",
     };
+    let detectedLocale = "root";
+    for (const locale of Object.keys(localePrefixesMap)) {
+      if (locale === "root") continue;
+      if (path === locale || path.startsWith(locale + "/")) {
+        detectedLocale = locale;
+        path = path.slice(locale.length).replace(/^\//, "");
+        break;
+      }
+    }
     const head: any[] = [];
     for (const [locale, hreflang] of Object.entries(localePrefixesMap)) {
-      const prefix = locale === "root" ? "" : `/${locale}`;
+      const hrefPath = locale === "root" ? path : `${locale}/${path}`;
       head.push([
         "link",
         {
           rel: "alternate",
-          href: `https://particles.js.org${prefix}/${path}`,
+          href: `https://particles.js.org/${hrefPath}`,
           hreflang,
         },
       ]);
     }
+    const canonicalPath = detectedLocale === "root" ? path : `${detectedLocale}/${path}`;
+    head.push([
+      "link",
+      {
+        rel: "canonical",
+        href: `https://particles.js.org/${canonicalPath}`,
+      },
+    ]);
     return head;
   },
   locales: {
@@ -521,7 +549,6 @@ export default defineConfig({
         "vue",
         "svelte",
         "astro",
-        "riot",
         "hbs",
         "php",
       ],

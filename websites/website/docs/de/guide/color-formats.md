@@ -1,6 +1,6 @@
 # Farbformate
 
-tsParticles akzeptiert mehrere Farbformate über Optionen wie `background`, `particles.color` und Plugin-Einstellungen.
+tsParticles akzeptiert mehrere Farbformate über Optionen wie `background`, `particles.paint` und Plugin-Einstellungen.
 
 ## Gängige Formate
 

@@ -2,7 +2,7 @@
 
 Ce sont les préréglages officiels répertoriés dans le `tsParticles` README principal et disponibles dans l'espace de travail des préréglages.
 
-Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
+Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
 
 ## Préréglages
 
@@ -21,14 +21,15 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `fountain` - <https://www.npmjs.com/package/@tsparticles/preset-fountain> - <https://particles.js.org/samples/presets/fountain>
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - <https://particles.js.org/samples/presets/hyperspace>
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - <https://particles.js.org/samples/presets/links>
-- `matrix` - recette de démonstration du site Web local disponible dans [`/demos/recipes/matrix`](/fr/demos/recipes/matrix)
+- `matrix` - recette de démonstration du site Web local disponible dans [`/demos/recipes/matrix`](/fr/demos/recipes/matrix)
+- `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - <https://particles.js.org/samples/presets/meteors>
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - <https://particles.js.org/samples/presets/seaAnemone>
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - <https://particles.js.org/samples/presets/snow>
 - `squares` - <https://www.npmjs.com/package/@tsparticles/preset-squares> - <https://particles.js.org/samples/presets/squares>
 - `stars` - <https://www.npmjs.com/package/@tsparticles/preset-stars> - <https://particles.js.org/samples/presets/stars>
 - `triangles` - <https://www.npmjs.com/package/@tsparticles/preset-triangles> - <https://particles.js.org/samples/presets/triangles>
 
-Chaque dossier prédéfini contient également des documents dans le monorepo, par exemple :
+Chaque dossier prédéfini contient également des documents dans le monorepo, par exemple :
 
 - <https://github.com/tsparticles/tsparticles/tree/main/presets/confetti#readme>
 

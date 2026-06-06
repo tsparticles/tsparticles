@@ -1,106 +1,197 @@
 # はじめに
 
-このパスは、2026 年の `tsParticles` に対する最も迅速で信頼性の高いセットアップです。
+tsParticles は、パーティクルアニメーション、紙吹雪、花火などを生成するための JavaScript/TypeScript ライブラリです。最新のブラウザで動作し、npm パッケージとしても CDN の `<script>` タグでも利用できます。
 
-## 簡単なチェックリスト
+## アーキテクチャ: engine + bundle
 
-1. `@tsparticles/engine` をインストールします。
-2. ランタイム パスを 1 つ選択します (`@tsparticles/slim`、`@tsparticles/all`、`@tsparticles/particles` などの重点 API、またはカスタム パッケージのみ)。
-3. バンドルを一度ロードします。
-4. 手動オプション、構成オブジェクト、またはプリセットから始めます。
+`@tsparticles/engine` 単体では**何も表示されません**。コアエンジン（アニメーションループ、キャンバス、イベント管理）のみを含み、**形状、インタラクション、視覚効果は含まれません**。何かを表示するには、少なくとも**バンドル**または個別の**プラグイン**を読み込む必要があります。
 
-## 1) エンジン + バンドル プリセットをインストールする
+| 概念                                                                               | 役割                                                                                   |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `@tsparticles/engine`                                                              | コアエンジン。`tsParticles`、型、オプションをエクスポート。単体では何も描画しません。  |
+| バンドル（`@tsparticles/basic`、`@tsparticles/slim` など）                         | エンジンに形状、インタラクション、アップデーターを登録する、事前構成済みのパッケージ。 |
+| 個別プラグイン（`@tsparticles/shape-circle`、`@tsparticles/updater-opacity` など） | カスタムバンドル用に組み合わせられる単一パッケージ。                                   |
 
-デフォルトのサイズと機能のバランスを適切にするには、`@tsparticles/engine` と `@tsparticles/slim` を使用します。
+## パスの選択
+
+### パス A — npm/pnpm/yarn（モダンプロジェクト、バンドラー使用）
+
+エンジン + バンドルをインストール:
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
 ```
 
-CDN リンク、`npm`/`yarn` バリアント、または `require(...)` サンプルが必要ですか?
-
-- [`/guide/installation`](/ja/guide/installation) を参照してください。
-
-## 2) HTMLでコンテナを作成する
-
-```html
-<div id="tsparticles"></div>
-```
-
-## 3) tsParticles を初期化します
+コード内で:
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
-const options = {
-  background: {
-    color: "#0b1020",
-  },
-  particles: {
-    number: {
-      value: 80,
-    },
-    links: {
-      enable: true,
-      distance: 150,
-      opacity: 0.35,
-    },
-    move: {
-      enable: true,
-      speed: 2,
-    },
-  },
-};
-
 (async () => {
+  // 1. slim バンドルの全機能をエンジンに登録
   await loadSlim(tsParticles);
 
+  // 2. アニメーションを作成
   await tsParticles.load({
-    id: "tsparticles",
-    options,
+    id: "tsparticles", // HTML コンテナ ID
+    options: {
+      background: {
+        color: "#0b1020",
+      },
+      particles: {
+        number: { value: 80 },
+        links: {
+          enable: true,
+          distance: 150,
+          opacity: 0.35,
+        },
+        move: {
+          enable: true,
+          speed: 2,
+        },
+      },
+    },
   });
 })();
 ```
 
-## 4) 適切なバンドルを選択する
+HTML コンテナ:
 
-- `@tsparticles/slim`: ほとんどのアプリはここから開始する必要があります。
-- `@tsparticles/basic`: 非常に軽いセットアップ向けの小さな機能セット。
-- `@tsparticles/all`: すべてが含まれており、迅速なプロトタイピングが容易です。
-
-直接の `tsParticles` セットアップではなく、集中的な API が必要な場合:
-
-- `@tsparticles/particles`: 簡素化されたパーティクル バックグラウンド API
-- `@tsparticles/confetti`: 1 回の呼び出しで使える紙吹雪 API
-- `@tsparticles/fireworks`: 1 回の呼び出しで使える花火 API
-
-## 5) 速度が必要な場合はプリセット/構成を使用します
-
-事前に構築されたエフェクトを希望する場合:
-
-```bash
-pnpm add @tsparticles/configs
+```html
+<div id="tsparticles"></div>
 ```
 
-次に、[`demo/vite` アプリ](https://github.com/tsparticles/tsparticles/blob/main/demo/vite/src/main.ts) のように、キーによって 1 つの構成を読み込みます。
+### パス B — CDN `<script>` タグ（バンドラーなし、vanilla HTML）
 
-プリセット名ベースのセットアップを希望する場合は、[`/demos/presets`](/ja/demos/presets) の公式プリセット カタログを使用してください。
+最初にエンジン、次にバンドルを読み込みます。CDN ファイルはすべてを `window` に公開するため、`import` は不要です。
 
-## クイックドキュメントマップ
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- tsParticles engine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <!-- Slim bundle（loadSlim をグローバルに公開） -->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+  </head>
+  <body>
+    <div id="tsparticles"></div>
+    <script>
+      (async () => {
+        // loadSlim は CDN バンドルからグローバルに利用可能
+        await loadSlim(tsParticles);
 
-- ルートオプション: [`/options/`](/ja/options/)
-- ラッパーリファレンス: [`/guide/wrappers`](/ja/guide/wrappers)
-- プリセットカタログ: [`/demos/presets`](/ja/demos/presets)
-- パレット カタログ: [`/demos/palettes`](/ja/demos/palettes)
-- シェイプ カタログ: [`/demos/shapes`](/ja/demos/shapes)
-- particles.js からの移行: [`/migrations/particles-js`](/ja/migrations/particles-js)
-- カラー形式: [`/guide/color-formats`](/ja/guide/color-formats)
-- コンテナのライフサイクル: [`/guide/container-lifecycle`](/ja/guide/container-lifecycle)
-- プラグインとカスタマイズ: [`/guide/plugins-customization`](/ja/guide/plugins-customization)
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            background: { color: "#0b1020" },
+            particles: {
+              number: { value: 80 },
+              links: { enable: true, distance: 150 },
+              move: { enable: true, speed: 2 },
+            },
+          },
+        });
+      })();
+    </script>
+  </body>
+</html>
+```
+
+> **注意**: CDN バンドルでも、`tsParticles.load()` の前に `loadSlim(tsParticles)`（または `loadBasic` / `loadFull` / `loadAll`）を呼び出す必要があります。CDN バンドルはローダー関数をグローバルに公開しますが、自動実行はしません。
+
+`@tsparticles/basic` → `loadBasic`、`tsparticles` → `loadFull`、`@tsparticles/all` → `loadAll` も同様のパターンです。
+
+### パス C — 専用 API を持つ特化バンドル（confetti、fireworks、particles）
+
+一部のバンドルは独自の簡略化 API を持ち、`tsParticles.load()` を使用する必要はありません:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
+  </head>
+  <body>
+    <script>
+      confetti({ particleCount: 100, spread: 70 });
+    </script>
+  </body>
+</html>
+```
+
+`fireworks()`、`particles()`、`ribbons()` も同様です。
+
+## どのバンドルを選ぶべきか
+
+| バンドル                 | npm                      | 使用すべきケース                                                                                                           |
+| ------------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `@tsparticles/basic`     | `loadBasic(tsParticles)` | 最小構成: 円、移動、不透明度、サイズ。インタラクションなし。                                                               |
+| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **ほとんどのプロジェクトに推奨。** クリック/ホバー操作、リンク、画像、星、多角形を追加。                                   |
+| `tsparticles`            | `loadFull(tsParticles)`  | 公式機能をフルセット: エミッター、アブソーバー、テキスト形状、ロール、ウィブル、トレイル。                                 |
+| `@tsparticles/all`       | `loadAll(tsParticles)`   | **リポジトリのすべて:** あらゆる形状、インタラクション、エフェクト、イージング、パス、エクスポート。プロトタイピング専用。 |
+| `@tsparticles/confetti`  | `confetti(options)`      | 1 関数呼び出しで紙吹雪。専用 API。                                                                                         |
+| `@tsparticles/fireworks` | `fireworks(options)`     | 1 関数呼び出しで花火。専用 API。                                                                                           |
+| `@tsparticles/particles` | `particles(options)`     | 簡略化されたパーティクル背景。専用 API。                                                                                   |
+| `@tsparticles/ribbons`   | `ribbons(options)`       | リボンエフェクト。専用 API。                                                                                               |
+
+詳細: [`/ja/guide/bundles`](/ja/guide/bundles)。
+
+## プリセットの使用
+
+`@tsparticles/configs` パッケージには、数十種類の既成設定（アブソーバー、バブル、雪、星、重力、衝突など）が含まれています。
+
+```bash
+pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
+```
+
+```ts
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import "@tsparticles/configs";
+
+await loadSlim(tsParticles);
+
+await tsParticles.load({
+  id: "tsparticles",
+  options: { preset: "snow" },
+});
+```
+
+CDN の場合:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/configs@4/tsparticles.configs.min.js"></script>
+<script>
+  (async () => {
+    await loadSlim(tsParticles);
+    tsParticles.load({ id: "tsparticles", options: { preset: "snow" } });
+  })();
+</script>
+```
+
+## クイックリファレンス
+
+- オプションのドキュメント: [`/ja/options/`](/ja/options/)
+- バンドルガイド: [`/ja/guide/bundles`](/ja/guide/bundles)
+- プリセットカタログ: [`/ja/demos/presets`](/ja/demos/presets)
+- パレットカタログ: [`/ja/demos/palettes`](/ja/demos/palettes)
+- 形状カタログ: [`/ja/demos/shapes`](/ja/demos/shapes)
+- フレームワークラッパー: [`/ja/guide/wrappers`](/ja/guide/wrappers)
+- カラー形式: [`/ja/guide/color-formats`](/ja/guide/color-formats)
+- コンテナライフサイクル: [`/ja/guide/container-lifecycle`](/ja/guide/container-lifecycle)
+- プラグインとカスタマイズ: [`/ja/guide/plugins-customization`](/ja/guide/plugins-customization)
 
 ## トラブルシューティング
 
-- 空白の画面: `tsParticles.load` を呼び出す前に、`#tsparticles` が存在することを確認してください。
-- 不足している機能: 別のプラグイン/パッケージ (形状、インタラクション、アップデーター) が必要になる可能性があります。
-- オプションの入力エラー: パッケージを同じメジャー/マイナー バージョンに合わせてください。
+| 問題                                                   | 原因                                                                 | 解決策                                                                                                         |
+| ------------------------------------------------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| 画面が真っ白、パーティクルなし                         | `tsParticles.load()` 呼び出し時に `#tsparticles` が DOM に存在しない | DIV がスクリプトの前に存在することを確認するか、`DOMContentLoaded` を使用                                      |
+| 画面が真っ白、パーティクルなし                         | `@tsparticles/engine` のみインストールしている                       | バンドル（`@tsparticles/slim`）またはプラグインもインストールする — エンジン単体では描画する形状がない         |
+| "loadBasic/loadSlim/loadFull is not a function" エラー | バンドルがインストールされていない、またはインポートが間違っている   | `pnpm add @tsparticles/slim` して `{ loadSlim }` をインポート                                                  |
+| パーティクルが動かない                                 | `move.enable` が `true` になっていない                               | `move: { enable: true, speed: 2 }` を追加                                                                      |
+| 機能（リンク、衝突など）がない                         | 選択したバンドルに含まれていない                                     | よりリッチなバンドル（`@tsparticles/slim` または `tsparticles`）に切り替えるか、特定のプラグインをインストール |
+| TypeScript の型エラー                                  | パッケージバージョンの不一致                                         | エンジンとバンドルを同じメジャー/マイナーバージョンに揃える                                                    |

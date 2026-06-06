@@ -11,12 +11,13 @@ description: Complete guide for integrating tsParticles with plain JavaScript.
 2. [Basic Particles](#basic-particles)
 3. [Confetti Effect](#confetti-effect)
 4. [Fireworks Effect](#fireworks-effect)
-5. [Snow Effect](#snow-effect)
-6. [Network / Links Effect](#network-links-effect)
-7. [Stars Effect](#stars-effect)
-8. [Custom Configuration](#custom-configuration)
-9. [Multiple Containers](#multiple-containers)
-10. [Dynamic Controls](#dynamic-controls)
+5. [Ribbons Effect](#ribbons-effect)
+6. [Snow Effect](#snow-effect)
+7. [Network / Links Effect](#network-links-effect)
+8. [Stars Effect](#stars-effect)
+9. [Custom Configuration](#custom-configuration)
+10. [Multiple Containers](#multiple-containers)
+11. [Dynamic Controls](#dynamic-controls)
 
 ---
 
@@ -24,7 +25,7 @@ description: Complete guide for integrating tsParticles with plain JavaScript.
 
 ### CDN (quick start)
 
-Add a `<div>` placeholder and a script tag in your HTML:
+Add a `<div>` placeholder and script tags in your HTML. You need at least the engine + a bundle, and you must call the loader before `tsParticles.load()`.
 
 ```html
 <!DOCTYPE html>
@@ -44,14 +45,19 @@ Add a `<div>` placeholder and a script tag in your HTML:
   <body>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          /* ... */
-        },
-      });
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            /* ... */
+          },
+        });
+      })();
     </script>
   </body>
 </html>
@@ -60,27 +66,34 @@ Add a `<div>` placeholder and a script tag in your HTML:
 ### npm
 
 ```bash
-npm install tsparticles
+npm install @tsparticles/engine @tsparticles/slim
 ```
 
 Then import and use it:
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
 
-tsParticles.load({
-  id: "tsparticles",
-  options: {
-    /* ... */
-  },
-});
+(async () => {
+  await loadSlim(tsParticles);
+
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* ... */
+    },
+  });
+})();
 ```
+
+> **Note:** `@tsparticles/engine` alone draws nothing. You must install a bundle (`@tsparticles/slim` recommended) or individual plugins to get visible shapes.
 
 ---
 
 ## Basic Particles
 
-A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement.
+A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement. In v4, particle colors are set via `paint` instead of the old `color` property.
 
 ```html
 <!DOCTYPE html>
@@ -103,34 +116,55 @@ A minimal configuration that renders 100 particles with a circular shape, random
   <body>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          fpsLimit: 120,
-          particles: {
-            number: { value: 100 },
-            color: { value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"] },
-            shape: { type: "circle" },
-            opacity: {
-              value: { min: 0.3, max: 0.8 },
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            fpsLimit: 120,
+            particles: {
+              number: { value: 100 },
+              paint: [
+                {
+                  fill: { color: { value: "#ff0000" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#00ff00" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#0000ff" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#ffff00" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#ff00ff" }, enable: true },
+                },
+              ],
+              shape: { type: "circle" },
+              opacity: {
+                value: { min: 0.3, max: 0.8 },
+              },
+              size: {
+                value: { min: 2, max: 6 },
+              },
+              move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                outModes: { default: "bounce" },
+              },
             },
-            size: {
-              value: { min: 2, max: 6 },
-            },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: true,
-              straight: false,
-              outModes: { default: "bounce" },
-            },
+            background: { color: "#1a1a2e" },
           },
-          background: { color: "#1a1a2e" },
-        },
-      });
+        });
+      })();
     </script>
   </body>
 </html>
@@ -140,7 +174,7 @@ A minimal configuration that renders 100 particles with a circular shape, random
 
 ## Confetti Effect
 
-Use the built-in confetti preset for a celebratory burst.
+Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a single function call.
 
 ```html
 <!DOCTYPE html>
@@ -150,28 +184,21 @@ Use the built-in confetti preset for a celebratory burst.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confetti</title>
     <style>
-      #tsparticles {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-      }
       body {
         margin: 0;
+        background: #000;
       }
     </style>
   </head>
   <body>
-    <div id="tsparticles"></div>
+    <canvas id="confetti"></canvas>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-confetti@3/tsparticles.preset.confetti.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          preset: "confetti",
-          fullScreen: { enable: true, zIndex: -1 },
-        },
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: 0.5, y: 0.5 },
       });
     </script>
   </body>
@@ -182,7 +209,7 @@ Use the built-in confetti preset for a celebratory burst.
 
 ## Fireworks Effect
 
-A fireworks show with particles exploding across the screen.
+A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound effects.
 
 ```html
 <!DOCTYPE html>
@@ -199,23 +226,48 @@ A fireworks show with particles exploding across the screen.
     </style>
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-fireworks@3/tsparticles.preset.fireworks.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          preset: "fireworks",
-          fullScreen: { enable: true, zIndex: -1 },
-          fireworks: {
-            background: "#000000",
-            brightness: 100,
-            colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
-            intensity: 30,
-            life: { min: 4, max: 8 },
-            traces: 20,
-            explosion: { min: 30, max: 60 },
-          },
+      fireworks({
+        colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
+        sounds: true,
+      });
+    </script>
+  </body>
+</html>
+```
+
+---
+
+## Ribbons Effect
+
+Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations that react to mouse position.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ribbons</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js"></script>
+    <script>
+      ribbons({
+        ribbonOptions: {
+          count: 30,
+          angle: 45,
+          oscillationSpeed: 3,
+          oscillationDistance: 40,
+          particleDist: 8,
         },
       });
     </script>
@@ -227,7 +279,7 @@ A fireworks show with particles exploding across the screen.
 
 ## Snow Effect
 
-Gentle falling snowflakes using the snow preset.
+Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
@@ -251,33 +303,49 @@ Gentle falling snowflakes using the snow preset.
   <body>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/configs@4/tsparticles.configs.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          preset: "snow",
-          fullScreen: { enable: true, zIndex: -1 },
-          snow: {
-            color: "#ffffff",
-            opacity: { min: 0.3, max: 0.9 },
-            size: { min: 1, max: 4 },
-            speed: { min: 0.5, max: 2 },
-            wobble: true,
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            preset: "snow",
           },
-        },
-      });
+        });
+      })();
     </script>
   </body>
 </html>
 ```
 
+Alternatively, using the standalone preset package:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@4/tsparticles.preset.snow.min.js"></script>
+<script>
+  (async () => {
+    await loadBasic(tsParticles);
+    await loadSnowPreset(tsParticles);
+
+    await tsParticles.load({
+      id: "tsparticles",
+      options: { preset: "snow" },
+    });
+  })();
+</script>
+```
+
 ---
 
-## Network Links Effect
+## Network / Links Effect
 
-A classic connected-nodes visual with mouse interactivity.
+A classic connected-nodes visual with mouse interactivity. The `@tsparticles/slim` bundle includes the links interaction and mouse grab mode.
 
 ```html
 <!DOCTYPE html>
@@ -300,46 +368,53 @@ A classic connected-nodes visual with mouse interactivity.
   <body>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          fpsLimit: 60,
-          particles: {
-            number: { value: 80, density: { enable: true } },
-            color: { value: "#00d4ff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.6 },
-            size: { value: { min: 1, max: 4 } },
-            links: {
-              enable: true,
-              distance: 150,
-              color: "#00d4ff",
-              opacity: 0.4,
-              width: 1,
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            fpsLimit: 60,
+            particles: {
+              number: { value: 80, density: { enable: true } },
+              paint: {
+                color: "#00d4ff",
+              },
+              shape: { type: "circle" },
+              opacity: { value: 0.6 },
+              size: { value: { min: 1, max: 4 } },
+              links: {
+                enable: true,
+                distance: 150,
+                color: "#00d4ff",
+                opacity: 0.4,
+                width: 1,
+              },
+              move: {
+                enable: true,
+                speed: 1.5,
+                direction: "none",
+                random: true,
+                outModes: { default: "bounce" },
+              },
             },
-            move: {
-              enable: true,
-              speed: 1.5,
-              direction: "none",
-              random: true,
-              outModes: { default: "bounce" },
+            interactivity: {
+              events: {
+                onHover: { enable: true, mode: "grab" },
+                onClick: { enable: true, mode: "push" },
+              },
+              modes: {
+                grab: { distance: 180, links: { opacity: 0.8 } },
+                push: { quantity: 4 },
+              },
             },
+            background: { color: "#0d1117" },
           },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "grab" },
-              onClick: { enable: true, mode: "push" },
-            },
-            modes: {
-              grab: { distance: 180, links: { opacity: 0.8 } },
-              push: { quantity: 4 },
-            },
-          },
-          background: { color: "#0d1117" },
-        },
-      });
+        });
+      })();
     </script>
   </body>
 </html>
@@ -349,7 +424,7 @@ A classic connected-nodes visual with mouse interactivity.
 
 ## Stars Effect
 
-A starry-night sky using the stars preset.
+A starry-night sky using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
@@ -373,33 +448,49 @@ A starry-night sky using the stars preset.
   <body>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@3/tsparticles.preset.stars.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/configs@4/tsparticles.configs.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          preset: "stars",
-          fullScreen: { enable: true, zIndex: -1 },
-          stars: {
-            color: "#ffffff",
-            opacity: { min: 0.2, max: 1 },
-            size: { min: 0.5, max: 2.5 },
-            moveSpeed: 0.3,
-            twinkle: true,
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            preset: "star",
           },
-        },
-      });
+        });
+      })();
     </script>
   </body>
 </html>
+```
+
+Alternatively, using the standalone preset package:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@4/tsparticles.preset.stars.min.js"></script>
+<script>
+  (async () => {
+    await loadSlim(tsParticles);
+    await loadStarsPreset(tsParticles);
+
+    await tsParticles.load({
+      id: "tsparticles",
+      options: { preset: "stars" },
+    });
+  })();
+</script>
 ```
 
 ---
 
 ## Custom Configuration
 
-Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types.
+Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types using the slim bundle.
 
 ```html
 <!DOCTYPE html>
@@ -431,73 +522,105 @@ Build a configuration from scratch with a gradient background, interactive hover
     <h1>Custom Configuration</h1>
     <div id="tsparticles"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
-      tsParticles.load({
-        id: "tsparticles",
-        options: {
-          fullScreen: { enable: true, zIndex: 0 },
-          fpsLimit: 60,
-          particles: {
-            number: { value: 60, density: { enable: true, width: 800, height: 800 } },
-            color: {
-              value: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
-            },
-            shape: {
-              type: ["circle", "triangle", "polygon"],
-              options: {
-                polygon: { sides: 6 },
-              },
-            },
-            opacity: { value: { min: 0.4, max: 0.8 } },
-            size: { value: { min: 3, max: 8 } },
-            links: {
-              enable: true,
-              distance: 200,
-              color: "#ffffff",
-              opacity: 0.15,
-              width: 1,
-            },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: true,
-              straight: false,
-              outModes: { default: "out" },
-              attract: { enable: false },
-            },
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "attract" },
-              onClick: { enable: true, mode: "repulse" },
-            },
-            modes: {
-              attract: { distance: 200, duration: 0.4, factor: 1 },
-              repulse: { distance: 200, duration: 0.4 },
-            },
-          },
-          background: {
-            color: "#0f0f23",
-            opacity: 1,
-          },
-          themes: [
-            {
-              name: "light",
-              default: { value: false },
-              options: {
-                background: { color: "#f0f0f5" },
-                particles: {
-                  color: { value: ["#e74c3c", "#2ecc71", "#3498db", "#f1c40f"] },
-                  links: { color: "#333333", opacity: 0.2 },
-                  opacity: { value: { min: 0.5, max: 0.9 } },
+      (async () => {
+        await loadSlim(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            fullScreen: { enable: true, zIndex: 0 },
+            fpsLimit: 60,
+            particles: {
+              number: { value: 60, density: { enable: true, width: 800, height: 800 } },
+              paint: [
+                {
+                  fill: { color: { value: "#ff6b6b" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#feca57" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#48dbfb" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#ff9ff3" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#54a0ff" }, enable: true },
+                },
+              ],
+              shape: {
+                type: ["circle", "triangle", "polygon"],
+                options: {
+                  polygon: { sides: 6 },
                 },
               },
+              opacity: { value: { min: 0.4, max: 0.8 } },
+              size: { value: { min: 3, max: 8 } },
+              links: {
+                enable: true,
+                distance: 200,
+                color: "#ffffff",
+                opacity: 0.15,
+                width: 1,
+              },
+              move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                outModes: { default: "out" },
+                attract: { enable: false },
+              },
             },
-          ],
-        },
-      });
+            interactivity: {
+              events: {
+                onHover: { enable: true, mode: "attract" },
+                onClick: { enable: true, mode: "repulse" },
+              },
+              modes: {
+                attract: { distance: 200, duration: 0.4, factor: 1 },
+                repulse: { distance: 200, duration: 0.4 },
+              },
+            },
+            background: {
+              color: "#0f0f23",
+              opacity: 1,
+            },
+            themes: [
+              {
+                name: "light",
+                default: { value: false },
+                options: {
+                  background: { color: "#f0f0f5" },
+                  particles: {
+                    paint: [
+                      {
+                        fill: { color: { value: "#e74c3c" }, enable: true },
+                      },
+                      {
+                        fill: { color: { value: "#2ecc71" }, enable: true },
+                      },
+                      {
+                        fill: { color: { value: "#3498db" }, enable: true },
+                      },
+                      {
+                        fill: { color: { value: "#f1c40f" }, enable: true },
+                      },
+                    ],
+                    links: { color: "#333333", opacity: 0.2 },
+                    opacity: { value: { min: 0.5, max: 0.9 } },
+                  },
+                },
+              },
+            ],
+          },
+        });
+      })();
     </script>
   </body>
 </html>
@@ -543,77 +666,101 @@ Run multiple independent particle instances on the same page, each with its own 
     <div class="particle-box" id="box3"></div>
     <div class="particle-box" id="box4"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
-      // Container 1 – circles with slow movement
-      tsParticles.load({
-        id: "box1",
-        options: {
-          particles: {
-            number: { value: 40 },
-            color: { value: "#ff6b6b" },
-            shape: { type: "circle" },
-            opacity: { value: 0.7 },
-            size: { value: { min: 2, max: 5 } },
-            move: { enable: true, speed: 1, outModes: { default: "bounce" } },
-          },
-          background: { color: "#2d2d44" },
-        },
-      });
+      (async () => {
+        await loadSlim(tsParticles);
 
-      // Container 2 – triangles with links
-      tsParticles.load({
-        id: "box2",
-        options: {
-          particles: {
-            number: { value: 30 },
-            color: { value: "#48dbfb" },
-            shape: { type: "triangle" },
-            opacity: { value: 0.6 },
-            size: { value: { min: 3, max: 7 } },
-            links: { enable: true, distance: 120, color: "#48dbfb", opacity: 0.3 },
-            move: { enable: true, speed: 0.8, outModes: { default: "bounce" } },
-          },
-          background: { color: "#1a1a2e" },
-        },
-      });
-
-      // Container 3 – confetti-like burst
-      tsParticles.load({
-        id: "box3",
-        options: {
-          particles: {
-            number: { value: 50 },
-            color: { value: ["#feca57", "#ff9ff3", "#54a0ff", "#5f27cd"] },
-            shape: { type: ["circle", "square"] },
-            opacity: { value: 0.8 },
-            size: { value: { min: 2, max: 6 } },
-            move: {
-              enable: true,
-              speed: 3,
-              direction: "top",
-              outModes: { default: "destroy" },
+        // Container 1 – circles with slow movement
+        await tsParticles.load({
+          id: "box1",
+          options: {
+            particles: {
+              number: { value: 40 },
+              paint: {
+                color: "#ff6b6b",
+              },
+              shape: { type: "circle" },
+              opacity: { value: 0.7 },
+              size: { value: { min: 2, max: 5 } },
+              move: { enable: true, speed: 1, outModes: { default: "bounce" } },
             },
+            background: { color: "#2d2d44" },
           },
-          background: { color: "#222f3e" },
-        },
-      });
+        });
 
-      // Container 4 – slow floating stars
-      tsParticles.load({
-        id: "box4",
-        options: {
-          particles: {
-            number: { value: 20 },
-            color: { value: "#ffffff" },
-            shape: { type: "star" },
-            opacity: { value: { min: 0.2, max: 0.8 } },
-            size: { value: { min: 1, max: 4 } },
-            move: { enable: true, speed: 0.4, direction: "none", outModes: { default: "bounce" } },
+        // Container 2 – triangles with links
+        await tsParticles.load({
+          id: "box2",
+          options: {
+            particles: {
+              number: { value: 30 },
+              paint: {
+                color: "#48dbfb",
+              },
+              shape: { type: "triangle" },
+              opacity: { value: 0.6 },
+              size: { value: { min: 3, max: 7 } },
+              links: { enable: true, distance: 120, color: "#48dbfb", opacity: 0.3 },
+              move: { enable: true, speed: 0.8, outModes: { default: "bounce" } },
+            },
+            background: { color: "#1a1a2e" },
           },
-          background: { color: "#0d1117" },
-        },
-      });
+        });
+
+        // Container 3 – confetti-like burst
+        await tsParticles.load({
+          id: "box3",
+          options: {
+            particles: {
+              number: { value: 50 },
+              paint: [
+                {
+                  fill: { color: { value: "#feca57" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#ff9ff3" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#54a0ff" }, enable: true },
+                },
+                {
+                  fill: { color: { value: "#5f27cd" }, enable: true },
+                },
+              ],
+              shape: { type: ["circle", "square"] },
+              opacity: { value: 0.8 },
+              size: { value: { min: 2, max: 6 } },
+              move: {
+                enable: true,
+                speed: 3,
+                direction: "top",
+                outModes: { default: "destroy" },
+              },
+            },
+            background: { color: "#222f3e" },
+          },
+        });
+
+        // Container 4 – slow floating stars
+        await tsParticles.load({
+          id: "box4",
+          options: {
+            particles: {
+              number: { value: 20 },
+              paint: {
+                color: "#ffffff",
+              },
+              shape: { type: "star" },
+              opacity: { value: { min: 0.2, max: 0.8 } },
+              size: { value: { min: 1, max: 4 } },
+              move: { enable: true, speed: 0.4, direction: "none", outModes: { default: "bounce" } },
+            },
+            background: { color: "#0d1117" },
+          },
+        });
+      })();
     </script>
   </body>
 </html>
@@ -678,16 +825,21 @@ Programmatically start, stop, pause, and switch themes at runtime.
       <button id="restart-btn">🔄 Restart</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
     <script>
       (async () => {
+        await loadSlim(tsParticles);
+
         const container = await tsParticles.load({
           id: "tsparticles",
           options: {
             fpsLimit: 60,
             particles: {
               number: { value: 80 },
-              color: { value: "#00d4ff" },
+              paint: {
+                color: "#00d4ff",
+              },
               shape: { type: "circle" },
               opacity: { value: 0.6 },
               size: { value: { min: 2, max: 5 } },
@@ -702,7 +854,9 @@ Programmatically start, stop, pause, and switch themes at runtime.
                 options: {
                   background: { color: "#f5f5f5" },
                   particles: {
-                    color: { value: "#e74c3c" },
+                    paint: {
+                      color: "#e74c3c",
+                    },
                     links: { color: "#333333" },
                   },
                 },
@@ -716,7 +870,6 @@ Programmatically start, stop, pause, and switch themes at runtime.
         document.getElementById("stop-btn").addEventListener("click", () => container.stop());
         document.getElementById("restart-btn").addEventListener("click", async () => {
           await container.destroy();
-          // Reload with the same options
           tsParticles.load({ id: "tsparticles", options: container.options });
         });
         document.getElementById("theme-dark-btn").addEventListener("click", () => {
@@ -733,4 +886,4 @@ Programmatically start, stop, pause, and switch themes at runtime.
 
 ---
 
-You have now covered every major Vanilla JS integration pattern. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.
+You have now covered every major Vanilla JS integration pattern for tsParticles v4. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.

@@ -11,6 +11,7 @@ export { ISourceOptions } from "@tsparticles/engine";
 export { ParticlesPluginRegistrar } from "./initParticlesEngine";
 export namespace Components {
     interface StencilParticles {
+        "containerId"?: string;
         "init"?: ParticlesPluginRegistrar;
         "options"?: ISourceOptions;
         "url"?: string;
@@ -29,6 +30,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface StencilParticles {
+        "containerId"?: string;
         "init"?: ParticlesPluginRegistrar;
         "options"?: ISourceOptions;
         "url"?: string;
@@ -36,6 +38,7 @@ declare namespace LocalJSX {
 
     interface StencilParticlesAttributes {
         "url": string;
+        "containerId": string;
     }
 
     interface IntrinsicElements {

@@ -9,8 +9,8 @@ Use tsParticles with native Web Components via the `@tsparticles/webcomponents` 
 Include the tsParticles core and the Web Components bundle:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@3/tsparticles.webcomponents.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js"></script>
 ```
 
 ### Via npm + Build
@@ -299,12 +299,12 @@ A complete HTML page using the Web Components module with CDN scripts:
       import {
         initParticlesEngine,
         defineParticlesElement,
-      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@3/tsparticles.webcomponents.min.js";
+      } from "https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js";
 
-      const tsparticles = window.tsparticles;
+      const tsParticles = window.tPparticles;
 
       await initParticlesEngine(async (engine) => {
-        await tsparticles.loadFull(engine);
+        await tsParticles.loadFull(engine);
       });
 
       defineParticlesElement();
