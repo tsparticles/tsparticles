@@ -53,11 +53,15 @@
     ],
     "targets": {
       "build": {
+        "cache": false,
         "inputs": [
           "{projectRoot}/vite.config.js",
           "production",
           "^production"
         ]
+      },
+      "build:ci": {
+        "cache": false
       }
     }
   }

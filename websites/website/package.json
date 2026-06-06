@@ -276,7 +276,7 @@
         ],
         "targets": {
             "build": {
-                "cache": true,
+                "cache": false,
                 "outputs": [
                     "{projectRoot}/docs/.vitepress/dist",
                     "{projectRoot}/docs/.vitepress/cache"
@@ -292,7 +292,7 @@
                 ]
             },
             "build:ci": {
-                "cache": true,
+                "cache": false,
                 "outputs": [
                     "{projectRoot}/docs/.vitepress/dist",
                     "{projectRoot}/docs/.vitepress/cache"
