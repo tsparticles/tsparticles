@@ -7,22 +7,31 @@ user-facing breaking changes.
 
 ## Status Overview
 
-| Phase  | Area                           | Status         | Est. savings     | Actual savings  |
-|--------|--------------------------------|----------------|------------------|-----------------|
-| **1a** | Sealed `load`/`doLoad` pattern | ✅ **Done**     | ~1.5–2 KB        | TBD (see below) |
-| **1b** | `loadProperty` helper          | 📋 Planned     | ~2–3 KB          | —               |
-| **1c** | Merge classes                  | 📋 Planned     | ~0.5 KB          | —               |
-| **1d** | Factory functions              | 📋 Planned     | ~0.2 KB          | —               |
-| **2**  | Utils.ts cleanup (2a ✅, 2f ✅, 2b ✅, 2c ✅, 2d ✅, 2e ✅) | ✅ **Done** | ~0.6–1 KB + ~0 KB (engine, 2d moved) | 898B (2a)       |
-| **2d** | → Extract to `@tsparticles/animation-utils` (new pkg) | ✅ **Done** | ~0 KB (engine) | ~5.2 KB (new pkg) |
-| **3**  | ParticlesManager z-buckets     | 📋 Planned     | ~1–2 KB          | —               |
-| **4**  | Particle.ts refactor           | 📋 Planned     | ~1–2 KB          | —               |
-| **5**  | Cross-package helpers          | 📋 Planned     | ~0.5 KB (engine) | —               |
-| **6**  | ColorUtils tweaks              | 📋 Planned     | ~0.3–0.5 KB      | —               |
-|        | **Total remaining**            |                | **~6.1–10 KB**   |                 |
-|        | **Already saved** (1a, 2a, 2b, 2c, 2d, 2e, 2f) | ✅ Done | **~3.0–4.5 KB** | 898B (2a) |
+| Phase  | Area                           | Status         | Est. savings     | Actual savings (engine) |
+|--------|--------------------------------|----------------|------------------|------------------------|
+| **1a** | Sealed `load`/`doLoad` pattern | ✅ **Done**     | ~1.5–2 KB        | ~2 KB (pre-existing)   |
+| **1b** | `loadProperty` helper          | 📋 Planned     | ~2–3 KB          | —                      |
+| **1c** | Merge classes                  | 📋 Planned     | ~0.5 KB          | —                      |
+| **1d** | Factory functions              | 📋 Planned     | ~0.2 KB          | —                      |
+| **2**  | Utils.ts cleanup               | ✅ **Done**     | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine) |
+|        | ↳ 2a: `alt` from canvas        | ✅ Done        | —                | 898 B                 |
+|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done | — | ~350 B               |
+|        | ↳ 2c: inline `getSize` + `arrayRandomIndex` | ✅ Done | — | ~180 B                |
+|        | ↳ 2d: extract `@tsparticles/animation-utils` | ✅ **Done** | 0 KB (engine) | 0 B (engine), +5.2 KB new pkg |
+|        | ↳ 2e: simplify `updateAnimation` delay | ✅ Done | — | ~100 B                |
+|        | ↳ 2f: `alt` removal (partial)   | ✅ Done        | —                | ~200 B                |
+| **3**  | ParticlesManager z-buckets     | 📋 Planned     | ~1–2 KB          | —                      |
+| **4**  | Particle.ts refactor           | 📋 Planned     | ~1–2 KB          | —                      |
+| **5**  | Cross-package helpers          | 📋 Planned     | ~0.5 KB (engine) | —                      |
+| **6**  | ColorUtils tweaks              | 📋 Planned     | ~0.3–0.5 KB      | —                      |
+|        | **Total remaining**            |                | **~5.1–8.5 KB**  |                        |
+|        | **Already saved**              | ✅ Done        | **~5 KB total**  | **69 KB minified UMD** |
 
-**Current target:** 74 KB → ~70.7 KB (69 KB minified UMD, phase 2 complete). Remaining: ~5.1–10.3 KB from phases 1b–1d, 3, 4, 5, 6.
+**Current state:** 74 KB baseline → **69 KB** minified UMD (7% reduction).  
+Engine dist: `tsparticles.engine.min.js` = 69 KB.  
+Savings: ~5 KB total from Phases 1a + 2a–2f.  
+Remaining potential: ~5.1–8.5 KB from phases 1b–1d, 3, 4, 5, 6.  
+`@tsparticles/animation-utils`: new package (5.2 KB) with `initParticleNumericAnimationValue()`, `updateAnimation()`, `checkDestroy()`.
 
 ## Key Directives
 
