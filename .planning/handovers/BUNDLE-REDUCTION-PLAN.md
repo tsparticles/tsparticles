@@ -10,7 +10,7 @@ user-facing breaking changes.
 | Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)       |
 |--------|------------------------------------------------------|------------|---------------------------|-------------------------------|
 | **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)          |
-| **1b** | `loadProperty` helper                                | 📋 Planned | ~2–3 KB                   | —                             |
+| **1b** | `loadProperty` helper          | 📋 Planned     | ~3.5–6 KB        | —                      |
 | **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)              |
 |        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                         |
 |        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                        |
@@ -22,13 +22,13 @@ user-facing breaking changes.
 | **4**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                             |
 | **5**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                             |
 | **6**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                             |
-|        | **Total remaining**                                  |            | **~4.6–8.0 KB**           |                               |
+|        | **Total remaining**                                  |            | **~3.9–6.8 KB**           |                               |
 |        | **Already saved**                                    | ✅ Done     | **~5 KB total**           | **69 KB minified UMD**        |
 
 **Current state:** 74 KB baseline → **69 KB** minified UMD (7% reduction).  
 Engine dist: `tsparticles.engine.min.js` = 69 KB.  
 Savings: ~5 KB total from Phases 1a + 2a–2f.  
-Remaining potential: ~4.9–8.3 KB from phases 1b, 3, 4, 5, 6.  
+Remaining potential: ~3.9–6.8 KB from phases 1b, 3, 4, 5, 6.  
 `@tsparticles/animation-utils`: new package (5.2 KB) with `initParticleNumericAnimationValue()`, `updateAnimation()`, `checkDestroy()`.
 
 ## Key Directives
@@ -274,7 +274,11 @@ export class AnimationValueWithRandom extends ValueWithRandom {
 After Phase 1a, every `doLoad()` method receives a non-nullable `data` parameter. The repeated
 `if (data.x !== undefined) { this.x = ... }` pattern can be replaced with shared helpers.
 
-Analysis of all `doLoad()` methods across the 29 option classes reveals these dominant patterns:
+**Scope:** engine + plugin option classes across the workspace, but only for safe, semantics-preserving patterns. This is not a blanket codemod over every `load()`/`doLoad()` method.
+
+**Important constraint:** Phase 1a was completed only for engine option classes. Many plugin/updater/interactions option classes still use bespoke `load()` methods with local null guards and custom coercions. For those packages, 1b is valid only where the helper preserves behavior exactly; otherwise the existing code should remain as-is.
+
+Analysis of `doLoad()` methods reveals these dominant patterns:
 
 | Pattern                                                          | Occurrences | Files |
 |------------------------------------------------------------------|-------------|-------|
@@ -286,7 +290,22 @@ Analysis of all `doLoad()` methods across the 29 option classes reveals these do
 | `SingleOrMultiple` / array handling                              | ~1–4        | 1–2   |
 | Nullish coalescing fallback                                      | ~4          | 1     |
 
-The proposal is a family of helpers in `engine/src/Utils/OptionsUtils.ts`.
+The proposal is a small family of helpers in `engine/src/Utils/OptionsUtils.ts`, used only for the patterns below.
+
+**Safe targets**
+- Simple assignment: `if (data.x !== undefined) this.x = data.x`
+- Range assignment: `this.x = setRangeValue(data.x)`
+- Nested `.load()` on an already-instantiated child option
+- Lazy-init child option: `this.child ??= new Child(); this.child.load(data.child)`
+- Color factories: `OptionsColor.create(...)`, `AnimatableColor.create(...)`
+- `deepExtend` only for true dictionary/object-merge properties
+
+**Do not abstract in 1b**
+- `SingleOrMultiple` fields that switch between single object and array based on input or current state
+- Array mapping fields that allocate a new typed array of option objects (`events`, `divs`, etc.)
+- Properties that coerce input shape before loading (`Move.angle`, `Move.outModes`, numeric shorthands, etc.)
+- Cases that reset an existing instance when the incoming shape changes (`ParticlesOptions.paint`)
+- Hand-written transforms with side effects or plugin-specific branching
 
 **ESLint compatibility note:** The repo enforces `@typescript-eslint/strict-type-checked` which bans `any`, flags `{}` as a type, and requires explicit return types. The helpers below are designed to pass these rules:
 - `Record<string, unknown>` instead of `{}` (satisfies `consistent-indexed-object-style` + `no-empty-object-type`)
@@ -363,20 +382,6 @@ export function loadLazyProperty<T extends Record<string, unknown>>(
   }
 }
 
-/** SingleOrMultiple property — handles both single item and array */
-export function loadSingleOrMultipleProperty<T extends IOptionLoader<unknown>>(
-  obj: T[],
-  value: SingleOrMultiple<RecursivePartial<T>> | undefined,
-  factory: () => T,
-): void {
-  if (value === undefined) return;
-  executeOnSingleOrMultiple(value, item => {
-    const instance = factory();
-    instance.load(item);
-    obj.push(instance);
-  });
-}
-
 /** deepExtend merge for dictionary/record properties — uses `object` instead of `{}` for ESLint compat */
 export function loadExtendProperty<T extends Record<string, unknown>, K extends keyof T>(
   obj: T,
@@ -395,7 +400,6 @@ export function loadExtendProperty<T extends Record<string, unknown>, K extends 
 - `IOptionLoader<unknown>` is valid — `unknown` is a proper type, not `{}` or `any`
 - `as T[K]` and `as T[keyof T]` are type assertions on generic parameters, not `any` — they do NOT trigger `no-explicit-any`. They are necessary because TypeScript cannot infer that `setRangeValue()`'s `number` return or `OptionsColor.create()`'s return is assignable to the generic `T[K]`
 - `RecursivePartial<unknown>` avoids `any` while being permissive enough for nested `.load()` calls
-- `T extends IOptionLoader<unknown>` in `loadSingleOrMultipleProperty` ensures the `.load()` method exists on the factory result without needing `any`
 - All functions have explicit `: void` return types (satisfies `explicit-function-return-type` error)
 
 **Before (AnimationOptions.doLoad after Phase 1a):**
@@ -469,16 +473,12 @@ if (paintToLoad) {
 }
 ```
 
-**After:**
-```ts
-if (data.paint) {
-  loadSingleOrMultipleProperty(this, "paint", data.paint, () => new Paint());
-}
-```
+**Not in scope example (keep custom code):**
+`ParticlesOptions.paint` must stay custom because it supports `SingleOrMultiple<Paint>`, switches between single and array forms, and resets the stored instance when the input shape changes.
 
 **Raw size impact:** Each `if (data.x !== undefined) { this.x = ... }` block is ~60-80 chars.
-Each helper call is ~30-50 chars. With ~130 conditional assignments across 29 files, total raw savings is **~3-5 KB** before minification.
-The helpers themselves add ~500 bytes (once) to the engine, so net savings is **~2.5-4.5 KB**.
+Each helper call is ~30-50 chars. Applied conservatively to engine safe patterns plus matching plugin option classes, expected raw savings are **~4-6.5 KB**.
+The helpers themselves add ~500 bytes (once) to the engine, so net savings is **~3.5-6 KB**.
 
 ---
 
@@ -1209,14 +1209,14 @@ Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
 | Phase | Area | Est. savings (engine bundle) | Effort | Status |
 |-------|------|----|--------|--------|
 | 1a | Sealed `load`/`doLoad` pattern | ~1.5–2 KB | Medium | ✅ Done |
-| 1b | `loadProperty` helper | ~2–3 KB | Medium | 📋 Planned |
+| 1b | `loadProperty` helper (safe patterns only) | ~3.5–6 KB | Medium | 📋 Planned |
 | 2 | Utils.ts cleanup (2a–2f) | ~1.7 KB (engine) | Low | ✅ Done |
 | 2d | → `@tsparticles/animation-utils` (new package) | 0 KB (engine) | Low | ✅ Done |
 | 3 | ParticlesManager z-buckets | ~1–2 KB | Low | 📋 Planned |
 | 4 | Particle.ts refactor | ~1–2 KB | Medium | 📋 Planned |
 | 5 | Cross-package helpers | ~0.5 KB (engine) | Medium | 📋 Planned |
 | 6 | ColorUtils tweaks | ~0.3–0.5 KB | Low | 📋 Planned |
-| | **Total** (remaining) | **~4.9–8.3 KB** | | |
+| | **Total** (remaining) | **~3.9–6.8 KB** | | |
 | | **Already saved** | **~5 KB** | | **69 KB minified UMD** |
 
 Current target: **74 KB → ~64–66 KB** remaining phases (1b, 3, 4, 5, 6).

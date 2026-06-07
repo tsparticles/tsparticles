@@ -19,6 +19,7 @@ import { getPackageCatalogResource } from "./resources/packageCatalog.js";
 import { getOptionsGuideResource } from "./resources/optionsGuide.js";
 import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
 import { generateOptionsPrompt } from "./prompts/generateOptions.js";
+import { diagnoseIssues } from "./tools/diagnoseIssues.js";
 
 import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
@@ -126,6 +127,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ["package"],
         },
       },
+      {
+        name: "diagnose_issues",
+        description:
+          "Analyze tsParticles options for common configuration problems: missing plugins, invisible particles, broken interactivity, incorrect structure, and performance issues. Returns a list of issues with severity, explanation, and suggested fixes.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            options: {
+              type: "object",
+              description: "The tsParticles options object (ISourceOptions) to analyze",
+            },
+          },
+          required: ["options"],
+        },
+      },
     ],
   };
 });
@@ -203,6 +219,30 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           {
             type: "text",
             text: JSON.stringify(result, null, 2),
+          },
+        ],
+      };
+    }
+
+    case "diagnose_issues": {
+      const options = args?.options as Record<string, unknown>;
+      if (!options) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: "Missing required argument: options",
+            },
+          ],
+          isError: true,
+        };
+      }
+      const issues = diagnoseIssues(options);
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({ issues, total: issues.length }, null, 2),
           },
         ],
       };

@@ -245,7 +245,8 @@ Example output:
     },
     "dependencies": {
       "my-app": [
-        { "source": "my-app", "target": "shared-ui", "type": "static" }],
+        { "source": "my-app", "target": "shared-ui", "type": "static" }
+      ],
       "shared-ui": []
     }
   }

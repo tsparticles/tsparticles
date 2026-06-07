@@ -124,3 +124,4 @@ minimumReleaseAgeExclude:
   - '@commitlint/top-level@21.0.2'
   - '@stencil/core@4.43.5'
   - tsdown@0.22.1
+  - undici-types@8.4.0
