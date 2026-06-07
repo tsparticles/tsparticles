@@ -83,6 +83,7 @@
     "@electron/packager": "^20.0.1",
     "@electron/universal": "^3.0.4",
     "@electron/windows-sign": "^2.0.3",
+    "@electron-internal/extract-zip": "^1.0.2",
     "@malept/cross-spawn-promise": "^2.0.0",
     "@sec-ant/readable-stream": "^0.7.0",
     "@types/node": "^25.9.2",
