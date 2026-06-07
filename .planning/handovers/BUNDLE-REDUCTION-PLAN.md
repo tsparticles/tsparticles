@@ -7,30 +7,28 @@ user-facing breaking changes.
 
 ## Status Overview
 
-| Phase  | Area                           | Status         | Est. savings     | Actual savings (engine) |
-|--------|--------------------------------|----------------|------------------|------------------------|
-| **1a** | Sealed `load`/`doLoad` pattern | ✅ **Done**     | ~1.5–2 KB        | ~2 KB (pre-existing)   |
-| **1b** | `loadProperty` helper          | 📋 Planned     | ~2–3 KB          | —                      |
-| **1c** | Merge classes                  | 📋 Planned     | ~0.5 KB          | —                      |
-| **1d** | Factory functions              | 📋 Planned     | ~0.2 KB          | —                      |
-| **2**  | Utils.ts cleanup               | ✅ **Done**     | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine) |
-|        | ↳ 2a: `alt` from canvas        | ✅ Done        | —                | 898 B                 |
-|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done | — | ~350 B               |
-|        | ↳ 2c: inline `getSize` + `arrayRandomIndex` | ✅ Done | — | ~180 B                |
-|        | ↳ 2d: extract `@tsparticles/animation-utils` | ✅ **Done** | 0 KB (engine) | 0 B (engine), +5.2 KB new pkg |
-|        | ↳ 2e: simplify `updateAnimation` delay | ✅ Done | — | ~100 B                |
-|        | ↳ 2f: `alt` removal (partial)   | ✅ Done        | —                | ~200 B                |
-| **3**  | ParticlesManager z-buckets     | 📋 Planned     | ~1–2 KB          | —                      |
-| **4**  | Particle.ts refactor           | 📋 Planned     | ~1–2 KB          | —                      |
-| **5**  | Cross-package helpers          | 📋 Planned     | ~0.5 KB (engine) | —                      |
-| **6**  | ColorUtils tweaks              | 📋 Planned     | ~0.3–0.5 KB      | —                      |
-|        | **Total remaining**            |                | **~5.1–8.5 KB**  |                        |
-|        | **Already saved**              | ✅ Done        | **~5 KB total**  | **69 KB minified UMD** |
+| Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)       |
+|--------|------------------------------------------------------|------------|---------------------------|-------------------------------|
+| **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)          |
+| **1b** | `loadProperty` helper                                | 📋 Planned | ~2–3 KB                   | —                             |
+| **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)              |
+|        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                         |
+|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                        |
+|        | ↳ 2c: inline `getSize` + `arrayRandomIndex`          | ✅ Done     | —                         | ~180 B                        |
+|        | ↳ 2d: extract `@tsparticles/animation-utils`         | ✅ **Done** | 0 KB (engine)             | 0 B (engine), +5.2 KB new pkg |
+|        | ↳ 2e: simplify `updateAnimation` delay               | ✅ Done     | —                         | ~100 B                        |
+|        | ↳ 2f: `alt` removal (partial)                        | ✅ Done     | —                         | ~200 B                        |
+| **3**  | ParticlesManager z-buckets                           | 📋 Planned | ~1–2 KB                   | —                             |
+| **4**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                             |
+| **5**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                             |
+| **6**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                             |
+|        | **Total remaining**                                  |            | **~4.6–8.0 KB**           |                               |
+|        | **Already saved**                                    | ✅ Done     | **~5 KB total**           | **69 KB minified UMD**        |
 
 **Current state:** 74 KB baseline → **69 KB** minified UMD (7% reduction).  
 Engine dist: `tsparticles.engine.min.js` = 69 KB.  
 Savings: ~5 KB total from Phases 1a + 2a–2f.  
-Remaining potential: ~5.1–8.5 KB from phases 1b–1d, 3, 4, 5, 6.  
+Remaining potential: ~4.9–8.3 KB from phases 1b, 3, 4, 5, 6.  
 `@tsparticles/animation-utils`: new package (5.2 KB) with `initParticleNumericAnimationValue()`, `updateAnimation()`, `checkDestroy()`.
 
 ## Key Directives
@@ -452,19 +450,20 @@ doLoad(data: RecursivePartial<IPaint>): void {
 }
 ```
 
-**Before (ParticlesOptions — SingleOrMultiple paint):**
+**Before (ParticlesOptions — paint, attuale):**
 ```ts
-if (data.paint !== undefined) {
-  const paintToLoad = data.paint;
+const paintToLoad = data.paint;
+if (paintToLoad) {
   if (isArray(paintToLoad)) {
-    this.paints = [];
-    executeOnSingleOrMultiple(paintToLoad, paint => {
-      const p = new Paint();
-      p.load(paint);
-      this.paints?.push(p);
+    this.paint = executeOnSingleOrMultiple(paintToLoad, t => {
+      const tmp = new Paint();
+      tmp.load(t);
+      return tmp;
     });
-  } else if (paintToLoad !== undefined) {
-    this.paint ??= new Paint();
+  } else if (isArray(this.paint)) {
+    this.paint = new Paint();
+    this.paint.load(paintToLoad);
+  } else {
     this.paint.load(paintToLoad);
   }
 }
@@ -472,90 +471,14 @@ if (data.paint !== undefined) {
 
 **After:**
 ```ts
-if (data.paint !== undefined) {
-  loadSingleOrMultipleProperty(this.paints ??= [], undefined, data.paint, () => new Paint());
+if (data.paint) {
+  loadSingleOrMultipleProperty(this, "paint", data.paint, () => new Paint());
 }
 ```
 
 **Raw size impact:** Each `if (data.x !== undefined) { this.x = ... }` block is ~60-80 chars.
 Each helper call is ~30-50 chars. With ~130 conditional assignments across 29 files, total raw savings is **~3-5 KB** before minification.
 The helpers themselves add ~500 bytes (once) to the engine, so net savings is **~2.5-4.5 KB**.
-
-### Proposed change 1c — Merge closely related option classes
-
-**Candidates:**
-
-1. **`ParticlesBounce` + `ParticlesBounceFactor`**: `ParticlesBounceFactor` has 2 fields (`horizontal`, `vertical`). It's only used as a sub-object inside `ParticlesBounce`. Could be inlined:
-
-```ts
-// Before: 2 files, 2 classes
-class ParticlesBounceFactor {
-  horizontal: ValueWithRandom;
-  vertical: ValueWithRandom;
-  constructor() { this.horizontal = new ValueWithRandom(); this.vertical = new ValueWithRandom(); }
-  load(data) { if (isNull(data)) return; this.horizontal.load(data.horizontal); this.vertical.load(data.vertical); }
-}
-
-class ParticlesBounce {
-  readonly horizontal: ParticlesBounceFactor;
-  readonly vertical: ParticlesBounceFactor;
-  constructor() { this.horizontal = new ParticlesBounceFactor(); this.vertical = new ParticlesBounceFactor(); }
-  load(data) { if (isNull(data)) return; this.horizontal.load(data.horizontal); this.vertical.load(data.vertical); }
-}
-
-// After: 1 class, fields flattened
-class ParticlesBounce {
-  horizontal: ValueWithRandom;
-  vertical: ValueWithRandom;
-  constructor() { this.horizontal = new ValueWithRandom(); this.vertical = new ValueWithRandom(); }
-  load(data) {
-    if (isNull(data)) return;
-    this.horizontal.load(data.horizontal);
-    this.vertical.load(data.vertical);
-  }
-}
-```
-
-2. **`TwinkleLinksValues` + `TwinkleParticlesValues`** (in `updaters/twinkle/`): Both have `enable`, `frequency`, `opacity`, and a color. Only difference is `fillColor`/`strokeColor` vs single `color`. Could be a single class with optional fields.
-
-### Proposed change 1d — Factory functions for trivial options
-
-For the simplest options (e.g., `FullScreen`, `ResizeEvent`), replace class+prototype with a factory function:
-
-```ts
-// Before (FullScreen.ts, ~40 lines):
-export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
-  [name: string]: unknown;
-  enable;
-  zIndex: RangeValue;
-  constructor() { this.enable = true; this.zIndex = 0; }
-  load(data?: RecursivePartial<IFullScreen>): void {
-    if (isNull(data)) return;
-    if (data.enable !== undefined) this.enable = data.enable;
-    if (data.zIndex !== undefined) this.zIndex = setRangeValue(data.zIndex);
-  }
-}
-
-// After — plain object + load function:
-export function createFullScreen(): IFullScreen & IOptionLoader<IFullScreen> {
-  return {
-    [name: string]: unknown;
-    enable: true,
-    zIndex: 0,
-    load(data?: RecursivePartial<IFullScreen>) {
-      if (isNull(data)) return;
-      if (data.enable !== undefined) this.enable = data.enable;
-      if (data.zIndex !== undefined) this.zIndex = setRangeValue(data.zIndex);
-    },
-  };
-}
-```
-
-**Why this saves bytes**: A class compiles to a constructor function + prototype methods. A factory function returns a plain object literal — no prototype chain, no constructor invocation overhead. For a class with 2-3 fields and 1 method, the difference is ~50-100 bytes minified.
-
-### Estimated savings
-
-~4–6 KB total from combining all four sub-phases (1a: ~1.5-2 KB, 1b: ~2-3 KB, 1c: ~0.5 KB, 1d: ~0.2 KB)
 
 ---
 
@@ -1287,18 +1210,16 @@ Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
 |-------|------|----|--------|--------|
 | 1a | Sealed `load`/`doLoad` pattern | ~1.5–2 KB | Medium | ✅ Done |
 | 1b | `loadProperty` helper | ~2–3 KB | Medium | 📋 Planned |
-| 1c | Merge classes | ~0.5 KB | Low | 📋 Planned |
-| 1d | Factory functions | ~0.2 KB | Low | 📋 Planned |
-| 2 | Utils.ts cleanup (2a ✅, 2f ✅; 2b–2c, 2e planned) | ~0.6–1 KB | Low | 🚧 In progress |
-| 2d | → `@tsparticles/animation-utils` (new package) | ~0 KB (engine) | Low | 📋 Planned |
+| 2 | Utils.ts cleanup (2a–2f) | ~1.7 KB (engine) | Low | ✅ Done |
+| 2d | → `@tsparticles/animation-utils` (new package) | 0 KB (engine) | Low | ✅ Done |
 | 3 | ParticlesManager z-buckets | ~1–2 KB | Low | 📋 Planned |
 | 4 | Particle.ts refactor | ~1–2 KB | Medium | 📋 Planned |
 | 5 | Cross-package helpers | ~0.5 KB (engine) | Medium | 📋 Planned |
 | 6 | ColorUtils tweaks | ~0.3–0.5 KB | Low | 📋 Planned |
-| | **Total** (remaining) | **~6.1–10 KB** | | |
-| | **Already saved** (1a, 2a, 2f) | **~2.4–2.9 KB** | | |
+| | **Total** (remaining) | **~4.9–8.3 KB** | | |
+| | **Already saved** | **~5 KB** | | **69 KB minified UMD** |
 
-Remaining target: **74 KB → ~61–65.5 KB** — a **~11–17% reduction** (Phase 1a, 2a, 2f savings already factored in).
+Current target: **74 KB → ~64–66 KB** remaining phases (1b, 3, 4, 5, 6).
 
 ---
 
@@ -1315,7 +1236,7 @@ Remaining target: **74 KB → ~61–65.5 KB** — a **~11–17% reduction** (Pha
 
 | File                                         | Phase | Impact                                             |
 |----------------------------------------------|-------|----------------------------------------------------|
-| `engine/src/Options/Classes/*.ts` (29 files) | 1a–1d | `load`/`doLoad` base class, `loadProperty` helper    |
+| `engine/src/Options/Classes/*.ts` (29 files) | 1a–1b | `load`/`doLoad` base class, `loadProperty` helper    |
 | `engine/src/Utils/Utils.ts`                  | 2a–2f | Remove `memoize`, move/inline dead code, extract `initParticleNumericAnimationValue` + `updateAnimation` to `utils/animationUtils/` |
 | `engine/src/Core/ParticlesManager.ts`        | 3     | Remove binary search, simplify buckets             |
 | `engine/src/Core/Particle.ts`                | 4     | Extract helpers from 166-line `init()`             |
