@@ -5,11 +5,10 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  initParticleNumericAnimationValue,
   percentDenominator,
-  updateAnimation,
 } from "@tsparticles/engine";
 import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
+import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
 import { Size } from "./Options/Classes/Size.js";
 
 const minLoops = 0;

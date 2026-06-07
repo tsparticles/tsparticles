@@ -3002,6 +3002,9 @@ importers:
       '@tsparticles/angular':
         specifier: workspace:^
         version: link:../../wrappers/angular/dist/ng-particles
+      '@tsparticles/animation-utils':
+        specifier: workspace:^
+        version: link:../../utils/animationUtils/dist
       '@tsparticles/basic':
         specifier: workspace:^
         version: link:../../bundles/basic/dist
@@ -3271,6 +3274,9 @@ importers:
 
   demo/electron:
     dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
       '@tsparticles/basic':
         specifier: workspace:*
         version: link:../../bundles/basic/dist
@@ -3856,6 +3862,9 @@ importers:
       '@tsparticles/angular':
         specifier: workspace:^
         version: link:../../wrappers/angular/dist/ng-particles
+      '@tsparticles/animation-utils':
+        specifier: workspace:^
+        version: link:../../utils/animationUtils/dist
       '@tsparticles/basic':
         specifier: workspace:^
         version: link:../../bundles/basic/dist
@@ -5048,6 +5057,9 @@ importers:
       '@tsparticles/all':
         specifier: workspace:*
         version: link:../../bundles/all/dist
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
       '@tsparticles/basic':
         specifier: workspace:*
         version: link:../../bundles/basic/dist
@@ -11288,6 +11300,10 @@ importers:
     publishDirectory: dist
 
   updaters/gradient:
+    dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^
@@ -11308,6 +11324,10 @@ importers:
     publishDirectory: dist
 
   updaters/opacity:
+    dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^
@@ -11358,6 +11378,10 @@ importers:
     publishDirectory: dist
 
   updaters/rotate:
+    dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^
@@ -11368,6 +11392,10 @@ importers:
     publishDirectory: dist
 
   updaters/size:
+    dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^
@@ -11378,6 +11406,10 @@ importers:
     publishDirectory: dist
 
   updaters/tilt:
+    dependencies:
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../../utils/animationUtils/dist
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^
@@ -11398,6 +11430,16 @@ importers:
     publishDirectory: dist
 
   updaters/wobble:
+    devDependencies:
+      '@tsparticles/cli-build':
+        specifier: workspace:^
+        version: link:../../cli/packages/cli-build
+      '@tsparticles/engine':
+        specifier: workspace:*
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  utils/animationUtils:
     devDependencies:
       '@tsparticles/cli-build':
         specifier: workspace:^

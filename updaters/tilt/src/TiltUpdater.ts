@@ -13,11 +13,11 @@ import {
   getRangeValue,
   half,
   identity,
-  updateAnimation,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 const maxAngle = 360;
 

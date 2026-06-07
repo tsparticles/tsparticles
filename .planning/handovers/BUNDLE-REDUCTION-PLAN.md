@@ -7,20 +7,22 @@ user-facing breaking changes.
 
 ## Status Overview
 
-| Phase  | Area                           | Status     | Est. savings     | Actual savings  |
-|--------|--------------------------------|------------|------------------|-----------------|
-| **1a** | Sealed `load`/`doLoad` pattern | ✅ **Done** | ~1.5–2 KB        | TBD (see below) |
-| **1b** | `loadProperty` helper          | 📋 Planned | ~2–3 KB          | —               |
-| **1c** | Merge classes                  | 📋 Planned | ~0.5 KB          | —               |
-| **1d** | Factory functions              | 📋 Planned | ~0.2 KB          | —               |
-| **2**  | Utils.ts cleanup (2a ✅)       | 🚧 In progress | ~1.5–3 KB    | 898B (2a)       |
-| **3**  | ParticlesManager z-buckets     | 📋 Planned | ~1–2 KB          | —               |
-| **4**  | Particle.ts refactor           | 📋 Planned | ~1–2 KB          | —               |
-| **5**  | Cross-package helpers          | 📋 Planned | ~0.5 KB (engine) | —               |
-| **6**  | ColorUtils tweaks              | 📋 Planned | ~0.3–0.5 KB      | —               |
-|        | **Total**                      |            | **~8.5–13.5 KB** |                 |
+| Phase  | Area                           | Status         | Est. savings     | Actual savings  |
+|--------|--------------------------------|----------------|------------------|-----------------|
+| **1a** | Sealed `load`/`doLoad` pattern | ✅ **Done**     | ~1.5–2 KB        | TBD (see below) |
+| **1b** | `loadProperty` helper          | 📋 Planned     | ~2–3 KB          | —               |
+| **1c** | Merge classes                  | 📋 Planned     | ~0.5 KB          | —               |
+| **1d** | Factory functions              | 📋 Planned     | ~0.2 KB          | —               |
+| **2**  | Utils.ts cleanup (2a ✅, 2f ✅, 2b ✅, 2c ✅, 2d ✅, 2e ✅) | ✅ **Done** | ~0.6–1 KB + ~0 KB (engine, 2d moved) | 898B (2a)       |
+| **2d** | → Extract to `@tsparticles/animation-utils` (new pkg) | ✅ **Done** | ~0 KB (engine) | ~5.2 KB (new pkg) |
+| **3**  | ParticlesManager z-buckets     | 📋 Planned     | ~1–2 KB          | —               |
+| **4**  | Particle.ts refactor           | 📋 Planned     | ~1–2 KB          | —               |
+| **5**  | Cross-package helpers          | 📋 Planned     | ~0.5 KB (engine) | —               |
+| **6**  | ColorUtils tweaks              | 📋 Planned     | ~0.3–0.5 KB      | —               |
+|        | **Total remaining**            |                | **~6.1–10 KB**   |                 |
+|        | **Already saved** (1a, 2a, 2b, 2c, 2d, 2e, 2f) | ✅ Done | **~3.0–4.5 KB** | 898B (2a) |
 
-**Current target:** 74 KB → ~60–66 KB (still ~11–19% reduction).
+**Current target:** 74 KB → ~70.7 KB (69 KB minified UMD, phase 2 complete). Remaining: ~5.1–10.3 KB from phases 1b–1d, 3, 4, 5, 6.
 
 ## Key Directives
 
@@ -610,9 +612,9 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 }
 ```
 
-### 2d — Extract `initParticleNumericAnimationValue()`
+### 2d — Extract `initParticleNumericAnimationValue()` to `@tsparticles/animation-utils`
 
-**Current** (lines 480-556, 77 lines) — a large function used only by **2 updaters** (size, opacity).
+**Current** (lines 354-430, 77 lines) — a large function used only by **2 updaters** (size, opacity).
 
 ```ts
 export function initParticleNumericAnimationValue(
@@ -640,11 +642,25 @@ export function initParticleNumericAnimationValue(
 }
 ```
 
-**Move to a shared utility file** (e.g., `engine/src/Utils/AnimationUtils.ts`) or to the size/opacity updaters directly. Removes 77 lines from the already-large Utils.ts and avoids bundling this code when size/opacity updaters aren't used (though for the engine bundle they always are — but for tree-shaken bundles this matters).
+**Extract to `@tsparticles/animation-utils`** — a new utility package modeled on `@tsparticles/canvas-utils`.
 
-### 2e — Reduce `updateAnimation()`
+This function doesn't need to be in the engine; it's consumed by external updaters (size, opacity) and potentially by plugin authors. Moving it to a separate package:
+- Removes ~77 lines from the already-large `Utils.ts`
+- Avoids bundling this code when size/opacity updaters aren't used (tree-shaking benefit)
+- Provides a clear home for shared animation helpers without coupling them to the engine's core
 
-**Current** (lines 649-742, 94 lines). Used by 4 updaters (tilt, size, rotate, opacity).
+**`updateAnimation()` goes here too.** It's the complementary function (94 lines, used by tilt, size, rotate, opacity, gradient — all external updaters, zero engine consumers). Both functions have the same dependency pattern on engine types (`AnimationStatus`, `DestroyType`, `IParticleNumericValueAnimation`). The `Particle` dependency in `updateAnimation` is fine — the package will have `@tsparticles/engine` as a peer dependency.
+
+**New package:**
+- Location: `utils/animationUtils/` (sibling to `utils/canvasUtils/`)
+- Peer dependency: `@tsparticles/engine` (same model as canvas-utils)
+- Exports: `initParticleNumericAnimationValue`, `updateAnimation`
+- Importers: updaters/size, updaters/opacity, updaters/tilt, updaters/rotate, updaters/gradient
+- Removes ~171 lines from `engine/src/Utils/Utils.ts`
+
+### 2e — Reduce `updateAnimation()` (after moving to `@tsparticles/animation-utils`)
+
+**Current** (lines 523-615, 94 lines). Used by 5 updaters (tilt, size, rotate, opacity, gradient).
 
 The function has:
 - Early-exit checks for destroyed/enable/loop count
@@ -671,31 +687,29 @@ This is intentional (add time, then check again) but the `?? minDelay` repeated 
 
 **Simplify:**
 ```ts
-const delayTime = data.delayTime ?? 0;
+const delayTime = data.delayTime ?? minDelay;
+
 if (delayTime > 0 && data.time < delayTime) {
   data.time += delta.value;
-  if (data.time < delayTime) return;
+  
+  if (data.time < delayTime) {
+    return;
+  }
 }
 ```
 
 **Savings**: ~5 lines, small but the function is on the hot path.
 
-### 2f — Assess `safeIntersectionObserver()`
+### 2f — Move `safeIntersectionObserver()` (✅ Done)
 
-**Current** (lines 192-198, 7 lines):
+**What was done:**
+- Removed `safeIntersectionObserver()` from `engine/src/Utils/Utils.ts`
+- Inlined it as a local function in `plugins/interactivity/src/InteractionManager.ts` (its only consumer)
+- ~7 lines + 1 export removed from engine bundle
 
-```ts
-export function safeIntersectionObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
-  if (typeof MutationObserver === "undefined") return;
-  return new MutationObserver(callback);
-}
-```
+### Estimated savings (engine bundle)
 
-Wait — this function creates a **MutationObserver** but is named `safeIntersectionObserver`. Only 1 consumer. Move it there.
-
-### Estimated savings
-
-~1.5–3 KB total
+~0.6–1 KB (2b–2c, 2e only — 2a and 2f are already done, 2d+2e moved to new package)
 
 ## Phase 3 — ParticlesManager: Z-Bucket Simplification
 
@@ -1266,14 +1280,16 @@ Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
 | 1b | `loadProperty` helper | ~2–3 KB | Medium | 📋 Planned |
 | 1c | Merge classes | ~0.5 KB | Low | 📋 Planned |
 | 1d | Factory functions | ~0.2 KB | Low | 📋 Planned |
-| 2 | Utils.ts cleanup | ~1.5–3 KB | Low | 📋 Planned |
+| 2 | Utils.ts cleanup (2a ✅, 2f ✅; 2b–2c, 2e planned) | ~0.6–1 KB | Low | 🚧 In progress |
+| 2d | → `@tsparticles/animation-utils` (new package) | ~0 KB (engine) | Low | 📋 Planned |
 | 3 | ParticlesManager z-buckets | ~1–2 KB | Low | 📋 Planned |
 | 4 | Particle.ts refactor | ~1–2 KB | Medium | 📋 Planned |
 | 5 | Cross-package helpers | ~0.5 KB (engine) | Medium | 📋 Planned |
 | 6 | ColorUtils tweaks | ~0.3–0.5 KB | Low | 📋 Planned |
-| | **Total** | **~7–11.5 KB** | | |
+| | **Total** (remaining) | **~6.1–10 KB** | | |
+| | **Already saved** (1a, 2a, 2f) | **~2.4–2.9 KB** | | |
 
-Remaining target: **74 KB → ~62–67 KB** — a **~9–16% reduction** (Phase 1a savings already factored in).
+Remaining target: **74 KB → ~61–65.5 KB** — a **~11–17% reduction** (Phase 1a, 2a, 2f savings already factored in).
 
 ---
 
@@ -1291,10 +1307,11 @@ Remaining target: **74 KB → ~62–67 KB** — a **~9–16% reduction** (Phase 
 | File                                         | Phase | Impact                                             |
 |----------------------------------------------|-------|----------------------------------------------------|
 | `engine/src/Options/Classes/*.ts` (29 files) | 1a–1d | `load`/`doLoad` base class, `loadProperty` helper    |
-| `engine/src/Utils/Utils.ts`                  | 2a–2f | Remove `memoize`, move/inline dead code            |
+| `engine/src/Utils/Utils.ts`                  | 2a–2f | Remove `memoize`, move/inline dead code, extract `initParticleNumericAnimationValue` + `updateAnimation` to `utils/animationUtils/` |
 | `engine/src/Core/ParticlesManager.ts`        | 3     | Remove binary search, simplify buckets             |
 | `engine/src/Core/Particle.ts`                | 4     | Extract helpers from 166-line `init()`             |
 | `engine/src/Utils/OptionsUtils.ts`           | 1a, 1b, 5 | Add `OptionLoader`, `loadProperty`, `createSimpleOption` |
 | `updaters/*/src/Options/Classes/*.ts`        | 5     | Use engine helpers instead of custom classes       |
 | `plugins/*/src/Options/Classes/*.ts`         | 5     | Use engine helpers instead of custom classes       |
 | `engine/src/Utils/ColorUtils.ts`             | 6a–6c | Simplify cache, extract channel(), inline wrappers |
+| `utils/animationUtils/` (new package)       | 2d–2e | New `@tsparticles/animation-utils` package — `initParticleNumericAnimationValue`, `updateAnimation` |

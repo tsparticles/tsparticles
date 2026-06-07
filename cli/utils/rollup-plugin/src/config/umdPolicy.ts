@@ -193,6 +193,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
         ["engine", `${internalRoot}.engine`],
         // Util packages: not "path plugins" but helper utilities; map to their actual scope
         ["path-utils", `${internalRoot}.path.utils`],
+        ["animation-utils", `${internalRoot}.animation.utils`],
         ["canvas-utils", `${internalRoot}.canvas.utils`],
         // Historical package name mismatch: @tsparticles/path-zig-zag exposes paths.zigzag.
         ["path-zig-zag", `${internalRoot}.paths.zigzag`],

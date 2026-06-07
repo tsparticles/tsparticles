@@ -18,13 +18,13 @@ import {
   deepExtend,
   defaultOpacity,
   getRangeValue,
-  getSize,
   hMax,
   half,
   isPointInside,
   itemFromSingleOrMultiple,
   lMax,
   millisecondsToSeconds,
+  percentDenominator,
   randomInRangeValue,
   rangeColorToHsl,
   sMax,
@@ -211,7 +211,13 @@ export class EmitterInstance {
     this.#paused = !this.options.autoPlay;
     this.#particlesOptions = particlesOptions;
     this.#size = this.#calcSize();
-    this.size = getSize(this.#size, this.#container.canvas.size);
+    this.size =
+      this.#size.mode === PixelMode.percent
+        ? {
+            width: (this.#size.width / percentDenominator) * this.#container.canvas.size.width,
+            height: (this.#size.height / percentDenominator) * this.#container.canvas.size.height,
+          }
+        : { width: this.#size.width, height: this.#size.height };
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
 
@@ -330,7 +336,13 @@ export class EmitterInstance {
         : this.#calcPosition();
 
     this.#size = this.#calcSize();
-    this.size = getSize(this.#size, container.canvas.size);
+    this.size =
+      this.#size.mode === PixelMode.percent
+        ? {
+            width: (this.#size.width / percentDenominator) * container.canvas.size.width,
+            height: (this.#size.height / percentDenominator) * container.canvas.size.height,
+          }
+        : { width: this.#size.width, height: this.#size.height };
 
     this.#shape?.resize(this.position, this.size);
   }

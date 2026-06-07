@@ -82,6 +82,7 @@
     "@tsparticles/shape-star": "workspace:^",
     "@tsparticles/shape-text": "workspace:^",
     "@tsparticles/slim": "workspace:^",
+    "@tsparticles/animation-utils": "workspace:^",
     "@tsparticles/updater-destroy": "workspace:^",
     "@tsparticles/updater-life": "workspace:^",
     "@tsparticles/updater-opacity": "workspace:^",

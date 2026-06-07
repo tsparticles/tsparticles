@@ -1,0 +1,6 @@
+.cache/
+src/
+tsconfig*.json
+eslint.config.js
+rollup.config.js
+node_modules/

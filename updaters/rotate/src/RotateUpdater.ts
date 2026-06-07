@@ -16,10 +16,10 @@ import {
   getRandom,
   getRangeValue,
   identity,
-  updateAnimation,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 /**
  * Rotate particle extension type

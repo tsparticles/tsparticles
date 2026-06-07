@@ -393,6 +393,7 @@
     "@tsparticles/simplex-noise": "workspace:*",
     "@tsparticles/slim": "workspace:*",
     "@tsparticles/smooth-value-noise": "workspace:*",
+    "@tsparticles/animation-utils": "workspace:*",
     "@tsparticles/updater-destroy": "workspace:*",
     "@tsparticles/updater-gradient": "workspace:*",
     "@tsparticles/updater-life": "workspace:*",

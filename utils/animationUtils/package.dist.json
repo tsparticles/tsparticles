@@ -1,12 +1,12 @@
 {
-  "name": "@tsparticles/updater-opacity",
+  "name": "@tsparticles/animation-utils",
   "version": "4.1.3",
-  "description": "tsParticles particles opacity updater",
+  "description": "tsParticles animation utils library",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "updaters/opacity"
+    "directory": "utils/animationUtils"
   },
   "keywords": [
     "front-end",
@@ -16,7 +16,7 @@
     "particlesjs",
     "particles",
     "particle",
-    "canvas",
+    "animation",
     "jsparticles",
     "xparticles",
     "particles-js",
@@ -60,17 +60,33 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "@tsparticles/updater"
+    "tsparticles-plugin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.updater.opacity.min.js",
-  "unpkg": "tsparticles.updater.opacity.min.js",
+  "jsdelivr": "tsparticles.animation.utils.min.js",
+  "unpkg": "tsparticles.animation.utils.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -92,14 +108,8 @@
     },
     "./package.json": "./package.json"
   },
-  "dependencies": {
-    "@tsparticles/animation-utils": "4.1.3"
-  },
   "peerDependencies": {
     "@tsparticles/engine": "4.1.3"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "type": "module"
 }

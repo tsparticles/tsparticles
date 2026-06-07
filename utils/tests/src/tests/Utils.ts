@@ -4,7 +4,6 @@ import {
   OutModeDirection,
   Vector,
   areBoundsInside,
-  arrayRandomIndex,
   calculateBounds,
   clamp,
   getDistance,
@@ -151,18 +150,6 @@ describe("Utils", () => {
         weight2 = 1;
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
-    });
-  });
-
-  describe("arrayRandomIndex", () => {
-    it("should always return an index that is not out of the bounds of the array", () => {
-      const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        randomIndex = arrayRandomIndex(array);
-
-      expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
-      expect(randomIndex).to.be.at.least(0);
-      expect(randomIndex).to.be.at.most(9);
-      expect(randomIndex).to.equal(array[randomIndex]); // Additional check that index is in bounds
     });
   });
 
