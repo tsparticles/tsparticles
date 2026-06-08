@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { appCreateCommand } from "@tsparticles/cli-command-create-app";
 import { bundleCreateCommand } from "@tsparticles/cli-command-create-bundle";
 import { effectCreateCommand } from "@tsparticles/cli-command-create-effect";
 import { interactionCreateCommand } from "@tsparticles/cli-command-create-interaction";
@@ -13,6 +14,7 @@ const createCommand = new Command("create");
 
 createCommand.description("Create a new tsParticles project");
 
+createCommand.addCommand(appCreateCommand);
 createCommand.addCommand(bundleCreateCommand);
 createCommand.addCommand(effectCreateCommand);
 createCommand.addCommand(interactionCreateCommand);

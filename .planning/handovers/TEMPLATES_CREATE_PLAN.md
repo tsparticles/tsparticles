@@ -15,33 +15,47 @@ Create a template ecosystem for tsParticles with two dimensions:
 | **Scaffold** | Minimal framework skeleton   | vanilla, react, vue3, angular, svelte, solid |
 | **Use-case** | Complete example application | login, portfolio, landing, tictactoe         |
 
+## Status dashboard
+
+| Step  | Status        |
+|-------|---------------|
+| 1     | ✅ Done        |
+| 1a    | ✅ Done        |
+| 1b-1f | ✅ Done        |
+| 2a-2g | ✅ Done        |
+| 3a-3c | ⬜ Not started |
+| 4a    | ⬜ Not started |
+| 4b    | ⬜ Not started |
+| 5     | ⬜ Not started |
+| 6     | ⬜ Not started |
+
 ## Steps summary
 
 This table is the fastest overview of scope, order, and implementation risk.
 
-| Step | Scope | Output | Depends on | Parallelizable | Risk |
-|------|-------|--------|------------|----------------|------|
-| 1 | Scaffold package infrastructure | `templates/scaffold/` root package | None | No | Medium |
-| 1a | Vanilla scaffold | `template/vanilla/` | 1 | Yes | Medium |
-| 1b | React scaffold | `template/react/` | 1a | Yes | Medium |
-| 1c | Vue 3 scaffold | `template/vue3/` | 1a | Yes | Medium |
-| 1d | Angular scaffold | `template/angular/` | 1 | Yes | High |
-| 1e | Svelte scaffold | `template/svelte/` | 1 | Yes | High |
-| 1f | Solid scaffold | `template/solid/` | 1 | Yes | Medium |
-| 2a | Login template | `templates/login/` | 1a | Yes | Medium |
-| 2b | Portfolio template | `templates/portfolio/` | 1a | Yes | Medium |
-| 2c | Landing template | `templates/landing/` | 1a | Yes | Medium |
-| 2d | Tic-tac-toe template | `templates/tictactoe/` | 1a | Yes | Medium |
-| 2e | Confetti template | `templates/confetti/` | 1a | Yes | Medium |
-| 2f | Ribbons template | `templates/ribbons/` | 1a | Yes | Medium |
-| 2g | Particles template | `templates/particles/` | 1a | Yes | Low |
-| 3a | CLI app architecture | types + resolver | 1, 2 | Partially | High |
-| 3b | CLI scaffold logic | prompts + copy/merge flow | 3a | No | High |
-| 3c | CLI registration | integrate `app` into existing CLI | 3a, 3b | No | Medium |
-| 4a | Wrapper package alignment | metadata/files for `create-*` packages | None | Yes | Low |
-| 4b | Wrapper delegation | wrappers call `tsparticles-create app` | 3, 4a | No | Medium |
-| 5 | CRA deprecation | mark old templates deprecated | None | Yes | Low |
-| 6 | Documentation | website docs and usage pages | None | Yes | Low |
+| Step | Scope                           | Output                                 | Depends on | Parallelizable | Risk   | Status    |
+|------|---------------------------------|----------------------------------------|------------|----------------|--------|-----------|
+| 1    | Scaffold package infrastructure | `templates/scaffold/` root package     | None       | No             | Medium | ✅ Done    |
+| 1a   | Vanilla scaffold                | `template/vanilla/`                    | 1          | Yes            | Medium | ✅ Done    |
+| 1b   | React scaffold                  | `template/react/`                      | 1a         | Yes            | Medium | ✅ Done    |
+| 1c   | Vue 3 scaffold                  | `template/vue3/`                       | 1a         | Yes            | Medium | ✅ Done    |
+| 1d   | Angular scaffold                | `template/angular/`                    | 1          | Yes            | High   | ✅ Done    |
+| 1e   | Svelte scaffold                 | `template/svelte/`                     | 1          | Yes            | High   | ✅ Done    |
+| 1f   | Solid scaffold                  | `template/solid/`                      | 1          | Yes            | Medium | ✅ Done    |
+| 2a   | Login template                  | `templates/login/`                     | 1a         | Yes            | Medium | ✅ Done    |
+| 2b   | Portfolio template              | `templates/portfolio/`                 | 1a         | Yes            | Medium | ✅ Done    |
+| 2c   | Landing template                | `templates/landing/`                   | 1a         | Yes            | Medium | ✅ Done    |
+| 2d   | Tic-tac-toe template            | `templates/tictactoe/`                 | 1a         | Yes            | Medium | ✅ Done    |
+| 2e   | Confetti template               | `templates/confetti/`                  | 1a         | Yes            | Medium | ✅ Done    |
+| 2f   | Ribbons template                | `templates/ribbons/`                   | 1a         | Yes            | Medium | ✅ Done    |
+| 2g   | Particles template              | `templates/particles/`                 | 1a         | Yes            | Low    | ✅ Done    |
+| 3a   | CLI app architecture            | types + resolver                       | 1, 2       | Partially      | High   | ⬜ Pending |
+| 3b   | CLI scaffold logic              | prompts + copy/merge flow              | 3a         | No             | High   | ⬜ Pending |
+| 3c   | CLI registration                | integrate `app` into existing CLI      | 3a, 3b     | No             | Medium | ⬜ Pending |
+| 4a   | Wrapper package alignment       | metadata/files for `create-*` packages | None       | Yes            | Low    | ⬜ Pending |
+| 4b   | Wrapper delegation              | wrappers call `tsparticles-create app` | 3, 4a      | No             | Medium | ⬜ Pending |
+| 5    | CRA deprecation                 | mark old templates deprecated          | None       | Yes            | Low    | ⬜ Pending |
+| 6    | Documentation                   | website docs and usage pages           | None       | Yes            | Low    | ⬜ Pending |
 
 ### Recommended execution order
 
@@ -166,7 +180,7 @@ If these are maintained manually without anti-drift rules, generated templates w
 | Confusion between public CLI and internal command packages | Contributors may think a second create CLI is being introduced    | Explicitly document that `@tsparticles/cli-create` remains the only public CLI package                                      |
 | Shell-based wrapper delegation                             | Arguments with spaces or special chars can break                  | Use argument arrays with `spawnSync`/`execFileSync`                                                                         |
 | Hard-coded versions drifting over time                     | The document becomes stale quickly                                | Treat listed versions as current examples, but derive implementation values from workspace package manifests where possible |
-| Template/version drift after future bumps                  | Generated projects may lag behind current releases                | Add a clear version source of truth and checks that fail when templates fall behind                                          |
+| Template/version drift after future bumps                  | Generated projects may lag behind current releases                | Add a clear version source of truth and checks that fail when templates fall behind                                         |
 
 ## Version alignment policy
 
@@ -1354,12 +1368,12 @@ process.exit(result.status ?? 1);
 
 **Package listing:**
 
-| npm name | Binary | Template | Bundle | User runs |
-|----------|--------|----------|--------|-----------|
-| `create-tsparticles` | `create-tsparticles` | (interactive) | — | `npm create tsparticles` |
-| `create-particles` | `create-particles` | `particles` | `@tsparticles/particles` | `npm create particles` |
-| `create-confetti` | `create-confetti` | `confetti` | `@tsparticles/confetti` | `npm create confetti` |
-| `create-ribbons` | `create-ribbons` | `ribbons` | `@tsparticles/ribbons` | `npm create ribbons` |
+| npm name             | Binary               | Template      | Bundle                   | User runs                |
+|----------------------|----------------------|---------------|--------------------------|--------------------------|
+| `create-tsparticles` | `create-tsparticles` | (interactive) | —                        | `npm create tsparticles` |
+| `create-particles`   | `create-particles`   | `particles`   | `@tsparticles/particles` | `npm create particles`   |
+| `create-confetti`    | `create-confetti`    | `confetti`    | `@tsparticles/confetti`  | `npm create confetti`    |
+| `create-ribbons`     | `create-ribbons`     | `ribbons`     | `@tsparticles/ribbons`   | `npm create ribbons`     |
 
 **Acceptance criteria (Step 4b):**
 - `node cli/packages/create-<name>/bin/create-<name>.js` invokes `tsparticles-create app --template <bundle>`
