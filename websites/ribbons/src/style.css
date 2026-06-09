@@ -63,10 +63,10 @@ header {
   top: 0;
   left: 0;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   width: 100%;
   height: 64px;
+  padding: 0 12px;
 }
 
 .theme {
@@ -522,4 +522,51 @@ footer a:hover {
 
 .dh-banner {
   margin-top: 64px !important;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-right: auto;
+}
+
+.header-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+  line-height: 1;
+}
+
+.header-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.footer-links .cookie-policy-link + .cookie-policy-link {
+  margin-left: 0.5rem;
+}
+
+.footer-links .cookie-policy-link + .cookie-policy-link::before {
+  content: '·';
+  margin-right: 0.5rem;
+  opacity: 0.4;
 }
