@@ -1897,19 +1897,19 @@ importers:
   cli/commands/create-app:
     dependencies:
       '@tsparticles/cli-create-utils':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../create-utils
       '@tsparticles/depcruise-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/depcruise-config
       '@tsparticles/eslint-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/eslint-config
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
       '@tsparticles/tsconfig':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/tsconfig
       dependency-cruiser:
         specifier: ^17.4.3
@@ -2723,41 +2723,41 @@ importers:
   cli/packages/create-confetti:
     dependencies:
       '@tsparticles/cli-create':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../cli-create
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-particles:
     dependencies:
       '@tsparticles/cli-create':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../cli-create
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-ribbons:
     dependencies:
       '@tsparticles/cli-create':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../cli-create
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/create-tsparticles:
     dependencies:
       '@tsparticles/cli-create':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../cli-create
     devDependencies:
       '@tsparticles/prettier-config':
-        specifier: ^4.1.3
+        specifier: workspace:^
         version: link:../../utils/prettier-config
 
   cli/packages/nx-plugin:
