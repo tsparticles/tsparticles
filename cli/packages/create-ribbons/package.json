@@ -1,7 +1,8 @@
 {
   "name": "create-ribbons",
-  "version": "0.0.0",
-  "private": false,
+  "version": "4.1.3",
+  "description": "Scaffold a @tsparticles/ribbons project — npm create ribbons",
+  "homepage": "https://particles.js.org",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -16,6 +17,40 @@
     "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "cli/packages/create-ribbons"
   },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "confetti",
+    "ribbons",
+    "front-end",
+    "web",
+    "animation",
+    "canvas",
+    "html5",
+    "cli",
+    "scaffold",
+    "create",
+    "template"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "prettier": "@tsparticles/prettier-config",
   "scripts": {
     "prettify:ci:readme": "prettier --check ./README.md",
@@ -24,9 +59,10 @@
     "build:ci": "pnpm run prettify:ci:readme",
     "prepack": "pnpm run build"
   },
+  "dependencies": {
+    "@tsparticles/cli-create": "workspace:^"
+  },
   "devDependencies": {
     "@tsparticles/prettier-config": "workspace:^"
-  },
-  "description": "Scaffold a @tsparticles/ribbons project — npm create ribbons",
-  "author": "Matteo Bruni <matteo.bruni@me.com>"
+  }
 }

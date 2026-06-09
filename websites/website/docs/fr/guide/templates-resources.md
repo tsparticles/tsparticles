@@ -1,32 +1,98 @@
+---
 # Modèles et ressources
 
-Les modèles sont conservés dans le monorepo principal sous le dossier `templates`.
+tsParticles propose deux catégories de modèles : les **modèles d'échafaudage** (squelettes de framework) et les **modèles d'usage** (applications d'exemple complètes).
 
-## Modèles officiels
+## Démarrage rapide avec la CLI
 
-- Dossier Modèles : <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- Comprend des configurations de démarrage pour JavaScript Vanilla et plusieurs frameworks.
+Le moyen le plus simple d'utiliser un modèle est via la CLI :
 
-## Quand utiliser des modèles
+```bash
+npm create tsparticles@latest
+```
 
-- Vous voulez une base de référence prête à l'emploi avec une structure de projet déjà câblée.
-- Vous avez besoin d'exemples spécifiques au framework avant d'écrire des wrappers personnalisés.
-- Vous souhaitez comparer rapidement les choix de bundles (`basic`, `slim`, `full`, `all`).
+Ou utilisez directement un bundle spécifique :
 
-## Flux de contribution
+```bash
+npm create particles@latest
+npm create confetti@latest
+npm create ribbons@latest
+```
 
-Si vous créez une conception réutilisable ou une recette d'intégration :
+Pour une utilisation non interactive :
 
-1. Forkez le monorepo principal.
-2. Ajoutez votre modèle avec des instructions claires de configuration et d'exécution.
-3. Ouvrez une pull request et incluez des captures d'écran/gif et des versions de package.
+```bash
+npx tsparticles-create app my-project --template scaffold --framework react
+npx tsparticles-create app my-project --template confetti --framework vanilla
+```
 
-## Dossiers associés
+## Modèles d'échafaudage
 
-- Monorepo principal : <https://github.com/tsparticles/tsparticles>
-- Modèles : <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- Préréglages : <https://github.com/tsparticles/tsparticles/tree/main/presets>
-  -Palettes : <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Les modèles d'échafaudage fournissent un squelette de projet Vite + TypeScript minimal avec tsParticles préconfiguré. Ils sont disponibles pour les frameworks suivants :
+
+| Framework | Option CLI            | Package                           |
+| --------- | --------------------- | --------------------------------- |
+| Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
+| React     | `--framework react`   | `@tsparticles/template-scaffold` |
+| Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
+| Angular   | `--framework angular` | `@tsparticles/template-scaffold` |
+| Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
+| Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
+
+Exemple :
+
+```bash
+npx tsparticles-create app my-react-app --template scaffold --framework react
+cd my-react-app
+npm install
+npm run dev
+```
+
+## Modèles d'usage
+
+Les modèles d'usage sont des applications d'exemple complètes qui illustrent une utilisation réelle de tsParticles.
+
+| Modèle     | Description                                       | Nom du modèle CLI | Package                          |
+| ---------- | ------------------------------------------------- | ----------------- | -------------------------------- |
+| Login      | Page de connexion/inscription avec fond de particules | `login`        | `@tsparticles/template-login`    |
+| Portfolio  | Portfolio personnel avec hero animé               | `portfolio`       | `@tsparticles/template-portfolio`|
+| Landing    | Page d'atterrissage marketing avec particules percutantes | `landing`  | `@tsparticles/template-landing`  |
+| Tic Tac Toe| Jeu de morpion avec célébration en confettis      | `tictactoe`       | `@tsparticles/template-tictactoe`|
+| Confetti   | Démo de canon à confettis                         | `confetti`        | `@tsparticles/template-confetti` |
+| Ribbons    | Démo d'animation de rubans                        | `ribbons`         | `@tsparticles/template-ribbons`  |
+| Particles  | Démo classique style particles.js                 | `particles`       | `@tsparticles/template-particles`|
+
+Exemple :
+
+```bash
+npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
+cd my-portfolio
+npm install
+npm run dev
+```
+
+## Raccourcis npm create
+
+Pour les modèles spécifiques à un bundle, vous pouvez utiliser des raccourcis dédiés npm create :
+
+| Commande                         | Modèle      | Framework | Bundle installé           |
+| -------------------------------- | ----------- | --------- | ------------------------- |
+| `npm create tsparticles@latest`  | Interactif  | Interactif | Choix de l'utilisateur   |
+| `npm create particles@latest`    | `particles` | Vanilla    | `@tsparticles/particles` |
+| `npm create confetti@latest`     | `confetti`  | Vanilla    | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`      | `ribbons`   | Vanilla    | `@tsparticles/ribbons`   |
+
+## Référence CLI
+
+```bash
+tsparticles-create app [destination] [options]
+
+Options:
+  --template <name>     Modèle à utiliser (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
+  --framework <name>    Framework (vanilla|react|vue3|angular|svelte|solid)
+  --skip-install        Ignorer npm install après l'échafaudage
+  -h, --help            Afficher l'aide
+```
 
 ## Pages connexes
 

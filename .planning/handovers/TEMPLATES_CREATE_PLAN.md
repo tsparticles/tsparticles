@@ -17,45 +17,45 @@ Create a template ecosystem for tsParticles with two dimensions:
 
 ## Status dashboard
 
-| Step  | Status        |
-|-------|---------------|
-| 1     | ✅ Done        |
-| 1a    | ✅ Done        |
-| 1b-1f | ✅ Done        |
-| 2a-2g | ✅ Done        |
-| 3a-3c | ⬜ Not started |
-| 4a    | ⬜ Not started |
-| 4b    | ⬜ Not started |
-| 5     | ⬜ Not started |
-| 6     | ⬜ Not started |
+| Step  | Status |
+|-------|--------|
+| 1     | ✅ Done |
+| 1a    | ✅ Done |
+| 1b-1f | ✅ Done |
+| 2a-2g | ✅ Done |
+| 3a-3c | ✅ Done |
+| 4a    | ✅ Done |
+| 4b    | ✅ Done |
+| 5     | ✅ Done |
+| 6     | ✅ Done |
 
 ## Steps summary
 
 This table is the fastest overview of scope, order, and implementation risk.
 
-| Step | Scope                           | Output                                 | Depends on | Parallelizable | Risk   | Status    |
-|------|---------------------------------|----------------------------------------|------------|----------------|--------|-----------|
-| 1    | Scaffold package infrastructure | `templates/scaffold/` root package     | None       | No             | Medium | ✅ Done    |
-| 1a   | Vanilla scaffold                | `template/vanilla/`                    | 1          | Yes            | Medium | ✅ Done    |
-| 1b   | React scaffold                  | `template/react/`                      | 1a         | Yes            | Medium | ✅ Done    |
-| 1c   | Vue 3 scaffold                  | `template/vue3/`                       | 1a         | Yes            | Medium | ✅ Done    |
-| 1d   | Angular scaffold                | `template/angular/`                    | 1          | Yes            | High   | ✅ Done    |
-| 1e   | Svelte scaffold                 | `template/svelte/`                     | 1          | Yes            | High   | ✅ Done    |
-| 1f   | Solid scaffold                  | `template/solid/`                      | 1          | Yes            | Medium | ✅ Done    |
-| 2a   | Login template                  | `templates/login/`                     | 1a         | Yes            | Medium | ✅ Done    |
-| 2b   | Portfolio template              | `templates/portfolio/`                 | 1a         | Yes            | Medium | ✅ Done    |
-| 2c   | Landing template                | `templates/landing/`                   | 1a         | Yes            | Medium | ✅ Done    |
-| 2d   | Tic-tac-toe template            | `templates/tictactoe/`                 | 1a         | Yes            | Medium | ✅ Done    |
-| 2e   | Confetti template               | `templates/confetti/`                  | 1a         | Yes            | Medium | ✅ Done    |
-| 2f   | Ribbons template                | `templates/ribbons/`                   | 1a         | Yes            | Medium | ✅ Done    |
-| 2g   | Particles template              | `templates/particles/`                 | 1a         | Yes            | Low    | ✅ Done    |
-| 3a   | CLI app architecture            | types + resolver                       | 1, 2       | Partially      | High   | ⬜ Pending |
-| 3b   | CLI scaffold logic              | prompts + copy/merge flow              | 3a         | No             | High   | ⬜ Pending |
-| 3c   | CLI registration                | integrate `app` into existing CLI      | 3a, 3b     | No             | Medium | ⬜ Pending |
-| 4a   | Wrapper package alignment       | metadata/files for `create-*` packages | None       | Yes            | Low    | ⬜ Pending |
-| 4b   | Wrapper delegation              | wrappers call `tsparticles-create app` | 3, 4a      | No             | Medium | ⬜ Pending |
-| 5    | CRA deprecation                 | mark old templates deprecated          | None       | Yes            | Low    | ⬜ Pending |
-| 6    | Documentation                   | website docs and usage pages           | None       | Yes            | Low    | ⬜ Pending |
+| Step | Scope                           | Output                                 | Depends on | Parallelizable | Risk   | Status |
+|------|---------------------------------|----------------------------------------|------------|----------------|--------|--------|
+| 1    | Scaffold package infrastructure | `templates/scaffold/` root package     | None       | No             | Medium | ✅ Done |
+| 1a   | Vanilla scaffold                | `template/vanilla/`                    | 1          | Yes            | Medium | ✅ Done |
+| 1b   | React scaffold                  | `template/react/`                      | 1a         | Yes            | Medium | ✅ Done |
+| 1c   | Vue 3 scaffold                  | `template/vue3/`                       | 1a         | Yes            | Medium | ✅ Done |
+| 1d   | Angular scaffold                | `template/angular/`                    | 1          | Yes            | High   | ✅ Done |
+| 1e   | Svelte scaffold                 | `template/svelte/`                     | 1          | Yes            | High   | ✅ Done |
+| 1f   | Solid scaffold                  | `template/solid/`                      | 1          | Yes            | Medium | ✅ Done |
+| 2a   | Login template                  | `templates/login/`                     | 1a         | Yes            | Medium | ✅ Done |
+| 2b   | Portfolio template              | `templates/portfolio/`                 | 1a         | Yes            | Medium | ✅ Done |
+| 2c   | Landing template                | `templates/landing/`                   | 1a         | Yes            | Medium | ✅ Done |
+| 2d   | Tic-tac-toe template            | `templates/tictactoe/`                 | 1a         | Yes            | Medium | ✅ Done |
+| 2e   | Confetti template               | `templates/confetti/`                  | 1a         | Yes            | Medium | ✅ Done |
+| 2f   | Ribbons template                | `templates/ribbons/`                   | 1a         | Yes            | Medium | ✅ Done |
+| 2g   | Particles template              | `templates/particles/`                 | 1a         | Yes            | Low    | ✅ Done |
+| 3a   | CLI app architecture            | types + resolver                       | 1, 2       | Partially      | High   | ✅ Done |
+| 3b   | CLI scaffold logic              | prompts + copy/merge flow              | 3a         | No             | High   | ✅ Done |
+| 3c   | CLI registration                | integrate `app` into existing CLI      | 3a, 3b     | No             | Medium | ✅ Done |
+| 4a   | Wrapper package alignment       | metadata/files for `create-*` packages | None       | Yes            | Low    | ✅ Done |
+| 4b   | Wrapper delegation              | wrappers call `tsparticles-create app` | 3, 4a      | No             | Medium | ✅ Done |
+| 5    | CRA deprecation                 | mark old templates deprecated          | None       | Yes            | Low    | ✅ Done |
+| 6    | Documentation                   | website docs and usage pages           | None       | Yes            | Low    | ✅ Done |
 
 ### Recommended execution order
 

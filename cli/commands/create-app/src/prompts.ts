@@ -13,7 +13,9 @@ export interface IAppPromptResult {
   useCase: UseCase;
 }
 
-const frameworkChoices: { title: string; value: Framework }[] = [
+const initialFrameworkIndex = 0,
+  initialUseCaseIndex = 0,
+  frameworkChoices: { title: string; value: Framework }[] = [
     { title: "Vanilla (Vite + TypeScript)", value: "vanilla" },
     { title: "React", value: "react" },
     { title: "Vue 3", value: "vue3" },
@@ -34,48 +36,73 @@ const frameworkChoices: { title: string; value: Framework }[] = [
 
 /**
  *
- * @param destination -
+ * @param destination
+ * @param prefill
+ * @param prefill.framework
+ * @param prefill.projectName
+ * @param prefill.useCase
  */
-export async function promptAppData(destination: string): Promise<IAppPromptResult> {
+export async function promptAppData(
+  destination: string,
+  prefill?: { framework?: Framework; projectName?: string; useCase?: UseCase },
+): Promise<IAppPromptResult> {
   const destinationPath = await getDestinationDir(destination),
     repositoryUrl = await getRepositoryUrl(),
     initialName = destinationPath.split(path.sep).pop() ?? "tsparticles-app";
 
   void repositoryUrl;
 
-  const questions: prompts.PromptObject[] = [
-      {
-        type: "text",
-        name: "projectName",
-        message: "What is the project name?",
-        validate: (value: string) => (value ? true : "The project name can't be empty"),
-        initial: initialName,
-      },
-      {
-        type: "select",
-        name: "framework",
-        message: "Which framework would you like to use?",
-        choices: frameworkChoices,
-        initial: 0,
-      },
-      {
-        type: "select",
-        name: "useCase",
-        message: "Which use-case template would you like to include?",
-        choices: useCaseChoices,
-        initial: 0,
-      },
-    ],
-    answers = (await prompts(questions)) as {
-      framework: Framework;
-      projectName: string;
-      useCase: UseCase;
+  const questions: prompts.PromptObject[] = [];
+
+  if (!prefill?.projectName) {
+    questions.push({
+      type: "text",
+      name: "projectName",
+      message: "What is the project name?",
+      validate: (value: string) => (value ? true : "The project name can't be empty"),
+      initial: initialName,
+    });
+  }
+
+  if (!prefill?.framework) {
+    questions.push({
+      type: "select",
+      name: "framework",
+      message: "Which framework would you like to use?",
+      choices: frameworkChoices,
+      initial: initialFrameworkIndex,
+    });
+  }
+
+  if (!prefill?.useCase) {
+    questions.push({
+      type: "select",
+      name: "useCase",
+      message: "Which use-case template would you like to include?",
+      choices: useCaseChoices,
+      initial: initialUseCaseIndex,
+    });
+  }
+
+  if (!questions.length) {
+    return {
+      destinationPath,
+      framework: prefill?.framework ?? "vanilla",
+      projectName: prefill?.projectName ?? initialName,
+      useCase: prefill?.useCase ?? "none",
     };
+  }
+
+  const answers = (await prompts(questions)) as {
+    framework?: Framework;
+    projectName?: string;
+    useCase?: UseCase;
+  };
 
   return {
     destinationPath,
-    framework: answers.framework,
-    projectName: answers.projectName.trim(),
-    useCase: answers.useCase,
+    framework: prefill?.framework ?? answers.framework ?? "vanilla",
+    projectName: (prefill?.projectName ?? answers.projectName ?? initialName).trim(),
+    useCase: prefill?.useCase ?? answers.useCase ?? "none",
   };
 }
