@@ -2,9 +2,41 @@ import { getDestinationDir, getRepositoryUrl } from "@tsparticles/cli-create-uti
 import path from "node:path";
 import prompts from "prompts";
 
-export type Framework = "vanilla" | "react" | "vue3" | "angular" | "svelte" | "solid";
+export type Framework =
+  | "angular"
+  | "angular-confetti"
+  | "angular-fireworks"
+  | "astro"
+  | "ember"
+  | "inferno"
+  | "jquery"
+  | "lit"
+  | "nextjs"
+  | "nuxt2"
+  | "nuxt3"
+  | "nuxt4"
+  | "preact"
+  | "qwik"
+  | "react"
+  | "riot"
+  | "solid"
+  | "stencil"
+  | "svelte"
+  | "vanilla"
+  | "vue2"
+  | "vue3"
+  | "webcomponents";
 
-export type UseCase = "none" | "login" | "portfolio" | "landing" | "tictactoe" | "confetti" | "ribbons" | "particles";
+export type UseCase =
+  | "none"
+  | "login"
+  | "portfolio"
+  | "landing"
+  | "tictactoe"
+  | "confetti"
+  | "ribbons"
+  | "particles"
+  | "404";
 
 export interface IAppPromptResult {
   destinationPath: string;
@@ -16,12 +48,29 @@ export interface IAppPromptResult {
 const initialFrameworkIndex = 0,
   initialUseCaseIndex = 0,
   frameworkChoices: { title: string; value: Framework }[] = [
-    { title: "Vanilla (Vite + TypeScript)", value: "vanilla" },
-    { title: "React", value: "react" },
-    { title: "Vue 3", value: "vue3" },
     { title: "Angular", value: "angular" },
-    { title: "Svelte", value: "svelte" },
+    { title: "Angular Confetti", value: "angular-confetti" },
+    { title: "Angular Fireworks", value: "angular-fireworks" },
+    { title: "Astro", value: "astro" },
+    { title: "Ember", value: "ember" },
+    { title: "Inferno", value: "inferno" },
+    { title: "jQuery", value: "jquery" },
+    { title: "Lit", value: "lit" },
+    { title: "Next.js", value: "nextjs" },
+    { title: "Nuxt 2", value: "nuxt2" },
+    { title: "Nuxt 3", value: "nuxt3" },
+    { title: "Nuxt 4", value: "nuxt4" },
+    { title: "Preact", value: "preact" },
+    { title: "Qwik", value: "qwik" },
+    { title: "React", value: "react" },
+    { title: "Riot", value: "riot" },
     { title: "Solid", value: "solid" },
+    { title: "Stencil", value: "stencil" },
+    { title: "Svelte", value: "svelte" },
+    { title: "Vanilla (Vite + TypeScript)", value: "vanilla" },
+    { title: "Vue 2", value: "vue2" },
+    { title: "Vue 3", value: "vue3" },
+    { title: "Web Components", value: "webcomponents" },
   ],
   useCaseChoices: { title: string; value: UseCase }[] = [
     { title: "None (just the scaffold)", value: "none" },
@@ -32,6 +81,7 @@ const initialFrameworkIndex = 0,
     { title: "Confetti", value: "confetti" },
     { title: "Ribbons", value: "ribbons" },
     { title: "Particles", value: "particles" },
+    { title: "404 Error Page", value: "404" },
   ];
 
 /**

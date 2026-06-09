@@ -1,0 +1,21 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "preview": "nuxt start"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/nuxt4": "^4.1.3",
+    "@tsparticles/ribbons": "^3.8.1",
+    "nuxt": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.2"
+  }
+}

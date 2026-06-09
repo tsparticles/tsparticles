@@ -1,0 +1,32 @@
+<ngx-fireworks id="tsparticles" [options]="options" />
+
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>{{ isLogin ? 'Login' : 'Register' }}</h1>
+      <button class="theme-btn" (click)="toggleTheme()" aria-label="Toggle theme">{{ theme === 'dark' ? '🌙' : '☀️' }}</button>
+    </div>
+    <form (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="email" name="email" placeholder="you@example.com" required />
+        <span class="error">{{ emailErr }}</span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" [(ngModel)]="password" name="password" placeholder="Enter password" required />
+        <span class="error">{{ passErr }}</span>
+      </div>
+      <div class="form-group" *ngIf="!isLogin">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" [(ngModel)]="confirm" name="confirmPassword" placeholder="Confirm password" />
+        <span class="error">{{ confirmErr }}</span>
+      </div>
+      <button type="submit">{{ isLogin ? 'Sign In' : 'Create Account' }}</button>
+    </form>
+    <p class="toggle-text">
+      <span>{{ isLogin ? "Don't have an account?" : 'Already have an account?' }}</span>
+      <a href="#" (click)="toggleMode($event)">{{ isLogin ? 'Register' : 'Login' }}</a>
+    </p>
+  </div>
+</div>

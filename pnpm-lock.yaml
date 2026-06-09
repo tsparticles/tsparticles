@@ -2720,6 +2720,16 @@ importers:
         specifier: workspace:^
         version: link:../../utils/prettier-config
 
+  cli/packages/create-404:
+    dependencies:
+      '@tsparticles/cli-create':
+        specifier: workspace:^
+        version: link:../cli-create
+    devDependencies:
+      '@tsparticles/prettier-config':
+        specifier: workspace:^
+        version: link:../../utils/prettier-config
+
   cli/packages/create-confetti:
     dependencies:
       '@tsparticles/cli-create':
@@ -11324,6 +11334,8 @@ importers:
         specifier: workspace:*
         version: link:../../engine/dist
     publishDirectory: dist
+
+  templates/404: {}
 
   templates/confetti: {}
 

@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  padding: 1rem;
+}
+
+.error-code {
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.7em;
+  font-size: 2rem;
+  padding: 0 0 0 1.4em;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.message {
+  font-family: "Space Mono", monospace;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  letter-spacing: 0.15rem;
+  color: #000;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 0.8em 2em;
+  border: 1px solid #000;
+  color: #000;
+  text-decoration: none;
+  font-family: "Space Mono", monospace;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.home-link:hover {
+  background: #000;
+  color: #fff;
+}

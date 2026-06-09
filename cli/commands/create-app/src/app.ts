@@ -6,11 +6,11 @@ const appCreateCommand = new Command("app");
 
 appCreateCommand.description("Create a new tsParticles app from a template");
 appCreateCommand.argument("[destination]", "Destination folder (defaults to project name)");
-appCreateCommand.option("--framework <name>", "Framework (vanilla|react|vue3|angular|svelte|solid)");
+appCreateCommand.option("--framework <name>", "Framework to use (auto-detected)");
 appCreateCommand.option("--skip-install", "Skip npm install after scaffolding");
 appCreateCommand.option(
   "--template <name>",
-  "Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)",
+  "Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles|404)",
 );
 appCreateCommand.action(
   async (

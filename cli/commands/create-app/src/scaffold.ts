@@ -17,6 +17,7 @@ const jsonIndentation = 2,
     confetti: "confetti",
     ribbons: "ribbons",
     particles: "particles",
+    "404": "404",
   };
 
 /**

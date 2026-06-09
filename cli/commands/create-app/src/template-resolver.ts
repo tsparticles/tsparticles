@@ -73,6 +73,7 @@ export function listAvailableTemplates(): TemplateInfo[] {
       confetti: { displayName: "Confetti", type: "example" },
       ribbons: { displayName: "Ribbons", type: "example" },
       particles: { displayName: "Particles", type: "example" },
+      "404": { displayName: "404 Error Page", type: "example" },
     },
     results: TemplateInfo[] = [];
 

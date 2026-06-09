@@ -1,0 +1,31 @@
+<app>
+  <div id="app">
+    <h1>tsParticles</h1>
+  </div>
+  <riot-particles id="tsparticles"></riot-particles>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #app {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      text-align: center;
+      color: #fff;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      pointer-events: none;
+    }
+    h1 { font-size: 3.2em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+  </style>
+
+  <script>
+    import { loadParticles } from "@tsparticles/particles";
+    import { tsParticles } from "@tsparticles/engine";
+
+    this.on("mount", () => {
+      loadParticles(tsParticles);
+    });
+  </script>
+</app>

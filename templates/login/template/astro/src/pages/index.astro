@@ -1,0 +1,173 @@
+---
+import { initParticlesEngine } from "@tsparticles/astro";
+import { loadSlim } from "@tsparticles/slim";
+
+const id = "tsparticles";
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{projectName}}</title>
+    <style>
+      :root { --bg: #0f0f1a; --card-bg: rgba(255, 255, 255, 0.05); --text: #fff; --border: rgba(255, 255, 255, 0.1); --input-bg: rgba(255, 255, 255, 0.08); --accent: #6c5ce7; --accent-hover: #a29bfe; --error: #e74c3c; }
+      [data-theme="light"] { --bg: #f0f0f5; --card-bg: rgba(255, 255, 255, 0.8); --text: #1a1a2e; --border: rgba(0, 0, 0, 0.1); --input-bg: rgba(0, 0, 0, 0.05); }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+      .auth-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 100%; max-width: 400px; padding: 1rem; }
+      .auth-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+      .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+      .auth-header h1 { margin: 0; font-size: 1.8em; }
+      .theme-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.4em 0.6em; font-size: 1.2em; cursor: pointer; transition: background 0.2s; }
+      .theme-btn:hover { background: var(--input-bg); }
+      .form-group { margin-bottom: 1rem; }
+      label { display: block; margin-bottom: 0.3em; font-size: 0.9em; opacity: 0.8; }
+      input { width: 100%; padding: 0.7em 1em; font-size: 1em; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg); color: var(--text); outline: none; transition: border-color 0.2s; }
+      input:focus { border-color: var(--accent); }
+      input::placeholder { color: var(--text); opacity: 0.4; }
+      .error { display: block; margin-top: 0.3em; font-size: 0.8em; color: var(--error); min-height: 1em; }
+      button[type="submit"] { width: 100%; padding: 0.8em; font-size: 1em; font-weight: 600; border: none; border-radius: 8px; background: var(--accent); color: #fff; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+      button[type="submit"]:hover { background: var(--accent-hover); }
+      .toggle-text { text-align: center; margin-top: 1.5rem; font-size: 0.9em; opacity: 0.7; }
+      .toggle-text a { color: var(--accent); text-decoration: none; margin-left: 0.3em; }
+      .toggle-text a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1 id="authTitle">Login</h1>
+          <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+        <form id="authForm" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+            <span class="error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Enter password" required />
+            <span class="error" id="passwordError"></span>
+          </div>
+          <div class="form-group" id="confirmGroup" style="display: none">
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password" placeholder="Confirm password" />
+            <span class="error" id="confirmError"></span>
+          </div>
+          <button type="submit" id="submitBtn">Sign In</button>
+        </form>
+        <p class="toggle-text">
+          <span id="toggleLabel">Don't have an account?</span>
+          <a href="#" id="toggleAuth">Register</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  import { initParticlesEngine } from "@tsparticles/astro";
+  import { loadSlim } from "@tsparticles/slim";
+
+  await initParticlesEngine(async (engine) => {
+    await loadSlim(engine);
+  });
+
+  let isLogin = true;
+
+  const authTitle = document.getElementById("authTitle");
+  const authForm = document.getElementById("authForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const toggleAuth = document.getElementById("toggleAuth");
+  const toggleLabel = document.getElementById("toggleLabel");
+  const confirmGroup = document.getElementById("confirmGroup");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const confirmInput = document.getElementById("confirmPassword");
+
+  const emailError = document.getElementById("emailError");
+  const passwordError = document.getElementById("passwordError");
+  const confirmError = document.getElementById("confirmError");
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    localStorage.setItem("theme", theme);
+  }
+
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  setTheme(savedTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    setTheme(current === "dark" ? "light" : "dark");
+  });
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  function validate() {
+    let valid = true;
+
+    if (!emailInput.value || !validateEmail(emailInput.value)) {
+      emailError.textContent = "Please enter a valid email address";
+      valid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+    if (!passwordInput.value || passwordInput.value.length < 6) {
+      passwordError.textContent = "Password must be at least 6 characters";
+      valid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    if (!isLogin) {
+      if (passwordInput.value !== confirmInput.value) {
+        confirmError.textContent = "Passwords do not match";
+        valid = false;
+      } else {
+        confirmError.textContent = "";
+      }
+    }
+
+    return valid;
+  }
+
+  function toggleMode() {
+    isLogin = !isLogin;
+    authTitle.textContent = isLogin ? "Login" : "Register";
+    submitBtn.textContent = isLogin ? "Sign In" : "Create Account";
+    toggleLabel.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
+    toggleAuth.textContent = isLogin ? "Register" : "Login";
+    confirmGroup.style.display = isLogin ? "none" : "block";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    confirmError.textContent = "";
+  }
+
+  toggleAuth.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleMode();
+  });
+
+  authForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    if (isLogin) {
+      alert("Logged in successfully! (demo)");
+    } else {
+      alert("Account created successfully! (demo)");
+      toggleMode();
+    }
+
+    authForm.reset();
+  });
+</script>
