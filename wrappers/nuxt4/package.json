@@ -43,7 +43,7 @@
     "@typescript-eslint/parser": "^8.58.2",
     "eslint": "^10.2.0",
     "globals": "^17.5.0",
-    "nuxt": "^4.4.2",
+    "nuxt": "^3.21.6",
     "typescript": "^6.0.2"
   },
   "nx": {
