@@ -29,8 +29,8 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 
 Las plantillas de andamio proporcionan un esqueleto de proyecto mínimo con Vite + TypeScript y tsParticles preconfigurado. Están disponibles para los siguientes frameworks:
 
-| Framework | Opción CLI          | Paquete                          |
-| --------- | ------------------- | -------------------------------- |
+| Framework | Opción CLI            | Paquete                          |
+| --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
 | Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
@@ -51,15 +51,15 @@ npm run dev
 
 Las plantillas de caso de uso son aplicaciones de ejemplo completas que demuestran el uso real de tsParticles.
 
-| Plantilla   | Descripción                                         | Nombre CLI de plantilla | Paquete                           |
-| ----------- | --------------------------------------------------- | ----------------------- | --------------------------------- |
-| Login       | Página de inicio de sesión/registro con fondo de partículas | `login`           | `@tsparticles/template-login`     |
-| Portfolio   | Portafolio personal con héroe animado               | `portfolio`             | `@tsparticles/template-portfolio` |
-| Landing     | Página de aterrizaje de marketing con partículas impactantes | `landing`         | `@tsparticles/template-landing`   |
-| Tic Tac Toe | Juego de tres en raya con celebración de confeti    | `tictactoe`             | `@tsparticles/template-tictactoe` |
-| Confetti    | Demo de cañón de confeti                            | `confetti`              | `@tsparticles/template-confetti`  |
-| Ribbons     | Demo de animación de cintas                         | `ribbons`               | `@tsparticles/template-ribbons`   |
-| Particles   | Demo clásico al estilo particles.js                 | `particles`             | `@tsparticles/template-particles` |
+| Plantilla   | Descripción                                                  | Nombre CLI de plantilla | Paquete                           |
+| ----------- | ------------------------------------------------------------ | ----------------------- | --------------------------------- |
+| Login       | Página de inicio de sesión/registro con fondo de partículas  | `login`                 | `@tsparticles/template-login`     |
+| Portfolio   | Portafolio personal con héroe animado                        | `portfolio`             | `@tsparticles/template-portfolio` |
+| Landing     | Página de aterrizaje de marketing con partículas impactantes | `landing`               | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Juego de tres en raya con celebración de confeti             | `tictactoe`             | `@tsparticles/template-tictactoe` |
+| Confetti    | Demo de cañón de confeti                                     | `confetti`              | `@tsparticles/template-confetti`  |
+| Ribbons     | Demo de animación de cintas                                  | `ribbons`               | `@tsparticles/template-ribbons`   |
+| Particles   | Demo clásico al estilo particles.js                          | `particles`             | `@tsparticles/template-particles` |
 
 Ejemplo:
 
@@ -74,12 +74,12 @@ npm run dev
 
 Para plantillas específicas de un bundle, puede usar wrappers dedicados de npm create:
 
-| Comando                           | Plantilla   | Framework | Bundle instalado           |
-| --------------------------------- | ----------- | --------- | -------------------------- |
-| `npm create tsparticles@latest`   | Interactiva | Interactivo | Elección del usuario      |
-| `npm create particles@latest`     | `particles` | Vanilla    | `@tsparticles/particles`  |
-| `npm create confetti@latest`      | `confetti`  | Vanilla    | `@tsparticles/confetti`   |
-| `npm create ribbons@latest`       | `ribbons`   | Vanilla    | `@tsparticles/ribbons`    |
+| Comando                         | Plantilla   | Framework   | Bundle instalado         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactiva | Interactivo | Elección del usuario     |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
 ## Referencia de CLI
 
