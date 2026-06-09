@@ -1,4 +1,3 @@
----
 # Modelli e risorse
 
 tsParticles fornisce due categorie di modelli: **modelli scaffold** (scheletri di framework) e **modelli per casi d'uso** (applicazioni di esempio complete).
@@ -30,8 +29,8 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 
 I modelli scaffold forniscono uno scheletro di progetto minimo Vite + TypeScript con tsParticles preconfigurato. Sono disponibili per i seguenti framework:
 
-| Framework | Opzione CLI        | Pacchetto                        |
-| --------- | ----------------- | -------------------------------- |
+| Framework | Opzione CLI           | Pacchetto                        |
+| --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
 | Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
@@ -52,15 +51,15 @@ npm run dev
 
 I modelli per casi d'uso sono applicazioni di esempio complete che dimostrano l'utilizzo reale di tsParticles.
 
-| Modello    | Descrizione                                       | Nome CLI modello | Pacchetto                         |
-| ---------- | ------------------------------------------------- | ---------------- | --------------------------------- |
-| Login      | Pagina di login/registrazione con sfondo a particelle | `login`        | `@tsparticles/template-login`     |
-| Portfolio  | Portfolio personale con hero animato              | `portfolio`      | `@tsparticles/template-portfolio` |
-| Landing    | Pagina di atterraggio marketing con particelle d'impatto | `landing`   | `@tsparticles/template-landing`   |
-| Tic Tac Toe| Gioco del tris con festa di coriandoli           | `tictactoe`      | `@tsparticles/template-tictactoe` |
-| Confetti   | Demo del cannone di coriandoli                    | `confetti`       | `@tsparticles/template-confetti`  |
-| Ribbons    | Demo di animazione a nastri                       | `ribbons`        | `@tsparticles/template-ribbons`   |
-| Particles  | Demo classica in stile particles.js               | `particles`      | `@tsparticles/template-particles` |
+| Modello     | Descrizione                                              | Nome CLI modello | Pacchetto                         |
+| ----------- | -------------------------------------------------------- | ---------------- | --------------------------------- |
+| Login       | Pagina di login/registrazione con sfondo a particelle    | `login`          | `@tsparticles/template-login`     |
+| Portfolio   | Portfolio personale con hero animato                     | `portfolio`      | `@tsparticles/template-portfolio` |
+| Landing     | Pagina di atterraggio marketing con particelle d'impatto | `landing`        | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Gioco del tris con festa di coriandoli                   | `tictactoe`      | `@tsparticles/template-tictactoe` |
+| Confetti    | Demo del cannone di coriandoli                           | `confetti`       | `@tsparticles/template-confetti`  |
+| Ribbons     | Demo di animazione a nastri                              | `ribbons`        | `@tsparticles/template-ribbons`   |
+| Particles   | Demo classica in stile particles.js                      | `particles`      | `@tsparticles/template-particles` |
 
 Esempio:
 
@@ -75,12 +74,12 @@ npm run dev
 
 Per i modelli specifici di un bundle, puoi utilizzare wrapper npm create dedicati:
 
-| Comando                           | Modello     | Framework | Bundle installato           |
-| -------------------------------- | ----------- | --------- | --------------------------- |
-| `npm create tsparticles@latest`  | Interattivo | Interattivo | Scelta dell'utente         |
-| `npm create particles@latest`    | `particles` | Vanilla    | `@tsparticles/particles`    |
-| `npm create confetti@latest`     | `confetti`  | Vanilla    | `@tsparticles/confetti`     |
-| `npm create ribbons@latest`      | `ribbons`   | Vanilla    | `@tsparticles/ribbons`      |
+| Comando                         | Modello     | Framework   | Bundle installato        |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interattivo | Interattivo | Scelta dell'utente       |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
 ## Riferimento CLI
 

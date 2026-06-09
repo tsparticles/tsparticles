@@ -29,8 +29,8 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 
 Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
-| Framework | CLI option      | Package                           |
-| --------- | --------------- | --------------------------------- |
+| Framework | CLI option            | Package                          |
+| --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
 | Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
@@ -51,15 +51,15 @@ npm run dev
 
 Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
-| Template    | Description                                       | CLI template name | Package                          |
-| ----------- | ------------------------------------------------- | ----------------- | -------------------------------- |
-| Login       | Login/register page with particle background      | `login`           | `@tsparticles/template-login`    |
-| Portfolio   | Personal portfolio with animated hero             | `portfolio`       | `@tsparticles/template-portfolio`|
-| Landing     | Marketing landing page with impactful particles   | `landing`         | `@tsparticles/template-landing`  |
-| Tic Tac Toe | Tic-tac-toe game with confetti celebration        | `tictactoe`       | `@tsparticles/template-tictactoe`|
-| Confetti    | Confetti cannon demo                              | `confetti`        | `@tsparticles/template-confetti` |
-| Ribbons     | Ribbon animation demo                             | `ribbons`         | `@tsparticles/template-ribbons`  |
-| Particles   | Classic particles.js-style demo                   | `particles`       | `@tsparticles/template-particles`|
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
 
 Example:
 
@@ -74,12 +74,12 @@ npm run dev
 
 For bundle-specific templates, you can use dedicated npm create wrappers:
 
-| Command                           | Template  | Framework | Installed bundle          |
-| --------------------------------- | --------- | --------- | ------------------------- |
-| `npm create tsparticles@latest`   | Interactive | Interactive | User choice             |
-| `npm create particles@latest`     | `particles` | Vanilla    | `@tsparticles/particles` |
-| `npm create confetti@latest`      | `confetti`  | Vanilla    | `@tsparticles/confetti`  |
-| `npm create ribbons@latest`       | `ribbons`   | Vanilla    | `@tsparticles/ribbons`   |
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
 ## CLI reference
 

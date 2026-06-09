@@ -29,8 +29,8 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 
 स्कैफ़ोल्ड टेम्पलेट tsParticles के साथ पूर्व-कॉन्फ़िगर एक न्यूनतम Vite + TypeScript प्रोजेक्ट स्केलेटन प्रदान करते हैं। ये निम्नलिखित फ्रेमवर्क के लिए उपलब्ध हैं:
 
-| Framework | CLI option      | Package                           |
-| --------- | --------------- | --------------------------------- |
+| Framework | CLI option            | Package                          |
+| --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
 | Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
@@ -51,15 +51,15 @@ npm run dev
 
 उपयोग-केस टेम्पलेट पूर्ण उदाहरण अनुप्रयोग हैं जो वास्तविक दुनिया में tsParticles के उपयोग को प्रदर्शित करते हैं।
 
-| Template    | Description                                       | CLI template name | Package                          |
-| ----------- | ------------------------------------------------- | ----------------- | -------------------------------- |
-| Login       | Login/register page with particle background      | `login`           | `@tsparticles/template-login`    |
-| Portfolio   | Personal portfolio with animated hero             | `portfolio`       | `@tsparticles/template-portfolio`|
-| Landing     | Marketing landing page with impactful particles   | `landing`         | `@tsparticles/template-landing`  |
-| Tic Tac Toe | Tic-tac-toe game with confetti celebration        | `tictactoe`       | `@tsparticles/template-tictactoe`|
-| Confetti    | Confetti cannon demo                              | `confetti`        | `@tsparticles/template-confetti` |
-| Ribbons     | Ribbon animation demo                             | `ribbons`         | `@tsparticles/template-ribbons`  |
-| Particles   | Classic particles.js-style demo                   | `particles`       | `@tsparticles/template-particles`|
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
 
 उदाहरण:
 
@@ -74,12 +74,12 @@ npm run dev
 
 बंडल-विशिष्ट टेम्पलेट के लिए, आप समर्पित npm create रैपर का उपयोग कर सकते हैं:
 
-| Command                           | Template  | Framework | Installed bundle          |
-| --------------------------------- | --------- | --------- | ------------------------- |
-| `npm create tsparticles@latest`   | Interactive | Interactive | User choice             |
-| `npm create particles@latest`     | `particles` | Vanilla    | `@tsparticles/particles` |
-| `npm create confetti@latest`      | `confetti`  | Vanilla    | `@tsparticles/confetti`  |
-| `npm create ribbons@latest`       | `ribbons`   | Vanilla    | `@tsparticles/ribbons`   |
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
 ## CLI संदर्भ
 

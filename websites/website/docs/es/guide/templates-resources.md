@@ -1,4 +1,3 @@
----
 # Plantillas y recursos
 
 tsParticles proporciona dos categorías de plantillas: **plantillas de andamio** (esqueletos de framework) y **plantillas de caso de uso** (aplicaciones de ejemplo completas).
@@ -99,4 +98,3 @@ Options:
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)
 - [`/demos/`](/demos/)
----
