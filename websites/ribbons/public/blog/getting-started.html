@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Getting started guide for tsParticles Ribbons — add stunning ribbon animations to your website with a simple script tag or npm package."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Getting Started with tsParticles Ribbons | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Getting Started with tsParticles Ribbons</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        tsParticles Ribbons lets you add beautiful, flowing ribbon animations to your website with
+        minimal effort. Whether you want a subtle background effect or an eye-catching interactive
+        element, ribbons provide a elegant way to enhance your site's visual appeal.
+      </p>
+
+      <h2>Quick Start with a Script Tag</h2>
+      <p>
+        The fastest way to add ribbons to any HTML page is with the CDN bundle. Add this script tag
+        to your page:
+      </p>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@latest/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+      <p>Then call the <code>ribbons()</code> function anywhere in your JavaScript:</p>
+      <pre><code>ribbons();</code></pre>
+      <p>
+        That's it. By default, ribbons will fall from random positions across the top of the page
+        with vibrant colors and smooth physics.
+      </p>
+
+      <h2>Installation via npm</h2>
+      <p>
+        If you're using a build tool like Vite, webpack, or Rollup, install the package from npm:
+      </p>
+      <pre><code>npm install @tsparticles/ribbons</code></pre>
+      <p>Then import and call it in your JavaScript:</p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+
+await ribbons.init();
+ribbons();</code></pre>
+      <p>
+        The <code>init()</code> method is required once before creating any ribbon animations. It
+        loads the necessary engine and plugins.
+      </p>
+
+      <h2>Using the <code>create</code> Method</h2>
+      <p>
+        For more control, use the <code>ribbons.create()</code> method. This returns a function
+        bound to a specific canvas element, letting you control exactly where ribbons appear:
+      </p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+
+await ribbons.init();
+
+const canvas = document.getElementById('my-canvas');
+const shoot = await ribbons.create(canvas, {
+  zIndex: 0,
+});
+
+// Fire a burst of ribbons
+shoot();</code></pre>
+
+      <h2>Creating from Scratch with npm create</h2>
+      <p>You can scaffold a complete project with the official template:</p>
+      <pre><code>npm create ribbons@latest</code></pre>
+      <p>
+        This will create a new directory with a pre-configured project that includes the ribbons
+        package, a sample HTML file, and a build setup.
+      </p>
+
+      <h2>What Happens When You Call <code>ribbons()</code></h2>
+      <p>
+        When you invoke the <code>ribbons()</code> function, it creates a burst of ribbon-like
+        particles that animate across the screen. Each ribbon is a curved strip that follows a
+        physics simulation, creating a natural, organic feel. The ribbons are rendered on a
+        full-screen canvas overlay by default, giving the impression of floating or falling ribbons
+        on top of your page content.
+      </p>
+      <p>
+        The default configuration spawns ribbons from a random position along the top edge of the
+        viewport. Each ribbon has a random color from a preset palette, a random velocity, and a
+        natural gravity effect that pulls it downward while it drifts and rotates.
+      </p>
+
+      <h2>Next Steps</h2>
+      <p>
+        Once you have ribbons running, explore the
+        <a href="/blog/customization-guide.html">customization guide</a> to learn how to change
+        colors, physics, and positioning. For framework-specific integration, check the
+        <a href="/blog/framework-integration.html">framework integration guide</a>.
+      </p>
+      <p>
+        You can also experiment with all the options interactively on the
+        <a href="/">playground page</a>, where each mode comes with a live code editor.
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

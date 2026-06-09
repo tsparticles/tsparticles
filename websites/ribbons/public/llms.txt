@@ -5,6 +5,9 @@
 ## Docs
 
 - [Ribbons Modes](https://ribbons.js.org/): Interactive ribbon animation demos with live code editor
+- [Getting Started Guide](https://ribbons.js.org/blog/getting-started.html): Quick start with script tags, npm, and framework components
+- [Customization Guide](https://ribbons.js.org/blog/customization-guide.html): Colors, physics, positioning, and timing options
+- [Framework Integration](https://ribbons.js.org/blog/framework-integration.html): Using ribbons with React, Vue, Angular, and Svelte
 - [tsParticles Documentation](https://particles.js.org/): Main tsParticles documentation site
 - [tsParticles GitHub](https://github.com/tsparticles/tsparticles): Source code and issue tracker
 

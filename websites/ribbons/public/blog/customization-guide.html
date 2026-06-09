@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Customize tsParticles Ribbon animations — learn how to control colors, physics, positioning, and timing for unique ribbon effects."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Customizing Ribbon Animations | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Customizing Ribbon Animations</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        tsParticles Ribbons offers a wide range of customization options. You can change colors,
+        adjust physics, control positioning, and even create multi-layered effects by combining
+        multiple calls.
+      </p>
+
+      <h2>Custom Colors</h2>
+      <p>By default, ribbons use a preset palette, but you can provide your own color array:</p>
+      <pre><code>ribbons({
+  colors: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00', '#FF0000'],
+});</code></pre>
+      <p>
+        Colors can be any valid CSS color: hex codes, RGB, HSL, or named colors. You can create
+        themed effects like ocean blues, sunset oranges, or holiday reds and greens. To create a
+        smooth transition between two color themes, call <code>ribbons()</code> multiple times with
+        different color palettes and stagger them with <code>setTimeout</code>.
+      </p>
+
+      <h2>Position Control</h2>
+      <p>You can control where ribbons spawn by setting the <code>positionX</code> option:</p>
+      <pre><code>ribbons({
+  positionX: 50, // spawn at x=50 (percentage-based)
+  emitterSize: { width: 0, height: 0 }, // point emitter
+});</code></pre>
+      <p>
+        The <code>positionX</code> value is a percentage (0-100) of the viewport width. Setting
+        <code>emitterSize</code> to zero creates a point emitter, making all ribbons originate from
+        a single pixel. This is great for effects that look like ribbons shooting from a specific
+        button or element.
+      </p>
+
+      <h2>Physics and Timing</h2>
+      <p>
+        Ribbon animations are driven by tsParticles' physics engine. While the ribbons preset
+        provides sensible defaults, you can fine-tune the behavior through the underlying particle
+        configuration. The physics parameters that affect ribbons include gravity, velocity,
+        rotation, and decay rates.
+      </p>
+      <p>
+        For continuous effects, you can use <code>setInterval</code> to spawn ribbons repeatedly:
+      </p>
+      <pre><code>const duration = 8000;
+const animationEnd = Date.now() + duration;
+
+const interval = setInterval(function () {
+  const timeLeft = animationEnd - Date.now();
+  if (timeLeft <= 0) {
+    return clearInterval(interval);
+  }
+  ribbons();
+}, 260);</code></pre>
+      <p>
+        This creates a continuous fall effect for 8 seconds, with a new burst every 260
+        milliseconds. Adjust the interval and duration to control density and length of the
+        animation.
+      </p>
+
+      <h2>Multiple Bursts</h2>
+      <p>
+        You can layer multiple ribbon bursts with staggered timing for a rich, cascading effect:
+      </p>
+      <pre><code>ribbons();
+
+setTimeout(() => {
+  ribbons();
+}, 300);
+
+setTimeout(() => {
+  ribbons();
+}, 600);</code></pre>
+      <p>
+        Each call creates an independent burst with its own set of ribbons. This technique is
+        perfect for celebrations, page load animations, or dramatic entrances.
+      </p>
+
+      <h2>Custom Canvas</h2>
+      <p>To keep ribbons within a specific area of your page, provide your own canvas element:</p>
+      <pre><code>const canvas = document.getElementById('my-canvas');
+const shoot = await ribbons.create(canvas, {
+  zIndex: 0,
+});
+
+shoot();</code></pre>
+      <p>
+        This is useful when you want ribbons as a background for a specific section, or when you
+        need to avoid overlapping with interactive elements like forms or navigation menus.
+      </p>
+
+      <h2>Combining Options</h2>
+      <p>
+        You can combine all these options to create unique effects. For example, a fireworks-style
+        ribbon burst from a fixed position with custom colors:
+      </p>
+      <pre><code>ribbons({
+  positionX: 50,
+  emitterSize: { width: 0, height: 0 },
+  colors: ['#FFD700', '#FFA500', '#FF6347'],
+});</code></pre>
+      <p>
+        Experiment with different combinations on the <a href="/">interactive playground</a> to find
+        the perfect effect for your project.
+      </p>
+
+      <h2>Performance Considerations</h2>
+      <p>
+        Ribbon animations use the HTML5 Canvas API and are GPU-accelerated in modern browsers. For
+        the best performance:
+      </p>
+      <ul>
+        <li>
+          Avoid creating too many simultaneous bursts (more than 3-4 concurrent animations may
+          impact performance on lower-end devices).
+        </li>
+        <li>
+          Use a custom canvas for section-specific animations rather than full-screen overlays when
+          possible.
+        </li>
+        <li>
+          Set reasonable duration limits for continuous animations (8-15 seconds is a good range).
+        </li>
+        <li>Test on mobile devices to ensure smooth performance.</li>
+      </ul>
+      <p>
+        tsParticles is designed to be performant, with efficient particle pooling and minimal
+        garbage collection overhead.
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

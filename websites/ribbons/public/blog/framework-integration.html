@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Integrate tsParticles Ribbons with React, Vue.js, Angular, Svelte, and other JavaScript frameworks."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Using Ribbons with React, Vue, and Angular | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Using Ribbons with React, Vue, and Angular</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        tsParticles Ribbons integrates seamlessly with modern JavaScript frameworks. The official
+        <code>@tsparticles/react</code>, <code>@tsparticles/vue</code>, and
+        <code>@tsparticles/angular</code> packages provide dedicated components that make
+        integration straightforward.
+      </p>
+
+      <h2>React Integration</h2>
+      <p>Install the required packages:</p>
+      <pre><code>npm install @tsparticles/ribbons @tsparticles/react</code></pre>
+      <p>Create a ribbons component:</p>
+      <pre><code>import { useCallback } from 'react';
+import { Particles } from '@tsparticles/react';
+import { ribbons } from '@tsparticles/ribbons';
+
+export const RibbonsBackground = () => {
+  const particlesInit = useCallback(async (engine) => {
+    await ribbons.init(engine);
+  }, []);
+
+  const options = {
+    preset: 'ribbons',
+    background: {
+      color: '#000000',
+    },
+    fullScreen: {
+      enable: true,
+    },
+  };
+
+  return (
+    &lt;Particles
+      id="ribbons"
+      init={particlesInit}
+      options={options}
+    /&gt;
+  );
+};</code></pre>
+      <p>
+        The <code>Particles</code> component handles canvas creation, resizing, and lifecycle
+        management automatically. Pass your ribbon configuration through the
+        <code>options</code> prop.
+      </p>
+
+      <h3>Triggering Ribbons on Demand</h3>
+      <p>
+        For event-based ribbons (like button clicks), use the <code>ribbons()</code> function
+        directly:
+      </p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+
+function CelebrationButton() {
+  const handleClick = () => {
+    ribbons({
+      colors: ['#FFD700', '#FFA500'],
+      positionX: 50,
+      emitterSize: { width: 0, height: 0 },
+    });
+  };
+
+  return &lt;button onClick={handleClick}&gt;Celebrate!&lt;/button&gt;;
+}</code></pre>
+
+      <h2>Vue.js Integration</h2>
+      <p>Install the packages:</p>
+      <pre><code>npm install @tsparticles/ribbons @tsparticles/vue3</code></pre>
+      <p>Register the plugin and use the component:</p>
+      <pre><code>import { createApp } from 'vue';
+import { ParticlesPlugin } from '@tsparticles/vue3';
+import { ribbons } from '@tsparticles/ribbons';
+
+const app = createApp(App);
+app.use(ParticlesPlugin, {
+  init: async (engine) => {
+    await ribbons.init(engine);
+  },
+});
+app.mount('#app');</code></pre>
+      <p>Then in your component template:</p>
+      <pre><code>&lt;template&gt;
+  &lt;Particles
+    id="ribbons"
+    :options="{
+      preset: 'ribbons',
+      background: { color: '#000000' },
+      fullScreen: { enable: true },
+    }"
+  /&gt;
+&lt;/template&gt;</code></pre>
+      <p>For Vue 2.x, use <code>@tsparticles/vue2</code> instead. The API is identical.</p>
+
+      <h2>Angular Integration</h2>
+      <p>Install the required packages:</p>
+      <pre><code>npm install @tsparticles/ribbons @tsparticles/angular</code></pre>
+      <p>Import the module and initialize ribbons:</p>
+      <pre><code>import { NgParticlesModule } from '@tsparticles/angular';
+import { ribbons } from '@tsparticles/ribbons';
+
+@NgModule({
+  imports: [
+    NgParticlesModule.init({
+      init: async (engine) => {
+        await ribbons.init(engine);
+      },
+    }),
+  ],
+})
+export class AppModule { }</code></pre>
+      <p>Use the component in your template:</p>
+      <pre><code>&lt;ng-particles
+  [id]="'ribbons'"
+  [options]="{
+    preset: 'ribbons',
+    background: { color: '#000000' },
+    fullScreen: { enable: true },
+  }"
+&gt;&lt;/ng-particles&gt;</code></pre>
+
+      <h2>Svelte Integration</h2>
+      <p>
+        For Svelte applications, use the <code>@tsparticles/ribbons</code> package directly with
+        Svelte's <code>onMount</code> lifecycle:
+      </p>
+      <pre><code>&lt;script&gt;
+  import { onMount } from 'svelte';
+  import { ribbons } from '@tsparticles/ribbons';
+
+  onMount(async () => {
+    await ribbons.init();
+    ribbons();
+  });
+&lt;/script&gt;</code></pre>
+      <p>Or use the <code>svelte-particles</code> package for a component-based approach.</p>
+
+      <h2>Using with jQuery</h2>
+      <p>If you're using jQuery, simply include the script tag and call <code>ribbons()</code>:</p>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@latest/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  $(document).ready(function () {
+    ribbons();
+  });
+&lt;/script&gt;</code></pre>
+      <p>
+        No additional plugin is needed — the <code>ribbons</code> function is available globally
+        after including the bundle.
+      </p>
+
+      <h2>TypeScript Support</h2>
+      <p>
+        All tsParticles packages include TypeScript definitions. The <code>ribbons()</code> function
+        and the <code>create()</code> method are fully typed, providing autocomplete and type
+        checking in your IDE.
+      </p>
+      <pre><code>import { ribbons, type RibbonsOptions } from '@tsparticles/ribbons';
+
+const options: RibbonsOptions = {
+  colors: ['#FF0000', '#00FF00', '#0000FF'],
+  positionX: 50,
+};
+
+ribbons(options);</code></pre>
+      <p>Type definitions are included in the package and require no additional installation.</p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

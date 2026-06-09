@@ -5,49 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Cookie policy for ribbons.js.org, including analytics and advertising consent details."
+      content="Cookie policy for ribbons.js.org, including analytics and advertising consent details for Google Analytics and Google AdSense."
     />
     <meta name="theme-color" content="#393939" />
     <title>Cookie Policy | tsParticles Ribbons</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
   </head>
   <body>
-    <main class="policy-container">
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/cookie-policy.html" class="site-nav-current">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="policy-container" style="padding-top: 5rem">
       <h1>Cookie Policy</h1>
+      <p class="meta">Last updated: June 9, 2026</p>
+
       <p>
-        This website uses optional cookies to improve content quality and to support the project
-        with ads.
+        This website uses optional cookies and local storage to improve content quality and to
+        support the project with ads. This policy explains what cookies we use, why we use them, and
+        how you can control them.
       </p>
 
-      <h2>Categories</h2>
+      <h2>What Are Cookies</h2>
       <p>
-        <b>Analytics</b>: used to understand aggregate usage of the website through Google
-        Analytics.
+        Cookies are small text files stored on your device by your web browser. They are widely used
+        to make websites work more efficiently and to provide information to site owners. Local
+        storage is similar but stores data directly in your browser without sending it to the server
+        on every request.
       </p>
-      <p><b>Advertising</b>: used to show ads through Google AdSense.</p>
 
-      <h2>Consent and control</h2>
+      <h2>Categories of Cookies We Use</h2>
+
+      <h3>Essential Storage</h3>
+      <p>
+        We use browser localStorage (not cookies) to store your cookie consent preferences under the
+        key <code>tsparticles-ribbons/cookie-consent-v1</code>. This preference is stored locally
+        and is not sent to any server. No essential cookies are used by this website.
+      </p>
+
+      <h3>Analytics Cookies (Optional)</h3>
+      <p><b>Provider:</b> Google Analytics (Measurement ID: G-CQTMTXX07T)</p>
+      <p>
+        <b>Purpose:</b> Used to understand aggregate usage of the website. We collect anonymized
+        data about which pages are visited, how long visitors stay, and what browser or device they
+        use. This helps us improve the website's content and user experience.
+      </p>
+      <p>
+        <b>Data collected:</b> Anonymized IP address, page URLs, browser type, device type,
+        approximate country-level location, referral source. No personally identifiable information
+        is collected or stored.
+      </p>
+      <p><b>Retention:</b> Analytics data is retained for 26 months.</p>
+      <p>
+        Analytics cookies are loaded only after you give explicit consent. If you reject analytics
+        cookies, the website still uses Google Consent Mode to send a signal that analytics consent
+        was denied, enabling cookieless measurement without storing any cookies.
+      </p>
+
+      <h3>Advertising Cookies (Optional)</h3>
+      <p><b>Provider:</b> Google AdSense (Publisher ID: pub-1784552607103901)</p>
+      <p>
+        <b>Purpose:</b> Used to show relevant advertisements on the website. AdSense helps support
+        the ongoing development and maintenance of the tsParticles open-source project.
+      </p>
+      <p>
+        <b>Data collected:</b> When you consent to advertising, Google AdSense may use cookies to
+        show personalized ads based on your browsing interests. Data collected may include browser
+        information, device type, and anonymous browsing patterns.
+      </p>
+      <p>
+        Advertising cookies are loaded only after you give explicit consent. If you reject
+        advertising cookies, AdSense still loads but operates in non-personalized mode, showing ads
+        based on the page content rather than your browsing history. Google Consent Mode signals
+        (<code>ad_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code>) are
+        set to <code>denied</code> when consent is not given.
+      </p>
+
+      <h3>Third-Party Cookies</h3>
+      <p>
+        This website does not set any third-party cookies directly. However, Google Analytics and
+        Google AdSense may set their own cookies as described above. These services are governed by
+        their own privacy policies:
+      </p>
+      <ul>
+        <li>
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+            >Google Privacy Policy</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://policies.google.com/technologies/ads"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Advertising Technologies</a
+          >
+        </li>
+      </ul>
+
+      <h2>Consent and Control</h2>
       <p>
         Analytics cookies and personalized advertising are enabled only after explicit consent. You
-        can reject all, accept all, or save a custom choice from the privacy banner.
+        can manage your preferences in the following ways:
       </p>
-      <p>
-        If analytics cookies are rejected, the website can still use anonymous cookieless analytics
-        measurement (Google Consent Mode) without storing analytics cookies.
-      </p>
-      <p>
-        You can change your choice at any time from the <i>Cookie preferences</i> button in the
-        website footer.
-      </p>
-
-      <h2>Storage</h2>
+      <ul>
+        <li>
+          <strong>Initial banner:</strong> When you first visit the site, a banner appears allowing
+          you to Accept All, Reject All, or customize your choices.
+        </li>
+        <li>
+          <strong>Cookie preferences button:</strong> You can change your choice at any time from
+          the <i>Cookie preferences</i> button in the website footer.
+        </li>
+        <li>
+          <strong>Browser settings:</strong> You can also block or delete cookies through your
+          browser's privacy settings.
+        </li>
+      </ul>
       <p>
         Your preference is stored locally in your browser using localStorage under a consent key
-        dedicated to this website.
+        dedicated to this website. Clearing your browser data will reset these preferences.
+      </p>
+
+      <h2>Google Consent Mode v2</h2>
+      <p>
+        This website implements Google Consent Mode v2, which communicates your consent choices to
+        Google services through the following signals:
+      </p>
+      <ul>
+        <li><code>ad_storage</code> — controls storage of advertising cookies</li>
+        <li><code>analytics_storage</code> — controls storage of analytics cookies</li>
+        <li><code>ad_user_data</code> — controls sending user data to Google for advertising</li>
+        <li><code>ad_personalization</code> — controls personalized advertising</li>
+      </ul>
+      <p>
+        Additional privacy protections include <code>ads_data_redaction</code> (URL-level ad data is
+        redacted when consent is denied) and <code>url_passthrough</code> (improved conversion
+        measurement without cookies).
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        If you have questions about this cookie policy, please open an issue on the
+        <a href="https://github.com/tsparticles/tsparticles">tsParticles GitHub repository</a>.
       </p>
 
       <p><a href="/">Back to the homepage</a></p>
     </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blog and tutorials for tsParticles Ribbons — learn how to create stunning ribbon animations for your website."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Blog | tsParticles Ribbons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <h1>tsParticles Ribbons Blog</h1>
+      <p>Tutorials, guides, and news about creating ribbon animations with tsParticles.</p>
+
+      <ul class="blog-list">
+        <li>
+          <h2><a href="/blog/getting-started.html">Getting Started with tsParticles Ribbons</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Learn how to add beautiful ribbon animations to your website with just a few lines of
+            code. This guide covers installation, basic setup, and the default ribbon configuration.
+          </p>
+        </li>
+        <li>
+          <h2><a href="/blog/customization-guide.html">Customizing Ribbon Animations</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Discover how to customize every aspect of your ribbon animations — colors, physics,
+            positioning, and timing. Create unique effects that match your brand.
+          </p>
+        </li>
+        <li>
+          <h2>
+            <a href="/blog/framework-integration.html"
+              >Using Ribbons with React, Vue, and Angular</a
+            >
+          </h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Step-by-step instructions for integrating tsParticles Ribbons into popular JavaScript
+            frameworks including React, Vue.js, Angular, and Svelte.
+          </p>
+        </li>
+      </ul>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>
