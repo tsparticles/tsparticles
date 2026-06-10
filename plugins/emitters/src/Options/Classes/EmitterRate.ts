@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  loadRangeProperty,
+} from "@tsparticles/engine";
 import type { IEmitterRate } from "../Interfaces/IEmitterRate.js";
 
 /**
@@ -28,12 +34,7 @@ export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
       return;
     }
 
-    if (data.quantity !== undefined) {
-      this.quantity = setRangeValue(data.quantity);
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
+    loadRangeProperty(this, "quantity", data.quantity);
+    loadRangeProperty(this, "delay", data.delay);
   }
 }

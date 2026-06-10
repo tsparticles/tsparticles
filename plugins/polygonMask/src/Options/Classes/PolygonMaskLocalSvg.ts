@@ -4,6 +4,7 @@ import {
   type RecursivePartial,
   type SingleOrMultiple,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg.js";
 
@@ -27,9 +28,7 @@ export class PolygonMaskLocalSvg implements IPolygonMaskLocalSvg, IOptionLoader<
       return;
     }
 
-    if (data.path !== undefined) {
-      this.path = data.path;
-    }
+    loadProperty(this, "path", data.path);
 
     if (data.size !== undefined) {
       if (data.size.width !== undefined) {

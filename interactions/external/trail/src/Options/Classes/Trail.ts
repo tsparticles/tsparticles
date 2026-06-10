@@ -4,6 +4,7 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ITrail } from "../Interfaces/ITrail.js";
 import { TrailColorCoords } from "./TrailColorCoords.js";
@@ -32,17 +33,9 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
   load(data?: RecursivePartial<ITrail>): void {
     if (isNull(data)) return;
 
-    if (data.delay !== undefined) {
-      this.delay = data.delay;
-    }
-
-    if (data.quantity !== undefined) {
-      this.quantity = data.quantity;
-    }
-
-    if (data.pauseOnStop !== undefined) {
-      this.pauseOnStop = data.pauseOnStop;
-    }
+    loadProperty(this, "delay", data.delay);
+    loadProperty(this, "quantity", data.quantity);
+    loadProperty(this, "pauseOnStop", data.pauseOnStop);
 
     if (data.particles !== undefined) {
       this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;

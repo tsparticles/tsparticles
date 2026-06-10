@@ -1,4 +1,10 @@
-import { type ICoordinates, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import {
+  type ICoordinates,
+  type IOptionLoader,
+  type RecursivePartial,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import { CanvasMaskOverride } from "./CanvasMaskOverride.js";
 import { CanvasMaskPixels } from "./CanvasMaskPixels.js";
 import type { ICanvasMask } from "../Interfaces/ICanvasMask.js";
@@ -70,9 +76,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
       this.element = data.element;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     if (data.image) {
       this.image ??= new ImageMask();
@@ -91,13 +95,8 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
 
     this.override.load(data.override);
 
-    if (data.scale !== undefined) {
-      this.scale = data.scale;
-    }
-
-    if (data.selector !== undefined) {
-      this.selector = data.selector;
-    }
+    loadProperty(this, "scale", data.scale);
+    loadProperty(this, "selector", data.selector);
 
     if (data.text) {
       this.text ??= new TextMask();

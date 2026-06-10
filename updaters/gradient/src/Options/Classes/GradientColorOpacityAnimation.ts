@@ -4,7 +4,8 @@ import {
   type RecursivePartial,
   StartValueType,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
 
@@ -47,32 +48,12 @@ export class GradientColorOpacityAnimation
       return;
     }
 
-    if (data.count !== undefined) {
-      this.count = setRangeValue(data.count);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
-
-    if (data.startValue !== undefined) {
-      this.startValue = data.startValue;
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
+    loadRangeProperty(this, "count", data.count);
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "speed", data.speed);
+    loadProperty(this, "sync", data.sync);
+    loadProperty(this, "startValue", data.startValue);
+    loadRangeProperty(this, "decay", data.decay);
+    loadRangeProperty(this, "delay", data.delay);
   }
 }

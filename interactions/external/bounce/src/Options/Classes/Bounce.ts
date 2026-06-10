@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IBounce } from "../Interfaces/IBounce.js";
 
 /** Bounce mode options class */
@@ -16,8 +16,6 @@ export class Bounce implements IBounce, IOptionLoader<IBounce> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
   }
 }

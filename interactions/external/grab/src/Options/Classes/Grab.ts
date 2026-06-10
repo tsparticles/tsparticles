@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { GrabLinks } from "./GrabLinks.js";
 import type { IGrab } from "../Interfaces/IGrab.js";
 
@@ -21,9 +21,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
 
     this.links.load(data.links);
   }

@@ -5,7 +5,8 @@ import {
   type RecursivePartial,
   isNull,
   isNumber,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IWobble } from "../Interfaces/IWobble.js";
 import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed.js";
@@ -39,13 +40,9 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = setRangeValue(data.distance);
-    }
+    loadRangeProperty(this, "distance", data.distance);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     if (data.speed !== undefined) {
       if (isNumber(data.speed)) {

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IRepulseBase, IRepulseRestore } from "../Interfaces/IRepulseBase.js";
 
 /**
@@ -41,29 +41,12 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
-
-    if (data.easing !== undefined) {
-      this.easing = data.easing;
-    }
-
-    if (data.factor !== undefined) {
-      this.factor = data.factor;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = data.speed;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = data.maxSpeed;
-    }
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "duration", data.duration);
+    loadProperty(this, "easing", data.easing);
+    loadProperty(this, "factor", data.factor);
+    loadProperty(this, "speed", data.speed);
+    loadProperty(this, "maxSpeed", data.maxSpeed);
 
     if (data.restore !== undefined) {
       this.restore.enable = data.restore.enable ?? this.restore.enable;

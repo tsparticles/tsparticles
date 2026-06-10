@@ -1,10 +1,9 @@
 import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation.js";
+import { OptionLoader, loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { AnimationMode } from "../../Enums/Modes/AnimationMode.js";
-import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { StartValueType } from "../../Enums/Types/StartValueType.js";
-import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Animation options configuration class */
 export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
@@ -33,29 +32,12 @@ export class AnimationOptions extends OptionLoader<IAnimation> implements IAnima
   }
 
   protected doLoad(data: RecursivePartial<IAnimation>): void {
-    if (data.count !== undefined) {
-      this.count = setRangeValue(data.count);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
-
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
+    loadRangeProperty(this, "count", data.count);
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "speed", data.speed);
+    loadRangeProperty(this, "decay", data.decay);
+    loadRangeProperty(this, "delay", data.delay);
+    loadProperty(this, "sync", data.sync);
   }
 }
 
@@ -76,13 +58,7 @@ export class RangedAnimationOptions extends AnimationOptions {
 
   protected override doLoad(data: RecursivePartial<IRangedAnimation>): void {
     super.doLoad(data);
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.startValue !== undefined) {
-      this.startValue = data.startValue;
-    }
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "startValue", data.startValue);
   }
 }

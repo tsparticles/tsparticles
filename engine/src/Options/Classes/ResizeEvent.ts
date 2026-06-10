@@ -1,5 +1,5 @@
+import { OptionLoader, loadProperty } from "../../Utils/OptionsUtils.js";
 import type { IResizeEvent } from "../Interfaces/IResizeEvent.js";
-import { OptionLoader } from "../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export class ResizeEvent extends OptionLoader<IResizeEvent> implements IResizeEvent {
@@ -13,12 +13,7 @@ export class ResizeEvent extends OptionLoader<IResizeEvent> implements IResizeEv
   }
 
   protected doLoad(data: RecursivePartial<IResizeEvent>): void {
-    if (data.delay !== undefined) {
-      this.delay = data.delay;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "delay", data.delay);
+    loadProperty(this, "enable", data.enable);
   }
 }

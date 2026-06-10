@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILinks } from "../Interfaces/ILinks.js";
 import { LinksShadow } from "./LinksShadow.js";
 import { LinksTriangle } from "./LinksTriangle.js";
@@ -53,45 +53,21 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
       return;
     }
 
-    if (data.id !== undefined) {
-      this.id = data.id;
-    }
-
-    if (data.blink !== undefined) {
-      this.blink = data.blink;
-    }
+    loadProperty(this, "id", data.id);
+    loadProperty(this, "blink", data.blink);
 
     this.color = OptionsColor.create(this.color, data.color);
 
-    if (data.consent !== undefined) {
-      this.consent = data.consent;
-    }
-
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.frequency !== undefined) {
-      this.frequency = data.frequency;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "consent", data.consent);
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "frequency", data.frequency);
+    loadProperty(this, "opacity", data.opacity);
 
     this.shadow.load(data.shadow);
     this.triangles.load(data.triangles);
 
-    if (data.width !== undefined) {
-      this.width = data.width;
-    }
-
-    if (data.warp !== undefined) {
-      this.warp = data.warp;
-    }
+    loadProperty(this, "width", data.width);
+    loadProperty(this, "warp", data.warp);
   }
 }

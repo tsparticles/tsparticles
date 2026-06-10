@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { FontTextMask } from "./FontTextMask.js";
 import type { ITextMask } from "../Interfaces/ITextMask.js";
 import { TextMaskLine } from "./TextMaskLine.js";
@@ -23,19 +23,12 @@ export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
       return;
     }
 
-    if (data.color !== undefined) {
-      this.color = data.color;
-    }
-
-    if (data.fill !== undefined) {
-      this.fill = data.fill;
-    }
+    loadProperty(this, "color", data.color);
+    loadProperty(this, "fill", data.fill);
 
     this.font.load(data.font);
     this.lines.load(data.lines);
 
-    if (data.text !== undefined) {
-      this.text = data.text;
-    }
+    loadProperty(this, "text", data.text);
   }
 }

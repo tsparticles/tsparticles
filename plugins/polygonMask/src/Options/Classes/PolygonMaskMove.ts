@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove.js";
 import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
@@ -19,12 +19,7 @@ export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygon
       return;
     }
 
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "radius", data.radius);
+    loadProperty(this, "type", data.type);
   }
 }

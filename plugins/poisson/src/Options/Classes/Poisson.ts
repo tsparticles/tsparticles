@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IPoisson } from "../Interfaces/IPoisson.js";
 
 /**
@@ -29,20 +29,9 @@ export class Poisson implements IPoisson, IOptionLoader<IPoisson> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.dimensions !== undefined) {
-      this.dimensions = data.dimensions;
-    }
-
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
-
-    if (data.retries !== undefined) {
-      this.retries = data.retries;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "dimensions", data.dimensions);
+    loadProperty(this, "radius", data.radius);
+    loadProperty(this, "retries", data.retries);
   }
 }

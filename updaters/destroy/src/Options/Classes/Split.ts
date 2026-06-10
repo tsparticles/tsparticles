@@ -8,6 +8,7 @@ import {
   deepExtend,
   executeOnSingleOrMultiple,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ISplit } from "../Interfaces/ISplit.js";
 import { SplitFactor } from "./SplitFactor.js";
@@ -59,9 +60,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
-    if (data.count !== undefined) {
-      this.count = data.count;
-    }
+    loadProperty(this, "count", data.count);
 
     this.factor.load(data.factor);
     this.rate.load(data.rate);
@@ -70,9 +69,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
     });
 
-    if (data.sizeOffset !== undefined) {
-      this.sizeOffset = data.sizeOffset;
-    }
+    loadProperty(this, "sizeOffset", data.sizeOffset);
 
     if (data.fillColorOffset) {
       this.fillColorOffset = this.fillColorOffset ?? {};

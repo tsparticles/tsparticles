@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 
 /** Gradient angle animation options class */
@@ -41,28 +42,11 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
       return;
     }
 
-    if (data.count !== undefined) {
-      this.count = setRangeValue(data.count);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
-
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
+    loadRangeProperty(this, "count", data.count);
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "speed", data.speed);
+    loadRangeProperty(this, "decay", data.decay);
+    loadRangeProperty(this, "delay", data.delay);
+    loadProperty(this, "sync", data.sync);
   }
 }

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ITextMaskLine } from "../Interfaces/ITextMaskLine.js";
 
 export class TextMaskLine implements ITextMaskLine, IOptionLoader<ITextMaskLine> {
@@ -15,12 +15,7 @@ export class TextMaskLine implements ITextMaskLine, IOptionLoader<ITextMaskLine>
       return;
     }
 
-    if (data.separator !== undefined) {
-      this.separator = data.separator;
-    }
-
-    if (data.spacing !== undefined) {
-      this.spacing = data.spacing;
-    }
+    loadProperty(this, "separator", data.separator);
+    loadProperty(this, "spacing", data.spacing);
   }
 }

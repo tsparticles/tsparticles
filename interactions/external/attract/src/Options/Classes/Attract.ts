@@ -1,5 +1,5 @@
 import type { IAttract, IAttractRestore } from "../Interfaces/IAttract.js";
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 
 /** Attract mode options class */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
@@ -45,29 +45,21 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
 
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
+    loadProperty(this, "duration", data.duration);
 
     if (data.easing !== undefined) {
       this.easing = data.easing;
     }
 
-    if (data.factor !== undefined) {
-      this.factor = data.factor;
-    }
+    loadProperty(this, "factor", data.factor);
 
     if (data.maxSpeed !== undefined) {
       this.maxSpeed = data.maxSpeed;
     }
 
-    if (data.speed !== undefined) {
-      this.speed = data.speed;
-    }
+    loadProperty(this, "speed", data.speed);
 
     if (data.restore !== undefined) {
       this.restore.enable = data.restore.enable ?? this.restore.enable;

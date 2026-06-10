@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { type ITrailFill } from "../Interfaces/ITrailFill.js";
 
 export class TrailFill implements ITrailFill, IOptionLoader<ITrailFill> {
@@ -14,8 +14,6 @@ export class TrailFill implements ITrailFill, IOptionLoader<ITrailFill> {
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.image !== undefined) {
-      this.image = data.image;
-    }
+    loadProperty(this, "image", data.image);
   }
 }

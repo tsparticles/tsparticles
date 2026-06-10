@@ -1,6 +1,6 @@
 import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions.js";
 import type { IAnimationValueWithRandom, IValueWithRandom } from "../Interfaces/IValueWithRandom.js";
-import { OptionLoader } from "../../Utils/OptionsUtils.js";
+import { OptionLoader, loadNestedProperty } from "../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
@@ -28,12 +28,7 @@ export class AnimationValueWithRandom extends ValueWithRandom {
 
   protected override doLoad(data: RecursivePartial<IAnimationValueWithRandom>): void {
     super.doLoad(data);
-
-    const animation = data.animation;
-
-    if (animation !== undefined) {
-      this.animation.load(animation);
-    }
+    loadNestedProperty(this, "animation", data.animation);
   }
 }
 

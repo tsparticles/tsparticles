@@ -1,5 +1,5 @@
+import { OptionLoader, loadProperty } from "../../../Utils/OptionsUtils.js";
 import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen.js";
-import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
@@ -29,12 +29,7 @@ export class FullScreen extends OptionLoader<IFullScreen> implements IFullScreen
   }
 
   protected doLoad(data: RecursivePartial<IFullScreen>): void {
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.zIndex !== undefined) {
-      this.zIndex = data.zIndex;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "zIndex", data.zIndex);
   }
 }

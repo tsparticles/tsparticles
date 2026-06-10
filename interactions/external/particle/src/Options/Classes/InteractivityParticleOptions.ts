@@ -4,6 +4,7 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IInteractivityParticleOptions } from "../Interfaces/IInteractivityParticleOptions.js";
 
@@ -39,16 +40,8 @@ export class InteractivityParticleOptions
       this.options = deepExtend({}, data.options) as RecursivePartial<IParticlesOptions>;
     }
 
-    if (data.replaceCursor !== undefined) {
-      this.replaceCursor = data.replaceCursor;
-    }
-
-    if (data.pauseOnStop !== undefined) {
-      this.pauseOnStop = data.pauseOnStop;
-    }
-
-    if (data.stopDelay !== undefined) {
-      this.stopDelay = data.stopDelay;
-    }
+    loadProperty(this, "replaceCursor", data.replaceCursor);
+    loadProperty(this, "pauseOnStop", data.pauseOnStop);
+    loadProperty(this, "stopDelay", data.stopDelay);
   }
 }

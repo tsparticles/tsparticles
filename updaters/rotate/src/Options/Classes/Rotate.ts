@@ -5,6 +5,7 @@ import {
   type RotateDirectionAlt,
   ValueWithRandom,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IRotate } from "../Interfaces/IRotate.js";
 import { RotateAnimation } from "./RotateAnimation.js";
@@ -40,14 +41,10 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
 
     super.load(data);
 
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadProperty(this, "direction", data.direction);
 
     this.animation.load(data.animation);
 
-    if (data.path !== undefined) {
-      this.path = data.path;
-    }
+    loadProperty(this, "path", data.path);
   }
 }

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ISoundsIcon } from "../Interfaces/ISoundsIcon.js";
 
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
@@ -19,20 +19,9 @@ export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
       return;
     }
 
-    if (data.path !== undefined) {
-      this.path = data.path;
-    }
-
-    if (data.svg !== undefined) {
-      this.svg = data.svg;
-    }
-
-    if (data.width !== undefined) {
-      this.width = data.width;
-    }
-
-    if (data.height !== undefined) {
-      this.height = data.height;
-    }
+    loadProperty(this, "path", data.path);
+    loadProperty(this, "svg", data.svg);
+    loadProperty(this, "width", data.width);
+    loadProperty(this, "height", data.height);
   }
 }

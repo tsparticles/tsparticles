@@ -1,5 +1,5 @@
+import { type RecursivePartial, loadProperty } from "@tsparticles/engine";
 import type { ICannon } from "../Interfaces/ICannon.js";
-import type { RecursivePartial } from "@tsparticles/engine";
 
 /** Cannon mode options class */
 export class Cannon implements ICannon {
@@ -44,36 +44,13 @@ export class Cannon implements ICannon {
       return;
     }
 
-    if (data.spread !== undefined) {
-      this.spread = data.spread;
-    }
-
-    if (data.velocityFactor !== undefined) {
-      this.velocityFactor = data.velocityFactor;
-    }
-
-    if (data.particleFactor !== undefined) {
-      this.particleFactor = data.particleFactor;
-    }
-
-    if (data.minParticles !== undefined) {
-      this.minParticles = data.minParticles;
-    }
-
-    if (data.maxParticles !== undefined) {
-      this.maxParticles = data.maxParticles;
-    }
-
-    if (data.maxDragDistance !== undefined) {
-      this.maxDragDistance = data.maxDragDistance;
-    }
-
-    if (data.drawVector !== undefined) {
-      this.drawVector = data.drawVector;
-    }
-
-    if (data.vectorColor !== undefined) {
-      this.vectorColor = data.vectorColor;
-    }
+    loadProperty(this, "spread", data.spread);
+    loadProperty(this, "velocityFactor", data.velocityFactor);
+    loadProperty(this, "particleFactor", data.particleFactor);
+    loadProperty(this, "minParticles", data.minParticles);
+    loadProperty(this, "maxParticles", data.maxParticles);
+    loadProperty(this, "maxDragDistance", data.maxDragDistance);
+    loadProperty(this, "drawVector", data.drawVector);
+    loadProperty(this, "vectorColor", data.vectorColor);
   }
 }

@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   private validateEmail(val: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    return /^[^\s@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(val);
   }
 
   onSubmit(): void {

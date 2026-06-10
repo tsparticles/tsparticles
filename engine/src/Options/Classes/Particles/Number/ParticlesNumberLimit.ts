@@ -1,6 +1,6 @@
+import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IParticlesNumberLimit } from "../../../Interfaces/Particles/Number/IParticlesNumberLimit.js";
 import { LimitMode } from "../../../../Enums/Modes/LimitMode.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 export class ParticlesNumberLimit extends OptionLoader<IParticlesNumberLimit> implements IParticlesNumberLimit {
@@ -14,12 +14,7 @@ export class ParticlesNumberLimit extends OptionLoader<IParticlesNumberLimit> im
   }
 
   protected doLoad(data: RecursivePartial<IParticlesNumberLimit>): void {
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.value !== undefined) {
-      this.value = data.value;
-    }
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "value", data.value);
   }
 }

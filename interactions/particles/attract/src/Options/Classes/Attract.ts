@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IAttract } from "../Interfaces/IAttract.js";
 
@@ -29,13 +30,8 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = setRangeValue(data.distance);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadRangeProperty(this, "distance", data.distance);
+    loadProperty(this, "enable", data.enable);
 
     if (data.rotate) {
       const rotateX = data.rotate.x;

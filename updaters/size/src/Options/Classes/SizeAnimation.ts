@@ -4,6 +4,7 @@ import {
   RangedAnimationOptions,
   type RecursivePartial,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ISizeAnimation } from "../Interfaces/ISizeAnimation.js";
 
@@ -27,8 +28,6 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
       return;
     }
 
-    if (data.destroy !== undefined) {
-      this.destroy = data.destroy;
-    }
+    loadProperty(this, "destroy", data.destroy);
   }
 }

@@ -4,6 +4,7 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ITheme } from "../Interfaces/ITheme.js";
 import { ThemeDefault } from "./ThemeDefault.js";
@@ -26,9 +27,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
       return;
     }
 
-    if (data.name !== undefined) {
-      this.name = data.name;
-    }
+    loadProperty(this, "name", data.name);
 
     this.default.load(data.default);
 

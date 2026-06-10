@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILifeDuration } from "../Interfaces/ILifeDuration.js";
 
 /** Life duration options class */
@@ -23,8 +23,6 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
 
     super.load(data);
 
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
+    loadProperty(this, "sync", data.sync);
   }
 }

@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import type { IRepulseDiv } from "../Interfaces/IRepulseDiv.js";
 import { RepulseBase } from "./RepulseBase.js";
 
@@ -21,8 +27,6 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
       return;
     }
 
-    if (data.selectors !== undefined) {
-      this.selectors = data.selectors;
-    }
+    loadProperty(this, "selectors", data.selectors);
   }
 }

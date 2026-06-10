@@ -1,4 +1,4 @@
-import { OptionLoader, loadParticlesOptions } from "../../Utils/OptionsUtils.js";
+import { OptionLoader, loadParticlesOptions, loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
@@ -11,7 +11,6 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { isBoolean } from "../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Default themes configuration */
 export interface DefaultThemes {
@@ -115,57 +114,18 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
       this.#importPalette(this.palette);
     }
 
-    if (data.autoPlay !== undefined) {
-      this.autoPlay = data.autoPlay;
-    }
-
-    if (data.clear !== undefined) {
-      this.clear = data.clear;
-    }
-
-    if (data.key !== undefined) {
-      this.key = data.key;
-    }
-
-    if (data.name !== undefined) {
-      this.name = data.name;
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
-
-    const detectRetina = data.detectRetina;
-
-    if (detectRetina !== undefined) {
-      this.detectRetina = detectRetina;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = setRangeValue(data.duration);
-    }
-
-    const fpsLimit = data.fpsLimit;
-
-    if (fpsLimit !== undefined) {
-      this.fpsLimit = fpsLimit;
-    }
-
-    if (data.hdr !== undefined) {
-      this.hdr = data.hdr;
-    }
-
-    if (data.pauseOnBlur !== undefined) {
-      this.pauseOnBlur = data.pauseOnBlur;
-    }
-
-    if (data.pauseOnOutsideViewport !== undefined) {
-      this.pauseOnOutsideViewport = data.pauseOnOutsideViewport;
-    }
-
-    if (data.zLayers !== undefined) {
-      this.zLayers = data.zLayers;
-    }
+    loadProperty(this, "autoPlay", data.autoPlay);
+    loadProperty(this, "clear", data.clear);
+    loadProperty(this, "key", data.key);
+    loadProperty(this, "name", data.name);
+    loadRangeProperty(this, "delay", data.delay);
+    loadProperty(this, "detectRetina", data.detectRetina);
+    loadRangeProperty(this, "duration", data.duration);
+    loadProperty(this, "fpsLimit", data.fpsLimit);
+    loadProperty(this, "hdr", data.hdr);
+    loadProperty(this, "pauseOnBlur", data.pauseOnBlur);
+    loadProperty(this, "pauseOnOutsideViewport", data.pauseOnOutsideViewport);
+    loadProperty(this, "zLayers", data.zLayers);
 
     this.background.load(data.background);
 
@@ -183,9 +143,7 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
 
     this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
-    if (data.smooth !== undefined) {
-      this.smooth = data.smooth;
-    }
+    loadProperty(this, "smooth", data.smooth);
 
     this.#pluginManager.plugins.forEach(plugin => {
       plugin.loadOptions(this.#container, this, data);

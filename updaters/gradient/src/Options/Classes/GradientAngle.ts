@@ -7,7 +7,8 @@ import {
   RotateDirection,
   type RotateDirectionAlt,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation.js";
 import type { IGradientAngle } from "../Interfaces/Gradients.js";
@@ -41,12 +42,7 @@ export class GradientAngle
 
     this.animation.load(data.animation);
 
-    if (data.value !== undefined) {
-      this.value = setRangeValue(data.value);
-    }
-
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadRangeProperty(this, "value", data.value);
+    loadProperty(this, "direction", data.direction);
   }
 }

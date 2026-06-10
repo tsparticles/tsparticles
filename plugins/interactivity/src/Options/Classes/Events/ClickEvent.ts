@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import type { IClickEvent } from "../../Interfaces/Events/IClickEvent.js";
 
 /**
@@ -25,12 +31,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "mode", data.mode);
   }
 }

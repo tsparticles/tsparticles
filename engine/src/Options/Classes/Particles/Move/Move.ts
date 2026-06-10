@@ -1,4 +1,5 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
+import { OptionLoader, loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
@@ -6,12 +7,10 @@ import { MoveAngle } from "./MoveAngle.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { Spin } from "./Spin.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -61,13 +60,8 @@ export class Move extends OptionLoader<IMove> implements IMove {
 
     this.center.load(data.center);
 
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadRangeProperty(this, "decay", data.decay);
+    loadProperty(this, "direction", data.direction);
 
     if (data.distance !== undefined) {
       this.distance = isNumber(data.distance)
@@ -78,13 +72,8 @@ export class Move extends OptionLoader<IMove> implements IMove {
         : { ...data.distance };
     }
 
-    if (data.drift !== undefined) {
-      this.drift = setRangeValue(data.drift);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadRangeProperty(this, "drift", data.drift);
+    loadProperty(this, "enable", data.enable);
 
     this.gravity.load(data.gravity);
 
@@ -102,30 +91,14 @@ export class Move extends OptionLoader<IMove> implements IMove {
 
     this.path.load(data.path);
 
-    if (data.random !== undefined) {
-      this.random = data.random;
-    }
-
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadProperty(this, "random", data.random);
+    loadProperty(this, "size", data.size);
+    loadRangeProperty(this, "speed", data.speed);
 
     this.spin.load(data.spin);
 
-    if (data.straight !== undefined) {
-      this.straight = data.straight;
-    }
-
-    if (data.vibrate !== undefined) {
-      this.vibrate = data.vibrate;
-    }
-
-    if (data.warp !== undefined) {
-      this.warp = data.warp;
-    }
+    loadProperty(this, "straight", data.straight);
+    loadProperty(this, "vibrate", data.vibrate);
+    loadProperty(this, "warp", data.warp);
   }
 }

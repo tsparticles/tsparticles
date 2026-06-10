@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ICollisionsAbsorb } from "../Interfaces/ICollisionsAbsorb.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
@@ -14,8 +14,6 @@ export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<IColli
       return;
     }
 
-    if (data.speed !== undefined) {
-      this.speed = data.speed;
-    }
+    loadProperty(this, "speed", data.speed);
   }
 }

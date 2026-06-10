@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, loadProperty } from "@tsparticles/engine";
 import type { ITrailColorWeight } from "../Interfaces/ITrailColorWeight.js";
 
 export class TrailColorWeight implements ITrailColorWeight, IOptionLoader<ITrailColorWeight> {
@@ -15,12 +15,7 @@ export class TrailColorWeight implements ITrailColorWeight, IOptionLoader<ITrail
       return;
     }
 
-    if (data.x !== undefined) {
-      this.x = data.x;
-    }
-
-    if (data.y !== undefined) {
-      this.y = data.y;
-    }
+    loadProperty(this, "x", data.x);
+    loadProperty(this, "y", data.y);
   }
 }

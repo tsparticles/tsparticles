@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IRoll } from "../Interfaces/IRoll.js";
 import { RollLight } from "./RollLight.js";
@@ -52,18 +53,12 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
 
     this.darken.load(data.darken);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     this.enlighten.load(data.enlighten);
 
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "mode", data.mode);
 
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadRangeProperty(this, "speed", data.speed);
   }
 }

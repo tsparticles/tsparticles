@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull, isObject } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, isObject, loadProperty } from "@tsparticles/engine";
 import type { ISoundsVolume } from "../Interfaces/ISoundsVolume.js";
 
 export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume> {
@@ -24,17 +24,9 @@ export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume>
     }
 
     if (isObject(data)) {
-      if (data.max !== undefined) {
-        this.max = data.max;
-      }
-
-      if (data.min !== undefined) {
-        this.min = data.min;
-      }
-
-      if (data.step !== undefined) {
-        this.step = data.step;
-      }
+      loadProperty(this, "max", data.max);
+      loadProperty(this, "min", data.min);
+      loadProperty(this, "step", data.step);
 
       if (data.value !== undefined) {
         this.value = data.value;

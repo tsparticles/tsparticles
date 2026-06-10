@@ -5,6 +5,7 @@ import {
   isFunction,
   isNull,
   isString,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels.js";
 
@@ -38,8 +39,6 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
       }
     }
 
-    if (data.offset !== undefined) {
-      this.offset = data.offset;
-    }
+    loadProperty(this, "offset", data.offset);
   }
 }

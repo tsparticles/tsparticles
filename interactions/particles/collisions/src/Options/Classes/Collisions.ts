@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import { CollisionMode } from "../../CollisionMode.js";
 import { CollisionsAbsorb } from "./CollisionsAbsorb.js";
@@ -45,17 +46,9 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     this.absorb.load(data.absorb);
     this.bounce.load(data.bounce);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = setRangeValue(data.maxSpeed);
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "maxSpeed", data.maxSpeed);
+    loadProperty(this, "mode", data.mode);
 
     this.overlap.load(data.overlap);
   }

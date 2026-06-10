@@ -6,7 +6,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IOrbit } from "../Interfaces/IOrbit.js";
 import { OrbitRotation } from "./OrbitRotation.js";
@@ -52,18 +53,10 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
 
     this.rotation.load(data.rotation);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
-    if (data.width !== undefined) {
-      this.width = setRangeValue(data.width);
-    }
-    if (data.radius !== undefined) {
-      this.radius = setRangeValue(data.radius);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "opacity", data.opacity);
+    loadRangeProperty(this, "width", data.width);
+    loadRangeProperty(this, "radius", data.radius);
     if (data.color !== undefined) {
       this.color = OptionsColor.create(this.color, data.color);
     }

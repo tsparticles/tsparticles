@@ -1,5 +1,5 @@
+import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
@@ -18,20 +18,8 @@ export class ParticlesDensity extends OptionLoader<IParticlesDensity> implements
   }
 
   protected doLoad(data: RecursivePartial<IParticlesDensity>): void {
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    const width = data.width;
-
-    if (width !== undefined) {
-      this.width = width;
-    }
-
-    const height = data.height;
-
-    if (height !== undefined) {
-      this.height = height;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "width", data.width);
+    loadProperty(this, "height", data.height);
   }
 }

@@ -6,6 +6,7 @@ import {
   deepExtend,
   isNull,
   isString,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IPolygonMask } from "../Interfaces/IPolygonMask.js";
 import { PolygonMaskDraw } from "./PolygonMaskDraw.js";
@@ -55,13 +56,8 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     this.inline.load(data.inline);
     this.move.load(data.move);
 
-    if (data.scale !== undefined) {
-      this.scale = data.scale;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "scale", data.scale);
+    loadProperty(this, "type", data.type);
 
     if (data.enable !== undefined) {
       this.enable = data.enable;
@@ -69,9 +65,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
       this.enable = this.type !== PolygonMaskType.none;
     }
 
-    if (data.url !== undefined) {
-      this.url = data.url;
-    }
+    loadProperty(this, "url", data.url);
 
     if (data.data !== undefined) {
       if (isString(data.data)) {

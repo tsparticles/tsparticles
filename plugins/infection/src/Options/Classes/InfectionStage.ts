@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IInfectionStage } from "../Interfaces/IInfectionStage.js";
 
 /** Infection stage options */
@@ -33,12 +33,7 @@ export class InfectionStage implements IInfectionStage, IOptionLoader<IInfection
     this.duration = data.duration;
     this.infectedStage = data.infectedStage;
 
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
-
-    if (data.rate !== undefined) {
-      this.rate = data.rate;
-    }
+    loadProperty(this, "radius", data.radius);
+    loadProperty(this, "rate", data.rate);
   }
 }

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IDrag } from "../Interfaces/IDrag.js";
 
 const defaultMomentumFactor = 0.03,
@@ -23,12 +23,8 @@ export class Drag implements IDrag, IOptionLoader<IDrag> {
       return;
     }
 
-    if (data.momentumFactor !== undefined) {
-      this.momentumFactor = data.momentumFactor;
-    }
+    loadProperty(this, "momentumFactor", data.momentumFactor);
 
-    if (data.preserveMomentum !== undefined) {
-      this.preserveMomentum = data.preserveMomentum;
-    }
+    loadProperty(this, "preserveMomentum", data.preserveMomentum);
   }
 }

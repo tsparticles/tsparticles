@@ -4,6 +4,7 @@ import {
   OptionsColor,
   type RecursivePartial,
   isNull,
+  loadProperty,
   setRangeValue,
 } from "@tsparticles/engine";
 import { AbsorberLife } from "./AbsorberLife.js";
@@ -75,9 +76,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.draggable !== undefined) {
-      this.draggable = data.draggable;
-    }
+    loadProperty(this, "draggable", data.draggable);
 
     if (data.life !== undefined) {
       this.life.load(data.life);
@@ -85,9 +84,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
 
     this.name = data.name;
 
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "opacity", data.opacity);
 
     if (data.position !== undefined) {
       this.position = {};
@@ -105,12 +102,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
       this.size.load(data.size);
     }
 
-    if (data.destroy !== undefined) {
-      this.destroy = data.destroy;
-    }
-
-    if (data.orbits !== undefined) {
-      this.orbits = data.orbits;
-    }
+    loadProperty(this, "destroy", data.destroy);
+    loadProperty(this, "orbits", data.orbits);
   }
 }

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { ConnectLinks } from "./ConnectLinks.js";
 import type { IConnect } from "../Interfaces/IConnect.js";
 
@@ -25,14 +25,10 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
 
     this.links.load(data.links);
 
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
+    loadProperty(this, "radius", data.radius);
   }
 }

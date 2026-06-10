@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILife } from "../Interfaces/ILife.js";
 import { LifeDelay } from "./LifeDelay.js";
 import { LifeDuration } from "./LifeDuration.js";
@@ -31,9 +31,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
       return;
     }
 
-    if (data.count !== undefined) {
-      this.count = data.count;
-    }
+    loadProperty(this, "count", data.count);
 
     this.delay.load(data.delay);
     this.duration.load(data.duration);

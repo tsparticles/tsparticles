@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILinksShadow } from "../Interfaces/ILinksShadow.js";
 
 /** Links shadow options class */
@@ -23,14 +23,10 @@ export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
       return;
     }
 
-    if (data.blur !== undefined) {
-      this.blur = data.blur;
-    }
+    loadProperty(this, "blur", data.blur);
 
     this.color = OptionsColor.create(this.color, data.color);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
   }
 }

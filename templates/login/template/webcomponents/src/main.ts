@@ -60,7 +60,7 @@ themeBtn.addEventListener("click", () => {
 });
 
 function validateEmail(val: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  return /^[^\s@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(val);
 }
 
 function validate(): boolean {

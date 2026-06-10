@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import {
   PolygonMaskInlineArrangement,
   type PolygonMaskInlineArrangementAlt,
@@ -22,8 +22,6 @@ export class PolygonMaskInline implements IPolygonMaskInline, IOptionLoader<IPol
       return;
     }
 
-    if (data.arrangement !== undefined) {
-      this.arrangement = data.arrangement;
-    }
+    loadProperty(this, "arrangement", data.arrangement);
   }
 }

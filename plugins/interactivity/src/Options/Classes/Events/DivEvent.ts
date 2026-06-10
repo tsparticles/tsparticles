@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import { DivType } from "../../../Enums/DivType.js";
 import type { IDivEvent } from "../../Interfaces/Events/IDivEvent.js";
 
@@ -32,20 +38,9 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
       return;
     }
 
-    if (data.selectors !== undefined) {
-      this.selectors = data.selectors;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "selectors", data.selectors);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "type", data.type);
   }
 }

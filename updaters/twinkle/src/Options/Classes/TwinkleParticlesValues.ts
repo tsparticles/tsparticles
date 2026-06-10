@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { ITwinkleParticlesValues } from "../Interfaces/ITwinkleParticlesValues.js";
 
@@ -45,16 +46,8 @@ export class TwinkleParticlesValues implements ITwinkleParticlesValues, IOptionL
       this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.frequency !== undefined) {
-      this.frequency = data.frequency;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "frequency", data.frequency);
+    loadRangeProperty(this, "opacity", data.opacity);
   }
 }

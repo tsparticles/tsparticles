@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IEmitterShapeReplace } from "../Interfaces/IEmitterShapeReplace.js";
 
 export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<IEmitterShapeReplace> {
@@ -15,12 +15,7 @@ export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<
       return;
     }
 
-    if (data.color !== undefined) {
-      this.color = data.color;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "color", data.color);
+    loadProperty(this, "opacity", data.opacity);
   }
 }

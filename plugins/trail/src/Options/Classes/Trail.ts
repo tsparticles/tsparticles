@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { type ITrail } from "../Interfaces/ITrail.js";
 import { TrailFill } from "./TrailFill.js";
 
@@ -25,16 +25,12 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     if (data.fill !== undefined) {
       this.fill.load(data.fill);
     }
 
-    if (data.length !== undefined) {
-      this.length = data.length;
-    }
+    loadProperty(this, "length", data.length);
   }
 }

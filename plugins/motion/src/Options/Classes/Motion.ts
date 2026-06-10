@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IMotion } from "../Interfaces/IMotion.js";
 import { MotionReduce } from "./MotionReduce.js";
 
@@ -27,9 +27,7 @@ export class Motion implements IMotion, IOptionLoader<IMotion> {
       return;
     }
 
-    if (data.disable !== undefined) {
-      this.disable = data.disable;
-    }
+    loadProperty(this, "disable", data.disable);
 
     this.reduce.load(data.reduce);
   }

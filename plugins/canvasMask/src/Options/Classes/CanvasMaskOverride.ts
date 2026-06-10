@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride.js";
 
 /**
@@ -28,12 +28,7 @@ export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<IC
       return;
     }
 
-    if (data.color !== undefined) {
-      this.color = data.color;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "color", data.color);
+    loadProperty(this, "opacity", data.opacity);
   }
 }

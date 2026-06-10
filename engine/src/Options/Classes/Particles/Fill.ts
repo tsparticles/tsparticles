@@ -1,9 +1,8 @@
+import { OptionLoader, loadProperty, loadRangeProperty } from "../../../Utils/OptionsUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import type { IFill } from "../../Interfaces/Particles/IFill.js";
-import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { setRangeValue } from "../../../Utils/MathUtils.js";
 
 /**
  * [[include:Options/Particles/Fill.md]]
@@ -24,12 +23,7 @@ export class Fill extends OptionLoader<IFill> implements IFill {
       this.color = AnimatableColor.create(this.color, data.color);
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "opacity", data.opacity);
   }
 }

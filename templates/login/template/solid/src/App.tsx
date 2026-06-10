@@ -53,7 +53,7 @@ export default function App() {
   };
 
   function validateEmail(value: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    return /^[^\s@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(value);
   }
 
   function handleSubmit(e: Event) {

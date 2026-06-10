@@ -6,6 +6,8 @@ import {
   executeOnSingleOrMultiple,
   isArray,
   isNull,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase.js";
 
@@ -42,21 +44,10 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
-
-    if (data.mix !== undefined) {
-      this.mix = data.mix;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "duration", data.duration);
+    loadProperty(this, "mix", data.mix);
+    loadRangeProperty(this, "opacity", data.opacity);
 
     if (data.color !== undefined) {
       const sourceColor = isArray(this.color) ? undefined : this.color;
@@ -66,8 +57,6 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
       });
     }
 
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
+    loadProperty(this, "size", data.size);
   }
 }

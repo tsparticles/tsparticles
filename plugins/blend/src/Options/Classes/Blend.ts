@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IBlend } from "../Interfaces/IBlend.js";
 
 /**
@@ -26,12 +26,7 @@ export class Blend implements IBlend, IOptionLoader<IBlend> {
       return;
     }
 
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "enable", data.enable);
   }
 }

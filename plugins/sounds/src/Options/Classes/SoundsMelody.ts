@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ISoundsMelody } from "../Interfaces/ISoundsMelody.js";
 import { SoundsNote } from "./SoundsNote.js";
 
@@ -18,9 +18,7 @@ export class SoundsMelody implements ISoundsMelody, IOptionLoader<ISoundsMelody>
       return;
     }
 
-    if (data.loop !== undefined) {
-      this.loop = data.loop;
-    }
+    loadProperty(this, "loop", data.loop);
 
     if (data.melodies !== undefined) {
       this.melodies = data.melodies.map(s => {

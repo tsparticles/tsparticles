@@ -4,6 +4,7 @@ import {
   RangedAnimationOptions,
   type RecursivePartial,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IOpacityAnimation } from "../Interfaces/IOpacityAnimation.js";
 
@@ -29,8 +30,6 @@ export class OpacityAnimation
       return;
     }
 
-    if (data.destroy !== undefined) {
-      this.destroy = data.destroy;
-    }
+    loadProperty(this, "destroy", data.destroy);
   }
 }

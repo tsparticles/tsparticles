@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import { BubbleBase } from "./BubbleBase.js";
 import type { IBubbleDiv } from "../Interfaces/IBubbleDiv.js";
 
@@ -22,8 +28,6 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
       return;
     }
 
-    if (data.selectors !== undefined) {
-      this.selectors = data.selectors;
-    }
+    loadProperty(this, "selectors", data.selectors);
   }
 }

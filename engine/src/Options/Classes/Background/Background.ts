@@ -1,5 +1,5 @@
+import { OptionLoader, loadProperty } from "../../../Utils/OptionsUtils.js";
 import type { IBackground } from "../../Interfaces/Background/IBackground.js";
-import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
@@ -30,24 +30,10 @@ export class Background extends OptionLoader<IBackground> implements IBackground
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.image !== undefined) {
-      this.image = data.image;
-    }
-
-    if (data.position !== undefined) {
-      this.position = data.position;
-    }
-
-    if (data.repeat !== undefined) {
-      this.repeat = data.repeat;
-    }
-
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "image", data.image);
+    loadProperty(this, "position", data.position);
+    loadProperty(this, "repeat", data.repeat);
+    loadProperty(this, "size", data.size);
+    loadProperty(this, "opacity", data.opacity);
   }
 }

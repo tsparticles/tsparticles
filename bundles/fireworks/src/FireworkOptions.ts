@@ -5,7 +5,8 @@ import {
   type SingleOrMultiple,
   isArray,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
@@ -101,10 +102,6 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
       return;
     }
 
-    if (data.background !== undefined) {
-      this.background = data.background;
-    }
-
     if (data.colors !== undefined) {
       if (isArray(data.colors)) {
         this.colors = [...data.colors];
@@ -113,36 +110,14 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
       }
     }
 
-    if (data.brightness !== undefined) {
-      this.brightness = setRangeValue(data.brightness);
-    }
-
-    if (data.gravity !== undefined) {
-      this.gravity = setRangeValue(data.gravity);
-    }
-
-    if (data.minHeight !== undefined) {
-      this.minHeight = setRangeValue(data.minHeight);
-    }
-
-    if (data.rate !== undefined) {
-      this.rate = setRangeValue(data.rate);
-    }
-
-    if (data.saturation !== undefined) {
-      this.saturation = setRangeValue(data.saturation);
-    }
-
-    if (data.sounds !== undefined) {
-      this.sounds = data.sounds;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.splitCount !== undefined) {
-      this.splitCount = setRangeValue(data.splitCount);
-    }
+    loadProperty(this, "background", data.background);
+    loadRangeProperty(this, "brightness", data.brightness);
+    loadRangeProperty(this, "gravity", data.gravity);
+    loadRangeProperty(this, "minHeight", data.minHeight);
+    loadRangeProperty(this, "rate", data.rate);
+    loadRangeProperty(this, "saturation", data.saturation);
+    loadProperty(this, "sounds", data.sounds);
+    loadRangeProperty(this, "speed", data.speed);
+    loadRangeProperty(this, "splitCount", data.splitCount);
   }
 }

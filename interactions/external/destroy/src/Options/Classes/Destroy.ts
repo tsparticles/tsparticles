@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IDestroy } from "../Interfaces/IDestroy.js";
 
 /** Destroy mode options class */
@@ -16,8 +16,6 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
   }
 }

@@ -1,4 +1,10 @@
-import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  isNull,
+  loadProperty,
+} from "@tsparticles/engine";
 import type { IHoverEvent } from "../../Interfaces/Events/IHoverEvent.js";
 
 /**
@@ -18,12 +24,7 @@ export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "mode", data.mode);
   }
 }

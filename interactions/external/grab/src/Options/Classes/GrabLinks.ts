@@ -1,4 +1,11 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  OptionsColor,
+  type RecursivePartial,
+  isNull,
+  loadProperty,
+  loadRangeProperty,
+} from "@tsparticles/engine";
 import type { IGrabLinks } from "../Interfaces/IGrabLinks.js";
 
 /** Grab links options class */
@@ -27,20 +34,14 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
       return;
     }
 
-    if (data.blink !== undefined) {
-      this.blink = data.blink;
-    }
+    loadProperty(this, "blink", data.blink);
 
     if (data.color !== undefined) {
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.consent !== undefined) {
-      this.consent = data.consent;
-    }
+    loadProperty(this, "consent", data.consent);
 
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadRangeProperty(this, "opacity", data.opacity);
   }
 }

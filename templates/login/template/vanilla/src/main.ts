@@ -37,7 +37,7 @@ setTheme(savedTheme);
 themeToggle.addEventListener("click", toggleTheme);
 
 function validateEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[^\s@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(email);
 }
 
 function validate(): boolean {

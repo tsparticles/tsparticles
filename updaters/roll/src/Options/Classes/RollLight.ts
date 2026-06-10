@@ -1,4 +1,11 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  loadProperty,
+  loadRangeProperty,
+} from "@tsparticles/engine";
 import type { IRollLight } from "../Interfaces/IRollLight.js";
 
 /** Roll light options class */
@@ -23,12 +30,7 @@ export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.value !== undefined) {
-      this.value = setRangeValue(data.value);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "value", data.value);
   }
 }

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IThemeDefault } from "../Interfaces/IThemeDefault.js";
 import { ThemeMode } from "../../ThemeMode.js";
 
@@ -21,16 +21,8 @@ export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault>
       return;
     }
 
-    if (data.auto !== undefined) {
-      this.auto = data.auto;
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.value !== undefined) {
-      this.value = data.value;
-    }
+    loadProperty(this, "auto", data.auto);
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "value", data.value);
   }
 }

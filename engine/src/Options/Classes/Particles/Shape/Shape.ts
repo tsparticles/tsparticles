@@ -1,6 +1,6 @@
+import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape.js";
 import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { ShapeData } from "../../../../Types/ShapeData.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
@@ -34,12 +34,7 @@ export class Shape extends OptionLoader<IShape> implements IShape {
       }
     }
 
-    if (data.close !== undefined) {
-      this.close = data.close;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "close", data.close);
+    loadProperty(this, "type", data.type);
   }
 }

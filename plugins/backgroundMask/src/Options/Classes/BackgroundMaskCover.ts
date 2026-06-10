@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IBackgroundMaskCover } from "../Interfaces/IBackgroundMaskCover.js";
 
 /**
@@ -35,12 +35,7 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.image !== undefined) {
-      this.image = data.image;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "image", data.image);
+    loadProperty(this, "opacity", data.opacity);
   }
 }

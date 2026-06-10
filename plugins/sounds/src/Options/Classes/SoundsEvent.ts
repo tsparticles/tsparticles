@@ -6,6 +6,7 @@ import {
   isFunction,
   isNull,
   isString,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { FilterFunction } from "../../types.js";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent.js";
@@ -39,9 +40,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
       return;
     }
 
-    if (data.event !== undefined) {
-      this.event = data.event;
-    }
+    loadProperty(this, "event", data.event);
 
     if (data.audio !== undefined) {
       if (isArray(data.audio)) {

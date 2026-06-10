@@ -1,8 +1,7 @@
+import { OptionLoader, loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /** Movement gravity options class */
 export class MoveGravity extends OptionLoader<IMoveGravity> implements IMoveGravity {
@@ -28,20 +27,9 @@ export class MoveGravity extends OptionLoader<IMoveGravity> implements IMoveGrav
    * @param data -
    */
   protected doLoad(data: RecursivePartial<IMoveGravity>): void {
-    if (data.acceleration !== undefined) {
-      this.acceleration = setRangeValue(data.acceleration);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.inverse !== undefined) {
-      this.inverse = data.inverse;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = setRangeValue(data.maxSpeed);
-    }
+    loadRangeProperty(this, "acceleration", data.acceleration);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "inverse", data.inverse);
+    loadRangeProperty(this, "maxSpeed", data.maxSpeed);
   }
 }

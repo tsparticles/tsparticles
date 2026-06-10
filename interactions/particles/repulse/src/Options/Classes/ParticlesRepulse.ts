@@ -4,7 +4,8 @@ import {
   type RecursivePartial,
   ValueWithRandom,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse.js";
 
@@ -38,24 +39,10 @@ export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepul
       return;
     }
 
-    if (data.enabled !== undefined) {
-      this.enabled = data.enabled;
-    }
-
-    if (data.distance !== undefined) {
-      this.distance = setRangeValue(data.distance);
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = setRangeValue(data.duration);
-    }
-
-    if (data.factor !== undefined) {
-      this.factor = setRangeValue(data.factor);
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadProperty(this, "enabled", data.enabled);
+    loadRangeProperty(this, "distance", data.distance);
+    loadRangeProperty(this, "duration", data.duration);
+    loadRangeProperty(this, "factor", data.factor);
+    loadRangeProperty(this, "speed", data.speed);
   }
 }

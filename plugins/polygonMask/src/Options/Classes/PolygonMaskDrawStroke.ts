@@ -5,6 +5,7 @@ import {
   type RecursivePartial,
   isNull,
   isString,
+  loadProperty,
   stringToAlpha,
 } from "@tsparticles/engine";
 import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke.js";
@@ -39,12 +40,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
       this.opacity = stringToAlpha(this.#pluginManager, this.color.value) ?? this.opacity;
     }
 
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
-
-    if (data.width !== undefined) {
-      this.width = data.width;
-    }
+    loadProperty(this, "opacity", data.opacity);
+    loadProperty(this, "width", data.width);
   }
 }
