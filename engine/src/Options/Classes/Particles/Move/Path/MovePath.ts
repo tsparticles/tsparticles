@@ -9,19 +9,11 @@ import { deepExtend } from "../../../../../Utils/Utils.js";
  * Path movement options.
  */
 export class MovePath extends OptionLoader<IMovePath> implements IMovePath {
-  clamp;
-  delay;
-  enable;
+  clamp = true;
+  readonly delay = new ValueWithRandom();
+  enable = false;
   generator?: string;
-  options: PathOptions;
-
-  constructor() {
-    super();
-    this.clamp = true;
-    this.delay = new ValueWithRandom();
-    this.enable = false;
-    this.options = {};
-  }
+  options: PathOptions = {};
 
   protected doLoad(data: RecursivePartial<IMovePath>): void {
     loadProperty(this, "clamp", data.clamp);

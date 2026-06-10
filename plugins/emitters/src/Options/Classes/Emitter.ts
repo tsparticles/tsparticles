@@ -27,7 +27,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * Starts the emitter automatically
    */
-  autoPlay;
+  autoPlay = true;
   /**
    * The direction of the emitted particles
    */
@@ -39,11 +39,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * Sets if the particles will spawn at the emitter perimeter or inside the area
    */
-  fill;
+  fill = true;
   /**
    * The emitter life options
    */
-  life;
+  readonly life = new EmitterLife();
   /**
    * The emitter name
    */
@@ -59,11 +59,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * The particles emitting rate options
    */
-  rate;
+  readonly rate = new EmitterRate();
   /**
    * The emitter shape options
    */
-  shape;
+  readonly shape = new EmitterShape();
   /**
    * The size of the particles emitter area
    */
@@ -71,7 +71,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * The emitter spawn options
    */
-  spawn;
+  readonly spawn = new EmitterSpawn();
   /**
    * The particle spawn fill color
    */
@@ -81,17 +81,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
    */
   spawnStrokeColor?: AnimatableColor;
   /** The number of starting particles of the emitter */
-  startCount;
-
-  constructor() {
-    this.autoPlay = true;
-    this.fill = true;
-    this.life = new EmitterLife();
-    this.rate = new EmitterRate();
-    this.shape = new EmitterShape();
-    this.spawn = new EmitterSpawn();
-    this.startCount = 0;
-  }
+  startCount = 0;
 
   /**
    * Loads the emitter options from the given data

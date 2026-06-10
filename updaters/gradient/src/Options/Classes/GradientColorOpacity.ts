@@ -19,15 +19,10 @@ export class GradientColorOpacity
     IOptionLoader<IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>>
 {
   /** Color opacity animation */
-  animation;
+  readonly animation = new GradientColorOpacityAnimation();
   /** Color opacity value */
-  value: RangeValue;
-
+  value: RangeValue = 0;
   /** GradientColorOpacity constructor */
-  constructor() {
-    this.value = 0;
-    this.animation = new GradientColorOpacityAnimation();
-  }
 
   /**
    * Loads the gradient color opacity from data

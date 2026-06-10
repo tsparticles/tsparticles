@@ -13,20 +13,17 @@ import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStrok
 /** The polygon mask draw stroke options */
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoader<IPolygonMaskDrawStroke> {
   /** The polygon mask draw stroke color */
-  color;
+  color = new OptionsColor();
   /** The polygon mask draw stroke opacity */
-  opacity;
+  opacity = 1;
   /** The polygon mask draw stroke width */
-  width;
+  width = 0.5;
 
   /** The plugin manager */
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager) {
     this.#pluginManager = pluginManager;
-    this.color = new OptionsColor();
-    this.width = 0.5;
-    this.opacity = 1;
   }
 
   load(data?: RecursivePartial<IPolygonMaskDrawStroke>): void {

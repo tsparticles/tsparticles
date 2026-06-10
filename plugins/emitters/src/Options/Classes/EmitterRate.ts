@@ -14,16 +14,11 @@ export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
   /**
    * The delay between emissions in seconds
    */
-  delay: RangeValue;
+  delay: RangeValue = 0.1;
   /**
    * The quantity of particles emitted per emission event
    */
-  quantity: RangeValue;
-
-  constructor() {
-    this.quantity = 1;
-    this.delay = 0.1;
-  }
+  quantity: RangeValue = 1;
 
   /**
    * Loads the emitter rate options from the given data

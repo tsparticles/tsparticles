@@ -8,21 +8,11 @@ import { TiltAnimation } from "./TiltAnimation.js";
  */
 export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt> {
   /** Tilt animation options */
-  animation;
+  readonly animation = new TiltAnimation();
   /** Tilt direction */
-  direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt;
+  direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt = TiltDirection.clockwise;
   /** Enables the tilt */
-  enable;
-
-  /** Tilt constructor */
-  constructor() {
-    super();
-    this.animation = new TiltAnimation();
-    this.direction = TiltDirection.clockwise;
-    this.enable = false;
-    this.value = 0;
-  }
-
+  enable = false;
   /**
    * Loads the tilt options from data
    * @param data

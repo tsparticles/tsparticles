@@ -27,25 +27,25 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
   [name: string]: unknown;
 
   /** The autoPlay flag */
-  autoPlay;
+  autoPlay = true;
   /** The background options */
-  readonly background;
+  readonly background: Background;
   /** The clear flag */
-  clear: boolean;
+  clear = true;
   /** The default themes */
-  defaultThemes: DefaultThemes;
+  defaultThemes: DefaultThemes = {};
   /** The delay value */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** The detect retina flag */
-  detectRetina;
+  detectRetina = true;
   /** The duration value */
-  duration: RangeValue;
+  duration: RangeValue = 0;
   /** The FPS limit */
-  fpsLimit;
+  fpsLimit = 120;
   /** The full screen options */
-  readonly fullScreen;
+  readonly fullScreen: FullScreen;
   /** The HDR flag */
-  hdr;
+  hdr = true;
   /** The key value */
   key?: string;
   /** The name value */
@@ -55,19 +55,19 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
   /** The particles options */
   readonly particles;
   /** The pause on blur flag */
-  pauseOnBlur;
+  pauseOnBlur = true;
   /** The pause on outside viewport flag */
-  pauseOnOutsideViewport;
+  pauseOnOutsideViewport = true;
   /** The preset value */
   preset?: SingleOrMultiple<string>;
   /** The resize options */
-  readonly resize;
+  readonly resize: ResizeEvent;
   /** The smooth flag */
-  smooth: boolean;
+  smooth = false;
   /** The style options */
-  style: RecursivePartial<CSSStyleDeclaration>;
+  style: RecursivePartial<CSSStyleDeclaration> = {};
   /** The z-layers value */
-  zLayers;
+  zLayers = 100;
 
   readonly #container;
   readonly #pluginManager;
@@ -76,23 +76,10 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
     super();
     this.#pluginManager = pluginManager;
     this.#container = container;
-    this.autoPlay = true;
     this.background = new Background();
-    this.clear = true;
-    this.defaultThemes = {};
-    this.delay = 0;
     this.fullScreen = new FullScreen();
-    this.detectRetina = true;
-    this.duration = 0;
-    this.fpsLimit = 120;
-    this.hdr = true;
     this.particles = loadParticlesOptions(this.#pluginManager, this.#container);
-    this.pauseOnBlur = true;
-    this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
-    this.smooth = false;
-    this.style = {};
-    this.zLayers = 100;
   }
 
   /**

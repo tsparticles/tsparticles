@@ -3,14 +3,8 @@ import type { IResizeEvent } from "../Interfaces/IResizeEvent.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export class ResizeEvent extends OptionLoader<IResizeEvent> implements IResizeEvent {
-  delay;
-  enable;
-
-  constructor() {
-    super();
-    this.delay = 0.5;
-    this.enable = true;
-  }
+  delay = 0.5;
+  enable = true;
 
   protected doLoad(data: RecursivePartial<IResizeEvent>): void {
     loadProperty(this, "delay", data.delay);

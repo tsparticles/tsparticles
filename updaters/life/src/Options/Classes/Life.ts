@@ -9,18 +9,12 @@ import { LifeDuration } from "./LifeDuration.js";
  */
 export class Life implements ILife, IOptionLoader<ILife> {
   /** Life count */
-  count;
+  count = 0;
   /** Life delay */
-  delay;
+  readonly delay = new LifeDelay();
   /** Life duration */
-  duration;
-
+  readonly duration = new LifeDuration();
   /** Life constructor */
-  constructor() {
-    this.count = 0;
-    this.delay = new LifeDelay();
-    this.duration = new LifeDuration();
-  }
 
   /**
    * Loads the life options from data

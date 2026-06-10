@@ -9,18 +9,12 @@ import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient.js";
  */
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
   /** Gradient angle */
-  angle: GradientAngle;
+  readonly angle: GradientAngle = new GradientAngle();
   /** Gradient colors */
-  colors: AnimatableGradientColor[];
+  colors: AnimatableGradientColor[] = [];
   /** Gradient type */
-  type: GradientType;
-
+  type: GradientType = GradientType.random;
   /** AnimatableGradient constructor */
-  constructor() {
-    this.angle = new GradientAngle();
-    this.colors = [];
-    this.type = GradientType.random;
-  }
 
   /**
    * Loads the animatable gradient from data

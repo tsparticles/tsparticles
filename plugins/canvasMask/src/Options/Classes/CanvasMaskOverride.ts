@@ -8,16 +8,11 @@ export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<IC
   /**
    * Override the particle color with the canvas pixel color
    */
-  color: boolean;
+  color = true;
   /**
    * Override the particle opacity with the canvas pixel opacity
    */
-  opacity: boolean;
-
-  constructor() {
-    this.color = true;
-    this.opacity = false;
-  }
+  opacity = false;
 
   /**
    * Loads the canvas mask override options from the given data

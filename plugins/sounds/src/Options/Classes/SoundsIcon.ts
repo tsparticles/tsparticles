@@ -2,17 +2,11 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 import type { ISoundsIcon } from "../Interfaces/ISoundsIcon.js";
 
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
-  height;
+  height = 24;
   path?: string;
-  style: string;
+  style = "";
   svg?: string;
-  width;
-
-  constructor() {
-    this.width = 24;
-    this.height = 24;
-    this.style = "";
-  }
+  width = 24;
 
   load(data?: RecursivePartial<ISoundsIcon>): void {
     if (isNull(data)) {

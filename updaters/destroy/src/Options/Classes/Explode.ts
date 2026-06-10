@@ -4,15 +4,10 @@ import type { IExplode } from "../Interfaces/IExplode.js";
 /** Explode options class */
 export class Explode implements IExplode, IOptionLoader<IExplode> {
   /** Maximum size factor for the explosion */
-  maxSizeFactor: number;
+  maxSizeFactor = 3;
   /** Speed of the explosion */
-  speed: number;
-
+  speed = 2;
   /** Explode constructor */
-  constructor() {
-    this.maxSizeFactor = 3;
-    this.speed = 2;
-  }
 
   /**
    * Loads the explode options from data

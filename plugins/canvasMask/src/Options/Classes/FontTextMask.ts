@@ -2,19 +2,11 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 import type { IFontTextMask } from "../Interfaces/IFontTextMask.js";
 
 export class FontTextMask implements IFontTextMask, IOptionLoader<IFontTextMask> {
-  family: string;
-  size: string | number;
-  style: string;
-  variant: string;
-  weight: string;
-
-  constructor() {
-    this.family = "sans-serif";
-    this.size = 100;
-    this.style = "";
-    this.variant = "";
-    this.weight = "";
-  }
+  family = "sans-serif";
+  size: string | number = 100;
+  style = "";
+  variant = "";
+  weight = "";
 
   load(data?: RecursivePartial<IFontTextMask>): void {
     if (isNull(data)) {

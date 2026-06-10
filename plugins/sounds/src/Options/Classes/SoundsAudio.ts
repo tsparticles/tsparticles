@@ -2,13 +2,8 @@ import { type IOptionLoader, type RecursivePartial, isNull, isObject, loadProper
 import type { ISoundsAudio } from "../Interfaces/ISoundsAudio.js";
 
 export class SoundsAudio implements ISoundsAudio, IOptionLoader<ISoundsAudio> {
-  loop: boolean;
-  source: string;
-
-  constructor() {
-    this.loop = false;
-    this.source = "";
-  }
+  loop = false;
+  source = "";
 
   load(data?: RecursivePartial<ISoundsAudio | string>): void {
     if (isNull(data)) {

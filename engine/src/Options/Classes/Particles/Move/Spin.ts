@@ -6,15 +6,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
 
 export class Spin extends OptionLoader<ISpin> implements ISpin {
-  acceleration: RangeValue;
-  enable;
+  acceleration: RangeValue = 0;
+  enable = false;
   position?: ICoordinatesWithMode;
-
-  constructor() {
-    super();
-    this.acceleration = 0;
-    this.enable = false;
-  }
 
   protected doLoad(data: RecursivePartial<ISpin>): void {
     loadRangeProperty(this, "acceleration", data.acceleration);

@@ -14,30 +14,20 @@ export class GradientColorOpacityAnimation
   implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>
 {
   /** Animation repeat count */
-  count: RangeValue;
+  count: RangeValue = 0;
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Animation delay */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Animation start value */
-  startValue: StartValueType | keyof typeof StartValueType;
+  startValue: StartValueType | keyof typeof StartValueType = StartValueType.random;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** GradientColorOpacityAnimation constructor */
-  constructor() {
-    this.count = 0;
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.delay = 0;
-    this.sync = false;
-    this.startValue = StartValueType.random;
-  }
 
   /**
    * Loads the gradient color opacity animation from data

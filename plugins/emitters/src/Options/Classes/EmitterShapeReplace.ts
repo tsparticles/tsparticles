@@ -2,13 +2,8 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 import type { IEmitterShapeReplace } from "../Interfaces/IEmitterShapeReplace.js";
 
 export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<IEmitterShapeReplace> {
-  color: boolean;
-  opacity: boolean;
-
-  constructor() {
-    this.color = false;
-    this.opacity = false;
-  }
+  color = false;
+  opacity = false;
 
   load(data?: RecursivePartial<IEmitterShapeReplace>): void {
     if (isNull(data)) {

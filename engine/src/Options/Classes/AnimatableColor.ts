@@ -11,13 +11,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
  * [[include:Options/Particles/Color.md]]
  */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor {
-  animation;
-
-  constructor() {
-    super();
-
-    this.animation = new HslAnimation();
-  }
+  readonly animation = new HslAnimation();
 
   /**
    * Creates an animatable color from optional source and input data.

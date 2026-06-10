@@ -16,44 +16,23 @@ import { Spin } from "./Spin.js";
  * [[include:Options/Particles/Move.md]]
  */
 export class Move extends OptionLoader<IMove> implements IMove {
-  readonly angle;
-  readonly center: MoveCenter;
-  decay: RangeValue;
-  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
-  distance: Partial<IDistance>;
-  drift: RangeValue;
-  enable;
-  readonly gravity;
-  readonly outModes: OutModes;
-  readonly path;
-  random;
-  size;
-  speed: RangeValue;
-  readonly spin;
-  straight;
-  vibrate;
-  warp;
-
-  constructor() {
-    super();
-    this.angle = new MoveAngle();
-    this.center = new MoveCenter();
-    this.decay = 0;
-    this.distance = {};
-    this.direction = MoveDirection.none;
-    this.drift = 0;
-    this.enable = false;
-    this.gravity = new MoveGravity();
-    this.path = new MovePath();
-    this.outModes = new OutModes();
-    this.random = false;
-    this.size = false;
-    this.speed = 2;
-    this.spin = new Spin();
-    this.straight = false;
-    this.vibrate = false;
-    this.warp = false;
-  }
+  readonly angle = new MoveAngle();
+  readonly center = new MoveCenter();
+  decay: RangeValue = 0;
+  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number = MoveDirection.none;
+  distance: Partial<IDistance> = {};
+  drift: RangeValue = 0;
+  enable = false;
+  readonly gravity = new MoveGravity();
+  readonly outModes = new OutModes();
+  readonly path = new MovePath();
+  random = false;
+  size = false;
+  speed: RangeValue = 2;
+  readonly spin = new Spin();
+  straight = false;
+  vibrate = false;
+  warp = false;
 
   protected doLoad(data: RecursivePartial<IMove>): void {
     this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);

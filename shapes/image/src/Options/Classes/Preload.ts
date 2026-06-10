@@ -2,17 +2,12 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 import type { IPreload } from "../Interfaces/IPreload.js";
 
 export class Preload implements IPreload, IOptionLoader<IPreload> {
-  gif: boolean;
+  gif = false;
   height?: number;
   name?: string;
   replaceColor?: boolean;
-  src: string;
+  src = "";
   width?: number;
-
-  constructor() {
-    this.src = "";
-    this.gif = false;
-  }
 
   load(data?: RecursivePartial<IPreload>): void {
     if (isNull(data)) {

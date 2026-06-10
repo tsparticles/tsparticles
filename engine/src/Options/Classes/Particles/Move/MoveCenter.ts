@@ -4,18 +4,10 @@ import { PixelMode } from "../../../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 export class MoveCenter extends OptionLoader<IMoveCenter> implements IMoveCenter {
-  mode: PixelMode | keyof typeof PixelMode;
-  radius;
-  x;
-  y;
-
-  constructor() {
-    super();
-    this.x = 50;
-    this.y = 50;
-    this.mode = PixelMode.percent;
-    this.radius = 0;
-  }
+  mode: PixelMode | keyof typeof PixelMode = PixelMode.percent;
+  radius = 0;
+  x = 50;
+  y = 50;
 
   protected doLoad(data: RecursivePartial<IMoveCenter>): void {
     loadProperty(this, "x", data.x);

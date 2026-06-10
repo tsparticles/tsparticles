@@ -16,11 +16,7 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
   /**
    * The opacity of the background
    */
-  opacity;
-
-  constructor() {
-    this.opacity = 1;
-  }
+  opacity = 1;
 
   /**
    * Loads the background mask cover options from the given data

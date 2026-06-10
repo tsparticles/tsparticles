@@ -17,14 +17,11 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
   color?: SingleOrMultiple<OptionsColor>;
 
   /** Bubble distance in pixels */
-  distance;
-
+  distance = 200;
   /** Bubble animation duration in seconds */
-  duration;
-
+  duration = 0.4;
   /** Whether to mix the bubble color with the particle color */
-  mix;
-
+  mix = false;
   /** Bubble opacity */
   opacity?: number;
 
@@ -32,11 +29,6 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
   size?: number;
 
   /** @inheritDoc */
-  constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.mix = false;
-  }
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IBubbleBase>): void {

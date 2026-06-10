@@ -15,23 +15,13 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
   /**
    * The div event handler enabling mode
    */
-  enable;
-
+  enable = false;
   /**
    * Div mode values used by the event
    */
-  mode: SingleOrMultiple<string>;
-
-  selectors: SingleOrMultiple<string>;
-
-  type: DivType | keyof typeof DivType;
-
-  constructor() {
-    this.selectors = [];
-    this.enable = false;
-    this.mode = [];
-    this.type = DivType.circle;
-  }
+  mode: SingleOrMultiple<string> = [];
+  selectors: SingleOrMultiple<string> = [];
+  type: DivType | keyof typeof DivType = DivType.circle;
 
   load(data?: RecursivePartial<IDivEvent>): void {
     if (isNull(data)) {

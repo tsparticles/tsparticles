@@ -10,12 +10,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 export class Stroke extends OptionLoader<IStroke> implements IStroke {
   color?: AnimatableColor;
   opacity?: RangeValue;
-  width: RangeValue;
-
-  constructor() {
-    super();
-    this.width = 0;
-  }
+  width: RangeValue = 0;
 
   protected doLoad(data: RecursivePartial<IStroke>): void {
     if (data.color !== undefined) {

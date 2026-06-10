@@ -14,15 +14,10 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
   /** Color opacity */
   opacity?: GradientColorOpacity;
   /** Color stop position */
-  stop;
+  stop = 0;
   /** Color value */
-  value;
-
+  value = new AnimatableColor();
   /** AnimatableGradientColor constructor */
-  constructor() {
-    this.stop = 0;
-    this.value = new AnimatableColor();
-  }
 
   /**
    * Loads the animatable gradient color from data

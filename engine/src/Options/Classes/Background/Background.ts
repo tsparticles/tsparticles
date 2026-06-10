@@ -7,22 +7,17 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
  * [[include:Options/Background.md]]
  */
 export class Background extends OptionLoader<IBackground> implements IBackground {
-  color;
-  image;
-  opacity;
-  position;
-  repeat;
-  size;
+  color: OptionsColor;
+  image = "";
+  opacity = 1;
+  position = "";
+  repeat = "";
+  size = "";
 
   constructor() {
     super();
     this.color = new OptionsColor();
     this.color.value = "";
-    this.image = "";
-    this.position = "";
-    this.repeat = "";
-    this.size = "";
-    this.opacity = 1;
   }
 
   protected doLoad(data: RecursivePartial<IBackground>): void {

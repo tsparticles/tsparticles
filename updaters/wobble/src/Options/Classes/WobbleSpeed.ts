@@ -10,15 +10,10 @@ import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed.js";
 /** Wobble speed options class */
 export class WobbleSpeed implements IWobbleSpeed, IOptionLoader<IWobbleSpeed> {
   /** Wobble speed angle */
-  angle: RangeValue;
+  angle: RangeValue = 50;
   /** Wobble speed movement */
-  move: RangeValue;
-
+  move: RangeValue = 10;
   /** WobbleSpeed constructor */
-  constructor() {
-    this.angle = 50;
-    this.move = 10;
-  }
 
   /**
    * Loads the wobble speed from data

@@ -11,22 +11,14 @@ import type { IGrabLinks } from "../Interfaces/IGrabLinks.js";
 /** Grab links options class */
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
   /** Whether to blink the grab line */
-  blink;
-
+  blink = false;
   /** Grab line color */
   color?: OptionsColor;
 
   /** Whether the user consented to the grab link */
-  consent;
-
+  consent = false;
   /** Grab line opacity */
-  opacity;
-
-  constructor() {
-    this.blink = false;
-    this.consent = false;
-    this.opacity = 1;
-  }
+  opacity = 1;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IGrabLinks>): void {

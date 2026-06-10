@@ -10,17 +10,11 @@ const defaultZoom = 1;
  */
 export class Zoom implements IZoom, IOptionLoader<IZoom> {
   /** Enables or disables zoom interactions */
-  enable;
+  enable = false;
   /** Maximum zoom level */
-  max;
+  max = maxZoom;
   /** Minimum zoom level */
-  min;
-
-  constructor() {
-    this.enable = false;
-    this.min = minZoom;
-    this.max = maxZoom;
-  }
+  min = minZoom;
 
   load(data?: RecursivePartial<IZoom>): void {
     if (isNull(data)) {

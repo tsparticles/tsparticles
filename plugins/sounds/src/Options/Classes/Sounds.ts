@@ -10,23 +10,15 @@ import { SoundsVolume } from "./SoundsVolume.js";
  */
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
   /** Enables auto play */
-  autoPlay: boolean;
+  autoPlay = true;
   /** Enables the sounds */
-  enable;
+  enable = false;
   /** The sounds events */
-  events: SoundsEvent[];
+  events: SoundsEvent[] = [];
   /** The sounds icons */
-  icons;
+  readonly icons = new SoundsIcons();
   /** The sounds volume */
-  volume;
-
-  constructor() {
-    this.autoPlay = true;
-    this.enable = false;
-    this.events = [];
-    this.icons = new SoundsIcons();
-    this.volume = new SoundsVolume();
-  }
+  readonly volume = new SoundsVolume();
 
   load(data?: RecursivePartial<ISounds>): void {
     if (isNull(data)) {

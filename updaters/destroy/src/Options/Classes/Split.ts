@@ -17,9 +17,9 @@ import { SplitRate } from "./SplitRate.js";
 /** Split options class */
 export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split count */
-  count: number;
+  count = 1;
   /** The split factor */
-  factor: SplitFactor;
+  readonly factor: SplitFactor = new SplitFactor();
   /** The split fill color */
   fillColor?: OptionsColor;
   /** The split fill color offset */
@@ -27,21 +27,15 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split particles options */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** The split rate */
-  rate: SplitRate;
+  readonly rate: SplitRate = new SplitRate();
   /** The split size offset */
-  sizeOffset: boolean;
+  sizeOffset = true;
   /** The split stroke color */
   strokeColor?: OptionsColor;
   /** The split stroke color offset */
   strokeColorOffset?: Partial<IRangeHsl>;
 
   /** Split constructor */
-  constructor() {
-    this.count = 1;
-    this.factor = new SplitFactor();
-    this.rate = new SplitRate();
-    this.sizeOffset = true;
-  }
 
   /**
    * Loads the split options from data

@@ -15,21 +15,11 @@ import { RotateAnimation } from "./RotateAnimation.js";
  */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
   /** Rotate animation options */
-  animation;
+  readonly animation = new RotateAnimation();
   /** Rotate direction */
-  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt = RotateDirection.clockwise;
   /** Enables path rotation */
-  path;
-
-  /** Rotate constructor */
-  constructor() {
-    super();
-    this.animation = new RotateAnimation();
-    this.direction = RotateDirection.clockwise;
-    this.path = false;
-    this.value = 0;
-  }
-
+  path = false;
   /**
    * Loads the rotate options from data
    * @param data

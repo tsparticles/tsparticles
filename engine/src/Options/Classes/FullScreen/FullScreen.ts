@@ -13,20 +13,14 @@ export class FullScreen extends OptionLoader<IFullScreen> implements IFullScreen
    *
    * This is really helpful since there's no need to write CSS code to have a full size tsParticles instance.
    */
-  enable;
+  enable = true;
 
   /**
    * This is the CSS `z-index` property set to the canvas.
    *
    * If the `z-index` is less than `0` the mouse interactions works only with the `interactivity.detectsOn` set to `window`.
    */
-  zIndex;
-
-  constructor() {
-    super();
-    this.enable = true;
-    this.zIndex = 0;
-  }
+  zIndex = 0;
 
   protected doLoad(data: RecursivePartial<IFullScreen>): void {
     loadProperty(this, "enable", data.enable);

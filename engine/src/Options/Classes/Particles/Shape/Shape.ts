@@ -10,16 +10,9 @@ import { deepExtend } from "../../../../Utils/Utils.js";
  * [[include:Options/Particles/Shape.md]]
  */
 export class Shape extends OptionLoader<IShape> implements IShape {
-  close;
-  options: ShapeData;
-  type: SingleOrMultiple<string>;
-
-  constructor() {
-    super();
-    this.close = true;
-    this.options = {};
-    this.type = "circle";
-  }
+  close = true;
+  options: ShapeData = {};
+  type: SingleOrMultiple<string> = "circle";
 
   protected doLoad(data: RecursivePartial<IShape>): void {
     const options = data.options;

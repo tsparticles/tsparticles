@@ -3,20 +3,13 @@ import type { ISoundsVolume } from "../Interfaces/ISoundsVolume.js";
 
 export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume> {
   /** The maximum volume */
-  max: number;
+  max = 100;
   /** The minimum volume */
-  min: number;
+  min = 0;
   /** The volume step */
-  step: number;
+  step = 10;
   /** The default volume */
-  value: number;
-
-  constructor() {
-    this.value = 100;
-    this.max = 100;
-    this.min = 0;
-    this.step = 10;
-  }
+  value = 100;
 
   load(data?: RecursivePartial<ISoundsVolume | number>): void {
     if (isNull(data)) {

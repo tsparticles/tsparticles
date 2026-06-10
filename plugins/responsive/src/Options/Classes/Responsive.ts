@@ -13,15 +13,9 @@ import { ResponsiveMode } from "../../ResponsiveMode.js";
  * [[include:Options/Plugins/Responsive.md]]
  */
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
-  maxWidth: number;
-  mode: ResponsiveMode | keyof typeof ResponsiveMode;
-  options: ISourceOptions;
-
-  constructor() {
-    this.maxWidth = Infinity;
-    this.options = {};
-    this.mode = ResponsiveMode.canvas;
-  }
+  maxWidth = Infinity;
+  mode: ResponsiveMode | keyof typeof ResponsiveMode = ResponsiveMode.canvas;
+  options: ISourceOptions = {};
 
   load(data?: RecursivePartial<IResponsive>): void {
     if (isNull(data)) {

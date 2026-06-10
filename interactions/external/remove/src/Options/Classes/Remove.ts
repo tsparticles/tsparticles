@@ -10,11 +10,7 @@ import type { IRemove } from "../Interfaces/IRemove.js";
 /** Remove mode options class */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
   /** Number of particles to remove */
-  quantity: RangeValue;
-
-  constructor() {
-    this.quantity = 2;
-  }
+  quantity: RangeValue = 2;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IRemove>): void {

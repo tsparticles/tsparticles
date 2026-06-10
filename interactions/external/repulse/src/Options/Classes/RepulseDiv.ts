@@ -11,13 +11,7 @@ import { RepulseBase } from "./RepulseBase.js";
 /** Repulse mode div options class */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
   /** CSS selectors for div elements to apply repulse to */
-  selectors: SingleOrMultiple<string>;
-
-  constructor() {
-    super();
-
-    this.selectors = [];
-  }
+  selectors: SingleOrMultiple<string> = [];
 
   /** @inheritDoc */
   override load(data?: RecursivePartial<IRepulseDiv>): void {

@@ -6,16 +6,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
  * Density options used to scale particle count with area.
  */
 export class ParticlesDensity extends OptionLoader<IParticlesDensity> implements IParticlesDensity {
-  enable;
-  height;
-  width;
-
-  constructor() {
-    super();
-    this.enable = false;
-    this.width = 1920;
-    this.height = 1080;
-  }
+  enable = false;
+  height = 1080;
+  width = 1920;
 
   protected doLoad(data: RecursivePartial<IParticlesDensity>): void {
     loadProperty(this, "enable", data.enable);

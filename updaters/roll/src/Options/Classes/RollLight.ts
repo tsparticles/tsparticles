@@ -11,15 +11,10 @@ import type { IRollLight } from "../Interfaces/IRollLight.js";
 /** Roll light options class */
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
   /** Enables the roll light effect */
-  enable;
+  enable = false;
   /** Roll light value */
-  value: RangeValue;
-
+  value: RangeValue = 0;
   /** RollLight constructor */
-  constructor() {
-    this.enable = false;
-    this.value = 0;
-  }
 
   /**
    * Loads the roll light from data

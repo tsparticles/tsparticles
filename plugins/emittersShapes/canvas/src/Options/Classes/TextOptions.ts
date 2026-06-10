@@ -4,17 +4,10 @@ import { TextFontOptions } from "./TextFontOptions.js";
 import { TextLinesOptions } from "./TextLinesOptions.js";
 
 export class TextOptions implements ITextOptions, IOptionLoader<ITextOptions> {
-  color;
-  font;
-  lines;
-  text;
-
-  constructor() {
-    this.color = "#000000";
-    this.font = new TextFontOptions();
-    this.lines = new TextLinesOptions();
-    this.text = "";
-  }
+  color = "#000000";
+  readonly font = new TextFontOptions();
+  readonly lines = new TextLinesOptions();
+  text = "";
 
   load(data?: RecursivePartial<ITextOptions>): void {
     if (isNull(data)) {

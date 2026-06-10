@@ -4,17 +4,14 @@ import type { ILinksShadow } from "../Interfaces/ILinksShadow.js";
 /** Links shadow options class */
 export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
   /** Shadow blur radius */
-  blur;
+  blur = 5;
   /** Shadow color */
-  color;
+  color = new OptionsColor();
   /** Enables link shadow */
-  enable;
+  enable = false;
 
   constructor() {
-    this.blur = 5;
-    this.color = new OptionsColor();
     this.color.value = "#000";
-    this.enable = false;
   }
 
   /** @inheritDoc */

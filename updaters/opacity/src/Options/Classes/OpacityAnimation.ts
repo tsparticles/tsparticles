@@ -15,13 +15,7 @@ export class OpacityAnimation
   extends RangedAnimationOptions
   implements IOpacityAnimation, IOptionLoader<IOpacityAnimation>
 {
-  destroy: DestroyType | keyof typeof DestroyType;
-
-  constructor() {
-    super();
-    this.destroy = DestroyType.none;
-    this.speed = 2;
-  }
+  destroy: DestroyType | keyof typeof DestroyType = DestroyType.none;
 
   override load(data?: RecursivePartial<IOpacityAnimation>): void {
     super.load(data);

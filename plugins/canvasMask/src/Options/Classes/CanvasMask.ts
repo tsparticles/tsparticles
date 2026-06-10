@@ -22,7 +22,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
   /**
    * Enables the canvas mask
    */
-  enable;
+  enable = false;
   /**
    * The image mask options
    */
@@ -30,11 +30,11 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
   /**
    * The canvas mask override options
    */
-  override;
+  override = new CanvasMaskOverride();
   /**
    * The canvas mask pixels options
    */
-  pixels;
+  pixels = new CanvasMaskPixels();
   /**
    * The canvas mask position, in percent values
    */
@@ -42,7 +42,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
   /**
    * The scale factor for the mask
    */
-  scale;
+  scale = 1;
   /**
    * The CSS selector for the canvas element
    */
@@ -53,14 +53,10 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
   text?: TextMask;
 
   constructor() {
-    this.enable = false;
-    this.override = new CanvasMaskOverride();
-    this.pixels = new CanvasMaskPixels();
     this.position = {
       x: 50,
       y: 50,
     };
-    this.scale = 1;
   }
 
   /**

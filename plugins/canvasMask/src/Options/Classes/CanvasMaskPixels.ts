@@ -12,13 +12,8 @@ import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels.js";
 const minAlpha = 0;
 
 export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {
-  filter: (pixel: IRgba) => boolean;
-  offset: number;
-
-  constructor() {
-    this.filter = (pixel): boolean => pixel.a > minAlpha;
-    this.offset = 4;
-  }
+  offset = 4;
+  filter: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
   load(data?: RecursivePartial<ICanvasMaskPixels>): void {
     if (isNull(data)) {

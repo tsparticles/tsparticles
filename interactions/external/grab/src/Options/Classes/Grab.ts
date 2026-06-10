@@ -5,15 +5,9 @@ import type { IGrab } from "../Interfaces/IGrab.js";
 /** Grab mode options class */
 export class Grab implements IGrab, IOptionLoader<IGrab> {
   /** Grab distance in pixels */
-  distance;
-
+  distance = 100;
   /** Grab links options */
-  links;
-
-  constructor() {
-    this.distance = 100;
-    this.links = new GrabLinks();
-  }
+  readonly links = new GrabLinks();
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IGrab>): void {

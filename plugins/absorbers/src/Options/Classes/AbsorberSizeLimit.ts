@@ -2,13 +2,8 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 import type { IAbsorberSizeLimit } from "../Interfaces/IAbsorberSizeLimit.js";
 
 export class AbsorberSizeLimit implements IAbsorberSizeLimit, IOptionLoader<IAbsorberSizeLimit> {
-  mass;
-  radius;
-
-  constructor() {
-    this.radius = 0;
-    this.mass = 0;
-  }
+  mass = 0;
+  radius = 0;
 
   load(data?: RecursivePartial<IAbsorberSizeLimit>): void {
     if (isNull(data)) {

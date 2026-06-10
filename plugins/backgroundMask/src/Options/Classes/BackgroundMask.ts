@@ -18,23 +18,15 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
    * Canvas composite operation
    * values here: https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D/globalCompositeOperation
    */
-  composite: GlobalCompositeOperation;
-
+  composite: GlobalCompositeOperation = "destination-out";
   /**
    * Background covering color
    */
-  readonly cover;
-
+  readonly cover = new BackgroundMaskCover();
   /**
    * Background mask enabling options
    */
-  enable;
-
-  constructor() {
-    this.composite = "destination-out";
-    this.cover = new BackgroundMaskCover();
-    this.enable = false;
-  }
+  enable = false;
 
   /**
    * Loads the background mask options from the given data

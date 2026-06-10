@@ -18,18 +18,12 @@ import { WobbleSpeed } from "./WobbleSpeed.js";
  */
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
   /** Wobble distance */
-  distance: RangeValue;
+  distance: RangeValue = 5;
   /** Enables the wobble */
-  enable: boolean;
+  enable = false;
   /** Wobble speed */
-  speed: WobbleSpeed;
-
+  readonly speed: WobbleSpeed = new WobbleSpeed();
   /** Wobble constructor */
-  constructor() {
-    this.distance = 5;
-    this.enable = false;
-    this.speed = new WobbleSpeed();
-  }
 
   /**
    * Loads the wobble options from data

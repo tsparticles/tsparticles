@@ -4,19 +4,11 @@ import type { ITextMask } from "../Interfaces/ITextMask.js";
 import { TextMaskLine } from "./TextMaskLine.js";
 
 export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
-  color;
-  fill;
-  font;
-  lines;
-  text;
-
-  constructor() {
-    this.color = "#000000";
-    this.fill = true;
-    this.font = new FontTextMask();
-    this.lines = new TextMaskLine();
-    this.text = "";
-  }
+  color = "#000000";
+  fill = true;
+  readonly font = new FontTextMask();
+  readonly lines = new TextMaskLine();
+  text = "";
 
   load(data?: RecursivePartial<ITextMask>): void {
     if (isNull(data)) {

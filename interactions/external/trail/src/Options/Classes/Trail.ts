@@ -12,22 +12,15 @@ import { TrailColorCoords } from "./TrailColorCoords.js";
 /** Trail mode options class */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
   /** Optional configuration to map mouse coordinates to particle colors */
-  colorCoords?: TrailColorCoords;
+  colorCoords?: TrailColorCoords = new TrailColorCoords();
   /** Trail emission delay in seconds */
-  delay: number;
+  delay = 1;
   /** Trail particles options */
   particles?: RecursivePartial<IParticlesOptions>;
   /** Whether to pause trail when mouse stops moving */
-  pauseOnStop: boolean;
+  pauseOnStop = false;
   /** Number of particles to emit per trail step */
-  quantity: number;
-
-  constructor() {
-    this.delay = 1;
-    this.pauseOnStop = false;
-    this.quantity = 1;
-    this.colorCoords = new TrailColorCoords();
-  }
+  quantity = 1;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ITrail>): void {

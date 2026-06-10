@@ -19,24 +19,16 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
   /** Roll back color */
   backColor?: OptionsColor;
   /** Roll darken options */
-  darken;
+  readonly darken = new RollLight();
   /** Enables the roll */
-  enable;
+  enable = false;
   /** Roll enlighten options */
-  enlighten;
+  readonly enlighten = new RollLight();
   /** Roll mode */
-  mode: RollMode | keyof typeof RollMode;
+  mode: RollMode | keyof typeof RollMode = RollMode.vertical;
   /** Roll speed */
-  speed: RangeValue;
-
+  speed: RangeValue = 25;
   /** Roll constructor */
-  constructor() {
-    this.darken = new RollLight();
-    this.enable = false;
-    this.enlighten = new RollLight();
-    this.mode = RollMode.vertical;
-    this.speed = 25;
-  }
 
   /**
    * Loads the roll options from data

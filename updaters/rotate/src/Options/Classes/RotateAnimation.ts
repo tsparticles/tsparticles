@@ -11,21 +11,14 @@ import type { IRotateAnimation } from "../Interfaces/IRotateAnimation.js";
 /** Rotate animation options class */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** RotateAnimation constructor */
-  constructor() {
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.sync = false;
-  }
 
   /**
    * Loads the rotate animation from data

@@ -3,11 +3,7 @@ import type { ICollisionsAbsorb } from "../Interfaces/ICollisionsAbsorb.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
   /** The absorb speed */
-  speed;
-
-  constructor() {
-    this.speed = 2;
-  }
+  speed = 2;
 
   load(data?: RecursivePartial<ICollisionsAbsorb>): void {
     if (isNull(data)) {

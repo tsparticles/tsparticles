@@ -27,11 +27,7 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
   /**
    * If enabled the first delay will be applied
    */
-  wait;
-
-  constructor() {
-    this.wait = false;
-  }
+  wait = false;
 
   /**
    * Loads the emitter life options from the given data

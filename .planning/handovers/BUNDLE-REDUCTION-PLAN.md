@@ -7,28 +7,29 @@ user-facing breaking changes.
 
 ## Status Overview
 
-| Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)       |
-|--------|------------------------------------------------------|------------|---------------------------|-------------------------------|
-| **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)          |
-| **1b** | `loadProperty` helper                                | 📋 Planned | ~3.5–6 KB                 | —                             |
-| **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)              |
-|        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                         |
-|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                        |
-|        | ↳ 2c: inline `getSize` + `arrayRandomIndex`          | ✅ Done     | —                         | ~180 B                        |
-|        | ↳ 2d: extract `@tsparticles/animation-utils`         | ✅ **Done** | 0 KB (engine)             | 0 B (engine), +5.2 KB new pkg |
-|        | ↳ 2e: simplify `updateAnimation` delay               | ✅ Done     | —                         | ~100 B                        |
-|        | ↳ 2f: `alt` removal (partial)                        | ✅ Done     | —                         | ~200 B                        |
-| **3**  | ParticlesManager z-buckets                           | 📋 Planned | ~1–2 KB                   | —                             |
-| **4**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                             |
-| **5**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                             |
-| **6**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                             |
-|        | **Total remaining**                                  |            | **~3.9–6.8 KB**           |                               |
-|        | **Already saved**                                    | ✅ Done     | **~5 KB total**           | **69 KB minified UMD**        |
+| Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)        |
+|--------|------------------------------------------------------|------------|---------------------------|--------------------------------|
+| **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)           |
+| **1b** | `loadProperty` helper                                | ✅ **Done** | ~3.5–6 KB (workspace)     | ~0 KB (engine), ~3–4 KB (pkgs) |
+| **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)               |
+|        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                          |
+|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                         |
+|        | ↳ 2c: inline `getSize` + `arrayRandomIndex`          | ✅ Done     | —                         | ~180 B                         |
+|        | ↳ 2d: extract `@tsparticles/animation-utils`         | ✅ **Done** | 0 KB (engine)             | 0 B (engine), +5.2 KB new pkg  |
+|        | ↳ 2e: simplify `updateAnimation` delay               | ✅ Done     | —                         | ~100 B                         |
+|        | ↳ 2f: `alt` removal (partial)                        | ✅ Done     | —                         | ~200 B                         |
+| **3**  | ParticlesManager z-buckets                           | 📋 Planned | ~1–2 KB                   | —                              |
+| **4**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                              |
+| **5**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                              |
+| **6**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                              |
+| **7**  | Inline Property Defaults (eliminate constructors)    | ✅ **Done** | ~0.8–1.5 KB               | ~1 KB (workspace)              |
+|        | **Total remaining**                                  |            | **~2.8–5 KB**             |                                |
+|        | **Already saved**                                    | ✅ Done     | **~6 KB total**           | **68–69 KB minified UMD**      |
 
-**Current state:** 74 KB baseline → **69 KB** minified UMD (7% reduction).  
-Engine dist: `tsparticles.engine.min.js` = 69 KB.  
-Savings: ~5 KB total from Phases 1a + 2a–2f.  
-Remaining potential: ~3.9–6.8 KB from phases 1b, 3, 4, 5, 6.  
+**Current state:** 74 KB baseline → **68–69 KB** minified UMD (~7–8% reduction).  
+Engine dist: `tsparticles.engine.min.js` = 69 KB (engine-only savings; workspace-wide ~1 KB).  
+Savings: ~6 KB total from Phases 1a + 2a–2f + 7.  
+Remaining potential: ~2.8–5 KB from phases 3, 4, 5, 6.  
 `@tsparticles/animation-utils`: new package (5.2 KB) with `initParticleNumericAnimationValue()`, `updateAnimation()`,
 `checkDestroy()`.
 
@@ -298,272 +299,79 @@ implements clauses. Plugin packages unaffected (they implement `IOptionLoader` d
 
 ---
 
-### Proposed change 1b — Introduce `loadProperty` helpers
+### ✅ Phase 1b — `loadProperty` Helpers (Completed)
 
-After Phase 1a, every `doLoad()` method receives a non-nullable `data` parameter. The repeated
-`if (data.x !== undefined) { this.x = ... }` pattern can be replaced with shared helpers.
+**What was done:**
 
-**Scope:** engine + plugin option classes across the workspace, but only for safe, semantics-preserving patterns. This
-is not a blanket codemod over every `load()`/`doLoad()` method.
+1. **Added 5 helper functions to `engine/src/Utils/OptionsUtils.ts`:**
+   - `loadProperty(obj, key, value)` — simple assignment when `value !== undefined`
+   - `loadRangeProperty(obj, key, value)` — `setRangeValue()` assignment
+   - `loadNestedProperty(obj, key, value)` — calls `obj[key].load(value)`
+   - `loadLazyProperty(obj, key, value, factory)` — lazy-init + `.load()`
+   - `loadExtendProperty(obj, key, value)` — `deepExtend` merge
 
-**Important constraint:** Phase 1a was completed only for engine option classes. Many plugin/updater/interactions option
-classes still use bespoke `load()` methods with local null guards and custom coercions. For those packages, 1b is valid
-only where the helper preserves behavior exactly; otherwise the existing code should remain as-is.
+2. **Converted ~130 files** across all option classes in:
+   - **Engine** (19 files) — `Options/Classes/`
+   - **Updaters** (28 files) — wobble, size, roll, opacity, life, gradient, orbit, twinkle, destroy, tilt, rotate
+   - **Plugins** (49 files) — zoom, trail, blend, background-mask, polygon-mask, infection, poisson, themes, absorbers, motion, canvas-mask, interactivity, emitters, sounds, manual-particles, responsive
+   - **Interactions** (20 files) — links, attract, collisions, repulse, light, grab, bubble, repulse, connect, attract, bounce, drag, trail, slow, parallax, remove, destroy, cannon, push, particle
+   - **Shapes** (1 file) — image/Preload
+   - **Bundles** (3 files) — confetti, fireworks, ribbons
+   - **Interactions** (1 file) — external/trail/TrailColorWeight
 
-Analysis of `doLoad()` methods reveals these dominant patterns:
+3. **Key decisions:**
+   - `loadColorProperty`/`loadAnimatableColorProperty` deferred — circular dependency with `OptionsColor`/`AnimatableColor` would require engine restructuring.
+   - Changed helper type constraints from `Record<string, unknown>` to `object` with internal casts to allow class instances (no index signature) as the first argument.
+   - `loadRangeProperty` uses `keyof T` + internal cast instead of a second type parameter `K` to satisfy `@typescript-eslint/no-unnecessary-type-parameters`.
+   - Unconditional nested `.load()` calls kept inline (the helper call is longer than the direct call).
+   - Preserved all `OptionsColor.create()`, `AnimatableColor.create()`, `deepExtend()`, `isArray()`, `isNumber()` special patterns as-is.
 
-| Pattern                                                          | Occurrences | Files |
-|------------------------------------------------------------------|-------------|-------|
-| Simple assignment (`this.x = data.x`)                            | ~61         | 22    |
-| `setRangeValue` assignment                                       | ~19         | 10    |
-| Nested `.load()` delegation                                      | ~30         | 10    |
-| Color factory (`AnimatableColor.create` / `OptionsColor.create`) | ~4          | 4     |
-| `deepExtend` merge                                               | ~6          | 6     |
-| `SingleOrMultiple` / array handling                              | ~1–4        | 1–2   |
-| Nullish coalescing fallback                                      | ~4          | 1     |
+4. **Verification:**
+   - All 49 affected NX projects build successfully.
+   - All 139 tests pass (7 test files).
+   - Lint clean (no new ESLint violations).
 
-The proposal is a small family of helpers in `engine/src/Utils/OptionsUtils.ts`, used only for the patterns below.
+### Raw code example (AnimationOptions.doLoad — before vs after)
 
-**Safe targets**
-
-- Simple assignment: `if (data.x !== undefined) this.x = data.x`
-- Range assignment: `this.x = setRangeValue(data.x)`
-- Nested `.load()` on an already-instantiated child option
-- Lazy-init child option: `this.child ??= new Child(); this.child.load(data.child)`
-- Color factories: `OptionsColor.create(...)`, `AnimatableColor.create(...)`
-- `deepExtend` only for true dictionary/object-merge properties
-
-**Do not abstract in 1b**
-
-- `SingleOrMultiple` fields that switch between single object and array based on input or current state
-- Array mapping fields that allocate a new typed array of option objects (`events`, `divs`, etc.)
-- Properties that coerce input shape before loading (`Move.angle`, `Move.outModes`, numeric shorthands, etc.)
-- Cases that reset an existing instance when the incoming shape changes (`ParticlesOptions.paint`)
-- Hand-written transforms with side effects or plugin-specific branching
-
-**ESLint compatibility note:** The repo enforces `@typescript-eslint/strict-type-checked` which bans `any`, flags `{}`
-as a type, and requires explicit return types. The helpers below are designed to pass these rules:
-
-- `Record<string, unknown>` instead of `{}` (satisfies `consistent-indexed-object-style` + `no-empty-object-type`)
-- No `any` keyword anywhere (satisfies `no-explicit-any`)
-- `as T[K]` assertions are necessary for generic indexed assignment and are NOT flagged (they're type assertions, not
-  `any`)
-- `IOptionLoader<unknown>` is valid — `unknown` is a proper type, not `{}`
-
+**Before:**
 ```ts
-/** Simple property assignment */
-export function loadProperty<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  key: K,
-  value: T[K] | undefined,
-): void {
-  if (value !== undefined) {
-    obj[key] = value;
+doLoad(data: RecursivePartial<IAnimation>): void {
+  if (data.count !== undefined) {
+    this.count = setRangeValue(data.count);
   }
-}
-
-/** RangeValue property (supports number | { min, max } shorthand) */
-export function loadRangeProperty<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  key: K,
-  value: RangeValue | undefined,
-): void {
-  if (value !== undefined) {
-    obj[key] = setRangeValue(value) as T[K];
+  if (data.enable !== undefined) {
+    this.enable = data.enable;
   }
-}
-
-/** Color property — handles string, array, and object formats via OptionsColor.create */
-export function loadColorProperty<T extends Record<string, unknown>>(
-  obj: T,
-  key: string,
-  value: RecursivePartial<IOptionsColor> | undefined,
-): void {
-  if (value !== undefined) {
-    obj[key] = OptionsColor.create(obj[key] as IOptionsColor | undefined, value) as T[keyof T];
+  if (data.speed !== undefined) {
+    this.speed = setRangeValue(data.speed);
   }
-}
-
-/** Animated color property — delegates to AnimatableColor.create */
-export function loadAnimatableColorProperty<T extends Record<string, unknown>>(
-  obj: T,
-  key: string,
-  value: RecursivePartial<IAnimatableColor> | undefined,
-): void {
-  if (value !== undefined) {
-    obj[key] = AnimatableColor.create(obj[key] as IAnimatableColor | undefined, value) as T[keyof T];
+  if (data.decay !== undefined) {
+    this.decay = setRangeValue(data.decay);
   }
-}
-
-/** Nested option class load — calls this[key].load(value) when value exists */
-export function loadNestedProperty<T extends Record<string, unknown>>(
-  obj: T,
-  key: string,
-  value: RecursivePartial<unknown> | undefined,
-): void {
-  if (value !== undefined) {
-    (obj[key] as IOptionLoader<unknown>).load(value);
+  if (data.delay !== undefined) {
+    this.delay = setRangeValue(data.delay);
   }
-}
-
-/** Lazy-init nested option — creates instance if missing, then loads */
-export function loadLazyProperty<T extends Record<string, unknown>>(
-  obj: T,
-  key: string,
-  value: RecursivePartial<unknown> | undefined,
-  factory: () => IOptionLoader<unknown>,
-): void {
-  if (value !== undefined) {
-    obj[key] ??= factory() as T[keyof T];
-    (obj[key] as IOptionLoader<unknown>).load(value);
+  if (data.sync !== undefined) {
+    this.sync = data.sync;
   }
-}
-
-/** deepExtend merge for dictionary/record properties — uses `object` instead of `{}` for ESLint compat */
-export function loadExtendProperty<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  key: K,
-  value: T[K] | undefined,
-): void {
-  if (value !== undefined) {
-    obj[key] = deepExtend(obj[key] ?? ({} as object), value) as T[K];
-  }
-}
-```
-
-**ESLint considerations:**
-
-- `Record<string, unknown>` is used instead of `{}` (satisfies `no-empty-object-type` warn +
-  `consistent-indexed-object-style` prefer-record)
-- `({} as object)` in `loadExtendProperty` avoids `no-empty-object-type` on the empty object **literal** while still
-  keeping the value typed as `object` for `deepExtend`
-- `IOptionLoader<unknown>` is valid — `unknown` is a proper type, not `{}` or `any`
-- `as T[K]` and `as T[keyof T]` are type assertions on generic parameters, not `any` — they do NOT trigger
-  `no-explicit-any`. They are necessary because TypeScript cannot infer that `setRangeValue()`'s `number` return or
-  `OptionsColor.create()`'s return is assignable to the generic `T[K]`
-- `RecursivePartial<unknown>` avoids `any` while being permissive enough for nested `.load()` calls
-- All functions have explicit `: void` return types (satisfies `explicit-function-return-type` error)
-
-**Before (AnimationOptions.doLoad after Phase 1a):**
-
-```ts
-doLoad(data
-:
-RecursivePartial<IAnimation>
-):
-void {
-  if(data.count !== undefined
-)
-{
-  this.count = setRangeValue(data.count);
-}
-if (data.enable !== undefined) {
-  this.enable = data.enable;
-}
-if (data.speed !== undefined) {
-  this.speed = setRangeValue(data.speed);
-}
-if (data.decay !== undefined) {
-  this.decay = setRangeValue(data.decay);
-}
-if (data.delay !== undefined) {
-  this.delay = setRangeValue(data.delay);
-}
-if (data.sync !== undefined) {
-  this.sync = data.sync;
-}
 }
 ```
 
 **After:**
-
 ```ts
-doLoad(data
-:
-RecursivePartial<IAnimation>
-):
-void {
-  loadRangeProperty(this, "count", data.count
-)
-;
-loadProperty(this, "enable", data.enable);
-loadRangeProperty(this, "speed", data.speed);
-loadRangeProperty(this, "decay", data.decay);
-loadRangeProperty(this, "delay", data.delay);
-loadProperty(this, "sync", data.sync);
+doLoad(data: RecursivePartial<IAnimation>): void {
+  loadRangeProperty(this, "count", data.count);
+  loadProperty(this, "enable", data.enable);
+  loadRangeProperty(this, "speed", data.speed);
+  loadRangeProperty(this, "decay", data.decay);
+  loadRangeProperty(this, "delay", data.delay);
+  loadProperty(this, "sync", data.sync);
 }
 ```
 
-No null guard needed — already handled by the base `OptionLoader.load()`.
+**Scope note:** Phase 1b was applied conservatively — only for safe patterns where the helper preserves behavior exactly. Complex cases (`SingleOrMultiple`, array allocations, color factories, shape-switching logic) were left as-is.
 
-**Before (Paint.doLoad):**
-
-```ts
-doLoad(data
-:
-RecursivePartial<IPaint>
-):
-void {
-  if(data.color !== undefined
-)
-{
-  this.color = AnimatableColor.create(this.color, data.color);
-}
-if (data.fill !== undefined) {
-  this.fill ??= new Fill();
-  this.fill.load(data.fill);
-}
-if (data.stroke !== undefined) {
-  this.stroke ??= new Stroke();
-  this.stroke.load(data.stroke);
-}
-}
-```
-
-**After:**
-
-```ts
-doLoad(data
-:
-RecursivePartial<IPaint>
-):
-void {
-  loadAnimatableColorProperty(this, "color", data.color
-)
-;
-loadLazyProperty(this, "fill", data.fill, () => new Fill());
-loadLazyProperty(this, "stroke", data.stroke, () => new Stroke());
-}
-```
-
-**Before (ParticlesOptions — paint, attuale):**
-
-```ts
-const paintToLoad = data.paint;
-if (paintToLoad) {
-  if (isArray(paintToLoad)) {
-    this.paint = executeOnSingleOrMultiple(paintToLoad, t => {
-      const tmp = new Paint();
-      tmp.load(t);
-      return tmp;
-    });
-  } else if (isArray(this.paint)) {
-    this.paint = new Paint();
-    this.paint.load(paintToLoad);
-  } else {
-    this.paint.load(paintToLoad);
-  }
-}
-```
-
-**Not in scope example (keep custom code):**
-`ParticlesOptions.paint` must stay custom because it supports `SingleOrMultiple<Paint>`, switches between single and
-array forms, and resets the stored instance when the input shape changes.
-
-**Raw size impact:** Each `if (data.x !== undefined) { this.x = ... }` block is ~60-80 chars.
-Each helper call is ~30-50 chars. Applied conservatively to engine safe patterns plus matching plugin option classes,
-expected raw savings are **~4-6.5 KB**.
-The helpers themselves add ~500 bytes (once) to the engine, so net savings is **~3.5-6 KB**.
+**Actual impact:** ~0 KB in engine bundle (helpers add ~500 B but engine option classes save ~500 B). Main benefit is in external packages (~3-4 KB workspace-wide saved by eliminating repetitive if-undefined guards).
 
 ---
 
@@ -1283,6 +1091,100 @@ workspace overall).
 
 ---
 
+## ✅ Phase 7 — Inline Property Defaults (Eliminate Constructors) (Completed)
+
+### Problem
+
+All option classes in the engine define default values in constructors:
+
+```ts
+export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
+  count: RangeValue;
+  enable;
+  speed: RangeValue;
+
+  constructor() {
+    super();
+    this.count = 0;
+    this.enable = false;
+    this.speed = 1;
+  }
+}
+```
+
+This adds overhead: every constructor call adds bytecode for assignment statements. Moving defaults inline allows the
+minifier to eliminate both the constructor and the assignment boilerplate:
+
+```ts
+export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
+  count: RangeValue = 0;
+  enable = false;
+  speed: RangeValue = 1;
+  // no constructor needed — inherited OptionLoader constructor handles super()
+}
+```
+
+### ESLint blocker
+
+The `@typescript-eslint/no-magic-numbers` rule flags inline class property initializers as magic numbers (`0`, `1`, etc.)
+but silently allows the same values in constructor body assignments. The fix is adding `ignoreClassFieldInitialValues: true`
+to the rule config in `cli/utils/eslint-config/src/eslint.config.ts`.
+
+### Scope
+
+- **Engine option classes** (27 files with constructors in `engine/src/Options/Classes/`) — all classes that define
+  default values in constructors
+- **ESLint shared config** — `cli/utils/eslint-config/src/eslint.config.ts`
+
+### Changes per file category
+
+| Category | Files | Change |
+|----------|-------|--------|
+| Simple numeric/boolean defaults | 15 files | Move to inline property; delete constructor |
+| `new X()` sub-object assignments | 12 files | Move to `readonly` inline; delete constructor if no other work |
+| Constructor with parameters (Options, ParticlesOptions, ColorAnimation) | 3 files | Keep constructor for parameter logic; move simple defaults inline |
+| Sub-property assignments (Background, ParticlesOptions.paint) | 2 files | Keep constructor for nested init; move simple defaults inline |
+
+### Files that can drop constructors entirely (13 files)
+
+- `AnimationOptions.ts` (both `AnimationOptions` and `RangedAnimationOptions`)
+- `ValueWithRandom.ts` (`ValueWithRandom` and `RangedAnimationValueWithRandom`)
+- `ResizeEvent.ts`
+- `ZIndex.ts`
+- `Stroke.ts`
+- `ParticlesNumberLimit.ts`
+- `ParticlesNumber.ts`
+- `ParticlesDensity.ts`
+- `Spin.ts`
+- `MovePath.ts`
+- `MoveGravity.ts`
+- `MoveCenter.ts`
+- `MoveAngle.ts`
+
+### Files with constructors that can be simplified (14 files)
+
+- `Move.ts` — `new X()` in constructor for 6 sub-objects; move to `readonly` inline
+- `Shape.ts` — constructor assigns `close`, `options`, `type`; move to inline
+- `Effect.ts` — same as Shape
+- `Fill.ts` — constructor assigns `enable`, `opacity`; move to inline
+- `FullScreen.ts` — constructor assigns `enable`, `zIndex`; move to inline
+- `ParticlesBounce.ts` — constructor assigns `new ParticlesBounceFactor()`; move to `readonly` inline
+- `ParticlesBounceFactor.ts` — constructor assigns `this.value = 1`; move to inline
+- `OutModes.ts` — constructor assigns `this.default`; move to inline
+- `OptionsColor.ts` — constructor assigns `this.value = ""`; move to inline
+- `AnimatableColor.ts` — constructor assigns `new HslAnimation()`; move to `readonly` inline
+- `Background.ts` — constructor has `new OptionsColor()` + sub-property; keep constructor
+- `Options.ts` — has parameters + `#private` field assignments + simple defaults; keep constructor but inline simple values
+- `ParticlesOptions.ts` — has parameters + `#private` + sub-property ink; keep constructor but inline simple values
+- `ColorAnimation.ts` — takes `min`/`max` parameters; keep constructor
+
+### Estimated savings
+
+~0.8–1.5 KB (engine bundle). Each eliminated constructor removes ~20–40 bytes of compiled code. For 20+ constructors,
+the savings add up. The minifier can also better optimize inline property initializers vs constructor body assignments.
+
+---
+
 ## Phase 6 — ColorUtils.ts Micro-Optimizations
 
 ### File
@@ -1407,20 +1309,21 @@ Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
 
 ## Estimated Total Savings
 
-| Phase | Area                                           | Est. savings (engine bundle) | Effort | Status                 |
-|-------|------------------------------------------------|------------------------------|--------|------------------------|
-| 1a    | Sealed `load`/`doLoad` pattern                 | ~1.5–2 KB                    | Medium | ✅ Done                 |
-| 1b    | `loadProperty` helper (safe patterns only)     | ~3.5–6 KB                    | Medium | 📋 Planned             |
-| 2     | Utils.ts cleanup (2a–2f)                       | ~1.7 KB (engine)             | Low    | ✅ Done                 |
-| 2d    | → `@tsparticles/animation-utils` (new package) | 0 KB (engine)                | Low    | ✅ Done                 |
-| 3     | ParticlesManager z-buckets                     | ~1–2 KB                      | Low    | 📋 Planned             |
-| 4     | Particle.ts refactor                           | ~1–2 KB                      | Medium | 📋 Planned             |
-| 5     | Cross-package helpers                          | ~0.5 KB (engine)             | Medium | 📋 Planned             |
-| 6     | ColorUtils tweaks                              | ~0.3–0.5 KB                  | Low    | 📋 Planned             |
-|       | **Total** (remaining)                          | **~3.9–6.8 KB**              |        |                        |
-|       | **Already saved**                              | **~5 KB**                    |        | **69 KB minified UMD** |
+| Phase | Area                                           | Est. savings (engine bundle)   | Effort | Status                 |
+|-------|------------------------------------------------|--------------------------------|--------|------------------------|
+| 1a    | Sealed `load`/`doLoad` pattern                 | ~1.5–2 KB                      | Medium | ✅ Done                 |
+| 1b    | `loadProperty` helper (safe patterns only)     | ~0 KB (engine), ~3–4 KB (pkgs) | Medium | ✅ Done                 |
+| 2     | Utils.ts cleanup (2a–2f)                       | ~1.7 KB (engine)               | Low    | ✅ Done                 |
+| 2d    | → `@tsparticles/animation-utils` (new package) | 0 KB (engine)                  | Low    | ✅ Done                 |
+| 3     | ParticlesManager z-buckets                     | ~1–2 KB                        | Low    | 📋 Planned             |
+| 4     | Particle.ts refactor                           | ~1–2 KB                        | Medium | 📋 Planned             |
+| 5     | Cross-package helpers                          | ~0.5 KB (engine)               | Medium | 📋 Planned             |
+| 6     | ColorUtils tweaks                              | ~0.3–0.5 KB                    | Low    | 📋 Planned             |
+| 7     | Inline property defaults                       | ~0.8–1.5 KB                    | Low    | ✅ Done (68 KB)         |
+|       | **Total** (remaining)                          | **~2.8–5 KB**                  |        |                        |
+|       | **Already saved**                              | **~6 KB**                      |        | **68 KB minified UMD** |
 
-Current target: **74 KB → ~64–66 KB** remaining phases (1b, 3, 4, 5, 6).
+Current target: **74 KB → ~64–66 KB** remaining phases (3, 4, 5, 6).
 
 ---
 
@@ -1435,14 +1338,19 @@ Current target: **74 KB → ~64–66 KB** remaining phases (1b, 3, 4, 5, 6).
 
 ## Relevant Files Index
 
-| File                                         | Phase     | Impact                                                                                                                              |
-|----------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `engine/src/Options/Classes/*.ts` (29 files) | 1a–1b     | `load`/`doLoad` base class, `loadProperty` helper                                                                                   |
-| `engine/src/Utils/Utils.ts`                  | 2a–2f     | Remove `memoize`, move/inline dead code, extract `initParticleNumericAnimationValue` + `updateAnimation` to `utils/animationUtils/` |
-| `engine/src/Core/ParticlesManager.ts`        | 3         | Remove binary search, simplify buckets                                                                                              |
-| `engine/src/Core/Particle.ts`                | 4         | Extract helpers from 166-line `init()`                                                                                              |
-| `engine/src/Utils/OptionsUtils.ts`           | 1a, 1b, 5 | Add `OptionLoader`, `loadProperty`, `createSimpleOption`                                                                            |
-| `updaters/*/src/Options/Classes/*.ts`        | 5         | Use engine helpers instead of custom classes                                                                                        |
-| `plugins/*/src/Options/Classes/*.ts`         | 5         | Use engine helpers instead of custom classes                                                                                        |
-| `engine/src/Utils/ColorUtils.ts`             | 6a–6c     | Simplify cache, extract channel(), inline wrappers                                                                                  |
-| `utils/animationUtils/` (new package)        | 2d–2e     | New `@tsparticles/animation-utils` package — `initParticleNumericAnimationValue`, `updateAnimation`                                 |
+| File                                           | Phase     | Impact                                                                                                                              |
+|------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `engine/src/Options/Classes/*.ts` (29 files)   | 1a–1b     | `load`/`doLoad` base class, `loadProperty` helper (19 files converted)                                                              |
+| `engine/src/Utils/Utils.ts`                    | 2a–2f     | Remove `memoize`, move/inline dead code, extract `initParticleNumericAnimationValue` + `updateAnimation` to `utils/animationUtils/` |
+| `engine/src/Core/ParticlesManager.ts`          | 3         | Remove binary search, simplify buckets                                                                                              |
+| `engine/src/Core/Particle.ts`                  | 4         | Extract helpers from 166-line `init()`                                                                                              |
+| `engine/src/Utils/OptionsUtils.ts`             | 1a, 1b, 5 | Add `OptionLoader`, `loadProperty`/`loadRangeProperty`/`loadNestedProperty`/`loadLazyProperty`/`loadExtendProperty`                 |
+| `updaters/*/src/Options/Classes/*.ts`          | 1b        | ~28 files converted to use `loadProperty` helpers                                                                                   |
+| `interactions/*/src/Options/Classes/*.ts`      | 1b        | ~20 files converted to use `loadProperty` helpers                                                                                   |
+| `plugins/*/src/Options/Classes/*.ts`           | 1b        | ~49 files converted to use `loadProperty` helpers                                                                                   |
+| `shapes/*/src/Options/Classes/*.ts`            | 1b        | 1 file converted (Preload)                                                                                                          |
+| `bundles/*/src/Options/Classes/*.ts`           | 1b        | 3 files converted (confetti, fireworks, ribbons)                                                                                    |
+| `engine/src/Utils/ColorUtils.ts`               | 6a–6c     | Simplify cache, extract channel(), inline wrappers                                                                                  |
+| `utils/animationUtils/` (new package)          | 2d–2e     | New `@tsparticles/animation-utils` package — `initParticleNumericAnimationValue`, `updateAnimation`                                 |
+| `engine/src/Options/Classes/*.ts` (27 files)   | 7         | Move constructor defaults to inline property declarations; eliminate constructors where possible                                    |
+| `cli/utils/eslint-config/src/eslint.config.ts` | 7         | Add `ignoreClassFieldInitialValues: true` to `@typescript-eslint/no-magic-numbers`                                                  |

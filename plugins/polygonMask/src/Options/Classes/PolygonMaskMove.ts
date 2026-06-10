@@ -5,14 +5,9 @@ import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 /** The polygon mask move options */
 export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygonMaskMove> {
   /** The polygon mask move radius */
-  radius;
+  radius = 10;
   /** The polygon mask move type */
-  type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
-
-  constructor() {
-    this.radius = 10;
-    this.type = PolygonMaskMoveType.path;
-  }
+  type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType = PolygonMaskMoveType.path;
 
   load(data?: RecursivePartial<IPolygonMaskMove>): void {
     if (isNull(data)) {

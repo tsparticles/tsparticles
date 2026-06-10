@@ -24,27 +24,22 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
   /** The polygon mask draw options */
   draw;
   /** Enables the polygon mask */
-  enable;
+  enable = false;
   /** The polygon mask inline options */
-  inline;
+  inline = new PolygonMaskInline();
   /** The polygon mask move options */
-  move;
+  move = new PolygonMaskMove();
   /** The polygon mask position */
   position?: ICoordinates;
   /** The polygon mask scale */
-  scale;
+  scale = 1;
   /** The polygon mask type */
-  type;
+  type = PolygonMaskType.none;
   /** The polygon mask SVG url */
   url?: string;
 
   constructor(pluginManager: PluginManager) {
     this.draw = new PolygonMaskDraw(pluginManager);
-    this.enable = false;
-    this.inline = new PolygonMaskInline();
-    this.move = new PolygonMaskMove();
-    this.scale = 1;
-    this.type = PolygonMaskType.none;
   }
 
   load(data?: RecursivePartial<IPolygonMask>): void {

@@ -16,19 +16,11 @@ export class InteractivityParticleOptions
   options?: RecursivePartial<IParticlesOptions>;
 
   /** Whether to pause the particle when the mouse stops moving */
-  pauseOnStop: boolean;
-
+  pauseOnStop = false;
   /** Whether to replace the cursor with a custom one */
-  replaceCursor: boolean;
-
+  replaceCursor = false;
   /** The delay in milliseconds before stopping the particle */
-  stopDelay: number;
-
-  constructor() {
-    this.replaceCursor = false;
-    this.pauseOnStop = false;
-    this.stopDelay = 0;
-  }
+  stopDelay = 0;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IInteractivityParticleOptions>): void {

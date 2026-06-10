@@ -5,15 +5,9 @@ import { LightGradient } from "./LightGradient.js";
 /** Light area options class */
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
   /** The light gradient options */
-  gradient;
-
+  readonly gradient = new LightGradient();
   /** The light radius */
-  radius;
-
-  constructor() {
-    this.gradient = new LightGradient();
-    this.radius = 1000;
-  }
+  radius = 1000;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ILightArea>): void {

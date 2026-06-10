@@ -6,17 +6,16 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /** Color animation options class */
 export class ColorAnimation extends AnimationOptions implements IColorAnimation {
-  max;
-  min;
-  offset: RangeValue;
+  max: number;
+  min: number;
+  offset: RangeValue = 0;
+  override sync = true;
 
   constructor(min: number, max: number) {
     super();
 
     this.min = min;
     this.max = max;
-    this.offset = 0;
-    this.sync = true;
   }
 
   protected override doLoad(data: RecursivePartial<IColorAnimation>): void {

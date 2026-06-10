@@ -4,33 +4,27 @@ import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from 
 /** Attract mode options class */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
   /** Attraction distance in pixels */
-  distance;
+  distance = 200;
 
   /** Attraction animation duration in seconds */
-  duration;
+  duration = 0.4;
 
   /** Easing type used for the attraction animation */
-  easing: string;
+  easing = "ease-out-quad";
 
   /** Attraction factor multiplier */
-  factor;
+  factor = 1;
 
   /** Maximum speed of attracted particles */
-  maxSpeed;
+  maxSpeed = 50;
 
   /** Restore behavior after attract interaction */
   restore: IAttractRestore;
 
   /** Attraction speed */
-  speed;
+  speed = 1;
 
   constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.easing = "ease-out-quad";
-    this.factor = 1;
-    this.maxSpeed = 50;
-    this.speed = 1;
     this.restore = {
       enable: false,
       delay: 0,

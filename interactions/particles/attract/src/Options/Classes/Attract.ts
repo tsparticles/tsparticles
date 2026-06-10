@@ -12,13 +12,11 @@ import type { IAttract } from "../Interfaces/IAttract.js";
 /**
  */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
-  distance: RangeValue;
-  enable;
+  distance: RangeValue = 200;
+  enable = false;
   rotate: ICoordinates;
 
   constructor() {
-    this.distance = 200;
-    this.enable = false;
     this.rotate = {
       x: 3000,
       y: 3000,

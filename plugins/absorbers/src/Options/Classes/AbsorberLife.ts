@@ -14,11 +14,7 @@ export class AbsorberLife implements IAbsorberLife, IOptionLoader<IAbsorberLife>
   count?: number;
   delay?: RangeValue;
   duration?: RangeValue;
-  wait;
-
-  constructor() {
-    this.wait = false;
-  }
+  wait = false;
 
   load(data?: RecursivePartial<IAbsorberLife>): void {
     if (isNull(data)) {

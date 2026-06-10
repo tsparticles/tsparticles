@@ -7,16 +7,9 @@ import { loadProperty } from "../../../../Utils/OptionsUtils.js";
  * Z-index related particle behavior options.
  */
 export class ZIndex extends ValueWithRandom implements IZIndex {
-  opacityRate;
-  sizeRate;
-  velocityRate;
-
-  constructor() {
-    super();
-    this.opacityRate = 1;
-    this.sizeRate = 1;
-    this.velocityRate = 1;
-  }
+  opacityRate = 1;
+  sizeRate = 1;
+  velocityRate = 1;
 
   protected override doLoad(data: RecursivePartial<IZIndex>): void {
     super.doLoad(data);

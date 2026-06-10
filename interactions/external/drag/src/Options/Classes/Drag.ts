@@ -7,15 +7,9 @@ const defaultMomentumFactor = 0.03,
 /** Options class for the drag interaction mode */
 export class Drag implements IDrag, IOptionLoader<IDrag> {
   /** Momentum factor applied on drag release */
-  momentumFactor;
-
+  momentumFactor = defaultMomentumFactor;
   /** Whether to preserve drag momentum on release */
-  preserveMomentum;
-
-  constructor() {
-    this.momentumFactor = defaultMomentumFactor;
-    this.preserveMomentum = defaultPreserveMomentum;
-  }
+  preserveMomentum = defaultPreserveMomentum;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IDrag>): void {

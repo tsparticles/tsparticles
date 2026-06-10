@@ -8,17 +8,11 @@ import { TrailFill } from "./TrailFill.js";
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
   /** Enables the trail */
-  enable;
+  enable = false;
   /** The trail fill options */
-  readonly fill;
+  readonly fill = new TrailFill();
   /** The trail length */
-  length;
-
-  constructor() {
-    this.enable = false;
-    this.length = 10;
-    this.fill = new TrailFill();
-  }
+  length = 10;
 
   load(data?: RecursivePartial<ITrail>): void {
     if (isNull(data)) {

@@ -15,19 +15,13 @@ import type { IPush } from "../Interfaces/IPush.js";
 /** Push mode options class */
 export class Push implements IPush, IOptionLoader<IPush> {
   /** Whether to use the default groups */
-  default;
+  default = true;
   /** Groups to push particles from */
-  groups: string[];
+  groups: string[] = [];
   /** Particles options for pushed particles */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** Number of particles to push */
-  quantity: RangeValue;
-
-  constructor() {
-    this.default = true;
-    this.groups = [];
-    this.quantity = 4;
-  }
+  quantity: RangeValue = 4;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IPush>): void {

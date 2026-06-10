@@ -3,15 +3,9 @@ import { EmitterShapeReplace } from "./EmitterShapeReplace.js";
 import type { IEmitterShape } from "../Interfaces/IEmitterShape.js";
 
 export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape> {
-  options: Record<string, unknown>;
-  replace;
-  type: string;
-
-  constructor() {
-    this.options = {};
-    this.replace = new EmitterShapeReplace();
-    this.type = "square";
-  }
+  options: Record<string, unknown> = {};
+  readonly replace = new EmitterShapeReplace();
+  type = "square";
 
   load(data?: RecursivePartial<IEmitterShape>): void {
     if (isNull(data)) {

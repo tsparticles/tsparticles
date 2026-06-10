@@ -6,21 +6,13 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 /** Movement gravity options class */
 export class MoveGravity extends OptionLoader<IMoveGravity> implements IMoveGravity {
   /** Gravity acceleration value */
-  acceleration: RangeValue;
+  acceleration: RangeValue = 9.81;
   /** Enables or disables gravity */
-  enable;
+  enable = false;
   /** If true, gravity pulls particles upward instead of downward */
-  inverse;
+  inverse = false;
   /** Maximum speed limit for gravity-affected particles */
-  maxSpeed: RangeValue;
-
-  constructor() {
-    super();
-    this.acceleration = 9.81;
-    this.enable = false;
-    this.inverse = false;
-    this.maxSpeed = 50;
-  }
+  maxSpeed: RangeValue = 50;
 
   /**
    * Loads gravity options from the given data

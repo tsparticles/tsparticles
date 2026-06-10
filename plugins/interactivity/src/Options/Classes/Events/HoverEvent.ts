@@ -11,13 +11,8 @@ import type { IHoverEvent } from "../../Interfaces/Events/IHoverEvent.js";
  * [[include:Options/Interactivity/Hover.md]]
  */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
-  enable;
-  mode: SingleOrMultiple<string>;
-
-  constructor() {
-    this.enable = false;
-    this.mode = [];
-  }
+  enable = false;
+  mode: SingleOrMultiple<string> = [];
 
   load(data?: RecursivePartial<IHoverEvent>): void {
     if (isNull(data)) {

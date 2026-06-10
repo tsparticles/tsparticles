@@ -4,14 +4,9 @@ import type { ISlow } from "../Interfaces/ISlow.js";
 /** Slow mode options class */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
   /** Slow factor multiplier */
-  factor;
+  factor = 3;
   /** Slow radius in pixels */
-  radius;
-
-  constructor() {
-    this.factor = 3;
-    this.radius = 200;
-  }
+  radius = 200;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ISlow>): void {

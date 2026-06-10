@@ -8,28 +8,17 @@ import { StartValueType } from "../../Enums/Types/StartValueType.js";
 /** Animation options configuration class */
 export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
   /** Number of animation loops (0 = infinite) */
-  count: RangeValue;
+  count: RangeValue = 0;
   /** Animation decay factor */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Delay before animation starts */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 1;
   /** Whether the animation is synchronized across particles */
-  sync;
-
-  constructor() {
-    super();
-
-    this.count = 0;
-    this.enable = false;
-    this.speed = 1;
-    this.decay = 0;
-    this.delay = 0;
-    this.sync = false;
-  }
+  sync = false;
 
   protected doLoad(data: RecursivePartial<IAnimation>): void {
     loadRangeProperty(this, "count", data.count);
@@ -44,17 +33,10 @@ export class AnimationOptions extends OptionLoader<IAnimation> implements IAnima
 /** Ranged animation options with mode and start value */
 export class RangedAnimationOptions extends AnimationOptions {
   /** Animation mode (auto, increase, decrease, random) */
-  mode: AnimationMode | keyof typeof AnimationMode;
+  mode: AnimationMode | keyof typeof AnimationMode = AnimationMode.auto;
 
   /** Start value type for the animation */
-  startValue: StartValueType | keyof typeof StartValueType;
-
-  constructor() {
-    super();
-
-    this.mode = AnimationMode.auto;
-    this.startValue = StartValueType.random;
-  }
+  startValue: StartValueType | keyof typeof StartValueType = StartValueType.random;
 
   protected override doLoad(data: RecursivePartial<IRangedAnimation>): void {
     super.doLoad(data);

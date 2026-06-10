@@ -11,12 +11,11 @@ import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg.js
 /** The polygon mask local svg options */
 export class PolygonMaskLocalSvg implements IPolygonMaskLocalSvg, IOptionLoader<IPolygonMaskLocalSvg> {
   /** The svg path */
-  path: SingleOrMultiple<string>;
+  path: SingleOrMultiple<string> = [];
   /** The svg size */
   size: IDimension;
 
   constructor() {
-    this.path = [];
     this.size = {
       height: 0,
       width: 0,

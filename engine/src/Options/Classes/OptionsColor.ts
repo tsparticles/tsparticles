@@ -30,12 +30,7 @@ export class OptionsColor extends OptionLoader<IOptionsColor> implements IOption
     | IRangeLch
     | IRangeOklab
     | IRangeOklch
-  >;
-
-  constructor() {
-    super();
-    this.value = "";
-  }
+  > = "";
 
   /**
    * Creates an options color from optional source and input data.

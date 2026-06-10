@@ -18,18 +18,12 @@ export class GradientAngle
   implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>
 {
   /** Angle animation */
-  animation;
+  readonly animation = new GradientAngleAnimation();
   /** Angle direction */
-  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt = RotateDirection.clockwise;
   /** Angle value */
-  value: RangeValue;
-
+  value: RangeValue = 0;
   /** GradientAngle constructor */
-  constructor() {
-    this.value = 0;
-    this.animation = new GradientAngleAnimation();
-    this.direction = RotateDirection.clockwise;
-  }
 
   /**
    * Loads the gradient angle from data

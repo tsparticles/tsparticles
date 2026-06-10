@@ -10,16 +10,9 @@ import { deepExtend } from "../../../../Utils/Utils.js";
  * [[include:Options/Particles/Effect.md]]
  */
 export class Effect extends OptionLoader<IEffect> implements IEffect {
-  close;
-  options: ShapeData;
-  type: SingleOrMultiple<string>;
-
-  constructor() {
-    super();
-    this.close = true;
-    this.options = {};
-    this.type = [];
-  }
+  close = true;
+  options: ShapeData = {};
+  type: SingleOrMultiple<string> = [];
 
   protected doLoad(data: RecursivePartial<IEffect>): void {
     const options = data.options;

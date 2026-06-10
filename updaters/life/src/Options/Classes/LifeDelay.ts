@@ -4,14 +4,7 @@ import type { ILifeDelay } from "../Interfaces/ILifeDelay.js";
 /** Life delay options class */
 export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
   /** Enables the life delay sync */
-  sync;
-
-  /** LifeDelay constructor */
-  constructor() {
-    super();
-    this.sync = false;
-  }
-
+  sync = false;
   /**
    * Loads the life delay from data
    * @param data

@@ -134,6 +134,7 @@ const consumerDir = process.cwd(),
         "error",
         {
           ignore: [],
+          ignoreClassFieldInitialValues: true,
           ignoreEnums: true,
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,

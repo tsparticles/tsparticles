@@ -14,17 +14,11 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
   /**
    * The click event handler enabling setting
    */
-  enable;
-
+  enable = false;
   /**
    * Click modes used by the event
    */
-  mode: SingleOrMultiple<string>;
-
-  constructor() {
-    this.enable = false;
-    this.mode = [];
-  }
+  mode: SingleOrMultiple<string> = [];
 
   load(data?: RecursivePartial<IClickEvent>): void {
     if (isNull(data)) {

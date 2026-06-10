@@ -8,43 +8,32 @@ import { LinksTriangle } from "./LinksTriangle.js";
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
   /** Enables random blinking of link colors */
-  blink;
+  blink = false;
   /** Link line color */
-  color;
+  color = new OptionsColor();
   /** Whether a random color applies to all links (consent) */
-  consent;
+  consent = false;
   /** Maximum link line distance */
-  distance;
+  distance = 100;
   /** Enables particle links */
-  enable;
+  enable = false;
   /** Link frequency */
-  frequency;
+  frequency = 1;
   /** Link ID for grouping */
   id?: string;
   /** Maximum link opacity */
-  opacity;
+  opacity = 1;
   /** Link shadow options */
-  shadow;
+  shadow = new LinksShadow();
   /** Link triangle fill options */
-  triangles;
+  triangles = new LinksTriangle();
   /** Enable link wrap around canvas edges */
-  warp;
+  warp = false;
   /** Link line width */
-  width;
+  width = 1;
 
   constructor() {
-    this.blink = false;
-    this.color = new OptionsColor();
     this.color.value = "#fff";
-    this.consent = false;
-    this.distance = 100;
-    this.enable = false;
-    this.frequency = 1;
-    this.opacity = 1;
-    this.shadow = new LinksShadow();
-    this.triangles = new LinksTriangle();
-    this.width = 1;
-    this.warp = false;
   }
 
   /** @inheritDoc */

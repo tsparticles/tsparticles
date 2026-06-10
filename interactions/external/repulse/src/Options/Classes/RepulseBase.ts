@@ -6,27 +6,21 @@ import type { IRepulseBase, IRepulseRestore } from "../Interfaces/IRepulseBase.j
  */
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
   /** Repulse distance in pixels */
-  distance;
+  distance = 200;
   /** Repulse animation duration in seconds */
-  duration;
+  duration = 0.4;
   /** Easing type used for the repulse animation */
-  easing: string;
+  easing = "ease-out-quad";
   /** Repulse factor multiplier */
-  factor;
+  factor = 100;
   /** Maximum repulse speed */
-  maxSpeed;
+  maxSpeed = 50;
   /** Restore behavior after repulse interaction */
   restore: IRepulseRestore;
   /** Repulse speed */
-  speed;
+  speed = 1;
 
   constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.factor = 100;
-    this.speed = 1;
-    this.maxSpeed = 50;
-    this.easing = "ease-out-quad";
     this.restore = {
       enable: false,
       delay: 0,

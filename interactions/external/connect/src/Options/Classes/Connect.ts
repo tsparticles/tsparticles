@@ -5,19 +5,11 @@ import type { IConnect } from "../Interfaces/IConnect.js";
 /** Connect mode options class */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
   /** Connect distance in pixels */
-  distance;
-
+  distance = 80;
   /** Connect links options */
-  links;
-
+  readonly links = new ConnectLinks();
   /** Connect radius in pixels */
-  radius;
-
-  constructor() {
-    this.distance = 80;
-    this.links = new ConnectLinks();
-    this.radius = 60;
-  }
+  radius = 60;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IConnect>): void {

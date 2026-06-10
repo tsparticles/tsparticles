@@ -14,18 +14,12 @@ export class TwinkleLinksValues implements ITwinkleLinksValues, IOptionLoader<IT
   /** Twinkle links color */
   color?: OptionsColor;
   /** Enables the twinkle links */
-  enable;
+  enable = false;
   /** Twinkle links frequency */
-  frequency;
+  frequency = 0.05;
   /** Twinkle links opacity */
-  opacity: RangeValue;
-
+  opacity: RangeValue = 1;
   /** TwinkleLinksValues constructor */
-  constructor() {
-    this.enable = false;
-    this.frequency = 0.05;
-    this.opacity = 1;
-  }
 
   /**
    * Loads the twinkle links values from data

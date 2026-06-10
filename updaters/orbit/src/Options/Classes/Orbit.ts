@@ -17,28 +17,20 @@ import { OrbitRotation } from "./OrbitRotation.js";
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
   /** Orbit animation options */
-  animation;
+  readonly animation = new AnimationOptions();
   /** Orbit color */
   color?: OptionsColor;
   /** Enables the orbit */
-  enable: boolean;
+  enable = false;
   /** Orbit opacity */
-  opacity: RangeValue;
+  opacity: RangeValue = 1;
   /** Orbit radius */
   radius?: RangeValue;
   /** Orbit rotation */
-  rotation;
+  readonly rotation = new OrbitRotation();
   /** Orbit width */
-  width: RangeValue;
-
+  width: RangeValue = 1;
   /** Orbit constructor */
-  constructor() {
-    this.animation = new AnimationOptions();
-    this.enable = false;
-    this.opacity = 1;
-    this.rotation = new OrbitRotation();
-    this.width = 1;
-  }
 
   /**
    * Loads the orbit options from data

@@ -6,15 +6,9 @@ import { LightShadow } from "./LightShadow.js";
 /** Light mode options class */
 export class Light implements ILight, IOptionLoader<ILight> {
   /** The light area options */
-  area;
-
+  readonly area = new LightArea();
   /** The light shadow options */
-  shadow;
-
-  constructor() {
-    this.area = new LightArea();
-    this.shadow = new LightShadow();
-  }
+  readonly shadow = new LightShadow();
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ILight>): void {

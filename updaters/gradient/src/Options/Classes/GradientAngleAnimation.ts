@@ -11,27 +11,18 @@ import {
 /** Gradient angle animation options class */
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
   /** Animation repeat count */
-  count: RangeValue;
+  count: RangeValue = 0;
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Animation delay */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** GradientAngleAnimation constructor */
-  constructor() {
-    this.count = 0;
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.delay = 0;
-    this.sync = false;
-  }
 
   /**
    * Loads the gradient angle animation from data

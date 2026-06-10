@@ -6,15 +6,9 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 /** Movement angle options class */
 export class MoveAngle extends OptionLoader<IMoveAngle> implements IMoveAngle {
   /** Angle offset value */
-  offset: RangeValue;
+  offset: RangeValue = 0;
   /** Angle value in degrees */
-  value: RangeValue;
-
-  constructor() {
-    super();
-    this.offset = 0; // 45;
-    this.value = 90;
-  }
+  value: RangeValue = 90;
 
   /**
    * Loads move angle options from the given data

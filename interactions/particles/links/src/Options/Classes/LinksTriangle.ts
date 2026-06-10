@@ -6,16 +6,11 @@ export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriang
   /** Triangle fill color */
   color?: OptionsColor;
   /** Enables link triangles */
-  enable;
+  enable = false;
   /** Triangle fill frequency */
-  frequency;
+  frequency = 1;
   /** Triangle fill opacity */
   opacity?: number;
-
-  constructor() {
-    this.enable = false;
-    this.frequency = 1;
-  }
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ILinksTriangle>): void {

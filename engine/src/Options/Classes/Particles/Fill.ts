@@ -9,14 +9,8 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
  */
 export class Fill extends OptionLoader<IFill> implements IFill {
   color?: AnimatableColor;
-  enable: boolean;
-  opacity: RangeValue;
-
-  constructor() {
-    super();
-    this.enable = true;
-    this.opacity = 1;
-  }
+  enable = true;
+  opacity: RangeValue = 1;
 
   protected doLoad(data: RecursivePartial<IFill>): void {
     if (data.color !== undefined) {

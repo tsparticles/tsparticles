@@ -16,18 +16,14 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
   /**
    * The absorber size density, affects the attraction force
    */
-  density;
+  density = 5;
+
   /**
    * The absorber size limit
    */
-  limit: AbsorberSizeLimit;
+  readonly limit: AbsorberSizeLimit = new AbsorberSizeLimit();
 
-  constructor() {
-    super();
-    this.density = 5;
-    this.value = 50;
-    this.limit = new AbsorberSizeLimit();
-  }
+  override value = 50;
 
   /**
    * Loads the absorber size options from the given data

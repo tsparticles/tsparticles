@@ -11,21 +11,14 @@ import type { ITiltAnimation } from "../Interfaces/ITiltAnimation.js";
 /** Tilt animation options class */
 export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimation> {
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** TiltAnimation constructor */
-  constructor() {
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.sync = false;
-  }
 
   /**
    * Loads the tilt animation from data

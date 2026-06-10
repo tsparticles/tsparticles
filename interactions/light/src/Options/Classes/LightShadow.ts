@@ -4,16 +4,13 @@ import type { ILightShadow } from "../Interfaces/ILightShadow.js";
 /** Light shadow options class */
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
   /** The shadow color */
-  color;
+  color = new OptionsColor();
 
   /** The shadow length */
-  length;
+  length = 2000;
 
   constructor() {
-    this.color = new OptionsColor();
     this.color.value = "#000000";
-
-    this.length = 2000;
   }
 
   /** @inheritDoc */

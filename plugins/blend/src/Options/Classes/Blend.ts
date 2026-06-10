@@ -8,18 +8,12 @@ export class Blend implements IBlend, IOptionLoader<IBlend> {
   /**
    * Blend enabling options
    */
-  enable;
-
+  enable = false;
   /**
    * Canvas composite operation
    * values here: https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D/globalCompositeOperation
    */
-  mode: GlobalCompositeOperation;
-
-  constructor() {
-    this.mode = "destination-out";
-    this.enable = false;
-  }
+  mode: GlobalCompositeOperation = "destination-out";
 
   load(data?: RecursivePartial<IBlend>): void {
     if (isNull(data)) {

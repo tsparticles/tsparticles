@@ -24,16 +24,16 @@ import { isArray } from "../../../Utils/TypeUtils.js";
 export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements IParticlesOptions {
   [name: string]: unknown;
 
-  readonly bounce;
-  readonly effect;
-  readonly groups: ParticlesGroups;
-  readonly move;
-  readonly number;
+  readonly bounce = new ParticlesBounce();
+  readonly effect = new Effect();
+  readonly groups: ParticlesGroups = {};
+  readonly move = new Move();
+  readonly number = new ParticlesNumber();
   paint: SingleOrMultiple<Paint>;
   palette?: string;
-  reduceDuplicates;
-  readonly shape;
-  readonly zIndex;
+  reduceDuplicates = false;
+  readonly shape = new Shape();
+  readonly zIndex = new ZIndex();
 
   readonly #container;
   readonly #pluginManager;
@@ -43,19 +43,11 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
     this.#pluginManager = pluginManager;
     this.#container = container;
 
-    this.bounce = new ParticlesBounce();
-    this.effect = new Effect();
-    this.groups = {};
-    this.move = new Move();
-    this.number = new ParticlesNumber();
     this.paint = new Paint();
     this.paint.color = new AnimatableColor();
     this.paint.color.value = "#fff";
     this.paint.fill = new Fill();
     this.paint.fill.enable = true;
-    this.reduceDuplicates = false;
-    this.shape = new Shape();
-    this.zIndex = new ZIndex();
   }
 
   protected doLoad(data: RecursivePartial<IParticlesOptions>): void {

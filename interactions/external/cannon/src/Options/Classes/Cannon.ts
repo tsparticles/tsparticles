@@ -4,39 +4,21 @@ import type { ICannon } from "../Interfaces/ICannon.js";
 /** Cannon mode options class */
 export class Cannon implements ICannon {
   /** Whether to draw the aiming vector */
-  drawVector;
-
+  drawVector = true;
   /** Maximum drag distance in pixels */
-  maxDragDistance;
-
+  maxDragDistance = 0;
   /** Maximum number of particles to spawn */
-  maxParticles;
-
+  maxParticles = 200;
   /** Minimum number of particles to spawn */
-  minParticles;
-
+  minParticles = 5;
   /** Particles per pixel of drag distance */
-  particleFactor;
-
+  particleFactor = 0.2;
   /** Spread angle in degrees */
-  spread;
-
+  spread = 30;
   /** CSS color for the aiming vector line */
-  vectorColor;
-
+  vectorColor = "#ffffff80";
   /** Velocity multiplier from drag distance */
-  velocityFactor;
-
-  constructor() {
-    this.spread = 30;
-    this.velocityFactor = 0.5;
-    this.particleFactor = 0.2;
-    this.maxDragDistance = 0;
-    this.minParticles = 5;
-    this.maxParticles = 200;
-    this.drawVector = true;
-    this.vectorColor = "#ffffff80";
-  }
+  velocityFactor = 0.5;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<ICannon>): void {
