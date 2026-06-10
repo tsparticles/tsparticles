@@ -34,7 +34,7 @@
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
+    "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^5.2.4"
   },
   "dependencies": {
