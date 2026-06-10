@@ -2,34 +2,36 @@
 
 ## Goal
 
-Reduce `@tsparticles/engine` bundle size from **74 KB → ~54–58 KB** (minified UMD) — a **~22–27% reduction** — without
+Primary target for this plan: reduce `@tsparticles/engine` bundle size from **74 KB → ~64–66 KB** (minified UMD), with no
 user-facing breaking changes.
+
+Stretch target (separate follow-up plan): **~60–62 KB** after additional high-effort refactors.
 
 ## Status Overview
 
-| Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)        |
-|--------|------------------------------------------------------|------------|---------------------------|--------------------------------|
-| **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)           |
-| **1b** | `loadProperty` helper                                | ✅ **Done** | ~3.5–6 KB (workspace)     | ~0 KB (engine), ~3–4 KB (pkgs) |
-| **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)               |
-|        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                          |
-|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                         |
-|        | ↳ 2c: inline `getSize` + `arrayRandomIndex`          | ✅ Done     | —                         | ~180 B                         |
-|        | ↳ 2d: extract `@tsparticles/animation-utils`         | ✅ **Done** | 0 KB (engine)             | 0 B (engine), +5.2 KB new pkg  |
-|        | ↳ 2e: simplify `updateAnimation` delay               | ✅ Done     | —                         | ~100 B                         |
-|        | ↳ 2f: `alt` removal (partial)                        | ✅ Done     | —                         | ~200 B                         |
-| **3**  | ParticlesManager z-buckets                           | 📋 Planned | ~1–2 KB                   | —                              |
-| **4**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                              |
-| **5**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                              |
-| **6**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                              |
-| **7**  | Inline Property Defaults (eliminate constructors)    | ✅ **Done** | ~0.8–1.5 KB               | ~1 KB (workspace)              |
-|        | **Total remaining**                                  |            | **~2.8–5 KB**             |                                |
-|        | **Already saved**                                    | ✅ Done     | **~6 KB total**           | **68–69 KB minified UMD**      |
+| Phase  | Area                                                 | Status     | Est. savings              | Actual savings (engine)          |
+|--------|------------------------------------------------------|------------|---------------------------|----------------------------------|
+| **1a** | Sealed `load`/`doLoad` pattern                       | ✅ **Done** | ~1.5–2 KB                 | ~2 KB (pre-existing)             |
+| **1b** | `loadProperty` helper                                | ✅ **Done** | ~3.5–6 KB (workspace)     | ~0 KB (engine), ~3–4 KB (pkgs)   |
+| **2**  | Utils.ts cleanup                                     | ✅ **Done** | ~0.6–1 KB + 0 KB (engine) | ~1.7 KB (engine)                 |
+|        | ↳ 2a: `alt` from canvas                              | ✅ Done     | —                         | 898 B                            |
+|        | ↳ 2b: `findItemFromSingleOrMultiple` → interactivity | ✅ Done     | —                         | ~350 B                           |
+|        | ↳ 2c: inline `getSize` + `arrayRandomIndex`          | ✅ Done     | —                         | ~180 B                           |
+|        | ↳ 2d: extract `@tsparticles/animation-utils`         | ✅ **Done** | 0 KB (engine)             | 0 B (engine), +5.2 KB new pkg    |
+|        | ↳ 2e: simplify `updateAnimation` delay               | ✅ Done     | —                         | ~100 B                           |
+|        | ↳ 2f: `alt` removal (partial)                        | ✅ Done     | —                         | ~200 B                           |
+| **3**  | Inline Property Defaults (eliminate constructors)    | ✅ **Done** | ~0.8–1.5 KB               | ~1 KB (included in engine total) |
+| **4**  | ColorUtils tweaks                                    | 📋 Planned | ~0.3–0.5 KB               | —                                |
+| **5**  | ParticlesManager z-buckets                           | 📋 Planned | ~1–2 KB                   | —                                |
+| **6**  | Cross-package helpers                                | 📋 Planned | ~0.5 KB (engine)          | —                                |
+| **7**  | Particle.ts refactor                                 | 📋 Planned | ~1–2 KB                   | —                                |
+|        | **Total remaining**                                  |            | **~2.8–5 KB**             |                                  |
+|        | **Already saved**                                    | ✅ Done     | **~6 KB total**           | **68–69 KB minified UMD**        |
 
 **Current state:** 74 KB baseline → **68–69 KB** minified UMD (~7–8% reduction).  
 Engine dist: `tsparticles.engine.min.js` = 69 KB (engine-only savings; workspace-wide ~1 KB).  
-Savings: ~6 KB total from Phases 1a + 2a–2f + 7.  
-Remaining potential: ~2.8–5 KB from phases 3, 4, 5, 6.  
+Savings: ~6 KB total from Phases 1a + 2a–2f + 3.  
+Remaining potential: ~2.8–5 KB from phases 4, 5, 6, 7.  
 `@tsparticles/animation-utils`: new package (5.2 KB) with `initParticleNumericAnimationValue()`, `updateAnimation()`,
 `checkDestroy()`.
 
@@ -37,6 +39,58 @@ Remaining potential: ~2.8–5 KB from phases 3, 4, 5, 6.
 
 - **No breaking changes** to the public API surface.
 - Internal breaking changes (private methods, unused exports) are acceptable.
+
+## Ordering Notes (Remaining)
+
+All phases are listed in numeric order for consistency and readability.
+
+Suggested execution priority (risk/reward): 3, 4, 7, 5, 6 (after Phase 2).
+
+## Measurement Protocol (Must use before/after each phase)
+
+For every phase, collect sizes using the same workflow to avoid measurement noise:
+
+1. Clean build path for relevant projects (`pnpm nx run-many -t build --projects <affected-projects>` or full `pnpm run build` when needed).
+2. Record raw minified UMD size for `engine/dist/tsparticles.engine.min.js`.
+3. Record compressed sizes for the same artifact:
+   - gzip (`gzip -9 -c engine/dist/tsparticles.engine.min.js | wc -c`)
+   - brotli (`brotli -f -q 11 engine/dist/tsparticles.engine.min.js -o /tmp/tsparticles.engine.min.js.br && wc -c /tmp/tsparticles.engine.min.js.br`)
+4. Repeat size collection 3 times and report median when delta is `< 0.5 KB`.
+5. Keep a short changelog entry per phase with:
+   - expected delta
+   - actual raw/gzip/brotli delta
+   - pass/fail against acceptance criteria
+
+If measured savings are under noise threshold, mark as neutral and do not claim the estimate.
+
+## Acceptance Criteria Per Remaining Phase
+
+- **Phase 4**:
+  - No behavior change in color rendering tests/demos.
+  - Engine minified delta should be positive; expected band `~0.3–0.5 KB`.
+- **Phase 5**:
+  - Add explicit tests for intra-bucket draw order stability (same z-index, ID ordering) and z-restore transitions.
+  - Validate attract/repulse restore scenarios with no visual ordering regressions.
+  - Keep only if savings are real and behavior remains deterministic.
+- **Phase 6**:
+  - Treat as standardization phase; bundle reduction is optional.
+  - Preserve or improve type-safety; avoid `any`-heavy generic abstractions in public helpers.
+  - Adopt incrementally in 1-2 pilot packages first.
+- **Phase 7**:
+  - Perform in small commits (extract one concern at a time).
+  - No regressions in particle lifecycle hooks/events order.
+  - Keep change if bundle improves or remains neutral with code-quality gain; revert sub-steps that worsen size significantly.
+
+## Completed Phases Audit
+
+Completed phases are aligned with current status and remain marked as done:
+
+- Phase 1a: completed and verified (scope, changes, downstream compatibility).
+- Phase 1b: completed and verified (cross-package conversion, build/test/lint checks).
+- Phase 2 (2a-2f): completed and reflected in current engine size.
+- Phase 3: completed and included in current total savings.
+
+Note: completed-phase summaries use "all tests pass" wording to avoid stale numeric drift across checkpoints.
 
 ---
 
@@ -91,7 +145,7 @@ Remaining potential: ~2.8–5 KB from phases 3, 4, 5, 6.
 | Rank | File                                            | Bytes  | %     | Notes                                               |
 |------|-------------------------------------------------|--------|-------|-----------------------------------------------------|
 | 1    | `Core/Particle.js`                              | 21,642 | 11.6% | Single largest file; `init()` alone is 166 lines    |
-| 2    | `Core/ParticlesManager.js`                      | 18,127 | 9.7%  | Phase 3 target                                      |
+| 2    | `Core/ParticlesManager.js`                      | 18,127 | 9.7%  | Phase 5 target                                      |
 | 3    | `Utils/Utils.js`                                | 17,344 | 9.3%  | `memoize`, `updateAnimation`, `deepExtend` heaviest |
 | 4    | `Core/RenderManager.js`                         | 16,041 | 8.6%  |                                                     |
 | 5    | `Utils/ColorUtils.js`                           | 13,987 | 7.5%  | Heavy but necessary; marginal gains possible        |
@@ -328,7 +382,7 @@ implements clauses. Plugin packages unaffected (they implement `IOptionLoader` d
 
 4. **Verification:**
    - All 49 affected NX projects build successfully.
-   - All 139 tests pass (7 test files).
+   - All tests pass (7 test files at checkpoint time).
    - Lint clean (no new ESLint violations).
 
 ### Raw code example (AnimationOptions.doLoad — before vs after)
@@ -391,9 +445,9 @@ doLoad(data: RecursivePartial<IAnimation>): void {
   `_cachedStyle`)
 - Removed `utils/tests/src/tests/memoize.test.ts` (the function is no longer in the public API)
 
-**Savings**: **898 bytes** minified bundle (vs ~500 estimated). All 140 tests pass.
+**Savings**: **898 bytes** minified bundle (vs ~500 estimated). All tests pass.
 
-### 2b — Move `findItemFromSingleOrMultiple()` to consumer
+### ✅ 2b — Move `findItemFromSingleOrMultiple()` to consumer (Completed)
 
 **Current** in Utils.ts (lines 462-473, 12 lines):
 
@@ -408,11 +462,11 @@ export function findItemFromSingleOrMultiple<T>(
 }
 ```
 
-Used only by **`plugins/interactivity/src/utils.ts`** (2 call sites). Move there and remove export.
+Used only by **`plugins/interactivity/src/utils.ts`** (2 call sites). Moved there and removed from engine exports.
 
 **Savings**: ~12 lines + 1 export removed from barrel.
 
-### 2c — Inline `getSize()` and `arrayRandomIndex()`
+### ✅ 2c — Inline `getSize()` and `arrayRandomIndex()` (Completed)
 
 **`getSize()`** (lines 604-606):
 
@@ -422,7 +476,7 @@ export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDime
 }
 ```
 
-Only 2 calls in `EmitterInstance.ts`. Inline at call sites.
+Only 2 calls in `EmitterInstance.ts`. Inlined at call sites.
 
 **`arrayRandomIndex()`** (lines 215-217):
 
@@ -432,7 +486,7 @@ export function arrayRandomIndex(array: unknown[]): number {
 }
 ```
 
-Only called from `itemFromArray()`. Inline there:
+Only called from `itemFromArray()`. Inlined there:
 
 ```ts
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T | undefined {
@@ -440,7 +494,7 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 }
 ```
 
-### 2d — Extract `initParticleNumericAnimationValue()` to `@tsparticles/animation-utils`
+### ✅ 2d — Extract `initParticleNumericAnimationValue()` to `@tsparticles/animation-utils` (Completed)
 
 **Current** (lines 354-430, 77 lines) — a large function used only by **2 updaters** (size, opacity).
 
@@ -470,7 +524,7 @@ export function initParticleNumericAnimationValue(
 }
 ```
 
-**Extract to `@tsparticles/animation-utils`** — a new utility package modeled on `@tsparticles/canvas-utils`.
+**Extracted to `@tsparticles/animation-utils`** — a new utility package modeled on `@tsparticles/canvas-utils`.
 
 This function doesn't need to be in the engine; it's consumed by external updaters (size, opacity) and potentially by
 plugin authors. Moving it to a separate package:
@@ -492,7 +546,7 @@ types (`AnimationStatus`, `DestroyType`, `IParticleNumericValueAnimation`). The 
 - Importers: updaters/size, updaters/opacity, updaters/tilt, updaters/rotate, updaters/gradient
 - Removes ~171 lines from `engine/src/Utils/Utils.ts`
 
-### 2e — Reduce `updateAnimation()` (after moving to `@tsparticles/animation-utils`)
+### ✅ 2e — Reduce `updateAnimation()` (Completed)
 
 **Current** (lines 523-615, 94 lines). Used by 5 updaters (tilt, size, rotate, opacity, gradient).
 
@@ -520,7 +574,7 @@ if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? mi
 
 This is intentional (add time, then check again) but the `?? minDelay` repeated lookup generates extra compiled code.
 
-**Simplify:**
+**Applied simplification:**
 
 ```ts
 const delayTime = data.delayTime ?? minDelay;
@@ -544,11 +598,227 @@ if (delayTime > 0 && data.time < delayTime) {
 - Inlined it as a local function in `plugins/interactivity/src/InteractionManager.ts` (its only consumer)
 - ~7 lines + 1 export removed from engine bundle
 
-### Estimated savings (engine bundle)
+### Actual savings (engine bundle)
 
-~0.6–1 KB (2b–2c, 2e only — 2a and 2f are already done, 2d+2e moved to new package)
+~1.7 KB total for Phase 2 in engine (2a-2f combined), as reflected in Status Overview.
 
-## Phase 3 — ParticlesManager: Z-Bucket Simplification
+## ✅ Phase 3 — Inline Property Defaults (Eliminate Constructors) (Completed)
+
+### Problem
+
+All option classes in the engine define default values in constructors:
+
+```ts
+export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
+  count: RangeValue;
+  enable;
+  speed: RangeValue;
+
+  constructor() {
+    super();
+    this.count = 0;
+    this.enable = false;
+    this.speed = 1;
+  }
+}
+```
+
+This adds overhead: every constructor call adds bytecode for assignment statements. Moving defaults inline allows the
+minifier to eliminate both the constructor and the assignment boilerplate:
+
+```ts
+export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
+  count: RangeValue = 0;
+  enable = false;
+  speed: RangeValue = 1;
+  // no constructor needed — inherited OptionLoader constructor handles super()
+}
+```
+
+### ESLint blocker
+
+The `@typescript-eslint/no-magic-numbers` rule flags inline class property initializers as magic numbers (`0`, `1`, etc.)
+but silently allows the same values in constructor body assignments. The fix is adding `ignoreClassFieldInitialValues: true`
+to the rule config in `cli/utils/eslint-config/src/eslint.config.ts`.
+
+### Scope
+
+- **Engine option classes** (27 files with constructors in `engine/src/Options/Classes/`) — all classes that define
+  default values in constructors
+- **ESLint shared config** — `cli/utils/eslint-config/src/eslint.config.ts`
+
+### Changes per file category
+
+| Category | Files | Change |
+|----------|-------|--------|
+| Simple numeric/boolean defaults | 15 files | Move to inline property; delete constructor |
+| `new X()` sub-object assignments | 12 files | Move to `readonly` inline; delete constructor if no other work |
+| Constructor with parameters (Options, ParticlesOptions, ColorAnimation) | 3 files | Keep constructor for parameter logic; move simple defaults inline |
+| Sub-property assignments (Background, ParticlesOptions.paint) | 2 files | Keep constructor for nested init; move simple defaults inline |
+
+### Files that can drop constructors entirely (13 files)
+
+- `AnimationOptions.ts` (both `AnimationOptions` and `RangedAnimationOptions`)
+- `ValueWithRandom.ts` (`ValueWithRandom` and `RangedAnimationValueWithRandom`)
+- `ResizeEvent.ts`
+- `ZIndex.ts`
+- `Stroke.ts`
+- `ParticlesNumberLimit.ts`
+- `ParticlesNumber.ts`
+- `ParticlesDensity.ts`
+- `Spin.ts`
+- `MovePath.ts`
+- `MoveGravity.ts`
+- `MoveCenter.ts`
+- `MoveAngle.ts`
+
+### Files with constructors that can be simplified (14 files)
+
+- `Move.ts` — `new X()` in constructor for 6 sub-objects; move to `readonly` inline
+- `Shape.ts` — constructor assigns `close`, `options`, `type`; move to inline
+- `Effect.ts` — same as Shape
+- `Fill.ts` — constructor assigns `enable`, `opacity`; move to inline
+- `FullScreen.ts` — constructor assigns `enable`, `zIndex`; move to inline
+- `ParticlesBounce.ts` — constructor assigns `new ParticlesBounceFactor()`; move to `readonly` inline
+- `ParticlesBounceFactor.ts` — constructor assigns `this.value = 1`; move to inline
+- `OutModes.ts` — constructor assigns `this.default`; move to inline
+- `OptionsColor.ts` — constructor assigns `this.value = ""`; move to inline
+- `AnimatableColor.ts` — constructor assigns `new HslAnimation()`; move to `readonly` inline
+- `Background.ts` — constructor has `new OptionsColor()` + sub-property; keep constructor
+- `Options.ts` — has parameters + `#private` field assignments + simple defaults; keep constructor but inline simple values
+- `ParticlesOptions.ts` — has parameters + `#private` + sub-property ink; keep constructor but inline simple values
+- `ColorAnimation.ts` — takes `min`/`max` parameters; keep constructor
+
+### Estimated savings
+
+~0.8–1.5 KB (engine bundle). Each eliminated constructor removes ~20–40 bytes of compiled code. For 20+ constructors,
+the savings add up. The minifier can also better optimize inline property initializers vs constructor body assignments.
+
+---
+
+## Phase 4 — ColorUtils.ts Micro-Optimizations
+
+### File
+
+- `engine/src/Utils/ColorUtils.ts` (730 lines, 14KB bundle)
+
+### 4a — Simplify `getCachedStyle`
+
+**Current** (lines 64-80):
+
+```ts
+const styleCache = new Map<string, string>(),
+  maxCacheSize = 1000;
+
+function getCachedStyle(key: string, generator: () => string): string {
+  let cached = styleCache.get(key);
+  if (!cached) {
+    cached = generator();
+    if (styleCache.size >= maxCacheSize) {
+      const keysToDelete = [...styleCache.keys()].slice(firstIndex, maxCacheSize * half);
+      keysToDelete.forEach(k => styleCache.delete(k));
+    }
+    styleCache.set(key, cached);
+  }
+  return cached;
+}
+```
+
+The eviction strategy is over-engineered for a cache that rarely hits 1000 entries. **Simplify:**
+
+```ts
+const styleCache = new Map<string, string>();
+
+function getCachedStyle(key: string, generator: () => string): string {
+  let cached = styleCache.get(key);
+  if (!cached) {
+    cached = generator();
+    if (styleCache.size > 2000) styleCache.clear(); // simpler eviction
+    styleCache.set(key, cached);
+  }
+  return cached;
+}
+```
+
+### 4b — Extract inner `channel()` from `hslToRgb()`
+
+**Current** (lines 286-342):
+
+```ts
+export function hslToRgb(hsl: IHsl): IRgb {
+  // ...
+  const channel = (temp1: number, temp2: number, temp3: number): number => {
+    // ... 15 lines ...
+  };
+  // ...
+  red = channel(temp2, temp1, hNormalized + phaseThird),
+    green = channel(temp2, temp1, hNormalized),
+    blue = channel(temp2, temp1, hNormalized - phaseThird);
+}
+```
+
+The `channel` function is defined **inside** `hslToRgb`, so it's re-created on every call. Pull to module level:
+
+```ts
+// Module level:
+function hslChannel(temp1: number, temp2: number, temp3: number): number {
+  if (temp3 < 0) temp3++;
+  if (temp3 > 1) temp3--;
+  if (temp3 * 6 < 1) return temp1 + (temp2 - temp1) * 6 * temp3;
+  if (temp3 * 2 < 1) return temp2;
+  if (temp3 * 3 < 2) return temp1 + (temp2 - temp1) * (2 / 3 - temp3) * 6;
+  return temp1;
+}
+
+export function hslToRgb(hsl: IHsl): IRgb {
+  // ... same logic, calls hslChannel(...) instead of inner channel(...)
+}
+```
+
+### 4c — Consolidate HDR/SDR style helpers
+
+**Current** — 4 tiny functions:
+
+```ts
+function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
+  return `color(display-p3 ${(color.r / rgbMax).toString()} ... )`;
+}
+
+function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
+  return `rgba(${color.r.toString()}, ... )`;
+}
+
+function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
+  return getHdrStyleFromRgb(hslToRgb(color), opacity);    // delegates to RGB version
+}
+
+function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
+  return `hsla(${color.h.toString()}, ... )`;              // independent
+}
+```
+
+`getHdrStyleFromHsl` just calls `getHdrStyleFromRgb(hslToRgb(color), opacity)` — a 1-line wrapper that could be inlined
+directly in `getStyleFromHsl`:
+
+```ts
+export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
+  const op = opacity ?? 1,
+    key = `hsl-${color.h.toFixed(2)}-${color.s.toFixed(2)}-${color.l.toFixed(2)}-${hdr ? "hdr" : "sdr"}-${op}`;
+  return getCachedStyle(key, () =>
+    hdr ? getStyleFromRgb(hslToRgb(color), true, opacity) : `hsla(${color.h}, ${color.s}%, ${color.l}%, ${op})`
+  );
+}
+```
+
+Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
+
+### Estimated savings
+
+~0.3–0.5 KB
+
+---
+
+## Phase 5 — ParticlesManager: Z-Bucket Simplification
 
 ### File
 
@@ -760,177 +1030,17 @@ fuori posto e serve il sort. Il check è O(1) — confronta solo l'ultimo elemen
 
 ~1–2 KB
 
----
+### Risk notes
 
-## Phase 4 — Particle.ts init() Refactor
-
-### File
-
-- `engine/src/Core/Particle.ts` (1056 lines, 21.6KB bundle)
-
-### Current code
-
-The `init()` method (lines 543-708) is **166 lines** — the single largest method in the entire bundle. It handles:
-
-1. Setting default particle state flags (id, group, spawning, etc.)
-2. Loading particles options via `loadParticlesOptions()`
-3. Resolving effect/shape types from options
-4. Handling override options for effect/shape
-5. Loading effect/shape data
-6. Re-loading options with overrides + effect/shape data
-7. Initializing retina properties
-8. Calling updater `preInit` hooks
-9. Initializing position via `#initPosition`
-10. Calculating initial velocity
-11. Loading effect/shape drawer data
-12. Calling updater `init` hooks
-13. Calling `particleInit` on effect/shape drawers
-14. Firing `particleCreated` plugin events
-
-The method mixes **three distinct concerns**:
-
-- State initialization (fields, options)
-- Plugin/updater coordination (hooks, events)
-- Position/velocity math
-
-### Proposed change
-
-Extract the plugin/updater coordination into separate module-level functions:
-
-```ts
-// Extracted from init():
-function initParticleState(particle: Particle, id: number, group?: string): void {
-  particle.id = id;
-  particle.group = group;
-  particle.justWarped = false;
-  particle.effectClose = true;
-  particle.shapeClose = true;
-  particle.pathRotation = false;
-  particle.lastPathTime = 0;
-  particle.destroyed = false;
-  particle.unbreakable = false;
-  particle.isRotating = false;
-  particle.rotation = 0;
-  particle.misplaced = false;
-  particle.retina = { maxDistance: {}, maxSpeed: 0, moveDrift: 0, moveSpeed: 0, sizeAnimationSpeed: 0 };
-  particle.size = { value: 1, max: 1, min: 1, enable: false };
-  particle.outType = ParticleOutType.normal;
-  particle.ignoresResizeRatio = true;
-}
-
-function resolveParticleShape(particle: Particle, options: ParticlesOptions,
-                              overrideOptions?: RecursivePartial<IParticlesOptions>): void {
-  // ... 50 lines of shape/effect resolution ...
-}
-
-function initParticleDrawers(particle: Particle, container: Container): void {
-  // ... 30 lines of drawer initialization ...
-}
-```
-
-Then `init()` becomes:
-
-```ts
-init(id
-:
-number, position ? : ICoordinates, overrideOptions ? : RecursivePartial<IParticlesOptions>, group ? : string
-):
-void {
-  const container = this.#container;
-
-  initParticleState(this, id, group);
-
-  const mainOptions = container.actualOptions,
-  particlesOptions = loadParticlesOptions(this.#pluginManager, container, mainOptions.particles);
-
-  resolveParticleShape(this, particlesOptions, overrideOptions);
-
-  particlesOptions.load(overrideOptions);
-  // ... effectData/shapeData options loading ...
-
-  this.options = particlesOptions;
-  container.retina.initParticle(this);
-
-  runUpdaterPreInit(container.particleUpdaters, this
-)
-;
-this.#initPosition(position);
-this.initialVelocity = this.#calculateVelocity();
-this.velocity = this.initialVelocity.copy();
-this.zIndexFactor = this.position.z / container.zLayers;
-
-initParticleDrawers(this, container);
-
-runUpdaterInit(container.particleUpdaters, this);
-runDrawerInit(container, this);
-runParticleCreatedPlugins(container, this);
-}
-```
-
-### Savings
-
-~1–2 KB. While `init()` doesn't get shorter in total lines (the code moves, not disappears), the extracted functions can
-be more aggressively optimized by the minifier since they're standalone and don't have access to `#private` fields. The
-real saving comes from:
-
-1. Minifier can inline short extracted functions
-2. Removes duplication in shape/effect parallel paths
-3. Clearer boundaries let the minifier optimize each function independently
-
-### Additional candidate — Consolidate effect/shape parallel paths
-
-The `init()` method has near-identical code for `effect` and `shape`:
-
-```ts
-if (this.effect === randomColorValue) {
-  const availableEffects = [...this.#container.effectDrawers.keys()];
-  this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
-}
-if (this.shape === randomColorValue) {
-  const availableShapes = [...this.#container.shapeDrawers.keys()];
-  this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
-}
-```
-
-And:
-
-```ts
-if (this.effect) {
-  effectDrawer = container.effectDrawers.get(this.effect);
-}
-if (effectDrawer?.loadEffect) {
-  effectDrawer.loadEffect(this);
-}
-if (this.shape) {
-  shapeDrawer = container.shapeDrawers.get(this.shape);
-}
-if (shapeDrawer?.loadShape) {
-  shapeDrawer.loadShape(this);
-}
-```
-
-A helper function could handle both:
-
-```ts
-function resolveDrawer<T>(
-  type: string | undefined,
-  drawers: Map<string, T>,
-  loader?: (item: T, particle: Particle) => void,
-  particle: Particle,
-): T | undefined {
-  if (!type) return undefined;
-  const drawer = drawers.get(type);
-  if (drawer && loader) loader(drawer, particle);
-  return drawer;
-}
-```
-
-But this may not save bytes if the helper is only used twice. The real win is removing the duplication in `init()`
-itself.
+- Higher risk than other remaining phases: draw order changes can produce subtle visual regressions.
+- Must include dedicated tests for:
+  - insertion order stability for equal z-index particles
+  - bucket updates during temporary z restore from attract/repulse interactions
+  - deterministic rendering order across add/remove/update cycles
 
 ---
 
-## Phase 5 — Cross-Package Options Standardization
+## Phase 6 — Cross-Package Options Standardization
 
 ### Scope
 
@@ -1089,221 +1199,183 @@ code. While the engine adds ~30 lines of helper code, each consuming package dro
 ~0.5–1 KB in engine (the helper code), plus ~0.3-1 KB per updater package (not in the engine bundle, but in the
 workspace overall).
 
----
+### Positioning
 
-## ✅ Phase 7 — Inline Property Defaults (Eliminate Constructors) (Completed)
-
-### Problem
-
-All option classes in the engine define default values in constructors:
-
-```ts
-export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
-  count: RangeValue;
-  enable;
-  speed: RangeValue;
-
-  constructor() {
-    super();
-    this.count = 0;
-    this.enable = false;
-    this.speed = 1;
-  }
-}
-```
-
-This adds overhead: every constructor call adds bytecode for assignment statements. Moving defaults inline allows the
-minifier to eliminate both the constructor and the assignment boilerplate:
-
-```ts
-export class AnimationOptions extends OptionLoader<IAnimation> implements IAnimation {
-  count: RangeValue = 0;
-  enable = false;
-  speed: RangeValue = 1;
-  // no constructor needed — inherited OptionLoader constructor handles super()
-}
-```
-
-### ESLint blocker
-
-The `@typescript-eslint/no-magic-numbers` rule flags inline class property initializers as magic numbers (`0`, `1`, etc.)
-but silently allows the same values in constructor body assignments. The fix is adding `ignoreClassFieldInitialValues: true`
-to the rule config in `cli/utils/eslint-config/src/eslint.config.ts`.
-
-### Scope
-
-- **Engine option classes** (27 files with constructors in `engine/src/Options/Classes/`) — all classes that define
-  default values in constructors
-- **ESLint shared config** — `cli/utils/eslint-config/src/eslint.config.ts`
-
-### Changes per file category
-
-| Category | Files | Change |
-|----------|-------|--------|
-| Simple numeric/boolean defaults | 15 files | Move to inline property; delete constructor |
-| `new X()` sub-object assignments | 12 files | Move to `readonly` inline; delete constructor if no other work |
-| Constructor with parameters (Options, ParticlesOptions, ColorAnimation) | 3 files | Keep constructor for parameter logic; move simple defaults inline |
-| Sub-property assignments (Background, ParticlesOptions.paint) | 2 files | Keep constructor for nested init; move simple defaults inline |
-
-### Files that can drop constructors entirely (13 files)
-
-- `AnimationOptions.ts` (both `AnimationOptions` and `RangedAnimationOptions`)
-- `ValueWithRandom.ts` (`ValueWithRandom` and `RangedAnimationValueWithRandom`)
-- `ResizeEvent.ts`
-- `ZIndex.ts`
-- `Stroke.ts`
-- `ParticlesNumberLimit.ts`
-- `ParticlesNumber.ts`
-- `ParticlesDensity.ts`
-- `Spin.ts`
-- `MovePath.ts`
-- `MoveGravity.ts`
-- `MoveCenter.ts`
-- `MoveAngle.ts`
-
-### Files with constructors that can be simplified (14 files)
-
-- `Move.ts` — `new X()` in constructor for 6 sub-objects; move to `readonly` inline
-- `Shape.ts` — constructor assigns `close`, `options`, `type`; move to inline
-- `Effect.ts` — same as Shape
-- `Fill.ts` — constructor assigns `enable`, `opacity`; move to inline
-- `FullScreen.ts` — constructor assigns `enable`, `zIndex`; move to inline
-- `ParticlesBounce.ts` — constructor assigns `new ParticlesBounceFactor()`; move to `readonly` inline
-- `ParticlesBounceFactor.ts` — constructor assigns `this.value = 1`; move to inline
-- `OutModes.ts` — constructor assigns `this.default`; move to inline
-- `OptionsColor.ts` — constructor assigns `this.value = ""`; move to inline
-- `AnimatableColor.ts` — constructor assigns `new HslAnimation()`; move to `readonly` inline
-- `Background.ts` — constructor has `new OptionsColor()` + sub-property; keep constructor
-- `Options.ts` — has parameters + `#private` field assignments + simple defaults; keep constructor but inline simple values
-- `ParticlesOptions.ts` — has parameters + `#private` + sub-property ink; keep constructor but inline simple values
-- `ColorAnimation.ts` — takes `min`/`max` parameters; keep constructor
-
-### Estimated savings
-
-~0.8–1.5 KB (engine bundle). Each eliminated constructor removes ~20–40 bytes of compiled code. For 20+ constructors,
-the savings add up. The minifier can also better optimize inline property initializers vs constructor body assignments.
+This phase is primarily a **DX/maintainability** improvement. Any engine bundle reduction should be treated as a bonus,
+not a core target dependency.
 
 ---
 
-## Phase 6 — ColorUtils.ts Micro-Optimizations
+## Phase 7 — Particle.ts init() Refactor
 
 ### File
 
-- `engine/src/Utils/ColorUtils.ts` (730 lines, 14KB bundle)
+- `engine/src/Core/Particle.ts` (1056 lines, 21.6KB bundle)
 
-### 6a — Simplify `getCachedStyle`
+### Current code
 
-**Current** (lines 64-80):
+The `init()` method (lines 543-708) is **166 lines** — the single largest method in the entire bundle. It handles:
+
+1. Setting default particle state flags (id, group, spawning, etc.)
+2. Loading particles options via `loadParticlesOptions()`
+3. Resolving effect/shape types from options
+4. Handling override options for effect/shape
+5. Loading effect/shape data
+6. Re-loading options with overrides + effect/shape data
+7. Initializing retina properties
+8. Calling updater `preInit` hooks
+9. Initializing position via `#initPosition`
+10. Calculating initial velocity
+11. Loading effect/shape drawer data
+12. Calling updater `init` hooks
+13. Calling `particleInit` on effect/shape drawers
+14. Firing `particleCreated` plugin events
+
+The method mixes **three distinct concerns**:
+
+- State initialization (fields, options)
+- Plugin/updater coordination (hooks, events)
+- Position/velocity math
+
+### Proposed change
+
+Extract the plugin/updater coordination into separate module-level functions:
 
 ```ts
-const styleCache = new Map<string, string>(),
-  maxCacheSize = 1000;
+// Extracted from init():
+function initParticleState(particle: Particle, id: number, group?: string): void {
+  particle.id = id;
+  particle.group = group;
+  particle.justWarped = false;
+  particle.effectClose = true;
+  particle.shapeClose = true;
+  particle.pathRotation = false;
+  particle.lastPathTime = 0;
+  particle.destroyed = false;
+  particle.unbreakable = false;
+  particle.isRotating = false;
+  particle.rotation = 0;
+  particle.misplaced = false;
+  particle.retina = { maxDistance: {}, maxSpeed: 0, moveDrift: 0, moveSpeed: 0, sizeAnimationSpeed: 0 };
+  particle.size = { value: 1, max: 1, min: 1, enable: false };
+  particle.outType = ParticleOutType.normal;
+  particle.ignoresResizeRatio = true;
+}
 
-function getCachedStyle(key: string, generator: () => string): string {
-  let cached = styleCache.get(key);
-  if (!cached) {
-    cached = generator();
-    if (styleCache.size >= maxCacheSize) {
-      const keysToDelete = [...styleCache.keys()].slice(firstIndex, maxCacheSize * half);
-      keysToDelete.forEach(k => styleCache.delete(k));
-    }
-    styleCache.set(key, cached);
-  }
-  return cached;
+function resolveParticleShape(particle: Particle, options: ParticlesOptions,
+                              overrideOptions?: RecursivePartial<IParticlesOptions>): void {
+  // ... 50 lines of shape/effect resolution ...
+}
+
+function initParticleDrawers(particle: Particle, container: Container): void {
+  // ... 30 lines of drawer initialization ...
 }
 ```
 
-The eviction strategy is over-engineered for a cache that rarely hits 1000 entries. **Simplify:**
+Then `init()` becomes:
 
 ```ts
-const styleCache = new Map<string, string>();
+init(id
+:
+number, position ? : ICoordinates, overrideOptions ? : RecursivePartial<IParticlesOptions>, group ? : string
+):
+void {
+  const container = this.#container;
 
-function getCachedStyle(key: string, generator: () => string): string {
-  let cached = styleCache.get(key);
-  if (!cached) {
-    cached = generator();
-    if (styleCache.size > 2000) styleCache.clear(); // simpler eviction
-    styleCache.set(key, cached);
-  }
-  return cached;
+  initParticleState(this, id, group);
+
+  const mainOptions = container.actualOptions,
+  particlesOptions = loadParticlesOptions(this.#pluginManager, container, mainOptions.particles);
+
+  resolveParticleShape(this, particlesOptions, overrideOptions);
+
+  particlesOptions.load(overrideOptions);
+  // ... effectData/shapeData options loading ...
+
+  this.options = particlesOptions;
+  container.retina.initParticle(this);
+
+  runUpdaterPreInit(container.particleUpdaters, this
+)
+;
+this.#initPosition(position);
+this.initialVelocity = this.#calculateVelocity();
+this.velocity = this.initialVelocity.copy();
+this.zIndexFactor = this.position.z / container.zLayers;
+
+initParticleDrawers(this, container);
+
+runUpdaterInit(container.particleUpdaters, this);
+runDrawerInit(container, this);
+runParticleCreatedPlugins(container, this);
 }
 ```
 
-### 6b — Extract inner `channel()` from `hslToRgb()`
+### Savings
 
-**Current** (lines 286-342):
+~1–2 KB. While `init()` doesn't get shorter in total lines (the code moves, not disappears), the extracted functions can
+be more aggressively optimized by the minifier since they're standalone and don't have access to `#private` fields. The
+real saving comes from:
+
+1. Minifier can inline short extracted functions
+2. Removes duplication in shape/effect parallel paths
+3. Clearer boundaries let the minifier optimize each function independently
+
+### Risk notes
+
+- Byte savings are not guaranteed; extracted helpers can sometimes increase output size.
+- Run measurement after each extraction step (not only at phase end) to stop early if trend is negative.
+
+### Additional candidate — Consolidate effect/shape parallel paths
+
+The `init()` method has near-identical code for `effect` and `shape`:
 
 ```ts
-export function hslToRgb(hsl: IHsl): IRgb {
-  // ...
-  const channel = (temp1: number, temp2: number, temp3: number): number => {
-    // ... 15 lines ...
-  };
-  // ...
-  red = channel(temp2, temp1, hNormalized + phaseThird),
-    green = channel(temp2, temp1, hNormalized),
-    blue = channel(temp2, temp1, hNormalized - phaseThird);
+if (this.effect === randomColorValue) {
+  const availableEffects = [...this.#container.effectDrawers.keys()];
+  this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
+}
+if (this.shape === randomColorValue) {
+  const availableShapes = [...this.#container.shapeDrawers.keys()];
+  this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
 }
 ```
 
-The `channel` function is defined **inside** `hslToRgb`, so it's re-created on every call. Pull to module level:
+And:
 
 ```ts
-// Module level:
-function hslChannel(temp1: number, temp2: number, temp3: number): number {
-  if (temp3 < 0) temp3++;
-  if (temp3 > 1) temp3--;
-  if (temp3 * 6 < 1) return temp1 + (temp2 - temp1) * 6 * temp3;
-  if (temp3 * 2 < 1) return temp2;
-  if (temp3 * 3 < 2) return temp1 + (temp2 - temp1) * (2 / 3 - temp3) * 6;
-  return temp1;
+if (this.effect) {
+  effectDrawer = container.effectDrawers.get(this.effect);
 }
-
-export function hslToRgb(hsl: IHsl): IRgb {
-  // ... same logic, calls hslChannel(...) instead of inner channel(...)
+if (effectDrawer?.loadEffect) {
+  effectDrawer.loadEffect(this);
+}
+if (this.shape) {
+  shapeDrawer = container.shapeDrawers.get(this.shape);
+}
+if (shapeDrawer?.loadShape) {
+  shapeDrawer.loadShape(this);
 }
 ```
 
-### 6c — Consolidate HDR/SDR style helpers
-
-**Current** — 4 tiny functions:
+A helper function could handle both:
 
 ```ts
-function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
-  return `color(display-p3 ${(color.r / rgbMax).toString()} ... )`;
-}
-
-function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
-  return `rgba(${color.r.toString()}, ... )`;
-}
-
-function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
-  return getHdrStyleFromRgb(hslToRgb(color), opacity);    // delegates to RGB version
-}
-
-function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
-  return `hsla(${color.h.toString()}, ... )`;              // independent
+function resolveDrawer<T>(
+  type: string | undefined,
+  drawers: Map<string, T>,
+  loader?: (item: T, particle: Particle) => void,
+  particle: Particle,
+): T | undefined {
+  if (!type) return undefined;
+  const drawer = drawers.get(type);
+  if (drawer && loader) loader(drawer, particle);
+  return drawer;
 }
 ```
 
-`getHdrStyleFromHsl` just calls `getHdrStyleFromRgb(hslToRgb(color), opacity)` — a 1-line wrapper that could be inlined
-directly in `getStyleFromHsl`:
-
-```ts
-export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
-  const op = opacity ?? 1,
-    key = `hsl-${color.h.toFixed(2)}-${color.s.toFixed(2)}-${color.l.toFixed(2)}-${hdr ? "hdr" : "sdr"}-${op}`;
-  return getCachedStyle(key, () =>
-    hdr ? getStyleFromRgb(hslToRgb(color), true, opacity) : `hsla(${color.h}, ${color.s}%, ${color.l}%, ${op})`
-  );
-}
-```
-
-Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
-
-### Estimated savings
-
-~0.3–0.5 KB
+But this may not save bytes if the helper is only used twice. The real win is removing the duplication in `init()`
+itself.
 
 ---
 
@@ -1315,15 +1387,15 @@ Eliminates `getHdrStyleFromHsl` and `getSdrStyleFromHsl` entirely.
 | 1b    | `loadProperty` helper (safe patterns only)     | ~0 KB (engine), ~3–4 KB (pkgs) | Medium | ✅ Done                 |
 | 2     | Utils.ts cleanup (2a–2f)                       | ~1.7 KB (engine)               | Low    | ✅ Done                 |
 | 2d    | → `@tsparticles/animation-utils` (new package) | 0 KB (engine)                  | Low    | ✅ Done                 |
-| 3     | ParticlesManager z-buckets                     | ~1–2 KB                        | Low    | 📋 Planned             |
-| 4     | Particle.ts refactor                           | ~1–2 KB                        | Medium | 📋 Planned             |
-| 5     | Cross-package helpers                          | ~0.5 KB (engine)               | Medium | 📋 Planned             |
-| 6     | ColorUtils tweaks                              | ~0.3–0.5 KB                    | Low    | 📋 Planned             |
-| 7     | Inline property defaults                       | ~0.8–1.5 KB                    | Low    | ✅ Done (68 KB)         |
+| 3     | Inline property defaults                       | ~0.8–1.5 KB                    | Low    | ✅ Done (68 KB)         |
+| 4     | ColorUtils tweaks                              | ~0.3–0.5 KB                    | Low    | 📋 Planned             |
+| 5     | ParticlesManager z-buckets                     | ~1–2 KB                        | Low    | 📋 Planned             |
+| 6     | Cross-package helpers                          | ~0.5 KB (engine)               | Medium | 📋 Planned             |
+| 7     | Particle.ts refactor                           | ~1–2 KB                        | Medium | 📋 Planned             |
 |       | **Total** (remaining)                          | **~2.8–5 KB**                  |        |                        |
 |       | **Already saved**                              | **~6 KB**                      |        | **68 KB minified UMD** |
 
-Current target: **74 KB → ~64–66 KB** remaining phases (3, 4, 5, 6).
+Current target: **74 KB → ~64–66 KB** via remaining phases (4, 5, 6, 7).
 
 ---
 
@@ -1331,7 +1403,7 @@ Current target: **74 KB → ~64–66 KB** remaining phases (3, 4, 5, 6).
 
 1. `pnpm exec vitest run` — all tests pass.
 2. `pnpm run build` — all packages build.
-3. Check `engine/dist/` UMD minified size (target: 60–66 KB).
+3. Check `engine/dist/` UMD minified size (target: 64–66 KB for this plan).
 4. `cd demo/vanilla && pnpm start` — visual smoke test.
 
 ---
@@ -1342,15 +1414,15 @@ Current target: **74 KB → ~64–66 KB** remaining phases (3, 4, 5, 6).
 |------------------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
 | `engine/src/Options/Classes/*.ts` (29 files)   | 1a–1b     | `load`/`doLoad` base class, `loadProperty` helper (19 files converted)                                                              |
 | `engine/src/Utils/Utils.ts`                    | 2a–2f     | Remove `memoize`, move/inline dead code, extract `initParticleNumericAnimationValue` + `updateAnimation` to `utils/animationUtils/` |
-| `engine/src/Core/ParticlesManager.ts`          | 3         | Remove binary search, simplify buckets                                                                                              |
-| `engine/src/Core/Particle.ts`                  | 4         | Extract helpers from 166-line `init()`                                                                                              |
-| `engine/src/Utils/OptionsUtils.ts`             | 1a, 1b, 5 | Add `OptionLoader`, `loadProperty`/`loadRangeProperty`/`loadNestedProperty`/`loadLazyProperty`/`loadExtendProperty`                 |
+| `engine/src/Core/ParticlesManager.ts`          | 5         | Remove binary search, simplify buckets                                                                                              |
+| `engine/src/Core/Particle.ts`                  | 7         | Extract helpers from 166-line `init()`                                                                                              |
+| `engine/src/Utils/OptionsUtils.ts`             | 1a, 1b, 6 | Add `OptionLoader`, `loadProperty`/`loadRangeProperty`/`loadNestedProperty`/`loadLazyProperty`/`loadExtendProperty`                 |
 | `updaters/*/src/Options/Classes/*.ts`          | 1b        | ~28 files converted to use `loadProperty` helpers                                                                                   |
 | `interactions/*/src/Options/Classes/*.ts`      | 1b        | ~20 files converted to use `loadProperty` helpers                                                                                   |
 | `plugins/*/src/Options/Classes/*.ts`           | 1b        | ~49 files converted to use `loadProperty` helpers                                                                                   |
 | `shapes/*/src/Options/Classes/*.ts`            | 1b        | 1 file converted (Preload)                                                                                                          |
 | `bundles/*/src/Options/Classes/*.ts`           | 1b        | 3 files converted (confetti, fireworks, ribbons)                                                                                    |
-| `engine/src/Utils/ColorUtils.ts`               | 6a–6c     | Simplify cache, extract channel(), inline wrappers                                                                                  |
+| `engine/src/Utils/ColorUtils.ts`               | 4a–4c     | Simplify cache, extract channel(), inline wrappers                                                                                  |
 | `utils/animationUtils/` (new package)          | 2d–2e     | New `@tsparticles/animation-utils` package — `initParticleNumericAnimationValue`, `updateAnimation`                                 |
-| `engine/src/Options/Classes/*.ts` (27 files)   | 7         | Move constructor defaults to inline property declarations; eliminate constructors where possible                                    |
-| `cli/utils/eslint-config/src/eslint.config.ts` | 7         | Add `ignoreClassFieldInitialValues: true` to `@typescript-eslint/no-magic-numbers`                                                  |
+| `engine/src/Options/Classes/*.ts` (27 files)   | 3         | Move constructor defaults to inline property declarations; eliminate constructors where possible                                    |
+| `cli/utils/eslint-config/src/eslint.config.ts` | 3         | Add `ignoreClassFieldInitialValues: true` to `@typescript-eslint/no-magic-numbers`                                                  |
