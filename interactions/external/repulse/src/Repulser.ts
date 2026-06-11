@@ -10,6 +10,7 @@ import {
   getDistances,
   half,
   isInArray,
+  loadOptionProperty,
   millisecondsToSeconds,
   safeDocument,
 } from "@tsparticles/engine";
@@ -208,11 +209,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     options: Modes & RepulseMode,
     ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
   ): void {
-    options.repulse ??= new Repulse();
-
-    for (const source of sources) {
-      options.repulse.load(source?.repulse);
-    }
+    loadOptionProperty(options, "repulse", Repulse, ...sources);
   }
 
   /** {@inheritDoc} */

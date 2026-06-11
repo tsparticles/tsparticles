@@ -6,6 +6,7 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
+  loadOptionProperty,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
 import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types.js";
@@ -87,11 +88,7 @@ export class LifeUpdater implements IParticleUpdater {
     options: LifeParticlesOptions,
     ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
   ): void {
-    options.life ??= new Life();
-
-    for (const source of sources) {
-      options.life.load(source?.life);
-    }
+    loadOptionProperty(options, "life", Life, ...sources);
   }
 
   /**

@@ -5,7 +5,13 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
-import { type PluginManager, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import {
+  type PluginManager,
+  type RecursivePartial,
+  isInArray,
+  loadOptionProperty,
+  rangeColorToRgb,
+} from "@tsparticles/engine";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
@@ -79,11 +85,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & LightMode, ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]): void {
-    options.light ??= new Light();
-
-    for (const source of sources) {
-      options.light.load(source?.light);
-    }
+    loadOptionProperty(options, "light", Light, ...sources);
   }
 
   /** @inheritDoc */

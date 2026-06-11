@@ -4,7 +4,6 @@ import {
   defaultRemoveQuantity,
   deleteCount,
   double,
-  empty,
   minCount,
   minIndex,
   minLimit,
@@ -512,30 +511,6 @@ export class ParticlesManager {
     return Math.min(Math.max(Math.floor(zIndex), minIndex), maxBucketIndex);
   }
 
-  #getParticleInsertIndex(bucket: Particle[], particleId: number): number {
-    let start = minIndex,
-      end = bucket.length;
-
-    while (start < end) {
-      const middle = Math.floor((start + end) / double),
-        middleParticle = bucket[middle];
-
-      if (!middleParticle) {
-        end = middle;
-
-        continue;
-      }
-
-      if (middleParticle.id < particleId) {
-        start = middle + one;
-      } else {
-        end = middle;
-      }
-    }
-
-    return start;
-  }
-
   #initDensityFactor(densityOptions: IParticlesDensity): number {
     const container = this.#container;
 
@@ -566,7 +541,7 @@ export class ParticlesManager {
       return;
     }
 
-    bucket.splice(this.#getParticleInsertIndex(bucket, particle.id), empty, particle);
+    bucket.push(particle);
     this.#particleBuckets.set(particle.id, bucketIndex);
   }
 
@@ -605,15 +580,12 @@ export class ParticlesManager {
       return;
     }
 
-    const particleIndex = this.#getParticleInsertIndex(bucket, particle.id);
+    const idx = bucket.findIndex(p => p.id === particle.id);
 
-    if (bucket[particleIndex]?.id !== particle.id) {
-      this.#particleBuckets.delete(particle.id);
-
-      return;
+    if (idx >= minIndex) {
+      bucket.splice(idx, deleteCount);
     }
 
-    bucket.splice(particleIndex, deleteCount);
     this.#particleBuckets.delete(particle.id);
   }
 
@@ -648,10 +620,10 @@ export class ParticlesManager {
     const currentBucket = this.#zBuckets[currentBucketIndex];
 
     if (currentBucket) {
-      const particleIndex = this.#getParticleInsertIndex(currentBucket, particle.id);
+      const idx = currentBucket.findIndex(p => p.id === particle.id);
 
-      if (currentBucket[particleIndex]?.id === particle.id) {
-        currentBucket.splice(particleIndex, deleteCount);
+      if (idx >= minIndex) {
+        currentBucket.splice(idx, deleteCount);
       }
     }
 
@@ -663,7 +635,16 @@ export class ParticlesManager {
       return;
     }
 
-    newBucket.splice(this.#getParticleInsertIndex(newBucket, particle.id), empty, particle);
+    newBucket.push(particle);
+
+    if (newBucket.length >= double) {
+      const prev = newBucket[newBucket.length - double];
+
+      if (prev && particle.id < prev.id) {
+        newBucket.sort((a, b) => a.id - b.id);
+      }
+    }
+
     this.#particleBuckets.set(particle.id, newBucketIndex);
   }
 

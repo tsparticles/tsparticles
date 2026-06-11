@@ -7,6 +7,7 @@ import {
   doublePI,
   getRangeValue,
   half,
+  loadOptionProperty,
   rangeColorToHsl,
 } from "@tsparticles/engine";
 import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types.js";
@@ -147,11 +148,7 @@ export class OrbitUpdater implements IParticleUpdater {
     options: OrbitParticlesOptions,
     ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
   ): void {
-    options.orbit ??= new Orbit();
-
-    for (const source of sources) {
-      options.orbit.load(source?.orbit);
-    }
+    loadOptionProperty(options, "orbit", Orbit, ...sources);
   }
 
   /**

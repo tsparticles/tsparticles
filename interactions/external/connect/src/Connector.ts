@@ -6,7 +6,7 @@ import {
   type InteractivityParticle,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { Connect } from "./Options/Classes/Connect.js";
 import { drawConnection } from "./Utils.js";
 
@@ -111,11 +111,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     options: Modes & ConnectMode,
     ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
   ): void {
-    options.connect ??= new Connect();
-
-    for (const source of sources) {
-      options.connect.load(source?.connect);
-    }
+    loadOptionProperty(options, "connect", Connect, ...sources);
   }
 
   /** @inheritDoc */

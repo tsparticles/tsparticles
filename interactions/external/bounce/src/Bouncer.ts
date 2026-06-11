@@ -8,7 +8,7 @@ import {
   isDivModeEnabled,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { divBounce, mouseBounce } from "./Utils.js";
 import { Bounce } from "./Options/Classes/Bounce.js";
 
@@ -94,11 +94,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     options: Modes & BounceMode,
     ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
   ): void {
-    options.bounce ??= new Bounce();
-
-    for (const source of sources) {
-      options.bounce.load(source?.bounce);
-    }
+    loadOptionProperty(options, "bounce", Bounce, ...sources);
   }
 
   /** @inheritDoc */

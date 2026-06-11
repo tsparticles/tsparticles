@@ -8,6 +8,7 @@ import {
   getDistances,
   getRangeValue,
   identity,
+  loadOptionProperty,
   minDistance,
   minVelocity,
   squareExp,
@@ -119,15 +120,11 @@ export class Repulser extends ParticlesInteractorBase {
   }
 
   /** @inheritDoc */
-  loadParticlesOptions?(
+  loadParticlesOptions(
     options: RepulseParticlesOptions,
     ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
   ): void {
-    options.repulse ??= new ParticlesRepulse();
-
-    for (const source of sources) {
-      options.repulse.load(source?.repulse);
-    }
+    loadOptionProperty(options, "repulse", ParticlesRepulse, ...sources);
   }
 
   /** @inheritDoc */

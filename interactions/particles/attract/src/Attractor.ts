@@ -1,5 +1,12 @@
 import type { AttractParticle, IParticlesAttractOptions, ParticlesAttractOptions } from "./Types.js";
-import { type Container, type RecursivePartial, getDistances, getRangeValue, isNull } from "@tsparticles/engine";
+import {
+  type Container,
+  type RecursivePartial,
+  getDistances,
+  getRangeValue,
+  isNull,
+  loadOptionProperty,
+} from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
@@ -83,11 +90,7 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     options: ParticlesAttractOptions,
     ...sources: (RecursivePartial<IParticlesAttractOptions> | undefined)[]
   ): void {
-    options.attract ??= new Attract();
-
-    for (const source of sources) {
-      options.attract.load(source?.attract);
-    }
+    loadOptionProperty(options, "attract", Attract, ...sources);
   }
 
   /** @inheritDoc */

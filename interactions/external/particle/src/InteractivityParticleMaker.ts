@@ -12,6 +12,7 @@ import {
   type RecursivePartial,
   deepExtend,
   isInArray,
+  loadOptionProperty,
   safeDocument,
 } from "@tsparticles/engine";
 import type { IParticleMode, InteractivityParticleContainer, ParticleMode } from "./Types.js";
@@ -161,11 +162,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     options: Modes & ParticleMode,
     ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
   ): void {
-    options.particle ??= new InteractivityParticleOptions();
-
-    for (const source of sources) {
-      options.particle.load(source?.particle);
-    }
+    loadOptionProperty(options, "particle", InteractivityParticleOptions, ...sources);
   }
 
   /** @inheritDoc */

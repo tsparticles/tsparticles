@@ -5,6 +5,7 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
+  loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
 import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
@@ -78,11 +79,7 @@ export class SizeUpdater implements IParticleUpdater {
     options: SizeParticlesOptions,
     ...sources: (RecursivePartial<ISizeParticlesOptions> | undefined)[]
   ): void {
-    options.size ??= new Size();
-
-    for (const source of sources) {
-      options.size.load(source?.size);
-    }
+    loadOptionProperty(options, "size", Size, ...sources);
   }
 
   /**

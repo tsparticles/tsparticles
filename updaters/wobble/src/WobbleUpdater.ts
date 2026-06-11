@@ -6,6 +6,7 @@ import {
   doublePI,
   getRandom,
   getRangeValue,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types.js";
 import { Wobble } from "./Options/Classes/Wobble.js";
@@ -67,11 +68,7 @@ export class WobbleUpdater implements IParticleUpdater {
     options: WobbleParticlesOptions,
     ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
   ): void {
-    options.wobble ??= new Wobble();
-
-    for (const source of sources) {
-      options.wobble.load(source?.wobble);
-    }
+    loadOptionProperty(options, "wobble", Wobble, ...sources);
   }
 
   /**

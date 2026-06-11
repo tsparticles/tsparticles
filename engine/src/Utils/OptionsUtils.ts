@@ -97,3 +97,27 @@ export function loadExtendProperty<T extends object, K extends keyof T>(obj: T, 
     (obj as Record<string, unknown>)[key as string] = deepExtend(obj[key] ?? {}, value);
   }
 }
+
+/**
+ * Loads a lazily-initialized option property from multiple sources.
+ * @param obj - the target options object
+ * @param key - the property key
+ * @param optionClass - the option class constructor
+ * @param sources - source objects to load from
+ */
+export function loadOptionProperty<T>(
+  obj: object,
+  key: string,
+  optionClass: new () => IOptionLoader<T>,
+  ...sources: (object | undefined)[]
+): void {
+  const objRecord = obj as Record<string, IOptionLoader<T>>;
+
+  objRecord[key] ??= new optionClass();
+
+  const target = objRecord[key];
+
+  for (const source of sources) {
+    target.load((source as Record<string, RecursivePartial<T> | undefined> | undefined)?.[key]);
+  }
+}

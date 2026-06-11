@@ -17,6 +17,7 @@ import {
   getDistance,
   getRandomInRange,
   identity,
+  loadOptionProperty,
   none,
 } from "@tsparticles/engine";
 import { Cannon } from "./Options/Classes/Cannon.js";
@@ -221,11 +222,7 @@ export class Cannoner extends ExternalInteractorBase<CannonContainer> {
     options: Modes & CannonMode,
     ...sources: RecursivePartial<(IModes & ICannonMode) | undefined>[]
   ): void {
-    options.cannon ??= new Cannon();
-
-    for (const source of sources) {
-      options.cannon.load(source?.cannon);
-    }
+    loadOptionProperty(options, "cannon", Cannon, ...sources);
   }
 
   /**

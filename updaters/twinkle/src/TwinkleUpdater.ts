@@ -8,6 +8,7 @@ import {
   getRandom,
   getRangeValue,
   getStyleFromHsl,
+  loadOptionProperty,
   rangeColorToHsl,
 } from "@tsparticles/engine";
 import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
@@ -113,11 +114,7 @@ export class TwinkleUpdater implements IParticleUpdater {
     options: TwinkleParticlesOptions,
     ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
   ): void {
-    options.twinkle ??= new Twinkle();
-
-    for (const source of sources) {
-      options.twinkle.load(source?.twinkle);
-    }
+    loadOptionProperty(options, "twinkle", Twinkle, ...sources);
   }
 
   /** Updates the twinkle (no-op) */

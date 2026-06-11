@@ -13,6 +13,7 @@ import {
   isInArray,
   itemFromArray,
   itemFromSingleOrMultiple,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { IPushMode, PushContainer, PushMode } from "./Types.js";
 import { Push } from "./Options/Classes/Push.js";
@@ -88,11 +89,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
-    options.push ??= new Push();
-
-    for (const source of sources) {
-      options.push.load(source?.push);
-    }
+    loadOptionProperty(options, "push", Push, ...sources);
   }
 
   /** @inheritDoc */

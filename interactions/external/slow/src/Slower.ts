@@ -5,7 +5,14 @@ import {
   type InteractivityParticle,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
-import { type IDelta, type Particle, type RecursivePartial, getDistance, isInArray } from "@tsparticles/engine";
+import {
+  type IDelta,
+  type Particle,
+  type RecursivePartial,
+  getDistance,
+  isInArray,
+  loadOptionProperty,
+} from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
 
@@ -68,11 +75,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {
-    options.slow ??= new Slow();
-
-    for (const source of sources) {
-      options.slow.load(source?.slow);
-    }
+    loadOptionProperty(options, "slow", Slow, ...sources);
   }
 
   /** @inheritDoc */

@@ -12,6 +12,7 @@ import {
   half,
   isInArray,
   itemFromSingleOrMultiple,
+  loadOptionProperty,
   millisecondsToSeconds,
   rangeColorToHsl,
   rgbToHsl,
@@ -165,11 +166,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     options: Modes & BubbleMode,
     ...sources: RecursivePartial<(IModes & IBubbleMode) | undefined>[]
   ): void {
-    options.bubble ??= new Bubble();
-
-    for (const source of sources) {
-      options.bubble.load(source?.bubble);
-    }
+    loadOptionProperty(options, "bubble", Bubble, ...sources);
   }
 
   /** @inheritDoc */

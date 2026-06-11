@@ -6,6 +6,7 @@ import {
   type PluginManager,
   type RecursivePartial,
   getRangeValue,
+  loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
 import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
@@ -96,11 +97,7 @@ export class DestroyUpdater implements IParticleUpdater {
     options: DestroyParticlesOptions,
     ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
   ): void {
-    options.destroy ??= new Destroy();
-
-    for (const source of sources) {
-      options.destroy.load(source?.destroy);
-    }
+    loadOptionProperty(options, "destroy", Destroy, ...sources);
   }
 
   /**
