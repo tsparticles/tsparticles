@@ -44,6 +44,7 @@ import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js"
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
 import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
 import type { IParticleTransformValues } from "../export-types.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
@@ -147,6 +148,211 @@ function fixOutMode(data: FixOutModeParams): void {
     data.setCb(-data.radius);
   } else if (data.coord < diameter) {
     data.setCb(data.radius);
+  }
+}
+
+/**
+ *
+ * @param particle -
+ * @param id -
+ * @param group -
+ */
+function initParticleState(particle: Particle, id: number, group?: string): void {
+  particle.id = id;
+  particle.group = group;
+  particle.justWarped = false;
+  particle.effectClose = true;
+  particle.shapeClose = true;
+  particle.pathRotation = false;
+  particle.lastPathTime = 0;
+  particle.destroyed = false;
+  particle.unbreakable = false;
+  particle.isRotating = false;
+  particle.rotation = 0;
+  particle.misplaced = false;
+  particle.retina = {
+    maxDistance: {},
+    maxSpeed: 0,
+    moveDrift: 0,
+    moveSpeed: 0,
+    sizeAnimationSpeed: 0,
+  };
+  particle.size = {
+    value: 1,
+    max: 1,
+    min: 1,
+    enable: false,
+  };
+  particle.outType = ParticleOutType.normal;
+  particle.ignoresResizeRatio = true;
+}
+
+/**
+ *
+ * @param particle -
+ * @param container -
+ * @param pluginManager -
+ * @param overrideOptions -
+ * @returns the resolved particles options
+ */
+function resolveParticleOptions(
+  particle: Particle,
+  container: Container,
+  pluginManager: PluginManager,
+  overrideOptions?: RecursivePartial<IParticlesOptions>,
+): ParticlesOptions {
+  const mainOptions = container.actualOptions,
+    particlesOptions = loadParticlesOptions(pluginManager, container, mainOptions.particles),
+    reduceDuplicates = particlesOptions.reduceDuplicates;
+
+  particle.effect = itemFromSingleOrMultiple(particlesOptions.effect.type, particle.id, reduceDuplicates);
+  particle.shape = itemFromSingleOrMultiple(particlesOptions.shape.type, particle.id, reduceDuplicates);
+
+  const effectOptions = particlesOptions.effect,
+    shapeOptions = particlesOptions.shape;
+
+  if (overrideOptions) {
+    if (overrideOptions.effect) {
+      const overrideEffectType = overrideOptions.effect.type;
+
+      if (overrideEffectType && overrideEffectType !== particle.effect) {
+        const effect = itemFromSingleOrMultiple(overrideEffectType, particle.id, reduceDuplicates);
+
+        if (effect) {
+          particle.effect = effect;
+        }
+      }
+
+      effectOptions.load(overrideOptions.effect);
+    }
+
+    if (overrideOptions.shape) {
+      const overrideShapeType = overrideOptions.shape.type;
+
+      if (overrideShapeType && overrideShapeType !== particle.shape) {
+        const shape = itemFromSingleOrMultiple(overrideShapeType, particle.id, reduceDuplicates);
+
+        if (shape) {
+          particle.shape = shape;
+        }
+      }
+
+      shapeOptions.load(overrideOptions.shape);
+    }
+  }
+
+  if (particle.effect === randomColorValue) {
+    const availableEffects = [...container.effectDrawers.keys()];
+
+    particle.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
+  }
+
+  if (particle.shape === randomColorValue) {
+    const availableShapes = [...container.shapeDrawers.keys()];
+
+    particle.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
+  }
+
+  particle.effectData = particle.effect
+    ? loadEffectData(particle.effect, effectOptions, particle.id, reduceDuplicates)
+    : undefined;
+  particle.shapeData = particle.shape
+    ? loadShapeData(particle.shape, shapeOptions, particle.id, reduceDuplicates)
+    : undefined;
+
+  particlesOptions.load(overrideOptions);
+
+  const effectData = particle.effectData,
+    shapeData = particle.shapeData;
+
+  if (effectData) {
+    particlesOptions.load(effectData.particles);
+  }
+
+  if (shapeData) {
+    particlesOptions.load(shapeData.particles);
+  }
+
+  particle.effectClose = effectData?.close ?? particlesOptions.effect.close;
+  particle.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
+
+  return particlesOptions;
+}
+
+/**
+ *
+ * @param particle -
+ * @param container -
+ */
+function initParticleDrawers(particle: Particle, container: Container): void {
+  let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
+
+  if (particle.effect) {
+    effectDrawer = container.effectDrawers.get(particle.effect);
+  }
+
+  if (effectDrawer?.loadEffect) {
+    effectDrawer.loadEffect(particle);
+  }
+
+  if (particle.shape) {
+    shapeDrawer = container.shapeDrawers.get(particle.shape);
+  }
+
+  if (shapeDrawer?.loadShape) {
+    shapeDrawer.loadShape(particle);
+  }
+
+  const sideCountFunc = shapeDrawer?.getSidesCount;
+
+  if (sideCountFunc) {
+    particle.sides = sideCountFunc(particle);
+  }
+}
+
+/**
+ *
+ * @param updaters -
+ * @param particle -
+ */
+function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): void {
+  for (const updater of updaters) {
+    updater.preInit?.(particle);
+  }
+}
+
+/**
+ *
+ * @param updaters -
+ * @param particle -
+ */
+function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void {
+  for (const updater of updaters) {
+    updater.init(particle);
+  }
+}
+
+/**
+ *
+ * @param container -
+ * @param particle -
+ */
+function runDrawerInit(container: Container, particle: Particle): void {
+  const shapeDrawer = particle.shape ? container.shapeDrawers.get(particle.shape) : undefined,
+    effectDrawer = particle.effect ? container.effectDrawers.get(particle.effect) : undefined;
+
+  effectDrawer?.particleInit?.(container, particle);
+  shapeDrawer?.particleInit?.(container, particle);
+}
+
+/**
+ *
+ * @param container -
+ * @param particle -
+ */
+function runParticleCreatedPlugins(container: Container, particle: Particle): void {
+  for (const plugin of container.particleCreatedPlugins) {
+    plugin.particleCreated?.(particle);
   }
 }
 
@@ -548,113 +754,13 @@ export class Particle {
   ): void {
     const container = this.#container;
 
-    this.id = id;
-    this.group = group;
-    this.justWarped = false;
-    this.effectClose = true;
-    this.shapeClose = true;
-    this.pathRotation = false;
-    this.lastPathTime = 0;
-    this.destroyed = false;
-    this.unbreakable = false;
-    this.isRotating = false;
-    this.rotation = 0;
-    this.misplaced = false;
-    this.retina = {
-      maxDistance: {},
-      maxSpeed: 0,
-      moveDrift: 0,
-      moveSpeed: 0,
-      sizeAnimationSpeed: 0,
-    };
-    this.size = {
-      value: 1,
-      max: 1,
-      min: 1,
-      enable: false,
-    };
-    this.outType = ParticleOutType.normal;
-    this.ignoresResizeRatio = true;
+    initParticleState(this, id, group);
 
-    const mainOptions = container.actualOptions,
-      particlesOptions = loadParticlesOptions(this.#pluginManager, container, mainOptions.particles),
-      reduceDuplicates = particlesOptions.reduceDuplicates,
-      effectType = particlesOptions.effect.type,
-      shapeType = particlesOptions.shape.type;
-
-    this.effect = itemFromSingleOrMultiple(effectType, this.id, reduceDuplicates);
-    this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
-
-    const effectOptions = particlesOptions.effect,
-      shapeOptions = particlesOptions.shape;
-
-    if (overrideOptions) {
-      if (overrideOptions.effect) {
-        const overrideEffectType = overrideOptions.effect.type;
-
-        if (overrideEffectType && overrideEffectType !== this.effect) {
-          const effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
-
-          if (effect) {
-            this.effect = effect;
-          }
-        }
-
-        effectOptions.load(overrideOptions.effect);
-      }
-
-      if (overrideOptions.shape) {
-        const overrideShapeType = overrideOptions.shape.type;
-
-        if (overrideShapeType && overrideShapeType !== this.shape) {
-          const shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
-
-          if (shape) {
-            this.shape = shape;
-          }
-        }
-
-        shapeOptions.load(overrideOptions.shape);
-      }
-    }
-
-    if (this.effect === randomColorValue) {
-      const availableEffects = [...this.#container.effectDrawers.keys()];
-
-      this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
-    }
-
-    if (this.shape === randomColorValue) {
-      const availableShapes = [...this.#container.shapeDrawers.keys()];
-
-      this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
-    }
-
-    this.effectData = this.effect ? loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates) : undefined;
-    this.shapeData = this.shape ? loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates) : undefined;
-
-    particlesOptions.load(overrideOptions);
-
-    const effectData = this.effectData,
-      shapeData = this.shapeData;
-
-    if (effectData) {
-      particlesOptions.load(effectData.particles);
-    }
-
-    if (shapeData) {
-      particlesOptions.load(shapeData.particles);
-    }
-
-    this.effectClose = effectData?.close ?? particlesOptions.effect.close;
-    this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
-    this.options = particlesOptions;
+    this.options = resolveParticleOptions(this, container, this.#pluginManager, overrideOptions);
 
     container.retina.initParticle(this);
 
-    for (const updater of container.particleUpdaters) {
-      updater.preInit?.(this);
-    }
+    runUpdaterPreInit(container.particleUpdaters, this);
 
     /* position */
     this.bubble = {
@@ -675,42 +781,15 @@ export class Particle {
     this.zIndexFactor = this.position.z / container.zLayers;
     this.sides = 24;
 
-    let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
-
-    if (this.effect) {
-      effectDrawer = container.effectDrawers.get(this.effect);
-    }
-
-    if (effectDrawer?.loadEffect) {
-      effectDrawer.loadEffect(this);
-    }
-
-    if (this.shape) {
-      shapeDrawer = container.shapeDrawers.get(this.shape);
-    }
-
-    if (shapeDrawer?.loadShape) {
-      shapeDrawer.loadShape(this);
-    }
-
-    const sideCountFunc = shapeDrawer?.getSidesCount;
-
-    if (sideCountFunc) {
-      this.sides = sideCountFunc(this);
-    }
+    initParticleDrawers(this, container);
 
     this.spawning = false;
 
-    for (const updater of container.particleUpdaters) {
-      updater.init(this);
-    }
+    runUpdaterInit(container.particleUpdaters, this);
 
-    effectDrawer?.particleInit?.(container, this);
-    shapeDrawer?.particleInit?.(container, this);
+    runDrawerInit(container, this);
 
-    for (const plugin of container.particleCreatedPlugins) {
-      plugin.particleCreated?.(this);
-    }
+    runParticleCreatedPlugins(container, this);
   }
 
   /**
