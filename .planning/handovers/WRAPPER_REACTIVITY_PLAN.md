@@ -1,16 +1,22 @@
-# Wrapper Reactivity & Vue3 Docs Plan
+# Wrapper Reactivity & Vue3 Docs Plan — Enriched
+
+> **Status**: Planning document (ready for agent execution)
+> **Total wrappers in scope**: 6 core + ~15 extended alignment
+> **Previous version**: ~560 lines — this enriched version adds per-wrapper code analysis, type contracts, before/after code, and per-substep agent instructions.
+
+---
 
 ## Scope
 
 Implement reactive updates for wrapper components when `options`, `url`, or `theme` props change, and align Vue 3 guide docs with actual wrapper APIs.
 
 ### In scope
-- Wrappers: `vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`
-- Website docs: update all affected wrapper guide pages so behavior/docs match implemented v4 wrapper behavior (not only Vue 3).
-- Mandatory website set: `websites/website/docs/guides/vue3.md` + all 9 translations under `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md`.
-- Wrapper READMEs: update README files for all touched wrappers (`vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`) when behavior text is stale.
+- **Core wrappers**: `vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`
+- **Website docs**: update all affected wrapper guide pages so behavior/docs match implemented v4 wrapper behavior (not only Vue 3).
+- **Mandatory website set**: `websites/website/docs/guides/vue3.md` + all 9 translations under `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md`.
+- **Wrapper READMEs**: update README files for all touched wrappers (`vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`) when behavior text is stale.
 
-### Extended alignment scope (audited, excluding wordpress)
+### Extended alignment scope (audited, not core)
 - Also audited wrappers: `react`, `preact`, `svelte`, `stencil`, `lit`, `inferno`, `ember`, `riot`, `webcomponents`, `jquery`, `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti`, `angular-fireworks`.
 - These wrappers are included for **consistency fixes where clearly obsolete/misaligned behavior is found**.
 - `wordpress` is explicitly excluded from this plan.
@@ -29,14 +35,13 @@ This project is on **v4** with breaking changes vs v3.
 Mandatory rules for implementing agents:
 - **Do not rely on agent memory** for wrapper APIs or docs snippets.
 - **Read the repository code first** (current branch state) before any change.
-- Use tag **`3.9.1` only as a comparison baseline** to understand what changed from v3 to v4.
+- Use tag **`v3.9.1` only as a comparison baseline** to understand what changed from v3 to v4.
 - If memory and repository disagree, **repository wins**.
 
-Required comparison checkpoints (v4 vs `3.9.1`):
-- wrapper props/events currently exposed
-- engine init flow and provider/init gates
-- loaded callback naming and timing
-- docs examples that may still reflect v3 patterns
+**Critical finding from v3.9.1 diff**: The `wrappers/` directory does NOT exist in v3.9.1. All wrapper files are new in v4. There is no direct v3→v4 diff for wrapper files. The engine `Container.ts` was significantly refactored (`Canvas → CanvasManager`, `Particles → ParticlesManager`, new `ContainerParams`). Engine changes that affect wrappers:
+- `tsParticles.load()` returns `Container | undefined` (v4)
+- `Container` no longer has `loadTheme` (moved to optional plugin)
+- Engine init now requires explicit `tsParticles.init()` call
 
 ---
 
@@ -88,474 +93,1577 @@ This creates broken expectations and stale examples.
 
 ---
 
-## Implementation Strategy
+## `loadTheme` Typing Contract (from Engine + Plugin)
+
+From `plugins/themes/src/types.ts`:
+```ts
+export type ThemesContainer = Container & {
+  actualOptions: ThemesOptions;
+  currentTheme?: string;
+  loadTheme?: (name?: string) => Promise<void>;
+  // ...
+};
+```
+
+The `Container` class in `engine/src/Core/Container.ts` does NOT declare `loadTheme`. It is injected at runtime by `ThemesPluginInstance.init()` (line 55: `container.loadTheme = loadTheme`).
+
+**Safe invocation pattern (use in ALL wrappers):**
+```ts
+(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+```
+
+Note: The `as unknown as` double-cast is needed because `Container` and `ThemesContainer` are in different packages. Do NOT use global declaration merging — it causes cross-package type pollution.
+
+---
+
+## Status Overview
+
+| Wrapper | Current Behavior | Reload `id/options/url` | `theme` prop | Loaded Callback | Destroy on Teardown | Priority |
+|---------|-----------------|------------------------|-------------|-----------------|-------------------|----------|
+| **Vue 3** | Mount-only load via provider gate | **Missing** (`theme` prop exists but ignored) | Prop exists, never applied | Emits `particlesLoaded` (ok) | Yes (`onUnmounted`) | **HIGH** |
+| **Vue 2** | Mount-only load via `mounted` | **Missing** | **Missing** prop entirely | `particlesLoaded` prop (ok) | Yes (`beforeDestroy`) | **HIGH** |
+| **Angular** | `ngAfterViewInit` only, no `OnChanges` | **Missing** | **Missing** `@Input` prop | `EventEmitter` (ok, but `Container` not `Container\|undefined`) | Yes (`ngOnDestroy`) | **HIGH** |
+| **Solid** | `onMount` + `createResource`, one-shot | **Missing** (effect not tracked on props) | **Missing** prop | `particlesLoaded` fires (ok) | `onCleanup` | **HIGH** |
+| **Qwik** | `useVisibleTask$`, one-shot | **Missing** (no tracking) | **Missing** prop | `loaded` QRL fires (ok) | `cleanup` | **HIGH** |
+| **Astro** | Constructor load, one-shot | **Missing** (no observer) | **Missing** attribute | Global function call (ok) | No `disconnectedCallback` cleanup | **HIGH** |
+
+---
+
+## Current State: Per-Wrapper Code Analysis
+
+### Vue 3 (`wrappers/vue3/src/components/vue-particles.vue`) — 72 lines
+
+**Current code**:
+```vue
+<template>
+  <div :id="id" />
+</template>
+
+<script setup lang="ts">
+import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { useParticlesProvider } from "./particles-provider";
+
+export type IParticlesProps = ISourceOptions;
+
+let container: Container | undefined;
+
+const props = defineProps<{
+    id: string;
+    options?: IParticlesProps;
+    url?: string;
+    theme?: string;
+  }>(),
+  emit = defineEmits<{
+    (e: "particlesLoaded", container?: Container): void;
+  }>(),
+  provider = useParticlesProvider(),
+  isMounted = ref(false),
+  loadParticles = async () => {
+    container?.destroy();
+    container = await tsParticles.load({
+      id: props.id,
+      url: props.url,
+      options: props.options,
+    });
+    emit("particlesLoaded", container);
+  };
+
+onMounted(() => {
+  void nextTick(() => {
+    if (!props.id) {
+      throw new Error("Prop 'id' is required!");
+    }
+    isMounted.value = true;
+  });
+});
+
+onUnmounted(() => {
+  container?.destroy();
+  container = undefined;
+});
+
+watch(() => provider.loaded, loaded => {
+  if (loaded && isMounted.value) { void loadParticles(); }
+}, { immediate: true });
+
+watch(() => isMounted.value, mounted => {
+  if (mounted && provider.loaded) { void loadParticles(); }
+}, { immediate: true });
+</script>
+```
+
+**Current Props interface** (explicit via `defineProps`):
+```ts
+{
+  id: string;       // required
+  options?: ISourceOptions;
+  url?: string;
+  theme?: string;   // EXISTS but NEVER USED
+}
+```
+
+**Current Emits**:
+```ts
+{
+  (e: "particlesLoaded", container?: Container): void;
+}
+```
+
+**Provider**: `wrappers/vue3/src/components/particles-provider.ts` (92 lines)
+- Uses `globalThis.__tsparticles_vue3_init_state__` singleton
+- `initParticlesProvider()` calls `tsParticles.init()` after optional plugin registration
+- `useParticlesProvider()` returns `{ loaded: boolean }` via Vue `inject`
+
+**Package entry**: `wrappers/vue3/src/components/index.ts`
+- Exports: `VueParticles` (default), `IParticlesProviderContext`, `IParticlesProviderOptions`, `ParticlesPluginRegistrar`
+- Does NOT export `useParticlesProvider`
+
+**Gaps**:
+1. No watcher on `props.id` — changing id does nothing
+2. No watcher on `props.options` — changing options does nothing
+3. No watcher on `props.url` — changing url does nothing
+4. `theme` prop exists but is never applied via `loadTheme`
+5. `IParticlesProps` is `ISourceOptions` (wrong name — it shadows the props type)
+
+---
+
+### Vue 2 (`wrappers/vue2/src/Particles/vue-particles.vue`) — 62 lines
+
+**Current code**:
+```vue
+<template>
+  <div :id="id" />
+</template>
+
+<script lang="ts">
+import { Component, Prop } from "vue-property-decorator";
+import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import Vue from "vue";
+import { isParticlesInitialized, waitForParticlesInitialization } from "./event-bus";
+
+export type IParticlesProps = ISourceOptions;
+
+async function particlesInit(component: Particles): Promise<void> {
+  if (!component.id) {
+    throw new Error("Prop 'id' is required!");
+  }
+  await waitForParticlesInitialization();
+  if (!isParticlesInitialized()) {
+    throw new Error("...");
+  }
+  const cb = (container?: Container) => {
+    component.container = container;
+    if (component.container && component.particlesLoaded) {
+      component.particlesLoaded(component.container);
+    }
+  };
+  const container = await tsParticles.load({
+    id: component.id,
+    options: component.options ?? {},
+    url: component.url,
+  });
+  cb(container);
+}
+
+@Component
+export default class Particles extends Vue {
+  @Prop({ required: true }) readonly id!: string;
+  @Prop() readonly options?: IParticlesProps;
+  @Prop() readonly url?: string;
+  @Prop() readonly particlesLoaded?: (container: Container) => void;
+
+  container?: Container;
+
+  mounted(): void {
+    this.$nextTick(() => { void particlesInit(this); });
+  }
+
+  beforeDestroy(): void {
+    this.container?.destroy();
+  }
+}
+</script>
+```
+
+**Current props**: `id` (required), `options?`, `url?`, `particlesLoaded?`
+**Missing `theme` prop**: not declared
+**Gaps**:
+1. No `theme` prop
+2. No watchers on `id`, `options`, `url`
+3. `export type IParticlesProps = ISourceOptions` — this creates `TS2528` (duplicate default export) in SFC compiler context because the component itself is the default export. Must be removed or inlined.
+4. `particlesLoaded` callback type is `(container: Container) => void` but `tsParticles.load()` returns `Container | undefined` — type mismatch
+
+**Event bus** (`wrappers/vue2/src/Particles/event-bus.ts`):
+- `ensureParticlesInitialization(init?)` — runs optional init callback, sets `initialized = true`
+- Does NOT call `tsParticles.init()` — this is a v3→v4 gap! In v4, `tsParticles.init()` must be called after plugin registration
+
+---
+
+### Angular (`wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`) — 55 lines
+
+**Current code**:
+```ts
+import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID } from "@angular/core";
+import { isPlatformServer } from "@angular/common";
+import { tsParticles } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
+import { IParticlesProps } from "./ng-particles.module";
+import { NgParticlesService } from "./ng-particles.service";
+
+@Component({
+  selector: "ngx-particles",
+  standalone: false,
+  template: '<div [id]="id"></div>',
+})
+export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
+  @Input() options?: IParticlesProps;
+  @Input() url?: string;
+  @Input() id = "tsparticles";
+  @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
+
+  #container?: Container;
+  #loadingPromise?: Promise<void>;
+  readonly #particlesService: NgParticlesService;
+
+  constructor(
+    @Inject(PLATFORM_ID) protected platformId: string,
+    particlesService: NgParticlesService,
+  ) {
+    this.#particlesService = particlesService;
+  }
+
+  public ngAfterViewInit(): void {
+    if (isPlatformServer(this.platformId)) { return; }
+    this.#loadingPromise = this.#loadParticles();
+  }
+
+  public ngOnDestroy(): void {
+    this.#container?.destroy();
+    this.#loadingPromise = undefined;
+  }
+
+  async #loadParticles(): Promise<void> {
+    await this.#particlesService.waitForInitialization();
+    this.#particlesService.assertInitialized();
+    this.#container?.destroy();
+    const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+    this.#container = container;
+    this.particlesLoaded.emit(container);  // BUG: emits Container | undefined as Container
+  }
+}
+```
+
+**Current `@Input()`**: `options?`, `url?`, `id` (default `"tsparticles"`)
+**Missing `@Input()`**: `theme?`
+**Missing interface**: `OnChanges` — no `ngOnChanges` implemented
+**Gaps**:
+1. No `ngOnChanges` — prop changes silently ignored
+2. No `theme` input
+3. `particlesLoaded` emitter is typed `EventEmitter<Container>` but should be `EventEmitter<Container | undefined>` (or emit guard)
+4. Service (`ng-particles.service.ts`) does NOT call `tsParticles.init()` — v4 gap
+
+**Service** (`ng-particles.service.ts`):
+```ts
+public async init(particlesInit?: ParticlesPluginRegistrar): Promise<void> {
+  // calls particlesInit(tsParticles)
+  // sets initialized = true
+  // Does NOT call tsParticles.init() — MISSING in v4
+}
+```
+
+---
+
+### Solid (`wrappers/solid/src/Particles.tsx`) — 53 lines
+
+**Current code**:
+```tsx
+import { tsParticles } from "@tsparticles/engine";
+import { createEffect, createResource, JSX, mergeProps, on, onCleanup, onMount } from "solid-js";
+import type { IParticlesProps } from "./IParticlesProps";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const Particles = (props: IParticlesProps): JSX.Element => {
+  const config = mergeProps({ id: "tsparticles" }, props);
+
+  onMount(() => {
+    const [container] = createResource(
+      () => ({
+        id: config.id,
+        options: config.params ?? config.options ?? {},
+        url: config.url,
+      }),
+      async data => {
+        await waitForParticlesEngineInitialization();
+        if (!isParticlesEngineInitialized()) {
+          throw new Error("...");
+        }
+        return tsParticles.load(data);
+      },
+    );
+
+    createEffect(
+      on(container, container => {
+        if (!container) return;
+        config.particlesLoaded?.(container);
+        onCleanup(() => container.destroy());
+      }),
+    );
+  });
+
+  return (
+    <div class={config.class} id={config.id}>
+      <canvas class={config.canvasClass} style={{ ...config.style, width: config.width, height: config.height }} />
+    </div>
+  );
+};
+```
+
+**Current props** (`IParticlesProps.ts`):
+```ts
+export interface IParticlesProps {
+  id?: string;
+  width?: string;
+  height?: string;
+  options?: ISourceOptions;
+  url?: string;
+  params?: ISourceOptions;
+  style?: JSX.CSSProperties;
+  class?: string;
+  canvasClass?: string;
+  container?: { current: Container };
+  particlesLoaded?: (container: Container) => Promise<void>;
+}
+```
+
+**Gaps**:
+1. `onMount` is one-shot — no reactivity to prop changes
+2. `createResource` is not keyed on `props.id`, `props.options`, `props.url` — no reload
+3. No `theme` prop in `IParticlesProps`
+4. `particlesLoaded` type is `(container: Container) => Promise<void>` should be `(container?: Container) => Promise<void>`
+5. Cleanup via `onCleanup` inside `createEffect` only fires when container resource changes, not on component unmount proper. Need explicit `onCleanup` at top level.
+
+---
+
+### Qwik (`wrappers/qwik/src/components/particles/particles.tsx`) — 63 lines
+
+**Current code**:
+```tsx
+import { NoSerialize, component$, noSerialize, useVisibleTask$ } from "@builder.io/qwik";
+import { Container, tsParticles } from "@tsparticles/engine";
+import type { IParticlesProps } from "./IParticlesProps";
+import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
+
+const Particles = component$<IParticlesProps>(props => {
+  const librarySig: { value: NoSerialize<Container | undefined> } = { value: undefined };
+  const id = props.id ?? "tsparticles";
+  const { class: className, canvasClassName, height, width, loaded } = props;
+
+  useVisibleTask$(function Initializer({ cleanup }) {
+    void (async () => {
+      await waitForParticlesEngineInitialization();
+      if (!isParticlesEngineInitialized()) {
+        throw new Error("...");
+      }
+      const container = await tsParticles.load({
+        url: props.url, id, options: props.options ?? props.params,
+      });
+      if (props.container) {
+        props.container.value = noSerialize(container);
+      }
+      librarySig.value = noSerialize(container);
+      if (loaded) {
+        await loaded(container);
+      }
+    })();
+
+    cleanup(() => {
+      if (librarySig.value) {
+        librarySig.value.destroy();
+        librarySig.value = undefined;
+      }
+    });
+  });
+
+  // render...
+});
+```
+
+**Current props** (`IParticlesProps.ts`):
+```ts
+export interface IParticlesProps {
+  id?: string;
+  width?: number | string;
+  height?: number | string;
+  options?: ISourceOptions;
+  url?: string;
+  params?: ISourceOptions;
+  style?: CSSProperties;
+  class?: ClassList | Signal<ClassList>;
+  canvasClassName?: ClassList | Signal<ClassList>;
+  container?: Signal<NoSerialize<Container | undefined>>;
+  loaded?: QRL<(container?: Container) => Promise<void>>;
+}
+```
+
+**Gaps**:
+1. `useVisibleTask$` runs once when element becomes visible — does NOT re-run on prop changes
+2. No `theme` prop in `IParticlesProps`
+3. No tracking mechanism for `props.id`, `props.options`, `props.url` changes
+4. In Qwik, signals must be tracked explicitly. Need `useVisibleTask$` with tracker function or `$track` to observe prop changes
+
+---
+
+### Astro (`wrappers/astro/src/Particles.astro`) — 79 lines
+
+**Current code**:
+```astro
+---
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+
+export interface IParticlesProps {
+  id: string;
+  loaded?: string;
+  options?: ISourceOptions;
+  url?: string;
+}
+
+const { id, loaded, options, url } = Astro.props as IParticlesProps;
+---
+
+<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url} data-loaded={loaded}>
+  <canvas></canvas>
+</astro-particles>
+
+<script>
+  import { tsParticles } from "@tsparticles/engine";
+
+  class AstroParticles extends HTMLElement {
+    constructor() {
+      super();
+      (async () => {
+        const { isParticlesEngineInitialized, waitForParticlesEngineInitialization }
+          = await import("@tsparticles/astro");
+
+        await waitForParticlesEngineInitialization();
+        if (!isParticlesEngineInitialized()) {
+          for (let i = 0; i < 20 && !isParticlesEngineInitialized(); i++) {
+            await new Promise((resolve) => setTimeout(resolve, 0));
+            await waitForParticlesEngineInitialization();
+          }
+        }
+        if (!isParticlesEngineInitialized()) {
+          throw new Error("...");
+        }
+
+        let container;
+        if (this.dataset.url) {
+          container = await tsParticles.load({ id: this.dataset.id, url: this.dataset.url });
+        } else if (this.dataset.options) {
+          container = await tsParticles.load({ id: this.dataset.id, options: JSON.parse(this.dataset.options) });
+        }
+
+        if (this.dataset.loaded && this.dataset.loaded in globalStore) {
+          const loadedFn = globalStore[this.dataset.loaded];
+          if (loadedFn instanceof Function) { loadedFn(container); }
+        }
+      })();
+    }
+  }
+
+  customElements.define("astro-particles", AstroParticles);
+</script>
+```
+
+**Gaps**:
+1. Constructor-only load — no `connectedCallback` or `attributeChangedCallback`
+2. No `observedAttributes` — Astro particles are rendered via data attributes but changes are not observed
+3. No `disconnectedCallback` — no cleanup when element is removed from DOM
+4. No `theme` support (no `data-theme` attribute, no `loadTheme` call)
+5. `dataset.options` is a JSON string — must re-parse on every attribute change
+6. Async race: multiple constructor calls could overlap (the custom element constructor runs once, but attribute changes later have no handler)
+7. The `globalStore` pattern for `loaded` callback is fragile — uses `window` global
+
+---
+
+## Extended Wrappers: Current State (S8 scope)
+
+### Inferno (`wrappers/inferno/src/Particles.tsx`) — ALREADY has reload!
+
+**Current state** (actually already has reactive reload via `componentDidUpdate`):
+```tsx
+componentDidUpdate(prevProps: IParticlesProps) {
+  if (
+    prevProps.id !== this.props.id ||
+    prevProps.url !== this.props.url ||
+    prevProps.options !== this.props.options
+  ) {
+    void this.reloadContainer();
+  }
+}
+```
+
+**But**: No `theme` prop. `loaded` callback exists in props but is NOT called after load (only `particlesLoaded` — actually neither is called in current code!). `loadContainer()` does NOT fire any callback.
+
+**Gaps**:
+1. No `loaded`/`particlesLoaded` callback invocation after `tsParticles.load`
+2. No `theme` prop
+3. No safe `loadTheme` apply
+
+**Props type** (`IParticlesProps.ts`):
+```ts
+export interface IParticlesProps {
+  id?: string; width?: string; height?: string;
+  options?: ISourceOptions; url?: string; params?: ISourceOptions;
+  className?: string; canvasClassName?: string; style?: Record<string, unknown>;
+  container?: { current?: Container };
+  loaded?: (container?: Container) => Promise<void> | void;
+  particlesLoaded?: (container?: Container) => Promise<void> | void;
+}
+```
+
+---
+
+### Lit (`wrappers/lit/src/lit-tsparticles.ts`) — ALREADY has reload!
+
+**Current state** (reload via `update()` lifecycle):
+```ts
+update(changedProperties: PropertyValues) {
+  super.update(changedProperties);
+  void this.#loadParticles(++this.#renderId);
+}
+
+async #loadParticles(currentRenderId: number): Promise<void> {
+  // ... destroy old, load new, check renderId for stale race
+}
+```
+
+**Gaps**:
+1. No `theme` property
+2. No `loadTheme` invocation
+3. No loaded notification event/callback (container assigned but no event fired)
+
+**Current properties**: `id`, `options`, `url`
+**Missing**: `theme`, loaded notification
+
+---
+
+### Riot (`wrappers/riot/src/riot-particles.riot`) — Mount-only
+
+**Current state**:
+```riot
+export default {
+  async onMounted(props) {
+    // ... one-shot load
+  }
+}
+```
+
+**Gaps**:
+1. No reactivity (Riot doesn't have built-in watchers; would need manual attribute observer)
+2. No `theme` prop
+3. `particlesLoaded` callback uses `tsParticles.dom().find(...)` for old container cleanup (v3 pattern)
+4. Teardown: no explicit container destroy on unmount
+
+**Props**: `id`, `options`, `url`, `particlesLoaded`
+
+---
+
+### WebComponents (`wrappers/webcomponents/src/Particles.ts`) — Partial reload
+
+**Current state** (has observers but incomplete):
+```ts
+static get observedAttributes(): string[] {
+  return ["url", "options"];
+}
+
+// Has setters: this.url, this.options — but they don't reload!
+// Missing: "id" in observedAttributes
+// Missing: theme attribute
+```
+
+**Gaps**:
+1. `id` changes are NOT observed (missing from `observedAttributes`)
+2. No `theme` attribute support
+3. `attributeChangedCallback` stores values but doesn't trigger reload directly for all paths — setters DO trigger reload via `#loadParticles`, but attribute changes don't always propagate
+4. Constructor dispatches `particlesInit` event with engine (but that event doesn't exist in v4)
+5. `connectedCallback` calls `#loadParticles` — reload works for initial render
+
+---
+
+### React (`wrappers/react/lib/Particles.tsx`) — Already reactive
+
+**Current state** (reload via `useEffect` dependencies):
+```tsx
+useEffect(() => {
+  if (!loaded) return;
+  tsParticles.load({ id: particleId, url, options }).then(c => { /* ... */ });
+  return () => { containerRef.current?.destroy(); };
+}, [id, loaded, options, particlesLoaded, url]);
+```
+
+**Gaps**:
+1. No `theme` prop or `loadTheme` support
+2. `particlesLoaded` type in `IParticlesProps.ts` is `(container?: Container) => Promise<void> | void` — ok, but docs/README props table is incomplete (missing `particlesLoaded` entry)
+
+---
 
 ## Canonical Wrapper Contract (Target Behavior)
 
-All wrappers should align to this behavior model (framework syntax may differ):
+All wrappers must implement this behavior (framework syntax differs):
 
-1. **Init contract**
-   - Engine/plugin init is triggered once at app/bootstrap level.
-   - Wrapper components wait for init completion before loading particles.
+### 1. Init contract
+- Engine/plugin init is triggered once at app/bootstrap level.
+- Wrapper components wait for init completion before loading particles.
 
-2. **Reload contract**
-   - Changing `id`, `options`, or `url` causes destroy + reload.
-   - Reload path is deterministic and idempotent.
+### 2. Reactivity contract
+- `id` change => destroy + reload
+- `options` change => destroy + reload
+- `url` change => destroy + reload
+- Reload path is deterministic and idempotent
 
-3. **Theme contract**
-   - `theme` prop may exist in wrappers.
-   - `loadTheme` is optional runtime capability requiring `@tsparticles/plugin-themes`.
-   - Without plugin, theme updates are safe no-op and documented as such.
+### 3. Theme contract
+- `theme` prop/attribute exists in wrappers.
+- `loadTheme` is optional runtime capability requiring `@tsparticles/plugin-themes`.
+- Without plugin, `theme` updates are safe no-op.
+- Invocation: `(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme)`
 
-4. **Loaded callback contract**
-   - Event/callback (`particlesLoaded` / `loaded` / aliases by framework) is emitted after successful `tsParticles.load` resolution.
+### 4. Loaded callback contract
+- Event/callback (`particlesLoaded` / `loaded` / framework equivalent) is emitted after successful `tsParticles.load` resolution.
+- Callback receives `Container | undefined`.
 
-5. **Destroy contract**
-   - On component teardown, wrapper calls `container.destroy()`.
+### 5. Destroy contract
+- On component teardown, wrapper calls `container.destroy()`.
+- No orphan animations remain.
 
-## Execution Steps + Status
+---
 
-| Step | Scope                            | Deliverable                                                                         | Status  |
-|------|----------------------------------|-------------------------------------------------------------------------------------|---------|
-| S1   | Baseline audit                   | Confirm current behavior in all 6 wrappers + current docs drift list                | Pending |
-| S1a  | v3-v4 diff audit                 | Compare current wrappers/docs with tag `3.9.1` and record breaking deltas           | Pending |
-| S2   | Vue 3 wrapper                    | Reactive reload on `options`/`url` + safe `theme` apply                             | Pending |
-| S3   | Vue 2 wrapper                    | Reactive reload on `options`/`url` + safe `theme` apply                             | Pending |
-| S4   | Angular wrapper                  | Reactive reload via `OnChanges` + safe `theme` apply                                | Pending |
-| S5   | Solid wrapper                    | Reactive reload via effects + safe `theme` apply                                    | Pending |
-| S6   | Qwik wrapper                     | Reactive reload in `useVisibleTask$` + safe `theme` apply                           | Pending |
-| S7   | Astro wrapper                    | Attribute-driven reload + safe `theme` apply + race guard                           | Pending |
-| S8   | Extended wrapper alignment fixes | Fix obsolete code paths and non-aligned behavior found in audit (non-core wrappers) | Pending |
-| S9   | Wrapper docs/README              | Document optional theme plugin + no-op behavior + reload contract                   | Pending |
-| S10  | Vue 3 EN guide                   | Remove fake `init` API docs and align theme/reactivity docs                         | Pending |
-| S11  | 9 translations                   | Mirror Vue 3 guide changes in all required locales                                  | Pending |
-| S12  | Validation                       | Builds, smoke checks, stale-pattern checks                                          | Pending |
-| S13  | Final handoff                    | Changelog of touched files + behavior deltas + residual risks                       | Pending |
+## Implementation Steps + Status
 
-Status values allowed:
-- `Pending`: not started
-- `In Progress`: currently being implemented
-- `Blocked`: waiting on decision/fix/dependency
-- `Done`: implemented and validated
+| Step | Scope | Deliverable | Status |
+|------|-------|-------------|--------|
+| S1 | Baseline audit | Current behavior in all 6 wrappers + docs drift list | **Ready** (in this doc) |
+| S1a | v3-v4 diff audit | Wrappers dir is entirely post-v3.9.1; engine Container.ts refactored (Canvas→CanvasManager). No direct wrapper diff possible. Key finding: wrappers are v4-only. | **Ready** |
+| S2 | Vue 3 wrapper | Reactive reload on `options`/`url` + safe `theme` apply | Pending |
+| S3 | Vue 2 wrapper | Reactive reload + `theme` prop + safe `theme` apply | Pending |
+| S4 | Angular wrapper | Reactive reload via `OnChanges` + `theme` input + safe `theme` apply | Pending |
+| S5 | Solid wrapper | Reactive reload via effects + `theme` prop + safe `theme` apply | Pending |
+| S6 | Qwik wrapper | Reactive reload via tracked `useVisibleTask$` + `theme` prop + safe `theme` apply | Pending |
+| S7 | Astro wrapper | Attribute-driven reload + `theme` attribute + safe `theme` apply + race guard | Pending |
+| S8 | Extended wrapper alignment | Inferno (callback gap), Lit (loaded notify), Riot/WebComponents alignment fixes, React README | Pending |
+| S9 | Wrapper docs/README | Document optional theme plugin + no-op + reload contract | Pending |
+| S10 | Vue 3 EN guide | Remove fake `init` API, align theme/reactivity docs | Pending |
+| S11 | 9 translations | Mirror EN changes | Pending |
+| S12 | Validation | Builds, smoke checks, stale-pattern checks | Pending |
+| S13 | Final handoff | Changelog + behavior deltas + residual risks | Pending |
 
-Recommended execution order:
-1. S1 baseline audit
-2. S1a v3-v4 diff audit against tag `3.9.1`
-3. S2-S7 wrappers (can run in parallel after S1/S1a)
-4. S8 extended wrapper alignment fixes
-5. S9 wrapper docs/readmes
-6. S10 English guide
-7. S11 translations
-8. S12 validation
-9. S13 handoff
+---
 
-## Detailed Sub-steps (1a, 1b, 2a...)
+## Per-Wrapper Implementation Details
 
-Use this checklist for execution tracking by agents.
+---
 
-### 1a-1d Baseline + v3/v4 audit
-- **1a:** audit core wrappers (`vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`) for init/reload/theme/loaded/destroy behavior
-- **1b:** audit extended wrappers (excluding wordpress) for obvious stale behavior/docs mismatches
-- **1c:** diff current branch vs tag `3.9.1` for wrapper API/lifecycle changes and stale docs patterns
-- **1d:** produce mismatch matrix (code vs docs) with priority labels (High/Medium/Low)
+### S2 — Vue 3 Implementation
 
-### 2a-2d Vue 3
-- **2a:** implement reload on `id`/`options`/`url`
-- **2b:** implement safe optional `theme` apply (`loadTheme` plugin-dependent)
-- **2c:** ensure loaded event emitted after `tsParticles.load` resolution
-- **2d:** ensure teardown destroys container
+**Files to modify**:
+- `wrappers/vue3/src/components/vue-particles.vue` (main component)
+- `wrappers/vue3/src/components/index.ts` (exports — possibly add `IParticlesProps` type export)
 
-### 3a-3d Vue 2
-- **3a:** implement reload on `id`/`options`/`url`
-- **3b:** implement safe optional `theme` apply
-- **3c:** guard callback typing for `Container | undefined`
-- **3d:** ensure teardown destroys container
+**Changes needed**:
 
-### 4a-4d Angular
-- **4a:** implement reactive reload via `OnChanges` on `id`/`options`/`url`
-- **4b:** implement safe optional `theme` apply
-- **4c:** ensure loaded emit timing is post-load
-- **4d:** ensure destroy lifecycle always tears down container
-
-### 5a-5c Solid
-- **5a:** implement reactive reload on `id`/`options`/`url`
-- **5b:** implement safe optional `theme` apply
-- **5c:** verify loaded + destroy lifecycle contract
-
-### 6a-6c Qwik
-- **6a:** track `id`/`options`/`url` and reload accordingly
-- **6b:** implement safe optional `theme` apply
-- **6c:** verify loaded + destroy lifecycle contract
-
-### 7a-7d Astro
-- **7a:** observe attributes for `id`/`options`/`url` and reload
-- **7b:** implement safe optional `theme` apply
-- **7c:** keep stale-load race protection (`loadId`-style)
-- **7d:** ensure disconnect lifecycle destroys container
-
-### 8a-8e Extended wrapper alignment (excluding wordpress)
-- **8a:** Inferno: fix loaded callback gap
-- **8b:** Lit: add/align loaded notification behavior
-- **8c:** Riot/WebComponents: align reload + teardown semantics where low-risk
-- **8d:** React README mismatch fix (`particlesLoaded` docs alignment)
-- **8e:** verify delegated wrappers (`nextjs`, `nuxt2`, `nuxt3`, `nuxt4`) after upstream fixes
-
-### 9a-9c Wrapper docs/readmes
-- **9a:** update touched wrapper READMEs with canonical lifecycle contract
-- **9b:** update touched website guides (excluding wordpress)
-- **9c:** consistency pass: README vs website vs code must match
-
-### 10a-10c Vue 3 EN guide
-- **10a:** remove fake `:init` / `@particles-init` / `particlesInit` usage
-- **10b:** document plugin-dependent `theme` behavior + safe no-op without plugin
-- **10c:** align API/event table with real wrapper behavior
-
-### 11a-11c Vue 3 translations
-- **11a:** mirror EN structure changes in all 9 locales
-- **11b:** mirror EN code example changes in all 9 locales
-- **11c:** translation markdown sanity pass (no broken code blocks)
-
-### 12a-12d Validation
-- **12a:** build all affected wrappers
-- **12b:** smoke test lifecycle contract (reload/theme/loaded/destroy)
-- **12c:** stale-pattern scan (`:init`, `@particles-init`, stale `particlesInit`)
-- **12d:** docs consistency scan across README + website
-
-### 13a-13b Final handoff
-- **13a:** final per-wrapper behavior matrix (before/after)
-- **13b:** residual risks, deferred items, and follow-up proposals
-
-## 1) Reactivity Pattern (All Wrappers)
-
-Desired behavior:
-- `id` change -> destroy old container -> reload with new id
-- `options` change -> destroy old container -> reload with new options
-- `url` change -> destroy old container -> reload from new URL
-- `theme` change -> call optional `loadTheme` on existing container (no reload)
-
-Mandatory alignment rule:
-- All wrappers in scope must implement the same reload contract for `options`/`url`.
-- Any wrapper that cannot meet this contract must be treated as a blocker, not deferred silently.
-
-Ordering safeguards:
-- destroy previous container before each reload
-- avoid emitting loaded callback with `undefined`
-- on unmount/destroy, always clean current container
-
-## 2) `loadTheme` Typing Strategy
-
-Use local type assertion where called (recommended for this phase):
+#### 2a: Add watchers for `id`, `options`, `url` → reload
 
 ```ts
-(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme)
+// Add AFTER existing setup code:
+watch(() => props.id, () => {
+  if (provider.loaded && isMounted.value) { void loadParticles(); }
+});
+
+watch(() => props.options, () => {
+  if (provider.loaded && isMounted.value) { void loadParticles(); }
+}, { deep: true });  // deep watch needed for object equality
+
+watch(() => props.url, () => {
+  if (provider.loaded && isMounted.value) { void loadParticles(); }
+});
 ```
 
-Rationale:
-- avoids unsafe global declaration merging in a cross-package change
-- explicit at call site; no hidden type side effects
-- works uniformly across Angular/Vue/Solid/Qwik/Astro
+**Risk**: `{ deep: true }` on `options` could fire frequently. Consider `{ deep: false }` with structured clone comparison, or rely on the reference changing.
 
-## 3) Docs Strategy
+**Risk**: Initial double load — the existing watchers for `provider.loaded` and `isMounted` already trigger `loadParticles()` once on mount. Adding `options`/`url` watchers with `immediate: false` (default) avoids double-load at startup.
 
-For Vue 3 guide:
-- remove nonexistent component-level init section
-- remove `:init` and `@particles-init` from examples and API table
-- keep engine init guidance in global/provider sections only
-- document two valid theme approaches:
-  - reactive options updates
-  - plugin-based `theme` switching (`@tsparticles/plugin-themes`)
+#### 2b: Add watcher for `theme` → safe `loadTheme`
 
-For translations:
-- mirror structure changes and code changes first
-- preserve translated prose where possible
-- ensure no stale `particlesInit` snippets remain in Vue 3 guide translations
+```ts
+watch(() => props.theme, (newTheme) => {
+  if (!container) return;
+  (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+});
+```
 
-Cross-wrapper documentation requirement:
-- In every touched wrapper README/doc page, explicitly state:
-  - `theme` support depends on optional `@tsparticles/plugin-themes`
-  - if plugin is not loaded, `theme` updates are intentionally ignored (safe no-op)
-  - `options`/`url` updates trigger container reload
+No `immediate: true` — on initial load, `theme` is not applied. The initial load should apply the theme if provided. Could do:
+```ts
+watch(() => props.theme, (newTheme) => {
+  if (!container) return;
+  (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+});
+// Apply initial theme after load:
+const loadParticles = async () => {
+  container?.destroy();
+  container = await tsParticles.load({ id: props.id, url: props.url, options: props.options });
+  // Apply theme if provided after initial load
+  if (container && props.theme) {
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
+  }
+  emit("particlesLoaded", container);
+};
+```
 
----
+#### 2c: Fix `IParticlesProps` naming conflict
 
-## Wrapper-by-Wrapper Change Plan
+Current: `export type IParticlesProps = ISourceOptions;` — this shadows the actual props type.
 
-## Step Details (Agent-Oriented)
+Fix: Remove this line. The `defineProps` already defines the type correctly. If users need the type for external use, export it differently.
 
-### S1 - Baseline audit
-- confirm current reload behavior for `options`/`url` in each wrapper
-- confirm whether `theme` prop exists and how it behaves
-- collect exact stale Vue 3 doc references (`:init`, `@particles-init`, `particlesInit`)
+#### 2d: Ensure `particlesLoaded` guard for `Container | undefined`
 
-### S1a - v3-v4 diff audit (tag `3.9.1`)
-- compare wrappers/docs between current branch and `3.9.1`
-- extract concrete breaking changes that impact wrappers/docs behavior
-- write a short "do not use v3 patterns" checklist for implementers
+Already emitting `container` which could be `undefined` — the emit signature already says `container?: Container`. This is correct.
 
-## Wrapper Audit Snapshot (excluding wordpress)
-
-This snapshot comes from repository code inspection and is the baseline for S8 prioritization.
-
-### High-priority misalignments (fix in this initiative)
-- `angular`: no reactive reload on input changes (`id/options/url`), no `theme` support
-- `vue2`: mount-only load, no reactive reload, no `theme` support
-- `vue3`: no reload on `id/options/url`; `theme` prop exists but not applied
-- `qwik`: no tracked reload for `id/options/url`; no `theme` support
-- `astro`: one-shot load behavior; missing reactive reload and theme apply
-- `inferno`: loaded callbacks documented in props but not invoked in component
-- `lit`: loaded callback/event gap (reload exists but loaded notification missing)
-
-### Medium-priority misalignments (fix if low-risk in same PR series)
-- `riot`: mount-only behavior, teardown handling incomplete
-- `webcomponents`: partial reload behavior (`id` handling not aligned)
-- `react` README mismatch (code supports `particlesLoaded`, docs table incomplete)
-
-### Delegated/adapter wrappers (follow upstream wrapper behavior)
-- `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`: mostly wrappers around React/Vue wrappers; verify docs consistency and delegated behavior after core fixes
-
-### Specialized wrappers (different lifecycle model)
-- `angular-confetti`, `angular-fireworks`, `jquery`: not pure prop-driven "Particles component" contract; keep out of strict reload-contract enforcement unless explicitly expanded later
-
-### S2 - Vue 3 wrapper
-- file: `wrappers/vue3/src/components/vue-particles.vue`
-- implement watchers for `options`/`url` => reload
-- implement safe optional `loadTheme`
-
-### S3 - Vue 2 wrapper
-- file: `wrappers/vue2/src/Particles/vue-particles.vue`
-- implement watchers for `options`/`url` => reload
-- implement safe optional `loadTheme`
-- guard strict callback types against `Container | undefined`
-
-### S4 - Angular wrapper
-- file: `wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`
-- implement/extend `OnChanges` for reload behavior
-- implement safe optional `loadTheme`
-
-### S5 - Solid wrapper
-- files: `wrappers/solid/src/Particles.tsx`, `wrappers/solid/src/IParticlesProps.ts`
-- reactive reload for `options`/`url`
-- safe optional `loadTheme`
-
-### S6 - Qwik wrapper
-- files: `wrappers/qwik/src/components/particles/particles.tsx`, `wrappers/qwik/src/components/particles/IParticlesProps.ts`
-- track `options`/`url` for reload
-- track `theme` for safe optional `loadTheme`
-
-### S7 - Astro wrapper
-- file: `wrappers/astro/src/Particles.astro`
-- attribute observers for options/url/theme
-- reload on options/url
-- safe `theme` apply + stale-load race guard
-
-### S8 - Wrapper alignment fixes
-- patch wrapper-specific obsolete code discovered in S1/S1a
-- align event timing (`loaded` fired after load resolution)
-- align teardown cleanup (`destroy()` always called)
-- apply low-risk fixes for audited non-core wrappers where behavior/docs are clearly stale
-
-S8 target set (excluding wordpress):
-- `inferno`, `lit`, `riot`, `webcomponents`, and README alignment for `react`
-- validate delegated wrappers (`nextjs`, `nuxt2`, `nuxt3`, `nuxt4`) after core wrapper fixes
-
-### S9 - Wrapper docs/readmes
-- required messaging in each touched doc/readme:
-  - `theme` depends on `@tsparticles/plugin-themes`
-  - missing plugin => safe no-op for `theme`
-  - `id`/`options`/`url` changes reload particles
-  - loaded callback/event fires after `tsParticles.load`
-  - component destroy triggers container destroy
-  - website docs and wrapper README must be aligned (same behavior contract, framework-specific syntax only)
-
-### S10 - Vue 3 EN guide
-- file: `websites/website/docs/guides/vue3.md`
-- remove fake component init APIs
-- align examples/events/API table with actual wrapper capabilities
-
-### S11 - Vue 3 translations
-- files: `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md`
-- mirror EN structural/code changes (mandatory)
-
-### S12 - Validation
-- run affected wrapper builds
-- smoke-check runtime behavior (`options`/`url` reload, `theme` with/without plugin)
-- verify no stale Vue 3 guide patterns remain
-
-### S13 - Final handoff
-- provide concise implementation report with:
-  - touched files
-  - behavior change matrix per wrapper
-  - docs updated list
-  - known caveats or follow-ups
-
-## Vue 3 (`wrappers/vue3/src/components/vue-particles.vue`)
-- add watchers for `options` and `url` -> `loadParticles()`
-- add watcher for `theme` -> safe `loadTheme` call
-- preserve provider init gate + mount gate
-
-Risk:
-- duplicate initial loads due to watcher/immediate interactions
-
-Mitigation:
-- keep mount/provider checks as single source of initial load trigger
-
-## Vue 2 (`wrappers/vue2/src/Particles/vue-particles.vue`)
-- add `theme` prop
-- add `@Watch("options")` + `@Watch("url")` -> reload method
-- add `@Watch("theme")` -> safe `loadTheme`
-- ensure loaded callback fires only when container exists
-
-Risk:
-- class-based SFC export/type quirks (`TS2528`)
-
-Mitigation:
-- avoid extra module exports in SFC script if compiler complains
-
-## Angular (`wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`)
-- implement/extend `OnChanges`
-- on `options`/`url` changes -> reload
-- on `theme` changes -> safe `loadTheme`
-- emit loaded only when container exists
-
-Risk:
-- `ngOnChanges` firing before view init
-
-Mitigation:
-- guard for server platform + rely on existing init flow; keep load routine idempotent
-
-## Solid (`wrappers/solid/src/Particles.tsx`, `wrappers/solid/src/IParticlesProps.ts`)
-- use reactive effect for reload based on `options`/`url`
-- effect for `theme` safe apply
-- add `theme?: string` to props type if missing
-
-Risk:
-- effect loops / extra reloads
-
-Mitigation:
-- scope tracked dependencies explicitly
-
-## Qwik (`wrappers/qwik/src/components/particles/particles.tsx`, `IParticlesProps.ts`)
-- track `props.options`, `props.url`, `props.theme` in `useVisibleTask$`
-- reload on `options`/`url`
-- apply safe `loadTheme` after load
-- add `theme?: string` to props type if missing
-
-Risk:
-- cleanup/recreate race with async load
-
-Mitigation:
-- destroy previous container first and keep cleanup robust
-
-## Astro (`wrappers/astro/src/Particles.astro`)
-- observe `data-options`, `data-url`, `data-theme`
-- reload on options/url attribute changes
-- safe `loadTheme` on theme changes
-- keep custom element definition idempotent
-
-Risk:
-- concurrent async loads causing stale container assignment
-
-Mitigation:
-- use monotonic load token (`loadId`) and discard stale completions
+**Verification**:
+- `pnpm --filter @tsparticles/vue3 build`
+- Manual smoke: change options at runtime, verify particles reload
+- Manual smoke: change theme prop with and without `@tsparticles/plugin-themes`
 
 ---
 
-## Docs Change Checklist (Vue 3)
+### S3 — Vue 2 Implementation
 
-Must be true after edits in each of 10 files (EN + 9 translations):
-- no `:init` occurrences
-- no `@particles-init` occurrences
-- no component-level `particlesInit` snippets
-- API table does not list `init`
-- API table includes `theme` prop behavior note
-- theme section explains optional plugin requirement
+**Files to modify**:
+- `wrappers/vue2/src/Particles/vue-particles.vue`
+- `wrappers/vue2/src/Particles/event-bus.ts` (add `tsParticles.init()` call)
 
-## Docs/README Checklist (Wrappers)
+**Changes needed**:
 
-Must be true for each wrapper doc/README touched by implementation:
-- explicitly says `loadTheme` requires `@tsparticles/plugin-themes`
-- explicitly says missing plugin => `theme` is safe no-op
-- explicitly says `id`/`options` change reloads particles
-- explicitly says `url` change reloads particles
-- explicitly says loaded callback/event fires after `tsParticles.load`
-- explicitly says component teardown calls container `destroy()`
+#### 3a: Add `theme` prop
 
-## Website Docs Checklist
+```ts
+@Prop() readonly theme?: string;
+```
 
-Must be true before completion:
-- website guides for changed wrappers are updated to match real v4 behavior
-- Vue 3 English + 9 translations are aligned and free of stale API references
-- website docs and wrapper README statements are consistent (no conflicting behavior claims)
+#### 3b: Add watchers for `options`, `url` → reload
 
-## Compatibility & Lifecycle Policy
+In Vue 2 class components, use `@Watch` decorator:
 
-- Wrappers should maximize compatibility with supported versions of their host frameworks.
-- Compatibility policy is wrapper-specific (example: Vue 3 wrapper does not target Vue 2).
-- If backward compatibility is constrained (e.g., Angular major changes), evaluate dedicated legacy wrappers only when usage justifies maintenance cost.
-- Nuxt-specific wrappers can remain separate for now; future consolidation is a separate decision.
-- This plan does not force identical syntax across frameworks; it enforces consistent lifecycle semantics.
+```ts
+import { Watch } from "vue-property-decorator";
+
+@Watch("options")
+@Watch("url")
+@Watch("id")
+onPropChange(): void {
+  if (this.container) {
+    void particlesInit(this);
+  }
+}
+```
+
+**Vue 2 Caveat**: `@Watch` with `immediate: false` prevents double-load on mount. But need to ensure `mounted()` -> `$nextTick` -> `particlesInit` is the sole initial load path.
+
+#### 3c: Add watcher for `theme` → safe `loadTheme`
+
+```ts
+@Watch("theme")
+onThemeChange(newTheme?: string): void {
+  if (!this.container) return;
+  (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+}
+```
+
+#### 3d: Fix `IParticlesProps` export issue
+
+Remove `export type IParticlesProps = ISourceOptions;` — causes `TS2528` in SFC compiler context. Or change to `export { type IParticlesProps };` with the import.
+
+#### 3e: Fix `particlesLoaded` type guard
+
+```ts
+// In particlesInit() cb:
+const cb = (container?: Container) => {
+  this.container = container;
+  if (container && this.particlesLoaded) {
+    this.particlesLoaded(container);
+  }
+};
+```
+
+#### 3f: Fix event-bus.ts — add `tsParticles.init()` call
+
+```ts
+initCallback = init;
+initPromise = Promise.resolve(init?.(tsParticles))
+  .then(() => {
+    return tsParticles.init();  // ADD THIS for v4
+  })
+  .then(() => {
+    initialized = true;
+  })
+  .catch(error => { ... });
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/vue2 build`
+- Check SFC compiler errors with `export type`
+
+---
+
+### S4 — Angular Implementation
+
+**Files to modify**:
+- `wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`
+- `wrappers/angular/projects/ng-particles/src/lib/ng-particles.service.ts` (add `tsParticles.init()`)
+- `wrappers/angular/projects/ng-particles/src/lib/ng-particles.module.ts` (add `theme` to `IParticlesProps` if needed — it's `ISourceOptions` which doesn't have it)
+
+**Changes needed**:
+
+#### 4a: Implement `OnChanges` interface
+
+```ts
+import { OnChanges, SimpleChanges } from "@angular/core";
+
+export class NgxParticlesComponent implements AfterViewInit, OnDestroy, OnChanges {
+  // ...
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (!this.#container) {
+      return; // not loaded yet; ngAfterViewInit will handle initial load
+    }
+    if (changes["id"] || changes["options"] || changes["url"]) {
+      void this.#loadParticles();
+    }
+    if (changes["theme"]) {
+      (this.#container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(changes["theme"].currentValue);
+    }
+  }
+}
+```
+
+**Risk**: `ngOnChanges` fires before `ngAfterViewInit`. Guard with `this.#container` check — if `#container` is undefined, skip reload (initial load happens in `ngAfterViewInit`).
+
+**Risk**: `ngOnChanges` with `options` object — Angular `OnChanges` uses reference equality for objects. This is fine IF the user provides a new options object reference. Does not support deep mutation detection.
+
+#### 4b: Add `theme` input
+
+```ts
+@Input() theme?: string;
+```
+
+#### 4c: Fix `particlesLoaded` emitter type
+
+```ts
+@Output() particlesLoaded: EventEmitter<Container | undefined> = new EventEmitter<Container | undefined>();
+```
+
+Or guard:
+```ts
+const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
+this.#container = container;
+if (container) {
+  this.particlesLoaded.emit(container);
+}
+```
+
+#### 4d: Fix service — add `tsParticles.init()`
+
+```ts
+initPromise = (async () => {
+  if (particlesInit) {
+    await particlesInit(tsParticles);
+  }
+  await tsParticles.init();  // ADD THIS for v4
+  initialized = true;
+})().catch(...);
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/angular build`
+- Manual: change options binding, verify reload
+
+---
+
+### S5 — Solid Implementation
+
+**Files to modify**:
+- `wrappers/solid/src/Particles.tsx`
+- `wrappers/solid/src/IParticlesProps.ts`
+
+**Changes needed**:
+
+#### 5a: Track `id`, `options`, `url` reactively
+
+```tsx
+import { createEffect, createMemo, onCleanup } from "solid-js";
+
+// Replace onMount with createEffect that tracks prop signals:
+const loadParams = createMemo(() => ({
+  id: props.id ?? "tsparticles",
+  options: props.options ?? props.params,
+  url: props.url,
+  theme: props.theme,
+}));
+
+createEffect(async () => {
+  const params = loadParams();
+
+  // Clean up previous container first
+  // (onCleanup runs on disposal, but we need to destroy before creating a new one)
+  // Use a manual approach:
+
+  // Actually in Solid, we need to use onCleanup inside the tracking scope
+  // or manage the container lifecycle manually
+});
+```
+
+**Recommended pattern** — use `on` with a merged key to observe changes:
+
+```tsx
+let container: Container | undefined;
+let previousId: string | undefined;
+
+createEffect(on(
+  () => [props.id, props.options, props.url] as const,
+  async ([id, options, url]) => {
+    // destroy previous
+    container?.destroy();
+
+    await waitForParticlesEngineInitialization();
+    if (!isParticlesEngineInitialized()) throw new Error("...");
+
+    container = await tsParticles.load({
+      id: id ?? "tsparticles",
+      options: options ?? props.params,
+      url,
+    });
+
+    props.particlesLoaded?.(container);
+  },
+  { defer: false },
+));
+
+// Theme effect
+createEffect(on(
+  () => props.theme,
+  (theme) => {
+    if (!container || !theme) return;
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+  },
+));
+
+// Cleanup on unmount
+onCleanup(() => {
+  container?.destroy();
+});
+```
+
+#### 5b: Add `theme` to `IParticlesProps`
+
+```ts
+export interface IParticlesProps {
+  // ... existing props
+  theme?: string;
+}
+```
+
+#### 5c: Fix `particlesLoaded` type
+
+```ts
+particlesLoaded?: (container?: Container) => Promise<void>;
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/solid build`
+
+---
+
+### S6 — Qwik Implementation
+
+**Files to modify**:
+- `wrappers/qwik/src/components/particles/particles.tsx`
+- `wrappers/qwik/src/components/particles/IParticlesProps.ts`
+
+**Changes needed**:
+
+#### 6a: Track `id`, `options`, `url` reactively in `useVisibleTask$`
+
+In Qwik, `useVisibleTask$` runs once. To track prop changes, use the `track` function or use `useTask$` from `@builder.io/qwik` (not `useVisibleTask$` only).
+
+```tsx
+import { component$, useVisibleTask$, useTask$, $, noSerialize } from "@builder.io/qwik";
+
+const Particles = component$<IParticlesProps>(props => {
+  const librarySig = useSignal<NoSerialize<Container | undefined>>();
+
+  // Use useTask$ to track prop changes (runs eagerly)
+  useTask$(({ track, cleanup }) => {
+    const id = track(() => props.id) ?? "tsparticles";
+    const options = track(() => props.options);
+    const url = track(() => props.url);
+
+    cleanup(() => {
+      const c = librarySig.value;
+      if (c) {
+        c.destroy();
+        librarySig.value = undefined;
+      }
+    });
+
+    // Async loading...
+    const load = $(async () => {
+      await waitForParticlesEngineInitialization();
+      if (!isParticlesEngineInitialized()) throw new Error("...");
+
+      // Destroy old before creating new
+      const old = librarySig.value;
+      if (old) {
+        old.destroy();
+        librarySig.value = undefined;
+      }
+
+      const container = await tsParticles.load({
+        id, options: options ?? props.params, url,
+      });
+
+      librarySig.value = noSerialize(container);
+      if (props.loaded) {
+        await props.loaded(container);
+      }
+    });
+
+    void load();
+  });
+
+  // Also track theme changes separately
+  useTask$(({ track }) => {
+    const theme = track(() => props.theme);
+    const container = librarySig.value;
+
+    if (!container || !theme) return;
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+  });
+
+  // Also do cleanup on unmount via useVisibleTask$
+  useVisibleTask$(function Cleanup({ cleanup }) {
+    cleanup(() => {
+      const c = librarySig.value;
+      if (c) {
+        c.destroy();
+        librarySig.value = undefined;
+      }
+    });
+  });
+});
+```
+
+**Important Qwik detail**: `useTask$` runs on the server too! Guard with `useVisibleTask$` for client-only code OR use `useTask$` with `{ eagerness: 'visible' }`. Better pattern: use `useTask$` with `{ eagerness: 'load' }` or combine strategies.
+
+**Alternative**: `useVisibleTask$` with a tracker:
+
+```tsx
+useVisibleTask$(function Initializer({ track, cleanup }) {
+  const id = track(() => props.id) ?? "tsparticles";
+  const options = track(() => props.options);
+  const url = track(() => props.url);
+  // ... load
+});
+```
+
+**But**: `useVisibleTask$` with `track()` is the correct Qwik pattern for reactive re-execution. When tracked values change, the cleanup runs, then the task re-executes.
+
+#### 6b: Add `theme` to `IParticlesProps`
+
+```ts
+export interface IParticlesProps {
+  // ... existing props
+  theme?: string;
+}
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/qwik build`
+
+---
+
+### S7 — Astro Implementation
+
+**Files to modify**:
+- `wrappers/astro/src/Particles.astro`
+
+**Changes needed**:
+
+#### 7a: Move from constructor-only to `connectedCallback` + `attributeChangedCallback`
+
+```astro
+<script>
+  class AstroParticles extends HTMLElement {
+    #container;
+    #loadId = 0;
+
+    static get observedAttributes() {
+      return ["data-id", "data-options", "data-url", "data-theme"];
+    }
+
+    constructor() {
+      super();
+      // Don't load here — wait for connectedCallback
+    }
+
+    connectedCallback() {
+      void this.#loadParticles(++this.#loadId);
+    }
+
+    disconnectedCallback() {
+      this.#loadId++;
+      this.#container?.destroy();
+      this.#container = undefined;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue === newValue) return;
+      if (!this.isConnected) return;
+      // Trigger reload
+      this.#container?.destroy();
+      void this.#loadParticles(++this.#loadId);
+    }
+
+    async #loadParticles(currentLoadId) {
+      // ... existing load logic, but use currentLoadId for race guard
+      await waitForParticlesEngineInitialization();
+
+      // load with data attributes
+      let container;
+      if (this.dataset.url) {
+        container = await tsParticles.load({ id: this.dataset.id, url: this.dataset.url });
+      } else if (this.dataset.options) {
+        container = await tsParticles.load({ id: this.dataset.id, options: JSON.parse(this.dataset.options) });
+      }
+
+      if (currentLoadId !== this.#loadId) {
+        container?.destroy();
+        return;
+      }
+
+      this.#container = container;
+
+      // Apply theme if provided
+      if (container && this.dataset.theme) {
+        (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+          .loadTheme?.(this.dataset.theme);
+      }
+
+      // Invoke loaded callback
+      if (this.dataset.loaded && this.dataset.loaded in globalStore) {
+        const loadedFn = globalStore[this.dataset.loaded];
+        if (loadedFn instanceof Function) { loadedFn(container); }
+      }
+    }
+  }
+
+  customElements.define("astro-particles", AstroParticles);
+</script>
+```
+
+#### 7b: Add `data-theme` attribute to template
+
+```astro
+<astro-particles
+  data-id={id}
+  data-options={JSON.stringify(options)}
+  data-url={url}
+  data-loaded={loaded}
+  data-theme={theme}>
+  <canvas></canvas>
+</astro-particles>
+```
+
+#### 7c: Add `theme` to `IParticlesProps` in frontmatter
+
+```ts
+export interface IParticlesProps {
+  id: string;
+  loaded?: string;
+  options?: ISourceOptions;
+  url?: string;
+  theme?: string;  // ADD
+}
+
+const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
+```
+
+**Risks**:
+- `attributeChangedCallback` fires before `connectedCallback` for initial attributes. Guard with `this.isConnected`.
+- `JSON.parse` on every attribute change is expensive for large options. Consider caching the parsed object.
+
+**Verification**:
+- `pnpm --filter @tsparticles/astro build`
+- Smoke test: change data attributes on the custom element, verify reload
+
+---
+
+### S8 — Extended Wrapper Alignment
+
+#### 8a: Inferno — fix loaded callback gap
+
+**File**: `wrappers/inferno/src/Particles.tsx`
+
+Current `loadContainer` does NOT invoke any loaded callback after `tsParticles.load`. Fix:
+
+```ts
+async loadContainer() {
+  try {
+    await waitForParticlesEngineInitialization();
+    if (this._cancelled) return;
+
+    const { id, url, options, loaded, particlesLoaded } = this.props;
+    this._container = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+
+    // Invoke loaded callbacks
+    if (this._container) {
+      await loaded?.(this._container);
+      await particlesLoaded?.(this._container);
+    }
+  } catch (e) {
+    getLogger().error("Particles: error during load", e);
+  }
+}
+```
+
+Also add `theme` handling:
+- Add `@Prop() theme?: string` to props interface
+- In `componentDidUpdate`, check for theme change
+- Safe `loadTheme` call
+
+#### 8b: Lit — add loaded notification
+
+**File**: `wrappers/lit/src/lit-tsparticles.ts`
+
+Current `#loadParticles` assigns `this.container = container` but fires no event. Fix:
+
+```ts
+async #loadParticles(currentRenderId: number): Promise<void> {
+  // ... existing load logic ...
+
+  this.container = container;
+
+  if (container) {
+    // Dispatch loaded event
+    this.dispatchEvent(new CustomEvent("particlesLoaded", {
+      detail: container,
+      bubbles: true,
+      composed: true,
+    }));
+  }
+}
+```
+
+Also add `theme` property:
+```ts
+@property({ type: String })
+theme?: string;
+```
+
+And a theme watcher in `update()`:
+```ts
+update(changedProperties: PropertyValues) {
+  super.update(changedProperties);
+
+  if (changedProperties.has("theme") && this.container) {
+    const theme = changedProperties.get("theme") as string | undefined;
+    (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+      .loadTheme?.(theme);
+  }
+
+  if (changedProperties.has("options") || changedProperties.has("url") || changedProperties.has("id")) {
+    void this.#loadParticles(++this.#renderId);
+  }
+}
+```
+
+#### 8c: Riot — align reload + teardown
+
+**File**: `wrappers/riot/src/riot-particles.riot`
+
+Current: no reload, no destroy on unmount.
+
+Fix: Riot components use `onMounted`, `onUnmounted`, `onUpdated` lifecycle hooks. The `export default { onMounted(props) { ... } }` only has `onMounted`. Need to add `onUpdated` for prop changes:
+
+```riot
+export default {
+  async onMounted(props) {
+    // ... initial load (unchanged, but fix teardown)
+  },
+  onUnmounted(props) {
+    // Destroy container
+    if (oldId) {
+      const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
+      if (oldContainer) {
+        oldContainer.destroy();
+      }
+    }
+  },
+  onUpdated(props) {
+    // Check for prop changes and reload
+    if (oldId && (props.options !== oldId._options || props.url !== oldId._url)) {
+      // ... reload
+    }
+  }
+}
+```
+
+**Riot caveat**: Riot components don't have automatic deep comparison. Manual tracking needed.
+
+#### 8d: WebComponents — fix id handling + add theme
+
+**File**: `wrappers/webcomponents/src/Particles.ts`
+
+Add `"data-id"` and `"data-theme"` to `observedAttributes`:
+
+```ts
+static get observedAttributes(): string[] {
+  return ["url", "options", "data-id", "data-theme"];
+}
+```
+
+The setter for `id` should trigger reload:
+```ts
+set id(value: string) {
+  this.setAttribute("data-id", value);
+}
+```
+
+Or handle in `attributeChangedCallback`:
+```ts
+attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null): void {
+  if (name === "data-id") {
+    this.container.current?.destroy();
+    void this.#loadParticles(++this.#loadId);
+  } else if (name === "data-theme") {
+    const container = this.container.current;
+    if (container && newValue) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+        .loadTheme?.(newValue);
+    }
+  }
+  // ... existing options/url handling
+}
+```
+
+Also remove the deprecated `particlesInit` custom event dispatch from constructor (v3 pattern).
+
+#### 8e: React README props table fix
+
+**File**: `wrappers/react/README.md`
+
+Current props table lists only `id`, `options`, `url`, `style`, `className`. Missing `particlesLoaded`.
+
+Add to the table:
+```markdown
+| particlesLoaded | function | Callback invoked when the container is loaded, receives `(container?: Container)` |
+```
+
+Also note: React wrapper currently has NO `theme` prop — but this is out of scope for S8 (React is not a core wrapper in this plan). Just fix the README to document existing behavior.
+
+---
+
+## Docs Change Plan — Vue 3 Guide
+
+### Stale patterns found in `websites/website/docs/guides/vue3.md` (622 lines)
+
+| Pattern | Occurrences | Lines (EN) | Action |
+|---------|------------|------------|--------|
+| `:init="particlesInit"` | 10 | 141, 166, 198, 232, 266, 442, 481, 482, 595 | Remove from ALL examples |
+| `particlesInit` function | 15 | 126, 135, 141, 159, 166, 185, 198, 219, 232, 253, 266, 429, 442, 584, 595 | Remove function definitions (no longer needed at component level) |
+| `@particles-init` event | 1 | 613 | Remove from API table |
+| `:init` prose section | ~2 | 128-143, 477 | Remove "Using particlesInit with the Component" section |
+| `useParticles()` | 1 | 492 | Wrong function name; should be `useParticlesProvider` |
+
+### Required changes to ALL 10 files (EN + 9 translations)
+
+1. **Remove lines 126-143**: Section "Using `particlesInit` with the Component"
+2. **Remove `:init="particlesInit"`** from all code examples
+3. **Remove `@particles-init`** from API reference table (line 613)
+4. **Fix `useParticles()` → `useParticlesProvider()`** or remove if not publicly exported
+5. **Remove `particlesInit` function definitions** from all code examples
+6. **Ensure API table has `theme` prop** with note about optional plugin dependency
+7. **Add note** about `@tsparticles/plugin-themes` requirement for `theme` prop
+
+### Exact file list
+```
+websites/website/docs/guides/vue3.md                     (EN source)
+websites/website/docs/zh/guides/vue3.md                   (Chinese)
+websites/website/docs/ja/guides/vue3.md                   (Japanese)
+websites/website/docs/hi/guides/vue3.md                   (Hindi)
+websites/website/docs/ru/guides/vue3.md                   (Russian)
+websites/website/docs/pt/guides/vue3.md                   (Portuguese)
+websites/website/docs/fr/guides/vue3.md                   (French)
+websites/website/docs/de/guides/vue3.md                   (German)
+websites/website/docs/es/guides/vue3.md                   (Spanish)
+websites/website/docs/it/guides/vue3.md                   (Italian)
+```
+
+### Agent execution order for S10+S11
+1. Edit EN file first (S10)
+2. Mirror structural + code changes in all 9 translations (S11)
+3. Preserve translated prose where possible; update only code blocks and section structure
+4. Run stale-pattern grep to verify: no `:init`, no `@particles-init`, no `particlesInit` remains
+
+---
+
+## README Changes Per Wrapper
+
+Each touched README must be updated to document:
+
+### Required messaging in all 6 core wrapper READMEs:
+1. `theme` support depends on optional `@tsparticles/plugin-themes`
+2. Missing plugin ⇒ `theme` is safe no-op (intentionally ignored, no crash)
+3. `id`/`options`/`url` changes reload particles
+4. Loaded callback/event fires after `tsParticles.load` resolves (receives `Container | undefined`)
+5. Component destroy triggers container `destroy()`
+6. Website docs and wrapper README must be aligned (same behavior contract, framework-specific syntax only)
+
+### Specific README gaps:
+- **Vue 3 README** (73 lines): current is minimal. Add props table with `theme`, `options`, `url`, `id`, `@particlesLoaded`. Add reload contract docs.
+- **Vue 2 README** (145 lines): has usage examples but no `theme` prop documented. No reload contract. No `@tsparticles/plugin-themes` note.
+- **Angular README** (136 lines): has full examples. Missing `theme` input. Missing reload contract. Missing `@tsparticles/plugin-themes` note.
+- **Solid README** (130 lines): has props table. Missing `theme`. Missing reload contract. `particlesLoaded` type in table is wrong (`(container: Container)` should be `(container?: Container)`).
+- **Qwik README** (94 lines): has props table. Missing `theme`. Missing reload contract.
+- **Astro README** (132 lines): has props table. Missing `theme`. Missing reload contract. Missing `disconnectedCallback` docs.
+
+---
+
+## Risk Register (Expanded)
+
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|:----------:|-----------|
+| `loadTheme` type mismatch across 6 wrappers | Build failures | High | Use local cast at each call site: `(container as unknown as { loadTheme?: ... })` |
+| `Container \| undefined` passed to strict callbacks | TS errors / runtime crashes | High | Guard before callback emit: `if (container) cb(container)` or type signature `(container?: Container) => void` |
+| Over-triggered reload effects/watchers | Perf regression, flicker | Medium | Explicit dependency tracking + destroy-before-load |
+| Vue 3 deep watcher on `options` firing too often | Performance | Medium | Use `{ deep: false }` and rely on reference comparison (user creates new object = good, mutation = not tracked — acceptable trade-off) |
+| Angular `ngOnChanges` fires before `ngAfterViewInit` | Double load / error | High | Guard with `this.#container` check |
+| Vue 2 `@Watch` decorator + SFC `export type` issue | Compile error | Medium | Remove `export type IParticlesProps = ISourceOptions` from SFC |
+| Qwik `useTask$` running on server | SSR crash | High | Use `useVisibleTask$` instead, or guard with `isServer` |
+| Astro attribute observer race (concurrent loads) | Wrong config shown | Medium | Use monotonic `#loadId` token (already planned) |
+| Astro `JSON.parse` on every attribute change | Performance | Low | Cache parsed options, only re-parse when string changes |
+| Agent applies v3 mental model on v4 code | Wrong API/docs | High | Mandatory repository-first audit + all wrappers are v4-only (no v3 history) |
+| Translation edits break code blocks | Docs render issues | Medium | Manual spot-check after scripted edits |
+| `IParticlesProps` naming in Vue3 shadows props type | Confusion / wrong usage | Medium | Fix: remove standalone `export type IParticlesProps = ISourceOptions` |
+| Vue 2 event-bus missing `tsParticles.init()` | Runtime crash (v4 requirement) | High | Add `tsParticles.init()` call in `ensureParticlesInitialization` |
+| Angular NgParticlesService missing `tsParticles.init()` | Runtime crash (v4 requirement) | High | Add `tsParticles.init()` call in `NgParticlesService.init()` |
+| Solid `onCleanup` inside `createEffect` scope removal | Memory leak | Medium | Ensure top-level `onCleanup` for unmount, plus manual destroy in reactive effect |
+| Riot `tsParticles.dom()` usage (v3 API) | Runtime error (v4) | Medium | Track container locally instead of querying `tsParticles.dom()` |
 
 ---
 
 ## Validation Plan
 
-## Build validation
-- `pnpm nx run-many -t build --projects=@tsparticles/vue3,@tsparticles/vue2,@tsparticles/angular,@tsparticles/solid,@tsparticles/qwik,@tsparticles/astro`
+### Build validation
+```bash
+# Core wrappers
+pnpm nx run-many -t build --projects=@tsparticles/vue3,@tsparticles/vue2,@tsparticles/angular,@tsparticles/solid,@tsparticles/qwik,@tsparticles/astro
 
-## Focused smoke checks
-- verify each wrapper sample can change options at runtime without remount
-- verify `theme` prop change is no-op (no crash) when themes plugin not loaded
-- verify `theme` prop applies when plugin is loaded
+# Extended wrappers touched in S8
+pnpm nx run-many -t build --projects=@tsparticles/inferno,@tsparticles/lit,@tsparticles/riot,@tsparticles/webcomponents
+```
 
-## Docs validation
-- grep (or equivalent) on Vue 3 guides for stale patterns
-- manual read of EN + at least 3 translations to catch malformed block edits
+### Focused smoke checks (per wrapper)
+1. Verify that changing `options` prop at runtime reloads particles without remounting component
+2. Verify that changing `url` prop at runtime reloads particles
+3. Verify that changing `id` prop at runtime destroys old container and creates new one with new id
+4. Verify `theme` prop change is safe no-op (no crash) when `@tsparticles/plugin-themes` is NOT loaded
+5. Verify `theme` prop change applies the theme when plugin IS loaded
+6. Verify component unmount destroys the container (no orphan animations)
+7. Verify `particlesLoaded`/`loaded` callback emits after successful load
+
+### Docs stale-pattern validation
+```bash
+# Check all Vue 3 guide files for stale patterns
+grep -rn ":init" websites/website/docs/*/guides/vue3.md
+grep -rn "particles-init" websites/website/docs/*/guides/vue3.md
+grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
+
+# These should return NO results after S10+S11
+```
+
+### README consistency scan
+- For each updated README, verify: theme plugin note, reload contract, loaded callback, destroy behavior
 
 ---
 
-## Risk Register
+## Handoff Checklist for Implementing Agents
 
-| Risk | Impact | Likelihood | Mitigation |
-|---|---|---:|---|
-| `loadTheme` type mismatch everywhere | Build failures across wrappers | High | Local cast at each call site |
-| `Container | undefined` passed to strict callbacks | TS errors / runtime issues | High | Guard before callback emit |
-| Over-triggered reload effects/watchers | Perf regression, flicker | Medium | Explicit dependency tracking + destroy-before-load |
-| Async stale load wins race | Wrong config shown | Medium | `loadId` token (Astro), scoped async effects elsewhere |
-| Agent applies v3 mental model on v4 code | Wrong API/docs changes | High | Mandatory repository-first audit + `3.9.1` diff step |
-| Translation drift | Maintainer rejection | High | Edit all 9 translation files in same change |
-| Broken translated markdown blocks | Docs rendering issues | Medium | Manual spot-check after scripted edits |
+### Before coding:
+- [ ] Read the current repository files (do not trust memory)
+- [ ] Read this document's per-wrapper analysis for the target wrapper(s)
+- [ ] Confirm target files and prop type declarations
+- [ ] Note that the entire `wrappers/` directory is v4-only (no v3 wrapper code existed)
+
+### During coding:
+- [ ] Changes must be wrapper-local and minimal
+- [ ] No engine-wide typing changes in this phase
+- [ ] Safe `loadTheme` call: `(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme)`
+- [ ] Guard `tsParticles.load()` result for `undefined` before using as `Container`
+- [ ] Ensure `tsParticles.init()` is called in the provider/init function (v4 requirement that some wrappers miss)
+
+### Before handoff:
+- [ ] Run wrapper build: `pnpm --filter @tsparticles/<wrapper> build`
+- [ ] Run stale-pattern checks for docs (if docs touched)
+- [ ] Include list of touched files and exact behavior deltas
 
 ---
 
-## Handoff Checklist for Implementing Agent
+## Execution Order (Recommended for Sub-Agents)
 
-Before coding:
-- read current repository files first; do not trust memory for wrapper APIs
-- compare relevant files with tag `3.9.1` to spot v3 -> v4 behavior changes
-- confirm all target files and prop type declarations
-- confirm current wrapper APIs/events to avoid inventing new ones
+Each substep below is designed to be executed by a SEPARATE agent from scratch, using only this document as context.
 
-During coding:
-- keep changes minimal and wrapper-local
-- do not add engine-wide typing changes in this phase
-- ensure no docs mention nonexistent Vue 3 init APIs
+```
+S1 baseline audit         → Already completed (findings embedded in this doc)
+S1a v3-v4 diff audit      → Already completed (key finding: wrappers are v4-only)
 
-Before handoff:
-- run wrapper builds
-- run docs stale-pattern checks
-- include list of touched files and exact behavior deltas
+S2  Vue 3 wrapper         → Sub-agent A
+S3  Vue 2 wrapper         → Sub-agent B
+S4  Angular wrapper       → Sub-agent C
+S5  Solid wrapper         → Sub-agent D
+S6  Qwik wrapper          → Sub-agent E
+S7  Astro wrapper         → Sub-agent F
+
+S8a Inferno callback gap  → Sub-agent G
+S8b Lit loaded notify     → Sub-agent H
+S8c Riot alignment        → Sub-agent I
+S8d WebComponents align   → Sub-agent J
+S8e React README fix      → Sub-agent K
+
+S9  Wrapper READMEs       → Sub-agent L (after S2-S7 complete)
+S10 Vue 3 EN guide        → Sub-agent M
+S11 9 translations        → Sub-agent N
+
+S12 Validation            → Sub-agent O (after all above)
+S13 Final handoff         → Sub-agent P
+```
+
+Note: S2-S7 can run in parallel. S8a-S8e can run in parallel. S10 must precede S11.
 
 ---
 
 ## Definition of Done
 
 Done only if all are true:
-- all 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
-- all 6 wrappers safely handle `theme` updates without plugin hard dependency
-- all touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
-- website docs for touched wrappers are updated and aligned with README + implementation behavior
-- all wrappers emit loaded callback/event only after `tsParticles.load` resolves
-- all wrappers destroy container on component teardown
-- TypeScript build passes for all affected wrapper packages
-- Vue 3 English guide fixed and all 9 translations aligned
-- no `:init` / `@particles-init` / stale `particlesInit` in Vue 3 guides
+- [ ] All 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
+- [ ] All 6 wrappers safely handle `theme` updates without plugin hard dependency
+- [ ] All 6 wrappers call `tsParticles.init()` during bootstrap (v4 fix)
+- [ ] All touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
+- [ ] Website docs for touched wrappers are updated and aligned with README + implementation behavior
+- [ ] All wrappers emit loaded callback/event only after `tsParticles.load` resolves
+- [ ] All wrappers destroy container on component teardown
+- [ ] TypeScript build passes for all affected wrapper packages
+- [ ] Vue 3 English guide fixed and all 9 translations aligned
+- [ ] No `:init` / `@particles-init` / stale `particlesInit` in Vue 3 guides
+- [ ] Inferno calls loaded callback after load
+- [ ] Lit dispatches `particlesLoaded` event
+- [ ] Riot has proper teardown (container destroy on unmount)
+- [ ] WebComponents observes `id` attribute changes
