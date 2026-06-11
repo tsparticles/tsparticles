@@ -399,8 +399,7 @@ export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): st
  * Gets a CSS style string from a {@link IRgb} object and opacity value
  * @param color - the {@link IRgb} input color
  * @param opacity - the opacity value
- * @param nits - the peak brightness in nits, for future HDR API support, defaults to 400
- * @param peakNits
+ * @param peakNits - the peak brightness in nits, for future HDR API support, defaults to 400
  * @returns the CSS style string
  */
 function getHdrStyleFromRgb(color: IRgb, opacity?: number, peakNits = maxNits): string {

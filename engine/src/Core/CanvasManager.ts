@@ -440,14 +440,17 @@ export class CanvasManager {
 
   #initContext(): void {
     const container = this.#container,
-      canSupportHdr = safeMatchMedia("(color-gamut: p3)")?.matches && container.actualOptions.hdr;
-
+      canSupportHdr =
+        container.actualOptions.hdr &&
+        safeMatchMedia("(color-gamut: p3)")?.matches &&
+        safeMatchMedia("(dynamic-range: high)")?.matches;
     this.render.setContextSettings({
       alpha: true,
-      colorSpace: canSupportHdr ? "display-p3" : "srgb",
-      ...(canSupportHdr ? { colorType: "float16" as const } : {}),
       desynchronized: true,
       willReadFrequently: false,
+      ...(canSupportHdr
+        ? { colorSpace: "display-p3" as const, colorType: "float16" as const }
+        : { colorSpace: "srgb" as const }),
     });
     const renderCanvas = this.renderCanvas;
 
