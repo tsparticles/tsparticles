@@ -153,6 +153,18 @@ function fixOutMode(data: FixOutModeParams): void {
 
 /**
  *
+ * @param angle -
+ * @param modulus -
+ * @returns -
+ */
+function normalizeAngle(angle: number, modulus: number): number {
+  const normalized = angle % modulus;
+
+  return normalized < defaultAngle ? normalized + modulus : normalized;
+}
+
+/**
+ *
  * @param particle -
  * @param id -
  * @param group -
@@ -1127,15 +1139,4 @@ export class Particle {
       reason: result.reason ?? reason,
     };
   }
-}
-
-/**
- *
- * @param angle
- * @param modulus
- */
-function normalizeAngle(angle: number, modulus: number): number {
-  const normalized = angle % modulus;
-
-  return normalized < defaultAngle ? normalized + modulus : normalized;
 }
