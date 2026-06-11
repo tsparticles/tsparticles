@@ -16,6 +16,24 @@ Implement reactive updates for wrapper components when `options`, `url`, or `the
 
 ---
 
+## Source of Truth (Critical)
+
+This project is on **v4** with breaking changes vs v3.
+
+Mandatory rules for implementing agents:
+- **Do not rely on agent memory** for wrapper APIs or docs snippets.
+- **Read the repository code first** (current branch state) before any change.
+- Use tag **`3.9.1` only as a comparison baseline** to understand what changed from v3 to v4.
+- If memory and repository disagree, **repository wins**.
+
+Required comparison checkpoints (v4 vs `3.9.1`):
+- wrapper props/events currently exposed
+- engine init flow and provider/init gates
+- loaded callback naming and timing
+- docs examples that may still reflect v3 patterns
+
+---
+
 ## Problem Statement
 
 Current wrapper behavior is inconsistent:
@@ -45,30 +63,68 @@ This creates broken expectations and stale examples.
    - Remove `:init`, `@particles-init`, and any prose implying component-level `init` prop for Vue 3 wrapper
 
 5. **Wrapper behavior must be aligned (NON-NEGOTIABLE)**
+   - `id` change => destroy + reload particles
    - `options` change => destroy + reload particles
    - `url` change => destroy + reload particles
    - This rule is mandatory for all 6 wrappers in scope; no wrapper-specific exceptions
 
+6. **Engine init must run once, components must wait**
+   - Engine/plugin init is one-time bootstrap work
+   - Particle components must wait until init is completed before calling `tsParticles.load`
+
+7. **Loaded callback timing is fixed**
+   - `particlesLoaded`/`loaded`/`onLoaded`/`onParticlesLoaded` must fire only **after** `tsParticles.load` resolves
+   - Callback must receive the resolved container (guarding `undefined` where needed)
+
+8. **Container cleanup on component destruction is mandatory**
+   - Component unmount/destroy must call container `destroy()`
+   - No orphan animations must remain active after component teardown
+
 ---
 
 ## Implementation Strategy
+
+## Canonical Wrapper Contract (Target Behavior)
+
+All wrappers should align to this behavior model (framework syntax may differ):
+
+1. **Init contract**
+   - Engine/plugin init is triggered once at app/bootstrap level.
+   - Wrapper components wait for init completion before loading particles.
+
+2. **Reload contract**
+   - Changing `id`, `options`, or `url` causes destroy + reload.
+   - Reload path is deterministic and idempotent.
+
+3. **Theme contract**
+   - `theme` prop may exist in wrappers.
+   - `loadTheme` is optional runtime capability requiring `@tsparticles/plugin-themes`.
+   - Without plugin, theme updates are safe no-op and documented as such.
+
+4. **Loaded callback contract**
+   - Event/callback (`particlesLoaded` / `loaded` / aliases by framework) is emitted after successful `tsParticles.load` resolution.
+
+5. **Destroy contract**
+   - On component teardown, wrapper calls `container.destroy()`.
 
 ## Execution Steps + Status
 
 | Step | Scope | Deliverable | Status |
 |---|---|---|---|
 | S1 | Baseline audit | Confirm current behavior in all 6 wrappers + current docs drift list | Pending |
+| S1a | v3-v4 diff audit | Compare current wrappers/docs with tag `3.9.1` and record breaking deltas | Pending |
 | S2 | Vue 3 wrapper | Reactive reload on `options`/`url` + safe `theme` apply | Pending |
 | S3 | Vue 2 wrapper | Reactive reload on `options`/`url` + safe `theme` apply | Pending |
 | S4 | Angular wrapper | Reactive reload via `OnChanges` + safe `theme` apply | Pending |
 | S5 | Solid wrapper | Reactive reload via effects + safe `theme` apply | Pending |
 | S6 | Qwik wrapper | Reactive reload in `useVisibleTask$` + safe `theme` apply | Pending |
 | S7 | Astro wrapper | Attribute-driven reload + safe `theme` apply + race guard | Pending |
-| S8 | Wrapper docs/README | Document optional theme plugin + no-op behavior + reload contract | Pending |
-| S9 | Vue 3 EN guide | Remove fake `init` API docs and align theme/reactivity docs | Pending |
-| S10 | 9 translations | Mirror Vue 3 guide changes in all required locales | Pending |
-| S11 | Validation | Builds, smoke checks, stale-pattern checks | Pending |
-| S12 | Final handoff | Changelog of touched files + behavior deltas + residual risks | Pending |
+| S8 | Wrapper alignment fixes | Fix obsolete code paths and non-aligned behavior found in audit | Pending |
+| S9 | Wrapper docs/README | Document optional theme plugin + no-op behavior + reload contract | Pending |
+| S10 | Vue 3 EN guide | Remove fake `init` API docs and align theme/reactivity docs | Pending |
+| S11 | 9 translations | Mirror Vue 3 guide changes in all required locales | Pending |
+| S12 | Validation | Builds, smoke checks, stale-pattern checks | Pending |
+| S13 | Final handoff | Changelog of touched files + behavior deltas + residual risks | Pending |
 
 Status values allowed:
 - `Pending`: not started
@@ -78,16 +134,19 @@ Status values allowed:
 
 Recommended execution order:
 1. S1 baseline audit
-2. S2-S7 wrappers (can run in parallel after S1)
-3. S8 wrapper docs/readmes
-4. S9 English guide
-5. S10 translations
-6. S11 validation
-7. S12 handoff
+2. S1a v3-v4 diff audit against tag `3.9.1`
+3. S2-S7 wrappers (can run in parallel after S1/S1a)
+4. S8 wrapper alignment fixes
+5. S9 wrapper docs/readmes
+6. S10 English guide
+7. S11 translations
+8. S12 validation
+9. S13 handoff
 
 ## 1) Reactivity Pattern (All Wrappers)
 
 Desired behavior:
+- `id` change -> destroy old container -> reload with new id
 - `options` change -> destroy old container -> reload with new options
 - `url` change -> destroy old container -> reload from new URL
 - `theme` change -> call optional `loadTheme` on existing container (no reload)
@@ -146,6 +205,11 @@ Cross-wrapper documentation requirement:
 - confirm whether `theme` prop exists and how it behaves
 - collect exact stale Vue 3 doc references (`:init`, `@particles-init`, `particlesInit`)
 
+### S1a - v3-v4 diff audit (tag `3.9.1`)
+- compare wrappers/docs between current branch and `3.9.1`
+- extract concrete breaking changes that impact wrappers/docs behavior
+- write a short "do not use v3 patterns" checklist for implementers
+
 ### S2 - Vue 3 wrapper
 - file: `wrappers/vue3/src/components/vue-particles.vue`
 - implement watchers for `options`/`url` => reload
@@ -178,27 +242,34 @@ Cross-wrapper documentation requirement:
 - reload on options/url
 - safe `theme` apply + stale-load race guard
 
-### S8 - Wrapper docs/readmes
+### S8 - Wrapper alignment fixes
+- patch wrapper-specific obsolete code discovered in S1/S1a
+- align event timing (`loaded` fired after load resolution)
+- align teardown cleanup (`destroy()` always called)
+
+### S9 - Wrapper docs/readmes
 - required messaging in each touched doc/readme:
   - `theme` depends on `@tsparticles/plugin-themes`
   - missing plugin => safe no-op for `theme`
-  - `options`/`url` changes reload particles
+  - `id`/`options`/`url` changes reload particles
+  - loaded callback/event fires after `tsParticles.load`
+  - component destroy triggers container destroy
 
-### S9 - Vue 3 EN guide
+### S10 - Vue 3 EN guide
 - file: `websites/website/docs/guides/vue3.md`
 - remove fake component init APIs
 - align examples/events/API table with actual wrapper capabilities
 
-### S10 - Vue 3 translations
+### S11 - Vue 3 translations
 - files: `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md`
 - mirror EN structural/code changes (mandatory)
 
-### S11 - Validation
+### S12 - Validation
 - run affected wrapper builds
 - smoke-check runtime behavior (`options`/`url` reload, `theme` with/without plugin)
 - verify no stale Vue 3 guide patterns remain
 
-### S12 - Final handoff
+### S13 - Final handoff
 - provide concise implementation report with:
   - touched files
   - behavior change matrix per wrapper
@@ -292,8 +363,18 @@ Must be true after edits in each of 10 files (EN + 9 translations):
 Must be true for each wrapper doc/README touched by implementation:
 - explicitly says `loadTheme` requires `@tsparticles/plugin-themes`
 - explicitly says missing plugin => `theme` is safe no-op
-- explicitly says `options` change reloads particles
+- explicitly says `id`/`options` change reloads particles
 - explicitly says `url` change reloads particles
+- explicitly says loaded callback/event fires after `tsParticles.load`
+- explicitly says component teardown calls container `destroy()`
+
+## Compatibility & Lifecycle Policy
+
+- Wrappers should maximize compatibility with supported versions of their host frameworks.
+- Compatibility policy is wrapper-specific (example: Vue 3 wrapper does not target Vue 2).
+- If backward compatibility is constrained (e.g., Angular major changes), evaluate dedicated legacy wrappers only when usage justifies maintenance cost.
+- Nuxt-specific wrappers can remain separate for now; future consolidation is a separate decision.
+- This plan does not force identical syntax across frameworks; it enforces consistent lifecycle semantics.
 
 ---
 
@@ -321,6 +402,7 @@ Must be true for each wrapper doc/README touched by implementation:
 | `Container | undefined` passed to strict callbacks | TS errors / runtime issues | High | Guard before callback emit |
 | Over-triggered reload effects/watchers | Perf regression, flicker | Medium | Explicit dependency tracking + destroy-before-load |
 | Async stale load wins race | Wrong config shown | Medium | `loadId` token (Astro), scoped async effects elsewhere |
+| Agent applies v3 mental model on v4 code | Wrong API/docs changes | High | Mandatory repository-first audit + `3.9.1` diff step |
 | Translation drift | Maintainer rejection | High | Edit all 9 translation files in same change |
 | Broken translated markdown blocks | Docs rendering issues | Medium | Manual spot-check after scripted edits |
 
@@ -329,6 +411,8 @@ Must be true for each wrapper doc/README touched by implementation:
 ## Handoff Checklist for Implementing Agent
 
 Before coding:
+- read current repository files first; do not trust memory for wrapper APIs
+- compare relevant files with tag `3.9.1` to spot v3 -> v4 behavior changes
 - confirm all target files and prop type declarations
 - confirm current wrapper APIs/events to avoid inventing new ones
 
@@ -347,9 +431,11 @@ Before handoff:
 ## Definition of Done
 
 Done only if all are true:
-- all 6 wrappers react to `options` and `url` updates by reloading
+- all 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
 - all 6 wrappers safely handle `theme` updates without plugin hard dependency
 - all touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
+- all wrappers emit loaded callback/event only after `tsParticles.load` resolves
+- all wrappers destroy container on component teardown
 - TypeScript build passes for all affected wrapper packages
 - Vue 3 English guide fixed and all 9 translations aligned
 - no `:init` / `@particles-init` / stale `particlesInit` in Vue 3 guides
