@@ -231,6 +231,7 @@ export class CanvasManager {
     });
 
     this.initPlugins();
+    this.#initContext();
     this.render.init();
   }
 
@@ -251,7 +252,7 @@ export class CanvasManager {
       color = rangeColorToRgb(this.#pluginManager, background.color);
 
     if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, container.hdr, background.opacity);
+      elementStyle.backgroundColor = getStyleFromRgb(color, container.actualOptions.hdr, background.opacity);
     } else {
       elementStyle.backgroundColor = "";
     }
@@ -284,8 +285,7 @@ export class CanvasManager {
       this.domElement.remove();
     }
 
-    const container = this.#container,
-      domCanvas = isHtmlCanvasElement(canvas) ? canvas : undefined;
+    const domCanvas = isHtmlCanvasElement(canvas) ? canvas : undefined;
 
     this.domElement = domCanvas;
     this.#generated = domCanvas ? domCanvas.dataset[generatedAttribute] === "true" : false;
@@ -315,33 +315,6 @@ export class CanvasManager {
 
     renderCanvas.height = retinaSize.height = standardSize.height * pxRatio;
     renderCanvas.width = retinaSize.width = standardSize.width * pxRatio;
-
-    const canSupportHdrQuery = safeMatchMedia("(color-gamut: p3)");
-
-    this.render.setContextSettings({
-      alpha: true,
-      colorSpace: canSupportHdrQuery?.matches && container.hdr ? "display-p3" : "srgb",
-      desynchronized: true,
-      willReadFrequently: false,
-    });
-    this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
-
-    this.#safeMutationObserver(obs => {
-      obs.disconnect();
-    });
-
-    container.retina.init();
-    this.initBackground();
-
-    this.#safeMutationObserver(obs => {
-      const element = this.domElement;
-
-      if (!element || !(element instanceof Node)) {
-        return;
-      }
-
-      obs.observe(element, { attributes: true });
-    });
   }
 
   /**
@@ -463,6 +436,26 @@ export class CanvasManager {
     for (const plugin of this.#resizePlugins) {
       plugin.resize?.();
     }
+  }
+
+  #initContext(): void {
+    const container = this.#container,
+      canSupportHdr = safeMatchMedia("(color-gamut: p3)")?.matches && container.actualOptions.hdr;
+
+    this.render.setContextSettings({
+      alpha: true,
+      colorSpace: canSupportHdr ? "display-p3" : "srgb",
+      ...(canSupportHdr ? { colorType: "float16" as const } : {}),
+      desynchronized: true,
+      willReadFrequently: false,
+    });
+    const renderCanvas = this.renderCanvas;
+
+    if (!renderCanvas) {
+      return;
+    }
+
+    this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
   }
 
   #initStyle(): void {
