@@ -10,29 +10,29 @@
 
 Use this table as the single high-level progress board. Update it whenever a step changes state.
 
-| Step | Area                      | Owner Agent | Status  | Last update | Notes                                                                 |
-|------|---------------------------|-------------|---------|-------------|-----------------------------------------------------------------------|
-| S1   | Vue 3 wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S2   | Vue 2 wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S3   | Angular wrapper           | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S4   | Solid wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S5   | Qwik wrapper              | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S6   | Astro wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
-| S7   | Inferno wrapper           | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
-| S8   | Lit wrapper               | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
-| S9   | Riot wrapper              | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
-| S10  | WebComponents wrapper     | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
-| S11  | React docs                | Unassigned  | Pending | -           | README alignment + demo/template check                                |
-| S12  | Preact wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, callback type strictness                |
-| S13  | Svelte wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, reload scope too broad                  |
-| S14  | Stencil wrapper           | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, no loaded callback/event, init path gap |
-| S15  | Ember wrapper             | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, update lifecycle cleanup risk           |
-| S16  | jQuery wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: no `theme` handling/documentation in wrapper API         |
-| S17  | Angular-fireworks wrapper | Unassigned  | Pending | 2026-06-12  | Drift found: missing `OnChanges`; input updates ignored after mount   |
-| S18  | EN docs                   | Unassigned  | Pending | -           | Must finish before S19                                                |
-| S19  | 9 translations            | Unassigned  | Pending | -           | Mirror S18                                                            |
-| S20  | Validation                | Unassigned  | Pending | -           | Build + smoke + stale-pattern checks                                  |
-| S21  | Final handoff             | Unassigned  | Pending | -           | Consolidated deltas and residual risks                                |
+| Step | Area                      | Status  | Notes                                                                 |
+|------|---------------------------|---------|-----------------------------------------------------------------------|
+| S1   | Vue 3 wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S2   | Vue 2 wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S3   | Angular wrapper           | Pending | Wrapper + demo + template check + README + verification               |
+| S4   | Solid wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S5   | Qwik wrapper              | Pending | Wrapper + demo + template check + README + verification               |
+| S6   | Astro wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S7   | Inferno wrapper           | Pending | Wrapper + mapped demo alignment + README + verification               |
+| S8   | Lit wrapper               | Pending | Wrapper + mapped demo alignment + README + verification               |
+| S9   | Riot wrapper              | Pending | Wrapper + mapped demo alignment + README + verification               |
+| S10  | WebComponents wrapper     | Pending | Wrapper + mapped demo alignment + README + verification               |
+| S11  | React docs                | Pending | README alignment + demo/template check                                |
+| S12  | Preact wrapper            | Pending | Drift found: missing `theme`, callback type strictness                |
+| S13  | Svelte wrapper            | Pending | Drift found: missing `theme`, reload scope too broad                  |
+| S14  | Stencil wrapper           | Pending | Drift found: missing `theme`, no loaded callback/event, init path gap |
+| S15  | Ember wrapper             | Pending | Drift found: missing `theme`, update lifecycle cleanup risk           |
+| S16  | jQuery wrapper            | Pending | Drift found: no `theme` handling/documentation in wrapper API         |
+| S17  | Angular-fireworks wrapper | Pending | Drift found: missing `OnChanges`; input updates ignored after mount   |
+| S18  | EN docs                   | Pending | Must finish before S19                                                |
+| S19  | 9 translations            | Pending | Mirror S18                                                            |
+| S20  | Validation                | Pending | Build + smoke + stale-pattern checks                                  |
+| S21  | Final handoff             | Pending | Consolidated deltas and residual risks                                |
 
 Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
 
