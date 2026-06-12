@@ -41,6 +41,6 @@
     "pug": "^3.0.2",
     "stylus": "^0.64.0",
     "tsparticles": "workspace:^",
-    "typescript": "^5.0.4"
+    "typescript": "^6.0.3"
   }
 }

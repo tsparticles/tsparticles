@@ -42,7 +42,7 @@
     "preact-cli": "^3.5.0",
     "prettier": "^3.1.1",
     "sirv-cli": "^2.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@tsparticles/configs": "workspace:^",

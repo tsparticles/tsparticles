@@ -59,7 +59,7 @@
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "sinon": "^22.0.0",
-    "typescript": "^5.0.0",
+    "typescript": "^6.0.3",
     "web-component-analyzer": "^1.0.0"
   }
 }

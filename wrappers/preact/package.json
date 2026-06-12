@@ -124,7 +124,7 @@
     "prettier": "^3.8.2",
     "ts-loader": "^9.5.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
+    "typescript": "^6.0.3",
     "webpack": "^5.106.1",
     "webpack-bundle-analyzer": "^5.3.0",
     "webpack-cli": "^7.0.2",

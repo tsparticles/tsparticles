@@ -128,7 +128,7 @@
     "sass-loader": "^16.0.7",
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
-    "typescript": "^4.9.4",
+    "typescript": "^6.0.3",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2",
     "webpack-dev-server": "^5.2.3"
