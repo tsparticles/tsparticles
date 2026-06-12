@@ -125,3 +125,4 @@ minimumReleaseAgeExclude:
   - '@stencil/core@4.43.5'
   - tsdown@0.22.1
   - undici-types@8.4.0
+  - eslint@10.5.0
