@@ -118,14 +118,14 @@ Note: The `as unknown as` double-cast is needed because `Container` and `ThemesC
 
 ## Status Overview
 
-| Wrapper | Current Behavior | Reload `id/options/url` | `theme` prop | Loaded Callback | Destroy on Teardown | Priority |
-|---------|-----------------|------------------------|-------------|-----------------|-------------------|----------|
-| **Vue 3** | Mount-only load via provider gate | **Missing** (`theme` prop exists but ignored) | Prop exists, never applied | Emits `particlesLoaded` (ok) | Yes (`onUnmounted`) | **HIGH** |
-| **Vue 2** | Mount-only load via `mounted` | **Missing** | **Missing** prop entirely | `particlesLoaded` prop (ok) | Yes (`beforeDestroy`) | **HIGH** |
-| **Angular** | `ngAfterViewInit` only, no `OnChanges` | **Missing** | **Missing** `@Input` prop | `EventEmitter` (ok, but `Container` not `Container\|undefined`) | Yes (`ngOnDestroy`) | **HIGH** |
-| **Solid** | `onMount` + `createResource`, one-shot | **Missing** (effect not tracked on props) | **Missing** prop | `particlesLoaded` fires (ok) | `onCleanup` | **HIGH** |
-| **Qwik** | `useVisibleTask$`, one-shot | **Missing** (no tracking) | **Missing** prop | `loaded` QRL fires (ok) | `cleanup` | **HIGH** |
-| **Astro** | Constructor load, one-shot | **Missing** (no observer) | **Missing** attribute | Global function call (ok) | No `disconnectedCallback` cleanup | **HIGH** |
+| Wrapper     | Current Behavior                       | Reload `id/options/url`                       | `theme` prop               | Loaded Callback                                                 | Destroy on Teardown               | Priority |
+|-------------|----------------------------------------|-----------------------------------------------|----------------------------|-----------------------------------------------------------------|-----------------------------------|----------|
+| **Vue 3**   | Mount-only load via provider gate      | **Missing** (`theme` prop exists but ignored) | Prop exists, never applied | Emits `particlesLoaded` (ok)                                    | Yes (`onUnmounted`)               | **HIGH** |
+| **Vue 2**   | Mount-only load via `mounted`          | **Missing**                                   | **Missing** prop entirely  | `particlesLoaded` prop (ok)                                     | Yes (`beforeDestroy`)             | **HIGH** |
+| **Angular** | `ngAfterViewInit` only, no `OnChanges` | **Missing**                                   | **Missing** `@Input` prop  | `EventEmitter` (ok, but `Container` not `Container\|undefined`) | Yes (`ngOnDestroy`)               | **HIGH** |
+| **Solid**   | `onMount` + `createResource`, one-shot | **Missing** (effect not tracked on props)     | **Missing** prop           | `particlesLoaded` fires (ok)                                    | `onCleanup`                       | **HIGH** |
+| **Qwik**    | `useVisibleTask$`, one-shot            | **Missing** (no tracking)                     | **Missing** prop           | `loaded` QRL fires (ok)                                         | `cleanup`                         | **HIGH** |
+| **Astro**   | Constructor load, one-shot             | **Missing** (no observer)                     | **Missing** attribute      | Global function call (ok)                                       | No `disconnectedCallback` cleanup | **HIGH** |
 
 ---
 
@@ -586,7 +586,7 @@ const { id, loaded, options, url } = Astro.props as IParticlesProps;
 
 ---
 
-## Extended Wrappers: Current State (S8 scope)
+## Extended Wrappers: Current State (Inferno/Lit/Riot/WebComponents/React)
 
 ### Inferno (`wrappers/inferno/src/Particles.tsx`) — ALREADY has reload!
 
@@ -740,22 +740,113 @@ All wrappers must implement this behavior (framework syntax differs):
 
 ## Implementation Steps + Status
 
-| Step | Scope | Deliverable | Status |
-|------|-------|-------------|--------|
-| S1 | Baseline audit | Current behavior in all 6 wrappers + docs drift list | **Ready** (in this doc) |
-| S1a | v3-v4 diff audit | Wrappers dir is entirely post-v3.9.1; engine Container.ts refactored (Canvas→CanvasManager). No direct wrapper diff possible. Key finding: wrappers are v4-only. | **Ready** |
-| S2 | Vue 3 wrapper | Reactive reload on `options`/`url` + safe `theme` apply | Pending |
-| S3 | Vue 2 wrapper | Reactive reload + `theme` prop + safe `theme` apply | Pending |
-| S4 | Angular wrapper | Reactive reload via `OnChanges` + `theme` input + safe `theme` apply | Pending |
-| S5 | Solid wrapper | Reactive reload via effects + `theme` prop + safe `theme` apply | Pending |
-| S6 | Qwik wrapper | Reactive reload via tracked `useVisibleTask$` + `theme` prop + safe `theme` apply | Pending |
-| S7 | Astro wrapper | Attribute-driven reload + `theme` attribute + safe `theme` apply + race guard | Pending |
-| S8 | Extended wrapper alignment | Inferno (callback gap), Lit (loaded notify), Riot/WebComponents alignment fixes, React README | Pending |
-| S9 | Wrapper docs/README | Document optional theme plugin + no-op + reload contract | Pending |
-| S10 | Vue 3 EN guide | Remove fake `init` API, align theme/reactivity docs | Pending |
-| S11 | 9 translations | Mirror EN changes | Pending |
-| S12 | Validation | Builds, smoke checks, stale-pattern checks | Pending |
-| S13 | Final handoff | Changelog + behavior deltas + residual risks | Pending |
+### Completion Rule (non-negotiable)
+
+Each wrapper step is considered **Done** only when all related artifacts are aligned together:
+
+1. Wrapper implementation (reactivity + theme + lifecycle)
+2. Wrapper demo(s) aligned with final API and behavior
+3. Wrapper template(s) checked and aligned (or explicitly marked N/A if none exist)
+4. Wrapper README aligned with the implemented behavior
+
+This plan therefore uses **one wrapper per step**. No multi-wrapper implementation steps.
+
+Website docs are intentionally batched at the end for efficiency, while wrapper-specific context stays inside each wrapper step (README + demo + template checks are in-step requirements).
+
+### Ordered steps
+
+| Step | Wrapper / Scope | Deliverable | Status |
+|------|------------------|-------------|--------|
+| S1 | Baseline audit | Current behavior in all wrappers + docs drift list | **Ready** (in this doc) |
+| S1a | v3-v4 diff audit | Wrappers are v4-only; engine-level changes captured | **Ready** |
+| S2 | Vue 3 package family | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Pending |
+| S3 | Vue 2 package family | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
+| S4 | Angular package family | Wrapper + Angular demo + template check + Angular README aligned | Pending |
+| S5 | Solid package family | Wrapper + Solid demo + template check + Solid README aligned | Pending |
+| S6 | Qwik package family | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
+| S7 | Astro package family | Wrapper + Astro demo + template check + Astro README aligned | Pending |
+| S8 | Inferno package family | Wrapper + demo/template check + Inferno README aligned | Pending |
+| S9 | Lit package family | Wrapper + demo/template check + Lit README aligned | Pending |
+| S10 | Riot package family | Wrapper + demo/template check + Riot README aligned | Pending |
+| S11 | WebComponents package family | Wrapper + demo/template check + WebComponents README aligned | Pending |
+| S12 | React docs-only family | React README alignment (+ demo/template verification if needed) | Pending |
+| S13 | Website docs batch (EN first) | Vue 3 EN guide update to match shipped behavior | Pending |
+| S14 | Website docs batch (9 translations) | Mirror EN update in all required translation files | Pending |
+| S15 | Validation | Build + smoke + stale-pattern checks | Pending |
+| S16 | Final handoff | Changelog + deltas + residual risks | Pending |
+
+### Per-step substep template (apply to every wrapper step S2-S12)
+
+- `a` Wrapper code changes (`id/options/url` reload, theme safety, teardown, init wait)
+- `b` Demo alignment for that wrapper family
+- `c` Template alignment check (or explicit N/A note)
+- `d` Wrapper README alignment
+- `e` Verification (`pnpm --filter <pkg> build` + smoke behavior checks)
+
+No wrapper step can be marked complete unless all five substeps are complete.
+
+## Agent Execution Protocol (mandatory)
+
+This plan is designed for distributed execution by multiple agents. Follow this protocol to avoid drift and overlap.
+
+### 1) Ownership model
+- One agent owns exactly one step at a time.
+- No agent may edit files outside its owned step, except `S15` and `S16` owner agents.
+- If cross-step edits are discovered as necessary, agent must report them as "Follow-up required" instead of editing outside ownership.
+
+### 2) Step completion contract
+An agent can mark a step complete only if all are true:
+- Wrapper implementation substep is complete.
+- Demo alignment substep is complete (or explicit `N/A` with reason).
+- Template alignment substep is complete (or explicit `N/A` with reason).
+- README alignment substep is complete.
+- Verification commands executed and passed (or failure documented with logs).
+
+### 3) Standard agent handoff output
+Every agent must return results in this structure:
+
+```md
+Step: Sx
+Status: done | partial | blocked
+
+Files changed:
+- path/to/file1
+- path/to/file2
+
+Substep status:
+- a Wrapper implementation: done/partial/blocked
+- b Demo alignment: done/partial/blocked (or N/A: reason)
+- c Template alignment: done/partial/blocked (or N/A: reason)
+- d README alignment: done/partial/blocked
+- e Verification: done/partial/blocked
+
+Verification executed:
+- <exact command>
+- <exact command>
+
+Behavior deltas:
+- ...
+
+Known risks / follow-ups:
+- ...
+```
+
+### 4) Parallelization waves (recommended)
+- **Wave 1**: `S2-S7` in parallel (core wrappers).
+- **Wave 2**: `S8-S12` in parallel (extended wrappers/docs-only).
+- **Wave 3**: `S13` then `S14` (strictly sequential).
+- **Wave 4**: `S15` validation.
+- **Wave 5**: `S16` final handoff.
+
+### 5) Conflict avoidance
+- `S13`/`S14` are the only steps allowed to edit `websites/website/docs/**/guides/vue3.md`.
+- Each wrapper step edits only its wrapper package + mapped demo + mapped README.
+- `S15` does not change implementation unless explicitly requested; it validates and reports.
+
+### 6) Failure policy
+- If verification fails, step status is `partial` (not `done`).
+- If blocked by external dependency, status is `blocked` with exact blocker and next action.
+- Never silently skip demo/template/README substeps.
 
 ---
 
@@ -833,6 +924,20 @@ Already emitting `container` which could be `undefined` — the emit signature a
 - `pnpm --filter @tsparticles/vue3 build`
 - Manual smoke: change options at runtime, verify particles reload
 - Manual smoke: change theme prop with and without `@tsparticles/plugin-themes`
+
+#### S2.b: Demo alignment
+- Align `demo/vue3/src/App.vue` with final reactive behavior.
+- Ensure demo can show runtime `options` change without remount hacks.
+
+#### S2.c: Template alignment
+- Verify whether Vue 3 templates exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S2.d: README alignment
+- Update `wrappers/vue3/README.md` to match shipped behavior (`id/options/url` reload, optional `theme` plugin note, loaded callback timing, teardown behavior).
+
+#### S2.e: Completion gate
+- Mark S2 complete only when S2.a-S2.d are done and verification passes.
 
 ---
 
@@ -913,6 +1018,20 @@ initPromise = Promise.resolve(init?.(tsParticles))
 - `pnpm --filter @tsparticles/vue2 build`
 - Check SFC compiler errors with `export type`
 
+#### S3.b: Demo alignment
+- Align `demo/vue2/src/App.vue` with final reactive behavior.
+- Ensure demo can show runtime `options` change without remount hacks.
+
+#### S3.c: Template alignment
+- Verify whether Vue 2 templates exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S3.d: README alignment
+- Update `wrappers/vue2/README.md` with final behavior contract and optional theme-plugin caveat.
+
+#### S3.e: Completion gate
+- Mark S3 complete only when S3.a-S3.d are done and verification passes.
+
 ---
 
 ### S4 — Angular Implementation
@@ -985,6 +1104,20 @@ initPromise = (async () => {
 **Verification**:
 - `pnpm --filter @tsparticles/angular build`
 - Manual: change options binding, verify reload
+
+#### S4.b: Demo alignment
+- Align `demo/angular/src/app/app.component.html` and `demo/angular/src/app/app.component.ts` with final behavior.
+- Keep `*ngIf` only as optional visibility control (not as reactivity workaround).
+
+#### S4.c: Template alignment
+- Verify whether Angular templates/scaffolds exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S4.d: README alignment
+- Update `wrappers/angular/README.md` with `theme` input and reload contract.
+
+#### S4.e: Completion gate
+- Mark S4 complete only when S4.a-S4.d are done and verification passes.
 
 ---
 
@@ -1079,6 +1212,20 @@ particlesLoaded?: (container?: Container) => Promise<void>;
 
 **Verification**:
 - `pnpm --filter @tsparticles/solid build`
+
+#### S5.b: Demo alignment
+- Align `demo/solid/src/App.tsx` by removing conditional mount workaround.
+- Ensure demo shows runtime config switching via prop updates.
+
+#### S5.c: Template alignment
+- Verify whether Solid templates exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S5.d: README alignment
+- Update `wrappers/solid/README.md` (including corrected `particlesLoaded` signature).
+
+#### S5.e: Completion gate
+- Mark S5 complete only when S5.a-S5.d are done and verification passes.
 
 ---
 
@@ -1187,6 +1334,20 @@ export interface IParticlesProps {
 
 **Verification**:
 - `pnpm --filter @tsparticles/qwik build`
+
+#### S6.b: Demo alignment
+- Align `demo/qwik/src/root.tsx` by removing conditional mount workaround.
+- Ensure demo demonstrates reactive updates without remount.
+
+#### S6.c: Template alignment
+- Verify whether Qwik templates exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S6.d: README alignment
+- Update `wrappers/qwik/README.md` with theme caveat and reload contract.
+
+#### S6.e: Completion gate
+- Mark S6 complete only when S6.a-S6.d are done and verification passes.
 
 ---
 
@@ -1304,11 +1465,25 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 - `pnpm --filter @tsparticles/astro build`
 - Smoke test: change data attributes on the custom element, verify reload
 
+#### S7.b: Demo alignment
+- Align `demo/astro/src/pages/index.astro` with attribute-driven reactivity.
+- Verify connect/disconnect lifecycle behavior in navigation.
+
+#### S7.c: Template alignment
+- Verify whether Astro templates exist for this wrapper family.
+- If none exist, record explicit `N/A` in implementation notes.
+
+#### S7.d: README alignment
+- Update `wrappers/astro/README.md` with `theme` prop and lifecycle/reload contract.
+
+#### S7.e: Completion gate
+- Mark S7 complete only when S7.a-S7.d are done and verification passes.
+
 ---
 
-### S8 — Extended Wrapper Alignment
+### S8 — Inferno Implementation (package family)
 
-#### 8a: Inferno — fix loaded callback gap
+#### S8.a: Wrapper implementation
 
 **File**: `wrappers/inferno/src/Particles.tsx`
 
@@ -1339,7 +1514,23 @@ Also add `theme` handling:
 - In `componentDidUpdate`, check for theme change
 - Safe `loadTheme` call
 
-#### 8b: Lit — add loaded notification
+#### S8.b: Demo alignment
+- Verify inferno demo behavior (if present) is consistent with wrapper contract.
+- If no inferno demo exists, record explicit `N/A`.
+
+#### S8.c: Template alignment
+- Verify whether Inferno templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S8.d: README alignment
+- Update `wrappers/inferno/README.md` to reflect callback semantics, optional theme plugin, and reload/teardown behavior.
+
+#### S8.e: Completion gate
+- Mark S8 complete only when S8.a-S8.d are done and verification passes.
+
+### S9 — Lit Implementation (package family)
+
+#### S9.a: Wrapper implementation
 
 **File**: `wrappers/lit/src/lit-tsparticles.ts`
 
@@ -1361,6 +1552,20 @@ async #loadParticles(currentRenderId: number): Promise<void> {
   }
 }
 ```
+
+#### S9.b: Demo alignment
+- Verify lit demo behavior (if present) is aligned with the event contract.
+- If no lit demo exists, record explicit `N/A`.
+
+#### S9.c: Template alignment
+- Verify whether Lit templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S9.d: README alignment
+- Update `wrappers/lit/README.md` with `particlesLoaded` event behavior and optional theme caveat.
+
+#### S9.e: Completion gate
+- Mark S9 complete only when S9.a-S9.d are done and verification passes.
 
 Also add `theme` property:
 ```ts
@@ -1385,7 +1590,9 @@ update(changedProperties: PropertyValues) {
 }
 ```
 
-#### 8c: Riot — align reload + teardown
+### S10 — Riot Implementation (package family)
+
+#### S10.a: Wrapper implementation
 
 **File**: `wrappers/riot/src/riot-particles.riot`
 
@@ -1418,7 +1625,23 @@ export default {
 
 **Riot caveat**: Riot components don't have automatic deep comparison. Manual tracking needed.
 
-#### 8d: WebComponents — fix id handling + add theme
+#### S10.b: Demo alignment
+- Verify riot demo behavior (if present) is aligned with reload + teardown contract.
+- If no riot demo exists, record explicit `N/A`.
+
+#### S10.c: Template alignment
+- Verify whether Riot templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S10.d: README alignment
+- Update `wrappers/riot/README.md` with reactive reload and teardown behavior.
+
+#### S10.e: Completion gate
+- Mark S10 complete only when S10.a-S10.d are done and verification passes.
+
+### S11 — WebComponents Implementation (package family)
+
+#### S11.a: Wrapper implementation
 
 **File**: `wrappers/webcomponents/src/Particles.ts`
 
@@ -1456,7 +1679,23 @@ attributeChangedCallback(name: string, _oldValue: string | null, newValue: strin
 
 Also remove the deprecated `particlesInit` custom event dispatch from constructor (v3 pattern).
 
-#### 8e: React README props table fix
+#### S11.b: Demo alignment
+- Verify webcomponents demo behavior (if present) reflects observed attribute support (`id/options/url/theme`).
+- If no webcomponents demo exists, record explicit `N/A`.
+
+#### S11.c: Template alignment
+- Verify whether WebComponents templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S11.d: README alignment
+- Update `wrappers/webcomponents/README.md` with observed attributes and theme caveat.
+
+#### S11.e: Completion gate
+- Mark S11 complete only when S11.a-S11.d are done and verification passes.
+
+### S12 — React Docs Alignment (package family)
+
+#### S12.a: README alignment
 
 **File**: `wrappers/react/README.md`
 
@@ -1467,7 +1706,16 @@ Add to the table:
 | particlesLoaded | function | Callback invoked when the container is loaded, receives `(container?: Container)` |
 ```
 
-Also note: React wrapper currently has NO `theme` prop — but this is out of scope for S8 (React is not a core wrapper in this plan). Just fix the README to document existing behavior.
+Also note: React wrapper currently has NO `theme` prop — this remains out of scope for S12 (React is docs-only in this plan). Document existing behavior only.
+
+#### S12.b: Demo alignment check
+- Verify `demo/react/src/App.jsx` remains aligned with documented API.
+
+#### S12.c: Template alignment
+- Verify `wrappers/react/templates/` status and record `N/A` if still empty.
+
+#### S12.d: Completion gate
+- Mark S12 complete only when S12.a-S12.c are done.
 
 ---
 
@@ -1475,13 +1723,13 @@ Also note: React wrapper currently has NO `theme` prop — but this is out of sc
 
 ### Stale patterns found in `websites/website/docs/guides/vue3.md` (622 lines)
 
-| Pattern | Occurrences | Lines (EN) | Action |
-|---------|------------|------------|--------|
-| `:init="particlesInit"` | 10 | 141, 166, 198, 232, 266, 442, 481, 482, 595 | Remove from ALL examples |
-| `particlesInit` function | 15 | 126, 135, 141, 159, 166, 185, 198, 219, 232, 253, 266, 429, 442, 584, 595 | Remove function definitions (no longer needed at component level) |
-| `@particles-init` event | 1 | 613 | Remove from API table |
-| `:init` prose section | ~2 | 128-143, 477 | Remove "Using particlesInit with the Component" section |
-| `useParticles()` | 1 | 492 | Wrong function name; should be `useParticlesProvider` |
+| Pattern                  | Occurrences | Lines (EN)                                                                | Action                                                            |
+|--------------------------|-------------|---------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `:init="particlesInit"`  | 10          | 141, 166, 198, 232, 266, 442, 481, 482, 595                               | Remove from ALL examples                                          |
+| `particlesInit` function | 15          | 126, 135, 141, 159, 166, 185, 198, 219, 232, 253, 266, 429, 442, 584, 595 | Remove function definitions (no longer needed at component level) |
+| `@particles-init` event  | 1           | 613                                                                       | Remove from API table                                             |
+| `:init` prose section    | ~2          | 128-143, 477                                                              | Remove "Using particlesInit with the Component" section           |
+| `useParticles()`         | 1           | 492                                                                       | Wrong function name; should be `useParticlesProvider`             |
 
 ### Required changes to ALL 10 files (EN + 9 translations)
 
@@ -1507,9 +1755,9 @@ websites/website/docs/es/guides/vue3.md                   (Spanish)
 websites/website/docs/it/guides/vue3.md                   (Italian)
 ```
 
-### Agent execution order for S10+S11
-1. Edit EN file first (S10)
-2. Mirror structural + code changes in all 9 translations (S11)
+### Agent execution order for S13+S14
+1. Edit EN file first (S13)
+2. Mirror structural + code changes in all 9 translations (S14)
 3. Preserve translated prose where possible; update only code blocks and section structure
 4. Run stale-pattern grep to verify: no `:init`, no `@particles-init`, no `particlesInit` remains
 
@@ -1517,46 +1765,39 @@ websites/website/docs/it/guides/vue3.md                   (Italian)
 
 ## README Changes Per Wrapper
 
-Each touched README must be updated to document:
+README work is **embedded in each wrapper step** (S2-S12) and is not a standalone late phase.
 
-### Required messaging in all 6 core wrapper READMEs:
-1. `theme` support depends on optional `@tsparticles/plugin-themes`
-2. Missing plugin ⇒ `theme` is safe no-op (intentionally ignored, no crash)
+For every wrapper step, the README must document:
+1. `theme` support depends on optional `@tsparticles/plugin-themes` (if wrapper exposes `theme`)
+2. Missing plugin ⇒ `theme` is safe no-op
 3. `id`/`options`/`url` changes reload particles
-4. Loaded callback/event fires after `tsParticles.load` resolves (receives `Container | undefined`)
-5. Component destroy triggers container `destroy()`
-6. Website docs and wrapper README must be aligned (same behavior contract, framework-specific syntax only)
+4. Loaded callback/event fires only after `tsParticles.load` resolves
+5. Component/element teardown destroys container
 
-### Specific README gaps:
-- **Vue 3 README** (73 lines): current is minimal. Add props table with `theme`, `options`, `url`, `id`, `@particlesLoaded`. Add reload contract docs.
-- **Vue 2 README** (145 lines): has usage examples but no `theme` prop documented. No reload contract. No `@tsparticles/plugin-themes` note.
-- **Angular README** (136 lines): has full examples. Missing `theme` input. Missing reload contract. Missing `@tsparticles/plugin-themes` note.
-- **Solid README** (130 lines): has props table. Missing `theme`. Missing reload contract. `particlesLoaded` type in table is wrong (`(container: Container)` should be `(container?: Container)`).
-- **Qwik README** (94 lines): has props table. Missing `theme`. Missing reload contract.
-- **Astro README** (132 lines): has props table. Missing `theme`. Missing reload contract. Missing `disconnectedCallback` docs.
+Wrapper-specific known README gaps are listed in each wrapper section and must be closed inside that wrapper step.
 
 ---
 
 ## Risk Register (Expanded)
 
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|:----------:|-----------|
-| `loadTheme` type mismatch across 6 wrappers | Build failures | High | Use local cast at each call site: `(container as unknown as { loadTheme?: ... })` |
-| `Container \| undefined` passed to strict callbacks | TS errors / runtime crashes | High | Guard before callback emit: `if (container) cb(container)` or type signature `(container?: Container) => void` |
-| Over-triggered reload effects/watchers | Perf regression, flicker | Medium | Explicit dependency tracking + destroy-before-load |
-| Vue 3 deep watcher on `options` firing too often | Performance | Medium | Use `{ deep: false }` and rely on reference comparison (user creates new object = good, mutation = not tracked — acceptable trade-off) |
-| Angular `ngOnChanges` fires before `ngAfterViewInit` | Double load / error | High | Guard with `this.#container` check |
-| Vue 2 `@Watch` decorator + SFC `export type` issue | Compile error | Medium | Remove `export type IParticlesProps = ISourceOptions` from SFC |
-| Qwik `useTask$` running on server | SSR crash | High | Use `useVisibleTask$` instead, or guard with `isServer` |
-| Astro attribute observer race (concurrent loads) | Wrong config shown | Medium | Use monotonic `#loadId` token (already planned) |
-| Astro `JSON.parse` on every attribute change | Performance | Low | Cache parsed options, only re-parse when string changes |
-| Agent applies v3 mental model on v4 code | Wrong API/docs | High | Mandatory repository-first audit + all wrappers are v4-only (no v3 history) |
-| Translation edits break code blocks | Docs render issues | Medium | Manual spot-check after scripted edits |
-| `IParticlesProps` naming in Vue3 shadows props type | Confusion / wrong usage | Medium | Fix: remove standalone `export type IParticlesProps = ISourceOptions` |
-| Vue 2 event-bus missing `tsParticles.init()` | Runtime crash (v4 requirement) | High | Add `tsParticles.init()` call in `ensureParticlesInitialization` |
-| Angular NgParticlesService missing `tsParticles.init()` | Runtime crash (v4 requirement) | High | Add `tsParticles.init()` call in `NgParticlesService.init()` |
-| Solid `onCleanup` inside `createEffect` scope removal | Memory leak | Medium | Ensure top-level `onCleanup` for unmount, plus manual destroy in reactive effect |
-| Riot `tsParticles.dom()` usage (v3 API) | Runtime error (v4) | Medium | Track container locally instead of querying `tsParticles.dom()` |
+| Risk                                                    | Impact                         | Likelihood | Mitigation                                                                                                                             |
+|---------------------------------------------------------|--------------------------------|:----------:|----------------------------------------------------------------------------------------------------------------------------------------|
+| `loadTheme` type mismatch across 6 wrappers             | Build failures                 |    High    | Use local cast at each call site: `(container as unknown as { loadTheme?: ... })`                                                      |
+| `Container \| undefined` passed to strict callbacks     | TS errors / runtime crashes    |    High    | Guard before callback emit: `if (container) cb(container)` or type signature `(container?: Container) => void`                         |
+| Over-triggered reload effects/watchers                  | Perf regression, flicker       |   Medium   | Explicit dependency tracking + destroy-before-load                                                                                     |
+| Vue 3 deep watcher on `options` firing too often        | Performance                    |   Medium   | Use `{ deep: false }` and rely on reference comparison (user creates new object = good, mutation = not tracked — acceptable trade-off) |
+| Angular `ngOnChanges` fires before `ngAfterViewInit`    | Double load / error            |    High    | Guard with `this.#container` check                                                                                                     |
+| Vue 2 `@Watch` decorator + SFC `export type` issue      | Compile error                  |   Medium   | Remove `export type IParticlesProps = ISourceOptions` from SFC                                                                         |
+| Qwik `useTask$` running on server                       | SSR crash                      |    High    | Use `useVisibleTask$` instead, or guard with `isServer`                                                                                |
+| Astro attribute observer race (concurrent loads)        | Wrong config shown             |   Medium   | Use monotonic `#loadId` token (already planned)                                                                                        |
+| Astro `JSON.parse` on every attribute change            | Performance                    |    Low     | Cache parsed options, only re-parse when string changes                                                                                |
+| Agent applies v3 mental model on v4 code                | Wrong API/docs                 |    High    | Mandatory repository-first audit + all wrappers are v4-only (no v3 history)                                                            |
+| Translation edits break code blocks                     | Docs render issues             |   Medium   | Manual spot-check after scripted edits                                                                                                 |
+| `IParticlesProps` naming in Vue3 shadows props type     | Confusion / wrong usage        |   Medium   | Fix: remove standalone `export type IParticlesProps = ISourceOptions`                                                                  |
+| Vue 2 event-bus missing `tsParticles.init()`            | Runtime crash (v4 requirement) |    High    | Add `tsParticles.init()` call in `ensureParticlesInitialization`                                                                       |
+| Angular NgParticlesService missing `tsParticles.init()` | Runtime crash (v4 requirement) |    High    | Add `tsParticles.init()` call in `NgParticlesService.init()`                                                                           |
+| Solid `onCleanup` inside `createEffect` scope removal   | Memory leak                    |   Medium   | Ensure top-level `onCleanup` for unmount, plus manual destroy in reactive effect                                                       |
+| Riot `tsParticles.dom()` usage (v3 API)                 | Runtime error (v4)             |   Medium   | Track container locally instead of querying `tsParticles.dom()`                                                                        |
 
 ---
 
@@ -1567,7 +1808,7 @@ Each touched README must be updated to document:
 # Core wrappers
 pnpm nx run-many -t build --projects=@tsparticles/vue3,@tsparticles/vue2,@tsparticles/angular,@tsparticles/solid,@tsparticles/qwik,@tsparticles/astro
 
-# Extended wrappers touched in S8
+# Extended wrappers touched in S8-S11
 pnpm nx run-many -t build --projects=@tsparticles/inferno,@tsparticles/lit,@tsparticles/riot,@tsparticles/webcomponents
 ```
 
@@ -1587,7 +1828,7 @@ grep -rn ":init" websites/website/docs/*/guides/vue3.md
 grep -rn "particles-init" websites/website/docs/*/guides/vue3.md
 grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
 
-# These should return NO results after S10+S11
+# These should return NO results after S13+S14
 ```
 
 ### README consistency scan
@@ -1619,7 +1860,7 @@ grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
 
 ## Execution Order (Recommended for Sub-Agents)
 
-Each substep below is designed to be executed by a SEPARATE agent from scratch, using only this document as context.
+Each step below is designed to be executed by a SEPARATE agent from scratch, using only this document as context.
 
 ```
 S1 baseline audit         → Already completed (findings embedded in this doc)
@@ -1632,21 +1873,146 @@ S5  Solid wrapper         → Sub-agent D
 S6  Qwik wrapper          → Sub-agent E
 S7  Astro wrapper         → Sub-agent F
 
-S8a Inferno callback gap  → Sub-agent G
-S8b Lit loaded notify     → Sub-agent H
-S8c Riot alignment        → Sub-agent I
-S8d WebComponents align   → Sub-agent J
-S8e React README fix      → Sub-agent K
+S8  Inferno wrapper       → Sub-agent G
+S9  Lit wrapper           → Sub-agent H
+S10 Riot wrapper          → Sub-agent I
+S11 WebComponents wrapper → Sub-agent J
+S12 React docs-only       → Sub-agent K
 
-S9  Wrapper READMEs       → Sub-agent L (after S2-S7 complete)
-S10 Vue 3 EN guide        → Sub-agent M
-S11 9 translations        → Sub-agent N
+S13 Vue 3 EN guide        → Sub-agent L
+S14 9 translations        → Sub-agent M
 
-S12 Validation            → Sub-agent O (after all above)
-S13 Final handoff         → Sub-agent P
+S15 Validation            → Sub-agent N (after all above)
+S16 Final handoff         → Sub-agent O
 ```
 
-Note: S2-S7 can run in parallel. S8a-S8e can run in parallel. S10 must precede S11.
+Note: use wave execution from the protocol section. `S13` must precede `S14`.
+
+---
+
+## Demo & Template Alignment
+
+All 29 demo projects live under `demo/` at the repo root (NOT inside wrapper packages). Each wrapper we modify has a corresponding demo. Additionally, some demos use patterns that are **workarounds for missing reactivity** — these should be simplified within the corresponding wrapper step (not deferred).
+
+Rule: if a wrapper has an associated demo/template, that wrapper step remains open until those artifacts are aligned.
+
+### Demo inventory: conditional mounting patterns (workarounds for no reactivity)
+
+| Demo                                                    | Pattern                                                 | Why it exists                                                        | After reactivity fix                                                                   |
+|---------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **Solid** (`demo/solid/src/App.tsx`)                    | `{init() && <Particles />}` via `<Show>`                | `onMount` + `createResource` was one-shot; needed init gate          | Move `initParticlesEngine` to app bootstrap; remove `<Show>` gate around `<Particles>` |
+| **Preact** (`demo/preact/src/app.js`)                   | `{this.state.particlesInitialized && <Particles .../>}` | Constructor via `initParticlesEngine` returns promise, no reactivity | Move init to app bootstrap; remove conditional render                                  |
+| **Qwik** (`demo/qwik/src/root.tsx`)                     | `{particlesReady.value && <Particles .../>}`            | `useVisibleTask$` runs once                                          | Remove conditional; component itself waits for init                                    |
+| **Angular** (`demo/angular/src/app/app.component.html`) | `*ngIf="particlesVisible"` on `<ngx-particles>`         | Visibility toggle workaround (options change required re-mount)      | Less needed now, but `*ngIf` remains valid for conditional display                     |
+| **React** (`demo/react/src/App.jsx`)                    | No conditional — uses `ParticlesProvider`               | Already has proper init gate                                         | No change needed                                                                       |
+| **Vue 3** (`demo/vue3/src/App.vue`)                     | No conditional — uses `app.use(Particles, { init })`    | Already has proper plugin init                                       | No change needed                                                                       |
+| **Vue 2** (`demo/vue2/src/App.vue`)                     | No conditional — uses `Vue.use(Particles, { init })`    | Already has proper plugin init                                       | No change needed                                                                       |
+
+### Demos that use stale `particlesInit` function name at component level
+| Demo | Location | Pattern | Action |
+|------|----------|---------|--------|
+| **Svelte** (`demo/svelte/src/App.svelte`) | `particlesInit(async (engine) => { ... })` | Function named `particlesInit` | Rename to `initParticlesEngine` for clarity (not broken, just naming) |
+| **Svelte Kit** (`demo/svelte-kit/src/routes/+page.svelte`) | `particlesInit(async (engine) => { ... })` | Same as above | Same action |
+
+### Demos with `*ngIf` visibility toggle on particles (could be simplified)
+| Demo | Pattern | Notes |
+|------|---------|-------|
+| **Angular** (`demo/angular/src/app/app.component.html:840-841`) | `*ngIf="particlesVisible"` on `<ngx-particles>` | Used for toggle button. After reactivity, options can change without re-mount. `ngIf` is still valid for hide/show. |
+| **Angular-confetti** | `*ngIf="confettiVisible"` | Separate sub-component |
+| **Angular-fireworks** | `*ngIf="fireworksVisible"` | Separate sub-component |
+
+### Demo alignment tasks per wrapper (NEW steps)
+
+Apply these inside each wrapper step before marking it complete:
+
+#### S8-DEMO-PR — Preact demo (extended alignment)
+**Files**: `demo/preact/src/components/app.js`
+**Actions**:
+- **Remove** the `{this.state.particlesInitialized && <Particles .../>}` conditional
+- Move `initParticlesEngine` to module level (outside component lifecycle)
+- After reactivity: `<Particles id="tsparticles" options={...} />` works standalone
+- This is part of S8 completion (Inferno family) and cannot be deferred
+
+### Step-to-artifact mapping (authoritative)
+
+Use this map to decide ownership and avoid file collisions.
+
+| Step | Wrapper files | Demo files | README |
+|------|---------------|------------|--------|
+| S2 | `wrappers/vue3/**` | `demo/vue3/**` | `wrappers/vue3/README.md` |
+| S3 | `wrappers/vue2/**` | `demo/vue2/**` | `wrappers/vue2/README.md` |
+| S4 | `wrappers/angular/**` | `demo/angular/**` | `wrappers/angular/README.md` |
+| S5 | `wrappers/solid/**` | `demo/solid/**` | `wrappers/solid/README.md` |
+| S6 | `wrappers/qwik/**` | `demo/qwik/**` | `wrappers/qwik/README.md` |
+| S7 | `wrappers/astro/**` | `demo/astro/**` | `wrappers/astro/README.md` |
+| S8 | `wrappers/inferno/**` | `demo/preact/**` (extended cleanup) + inferno demo if present | `wrappers/inferno/README.md` |
+| S9 | `wrappers/lit/**` | lit demo if present | `wrappers/lit/README.md` |
+| S10 | `wrappers/riot/**` | riot demo if present | `wrappers/riot/README.md` |
+| S11 | `wrappers/webcomponents/**` | webcomponents demo if present | `wrappers/webcomponents/README.md` |
+| S12 | `wrappers/react/README.md` | `demo/react/**` check only | `wrappers/react/README.md` |
+| S13 | `websites/website/docs/guides/vue3.md` | N/A | N/A |
+| S14 | `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md` | N/A | N/A |
+
+If a mapped demo does not exist, record explicit `N/A` in the step output.
+
+#### S2-DEMO — Vue 3 demo
+**Files**: `demo/vue3/src/App.vue`
+**Actions**:
+- No conditional render to remove (already clean)
+- Verify `:options` binding works with reactive changes
+- Optionally add a "switch config" button to demo reactivity (changing `:options` prop)
+- Verify `@particles-loaded` event fires after each reload
+
+#### S3-DEMO — Vue 2 demo
+**Files**: `demo/vue2/src/App.vue`
+**Actions**:
+- Same as Vue 3 — verify reactive options work
+- Optionally add theme toggle demo
+
+#### S4-DEMO — Angular demo
+**Files**: `demo/angular/src/app/app.component.html`, `demo/angular/src/app/app.component.ts`
+**Actions**:
+- The `*ngIf="particlesVisible"` pattern is a workaround that can remain for toggle functionality, but should be documented as optional
+- Add `theme` input binding example if desired
+- Verify `[options]` changes trigger reload via `OnChanges`
+- The `particlesVisible` toggle should NOT be the only way to change config — add a "Switch config" button that changes `[options]` directly
+
+#### S5-DEMO — Solid demo
+**Files**: `demo/solid/src/App.tsx`
+**Actions**:
+- **Remove** the `<Show when={initialized()}>` conditional around `<Particles>`
+- Move `initParticlesEngine` call to module level (not inside `onMount`)
+- After reactivity: `<Particles id="tsparticles" options={configs.basic} />` works standalone
+- Optionally add config switch button to demo reactive `options` change
+
+#### S6-DEMO — Qwik demo
+**Files**: `demo/qwik/src/root.tsx`
+**Actions**:
+- **Remove** the `{particlesReady.value && <Particles .../>}` conditional
+- Move `initParticlesEngine` to module level (outside component)
+- After reactivity: `<Particles id="tsparticles" options={...} />` works standalone
+- Optionally add theme/config switch
+
+#### S7-DEMO — Astro demo
+**Files**: `demo/astro/src/pages/index.astro`
+**Actions**:
+- Verify `<Particles>` works with reactive attribute changes
+- Add `disconnectedCallback` test (navigate away and back)
+
+### Templates
+- `wrappers/react/templates/` exists but is EMPTY — no CRA templates to update
+- No other template directories found in the repo
+- **Action**: keep explicit template check in every wrapper step and record `N/A` when applicable
+
+### Cross-wrapper README maintenance for demos
+- After any demo change, verify the demo's code example matches the corresponding wrapper README's example
+- If a demo demonstrates `:init` or `@particles-init` pattern, REMOVE it (stale API)
+
+### Add to Definition of Done
+- [ ] Conditional rendering workarounds removed from Solid, Preact, Qwik demos
+- [ ] Angular demo has config switch example (not only `*ngIf` toggle)
+- [ ] All demos use correct wrapper API (no `:init`, no `@particles-init`)
+- [ ] Each core wrapper demo verifiably demonstrates reactive prop changes
 
 ---
 
@@ -1656,6 +2022,7 @@ Done only if all are true:
 - [ ] All 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
 - [ ] All 6 wrappers safely handle `theme` updates without plugin hard dependency
 - [ ] All 6 wrappers call `tsParticles.init()` during bootstrap (v4 fix)
+- [ ] Every wrapper step (S2-S12) includes aligned demo + template check + README before closure
 - [ ] All touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
 - [ ] Website docs for touched wrappers are updated and aligned with README + implementation behavior
 - [ ] All wrappers emit loaded callback/event only after `tsParticles.load` resolves
