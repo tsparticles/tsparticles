@@ -1,7 +1,7 @@
 # Wrapper Reactivity & Vue3 Docs Plan — Enriched
 
 > **Status**: Planning document (ready for agent execution)
-> **Total wrappers in scope**: 6 core + ~15 extended alignment
+> **Total wrappers in scope**: all wrappers in repository except `wordpress`
 > **Previous version**: ~560 lines — this enriched version adds per-wrapper code analysis, type contracts, before/after code, and per-substep agent instructions.
 
 ---
@@ -10,23 +10,29 @@
 
 Use this table as the single high-level progress board. Update it whenever a step changes state.
 
-| Step | Area                         | Owner Agent | Status  | Last update | Notes                                                   |
-|------|------------------------------|-------------|---------|-------------|---------------------------------------------------------|
-| S1   | Vue 3 package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S2   | Vue 2 package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S3   | Angular package family       | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S4   | Solid package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S5   | Qwik package family          | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S6   | Astro package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
-| S7   | Inferno package family       | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
-| S8   | Lit package family           | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
-| S9   | Riot package family          | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
-| S10  | WebComponents package family | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
-| S11  | React docs-only family       | Unassigned  | Pending | -           | README alignment + demo/template check                  |
-| S12  | Website docs EN              | Unassigned  | Pending | -           | Must finish before S13                                  |
-| S13  | Website docs translations    | Unassigned  | Pending | -           | 9 translations, mirror S12                              |
-| S14  | Validation                   | Unassigned  | Pending | -           | Build + smoke + stale-pattern checks                    |
-| S15  | Final handoff                | Unassigned  | Pending | -           | Consolidated deltas and residual risks                  |
+| Step | Area                      | Owner Agent | Status  | Last update | Notes                                                                 |
+|------|---------------------------|-------------|---------|-------------|-----------------------------------------------------------------------|
+| S1   | Vue 3 wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S2   | Vue 2 wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S3   | Angular wrapper           | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S4   | Solid wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S5   | Qwik wrapper              | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S6   | Astro wrapper             | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification               |
+| S7   | Inferno wrapper           | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
+| S8   | Lit wrapper               | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
+| S9   | Riot wrapper              | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
+| S10  | WebComponents wrapper     | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification               |
+| S11  | React docs                | Unassigned  | Pending | -           | README alignment + demo/template check                                |
+| S12  | Preact wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, callback type strictness                |
+| S13  | Svelte wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, reload scope too broad                  |
+| S14  | Stencil wrapper           | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, no loaded callback/event, init path gap |
+| S15  | Ember wrapper             | Unassigned  | Pending | 2026-06-12  | Drift found: missing `theme`, update lifecycle cleanup risk           |
+| S16  | jQuery wrapper            | Unassigned  | Pending | 2026-06-12  | Drift found: no `theme` handling/documentation in wrapper API         |
+| S17  | Angular-fireworks wrapper | Unassigned  | Pending | 2026-06-12  | Drift found: missing `OnChanges`; input updates ignored after mount   |
+| S18  | EN docs                   | Unassigned  | Pending | -           | Must finish before S19                                                |
+| S19  | 9 translations            | Unassigned  | Pending | -           | Mirror S18                                                            |
+| S20  | Validation                | Unassigned  | Pending | -           | Build + smoke + stale-pattern checks                                  |
+| S21  | Final handoff             | Unassigned  | Pending | -           | Consolidated deltas and residual risks                                |
 
 Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
 
@@ -42,10 +48,10 @@ Implement reactive updates for wrapper components when `options`, `url`, or `the
 - **Mandatory website set**: `websites/website/docs/guides/vue3.md` + all 9 translations under `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md`.
 - **Wrapper READMEs**: update README files for all touched wrappers (`vue3`, `vue2`, `angular`, `solid`, `qwik`, `astro`) when behavior text is stale.
 
-### Extended alignment scope (audited, not core)
-- Also audited wrappers: `react`, `preact`, `svelte`, `stencil`, `lit`, `inferno`, `ember`, `riot`, `webcomponents`, `jquery`, `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti`, `angular-fireworks`.
-- These wrappers are included for **consistency fixes where clearly obsolete/misaligned behavior is found**.
-- `wordpress` is explicitly excluded from this plan.
+### Extended alignment scope (mandatory audit + conditional implementation)
+- Additional wrappers to audit and align when drift is found: `react`, `preact`, `svelte`, `stencil`, `lit`, `inferno`, `ember`, `riot`, `webcomponents`, `jquery`, `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti`, `angular-fireworks`.
+- These wrappers are not optional: each must be audited in execution, and if drift exists, implementation/demo/template/README alignment is required in-step.
+- `wordpress` is explicitly excluded from this plan and is the only wrapper out of scope.
 
 ### Out of scope
 - New wrapper APIs beyond `theme` support already implied by runtime capability
@@ -783,23 +789,29 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 
 | Step | Wrapper / Scope | Deliverable | Status |
 |------|------------------|-------------|--------|
-| S1 | Vue 3 package family | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Pending |
-| S2 | Vue 2 package family | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
-| S3 | Angular package family | Wrapper + Angular demo + template check + Angular README aligned | Pending |
-| S4 | Solid package family | Wrapper + Solid demo + template check + Solid README aligned | Pending |
-| S5 | Qwik package family | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
-| S6 | Astro package family | Wrapper + Astro demo + template check + Astro README aligned | Pending |
-| S7 | Inferno package family | Wrapper + demo/template check + Inferno README aligned | Pending |
-| S8 | Lit package family | Wrapper + demo/template check + Lit README aligned | Pending |
-| S9 | Riot package family | Wrapper + demo/template check + Riot README aligned | Pending |
-| S10 | WebComponents package family | Wrapper + demo/template check + WebComponents README aligned | Pending |
-| S11 | React docs-only family | React README alignment (+ demo/template verification if needed) | Pending |
-| S12 | Website docs batch (EN first) | Vue 3 EN guide update to match shipped behavior | Pending |
-| S13 | Website docs batch (9 translations) | Mirror EN update in all required translation files | Pending |
-| S14 | Validation | Build + smoke + stale-pattern checks | Pending |
-| S15 | Final handoff | Changelog + deltas + residual risks | Pending |
+| S1 | Vue 3 wrapper | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Pending |
+| S2 | Vue 2 wrapper | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
+| S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Pending |
+| S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Pending |
+| S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
+| S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Pending |
+| S7 | Inferno wrapper | Wrapper + demo/template check + Inferno README aligned | Pending |
+| S8 | Lit wrapper | Wrapper + demo/template check + Lit README aligned | Pending |
+| S9 | Riot wrapper | Wrapper + demo/template check + Riot README aligned | Pending |
+| S10 | WebComponents wrapper | Wrapper + demo/template check + WebComponents README aligned | Pending |
+| S11 | React docs | React README alignment (+ demo/template verification if needed) | Pending |
+| S12 | Preact wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S13 | Svelte wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S14 | Stencil wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S15 | Ember wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S16 | jQuery wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S17 | Angular-fireworks wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
+| S18 | EN docs | Vue 3 EN guide update to match shipped behavior | Pending |
+| S19 | 9 translations | Mirror EN update in all required translation files | Pending |
+| S20 | Validation | Build + smoke + stale-pattern checks | Pending |
+| S21 | Final handoff | Changelog + deltas + residual risks | Pending |
 
-### Per-step substep template (apply to every wrapper step S1-S11)
+### Per-step substep template (apply to every wrapper step S1-S17)
 
 - `a` Wrapper code changes (`id/options/url` reload, theme safety, teardown, init wait)
 - `b` Demo alignment for that wrapper family
@@ -809,13 +821,61 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 
 No wrapper step can be marked complete unless all five substeps are complete.
 
+### A1 audit template (special step)
+
+`A1` is an upfront analysis step and uses this output contract:
+
+- Wrapper audited
+- Drift found: `yes/no`
+- Evidence (file refs + short rationale)
+- Action: `queue X-step` or `no-change`
+- If `queue X-step`: list exact files likely to change
+
+`A1` must complete before any `S12-S17` implementation step starts.
+
+### A1 Audit Decision Matrix (completed)
+
+| Wrapper | Drift | Evidence | Decision |
+|---------|-------|----------|----------|
+| preact | yes | `wrappers/preact/src/IParticlesProps.ts` callback typed `(container: Container)`; no `theme` prop | Activate `S12` |
+| svelte | yes | `wrappers/svelte/src/lib/Particles.svelte` reloads on every `afterUpdate`; no `theme` handling | Activate `S13` |
+| stencil | yes | `wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx` has no `theme` prop and no loaded callback/event | Activate `S14` |
+| ember | yes | `wrappers/ember/addon/modifiers/particles.ts` no `theme`; repeated `modify()` may stack destructors without explicit pre-destroy | Activate `S15` |
+| jquery | yes | `wrappers/jquery/src/particles.ts` has `load/ajax` only, no theme pathway nor theme docs alignment | Activate `S16` |
+| nextjs | no | `wrappers/nextjs/lib/index.tsx` is thin client-only re-export over `@tsparticles/react` | Close `X6` as no-change |
+| nuxt2 | no | `wrappers/nuxt2/lib/index.ts` only installs Vue3 plugin via module; no direct wrapper lifecycle | Close `X7` as no-change |
+| nuxt3 | no | `wrappers/nuxt3/lib/index.ts` only installs Vue3 plugin via module; no direct wrapper lifecycle | Close `X8` as no-change |
+| nuxt4 | no | `wrappers/nuxt4/lib/index.ts` only installs Vue3 plugin via module; no direct wrapper lifecycle | Close `X9` as no-change |
+| angular-confetti | no | `wrappers/angular-confetti/projects/ng-confetti/src/lib/ng-confetti.component.ts` is event-like fire wrapper with explicit trigger semantics | Close `X10` as no-change |
+| angular-fireworks | yes | `wrappers/angular-fireworks/projects/ng-fireworks/src/lib/ng-fireworks.component.ts` lacks `OnChanges`; input changes not reapplied | Activate `S17` |
+
+Implementation gate from A1:
+- Execute: `S12`, `S13`, `S14`, `S15`, `S16`, `S17`.
+- No-change (closed with evidence): `X6` (Next.js), `X7` (Nuxt 2), `X8` (Nuxt 3), `X9` (Nuxt 4), `X10` (Angular-confetti).
+
+## No-Change Summary (A1 Audit Closure)
+
+These wrappers were audited and require no implementation work. Evidence is documented in the A1 decision matrix above.
+
+| Wrapper | Evidence |
+|---------|----------|
+| Next.js (X6) | `wrappers/nextjs/lib/index.tsx` — thin client-only re-export of `@tsparticles/react`, no direct lifecycle |
+| Nuxt 2 (X7) | `wrappers/nuxt2/lib/index.ts` — module only installs Vue3 plugin, no direct wrapper lifecycle |
+| Nuxt 3 (X8) | Same pattern as Nuxt 2 |
+| Nuxt 4 (X9) | Same pattern as Nuxt 2 |
+| Angular-confetti (X10) | `wrappers/angular-confetti/projects/ng-confetti/src/lib/ng-confetti.component.ts` — event-like fire wrapper with explicit trigger semantics, not a generic particles component |
+
+These steps are **closed** and do not appear in any execution table.
+
+---
+
 ## Agent Execution Protocol (mandatory)
 
 This plan is designed for distributed execution by multiple agents. Follow this protocol to avoid drift and overlap.
 
 ### 1) Ownership model
 - One agent owns exactly one step at a time.
-- No agent may edit files outside its owned step, except `S14` and `S15` owner agents.
+- No agent may edit files outside its owned step, except `S20` and `S21` owner agents.
 - If cross-step edits are discovered as necessary, agent must report them as "Follow-up required" instead of editing outside ownership.
 
 ### 2) Step completion contract
@@ -856,16 +916,15 @@ Known risks / follow-ups:
 ```
 
 ### 4) Parallelization waves (recommended)
-- **Wave 1**: `S1-S6` in parallel (core wrappers).
-- **Wave 2**: `S7-S11` in parallel (extended wrappers/docs-only).
-- **Wave 3**: `S12` then `S13` (strictly sequential).
-- **Wave 4**: `S14` validation.
-- **Wave 5**: `S15` final handoff.
+- **Wave 1**: all wrapper implementation steps in parallel — `S1-S17`.
+- **Wave 2**: `S18` then `S19` (strictly sequential — EN docs first, then 9 translations).
+- **Wave 3**: `S20` validation.
+- **Wave 4**: `S21` final handoff.
 
 ### 5) Conflict avoidance
-- `S12`/`S13` are the only steps allowed to edit `websites/website/docs/**/guides/vue3.md`.
+- `S18`/`S19` are the only steps allowed to edit `websites/website/docs/**/guides/vue3.md`.
 - Each wrapper step edits only its wrapper package + mapped demo + mapped README.
-- `S14` does not change implementation unless explicitly requested; it validates and reports.
+- `S20` does not change implementation unless explicitly requested; it validates and reports.
 
 ### 6) Failure policy
 - If verification fails, step status is `partial` (not `done`).
@@ -878,7 +937,7 @@ Known risks / follow-ups:
 
 ---
 
-### S1 — Vue 3 Implementation
+### S1 — Vue 3 wrapper
 
 **Files to modify**:
 - `wrappers/vue3/src/components/vue-particles.vue` (main component)
@@ -965,7 +1024,7 @@ Already emitting `container` which could be `undefined` — the emit signature a
 
 ---
 
-### S2 — Vue 2 Implementation
+### S2 — Vue 2 wrapper
 
 **Files to modify**:
 - `wrappers/vue2/src/Particles/vue-particles.vue`
@@ -1058,7 +1117,7 @@ initPromise = Promise.resolve(init?.(tsParticles))
 
 ---
 
-### S3 — Angular Implementation
+### S3 — Angular wrapper
 
 **Files to modify**:
 - `wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`
@@ -1145,7 +1204,7 @@ initPromise = (async () => {
 
 ---
 
-### S4 — Solid Implementation
+### S4 — Solid wrapper
 
 **Files to modify**:
 - `wrappers/solid/src/Particles.tsx`
@@ -1253,7 +1312,7 @@ particlesLoaded?: (container?: Container) => Promise<void>;
 
 ---
 
-### S5 — Qwik Implementation
+### S5 — Qwik wrapper
 
 **Files to modify**:
 - `wrappers/qwik/src/components/particles/particles.tsx`
@@ -1375,7 +1434,7 @@ export interface IParticlesProps {
 
 ---
 
-### S6 — Astro Implementation
+### S6 — Astro wrapper
 
 **Files to modify**:
 - `wrappers/astro/src/Particles.astro`
@@ -1505,7 +1564,7 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 
 ---
 
-### S7 — Inferno Implementation (package family)
+### S7 — Inferno wrapper
 
 #### S7.a: Wrapper implementation
 
@@ -1552,7 +1611,7 @@ Also add `theme` handling:
 #### S7.e: Completion gate
 - Mark S7 complete only when S7.a-S7.d are done and verification passes.
 
-### S8 — Lit Implementation (package family)
+### S8 — Lit wrapper
 
 #### S8.a: Wrapper implementation
 
@@ -1614,7 +1673,7 @@ update(changedProperties: PropertyValues) {
 }
 ```
 
-### S9 — Riot Implementation (package family)
+### S9 — Riot wrapper
 
 #### S9.a: Wrapper implementation
 
@@ -1663,7 +1722,7 @@ export default {
 #### S9.e: Completion gate
 - Mark S9 complete only when S9.a-S9.d are done and verification passes.
 
-### S10 — WebComponents Implementation (package family)
+### S10 — WebComponents wrapper
 
 #### S10.a: Wrapper implementation
 
@@ -1717,7 +1776,7 @@ Also remove the deprecated `particlesInit` custom event dispatch from constructo
 #### S10.e: Completion gate
 - Mark S10 complete only when S10.a-S10.d are done and verification passes.
 
-### S11 — React Docs Alignment (package family)
+### S11 — React docs
 
 #### S11.a: README alignment
 
@@ -1740,6 +1799,523 @@ Also note: React wrapper currently has NO `theme` prop — this remains out of s
 
 #### S11.d: Completion gate
 - Mark S11 complete only when S11.a-S11.c are done.
+
+---
+
+### S12 — Preact wrapper
+
+**Files to modify**:
+- `wrappers/preact/src/IParticlesProps.ts`
+- `wrappers/preact/src/Particles.tsx`
+- `wrappers/preact/src/IParticlesState.ts` (type fix for container)
+
+#### S12.a: Wrapper implementation
+
+**1. Add `theme` prop to `IParticlesProps`:**
+
+```ts
+export interface IParticlesProps {
+  id?: string;
+  width?: string;
+  height?: string;
+  options?: ISourceOptions;
+  url?: string;
+  params?: ISourceOptions;
+  style?: CSSProperties;
+  className?: string;
+  canvasClassName?: string;
+  container?: RefObject<Container | undefined>;  // FIX: add | undefined
+  particlesLoaded?: (container?: Container) => Promise<void>;  // FIX: add ? to container
+  theme?: string;  // ADD
+}
+```
+
+**2. Fix `container` ref type in state:**
+
+In `IParticlesState.ts`, the `library` type is `Container` — keep as-is (it's always assigned after successful load and is never `undefined` when set). The fix is in `IParticlesProps`.
+
+**3. Add `loadTheme` call in `loadParticles`:**
+
+```ts
+private async loadParticles(): Promise<void> {
+  if (!this.state.init) { return; }
+
+  const cb = async (container?: Container) => {
+    if (this.props.container) {
+      (this.props.container as MutableRefObject<Container | undefined>).current = container;
+    }
+
+    this.setState({ library: container });
+
+    // Apply theme after load if provided
+    if (container && this.props.theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+        .loadTheme?.(this.props.theme);
+    }
+
+    if (this.props.particlesLoaded) {
+      await this.props.particlesLoaded(container);
+    }
+  };
+
+  const container = await tsParticles.load({
+    url: this.props.url,
+    options: this.props.options,
+    id: this.props.id,
+  });
+
+  await cb(container);
+}
+```
+
+**4. Handle theme changes in `componentDidUpdate`:**
+
+The existing `componentDidUpdate` calls `this.refresh()` which destroys and reloads. But for `theme` changes, we shouldn't destroy+reload — just call `loadTheme`. Add theme check:
+
+```ts
+componentDidUpdate(prevProps: Readonly<IParticlesProps>): void {
+  // Theme change: apply without reload
+  if (prevProps.theme !== this.props.theme && this.state.library) {
+    (this.state.library as unknown as { loadTheme?: (name?: string) => Promise<void> })
+      .loadTheme?.(this.props.theme);
+  }
+  // Other prop changes: full reload
+  this.refresh();
+}
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/preact build`
+
+#### S12.b: Demo alignment
+- **Remove** `{this.state.particlesInitialized && <Particles .../>}` conditional in `demo/preact/src/components/app.js`
+- Move `initParticlesEngine` to module level (outside component lifecycle)
+- Verify `<Particles id="tsparticles" options={...} />` works standalone after init
+
+#### S12.c: Template alignment
+- Verify whether Preact templates exist (`wrappers/preact/templates/`).
+- If none exist, record explicit `N/A`.
+
+#### S12.d: README alignment
+- Update `wrappers/preact/README.md` with `theme` prop documentation and optional plugin caveat.
+
+#### S12.e: Completion gate
+- Mark S12 complete only when S12.a-S12.d are done and verification passes.
+
+---
+
+### S13 — Svelte wrapper
+
+**Files to modify**:
+- `wrappers/svelte/src/lib/Particles.svelte`
+
+#### S13.a: Wrapper implementation
+
+**1. Add `theme` prop:**
+
+```svelte
+export let theme: string | undefined = undefined;
+```
+
+**2. Replace `afterUpdate` with selective reactivity:**
+
+Current: `afterUpdate(async () => { await loadParticles(); })` — reloads on EVERY update (class, style, etc.).
+
+Fix: use Svelte reactive statements to track only relevant props:
+
+```svelte
+$: if (mounted) {
+  void loadParticles();
+}
+// Trigger only when id, options, url, or theme change:
+$: void (id, options, url, theme, loadParticlesOnChange());
+// Actually Svelte doesn't have a great pattern for selective trigger.
+// Better approach: use a reactive hash and compare.
+```
+
+**Recommended pattern** — use a reactive `loadKey` that changes only when id/options/url change, and a separate reactive for theme:
+
+```svelte
+$: loadKey = `${id}|${url}|${JSON.stringify(options)}`;
+
+$: if (mounted && loadKey) {
+  void loadParticles();
+}
+
+$: if (mounted && theme && currentContainer) {
+  (currentContainer as unknown as { loadTheme?: (name?: string) => Promise<void> })
+    .loadTheme?.(theme);
+}
+```
+
+Then remove `afterUpdate` entirely.
+
+**3. Apply initial theme after `tsParticles.load`:**
+
+```svelte
+const container = await tsParticles.load({ id, options, url });
+currentContainer = container;
+
+// Apply theme if provided
+if (container && theme) {
+  (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+    .loadTheme?.(theme);
+}
+
+cb(container);
+```
+
+**4. Add guard for container existence before dispatch:**
+
+```svelte
+const cb = (container?: Container) => {
+  dispatch(particlesLoadedEvent, {
+    particles: container  // already Container | undefined — correct
+  });
+  oldId = id;
+};
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/svelte build`
+
+#### S13.b: Demo alignment
+- Rename `particlesInit` → `initParticlesEngine` in `demo/svelte/src/App.svelte` and `demo/svelte-kit/src/routes/+page.svelte`
+- Verify reactive `options` changes work via prop binding
+
+#### S13.c: Template alignment
+- Verify whether Svelte templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S13.d: README alignment
+- Update `wrappers/svelte/README.md` with `theme` prop and reload contract.
+
+#### S13.e: Completion gate
+- Mark S13 complete only when S13.a-S13.d are done and verification passes.
+
+---
+
+### S14 — Stencil wrapper
+
+**Files to modify**:
+- `wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx`
+
+#### S14.a: Wrapper implementation
+
+**1. Add `theme` prop and loaded event:**
+
+```ts
+import { Component, type JSX, Prop, Watch, Event, EventEmitter, h } from "@stencil/core";
+
+@Event() particlesLoaded!: EventEmitter<Container | undefined>;
+
+@Prop() theme?: string;
+```
+
+**2. Add `@Watch("theme")` for theme changes:**
+
+```ts
+@Watch("theme")
+protected async onThemeChange(): Promise<void> {
+  if (!this.container) return;
+  (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+    .loadTheme?.(this.theme);
+}
+```
+
+**3. Emit loaded event after successful load:**
+
+```ts
+private async loadParticles(currentRenderId: number): Promise<void> {
+  // ... existing code ...
+  this.container = container;
+
+  // Emit particlesLoaded event (NEW)
+  this.particlesLoaded.emit(container);
+
+  // Apply theme if provided (NEW)
+  if (container && this.theme) {
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+      .loadTheme?.(this.theme);
+  }
+}
+```
+
+**4. Ensure `@Watch("theme")` doesn't fire before component is loaded:**
+
+The `@Watch` on `theme` will fire when the prop is first set (before `componentDidLoad`). Guard with `this.container` check — already done in `onThemeChange`.
+
+**Verification**:
+- `pnpm --filter @tsparticles/stencil build`
+
+#### S14.b: Demo alignment
+- Verify stencil demo (if present) is aligned with the new `particlesLoaded` event and `theme` prop.
+- If no stencil demo exists, record explicit `N/A`.
+
+#### S14.c: Template alignment
+- Verify whether Stencil templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S14.d: README alignment
+- Update `wrappers/stencil/README.md` with `theme` prop, `particlesLoaded` event, and optional plugin note.
+
+#### S14.e: Completion gate
+- Mark S14 complete only when S14.a-S14.d are done and verification passes.
+
+---
+
+### S15 — Ember wrapper
+
+**Files to modify**:
+- `wrappers/ember/addon/modifiers/particles.ts`
+
+#### S15.a: Wrapper implementation
+
+**1. Add `theme` to modifier signature:**
+
+```ts
+interface ParticlesModifierSignature {
+  Args: {
+    Positional: [];
+    Named: {
+      options: Options;
+      url: string;
+      particlesLoaded: (container?: Container) => void;  // FIX: undefined allowed
+      theme?: string;  // ADD
+    };
+  };
+}
+```
+
+**2. Fix memory leak — destroy previous container before creating new:**
+
+The modifier's `modify()` can be called multiple times when named arguments change. Currently each call creates a new container and registers a new destructor without cleaning up the old one.
+
+Fix: track the current container at the instance level:
+
+```ts
+export default class ParticlesModifier extends Modifier<ParticlesModifierSignature> {
+  #container?: Container;
+  #cleanupRegistered = false;
+
+  async modify(
+    element: Element,
+    _: PositionalArgs<ParticlesModifierSignature>,
+    { options, url, particlesLoaded, theme }: NamedArgs<ParticlesModifierSignature>,
+  ) {
+    if (!element.id) {
+      throw new Error('The specified element must have an id attribute.');
+    }
+
+    await waitForParticlesEngineInitialization();
+    if (!isParticlesEngineInitialized()) {
+      throw new Error('...');
+    }
+
+    // Destroy previous container before creating new one (FIX: memory leak)
+    this.#container?.destroy();
+    this.#container = undefined;
+
+    let container = await tsParticles.load({
+      id: element.id,
+      options: options ?? {},
+      url,
+    });
+
+    this.#container = container;
+
+    // Apply theme if provided
+    if (container && theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+        .loadTheme?.(theme);
+    }
+
+    if (particlesLoaded && container) {
+      particlesLoaded(container);
+    }
+
+    // Register destructor only once (FIX: avoid accumulation)
+    if (!this.#cleanupRegistered) {
+      registerDestructor(this, () => {
+        this.#container?.destroy();
+        this.#container = undefined;
+      });
+      this.#cleanupRegistered = true;
+    }
+  }
+}
+```
+
+**3. Fix `particlesLoaded` type:** `(container: Container) => void` → `(container?: Container) => void`
+
+**Verification**:
+- `pnpm --filter @tsparticles/ember build`
+
+#### S15.b: Demo alignment
+- Verify Ember demo (if present) is aligned with the modified modifier API.
+- If no Ember demo exists, record explicit `N/A`.
+
+#### S15.c: Template alignment
+- Verify whether Ember templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S15.d: README alignment
+- Update `wrappers/ember/README.md` with `theme` support, reload behavior, and optional plugin note.
+
+#### S15.e: Completion gate
+- Mark S15 complete only when S15.a-S15.d are done and verification passes.
+
+---
+
+### S16 — jQuery wrapper
+
+**Files to modify**:
+- `wrappers/jquery/src/particles.ts`
+
+#### S16.a: Wrapper implementation
+
+**1. Add theme support to the jQuery API:**
+
+The current API has `load(options)` and `ajax(jsonUrl)`. Adding a separate `setTheme` method is cleaner than modifying the existing signatures:
+
+```ts
+type ParticlesResult = {
+  load: (options: ISourceOptions) => Promise<Container | undefined>;
+  ajax: (jsonUrl: string) => Promise<Container | undefined>;
+  setTheme: (theme: string) => Promise<void>;  // ADD
+};
+```
+
+**2. Track containers per element for theme application:**
+
+```ts
+// Add a WeakMap to track containers per element
+const containers = new WeakMap<Element, Container>();
+
+// In the load function, after tsParticles.load():
+return await tsParticles.load({ id: element.id, options }).then(container => {
+  if (container) {
+    containers.set(element, container);
+  }
+  return container;
+});
+
+// Add setTheme method:
+const setTheme = async (theme: string): Promise<void> => {
+  for (const element of this) {
+    const container = containers.get(element);
+    if (container) {
+      await (container as unknown as { loadTheme?: (name?: string) => Promise<void> })
+        .loadTheme?.(theme);
+    }
+  }
+};
+```
+
+**3. Apply theme on initial load when passed via options?** No — jQuery's API doesn't have a `theme` parameter on `load()`/`ajax()`. The `setTheme` method is the appropriate API for theme control.
+
+**4. Update the return object:**
+
+```ts
+return { load, ajax, setTheme };
+```
+
+**Verification**:
+- `pnpm --filter @tsparticles/jquery build`
+
+#### S16.b: Demo alignment
+- Verify jQuery demo (if present) reflects the new `setTheme` API.
+- If no jQuery demo exists, record explicit `N/A`.
+
+#### S16.c: Template alignment
+- Verify whether jQuery templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S16.d: README alignment
+- Update `wrappers/jquery/README.md` with `setTheme` method documentation and optional plugin note.
+
+#### S16.e: Completion gate
+- Mark S16 complete only when S16.a-S16.d are done and verification passes.
+
+---
+
+### S17 — Angular-fireworks wrapper
+
+**Files to modify**:
+- `wrappers/angular-fireworks/projects/ng-fireworks/src/lib/ng-fireworks.component.ts`
+
+#### S17.a: Wrapper implementation
+
+**1. Implement `OnChanges` interface:**
+
+```ts
+import { AfterViewInit, Component, Inject, Input, OnChanges, OnDestroy, PLATFORM_ID, SimpleChanges } from "@angular/core";
+import { FireworkOptions, fireworks } from "@tsparticles/fireworks";
+
+@Component({
+  selector: "ngx-fireworks",
+  standalone: false,
+  template: ` <div [id]="id"></div>`,
+})
+export class NgxFireworksComponent implements AfterViewInit, OnDestroy, OnChanges {
+  @Input() options?: FireworkOptions;
+  @Input() id = "tsparticles";
+
+  #fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
+  #destroyed = false;
+
+  constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
+
+  public ngAfterViewInit(): void {
+    if (isPlatformServer(this.platformId)) { return; }
+    void this.#startFireworks();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (isPlatformServer(this.platformId)) { return; }
+    if (this.#destroyed) { return; }
+    // Re-fire on options or id changes
+    if (changes["options"] || changes["id"]) {
+      void this.#startFireworks();
+    }
+    // Note: theme is not applicable — fireworks uses @tsparticles/fireworks
+    // which is a standalone display, not the particles engine.
+  }
+
+  public ngOnDestroy(): void {
+    this.#destroyed = true;
+    this.#fireworksInstance?.stop();
+    this.#fireworksInstance = undefined;
+  }
+
+  async #startFireworks(): Promise<void> {
+    // Stop previous instance
+    this.#fireworksInstance?.stop();
+    this.#fireworksInstance = undefined;
+
+    this.#fireworksInstance = await fireworks(this.id, this.options);
+  }
+}
+```
+
+**2. Note on destroy-guard**: The `#destroyed` flag prevents `ngOnChanges` from starting fireworks after the component is destroyed (since Angular can fire change detection after destroy in some edge cases).
+
+**Verification**:
+- `pnpm --filter @tsparticles/angular-fireworks build`
+
+#### S17.b: Demo alignment
+- Verify `demo/angular-fireworks/` demo reflects reactive input behavior.
+- If no demo exists, record explicit `N/A`.
+
+#### S17.c: Template alignment
+- Verify whether Angular-fireworks templates exist.
+- If none exist, record explicit `N/A`.
+
+#### S17.d: README alignment
+- Update `wrappers/angular-fireworks/README.md` with `OnChanges` behavior documentation.
+
+#### S17.e: Completion gate
+- Mark S17 complete only when S17.a-S17.d are done and verification passes.
 
 ---
 
@@ -1779,9 +2355,9 @@ websites/website/docs/es/guides/vue3.md                   (Spanish)
 websites/website/docs/it/guides/vue3.md                   (Italian)
 ```
 
-### Agent execution order for S12+S13
-1. Edit EN file first (S12)
-2. Mirror structural + code changes in all 9 translations (S13)
+### Agent execution order for S18+S19
+1. Edit EN file first (S18)
+2. Mirror structural + code changes in all 9 translations (S19)
 3. Preserve translated prose where possible; update only code blocks and section structure
 4. Run stale-pattern grep to verify: no `:init`, no `@particles-init`, no `particlesInit` remains
 
@@ -1789,7 +2365,7 @@ websites/website/docs/it/guides/vue3.md                   (Italian)
 
 ## README Changes Per Wrapper
 
-README work is **embedded in each wrapper step** (S1-S11) and is not a standalone late phase.
+README work is **embedded in each wrapper step** (S1-S17) and is not a standalone late phase.
 
 For every wrapper step, the README must document:
 1. `theme` support depends on optional `@tsparticles/plugin-themes` (if wrapper exposes `theme`)
@@ -1852,7 +2428,7 @@ grep -rn ":init" websites/website/docs/*/guides/vue3.md
 grep -rn "particles-init" websites/website/docs/*/guides/vue3.md
 grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
 
-# These should return NO results after S12+S13
+# These should return NO results after S18+S19
 ```
 
 ### README consistency scan
@@ -1898,16 +2474,23 @@ S7  Inferno wrapper       → Sub-agent G
 S8  Lit wrapper           → Sub-agent H
 S9 Riot wrapper          → Sub-agent I
 S10 WebComponents wrapper → Sub-agent J
-S11 React docs-only       → Sub-agent K
+S11 React docs             → Sub-agent K
 
-S12 Vue 3 EN guide        → Sub-agent L
-S13 9 translations        → Sub-agent M
+S12  Preact wrapper            → Sub-agent L
+S13  Svelte wrapper            → Sub-agent M
+S14  Stencil wrapper           → Sub-agent N
+S15  Ember wrapper             → Sub-agent O
+S16  jQuery wrapper            → Sub-agent P
+S17 Angular-fireworks wrapper → Sub-agent Q
 
-S14 Validation            → Sub-agent N (after all above)
-S15 Final handoff         → Sub-agent O
+S18 EN docs               → Sub-agent X
+S19 9 translations        → Sub-agent Y
+
+S20 Validation            → Sub-agent Z (after all above)
+S21 Final handoff         → Sub-agent AA
 ```
 
-Note: use wave execution from the protocol section. `S12` must precede `S13`.
+Note: use wave execution from the protocol section. `S18` must precede `S19`.
 
 ---
 
@@ -1942,18 +2525,6 @@ Rule: if a wrapper has an associated demo/template, that wrapper step remains op
 | **Angular-confetti** | `*ngIf="confettiVisible"` | Separate sub-component |
 | **Angular-fireworks** | `*ngIf="fireworksVisible"` | Separate sub-component |
 
-### Demo alignment tasks per wrapper (NEW steps)
-
-Apply these inside each wrapper step before marking it complete:
-
-#### S7-DEMO-PR — Preact demo (extended alignment)
-**Files**: `demo/preact/src/components/app.js`
-**Actions**:
-- **Remove** the `{this.state.particlesInitialized && <Particles .../>}` conditional
-- Move `initParticlesEngine` to module level (outside component lifecycle)
-- After reactivity: `<Particles id="tsparticles" options={...} />` works standalone
-- This is part of S7 completion (Inferno family) and cannot be deferred
-
 ### Step-to-artifact mapping (authoritative)
 
 Use this map to decide ownership and avoid file collisions.
@@ -1966,13 +2537,19 @@ Use this map to decide ownership and avoid file collisions.
 | S4 | `wrappers/solid/**` | `demo/solid/**` | `wrappers/solid/README.md` |
 | S5 | `wrappers/qwik/**` | `demo/qwik/**` | `wrappers/qwik/README.md` |
 | S6 | `wrappers/astro/**` | `demo/astro/**` | `wrappers/astro/README.md` |
-| S7 | `wrappers/inferno/**` | `demo/preact/**` (extended cleanup) + inferno demo if present | `wrappers/inferno/README.md` |
+| S7 | `wrappers/inferno/**` | `demo/inferno/**` (check + align if needed) | `wrappers/inferno/README.md` |
 | S8 | `wrappers/lit/**` | lit demo if present | `wrappers/lit/README.md` |
 | S9 | `wrappers/riot/**` | riot demo if present | `wrappers/riot/README.md` |
 | S10 | `wrappers/webcomponents/**` | webcomponents demo if present | `wrappers/webcomponents/README.md` |
 | S11 | `wrappers/react/README.md` | `demo/react/**` check only | `wrappers/react/README.md` |
-| S12 | `websites/website/docs/guides/vue3.md` | N/A | N/A |
-| S13 | `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md` | N/A | N/A |
+| S12 | `wrappers/preact/**` | `demo/preact/**` | `wrappers/preact/README.md` |
+| S13 | `wrappers/svelte/**` | `demo/svelte/**` + `demo/svelte-kit/**` | `wrappers/svelte/README.md` |
+| S14 | `wrappers/stencil/**` | stencil demo if present | `wrappers/stencil/README.md` |
+| S15 | `wrappers/ember/**` | ember demo if present | `wrappers/ember/README.md` |
+| S16 | `wrappers/jquery/**` | jquery demo if present | `wrappers/jquery/README.md` |
+| S17 | `wrappers/angular-fireworks/**` | `demo/angular-fireworks/**` if present | `wrappers/angular-fireworks/README.md` |
+| S18 | `websites/website/docs/guides/vue3.md` | N/A | N/A |
+| S19 | `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md` | N/A | N/A |
 
 If a mapped demo does not exist, record explicit `N/A` in the step output.
 
@@ -2030,7 +2607,8 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 - If a demo demonstrates `:init` or `@particles-init` pattern, REMOVE it (stale API)
 
 ### Add to Definition of Done
-- [ ] Conditional rendering workarounds removed from Solid, Preact, Qwik demos
+- [ ] Conditional rendering workarounds removed from Solid (S4), Preact (S12), Qwik (S5) demos
+- [ ] Svelte (S13) demos use `initParticlesEngine` naming (not `particlesInit`)
 - [ ] Angular demo has config switch example (not only `*ngIf` toggle)
 - [ ] All demos use correct wrapper API (no `:init`, no `@particles-init`)
 - [ ] Each core wrapper demo verifiably demonstrates reactive prop changes
@@ -2043,7 +2621,7 @@ Done only if all are true:
 - [ ] All 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
 - [ ] All 6 wrappers safely handle `theme` updates without plugin hard dependency
 - [ ] All 6 wrappers call `tsParticles.init()` during bootstrap (v4 fix)
-- [ ] Every wrapper step (S1-S11) includes aligned demo + template check + README before closure
+- [ ] Every wrapper step (S1-S17) includes aligned demo + template check + README before closure
 - [ ] All touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
 - [ ] Website docs for touched wrappers are updated and aligned with README + implementation behavior
 - [ ] All wrappers emit loaded callback/event only after `tsParticles.load` resolves
@@ -2055,3 +2633,4 @@ Done only if all are true:
 - [ ] Lit dispatches `particlesLoaded` event
 - [ ] Riot has proper teardown (container destroy on unmount)
 - [ ] WebComponents observes `id` attribute changes
+- [x] A1 audit completed: `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti` closed as no-change with evidence; `preact`, `svelte`, `stencil`, `ember`, `jquery`, `angular-fireworks` activated for implementation
