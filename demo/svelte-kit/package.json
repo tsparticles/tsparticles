@@ -38,7 +38,7 @@
     "tslib": "^2.6.2",
     "tsparticles": "workspace:^",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "vite": "^8.0.16"
   },
   "type": "module"
 }
