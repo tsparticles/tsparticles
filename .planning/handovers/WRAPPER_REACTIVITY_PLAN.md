@@ -6,6 +6,32 @@
 
 ---
 
+## Execution Summary (Supervisor View)
+
+Use this table as the single high-level progress board. Update it whenever a step changes state.
+
+| Step | Area                         | Owner Agent | Status  | Last update | Notes                                                   |
+|------|------------------------------|-------------|---------|-------------|---------------------------------------------------------|
+| S1   | Vue 3 package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S2   | Vue 2 package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S3   | Angular package family       | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S4   | Solid package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S5   | Qwik package family          | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S6   | Astro package family         | Unassigned  | Pending | -           | Wrapper + demo + template check + README + verification |
+| S7   | Inferno package family       | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
+| S8   | Lit package family           | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
+| S9   | Riot package family          | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
+| S10  | WebComponents package family | Unassigned  | Pending | -           | Wrapper + mapped demo alignment + README + verification |
+| S11  | React docs-only family       | Unassigned  | Pending | -           | README alignment + demo/template check                  |
+| S12  | Website docs EN              | Unassigned  | Pending | -           | Must finish before S13                                  |
+| S13  | Website docs translations    | Unassigned  | Pending | -           | 9 translations, mirror S12                              |
+| S14  | Validation                   | Unassigned  | Pending | -           | Build + smoke + stale-pattern checks                    |
+| S15  | Final handoff                | Unassigned  | Pending | -           | Consolidated deltas and residual risks                  |
+
+Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
+
+---
+
 ## Scope
 
 Implement reactive updates for wrapper components when `options`, `url`, or `theme` props change, and align Vue 3 guide docs with actual wrapper APIs.
@@ -757,25 +783,23 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 
 | Step | Wrapper / Scope | Deliverable | Status |
 |------|------------------|-------------|--------|
-| S1 | Baseline audit | Current behavior in all wrappers + docs drift list | **Ready** (in this doc) |
-| S1a | v3-v4 diff audit | Wrappers are v4-only; engine-level changes captured | **Ready** |
-| S2 | Vue 3 package family | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Pending |
-| S3 | Vue 2 package family | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
-| S4 | Angular package family | Wrapper + Angular demo + template check + Angular README aligned | Pending |
-| S5 | Solid package family | Wrapper + Solid demo + template check + Solid README aligned | Pending |
-| S6 | Qwik package family | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
-| S7 | Astro package family | Wrapper + Astro demo + template check + Astro README aligned | Pending |
-| S8 | Inferno package family | Wrapper + demo/template check + Inferno README aligned | Pending |
-| S9 | Lit package family | Wrapper + demo/template check + Lit README aligned | Pending |
-| S10 | Riot package family | Wrapper + demo/template check + Riot README aligned | Pending |
-| S11 | WebComponents package family | Wrapper + demo/template check + WebComponents README aligned | Pending |
-| S12 | React docs-only family | React README alignment (+ demo/template verification if needed) | Pending |
-| S13 | Website docs batch (EN first) | Vue 3 EN guide update to match shipped behavior | Pending |
-| S14 | Website docs batch (9 translations) | Mirror EN update in all required translation files | Pending |
-| S15 | Validation | Build + smoke + stale-pattern checks | Pending |
-| S16 | Final handoff | Changelog + deltas + residual risks | Pending |
+| S1 | Vue 3 package family | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Pending |
+| S2 | Vue 2 package family | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
+| S3 | Angular package family | Wrapper + Angular demo + template check + Angular README aligned | Pending |
+| S4 | Solid package family | Wrapper + Solid demo + template check + Solid README aligned | Pending |
+| S5 | Qwik package family | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
+| S6 | Astro package family | Wrapper + Astro demo + template check + Astro README aligned | Pending |
+| S7 | Inferno package family | Wrapper + demo/template check + Inferno README aligned | Pending |
+| S8 | Lit package family | Wrapper + demo/template check + Lit README aligned | Pending |
+| S9 | Riot package family | Wrapper + demo/template check + Riot README aligned | Pending |
+| S10 | WebComponents package family | Wrapper + demo/template check + WebComponents README aligned | Pending |
+| S11 | React docs-only family | React README alignment (+ demo/template verification if needed) | Pending |
+| S12 | Website docs batch (EN first) | Vue 3 EN guide update to match shipped behavior | Pending |
+| S13 | Website docs batch (9 translations) | Mirror EN update in all required translation files | Pending |
+| S14 | Validation | Build + smoke + stale-pattern checks | Pending |
+| S15 | Final handoff | Changelog + deltas + residual risks | Pending |
 
-### Per-step substep template (apply to every wrapper step S2-S12)
+### Per-step substep template (apply to every wrapper step S1-S11)
 
 - `a` Wrapper code changes (`id/options/url` reload, theme safety, teardown, init wait)
 - `b` Demo alignment for that wrapper family
@@ -791,7 +815,7 @@ This plan is designed for distributed execution by multiple agents. Follow this 
 
 ### 1) Ownership model
 - One agent owns exactly one step at a time.
-- No agent may edit files outside its owned step, except `S15` and `S16` owner agents.
+- No agent may edit files outside its owned step, except `S14` and `S15` owner agents.
 - If cross-step edits are discovered as necessary, agent must report them as "Follow-up required" instead of editing outside ownership.
 
 ### 2) Step completion contract
@@ -832,16 +856,16 @@ Known risks / follow-ups:
 ```
 
 ### 4) Parallelization waves (recommended)
-- **Wave 1**: `S2-S7` in parallel (core wrappers).
-- **Wave 2**: `S8-S12` in parallel (extended wrappers/docs-only).
-- **Wave 3**: `S13` then `S14` (strictly sequential).
-- **Wave 4**: `S15` validation.
-- **Wave 5**: `S16` final handoff.
+- **Wave 1**: `S1-S6` in parallel (core wrappers).
+- **Wave 2**: `S7-S11` in parallel (extended wrappers/docs-only).
+- **Wave 3**: `S12` then `S13` (strictly sequential).
+- **Wave 4**: `S14` validation.
+- **Wave 5**: `S15` final handoff.
 
 ### 5) Conflict avoidance
-- `S13`/`S14` are the only steps allowed to edit `websites/website/docs/**/guides/vue3.md`.
+- `S12`/`S13` are the only steps allowed to edit `websites/website/docs/**/guides/vue3.md`.
 - Each wrapper step edits only its wrapper package + mapped demo + mapped README.
-- `S15` does not change implementation unless explicitly requested; it validates and reports.
+- `S14` does not change implementation unless explicitly requested; it validates and reports.
 
 ### 6) Failure policy
 - If verification fails, step status is `partial` (not `done`).
@@ -854,7 +878,7 @@ Known risks / follow-ups:
 
 ---
 
-### S2 — Vue 3 Implementation
+### S1 — Vue 3 Implementation
 
 **Files to modify**:
 - `wrappers/vue3/src/components/vue-particles.vue` (main component)
@@ -925,23 +949,23 @@ Already emitting `container` which could be `undefined` — the emit signature a
 - Manual smoke: change options at runtime, verify particles reload
 - Manual smoke: change theme prop with and without `@tsparticles/plugin-themes`
 
-#### S2.b: Demo alignment
+#### S1.b: Demo alignment
 - Align `demo/vue3/src/App.vue` with final reactive behavior.
 - Ensure demo can show runtime `options` change without remount hacks.
 
-#### S2.c: Template alignment
+#### S1.c: Template alignment
 - Verify whether Vue 3 templates exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S2.d: README alignment
+#### S1.d: README alignment
 - Update `wrappers/vue3/README.md` to match shipped behavior (`id/options/url` reload, optional `theme` plugin note, loaded callback timing, teardown behavior).
 
-#### S2.e: Completion gate
-- Mark S2 complete only when S2.a-S2.d are done and verification passes.
+#### S1.e: Completion gate
+- Mark S1 complete only when S1.a-S1.d are done and verification passes.
 
 ---
 
-### S3 — Vue 2 Implementation
+### S2 — Vue 2 Implementation
 
 **Files to modify**:
 - `wrappers/vue2/src/Particles/vue-particles.vue`
@@ -1018,23 +1042,23 @@ initPromise = Promise.resolve(init?.(tsParticles))
 - `pnpm --filter @tsparticles/vue2 build`
 - Check SFC compiler errors with `export type`
 
-#### S3.b: Demo alignment
+#### S2.b: Demo alignment
 - Align `demo/vue2/src/App.vue` with final reactive behavior.
 - Ensure demo can show runtime `options` change without remount hacks.
 
-#### S3.c: Template alignment
+#### S2.c: Template alignment
 - Verify whether Vue 2 templates exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S3.d: README alignment
+#### S2.d: README alignment
 - Update `wrappers/vue2/README.md` with final behavior contract and optional theme-plugin caveat.
 
-#### S3.e: Completion gate
-- Mark S3 complete only when S3.a-S3.d are done and verification passes.
+#### S2.e: Completion gate
+- Mark S2 complete only when S2.a-S2.d are done and verification passes.
 
 ---
 
-### S4 — Angular Implementation
+### S3 — Angular Implementation
 
 **Files to modify**:
 - `wrappers/angular/projects/ng-particles/src/lib/ng-particles.component.ts`
@@ -1105,23 +1129,23 @@ initPromise = (async () => {
 - `pnpm --filter @tsparticles/angular build`
 - Manual: change options binding, verify reload
 
-#### S4.b: Demo alignment
+#### S3.b: Demo alignment
 - Align `demo/angular/src/app/app.component.html` and `demo/angular/src/app/app.component.ts` with final behavior.
 - Keep `*ngIf` only as optional visibility control (not as reactivity workaround).
 
-#### S4.c: Template alignment
+#### S3.c: Template alignment
 - Verify whether Angular templates/scaffolds exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S4.d: README alignment
+#### S3.d: README alignment
 - Update `wrappers/angular/README.md` with `theme` input and reload contract.
 
-#### S4.e: Completion gate
-- Mark S4 complete only when S4.a-S4.d are done and verification passes.
+#### S3.e: Completion gate
+- Mark S3 complete only when S3.a-S3.d are done and verification passes.
 
 ---
 
-### S5 — Solid Implementation
+### S4 — Solid Implementation
 
 **Files to modify**:
 - `wrappers/solid/src/Particles.tsx`
@@ -1213,23 +1237,23 @@ particlesLoaded?: (container?: Container) => Promise<void>;
 **Verification**:
 - `pnpm --filter @tsparticles/solid build`
 
-#### S5.b: Demo alignment
+#### S4.b: Demo alignment
 - Align `demo/solid/src/App.tsx` by removing conditional mount workaround.
 - Ensure demo shows runtime config switching via prop updates.
 
-#### S5.c: Template alignment
+#### S4.c: Template alignment
 - Verify whether Solid templates exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S5.d: README alignment
+#### S4.d: README alignment
 - Update `wrappers/solid/README.md` (including corrected `particlesLoaded` signature).
 
-#### S5.e: Completion gate
-- Mark S5 complete only when S5.a-S5.d are done and verification passes.
+#### S4.e: Completion gate
+- Mark S4 complete only when S4.a-S4.d are done and verification passes.
 
 ---
 
-### S6 — Qwik Implementation
+### S5 — Qwik Implementation
 
 **Files to modify**:
 - `wrappers/qwik/src/components/particles/particles.tsx`
@@ -1335,23 +1359,23 @@ export interface IParticlesProps {
 **Verification**:
 - `pnpm --filter @tsparticles/qwik build`
 
-#### S6.b: Demo alignment
+#### S5.b: Demo alignment
 - Align `demo/qwik/src/root.tsx` by removing conditional mount workaround.
 - Ensure demo demonstrates reactive updates without remount.
 
-#### S6.c: Template alignment
+#### S5.c: Template alignment
 - Verify whether Qwik templates exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S6.d: README alignment
+#### S5.d: README alignment
 - Update `wrappers/qwik/README.md` with theme caveat and reload contract.
 
-#### S6.e: Completion gate
-- Mark S6 complete only when S6.a-S6.d are done and verification passes.
+#### S5.e: Completion gate
+- Mark S5 complete only when S5.a-S5.d are done and verification passes.
 
 ---
 
-### S7 — Astro Implementation
+### S6 — Astro Implementation
 
 **Files to modify**:
 - `wrappers/astro/src/Particles.astro`
@@ -1465,25 +1489,25 @@ const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 - `pnpm --filter @tsparticles/astro build`
 - Smoke test: change data attributes on the custom element, verify reload
 
-#### S7.b: Demo alignment
+#### S6.b: Demo alignment
 - Align `demo/astro/src/pages/index.astro` with attribute-driven reactivity.
 - Verify connect/disconnect lifecycle behavior in navigation.
 
-#### S7.c: Template alignment
+#### S6.c: Template alignment
 - Verify whether Astro templates exist for this wrapper family.
 - If none exist, record explicit `N/A` in implementation notes.
 
-#### S7.d: README alignment
+#### S6.d: README alignment
 - Update `wrappers/astro/README.md` with `theme` prop and lifecycle/reload contract.
 
-#### S7.e: Completion gate
-- Mark S7 complete only when S7.a-S7.d are done and verification passes.
+#### S6.e: Completion gate
+- Mark S6 complete only when S6.a-S6.d are done and verification passes.
 
 ---
 
-### S8 — Inferno Implementation (package family)
+### S7 — Inferno Implementation (package family)
 
-#### S8.a: Wrapper implementation
+#### S7.a: Wrapper implementation
 
 **File**: `wrappers/inferno/src/Particles.tsx`
 
@@ -1514,23 +1538,23 @@ Also add `theme` handling:
 - In `componentDidUpdate`, check for theme change
 - Safe `loadTheme` call
 
-#### S8.b: Demo alignment
+#### S7.b: Demo alignment
 - Verify inferno demo behavior (if present) is consistent with wrapper contract.
 - If no inferno demo exists, record explicit `N/A`.
 
-#### S8.c: Template alignment
+#### S7.c: Template alignment
 - Verify whether Inferno templates exist.
 - If none exist, record explicit `N/A`.
 
-#### S8.d: README alignment
+#### S7.d: README alignment
 - Update `wrappers/inferno/README.md` to reflect callback semantics, optional theme plugin, and reload/teardown behavior.
 
-#### S8.e: Completion gate
-- Mark S8 complete only when S8.a-S8.d are done and verification passes.
+#### S7.e: Completion gate
+- Mark S7 complete only when S7.a-S7.d are done and verification passes.
 
-### S9 — Lit Implementation (package family)
+### S8 — Lit Implementation (package family)
 
-#### S9.a: Wrapper implementation
+#### S8.a: Wrapper implementation
 
 **File**: `wrappers/lit/src/lit-tsparticles.ts`
 
@@ -1553,19 +1577,19 @@ async #loadParticles(currentRenderId: number): Promise<void> {
 }
 ```
 
-#### S9.b: Demo alignment
+#### S8.b: Demo alignment
 - Verify lit demo behavior (if present) is aligned with the event contract.
 - If no lit demo exists, record explicit `N/A`.
 
-#### S9.c: Template alignment
+#### S8.c: Template alignment
 - Verify whether Lit templates exist.
 - If none exist, record explicit `N/A`.
 
-#### S9.d: README alignment
+#### S8.d: README alignment
 - Update `wrappers/lit/README.md` with `particlesLoaded` event behavior and optional theme caveat.
 
-#### S9.e: Completion gate
-- Mark S9 complete only when S9.a-S9.d are done and verification passes.
+#### S8.e: Completion gate
+- Mark S8 complete only when S8.a-S8.d are done and verification passes.
 
 Also add `theme` property:
 ```ts
@@ -1590,9 +1614,9 @@ update(changedProperties: PropertyValues) {
 }
 ```
 
-### S10 — Riot Implementation (package family)
+### S9 — Riot Implementation (package family)
 
-#### S10.a: Wrapper implementation
+#### S9.a: Wrapper implementation
 
 **File**: `wrappers/riot/src/riot-particles.riot`
 
@@ -1625,23 +1649,23 @@ export default {
 
 **Riot caveat**: Riot components don't have automatic deep comparison. Manual tracking needed.
 
-#### S10.b: Demo alignment
+#### S9.b: Demo alignment
 - Verify riot demo behavior (if present) is aligned with reload + teardown contract.
 - If no riot demo exists, record explicit `N/A`.
 
-#### S10.c: Template alignment
+#### S9.c: Template alignment
 - Verify whether Riot templates exist.
 - If none exist, record explicit `N/A`.
 
-#### S10.d: README alignment
+#### S9.d: README alignment
 - Update `wrappers/riot/README.md` with reactive reload and teardown behavior.
 
-#### S10.e: Completion gate
-- Mark S10 complete only when S10.a-S10.d are done and verification passes.
+#### S9.e: Completion gate
+- Mark S9 complete only when S9.a-S9.d are done and verification passes.
 
-### S11 — WebComponents Implementation (package family)
+### S10 — WebComponents Implementation (package family)
 
-#### S11.a: Wrapper implementation
+#### S10.a: Wrapper implementation
 
 **File**: `wrappers/webcomponents/src/Particles.ts`
 
@@ -1679,23 +1703,23 @@ attributeChangedCallback(name: string, _oldValue: string | null, newValue: strin
 
 Also remove the deprecated `particlesInit` custom event dispatch from constructor (v3 pattern).
 
-#### S11.b: Demo alignment
+#### S10.b: Demo alignment
 - Verify webcomponents demo behavior (if present) reflects observed attribute support (`id/options/url/theme`).
 - If no webcomponents demo exists, record explicit `N/A`.
 
-#### S11.c: Template alignment
+#### S10.c: Template alignment
 - Verify whether WebComponents templates exist.
 - If none exist, record explicit `N/A`.
 
-#### S11.d: README alignment
+#### S10.d: README alignment
 - Update `wrappers/webcomponents/README.md` with observed attributes and theme caveat.
 
-#### S11.e: Completion gate
-- Mark S11 complete only when S11.a-S11.d are done and verification passes.
+#### S10.e: Completion gate
+- Mark S10 complete only when S10.a-S10.d are done and verification passes.
 
-### S12 — React Docs Alignment (package family)
+### S11 — React Docs Alignment (package family)
 
-#### S12.a: README alignment
+#### S11.a: README alignment
 
 **File**: `wrappers/react/README.md`
 
@@ -1706,16 +1730,16 @@ Add to the table:
 | particlesLoaded | function | Callback invoked when the container is loaded, receives `(container?: Container)` |
 ```
 
-Also note: React wrapper currently has NO `theme` prop — this remains out of scope for S12 (React is docs-only in this plan). Document existing behavior only.
+Also note: React wrapper currently has NO `theme` prop — this remains out of scope for S11 (React is docs-only in this plan). Document existing behavior only.
 
-#### S12.b: Demo alignment check
+#### S11.b: Demo alignment check
 - Verify `demo/react/src/App.jsx` remains aligned with documented API.
 
-#### S12.c: Template alignment
+#### S11.c: Template alignment
 - Verify `wrappers/react/templates/` status and record `N/A` if still empty.
 
-#### S12.d: Completion gate
-- Mark S12 complete only when S12.a-S12.c are done.
+#### S11.d: Completion gate
+- Mark S11 complete only when S11.a-S11.c are done.
 
 ---
 
@@ -1755,9 +1779,9 @@ websites/website/docs/es/guides/vue3.md                   (Spanish)
 websites/website/docs/it/guides/vue3.md                   (Italian)
 ```
 
-### Agent execution order for S13+S14
-1. Edit EN file first (S13)
-2. Mirror structural + code changes in all 9 translations (S14)
+### Agent execution order for S12+S13
+1. Edit EN file first (S12)
+2. Mirror structural + code changes in all 9 translations (S13)
 3. Preserve translated prose where possible; update only code blocks and section structure
 4. Run stale-pattern grep to verify: no `:init`, no `@particles-init`, no `particlesInit` remains
 
@@ -1765,7 +1789,7 @@ websites/website/docs/it/guides/vue3.md                   (Italian)
 
 ## README Changes Per Wrapper
 
-README work is **embedded in each wrapper step** (S2-S12) and is not a standalone late phase.
+README work is **embedded in each wrapper step** (S1-S11) and is not a standalone late phase.
 
 For every wrapper step, the README must document:
 1. `theme` support depends on optional `@tsparticles/plugin-themes` (if wrapper exposes `theme`)
@@ -1808,7 +1832,7 @@ Wrapper-specific known README gaps are listed in each wrapper section and must b
 # Core wrappers
 pnpm nx run-many -t build --projects=@tsparticles/vue3,@tsparticles/vue2,@tsparticles/angular,@tsparticles/solid,@tsparticles/qwik,@tsparticles/astro
 
-# Extended wrappers touched in S8-S11
+# Extended wrappers touched in S7-S10
 pnpm nx run-many -t build --projects=@tsparticles/inferno,@tsparticles/lit,@tsparticles/riot,@tsparticles/webcomponents
 ```
 
@@ -1828,7 +1852,7 @@ grep -rn ":init" websites/website/docs/*/guides/vue3.md
 grep -rn "particles-init" websites/website/docs/*/guides/vue3.md
 grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
 
-# These should return NO results after S13+S14
+# These should return NO results after S12+S13
 ```
 
 ### README consistency scan
@@ -1863,30 +1887,27 @@ grep -rn "particlesInit" websites/website/docs/*/guides/vue3.md
 Each step below is designed to be executed by a SEPARATE agent from scratch, using only this document as context.
 
 ```
-S1 baseline audit         → Already completed (findings embedded in this doc)
-S1a v3-v4 diff audit      → Already completed (key finding: wrappers are v4-only)
+S1  Vue 3 wrapper         → Sub-agent A
+S2  Vue 2 wrapper         → Sub-agent B
+S3  Angular wrapper       → Sub-agent C
+S4  Solid wrapper         → Sub-agent D
+S5  Qwik wrapper          → Sub-agent E
+S6  Astro wrapper         → Sub-agent F
 
-S2  Vue 3 wrapper         → Sub-agent A
-S3  Vue 2 wrapper         → Sub-agent B
-S4  Angular wrapper       → Sub-agent C
-S5  Solid wrapper         → Sub-agent D
-S6  Qwik wrapper          → Sub-agent E
-S7  Astro wrapper         → Sub-agent F
+S7  Inferno wrapper       → Sub-agent G
+S8  Lit wrapper           → Sub-agent H
+S9 Riot wrapper          → Sub-agent I
+S10 WebComponents wrapper → Sub-agent J
+S11 React docs-only       → Sub-agent K
 
-S8  Inferno wrapper       → Sub-agent G
-S9  Lit wrapper           → Sub-agent H
-S10 Riot wrapper          → Sub-agent I
-S11 WebComponents wrapper → Sub-agent J
-S12 React docs-only       → Sub-agent K
+S12 Vue 3 EN guide        → Sub-agent L
+S13 9 translations        → Sub-agent M
 
-S13 Vue 3 EN guide        → Sub-agent L
-S14 9 translations        → Sub-agent M
-
-S15 Validation            → Sub-agent N (after all above)
-S16 Final handoff         → Sub-agent O
+S14 Validation            → Sub-agent N (after all above)
+S15 Final handoff         → Sub-agent O
 ```
 
-Note: use wave execution from the protocol section. `S13` must precede `S14`.
+Note: use wave execution from the protocol section. `S12` must precede `S13`.
 
 ---
 
@@ -1925,13 +1946,13 @@ Rule: if a wrapper has an associated demo/template, that wrapper step remains op
 
 Apply these inside each wrapper step before marking it complete:
 
-#### S8-DEMO-PR — Preact demo (extended alignment)
+#### S7-DEMO-PR — Preact demo (extended alignment)
 **Files**: `demo/preact/src/components/app.js`
 **Actions**:
 - **Remove** the `{this.state.particlesInitialized && <Particles .../>}` conditional
 - Move `initParticlesEngine` to module level (outside component lifecycle)
 - After reactivity: `<Particles id="tsparticles" options={...} />` works standalone
-- This is part of S8 completion (Inferno family) and cannot be deferred
+- This is part of S7 completion (Inferno family) and cannot be deferred
 
 ### Step-to-artifact mapping (authoritative)
 
@@ -1939,23 +1960,23 @@ Use this map to decide ownership and avoid file collisions.
 
 | Step | Wrapper files | Demo files | README |
 |------|---------------|------------|--------|
-| S2 | `wrappers/vue3/**` | `demo/vue3/**` | `wrappers/vue3/README.md` |
-| S3 | `wrappers/vue2/**` | `demo/vue2/**` | `wrappers/vue2/README.md` |
-| S4 | `wrappers/angular/**` | `demo/angular/**` | `wrappers/angular/README.md` |
-| S5 | `wrappers/solid/**` | `demo/solid/**` | `wrappers/solid/README.md` |
-| S6 | `wrappers/qwik/**` | `demo/qwik/**` | `wrappers/qwik/README.md` |
-| S7 | `wrappers/astro/**` | `demo/astro/**` | `wrappers/astro/README.md` |
-| S8 | `wrappers/inferno/**` | `demo/preact/**` (extended cleanup) + inferno demo if present | `wrappers/inferno/README.md` |
-| S9 | `wrappers/lit/**` | lit demo if present | `wrappers/lit/README.md` |
-| S10 | `wrappers/riot/**` | riot demo if present | `wrappers/riot/README.md` |
-| S11 | `wrappers/webcomponents/**` | webcomponents demo if present | `wrappers/webcomponents/README.md` |
-| S12 | `wrappers/react/README.md` | `demo/react/**` check only | `wrappers/react/README.md` |
-| S13 | `websites/website/docs/guides/vue3.md` | N/A | N/A |
-| S14 | `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md` | N/A | N/A |
+| S1 | `wrappers/vue3/**` | `demo/vue3/**` | `wrappers/vue3/README.md` |
+| S2 | `wrappers/vue2/**` | `demo/vue2/**` | `wrappers/vue2/README.md` |
+| S3 | `wrappers/angular/**` | `demo/angular/**` | `wrappers/angular/README.md` |
+| S4 | `wrappers/solid/**` | `demo/solid/**` | `wrappers/solid/README.md` |
+| S5 | `wrappers/qwik/**` | `demo/qwik/**` | `wrappers/qwik/README.md` |
+| S6 | `wrappers/astro/**` | `demo/astro/**` | `wrappers/astro/README.md` |
+| S7 | `wrappers/inferno/**` | `demo/preact/**` (extended cleanup) + inferno demo if present | `wrappers/inferno/README.md` |
+| S8 | `wrappers/lit/**` | lit demo if present | `wrappers/lit/README.md` |
+| S9 | `wrappers/riot/**` | riot demo if present | `wrappers/riot/README.md` |
+| S10 | `wrappers/webcomponents/**` | webcomponents demo if present | `wrappers/webcomponents/README.md` |
+| S11 | `wrappers/react/README.md` | `demo/react/**` check only | `wrappers/react/README.md` |
+| S12 | `websites/website/docs/guides/vue3.md` | N/A | N/A |
+| S13 | `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/vue3.md` | N/A | N/A |
 
 If a mapped demo does not exist, record explicit `N/A` in the step output.
 
-#### S2-DEMO — Vue 3 demo
+#### S1-DEMO — Vue 3 demo
 **Files**: `demo/vue3/src/App.vue`
 **Actions**:
 - No conditional render to remove (already clean)
@@ -1963,13 +1984,13 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 - Optionally add a "switch config" button to demo reactivity (changing `:options` prop)
 - Verify `@particles-loaded` event fires after each reload
 
-#### S3-DEMO — Vue 2 demo
+#### S2-DEMO — Vue 2 demo
 **Files**: `demo/vue2/src/App.vue`
 **Actions**:
 - Same as Vue 3 — verify reactive options work
 - Optionally add theme toggle demo
 
-#### S4-DEMO — Angular demo
+#### S3-DEMO — Angular demo
 **Files**: `demo/angular/src/app/app.component.html`, `demo/angular/src/app/app.component.ts`
 **Actions**:
 - The `*ngIf="particlesVisible"` pattern is a workaround that can remain for toggle functionality, but should be documented as optional
@@ -1977,7 +1998,7 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 - Verify `[options]` changes trigger reload via `OnChanges`
 - The `particlesVisible` toggle should NOT be the only way to change config — add a "Switch config" button that changes `[options]` directly
 
-#### S5-DEMO — Solid demo
+#### S4-DEMO — Solid demo
 **Files**: `demo/solid/src/App.tsx`
 **Actions**:
 - **Remove** the `<Show when={initialized()}>` conditional around `<Particles>`
@@ -1985,7 +2006,7 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 - After reactivity: `<Particles id="tsparticles" options={configs.basic} />` works standalone
 - Optionally add config switch button to demo reactive `options` change
 
-#### S6-DEMO — Qwik demo
+#### S5-DEMO — Qwik demo
 **Files**: `demo/qwik/src/root.tsx`
 **Actions**:
 - **Remove** the `{particlesReady.value && <Particles .../>}` conditional
@@ -1993,7 +2014,7 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 - After reactivity: `<Particles id="tsparticles" options={...} />` works standalone
 - Optionally add theme/config switch
 
-#### S7-DEMO — Astro demo
+#### S6-DEMO — Astro demo
 **Files**: `demo/astro/src/pages/index.astro`
 **Actions**:
 - Verify `<Particles>` works with reactive attribute changes
@@ -2022,7 +2043,7 @@ Done only if all are true:
 - [ ] All 6 wrappers react to `id`, `options`, and `url` updates by reloading (within each framework's API model)
 - [ ] All 6 wrappers safely handle `theme` updates without plugin hard dependency
 - [ ] All 6 wrappers call `tsParticles.init()` during bootstrap (v4 fix)
-- [ ] Every wrapper step (S2-S12) includes aligned demo + template check + README before closure
+- [ ] Every wrapper step (S1-S11) includes aligned demo + template check + README before closure
 - [ ] All touched wrapper docs/readmes explicitly document the optional theme-plugin dependency and no-op behavior without plugin
 - [ ] Website docs for touched wrappers are updated and aligned with README + implementation behavior
 - [ ] All wrappers emit loaded callback/event only after `tsParticles.load` resolves
