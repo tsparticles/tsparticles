@@ -45,6 +45,6 @@
     "pug": "^3.0.2",
     "stats.ts": "^1.1.0",
     "stylus": "^0.64.0",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   }
 }

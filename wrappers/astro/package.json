@@ -117,7 +117,7 @@
     "astro": "^6.2.2",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "nx": {
     "targets": {

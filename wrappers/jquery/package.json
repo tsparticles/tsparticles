@@ -129,7 +129,7 @@
     "jquery": "^4.0.0",
     "prettier": "^3.8.2",
     "rollup": "^4.60.1",
-    "typescript": "^5.3.3",
+    "typescript": "^6.0.3",
     "uglify-js": "^3.19.3"
   }
 }
