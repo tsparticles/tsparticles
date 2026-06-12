@@ -6,7 +6,7 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
-import { type RecursivePartial, getRangeValue, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, getRangeValue, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { Remove } from "./Options/Classes/Remove.js";
 
 const removeMode = "remove";
@@ -70,11 +70,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     options: Modes & RemoveMode,
     ...sources: RecursivePartial<(IModes & IRemoveMode) | undefined>[]
   ): void {
-    options.remove ??= new Remove();
-
-    for (const source of sources) {
-      options.remove.load(source?.remove);
-    }
+    loadOptionProperty(options, "remove", Remove, ...sources);
   }
 
   /** @inheritDoc */

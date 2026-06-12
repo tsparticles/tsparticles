@@ -1,10 +1,8 @@
-import { Circle, Rectangle, type SingleOrMultiple, double, safeDocument } from "@tsparticles/engine";
+import { Circle, Rectangle, type SingleOrMultiple, double, half, minRadius, safeDocument } from "@tsparticles/engine";
 import { type DivEvent, DivType, type IInteractivityData, divModeExecute } from "@tsparticles/plugin-interactivity";
 import type { DestroyContainer } from "./Types.js";
 
-const half = 0.5,
-  toleranceFactor = 10,
-  minRadius = 0;
+const toleranceFactor = 10;
 
 /**
  * Process destroy in an area

@@ -18,7 +18,7 @@
     "build:types": "tsc -p tsconfig.types.json"
   },
   "bugs": {
-    "url": "https://github.com/tsparticles/inferno/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "repository": {
     "url": "git+https://github.com/tsparticles/tsparticles.git",

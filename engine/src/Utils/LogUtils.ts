@@ -56,6 +56,8 @@ const wrap =
 /**
  * Replaces the library log functions with a custom one.
  * @param logger - A logger object responsible for logging messages.
+ * @remarks
+ * Also available on globalThis as `setParticlesLogger` in UMD/browser builds.
  */
 export function setLogger(logger: Partial<ILogger>): void {
   if (logger.debug) {
@@ -90,6 +92,8 @@ export function setLogger(logger: Partial<ILogger>): void {
 /**
  * Returns the logger object.
  * @returns the logger
+ * @remarks
+ * Also available on globalThis as `getParticlesLogger` in UMD/browser builds.
  */
 export function getLogger(): ILogger {
   return _logger;

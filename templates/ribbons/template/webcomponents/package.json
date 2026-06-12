@@ -1,0 +1,15 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/ribbons": "^3.8.1"
+  }
+}

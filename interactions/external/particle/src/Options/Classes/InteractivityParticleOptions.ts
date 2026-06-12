@@ -4,6 +4,7 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IInteractivityParticleOptions } from "../Interfaces/IInteractivityParticleOptions.js";
 
@@ -15,19 +16,11 @@ export class InteractivityParticleOptions
   options?: RecursivePartial<IParticlesOptions>;
 
   /** Whether to pause the particle when the mouse stops moving */
-  pauseOnStop: boolean;
-
+  pauseOnStop = false;
   /** Whether to replace the cursor with a custom one */
-  replaceCursor: boolean;
-
+  replaceCursor = false;
   /** The delay in milliseconds before stopping the particle */
-  stopDelay: number;
-
-  constructor() {
-    this.replaceCursor = false;
-    this.pauseOnStop = false;
-    this.stopDelay = 0;
-  }
+  stopDelay = 0;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IInteractivityParticleOptions>): void {
@@ -39,16 +32,8 @@ export class InteractivityParticleOptions
       this.options = deepExtend({}, data.options) as RecursivePartial<IParticlesOptions>;
     }
 
-    if (data.replaceCursor !== undefined) {
-      this.replaceCursor = data.replaceCursor;
-    }
-
-    if (data.pauseOnStop !== undefined) {
-      this.pauseOnStop = data.pauseOnStop;
-    }
-
-    if (data.stopDelay !== undefined) {
-      this.stopDelay = data.stopDelay;
-    }
+    loadProperty(this, "replaceCursor", data.replaceCursor);
+    loadProperty(this, "pauseOnStop", data.pauseOnStop);
+    loadProperty(this, "stopDelay", data.stopDelay);
   }
 }

@@ -1,0 +1,119 @@
+<script lang="ts">
+  import { confetti } from "@tsparticles/confetti";
+
+  let mode = $state("cannon");
+
+  function randomInRange(min: number, max: number): number {
+    return Math.random() * (max - min) + min;
+  }
+
+  function fire(): void {
+    switch (mode) {
+      case "cannon":
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        break;
+
+      case "waterfall": {
+        const duration = 3000;
+        const end = Date.now() + duration;
+
+        const interval = setInterval(() => {
+          if (Date.now() > end) {
+            clearInterval(interval);
+            return;
+          }
+
+          confetti({
+            particleCount: 10,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.6 },
+          });
+          confetti({
+            particleCount: 10,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.6 },
+          });
+        }, 100);
+        break;
+      }
+
+      case "random":
+        confetti({
+          angle: randomInRange(55, 125),
+          spread: randomInRange(50, 70),
+          particleCount: randomInRange(50, 100),
+          origin: { y: 0.6 },
+        });
+        break;
+    }
+  }
+</script>
+
+<h1>tsParticles Confetti</h1>
+<div class="controls">
+  <select bind:value={mode}>
+    <option value="cannon">Cannon</option>
+    <option value="waterfall">Waterfall</option>
+    <option value="random">Random</option>
+  </select>
+  <button onclick={fire}>Fire!</button>
+</div>
+
+<style>
+  :global(body) {
+    margin: 0;
+    overflow: hidden;
+    background: #1a1a2e;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
+
+  :global(#app) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3.2em;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  button {
+    padding: 0.8em 2em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    background: #e94560;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #ff6b81;
+  }
+
+  select {
+    padding: 0.8em 1em;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #16213e;
+    color: #fff;
+    cursor: pointer;
+  }
+</style>

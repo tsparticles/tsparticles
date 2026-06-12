@@ -24,6 +24,7 @@ import {
   lFactor,
   lMax,
   lMin,
+  maxNits,
   midColorValue,
   millisecondsToSeconds,
   percentDenominator,
@@ -50,10 +51,10 @@ import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
-  maxCacheSize = 1000,
-  firstIndex = 0,
+  maxStyleCacheSize = 2000,
   rgbFixedPrecision = 2,
-  hslFixedPrecision = 2;
+  hslFixedPrecision = 2,
+  sdrReferenceWhiteNits = 203;
 
 /**
  * Generic cache function for color styles
@@ -67,10 +68,8 @@ function getCachedStyle(key: string, generator: () => string): string {
   if (!cached) {
     cached = generator();
 
-    if (styleCache.size >= maxCacheSize) {
-      const keysToDelete = [...styleCache.keys()].slice(firstIndex, maxCacheSize * half);
-
-      keysToDelete.forEach(k => styleCache.delete(k));
+    if (styleCache.size > maxStyleCacheSize) {
+      styleCache.clear();
     }
 
     styleCache.set(key, cached);
@@ -201,25 +200,6 @@ export function colorToRgb(
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
-export function colorToHsl(
-  pluginManager: PluginManager,
-  color: string | IColor | undefined,
-  index?: number,
-  useIndex = true,
-): IHsl | undefined {
-  const rgb = colorToRgb(pluginManager, color, index, useIndex);
-
-  return rgb ? rgbToHsl(rgb) : undefined;
-}
-
-/**
- * Gets the particles color
- * @param pluginManager - the plugin manager
- * @param color - the input color to convert in {@link IHsl} object
- * @param index - the array index, if needed
- * @param useIndex - set to false to ignore the index parameter
- * @returns the {@link IHsl} object
- */
 export function rangeColorToHsl(
   pluginManager: PluginManager,
   color: string | IRangeColor | undefined,
@@ -300,7 +280,43 @@ export function stringToRgb(pluginManager: PluginManager, input: string): IRgb |
 /**
  * Converts a Hue Saturation Lightness ({@link IHsl}) object in a {@link IRgb} object
  * @param hsl - the Hue Saturation Lightness ({@link IHsl}) object
+ * @param temp1
+ * @param temp2
+ * @param temp3
  * @returns the {@link IRgb} object
+ */
+function hslChannel(temp1: number, temp2: number, temp3: number): number {
+  const temp3Min = 0,
+    temp3Max = 1;
+
+  if (temp3 < temp3Min) {
+    temp3++;
+  }
+
+  if (temp3 > temp3Max) {
+    temp3--;
+  }
+
+  if (temp3 * sextuple < temp3Max) {
+    return temp1 + (temp2 - temp1) * sextuple * temp3;
+  }
+
+  if (temp3 * double < temp3Max) {
+    return temp2;
+  }
+
+  if (temp3 * triple < temp3Max * double) {
+    const temp3Offset = double / triple;
+
+    return temp1 + (temp2 - temp1) * (temp3Offset - temp3) * sextuple;
+  }
+
+  return temp1;
+}
+
+/**
+ *
+ * @param hsl
  */
 export function hslToRgb(hsl: IHsl): IRgb {
   // Ensure that h, s, and l are in the valid range
@@ -319,43 +335,15 @@ export function hslToRgb(hsl: IHsl): IRgb {
     return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
   }
 
-  const channel = (temp1: number, temp2: number, temp3: number): number => {
-      const temp3Min = 0,
-        temp3Max = 1;
-
-      if (temp3 < temp3Min) {
-        temp3++;
-      }
-
-      if (temp3 > temp3Max) {
-        temp3--;
-      }
-
-      if (temp3 * sextuple < temp3Max) {
-        return temp1 + (temp2 - temp1) * sextuple * temp3;
-      }
-
-      if (temp3 * double < temp3Max) {
-        return temp2;
-      }
-
-      if (temp3 * triple < temp3Max * double) {
-        const temp3Offset = double / triple;
-
-        return temp1 + (temp2 - temp1) * (temp3Offset - temp3) * sextuple;
-      }
-
-      return temp1;
-    },
-    temp1 =
+  const temp1 =
       lNormalized < half
         ? lNormalized * (sNormalizedOffset + sNormalized)
         : lNormalized + sNormalized - lNormalized * sNormalized,
     temp2 = double * lNormalized - temp1,
     phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized + phaseThird)),
-    green = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized - phaseThird));
+    red = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized + phaseThird)),
+    green = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized)),
+    blue = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized - phaseThird));
 
   return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -411,10 +399,13 @@ export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): st
  * Gets a CSS style string from a {@link IRgb} object and opacity value
  * @param color - the {@link IRgb} input color
  * @param opacity - the opacity value
+ * @param peakNits - the peak brightness in nits, for future HDR API support, defaults to 400
  * @returns the CSS style string
  */
-function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
-  return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+function getHdrStyleFromRgb(color: IRgb, opacity?: number, peakNits = maxNits): string {
+  const headroom = peakNits / sdrReferenceWhiteNits;
+
+  return `color(display-p3 ${((color.r / rgbMax) * headroom).toString()} ${((color.g / rgbMax) * headroom).toString()} ${((color.b / rgbMax) * headroom).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -438,27 +429,11 @@ export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): st
   const op = opacity ?? defaultOpacity,
     key = `hsl-${color.h.toFixed(hslFixedPrecision)}-${color.s.toFixed(hslFixedPrecision)}-${color.l.toFixed(hslFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
 
-  return getCachedStyle(key, () => (hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity)));
-}
-
-/**
- * Gets a CSS style string from a {@link IHsl} object and opacity value
- * @param color - the {@link IHsl} input color
- * @param opacity - the opacity value
- * @returns the CSS style string
- */
-function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
-  return getHdrStyleFromRgb(hslToRgb(color), opacity);
-}
-
-/**
- * Gets a CSS style string from a {@link IHsl} object and opacity value
- * @param color - the {@link IHsl} input color
- * @param opacity - the opacity value
- * @returns the CSS style string
- */
-function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
-  return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
+  return getCachedStyle(key, () =>
+    hdr
+      ? getStyleFromRgb(hslToRgb(color), true, opacity)
+      : `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${op.toString()})`,
+  );
 }
 
 /**

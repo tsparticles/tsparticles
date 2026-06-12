@@ -2,6 +2,19 @@
 
 tsParticles 是一个用于创建粒子动画、彩纸、烟花等的 JavaScript/TypeScript 库。它适用于所有现代浏览器，既可作为 npm 包使用，也可通过 CDN 配合 `<script>` 标签使用。
 
+## Quick start
+
+最快的方式是通过我们的 CLI 开始：
+
+```bash
+npm create tsparticles@latest
+```
+
+按照交互式提示选择模板和框架。
+一个新项目将在当前目录中创建，tsParticles 已预先配置。
+
+---
+
 ## 架构：引擎 + 捆绑包
 
 `@tsparticles/engine` 单独使用**不会显示任何内容**。它只包含核心引擎（动画循环、画布、事件管理），但**没有形状、没有交互、没有视觉效果**。要看到效果，你必须至少加载一个**捆绑包**或单独的**插件**。

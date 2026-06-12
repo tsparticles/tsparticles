@@ -8,6 +8,7 @@ import {
   getDistances,
   getLinkColor,
   getLinkRandomColor,
+  loadOptionProperty,
   originPoint,
 } from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
@@ -147,10 +148,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     options: ParticlesLinkOptions,
     ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
   ): void {
-    options.links ??= new Links();
-    for (const source of sources) {
-      options.links.load(source?.links);
-    }
+    loadOptionProperty(options, "links", Links, ...sources);
   }
 
   /** @inheritDoc */

@@ -1,0 +1,24 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "riot": "^10.0.0",
+    "@tsparticles/riot": "^4.1.3",
+    "@tsparticles/slim": "^4.1.3",
+    "@tsparticles/configs": "^4.1.3",
+    "@tsparticles/engine": "^4.1.3"
+  },
+  "devDependencies": {
+    "@riotjs/compiler": "^10.0.0",
+    "rollup-plugin-riot": "^10.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0"
+  }
+}

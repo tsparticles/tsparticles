@@ -4,31 +4,25 @@ import {
   type RecursivePartial,
   deepExtend,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ITheme } from "../Interfaces/ITheme.js";
 import { ThemeDefault } from "./ThemeDefault.js";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
   /** Options to set the default theme */
-  readonly default;
+  readonly default = new ThemeDefault();
   /** Theme name, use it when changing theme */
-  name;
+  name = "";
   /** All options the theme will override */
   options?: ISourceOptions;
-
-  constructor() {
-    this.name = "";
-    this.default = new ThemeDefault();
-  }
 
   load(data?: RecursivePartial<ITheme>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.name !== undefined) {
-      this.name = data.name;
-    }
+    loadProperty(this, "name", data.name);
 
     this.default.load(data.default);
 

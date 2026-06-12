@@ -11,14 +11,12 @@ import { Modes } from "./Modes/Modes.js";
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
   [name: string]: unknown;
 
-  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect = InteractivityDetect.window;
 
-  readonly events;
+  readonly events = new Events();
   readonly modes;
 
   constructor(pluginManager: InteractivityPluginManager, container?: Container) {
-    this.detectsOn = InteractivityDetect.window;
-    this.events = new Events();
     this.modes = new Modes(pluginManager, container);
   }
 

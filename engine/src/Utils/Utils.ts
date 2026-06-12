@@ -1,166 +1,24 @@
 import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
 import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
-import {
-  clamp,
-  collisionVelocity,
-  getDistances,
-  getRandom,
-  getRangeMax,
-  getRangeMin,
-  getRangeValue,
-  randomInRangeValue,
-} from "./MathUtils.js";
-import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
+import { collisionVelocity, getDistances, getRandom, getRangeValue } from "./MathUtils.js";
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
-import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
-import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { Container } from "../Core/Container.js";
-import { DestroyType } from "../Enums/Types/DestroyType.js";
 import type { GenericInitializer } from "../Types/EngineInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
-import type { IDelta } from "../Core/Interfaces/IDelta.js";
-import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
-import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
-import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
+import { percentDenominator } from "../Core/Utils/Constants.js";
 
-const minRadius = 0,
-  minMemoizeSize = 0;
-
-/**
- * Memoize function options
- */
-export interface MemoizeOptions<TArgs> {
-  /** Custom key function for cache lookups */
-  keyFn?: (args: TArgs) => string;
-  /** Maximum cache size */
-  maxSize?: number;
-  /** Time-to-live in milliseconds */
-  ttlMs?: number;
-}
-
-/**
- * Memoize a function's results with optional bounded size and TTL.
- *
- * Backward compatible: callers using `memoize(fn)` keep the same semantics.
- * Options: \{ maxSize?: number, ttlMs?: number, keyFn?: (args) =\> string \}
- * Default keyer uses a stable serialization of the arguments (sorted keys)
- * which makes equal-shaped objects produce the same cache key.
- *
- * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
- * @param fn -
- * @param options -
- * @returns the memoized function
- */
-export function memoize<TArgs extends unknown[], Result>(
-  fn: (...args: TArgs) => Result,
-  options?: MemoizeOptions<TArgs>,
-): (...args: TArgs) => Result {
-  const cache = new Map<string, { ts: number; value: Result }>(),
-    maxSize = options?.maxSize,
-    ttlMs = options?.ttlMs,
-    keyFn = options?.keyFn,
-    stableStringify = (obj: unknown, seen = new WeakSet()): string => {
-      if (obj === null) {
-        return "null";
-      }
-
-      const t = typeof obj;
-
-      if (t === "undefined") {
-        return "undefined";
-      }
-
-      if (t === "number" || t === "boolean" || t === "string") {
-        return JSON.stringify(obj);
-      }
-
-      if (t === "function") {
-        try {
-          const fn = obj as unknown as (...args: unknown[]) => unknown;
-
-          return fn.toString();
-        } catch {
-          return '"[Function]"';
-        }
-      }
-
-      if (t === "symbol") {
-        try {
-          return (obj as symbol).toString();
-        } catch {
-          // Avoid default object stringification which yields "[object Object]".
-          return '"[Symbol]"';
-        }
-      }
-
-      if (Array.isArray(obj)) {
-        return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
-      }
-
-      // object
-      if (seen.has(obj as object)) {
-        return '"[Circular]"';
-      }
-
-      seen.add(obj as object);
-
-      const keys = Object.keys(obj as Record<string, unknown>).sort();
-
-      return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
-    },
-    defaultKeyer = (args: TArgs): string => stableStringify(args),
-    makeKey = (args: TArgs): string => (keyFn ? keyFn(args) : defaultKeyer(args)),
-    ensureBounds = (): void => {
-      if (typeof maxSize === "number" && maxSize >= minMemoizeSize) {
-        while (cache.size > maxSize) {
-          // evict oldest entry (Map preserves insertion order)
-          const firstKey = cache.keys().next().value;
-
-          if (firstKey === undefined) break;
-
-          cache.delete(firstKey);
-        }
-      }
-    };
-
-  return (...args: TArgs): Result => {
-    const key = makeKey(args),
-      now = Date.now(),
-      entry = cache.get(key);
-
-    if (entry !== undefined) {
-      if (ttlMs && now - entry.ts > ttlMs) {
-        // expired
-        cache.delete(key);
-      } else {
-        // refresh insertion order: delete then set to move to newest
-        cache.delete(key);
-        cache.set(key, { value: entry.value, ts: entry.ts });
-
-        return entry.value;
-      }
-    }
-
-    const result = fn(...args);
-
-    cache.set(key, { value: result, ts: now });
-
-    ensureBounds();
-
-    return result;
-  };
-}
+const minRadius = 0;
 
 /**
  * @returns true if the environment supports matchMedia feature
  */
-export function hasMatchMedia(): boolean {
+function hasMatchMedia(): boolean {
   return typeof matchMedia !== "undefined";
 }
 
@@ -182,21 +40,6 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
   }
 
   return matchMedia(query);
-}
-
-/**
- * Safely creates an IntersectionObserver if supported
- * @param callback - the observer callback
- * @returns the intersection observer, if supported
- */
-export function safeIntersectionObserver(
-  callback: (records: IntersectionObserverEntry[]) => void,
-): IntersectionObserver | undefined {
-  if (typeof IntersectionObserver === "undefined") {
-    return;
-  }
-
-  return new IntersectionObserver(callback);
 }
 
 /**
@@ -223,15 +66,6 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 }
 
 /**
- * Returns a random array index
- * @param array - the array to get the index from
- * @returns a random array index
- */
-export function arrayRandomIndex(array: unknown[]): number {
-  return Math.floor(getRandom() * array.length);
-}
-
-/**
  * Returns a random object from the given array
  * @param array - the array to get the object from
  * @param index - the index to get the object from
@@ -239,7 +73,7 @@ export function arrayRandomIndex(array: unknown[]): number {
  * @returns the item found
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T | undefined {
-  return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
+  return array[index !== undefined && useIndex ? index % array.length : Math.floor(getRandom() * array.length)];
 }
 
 /**
@@ -470,107 +304,6 @@ export function itemFromSingleOrMultiple<T>(
 }
 
 /**
- * @param obj -
- * @param callback -
- * @returns the item found, if present
- */
-export function findItemFromSingleOrMultiple<T>(
-  obj: SingleOrMultiple<T>,
-  callback: (obj: T, index: number) => boolean,
-): T | undefined {
-  if (isArray(obj)) {
-    return obj.find((t, index) => callback(t, index));
-  }
-
-  const defaultIndex = 0;
-
-  return callback(obj, defaultIndex) ? obj : undefined;
-}
-
-/**
- * @param options -
- * @param pxRatio -
- * @returns the animation init object
- */
-export function initParticleNumericAnimationValue(
-  options: RangedAnimationValueWithRandom,
-  pxRatio: number,
-): IParticleNumericValueAnimation {
-  const valueRange = options.value,
-    animationOptions = options.animation,
-    res: IParticleNumericValueAnimation = {
-      delayTime: getRangeValue(animationOptions.delay) * millisecondsToSeconds,
-      enable: animationOptions.enable,
-      value: getRangeValue(options.value) * pxRatio,
-      max: getRangeMax(valueRange) * pxRatio,
-      min: getRangeMin(valueRange) * pxRatio,
-      loops: 0,
-      maxLoops: getRangeValue(animationOptions.count),
-      time: 0,
-    },
-    decayOffset = 1;
-
-  if (animationOptions.enable) {
-    res.decay = decayOffset - getRangeValue(animationOptions.decay);
-
-    switch (animationOptions.mode) {
-      case AnimationMode.increase:
-        res.status = AnimationStatus.increasing;
-
-        break;
-      case AnimationMode.decrease:
-        res.status = AnimationStatus.decreasing;
-
-        break;
-
-      case AnimationMode.random:
-        res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-        break;
-      default:
-        // no-op
-        break;
-    }
-
-    const autoStatus = animationOptions.mode === AnimationMode.auto;
-
-    switch (animationOptions.startValue) {
-      case StartValueType.min:
-        res.value = res.min;
-
-        if (autoStatus) {
-          res.status = AnimationStatus.increasing;
-        }
-
-        break;
-
-      case StartValueType.max:
-        res.value = res.max;
-
-        if (autoStatus) {
-          res.status = AnimationStatus.decreasing;
-        }
-
-        break;
-
-      case StartValueType.random:
-      default:
-        res.value = randomInRangeValue(res);
-
-        if (autoStatus) {
-          res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
-        }
-
-        break;
-    }
-  }
-
-  res.initialValue = res.value;
-
-  return res;
-}
-
-/**
  * @param positionOrSize -
  * @param canvasSize -
  * @returns the calculated position or size
@@ -612,151 +345,6 @@ export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimensi
 }
 
 /**
- * @param size -
- * @param canvasSize -
- * @returns the calculated size
- */
-export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDimension {
-  return getPositionOrSize(size, canvasSize) as IDimension;
-}
-
-/**
- * @param particle -
- * @param destroyType -
- * @param value -
- * @param minValue -
- * @param maxValue -
- */
-function checkDestroy(
-  particle: Particle,
-  destroyType: DestroyType | keyof typeof DestroyType,
-  value: number,
-  minValue: number,
-  maxValue: number,
-): void {
-  switch (destroyType) {
-    case DestroyType.max:
-      if (value >= maxValue) {
-        particle.destroy();
-      }
-
-      break;
-    case DestroyType.min:
-      if (value <= minValue) {
-        particle.destroy();
-      }
-
-      break;
-    default:
-      // no-op
-      break;
-  }
-}
-
-/**
- * Updates a numeric particle animation state.
- * @param particle - Particle owning the animated value.
- * @param data - Numeric animation state.
- * @param changeDirection - Whether the animation should ping-pong.
- * @param destroyType - Destroy behavior applied at bounds.
- * @param delta - Frame delta data.
- */
-export function updateAnimation(
-  particle: Particle,
-  data: IParticleNumericValueAnimation,
-  changeDirection: boolean,
-  destroyType: DestroyType | keyof typeof DestroyType,
-  delta: IDelta,
-): void {
-  const minLoops = 0,
-    minDelay = 0,
-    identity = 1,
-    minVelocity = 0,
-    minDecay = 1;
-
-  if (
-    particle.destroyed ||
-    !data.enable ||
-    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
-  ) {
-    return;
-  }
-
-  const velocity = (data.velocity ?? minVelocity) * delta.factor,
-    minValue = data.min,
-    maxValue = data.max,
-    decay = data.decay ?? minDecay;
-
-  data.time ??= 0;
-
-  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
-    data.time += delta.value;
-  }
-
-  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
-    return;
-  }
-
-  // Update value based on current status
-  switch (data.status) {
-    case AnimationStatus.increasing:
-      data.value += velocity;
-      break;
-    case AnimationStatus.decreasing:
-      data.value -= velocity;
-      break;
-    default:
-      // no-op
-      break;
-  }
-
-  // Apply decay to velocity
-  if (data.velocity && decay !== identity) {
-    data.velocity *= decay;
-  }
-
-  // Handle animation state and manage loop count
-  switch (data.status) {
-    case AnimationStatus.increasing:
-      if (data.value >= maxValue) {
-        if (changeDirection) {
-          data.status = AnimationStatus.decreasing;
-        } else {
-          data.value -= maxValue;
-        }
-
-        data.loops ??= minLoops;
-        data.loops++;
-      }
-      break;
-    case AnimationStatus.decreasing:
-      if (data.value <= minValue) {
-        if (changeDirection) {
-          data.status = AnimationStatus.increasing;
-        } else {
-          data.value += maxValue;
-        }
-
-        data.loops ??= minLoops;
-        data.loops++;
-      }
-      break;
-    default:
-      // no-op
-      break;
-  }
-
-  // Check if particle should be destroyed based on destroyType (before clamping)
-  checkDestroy(particle, destroyType, data.value, minValue, maxValue);
-
-  // Clamp value only if particle is still alive
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (!particle.destroyed) {
-    data.value = clamp(data.value, minValue, maxValue);
-  }
-}
-
-/**
  * a function to clone a style object
  * @param style - the style to clone
  * @returns the cloned style
@@ -789,45 +377,48 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
   return clonedStyle;
 }
 
+let _cachedZIndex: number | undefined, _cachedStyle: CSSStyleDeclaration | undefined;
+
 /**
- * Computes full-screen canvas style for a given z-index.
+ * Full-screen canvas style builder with inline cache.
  * @param zIndex - The z-index value.
  * @returns Full-screen CSS style declaration.
  */
-function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
-  const fullScreenStyle = safeDocument().createElement("div").style,
-    radix = 10,
-    style: Record<string, string> = {
-      width: "100%",
-      height: "100%",
-      margin: "0",
-      padding: "0",
-      borderWidth: "0",
-      position: "fixed",
-      zIndex: zIndex.toString(radix),
-      "z-index": zIndex.toString(radix),
-      top: "0",
-      left: "0",
-      "pointer-events": "none",
-    };
+export function getFullScreenStyle(zIndex: number): CSSStyleDeclaration {
+  if (_cachedZIndex !== zIndex || !_cachedStyle) {
+    _cachedZIndex = zIndex;
 
-  for (const key in style) {
-    const value = style[key];
+    const fullScreenStyle = safeDocument().createElement("div").style,
+      radix = 10,
+      style: Record<string, string> = {
+        width: "100%",
+        height: "100%",
+        margin: "0",
+        padding: "0",
+        borderWidth: "0",
+        position: "fixed",
+        zIndex: zIndex.toString(radix),
+        "z-index": zIndex.toString(radix),
+        top: "0",
+        left: "0",
+        "pointer-events": "none",
+      };
 
-    if (value === undefined) {
-      continue;
+    for (const key in style) {
+      const value = style[key];
+
+      if (value === undefined) {
+        continue;
+      }
+
+      fullScreenStyle.setProperty(key, value);
     }
 
-    fullScreenStyle.setProperty(key, value);
+    _cachedStyle = fullScreenStyle;
   }
 
-  return fullScreenStyle;
+  return _cachedStyle;
 }
-
-/**
- * Memoized full-screen style builder.
- */
-export const getFullScreenStyle = memoize(computeFullScreenStyle);
 
 /**
  * Manage the given event listeners

@@ -90,7 +90,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     // do nothing
   }
 
-  readonly #createDirs = (): void => {
+  #createDirs(): void {
     const options = this.options;
 
     this.dirsList = [];
@@ -100,5 +100,5 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
       this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
     }
-  };
+  }
 }

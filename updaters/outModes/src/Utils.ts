@@ -1,8 +1,7 @@
-import { OutMode, OutModeDirection, getRangeValue } from "@tsparticles/engine";
+import { OutMode, OutModeDirection, getRangeValue, minVelocity } from "@tsparticles/engine";
 import type { IBounceData } from "./IBounceData.js";
 
-const minVelocity = 0,
-  boundsMin = 0;
+const boundsMin = 0;
 
 /**
  * @param data -

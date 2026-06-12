@@ -8,21 +8,14 @@ import { Split } from "./Split.js";
 /** Destroy options class */
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
   /** The destroy bounds */
-  bounds: DestroyBounds;
+  readonly bounds: DestroyBounds = new DestroyBounds();
   /** The explode options */
-  explode: Explode;
+  readonly explode: Explode = new Explode();
   /** The destroy mode */
-  mode: DestroyMode | keyof typeof DestroyMode;
+  mode: DestroyMode | keyof typeof DestroyMode = DestroyMode.none;
   /** The split options */
-  split: Split;
-
+  readonly split: Split = new Split();
   /** Destroy constructor */
-  constructor() {
-    this.bounds = new DestroyBounds();
-    this.explode = new Explode();
-    this.mode = DestroyMode.none;
-    this.split = new Split();
-  }
 
   /**
    * Loads the destroy options from data

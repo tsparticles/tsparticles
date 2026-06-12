@@ -1,32 +1,97 @@
 # Шаблоны и ресурсы
 
-Шаблоны хранятся в основном монорепозитории в папке `templates`.
+tsParticles предоставляет две категории шаблонов: **шаблоны-заготовки** (каркасы фреймворков) и **шаблоны сценариев** (готовые примеры приложений).
 
-## Официальные шаблоны
+## Быстрый старт с CLI
 
-- Папка шаблонов: <https://github.com/tsparticles/tsparticles/tree/main/templates>.
-- Включает начальные настройки для стандартного JavaScript и нескольких фреймворков.
+Самый простой способ использовать любой шаблон — через CLI:
 
-## Когда использовать шаблоны
+```bash
+npm create tsparticles@latest
+```
 
-- Вам нужен готовый базовый план с уже установленной структурой проекта.
-- Прежде чем писать собственные оболочки, вам нужны примеры, специфичные для платформы.
-  - Вы хотите быстро сравнить варианты пакетов (`basic`, `slim`, `full`, `all`).
+Или используйте конкретный пакет напрямую:
 
-## Поток вкладов
+```bash
+npm create particles@latest
+npm create confetti@latest
+npm create ribbons@latest
+```
 
-Если вы создаете повторно используемый дизайн или рецепт интеграции:
+Для неинтерактивного использования:
 
-1. Форкните основной монорепозиторий.
-2. Добавьте свой шаблон с четкими инструкциями по настройке и запуску.
-3. Откройте запрос на включение и включите скриншоты/gif и версии пакета.
+```bash
+npx tsparticles-create app my-project --template scaffold --framework react
+npx tsparticles-create app my-project --template confetti --framework vanilla
+```
 
-## Связанные папки
+## Шаблоны-заготовки
 
-- Основной монорепозиторий: <https://github.com/tsparticles/tsparticles>.
-- Шаблоны: <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- Пресеты: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Палитры: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Шаблоны-заготовки предоставляют минимальный каркас проекта на Vite + TypeScript с предварительно настроенным tsParticles. Они доступны для следующих фреймворков:
+
+| Фреймворк | Параметр CLI          | Пакет                            |
+| --------- | --------------------- | -------------------------------- |
+| Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
+| React     | `--framework react`   | `@tsparticles/template-scaffold` |
+| Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
+| Angular   | `--framework angular` | `@tsparticles/template-scaffold` |
+| Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
+| Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
+
+Пример:
+
+```bash
+npx tsparticles-create app my-react-app --template scaffold --framework react
+cd my-react-app
+npm install
+npm run dev
+```
+
+## Шаблоны сценариев
+
+Шаблоны сценариев — это готовые примеры приложений, демонстрирующие реальное использование tsParticles.
+
+| Шаблон      | Описание                                     | Имя шаблона CLI | Пакет                             |
+| ----------- | -------------------------------------------- | --------------- | --------------------------------- |
+| Login       | Страница входа/регистрации с фоном из частиц | `login`         | `@tsparticles/template-login`     |
+| Portfolio   | Личное портфолио с анимированным героем      | `portfolio`     | `@tsparticles/template-portfolio` |
+| Landing     | Маркетинговый лендинг с эффектными частицами | `landing`       | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Крестики-нолики с праздничной конфетти       | `tictactoe`     | `@tsparticles/template-tictactoe` |
+| Confetti    | Демо-пушка конфетти                          | `confetti`      | `@tsparticles/template-confetti`  |
+| Ribbons     | Демо-анимация лент                           | `ribbons`       | `@tsparticles/template-ribbons`   |
+| Particles   | Классическое демо в стиле particles.js       | `particles`     | `@tsparticles/template-particles` |
+
+Пример:
+
+```bash
+npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
+cd my-portfolio
+npm install
+npm run dev
+```
+
+## npm create обёртки
+
+Для шаблонов, привязанных к конкретным пакетам, можно использовать специальные обёртки npm create:
+
+| Команда                         | Шаблон       | Фреймворк    | Устанавливаемый пакет    |
+| ------------------------------- | ------------ | ------------ | ------------------------ |
+| `npm create tsparticles@latest` | Интерактивно | Интерактивно | Выбор пользователя       |
+| `npm create particles@latest`   | `particles`  | Vanilla      | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`   | Vanilla      | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`    | Vanilla      | `@tsparticles/ribbons`   |
+
+## Справочник по CLI
+
+```bash
+tsparticles-create app [destination] [options]
+
+Options:
+  --template <name>     Используемый шаблон (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
+  --framework <name>    Фреймворк (vanilla|react|vue3|angular|svelte|solid)
+  --skip-install        Пропустить npm install после создания каркаса
+  -h, --help            Показать справку
+```
 
 ## Похожие страницы
 

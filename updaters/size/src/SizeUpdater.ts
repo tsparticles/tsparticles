@@ -5,11 +5,11 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  initParticleNumericAnimationValue,
+  loadOptionProperty,
   percentDenominator,
-  updateAnimation,
 } from "@tsparticles/engine";
 import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
+import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
 import { Size } from "./Options/Classes/Size.js";
 
 const minLoops = 0;
@@ -79,11 +79,7 @@ export class SizeUpdater implements IParticleUpdater {
     options: SizeParticlesOptions,
     ...sources: (RecursivePartial<ISizeParticlesOptions> | undefined)[]
   ): void {
-    options.size ??= new Size();
-
-    for (const source of sources) {
-      options.size.load(source?.size);
-    }
+    loadOptionProperty(options, "size", Size, ...sources);
   }
 
   /**

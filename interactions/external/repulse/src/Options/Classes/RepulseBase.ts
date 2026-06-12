@@ -1,4 +1,4 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IRepulseBase, IRepulseRestore } from "../Interfaces/IRepulseBase.js";
 
 /**
@@ -6,27 +6,21 @@ import type { IRepulseBase, IRepulseRestore } from "../Interfaces/IRepulseBase.j
  */
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
   /** Repulse distance in pixels */
-  distance;
+  distance = 200;
   /** Repulse animation duration in seconds */
-  duration;
+  duration = 0.4;
   /** Easing type used for the repulse animation */
-  easing: EasingType | EasingTypeAlt;
+  easing = "ease-out-quad";
   /** Repulse factor multiplier */
-  factor;
+  factor = 100;
   /** Maximum repulse speed */
-  maxSpeed;
+  maxSpeed = 50;
   /** Restore behavior after repulse interaction */
   restore: IRepulseRestore;
   /** Repulse speed */
-  speed;
+  speed = 1;
 
   constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.factor = 100;
-    this.speed = 1;
-    this.maxSpeed = 50;
-    this.easing = EasingType.easeOutQuad;
     this.restore = {
       enable: false,
       delay: 0,
@@ -41,29 +35,12 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
-
-    if (data.easing !== undefined) {
-      this.easing = data.easing;
-    }
-
-    if (data.factor !== undefined) {
-      this.factor = data.factor;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = data.speed;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = data.maxSpeed;
-    }
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "duration", data.duration);
+    loadProperty(this, "easing", data.easing);
+    loadProperty(this, "factor", data.factor);
+    loadProperty(this, "speed", data.speed);
+    loadProperty(this, "maxSpeed", data.maxSpeed);
 
     if (data.restore !== undefined) {
       this.restore.enable = data.restore.enable ?? this.restore.enable;

@@ -8,6 +8,7 @@ import {
   deepExtend,
   isArray,
   isNull,
+  loadProperty,
   percentDenominator,
 } from "@tsparticles/engine";
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
@@ -26,8 +27,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Emitter size for particle spawn area */
   emitterSize: IDimension;
 
-  /** Ribbons position, in percent values */
-  position: ICoordinates;
+  /** Ribbons horizontal spawn position (percent) */
+  positionX: number;
 
   /** Ribbon shape options */
   ribbonOptions: SingleOrMultiple<IShapeValues>;
@@ -48,11 +49,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       width: 100,
       height: 0,
     };
+    this.positionX = 50;
     this.ticks = 200;
-    this.position = {
-      x: 50,
-      y: 0,
-    };
     this.colors = ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"];
     this.ribbonOptions = {
       angle: 45,
@@ -83,22 +81,21 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   }
 
   /**
-   * @deprecated use position instead
+   * @deprecated use positionX instead
    * @returns the origin of the ribbons
    */
   get origin(): ICoordinates {
     return {
-      x: this.position.x / percentDenominator,
-      y: this.position.y / percentDenominator,
+      x: this.positionX / percentDenominator,
+      y: 0,
     };
   }
 
   /**
-   * @deprecated use position instead
+   * @deprecated use positionX instead
    */
   set origin(value: ICoordinates) {
-    this.position.x = value.x * percentDenominator;
-    this.position.y = value.y * percentDenominator;
+    this.positionX = value.x * percentDenominator;
   }
 
   /**
@@ -117,6 +114,24 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   }
 
   /**
+   * @deprecated use positionX instead
+   * @returns the ribbons horizontal position
+   */
+  get position(): ICoordinates {
+    return {
+      x: this.positionX,
+      y: 0,
+    };
+  }
+
+  /**
+   * @deprecated use positionX instead
+   */
+  set position(value: ICoordinates) {
+    this.positionX = value.x;
+  }
+
+  /**
    * Loads ribbons options from the provided data
    * @param data -
    */
@@ -132,9 +147,7 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       this.count = count;
     }
 
-    if (data.ticks !== undefined) {
-      this.ticks = data.ticks;
-    }
+    loadProperty(this, "ticks", data.ticks);
 
     if (data.emitterSize) {
       if (data.emitterSize.width !== undefined) {
@@ -146,25 +159,28 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
-    const origin = data.origin;
+    loadProperty(this, "positionX", data.positionX);
 
-    if (origin && !data.position) {
-      data.position = {
-        x: origin.x === undefined ? undefined : origin.x * percentDenominator,
-        y: origin.y === undefined ? undefined : origin.y * percentDenominator,
-      };
-    }
+    if (data.positionX === undefined) {
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
+      const origin = data.origin;
 
-    const position = data.position;
-
-    if (position) {
-      if (position.x !== undefined) {
-        this.position.x = position.x;
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
+      if (origin && !data.position) {
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        data.position = {
+          x: origin.x === undefined ? undefined : origin.x * percentDenominator,
+          y: 0,
+        };
       }
 
-      if (position.y !== undefined) {
-        this.position.y = position.y;
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
+      const position = data.position;
+
+      if (position) {
+        if (position.x !== undefined) {
+          this.positionX = position.x;
+        }
       }
     }
 
@@ -180,16 +196,8 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       this.ribbonOptions = deepExtend({}, data.ribbonOptions) as SingleOrMultiple<IShapeValues>;
     }
 
-    if (data.scalar !== undefined) {
-      this.scalar = data.scalar;
-    }
-
-    if (data.zIndex !== undefined) {
-      this.zIndex = data.zIndex;
-    }
-
-    if (data.disableForReducedMotion !== undefined) {
-      this.disableForReducedMotion = data.disableForReducedMotion;
-    }
+    loadProperty(this, "scalar", data.scalar);
+    loadProperty(this, "zIndex", data.zIndex);
+    loadProperty(this, "disableForReducedMotion", data.disableForReducedMotion);
   }
 }

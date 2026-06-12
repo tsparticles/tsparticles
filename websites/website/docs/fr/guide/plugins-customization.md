@@ -482,6 +482,58 @@ Cela suffit pour prototyper localement chaque type d'extension, puis extraire en
 - Utilisez **preset** pour reutiliser le comportement et **palette** pour reutiliser l'identite visuelle.
 - Gardez d'abord les extensions personnalisees en local dans l'app, puis publiez seulement en cas de reutilisation entre projets.
 
+## Configuration globale runtime
+
+tsParticles expose quelques utilitaires sur l'objet global `tsParticles` pour une personnalisation avancée à l'exécution.
+
+### Générateur de nombres aléatoires personnalisé
+
+Remplacez la fonction aléatoire interne par la vôtre (utile pour les randomisations contrôlées dans les plugins personnalisés) :
+
+```js
+// Définir une fonction aléatoire personnalisée
+tsParticles.setParticlesRandom(() => {
+  // votre logique aléatoire personnalisée
+  return Math.random();
+});
+
+// Obtenir un nombre aléatoire avec la fonction actuelle
+const value = tsParticles.getParticlesRandom();
+
+// Obtenir la référence de la fonction aléatoire actuelle
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Journalisation personnalisée
+
+Remplacez le journaliseur interne par le vôtre (utile pour les modes silencieux ou la gestion personnalisée des logs) :
+
+```js
+// Définir un journaliseur personnalisé
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Obtenir le journaliseur actuel
+const logger = tsParticles.getParticlesLogger();
+```
+
+En utilisant la bibliothèque via une balise script UMD, ces fonctions sont également disponibles directement sur `globalThis` :
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Regles pratiques
 
 - Gardez des noms d'extension uniques (par exemple `app-*` ou un prefixe d'entreprise).

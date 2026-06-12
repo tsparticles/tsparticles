@@ -11,12 +11,12 @@ import {
   getRandom,
   getRangeValue,
   half,
+  identity,
+  minVelocity,
 } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types.js";
 
-const minVelocity = 0,
-  identity = 1,
-  moveSpeedFactor = 60,
+const moveSpeedFactor = 60,
   minSpinRadius = 0,
   spinFactor = 0.01,
   defaultPathDelay = 0,

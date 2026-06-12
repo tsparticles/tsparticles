@@ -14,6 +14,7 @@ import {
   defaultFps,
   getDistance,
   isInArray,
+  loadOptionProperty,
   millisecondsToSeconds,
 } from "@tsparticles/engine";
 import { Drag } from "./Options/Classes/Drag.js";
@@ -194,11 +195,7 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & DragMode, ...sources: RecursivePartial<(IModes & IDragMode) | undefined>[]): void {
-    options.drag ??= new Drag();
-
-    for (const source of sources) {
-      options.drag.load(source?.drag);
-    }
+    loadOptionProperty(options, "drag", Drag, ...sources);
   }
 
   /** @inheritDoc */

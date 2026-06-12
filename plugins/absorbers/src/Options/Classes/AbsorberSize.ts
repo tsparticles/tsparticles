@@ -1,4 +1,11 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull, isNumber } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RecursivePartial,
+  ValueWithRandom,
+  isNull,
+  isNumber,
+  loadProperty,
+} from "@tsparticles/engine";
 import { AbsorberSizeLimit } from "./AbsorberSizeLimit.js";
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize.js";
 
@@ -9,18 +16,14 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
   /**
    * The absorber size density, affects the attraction force
    */
-  density;
+  density = 5;
+
   /**
    * The absorber size limit
    */
-  limit: AbsorberSizeLimit;
+  readonly limit: AbsorberSizeLimit = new AbsorberSizeLimit();
 
-  constructor() {
-    super();
-    this.density = 5;
-    this.value = 50;
-    this.limit = new AbsorberSizeLimit();
-  }
+  override value = 50;
 
   /**
    * Loads the absorber size options from the given data
@@ -33,9 +36,7 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
 
     super.load(data);
 
-    if (data.density !== undefined) {
-      this.density = data.density;
-    }
+    loadProperty(this, "density", data.density);
 
     if (isNumber(data.limit)) {
       this.limit.radius = data.limit;

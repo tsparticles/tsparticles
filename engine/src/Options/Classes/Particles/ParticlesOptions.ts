@@ -1,13 +1,12 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
-import { isArray, isNull } from "../../../Utils/TypeUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import { Fill } from "./Fill.js";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
+import { OptionLoader } from "../../../Utils/OptionsUtils.js";
 import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
@@ -17,51 +16,41 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
+import { isArray } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
  */
-export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
+export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements IParticlesOptions {
   [name: string]: unknown;
 
-  readonly bounce;
-  readonly effect;
-  readonly groups: ParticlesGroups;
-  readonly move;
-  readonly number;
+  readonly bounce = new ParticlesBounce();
+  readonly effect = new Effect();
+  readonly groups: ParticlesGroups = {};
+  readonly move = new Move();
+  readonly number = new ParticlesNumber();
   paint: SingleOrMultiple<Paint>;
   palette?: string;
-  reduceDuplicates;
-  readonly shape;
-  readonly zIndex;
+  reduceDuplicates = false;
+  readonly shape = new Shape();
+  readonly zIndex = new ZIndex();
 
   readonly #container;
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container?: Container) {
+    super();
     this.#pluginManager = pluginManager;
     this.#container = container;
 
-    this.bounce = new ParticlesBounce();
-    this.effect = new Effect();
-    this.groups = {};
-    this.move = new Move();
-    this.number = new ParticlesNumber();
     this.paint = new Paint();
     this.paint.color = new AnimatableColor();
     this.paint.color.value = "#fff";
     this.paint.fill = new Fill();
     this.paint.fill.enable = true;
-    this.reduceDuplicates = false;
-    this.shape = new Shape();
-    this.zIndex = new ZIndex();
   }
 
-  load(data?: RecursivePartial<IParticlesOptions>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  protected doLoad(data: RecursivePartial<IParticlesOptions>): void {
     if (data.palette) {
       this.palette = data.palette;
 
@@ -132,7 +121,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
   }
 
-  readonly #importPalette = (palette: string): void => {
+  #importPalette(palette: string): void {
     const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
@@ -191,5 +180,5 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         mode: paletteData.blendMode,
       },
     });
-  };
+  }
 }

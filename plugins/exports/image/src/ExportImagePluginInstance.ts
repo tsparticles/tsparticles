@@ -25,7 +25,7 @@ export class ExportImagePluginInstance implements IContainerPlugin {
     return res;
   }
 
-  readonly #exportImage: (data: IExportImageData) => Promise<Blob | undefined> = async data => {
+  async #exportImage(data: IExportImageData): Promise<Blob | undefined> {
     const element = this.#container.canvas.domElement;
 
     if (!element) {
@@ -47,5 +47,5 @@ export class ExportImagePluginInstance implements IContainerPlugin {
         data.quality,
       );
     });
-  };
+  }
 }

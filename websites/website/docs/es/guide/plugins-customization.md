@@ -482,6 +482,58 @@ Esto es suficiente para prototipar localmente cada tipo de extension y despues e
 - Usa **preset** para reutilizar comportamiento y **palette** para reutilizar identidad visual.
 - Manten primero las extensiones personalizadas locales de la app y publicalas solo cuando se reutilicen entre proyectos.
 
+## Configuración global runtime
+
+tsParticles expone algunas utilidades en el objeto global `tsParticles` para personalización avanzada en tiempo de ejecución.
+
+### Generador de números aleatorios personalizado
+
+Reemplaza la función aleatoria interna con la tuya (útil para aleatoriedad controlada en plugins personalizados):
+
+```js
+// Establecer una función aleatoria personalizada
+tsParticles.setParticlesRandom(() => {
+  // tu lógica aleatoria personalizada
+  return Math.random();
+});
+
+// Obtener un número aleatorio usando la función actual
+const value = tsParticles.getParticlesRandom();
+
+// Obtener la referencia de la función aleatoria actual
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Logger personalizado
+
+Reemplaza el logger interno con el tuyo (útil para modos silenciosos o manejo personalizado de logs):
+
+```js
+// Establecer un logger personalizado
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Obtener el logger actual
+const logger = tsParticles.getParticlesLogger();
+```
+
+Al usar la librería mediante una etiqueta script UMD, estas funciones también están disponibles directamente en `globalThis`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Reglas practicas
 
 - Manten nombres de extension unicos (por ejemplo `app-*` o prefijo de empresa).

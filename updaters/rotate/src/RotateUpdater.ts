@@ -16,10 +16,11 @@ import {
   getRandom,
   getRangeValue,
   identity,
-  updateAnimation,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 /**
  * Rotate particle extension type
@@ -141,11 +142,7 @@ export class RotateUpdater implements IParticleUpdater {
     options: RotateParticlesOptions,
     ...sources: (RecursivePartial<IRotateParticlesOptions> | undefined)[]
   ): void {
-    options.rotate ??= new Rotate();
-
-    for (const source of sources) {
-      options.rotate.load(source?.rotate);
-    }
+    loadOptionProperty(options, "rotate", Rotate, ...sources);
   }
 
   /**

@@ -6,6 +6,7 @@ packages:
   - demo/*
   - effects/*
   - engine
+  - integrations/*
   - interactions/*
   - interactions/external/*
   - interactions/particles/*
@@ -123,3 +124,5 @@ minimumReleaseAgeExclude:
   - '@commitlint/top-level@21.0.2'
   - '@stencil/core@4.43.5'
   - tsdown@0.22.1
+  - undici-types@8.4.0
+  - eslint@10.5.0

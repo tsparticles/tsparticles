@@ -29,14 +29,28 @@ const _animationLoop: AnimationLoop = {
 /**
  * Replaces the library random function with a custom one.
  * @param rnd - A random function that returns a number between 0 and 1.
+ * @remarks
+ * Also available on globalThis as `setParticlesRandom` in UMD/browser builds.
  */
 export function setRandom(rnd: () => number = Math.random): void {
   _random = rnd;
 }
 
 /**
+ * Returns the current random function used by the library.
+ * @returns the current random function
+ * @remarks
+ * Also available on globalThis as `getParticlesRandomFn` in UMD/browser builds.
+ */
+export function getRandomFn(): () => number {
+  return _random;
+}
+
+/**
  * Returns a random number between 0 and 1 using the library random function.
  * @returns a random number between 0 and 1
+ * @remarks
+ * Also available on globalThis as `getParticlesRandom` in UMD/browser builds.
  */
 export function getRandom(): number {
   const min = 0,
@@ -342,20 +356,6 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
     x: position?.x ?? getRandom() * size.width,
     y: position?.y ?? getRandom() * size.height,
   };
-}
-
-/**
- * Gets exact position from exact position, or a random one if not specified, based on the given size
- * @param data - the data to use for calculating the position
- * @returns the exact position
- */
-export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
-  const position = {
-    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
-  };
-
-  return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }
 
 /**

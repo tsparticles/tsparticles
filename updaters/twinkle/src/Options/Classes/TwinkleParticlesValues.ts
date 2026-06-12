@@ -4,29 +4,25 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { ITwinkleParticlesValues } from "../Interfaces/ITwinkleParticlesValues.js";
 
 /** Twinkle particles values options class */
 export class TwinkleParticlesValues implements ITwinkleParticlesValues, IOptionLoader<ITwinkleParticlesValues> {
   /** Enables the twinkle particles */
-  enable;
+  enable = false;
   /** Twinkle particles fill color */
   fillColor?: OptionsColor;
   /** Twinkle particles frequency */
-  frequency;
+  frequency = 0.05;
   /** Twinkle particles opacity */
-  opacity: RangeValue;
+  opacity: RangeValue = 1;
   /** Twinkle particles stroke color */
   strokeColor?: OptionsColor;
 
   /** TwinkleParticlesValues constructor */
-  constructor() {
-    this.enable = false;
-    this.frequency = 0.05;
-    this.opacity = 1;
-  }
 
   /**
    * Loads the twinkle particles values from data
@@ -45,16 +41,8 @@ export class TwinkleParticlesValues implements ITwinkleParticlesValues, IOptionL
       this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.frequency !== undefined) {
-      this.frequency = data.frequency;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "frequency", data.frequency);
+    loadRangeProperty(this, "opacity", data.opacity);
   }
 }

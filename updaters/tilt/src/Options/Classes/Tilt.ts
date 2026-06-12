@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull, loadProperty } from "@tsparticles/engine";
 import { TiltDirection, type TiltDirectionAlt } from "../../TiltDirection.js";
 import type { ITilt } from "../Interfaces/ITilt.js";
 import { TiltAnimation } from "./TiltAnimation.js";
@@ -8,21 +8,11 @@ import { TiltAnimation } from "./TiltAnimation.js";
  */
 export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt> {
   /** Tilt animation options */
-  animation;
+  readonly animation = new TiltAnimation();
   /** Tilt direction */
-  direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt;
+  direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt = TiltDirection.clockwise;
   /** Enables the tilt */
-  enable;
-
-  /** Tilt constructor */
-  constructor() {
-    super();
-    this.animation = new TiltAnimation();
-    this.direction = TiltDirection.clockwise;
-    this.enable = false;
-    this.value = 0;
-  }
-
+  enable = false;
   /**
    * Loads the tilt options from data
    * @param data
@@ -36,12 +26,7 @@ export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt>
 
     this.animation.load(data.animation);
 
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "direction", data.direction);
+    loadProperty(this, "enable", data.enable);
   }
 }

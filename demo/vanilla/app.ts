@@ -462,6 +462,7 @@ app.use("/tsparticles-particles", express.static("./node_modules/@tsparticles/pa
 app.use("/tsparticles-ribbons", express.static("./node_modules/@tsparticles/ribbons"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
+app.use("/animation-utils", express.static("./node_modules/@tsparticles/animation-utils"));
 app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
 app.use("/path-utils", express.static("./node_modules/@tsparticles/path-utils"));
 app.use("/interaction-external-attract", express.static("./node_modules/@tsparticles/interaction-external-attract"));

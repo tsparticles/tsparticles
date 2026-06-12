@@ -6,13 +6,9 @@ import { OpacityAnimation } from "./OpacityAnimation.js";
  * [[include:Options/Particles/Opacity.md]]
  */
 export class Opacity extends RangedAnimationValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
-  override readonly animation;
+  override readonly animation = new OpacityAnimation();
 
-  constructor() {
-    super();
-    this.animation = new OpacityAnimation();
-    this.value = 1;
-  }
+  override value = 1;
 
   override load(data?: RecursivePartial<IOpacity>): void {
     if (isNull(data)) {

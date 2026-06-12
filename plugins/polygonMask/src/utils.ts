@@ -6,6 +6,7 @@ import {
   getDistances,
   getStyleFromRgb,
   rangeColorToRgb,
+  squareExp,
 } from "@tsparticles/engine";
 import type {
   SVGPathSeg,
@@ -18,11 +19,10 @@ import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from ".
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 
-const squareExp = 2,
-  inSegmentRange = {
-    min: 0,
-    max: 1,
-  };
+const inSegmentRange = {
+  min: 0,
+  max: 1,
+};
 
 /**
  * @param pluginManager -

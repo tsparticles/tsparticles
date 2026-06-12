@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IRoll } from "../Interfaces/IRoll.js";
 import { RollLight } from "./RollLight.js";
@@ -18,24 +19,16 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
   /** Roll back color */
   backColor?: OptionsColor;
   /** Roll darken options */
-  darken;
+  readonly darken = new RollLight();
   /** Enables the roll */
-  enable;
+  enable = false;
   /** Roll enlighten options */
-  enlighten;
+  readonly enlighten = new RollLight();
   /** Roll mode */
-  mode: RollMode | keyof typeof RollMode;
+  mode: RollMode | keyof typeof RollMode = RollMode.vertical;
   /** Roll speed */
-  speed: RangeValue;
-
+  speed: RangeValue = 25;
   /** Roll constructor */
-  constructor() {
-    this.darken = new RollLight();
-    this.enable = false;
-    this.enlighten = new RollLight();
-    this.mode = RollMode.vertical;
-    this.speed = 25;
-  }
 
   /**
    * Loads the roll options from data
@@ -52,18 +45,12 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
 
     this.darken.load(data.darken);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     this.enlighten.load(data.enlighten);
 
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "mode", data.mode);
 
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadRangeProperty(this, "speed", data.speed);
   }
 }

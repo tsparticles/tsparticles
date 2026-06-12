@@ -6,7 +6,7 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { IParallaxMode, ParallaxContainer, ParallaxMode } from "./Types.js";
-import { type Particle, type RecursivePartial, half, isInArray } from "@tsparticles/engine";
+import { type Particle, type RecursivePartial, half, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { Parallax } from "./Options/Classes/Parallax.js";
 
 const parallaxMode = "parallax";
@@ -54,11 +54,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     options: Modes & ParallaxMode,
     ...sources: RecursivePartial<(IModes & IParallaxMode) | undefined>[]
   ): void {
-    options.parallax ??= new Parallax();
-
-    for (const source of sources) {
-      options.parallax.load(source?.parallax);
-    }
+    loadOptionProperty(options, "parallax", Parallax, ...sources);
   }
 
   /** @inheritDoc */

@@ -5,11 +5,10 @@ import {
   OutModeDirection,
   type Particle,
   isPointInside,
+  minVelocity,
   originPoint,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
-
-const minVelocity = 0;
 
 export class NoneOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];

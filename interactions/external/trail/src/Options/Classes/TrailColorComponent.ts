@@ -4,11 +4,7 @@ import { TrailColorWeight } from "./TrailColorWeight.js";
 
 export class TrailColorComponent implements ITrailColorComponent, IOptionLoader<ITrailColorComponent> {
   value?: RangeValue;
-  weights?: TrailColorWeight;
-
-  constructor() {
-    this.weights = new TrailColorWeight();
-  }
+  weights?: TrailColorWeight = new TrailColorWeight();
 
   load(data?: RecursivePartial<ITrailColorComponent>): void {
     if (!data) {

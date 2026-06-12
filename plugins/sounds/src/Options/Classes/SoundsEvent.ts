@@ -6,6 +6,7 @@ import {
   isFunction,
   isNull,
   isString,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { FilterFunction } from "../../types.js";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent.js";
@@ -18,8 +19,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
   audio?: SingleOrMultiple<SoundsAudio>;
 
   /** The sounds event name */
-  event: SingleOrMultiple<string>;
-
+  event: SingleOrMultiple<string> = [];
   /** The sounds event filter */
   filter?: FilterFunction;
 
@@ -27,21 +27,14 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
   melodies?: SoundsMelody[];
 
   /** The sounds event notes */
-  notes?: SoundsNote[];
-
-  constructor() {
-    this.event = [];
-    this.notes = [];
-  }
+  notes?: SoundsNote[] = [];
 
   load(data?: RecursivePartial<ISoundsEvent>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.event !== undefined) {
-      this.event = data.event;
-    }
+    loadProperty(this, "event", data.event);
 
     if (data.audio !== undefined) {
       if (isArray(data.audio)) {

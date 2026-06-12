@@ -7,7 +7,13 @@ import {
   type Modes,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type PluginManager, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
+import {
+  type PluginManager,
+  type RecursivePartial,
+  isInArray,
+  loadOptionProperty,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
 import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
 
@@ -175,11 +181,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     options: Modes & AttractMode,
     ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
   ): void {
-    options.attract ??= new Attract();
-
-    for (const source of sources) {
-      options.attract.load(source?.attract);
-    }
+    loadOptionProperty(options, "attract", Attract, ...sources);
   }
 
   /** @inheritDoc */

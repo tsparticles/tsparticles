@@ -5,11 +5,11 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  initParticleNumericAnimationValue,
+  loadOptionProperty,
   percentDenominator,
-  updateAnimation,
 } from "@tsparticles/engine";
 import { type IOpacityParticlesOptions, type OpacityParticle, type OpacityParticlesOptions } from "./Types.js";
+import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
 import { Opacity } from "./Options/Classes/Opacity.js";
 
 /**
@@ -81,11 +81,7 @@ export class OpacityUpdater implements IParticleUpdater {
     options: OpacityParticlesOptions,
     ...sources: (RecursivePartial<IOpacityParticlesOptions> | undefined)[]
   ): void {
-    options.opacity ??= new Opacity();
-
-    for (const source of sources) {
-      options.opacity.load(source?.opacity);
-    }
+    loadOptionProperty(options, "opacity", Opacity, ...sources);
   }
 
   /**

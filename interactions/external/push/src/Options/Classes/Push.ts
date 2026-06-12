@@ -7,26 +7,21 @@ import {
   deepExtend,
   executeOnSingleOrMultiple,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IPush } from "../Interfaces/IPush.js";
 
 /** Push mode options class */
 export class Push implements IPush, IOptionLoader<IPush> {
   /** Whether to use the default groups */
-  default;
+  default = true;
   /** Groups to push particles from */
-  groups: string[];
+  groups: string[] = [];
   /** Particles options for pushed particles */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** Number of particles to push */
-  quantity: RangeValue;
-
-  constructor() {
-    this.default = true;
-    this.groups = [];
-    this.quantity = 4;
-  }
+  quantity: RangeValue = 4;
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IPush>): void {
@@ -34,9 +29,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
       return;
     }
 
-    if (data.default !== undefined) {
-      this.default = data.default;
-    }
+    loadProperty(this, "default", data.default);
 
     if (data.groups !== undefined) {
       this.groups = data.groups.map(t => t);
@@ -46,11 +39,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
       this.default = true;
     }
 
-    const quantity = data.quantity;
-
-    if (quantity !== undefined) {
-      this.quantity = setRangeValue(quantity);
-    }
+    loadRangeProperty(this, "quantity", data.quantity);
 
     this.particles = executeOnSingleOrMultiple(data.particles, particles => {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;

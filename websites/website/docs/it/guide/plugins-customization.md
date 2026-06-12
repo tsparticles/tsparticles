@@ -489,6 +489,58 @@ Questo basta per prototipare localmente ogni tipo di estensione, e poi estrarre 
 - Tieni un piccolo fixture di configurazione durante lo sviluppo (controlli regressione piu veloci).
 - Se manca una funzionalita, verifica che il pacchetto richiesto sia caricato (shape, interaction, updater, plugin).
 
+## Configurazione globale runtime
+
+tsParticles espone alcune utility sull'oggetto globale `tsParticles` per la personalizzazione avanzata a runtime.
+
+### Generatore di numeri casuali personalizzato
+
+Sostituisci la funzione random interna con una personalizzata (utile per randomicità controllata/seed in plugin custom):
+
+```js
+// Imposta una funzione random personalizzata
+tsParticles.setParticlesRandom(() => {
+  // la tua logica random personalizzata
+  return Math.random();
+});
+
+// Ottieni un numero random usando la funzione corrente
+const value = tsParticles.getParticlesRandom();
+
+// Ottieni il riferimento alla funzione random corrente
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Logger personalizzato
+
+Sostituisci il logger interno con uno personalizzato (utile per modalità silenziosa o gestione custom dei log):
+
+```js
+// Imposta un logger personalizzato
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Ottieni il logger corrente
+const logger = tsParticles.getParticlesLogger();
+```
+
+Quando usi la libreria tramite tag script UMD, queste funzioni sono disponibili anche direttamente su `globalThis`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Riferimento sorgente
 
 - Documentazione interfaccia plugin: <https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html>

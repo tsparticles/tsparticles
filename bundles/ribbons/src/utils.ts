@@ -16,7 +16,7 @@ export async function addEmitter(container: EmitterContainer, actualOptions: Rib
   await container.addEmitter?.({
     startCount: actualOptions.count,
     position: {
-      x: actualOptions.position.x,
+      x: actualOptions.positionX,
       y: emitterTop,
     },
     shape: {
@@ -163,7 +163,7 @@ export function convertOptions(actualOptions: RibbonsOptions, params: RibbonsPar
       name: "ribbons",
       startCount: actualOptions.count,
       position: {
-        x: actualOptions.position.x,
+        x: actualOptions.positionX,
         y: emitterTop,
       },
       shape: {

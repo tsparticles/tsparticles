@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticles/engine";
+import { type EasingFunction } from "@tsparticles/engine";
 
-const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
+const easingsFunctions = new Map<string, EasingFunction>(),
   smoothstep = (t: number): number => t * t * (3 - 2 * t);
 
-easingsFunctions.set(EasingType.easeInSmoothstep, value => smoothstep(value));
-easingsFunctions.set(EasingType.easeOutSmoothstep, value => smoothstep(value));
-easingsFunctions.set(EasingType.easeInOutSmoothstep, value => smoothstep(value));
+easingsFunctions.set("ease-in-smoothstep", value => smoothstep(value));
+easingsFunctions.set("ease-out-smoothstep", value => smoothstep(value));
+easingsFunctions.set("ease-in-out-smoothstep", value => smoothstep(value));
 
 export { easingsFunctions };

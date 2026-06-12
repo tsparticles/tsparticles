@@ -14,6 +14,7 @@ import {
   getLinkColor,
   getLinkRandomColor,
   isInArray,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
@@ -144,11 +145,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
-    options.grab ??= new Grab();
-
-    for (const source of sources) {
-      options.grab.load(source?.grab);
-    }
+    loadOptionProperty(options, "grab", Grab, ...sources);
   }
 
   /** @inheritDoc */

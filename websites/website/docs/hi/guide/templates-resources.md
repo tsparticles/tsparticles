@@ -1,35 +1,100 @@
 # टेम्पलेट और संसाधन
 
-टेम्प्लेट मुख्य मोनोरेपो में `templates` फ़ोल्डर के अंतर्गत बनाए रखे जाते हैं।
+tsParticles दो श्रेणियों के टेम्पलेट प्रदान करता है: **स्कैफ़ोल्ड टेम्पलेट** (फ्रेमवर्क स्केलेटन) और **उपयोग-केस टेम्पलेट** (पूर्ण उदाहरण अनुप्रयोग)।
 
-## आधिकारिक टेम्पलेट
+## CLI के साथ त्वरित आरंभ
 
-- टेम्प्लेट फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- वेनिला जावास्क्रिप्ट और कई फ्रेमवर्क के लिए स्टार्टर सेटअप शामिल हैं।
+किसी भी टेम्पलेट का उपयोग करने का सबसे आसान तरीका CLI के माध्यम से है:
 
-## टेम्प्लेट का उपयोग कब करें
+```bash
+npm create tsparticles@latest
+```
 
-- आप पहले से ही तैयार परियोजना संरचना के साथ एक तैयार आधार रेखा चाहते हैं।
-- कस्टम रैपर लिखने से पहले आपको फ्रेमवर्क-विशिष्ट उदाहरणों की आवश्यकता है।
-- आप बंडल विकल्पों (`basic`, `slim`, `full`, `all`) की शीघ्रता से तुलना करना चाहते हैं।
+या सीधे किसी विशिष्ट बंडल का उपयोग करें:
 
-## योगदान प्रवाह
+```bash
+npm create particles@latest
+npm create confetti@latest
+npm create ribbons@latest
+```
 
-यदि आप पुन: प्रयोज्य डिज़ाइन या एकीकरण नुस्खा बनाते हैं:
+गैर-इंटरैक्टिव उपयोग के लिए:
 
-1. मुख्य मोनोरेपो को फोर्क करें।
-2. स्पष्ट सेटअप और रन निर्देशों के साथ अपना टेम्पलेट जोड़ें।
-3. एक पुल अनुरोध खोलें और स्क्रीनशॉट/जीआईएफ और पैकेज संस्करण शामिल करें।
+```bash
+npx tsparticles-create app my-project --template scaffold --framework react
+npx tsparticles-create app my-project --template confetti --framework vanilla
+```
 
-## संबंधित फ़ोल्डर
+## स्कैफ़ोल्ड टेम्पलेट
 
-- मुख्य मोनोरेपो: <https://github.com/tsparticles/tsparticles>
-- टेम्पलेट्स: <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- प्रीसेट: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- पैलेट्स: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+स्कैफ़ोल्ड टेम्पलेट tsParticles के साथ पूर्व-कॉन्फ़िगर एक न्यूनतम Vite + TypeScript प्रोजेक्ट स्केलेटन प्रदान करते हैं। ये निम्नलिखित फ्रेमवर्क के लिए उपलब्ध हैं:
+
+| Framework | CLI option            | Package                          |
+| --------- | --------------------- | -------------------------------- |
+| Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
+| React     | `--framework react`   | `@tsparticles/template-scaffold` |
+| Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
+| Angular   | `--framework angular` | `@tsparticles/template-scaffold` |
+| Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
+| Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
+
+उदाहरण:
+
+```bash
+npx tsparticles-create app my-react-app --template scaffold --framework react
+cd my-react-app
+npm install
+npm run dev
+```
+
+## उपयोग-केस टेम्पलेट
+
+उपयोग-केस टेम्पलेट पूर्ण उदाहरण अनुप्रयोग हैं जो वास्तविक दुनिया में tsParticles के उपयोग को प्रदर्शित करते हैं।
+
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
+
+उदाहरण:
+
+```bash
+npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
+cd my-portfolio
+npm install
+npm run dev
+```
+
+## npm create रैपर
+
+बंडल-विशिष्ट टेम्पलेट के लिए, आप समर्पित npm create रैपर का उपयोग कर सकते हैं:
+
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
+
+## CLI संदर्भ
+
+```bash
+tsparticles-create app [destination] [options]
+
+Options:
+  --template <name>     Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
+  --framework <name>    Framework (vanilla|react|vue3|angular|svelte|solid)
+  --skip-install        Skip npm install after scaffolding
+  -h, --help            Display help
+```
 
 ## संबंधित पृष्ठ
 
-- [`/guide/frameworks`](/hi/guide/frameworks)
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/demos/`](/hi/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/demos/`](/demos/)

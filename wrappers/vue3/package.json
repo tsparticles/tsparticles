@@ -88,7 +88,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tsparticles/vue3/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "homepage": "https://particles.js.org",
   "funding": [

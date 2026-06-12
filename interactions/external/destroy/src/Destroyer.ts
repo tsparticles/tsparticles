@@ -8,7 +8,7 @@ import {
   isDivModeEnabled,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { divDestroy, mouseDestroy } from "./Utils.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
 
@@ -94,11 +94,7 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     options: Modes & DestroyMode,
     ...sources: RecursivePartial<(IModes & IDestroyMode) | undefined>[]
   ): void {
-    options.destroy ??= new Destroy();
-
-    for (const source of sources) {
-      options.destroy.load(source?.destroy);
-    }
+    loadOptionProperty(options, "destroy", Destroy, ...sources);
   }
 
   /** @inheritDoc */

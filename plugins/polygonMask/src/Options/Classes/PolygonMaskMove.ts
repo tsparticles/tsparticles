@@ -1,30 +1,20 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove.js";
 import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
 /** The polygon mask move options */
 export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygonMaskMove> {
   /** The polygon mask move radius */
-  radius;
+  radius = 10;
   /** The polygon mask move type */
-  type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
-
-  constructor() {
-    this.radius = 10;
-    this.type = PolygonMaskMoveType.path;
-  }
+  type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType = PolygonMaskMoveType.path;
 
   load(data?: RecursivePartial<IPolygonMaskMove>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "radius", data.radius);
+    loadProperty(this, "type", data.type);
   }
 }

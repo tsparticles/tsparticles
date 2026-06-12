@@ -1,9 +1,8 @@
+import { OptionLoader, loadParticlesOptions, loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
-import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { PluginManager } from "../../Core/Utils/PluginManager.js";
@@ -11,8 +10,7 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
-import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
-import { setRangeValue } from "../../Utils/MathUtils.js";
+import { isBoolean } from "../../Utils/TypeUtils.js";
 
 /** Default themes configuration */
 export interface DefaultThemes {
@@ -25,29 +23,29 @@ export interface DefaultThemes {
 /**
  * [[include:Options.md]]
  */
-export class Options implements IOptions, IOptionLoader<IOptions> {
+export class Options extends OptionLoader<IOptions> implements IOptions {
   [name: string]: unknown;
 
   /** The autoPlay flag */
-  autoPlay;
+  autoPlay = true;
   /** The background options */
-  readonly background;
+  readonly background: Background;
   /** The clear flag */
-  clear: boolean;
+  clear = true;
   /** The default themes */
-  defaultThemes: DefaultThemes;
+  defaultThemes: DefaultThemes = {};
   /** The delay value */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** The detect retina flag */
-  detectRetina;
+  detectRetina = true;
   /** The duration value */
-  duration: RangeValue;
+  duration: RangeValue = 0;
   /** The FPS limit */
-  fpsLimit;
+  fpsLimit = 120;
   /** The full screen options */
-  readonly fullScreen;
+  readonly fullScreen: FullScreen;
   /** The HDR flag */
-  hdr;
+  hdr = true;
   /** The key value */
   key?: string;
   /** The name value */
@@ -57,54 +55,38 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   /** The particles options */
   readonly particles;
   /** The pause on blur flag */
-  pauseOnBlur;
+  pauseOnBlur = true;
   /** The pause on outside viewport flag */
-  pauseOnOutsideViewport;
+  pauseOnOutsideViewport = true;
   /** The preset value */
   preset?: SingleOrMultiple<string>;
   /** The resize options */
-  readonly resize;
+  readonly resize: ResizeEvent;
   /** The smooth flag */
-  smooth: boolean;
+  smooth = false;
   /** The style options */
-  style: RecursivePartial<CSSStyleDeclaration>;
+  style: RecursivePartial<CSSStyleDeclaration> = {};
   /** The z-layers value */
-  zLayers;
+  zLayers = 100;
 
   readonly #container;
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: Container) {
+    super();
     this.#pluginManager = pluginManager;
     this.#container = container;
-    this.autoPlay = true;
     this.background = new Background();
-    this.clear = true;
-    this.defaultThemes = {};
-    this.delay = 0;
     this.fullScreen = new FullScreen();
-    this.detectRetina = true;
-    this.duration = 0;
-    this.fpsLimit = 120;
-    this.hdr = true;
     this.particles = loadParticlesOptions(this.#pluginManager, this.#container);
-    this.pauseOnBlur = true;
-    this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
-    this.smooth = false;
-    this.style = {};
-    this.zLayers = 100;
   }
 
   /**
    * This method loads the source object in the current instance
    * @param data - the source data to load into the instance
    */
-  load(data?: ISourceOptions): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  protected doLoad(data: ISourceOptions): void {
     if (data.preset !== undefined) {
       this.preset = data.preset;
 
@@ -119,57 +101,18 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       this.#importPalette(this.palette);
     }
 
-    if (data.autoPlay !== undefined) {
-      this.autoPlay = data.autoPlay;
-    }
-
-    if (data.clear !== undefined) {
-      this.clear = data.clear;
-    }
-
-    if (data.key !== undefined) {
-      this.key = data.key;
-    }
-
-    if (data.name !== undefined) {
-      this.name = data.name;
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
-
-    const detectRetina = data.detectRetina;
-
-    if (detectRetina !== undefined) {
-      this.detectRetina = detectRetina;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = setRangeValue(data.duration);
-    }
-
-    const fpsLimit = data.fpsLimit;
-
-    if (fpsLimit !== undefined) {
-      this.fpsLimit = fpsLimit;
-    }
-
-    if (data.hdr !== undefined) {
-      this.hdr = data.hdr;
-    }
-
-    if (data.pauseOnBlur !== undefined) {
-      this.pauseOnBlur = data.pauseOnBlur;
-    }
-
-    if (data.pauseOnOutsideViewport !== undefined) {
-      this.pauseOnOutsideViewport = data.pauseOnOutsideViewport;
-    }
-
-    if (data.zLayers !== undefined) {
-      this.zLayers = data.zLayers;
-    }
+    loadProperty(this, "autoPlay", data.autoPlay);
+    loadProperty(this, "clear", data.clear);
+    loadProperty(this, "key", data.key);
+    loadProperty(this, "name", data.name);
+    loadRangeProperty(this, "delay", data.delay);
+    loadProperty(this, "detectRetina", data.detectRetina);
+    loadRangeProperty(this, "duration", data.duration);
+    loadProperty(this, "fpsLimit", data.fpsLimit);
+    loadProperty(this, "hdr", data.hdr);
+    loadProperty(this, "pauseOnBlur", data.pauseOnBlur);
+    loadProperty(this, "pauseOnOutsideViewport", data.pauseOnOutsideViewport);
+    loadProperty(this, "zLayers", data.zLayers);
 
     this.background.load(data.background);
 
@@ -187,16 +130,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
-    if (data.smooth !== undefined) {
-      this.smooth = data.smooth;
-    }
+    loadProperty(this, "smooth", data.smooth);
 
     this.#pluginManager.plugins.forEach(plugin => {
       plugin.loadOptions(this.#container, this, data);
     });
   }
 
-  readonly #importPalette: (palette: string) => void = palette => {
+  #importPalette(palette: string): void {
     const paletteData = this.#pluginManager.getPalette(palette);
 
     if (!paletteData) {
@@ -215,9 +156,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         palette,
       },
     });
-  };
+  }
 
-  readonly #importPreset: (preset: string) => void = preset => {
+  #importPreset(preset: string): void {
     this.load(this.#pluginManager.getPreset(preset));
-  };
+  }
 }

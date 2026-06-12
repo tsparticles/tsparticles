@@ -93,7 +93,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
    * @param e - the media query event
    * @internal
    */
-  readonly #handleThemeChange = (e: Event): void => {
+  #handleThemeChange(e: Event): void {
     const mediaEvent = e as MediaQueryListEvent,
       container = this.#container,
       options = container.options,
@@ -104,5 +104,5 @@ export class ThemesPluginInstance implements IContainerPlugin {
     if (theme?.default.auto) {
       void container.loadTheme?.(themeName);
     }
-  };
+  }
 }

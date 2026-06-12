@@ -629,7 +629,7 @@ export class Container {
     return refresh;
   }
 
-  readonly #nextFrame = (timestamp: DOMHighResTimeStamp): void => {
+  #nextFrame(timestamp: DOMHighResTimeStamp): void {
     try {
       if (
         !this.#smooth &&
@@ -668,5 +668,5 @@ export class Container {
     } catch (e) {
       getLogger().error("error in animation loop", e);
     }
-  };
+  }
 }

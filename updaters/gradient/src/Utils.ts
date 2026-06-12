@@ -1,5 +1,6 @@
-import { DestroyType, type IDelta, updateAnimation, updateColor } from "@tsparticles/engine";
+import { DestroyType, type IDelta, updateColor } from "@tsparticles/engine";
 import type { GradientParticle } from "./Types.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 /**
  * @param particle -

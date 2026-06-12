@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticles/engine";
+import { type EasingFunction } from "@tsparticles/engine";
 
-const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+const easingsFunctions = new Map<string, EasingFunction>();
 
-easingsFunctions.set(EasingType.easeInBack, value => {
+easingsFunctions.set("ease-in-back", value => {
   const c1 = 1.70158,
     c3 = c1 + 1;
 
   return c3 * value ** 3 - c1 * value ** 2;
 });
 
-easingsFunctions.set(EasingType.easeOutBack, value => {
+easingsFunctions.set("ease-out-back", value => {
   const c1 = 1.70158,
     c3 = c1 + 1;
 
   return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
 });
 
-easingsFunctions.set(EasingType.easeInOutBack, value => {
+easingsFunctions.set("ease-in-out-back", value => {
   const c1 = 1.70158,
     c2 = c1 * 1.525;
 

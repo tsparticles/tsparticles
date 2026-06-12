@@ -1,0 +1,14 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "stencil build --dev --watch",
+    "build": "stencil build",
+    "preview": "stencil build --dev"
+  },
+  "dependencies": {
+    "@stencil/core": "^4.20.0",
+    "@tsparticles/stencil": "^4.1.3"
+  }
+}

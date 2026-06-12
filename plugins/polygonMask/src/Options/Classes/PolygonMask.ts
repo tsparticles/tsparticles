@@ -6,6 +6,7 @@ import {
   deepExtend,
   isNull,
   isString,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IPolygonMask } from "../Interfaces/IPolygonMask.js";
 import { PolygonMaskDraw } from "./PolygonMaskDraw.js";
@@ -23,27 +24,22 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
   /** The polygon mask draw options */
   draw;
   /** Enables the polygon mask */
-  enable;
+  enable = false;
   /** The polygon mask inline options */
-  inline;
+  inline = new PolygonMaskInline();
   /** The polygon mask move options */
-  move;
+  move = new PolygonMaskMove();
   /** The polygon mask position */
   position?: ICoordinates;
   /** The polygon mask scale */
-  scale;
+  scale = 1;
   /** The polygon mask type */
-  type;
+  type = PolygonMaskType.none;
   /** The polygon mask SVG url */
   url?: string;
 
   constructor(pluginManager: PluginManager) {
     this.draw = new PolygonMaskDraw(pluginManager);
-    this.enable = false;
-    this.inline = new PolygonMaskInline();
-    this.move = new PolygonMaskMove();
-    this.scale = 1;
-    this.type = PolygonMaskType.none;
   }
 
   load(data?: RecursivePartial<IPolygonMask>): void {
@@ -55,13 +51,8 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     this.inline.load(data.inline);
     this.move.load(data.move);
 
-    if (data.scale !== undefined) {
-      this.scale = data.scale;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "scale", data.scale);
+    loadProperty(this, "type", data.type);
 
     if (data.enable !== undefined) {
       this.enable = data.enable;
@@ -69,9 +60,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
       this.enable = this.type !== PolygonMaskType.none;
     }
 
-    if (data.url !== undefined) {
-      this.url = data.url;
-    }
+    loadProperty(this, "url", data.url);
 
     if (data.data !== undefined) {
       if (isString(data.data)) {

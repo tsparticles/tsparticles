@@ -12,6 +12,7 @@ import {
   isInArray,
   itemFromSingleOrMultiple,
   lMax,
+  loadOptionProperty,
   millisecondsToSeconds,
   rangeColorToHsl,
   sMax,
@@ -170,10 +171,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
   /** @inheritDoc */
   loadModeOptions(options: Modes & TrailMode, ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]): void {
-    options.trail ??= new Trail();
-    for (const source of sources) {
-      options.trail.load(source?.trail);
-    }
+    loadOptionProperty(options, "trail", Trail, ...sources);
   }
 
   /** @inheritDoc */

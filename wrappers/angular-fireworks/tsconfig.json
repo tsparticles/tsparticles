@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "ignoreDeprecations": "6.0",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

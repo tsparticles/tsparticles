@@ -200,7 +200,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     delete this.paths;
   }
 
-  readonly #checkInsidePolygon: (position?: ICoordinates) => boolean = position => {
+  #checkInsidePolygon(position?: ICoordinates): boolean {
     const container = this.#container,
       options = container.actualOptions.polygon;
 
@@ -246,9 +246,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     } else {
       return !inside;
     }
-  };
+  }
 
-  readonly #createPath2D: () => void = () => {
+  #createPath2D(): void {
     const container = this.#container,
       options = container.actualOptions.polygon;
 
@@ -295,7 +295,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
       path.path2d.closePath();
     }
-  };
+  }
 
   /**
    * Deprecate SVGPathElement.getPathSegAtLength removed in:
@@ -308,10 +308,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
    * @param force -
    * @returns the coordinates of the polygon
    */
-  readonly #downloadSvgPath: (svgUrl?: string, force?: boolean) => Promise<ICoordinates[] | undefined> = async (
-    svgUrl,
-    force,
-  ) => {
+  async #downloadSvgPath(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {
     const options = this.#container.actualOptions.polygon;
 
     if (!options) {
@@ -333,9 +330,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     return this.#parseSvgPath(await req.text(), force);
-  };
+  }
 
-  readonly #drawPoints: () => void = () => {
+  #drawPoints(): void {
     if (!this.raw) {
       return;
     }
@@ -346,9 +343,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
         y: item.y,
       });
     }
-  };
+  }
 
-  readonly #getEquidistantPointByIndex: (index: number) => ICoordinates | undefined = index => {
+  #getEquidistantPointByIndex(index: number): ICoordinates | undefined {
     const container = this.#container,
       options = container.actualOptions,
       polygonMaskOptions = options.polygon;
@@ -386,9 +383,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
       x: (point?.x ?? originPoint.x) * scale + (this.offset?.x ?? originPoint.x),
       y: (point?.y ?? originPoint.y) * scale + (this.offset?.y ?? originPoint.y),
     };
-  };
+  }
 
-  readonly #getPointByIndex: (index: number) => ICoordinates | undefined = index => {
+  #getPointByIndex(index: number): ICoordinates | undefined {
     if (!this.raw?.length) {
       throw new Error(noPolygonDataLoaded);
     }
@@ -403,9 +400,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
       x: coords.x,
       y: coords.y,
     };
-  };
+  }
 
-  readonly #getRandomPoint: () => ICoordinates | undefined = () => {
+  #getRandomPoint(): ICoordinates | undefined {
     if (!this.raw?.length) {
       throw new Error(noPolygonDataLoaded);
     }
@@ -420,9 +417,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
       x: coords.x,
       y: coords.y,
     };
-  };
+  }
 
-  readonly #getRandomPointByLength: () => ICoordinates | undefined = () => {
+  #getRandomPointByLength(): ICoordinates | undefined {
     const container = this.#container,
       options = container.actualOptions.polygon;
 
@@ -449,9 +446,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
       x: point.x * scale + (this.offset?.x ?? originPoint.x),
       y: point.y * scale + (this.offset?.y ?? originPoint.y),
     };
-  };
+  }
 
-  readonly #initRawData = async (force?: boolean): Promise<void> => {
+  async #initRawData(force?: boolean): Promise<void> {
     const options = this.#container.actualOptions.polygon;
 
     if (!options) {
@@ -481,9 +478,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     this.#createPath2D();
 
     this.#container.dispatchEvent("polygonMaskLoaded");
-  };
+  }
 
-  readonly #parseSvgPath = (xml: string, force?: boolean): ICoordinates[] | undefined => {
+  #parseSvgPath(xml: string, force?: boolean): ICoordinates[] | undefined {
     const forceDownload = force ?? false;
 
     if (this.paths !== undefined && !forceDownload) {
@@ -543,9 +540,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     };
 
     return parsePaths(this.paths, scale, this.offset);
-  };
+  }
 
-  readonly #polygonBounce = (particle: Particle, _delta: IDelta, direction: OutModeDirection): boolean => {
+  #polygonBounce(particle: Particle, _delta: IDelta, direction: OutModeDirection): boolean {
     const options = this.#container.actualOptions.polygon;
 
     if (!this.raw || !options?.enable || direction !== OutModeDirection.top) {
@@ -612,9 +609,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     return false;
-  };
+  }
 
-  readonly #randomPoint: () => ICoordinates | undefined = () => {
+  #randomPoint(): ICoordinates | undefined {
     const container = this.#container,
       options = container.actualOptions.polygon;
 
@@ -654,5 +651,5 @@ export class PolygonMaskInstance implements IContainerPlugin {
     } else {
       return this.#randomPoint();
     }
-  };
+  }
 }

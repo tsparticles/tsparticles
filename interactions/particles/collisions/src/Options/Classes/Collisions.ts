@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import { CollisionMode } from "../../CollisionMode.js";
 import { CollisionsAbsorb } from "./CollisionsAbsorb.js";
@@ -16,26 +17,17 @@ import type { ICollisions } from "../Interfaces/ICollisions.js";
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
   /** The collisions absorb options */
-  readonly absorb;
+  readonly absorb = new CollisionsAbsorb();
   /** The collisions bounce options */
-  readonly bounce;
+  readonly bounce = new ParticlesBounce();
   /** Enables collisions */
-  enable;
+  enable = false;
   /** The maximum collision speed */
-  maxSpeed: RangeValue;
+  maxSpeed: RangeValue = 50;
   /** The collision mode */
-  mode: CollisionMode | keyof typeof CollisionMode;
+  mode: CollisionMode | keyof typeof CollisionMode = CollisionMode.bounce;
   /** The collision overlap options */
-  readonly overlap;
-
-  constructor() {
-    this.absorb = new CollisionsAbsorb();
-    this.bounce = new ParticlesBounce();
-    this.enable = false;
-    this.maxSpeed = 50;
-    this.mode = CollisionMode.bounce;
-    this.overlap = new CollisionsOverlap();
-  }
+  readonly overlap = new CollisionsOverlap();
 
   load(data?: RecursivePartial<ICollisions>): void {
     if (isNull(data)) {
@@ -45,17 +37,9 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     this.absorb.load(data.absorb);
     this.bounce.load(data.bounce);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = setRangeValue(data.maxSpeed);
-    }
-
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "maxSpeed", data.maxSpeed);
+    loadProperty(this, "mode", data.mode);
 
     this.overlap.load(data.overlap);
   }

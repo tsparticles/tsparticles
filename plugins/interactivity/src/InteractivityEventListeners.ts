@@ -118,7 +118,7 @@ export class InteractivityEventListeners {
    * Mouse/Touch click/tap event implementation
    * @param e - the click event arguments
    */
-  readonly #doMouseTouchClick: (e: Event) => void = e => {
+  #doMouseTouchClick(e: Event): void {
     const container = this.#container,
       interactionManager = this.#interactionManager,
       options = container.actualOptions;
@@ -150,17 +150,17 @@ export class InteractivityEventListeners {
         this.#mouseTouchFinish();
       }, touchDelay);
     }
-  };
+  }
 
   /**
    * Handles blur event
    * @internal
    */
-  readonly #handleVisibilityChange: () => void = () => {
+  #handleVisibilityChange(): void {
     this.#mouseTouchFinish();
-  };
+  }
 
-  readonly #manageInteractivityListeners: (add: boolean) => void = add => {
+  #manageInteractivityListeners(add: boolean): void {
     const handlers = this.#handlers,
       container = this.#container,
       interactionManager = this.#interactionManager,
@@ -203,13 +203,13 @@ export class InteractivityEventListeners {
 
     manageListener(interactivityEl, mouseLeaveEvent, handlers.mouseLeave, add);
     manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
-  };
+  }
 
   /**
    * Initializing event listeners
    * @param add -
    */
-  readonly #manageListeners: (add: boolean) => void = add => {
+  #manageListeners(add: boolean): void {
     const handlers = this.#handlers,
       container = this.#container,
       interactionManager = this.#interactionManager,
@@ -229,25 +229,25 @@ export class InteractivityEventListeners {
     this.#manageInteractivityListeners(add);
 
     manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
-  };
+  }
 
   /**
    * Handle mouse down event
    * @internal
    */
-  readonly #mouseDown: () => void = () => {
+  #mouseDown(): void {
     const { interactivityData } = this.#interactionManager,
       { mouse } = interactivityData;
 
     mouse.clicking = true;
     mouse.downPosition = mouse.position;
-  };
+  }
 
   /**
    * Mouse/Touch click/tap event
    * @param e - the click event arguments
    */
-  readonly #mouseTouchClick: (e: Event) => void = e => {
+  #mouseTouchClick(e: Event): void {
     const container = this.#container,
       interactionManager = this.#interactionManager,
       options = container.actualOptions,
@@ -276,12 +276,12 @@ export class InteractivityEventListeners {
     }
 
     mouse.clicking = false;
-  };
+  }
 
   /**
    * Mouse/Touch event finish
    */
-  readonly #mouseTouchFinish: () => void = () => {
+  #mouseTouchFinish(): void {
     const { interactivityData } = this.#interactionManager,
       { mouse } = interactivityData;
 
@@ -293,13 +293,13 @@ export class InteractivityEventListeners {
 
     mouse.inside = false;
     mouse.clicking = false;
-  };
+  }
 
   /**
    * Mouse/Touch move event
    * @param e - the event arguments
    */
-  readonly #mouseTouchMove: (e: Event) => void = e => {
+  #mouseTouchMove(e: Event): void {
     const container = this.#container,
       interactionManager = this.#interactionManager,
       options = container.actualOptions,
@@ -381,9 +381,9 @@ export class InteractivityEventListeners {
 
     interactivity.mouse.position = pos;
     interactivity.status = mouseMoveEvent;
-  };
+  }
 
-  readonly #touchEnd: (e: Event) => void = e => {
+  #touchEnd(e: Event): void {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
@@ -392,9 +392,9 @@ export class InteractivityEventListeners {
     }
 
     this.#mouseTouchFinish();
-  };
+  }
 
-  readonly #touchEndClick: (e: Event) => void = e => {
+  #touchEndClick(e: Event): void {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
@@ -403,9 +403,9 @@ export class InteractivityEventListeners {
     }
 
     this.#mouseTouchClick(e);
-  };
+  }
 
-  readonly #touchStart: (e: Event) => void = e => {
+  #touchStart(e: Event): void {
     const evt = e as TouchEvent,
       touches = Array.from(evt.changedTouches);
 
@@ -414,5 +414,5 @@ export class InteractivityEventListeners {
     }
 
     this.#mouseTouchMove(e);
-  };
+  }
 }

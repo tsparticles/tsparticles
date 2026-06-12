@@ -1,5 +1,12 @@
 import { type CollisionParticle, type IParticlesCollisionOptions, type ParticlesCollisionOptions } from "./Types.js";
-import { type Container, type IDelta, type RecursivePartial, double, getDistance } from "@tsparticles/engine";
+import {
+  type Container,
+  type IDelta,
+  type RecursivePartial,
+  double,
+  getDistance,
+  loadOptionProperty,
+} from "@tsparticles/engine";
 import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import { Collisions } from "./Options/Classes/Collisions.js";
 import { resolveCollision } from "./ResolveCollision.js";
@@ -80,11 +87,7 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     options: ParticlesCollisionOptions,
     ...sources: (RecursivePartial<IParticlesCollisionOptions> | undefined)[]
   ): void {
-    options.collisions ??= new Collisions();
-
-    for (const source of sources) {
-      options.collisions.load(source?.collisions);
-    }
+    loadOptionProperty(options, "collisions", Collisions, ...sources);
   }
 
   /** @inheritDoc */

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticles/engine";
+import { type EasingFunction } from "@tsparticles/engine";
 
-const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
+const easingsFunctions = new Map<string, EasingFunction>(),
   bounceOut = (t: number): number => {
     const n1 = 7.5625,
       d1 = 2.75;
@@ -20,9 +20,9 @@ const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
     }
   };
 
-easingsFunctions.set(EasingType.easeOutBounce, value => bounceOut(value));
-easingsFunctions.set(EasingType.easeInBounce, value => 1 - bounceOut(1 - value));
-easingsFunctions.set(EasingType.easeInOutBounce, value =>
+easingsFunctions.set("ease-out-bounce", value => bounceOut(value));
+easingsFunctions.set("ease-in-bounce", value => 1 - bounceOut(1 - value));
+easingsFunctions.set("ease-in-out-bounce", value =>
   value < 0.5 ? (1 - bounceOut(1 - value * 2)) / 2 : (1 + bounceOut(value * 2 - 1)) / 2,
 );
 

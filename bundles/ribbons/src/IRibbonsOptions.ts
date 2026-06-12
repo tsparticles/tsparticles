@@ -24,8 +24,13 @@ export interface IRibbonsOptions {
    */
   particleCount: number;
 
-  /** Ribbons position in percent */
+  /**
+   * @deprecated use positionX instead
+   */
   position: ICoordinates;
+
+  /** Ribbons horizontal spawn position (percent). Default: 50 */
+  positionX: number;
 
   /** Ribbon shape options */
   ribbonOptions: SingleOrMultiple<IShapeValues>;

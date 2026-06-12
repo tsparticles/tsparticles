@@ -1,0 +1,18 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "nuxt": "^4.0.0",
+    "vue": "^4.0.0",
+    "@tsparticles/engine": "^4.0.0",
+    "@tsparticles/particles": "^4.0.0",
+    "@tsparticles/configs": "^4.0.0",
+    "@tsparticles/vue3": "^4.1.3"
+  }
+}

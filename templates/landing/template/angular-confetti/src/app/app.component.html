@@ -1,0 +1,66 @@
+<ngx-confetti id="tsparticles" [options]="options"></ngx-confetti>
+<section id="hero" class="section">
+  <div class="hero-content">
+    <h1>Build Faster.<br /><span class="gradient-text">Go Further.</span></h1>
+    <p class="hero-subtitle">The platform that helps teams ship products at the speed of light.</p>
+    <div class="hero-cta">
+      <a href="#features" class="btn btn-primary">Learn More</a>
+      <a href="#cta" class="btn btn-secondary">Get Started</a>
+    </div>
+  </div>
+</section>
+<section id="features" class="section">
+  <div class="container">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div *ngFor="let f of features" class="feature-card">
+        <div class="feature-icon">{{ f.icon }}</div>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.desc }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pricing" class="section">
+  <div class="container">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+      <div *ngFor="let p of pricingPlans" [class]="'pricing-card' + (p.featured ? ' featured' : '')">
+        <h3>{{ p.plan }}</h3>
+        <p class="price">{{ p.price }}<span>/mo</span></p>
+        <ul>
+          <li *ngFor="let f of p.features">{{ f }}</li>
+        </ul>
+        <a href="#" [class]="'btn ' + (p.featured ? 'btn-primary' : 'btn-secondary')">{{ p.plan === 'Enterprise' ? 'Contact Sales' : 'Choose Plan' }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="testimonials" class="section">
+  <div class="container">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-grid">
+      <div *ngFor="let t of testimonials" class="testimonial-card">
+        <p>"{{ t.text }}"</p>
+        <span class="author">— {{ t.author }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="cta" class="section">
+  <div class="container cta-content">
+    <h2>Ready to Get Started?</h2>
+    <p>Join thousands of teams already building with us.</p>
+    <a href="#" class="btn btn-primary btn-large">Start Free Trial</a>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container footer-content">
+    <p>&copy; 2026 {{projectName}}. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>

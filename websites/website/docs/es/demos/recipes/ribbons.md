@@ -57,7 +57,7 @@ Por defecto, cada partícula de ribbon aparece en una posición x aleatoria en t
 import { ribbons } from "@tsparticles/ribbons";
 
 await ribbons({
-  position: { x: 50, y: 0 },
+  positionX: 50,
   emitterSize: { width: 0, height: 0 },
 });
 ```

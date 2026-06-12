@@ -5,6 +5,7 @@ import {
   type Particle,
   type PluginManager,
   type RecursivePartial,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types.js";
 import { initParticle, updateRoll } from "./Utils.js";
@@ -65,11 +66,7 @@ export class RollUpdater implements IParticleUpdater {
     options: RollParticlesOptions,
     ...sources: (RecursivePartial<IRollParticlesOptions> | undefined)[]
   ): void {
-    options.roll ??= new Roll();
-
-    for (const source of sources) {
-      options.roll.load(source?.roll);
-    }
+    loadOptionProperty(options, "roll", Roll, ...sources);
   }
 
   /**

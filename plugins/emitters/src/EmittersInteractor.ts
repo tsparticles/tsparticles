@@ -10,8 +10,8 @@ import {
   type IDelta,
   type RecursivePartial,
   type SingleOrMultiple,
-  arrayRandomIndex,
   executeOnSingleOrMultiple,
+  getRandom,
   isArray,
   isInArray,
   itemFromArray,
@@ -68,7 +68,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
           const usedIndexes = new Set<number>();
 
           for (let i = 0; i < modeEmitters.random.count; i++) {
-            const idx = arrayRandomIndex(modeEmitters.value);
+            const idx = Math.floor(getRandom() * modeEmitters.value.length);
 
             if (usedIndexes.has(idx) && usedIndexes.size < modeEmittersCount) {
               i--;

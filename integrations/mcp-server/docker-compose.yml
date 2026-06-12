@@ -1,0 +1,23 @@
+services:
+  mcp-server:
+    build:
+      context: ../..
+      dockerfile: integrations/mcp-server/Dockerfile
+    ports:
+      - "${SERVER_PORT:-3000}:3000"
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+
+  # Cloudflare Tunnel — exposes the server via HTTPS without opening firewall ports.
+  #   docker compose --profile tunnel up
+  # Prints a temporary URL like https://random.trycloudflare.com.
+  # For a permanent tunnel: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --url http://mcp-server:3000
+    depends_on:
+      - mcp-server
+    restart: unless-stopped
+    profiles:
+      - tunnel

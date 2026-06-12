@@ -1,24 +1,24 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  loadProperty,
+  loadRangeProperty,
+} from "@tsparticles/engine";
 import type { IRotateAnimation } from "../Interfaces/IRotateAnimation.js";
 
 /** Rotate animation options class */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** RotateAnimation constructor */
-  constructor() {
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.sync = false;
-  }
 
   /**
    * Loads the rotate animation from data
@@ -29,20 +29,9 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "speed", data.speed);
+    loadRangeProperty(this, "decay", data.decay);
+    loadProperty(this, "sync", data.sync);
   }
 }

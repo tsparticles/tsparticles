@@ -1,34 +1,20 @@
+import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IEffect } from "../../../Interfaces/Particles/Effect/IEffect.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { ShapeData } from "../../../../Types/ShapeData.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Effect.md]]
  */
-export class Effect implements IEffect, IOptionLoader<IEffect> {
-  /** Whether the effect shape is closed */
-  close;
-  /** Effect shape options data */
-  options: ShapeData;
-  /** Effect type name or array of names */
-  type: SingleOrMultiple<string>;
+export class Effect extends OptionLoader<IEffect> implements IEffect {
+  close = true;
+  options: ShapeData = {};
+  type: SingleOrMultiple<string> = [];
 
-  constructor() {
-    this.close = true;
-    this.options = {};
-    this.type = [];
-  }
-
-  load(data?: RecursivePartial<IEffect>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  protected doLoad(data: RecursivePartial<IEffect>): void {
     const options = data.options;
 
     if (options !== undefined) {
@@ -41,12 +27,7 @@ export class Effect implements IEffect, IOptionLoader<IEffect> {
       }
     }
 
-    if (data.close !== undefined) {
-      this.close = data.close;
-    }
-
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "close", data.close);
+    loadProperty(this, "type", data.type);
   }
 }

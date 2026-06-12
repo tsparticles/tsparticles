@@ -1,0 +1,9 @@
+.git
+.gitignore
+node_modules
+dist
+*.md
+.vscode
+.idea
+__tests__
+*.test.ts

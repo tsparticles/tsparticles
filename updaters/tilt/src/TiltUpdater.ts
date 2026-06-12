@@ -13,11 +13,12 @@ import {
   getRangeValue,
   half,
   identity,
-  updateAnimation,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 const maxAngle = 360;
 
@@ -120,11 +121,7 @@ export class TiltUpdater implements IParticleUpdater {
     options: TiltParticlesOptions,
     ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
   ): void {
-    options.tilt ??= new Tilt();
-
-    for (const source of sources) {
-      options.tilt.load(source?.tilt);
-    }
+    loadOptionProperty(options, "tilt", Tilt, ...sources);
   }
 
   /**

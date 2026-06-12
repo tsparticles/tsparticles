@@ -5,7 +5,7 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation.js";
 import type { IGradientColorOpacity } from "../Interfaces/Gradients.js";
@@ -19,15 +19,10 @@ export class GradientColorOpacity
     IOptionLoader<IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>>
 {
   /** Color opacity animation */
-  animation;
+  readonly animation = new GradientColorOpacityAnimation();
   /** Color opacity value */
-  value: RangeValue;
-
+  value: RangeValue = 0;
   /** GradientColorOpacity constructor */
-  constructor() {
-    this.value = 0;
-    this.animation = new GradientColorOpacityAnimation();
-  }
 
   /**
    * Loads the gradient color opacity from data
@@ -40,8 +35,6 @@ export class GradientColorOpacity
 
     this.animation.load(data.animation);
 
-    if (data.value !== undefined) {
-      this.value = setRangeValue(data.value);
-    }
+    loadRangeProperty(this, "value", data.value);
   }
 }

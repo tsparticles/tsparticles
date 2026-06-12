@@ -1,0 +1,17 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ember serve",
+    "build": "ember build",
+    "preview": "ember serve"
+  },
+  "dependencies": {
+    "ember-source": "^6.0.0",
+    "@tsparticles/ember": "^4.1.3"
+  },
+  "devDependencies": {
+    "ember-cli": "^6.0.0"
+  }
+}

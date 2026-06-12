@@ -1,4 +1,11 @@
-import { AnimatableColor, type IOptionLoader, type RecursivePartial, isNull, isNumber } from "@tsparticles/engine";
+import {
+  AnimatableColor,
+  type IOptionLoader,
+  type RecursivePartial,
+  isNull,
+  isNumber,
+  loadProperty,
+} from "@tsparticles/engine";
 import { GradientColorOpacity } from "./GradientColorOpacity.js";
 import type { IAnimatableGradientColor } from "../Interfaces/IOptionsGradient.js";
 
@@ -7,15 +14,10 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
   /** Color opacity */
   opacity?: GradientColorOpacity;
   /** Color stop position */
-  stop;
+  stop = 0;
   /** Color value */
-  value;
-
+  value = new AnimatableColor();
   /** AnimatableGradientColor constructor */
-  constructor() {
-    this.stop = 0;
-    this.value = new AnimatableColor();
-  }
 
   /**
    * Loads the animatable gradient color from data
@@ -26,9 +28,7 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
       return;
     }
 
-    if (data.stop !== undefined) {
-      this.stop = data.stop;
-    }
+    loadProperty(this, "stop", data.stop);
 
     this.value = AnimatableColor.create(this.value, data.value);
 

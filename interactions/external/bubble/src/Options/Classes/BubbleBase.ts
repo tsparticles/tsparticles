@@ -6,6 +6,8 @@ import {
   executeOnSingleOrMultiple,
   isArray,
   isNull,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase.js";
 
@@ -15,14 +17,11 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
   color?: SingleOrMultiple<OptionsColor>;
 
   /** Bubble distance in pixels */
-  distance;
-
+  distance = 200;
   /** Bubble animation duration in seconds */
-  duration;
-
+  duration = 0.4;
   /** Whether to mix the bubble color with the particle color */
-  mix;
-
+  mix = false;
   /** Bubble opacity */
   opacity?: number;
 
@@ -30,11 +29,6 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
   size?: number;
 
   /** @inheritDoc */
-  constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.mix = false;
-  }
 
   /** @inheritDoc */
   load(data?: RecursivePartial<IBubbleBase>): void {
@@ -42,21 +36,10 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
-
-    if (data.mix !== undefined) {
-      this.mix = data.mix;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "duration", data.duration);
+    loadProperty(this, "mix", data.mix);
+    loadRangeProperty(this, "opacity", data.opacity);
 
     if (data.color !== undefined) {
       const sourceColor = isArray(this.color) ? undefined : this.color;
@@ -66,8 +49,6 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
       });
     }
 
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
+    loadProperty(this, "size", data.size);
   }
 }
