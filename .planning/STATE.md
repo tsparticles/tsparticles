@@ -6,13 +6,13 @@ See: .planning/PROJECT.md (initialized)
 
 **Current focus:** Phase 1 — Developer Experience & Docs
 
-## Session Status — 2026-06-11
+## Session Status — 2026-06-14
 
 ### Objective
 Plan and implement wrapper reactivity (options/url/theme prop changes) across Vue 3, Vue 2, Angular, Solid, Qwik, and Astro wrappers, plus fix Vue 3 docs describing nonexistent `:init`/`@particles-init` features.
 
 ### Outcome
-**Plan created at `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.** No source changes made; session spent on research and planning only. Wrapper code and docs remain at initial state.
+**S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
 
 ### Key Findings
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
@@ -25,6 +25,8 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 - `export type IParticlesProps = ISourceOptions` in `vue-particles.vue` (Vue 2) causes `TS2528: multiple default exports` in the SFC compiler context — must be removed or inlined.
 
 ### Next Steps
-1. Implement wrapper reactivity changes per plan.
-2. Fix Vue 3 documentation (remove stale `:init`, `@particles-init`, `particlesInit` references).
-3. Build and test all affected packages.
+1. ✅ **S1 Vue 3** — done
+2. ❏ **S2–S6** — implement wrapper reactivity in Vue 2, Angular, Solid, Qwik, Astro
+3. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+4. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+5. ❏ **S20–S21** — validation and handoff
