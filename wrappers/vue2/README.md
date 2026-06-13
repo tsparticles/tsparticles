@@ -2,128 +2,122 @@
 
 # @tsparticles/vue2
 
-[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
+[![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS component
-
-[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
-
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+Official Vue 2 component wrapper for [tsParticles](https://github.com/matteobruni/tsparticles).
 
 ## Installation
 
-```shell script
-yarn add @tsparticles/vue2
+```bash
+pnpm add @tsparticles/vue2 @tsparticles/engine
 ```
 
 ## Usage
 
-```javascript
+Register the plugin once in your app and provide your own async `init` function.
+
+```ts
+import Vue from "vue";
 import Particles from "@tsparticles/vue2";
-//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
+import type { Engine } from "@tsparticles/engine";
+import App from "./App.vue";
+
+async function registerParticles(engine: Engine): Promise<void> {
+  const [{ loadSlim }] = await Promise.all([import("@tsparticles/slim")]);
+
+  await loadSlim(engine);
+}
 
 Vue.use(Particles, {
-  init: async engine => {
-    // await loadFull(engine);
-    await loadSlim(engine);
-  },
+  init: registerParticles,
 });
+
+new Vue({
+  render: h => h(App),
+}).$mount("#app");
 ```
 
-### Demo config
+Then use the component anywhere in the app:
 
-```html
+```vue
 <template>
-  <div id="app">
-    <vue-particles id="tsparticles" :particlesLoaded="particlesLoaded" url="http://foo.bar/particles.json" />
-
-    <!-- or -->
-
-    <vue-particles
-      id="tsparticles"
-      :particlesLoaded="particlesLoaded"
-      :options="{
-                    background: {
-                        color: {
-                            value: '#0d47a1'
-                        }
-                    },
-                    fpsLimit: 120,
-                    interactivity: {
-                        events: {
-                            onClick: {
-                                enable: true,
-                                mode: 'push'
-                            },
-                            onHover: {
-                                enable: true,
-                                mode: 'repulse'
-                            },
-                        },
-                        modes: {
-                            bubble: {
-                                distance: 400,
-                                duration: 2,
-                                opacity: 0.8,
-                                size: 40
-                            },
-                            push: {
-                                quantity: 4
-                            },
-                            repulse: {
-                                distance: 200,
-                                duration: 0.4
-                            }
-                        }
-                    },
-                    particles: {
-                        color: {
-                            value: '#ffffff'
-                        },
-                        links: {
-                            color: '#ffffff',
-                            distance: 150,
-                            enable: true,
-                            opacity: 0.5,
-                            width: 1
-                        },
-                        move: {
-                            direction: 'none',
-                            enable: true,
-                            outModes: 'bounce',
-                            random: false,
-                            speed: 6,
-                            straight: false
-                        },
-                        number: {
-                            density: {
-                                enable: true,
-                            },
-                            value: 80
-                        },
-                        opacity: {
-                            value: 0.5
-                        },
-                        shape: {
-                            type: 'circle'
-                        },
-                        size: {
-                            value: { min: 1, max: 5 },
-                        }
-                    },
-                    detectRetina: true
-                }"
-    />
-  </div>
+  <vue-particles id="tsparticles" :options="options" :particles-loaded="particlesLoaded" />
 </template>
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+
+@Component
+export default class App extends Vue {
+  options: ISourceOptions = {
+    particles: {
+      number: { value: 80 },
+      links: { enable: true },
+      move: { enable: true },
+    },
+  };
+
+  particlesLoaded(container?: Container): void {
+    console.log("Particles loaded", container);
+  }
+}
+</script>
 ```
 
-```javascript
-const particlesLoaded = async container => {
-  console.log("Particles container loaded", container);
-};
+## Component props
+
+| Prop              | Type             | Default  | Description                                                           |
+| ----------------- | ---------------- | -------- | --------------------------------------------------------------------- | -------------------------------- |
+| `id`              | `string`         | required | The DOM element id used for the particles container.                  |
+| `options`         | `ISourceOptions` | —        | Particle configuration object. Reactive: changing replaces particles. |
+| `url`             | `string`         | —        | Remote JSON config URL. Reactive: changing reloads from URL.          |
+| `theme`           | `string`         | —        | Theme name to apply (requires `@tsparticles/plugin-themes`).          |
+| `particlesLoaded` | callback         | —        | Fires with `Container                                                 | undefined` after load completes. |
+
+## Reactive behavior
+
+All reactive props (`id`, `options`, `url`) trigger a **destroy + reload** cycle when changed at runtime:
+
+- `id` change → old container destroyed, new one created with the new id
+- `options` change → particles are reloaded with the new config
+- `url` change → config fetched from the new URL and loaded
+
+> **Note**: When using `@Watch` with deep object references, create a new object reference to trigger the watcher rather than mutating deeply.
+
+## Theme support
+
+The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the prop is safely ignored (no crash, no throw).
+
+```ts
+import { loadThemePlugin } from "@tsparticles/plugin-themes";
+
+async function registerParticles(engine: Engine): Promise<void> {
+  await loadThemePlugin(engine);
+  // ... load other presets/plugins
+}
 ```
+
+When the plugin is loaded, changing `theme` applies the new theme on the fly without destroying the container.
+
+## Loaded callback
+
+The `particlesLoaded` prop fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+
+```ts
+particlesLoaded(container?: Container): void {
+  if (container) {
+    console.log("Particles ready", container);
+  }
+}
+```
+
+## How init works
+
+- `init` is called once per Vue app instance.
+- Components wait for `init` completion before loading.
+- You choose what to import inside `init` (`@tsparticles/slim`, `tsparticles`, custom plugins, etc.).
 
 ### TypeScript errors
 

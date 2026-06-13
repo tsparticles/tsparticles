@@ -22,6 +22,9 @@ export function ensureParticlesInitialization(init?: ParticlesPluginRegistrar): 
   initCallback = init;
   initPromise = Promise.resolve(init?.(tsParticles))
     .then(() => {
+      return tsParticles.init();
+    })
+    .then(() => {
       initialized = true;
     })
     .catch(error => {
