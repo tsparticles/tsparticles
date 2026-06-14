@@ -832,7 +832,7 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 | S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Done |
 | S7 | Inferno wrapper | Wrapper + demo/template check + Inferno README aligned | Pending |
 | S8 | Lit wrapper | Wrapper + demo/template check + Lit README aligned | Pending |
-| S9 | Riot wrapper | Wrapper + demo/template check + Riot README aligned | Pending |
+| S9 | Riot wrapper | Wrapper + demo/template check + Riot README aligned | Done |
 | S10 | WebComponents wrapper | Wrapper + demo/template check + WebComponents README aligned | Pending |
 | S11 | React docs | React README alignment (+ demo/template verification if needed) | Pending |
 | S12 | Preact wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |

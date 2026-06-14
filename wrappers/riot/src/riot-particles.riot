@@ -2,14 +2,19 @@
     <script>
         import { tsParticles } from "@tsparticles/engine";
 
-        let oldId;
         let initialized = false;
         let initPromise;
         let initCallback;
 
-        export async function initParticlesEngine(
-            cb,
-        ) {
+        let container;
+        let mounted = false;
+        let prevId;
+        let prevOptions;
+        let prevUrl;
+        let prevTheme;
+        let loadId = 0;
+
+        export async function initParticlesEngine(cb) {
             if (initialized) {
                 return;
             }
@@ -51,6 +56,42 @@
             await (initPromise ? initPromise : Promise.resolve());
         }
 
+        async function loadParticles(props) {
+            const currentLoadId = ++loadId;
+
+            if (!props.id) {
+                if (props.particlesLoaded) {
+                    props.particlesLoaded(undefined);
+                }
+                return;
+            }
+
+            const newContainer = await tsParticles.load({
+                id: props.id,
+                options: props.options,
+                url: props.url,
+            });
+
+            if (currentLoadId !== loadId) {
+                newContainer?.destroy();
+                return;
+            }
+
+            container = newContainer;
+            prevId = props.id;
+            prevOptions = props.options;
+            prevUrl = props.url;
+            prevTheme = props.theme;
+
+            if (newContainer && props.theme) {
+                newContainer?.loadTheme?.(props.theme);
+            }
+
+            if (props.particlesLoaded) {
+                props.particlesLoaded(newContainer);
+            }
+        }
+
         export default {
             async onMounted(props) {
                 await waitForParticlesEngineInitialization();
@@ -59,30 +100,41 @@
                     throw new Error("initParticlesEngine(...) must be called once before mounting <riot-particles /> components.");
                 }
 
-                if (oldId) {
-                    const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
+                mounted = true;
 
-                    if (oldContainer) {
-                        oldContainer.destroy();
-                    }
+                await loadParticles(props);
+            },
+            onUnmounted() {
+                mounted = false;
+                container?.destroy();
+                container = undefined;
+            },
+            async onUpdated(props) {
+                if (!mounted) {
+                    return;
                 }
 
-                if (props.id) {
-                    const cb = (container) => {
-                        if (props.particlesLoaded) {
-                            props.particlesLoaded(container);
-                        }
+                const idChanged = props.id !== prevId;
+                const optionsChanged = props.options !== prevOptions;
+                const urlChanged = props.url !== prevUrl;
+                const themeChanged = props.theme !== prevTheme;
 
-                        oldId = props.id;
-                    };
+                if (idChanged || optionsChanged || urlChanged) {
+                    container?.destroy();
+                    container = undefined;
 
-                    tsParticles.load({ id: props.id, options: props.options, url: props.url }).then(cb);
+                    await loadParticles(props);
+                } else if (themeChanged && container) {
+                    container?.loadTheme?.(props.theme);
+
+                    prevTheme = props.theme;
                 } else {
-                    if (props.particlesLoaded) {
-                        props.particlesLoaded(undefined);
-                    }
+                    prevId = props.id;
+                    prevOptions = props.options;
+                    prevUrl = props.url;
+                    prevTheme = props.theme;
                 }
-            }
+            },
         }
     </script>
     <div id="{props.id}"></div>

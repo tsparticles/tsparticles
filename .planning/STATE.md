@@ -43,6 +43,7 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 6. ✅ **S6 Astro** — done: wrapper rewritten from constructor-only to `connectedCallback` + `attributeChangedCallback` + `disconnectedCallback` + `observedAttributes`, `theme` prop added, demo has reactive config switch button, README has reactivity docs.
 7. ✅ **S7 Inferno** — done (callback invocation + theme support)
 8. ✅ **S8 Lit** — done (theme property + particlesLoaded event + selective reactivity in update())
-9. ❏ **S9–S17** — align remaining extended wrappers (Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+9. ✅ **S9 Riot** — done (onUpdated/onUnmounted lifecycle hooks, theme support, loadId race guard, demo with config switch, README aligned)
+10. ❏ **S10–S17** — align remaining extended wrappers (WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
 10. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
 11. ❏ **S20–S21** — validation and handoff

@@ -17,6 +17,11 @@ module.exports = {
         // dependencies declared in demo/riot/package.json (eg. @riotjs/hot-reload)
         // are resolvable when modules are imported from the wrappers/ directory.
         modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
+        alias: {
+            // Resolve @tsparticles/riot to the source .riot file for consistency
+            // with the direct import in index.js — avoids duplicate module instances.
+            "@tsparticles/riot$": path.resolve(__dirname, "../../wrappers/riot/src/riot-particles.riot"),
+        },
     },
     optimization: {
         runtimeChunk: {
