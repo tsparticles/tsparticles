@@ -6,72 +6,123 @@ export interface IParticlesProps {
   loaded?: string;
   options?: ISourceOptions;
   url?: string;
+  theme?: string;
 }
 
-const { id, loaded, options, url } = Astro.props as IParticlesProps;
+const { id, loaded, options, url, theme } = Astro.props as IParticlesProps;
 ---
 
-<astro-particles data-id={id} data-options={JSON.stringify(options)} data-url={url} data-loaded={loaded}>
+<astro-particles
+  data-id={id}
+  data-options={JSON.stringify(options)}
+  data-url={url}
+  data-loaded={loaded}
+  data-theme={theme}
+>
   <canvas></canvas>
 </astro-particles>
 
 <script>
   import { tsParticles } from "@tsparticles/engine";
 
-  function getGlobalStore(): Record<string, unknown> {
-    return window as unknown as Record<string, unknown>;
+  function getGlobalStore() {
+    return window;
   }
 
   class AstroParticles extends HTMLElement {
+    #container;
+    #loadId = 0;
+
+    static get observedAttributes() {
+      return ["data-id", "data-options", "data-url", "data-theme"];
+    }
+
     constructor() {
       super();
+    }
 
-      (async () => {
-        // Import runtime helpers dynamically so the browser resolves the
-        // same package entry via importmap at runtime. This prevents the
-        // build step from inlining a separate copy of the helpers and
-        // ensures both the page init script and this component share the
-        // same module instance.
-        const { isParticlesEngineInitialized, waitForParticlesEngineInitialization } =
-          await import("@tsparticles/astro");
+    connectedCallback() {
+      void this.#loadParticles(++this.#loadId);
+    }
 
-        await waitForParticlesEngineInitialization();
+    disconnectedCallback() {
+      this.#loadId++;
+      if (this.#container) {
+        this.#container.destroy();
+        this.#container = undefined;
+      }
+    }
 
-        if (!isParticlesEngineInitialized()) {
-          for (let i = 0; i < 20 && !isParticlesEngineInitialized(); i++) {
-            await new Promise((resolve) => setTimeout(resolve, 0));
-            await waitForParticlesEngineInitialization();
-          }
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue === newValue) return;
+      if (!this.isConnected) return;
+
+      if (name === "data-theme") {
+        if (this.#container) {
+          void this.#container.loadTheme?.(newValue ?? undefined);
         }
+        return;
+      }
 
-        if (!isParticlesEngineInitialized()) {
-          throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+      if (this.#container) {
+        this.#container.destroy();
+        this.#container = undefined;
+      }
+      void this.#loadParticles(++this.#loadId);
+    }
+
+    async #loadParticles(currentLoadId) {
+      const { isParticlesEngineInitialized, waitForParticlesEngineInitialization } = await import("@tsparticles/astro");
+
+      await waitForParticlesEngineInitialization();
+
+      if (!isParticlesEngineInitialized()) {
+        for (let i = 0; i < 20 && !isParticlesEngineInitialized(); i++) {
+          await new Promise((resolve) => setTimeout(resolve, 0));
+          await waitForParticlesEngineInitialization();
         }
+      }
 
-        const globalStore = getGlobalStore();
+      if (!isParticlesEngineInitialized()) {
+        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+      }
 
-        let container;
+      if (currentLoadId !== this.#loadId) return;
 
-        if (this.dataset.url) {
-          container = await tsParticles.load({
-            id: this.dataset.id,
-            url: this.dataset.url,
-          });
-        } else if (this.dataset.options) {
-          container = await tsParticles.load({
-            id: this.dataset.id,
-            options: JSON.parse(this.dataset.options),
-          });
+      const globalStore = getGlobalStore();
+
+      let container;
+
+      if (this.dataset.url) {
+        container = await tsParticles.load({
+          id: this.dataset.id,
+          url: this.dataset.url,
+        });
+      } else if (this.dataset.options) {
+        container = await tsParticles.load({
+          id: this.dataset.id,
+          options: JSON.parse(this.dataset.options),
+        });
+      }
+
+      if (currentLoadId !== this.#loadId) {
+        if (container) container.destroy();
+        return;
+      }
+
+      this.#container = container;
+
+      if (container && this.dataset.theme) {
+        void container.loadTheme?.(this.dataset.theme);
+      }
+
+      if (this.dataset.loaded && this.dataset.loaded in globalStore) {
+        const loadedFn = globalStore[this.dataset.loaded];
+
+        if (loadedFn instanceof Function) {
+          loadedFn(container);
         }
-
-        if (this.dataset.loaded && this.dataset.loaded in globalStore) {
-          const loadedFn = globalStore[this.dataset.loaded];
-
-          if (loadedFn instanceof Function) {
-            loadedFn(container);
-          }
-        }
-      })();
+      }
     }
   }
 

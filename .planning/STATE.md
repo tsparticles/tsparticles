@@ -18,6 +18,12 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 
 **S3 (Angular wrapper) completed**: added `OnChanges` for `id`/`options`/`url`/`theme` reactivity, `theme` `@Input()`, fixed `particlesLoaded` type to `Container | undefined`, added `tsParticles.init()` in service, demo has config switch button, README fully documented with API table and theme caveat.
 
+**S4 (Solid wrapper) completed**: wrapper reactivity with `createEffect`/`on` tracking `id`/`options`/`url`; `theme` prop added; `particlesLoaded` callback signature fixed to `(container?: Container) => void`; demo aligned removing conditional mount.
+
+**S5 (Qwik wrapper) completed**: wrapper reactivity implemented with `useVisibleTask$` + `track()` for prop changes; `theme` prop added; demo aligned (conditional removed, `initParticlesEngine` moved to module level); README fully documented with theme caveat.
+
+**S6 (Astro wrapper) completed**: wrapper rewritten from constructor-only to `connectedCallback` + `attributeChangedCallback` + `disconnectedCallback` pattern with `observedAttributes` (`data-id`, `data-options`, `data-url`, `data-theme`). Race-condition guard via `#loadId` counter. `theme` prop added with safe `loadTheme` call. Demo has interactive "Switch Config" button demonstrating attribute-driven reactivity. README updated with `theme` prop, reactivity contract, and optional theme plugin caveat. Build passes.
+
 ### Key Findings
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
   theme-prop implementation must use a type cast (`as unknown as { loadTheme?: ... }`) or bracket access.
@@ -34,7 +40,7 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 3. ✅ **S3 Angular** — done
 4. ✅ **S4 Solid** — done
 5. ✅ **S5 Qwik** — done
-6. ❏ **S6** — implement wrapper reactivity in Astro
-6. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
-7. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
-8. ❏ **S20–S21** — validation and handoff
+6. ✅ **S6 Astro** — done: wrapper rewritten from constructor-only to `connectedCallback` + `attributeChangedCallback` + `disconnectedCallback` + `observedAttributes`, `theme` prop added, demo has reactive config switch button, README has reactivity docs.
+7. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+8. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+9. ❏ **S20–S21** — validation and handoff

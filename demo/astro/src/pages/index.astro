@@ -43,9 +43,24 @@ const options: ISourceOptions = {
             }).catch((e) => {
                 console.error("Failed to initialize particles engine:", e);
             });
+
+            // Reactive config switch demo
+            const configs = [
+                {"background":{"color":{"value":"#f00"}},"particles":{"paint":{"color":{"value":"#000"}},"links":{"color":"#000","enable":true},"number":{"value":100},"move":{"enable":true}}},
+                {"background":{"color":{"value":"#00f"}},"particles":{"paint":{"color":{"value":"#fff"}},"links":{"color":"#fff","enable":true},"number":{"value":50},"move":{"enable":true,"speed":3}}}
+            ];
+            let currentConfig = 0;
+
+            window.switchConfig = () => {
+                const el = document.querySelector("astro-particles");
+                if (!el) return;
+                currentConfig = 1 - currentConfig;
+                el.setAttribute("data-options", JSON.stringify(configs[currentConfig]));
+            };
         </script>
 
         <Particles id="tsparticles" options={options} />
+        <button onclick="switchConfig()" style="position:fixed;bottom:1rem;right:1rem;z-index:999;padding:0.5rem 1rem;cursor:pointer;">Switch Config</button>
         <h1>Welcome to <span class="text-gradient">Astro</span></h1>
         <p class="instructions">
             To get started, open the directory <code>src/pages</code> in your project.<br />

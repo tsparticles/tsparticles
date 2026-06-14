@@ -17,7 +17,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification               |
 | S4   | Solid wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S5   | Qwik wrapper              | Done    | Wrapper + demo + template check + README + verification               |
-| S6   | Astro wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S6   | Astro wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S7   | Inferno wrapper           | Pending | Wrapper + demo/template check + README + verification                 |
 | S8   | Lit wrapper               | Pending | Wrapper + demo/template check + README + verification                 |
 | S9   | Riot wrapper              | Pending | Wrapper + demo/template check + README + verification                 |
@@ -829,7 +829,7 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 | S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Done |
 | S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Done |
 | S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Done |
-| S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Pending |
+| S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Done |
 | S7 | Inferno wrapper | Wrapper + demo/template check + Inferno README aligned | Pending |
 | S8 | Lit wrapper | Wrapper + demo/template check + Lit README aligned | Pending |
 | S9 | Riot wrapper | Wrapper + demo/template check + Riot README aligned | Pending |
@@ -2385,7 +2385,7 @@ S2  Vue 2 wrapper         → Sub-agent B
 S3  Angular wrapper       → Sub-agent C
 S4  Solid wrapper         → Sub-agent D
 S5  Qwik wrapper          → Sub-agent E
-S6  Astro wrapper         → Sub-agent F
+S6  Astro wrapper         → Sub-agent F ✅
 
 S7  Inferno wrapper       → Sub-agent G
 S8  Lit wrapper           → Sub-agent H
