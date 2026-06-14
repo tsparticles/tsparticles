@@ -61,6 +61,13 @@ export async function waitForParticlesEngineInitialization(): Promise<void> {
 @customElement("lit-particles")
 export class LitParticles extends LitElement {
   /**
+   * Render into light DOM so tsParticles can find the container element by id.
+   */
+  createRenderRoot(): HTMLElement {
+    return this;
+  }
+
+  /**
    * The container id
    */
   @property({ type: String })
@@ -78,14 +85,32 @@ export class LitParticles extends LitElement {
   @property({ type: String })
   url?: string;
 
+  /**
+   * The theme name (requires @tsparticles/plugin-themes)
+   */
+  @property({ type: String })
+  theme?: string;
+
   container?: Container;
+
+  #firstUpdate = true;
 
   #renderId = 0;
 
   update(changedProperties: PropertyValues) {
     super.update(changedProperties);
 
-    void this.#loadParticles(++this.#renderId);
+    if (this.#firstUpdate || changedProperties.has("options") || changedProperties.has("url") || changedProperties.has("id")) {
+      this.#firstUpdate = false;
+
+      void this.#loadParticles(++this.#renderId);
+    }
+
+    if (changedProperties.has("theme") && this.container) {
+      const newTheme = changedProperties.get("theme") as string | undefined;
+
+      (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+    }
   }
 
   disconnectedCallback(): void {
@@ -110,9 +135,9 @@ export class LitParticles extends LitElement {
     let container: Container | undefined;
 
     if (this.options) {
-      container = await tsParticles.load({ id, options: this.options });
+      container = await tsParticles.load({ id, element: this, options: this.options });
     } else if (this.url) {
-      container = await tsParticles.load({ id, url: this.url });
+      container = await tsParticles.load({ id, element: this, url: this.url });
     } else {
       throw new Error("No options or url provided");
     }
@@ -124,6 +149,20 @@ export class LitParticles extends LitElement {
     }
 
     this.container = container;
+
+    if (container) {
+      if (this.theme) {
+        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+      }
+
+      this.dispatchEvent(
+        new CustomEvent("particlesLoaded", {
+          detail: container,
+          bubbles: true,
+          composed: true,
+        }),
+      );
+    }
   }
 
   render() {

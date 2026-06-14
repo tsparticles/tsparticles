@@ -19,7 +19,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S5   | Qwik wrapper              | Done    | Wrapper + demo + template check + README + verification               |
 | S6   | Astro wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S7   | Inferno wrapper           | Done    | Wrapper + demo/template check + README + verification                 |
-| S8   | Lit wrapper               | Pending | Wrapper + demo/template check + README + verification                 |
+| S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                 |
 | S9   | Riot wrapper              | Pending | Wrapper + demo/template check + README + verification                 |
 | S10  | WebComponents wrapper     | Pending | Wrapper + demo/template check + README + verification                 |
 | S11  | React docs                | Pending | README alignment + demo/template check                                |
