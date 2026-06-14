@@ -13,8 +13,8 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | Step | Area                      | Status  | Notes                                                                 |
 |------|---------------------------|---------|-----------------------------------------------------------------------|
 | S1   | Vue 3 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S2   | Vue 2 wrapper             | Pending | Wrapper + demo + template check + README + verification               |
-| S3   | Angular wrapper           | Pending | Wrapper + demo + template check + README + verification               |
+| S2   | Vue 2 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
+| S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification               |
 | S4   | Solid wrapper             | Pending | Wrapper + demo + template check + README + verification               |
 | S5   | Qwik wrapper              | Pending | Wrapper + demo + template check + README + verification               |
 | S6   | Astro wrapper             | Pending | Wrapper + demo + template check + README + verification               |
@@ -825,8 +825,8 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 | Step | Wrapper / Scope | Deliverable | Status |
 |------|------------------|-------------|--------|
 | S1 | Vue 3 wrapper | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Done |
-| S2 | Vue 2 wrapper | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Pending |
-| S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Pending |
+| S2 | Vue 2 wrapper | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Done |
+| S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Done |
 | S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Pending |
 | S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
 | S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Pending |

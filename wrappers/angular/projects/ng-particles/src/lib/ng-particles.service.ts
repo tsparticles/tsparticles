@@ -42,6 +42,8 @@ export class NgParticlesService {
         await particlesInit(tsParticles);
       }
 
+      await tsParticles.init();
+
       initialized = true;
     })().catch((error: unknown) => {
       initPromise = undefined;

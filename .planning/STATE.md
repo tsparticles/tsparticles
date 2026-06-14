@@ -14,6 +14,10 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 ### Outcome
 **S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
 
+**S2 (Vue 2 wrapper) completed**: wrapper reactivity + `tsParticles.init()` fix in event-bus + `theme` prop + fixed `particlesLoaded` type + removed stale `IParticlesProps` export.
+
+**S3 (Angular wrapper) completed**: added `OnChanges` for `id`/`options`/`url`/`theme` reactivity, `theme` `@Input()`, fixed `particlesLoaded` type to `Container | undefined`, added `tsParticles.init()` in service, demo has config switch button, README fully documented with API table and theme caveat.
+
 ### Key Findings
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
   theme-prop implementation must use a type cast (`as unknown as { loadTheme?: ... }`) or bracket access.
@@ -26,7 +30,9 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 
 ### Next Steps
 1. ✅ **S1 Vue 3** — done
-2. ❏ **S2–S6** — implement wrapper reactivity in Vue 2, Angular, Solid, Qwik, Astro
-3. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
-4. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
-5. ❏ **S20–S21** — validation and handoff
+2. ✅ **S2 Vue 2** — done
+3. ✅ **S3 Angular** — done
+4. ❏ **S4–S6** — implement wrapper reactivity in Solid, Qwik, Astro
+5. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+6. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+7. ❏ **S20–S21** — validation and handoff

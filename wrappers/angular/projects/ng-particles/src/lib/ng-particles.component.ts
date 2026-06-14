@@ -1,4 +1,15 @@
-import { AfterViewInit, Component, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  PLATFORM_ID,
+  SimpleChanges,
+} from "@angular/core";
 import { isPlatformServer } from "@angular/common";
 import { tsParticles } from "@tsparticles/engine";
 import type { Container } from "@tsparticles/engine";
@@ -10,11 +21,12 @@ import { NgParticlesService } from "./ng-particles.service";
   standalone: false,
   template: '<div [id]="id"></div>',
 })
-export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
+export class NgxParticlesComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() options?: IParticlesProps;
   @Input() url?: string;
   @Input() id = "tsparticles";
-  @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
+  @Input() theme?: string;
+  @Output() particlesLoaded: EventEmitter<Container | undefined> = new EventEmitter<Container | undefined>();
 
   #container?: Container;
   #loadingPromise?: Promise<void>;
@@ -35,6 +47,26 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
     this.#loadingPromise = this.#loadParticles();
   }
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (isPlatformServer(this.platformId)) {
+      return;
+    }
+
+    if (!this.#container) {
+      return;
+    }
+
+    if (changes["id"] || changes["options"] || changes["url"]) {
+      void this.#loadParticles();
+    }
+
+    if (changes["theme"]) {
+      (this.#container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
+        changes["theme"].currentValue,
+      );
+    }
+  }
+
   public ngOnDestroy(): void {
     this.#container?.destroy();
 
@@ -50,6 +82,11 @@ export class NgxParticlesComponent implements AfterViewInit, OnDestroy {
     const container = await tsParticles.load({ id: this.id, options: this.options, url: this.url });
 
     this.#container = container;
+
+    if (container && this.theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+    }
+
     this.particlesLoaded.emit(container);
   }
 }
