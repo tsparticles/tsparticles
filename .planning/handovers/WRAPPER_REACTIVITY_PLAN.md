@@ -1005,96 +1005,32 @@ Known risks / follow-ups:
 
 ---
 
-### S2 — Vue 2 wrapper
+### S2 — Vue 2 wrapper (✅ DONE)
 
-**Files to modify**:
+**Files modified**:
 - `wrappers/vue2/src/Particles/vue-particles.vue`
-- `wrappers/vue2/src/Particles/event-bus.ts` (add `tsParticles.init()` call)
+- `wrappers/vue2/src/Particles/event-bus.ts`
 
-**Changes needed**:
+**What was implemented**:
 
-#### 3a: Add `theme` prop
+| Requirement | Implementation |
+|---|---|
+| `id` change → destroy + reload | `@Watch("id")` calls `particlesInit(this)` when `this.container` exists |
+| `options` change → destroy + reload | `@Watch("options")` calls `particlesInit(this)` when `this.container` exists |
+| `url` change → destroy + reload | `@Watch("url")` calls `particlesInit(this)` when `this.container` exists |
+| `theme` change → safe `loadTheme` | `@Watch("theme")` with `(this.container as unknown as { loadTheme?: ... }).loadTheme?.(newTheme)` |
+| Initial theme applied after load | `if (container && component.theme) { ... loadTheme?.(component.theme) }` inside `particlesInit()` |
+| `IParticlesProps` export removed | Removed `export type IParticlesProps = ISourceOptions;` — used `ISourceOptions` directly in prop type |
+| `particlesLoaded` type guard | Changed prop type to `(container?: Container) => void`, cb guards `if (container && component.particlesLoaded)` |
+| `tsParticles.init()` call | Added `.then(() => tsParticles.init())` in `ensureParticlesInitialization()` in event-bus.ts |
+| Teardown destroys container | `beforeDestroy()` calls `this.container?.destroy()` — unchanged |
 
-```ts
-@Prop() readonly theme?: string;
-```
-
-#### 3b: Add watchers for `options`, `url` → reload
-
-In Vue 2 class components, use `@Watch` decorator:
-
-```ts
-import { Watch } from "vue-property-decorator";
-
-@Watch("options")
-@Watch("url")
-@Watch("id")
-onPropChange(): void {
-  if (this.container) {
-    void particlesInit(this);
-  }
-}
-```
-
-**Vue 2 Caveat**: `@Watch` with `immediate: false` prevents double-load on mount. But need to ensure `mounted()` -> `$nextTick` -> `particlesInit` is the sole initial load path.
-
-#### 3c: Add watcher for `theme` → safe `loadTheme`
-
-```ts
-@Watch("theme")
-onThemeChange(newTheme?: string): void {
-  if (!this.container) return;
-  (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
-}
-```
-
-#### 3d: Fix `IParticlesProps` export issue
-
-Remove `export type IParticlesProps = ISourceOptions;` — causes `TS2528` in SFC compiler context. Or change to `export { type IParticlesProps };` with the import.
-
-#### 3e: Fix `particlesLoaded` type guard
-
-```ts
-// In particlesInit() cb:
-const cb = (container?: Container) => {
-  this.container = container;
-  if (container && this.particlesLoaded) {
-    this.particlesLoaded(container);
-  }
-};
-```
-
-#### 3f: Fix event-bus.ts — add `tsParticles.init()` call
-
-```ts
-initCallback = init;
-initPromise = Promise.resolve(init?.(tsParticles))
-  .then(() => {
-    return tsParticles.init();  // ADD THIS for v4
-  })
-  .then(() => {
-    initialized = true;
-  })
-  .catch(error => { ... });
-```
-
-**Verification**:
-- `pnpm --filter @tsparticles/vue2 build`
-- Check SFC compiler errors with `export type`
-
-#### S2.b: Demo alignment
-- Align `demo/vue2/src/App.vue` with final reactive behavior.
-- Ensure demo can show runtime `options` change without remount hacks.
-
-#### S2.c: Template alignment
-- Verify whether Vue 2 templates exist for this wrapper family.
-- If none exist, record explicit `N/A` in implementation notes.
-
-#### S2.d: README alignment
-- Update `wrappers/vue2/README.md` with final behavior contract and optional theme-plugin caveat.
-
-#### S2.e: Completion gate
-- Mark S2 complete only when S2.a-S2.d are done and verification passes.
+**Substep verification**:
+- a (wrapper code): ✅ — `vue-particles.vue` updated with all watchers + initial theme + event-bus init fix
+- b (demo alignment): ✅ — `App.vue` rewritten with reactive pill-based config switching
+- c (template check): ✅ — N/A (no Vue 2 templates exist in repo)
+- d (README alignment): ✅ — full rewrite covering all contract points
+- e (build): ✅ — `pnpm --filter @tsparticles/vue2 build` succeeds (2 pre-existing TS warnings)
 
 ---
 
