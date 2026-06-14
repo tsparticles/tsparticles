@@ -70,6 +70,17 @@ export default component$(() => {
 - All `<Particles />` instances wait for init completion before loading.
 - You can choose what to load inside init (`@tsparticles/slim`, `tsparticles`, or custom plugins).
 
+## Reactivity
+
+The component reacts to prop changes:
+
+- **`id`** change → destroys old container and creates a new one with the new id
+- **`options`** change → destroys old container and creates a new one with the updated options
+- **`url`** change → destroys old container and loads from the new remote URL
+- **`theme`** change → applies the theme via `loadTheme` (without full reload)
+
+On component unmount, the particles container is destroyed to prevent orphan animations.
+
 ## Props
 
 | Prop            | Type     | Definition                                                                                                                                  |
@@ -79,6 +90,7 @@ export default component$(() => {
 | height          | string   | The height of the canvas.                                                                                                                   |
 | options         | object   | The options of the particles instance.                                                                                                      |
 | url             | string   | The remote options url, called using an AJAX request                                                                                        |
+| theme           | string   | The theme name to apply. Requires `@tsparticles/plugin-themes` to be loaded. Without the plugin, this prop is a safe no-op.                 |
 | style           | object   | The style of the canvas element.                                                                                                            |
 | class           | string   | The class name of the canvas wrapper.                                                                                                       |
 | canvasClassName | string   | The class name of the canvas.                                                                                                               |

@@ -16,7 +16,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S2   | Vue 2 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification               |
 | S4   | Solid wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S5   | Qwik wrapper              | Pending | Wrapper + demo + template check + README + verification               |
+| S5   | Qwik wrapper              | Done    | Wrapper + demo + template check + README + verification               |
 | S6   | Astro wrapper             | Pending | Wrapper + demo + template check + README + verification               |
 | S7   | Inferno wrapper           | Pending | Wrapper + demo/template check + README + verification                 |
 | S8   | Lit wrapper               | Pending | Wrapper + demo/template check + README + verification                 |
@@ -827,8 +827,8 @@ Website docs are intentionally batched at the end for efficiency, while wrapper-
 | S1 | Vue 3 wrapper | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Done |
 | S2 | Vue 2 wrapper | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Done |
 | S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Done |
-| S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Pending |
-| S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Pending |
+| S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Done |
+| S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Done |
 | S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Pending |
 | S7 | Inferno wrapper | Wrapper + demo/template check + Inferno README aligned | Pending |
 | S8 | Lit wrapper | Wrapper + demo/template check + Lit README aligned | Pending |
