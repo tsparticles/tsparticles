@@ -35,5 +35,5 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 4. ✅ **S4 Solid** — done
 5. ❏ **S5–S6** — implement wrapper reactivity in Qwik, Astro
 6. ❏ **S7–S17** — align extended wrappers (Inferno, Lit, Riot, WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
-6. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
-7. ❏ **S20–S21** — validation and handoff
+7. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+8. ❏ **S20–S21** — validation and handoff

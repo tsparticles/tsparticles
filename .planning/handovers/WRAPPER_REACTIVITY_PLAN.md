@@ -15,7 +15,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S1   | Vue 3 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S2   | Vue 2 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification               |
-| S4   | Solid wrapper             | Pending | Wrapper + demo + template check + README + verification               |
+| S4   | Solid wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S5   | Qwik wrapper              | Pending | Wrapper + demo + template check + README + verification               |
 | S6   | Astro wrapper             | Pending | Wrapper + demo + template check + README + verification               |
 | S7   | Inferno wrapper           | Pending | Wrapper + demo/template check + README + verification                 |
