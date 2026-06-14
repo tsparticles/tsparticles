@@ -20,7 +20,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S6   | Astro wrapper             | Done    | Wrapper + demo + template check + README + verification               |
 | S7   | Inferno wrapper           | Done    | Wrapper + demo/template check + README + verification                 |
 | S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                 |
-| S9   | Riot wrapper              | Pending | Wrapper + demo/template check + README + verification                 |
+| S9   | Riot wrapper              | Done    | Wrapper + demo/template check + README + verification                 |
 | S10  | WebComponents wrapper     | Pending | Wrapper + demo/template check + README + verification                 |
 | S11  | React docs                | Pending | README alignment + demo/template check                                |
 | S12  | Preact wrapper            | Pending | Drift found: missing `theme`, callback type strictness                |
@@ -819,32 +819,6 @@ Each wrapper step is considered **Done** only when all related artifacts are ali
 This plan therefore uses **one wrapper per step**. No multi-wrapper implementation steps.
 
 Website docs are intentionally batched at the end for efficiency, while wrapper-specific context stays inside each wrapper step (README + demo + template checks are in-step requirements).
-
-### Ordered steps
-
-| Step | Wrapper / Scope | Deliverable | Status |
-|------|------------------|-------------|--------|
-| S1 | Vue 3 wrapper | Wrapper + Vue 3 demo + template check + Vue 3 README aligned | Done |
-| S2 | Vue 2 wrapper | Wrapper + Vue 2 demo + template check + Vue 2 README aligned | Done |
-| S3 | Angular wrapper | Wrapper + Angular demo + template check + Angular README aligned | Done |
-| S4 | Solid wrapper | Wrapper + Solid demo + template check + Solid README aligned | Done |
-| S5 | Qwik wrapper | Wrapper + Qwik demo + template check + Qwik README aligned | Done |
-| S6 | Astro wrapper | Wrapper + Astro demo + template check + Astro README aligned | Done |
-| S7 | Inferno wrapper | Wrapper + demo/template check + Inferno README aligned | Pending |
-| S8 | Lit wrapper | Wrapper + demo/template check + Lit README aligned | Pending |
-| S9 | Riot wrapper | Wrapper + demo/template check + Riot README aligned | Done |
-| S10 | WebComponents wrapper | Wrapper + demo/template check + WebComponents README aligned | Pending |
-| S11 | React docs | React README alignment (+ demo/template verification if needed) | Pending |
-| S12 | Preact wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S13 | Svelte wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S14 | Stencil wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S15 | Ember wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S16 | jQuery wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S17 | Angular-fireworks wrapper | Drift confirmed by A1; full alignment (wrapper + demo + template + README) | Pending |
-| S18 | EN docs | Vue 3 EN guide update to match shipped behavior | Pending |
-| S19 | 9 translations | Mirror EN update in all required translation files | Pending |
-| S20 | Validation | Build + smoke + stale-pattern checks | Pending |
-| S21 | Final handoff | Changelog + deltas + residual risks | Pending |
 
 ### Per-step substep template (apply to every wrapper step S1-S17)
 
