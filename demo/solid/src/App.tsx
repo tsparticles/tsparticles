@@ -1,25 +1,40 @@
 import configs from "@tsparticles/configs";
+import type { Container } from "@tsparticles/engine";
 import type { Component } from "solid-js";
-import { createSignal, Show, onMount } from "solid-js";
+import { createSignal } from "solid-js";
 import { loadFull } from "tsparticles";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 
-const App: Component = () => {
-  const [initialized, setInitialized] = createSignal(false);
+type ConfigKey = keyof typeof configs;
+const configKeys = Object.keys(configs) as ConfigKey[];
 
-  onMount(() => {
-    // Initialize only on the client to avoid SSR/module-eval side-effects.
-    void initParticlesEngine(async engine => {
-      await loadFull(engine);
-    })
-      .then(() => setInitialized(true))
-      .catch(e => console.error("Failed to initialize particles engine:", e));
-  });
+initParticlesEngine(async engine => {
+  await loadFull(engine);
+}).catch(e => console.error("Failed to initialize particles engine:", e));
+
+const App: Component = () => {
+  const [options, setOptions] = createSignal(configs.basic);
+
+  const switchConfig = (key: ConfigKey) => {
+    setOptions(configs[key]);
+  };
+
+  const particlesLoaded = (container?: Container) => {
+    console.log("Particles loaded", container);
+  };
 
   return (
-    <Show when={initialized()}>
-      <Particles id="tsparticles" options={configs.basic} />
-    </Show>
+    <main>
+      <div class="controls">
+        {configKeys.map(key => (
+          <span class="pill" onClick={() => switchConfig(key)}>
+            {key}
+          </span>
+        ))}
+      </div>
+      <Particles id="tsparticles" options={options()} particlesLoaded={particlesLoaded} />
+      <div class="footer">Click a config pill above to switch particle options at runtime.</div>
+    </main>
   );
 };
 

@@ -31,89 +31,99 @@ Examples:
 _Remote url_
 
 ```javascript
-import { createEffect, createSignal } from "solid-js";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
 
+initParticlesEngine(async engine => {
+  // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+  // starting from v2 you can add only the features you need reducing the bundle size
+  await loadFull(engine);
+});
+
 function App() {
-  const [init, setInit] = createSignal(false);
-
-  createEffect(() => {
-    if (init()) {
-      return;
-    }
-
-    initParticlesEngine(async engine => {
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      await loadFull(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  });
-
-  return <div class="App">{init() && <Particles id="tsparticles" url="https://foo.bar/particles.json" />}</div>;
+  return <Particles id="tsparticles" url="https://foo.bar/particles.json" />;
 }
 ```
 
 _Options object_
 
 ```javascript
-import { createEffect, createSignal } from "solid-js";
 import Particles, { initParticlesEngine } from "@tsparticles/solid";
 import { loadFull } from "tsparticles";
 
+initParticlesEngine(async engine => {
+  // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+  // starting from v2 you can add only the features you need reducing the bundle size
+  await loadFull(engine);
+});
+
 function App() {
-  const [init, setInit] = createSignal(false);
-
-  createEffect(() => {
-    if (init()) {
-      return;
-    }
-
-    initParticlesEngine(async engine => {
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      await loadFull(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  });
-
   return (
-    <div class="App">
-      {init() && (
-        <Particles
-          id="tsparticles"
-          options={{
-            background: {
-              color: "#000",
-            },
-            fullScreen: {
-              enable: true,
-            },
-          }}
-        />
-      )}
-    </div>
+    <Particles
+      id="tsparticles"
+      options={{
+        background: {
+          color: "#000",
+        },
+        fullScreen: {
+          enable: true,
+        },
+      }}
+    />
   );
 }
 ```
 
 ### Props
 
-| Prop            | Type     | Definition                                                                                                                                  |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| id              | string   | The id of the element.                                                                                                                      |
-| width           | string   | The width of the canvas.                                                                                                                    |
-| height          | string   | The height of the canvas.                                                                                                                   |
-| options         | object   | The options of the particles instance.                                                                                                      |
-| url             | string   | The remote options url, called using an AJAX request                                                                                        |
-| style           | object   | The style of the canvas element.                                                                                                            |
-| class           | string   | The class name of the canvas wrapper.                                                                                                       |
-| canvasClass     | string   | The class name of the canvas.                                                                                                               |
-| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
-| particlesLoaded | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+| Prop            | Type                                       | Default         | Description                                                                                    |
+| --------------- | ------------------------------------------ | --------------- | ---------------------------------------------------------------------------------------------- |
+| id              | string                                     | `"tsparticles"` | The id of the element. Reactive: changing destroys old container and creates a new one.        |
+| width           | string                                     |                 | The width of the canvas.                                                                       |
+| height          | string                                     |                 | The height of the canvas.                                                                      |
+| options         | `ISourceOptions`                           |                 | The options of the particles instance. Reactive: changing replaces particles.                  |
+| url             | string                                     |                 | The remote options url, called using an AJAX request. Reactive: changing reloads from URL.     |
+| params          | `ISourceOptions`                           |                 | Alias for `options`.                                                                           |
+| style           | `JSX.CSSProperties`                        |                 | The style of the canvas element.                                                               |
+| class           | string                                     |                 | The class name of the canvas wrapper.                                                          |
+| canvasClass     | string                                     |                 | The class name of the canvas.                                                                  |
+| container       | `{ current: Container }`                   |                 | Reference to the particles container instance.                                                 |
+| theme           | string                                     |                 | Theme name to apply (requires `@tsparticles/plugin-themes`).                                   |
+| particlesLoaded | `(container?: Container) => Promise<void>` |                 | Callback fired after `tsParticles.load()` resolves. The container may be undefined on failure. |
+
+## Reactive behavior
+
+Reactive props (`id`, `options`, `url`) trigger a **destroy + reload** cycle when changed at runtime:
+
+- `id` change → old container destroyed, new one created with the new id
+- `options` change → particles are reloaded with the new config
+- `url` change → config fetched from the new URL and loaded
+
+## Theme support
+
+The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the prop is safely ignored.
+
+```ts
+import { loadThemePlugin } from "@tsparticles/plugin-themes";
+
+async function registerParticles(engine: Engine): Promise<void> {
+  await loadThemePlugin(engine);
+}
+```
+
+When the plugin is loaded, changing `theme` applies the new theme on the fly without destroying the container.
+
+## Loaded callback
+
+The `particlesLoaded` callback fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+
+```ts
+function particlesLoaded(container?: Container): void {
+  if (container) {
+    console.log("Particles ready", container);
+  }
+}
+```
 
 Find your parameters configuration [here](https://particles.js.org).
 

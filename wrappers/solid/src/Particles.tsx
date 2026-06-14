@@ -1,49 +1,56 @@
-import { tsParticles } from "@tsparticles/engine";
-import { createEffect, createResource, JSX, mergeProps, on, onCleanup, onMount } from "solid-js";
+import { tsParticles, type Container } from "@tsparticles/engine";
+import { createEffect, createMemo, JSX, mergeProps, onCleanup } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
-/**
- * @param (props:IParticlesProps) Particles component properties
- */
 const Particles = (props: IParticlesProps): JSX.Element => {
-  const config = mergeProps({ id: "tsparticles" }, props);
+  const merged = mergeProps({ id: "tsparticles" }, props);
 
-  onMount(() => {
-    const [container] = createResource(
-      () => ({
-        id: config.id,
-        options: config.params ?? config.options ?? {},
-        url: config.url,
-      }),
-      async data => {
-        await waitForParticlesEngineInitialization();
+  let container: Container | undefined;
 
-        if (!isParticlesEngineInitialized()) {
-          throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
-        }
+  const loadParams = createMemo(() => ({
+    id: props.id ?? "tsparticles",
+    options: props.options ?? props.params,
+    url: props.url,
+  }));
 
-        return tsParticles.load(data);
-      },
-    );
+  createEffect(() => {
+    const { id, options, url } = loadParams();
 
-    createEffect(
-      on(container, container => {
-        if (!container) return;
-        config.particlesLoaded?.(container);
-        onCleanup(() => container.destroy());
-      }),
-    );
+    void (async () => {
+      container?.destroy();
+
+      await waitForParticlesEngineInitialization();
+
+      if (!isParticlesEngineInitialized()) {
+        throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
+      }
+
+      container = await tsParticles.load({ id, options, url });
+
+      props.particlesLoaded?.(container);
+    })();
+  });
+
+  createEffect(() => {
+    const theme = props.theme;
+
+    if (!container || !theme) return;
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+  });
+
+  onCleanup(() => {
+    container?.destroy();
   });
 
   return (
-    <div class={config.class} id={config.id}>
+    <div class={merged.class} id={merged.id}>
       <canvas
-        class={config.canvasClass}
+        class={merged.canvasClass}
         style={{
-          ...config.style,
-          width: config.width,
-          height: config.height,
+          ...merged.style,
+          width: merged.width,
+          height: merged.height,
         }}
       />
     </div>
