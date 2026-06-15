@@ -10,29 +10,29 @@
 
 Use this table as the single high-level progress board. Update it whenever a step changes state.
 
-| Step | Area                      | Status  | Notes                                                                 |
-|------|---------------------------|---------|-----------------------------------------------------------------------|
-| S1   | Vue 3 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S2   | Vue 2 wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification               |
-| S4   | Solid wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S5   | Qwik wrapper              | Done    | Wrapper + demo + template check + README + verification               |
-| S6   | Astro wrapper             | Done    | Wrapper + demo + template check + README + verification               |
-| S7   | Inferno wrapper           | Done    | Wrapper + demo/template check + README + verification                 |
-| S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                 |
-| S9   | Riot wrapper              | Done    | Wrapper + demo/template check + README + verification                 |
-| S10  | WebComponents wrapper     | Done    | Wrapper + demo/template check + README + verification                 |
-| S11  | React docs                | Done    | README alignment + demo/template check                                |
-| S12  | Preact wrapper            | Done    | Wrapper + demo/template check + README + verification                 |
-| S13  | Svelte wrapper            | Done    | `theme` prop, selective `$:` reactivity, demo alignment, README       |
+| Step | Area                      | Status  | Notes                                                                                                            |
+|------|---------------------------|---------|------------------------------------------------------------------------------------------------------------------|
+| S1   | Vue 3 wrapper             | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S2   | Vue 2 wrapper             | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S3   | Angular wrapper           | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S4   | Solid wrapper             | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S5   | Qwik wrapper              | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S6   | Astro wrapper             | Done    | Wrapper + demo + template check + README + verification                                                          |
+| S7   | Inferno wrapper           | Done    | Wrapper + demo/template check + README + verification                                                            |
+| S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                                                            |
+| S9   | Riot wrapper              | Done    | Wrapper + demo/template check + README + verification                                                            |
+| S10  | WebComponents wrapper     | Done    | Wrapper + demo/template check + README + verification                                                            |
+| S11  | React docs                | Done    | README alignment + demo/template check                                                                           |
+| S12  | Preact wrapper            | Done    | Wrapper + demo/template check + README + verification                                                            |
+| S13  | Svelte wrapper            | Done    | `theme` prop, selective `$:` reactivity, demo alignment, README                                                  |
 | S14  | Stencil wrapper           | Done    | `theme` prop, `particlesLoaded` event, `@Watch("theme")`, demo with theme toggle + plugin-themes, README aligned |
-| S15  | Ember wrapper             | Done    | `theme` prop, lifecycle fix, README alignment, build pass            |
-| S16  | jQuery wrapper            | Pending | Drift found: no `theme` handling/documentation in wrapper API         |
-| S17  | Angular-fireworks wrapper | Pending | Drift found: missing `OnChanges`; input updates ignored after mount   |
-| S18  | EN docs                   | Pending | Must finish before S19                                                |
-| S19  | 9 translations            | Pending | Mirror S18                                                            |
-| S20  | Validation                | Pending | Build + smoke + stale-pattern checks                                  |
-| S21  | Final handoff             | Pending | Consolidated deltas and residual risks                                |
+| S15  | Ember wrapper             | Done    | `theme` prop, lifecycle fix, README alignment, build pass                                                        |
+| S16  | jQuery wrapper            | Pending | Drift found: no `theme` handling/documentation in wrapper API                                                    |
+| S17  | Angular-fireworks wrapper | Pending | Drift found: missing `OnChanges`; input updates ignored after mount                                              |
+| S18  | EN docs                   | Pending | Must finish before S19                                                                                           |
+| S19  | 9 translations            | Pending | Mirror S18                                                                                                       |
+| S20  | Validation                | Pending | Build + smoke + stale-pattern checks                                                                             |
+| S21  | Final handoff             | Pending | Consolidated deltas and residual risks                                                                           |
 
 Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
 
