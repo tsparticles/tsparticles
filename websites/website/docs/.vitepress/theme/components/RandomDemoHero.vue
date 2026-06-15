@@ -94,7 +94,7 @@ interface HeroAction {
 .main {
   position: relative;
   z-index: 10;
-  order: 2;
+  order: 1;
   flex-grow: 1;
   flex-shrink: 0;
 }
@@ -291,7 +291,7 @@ interface HeroAction {
 }
 
 .image {
-  order: 1;
+  order: 2;
   margin: -76px -24px -48px;
 }
 
