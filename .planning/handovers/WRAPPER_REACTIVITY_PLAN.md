@@ -24,7 +24,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S10  | WebComponents wrapper     | Done    | Wrapper + demo/template check + README + verification                 |
 | S11  | React docs                | Done    | README alignment + demo/template check                                |
 | S12  | Preact wrapper            | Done    | Wrapper + demo/template check + README + verification                 |
-| S13  | Svelte wrapper            | Pending | Drift found: missing `theme`, reload scope too broad                  |
+| S13  | Svelte wrapper            | Done    | `theme` prop, selective `$:` reactivity, demo alignment, README       |
 | S14  | Stencil wrapper           | Pending | Drift found: missing `theme`, no loaded callback/event, init path gap |
 | S15  | Ember wrapper             | Pending | Drift found: missing `theme`, update lifecycle cleanup risk           |
 | S16  | jQuery wrapper            | Pending | Drift found: no `theme` handling/documentation in wrapper API         |
@@ -847,7 +847,7 @@ No wrapper step can be marked complete unless all five substeps are complete.
 | Wrapper | Drift | Evidence | Decision |
 |---------|-------|----------|----------|
 | preact | yes | `wrappers/preact/src/IParticlesProps.ts` callback typed `(container: Container)`; no `theme` prop | Activate `S12` |
-| svelte | yes | `wrappers/svelte/src/lib/Particles.svelte` reloads on every `afterUpdate`; no `theme` handling | Activate `S13` |
+| svelte | yes | `wrappers/svelte/src/lib/Particles.svelte` reloads on every `afterUpdate`; no `theme` handling | Done `S13` |
 | stencil | yes | `wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx` has no `theme` prop and no loaded callback/event | Activate `S14` |
 | ember | yes | `wrappers/ember/addon/modifiers/particles.ts` no `theme`; repeated `modify()` may stack destructors without explicit pre-destroy | Activate `S15` |
 | jquery | yes | `wrappers/jquery/src/particles.ts` has `load/ajax` only, no theme pathway nor theme docs alignment | Activate `S16` |
@@ -1881,8 +1881,8 @@ const cb = (container?: Container) => {
 #### S13.d: README alignment
 - Update `wrappers/svelte/README.md` with `theme` prop and reload contract.
 
-#### S13.e: Completion gate
-- Mark S13 complete only when S13.a-S13.d are done and verification passes.
+#### S13.e: Completion gate ✅
+- Completed: wrapper (`theme` prop, reactive `$:` statements, `loadTheme`), demos (Svelte 5 `mount()`, `initParticlesEngine` naming, SSR-safe dynamic imports in SvelteKit), README (props table, reactive behavior, theme docs). Build pass. User-verified both demos working.
 
 ---
 
@@ -2368,7 +2368,7 @@ S10 WebComponents wrapper → Sub-agent J
 S11 React docs             → Sub-agent K
 
 S12  Preact wrapper            → Sub-agent L
-S13  Svelte wrapper            → Sub-agent M
+S13  Svelte wrapper            ✅ Done
 S14  Stencil wrapper           → Sub-agent N
 S15  Ember wrapper             → Sub-agent O
 S16  jQuery wrapper            → Sub-agent P
@@ -2499,7 +2499,7 @@ If a mapped demo does not exist, record explicit `N/A` in the step output.
 
 ### Add to Definition of Done
 - [ ] Conditional rendering workarounds removed from Solid (S4), Preact (S12), Qwik (S5) demos
-- [ ] Svelte (S13) demos use `initParticlesEngine` naming (not `particlesInit`)
+- [x] Svelte (S13) demos use `initParticlesEngine` naming (not `particlesInit`)
 - [ ] Angular demo has config switch example (not only `*ngIf` toggle)
 - [ ] All demos use correct wrapper API (no `:init`, no `@particles-init`)
 - [ ] Each core wrapper demo verifiably demonstrates reactive prop changes
