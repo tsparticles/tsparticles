@@ -26,7 +26,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S12  | Preact wrapper            | Done    | Wrapper + demo/template check + README + verification                 |
 | S13  | Svelte wrapper            | Done    | `theme` prop, selective `$:` reactivity, demo alignment, README       |
 | S14  | Stencil wrapper           | Done    | `theme` prop, `particlesLoaded` event, `@Watch("theme")`, demo with theme toggle + plugin-themes, README aligned |
-| S15  | Ember wrapper             | Pending | Drift found: missing `theme`, update lifecycle cleanup risk           |
+| S15  | Ember wrapper             | Done    | `theme` prop, lifecycle fix, README alignment, build pass            |
 | S16  | jQuery wrapper            | Pending | Drift found: no `theme` handling/documentation in wrapper API         |
 | S17  | Angular-fireworks wrapper | Pending | Drift found: missing `OnChanges`; input updates ignored after mount   |
 | S18  | EN docs                   | Pending | Must finish before S19                                                |

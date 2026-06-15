@@ -2,6 +2,14 @@
 
 <h1 id="title">tsParticles Ember Demo</h1>
 
+<button type="button" {{on "click" this.switchConfig}}>
+  Switch config
+</button>
+
+<button type="button" {{on "click" this.toggleTheme}}>
+  Theme: {{this.theme}}
+</button>
+
 <button
   type="button"
   {{on
@@ -15,6 +23,7 @@
 <Particles
   class="fixed-size-particles"
   @options={{this.options}}
+  @theme={{this.theme}}
   @particlesLoaded={{this.loadedCallback}}
 />
 

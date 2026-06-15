@@ -15,16 +15,20 @@ interface ParticlesModifierSignature {
     Named: {
       options: Options;
       url: string;
-      particlesLoaded: (container: Container) => void;
+      particlesLoaded: (container?: Container) => void;
+      theme?: string;
     };
   };
 }
 
 export default class ParticlesModifier extends Modifier<ParticlesModifierSignature> {
+  #container?: Container;
+  #cleanupRegistered = false;
+
   async modify(
     element: Element,
     _: PositionalArgs<ParticlesModifierSignature>,
-    { options, url, particlesLoaded }: NamedArgs<ParticlesModifierSignature>,
+    { options, url, particlesLoaded, theme }: NamedArgs<ParticlesModifierSignature>,
   ) {
     if (!element.id) {
       throw new Error('The specified element must have an id attribute.');
@@ -38,19 +42,31 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
       );
     }
 
+    this.#container?.destroy();
+    this.#container = undefined;
+
     let container = await tsParticles.load({
       id: element.id,
       options: options ?? {},
       url,
     });
 
+    this.#container = container;
+
+    if (container && theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+    }
+
     if (particlesLoaded && container) {
       particlesLoaded(container);
     }
 
-    registerDestructor(this, () => {
-      container?.destroy();
-      container = undefined;
-    });
+    if (!this.#cleanupRegistered) {
+      registerDestructor(this, () => {
+        this.#container?.destroy();
+        this.#container = undefined;
+      });
+      this.#cleanupRegistered = true;
+    }
   }
 }

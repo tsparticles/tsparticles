@@ -39,6 +39,46 @@ export const LINK_OPTIONS = {
   detectRetina: true,
 };
 
+export const SNOW_OPTIONS = {
+  fullScreen: {
+    zIndex: -1,
+  },
+  particles: {
+    color: {
+      value: "#fff",
+    },
+    move: {
+      direction: "bottom",
+      enable: true,
+      random: false,
+      speed: 1,
+      straight: false,
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 800,
+      },
+      value: 400,
+    },
+    opacity: {
+      value: 0.5,
+    },
+    shape: {
+      type: "circle",
+    },
+    size: {
+      value: { min: 1, max: 3 },
+    },
+    wobble: {
+      enable: true,
+      distance: 10,
+      speed: 10,
+    },
+  },
+  detectRetina: true,
+};
+
 export const CONFETTI_OPTIONS = {
   fullScreen: {
     zIndex: 1,
