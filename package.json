@@ -76,5 +76,5 @@
     "webpack-cli": "^7.0.3",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@11.6.0"
+  "packageManager": "pnpm@11.7.0"
 }

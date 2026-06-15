@@ -2,9 +2,6 @@
   import Counter from './Counter.svelte';
   import welcome from '$lib/images/svelte-welcome.webp';
   import welcome_fallback from '$lib/images/svelte-welcome.png';
-  import { particlesInit } from "@tsparticles/svelte";
-  import { loadFull } from "tsparticles";
-  import { type Engine } from "@tsparticles/engine";
   import { browser } from '$app/environment';
 
   let particlesConfig = {
@@ -33,14 +30,18 @@
     },
   };
 
-  void particlesInit(async (engine: Engine) => {
-    await loadFull(engine);
-  });
-
   const ParticlesConstructor = browser ?
-    import('@tsparticles/svelte').then((module) => module.default) :
-    new Promise(() => {
-    });
+    import('@tsparticles/svelte').then(async (module) => {
+      const { initParticlesEngine } = module;
+      const { loadFull } = await import("tsparticles");
+
+      await initParticlesEngine(async (engine) => {
+        await loadFull(engine);
+      });
+
+      return module.default;
+    }) :
+    new Promise(() => {});
 </script>
 
 <svelte:head>

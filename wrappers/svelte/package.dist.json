@@ -67,7 +67,8 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "svelte": "./index.js"
+      "svelte": "./index.js",
+      "default": "./index.js"
     }
   },
   "peerDependencies": {
