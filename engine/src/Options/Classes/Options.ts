@@ -1,16 +1,18 @@
-import { OptionLoader, loadParticlesOptions, loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
+import { loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { PluginManager } from "../../Core/Utils/PluginManager.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { isBoolean } from "../../Utils/TypeUtils.js";
+import { loadParticlesOptions } from "../../Utils/ParticlesOptionsLoader.js";
 
 /** Default themes configuration */
 export interface DefaultThemes {

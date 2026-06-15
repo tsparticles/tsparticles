@@ -1,12 +1,13 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import { OptionLoader, loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
+import { loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
 import { MoveAngle } from "./MoveAngle.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";

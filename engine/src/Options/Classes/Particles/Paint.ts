@@ -1,9 +1,10 @@
-import { OptionLoader, loadLazyProperty } from "../../../Utils/OptionsUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import { Fill } from "./Fill.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
+import { OptionLoader } from "../../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Stroke } from "./Stroke.js";
+import { loadLazyProperty } from "../../../Utils/OptionsUtils.js";
 
 /**
  * [[include:Options/Particles/Paint.md]]

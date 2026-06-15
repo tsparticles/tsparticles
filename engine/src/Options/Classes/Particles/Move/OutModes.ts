@@ -1,5 +1,5 @@
 import type { IOutModes } from "../../../Interfaces/Particles/Move/IOutModes.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { OutMode } from "../../../../Enums/Modes/OutMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 

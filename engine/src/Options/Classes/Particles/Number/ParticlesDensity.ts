@@ -1,6 +1,7 @@
-import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { loadProperty } from "../../../../Utils/OptionsUtils.js";
 
 /**
  * Density options used to scale particle count with area.

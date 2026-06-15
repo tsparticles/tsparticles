@@ -6,7 +6,7 @@ import { Fill } from "./Fill.js";
 import type { IPaint } from "../../Interfaces/Particles/IPaint.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
-import { OptionLoader } from "../../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../../Utils/OptionLoader.js";
 import { Paint } from "./Paint.js";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";

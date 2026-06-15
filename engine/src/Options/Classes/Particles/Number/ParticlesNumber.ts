@@ -1,8 +1,9 @@
-import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { ParticlesDensity } from "./ParticlesDensity.js";
 import { ParticlesNumberLimit } from "./ParticlesNumberLimit.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { loadProperty } from "../../../../Utils/OptionsUtils.js";
 
 /**
  * [[include:Options/Particles/Number.md]]

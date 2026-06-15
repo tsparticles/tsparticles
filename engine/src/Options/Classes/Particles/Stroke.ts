@@ -1,8 +1,9 @@
-import { OptionLoader, loadRangeProperty } from "../../../Utils/OptionsUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import type { IStroke } from "../../Interfaces/Particles/IStroke.js";
+import { OptionLoader } from "../../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { loadRangeProperty } from "../../../Utils/OptionsUtils.js";
 
 /**
  * [[include:Options/Particles/Stroke.md]]

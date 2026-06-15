@@ -4,9 +4,14 @@ import type {
   InteractivityOptions,
 } from "@tsparticles/plugin-interactivity";
 import type { IInfection } from "./Options/Interfaces/IInfection.js";
-import type { Infecter } from "./Infecter.js";
 import type { Infection } from "./Options/Classes/Infection.js";
 import type { Particle } from "@tsparticles/engine";
+
+interface IInfecter {
+  startInfection(particle: InfectableParticle, stage: number): void;
+  updateInfection(particle: InfectableParticle, delta: number): void;
+  updateInfectionStage(particle: InfectableParticle, stage: number): void;
+}
 
 export interface IParticleInfection {
   /** The infection delay for this particle */
@@ -24,7 +29,7 @@ export type InfectableContainer = InteractivityContainer & {
   /** The actual infection options */
   actualOptions: InfectionOptions;
   /** The infecter instance */
-  infecter?: Infecter;
+  infecter?: IInfecter;
 };
 
 /** Infection plugin options interface */

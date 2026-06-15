@@ -11,7 +11,7 @@ import type {
 } from "../../Core/Interfaces/Colors.js";
 import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
-import { OptionLoader } from "../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 

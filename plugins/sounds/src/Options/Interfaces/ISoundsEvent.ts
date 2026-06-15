@@ -1,4 +1,4 @@
-import type { FilterFunction } from "../../types.js";
+import type { FilterFunction } from "../../FilterFunctionTypes.js";
 import type { ISoundsAudio } from "./ISoundsAudio.js";
 import type { ISoundsMelody } from "./ISoundsMelody.js";
 import type { ISoundsNote } from "./ISoundsNote.js";

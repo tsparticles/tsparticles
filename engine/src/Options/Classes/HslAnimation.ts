@@ -1,7 +1,7 @@
 import { hMax, hMin, lMax, lMin, sMax, sMin } from "../../Core/Utils/Constants.js";
 import { ColorAnimation } from "./ColorAnimation.js";
 import type { IHslAnimation } from "../Interfaces/IHslAnimation.js";
-import { OptionLoader } from "../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export class HslAnimation extends OptionLoader<IHslAnimation> implements IHslAnimation {

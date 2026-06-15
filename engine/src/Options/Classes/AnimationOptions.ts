@@ -1,6 +1,7 @@
 import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation.js";
-import { OptionLoader, loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
+import { loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { AnimationMode } from "../../Enums/Modes/AnimationMode.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { StartValueType } from "../../Enums/Types/StartValueType.js";

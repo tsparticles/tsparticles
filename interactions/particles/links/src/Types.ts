@@ -4,10 +4,29 @@ import type {
   InteractivityParticle,
   InteractivityParticlesOptions,
 } from "@tsparticles/plugin-interactivity";
-import type { ILink } from "./Interfaces.js";
 import type { ILinks } from "./Options/Interfaces/ILinks.js";
 import type { IRgb } from "@tsparticles/engine";
 import type { Links } from "./Options/Classes/Links.js";
+
+/** Link data between two particles */
+export interface ILink {
+  /** Link line color */
+  color?: IRgb;
+  /** Destination particle */
+  destination: LinkParticle;
+  /** Whether the link crosses the canvas boundaries */
+  isWarped?: boolean;
+  /** Link line opacity */
+  opacity: number;
+}
+
+/** Triangle data between linked particles */
+export interface ILinkTriangle {
+  /** Triangle fill opacity */
+  opacity: number;
+  /** Triangle vertices */
+  vertices: LinkParticle[];
+}
 
 /** Link container type */
 export type LinkContainer = InteractivityContainer & {

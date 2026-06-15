@@ -1,7 +1,8 @@
-import { OptionLoader, loadProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IMoveCenter } from "../../../Interfaces/Particles/Move/IMoveCenter.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { PixelMode } from "../../../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { loadProperty } from "../../../../Utils/OptionsUtils.js";
 
 export class MoveCenter extends OptionLoader<IMoveCenter> implements IMoveCenter {
   mode: PixelMode | keyof typeof PixelMode = PixelMode.percent;

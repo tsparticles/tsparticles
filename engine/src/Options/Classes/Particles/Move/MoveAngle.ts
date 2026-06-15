@@ -1,7 +1,8 @@
-import { OptionLoader, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IMoveAngle } from "../../../Interfaces/Particles/Move/IMoveAngle.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 
 /** Movement angle options class */
 export class MoveAngle extends OptionLoader<IMoveAngle> implements IMoveAngle {

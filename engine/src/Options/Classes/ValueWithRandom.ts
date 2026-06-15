@@ -1,9 +1,10 @@
 import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions.js";
 import type { IAnimationValueWithRandom, IValueWithRandom } from "../Interfaces/IValueWithRandom.js";
-import { OptionLoader, loadNestedProperty } from "../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
+import { loadNestedProperty } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
 /** Value with random range option class */

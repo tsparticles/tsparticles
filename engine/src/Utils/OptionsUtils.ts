@@ -1,33 +1,11 @@
 import { OptionLoader, loadOptions } from "./OptionLoader.js";
-import type { Container } from "../Core/Container.js";
 import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader.js";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import type { PluginManager } from "../Core/Utils/PluginManager.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { deepExtend } from "./Utils.js";
 import { setRangeValue } from "./MathUtils.js";
 
 export { OptionLoader, loadOptions };
-
-/**
- * @param pluginManager - The plugin manager
- * @param container - The container to handle
- * @param sourceOptionsArr - The sourceOptionsArr
- * @returns the newly created {@link ParticlesOptions} object
- */
-export function loadParticlesOptions(
-  pluginManager: PluginManager,
-  container: Container,
-  ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
-): ParticlesOptions {
-  const options = new ParticlesOptions(pluginManager, container);
-
-  loadOptions(options, ...sourceOptionsArr);
-
-  return options;
-}
 
 /**
  *

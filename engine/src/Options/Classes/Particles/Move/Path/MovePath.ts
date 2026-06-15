@@ -1,9 +1,10 @@
-import { OptionLoader, loadProperty } from "../../../../../Utils/OptionsUtils.js";
 import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath.js";
+import { OptionLoader } from "../../../../../Utils/OptionLoader.js";
 import type { PathOptions } from "../../../../../Types/PathOptions.js";
 import type { RecursivePartial } from "../../../../../Types/RecursivePartial.js";
 import { ValueWithRandom } from "../../../ValueWithRandom.js";
 import { deepExtend } from "../../../../../Utils/Utils.js";
+import { loadProperty } from "../../../../../Utils/OptionsUtils.js";
 
 /**
  * Path movement options.

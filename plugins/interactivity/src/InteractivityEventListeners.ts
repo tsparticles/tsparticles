@@ -18,11 +18,16 @@ import {
   touchMoveEvent,
   touchStartEvent,
 } from "./InteractivityConstants.js";
-import type { InteractionManager } from "./InteractionManager.js";
+import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { InteractivityContainer } from "./types.js";
 import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
 const touchDelay = 500;
+
+interface IInteractionManager {
+  handleClickMode: (mode: string) => void;
+  interactivityData: IInteractivityData;
+}
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;
@@ -45,7 +50,7 @@ export class InteractivityEventListeners {
   readonly #clickPositionPlugins: IContainerPlugin[];
   readonly #container;
   readonly #handlers: InteractivityEventListenersHandlers;
-  readonly #interactionManager: InteractionManager;
+  readonly #interactionManager: IInteractionManager;
   readonly #touches: Map<number, number>;
 
   /**
@@ -53,7 +58,7 @@ export class InteractivityEventListeners {
    * @param container - the calling container
    * @param interactionManager - the interaction manager instance
    */
-  constructor(container: InteractivityContainer, interactionManager: InteractionManager) {
+  constructor(container: InteractivityContainer, interactionManager: IInteractionManager) {
     this.#container = container;
     this.#clickPositionPlugins = [];
     this.#interactionManager = interactionManager;

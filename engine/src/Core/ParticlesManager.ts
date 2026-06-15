@@ -26,7 +26,7 @@ import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
 
 /**
  * Particles manager object

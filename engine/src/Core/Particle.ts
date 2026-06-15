@@ -57,7 +57,7 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
 
 /**
  * @internal

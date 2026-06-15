@@ -1,9 +1,11 @@
 import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
-import type { ParallaxMode } from "../../Types.js";
+import type { Parallax } from "./Parallax.js";
 
 /** Parallax interaction options */
 export type ParallaxOptions = InteractivityOptions & {
   interactivity?: {
-    modes: ParallaxMode;
+    modes: {
+      parallax?: Parallax;
+    };
   };
 };

@@ -2,7 +2,7 @@ import { type Container, type IOptionLoader, type RecursivePartial, isNull } fro
 import { Events } from "./Events/Events.js";
 import type { IInteractivity } from "../Interfaces/IInteractivity.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
-import type { InteractivityPluginManager } from "../../types.js";
+import type { InteractivityPluginManager } from "../../InteractivityPluginManagerTypes.js";
 import { Modes } from "./Modes/Modes.js";
 
 /**

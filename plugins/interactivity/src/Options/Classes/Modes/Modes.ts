@@ -1,7 +1,7 @@
 import { type Container, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor.js";
 import type { IModes } from "../../Interfaces/Modes/IModes.js";
-import type { InteractivityPluginManager } from "../../../types.js";
+import type { InteractivityPluginManager } from "../../../InteractivityPluginManagerTypes.js";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]

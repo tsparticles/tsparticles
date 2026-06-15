@@ -1,5 +1,5 @@
 import type { IParticlesBounce } from "../../../Interfaces/Particles/Bounce/IParticlesBounce.js";
-import { OptionLoader } from "../../../../Utils/OptionsUtils.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { ParticlesBounceFactor } from "./ParticlesBounceFactor.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 

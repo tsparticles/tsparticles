@@ -11,7 +11,7 @@ import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
-import type { InteractivityPluginManager } from "./types.js";
+import type { InteractivityPluginManager } from "./InteractivityPluginManagerTypes.js";
 import { InteractorType } from "./Enums/InteractorType.js";
 
 const clickRadius = 1,

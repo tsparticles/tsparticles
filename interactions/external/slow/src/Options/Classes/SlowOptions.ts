@@ -1,8 +1,10 @@
 import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
-import type { SlowMode } from "../../Types.js";
+import type { Slow } from "./Slow.js";
 
 export type SlowOptions = InteractivityOptions & {
   interactivity?: {
-    modes: SlowMode;
+    modes: {
+      slow?: Slow;
+    };
   };
 };

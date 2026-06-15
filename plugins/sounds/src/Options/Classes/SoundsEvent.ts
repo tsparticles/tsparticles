@@ -8,7 +8,7 @@ import {
   isString,
   loadProperty,
 } from "@tsparticles/engine";
-import type { FilterFunction } from "../../types.js";
+import type { FilterFunction } from "../../FilterFunctionTypes.js";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent.js";
 import { SoundsAudio } from "./SoundsAudio.js";
 import { SoundsMelody } from "./SoundsMelody.js";

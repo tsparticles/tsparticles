@@ -1,5 +1,6 @@
-import { OptionLoader, loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
+import { loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 

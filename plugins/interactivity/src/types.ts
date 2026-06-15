@@ -1,17 +1,13 @@
 import type {
   Container,
-  Engine,
-  GenericInitializer,
   IOptions,
   IParticlesOptions,
   Options,
   Particle,
   ParticlesOptions,
-  PluginManager,
   RecursivePartial,
 } from "@tsparticles/engine";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
-import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { Interactivity } from "./Options/Classes/Interactivity.js";
 
 /** Interactivity plugin options interface */
@@ -54,34 +50,8 @@ export type InteractivityParticlesOptions = RecursivePartial<ParticlesOptions> &
   interactivity?: RecursivePartial<IInteractivity>;
 };
 
-/**
- * Alias for interactivity manager initializer function
- */
-export type InteractorInitializer = GenericInitializer<IInteractor>;
-
-/** Interactivity plugin manager */
-export type InteractivityPluginManager = PluginManager & {
-  /** Adds an interactor by name */
-  addInteractor?: (name: string, interactorInitializer: InteractorInitializer) => void;
-
-  /** Gets all interactors for the container */
-  getInteractors?: (container: Container, force?: boolean) => Promise<IInteractor[]>;
-
-  /** The interactor initializers */
-  initializers: {
-    /** Map of interactor initializers */
-    interactors?: Map<string, InteractorInitializer>;
-  };
-
-  /** Map of containers to their interactors */
-  interactors?: Map<Container, IInteractor[]>;
-
-  /** Sets a click handler for interactivity */
-  setOnClickHandler?: (callback: (e: Event, particles?: Particle[]) => void) => void;
-};
-
-/** Engine with interactivity plugin manager */
-export type InteractivityEngine = Engine & {
-  /** The interactivity plugin manager */
-  pluginManager: InteractivityPluginManager;
-};
+export type {
+  InteractorInitializer,
+  InteractivityEngine,
+  InteractivityPluginManager,
+} from "./InteractivityPluginManagerTypes.js";
