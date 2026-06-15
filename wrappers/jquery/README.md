@@ -100,6 +100,14 @@ $("#tsparticles")
   .then(container => {
     // container ready
   });
+
+// Change the active theme at runtime (requires @tsparticles/plugin-themes)
+$("#tsparticles")
+  .particles()
+  .setTheme("dark")
+  .then(() => {
+    // theme applied
+  });
 ```
 
 Notes
@@ -110,6 +118,9 @@ Notes
 - Use the jQuery plugin methods `.load(options)` and `.ajax(url)` to mount
   containers on selected elements. These methods return a Promise that
   resolves with the Container instance.
+- Use `.setTheme(name)` to switch the active theme at runtime. This method
+  requires the `@tsparticles/plugin-themes` package to be registered. If the
+  theme plugin is not loaded, the call is safely ignored.
 
 ## Demos
 
