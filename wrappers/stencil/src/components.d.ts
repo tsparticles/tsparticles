@@ -5,20 +5,36 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ISourceOptions } from "@tsparticles/engine";
+import { Container, ISourceOptions } from "@tsparticles/engine";
 import { ParticlesPluginRegistrar } from "./initParticlesEngine";
-export { ISourceOptions } from "@tsparticles/engine";
+export { Container, ISourceOptions } from "@tsparticles/engine";
 export { ParticlesPluginRegistrar } from "./initParticlesEngine";
 export namespace Components {
     interface StencilParticles {
         "containerId"?: string;
         "init"?: ParticlesPluginRegistrar;
         "options"?: ISourceOptions;
+        "theme"?: string;
         "url"?: string;
     }
 }
+export interface StencilParticlesCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLStencilParticlesElement;
+}
 declare global {
+    interface HTMLStencilParticlesElementEventMap {
+        "particlesLoaded": Container | undefined;
+    }
     interface HTMLStencilParticlesElement extends Components.StencilParticles, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLStencilParticlesElementEventMap>(type: K, listener: (this: HTMLStencilParticlesElement, ev: StencilParticlesCustomEvent<HTMLStencilParticlesElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLStencilParticlesElementEventMap>(type: K, listener: (this: HTMLStencilParticlesElement, ev: StencilParticlesCustomEvent<HTMLStencilParticlesElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLStencilParticlesElement: {
         prototype: HTMLStencilParticlesElement;
@@ -32,13 +48,16 @@ declare namespace LocalJSX {
     interface StencilParticles {
         "containerId"?: string;
         "init"?: ParticlesPluginRegistrar;
+        "onParticlesLoaded"?: (event: StencilParticlesCustomEvent<Container | undefined>) => void;
         "options"?: ISourceOptions;
+        "theme"?: string;
         "url"?: string;
     }
 
     interface StencilParticlesAttributes {
         "url": string;
         "containerId": string;
+        "theme": string;
     }
 
     interface IntrinsicElements {

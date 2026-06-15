@@ -16,6 +16,7 @@
   "dependencies": {
     "@tsparticles/configs": "workspace:^",
     "@tsparticles/engine": "workspace:^",
+    "@tsparticles/plugin-themes": "workspace:^",
     "@tsparticles/slim": "workspace:^",
     "@tsparticles/stencil": "workspace:^"
   },

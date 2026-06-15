@@ -5019,6 +5019,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:^
         version: link:../../engine/dist
+      '@tsparticles/plugin-themes':
+        specifier: workspace:^
+        version: link:../../plugins/themes/dist
       '@tsparticles/slim':
         specifier: workspace:^
         version: link:../../bundles/slim/dist

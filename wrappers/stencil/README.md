@@ -66,6 +66,11 @@ You can also load options from URL:
 - `options`: inline particles options (`ISourceOptions`)
 - `url`: path/url to a JSON options file
 - `init`: async callback used to register plugins on the same engine instance used by the component
+- `theme`: theme name to apply (requires `@tsparticles/plugin-themes` to be loaded in `init`)
+
+## Events
+
+- `particlesLoaded`: emitted when the particles container has been successfully initialized
 
 ## Monorepo references
 
