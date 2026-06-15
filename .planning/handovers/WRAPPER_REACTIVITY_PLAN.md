@@ -22,8 +22,8 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                 |
 | S9   | Riot wrapper              | Done    | Wrapper + demo/template check + README + verification                 |
 | S10  | WebComponents wrapper     | Done    | Wrapper + demo/template check + README + verification                 |
-| S11  | React docs                | Pending | README alignment + demo/template check                                |
-| S12  | Preact wrapper            | Pending | Drift found: missing `theme`, callback type strictness                |
+| S11  | React docs                | Done    | README alignment + demo/template check                                |
+| S12  | Preact wrapper            | Done    | Wrapper + demo/template check + README + verification                 |
 | S13  | Svelte wrapper            | Pending | Drift found: missing `theme`, reload scope too broad                  |
 | S14  | Stencil wrapper           | Pending | Drift found: missing `theme`, no loaded callback/event, init path gap |
 | S15  | Ember wrapper             | Pending | Drift found: missing `theme`, update lifecycle cleanup risk           |

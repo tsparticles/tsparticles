@@ -24,6 +24,10 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 
 **S6 (Astro wrapper) completed**: wrapper rewritten from constructor-only to `connectedCallback` + `attributeChangedCallback` + `disconnectedCallback` pattern with `observedAttributes` (`data-id`, `data-options`, `data-url`, `data-theme`). Race-condition guard via `#loadId` counter. `theme` prop added with safe `loadTheme` call. Demo has interactive "Switch Config" button demonstrating attribute-driven reactivity. README updated with `theme` prop, reactivity contract, and optional theme plugin caveat. Build passes.
 
+**S11 (React docs) completed**: README props table updated with `particlesLoaded`, demo/template alignment verified.
+
+**S12 (Preact wrapper) completed**: wrapper reactivity (`theme` prop, `loadTheme` in `loadParticles` + selective `componentDidUpdate` without refresh for theme-only changes), `container` ref type fixed to `Container | undefined`, `particlesLoaded` callback fixed with optional container param, demo keeps original constructor init + conditional render (module-level init + unconditional render causes Preact page freeze — Preact-specific limitation), README updated with `theme` prop and plugin caveat. Build passes.
+
 ### Key Findings
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
   theme-prop implementation must use a type cast (`as unknown as { loadTheme?: ... }`) or bracket access.
@@ -45,6 +49,8 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 8. ✅ **S8 Lit** — done (theme property + particlesLoaded event + selective reactivity in update())
 9. ✅ **S9 Riot** — done (onUpdated/onUnmounted lifecycle hooks, theme support, loadId race guard, demo with config switch, README aligned)
 10. ✅ **S10 WebComponents** — done (`data-id`/`data-theme` added to `observedAttributes`, `attributeChangedCallback` handles both, `id` setter syncs to `data-id`, deprecated `particlesInit` event removed, README documented with observed attributes table and theme caveat, build passes)
-11. ❏ **S11–S17** — align remaining extended wrappers (React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
-12. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
-13. ❏ **S20–S21** — validation and handoff
+11. ✅ **S11 React docs** — README props table updated with `particlesLoaded`, demo/template check passed
+12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate senza refresh per solo-theme), demo (constructor init + conditional render — module-level init freeze Preact, tenuto pattern originale), README aligned
+13. ❏ **S13–S17** — align remaining extended wrappers (Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+14. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+15. ❏ **S20–S21** — validation and handoff

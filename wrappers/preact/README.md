@@ -200,6 +200,9 @@ class App extends Component {
 | canvasClassName | string   | the class name of the canvas.                                                                                                               |
 | container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
 | particlesLoaded | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+| theme           | string   | The theme name to apply. Requires `@tsparticles/plugin-themes` to be installed and loaded via `initParticlesEngine`                         |
+
+> **Note**: The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the `loadTheme()` method is not available on the container and the prop is silently ignored.
 
 Find your parameters configuration [here](https://particles.js.org).
 
