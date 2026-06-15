@@ -45,7 +45,7 @@ export default class ParticlesModifier extends Modifier<ParticlesModifierSignatu
     this.#container?.destroy();
     this.#container = undefined;
 
-    let container = await tsParticles.load({
+    const container = await tsParticles.load({
       id: element.id,
       options: options ?? {},
       url,
