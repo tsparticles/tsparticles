@@ -18,7 +18,7 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * RollUpdater constructor
-   * @param pluginManager
+   * @param pluginManager - The plugin manager
    */
   constructor(pluginManager: PluginManager) {
     this.#pluginManager = pluginManager;
@@ -26,7 +26,8 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * Gets the transform values for the roll effect
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The result
    */
   getTransformValues(particle: Particle): Partial<IParticleTransformValues> {
     const roll = particle.roll?.enable && particle.roll,
@@ -41,7 +42,7 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle roll
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: RollParticle): void {
     initParticle(this.#pluginManager, particle);
@@ -49,7 +50,8 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * Checks if roll is enabled for the particle
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: RollParticle): boolean {
     const roll = particle.options.roll;
@@ -59,8 +61,8 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * Loads the roll options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: RollParticlesOptions,
@@ -71,8 +73,8 @@ export class RollUpdater implements IParticleUpdater {
 
   /**
    * Updates the particle roll
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: Particle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {

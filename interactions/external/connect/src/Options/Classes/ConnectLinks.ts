@@ -6,7 +6,6 @@ export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks>
   /** Connect line opacity */
   opacity = 0.5;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IConnectLinks>): void {
     if (isNull(data)) {
       return;

@@ -26,7 +26,7 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
 
   /**
    * Loads the gradient angle animation from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IAnimation>): void {
     if (isNull(data)) {

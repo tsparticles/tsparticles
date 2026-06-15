@@ -31,12 +31,10 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
     if (particle.slow.inRange && !force) {
       return;
@@ -45,7 +43,6 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     particle.slow.factor = 1;
   }
 
-  /** @inheritDoc */
   init(): void {
     const container = this.container,
       slow = container.actualOptions.interactivity?.modes.slow;
@@ -59,12 +56,10 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     container.retina.slowModeRadius = slow.radius * container.retina.pixelRatio;
   }
 
-  /** @inheritDoc */
   interact(): void {
     // nothing to do
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -73,12 +68,10 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     return !!events?.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
   }
 
-  /** @inheritDoc */
   loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {
     loadOptionProperty(options, "slow", Slow, ...sources);
   }
 
-  /** @inheritDoc */
   reset(interactivityData: IInteractivityData, particle: Particle): void {
     particle.slow.inRange = false;
 

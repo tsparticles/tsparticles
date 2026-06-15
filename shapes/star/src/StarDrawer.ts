@@ -16,7 +16,7 @@ const defaultInset = 2,
 export class StarDrawer implements IShapeDrawer<StarParticle> {
   /**
    * Draws the star shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<StarParticle>): void {
     drawStar(data);
@@ -24,7 +24,8 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
 
   /**
    * Gets the number of sides for this shape
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The numeric value
    */
   getSidesCount(particle: Particle): number {
     const star = particle.shapeData as IStarShape | undefined;
@@ -34,8 +35,8 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
 
   /**
    * Initializes the star inset for the particle
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: StarParticle): void {
     const star = particle.shapeData as IStarShape | undefined;

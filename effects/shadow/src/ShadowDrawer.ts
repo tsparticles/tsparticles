@@ -52,8 +52,8 @@ export class ShadowDrawer implements IEffectDrawer {
 
   /**
    * ShadowDrawer constructor
-   * @param pluginManager
-   * @param container
+   * @param pluginManager - The plugin manager
+   * @param container - The container to handle
    */
   constructor(pluginManager: PluginManager, container: Container) {
     this.#pluginManager = pluginManager;
@@ -62,7 +62,7 @@ export class ShadowDrawer implements IEffectDrawer {
 
   /**
    * Restores the canvas context after shadow rendering
-   * @param data
+   * @param data - The data to handle
    */
   drawAfter(data: IShapeDrawData): void {
     const { context } = data;
@@ -72,7 +72,7 @@ export class ShadowDrawer implements IEffectDrawer {
 
   /**
    * Applies shadow styles before particle rendering
-   * @param data
+   * @param data - The data to handle
    */
   drawBefore(data: IShapeDrawData): void {
     const { particle, context } = data,
@@ -95,8 +95,8 @@ export class ShadowDrawer implements IEffectDrawer {
 
   /**
    * Initializes shadow-related particle properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: ShadowParticle): void {
     const effectData = particle.effectData,

@@ -36,7 +36,6 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     this.color.value = "#fff";
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILinks>): void {
     if (isNull(data)) {
       return;

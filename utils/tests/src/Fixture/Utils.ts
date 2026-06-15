@@ -11,8 +11,8 @@ import {
 
 /**
  *
- * @param container -
- * @param direction -
+ * @param container - The container to handle
+ * @param direction - The direction
  * @returns the particle created
  */
 export function buildParticleWithDirection(container: Container, direction: MoveDirection): Particle | undefined {
@@ -23,9 +23,9 @@ export function buildParticleWithDirection(container: Container, direction: Move
 
 /**
  *
- * @param start -
- * @param stop -
- * @param velocity -
+ * @param start - The start value
+ * @param stop - The stop
+ * @param velocity - The velocity
  */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
   const { dx, dy } = getDistances(start, stop),

@@ -9,7 +9,7 @@ const extLength = 3;
 
 /**
  *
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 function addLoadImageToEngine(engine: ImageEngine): void {
   engine.getImages ??= (container: ImageContainer): IImage[] => {

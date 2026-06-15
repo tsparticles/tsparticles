@@ -13,7 +13,7 @@ import { options } from "./options.js";
 const presetNames = ["confettiExplosions", "confetti-explosions"];
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadConfettiExplosionsPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

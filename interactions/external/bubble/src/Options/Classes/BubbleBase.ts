@@ -28,9 +28,6 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
   /** Bubble size */
   size?: number;
 
-  /** @inheritDoc */
-
-  /** @inheritDoc */
   load(data?: RecursivePartial<IBubbleBase>): void {
     if (isNull(data)) {
       return;

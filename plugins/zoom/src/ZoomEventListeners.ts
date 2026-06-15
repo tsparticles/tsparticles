@@ -237,7 +237,6 @@ export class ZoomEventListeners {
   /**
    * Handles touch end and touch cancel events to reset touch distance
    * @internal
-   * @param event - the touch event
    */
   #handleTouchEnd(): void {
     this.#touchDistance = initialTouchDistance;

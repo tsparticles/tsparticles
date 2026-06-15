@@ -7,7 +7,7 @@ declare const __VERSION__: string;
 export const brownianPathName = "brownianPathGenerator";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadBrownianPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

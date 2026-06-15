@@ -20,7 +20,6 @@ export class Cannon implements ICannon {
   /** Velocity multiplier from drag distance */
   velocityFactor = 0.5;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ICannon>): void {
     if (!data) {
       return;

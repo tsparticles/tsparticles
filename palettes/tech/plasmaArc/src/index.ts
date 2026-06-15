@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "plasma-arc";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadPlasmaArcPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

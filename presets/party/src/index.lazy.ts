@@ -3,7 +3,7 @@ import type { Engine } from "@tsparticles/engine/lazy";
 const presetName = "party";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadPartyPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

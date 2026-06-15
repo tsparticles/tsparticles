@@ -279,10 +279,9 @@ export function stringToRgb(pluginManager: PluginManager, input: string): IRgb |
 
 /**
  * Converts a Hue Saturation Lightness ({@link IHsl}) object in a {@link IRgb} object
- * @param hsl - the Hue Saturation Lightness ({@link IHsl}) object
- * @param temp1
- * @param temp2
- * @param temp3
+ * @param temp1 - The temp1
+ * @param temp2 - The temp2
+ * @param temp3 - The temp3
  * @returns the {@link IRgb} object
  */
 function hslChannel(temp1: number, temp2: number, temp3: number): number {
@@ -316,7 +315,8 @@ function hslChannel(temp1: number, temp2: number, temp3: number): number {
 
 /**
  *
- * @param hsl
+ * @param hsl - The HSL color
+ * @returns The result
  */
 export function hslToRgb(hsl: IHsl): IRgb {
   // Ensure that h, s, and l are in the valid range
@@ -589,9 +589,9 @@ export function getHslAnimationFromHsl(
 }
 
 /**
- * @param colorValue -
- * @param colorAnimation -
- * @param reduceFactor -
+ * @param colorValue - The color value
+ * @param colorAnimation - The colorAnimation
+ * @param reduceFactor - The reduceFactor
  */
 function setColorAnimation(
   colorValue: IParticleColorAnimation,

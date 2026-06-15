@@ -24,7 +24,7 @@ const zIndexOffset = 1,
   minVolume = 0;
 
 /**
- * @param data -
+ * @param data - The data to handle
  * @returns the image element
  */
 function initImage(data: InitImageData): HTMLImageElement {
@@ -60,7 +60,7 @@ function initImage(data: InitImageData): HTMLImageElement {
 
 /**
  *
- * @param image -
+ * @param image - The image
  */
 function removeImage(image?: HTMLImageElement): void {
   if (!image) {
@@ -71,14 +71,14 @@ function removeImage(image?: HTMLImageElement): void {
 }
 
 /**
- * @param icon -
- * @param top -
- * @param left -
- * @param display -
- * @param zIndex -
- * @param width -
- * @param margin -
- * @param style -
+ * @param icon - The icon
+ * @param top - The top
+ * @param left - The left
+ * @param display - The display
+ * @param zIndex - The zIndex
+ * @param width - The width
+ * @param margin - The margin
+ * @param style - The style
  */
 function setIconStyle(
   icon: HTMLImageElement,
@@ -134,7 +134,6 @@ export class SoundsPluginInstance implements IContainerPlugin {
     this.#audioMap = new Map<string, AudioBuffer>();
   }
 
-  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this.#container,
       options = container.actualOptions,
@@ -202,7 +201,6 @@ export class SoundsPluginInstance implements IContainerPlugin {
     }
   }
 
-  /** @inheritDoc */
   async start(): Promise<void> {
     const container = this.#container,
       options = container.actualOptions,
@@ -280,7 +278,6 @@ export class SoundsPluginInstance implements IContainerPlugin {
     }
   }
 
-  /** @inheritDoc */
   stop(): void {
     this.#container.muted = true;
 

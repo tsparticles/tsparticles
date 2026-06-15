@@ -6,7 +6,7 @@ declare const __VERSION__: string;
 export const gridPathName = "gridPathGenerator";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadGridPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

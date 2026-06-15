@@ -21,7 +21,7 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
 
   /**
    * Loads the animatable gradient color from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IAnimatableGradientColor>): void {
     if (isNull(data)) {

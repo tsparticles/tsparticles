@@ -83,7 +83,8 @@ const EMPTY_SIZE = 0,
    *
    * This is used to REPLACE `global.window = global.tsparticlesInternalExports || {}` in the UMD wrapper,
    * so that rollup writes all exports directly into the correct namespace object.
-   * @param scope
+   * @param scope - The scope
+   * @returns The string value
    */
   buildGlobalNamespaceInit = (scope: string): string => {
     const segments = scope.split("."),
@@ -100,8 +101,9 @@ const EMPTY_SIZE = 0,
   /**
    * Replace the UMD factory's exports target (global.window = ...) with the correct namespace path.
    * This makes rollup write all `exports.X = X` directly into __tsParticlesInternals.<scope>.
-   * @param code
-   * @param scope
+   * @param code - The code
+   * @param scope - The scope
+   * @returns The string value
    */
   redirectUmdExportsToNamespace = (code: string, scope: string): string => {
     const namespaceInit = buildGlobalNamespaceInit(scope);
@@ -119,8 +121,9 @@ const EMPTY_SIZE = 0,
   /**
    * Build the code that copies public exports from the namespace to window.
    * Reads from globalThis.__tsParticlesInternals.<scope>.<export> after the factory has run.
-   * @param scope
-   * @param publicExports
+   * @param scope - The scope
+   * @param publicExports - The publicExports
+   * @returns The string value
    */
   buildWindowExposureCode = (scope: string, publicExports: string[]): string => {
     if (publicExports.length === EMPTY_SIZE) {

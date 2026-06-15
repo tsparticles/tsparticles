@@ -4,8 +4,8 @@ import klaw from "klaw";
 import path from "node:path";
 
 /**
- * @param value -
- * @param version -
+ * @param value - The value
+ * @param version - The version
  * @returns -
  */
 function resolveWorkspaceVersion(value: string, version: string): string {
@@ -27,8 +27,8 @@ function resolveWorkspaceVersion(value: string, version: string): string {
 }
 
 /**
- * @param deps -
- * @param version -
+ * @param deps - The deps
+ * @param version - The version
  * @returns -
  */
 function resolveDeps(deps: Record<string, string>, version: string): Record<string, string> {
@@ -41,8 +41,8 @@ function resolveDeps(deps: Record<string, string>, version: string): Record<stri
 }
 
 /**
- * @param basePath -
- * @param silent -
+ * @param basePath - The basePath
+ * @param silent - The silent
  * @returns true if the dist files process was successful
  */
 export async function buildDistFiles(basePath: string, silent: boolean): Promise<boolean> {

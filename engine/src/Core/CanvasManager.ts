@@ -45,9 +45,9 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
 
 /**
  *
- * @param canvas -
- * @param style -
- * @param important -
+ * @param canvas - The canvas
+ * @param style - The style
+ * @param important - The important
  */
 function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, important = false): void {
   if (!style) {

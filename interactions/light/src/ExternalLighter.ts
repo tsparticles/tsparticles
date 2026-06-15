@@ -17,7 +17,6 @@ import { Light } from "./Options/Classes/Light.js";
 
 /** External light interactor */
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
   readonly #pluginManager;
 
@@ -27,17 +26,14 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     this.#pluginManager = pluginManager;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -58,7 +54,6 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     });
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: LightParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -83,12 +78,10 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     return res;
   }
 
-  /** @inheritDoc */
   loadModeOptions(options: Modes & LightMode, ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]): void {
     loadOptionProperty(options, "light", Light, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

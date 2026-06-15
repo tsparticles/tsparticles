@@ -33,7 +33,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /**
    * CurvesPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -43,7 +43,8 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector using curve harmonics
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The result
    */
   generate(particle: CurvesPathParticle): Vector {
     if (!particle.pathGen) {
@@ -97,7 +98,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle curve state
-   * @param particle
+   * @param particle - The particle to process
    */
   reset(particle: CurvesPathParticle): void {
     delete particle.pathGen;

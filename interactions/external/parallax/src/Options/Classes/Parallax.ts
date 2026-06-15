@@ -8,7 +8,6 @@ export class Parallax implements IParallax, IOptionLoader<IParallax> {
   /** The parallax smoothing factor */
   smooth = 10;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IParallax>): void {
     if (isNull(data)) {
       return;

@@ -14,7 +14,6 @@ export class LightGradient implements ILightGradient, IOptionLoader<ILightGradie
     this.stop.value = "#000000";
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILightGradient>): void {
     if (isNull(data)) {
       return;

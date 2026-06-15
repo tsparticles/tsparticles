@@ -27,9 +27,9 @@ const fColorIndex = 0,
   sColorIndex = 1;
 
 /**
- * @param factor -
- * @param newFactor -
- * @param key -
+ * @param factor - The factor
+ * @param newFactor - The newFactor
+ * @param key - The key
  */
 function setTransformValue(
   factor: Partial<IParticleTransformValues>,
@@ -75,7 +75,7 @@ export class RenderManager {
    * Constructor of canvas manager
    * @param pluginManager - the engine managing the whole library
    * @param container - the parent container
-   * @param canvasManager -
+   * @param canvasManager - The canvasManager
    */
   constructor(pluginManager: PluginManager, container: Container, canvasManager: CanvasManager) {
     this.#pluginManager = pluginManager;
@@ -158,7 +158,7 @@ export class RenderManager {
 
   /**
    * Generic draw method for drawing stuff on the canvas context
-   * @param cb -
+   * @param cb - The cb
    * @returns the result of the callback
    */
   draw<T>(cb: (context: OffscreenCanvasRenderingContext2D) => T): T | undefined {
@@ -254,7 +254,7 @@ export class RenderManager {
 
   /**
    * Draws all particles for the current frame
-   * @param delta -
+   * @param delta - The delta time
    */
   drawParticles(delta: IDelta): void {
     const { particles } = this.#container;
@@ -393,7 +393,7 @@ export class RenderManager {
 
   /**
    * Paints the canvas background with an optional base color
-   * @param baseColor -
+   * @param baseColor - The baseColor
    */
   paintBase(baseColor?: string): void {
     this.draw(ctx => {
@@ -404,8 +404,8 @@ export class RenderManager {
 
   /**
    * Paints an image on the canvas with the given opacity
-   * @param image -
-   * @param opacity -
+   * @param image - The image
+   * @param opacity - The opacity value
    */
   paintImage(image: HTMLImageElement | undefined | null, opacity: number): void {
     this.draw(ctx => {
@@ -431,7 +431,7 @@ export class RenderManager {
 
   /**
    * Sets the canvas rendering context
-   * @param context -
+   * @param context - The rendering context
    */
   setContext(context: OffscreenCanvasRenderingContext2D | null): void {
     this.#context = context;
@@ -443,7 +443,7 @@ export class RenderManager {
 
   /**
    * Sets the canvas rendering context settings
-   * @param settings -
+   * @param settings - The settings
    */
   setContextSettings(settings: CanvasRenderingContext2DSettings): void {
     this.#contextSettings = settings;

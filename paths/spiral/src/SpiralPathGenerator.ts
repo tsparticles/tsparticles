@@ -32,7 +32,7 @@ export class SpiralPathGenerator implements IMovePathGenerator {
 
   /**
    * SpiralPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -42,8 +42,9 @@ export class SpiralPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector with spiral oscillation
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
+   * @returns The result
    */
   generate(particle: SpiralParticle, delta: IDelta): Vector {
     const options = this.options;
@@ -98,7 +99,7 @@ export class SpiralPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle spiral state
-   * @param particle
+   * @param particle - The particle to process
    */
   reset(particle: SpiralParticle): void {
     delete particle.spiral;

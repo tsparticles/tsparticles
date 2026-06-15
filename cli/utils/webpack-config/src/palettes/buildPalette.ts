@@ -11,7 +11,7 @@ interface PaletteParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPalette(params: PaletteParams): unknown {

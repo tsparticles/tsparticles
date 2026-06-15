@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "confetti-patriotic";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadConfettiPatrioticPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

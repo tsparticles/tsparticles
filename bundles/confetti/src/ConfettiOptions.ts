@@ -122,7 +122,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
   /**
    * Loads confetti options from the provided data
-   * @param data -
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IConfettiOptions>): void {
     if (isNull(data)) {

@@ -63,8 +63,9 @@ interface INameData {
 
 /**
  *
- * @param name
- * @param destination
+ * @param name - The name
+ * @param destination - The destination point
+ * @returns The result
  */
 function getNameData(name: string, destination: string): INameData {
   const pascalName = capitalize(name.trim(), "-", "_", " "),
@@ -82,7 +83,8 @@ function getNameData(name: string, destination: string): INameData {
 
 /**
  *
- * @param loadFunction
+ * @param loadFunction - The loadFunction
+ * @returns The string value
  */
 function getNoopLazyIndex(loadFunction: string): string {
   return `import type { Engine } from "@tsparticles/engine/lazy";
@@ -100,7 +102,8 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param loadFunction
+ * @param loadFunction - The loadFunction
+ * @returns The string value
  */
 function getBrowserFile(loadFunction: string): string {
   return `import { ${loadFunction} } from "./index.js";
@@ -118,8 +121,9 @@ export * from "./index.js";
 
 /**
  *
- * @param loadFunction
- * @param reexportEngine
+ * @param loadFunction - The loadFunction
+ * @param reexportEngine - The reexportEngine
+ * @returns The string value
  */
 function getBundleFile(loadFunction: string, reexportEngine: boolean): string {
   return `import { ${loadFunction} } from "./index.js";
@@ -139,8 +143,9 @@ globalObject.${loadFunction} = ${loadFunction};
 
 /**
  *
- * @param kindLabel
- * @param description
+ * @param kindLabel - The kindLabel
+ * @param description - The description
+ * @returns The string value
  */
 function getProjectDescription(kindLabel: string, description: string): string {
   return `tsParticles ${description} ${kindLabel}`;
@@ -148,8 +153,9 @@ function getProjectDescription(kindLabel: string, description: string): string {
 
 /**
  *
- * @param repositoryUrl
- * @param packageSuffix
+ * @param repositoryUrl - The repositoryUrl
+ * @param packageSuffix - The packageSuffix
+ * @returns The string value
  */
 function getRepoUrl(repositoryUrl: string, packageSuffix: string): string {
   if (repositoryUrl) {
@@ -161,7 +167,8 @@ function getRepoUrl(repositoryUrl: string, packageSuffix: string): string {
 
 /**
  *
- * @param config
+ * @param config - The configuration
+ * @returns The string value
  */
 function getRollupConfig(config: IProjectConfig): string {
   return `import { ${config.rollupFactory} } from "@tsparticles/rollup-plugin";
@@ -185,7 +192,8 @@ export default ${config.rollupFactory}({
 
 /**
  *
- * @param config
+ * @param config - The configuration
+ * @returns The string value
  */
 function getReadme(config: IProjectConfig): string {
   return `[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
@@ -214,8 +222,9 @@ await ${config.loadFunction}(tsParticles);
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createBundleConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}`;
@@ -256,8 +265,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createEffectConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Effect`,
@@ -306,9 +316,10 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
- * @param type
+ * @param nameData - The nameData
+ * @param description - The description
+ * @param type - The type
+ * @returns The result
  */
 function createInteractionConfig(nameData: INameData, description: string, type: InteractionType): IProjectConfig {
   const isExternal = type === "external" || type === "generic",
@@ -451,8 +462,9 @@ ${
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createPaletteConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Palette`;
@@ -497,8 +509,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createPathConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Path`,
@@ -572,9 +585,10 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param loadFunction
- * @param pluginClass
+ * @param nameData - The nameData
+ * @param loadFunction - The loadFunction
+ * @param pluginClass - The pluginClass
+ * @returns The string value
  */
 function createGenericPluginIndex(loadFunction: string, pluginClass: string): string {
   return `import { type Engine } from "@tsparticles/engine";
@@ -594,9 +608,10 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
- * @param type
+ * @param nameData - The nameData
+ * @param description - The description
+ * @param type - The type
+ * @returns The result
  */
 function createPluginConfig(nameData: INameData, description: string, type: PluginType): IProjectConfig {
   if (type === "generic") {
@@ -922,8 +937,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createPresetConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Preset`;
@@ -971,8 +987,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createShapeConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Shape`,
@@ -1026,8 +1043,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData
- * @param description
+ * @param nameData - The nameData
+ * @param description - The description
+ * @returns The result
  */
 function createUpdaterConfig(nameData: INameData, description: string): IProjectConfig {
   const loadFunction = `load${nameData.pascalName}Updater`,
@@ -1087,8 +1105,9 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param options
- * @param nameData
+ * @param options - The options to handle
+ * @param nameData - The nameData
+ * @returns The result
  */
 function resolveProjectConfig(options: ICreateProjectOptions, nameData: INameData): IProjectConfig {
   switch (options.kind) {
@@ -1121,8 +1140,8 @@ function resolveProjectConfig(options: ICreateProjectOptions, nameData: INameDat
 
 /**
  *
- * @param destination
- * @param srcFiles
+ * @param destination - The destination point
+ * @param srcFiles - The srcFiles
  */
 async function writeSourceFiles(destination: string, srcFiles: Record<string, string>): Promise<void> {
   for (const [filePath, content] of Object.entries(srcFiles)) {
@@ -1136,7 +1155,7 @@ async function writeSourceFiles(destination: string, srcFiles: Record<string, st
 
 /**
  *
- * @param options
+ * @param options - The options to handle
  */
 export async function createProjectTemplate(options: ICreateProjectOptions): Promise<void> {
   const nameData = getNameData(options.name, options.destination),

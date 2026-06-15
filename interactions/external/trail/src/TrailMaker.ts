@@ -35,7 +35,6 @@ const trailMode = "trail",
 
 /** Trail mode interactor */
 export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
 
   #delay: number;
@@ -48,17 +47,14 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     this.#delay = 0;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     const container = this.container;
 
@@ -155,7 +151,6 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     this.#delay -= optDelay;
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -169,12 +164,10 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     );
   }
 
-  /** @inheritDoc */
   loadModeOptions(options: Modes & TrailMode, ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]): void {
     loadOptionProperty(options, "trail", Trail, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

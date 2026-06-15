@@ -22,7 +22,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
 
   /**
    * Loads the rotate animation from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IRotateAnimation>): void {
     if (isNull(data)) {

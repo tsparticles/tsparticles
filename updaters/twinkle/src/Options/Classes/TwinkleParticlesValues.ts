@@ -26,7 +26,7 @@ export class TwinkleParticlesValues implements ITwinkleParticlesValues, IOptionL
 
   /**
    * Loads the twinkle particles values from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ITwinkleParticlesValues>): void {
     if (isNull(data)) {

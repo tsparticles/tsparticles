@@ -133,7 +133,7 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
 
   /**
    * Loads ribbons options from the provided data
-   * @param data -
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IRibbonsOptions>): void {
     if (isNull(data)) {

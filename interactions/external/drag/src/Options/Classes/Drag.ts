@@ -11,7 +11,6 @@ export class Drag implements IDrag, IOptionLoader<IDrag> {
   /** Whether to preserve drag momentum on release */
   preserveMomentum = defaultPreserveMomentum;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IDrag>): void {
     if (isNull(data)) {
       return;

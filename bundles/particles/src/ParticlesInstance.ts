@@ -6,7 +6,7 @@ export class ParticlesInstance {
 
   /**
    * Creates a new ParticlesInstance
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;

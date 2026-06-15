@@ -45,7 +45,6 @@ interface MomentumSample {
  * - `momentumFactor` — scaling factor for the computed drag velocity (default `0.03`).
  */
 export class Dragger extends ExternalInteractorBase<DragContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
 
   #dragStartClickTime?: number;
@@ -57,23 +56,19 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
   #mouseDownHandled = false;
   #savedVelocity?: ICoordinates;
 
-  /** @inheritDoc */
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: DragContainer) {
     super(container);
   }
 
-  /** @inheritDoc */
   clear(_particle: InteractivityParticle, _delta: IDelta): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData, _delta: IDelta): void {
     const mouse = interactivityData.mouse,
       mousePos = mouse.position;
@@ -180,7 +175,6 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
     closest.misplaced = false;
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -193,23 +187,19 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
     return !!events?.onClick.enable && mouse.clicking && !!mouse.position && isInArray(dragMode, events.onClick.mode);
   }
 
-  /** @inheritDoc */
   loadModeOptions(options: Modes & DragMode, ...sources: RecursivePartial<(IModes & IDragMode) | undefined>[]): void {
     loadOptionProperty(options, "drag", Drag, ...sources);
   }
 
-  /** @inheritDoc */
   reset(_interactivityData: IInteractivityData, _particle: InteractivityParticle): void {
     // do nothing - release logic is handled in interact()
   }
 
+  // eslint-disable-next-line jsdoc/require-param -- tsdoc forbids @param mousePos.x
   /**
    * Finds the closest particle under the cursor within its radius
-   * @param interactivityData -
-   * @param mousePos -
-   * @param mousePos.x
-   * @param mousePos.y
-   * @returns -
+   * @param interactivityData - The interactivity data
+   * @returns The particle found under the cursor, if any
    */
   #findParticleUnderCursor(
     interactivityData: IInteractivityData,
@@ -241,7 +231,8 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
 
   /**
    * Checks whether a new click cycle has begun since drag started
-   * @param mouse
+   * @param mouse - The mouse
+   * @returns The boolean value
    */
   #hasClickEnded(mouse: IInteractivityData["mouse"]): boolean {
     return (

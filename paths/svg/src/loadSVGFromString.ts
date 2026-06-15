@@ -9,7 +9,7 @@ export interface LoadedSVGPaths {
 }
 
 /**
- * @param svgText -
+ * @param svgText - The svgText
  * @returns the loaded SVG paths and the size of the SVG
  */
 export function loadSVGFromString(svgText: string): LoadedSVGPaths {

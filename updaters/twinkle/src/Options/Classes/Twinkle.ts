@@ -15,7 +15,7 @@ export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
 
   /**
    * Loads the twinkle options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ITwinkle>): void {
     if (isNull(data)) {

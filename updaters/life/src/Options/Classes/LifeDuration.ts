@@ -7,7 +7,7 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
   sync = false;
   /**
    * Loads the life duration from data
-   * @param data
+   * @param data - The data to handle
    */
   override load(data?: RecursivePartial<ILifeDuration>): void {
     if (isNull(data)) {

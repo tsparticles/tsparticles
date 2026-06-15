@@ -22,7 +22,8 @@ const instances = new Map<string, FireworksInstance | Promise<FireworksInstance 
 
 /**
  * Checks if a particle supports explosion sounds
- * @param args
+ * @param args - The arguments
+ * @returns The boolean value
  */
 export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
   const data = args.data as { particle?: Particle } | undefined;
@@ -32,8 +33,8 @@ export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
 
 /**
  * Converts firework options to tsParticles source options
- * @param options -
- * @param canvas -
+ * @param options - The options to handle
+ * @param canvas - The canvas
  * @returns the options for the tsParticles instance
  */
 export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISourceOptions {
@@ -205,10 +206,10 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
 
 /**
  * Gets or creates a fireworks instance for the given id
- * @param engine -
- * @param id -
- * @param sourceOptions -
- * @param canvas -
+ * @param engine - The engine to load the shape in
+ * @param id - The id
+ * @param sourceOptions - The sourceOptions
+ * @param canvas - The canvas
  * @returns the loaded instance
  */
 export async function getFireworksInstance(

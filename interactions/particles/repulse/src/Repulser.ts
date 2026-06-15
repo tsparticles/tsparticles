@@ -43,22 +43,18 @@ export class Repulser extends ParticlesInteractorBase {
     this.#velocityVec = Vector.origin;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(p1: RepulseParticle): void {
     const container = this.container;
 
@@ -114,12 +110,10 @@ export class Repulser extends ParticlesInteractorBase {
     }
   }
 
-  /** @inheritDoc */
   isEnabled(particle: RepulseParticle): boolean {
     return particle.options.repulse?.enabled ?? false;
   }
 
-  /** @inheritDoc */
   loadParticlesOptions(
     options: RepulseParticlesOptions,
     ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
@@ -127,7 +121,6 @@ export class Repulser extends ParticlesInteractorBase {
     loadOptionProperty(options, "repulse", ParticlesRepulse, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

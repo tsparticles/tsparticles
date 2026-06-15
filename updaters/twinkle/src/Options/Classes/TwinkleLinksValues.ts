@@ -23,7 +23,7 @@ export class TwinkleLinksValues implements ITwinkleLinksValues, IOptionLoader<IT
 
   /**
    * Loads the twinkle links values from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ITwinkleLinksValues>): void {
     if (isNull(data)) {

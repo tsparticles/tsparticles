@@ -21,7 +21,7 @@ const firstIndex = 0,
 export class TextDrawer implements IShapeDrawer<TextParticle> {
   /**
    * Draws the text shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<TextParticle>): void {
     drawText(data);
@@ -29,7 +29,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
 
   /**
    * Loads the required fonts
-   * @param container
+   * @param container - The container to handle
    */
   async init(container: Container): Promise<void> {
     const options = container.actualOptions;

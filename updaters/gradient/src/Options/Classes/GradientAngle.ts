@@ -27,7 +27,7 @@ export class GradientAngle
 
   /**
    * Loads the gradient angle from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IGradientAngle & IAnimatable<IAnimation>>): void {
     if (isNull(data)) {

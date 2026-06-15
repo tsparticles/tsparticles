@@ -18,7 +18,6 @@ export class MotionPluginInstance implements IContainerPlugin {
     this.#container = container;
   }
 
-  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this.#container,
       options = container.actualOptions.motion;

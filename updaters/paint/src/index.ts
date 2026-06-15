@@ -4,7 +4,7 @@ import { PaintUpdater } from "./PaintUpdater.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadPaintUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

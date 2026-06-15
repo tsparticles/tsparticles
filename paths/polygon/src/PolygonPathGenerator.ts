@@ -24,7 +24,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
   /**
    * PolygonPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -35,7 +35,8 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector along polygon vertices
-   * @param p
+   * @param p - The particle
+   * @returns The result
    */
   generate(p: PolygonPathParticle): Vector {
     const { sides, turnSteps } = this.options;
@@ -77,7 +78,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle polygon state
-   * @param particle
+   * @param particle - The particle to process
    */
   reset(particle: PolygonPathParticle): void {
     delete particle.hexStep;

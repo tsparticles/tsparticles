@@ -23,7 +23,6 @@ export class Push implements IPush, IOptionLoader<IPush> {
   /** Number of particles to push */
   quantity: RangeValue = 4;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IPush>): void {
     if (isNull(data)) {
       return;

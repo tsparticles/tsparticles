@@ -83,7 +83,7 @@ function hwbToRgb(hwb: IHwb): IRgb {
 
 /**
  * Converts an HWB color value and alpha transparency value to RGBA. Conversion formula
- * @param hwba -
+ * @param hwba - The hwba
  * @returns The RGBA representation
  */
 function hwbaToRgba(hwba: IHwba): IRgba {
@@ -97,7 +97,8 @@ function hwbaToRgba(hwba: IHwba): IRgba {
 export class HwbColorManager implements IColorManager {
   /**
    * Checks if the input starts with hwb
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("hwb");
@@ -105,7 +106,8 @@ export class HwbColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -120,7 +122,8 @@ export class HwbColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -139,7 +142,8 @@ export class HwbColorManager implements IColorManager {
 
   /**
    * Parses an HWB color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {

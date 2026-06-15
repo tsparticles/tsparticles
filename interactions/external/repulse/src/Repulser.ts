@@ -52,7 +52,6 @@ interface IRepulseRestoreData {
  * Particle repulse manager
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
-  /** {@inheritDoc} */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly #clickVec: Vector;
@@ -114,12 +113,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     return this.#maxDistance;
   }
 
-  /** {@inheritDoc} */
   clear(): void {
     // do nothing
   }
 
-  /** {@inheritDoc} */
   init(): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
@@ -134,8 +131,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param interactivityData
+   * @param interactivityData - The interactivity data
    */
   interact(interactivityData: IInteractivityData): void {
     this.#interactedThisFrame.clear();
@@ -171,9 +167,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param interactivityData
-   * @param particle
+   * @param interactivityData - The interactivity data
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
@@ -201,9 +197,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadModeOptions(
     options: Modes & RepulseMode,
@@ -212,7 +207,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     loadOptionProperty(options, "repulse", Repulse, ...sources);
   }
 
-  /** {@inheritDoc} */
   reset(): void {
     // do nothing
   }

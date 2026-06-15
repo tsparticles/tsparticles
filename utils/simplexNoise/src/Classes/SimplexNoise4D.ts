@@ -2800,10 +2800,10 @@ export class SimplexNoise4D {
   }
 
   /**
-   * @param x -
-   * @param y -
-   * @param z -
-   * @param w -
+   * @param x - The x coordinate
+   * @param y - The y coordinate
+   * @param z - The z coordinate
+   * @param w - The width
    * @returns the noise value
    */
   noise(x: number, y: number, z: number, w: number): number {
@@ -2953,11 +2953,11 @@ export class SimplexNoise4D {
   }
 
   /**
-   * @param multiplier -
-   * @param xsb -
-   * @param ysb -
-   * @param zsb -
-   * @param wsb -
+   * @param multiplier - The multiplier
+   * @param xsb - The xsb
+   * @param ysb - The ysb
+   * @param zsb - The zsb
+   * @param wsb - The wsb
    * @returns the contribution matrix
    */
   #contribution4D(multiplier: number, xsb: number, ysb: number, zsb: number, wsb: number): Contribution4D {

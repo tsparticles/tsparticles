@@ -15,9 +15,9 @@ const defaultGravity = 9.81,
 
 /**
  * Adds an emitter to the container for confetti particles
- * @param container -
- * @param actualOptions -
- * @param opacitySpeed -
+ * @param container - The container to handle
+ * @param actualOptions - The actualOptions
+ * @param opacitySpeed - The opacitySpeed
  */
 export async function addEmitter(
   container: EmitterContainer,
@@ -137,9 +137,9 @@ export async function addEmitter(
 
 /**
  * Converts confetti options to tsParticles source options
- * @param actualOptions -
- * @param params -
- * @param opacitySpeed -
+ * @param actualOptions - The actualOptions
+ * @param params - The parameters
+ * @param opacitySpeed - The opacitySpeed
  * @returns the converted options
  */
 export function convertOptions(

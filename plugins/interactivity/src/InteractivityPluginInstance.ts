@@ -40,14 +40,12 @@ export class InteractivityPluginInstance implements IContainerPlugin {
     this.interactionManager.clearClickHandlers();
   }
 
-  /** @inheritDoc */
   destroy(): void {
     this.clearClickHandlers();
 
     this.#pluginManager.interactors?.delete(this.#container);
   }
 
-  /** @inheritDoc */
   particleCreated(particle: Particle): void {
     const interactivityParticle = particle as InteractivityParticle,
       interactivity = new Interactivity(this.#pluginManager, this.#container);
@@ -58,35 +56,29 @@ export class InteractivityPluginInstance implements IContainerPlugin {
     interactivityParticle.interactivity = interactivity;
   }
 
-  /** @inheritDoc */
   particleReset(particle: Particle): void {
     this.interactionManager.reset(particle);
   }
 
-  /** @inheritDoc */
   postParticleUpdate(particle: Particle, delta: IDelta): void {
     this.interactionManager.particlesInteract(particle, delta);
   }
 
-  /** @inheritDoc */
   postUpdate(delta: IDelta): void {
     this.interactionManager.externalInteract(delta);
     this.interactionManager.updateMaxDistance();
   }
 
-  /** @inheritDoc */
   async preInit(): Promise<void> {
     await this.interactionManager.initInteractors();
     this.interactionManager.init();
   }
 
-  /** @inheritDoc */
   async redrawInit(): Promise<void> {
     await this.interactionManager.initInteractors();
     this.interactionManager.init();
   }
 
-  /** @inheritDoc */
   start(): Promise<void> {
     this.interactionManager.addListeners();
     this.interactionManager.startObserving();
@@ -94,7 +86,6 @@ export class InteractivityPluginInstance implements IContainerPlugin {
     return Promise.resolve();
   }
 
-  /** @inheritDoc */
   stop(): void {
     this.interactionManager.removeListeners();
     this.interactionManager.stopObserving();

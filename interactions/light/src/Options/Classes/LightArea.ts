@@ -9,7 +9,6 @@ export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
   /** The light radius */
   radius = 1000;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILightArea>): void {
     if (isNull(data)) {
       return;

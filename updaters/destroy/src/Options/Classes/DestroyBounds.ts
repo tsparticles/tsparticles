@@ -20,7 +20,7 @@ export class DestroyBounds implements IDestroyBounds, IOptionLoader<IDestroyBoun
 
   /**
    * Loads the destroy bounds from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IDestroyBounds>): void {
     if (isNull(data)) {

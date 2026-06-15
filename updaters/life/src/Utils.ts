@@ -14,9 +14,9 @@ const noTime = 0,
   minCanvasSize = 0;
 
 /**
- * @param particle -
- * @param delta -
- * @param canvasSize -
+ * @param particle - The particle to process
+ * @param delta - The delta time
+ * @param canvasSize - The canvasSize
  */
 export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: IDimension): void {
   if (!particle.life) {

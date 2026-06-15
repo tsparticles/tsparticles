@@ -1,7 +1,7 @@
 import type { EmittersEngine } from "./EmittersEngine.js";
 
 /**
- * @param e -
+ * @param e - The event object
  */
 export function ensureEmittersPluginLoaded(e: EmittersEngine): void {
   if (!e.pluginManager.addEmitterShapeGenerator) {

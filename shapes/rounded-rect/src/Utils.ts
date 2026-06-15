@@ -3,10 +3,10 @@ import type { RectInfo } from "./RectInfo.js";
 
 /**
  *
- * @param ctx -
- * @param fixedRadius -
- * @param fixedDiameter -
- * @param borderRadius -
+ * @param ctx - The rendering context
+ * @param fixedRadius - The fixedRadius
+ * @param fixedDiameter - The fixedDiameter
+ * @param borderRadius - The borderRadius
  */
 export function drawRoundedRect(
   ctx: OffscreenCanvasRenderingContext2D,

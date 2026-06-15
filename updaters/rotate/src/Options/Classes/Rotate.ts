@@ -22,7 +22,7 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
   path = false;
   /**
    * Loads the rotate options from data
-   * @param data
+   * @param data - The data to handle
    */
   override load(data?: RecursivePartial<IRotate>): void {
     if (isNull(data)) {

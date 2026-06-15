@@ -37,7 +37,8 @@ export class EmittersCanvasShapeOptions
   readonly text: TextOptions = new TextOptions();
   /**
    * A filter function or string to apply to pixels
-   * @param pixel
+   * @param pixel - The pixel
+   * @returns The boolean value
    */
   filter: string | ((pixel: IRgba) => boolean) = (pixel): boolean => pixel.a > minAlpha;
 

@@ -18,7 +18,7 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
 
   /**
    * Loads the animatable gradient from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IAnimatableGradient>): void {
     if (isNull(data)) {

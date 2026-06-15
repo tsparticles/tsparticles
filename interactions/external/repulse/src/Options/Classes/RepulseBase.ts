@@ -29,7 +29,6 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
     };
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IRepulseBase>): void {
     if (isNull(data)) {
       return;

@@ -25,11 +25,11 @@ const inSegmentRange = {
 };
 
 /**
- * @param pluginManager -
- * @param context -
- * @param rawData -
- * @param stroke -
- * @param hdr -
+ * @param pluginManager - The plugin manager
+ * @param context - The rendering context
+ * @param rawData - The rawData
+ * @param stroke - The stroke flag
+ * @param hdr - The hdr
  */
 export function drawPolygonMask(
   pluginManager: PluginManager,
@@ -65,12 +65,12 @@ export function drawPolygonMask(
 }
 
 /**
- * @param pluginManager -
- * @param context -
- * @param path -
- * @param stroke -
- * @param position -
- * @param hdr -
+ * @param pluginManager - The plugin manager
+ * @param context - The rendering context
+ * @param path - The path
+ * @param stroke - The stroke flag
+ * @param position - The position
+ * @param hdr - The hdr
  */
 export function drawPolygonMaskPath(
   pluginManager: PluginManager,
@@ -109,9 +109,9 @@ export function drawPolygonMaskPath(
 }
 
 /**
- * @param paths -
- * @param scale -
- * @param offset -
+ * @param paths - The paths
+ * @param scale - The scale
+ * @param offset - The offset
  * @returns the coordinates of the points
  */
 export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
@@ -199,9 +199,9 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 }
 
 /**
- * @param s1 -
- * @param s2 -
- * @param pos -
+ * @param s1 - The s1
+ * @param s2 - The s2
+ * @param pos - The pos
  * @returns the closest point on the segment
  */
 export function calcClosestPointOnSegment(
@@ -236,9 +236,9 @@ export function calcClosestPointOnSegment(
 }
 
 /**
- * @param start -
- * @param stop -
- * @param velocity -
+ * @param start - The start value
+ * @param stop - The stop
+ * @param velocity - The velocity
  */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
   const { dx, dy } = getDistances(start, stop),

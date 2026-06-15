@@ -57,7 +57,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
   /**
    * Checks if the given particle needs the wobble animation
-   * @param particle -
+   * @param particle - The particle to process
    * @returns true if the particle needs the wobble animation, false otherwise
    */
   isEnabled(particle: WobbleParticle): boolean {

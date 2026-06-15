@@ -85,7 +85,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     );
   }
 
-  /** @inheritDoc */
   draw(context: OffscreenCanvasRenderingContext2D): void {
     if (!this.paths?.length) {
       return;
@@ -116,7 +115,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
   }
 
-  /** @inheritDoc */
   async init(): Promise<void> {
     const container = this.#container,
       polygonMaskOptions = container.actualOptions.polygon,
@@ -135,12 +133,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
   }
 
-  /** @inheritDoc */
   particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
     return this.#polygonBounce(particle, delta, direction);
   }
 
-  /** @inheritDoc */
   particlePosition(position?: ICoordinates): ICoordinates | undefined {
     const options = this.#container.actualOptions.polygon,
       defaultLength = 0;
@@ -152,7 +148,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     return deepExtend({}, position ?? this.#randomPoint()) as ICoordinates;
   }
 
-  /** @inheritDoc */
   particlesInitialization(): boolean {
     const options = this.#container.actualOptions.polygon;
 
@@ -170,7 +165,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     return false;
   }
 
-  /** @inheritDoc */
   resize(): void {
     const container = this.#container,
       options = container.actualOptions.polygon;
@@ -194,7 +188,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }, timeout);
   }
 
-  /** @inheritDoc */
   stop(): void {
     delete this.raw;
     delete this.paths;
@@ -304,8 +297,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
    * Android WebView release 62
    * Opera release 49
    * Opera for Android release 49
-   * @param svgUrl -
-   * @param force -
+   * @param svgUrl - The svgUrl
+   * @param force - The force
    * @returns the coordinates of the polygon
    */
   async #downloadSvgPath(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {

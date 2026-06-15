@@ -12,7 +12,7 @@ interface PluginParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPlugin(params: PluginParams): unknown {

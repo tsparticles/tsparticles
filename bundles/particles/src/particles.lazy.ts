@@ -100,8 +100,9 @@ export async function particles(
 
 /**
  * Creates a particles animation on the given canvas
- * @param canvas
- * @param options
+ * @param canvas - The canvas
+ * @param options - The options to handle
+ * @returns A promise
  */
 particles.create = async (
   canvas?: HTMLCanvasElement | null,

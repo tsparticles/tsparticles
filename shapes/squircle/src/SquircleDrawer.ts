@@ -6,7 +6,7 @@ import type { SquircleParticle } from "./SquircleParticle.js";
 export class SquircleDrawer implements IShapeDrawer<SquircleParticle> {
   /**
    * Draws the squircle shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData): void {
     drawSquircle(data);
@@ -14,8 +14,8 @@ export class SquircleDrawer implements IShapeDrawer<SquircleParticle> {
 
   /**
    * Initializes squircle-specific particle properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: SquircleParticle): void {
     const shapeData = particle.shapeData;

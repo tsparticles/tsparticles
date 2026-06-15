@@ -7,7 +7,7 @@ export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoa
   sync = false;
   /**
    * Loads the life delay from data
-   * @param data
+   * @param data - The data to handle
    */
   override load(data?: RecursivePartial<ILifeDelay>): void {
     if (isNull(data)) {

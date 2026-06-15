@@ -39,7 +39,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
 
   /**
    * Loads the split options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ISplit>): void {
     if (isNull(data)) {

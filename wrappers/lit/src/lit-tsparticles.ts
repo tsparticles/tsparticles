@@ -62,6 +62,7 @@ export async function waitForParticlesEngineInitialization(): Promise<void> {
 export class LitParticles extends LitElement {
   /**
    * Render into light DOM so tsParticles can find the container element by id.
+   * @returns The result
    */
   createRenderRoot(): HTMLElement {
     return this;

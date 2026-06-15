@@ -15,7 +15,6 @@ const parallaxMode = "parallax";
  * Particle parallax manager
  */
 export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -23,24 +22,20 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     super(container);
   }
 
-  /** @inheritDoc */
   clear(): void {
     // no-op
   }
 
-  /** @inheritDoc */
   init(): void {
     // no-op
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
       this.#parallaxInteract(interactivityData, particle);
     }
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -49,7 +44,6 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     return !!events?.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
   }
 
-  /** @inheritDoc */
   loadModeOptions(
     options: Modes & ParallaxMode,
     ...sources: RecursivePartial<(IModes & IParallaxMode) | undefined>[]
@@ -57,7 +51,6 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     loadOptionProperty(options, "parallax", Parallax, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // no-op
   }

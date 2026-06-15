@@ -28,7 +28,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
   /**
    * Init a single particle opacity
-   * @param particle -
+   * @param particle - The particle to process
    */
   init(particle: OpacityParticle): void {
     /* opacity */
@@ -55,7 +55,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
   /**
    * Checks if opacity updater is enabled
-   * @param particle -
+   * @param particle - The particle to process
    * @returns true if opacity updater is enabled, false otherwise
    */
   isEnabled(particle: OpacityParticle): boolean {
@@ -74,8 +74,8 @@ export class OpacityUpdater implements IParticleUpdater {
 
   /**
    * Loads the opacity options
-   * @param options -
-   * @param sources -
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: OpacityParticlesOptions,
@@ -86,7 +86,7 @@ export class OpacityUpdater implements IParticleUpdater {
 
   /**
    * Resets the opacity of a particle
-   * @param particle -
+   * @param particle - The particle to process
    */
   reset(particle: OpacityParticle): void {
     if (!particle.opacity) {
@@ -99,8 +99,8 @@ export class OpacityUpdater implements IParticleUpdater {
 
   /**
    * Update function of the opacity updater
-   * @param particle -
-   * @param delta -
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: OpacityParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.opacity || !particle.options.opacity) {

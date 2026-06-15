@@ -38,21 +38,19 @@ export class MovePluginInstance implements IContainerPlugin {
     this.pathGenerators = new Map();
   }
 
-  /** {@inheritDoc IContainerPlugin.destroy} */
   destroy(): void {
     this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
   }
 
   /**
-   * @param particle -
+   * @param particle - The particle to process
    * @returns check if mover is enabled
    */
   isEnabled(particle: MoveParticle): boolean {
     return !particle.destroyed && particle.options.move.enable;
   }
 
-  /** @inheritDoc */
   particleCreated(particle: MoveParticle): void {
     const options = particle.options,
       moveOptions = options.move,
@@ -87,14 +85,12 @@ export class MovePluginInstance implements IContainerPlugin {
     initSpin(this.#container, particle);
   }
 
-  /** @inheritDoc */
   particleDestroyed(particle: MoveParticle): void {
     const pathGenerator = particle.pathGenerator;
 
     pathGenerator?.reset(particle);
   }
 
-  /** @inheritDoc */
   particleUpdate(particle: MoveParticle, delta: IDelta): void {
     const particleOptions = particle.options,
       moveOptions = particleOptions.move;
@@ -123,12 +119,10 @@ export class MovePluginInstance implements IContainerPlugin {
     applyDistance(particle);
   }
 
-  /** @inheritDoc */
   preInit(): Promise<void> {
     return this.#init();
   }
 
-  /** @inheritDoc */
   redrawInit(): Promise<void> {
     return this.#init();
   }

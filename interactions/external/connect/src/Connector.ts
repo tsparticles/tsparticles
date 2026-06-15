@@ -25,17 +25,14 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     const container = this.container,
       connect = container.actualOptions.interactivity?.modes.connect;
@@ -52,7 +49,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
   /**
    * Connecting particles on hover interactivity
-   * @param interactivityData -
+   * @param interactivityData - The interactivity data
    */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
@@ -93,7 +90,6 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     }
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -106,7 +102,6 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     return isInArray(connectMode, events.onHover.mode);
   }
 
-  /** @inheritDoc */
   loadModeOptions(
     options: Modes & ConnectMode,
     ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
@@ -114,7 +109,6 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     loadOptionProperty(options, "connect", Connect, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

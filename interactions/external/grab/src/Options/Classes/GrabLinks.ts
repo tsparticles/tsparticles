@@ -20,7 +20,6 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
   /** Grab line opacity */
   opacity = 1;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IGrabLinks>): void {
     if (isNull(data)) {
       return;

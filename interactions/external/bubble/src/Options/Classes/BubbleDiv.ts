@@ -12,9 +12,7 @@ import type { IBubbleDiv } from "../Interfaces/IBubbleDiv.js";
 export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<IBubbleDiv> {
   /** CSS selectors for the div elements */
   selectors: SingleOrMultiple<string> = [];
-  /** @inheritDoc */
 
-  /** @inheritDoc */
   override load(data?: RecursivePartial<IBubbleDiv>): void {
     super.load(data);
 

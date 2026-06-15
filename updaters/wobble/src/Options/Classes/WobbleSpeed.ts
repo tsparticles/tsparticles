@@ -17,7 +17,7 @@ export class WobbleSpeed implements IWobbleSpeed, IOptionLoader<IWobbleSpeed> {
 
   /**
    * Loads the wobble speed from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IWobbleSpeed>): void {
     if (isNull(data)) {

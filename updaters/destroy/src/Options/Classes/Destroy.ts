@@ -19,7 +19,7 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
 
   /**
    * Loads the destroy options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IDestroy>): void {
     if (isNull(data)) {

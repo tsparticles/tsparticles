@@ -23,7 +23,7 @@ const moveSpeedFactor = 60,
   noDecay = 1;
 
 /**
- * @param particle -
+ * @param particle - The particle to process
  */
 export function applyDistance(particle: MoveParticle): void {
   const initialPosition = particle.initialPosition,
@@ -75,13 +75,13 @@ export function applyDistance(particle: MoveParticle): void {
 
 /**
  *
- * @param particle -
- * @param moveOptions -
- * @param moveSpeed -
- * @param maxSpeed -
- * @param moveDrift -
- * @param reduceFactor -
- * @param delta -
+ * @param particle - The particle to process
+ * @param moveOptions - The moveOptions
+ * @param moveSpeed - The moveSpeed
+ * @param maxSpeed - The maxSpeed
+ * @param moveDrift - The moveDrift
+ * @param reduceFactor - The reduceFactor
+ * @param delta - The delta time
  */
 export function move(
   particle: MoveParticle,
@@ -142,10 +142,10 @@ export function move(
 }
 
 /**
- * @param container -
- * @param particle -
- * @param moveSpeed -
- * @param reduceFactor -
+ * @param container - The container to handle
+ * @param particle - The particle to process
+ * @param moveSpeed - The moveSpeed
+ * @param reduceFactor - The reduceFactor
  */
 export function spin(container: Container, particle: MoveParticle, moveSpeed: number, reduceFactor: number): void {
   if (!particle.spin) {
@@ -179,8 +179,8 @@ export function spin(container: Container, particle: MoveParticle, moveSpeed: nu
 }
 
 /**
- * @param particle -
- * @param delta -
+ * @param particle - The particle to process
+ * @param delta - The delta time
  */
 export function applyPath(particle: MoveParticle, delta: IDelta): void {
   const particlesOptions = particle.options,
@@ -214,7 +214,7 @@ export function applyPath(particle: MoveParticle, delta: IDelta): void {
 }
 
 /**
- * @param particle -
+ * @param particle - The particle to process
  * @returns proximity speed factor
  */
 export function getProximitySpeedFactor(particle: Particle): number {
@@ -222,8 +222,8 @@ export function getProximitySpeedFactor(particle: Particle): number {
 }
 
 /**
- * @param container -
- * @param particle -
+ * @param container - The container to handle
+ * @param particle - The particle to process
  */
 export function initSpin(container: Container, particle: MoveParticle): void {
   const options = particle.options,

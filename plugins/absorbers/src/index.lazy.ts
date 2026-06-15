@@ -1,7 +1,7 @@
 import { type Engine } from "@tsparticles/engine/lazy";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
   const [{ loadAbsorbersInteraction }, { loadAbsorbersPluginSimple }] = await Promise.all([

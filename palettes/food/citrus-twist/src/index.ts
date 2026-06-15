@@ -5,7 +5,7 @@ const paletteName = "citrus-twist";
 
 /**
  *
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadCitrusTwistPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

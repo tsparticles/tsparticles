@@ -635,8 +635,8 @@ export async function decodeGIF(
 }
 
 /**
- * @param data -
- * @param canvasSettings -
+ * @param data - The data to handle
+ * @param canvasSettings - The canvasSettings
  */
 export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
   const { context, radius, particle, delta } = data,

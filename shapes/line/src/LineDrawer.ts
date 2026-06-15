@@ -7,13 +7,16 @@ const sides = 1;
 export class LineDrawer implements IShapeDrawer {
   /**
    * Draws the line shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData): void {
     drawLine(data);
   }
 
-  /** Gets the number of sides for this shape */
+  /**
+   * Gets the number of sides for this shape
+   * @returns The numeric value
+   */
   getSidesCount(): number {
     return sides;
   }

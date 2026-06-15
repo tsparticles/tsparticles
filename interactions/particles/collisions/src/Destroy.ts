@@ -2,8 +2,8 @@ import type { Particle } from "@tsparticles/engine";
 import { bounce } from "./Bounce.js";
 
 /**
- * @param p1 -
- * @param p2 -
+ * @param p1 - The first point
+ * @param p2 - The second point
  */
 export function destroy(p1: Particle, p2: Particle): void {
   if (!p1.unbreakable && !p2.unbreakable) {

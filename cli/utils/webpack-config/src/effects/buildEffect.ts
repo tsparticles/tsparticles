@@ -11,7 +11,7 @@ interface EffectParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesEffect(params: EffectParams): unknown {

@@ -18,11 +18,11 @@ import {
 } from "@tsparticles/engine";
 
 /**
- * @param particle -
- * @param destroyType -
- * @param value -
- * @param minValue -
- * @param maxValue -
+ * @param particle - The particle to process
+ * @param destroyType - The destroyType
+ * @param value - The value
+ * @param minValue - The minValue
+ * @param maxValue - The maxValue
  */
 function checkDestroy(
   particle: Particle,
@@ -50,8 +50,8 @@ function checkDestroy(
 }
 
 /**
- * @param options -
- * @param pxRatio -
+ * @param options - The options to handle
+ * @param pxRatio - The pxRatio
  * @returns the animation init object
  */
 export function initParticleNumericAnimationValue(

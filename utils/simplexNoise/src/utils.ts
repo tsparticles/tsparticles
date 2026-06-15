@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 /**
- * @param seed -
+ * @param seed - The seed
  * @returns the new seed
  */
 export function shuffleSeed(seed: Uint32Array<ArrayBuffer>): Uint32Array<ArrayBuffer> {

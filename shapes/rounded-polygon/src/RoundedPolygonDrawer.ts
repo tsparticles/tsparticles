@@ -9,7 +9,7 @@ const defaultSides = 5,
 export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
   /**
    * Draws the rounded polygon shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data;
@@ -19,7 +19,8 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
 
   /**
    * Gets the number of sides
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The numeric value
    */
   getSidesCount(particle: RoundedParticle): number {
     const roundedPolygon = particle.shapeData;
@@ -29,8 +30,8 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
 
   /**
    * Initializes the rounded polygon particle properties
-   * @param container
-   * @param particle
+   * @param container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(container: Container, particle: RoundedParticle): void {
     const shapeData = particle.shapeData;

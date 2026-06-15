@@ -3,7 +3,7 @@ import { type IShapeDrawData, originPoint } from "@tsparticles/engine";
 const loopSizeFactor = 0.55;
 
 /**
- * @param data -
+ * @param data - The data to handle
  */
 export function drawInfinity(data: IShapeDrawData): void {
   const { context, radius } = data,

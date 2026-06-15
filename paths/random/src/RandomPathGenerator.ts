@@ -14,7 +14,10 @@ export class RandomPathGenerator implements IMovePathGenerator {
     this.#res = Vector.origin;
   }
 
-  /** Generates a random movement vector */
+  /**
+   * Generates a random movement vector
+   * @returns The result
+   */
   generate(): Vector {
     this.#res.x = getRandomInRange(minRandom, maxRandom);
     this.#res.y = getRandomInRange(minRandom, maxRandom);

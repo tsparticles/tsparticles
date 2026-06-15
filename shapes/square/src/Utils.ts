@@ -2,7 +2,7 @@ import { type IShapeDrawData, double } from "@tsparticles/engine";
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawSquare(data: IShapeDrawData): void {
   const { context, radius } = data,

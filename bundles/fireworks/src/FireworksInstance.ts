@@ -6,7 +6,7 @@ export class FireworksInstance {
 
   /**
    * Creates a new FireworksInstance
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;

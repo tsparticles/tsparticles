@@ -79,17 +79,17 @@ interface FixOutModeParams {
    */
   radius: number;
   /**
-   * @param value -
+   * @param value - The value
    */
   setCb: (value: number) => void;
 }
 
 /**
  *
- * @param effect -
- * @param effectOptions -
- * @param id -
- * @param reduceDuplicates -
+ * @param effect - The effect
+ * @param effectOptions - The effectOptions
+ * @param id - The id
+ * @param reduceDuplicates - The reduceDuplicates
  * @returns the effect data
  */
 function loadEffectData(
@@ -110,10 +110,10 @@ function loadEffectData(
 
 /**
  *
- * @param shape -
- * @param shapeOptions -
- * @param id -
- * @param reduceDuplicates -
+ * @param shape - The shape
+ * @param shapeOptions - The shapeOptions
+ * @param id - The id
+ * @param reduceDuplicates - The reduceDuplicates
  * @returns the shape data
  */
 function loadShapeData(
@@ -135,7 +135,7 @@ function loadShapeData(
 /**
  * fixes out mode, calling the given callback if needed
  * @internal
- * @param data -
+ * @param data - The data to handle
  */
 function fixOutMode(data: FixOutModeParams): void {
   if (!isInArray(data.outMode, data.checkModes)) {
@@ -153,8 +153,8 @@ function fixOutMode(data: FixOutModeParams): void {
 
 /**
  *
- * @param angle -
- * @param modulus -
+ * @param angle - The angle
+ * @param modulus - The modulus
  * @returns -
  */
 function normalizeAngle(angle: number, modulus: number): number {
@@ -165,9 +165,9 @@ function normalizeAngle(angle: number, modulus: number): number {
 
 /**
  *
- * @param particle -
- * @param id -
- * @param group -
+ * @param particle - The particle to process
+ * @param id - The id
+ * @param group - The group
  */
 function initParticleState(particle: Particle, id: number, group?: string): void {
   particle.id = id;
@@ -201,10 +201,10 @@ function initParticleState(particle: Particle, id: number, group?: string): void
 
 /**
  *
- * @param particle -
- * @param container -
- * @param pluginManager -
- * @param overrideOptions -
+ * @param particle - The particle to process
+ * @param container - The container to handle
+ * @param pluginManager - The plugin manager
+ * @param overrideOptions - The overrideOptions
  * @returns the resolved particles options
  */
 function resolveParticleOptions(
@@ -293,8 +293,8 @@ function resolveParticleOptions(
 
 /**
  *
- * @param particle -
- * @param container -
+ * @param particle - The particle to process
+ * @param container - The container to handle
  */
 function initParticleDrawers(particle: Particle, container: Container): void {
   let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
@@ -324,8 +324,8 @@ function initParticleDrawers(particle: Particle, container: Container): void {
 
 /**
  *
- * @param updaters -
- * @param particle -
+ * @param updaters - The updaters
+ * @param particle - The particle to process
  */
 function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): void {
   for (const updater of updaters) {
@@ -335,8 +335,8 @@ function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): vo
 
 /**
  *
- * @param updaters -
- * @param particle -
+ * @param updaters - The updaters
+ * @param particle - The particle to process
  */
 function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void {
   for (const updater of updaters) {
@@ -346,8 +346,8 @@ function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void 
 
 /**
  *
- * @param container -
- * @param particle -
+ * @param container - The container to handle
+ * @param particle - The particle to process
  */
 function runDrawerInit(container: Container, particle: Particle): void {
   const shapeDrawer = particle.shape ? container.shapeDrawers.get(particle.shape) : undefined,
@@ -359,8 +359,8 @@ function runDrawerInit(container: Container, particle: Particle): void {
 
 /**
  *
- * @param container -
- * @param particle -
+ * @param container - The container to handle
+ * @param particle - The particle to process
  */
 function runParticleCreatedPlugins(container: Container, particle: Particle): void {
   for (const plugin of container.particleCreatedPlugins) {
@@ -605,7 +605,7 @@ export class Particle {
 
   /**
    * Destroys the particle
-   * @param override -
+   * @param override - The override
    */
   destroy(override?: boolean): void {
     if (this.unbreakable || this.destroyed) {
@@ -636,7 +636,7 @@ export class Particle {
 
   /**
    * Draws the particle
-   * @param delta -
+   * @param delta - The delta time
    */
   draw(delta: IDelta): void {
     const container = this.#container,
@@ -732,7 +732,7 @@ export class Particle {
 
   /**
    * Gets the particle transform data
-   * @param externalTransform -
+   * @param externalTransform - The externalTransform
    * @returns get transform data
    */
   getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
@@ -753,10 +753,10 @@ export class Particle {
 
   /**
    * Initializes the particle with the given parameters
-   * @param id -
-   * @param position -
-   * @param overrideOptions -
-   * @param group -
+   * @param id - The id
+   * @param position - The position
+   * @param overrideOptions - The overrideOptions
+   * @param group - The group
    */
   init(
     id: number,

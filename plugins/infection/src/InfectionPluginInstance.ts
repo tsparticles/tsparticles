@@ -17,7 +17,6 @@ export class InfectionPluginInstance implements IContainerPlugin {
     this.#container.infecter = new Infecter(this.#container);
   }
 
-  /** @inheritDoc */
   particleFillColor(particle: InfectableParticle): string | IOptionsColor | undefined {
     const options = this.#container.actualOptions;
 
@@ -32,12 +31,10 @@ export class InfectionPluginInstance implements IContainerPlugin {
     return infectionStage === undefined ? undefined : infectionStages[infectionStage]?.color;
   }
 
-  /** @inheritDoc */
   particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
     return this.particleFillColor(particle);
   }
 
-  /** @inheritDoc */
   particlesSetup(): void {
     const options = this.#container.actualOptions;
 

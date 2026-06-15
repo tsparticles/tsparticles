@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "fireworks-purple-stroke";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadFireworksPurpleStrokePalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

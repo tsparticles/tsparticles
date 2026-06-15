@@ -10,7 +10,6 @@ export class Light implements ILight, IOptionLoader<ILight> {
   /** The light shadow options */
   readonly shadow = new LightShadow();
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILight>): void {
     if (isNull(data)) {
       return;

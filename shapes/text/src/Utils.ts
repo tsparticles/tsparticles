@@ -8,7 +8,7 @@ const firstIndex = 0,
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawText(data: IShapeDrawData<TextParticle>): void {
   const { context, particle, fill, stroke, radius, opacity } = data,
@@ -55,12 +55,12 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
 }
 
 /**
- * @param context -
- * @param line -
- * @param size -
- * @param index -
- * @param fill -
- * @param stroke -
+ * @param context - The rendering context
+ * @param line - The line
+ * @param size - The size
+ * @param index - The index
+ * @param fill - The fill flag
+ * @param stroke - The stroke flag
  */
 function drawTextLine(
   context: OffscreenCanvasRenderingContext2D,

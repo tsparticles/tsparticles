@@ -16,7 +16,7 @@ export class MoveGravity extends OptionLoader<IMoveGravity> implements IMoveGrav
 
   /**
    * Loads gravity options from the given data
-   * @param data -
+   * @param data - The data to handle
    */
   protected doLoad(data: RecursivePartial<IMoveGravity>): void {
     loadRangeProperty(this, "acceleration", data.acceleration);

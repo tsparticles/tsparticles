@@ -12,7 +12,6 @@ export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriang
   /** Triangle fill opacity */
   opacity?: number;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILinksTriangle>): void {
     if (isNull(data)) {
       return;

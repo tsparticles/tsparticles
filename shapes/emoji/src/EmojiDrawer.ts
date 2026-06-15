@@ -36,7 +36,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   /**
    * Draws the emoji shape
-   * @param data -
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<EmojiParticle>): void {
     const key = data.particle.emojiDataKey;
@@ -56,7 +56,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   /**
    * Loads the required emoji fonts
-   * @param container
+   * @param container - The container to handle
    */
   async init(container: Container): Promise<void> {
     const options = container.actualOptions,
@@ -80,7 +80,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   /**
    * Cleans up emoji data when particle is destroyed
-   * @param particle -
+   * @param particle - The particle to process
    */
   particleDestroy(particle: EmojiParticle): void {
     particle.emojiDataKey = undefined;
@@ -88,8 +88,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   /**
    * Initializes the emoji shape for a particle
-   * @param container -
-   * @param particle -
+   * @param container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(container: Container, particle: EmojiParticle): void {
     const shapeData = particle.shapeData as unknown as IEmojiShape;

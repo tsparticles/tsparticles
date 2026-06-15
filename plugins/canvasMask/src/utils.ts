@@ -12,12 +12,12 @@ import type { CanvasPixelData } from "@tsparticles/canvas-utils";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 
 /**
- * @param container -
- * @param data -
- * @param position -
- * @param scale -
- * @param override -
- * @param filter -
+ * @param container - The container to handle
+ * @param data - The data to handle
+ * @param position - The position
+ * @param scale - The scale
+ * @param override - The override
+ * @param filter - The filter
  */
 export function addParticlesFromCanvasPixels(
   container: Container,
@@ -95,7 +95,7 @@ export function addParticlesFromCanvasPixels(
 }
 
 /**
- * @param array -
+ * @param array - The array
  * @returns the shuffled array
  */
 function shuffle<T>(array: T[]): T[] {

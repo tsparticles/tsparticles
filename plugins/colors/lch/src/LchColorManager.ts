@@ -19,7 +19,8 @@ const lchRegex = /lch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/
 export class LchColorManager implements IColorManager {
   /**
    * Checks if the input starts with lch
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("lch");
@@ -27,7 +28,8 @@ export class LchColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -42,7 +44,8 @@ export class LchColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
@@ -61,7 +64,8 @@ export class LchColorManager implements IColorManager {
 
   /**
    * Parses an LCH color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {

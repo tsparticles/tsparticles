@@ -11,7 +11,7 @@ interface UpdaterParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesUpdater(params: UpdaterParams): unknown {

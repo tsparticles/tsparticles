@@ -1,8 +1,8 @@
 import { ESLint } from "eslint";
 
 /**
- * @param ci -
- * @param silent -
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the linting was successful
  */
 export async function lint(ci: boolean, silent: boolean): Promise<boolean> {

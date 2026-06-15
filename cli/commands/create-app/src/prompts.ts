@@ -86,8 +86,8 @@ const initialFrameworkIndex = 0,
 
 /**
  *
- * @param destination
- * @param prefill
+ * @param destination - The destination point
+ * @param prefill - The prefill
  * @param prefill.framework
  * @param prefill.projectName
  * @param prefill.useCase

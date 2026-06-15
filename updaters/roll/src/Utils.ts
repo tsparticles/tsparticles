@@ -14,8 +14,8 @@ import type { RollParticle } from "./Types.js";
 const maxAngle = 360;
 
 /**
- * @param pluginManager -
- * @param particle -
+ * @param pluginManager - The plugin manager
+ * @param particle - The particle to process
  */
 export function initParticle(pluginManager: PluginManager, particle: RollParticle): void {
   const rollOpt = particle.options.roll;
@@ -63,8 +63,8 @@ export function initParticle(pluginManager: PluginManager, particle: RollParticl
 }
 
 /**
- * @param particle -
- * @param delta -
+ * @param particle - The particle to process
+ * @param delta - The delta time
  */
 export function updateRoll(particle: RollParticle, delta: IDelta): void {
   const roll = particle.options.roll,

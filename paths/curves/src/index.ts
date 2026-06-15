@@ -7,7 +7,7 @@ declare const __VERSION__: string;
 export const curvesPathName = "curvesPathGenerator";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadCurvesPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

@@ -21,7 +21,7 @@ export class OutModes extends OptionLoader<IOutModes> implements IOutModes {
 
   /**
    * Loads out modes from the given data
-   * @param data -
+   * @param data - The data to handle
    */
   protected doLoad(data: RecursivePartial<IOutModes>): void {
     if (data.default !== undefined) {

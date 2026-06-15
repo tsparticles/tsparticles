@@ -5,7 +5,7 @@ const paletteName = "sakura";
 
 /**
  *
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadSakuraPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

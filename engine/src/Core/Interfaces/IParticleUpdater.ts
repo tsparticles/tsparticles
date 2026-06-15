@@ -40,7 +40,10 @@ export interface IParticleUpdater {
   /** Initializes the updater for a particle */
   init(particle: Particle): void;
 
-  /** Checks if the updater is enabled for the given particle */
+  /**
+   * Checks if the updater is enabled for the given particle
+   * @returns The boolean value
+   */
   isEnabled(particle: Particle): boolean;
 
   /** Updates the particle each frame */

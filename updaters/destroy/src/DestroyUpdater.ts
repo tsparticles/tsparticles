@@ -28,8 +28,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * DestroyUpdater constructor
-   * @param pluginManager
-   * @param container
+   * @param pluginManager - The plugin manager
+   * @param container - The container to handle
    */
   constructor(pluginManager: PluginManager, container: Container) {
     this.#container = container;
@@ -38,7 +38,7 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * Initializes destroy-related particle properties
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: DestroyParticle): void {
     const container = this.#container,
@@ -80,7 +80,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * Checks if the particle needs destroy handling
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: Particle): boolean {
     const destroyParticle = particle as DestroyParticle;
@@ -90,8 +91,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * Loads the destroy options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: DestroyParticlesOptions,
@@ -102,8 +103,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * Handles particle destruction (split or explode)
-   * @param particle
-   * @param override
+   * @param particle - The particle to process
+   * @param override - The override
    */
   particleDestroyed(particle: DestroyParticle, override?: boolean): void {
     if (override) {
@@ -151,8 +152,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
   /**
    * Updates particle destruction state
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: DestroyParticle, delta: IDelta): void {
     if (particle.exploding) {

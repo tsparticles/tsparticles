@@ -7,9 +7,9 @@ const firstIndex = 0,
   index4 = 3;
 
 /**
- * @param ctx -
- * @param radius -
- * @param path -
+ * @param ctx - The rendering context
+ * @param radius - The radius
+ * @param path - The path
  */
 export function drawPath(ctx: OffscreenCanvasRenderingContext2D, radius: number, path: IPathData): void {
   const firstSegment = path.segments[firstIndex];

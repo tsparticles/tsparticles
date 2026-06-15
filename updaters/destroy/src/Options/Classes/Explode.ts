@@ -11,7 +11,7 @@ export class Explode implements IExplode, IOptionLoader<IExplode> {
 
   /**
    * Loads the explode options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IExplode>): void {
     if (isNull(data)) {

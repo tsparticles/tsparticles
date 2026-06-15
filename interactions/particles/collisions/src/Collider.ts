@@ -16,7 +16,6 @@ import { resolveCollision } from "./ResolveCollision.js";
  * Handles collision detection and resolution between particles
  */
 export class Collider extends ParticlesInteractorBase<Container, CollisionParticle> {
-  /** @inheritDoc */
   readonly maxDistance;
 
   constructor(container: Container) {
@@ -25,17 +24,14 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     this.maxDistance = 0;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(p1: CollisionParticle, _interactivityData: IInteractivityData, delta: IDelta): void {
     if (p1.destroyed || p1.spawning) {
       return;
@@ -77,12 +73,10 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     }
   }
 
-  /** @inheritDoc */
   isEnabled(particle: CollisionParticle): boolean {
     return !!particle.options.collisions?.enable;
   }
 
-  /** @inheritDoc */
   loadParticlesOptions(
     options: ParticlesCollisionOptions,
     ...sources: (RecursivePartial<IParticlesCollisionOptions> | undefined)[]
@@ -90,7 +84,6 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     loadOptionProperty(options, "collisions", Collisions, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "embers-and-ash";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadEmbersAndAshPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

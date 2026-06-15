@@ -13,7 +13,6 @@ export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
     this.color.value = "#000000";
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILightShadow>): void {
     if (isNull(data)) {
       return;

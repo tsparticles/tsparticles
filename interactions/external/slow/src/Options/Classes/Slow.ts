@@ -8,7 +8,6 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
   /** Slow radius in pixels */
   radius = 200;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ISlow>): void {
     if (isNull(data)) {
       return;

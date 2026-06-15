@@ -9,7 +9,7 @@ import { options } from "./options.js";
 const presetName = "hyperspace";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadHyperspacePreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

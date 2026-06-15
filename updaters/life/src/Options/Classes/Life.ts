@@ -18,7 +18,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
 
   /**
    * Loads the life options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ILife>): void {
     if (isNull(data)) {

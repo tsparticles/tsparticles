@@ -29,7 +29,8 @@ const rgbRegex =
 export class RgbColorManager implements IColorManager {
   /**
    * Checks if the input starts with rgb
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("rgb");
@@ -37,7 +38,8 @@ export class RgbColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -52,7 +54,8 @@ export class RgbColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -71,7 +74,8 @@ export class RgbColorManager implements IColorManager {
 
   /**
    * Parses an RGB color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {

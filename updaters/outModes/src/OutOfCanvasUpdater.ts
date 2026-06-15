@@ -33,7 +33,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * OutOfCanvasUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -42,7 +42,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Initializes particle out mode handlers
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: Particle): void {
     this.#addUpdaterIfMissing(particle, OutMode.bounce, container => new BounceOutMode(container));
@@ -53,7 +53,8 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Checks if out of canvas handling is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: Particle): boolean {
     return !particle.destroyed && !particle.spawning;
@@ -61,8 +62,8 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Updates particle out mode handling
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: Particle, delta: IDelta): void {
     const outModes = particle.options.move.outModes;

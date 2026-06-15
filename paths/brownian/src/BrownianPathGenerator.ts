@@ -15,7 +15,7 @@ export class BrownianPathGenerator implements IMovePathGenerator {
 
   /**
    * BrownianPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -29,7 +29,8 @@ export class BrownianPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector for the particle
-   * @param p
+   * @param p - The particle
+   * @returns The result
    */
   generate(p: BrownianPathParticle): Vector {
     p.brownian ??= {
@@ -63,7 +64,7 @@ export class BrownianPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle brownian state
-   * @param p
+   * @param p - The particle
    */
   reset(p: BrownianPathParticle): void {
     delete p.brownian;

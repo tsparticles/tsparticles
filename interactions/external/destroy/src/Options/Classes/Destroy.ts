@@ -6,7 +6,6 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
   /** Destroy distance in pixels */
   distance = 200;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IDestroy>): void {
     if (isNull(data)) {
       return;

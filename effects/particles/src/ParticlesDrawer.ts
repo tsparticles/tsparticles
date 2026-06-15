@@ -63,7 +63,7 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
 
   /**
    * ParticlesDrawer constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -71,7 +71,7 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
 
   /**
    * Spawns new particles after rendering
-   * @param data
+   * @param data - The data to handle
    */
   drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
     const { particle } = data,
@@ -101,8 +101,8 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
 
   /**
    * Initializes the particle spawner properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: ParticlesParticle): void {
     const effectData = particle.effectData,

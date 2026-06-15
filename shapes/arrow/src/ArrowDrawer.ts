@@ -10,7 +10,7 @@ const defaultHeightFactor = 0.5,
 export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
   /**
    * Draws the arrow shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<ArrowParticle>): void {
     drawArrow(data);
@@ -18,8 +18,8 @@ export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
 
   /**
    * Initializes arrow-specific particle properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: ArrowParticle): void {
     const shapeData = particle.shapeData;

@@ -22,8 +22,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
   /**
    * Image drawer constructor, initializing the image set collection
-   * @param engine -
-   * @param container -
+   * @param engine - The engine to load the shape in
+   * @param container - The container to handle
    */
   constructor(engine: ImageEngine, container: ImageContainer) {
     this.#engine = engine;

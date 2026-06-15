@@ -16,8 +16,8 @@ export abstract class OptionLoader<T> implements IOptionLoader<T> {
 
 /**
  *
- * @param options
- * @param sourceOptionsArr
+ * @param options - The options to handle
+ * @param sourceOptionsArr - The sourceOptionsArr
  */
 export function loadOptions<T>(
   options: IOptionLoader<T>,

@@ -49,7 +49,8 @@ export class MBParticles {
   /** Initializes a new particles instance with the given options */
   /**
    * Initializes a new particles instance with the given options
-   * @param options
+   * @param options - The options to handle
+   * @returns The result
    */
   static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
     const particles = new MBParticles(),

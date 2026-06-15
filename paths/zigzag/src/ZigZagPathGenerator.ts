@@ -61,7 +61,7 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
 
   /**
    * ZigZagPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -71,8 +71,9 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector with zigzag oscillation
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
+   * @returns The result
    */
   generate(particle: ZigZagParticle, delta: IDelta): Vector {
     const options = this.options;

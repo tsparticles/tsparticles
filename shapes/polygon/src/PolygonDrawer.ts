@@ -9,8 +9,9 @@ const yFactor = 2.66,
 export class PolygonDrawer extends PolygonDrawerBase {
   /**
    * Gets the side data for the polygon
-   * @param particle
-   * @param radius
+   * @param particle - The particle to process
+   * @param radius - The radius
+   * @returns The result
    */
   getSidesData(particle: Particle, radius: number): ISide {
     const { sides } = particle;

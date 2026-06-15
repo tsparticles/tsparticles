@@ -32,7 +32,7 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
 
   /**
    * Loads the roll options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IRoll>): void {
     if (isNull(data)) {

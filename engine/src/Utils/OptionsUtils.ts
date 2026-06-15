@@ -12,9 +12,9 @@ import { setRangeValue } from "./MathUtils.js";
 export { OptionLoader, loadOptions };
 
 /**
- * @param pluginManager -
- * @param container -
- * @param sourceOptionsArr -
+ * @param pluginManager - The plugin manager
+ * @param container - The container to handle
+ * @param sourceOptionsArr - The sourceOptionsArr
  * @returns the newly created {@link ParticlesOptions} object
  */
 export function loadParticlesOptions(
@@ -31,9 +31,9 @@ export function loadParticlesOptions(
 
 /**
  *
- * @param obj
- * @param key
- * @param value
+ * @param obj - The object
+ * @param key - The key
+ * @param value - The value
  */
 export function loadProperty<T extends object, K extends keyof T>(obj: T, key: K, value: T[K] | undefined): void {
   if (value !== undefined) {
@@ -43,9 +43,9 @@ export function loadProperty<T extends object, K extends keyof T>(obj: T, key: K
 
 /**
  *
- * @param obj
- * @param key
- * @param value
+ * @param obj - The object
+ * @param key - The key
+ * @param value - The value
  */
 export function loadRangeProperty<T extends object>(obj: T, key: keyof T, value: RangeValue | undefined): void {
   if (value !== undefined) {
@@ -55,9 +55,9 @@ export function loadRangeProperty<T extends object>(obj: T, key: keyof T, value:
 
 /**
  *
- * @param obj
- * @param key
- * @param value
+ * @param obj - The object
+ * @param key - The key
+ * @param value - The value
  */
 export function loadNestedProperty(obj: object, key: string, value: RecursivePartial<unknown> | undefined): void {
   if (value !== undefined) {
@@ -67,10 +67,10 @@ export function loadNestedProperty(obj: object, key: string, value: RecursivePar
 
 /**
  *
- * @param obj
- * @param key
- * @param value
- * @param factory
+ * @param obj - The object
+ * @param key - The key
+ * @param value - The value
+ * @param factory - The factory
  */
 export function loadLazyProperty(
   obj: object,
@@ -88,9 +88,9 @@ export function loadLazyProperty(
 
 /**
  *
- * @param obj
- * @param key
- * @param value
+ * @param obj - The object
+ * @param key - The key
+ * @param value - The value
  */
 export function loadExtendProperty<T extends object, K extends keyof T>(obj: T, key: K, value: T[K] | undefined): void {
   if (value !== undefined) {

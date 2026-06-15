@@ -6,7 +6,7 @@ const bubbleFactor = 3;
 export class BubbleDrawer implements IEffectDrawer {
   /**
    * Draws the bubble highlight after particle rendering
-   * @param data
+   * @param data - The data to handle
    */
   drawAfter(data: IShapeDrawData): void {
     const { context, radius } = data,

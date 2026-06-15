@@ -9,7 +9,7 @@ const defaultSides = 5;
 export abstract class PolygonDrawerBase implements IShapeDrawer {
   /**
    * Draws the polygon shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData): void {
     const { particle, radius } = data,
@@ -20,7 +20,8 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
 
   /**
    * Gets the number of sides for the polygon
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The numeric value
    */
   getSidesCount(particle: Particle): number {
     const polygon = particle.shapeData as IPolygonShape | undefined;
@@ -28,6 +29,9 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
     return Math.round(getRangeValue(polygon?.sides ?? defaultSides));
   }
 
-  /** Gets the side data for computing polygon vertices */
+  /**
+   * Gets the side data for computing polygon vertices
+   * @returns The result
+   */
   abstract getSidesData(particle: Particle, radius: number): ISide;
 }

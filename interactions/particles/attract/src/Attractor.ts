@@ -23,22 +23,18 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(p1: AttractParticle): void {
     if (!p1.options.attract?.enable) {
       return;
@@ -80,12 +76,10 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     }
   }
 
-  /** @inheritDoc */
   isEnabled(particle: AttractParticle): boolean {
     return particle.options.attract?.enable ?? false;
   }
 
-  /** @inheritDoc */
   loadParticlesOptions(
     options: ParticlesAttractOptions,
     ...sources: (RecursivePartial<IParticlesAttractOptions> | undefined)[]
@@ -93,7 +87,6 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     loadOptionProperty(options, "attract", Attract, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

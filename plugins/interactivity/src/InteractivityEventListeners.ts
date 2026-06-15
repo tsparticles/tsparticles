@@ -207,7 +207,7 @@ export class InteractivityEventListeners {
 
   /**
    * Initializing event listeners
-   * @param add -
+   * @param add - The add
    */
   #manageListeners(add: boolean): void {
     const handlers = this.#handlers,

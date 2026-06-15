@@ -36,7 +36,7 @@ const defaultOffset = 0,
 type SplitColorData = string | RecursivePartial<OptionsColor>;
 
 /**
- * @param parentColor -
+ * @param parentColor - The parentColor
  * @returns the parent color as AnimatableColor
  */
 function createParentColor(parentColor: IHsl): AnimatableColor {
@@ -48,8 +48,8 @@ function createParentColor(parentColor: IHsl): AnimatableColor {
 }
 
 /**
- * @param parentColor -
- * @param offset -
+ * @param parentColor - The parentColor
+ * @param offset - The offset
  * @returns the offset color as AnimatableColor
  */
 function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>): AnimatableColor {
@@ -72,10 +72,10 @@ function createOffsetColor(parentColor: IHsl, offset: Partial<IRangeHsl>): Anima
 }
 
 /**
- * @param offset -
- * @param splitColor -
- * @param splitParticlesColor -
- * @param parentColor -
+ * @param offset - The offset
+ * @param splitColor - The splitColor
+ * @param splitParticlesColor - The splitParticlesColor
+ * @param parentColor - The parentColor
  * @returns the split color resolved using precedence rules
  */
 function resolveSplitColor(
@@ -100,10 +100,10 @@ function resolveSplitColor(
 }
 
 /**
- * @param pluginManager -
- * @param container -
- * @param parent -
- * @param splitParticlesOptions -
+ * @param pluginManager - The plugin manager
+ * @param container - The container to handle
+ * @param parent - The parent
+ * @param splitParticlesOptions - The splitParticlesOptions
  * @returns the added particle if any
  */
 function addSplitParticle(
@@ -197,9 +197,9 @@ function addSplitParticle(
 
 /**
  *
- * @param pluginManager -
- * @param container -
- * @param particle -
+ * @param pluginManager - The plugin manager
+ * @param container - The container to handle
+ * @param particle - The particle to process
  */
 export function split(pluginManager: PluginManager, container: Container, particle: DestroyParticle): void {
   const destroyOptions = particle.options.destroy;

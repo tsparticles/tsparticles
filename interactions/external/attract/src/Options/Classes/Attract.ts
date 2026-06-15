@@ -33,7 +33,6 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
     };
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IAttract>): void {
     if (isNull(data)) {
       return;

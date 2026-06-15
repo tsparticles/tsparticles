@@ -164,8 +164,8 @@ export class SpatialHashGrid {
 
   /**
    * Convert coordinates to cell key
-   * @param x -
-   * @param y -
+   * @param x - The x coordinate
+   * @param y - The y coordinate
    * @returns -
    */
   #cellKeyFromCoords(x: number, y: number): string {
@@ -177,7 +177,7 @@ export class SpatialHashGrid {
 
   /**
    * Compute grid bounds depending on range type
-   * @param range -
+   * @param range - The range
    * @returns -
    */
   #getRangeBounds(range: BaseRange): RangeBounds | null {

@@ -12,7 +12,7 @@ interface BundleParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesBundle(params: BundleParams): unknown {

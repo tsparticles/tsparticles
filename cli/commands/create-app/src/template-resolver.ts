@@ -11,7 +11,8 @@ const __filename = fileURLToPath(import.meta.url),
 
 /**
  *
- * @param name
+ * @param name - The name
+ * @returns The string value
  */
 export function resolveTemplateRoot(name: string): string {
   if (isWorkspaceMode) {
@@ -38,7 +39,8 @@ export function resolveTemplateRoot(name: string): string {
 
 /**
  *
- * @param templateName
+ * @param templateName - The templateName
+ * @returns The result
  */
 export function listAvailableFrameworks(templateName: string): string[] {
   const templateRoot = resolveTemplateRoot(templateName),
@@ -62,6 +64,7 @@ export function listAvailableFrameworks(templateName: string): string[] {
 
 /**
  *
+ * @returns The result
  */
 export function listAvailableTemplates(): TemplateInfo[] {
   const templateMap: Record<string, { displayName: string; type: "scaffold" | "example" }> = {
@@ -97,6 +100,7 @@ export function listAvailableTemplates(): TemplateInfo[] {
 
 /**
  *
+ * @returns The string value
  */
 export function resolveEngineVersion(): string {
   if (isWorkspaceMode) {

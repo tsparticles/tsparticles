@@ -48,10 +48,10 @@ const defaultLifeDelay = 0,
 
 /**
  *
- * @param particlesOptions -
- * @param color -
- * @param opacity -
- * @param enable -
+ * @param particlesOptions - The particlesOptions
+ * @param color - The color
+ * @param opacity - The opacity value
+ * @param enable - The enable
  */
 function setParticlesOptionsFillColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
@@ -70,10 +70,10 @@ function setParticlesOptionsFillColor(
 
 /**
  *
- * @param particlesOptions -
- * @param color -
- * @param opacity -
- * @param width -
+ * @param particlesOptions - The particlesOptions
+ * @param color - The color
+ * @param opacity - The opacity value
+ * @param width - The width
  */
 function setParticlesOptionsStrokeColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,

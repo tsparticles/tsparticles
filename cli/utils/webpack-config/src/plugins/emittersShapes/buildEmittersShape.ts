@@ -12,7 +12,7 @@ interface EmittersShapeParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPluginEmittersShape(params: EmittersShapeParams): unknown {

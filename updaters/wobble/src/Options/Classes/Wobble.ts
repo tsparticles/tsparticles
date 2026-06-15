@@ -27,7 +27,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
 
   /**
    * Loads the wobble options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IWobble>): void {
     if (isNull(data)) {

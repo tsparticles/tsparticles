@@ -6,10 +6,10 @@ import { bounce } from "./Bounce.js";
 import { destroy } from "./Destroy.js";
 
 /**
- * @param p1 -
- * @param p2 -
- * @param delta -
- * @param pixelRatio -
+ * @param p1 - The first point
+ * @param p2 - The second point
+ * @param delta - The delta time
+ * @param pixelRatio - The pixel ratio
  */
 export function resolveCollision(
   p1: CollisionParticle,

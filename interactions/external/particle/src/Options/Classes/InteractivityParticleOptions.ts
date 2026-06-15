@@ -22,7 +22,6 @@ export class InteractivityParticleOptions
   /** The delay in milliseconds before stopping the particle */
   stopDelay = 0;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IInteractivityParticleOptions>): void {
     if (isNull(data)) {
       return;

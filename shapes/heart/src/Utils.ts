@@ -2,7 +2,7 @@ import { type IShapeDrawData, double, half } from "@tsparticles/engine";
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawHeart(data: IShapeDrawData): void {
   const { context, radius } = data,

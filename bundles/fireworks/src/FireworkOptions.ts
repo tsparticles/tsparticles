@@ -95,7 +95,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
 
   /**
    * Loads firework options from the provided data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IFireworkOptions>): void {
     if (isNull(data)) {

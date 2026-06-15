@@ -9,7 +9,7 @@ interface EngineParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesEngine(params: EngineParams): unknown {

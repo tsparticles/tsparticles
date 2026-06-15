@@ -3,7 +3,7 @@ import type { SpiralParticle } from "./SpiralParticle.js";
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawSpiral(data: IShapeDrawData<SpiralParticle>): void {
   const { context, particle, radius } = data;

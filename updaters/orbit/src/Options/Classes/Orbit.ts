@@ -34,7 +34,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
 
   /**
    * Loads the orbit options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IOrbit>): void {
     if (isNull(data)) {

@@ -56,7 +56,7 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * RotateUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -64,7 +64,7 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle rotation
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: RotateParticle): void {
     const rotateOptions = particle.options.rotate;
@@ -121,7 +121,8 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Checks if rotation is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: RotateParticle): boolean {
     const rotate = particle.options.rotate;
@@ -135,8 +136,8 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Loads the rotate options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: RotateParticlesOptions,
@@ -147,8 +148,8 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Updates the particle rotation
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: RotateParticle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {

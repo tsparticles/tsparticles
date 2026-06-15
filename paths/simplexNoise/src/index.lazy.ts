@@ -6,7 +6,7 @@ declare const __VERSION__: string;
 export const simplexNoisePathName = "simplexNoise";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadSimplexNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

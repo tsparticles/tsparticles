@@ -5,7 +5,7 @@ export const defaultExponent = 4,
   defaultSteps = 64;
 
 /**
- * @param v -
+ * @param v - The v
  * @returns -
  */
 function sign(v: number): number {
@@ -13,7 +13,7 @@ function sign(v: number): number {
 }
 
 /**
- * @param data -
+ * @param data - The data to handle
  */
 export function drawSquircle(data: IShapeDrawData<SquircleParticle>): void {
   const { context, particle, radius } = data;

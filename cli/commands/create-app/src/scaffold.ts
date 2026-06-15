@@ -22,7 +22,7 @@ const jsonIndentation = 2,
 
 /**
  *
- * @param options
+ * @param options - The options to handle
  */
 export async function createAppProject(
   options: UserOptions & { framework: Framework; useCase: UseCase },
@@ -113,7 +113,8 @@ interface ITemplateDeps {
 
 /**
  *
- * @param templateRoot
+ * @param templateRoot - The templateRoot
+ * @returns A promise
  */
 async function readTemplateJson(templateRoot: string): Promise<ITemplateDeps | null> {
   const templateJsonPath = path.join(templateRoot, "template.json");
@@ -131,9 +132,9 @@ async function readTemplateJson(templateRoot: string): Promise<ITemplateDeps | n
 
 /**
  *
- * @param src
- * @param dest
- * @param replacements
+ * @param src - The src
+ * @param dest - The dest
+ * @param replacements - The replacements
  */
 async function copyAndReplace(src: string, dest: string, replacements: Record<string, string>): Promise<void> {
   const entries = await readdir(src, { withFileTypes: true });
@@ -165,8 +166,9 @@ async function copyAndReplace(src: string, dest: string, replacements: Record<st
 
 /**
  *
- * @param target
- * @param source
+ * @param target - The target
+ * @param source - The source
+ * @returns The result
  */
 function deepMergeDeps(target: ITemplateDeps, source: ITemplateDeps): ITemplateDeps {
   return {

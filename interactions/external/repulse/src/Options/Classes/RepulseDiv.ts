@@ -13,7 +13,6 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
   /** CSS selectors for div elements to apply repulse to */
   selectors: SingleOrMultiple<string> = [];
 
-  /** @inheritDoc */
   override load(data?: RecursivePartial<IRepulseDiv>): void {
     super.load(data);
 

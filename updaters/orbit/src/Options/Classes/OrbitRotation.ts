@@ -6,7 +6,7 @@ export class OrbitRotation extends ValueWithRandom {
 
   /**
    * Loads the orbit rotation from data
-   * @param data
+   * @param data - The data to handle
    */
   override load(data?: RecursivePartial<IValueWithRandom>): void {
     if (isNull(data)) {

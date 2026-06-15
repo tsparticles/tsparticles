@@ -14,7 +14,6 @@ export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
     this.color.value = "#000";
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILinksShadow>): void {
     if (isNull(data)) {
       return;

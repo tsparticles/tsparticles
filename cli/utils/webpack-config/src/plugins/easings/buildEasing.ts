@@ -12,7 +12,7 @@ interface EasingParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPluginEasing(params: EasingParams): unknown {

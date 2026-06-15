@@ -12,7 +12,7 @@ export class MoveAngle extends OptionLoader<IMoveAngle> implements IMoveAngle {
 
   /**
    * Loads move angle options from the given data
-   * @param data -
+   * @param data - The data to handle
    */
   protected doLoad(data: RecursivePartial<IMoveAngle>): void {
     loadRangeProperty(this, "offset", data.offset);

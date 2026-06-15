@@ -276,8 +276,8 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 }
 
 /**
- * @param obj -
- * @param callback -
+ * @param obj - The object
+ * @param callback - The callback
  * @returns the transformed SingleOrMultiple data
  */
 export function executeOnSingleOrMultiple<T, U = void>(
@@ -290,9 +290,9 @@ export function executeOnSingleOrMultiple<T, U = void>(
 }
 
 /**
- * @param obj -
- * @param index -
- * @param useIndex -
+ * @param obj - The object
+ * @param index - The index
+ * @param useIndex - The useIndex
  * @returns the selected item
  */
 export function itemFromSingleOrMultiple<T>(
@@ -304,8 +304,8 @@ export function itemFromSingleOrMultiple<T>(
 }
 
 /**
- * @param positionOrSize -
- * @param canvasSize -
+ * @param positionOrSize - The positionOrSize
+ * @param canvasSize - The canvasSize
  * @returns the calculated position or size
  */
 function getPositionOrSize(
@@ -336,8 +336,8 @@ function getPositionOrSize(
 }
 
 /**
- * @param position -
- * @param canvasSize -
+ * @param position - The position
+ * @param canvasSize - The canvasSize
  * @returns the calculated position
  */
 export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimension): ICoordinates {
@@ -453,10 +453,10 @@ export function manageListener(
 }
 
 /**
- * @param container -
- * @param map -
- * @param initializers -
- * @param force -
+ * @param container - The container to handle
+ * @param map - The map
+ * @param initializers - The initializers
+ * @param force - The force
  * @returns the items from the given initializer
  */
 export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
@@ -477,10 +477,10 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
 }
 
 /**
- * @param container -
- * @param map -
- * @param initializers -
- * @param force -
+ * @param container - The container to handle
+ * @param map - The map
+ * @param initializers - The initializers
+ * @param force - The force
  * @returns the items from the given initializer
  */
 export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(

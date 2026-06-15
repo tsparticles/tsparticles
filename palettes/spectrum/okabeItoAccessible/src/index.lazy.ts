@@ -3,7 +3,7 @@ import { type Engine } from "@tsparticles/engine/lazy";
 const paletteName = "okabe-ito-accessible";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadOkabeItoAccessiblePalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

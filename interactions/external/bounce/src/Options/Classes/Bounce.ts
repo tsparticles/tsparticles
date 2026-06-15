@@ -6,7 +6,6 @@ export class Bounce implements IBounce, IOptionLoader<IBounce> {
   /** Bounce distance in pixels */
   distance = 200;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IBounce>): void {
     if (isNull(data)) {
       return;

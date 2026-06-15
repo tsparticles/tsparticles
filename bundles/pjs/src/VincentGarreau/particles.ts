@@ -119,7 +119,8 @@ const defaultMinOpacity = 0,
   },
   /**
    * Initializes particlesJS compatibility layer
-   * @param engine
+   * @param engine - The engine to load the shape in
+   * @returns The initialization object with pJSDom and particlesJS
    */
   initParticlesJS = (
     engine: InteractivityEngine,

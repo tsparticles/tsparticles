@@ -31,7 +31,7 @@ export class GradientColorOpacityAnimation
 
   /**
    * Loads the gradient color opacity animation from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IGradientColorOpacityAnimation>): void {
     if (isNull(data)) {

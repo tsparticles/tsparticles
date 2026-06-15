@@ -2,8 +2,8 @@ import path from "node:path";
 import { rimraf } from "rimraf";
 
 /**
- * @param basePath -
- * @param silent -
+ * @param basePath - The basePath
+ * @param silent - The silent
  * @returns true if the dist folder was cleared
  */
 export async function clearDist(basePath: string, silent: boolean): Promise<boolean> {

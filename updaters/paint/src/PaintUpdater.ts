@@ -24,8 +24,8 @@ export class PaintUpdater implements IParticleUpdater {
 
   /**
    * PaintUpdater constructor
-   * @param pluginManager
-   * @param container
+   * @param pluginManager - The plugin manager
+   * @param container - The container to handle
    */
   constructor(pluginManager: PluginManager, container: Container) {
     this.#container = container;
@@ -34,7 +34,7 @@ export class PaintUpdater implements IParticleUpdater {
 
   /**
    * Initializes paint-related particle properties
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: PaintParticle): void {
     const container = this.#container,
@@ -100,7 +100,8 @@ export class PaintUpdater implements IParticleUpdater {
 
   /**
    * Checks if paint animation is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: PaintParticle): boolean {
     const { fillAnimation, fillColor, strokeAnimation, strokeColor } = particle,
@@ -120,8 +121,8 @@ export class PaintUpdater implements IParticleUpdater {
 
   /**
    * Updates the particle paint colors
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: Particle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {

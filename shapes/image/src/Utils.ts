@@ -64,7 +64,7 @@ const currentColorRegex =
  * @param imageShape - the image used for replacing SVG data
  * @param color - the replace color value
  * @param opacity - the color opacity
- * @param hdr -
+ * @param hdr - The hdr
  * @returns the new SVG data
  */
 function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr = false): string {
@@ -150,7 +150,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
  * @param imageData - the image shape data
  * @param color - the replacement color
  * @param particle - the particle where the replaced data is going to be used
- * @param hdr -
+ * @param hdr - The hdr
  * @returns the image with the color replaced
  */
 export function replaceImageColor(

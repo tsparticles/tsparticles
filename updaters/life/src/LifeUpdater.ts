@@ -24,7 +24,7 @@ export class LifeUpdater implements IParticleUpdater {
 
   /**
    * LifeUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -32,7 +32,7 @@ export class LifeUpdater implements IParticleUpdater {
 
   /**
    * Initializes particle life values
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: LifeParticle): void {
     const container = this.#container,
@@ -73,7 +73,8 @@ export class LifeUpdater implements IParticleUpdater {
 
   /**
    * Checks if life updater is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: Particle): boolean {
     return !particle.destroyed;
@@ -81,8 +82,8 @@ export class LifeUpdater implements IParticleUpdater {
 
   /**
    * Loads the life options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: LifeParticlesOptions,
@@ -93,8 +94,8 @@ export class LifeUpdater implements IParticleUpdater {
 
   /**
    * Updates the particle life state
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: LifeParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.life) {

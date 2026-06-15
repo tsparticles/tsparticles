@@ -11,7 +11,6 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
   /** Connect radius in pixels */
   radius = 60;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IConnect>): void {
     if (isNull(data)) {
       return;

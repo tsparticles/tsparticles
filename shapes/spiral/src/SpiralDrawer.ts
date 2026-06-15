@@ -10,7 +10,7 @@ const defaultInnerRadius = 1,
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
   /**
    * Draws the spiral shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<SpiralParticle>): void {
     drawSpiral(data);
@@ -18,8 +18,8 @@ export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
 
   /**
    * Initializes spiral-specific particle properties
-   * @param container
-   * @param particle
+   * @param container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(container: Container, particle: SpiralParticle): void {
     const pixelRatio = container.retina.pixelRatio,

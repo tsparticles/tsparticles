@@ -3,7 +3,7 @@ import { type Engine } from "@tsparticles/engine/lazy";
 const paletteName = "cmy-secondaries";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadCmySecondariesPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

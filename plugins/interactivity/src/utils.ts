@@ -3,8 +3,8 @@ import type { DivEvent } from "./Options/Classes/Events/DivEvent.js";
 import type { IModeDiv } from "./Options/Interfaces/Modes/IModeDiv.js";
 
 /**
- * @param obj -
- * @param callback -
+ * @param obj - The object
+ * @param callback - The callback
  * @returns the item found, if present
  */
 function findItemFromSingleOrMultiple<T>(

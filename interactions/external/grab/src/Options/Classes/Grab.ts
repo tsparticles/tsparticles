@@ -9,7 +9,6 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
   /** Grab links options */
   readonly links = new GrabLinks();
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IGrab>): void {
     if (isNull(data)) {
       return;

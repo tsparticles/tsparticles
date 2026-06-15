@@ -18,7 +18,7 @@ export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
 
   /**
    * Loads the roll light from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IRollLight>): void {
     if (isNull(data)) {

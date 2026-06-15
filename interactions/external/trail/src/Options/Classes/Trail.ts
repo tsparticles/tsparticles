@@ -22,7 +22,6 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
   /** Number of particles to emit per trail step */
   quantity = 1;
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ITrail>): void {
     if (isNull(data)) return;
 

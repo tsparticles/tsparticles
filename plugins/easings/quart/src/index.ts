@@ -5,7 +5,7 @@ declare const __VERSION__: string;
 
 /**
  * Loads the easing quart plugin for tsParticles
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadEasingQuartPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

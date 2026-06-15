@@ -10,7 +10,7 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
 
   /**
    * CardDrawer constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -18,7 +18,7 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
 
   /**
    * Draws the card shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<CardParticle>): void {
     const { context, particle, opacity, radius } = data;
@@ -46,8 +46,8 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
 
   /**
    * Initializes the card shape on the particle
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: CardParticle): void {
     const shape = particle.shapeData;
