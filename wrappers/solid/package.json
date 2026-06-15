@@ -145,7 +145,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-no-only-tests": "^3.3.0",
     "jsdom": "^29.0.2",
-    "prettier": "3.8.2",
+    "prettier": "3.8.4",
     "solid-js": "^1.8.17",
     "tsup": "^8.0.2",
     "tsup-preset-solid": "^2.2.0",
