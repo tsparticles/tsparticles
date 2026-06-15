@@ -29,7 +29,7 @@ app.use("/@tsparticles/configs", express.static(path.join(__dirname, "./public/p
 // node_modules. This points to the workspace package build output.
 app.use(
   "/@tsparticles/webcomponents",
-  express.static(path.join(__dirname, "./node_modules/@tsparticles/webcomponents/dist")),
+  express.static(path.join(__dirname, "./node_modules/@tsparticles/webcomponents")),
 );
  app.use(
    "/webcomponentsjs",

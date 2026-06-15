@@ -21,7 +21,7 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S7   | Inferno wrapper           | Done    | Wrapper + demo/template check + README + verification                 |
 | S8   | Lit wrapper               | Done    | Wrapper + demo/template check + README + verification                 |
 | S9   | Riot wrapper              | Done    | Wrapper + demo/template check + README + verification                 |
-| S10  | WebComponents wrapper     | Pending | Wrapper + demo/template check + README + verification                 |
+| S10  | WebComponents wrapper     | Done    | Wrapper + demo/template check + README + verification                 |
 | S11  | React docs                | Pending | README alignment + demo/template check                                |
 | S12  | Preact wrapper            | Pending | Drift found: missing `theme`, callback type strictness                |
 | S13  | Svelte wrapper            | Pending | Drift found: missing `theme`, reload scope too broad                  |
@@ -2523,5 +2523,5 @@ Done only if all are true:
 - [ ] Inferno calls loaded callback after load
 - [ ] Lit dispatches `particlesLoaded` event
 - [ ] Riot has proper teardown (container destroy on unmount)
-- [ ] WebComponents observes `id` attribute changes
+- [x] WebComponents observes `id` attribute changes
 - [x] A1 audit completed: `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti` closed as no-change with evidence; `preact`, `svelte`, `stencil`, `ember`, `jquery`, `angular-fireworks` activated for implementation

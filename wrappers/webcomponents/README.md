@@ -65,3 +65,30 @@ Then use the custom element:
   });
 </script>
 ```
+
+## Observed Attributes
+
+The `<web-particles>` custom element observes the following attributes for reactivity:
+
+| Attribute    | Type     | Description                                                                                                    |
+| ------------ | -------- | -------------------------------------------------------------------------------------------------------------- |
+| `id`         | `string` | The container id. Changing triggers a full reload.                                                             |
+| `options`    | `string` | JSON-serialized options object. Changing triggers a full reload.                                               |
+| `url`        | `string` | A remote URL to a JSON configuration file. Changing triggers a full reload.                                    |
+| `data-theme` | `string` | The theme name to apply. Applies via `loadTheme` without a full reload. Requires `@tsparticles/plugin-themes`. |
+
+> **Note**: Theme support requires the optional `@tsparticles/plugin-themes` plugin. Without it, `data-theme` changes are silently ignored.
+
+## Reactivity
+
+- Changing the `id` property or `data-id` attribute destroys the current container and creates a new one with the new id.
+- Changing `options` or `url` destroys the current container and reloads particles with the new configuration.
+- Changing `data-theme` applies the theme via `loadTheme` without a full reload (safe no-op if `@tsparticles/plugin-themes` is not loaded).
+
+## Cleanup
+
+The element automatically destroys the particles container when it is removed from the DOM. No orphan animations remain.
+
+```
+
+```

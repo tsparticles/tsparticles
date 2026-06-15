@@ -44,6 +44,7 @@ Plan and implement wrapper reactivity (options/url/theme prop changes) across Vu
 7. ✅ **S7 Inferno** — done (callback invocation + theme support)
 8. ✅ **S8 Lit** — done (theme property + particlesLoaded event + selective reactivity in update())
 9. ✅ **S9 Riot** — done (onUpdated/onUnmounted lifecycle hooks, theme support, loadId race guard, demo with config switch, README aligned)
-10. ❏ **S10–S17** — align remaining extended wrappers (WebComponents, React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
-10. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
-11. ❏ **S20–S21** — validation and handoff
+10. ✅ **S10 WebComponents** — done (`data-id`/`data-theme` added to `observedAttributes`, `attributeChangedCallback` handles both, `id` setter syncs to `data-id`, deprecated `particlesInit` event removed, README documented with observed attributes table and theme caveat, build passes)
+11. ❏ **S11–S17** — align remaining extended wrappers (React docs, Preact, Svelte, Stencil, Ember, jQuery, Angular-fireworks)
+12. ❏ **S18–S19** — fix Vue 3 docs in EN + 9 translations (remove stale `:init`, `@particles-init`, `particlesInit`)
+13. ❏ **S20–S21** — validation and handoff

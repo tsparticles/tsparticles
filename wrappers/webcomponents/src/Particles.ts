@@ -79,7 +79,17 @@ export class Particles extends HTMLElement {
   // Observe 'url' and 'options' attributes so consumers can use setAttribute
   // (common in plain HTML demos) and the element updates its properties.
   static get observedAttributes(): string[] {
-    return ["url", "options"];
+    return ["url", "options", "data-id", "data-theme"];
+  }
+
+  get id(): string {
+    return super.id;
+  }
+
+  set id(value: string) {
+    super.id = value;
+
+    this.setAttribute("data-id", value);
   }
 
   attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null): void {
@@ -92,7 +102,19 @@ export class Particles extends HTMLElement {
     // class of race, only call the public setters (which start loads) when the
     // element is connected. Otherwise store the value and let connectedCallback
     // initiate the load.
-    if (name === "url") {
+    if (name === "data-id") {
+      if (this.isConnected) {
+        this.container.current?.destroy();
+
+        void this.#loadParticles(++this.#loadId);
+      }
+    } else if (name === "data-theme") {
+      const container = this.container.current;
+
+      if (container && newValue) {
+        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newValue);
+      }
+    } else if (name === "url") {
       // newValue can be null when the attribute is removed
       if (this.isConnected) {
         this.url = newValue;
@@ -170,17 +192,6 @@ export class Particles extends HTMLElement {
       } catch {}
     }
     this.#url = this.getAttribute("url");
-
-    // Dispatch the engine that's actually available at runtime (if any).
-    try {
-      this.dispatchEvent(
-        new CustomEvent("particlesInit", {
-          detail: getGlobalEngine(),
-        }),
-      );
-    } catch {
-      // ignore dispatch errors during construction
-    }
 
     // If a global engine is already present (the full bundle was loaded via
     // a script tag), start initialization automatically so the element can
