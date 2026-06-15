@@ -126,7 +126,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~22.0.0",
-    "@angular/build": "22.0.0",
+    "@angular/build": "22.0.1",
     "@angular/cli": "~22.0.0",
     "@angular/compiler-cli": "~22.0.0",
     "@tsparticles/prettier-config": "workspace:^",
