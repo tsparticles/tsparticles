@@ -123,27 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-## Использование `particlesInit` с компонентом
-
-Если вы предпочитаете не использовать глобальный плагин, передайте колбэк `init` напрямую:
-
-```vue
-<script setup lang="ts">
-import type { Engine } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-</script>
-
-<template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" />
-</template>
-```
-
----
-
 ## События
 
 Компонент генерирует несколько событий жизненного цикла:
@@ -155,15 +134,10 @@ import type { Container } from "@tsparticles/engine";
 const particlesLoaded = async (container: Container): Promise<void> => {
   console.log("Контейнер частиц загружен", container);
 };
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  console.log("Движок инициализирован");
-  await loadFull(engine);
-};
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -179,12 +153,7 @@ npm install @tsparticles/preset-confetti
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadConfettiPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "confetti",
@@ -195,9 +164,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="confetti" :options="options" :init="particlesInit" />
+  <vue-particles id="confetti" :options="options" />
 </template>
-```
+
+> **Примечание:** Зарегистрируйте `loadConfettiPreset` в точке входа вашего приложения через колбэк `init` плагина (см. [Базовое использование](#базовое-использование)).
 
 Для одноразового взрыва загрузите пресет, затем вызовите `tsParticles.load()` программно внутри метода.
 
@@ -213,12 +183,7 @@ npm install @tsparticles/preset-fireworks
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFireworksPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "fireworks",
@@ -229,9 +194,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="fireworks" :options="options" :init="particlesInit" />
+  <vue-particles id="fireworks" :options="options" />
 </template>
-```
+
+> **Примечание:** Зарегистрируйте `loadFireworksPreset` в точке входа вашего приложения через колбэк `init` плагина (см. [Базовое использование](#базовое-использование)).
 
 > **Совет:** Пресет фейерверка требует много ресурсов. Запускайте его по взаимодействию пользователя (например, по клику на кнопку), переключая `v-if`, привязанный к компоненту.
 
@@ -247,12 +213,7 @@ npm install @tsparticles/preset-snow
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSnowPreset } from "@tsparticles/preset-snow";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadSnowPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "snow",
@@ -263,9 +224,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="snow" :options="options" :init="particlesInit" />
+  <vue-particles id="snow" :options="options" />
 </template>
-```
+
+> **Примечание:** Зарегистрируйте `loadSnowPreset` в точке входа вашего приложения через колбэк `init` плагина (см. [Базовое использование](#базовое-использование)).
 
 ---
 
@@ -408,7 +370,15 @@ const toggleTheme = () => {
 </template>
 ```
 
-Альтернативно, используйте встроенную опцию [themes](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html#themes) и свойство `theme` на контейнере для переключения без конфигурации.
+Компонент `<vue-particles>` также поддерживает проп `theme` для переключения без конфигурации. Когда проп `theme` меняется, компонент применяет новую тему без уничтожения и воссоздания контейнера:
+
+```vue
+<template>
+  <vue-particles id="tsparticles" :options="options" :theme="currentTheme" />
+</template>
+```
+
+> **Примечание:** Проп `theme` требует опциональный пакет [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes). Без него проп `theme` является безопасным no-op — ошибка не выбрасывается, но изменение темы игнорируется.
 
 ---
 
@@ -422,13 +392,8 @@ npm install @tsparticles/configs
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadLinksPreset } from "@tsparticles/preset-links";
+import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadLinksPreset(engine);
-};
 
 const options: ISourceOptions = {
   ...particlesConfig,
@@ -439,9 +404,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="config-particles" :options="options" :init="particlesInit" />
+  <vue-particles id="config-particles" :options="options" />
 </template>
-```
+
+> **Примечание:** Зарегистрируйте `loadLinksPreset` в точке входа вашего приложения через колбэк `init` плагина (см. [Базовое использование](#базовое-использование)).
 
 Просмотрите доступные конфиги в пакете `@tsparticles/configs` для готовых к использованию макетов.
 
@@ -472,27 +438,16 @@ createApp(App)
 
 Затем движок доступен глобально, и все экземпляры `<vue-particles>` используют его.
 
-### 2. Инициализация на уровне компонента
-
-Передайте колбэк `:init` каждому экземпляру `<vue-particles>`. Полезно, когда разным компонентам нужны разные наборы плагинов:
-
-```vue
-<template>
-  <vue-particles id="a" :options="optionsA" :init="initA" />
-  <vue-particles id="b" :options="optionsB" :init="initB" />
-</template>
-```
-
-### 3. Particles Provider (Composition API)
+### 2. Particles Provider (Composition API)
 
 Используйте провайдер для программного доступа к движку:
 
 ```vue
 <script setup lang="ts">
-import { useParticles } from "@tsparticles/vue3";
+import { useParticlesProvider } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 
-const { init } = useParticles();
+const { init } = useParticlesProvider();
 
 await init(async (engine: Engine) => {
   await loadFull(engine);
@@ -509,8 +464,7 @@ await init(async (engine: Engine) => {
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 const particlesContainer = ref<Container | null>(null);
 
@@ -581,10 +535,6 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-
 const particlesLoaded = async (container: Container): Promise<void> => {
   particlesContainer.value = container;
   console.log("Контейнер готов", container);
@@ -592,7 +542,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -600,17 +550,16 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Справочник API
 
-| Проп      | Тип                                 | По умолчанию    | Описание                      |
-| --------- | ----------------------------------- | --------------- | ----------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | ID элемента canvas            |
-| `options` | `ISourceOptions`                    | `{}`            | Конфигурация частиц           |
-| `init`    | `(engine: Engine) => Promise<void>` | —               | Колбэк инициализации движка   |
-| `url`     | `string`                            | —               | URL для загрузки JSON конфиг. |
+| Проп      | Тип             | По умолчанию    | Описание                                                                                    |
+| --------- | --------------- | --------------- | ------------------------------------------------------------------------------------------- |
+| `id`      | `string`        | `"tsparticles"` | ID элемента canvas                                                                          |
+| `options` | `ISourceOptions`| `{}`            | Конфигурация частиц                                                                         |
+| `url`     | `string`        | —               | URL для загрузки JSON конфиг.                                                               |
+| `theme`   | `string`        | —               | Имя темы для применения (требуется `@tsparticles/plugin-themes`; безопасный no-op если нет) |
 
 | Событие             | Полезные данные | Описание                                        |
 | ------------------- | --------------- | ----------------------------------------------- |
 | `@particles-loaded` | `Container`     | Срабатывает при полной инициализации контейнера |
-| `@particles-init`   | `Engine`        | Срабатывает после инициализации движка          |
 
 ---
 

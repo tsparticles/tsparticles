@@ -122,26 +122,6 @@ const options: ISourceOptions = {
 ```
 
 ---
-
-## Utilisation de `particlesInit` avec le composant
-
-Si vous préférez ne pas utiliser le plugin global, passez un callback `init` directement :
-
-```vue
-<script setup lang="ts">
-import type { Engine } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-</script>
-
-<template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" />
-</template>
-```
-
 ---
 
 ## Événements
@@ -155,15 +135,10 @@ import type { Container } from "@tsparticles/engine";
 const particlesLoaded = async (container: Container): Promise<void> => {
   console.log("Conteneur de particules chargé", container);
 };
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  console.log("Moteur initialisé");
-  await loadFull(engine);
-};
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -179,12 +154,7 @@ npm install @tsparticles/preset-confetti
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadConfettiPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "confetti",
@@ -195,8 +165,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="confetti" :options="options" :init="particlesInit" />
+  <vue-particles id="confetti" :options="options" />
 </template>
+
+> **Note :** Enregistrez le `loadConfettiPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 Pour une explosion unique, chargez le préréglage puis appelez `tsParticles.load()` par programmation dans une méthode.
@@ -213,12 +185,7 @@ npm install @tsparticles/preset-fireworks
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFireworksPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "fireworks",
@@ -229,8 +196,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="fireworks" :options="options" :init="particlesInit" />
+  <vue-particles id="fireworks" :options="options" />
 </template>
+
+> **Note :** Enregistrez le `loadFireworksPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 > **Conseil :** Le préréglage feux d'artifice est intensif en ressources. Déclenchez-le sur une interaction utilisateur (ex. clic sur un bouton) en basculant un `v-if` lié au composant.
@@ -247,12 +216,7 @@ npm install @tsparticles/preset-snow
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSnowPreset } from "@tsparticles/preset-snow";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadSnowPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "snow",
@@ -263,8 +227,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="snow" :options="options" :init="particlesInit" />
+  <vue-particles id="snow" :options="options" />
 </template>
+
+> **Note :** Enregistrez le `loadSnowPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 ---
@@ -408,7 +374,15 @@ const toggleTheme = () => {
 </template>
 ```
 
-Alternativement, utilisez l'option intégrée [themes](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html#themes) et la propriété `theme` du conteneur pour un changement sans configuration.
+Le composant `<vue-particles>` supporte également une prop `theme` pour une commutation sans configuration. Lorsque la prop `theme` change, le composant applique le nouveau thème sans détruire et recréer le conteneur :
+
+```vue
+<template>
+  <vue-particles id="tsparticles" :options="options" :theme="currentTheme" />
+</template>
+```
+
+> **Note :** La prop `theme` nécessite le paquet optionnel `@tsparticles/plugin-themes`. Sans lui, la prop `theme` est un no-op sans danger — aucune erreur n'est générée, mais le changement de thème est ignoré.
 
 ---
 
@@ -422,13 +396,8 @@ npm install @tsparticles/configs
 
 ```vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadLinksPreset } from "@tsparticles/preset-links";
+import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadLinksPreset(engine);
-};
 
 const options: ISourceOptions = {
   ...particlesConfig,
@@ -439,8 +408,10 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="config-particles" :options="options" :init="particlesInit" />
+  <vue-particles id="config-particles" :options="options" />
 </template>
+
+> **Note :** Enregistrez le `loadLinksPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 Parcourez les configurations disponibles dans le package `@tsparticles/configs` pour des mises en page prêtes à l'emploi.
@@ -472,27 +443,16 @@ createApp(App)
 
 Le moteur est alors disponible globalement et toutes les instances `<vue-particles>` le partagent.
 
-### 2. Init au niveau du composant
+### 2. Particles Provider (Composition API)
 
-Passez un callback `:init` à chaque instance `<vue-particles>`. Utile lorsque différents composants ont besoin de différents ensembles de plugins :
-
-```vue
-<template>
-  <vue-particles id="a" :options="optionsA" :init="initA" />
-  <vue-particles id="b" :options="optionsB" :init="initB" />
-</template>
-```
-
-### 3. Provider Particles (Composition API)
-
-Utilisez le provider pour accéder au moteur par programmation :
+Use the provider to access the engine programmatically:
 
 ```vue
 <script setup lang="ts">
-import { useParticles } from "@tsparticles/vue3";
+import { useParticlesProvider } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 
-const { init } = useParticles();
+const { init } = useParticlesProvider();
 
 await init(async (engine: Engine) => {
   await loadFull(engine);
@@ -509,8 +469,7 @@ Exemple TypeScript complet avec tous les éléments ensemble :
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 const particlesContainer = ref<Container | null>(null);
 
@@ -581,10 +540,6 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-
 const particlesLoaded = async (container: Container): Promise<void> => {
   particlesContainer.value = container;
   console.log("Conteneur prêt", container);
@@ -592,7 +547,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -600,17 +555,16 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Référence API
 
-| Prop      | Type                                | Défaut          | Description                         |
-| --------- | ----------------------------------- | --------------- | ----------------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | ID de l'élément canvas              |
-| `options` | `ISourceOptions`                    | `{}`            | Configuration des particules        |
-| `init`    | `(engine: Engine) => Promise<void>` | —               | Callback d'initialisation du moteur |
-| `url`     | `string`                            | —               | URL pour charger une config JSON    |
+| Prop      | Type             | Default         | Description                                                                          |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------ |
+| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas              |
+| `options` | `ISourceOptions` | `{}`            | Configuration des particules        |
+| `url`     | `string`         | —               | URL pour charger une config JSON    |
+| `theme`   | `string`         | —               | Nom du thème à appliquer (nécessite `@tsparticles/plugin-themes` ; sans danger si absent) |
 
 | Événement           | Payload     | Description                                    |
 | ------------------- | ----------- | ---------------------------------------------- |
 | `@particles-loaded` | `Container` | Se déclenche quand le conteneur est initialisé |
-| `@particles-init`   | `Engine`    | Se déclenche après l'initialisation du moteur  |
 
 ---
 
