@@ -180,7 +180,7 @@ export default class ApplicationController extends Controller {
 
   @action
   loadedCallback(container: Container) {
-    console.log("Частицы загружены", container.id);
+    console.log("Частицы загружены", container?.id);
 
     // Пример программного управления:
     setTimeout(() => {
@@ -251,6 +251,16 @@ export default class ApplicationController extends Controller {
 
 ---
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Пример на TypeScript
 
 Ниже представлен полный типизированный контроллер приложения Ember, демонстрирующий интеграцию с slim-пресетом, интерактивностью и управлением жизненным циклом.
@@ -319,9 +329,9 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  private handleParticlesLoaded(container: Container): void {
+  private handleParticlesLoaded(container?: Container): void {
     this.container = container;
-    console.log("Частицы загружены в контейнер:", container.id);
+    console.log("Частицы загружены в контейнер:", container?.id);
   }
 }
 ```

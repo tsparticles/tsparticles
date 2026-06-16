@@ -317,6 +317,16 @@ export default component$(() => {
 });
 ```
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## आलसी लोडिंग
 
 क्विक का रिज्यूमेबिलिटी मॉडल का अर्थ है कि पार्टिकल्स कोड केवल तब लोड और निष्पादित होता है जब कम्पोनेंट व्यूपोर्ट में दिखाई देता है। `useVisibleTask$` हुक इंजन आरंभीकरण को ट्रिगर करता है, और `<Particles>` कम्पोनेंट स्वयं क्विक द्वारा आयात होने पर स्वचालित रूप से कोड-स्प्लिट हो जाता है:

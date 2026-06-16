@@ -563,6 +563,7 @@ Ou encapsulez l'importation dans un composant client-only. Pour SvelteKit 2+, vo
 | `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                |
 | `options` | `ISourceOptions` | `{}`            | Objet de configuration des particules |
 | `url`     | `string`         | —               | URL d'une configuration JSON distante |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | Événement            | Détail      | Description                                                                     |
 | -------------------- | ----------- | ------------------------------------------------------------------------------- |
@@ -570,6 +571,16 @@ Ou encapsulez l'importation dans un composant client-only. Pour SvelteKit 2+, vo
 | `on:particlesLoaded` | `Container` | Se déclenche quand le conteneur est complètement prêt                           |
 
 ---
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Dépannage
 

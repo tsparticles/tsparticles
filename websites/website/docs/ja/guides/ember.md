@@ -180,7 +180,7 @@ export default class ApplicationController extends Controller {
 
   @action
   loadedCallback(container: Container) {
-    console.log("Particles loaded", container.id);
+    console.log("Particles loaded", container?.id);
 
     // プログラム制御の例:
     setTimeout(() => {
@@ -251,6 +251,16 @@ export default class ApplicationController extends Controller {
 
 ---
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## TypeScript の例
 
 以下は、スリムプリセット、インタラクティビティ、およびライフサイクル管理を使用した完全な統合パターンを示す、型付けされた完全な Ember アプリケーションコントローラーです。
@@ -319,9 +329,9 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  private handleParticlesLoaded(container: Container): void {
+  private handleParticlesLoaded(container?: Container): void {
     this.container = container;
-    console.log("Particles loaded in container:", container.id);
+    console.log("Particles loaded in container:", container?.id);
   }
 }
 ```

@@ -245,6 +245,16 @@ export default function App() {
 }
 ```
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## イベント処理
 
 `particlesLoaded` コールバックを使用して、パーティクルが完全にレンダリングされた後に tsParticles の `Container` インスタンスにアクセスします:

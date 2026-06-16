@@ -5,7 +5,7 @@ description: Step-by-step guide to integrating tsParticles into a SolidJS applic
 
 # SolidJS Integration
 
-This guide covers integrating tsParticles into a **SolidJS** project using the official `@tsparticles/solid` wrapper. SolidJS's fine-grained reactivity model works well with tsParticles — options changes trigger targeted canvas updates without full re-initialization.
+This guide covers integrating tsParticles into a **SolidJS** project using the official `@tsparticles/solid` wrapper.
 
 ## Installation
 
@@ -351,7 +351,7 @@ const App: Component = () => {
     },
   };
 
-  const particlesLoaded = (c: Container) => {
+  const particlesLoaded = (c?: Container) => {
     setContainer(c);
   };
 
@@ -391,7 +391,7 @@ export default App;
 
 ## Dynamic Options with Signals
 
-One of SolidJS's strengths is fine-grained reactivity — you can use signals to drive particle options and the canvas will update efficiently:
+SolidJS's signals drive reactive prop changes — when `id`, `options`, or `url` change, the component destroys the old container and reloads particles with the new values. Use signals to create new object references on each change:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -449,7 +449,7 @@ const App: Component = () => {
 export default App;
 ```
 
-Because `options` is a function that accesses signals, every time `color()` or `particleCount()` changes, the `<Particles>` component receives a new options object and applies only the changed properties to the existing canvas.
+Because `options` is a function that accesses signals, every time `color()` or `particleCount()` changes, the `<Particles>` component receives a new options object and triggers a destroy+reload cycle with the updated configuration.
 
 ## Preset with Custom Overrides
 
@@ -495,6 +495,15 @@ export default App;
 
 The preset provides default values for every option, and your overrides are merged on top — you only need to specify the properties you want to change.
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the current container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Troubleshooting
 
 | Symptom                      | Cause                                   | Fix                                                                      |
@@ -504,6 +513,7 @@ The preset provides default values for every option, and your overrides are merg
 | Canvas behind content        | Missing `zIndex` in fullScreen          | Use `fullScreen: { zIndex: -1 }`                                         |
 | Options change not reflected | Object reference not changing           | Wrap options in a function or store; avoid static objects                |
 | Engine not found             | Missing `loadFull` or `loadSlim` import | Install `tsparticles` or `@tsparticles/slim` and call `loadFull(engine)` |
+| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register `loadThemePlugin` during engine initialization       |
 
 ## Next Steps
 

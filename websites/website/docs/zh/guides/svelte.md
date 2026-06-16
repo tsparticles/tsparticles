@@ -563,6 +563,7 @@ npm install @tsparticles/preset-stars
 | `id`      | `string`         | `"tsparticles"` | 画布元素 ID          |
 | `options` | `ISourceOptions` | `{}`            | 粒子配置对象         |
 | `url`     | `string`         | —               | 远程 JSON 配置的 URL |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | 事件                 | 详情        | 描述                             |
 | -------------------- | ----------- | -------------------------------- |
@@ -570,6 +571,16 @@ npm install @tsparticles/preset-stars
 | `on:particlesLoaded` | `Container` | 容器完全就绪时触发               |
 
 ---
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## 故障排除
 

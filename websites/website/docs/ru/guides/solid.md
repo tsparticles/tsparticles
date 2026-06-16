@@ -351,7 +351,7 @@ const App: Component = () => {
     },
   };
 
-  const particlesLoaded = (c: Container) => {
+  const particlesLoaded = (c?: Container) => {
     setContainer(c);
   };
 
@@ -504,6 +504,16 @@ export default App;
 | Canvas позади контента        | Отсутствует `zIndex` в fullScreen            | Используйте `fullScreen: { zIndex: -1 }`                                       |
 | Изменение опций не отражается | Ссылка на объект не меняется                 | Оберните опции в функцию или store; избегайте статических объектов             |
 | Движок не найден              | Отсутствует импорт `loadFull` или `loadSlim` | Установите `tsparticles` или `@tsparticles/slim` и вызовите `loadFull(engine)` |
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Следующие шаги
 

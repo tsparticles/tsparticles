@@ -317,6 +317,16 @@ export default component$(() => {
 });
 ```
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Carregamento Lazy
 
 O modelo de resumibilidade do Qwik significa que o código de partículas é carregado e executado apenas quando o componente se torna visível no viewport. O hook `useVisibleTask$` aciona a inicialização do motor, e o componente `<Particles>` em si é dividido em código automaticamente pelo Qwik quando importado:

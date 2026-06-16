@@ -347,6 +347,17 @@ A complete HTML page using the Web Components module with CDN scripts:
 </html>
 ```
 
+## Reactive Behavior
+
+The `<web-particles>` element reacts to property changes at runtime:
+
+- **`options`** change → the current container is destroyed and particles are reloaded with the new configuration.
+- **`theme`** attribute change → `loadTheme` is called on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+
+## Cleanup
+
+Call `element.dispose()` to destroy the container and free resources. When the element is removed from the DOM (`disconnectedCallback`), disposal happens automatically.
+
 ## API Reference
 
 | Export / Property               | Type                     | Description                                           |

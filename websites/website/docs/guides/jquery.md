@@ -270,5 +270,15 @@ Below is a complete, self-contained HTML page that loads tsParticles via CDN and
 | `$.particles.init(fn)`             | Initialize the engine with a loader callback             |
 | `$(el).particles()`                | Create a particles plugin instance on the element        |
 | `$(el).particles().load(opts)`     | Load and start the particle configuration                |
+| `$(el).particles().ajax(url)`      | Load configuration from a remote JSON URL                |
+| `$(el).particles().setTheme(name)` | Switch the active theme (requires `@tsparticles/plugin-themes`) |
 | `$(el).particles().destroy()`      | Destroy the particle instance and clean up               |
 | `$(el).particles().getContainer()` | Return the underlying `Container` for imperative control |
+
+### Reactive behavior
+
+Calling `.load(options)` or `.ajax(url)` again on the same element replaces the previous container — the old one is destroyed automatically. Use `.setTheme(name)` to switch themes at runtime without a full reload (requires `@tsparticles/plugin-themes`).
+
+### Cleanup
+
+Call `.destroy()` to remove the particle instance and free resources. Containers are tracked per element via `WeakMap` — when the DOM element is removed, the associated container should be manually destroyed or replaced with an empty `.load({})`.

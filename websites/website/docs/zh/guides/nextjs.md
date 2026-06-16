@@ -485,6 +485,16 @@ export default function ParticlesComponent() {
 | 选项更改未反映 | 未创建新的对象引用           | 使用带正确依赖数组的 `useMemo`                           |
 | 预设不生效     | 容器初始化前未加载预设       | 在 `init` 回调中调用 `loadXPreset(engine)`               |
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## 下一步
 
 - 浏览[交互式演示](/demos/)以获取现成的配置。

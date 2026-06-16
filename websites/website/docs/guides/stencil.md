@@ -356,4 +356,14 @@ The `particlesLoaded` event fires once the first frame is rendered, giving you a
 
 ---
 
+## Reactive Behavior
+
+The component reloads particles when `container-id`, `options`, or `url` props change. Changes to `theme` apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
+
+## Cleanup
+
+When the component is removed from the DOM, the particles container is automatically destroyed, stopping all animations and freeing resources.
+
+---
+
 You now have everything needed to integrate tsParticles into a Stencil application. Each example is self-contained and ready to be copied into your project.

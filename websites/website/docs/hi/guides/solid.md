@@ -351,7 +351,7 @@ const App: Component = () => {
     },
   };
 
-  const particlesLoaded = (c: Container) => {
+  const particlesLoaded = (c?: Container) => {
     setContainer(c);
   };
 
@@ -494,6 +494,16 @@ export default App;
 ```
 
 प्रीसेट प्रत्येक विकल्प के लिए डिफ़ॉल्ट मान प्रदान करता है, और आपके ओवरराइड शीर्ष पर मर्ज हो जाते हैं — आपको केवल उन प्रॉपर्टी को निर्दिष्ट करने की आवश्यकता है जिन्हें आप बदलना चाहते हैं।
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## समस्या निवारण
 

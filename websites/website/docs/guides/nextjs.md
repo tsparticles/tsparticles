@@ -484,6 +484,16 @@ Note that the Pages Router does **not** require `"use client"` because page comp
 | Canvas not showing           | Container has zero height               | Set `fullScreen: { zIndex: -1 }` or give it explicit dimensions  |
 | Options change not reflected | New object reference not created        | Use `useMemo` with proper dependency array                       |
 | Preset not working           | Preset not loaded before container init | Call `loadXPreset(engine)` inside the `init` callback            |
+| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register the plugin during engine initialization      |
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes:
+
+- **`id`**, **`options`**, or **`url`** change → destroy current container and reload with new values.
+- **`theme`** change → `loadTheme` on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+
+On component unmount, the particles container is automatically destroyed.
 
 ## Next Steps
 

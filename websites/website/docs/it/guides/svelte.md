@@ -563,6 +563,7 @@ Oppure avvolgi l'import in un componente solo client. Per SvelteKit 2+, puoi anc
 | `id`      | `string`         | `"tsparticles"` | ID dell'elemento canvas                |
 | `options` | `ISourceOptions` | `{}`            | Oggetto di configurazione particelle   |
 | `url`     | `string`         | —               | URL per una configurazione JSON remota |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | Evento               | Dettaglio   | Descrizione                                                               |
 | -------------------- | ----------- | ------------------------------------------------------------------------- |

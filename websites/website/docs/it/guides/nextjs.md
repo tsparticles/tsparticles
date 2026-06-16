@@ -476,6 +476,16 @@ export default function ParticlesComponent() {
 
 Nota che il Pages Router **non** richiede `"use client"` perché i componenti delle pagine sono già renderizzati lato client per impostazione predefinita.
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Risoluzione dei Problemi
 
 | Sintomo                     | Causa                                             | Rimedio                                                              |

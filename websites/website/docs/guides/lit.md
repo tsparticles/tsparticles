@@ -298,4 +298,12 @@ class DynamicParticles extends LitElement {
 }
 ```
 
-The component watches the `options` property and calls `refresh()` internally whenever it changes, seamlessly updating the particle configuration at runtime.
+The component watches the `options` property and reloads the container whenever it changes, seamlessly updating the particle configuration at runtime.
+
+## Reactive Behavior
+
+The `<lit-particles>` component reloads particles when the `options` property changes. Changes to the `theme` property apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the element is removed from the DOM, the `disconnectedCallback` automatically destroys the container, stopping all animations.

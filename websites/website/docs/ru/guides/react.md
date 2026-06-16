@@ -427,7 +427,7 @@ export default function PerformanceExample() {
   // Мемоизация колбэка — стабильная ссылка между рендерами
   const particlesLoaded = useCallback(async (container) => {
     // Вызывается один раз за монтирование контейнера
-    console.log("Контейнер готов", container.id);
+    console.log("Контейнер готов", container?.id);
   }, []);
 
   // Мемоизация объекта опций — пересчитывается только при изменении зависимостей
@@ -485,6 +485,16 @@ export default function PerformanceExample() {
 - Условно размонтируйте `<Particles />`, когда он вне области просмотра.
 
 ---
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Пользовательская конфигурация
 

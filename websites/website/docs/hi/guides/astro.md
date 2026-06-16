@@ -373,6 +373,16 @@ const options: ISourceOptions = {
 </script>
 ```
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## कम्पोनेंट प्रॉप्स
 
 | प्रॉप                | प्रकार           | डिफ़ॉल्ट                  | विवरण                                    |
@@ -382,3 +392,4 @@ const options: ISourceOptions = {
 | `url`                | `string`         | —                         | दूरस्थ JSON URL से कॉन्फ़िगरेशन लोड करें |
 | `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | कैनवास एलिमेंट के लिए CSS क्लास          |
 | `container`          | `object`         | —                         | पूर्व-मौजूद `Container` इंस्टेंस (उन्नत) |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |

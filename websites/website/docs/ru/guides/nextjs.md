@@ -485,6 +485,16 @@ export default function ParticlesComponent() {
 | Изменение опций не отражается | Не создана новая ссылка на объект              | Используйте `useMemo` с правильным массивом зависимостей                      |
 | Пресет не работает            | Пресет не загружен до инициализации контейнера | Вызовите `loadXPreset(engine)` внутри колбэка `init`                          |
 
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Следующие шаги
 
 - Просмотрите [Интерактивные демо](/demos/) для готовых конфигураций.

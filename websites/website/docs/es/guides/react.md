@@ -427,7 +427,7 @@ export default function PerformanceExample() {
   // Memoiza el callback — referencia estable entre renderizaciones
   const particlesLoaded = useCallback(async (container) => {
     // Se llama una vez por montaje del contenedor
-    console.log("Contenedor listo", container.id);
+    console.log("Contenedor listo", container?.id);
   }, []);
 
   // Memoiza el objeto de opciones — solo se recalcula cuando las dependencias cambian
@@ -485,6 +485,16 @@ export default function PerformanceExample() {
 - Desmonta condicionalmente `<Particles />` cuando esté fuera de la pantalla.
 
 ---
+
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Configuración Personalizada
 

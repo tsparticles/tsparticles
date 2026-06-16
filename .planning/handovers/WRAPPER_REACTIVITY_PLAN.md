@@ -33,6 +33,8 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S19  | 9 translations            | Done    | Mirrored all S18 changes across zh, ja, hi, ru, pt, fr, de, es, it — each file reduced from 622→~576 lines; zero stale patterns remaining |
 | S20  | Validation                | Done    | Build + smoke + stale-pattern checks ✅ — all 13 wrappers build pass; stale patterns: zero; README gaps documented                                                                                |
 | S21  | Final handoff             | Done    | All artifacts aligned. README gaps fixed for preact, stencil, ember, jquery, angular-fireworks. Builds passing. Zero stale patterns.  |
+| S22  | EN wrapper guide audit    | Done    | Audit complete. All 16 guide files checked. Gap matrix produced: all 16 have missing `theme`/reactivity/cleanup docs. Nuxt has stale `@particles-init`/`@particles-destroy`. Solid/Svelte have misleading reactivity descriptions. Audit-only — no files edited. |
+| S23  | Translation alignment     | Done    | All 16 EN guides fixed (theme prop, reactivity, cleanup, Container types, stale events, misleading descriptions). Mirrored to 9 translation directories (144 files). |
 
 Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
 
@@ -2374,14 +2376,17 @@ S15  Ember wrapper             → Sub-agent O
 S16  jQuery wrapper            → Sub-agent P
 S17 Angular-fireworks wrapper → Sub-agent Q
 
-S18 EN docs               → Sub-agent X
-S19 9 translations        → Sub-agent Y
+S18 EN docs (vue3.md)     → Sub-agent X
+S19 9 translations (vue3.md) → Sub-agent Y
 
 S20 Validation            → Sub-agent Z (after all above)
 S21 Final handoff         → Sub-agent AA
+
+S22 EN wrapper guide audit → Sub-agent BB (audit only — no code changes)
+S23 Translation alignment   → Sub-agent CC (only if S22 finds gaps)
 ```
 
-Note: use wave execution from the protocol section. `S18` must precede `S19`.
+Note: use wave execution from the protocol section. `S18` must precede `S19`. `S22` must precede `S23`. S22 is audit-only: it produces a gap matrix but does NOT edit files.
 
 ---
 
@@ -2525,3 +2530,84 @@ Done only if all are true:
 - [ ] Riot has proper teardown (container destroy on unmount)
 - [x] WebComponents observes `id` attribute changes
 - [x] A1 audit completed: `nextjs`, `nuxt2`, `nuxt3`, `nuxt4`, `angular-confetti` closed as no-change with evidence; `preact`, `svelte`, `stencil`, `ember`, `jquery`, `angular-fireworks` activated for implementation
+- [x] S22 audit completed: all 16 wrapper guide pages checked against wrapper READMEs. Gap matrix produced.
+- [x] S23 translations aligned (All 16 EN guides fixed, 144 translation files mirrored)
+
+---
+
+### S22 — EN Wrapper Guide Audit (audit only — no file edits)
+
+**Goal**: Check every wrapper guide page under `websites/website/docs/guides/` (except `vue3.md`, `index.md`, `vanilla.md`, `wordpress.md`) against the actual wrapper implementation and README from S1-S17.
+
+**Files to audit** (15 EN files):
+
+| Wrapper | Guide file | Reference README |
+|---------|-----------|------------------|
+| Angular | `websites/website/docs/guides/angular.md` | `wrappers/angular/README.md` |
+| Solid   | `websites/website/docs/guides/solid.md`   | `wrappers/solid/README.md`   |
+| Qwik    | `websites/website/docs/guides/qwik.md`    | `wrappers/qwik/README.md`    |
+| Astro   | `websites/website/docs/guides/astro.md`   | `wrappers/astro/README.md`   |
+| React   | `websites/website/docs/guides/react.md`   | `wrappers/react/README.md`   |
+| Preact  | `websites/website/docs/guides/preact.md`  | `wrappers/preact/README.md`  |
+| Svelte  | `websites/website/docs/guides/svelte.md`  | `wrappers/svelte/README.md`  |
+| Stencil | `websites/website/docs/guides/stencil.md` | `wrappers/stencil/README.md` |
+| Ember   | `websites/website/docs/guides/ember.md`   | `wrappers/ember/README.md`   |
+| jQuery  | `websites/website/docs/guides/jquery.md`  | `wrappers/jquery/README.md`  |
+| Inferno | `websites/website/docs/guides/inferno.md` | `wrappers/inferno/README.md` |
+| Lit     | `websites/website/docs/guides/lit.md`     | `wrappers/lit/README.md`     |
+| Riot    | `websites/website/docs/guides/riot.md`    | `wrappers/riot/README.md`    |
+| WebComponents | `websites/website/docs/guides/webcomponents.md` | `wrappers/webcomponents/README.md` |
+| Next.js | `websites/website/docs/guides/nextjs.md`  | `wrappers/nextjs/README.md`  |
+
+Nuxt (`websites/website/docs/guides/nuxt.md`) also included — cross-check against `wrappers/nuxt3/README.md` + `wrappers/nuxt4/README.md`.
+
+**Audit checklist per file** (compare guide page vs wrapper README):
+
+1. **`theme` prop/attribute**: Does the guide document the `theme` prop? Does it mention `@tsparticles/plugin-themes` is optional? Is the safe no-op behavior documented?
+2. **Reactivity contract**: Does the guide document that `id`/`options`/`url` changes trigger destroy+reload?
+3. **`particlesLoaded` / loaded callback**: Does the guide show the callback? Is the type `(container?: Container)` or similar?
+4. **Destroy on teardown**: Is cleanup documented?
+5. **Stale patterns**: Any `:init`, `@particles-init`, `particlesInit` function names, or other stale v3 patterns?
+6. **Init approach**: Does the guide show the correct v4 init (plugin/provider) rather than component-level init?
+7. **Demo alignment**: Do code examples match what the actual wrapper API looks like?
+
+**Output contract** (per-file, return this structure):
+
+```md
+## {wrapper name}
+
+**Guide file**: `websites/website/docs/guides/{name}.md`
+**Reference README**: `wrappers/{name}/README.md`
+
+### Gap assessment
+| Check | Status | Evidence |
+|-------|--------|----------|
+| `theme` prop documented | ✅/❌/Partial | ... |
+| Reactivity contract | ✅/❌/Partial | ... |
+| Loaded callback | ✅/❌/Partial | ... |
+| Destroy on teardown | ✅/❌/Partial | ... |
+| No stale patterns | ✅/❌/Partial | ... |
+| Correct v4 init | ✅/❌/Partial | ... |
+| Demo alignment | ✅/❌/N/A | ... |
+
+### Known gaps (if any)
+- {gap description} → {fix needed}
+
+### Extent of changes needed
+- {none / minor / significant}
+- {estimated lines changed}
+```
+
+**No files should be edited by S22.** S22 only produces the gap matrix.
+
+---
+
+### S23 — Translation Alignment (execution step, only if S22 finds gaps)
+
+**Goal**: Mirror S22 fixes across all 9 translation directories.
+
+**Files to edit**: For each wrapper guide with gaps from S22, edit `websites/website/docs/{zh,ja,hi,ru,pt,fr,de,es,it}/guides/{name}.md`.
+
+**Rule**: Preserve translated prose; update only code blocks and structural sections.
+
+**Only activate S23 if S22's gap matrix is non-empty.** If all guides are clean, mark S23 as `N/A`.
