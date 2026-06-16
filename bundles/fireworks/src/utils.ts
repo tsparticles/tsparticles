@@ -21,6 +21,14 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
 
 /**
+ * @param id
+ * @internal
+ */
+export function deleteFireworksInstance(id: string): void {
+  instances.delete(id);
+}
+
+/**
  * Checks if a particle supports explosion sounds
  * @param args - The arguments
  * @returns The boolean value
@@ -226,7 +234,12 @@ export async function getFireworksInstance(
   }
 
   if (existing) {
-    return existing; // Return existing instance
+    if (!existing.destroyed) {
+      return existing; // Return existing valid instance
+    }
+
+    /* Discard the destroyed instance so a new one is created below */
+    instances.delete(id);
   }
 
   /* Create a locking promise */
@@ -245,7 +258,7 @@ export async function getFireworksInstance(
       }
 
       const { FireworksInstance } = await import("./FireworksInstance.js"),
-        instance = new FireworksInstance(container);
+        instance = new FireworksInstance(container, id);
 
       /* Swap the promise for the actual instance */
       instances.set(id, instance);

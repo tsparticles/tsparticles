@@ -1,5 +1,14 @@
 import { isPlatformServer } from "@angular/common";
-import { AfterViewInit, Component, Inject, Input, OnDestroy, PLATFORM_ID } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  PLATFORM_ID,
+  SimpleChanges,
+} from "@angular/core";
 import { FireworkOptions, fireworks } from "@tsparticles/fireworks";
 
 @Component({
@@ -8,11 +17,12 @@ import { FireworkOptions, fireworks } from "@tsparticles/fireworks";
   template: ` <div [id]="id"></div>`,
   styles: [],
 })
-export class NgxFireworksComponent implements AfterViewInit, OnDestroy {
+export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() options?: FireworkOptions;
   @Input() id = "tsparticles";
 
   #fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
+  #destroyed = false;
 
   constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
 
@@ -21,13 +31,38 @@ export class NgxFireworksComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    void fireworks(this.id, this.options).then(firework => {
-      this.#fireworksInstance = firework;
-    });
+    void this.#startFireworks();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (isPlatformServer(this.platformId)) {
+      return;
+    }
+
+    if (this.#destroyed) {
+      return;
+    }
+
+    if (changes["options"] || changes["id"]) {
+      void this.#startFireworks();
+    }
   }
 
   public ngOnDestroy(): void {
-    this.#fireworksInstance?.stop();
+    this.#destroyed = true;
+
+    this.#fireworksInstance?.destroy();
+
     this.#fireworksInstance = undefined;
+  }
+
+  async #startFireworks(): Promise<void> {
+    this.#fireworksInstance?.destroy();
+
+    this.#fireworksInstance = undefined;
+
+    this.#fireworksInstance = await fireworks(this.id, this.options);
+
+    this.#fireworksInstance?.play();
   }
 }

@@ -12609,90 +12609,12 @@ importers:
       '@angular/router':
         specifier: ~22.0.0
         version: 22.0.0(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@22.0.0(@angular/animations@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
-      '@tsparticles/basic':
-        specifier: workspace:^
-        version: link:../../bundles/basic/dist
-      '@tsparticles/canvas-utils':
-        specifier: workspace:^
-        version: link:../../utils/canvasUtils/dist
       '@tsparticles/confetti':
         specifier: workspace:^
         version: link:../../bundles/confetti/dist
       '@tsparticles/engine':
         specifier: workspace:^
         version: link:../../engine/dist
-      '@tsparticles/path-utils':
-        specifier: workspace:^
-        version: link:../../utils/pathUtils/dist
-      '@tsparticles/plugin-emitters':
-        specifier: workspace:^
-        version: link:../../plugins/emitters/dist
-      '@tsparticles/plugin-hex-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/hex/dist
-      '@tsparticles/plugin-hsl-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/hsl/dist
-      '@tsparticles/plugin-motion':
-        specifier: workspace:^
-        version: link:../../plugins/motion/dist
-      '@tsparticles/plugin-move':
-        specifier: workspace:^
-        version: link:../../plugins/move/dist
-      '@tsparticles/plugin-rgb-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/rgb/dist
-      '@tsparticles/shape-cards':
-        specifier: workspace:^
-        version: link:../../shapes/cards/dist
-      '@tsparticles/shape-circle':
-        specifier: workspace:^
-        version: link:../../shapes/circle/dist
-      '@tsparticles/shape-emoji':
-        specifier: workspace:^
-        version: link:../../shapes/emoji/dist
-      '@tsparticles/shape-heart':
-        specifier: workspace:^
-        version: link:../../shapes/heart/dist
-      '@tsparticles/shape-image':
-        specifier: workspace:^
-        version: link:../../shapes/image/dist
-      '@tsparticles/shape-polygon':
-        specifier: workspace:^
-        version: link:../../shapes/polygon/dist
-      '@tsparticles/shape-square':
-        specifier: workspace:^
-        version: link:../../shapes/square/dist
-      '@tsparticles/shape-star':
-        specifier: workspace:^
-        version: link:../../shapes/star/dist
-      '@tsparticles/updater-life':
-        specifier: workspace:^
-        version: link:../../updaters/life/dist
-      '@tsparticles/updater-opacity':
-        specifier: workspace:^
-        version: link:../../updaters/opacity/dist
-      '@tsparticles/updater-out-modes':
-        specifier: workspace:^
-        version: link:../../updaters/outModes/dist
-      '@tsparticles/updater-paint':
-        specifier: workspace:^
-        version: link:../../updaters/paint/dist
-      '@tsparticles/updater-roll':
-        specifier: workspace:^
-        version: link:../../updaters/roll/dist
-      '@tsparticles/updater-rotate':
-        specifier: workspace:^
-        version: link:../../updaters/rotate/dist
-      '@tsparticles/updater-size':
-        specifier: workspace:^
-        version: link:../../updaters/size/dist
-      '@tsparticles/updater-tilt':
-        specifier: workspace:^
-        version: link:../../updaters/tilt/dist
-      '@tsparticles/updater-wobble':
-        specifier: workspace:^
-        version: link:../../updaters/wobble/dist
       rxjs:
         specifier: ~7.8.2
         version: 7.8.2
@@ -12779,69 +12701,12 @@ importers:
       '@angular/router':
         specifier: ~22.0.0
         version: 22.0.0(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@22.0.0(@angular/animations@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@22.0.0(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@22.0.0(@angular/compiler@22.0.0)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
-      '@tsparticles/basic':
-        specifier: workspace:^
-        version: link:../../bundles/basic/dist
       '@tsparticles/engine':
         specifier: workspace:^
         version: link:../../engine/dist
       '@tsparticles/fireworks':
         specifier: workspace:^
         version: link:../../bundles/fireworks/dist
-      '@tsparticles/plugin-blend':
-        specifier: workspace:^
-        version: link:../../plugins/blend/dist
-      '@tsparticles/plugin-emitters':
-        specifier: workspace:^
-        version: link:../../plugins/emitters/dist
-      '@tsparticles/plugin-emitters-shape-square':
-        specifier: workspace:^
-        version: link:../../plugins/emittersShapes/square/dist
-      '@tsparticles/plugin-hex-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/hex/dist
-      '@tsparticles/plugin-hsl-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/hsl/dist
-      '@tsparticles/plugin-interactivity':
-        specifier: workspace:^
-        version: link:../../plugins/interactivity/dist
-      '@tsparticles/plugin-move':
-        specifier: workspace:^
-        version: link:../../plugins/move/dist
-      '@tsparticles/plugin-rgb-color':
-        specifier: workspace:^
-        version: link:../../plugins/colors/rgb/dist
-      '@tsparticles/plugin-sounds':
-        specifier: workspace:^
-        version: link:../../plugins/sounds/dist
-      '@tsparticles/shape-circle':
-        specifier: workspace:^
-        version: link:../../shapes/circle/dist
-      '@tsparticles/shape-line':
-        specifier: workspace:^
-        version: link:../../shapes/line/dist
-      '@tsparticles/updater-destroy':
-        specifier: workspace:^
-        version: link:../../updaters/destroy/dist
-      '@tsparticles/updater-life':
-        specifier: workspace:^
-        version: link:../../updaters/life/dist
-      '@tsparticles/updater-opacity':
-        specifier: workspace:^
-        version: link:../../updaters/opacity/dist
-      '@tsparticles/updater-out-modes':
-        specifier: workspace:^
-        version: link:../../updaters/outModes/dist
-      '@tsparticles/updater-paint':
-        specifier: workspace:^
-        version: link:../../updaters/paint/dist
-      '@tsparticles/updater-rotate':
-        specifier: workspace:^
-        version: link:../../updaters/rotate/dist
-      '@tsparticles/updater-size':
-        specifier: workspace:^
-        version: link:../../updaters/size/dist
       rxjs:
         specifier: ~7.8.2
         version: 7.8.2

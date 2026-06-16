@@ -38,6 +38,8 @@ export class AppModule {}
 <ngx-fireworks [id]="id" [options]="fireworksOptions"></ngx-fireworks>
 ```
 
+The component reactively updates when `id` or `options` inputs change — the previous fireworks instance is stopped and a new one is started automatically.
+
 ### Component usage
 
 ```ts
