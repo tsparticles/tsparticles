@@ -123,7 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-
 ## 事件
 
 组件会触发多个生命周期事件：
@@ -152,7 +151,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -169,20 +168,11 @@ const options: ISourceOptions = {
 </template>
 
 > **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadConfettiPreset`（参见[基本使用](#基本使用)）。
+对于一次性爆发效果，可加载预设后在方法内部以编程方式调用 `tsParticles.load()`。 --- ## 烟花效果
+烟花预设可创建高冲击力的粒子爆炸效果： ```bash npm install @tsparticles/preset-fireworks
+````
 
-对于一次性爆发效果，可加载预设后在方法内部以编程方式调用 `tsParticles.load()`。
-
----
-
-## 烟花效果
-
-烟花预设可创建高冲击力的粒子爆炸效果：
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -198,21 +188,12 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadFireworksPreset`（参见[基本使用](#基本使用)）。
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadFireworksPreset`（参见[基本使用](#基本使用)）。 > **提示：**
+烟花预设消耗资源较多。通过切换绑定到组件的 `v-if`，在用户交互（如按钮点击）时触发。 --- ## 下雪效果
+使用雪花预设模拟下雪： ```bash npm install @tsparticles/preset-snow
+````
 
-> **提示：** 烟花预设消耗资源较多。通过切换绑定到组件的 `v-if`，在用户交互（如按钮点击）时触发。
-
----
-
-## 下雪效果
-
-使用雪花预设模拟下雪：
-
-```bash
-npm install @tsparticles/preset-snow
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -228,15 +209,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadSnowPreset`（参见[基本使用](#基本使用)）。
-
----
-
-## 交互式粒子
-
-添加悬停和点击交互模式：
-
-```vue
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadSnowPreset`（参见[基本使用](#基本使用)）。 --- ## 交互式粒子
+添加悬停和点击交互模式： ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -301,7 +275,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 可用的交互模式：`grab`、`repulse`、`bubble`、`connect`、`push`、`remove`、`trail`、`attract`、`light`。
 
@@ -391,7 +365,7 @@ const toggleTheme = () => {
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
@@ -408,34 +382,13 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadLinksPreset`（参见[基本使用](#基本使用)）。
-
-浏览 `@tsparticles/configs` 包中的可用配置，获取即用型布局。
-
----
-
-## 引擎初始化方式
-
-有两种初始化引擎的方式：
-
-### 1. 全局插件（推荐）
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadLinksPreset`（参见[基本使用](#基本使用)）。 浏览
+`@tsparticles/configs` 包中的可用配置，获取即用型布局。 --- ## 引擎初始化方式 有两种初始化引擎的方式： ### 1.
+全局插件（推荐） ```typescript // main.ts import { createApp } from "vue"; import App from "./App.vue"; import type {
+Engine } from "@tsparticles/engine"; import { ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from
+"tsparticles"; createApp(App) .use(ParticlesPlugin, { init: async (engine: Engine) => { await loadFull(engine); }, })
+.mount("#app");
+````
 
 引擎随后全局可用，所有 `<vue-particles>` 实例共享它。
 
@@ -551,12 +504,12 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API 参考
 
-| 属性      | 类型                                | 默认值          | 描述                   |
-| --------- | ----------------------------------- | --------------- | ---------------------- |
-| `id`      | `string`                            | `"tsparticles"` | 画布元素 ID            |
-| `options` | `ISourceOptions`                    | `{}`            | 粒子配置               |
-| `url`     | `string`                            | —               | 要加载 JSON 配置的 URL |
-| `theme`   | `string`                            | —               | 主题名称（需要 `@tsparticles/plugin-themes`；缺少时安全无操作） |
+| 属性      | 类型             | 默认值          | 描述                                                            |
+| --------- | ---------------- | --------------- | --------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | 画布元素 ID                                                     |
+| `options` | `ISourceOptions` | `{}`            | 粒子配置                                                        |
+| `url`     | `string`         | —               | 要加载 JSON 配置的 URL                                          |
+| `theme`   | `string`         | —               | 主题名称（需要 `@tsparticles/plugin-themes`；缺少时安全无操作） |
 
 | 事件                | 负载类型    | 描述                 |
 | ------------------- | ----------- | -------------------- |

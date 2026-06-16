@@ -167,7 +167,8 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **Note:** Register the `loadConfettiPreset` in your app entry point via the plugin's `init` callback (see [Basic Usage](#basic-usage)).
+> **Note:** Register the `loadConfettiPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
 ```
 
 For a one-shot burst, load the preset then call `tsParticles.load()` programmatically inside a method.
@@ -198,7 +199,8 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **Note:** Register the `loadFireworksPreset` in your app entry point via the plugin's `init` callback (see [Basic Usage](#basic-usage)).
+> **Note:** Register the `loadFireworksPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
 ```
 
 > **Tip:** The fireworks preset is resource-intensive. Trigger it on user interaction (e.g., button click) by toggling a `v-if` bound to the component.
@@ -229,7 +231,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **Note:** Register the `loadSnowPreset` in your app entry point via the plugin's `init` callback (see [Basic Usage](#basic-usage)).
+> **Note:** Register the `loadSnowPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
 ```
 
 ---
@@ -410,7 +413,8 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **Note:** Register the `loadLinksPreset` in your app entry point via the plugin's `init` callback (see [Basic Usage](#basic-usage)).
+> **Note:** Register the `loadLinksPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
 ```
 
 Browse available configs in the `@tsparticles/configs` package for ready-to-use layouts.
@@ -554,11 +558,11 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API Reference
 
-| Prop      | Type             | Default         | Description                                                                          |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID                                                                    |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration                                                               |
-| `url`     | `string`         | —               | URL to load JSON config from                                                         |
+| Prop      | Type             | Default         | Description                                                                        |
+| --------- | ---------------- | --------------- | ---------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element ID                                                                  |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration                                                             |
+| `url`     | `string`         | —               | URL to load JSON config from                                                       |
 | `theme`   | `string`         | —               | Theme name to apply (requires `@tsparticles/plugin-themes`; safe no-op if missing) |
 
 | Event               | Payload     | Description                                   |

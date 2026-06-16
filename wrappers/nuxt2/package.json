@@ -38,7 +38,9 @@
     "lint": "eslint . --max-warnings 0",
     "prettify": "prettier --write \"lib/**/*.ts\"",
     "prettify:ci": "prettier --check \"lib/**/*.ts\"",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "license": "MIT",
   "dependencies": {

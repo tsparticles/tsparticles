@@ -74,7 +74,9 @@
     "prettify:readme": "prettier --write ./README.md",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "files": [
     "dist",

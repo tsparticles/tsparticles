@@ -76,7 +76,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+		"prepack": "pnpm run build"
 	},
 	"exports": {
 		".": {

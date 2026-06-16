@@ -47,3 +47,15 @@ fs.readFile(libPackage, function (error, data) {
     });
   });
 });
+
+fs.readFile("./projects/ng-particles/package.dist.json", function (distError, distData) {
+  if (distError) {
+    console.error("Failed to read package.dist.json:", distError.message);
+    return;
+  }
+  const distObj = JSON.parse(distData);
+  distObj.version = mainPackage.version;
+  fs.writeFile("./projects/ng-particles/package.dist.json", JSON.stringify(distObj, undefined, 2), 'utf-8', function () {
+    console.log(`lib package.dist.json updated successfully to version ${mainPackage.version}`);
+  });
+});

@@ -122,6 +122,7 @@ const options: ISourceOptions = {
 ```
 
 ---
+
 ---
 
 ## Eventos
@@ -168,7 +169,8 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **Nota:** Registra el `loadConfettiPreset` en el punto de entrada de tu aplicación a través del callback `init` del plugin (consulta [Uso Básico](#uso-básico)).
+> **Nota:** Registra el `loadConfettiPreset` en el punto de entrada de tu aplicación a través del callback `init` del
+plugin (consulta [Uso Básico](#uso-básico)).
 ```
 
 Para una explosión única, carga el preset y luego llama a `tsParticles.load()` programáticamente dentro de un método.
@@ -199,7 +201,8 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **Nota:** Registra el `loadFireworksPreset` en el punto de entrada de tu aplicación a través del callback `init` del plugin (consulta [Uso Básico](#uso-básico)).
+> **Nota:** Registra el `loadFireworksPreset` en el punto de entrada de tu aplicación a través del callback `init` del
+plugin (consulta [Uso Básico](#uso-básico)).
 ```
 
 > **Consejo:** El preset de fuegos artificiales consume muchos recursos. Actívalo en una interacción del usuario (ej., clic de botón) alternando un `v-if` vinculado al componente.
@@ -230,7 +233,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **Nota:** Registra el `loadSnowPreset` en el punto de entrada de tu aplicación a través del callback `init` del plugin (consulta [Uso Básico](#uso-básico)).
+> **Nota:** Registra el `loadSnowPreset` en el punto de entrada de tu aplicación a través del callback `init` del plugin
+(consulta [Uso Básico](#uso-básico)).
 ```
 
 ---
@@ -411,7 +415,8 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **Nota:** Registra el `loadLinksPreset` en el punto de entrada de tu aplicación a través del callback `init` del plugin (consulta [Uso Básico](#uso-básico)).
+> **Nota:** Registra el `loadLinksPreset` en el punto de entrada de tu aplicación a través del callback `init` del
+plugin (consulta [Uso Básico](#uso-básico)).
 ```
 
 Explora las configuraciones disponibles en el paquete `@tsparticles/configs` para diseños listos para usar.
@@ -555,11 +560,11 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Referencia de API
 
-| Prop      | Type             | Default         | Description                                                                          |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas               |
-| `options` | `ISourceOptions` | `{}`            | Configuración de partículas          |
-| `url`     | `string`         | —               | URL para cargar configuración JSON   |
+| Prop      | Type             | Default         | Description                                                                                   |
+| --------- | ---------------- | --------------- | --------------------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas                                                                        |
+| `options` | `ISourceOptions` | `{}`            | Configuración de partículas                                                                   |
+| `url`     | `string`         | —               | URL para cargar configuración JSON                                                            |
 | `theme`   | `string`         | —               | Nombre del tema a aplicar (requiere `@tsparticles/plugin-themes`; seguro si no está presente) |
 
 | Evento              | Carga       | Descripción                                                     |

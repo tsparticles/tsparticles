@@ -122,6 +122,7 @@ const options: ISourceOptions = {
 ```
 
 ---
+
 ---
 
 ## Événements
@@ -168,7 +169,8 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **Note :** Enregistrez le `loadConfettiPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
+> **Note :** Enregistrez le `loadConfettiPreset` dans le point d'entrée de votre application via le callback `init` du
+plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 Pour une explosion unique, chargez le préréglage puis appelez `tsParticles.load()` par programmation dans une méthode.
@@ -199,7 +201,8 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **Note :** Enregistrez le `loadFireworksPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
+> **Note :** Enregistrez le `loadFireworksPreset` dans le point d'entrée de votre application via le callback `init` du
+plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 > **Conseil :** Le préréglage feux d'artifice est intensif en ressources. Déclenchez-le sur une interaction utilisateur (ex. clic sur un bouton) en basculant un `v-if` lié au composant.
@@ -230,7 +233,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **Note :** Enregistrez le `loadSnowPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
+> **Note :** Enregistrez le `loadSnowPreset` dans le point d'entrée de votre application via le callback `init` du
+plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 ---
@@ -411,7 +415,8 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **Note :** Enregistrez le `loadLinksPreset` dans le point d'entrée de votre application via le callback `init` du plugin (voir [Utilisation de base](#utilisation-de-base)).
+> **Note :** Enregistrez le `loadLinksPreset` dans le point d'entrée de votre application via le callback `init` du
+plugin (voir [Utilisation de base](#utilisation-de-base)).
 ```
 
 Parcourez les configurations disponibles dans le package `@tsparticles/configs` pour des mises en page prêtes à l'emploi.
@@ -555,11 +560,11 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Référence API
 
-| Prop      | Type             | Default         | Description                                                                          |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas              |
-| `options` | `ISourceOptions` | `{}`            | Configuration des particules        |
-| `url`     | `string`         | —               | URL pour charger une config JSON    |
+| Prop      | Type             | Default         | Description                                                                               |
+| --------- | ---------------- | --------------- | ----------------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                                                                    |
+| `options` | `ISourceOptions` | `{}`            | Configuration des particules                                                              |
+| `url`     | `string`         | —               | URL pour charger une config JSON                                                          |
 | `theme`   | `string`         | —               | Nom du thème à appliquer (nécessite `@tsparticles/plugin-themes` ; sans danger si absent) |
 
 | Événement           | Payload     | Description                                    |

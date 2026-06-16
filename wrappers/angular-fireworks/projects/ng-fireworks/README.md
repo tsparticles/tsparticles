@@ -40,6 +40,10 @@ export class AppModule {}
 
 The component reactively updates when `id` or `options` inputs change — the previous fireworks instance is stopped and a new one is started automatically.
 
+### Lifecycle
+
+On component destroy (`ngOnDestroy`), the fireworks instance is stopped and cleaned up. A `#destroyed` flag prevents change detection from restarting fireworks after teardown.
+
 ### Component usage
 
 ```ts

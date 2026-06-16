@@ -151,7 +151,7 @@ Use o preset confetti para celebrações:
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -167,21 +167,13 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **Nota:** Registre o `loadConfettiPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja [Uso Básico](#uso-básico)).
+> **Nota:** Registre o `loadConfettiPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin
+(veja [Uso Básico](#uso-básico)). Para uma explosão única, carregue o preset e depois chame `tsParticles.load()`
+programaticamente dentro de um método. --- ## Efeito Fogos de Artifício O preset fireworks cria explosões de partículas
+de alto impacto: ```bash npm install @tsparticles/preset-fireworks
+````
 
-Para uma explosão única, carregue o preset e depois chame `tsParticles.load()` programaticamente dentro de um método.
-
----
-
-## Efeito Fogos de Artifício
-
-O preset fireworks cria explosões de partículas de alto impacto:
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -197,21 +189,13 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **Nota:** Registre o `loadFireworksPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja [Uso Básico](#uso-básico)).
+> **Nota:** Registre o `loadFireworksPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin
+(veja [Uso Básico](#uso-básico)). > **Dica:** O preset fireworks consome muitos recursos. Acione-o na interação do
+usuário (ex.: clique de botão) alternando um `v-if` vinculado ao componente. --- ## Efeito Neve Simule queda de neve com
+o preset snow: ```bash npm install @tsparticles/preset-snow
+````
 
-> **Dica:** O preset fireworks consome muitos recursos. Acione-o na interação do usuário (ex.: clique de botão) alternando um `v-if` vinculado ao componente.
-
----
-
-## Efeito Neve
-
-Simule queda de neve com o preset snow:
-
-```bash
-npm install @tsparticles/preset-snow
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -227,15 +211,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **Nota:** Registre o `loadSnowPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja [Uso Básico](#uso-básico)).
-
----
-
-## Partículas Interativas
-
-Adicione modos de interatividade de hover e clique:
-
-```vue
+> **Nota:** Registre o `loadSnowPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja
+[Uso Básico](#uso-básico)). --- ## Partículas Interativas Adicione modos de interatividade de hover e clique: ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -300,7 +277,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 Modos de interação disponíveis: `grab`, `repulse`, `bubble`, `connect`, `push`, `remove`, `trail`, `attract`, `light`.
 
@@ -390,7 +367,7 @@ O pacote `@tsparticles/configs` exporta objetos de configuração pré-fabricado
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
@@ -407,34 +384,14 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **Nota:** Registre o `loadLinksPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja [Uso Básico](#uso-básico)).
-
-Navegue pelas configurações disponíveis no pacote `@tsparticles/configs` para layouts prontos para uso.
-
----
-
-## Abordagens de Inicialização do Motor
-
-Existem duas maneiras de inicializar o motor:
-
-### 1. Plugin Global (recomendado)
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **Nota:** Registre o `loadLinksPreset` no ponto de entrada da sua aplicação através do callback `init` do plugin (veja
+[Uso Básico](#uso-básico)). Navegue pelas configurações disponíveis no pacote `@tsparticles/configs` para layouts
+prontos para uso. --- ## Abordagens de Inicialização do Motor Existem duas maneiras de inicializar o motor: ### 1.
+Plugin Global (recomendado) ```typescript // main.ts import { createApp } from "vue"; import App from "./App.vue";
+import type { Engine } from "@tsparticles/engine"; import { ParticlesPlugin } from "@tsparticles/vue3"; import {
+loadFull } from "tsparticles"; createApp(App) .use(ParticlesPlugin, { init: async (engine: Engine) => { await
+loadFull(engine); }, }) .mount("#app");
+````
 
 O motor fica então disponível globalmente e todas as instâncias de `<vue-particles>` o compartilham.
 
@@ -550,12 +507,12 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## Referência da API
 
-| Prop      | Tipo             | Padrão          | Descrição                                                                                     |
-| --------- | ---------------- | --------------- | --------------------------------------------------------------------------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID do elemento canvas                                                                         |
-| `options` | `ISourceOptions` | `{}`            | Configuração das partículas                                                                   |
-| `url`     | `string`         | —               | URL para carregar configuração JSON                                                           |
-| `theme`   | `string`         | —               | Nome do tema a aplicar (requer `@tsparticles/plugin-themes`; no-op seguro se ausente)        |
+| Prop      | Tipo             | Padrão          | Descrição                                                                             |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID do elemento canvas                                                                 |
+| `options` | `ISourceOptions` | `{}`            | Configuração das partículas                                                           |
+| `url`     | `string`         | —               | URL para carregar configuração JSON                                                   |
+| `theme`   | `string`         | —               | Nome do tema a aplicar (requer `@tsparticles/plugin-themes`; no-op seguro se ausente) |
 
 | Evento              | Payload     | Descrição                                            |
 | ------------------- | ----------- | ---------------------------------------------------- |

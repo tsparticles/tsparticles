@@ -35,7 +35,9 @@
   },
   "scripts": {
     "build": "stencil build",
-    "build:ci": "stencil build"
+    "build:ci": "stencil build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^"

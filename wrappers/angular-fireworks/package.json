@@ -65,7 +65,7 @@
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && pnpm run prettify:src && pnpm run prettify:readme && ng build ng-fireworks --configuration production",
     "build:ci": "node scripts/prebuild.js && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && ng build ng-fireworks --configuration production",
-    "version": "pnpm run build && git add ./projects/ng-fireworks/package.json",
+    "version": "pnpm run build && git add ./projects/ng-fireworks/package.json ./projects/ng-fireworks/package.dist.json",
     "prettify:ci:src": "prettier --check ./projects/ng-fireworks/src/*",
     "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./projects/ng-fireworks/src/*",

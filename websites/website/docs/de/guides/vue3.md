@@ -122,6 +122,7 @@ const options: ISourceOptions = {
 ```
 
 ---
+
 ---
 
 ## Ereignisse
@@ -168,7 +169,8 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **Hinweis:** Registrieren Sie `loadConfettiPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins (siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
+> **Hinweis:** Registrieren Sie `loadConfettiPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins
+(siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
 ```
 
 Für einen einmaligen Ausbruch laden Sie das Preset und rufen dann programmatisch `tsParticles.load()` innerhalb einer Methode auf.
@@ -199,7 +201,8 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **Hinweis:** Registrieren Sie `loadFireworksPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins (siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
+> **Hinweis:** Registrieren Sie `loadFireworksPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins
+(siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
 ```
 
 > **Tipp:** Das Feuerwerk-Preset ist ressourcenintensiv. Lösen Sie es bei Benutzerinteraktion (z. B. Button-Klick) aus, indem Sie ein `v-if` umschalten, das an die Komponente gebunden ist.
@@ -230,7 +233,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **Hinweis:** Registrieren Sie `loadSnowPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins (siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
+> **Hinweis:** Registrieren Sie `loadSnowPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins (siehe
+[Grundlegende Verwendung](#grundlegende-verwendung)).
 ```
 
 ---
@@ -411,7 +415,8 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **Hinweis:** Registrieren Sie `loadLinksPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins (siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
+> **Hinweis:** Registrieren Sie `loadLinksPreset` im Einstiegspunkt Ihrer App über den `init`-Callback des Plugins
+(siehe [Grundlegende Verwendung](#grundlegende-verwendung)).
 ```
 
 Durchstöbern Sie die verfügbaren Konfigurationen im `@tsparticles/configs`-Paket für sofort einsatzbereite Layouts.
@@ -555,11 +560,11 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API-Referenz
 
-| Prop      | Type             | Default         | Description                                                                          |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas-Element-ID                      |
-| `options` | `ISourceOptions` | `{}`            | Partikel-Konfiguration                 |
-| `url`     | `string`         | —               | URL zum Laden einer JSON-Konfiguration |
+| Prop      | Type             | Default         | Description                                                                                                   |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas-Element-ID                                                                                             |
+| `options` | `ISourceOptions` | `{}`            | Partikel-Konfiguration                                                                                        |
+| `url`     | `string`         | —               | URL zum Laden einer JSON-Konfiguration                                                                        |
 | `theme`   | `string`         | —               | Name des anzuwendenden Themes (erfordert `@tsparticles/plugin-themes`; sicherer No-op, falls nicht vorhanden) |
 
 | Ereignis            | Payload     | Beschreibung                                                     |

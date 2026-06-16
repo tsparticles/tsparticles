@@ -91,7 +91,8 @@
     "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "prettier": "@tsparticles/prettier-config",
   "nx": {

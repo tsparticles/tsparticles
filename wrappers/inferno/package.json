@@ -15,7 +15,8 @@
     "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
     "prepack": "pnpm run build",
-    "build:types": "tsc -p tsconfig.types.json"
+    "build:types": "tsc -p tsconfig.types.json",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"

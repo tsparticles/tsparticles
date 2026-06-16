@@ -43,7 +43,8 @@
     "test:ember": "echo test",
     "test:ember-compatibility": "echo ember try:each",
     "prepack": "ember ts:precompile",
-    "postpack": "ember ts:clean"
+    "postpack": "ember ts:clean",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:^",

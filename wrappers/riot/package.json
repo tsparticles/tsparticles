@@ -17,7 +17,8 @@
     "prettify:readme": "prettier --write ./README.md",
     "build": "pnpm run prettify:src && rollup -c && node ../../scripts/resolve-dist-package.cjs",
     "build:ci": "pnpm run prettify:ci:src && rollup -c && node ../../scripts/resolve-dist-package.cjs",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "repository": {
     "type": "git",

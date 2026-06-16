@@ -8,6 +8,7 @@
   "scripts": {
     "prebuild": "node scripts/prebuild.js",
     "build": "pnpm run prebuild",
-    "build:ci": "pnpm run prebuild"
+    "build:ci": "pnpm run prebuild",
+    "version": "pnpm run build && git add template.json"
   }
 }

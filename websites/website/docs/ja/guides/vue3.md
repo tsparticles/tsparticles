@@ -123,7 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-
 ## イベント
 
 コンポーネントはいくつかのライフサイクルイベントを発行します:
@@ -152,7 +151,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -168,21 +167,14 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadConfettiPreset` を登録してください（[基本的な使い方](#基本的な使い方)を参照）。
-
+> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadConfettiPreset`
+を登録してください（[基本的な使い方](#基本的な使い方)を参照）。
 1回限りのバーストの場合は、プリセットをロードした後、メソッド内でプログラム的に `tsParticles.load()` を呼び出します。
+--- ## 花火エフェクト 花火プリセットはインパクトのあるパーティクル爆発を作成します: ```bash npm install
+@tsparticles/preset-fireworks
+````
 
----
-
-## 花火エフェクト
-
-花火プリセットはインパクトのあるパーティクル爆発を作成します:
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -198,21 +190,14 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadFireworksPreset` を登録してください（[基本的な使い方](#基本的な使い方)を参照）。
+> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadFireworksPreset`
+を登録してください（[基本的な使い方](#基本的な使い方)を参照）。 > **ヒント:**
+花火プリセットはリソースを多く消費します。コンポーネントにバインドした `v-if`
+を切り替えて、ユーザーインタラクション（例: ボタンクリック）でトリガーしてください。 --- ## 雪エフェクト
+雪プリセットで降雪をシミュレートします: ```bash npm install @tsparticles/preset-snow
+````
 
-> **ヒント:** 花火プリセットはリソースを多く消費します。コンポーネントにバインドした `v-if` を切り替えて、ユーザーインタラクション（例: ボタンクリック）でトリガーしてください。
-
----
-
-## 雪エフェクト
-
-雪プリセットで降雪をシミュレートします:
-
-```bash
-npm install @tsparticles/preset-snow
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -228,15 +213,9 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadSnowPreset` を登録してください（[基本的な使い方](#基本的な使い方)を参照）。
-
----
-
-## インタラクティブパーティクル
-
-ホバーとクリックのインタラクティビティモードを追加します:
-
-```vue
+> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadSnowPreset`
+を登録してください（[基本的な使い方](#基本的な使い方)を参照）。 --- ## インタラクティブパーティクル
+ホバーとクリックのインタラクティビティモードを追加します: ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -301,7 +280,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 利用可能なインタラクションモード: `grab`、`repulse`、`bubble`、`connect`、`push`、`remove`、`trail`、`attract`、`light`。
 
@@ -391,7 +370,7 @@ const toggleTheme = () => {
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
@@ -408,34 +387,14 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadLinksPreset` を登録してください（[基本的な使い方](#基本的な使い方)を参照）。
-
-`@tsparticles/configs` パッケージで利用可能な設定を参照して、すぐに使えるレイアウトを確認してください。
-
----
-
-## エンジン初期化のアプローチ
-
-エンジンを初期化するには2つの方法があります:
-
-### 1. グローバルプラグイン（推奨）
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **注意:** アプリのエントリーポイントでプラグインの `init` コールバックを介して `loadLinksPreset`
+を登録してください（[基本的な使い方](#基本的な使い方)を参照）。 `@tsparticles/configs`
+パッケージで利用可能な設定を参照して、すぐに使えるレイアウトを確認してください。 --- ## エンジン初期化のアプローチ
+エンジンを初期化するには2つの方法があります: ### 1. グローバルプラグイン（推奨） ```typescript // main.ts import {
+createApp } from "vue"; import App from "./App.vue"; import type { Engine } from "@tsparticles/engine"; import {
+ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from "tsparticles"; createApp(App) .use(ParticlesPlugin,
+{ init: async (engine: Engine) => { await loadFull(engine); }, }) .mount("#app");
+````
 
 エンジンはグローバルに利用可能になり、すべての `<vue-particles>` インスタンスがそれを共有します。
 
@@ -551,12 +510,12 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API リファレンス
 
-| プロップ  | タイプ                              | デフォルト      | 説明                       |
-| --------- | ----------------------------------- | --------------- | -------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | キャンバス要素 ID          |
-| `options` | `ISourceOptions`                    | `{}`            | パーティクル設定           |
-| `url`     | `string`                            | —               | JSON 設定をロードする URL  |
-| `theme`   | `string`                            | —               | テーマ名（`@tsparticles/plugin-themes` が必要；欠落時は安全に無視） |
+| プロップ  | タイプ           | デフォルト      | 説明                                                                |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID                                                   |
+| `options` | `ISourceOptions` | `{}`            | パーティクル設定                                                    |
+| `url`     | `string`         | —               | JSON 設定をロードする URL                                           |
+| `theme`   | `string`         | —               | テーマ名（`@tsparticles/plugin-themes` が必要；欠落時は安全に無視） |
 
 | イベント            | ペイロード  | 説明                                   |
 | ------------------- | ----------- | -------------------------------------- |

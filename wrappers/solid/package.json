@@ -125,7 +125,8 @@
     "prettify": "prettier --write \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prettify:ci": "prettier --check \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prepack": "pnpm build",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*",

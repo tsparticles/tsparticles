@@ -42,7 +42,9 @@
     "preview": "vite preview",
     "prettify": "prettier --write \"src/**/*.{ts,tsx}\" && prettier --write \"lib/**/*.{ts,tsx}\"",
     "prettify:ci": "prettier --check \"src/**/*.{ts,tsx}\" && prettier --check \"lib/**/*.{ts,tsx}\"",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "exports": {
     ".": {

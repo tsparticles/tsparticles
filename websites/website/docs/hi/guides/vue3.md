@@ -123,7 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-
 ## ईवेंट
 
 घटक कई जीवनचक्र ईवेंट उत्सर्जित करता है:
@@ -152,7 +151,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -168,21 +167,13 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadConfettiPreset` पंजीकृत करें ([मूल उपयोग](#मूल-उपयोग) देखें)।
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadConfettiPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। एक बार के विस्फोट के लिए, प्रीसेट लोड करें फिर किसी विधि के अंदर प्रोग्रामेटिक रूप से
+`tsParticles.load()` कॉल करें। --- ## आतिशबाजी प्रभाव आतिशबाजी प्रीसेट उच्च-प्रभाव वाले कण विस्फोट बनाता है: ```bash npm
+install @tsparticles/preset-fireworks
+````
 
-एक बार के विस्फोट के लिए, प्रीसेट लोड करें फिर किसी विधि के अंदर प्रोग्रामेटिक रूप से `tsParticles.load()` कॉल करें।
-
----
-
-## आतिशबाजी प्रभाव
-
-आतिशबाजी प्रीसेट उच्च-प्रभाव वाले कण विस्फोट बनाता है:
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -198,21 +189,13 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadFireworksPreset` पंजीकृत करें ([मूल उपयोग](#मूल-उपयोग) देखें)।
-
-> **टिप:** आतिशबाजी प्रीसेट संसाधन-गहन है। इसे घटक से बंधे `v-if` को टॉगल करके उपयोगकर्ता इंटरैक्शन (जैसे, बटन क्लिक) पर ट्रिगर करें।
-
----
-
-## बर्फ प्रभाव
-
-बर्फ प्रीसेट के साथ गिरती बर्फ का अनुकरण करें:
-
-```bash
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadFireworksPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। > **टिप:** आतिशबाजी प्रीसेट संसाधन-गहन है। इसे घटक से बंधे `v-if` को टॉगल करके उपयोगकर्ता
+इंटरैक्शन (जैसे, बटन क्लिक) पर ट्रिगर करें। --- ## बर्फ प्रभाव बर्फ प्रीसेट के साथ गिरती बर्फ का अनुकरण करें: ```bash
 npm install @tsparticles/preset-snow
-```
+````
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -228,15 +211,8 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadSnowPreset` पंजीकृत करें ([मूल उपयोग](#मूल-उपयोग) देखें)।
-
----
-
-## इंटरैक्टिव कण
-
-होवर और क्लिक इंटरैक्टिविटी मोड जोड़ें:
-
-```vue
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadSnowPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। --- ## इंटरैक्टिव कण होवर और क्लिक इंटरैक्टिविटी मोड जोड़ें: ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -301,7 +277,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 उपलब्ध इंटरैक्शन मोड: `grab`, `repulse`, `bubble`, `connect`, `push`, `remove`, `trail`, `attract`, `light`.
 
@@ -391,7 +367,7 @@ const toggleTheme = () => {
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
@@ -408,34 +384,13 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadLinksPreset` पंजीकृत करें ([मूल उपयोग](#मूल-उपयोग) देखें)।
-
-तैयार-से-उपयोग लेआउट के लिए `@tsparticles/configs` पैकेज में उपलब्ध कॉन्फ़िग देखें।
-
----
-
-## इंजन आरंभीकरण दृष्टिकोण
-
-इंजन को आरंभ करने के दो तरीके हैं:
-
-### 1. वैश्विक प्लगइन (अनुशंसित)
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadLinksPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। तैयार-से-उपयोग लेआउट के लिए `@tsparticles/configs` पैकेज में उपलब्ध कॉन्फ़िग देखें। --- ##
+इंजन आरंभीकरण दृष्टिकोण इंजन को आरंभ करने के दो तरीके हैं: ### 1. वैश्विक प्लगइन (अनुशंसित) ```typescript // main.ts
+import { createApp } from "vue"; import App from "./App.vue"; import type { Engine } from "@tsparticles/engine"; import
+{ ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from "tsparticles"; createApp(App)
+.use(ParticlesPlugin, { init: async (engine: Engine) => { await loadFull(engine); }, }) .mount("#app");
+````
 
 इंजन फिर वैश्विक रूप से उपलब्ध है और सभी `<vue-particles>` इंस्टेंस इसे साझा करते हैं।
 
@@ -551,12 +506,12 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API संदर्भ
 
-| प्रॉप     | प्रकार                              | डिफ़ॉल्ट        | विवरण                         |
-| --------- | ----------------------------------- | --------------- | ----------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | कैनवास तत्व आईडी              |
-| `options` | `ISourceOptions`                    | `{}`            | कण कॉन्फ़िगरेशन               |
-| `url`     | `string`                            | —               | JSON कॉन्फ़िग लोड करने का URL |
-| `theme`   | `string`                            | —               | थीम नाम (`@tsparticles/plugin-themes` आवश्यक; अनुपलब्ध होने पर सुरक्षित नो-ऑप) |
+| प्रॉप     | प्रकार           | डिफ़ॉल्ट        | विवरण                                                                          |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------ |
+| `id`      | `string`         | `"tsparticles"` | कैनवास तत्व आईडी                                                               |
+| `options` | `ISourceOptions` | `{}`            | कण कॉन्फ़िगरेशन                                                                |
+| `url`     | `string`         | —               | JSON कॉन्फ़िग लोड करने का URL                                                  |
+| `theme`   | `string`         | —               | थीम नाम (`@tsparticles/plugin-themes` आवश्यक; अनुपलब्ध होने पर सुरक्षित नो-ऑप) |
 
 | ईवेंट               | पेलोड       | विवरण                                                     |
 | ------------------- | ----------- | --------------------------------------------------------- |
