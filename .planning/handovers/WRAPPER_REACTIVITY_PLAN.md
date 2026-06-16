@@ -31,8 +31,8 @@ Use this table as the single high-level progress board. Update it whenever a ste
 | S17  | Angular-fireworks wrapper | Done    | Implemented `OnChanges` + `#destroyed` guard + `#startFireworks`; N/A: no standalone demo or templates dir; README updated; build pass |
 | S18  | EN docs                   | Done    | Removed stale `:init`, `@particles-init`, `particlesInit`; removed Component-Level Init section; fixed `useParticles` → `useParticlesProvider`; added `theme` prop to API table with plugin caveat; added theme prop docs in Theme Switching section |
 | S19  | 9 translations            | Done    | Mirrored all S18 changes across zh, ja, hi, ru, pt, fr, de, es, it — each file reduced from 622→~576 lines; zero stale patterns remaining |
-| S20  | Validation                | Pending | Build + smoke + stale-pattern checks                                                                                                   |
-| S21  | Final handoff             | Pending | Consolidated deltas and residual risks                                                                                                 |
+| S20  | Validation                | Done    | Build + smoke + stale-pattern checks ✅ — all 13 wrappers build pass; stale patterns: zero; README gaps documented                                                                                |
+| S21  | Final handoff             | Done    | All artifacts aligned. README gaps fixed for preact, stencil, ember, jquery, angular-fireworks. Builds passing. Zero stale patterns.  |
 
 Status legend: `Pending`, `In progress`, `Blocked`, `Partial`, `Done`, `N/A`.
 

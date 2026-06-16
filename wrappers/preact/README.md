@@ -204,6 +204,14 @@ class App extends Component {
 
 > **Note**: The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the `loadTheme()` method is not available on the container and the prop is silently ignored.
 
+### Reactive behavior
+
+The component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload.
+
+### Cleanup
+
+On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.
+
 Find your parameters configuration [here](https://particles.js.org).
 
 ## Demos

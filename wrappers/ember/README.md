@@ -72,6 +72,10 @@ The modifier reloads particles when `@options` or `@url` changes. Changes to `@t
 
 The `@theme` prop requires the optional `@tsparticles/plugin-themes` package to be registered with the engine. Without it, setting `@theme` is a safe no-op (no crash, no error).
 
+### Cleanup
+
+When the element is removed from the DOM (or the modifier is torn down), the particles container is automatically destroyed, stopping all animations and freeing resources. The destructor is registered once and runs exactly once to avoid memory leaks.
+
 ### Template import syntax (`.gjs`)
 
 ```js

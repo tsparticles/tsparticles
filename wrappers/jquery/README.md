@@ -121,6 +121,14 @@ Notes
 - Use `.setTheme(name)` to switch the active theme at runtime. This method
   requires the `@tsparticles/plugin-themes` package to be registered. If the
   theme plugin is not loaded, the call is safely ignored.
+- Calling `.load(options)` or `.ajax(url)` again on the same element replaces
+  the previous container — the old one is destroyed automatically.
+- Each method returns a Promise that resolves with the `Container` instance
+  (or `undefined` if initialization failed).
+- Containers are tracked per element via `WeakMap`. When the DOM element is
+  removed, the associated container is not automatically destroyed — call
+  `.load({})` with an empty config or destroy the container manually via the
+  returned Promise.
 
 ## Demos
 
