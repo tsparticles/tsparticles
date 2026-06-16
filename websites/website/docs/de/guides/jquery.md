@@ -263,7 +263,6 @@ Nachfolgend eine vollständige, in sich geschlossene HTML-Seite, die tsParticles
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

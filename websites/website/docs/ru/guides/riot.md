@@ -267,7 +267,6 @@ npm install @tsparticles/slim
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

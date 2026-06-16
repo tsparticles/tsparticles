@@ -619,8 +619,8 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` Outputs
 
-| Output            | Payload                  | Description                                                    |
-| ----------------- | ------------------------ | -------------------------------------------------------------- |
+| Output            | Payload                  | Description                                                             |
+| ----------------- | ------------------------ | ----------------------------------------------------------------------- |
 | `particlesLoaded` | `Container \| undefined` | Emitted when the container is initialised; may be undefined on failure. |
 
 ### Reactive behavior

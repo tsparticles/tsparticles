@@ -609,11 +609,11 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` इनपुट
 
-| इनपुट     | प्रकार           | डिफ़ॉल्ट        | विवरण                    |
-| --------- | ---------------- | --------------- | ------------------------ |
-| `id`      | `string`         | `"tsparticles"` | कैनवास एलिमेंट आईडी      |
-| `options` | `ISourceOptions` | `{}`            | पार्टिकल कॉन्फ़िगरेशन    |
-| `url`     | `string`         | —               | दूरस्थ JSON कॉन्फ़िग URL |
+| इनपुट     | प्रकार           | डिफ़ॉल्ट        | विवरण                                                                     |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | कैनवास एलिमेंट आईडी                                                       |
+| `options` | `ISourceOptions` | `{}`            | पार्टिकल कॉन्फ़िगरेशन                                                     |
+| `url`     | `string`         | —               | दूरस्थ JSON कॉन्फ़िग URL                                                  |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### `ngx-particles` आउटपुट
@@ -623,7 +623,6 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | जब कंटेनर आरंभ हो जाता है तब उत्सर्जित होता है |
 
 ---
-
 
 ## Reactive Behavior
 

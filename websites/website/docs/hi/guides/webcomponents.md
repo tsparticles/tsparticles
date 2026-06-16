@@ -347,7 +347,6 @@ CDN स्क्रिप्ट के साथ वेब कम्पोने
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

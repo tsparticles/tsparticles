@@ -267,7 +267,6 @@ Riot 封装导出一个 `initParticlesEngine` 函数。在组件的 `onBeforeMou
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

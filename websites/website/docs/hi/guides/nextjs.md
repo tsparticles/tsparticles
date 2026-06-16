@@ -476,7 +476,6 @@ export default function ParticlesComponent() {
 
 ध्यान दें कि Pages Router को `"use client"` की **आवश्यकता नहीं** है क्योंकि पेज कम्पोनेंट डिफ़ॉल्ट रूप से पहले से ही क्लाइंट-रेंडर होते हैं।
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

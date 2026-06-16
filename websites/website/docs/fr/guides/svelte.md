@@ -558,11 +558,11 @@ Ou encapsulez l'importation dans un composant client-only. Pour SvelteKit 2+, vo
 
 ## Référence API
 
-| Prop      | Type             | Défaut          | Description                           |
-| --------- | ---------------- | --------------- | ------------------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                |
-| `options` | `ISourceOptions` | `{}`            | Objet de configuration des particules |
-| `url`     | `string`         | —               | URL d'une configuration JSON distante |
+| Prop      | Type             | Défaut          | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                                                    |
+| `options` | `ISourceOptions` | `{}`            | Objet de configuration des particules                                     |
+| `url`     | `string`         | —               | URL d'une configuration JSON distante                                     |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | Événement            | Détail      | Description                                                                     |
@@ -571,7 +571,6 @@ Ou encapsulez l'importation dans un composant client-only. Pour SvelteKit 2+, vo
 | `on:particlesLoaded` | `Container` | Se déclenche quand le conteneur est complètement prêt                           |
 
 ---
-
 
 ## Reactive Behavior
 

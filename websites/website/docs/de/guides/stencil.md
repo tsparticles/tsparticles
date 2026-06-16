@@ -258,7 +258,6 @@ Die Verwendung von `@State()` stellt sicher, dass die Komponente neu gerendert w
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

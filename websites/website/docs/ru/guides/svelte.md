@@ -558,11 +558,11 @@ npm install @tsparticles/preset-stars
 
 ## Справочник API
 
-| Проп      | Тип              | По умолчанию    | Описание                   |
-| --------- | ---------------- | --------------- | -------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID элемента canvas         |
-| `options` | `ISourceOptions` | `{}`            | Объект конфигурации частиц |
-| `url`     | `string`         | —               | URL удалённой JSON конфиг. |
+| Проп      | Тип              | По умолчанию    | Описание                                                                  |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID элемента canvas                                                        |
+| `options` | `ISourceOptions` | `{}`            | Объект конфигурации частиц                                                |
+| `url`     | `string`         | —               | URL удалённой JSON конфиг.                                                |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | Событие              | Деталь      | Описание                                                                 |
@@ -571,7 +571,6 @@ npm install @tsparticles/preset-stars
 | `on:particlesLoaded` | `Container` | Срабатывает при полной готовности контейнера                             |
 
 ---
-
 
 ## Reactive Behavior
 

@@ -558,11 +558,11 @@ npm install @tsparticles/preset-stars
 
 ## API 参考
 
-| 属性      | 类型             | 默认值          | 描述                 |
-| --------- | ---------------- | --------------- | -------------------- |
-| `id`      | `string`         | `"tsparticles"` | 画布元素 ID          |
-| `options` | `ISourceOptions` | `{}`            | 粒子配置对象         |
-| `url`     | `string`         | —               | 远程 JSON 配置的 URL |
+| 属性      | 类型             | 默认值          | 描述                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | 画布元素 ID                                                               |
+| `options` | `ISourceOptions` | `{}`            | 粒子配置对象                                                              |
+| `url`     | `string`         | —               | 远程 JSON 配置的 URL                                                      |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 | 事件                 | 详情        | 描述                             |
@@ -571,7 +571,6 @@ npm install @tsparticles/preset-stars
 | `on:particlesLoaded` | `Container` | 容器完全就绪时触发               |
 
 ---
-
 
 ## Reactive Behavior
 

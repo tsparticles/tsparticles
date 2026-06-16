@@ -485,7 +485,6 @@ export default function ParticlesComponent() {
 | 选项更改未反映 | 未创建新的对象引用           | 使用带正确依赖数组的 `useMemo`                           |
 | 预设不生效     | 容器初始化前未加载预设       | 在 `init` 回调中调用 `loadXPreset(engine)`               |
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

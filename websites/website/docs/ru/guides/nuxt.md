@@ -236,11 +236,7 @@ const options: ISourceOptions = {
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -256,17 +252,15 @@ const options = {
   },
 };
 
-
 const onLoaded = (container?: Container) => {
   console.log("Контейнер загружен", container?.id);
 };
-
 </script>
 ```
 
-| Событие              | Полезные данные | Описание                                                        |
-| -------------------- | --------------- | --------------------------------------------------------------- |
-| `@particles-loaded`  | `Container \| undefined`     | Срабатывает каждый раз при загрузке или перезагрузке контейнера |
+| Событие             | Полезные данные          | Описание                                                        |
+| ------------------- | ------------------------ | --------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | Срабатывает каждый раз при загрузке или перезагрузке контейнера |
 
 ## Полный пример TypeScript
 
@@ -276,11 +270,7 @@ const onLoaded = (container?: Container) => {
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Возобновить" : "Пауза" }}</button>
@@ -315,7 +305,6 @@ const options: ISourceOptions = {
     },
   },
 };
-
 
 const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
@@ -441,7 +430,6 @@ await loadStarsPreset(tsParticles);
 | Пресет не действует                                 | Пресет не загружен до монтирования      | Вызвать `loadXPreset()` с `await` верхнего уровня в `<script setup>` |
 | Canvas не заполняет область просмотра               | `fullScreen` не включён                 | Добавить `fullScreen: { zIndex: -1 }` в опции                        |
 | Элементы управления не ставят на паузу/возобновляют | Не установлена ссылка на контейнер      | Присвоить контейнер в обработчике `@particles-loaded`                |
-
 
 ## Reactive Behavior
 

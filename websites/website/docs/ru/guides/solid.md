@@ -505,7 +505,6 @@ export default App;
 | Изменение опций не отражается | Ссылка на объект не меняется                 | Оберните опции в функцию или store; избегайте статических объектов             |
 | Движок не найден              | Отсутствует импорт `loadFull` или `loadSlim` | Установите `tsparticles` или `@tsparticles/slim` и вызовите `loadFull(engine)` |
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

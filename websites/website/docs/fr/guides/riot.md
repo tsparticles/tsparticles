@@ -267,7 +267,6 @@ Construisez une configuration personnalisée avec interactivité, formes multipl
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

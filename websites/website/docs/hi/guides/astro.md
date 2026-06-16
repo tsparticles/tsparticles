@@ -373,7 +373,6 @@ const options: ISourceOptions = {
 </script>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
@@ -385,11 +384,11 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## कम्पोनेंट प्रॉप्स
 
-| प्रॉप                | प्रकार           | डिफ़ॉल्ट                  | विवरण                                    |
-| -------------------- | ---------------- | ------------------------- | ---------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | कंटेनर के लिए DOM एलिमेंट आईडी           |
-| `options`            | `ISourceOptions` | `{}`                      | पूर्ण tsParticles कॉन्फ़िगरेशन ऑब्जेकट   |
-| `url`                | `string`         | —                         | दूरस्थ JSON URL से कॉन्फ़िगरेशन लोड करें |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | कैनवास एलिमेंट के लिए CSS क्लास          |
-| `container`          | `object`         | —                         | पूर्व-मौजूद `Container` इंस्टेंस (उन्नत) |
-| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| प्रॉप                | प्रकार           | डिफ़ॉल्ट                  | विवरण                                                                     |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | कंटेनर के लिए DOM एलिमेंट आईडी                                            |
+| `options`            | `ISourceOptions` | `{}`                      | पूर्ण tsParticles कॉन्फ़िगरेशन ऑब्जेकट                                    |
+| `url`                | `string`         | —                         | दूरस्थ JSON URL से कॉन्फ़िगरेशन लोड करें                                  |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | कैनवास एलिमेंट के लिए CSS क्लास                                           |
+| `container`          | `object`         | —                         | पूर्व-मौजूद `Container` इंस्टेंस (उन्नत)                                  |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |

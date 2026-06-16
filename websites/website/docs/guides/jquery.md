@@ -265,15 +265,15 @@ Below is a complete, self-contained HTML page that loads tsParticles via CDN and
 
 ## API Reference
 
-| Method                             | Description                                              |
-| ---------------------------------- | -------------------------------------------------------- |
-| `$.particles.init(fn)`             | Initialize the engine with a loader callback             |
-| `$(el).particles()`                | Create a particles plugin instance on the element        |
-| `$(el).particles().load(opts)`     | Load and start the particle configuration                |
-| `$(el).particles().ajax(url)`      | Load configuration from a remote JSON URL                |
+| Method                             | Description                                                     |
+| ---------------------------------- | --------------------------------------------------------------- |
+| `$.particles.init(fn)`             | Initialize the engine with a loader callback                    |
+| `$(el).particles()`                | Create a particles plugin instance on the element               |
+| `$(el).particles().load(opts)`     | Load and start the particle configuration                       |
+| `$(el).particles().ajax(url)`      | Load configuration from a remote JSON URL                       |
 | `$(el).particles().setTheme(name)` | Switch the active theme (requires `@tsparticles/plugin-themes`) |
-| `$(el).particles().destroy()`      | Destroy the particle instance and clean up               |
-| `$(el).particles().getContainer()` | Return the underlying `Container` for imperative control |
+| `$(el).particles().destroy()`      | Destroy the particle instance and clean up                      |
+| `$(el).particles().getContainer()` | Return the underlying `Container` for imperative control        |
 
 ### Reactive behavior
 

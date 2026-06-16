@@ -236,11 +236,7 @@ Die `<vue-particles>`-Komponente sendet mehrere Lebenszyklus-Ereignisse:
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -256,17 +252,15 @@ const options = {
   },
 };
 
-
 const onLoaded = (container?: Container) => {
   console.log("Container geladen", container?.id);
 };
-
 </script>
 ```
 
-| Ereignis             | Payload     | Beschreibung                                                                    |
-| -------------------- | ----------- | ------------------------------------------------------------------------------- |
-| `@particles-loaded`  | `Container \| undefined` | Wird jedes Mal ausgelöst, wenn der Container das Laden oder Neuladen abschließt |
+| Ereignis            | Payload                  | Beschreibung                                                                    |
+| ------------------- | ------------------------ | ------------------------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | Wird jedes Mal ausgelöst, wenn der Container das Laden oder Neuladen abschließt |
 
 ## Vollständiges TypeScript-Beispiel
 
@@ -276,11 +270,7 @@ Eine vollständige, typisierte Komponente mit expliziten Importen und Lebenszykl
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Fortsetzen" : "Pause" }}</button>
@@ -315,7 +305,6 @@ const options: ISourceOptions = {
     },
   },
 };
-
 
 const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
@@ -432,7 +421,6 @@ import { tsParticles } from "@tsparticles/engine";
 await loadStarsPreset(tsParticles);
 </script>
 ```
-
 
 ## Reactive Behavior
 

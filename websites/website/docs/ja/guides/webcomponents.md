@@ -347,7 +347,6 @@ CDN スクリプトで Web Components モジュールを使用した完全な HT
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

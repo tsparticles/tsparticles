@@ -504,7 +504,6 @@ export default App;
 | 选项更改未反映 | 对象引用未更改                       | 将选项包裹在函数或 store 中；避免使用静态对象                       |
 | 引擎未找到     | 缺少 `loadFull` 或 `loadSlim` 导入   | 安装 `tsparticles` 或 `@tsparticles/slim` 并调用 `loadFull(engine)` |
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

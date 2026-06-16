@@ -609,11 +609,11 @@ export class AppComponent implements OnInit {
 
 ### Entradas de `ngx-particles`
 
-| Entrada   | Tipo             | Por Defecto     | Descripción                      |
-| --------- | ---------------- | --------------- | -------------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas           |
-| `options` | `ISourceOptions` | `{}`            | Configuración de partículas      |
-| `url`     | `string`         | —               | URL remota de configuración JSON |
+| Entrada   | Tipo             | Por Defecto     | Descripción                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas                                                    |
+| `options` | `ISourceOptions` | `{}`            | Configuración de partículas                                               |
+| `url`     | `string`         | —               | URL remota de configuración JSON                                          |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### Salidas de `ngx-particles`
@@ -623,7 +623,6 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | Se emite cuando el contenedor se inicializa |
 
 ---
-
 
 ## Reactive Behavior
 

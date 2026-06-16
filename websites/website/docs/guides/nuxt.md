@@ -241,11 +241,7 @@ The `<vue-particles>` component emits several lifecycle events:
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -267,9 +263,9 @@ const onLoaded = (container?: Container) => {
 </script>
 ```
 
-| Event                | Payload                   | Description                                                  |
-| -------------------- | ------------------------- | ------------------------------------------------------------ |
-| `@particles-loaded`  | `Container \| undefined` | Fires every time the container finishes loading or reloading |
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
 
 ## Full TypeScript Example
 
@@ -279,12 +275,7 @@ A complete, typed component with explicit imports and lifecycle awareness:
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :init="particlesInit"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-      />
+      <vue-particles id="full-example" :init="particlesInit" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Resume" : "Pause" }}</button>
@@ -451,17 +442,17 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## Component API
 
-| Prop                | Type                     | Description                                                               |
-| ------------------- | ------------------------ | ------------------------------------------------------------------------- |
-| `id`                | `string`                 | Canvas element id. Change triggers destroy+reload.                        |
-| `:options`          | `ISourceOptions`         | Particle configuration object. Change triggers destroy+reload.            |
-| `:url`              | `string`                 | Remote JSON config URL. Change triggers destroy+reload.                   |
-| `theme`             | `string`                 | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
-| `:init`             | `(Engine) => Promise<void>` | Async callback to load engine plugins during initialization.              |
+| Prop       | Type                        | Description                                                               |
+| ---------- | --------------------------- | ------------------------------------------------------------------------- |
+| `id`       | `string`                    | Canvas element id. Change triggers destroy+reload.                        |
+| `:options` | `ISourceOptions`            | Particle configuration object. Change triggers destroy+reload.            |
+| `:url`     | `string`                    | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`    | `string`                    | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| `:init`    | `(Engine) => Promise<void>` | Async callback to load engine plugins during initialization.              |
 
-| Event                | Payload                   | Description                                                  |
-| -------------------- | ------------------------- | ------------------------------------------------------------ |
-| `@particles-loaded`  | `Container \| undefined` | Fires every time the container finishes loading or reloading |
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
 
 ## Troubleshooting
 

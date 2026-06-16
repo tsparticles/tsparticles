@@ -317,7 +317,6 @@ export default component$(() => {
 });
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

@@ -263,7 +263,6 @@ Voici une page HTML complète et autonome qui charge tsParticles via CDN et affi
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

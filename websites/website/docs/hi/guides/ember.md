@@ -251,7 +251,6 @@ export default class ApplicationController extends Controller {
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

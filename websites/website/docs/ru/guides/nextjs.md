@@ -485,7 +485,6 @@ export default function ParticlesComponent() {
 | Изменение опций не отражается | Не создана новая ссылка на объект              | Используйте `useMemo` с правильным массивом зависимостей                      |
 | Пресет не работает            | Пресет не загружен до инициализации контейнера | Вызовите `loadXPreset(engine)` внутри колбэка `init`                          |
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

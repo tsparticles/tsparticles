@@ -373,7 +373,6 @@ const options: ISourceOptions = {
 </script>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
@@ -385,11 +384,11 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## Props du composant
 
-| Prop                 | Type             | Défaut                    | Description                                           |
-| -------------------- | ---------------- | ------------------------- | ----------------------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | ID de l'élément DOM pour le conteneur                 |
-| `options`            | `ISourceOptions` | `{}`                      | Objet de configuration complet tsParticles            |
-| `url`                | `string`         | —                         | Charger la configuration depuis une URL JSON distante |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | Classe CSS pour l'élément canvas                      |
-| `container`          | `object`         | —                         | Instance `Container` préexistante (avancé)            |
-| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| Prop                 | Type             | Défaut                    | Description                                                               |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | ID de l'élément DOM pour le conteneur                                     |
+| `options`            | `ISourceOptions` | `{}`                      | Objet de configuration complet tsParticles                                |
+| `url`                | `string`         | —                         | Charger la configuration depuis une URL JSON distante                     |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | Classe CSS pour l'élément canvas                                          |
+| `container`          | `object`         | —                         | Instance `Container` préexistante (avancé)                                |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |

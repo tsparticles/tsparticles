@@ -609,11 +609,11 @@ export class AppComponent implements OnInit {
 
 ### Входные параметры `ngx-particles`
 
-| Параметр  | Тип              | По умолчанию    | Описание                   |
-| --------- | ---------------- | --------------- | -------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID элемента canvas         |
-| `options` | `ISourceOptions` | `{}`            | Конфигурация частиц        |
-| `url`     | `string`         | —               | URL удалённой JSON конфиг. |
+| Параметр  | Тип              | По умолчанию    | Описание                                                                  |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID элемента canvas                                                        |
+| `options` | `ISourceOptions` | `{}`            | Конфигурация частиц                                                       |
+| `url`     | `string`         | —               | URL удалённой JSON конфиг.                                                |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### Выходные события `ngx-particles`
@@ -623,7 +623,6 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container`     | Срабатывает при инициализации контейнера |
 
 ---
-
 
 ## Reactive Behavior
 

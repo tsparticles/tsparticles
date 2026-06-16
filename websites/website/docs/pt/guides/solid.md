@@ -495,7 +495,6 @@ export default App;
 
 O preset fornece valores padrão para cada opção, e suas sobrescritas são mescladas por cima — você só precisa especificar as propriedades que deseja alterar.
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

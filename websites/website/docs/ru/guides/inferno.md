@@ -298,7 +298,6 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

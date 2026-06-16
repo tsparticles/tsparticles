@@ -236,11 +236,7 @@ const options: ISourceOptions = {
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -256,17 +252,15 @@ const options = {
   },
 };
 
-
 const onLoaded = (container?: Container) => {
   console.log("कंटेनर लोड हुआ", container?.id);
 };
-
 </script>
 ```
 
-| इवेंट                | पेलोड       | विवरण                                                         |
-| -------------------- | ----------- | ------------------------------------------------------------- |
-| `@particles-loaded`  | `Container \| undefined` | हर बार फायर होता है जब कंटेनर लोडिंग या रीलोडिंग पूरी करता है |
+| इवेंट               | पेलोड                    | विवरण                                                         |
+| ------------------- | ------------------------ | ------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | हर बार फायर होता है जब कंटेनर लोडिंग या रीलोडिंग पूरी करता है |
 
 ## पूर्ण टाइपस्क्रिप्ट उदाहरण
 
@@ -276,11 +270,7 @@ const onLoaded = (container?: Container) => {
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "पुनरारंभ" : "रोकें" }}</button>
@@ -315,7 +305,6 @@ const options: ISourceOptions = {
     },
   },
 };
-
 
 const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
@@ -432,7 +421,6 @@ import { tsParticles } from "@tsparticles/engine";
 await loadStarsPreset(tsParticles);
 </script>
 ```
-
 
 ## Reactive Behavior
 

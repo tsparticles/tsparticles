@@ -347,7 +347,6 @@ Eine vollständige HTML-Seite mit dem Web Components-Modul und CDN-Skripten:
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

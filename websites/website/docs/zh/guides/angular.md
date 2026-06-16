@@ -609,11 +609,11 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` 输入属性
 
-| 输入属性  | 类型             | 默认值          | 描述               |
-| --------- | ---------------- | --------------- | ------------------ |
-| `id`      | `string`         | `"tsparticles"` | 画布元素 ID        |
-| `options` | `ISourceOptions` | `{}`            | 粒子配置           |
-| `url`     | `string`         | —               | 远程 JSON 配置 URL |
+| 输入属性  | 类型             | 默认值          | 描述                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | 画布元素 ID                                                               |
+| `options` | `ISourceOptions` | `{}`            | 粒子配置                                                                  |
+| `url`     | `string`         | —               | 远程 JSON 配置 URL                                                        |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### `ngx-particles` 输出事件
@@ -623,7 +623,6 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | 当容器初始化完成时触发 |
 
 ---
-
 
 ## Reactive Behavior
 

@@ -476,7 +476,6 @@ export default function ParticlesComponent() {
 
 Ten en cuenta que el Pages Router **no** requiere `"use client"` porque los componentes de página ya se renderizan en el cliente por defecto.
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

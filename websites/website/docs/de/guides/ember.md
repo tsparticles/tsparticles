@@ -251,7 +251,6 @@ Der `@tracked`-Dekorator stellt sicher, dass die Vorlage automatisch neu gerende
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

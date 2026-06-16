@@ -245,7 +245,6 @@ export default function App() {
 }
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

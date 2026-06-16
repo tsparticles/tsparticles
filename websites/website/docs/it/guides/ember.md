@@ -251,7 +251,6 @@ Il decoratore `@tracked` garantisce che il template venga ri-renderizzato automa
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

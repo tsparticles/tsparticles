@@ -258,7 +258,6 @@ Utiliser `@State()` garantit que le composant se réaffiche lorsque le moteur de
 
 ---
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

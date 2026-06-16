@@ -373,7 +373,6 @@ const options: ISourceOptions = {
 </script>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
@@ -385,11 +384,11 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## 组件属性
 
-| 属性                 | 类型             | 默认值                    | 描述                                    |
-| -------------------- | ---------------- | ------------------------- | --------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | 容器的 DOM 元素 ID                      |
-| `options`            | `ISourceOptions` | `{}`                      | 完整的 tsParticles 配置对象             |
-| `url`                | `string`         | —                         | 从远程 JSON URL 加载配置                |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | 画布元素的 CSS 类名                     |
-| `container`          | `object`         | —                         | 预先存在的 `Container` 实例（高级用法） |
-| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| 属性                 | 类型             | 默认值                    | 描述                                                                      |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | 容器的 DOM 元素 ID                                                        |
+| `options`            | `ISourceOptions` | `{}`                      | 完整的 tsParticles 配置对象                                               |
+| `url`                | `string`         | —                         | 从远程 JSON URL 加载配置                                                  |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | 画布元素的 CSS 类名                                                       |
+| `container`          | `object`         | —                         | 预先存在的 `Container` 实例（高级用法）                                   |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |

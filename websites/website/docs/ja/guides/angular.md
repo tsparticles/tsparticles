@@ -609,11 +609,11 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` 入力
 
-| 入力      | タイプ           | デフォルト      | 説明                   |
-| --------- | ---------------- | --------------- | ---------------------- |
-| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID      |
-| `options` | `ISourceOptions` | `{}`            | パーティクル設定       |
-| `url`     | `string`         | —               | リモート JSON 設定 URL |
+| 入力      | タイプ           | デフォルト      | 説明                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID                                                         |
+| `options` | `ISourceOptions` | `{}`            | パーティクル設定                                                          |
+| `url`     | `string`         | —               | リモート JSON 設定 URL                                                    |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### `ngx-particles` 出力
@@ -623,7 +623,6 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | コンテナが初期化されたときに発行されます |
 
 ---
-
 
 ## Reactive Behavior
 

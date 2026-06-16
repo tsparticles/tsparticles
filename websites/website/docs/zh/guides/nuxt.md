@@ -236,11 +236,7 @@ const options: ISourceOptions = {
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -256,17 +252,15 @@ const options = {
   },
 };
 
-
 const onLoaded = (container?: Container) => {
   console.log("容器已加载", container?.id);
 };
-
 </script>
 ```
 
-| 事件                 | 负载类型    | 描述                             |
-| -------------------- | ----------- | -------------------------------- |
-| `@particles-loaded`  | `Container \| undefined` | 容器完成加载或重新加载时触发     |
+| 事件                | 负载类型                 | 描述                         |
+| ------------------- | ------------------------ | ---------------------------- |
+| `@particles-loaded` | `Container \| undefined` | 容器完成加载或重新加载时触发 |
 
 ## 完整 TypeScript 示例
 
@@ -276,11 +270,7 @@ const onLoaded = (container?: Container) => {
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "恢复" : "暂停" }}</button>
@@ -315,7 +305,6 @@ const options: ISourceOptions = {
     },
   },
 };
-
 
 const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
@@ -441,7 +430,6 @@ await loadStarsPreset(tsParticles);
 | 预设无效果            | 组件挂载前未加载预设           | 在 `<script setup>` 中使用顶级 await 调用 `loadXPreset()` |
 | 画布未填满视口        | 未启用 `fullScreen`            | 在选项中添加 `fullScreen: { zIndex: -1 }`                 |
 | 控制按钮无法暂停/恢复 | 未设置容器引用                 | 在 `@particles-loaded` 处理程序中分配容器                 |
-
 
 ## Reactive Behavior
 

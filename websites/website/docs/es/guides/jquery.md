@@ -263,7 +263,6 @@ A continuación se muestra una página HTML completa y autónoma que carga tsPar
 </html>
 ```
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:

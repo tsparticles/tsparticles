@@ -375,15 +375,15 @@ const options: ISourceOptions = {
 
 ## Component Props
 
-| Prop                 | Type             | Default                   | Description                                                               |
-| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | DOM element id for the container. Change triggers destroy+reload.         |
-| `options`            | `ISourceOptions` | `{}`                      | Full tsParticles configuration object. Change triggers destroy+reload.    |
-| `url`                | `string`         | —                         | Load configuration from a remote JSON URL. Change triggers destroy+reload.|
-| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
-| `loaded`             | `string`         | —                         | Name of a global callback function called when particles are loaded.      |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS class for the canvas element                                          |
-| `container`          | `object`         | —                         | Pre-existing `Container` instance (advanced)                              |
+| Prop                 | Type             | Default                   | Description                                                                |
+| -------------------- | ---------------- | ------------------------- | -------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | DOM element id for the container. Change triggers destroy+reload.          |
+| `options`            | `ISourceOptions` | `{}`                      | Full tsParticles configuration object. Change triggers destroy+reload.     |
+| `url`                | `string`         | —                         | Load configuration from a remote JSON URL. Change triggers destroy+reload. |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise).  |
+| `loaded`             | `string`         | —                         | Name of a global callback function called when particles are loaded.       |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS class for the canvas element                                           |
+| `container`          | `object`         | —                         | Pre-existing `Container` instance (advanced)                               |
 
 ### Reactive updates
 

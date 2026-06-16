@@ -494,7 +494,6 @@ export default App;
 
 プリセットはすべてのオプションにデフォルト値を提供し、オーバーライドはその上にマージされます — 変更したいプロパティのみを指定する必要があります。
 
-
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
