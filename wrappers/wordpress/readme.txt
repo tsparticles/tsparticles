@@ -59,7 +59,7 @@ Nothing to say
 
 == Changelog ==
 
-= 4.1.3
+= 4.2.0
 
 This major update migrates tsParticles from v3 to v4, adding full compatibility with the new engine architecture. All packages are now sourced from the monorepo using `workspace:*` references.
 
