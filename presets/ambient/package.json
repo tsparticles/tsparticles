@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-ambient",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles preset for creating ambient, floating background particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

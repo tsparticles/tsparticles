@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/fireworks",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles fireworks bundle — easily create spectacular fireworks and fountain particle effects with built-in presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

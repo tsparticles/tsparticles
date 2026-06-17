@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-curl-noise",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles path for moving particles along curl noise-generated flow fields",
   "homepage": "https://particles.js.org",
   "scripts": {

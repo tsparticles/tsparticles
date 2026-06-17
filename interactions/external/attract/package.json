@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-attract",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles external interaction for attracting particles toward the mouse cursor or touch position",
   "homepage": "https://particles.js.org",
   "scripts": {

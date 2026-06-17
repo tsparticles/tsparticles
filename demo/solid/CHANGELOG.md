@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed solid wrapper ([fdd51c2](https://github.com/tsparticles/tsparticles/commit/fdd51c2c05bf140d83c04114250e9234f9c31bd1))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package @tsparticles/solid-demo

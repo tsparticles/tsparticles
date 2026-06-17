@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/prettier-config",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles default Prettier Configuration",
   "main": "dist/index.cjs",
   "exports": {

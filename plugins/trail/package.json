@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-trail",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles plugin for creating particle motion trail effects that fade behind moving particles",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-light",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles interaction that illuminates particles near a light source, simulating lighting effects",
   "homepage": "https://particles.js.org",
   "scripts": {

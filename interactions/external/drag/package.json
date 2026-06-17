@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-drag",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles external interaction for dragging particles with the mouse or touch",
   "homepage": "https://particles.js.org",
   "scripts": {

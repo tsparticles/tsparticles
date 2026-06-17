@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed vue 2 wrapper ([7e1cd65](https://github.com/tsparticles/tsparticles/commit/7e1cd65b270b9e148aac68b0c7d50a5adcd4edc1))
+- various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
+- various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package @tsparticles/vue2

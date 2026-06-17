@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed angular wrapper ([472fbd4](https://github.com/tsparticles/tsparticles/commit/472fbd4dd08f74a1ed216511604cc06f0a485d8f))
+- fixed angular wrapper ([ab59ef1](https://github.com/tsparticles/tsparticles/commit/ab59ef10549d0e255e09c04f14ae41968dce8651))
+- various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package @tsparticles/angular

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-rgb-primaries",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles rgb primaries palette",
   "homepage": "https://particles.js.org",
   "scripts": {

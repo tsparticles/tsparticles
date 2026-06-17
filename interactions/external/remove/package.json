@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-remove",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles external interaction for removing particles on mouse click or touch",
   "homepage": "https://particles.js.org",
   "scripts": {

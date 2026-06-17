@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- various fixes after deeper review ([b68a5cb](https://github.com/tsparticles/tsparticles/commit/b68a5cb87c358c6cb32ddaac664eb29b327bcb4a))
+- various fixes after deeper review ([7f39804](https://github.com/tsparticles/tsparticles/commit/7f398048915819a380856bdce4b6b4af4aaab9a4))
+- various fixes after deeper review ([58b7ef8](https://github.com/tsparticles/tsparticles/commit/58b7ef83b48a4979519349c3cb6fd3cfe2cf6f5b))
+- various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
+
+### Features
+
+- completed adding templates plan ([bce1a7e](https://github.com/tsparticles/tsparticles/commit/bce1a7ee481e2146b04be234923571e6cf16c717))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package @tsparticles/website

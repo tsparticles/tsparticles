@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-orbit",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles updater for creating orbital and satellite particle animations — particles revolve around a center point",
   "homepage": "https://particles.js.org",
   "scripts": {

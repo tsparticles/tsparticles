@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-branches",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles path for moving particles along branching, tree-like trajectories",
   "homepage": "https://particles.js.org",
   "scripts": {

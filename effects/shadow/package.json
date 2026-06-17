@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/effect-shadow",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles effect for adding drop shadows and depth effects to particle rendering",
   "homepage": "https://particles.js.org",
   "scripts": {

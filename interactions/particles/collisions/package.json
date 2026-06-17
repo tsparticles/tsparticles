@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-collisions",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles particle interaction for detecting and resolving collisions between particles",
   "homepage": "https://particles.js.org",
   "scripts": {

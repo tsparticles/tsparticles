@@ -1,6 +1,6 @@
 {
   "name": "create-ribbons",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "Scaffold a @tsparticles/ribbons project — npm create ribbons",
   "homepage": "https://particles.js.org",
   "license": "MIT",

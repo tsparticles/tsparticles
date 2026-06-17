@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "4.1.3",
+    "version": "4.2.0",
     "private": true,
     "description": "tsParticles Website (VitePress)",
     "main": "docs/index.md",

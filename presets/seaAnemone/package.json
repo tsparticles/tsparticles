@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-sea-anemone",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles preset for creating organic sea anemone tentacle particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

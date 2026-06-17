@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-zoom",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles plugin for enabling zoom and pan interactions on the particle canvas",
   "homepage": "https://particles.js.org",
   "scripts": {

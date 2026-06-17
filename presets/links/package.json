@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-links",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles preset for creating connected network of particles linked by lines",
   "homepage": "https://particles.js.org",
   "scripts": {

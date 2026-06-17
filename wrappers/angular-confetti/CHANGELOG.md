@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed anglar secondary wrappers and their bundles with proper destroy ([120fe5d](https://github.com/tsparticles/tsparticles/commit/120fe5d697a93a9fe3faf20bfeb1f65f8a397273))
+- fixed angular wrapper ([10d09a8](https://github.com/tsparticles/tsparticles/commit/10d09a80b588b8af4eb4e19ea1e6e3a555c7f4b1))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package angular-confetti

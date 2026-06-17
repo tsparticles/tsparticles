@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-manual-particles",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles plugin for placing particles at specific manual coordinates on the canvas",
   "homepage": "https://particles.js.org",
   "scripts": {

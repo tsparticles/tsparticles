@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles plugin for continuously spawning particles from configurable emitter shapes and positions",
   "homepage": "https://particles.js.org",
   "scripts": {

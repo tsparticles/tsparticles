@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/stencil-demo",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "private": true,
   "description": "Stencil demo for @tsparticles/stencil",
   "repository": {

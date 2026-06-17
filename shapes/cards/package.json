@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles shape for rendering particles as playing card suit symbols",
   "homepage": "https://particles.js.org",
   "scripts": {

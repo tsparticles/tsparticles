@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-sounds",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles plugin for adding sound effects triggered by particle events and interactions",
   "homepage": "https://particles.js.org",
   "scripts": {

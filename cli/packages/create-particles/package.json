@@ -1,6 +1,6 @@
 {
   "name": "create-particles",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "Scaffold a @tsparticles/particles project — npm create particles",
   "homepage": "https://particles.js.org",
   "license": "MIT",

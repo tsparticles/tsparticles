@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-simplex-noise",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles path for moving particles along simplex noise-generated paths",
   "homepage": "https://particles.js.org",
   "scripts": {

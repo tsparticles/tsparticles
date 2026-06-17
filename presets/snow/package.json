@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-snow",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles preset for creating realistic snowfall particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-paint",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles updater for creating paint-like particle animations where particles leave colored trails on the canvas",
   "homepage": "https://particles.js.org",
   "scripts": {

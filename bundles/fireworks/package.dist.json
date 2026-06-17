@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/fireworks",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles fireworks bundle — easily create spectacular fireworks and fountain particle effects with built-in presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -105,17 +105,17 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.1.3",
-    "@tsparticles/engine": "4.1.3",
-    "@tsparticles/plugin-blend": "4.1.3",
-    "@tsparticles/plugin-emitters": "4.1.3",
-    "@tsparticles/plugin-emitters-shape-square": "4.1.3",
-    "@tsparticles/plugin-sounds": "4.1.3",
-    "@tsparticles/shape-line": "4.1.3",
-    "@tsparticles/updater-destroy": "4.1.3",
-    "@tsparticles/updater-life": "4.1.3",
-    "@tsparticles/updater-paint": "4.1.3",
-    "@tsparticles/updater-rotate": "4.1.3"
+    "@tsparticles/basic": "4.2.0",
+    "@tsparticles/engine": "4.2.0",
+    "@tsparticles/plugin-blend": "4.2.0",
+    "@tsparticles/plugin-emitters": "4.2.0",
+    "@tsparticles/plugin-emitters-shape-square": "4.2.0",
+    "@tsparticles/plugin-sounds": "4.2.0",
+    "@tsparticles/shape-line": "4.2.0",
+    "@tsparticles/updater-destroy": "4.2.0",
+    "@tsparticles/updater-life": "4.2.0",
+    "@tsparticles/updater-paint": "4.2.0",
+    "@tsparticles/updater-rotate": "4.2.0"
   },
   "publishConfig": {
     "access": "public"
