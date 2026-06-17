@@ -103,24 +103,24 @@
     "riot": "^10"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:^"
+    "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/preset-typescript": "^7.28.5",
+    "@babel/core": "^8.0.0",
+    "@babel/preset-typescript": "^8.0.0",
     "@riotjs/cli": "^10.0.0",
-    "@riotjs/compiler": "^10.0.1",
-    "@rollup/plugin-babel": "^7.0.0",
-    "@tsparticles/prettier-config": "workspace:^",
+    "@riotjs/compiler": "^10.0.2",
+    "@rollup/plugin-babel": "^7.1.0",
+    "@tsparticles/prettier-config": "workspace:*",
     "chai": "^6.2.2",
     "esm": "^3.2.25",
-    "jsdom": "^29.0.2",
+    "jsdom": "^29.1.1",
     "jsdom-global": "^3.0.2",
-    "mocha": "^11.7.5",
+    "mocha": "^11.7.6",
     "nyc": "^18.0.0",
-    "prettier": "^3.8.2",
-    "riot": "^10.1.3",
-    "rollup": "^4.60.1",
+    "prettier": "^3.8.4",
+    "riot": "^10.1.4",
+    "rollup": "^4.62.0",
     "rollup-plugin-riot": "^10.0.0"
   },
   "publishConfig": {

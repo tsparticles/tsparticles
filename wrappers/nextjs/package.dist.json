@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@tsparticles/react": "^__VERSION__",
+    "@tsparticles/react": "__VERSION__",
     "next": ">=13.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",

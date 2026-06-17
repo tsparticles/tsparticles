@@ -3,11 +3,11 @@
     [
       "@babel/proposal-decorators",
       {
-        "legacy": true
+        "version": "legacy"
       }
     ],
     [
-      "@babel/proposal-class-properties",
+      "@babel/plugin-transform-class-properties",
       {
         "loose": true
       }

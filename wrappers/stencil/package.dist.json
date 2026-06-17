@@ -29,7 +29,8 @@
     }
   },
   "peerDependencies": {
-    "@tsparticles/engine": "__VERSION__"
+    "@tsparticles/engine": "__VERSION__",
+    "@stencil/core": "^4"
   },
   "publishConfig": {
     "access": "public"

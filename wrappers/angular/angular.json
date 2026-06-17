@@ -29,11 +29,10 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
-            "main": "projects/ng-particles/src/test.ts",
             "tsConfig": "projects/ng-particles/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-particles/karma.conf.js"
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }

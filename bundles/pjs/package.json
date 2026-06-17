@@ -110,7 +110,7 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/plugin-interactivity": "workspace:*"
   },
   "publishConfig": {

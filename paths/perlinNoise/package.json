@@ -86,7 +86,7 @@
     "@tsparticles/plugin-move": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/noise-field": "workspace:*",
     "@tsparticles/perlin-noise": "workspace:*",

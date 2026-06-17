@@ -6,6 +6,7 @@
     "declarationMap": false,
     "emitDeclarationOnly": true,
     "outDir": "dist",
+    "rootDir": "src",
     // Allow emit even if base tsconfig sets noEmit
     "noEmit": false
   },

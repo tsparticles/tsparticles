@@ -15,14 +15,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@builder.io/qwik": "1.20.0",
-    "@tsparticles/engine": "workspace:^",
-    "tsparticles": "workspace:^"
+    "@builder.io/qwik": "^1.20.0",
+    "@tsparticles/engine": "workspace:*",
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.8",
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
     "vite-tsconfig-paths": "^6.1.1"
   }
 }

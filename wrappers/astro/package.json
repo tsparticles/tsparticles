@@ -108,17 +108,17 @@
   "browser": "./index.client.js",
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*",
-    "astro": "^6.0.0"
+    "astro": "^6"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:^"
+    "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/prettier-config": "workspace:^",
-    "astro": "^6.4.6",
-    "prettier": "^3.8.3",
+    "@tsparticles/prettier-config": "workspace:*",
+    "astro": "^6.4.7",
+    "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "nx": {
     "targets": {

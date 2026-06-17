@@ -24,11 +24,11 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "@tsparticles/cli-command-build": "workspace:^",
+    "@tsparticles/cli-command-build": "workspace:*",
     "commander": "^15.0.0"
   },
   "devDependencies": {
-    "@tsparticles/prettier-config": "workspace:^"
+    "@tsparticles/prettier-config": "workspace:*"
   },
   "description": "tsParticles CLI - Build command only (no circular dependencies)",
   "author": "Matteo Bruni <matteo.bruni@me.com>"

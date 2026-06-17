@@ -14,14 +14,14 @@
     "build:ci": "stencil build"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/plugin-themes": "workspace:^",
-    "@tsparticles/slim": "workspace:^",
-    "@tsparticles/stencil": "workspace:^"
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-themes": "workspace:*",
+    "@tsparticles/slim": "workspace:*",
+    "@tsparticles/stencil": "workspace:*"
   },
   "devDependencies": {
-    "@stencil/core": "^4.43.4",
+    "@stencil/core": "^4.43.5",
     "typescript": "^6.0.3"
   }
 }

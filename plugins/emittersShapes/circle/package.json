@@ -117,7 +117,7 @@
     "@tsparticles/plugin-emitters": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/plugin-emitters": "workspace:*"
   },

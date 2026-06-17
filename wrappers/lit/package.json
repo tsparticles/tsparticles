@@ -41,18 +41,12 @@
     "build:watch": "tsc --watch",
     "dev": "npm run serve & npm run build:watch"
   },
-  "keywords": [
-    "web-component",
-    "lit-element",
-    "lit",
-    "typescript"
-  ],
   "dependencies": {
-    "@tsparticles/engine": "workspace:^",
-    "lit": "^3.3.2"
+    "@tsparticles/engine": "workspace:*",
+    "lit": "^3.3.3"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^6.0.3"
   },
   "exports": {
     ".": {

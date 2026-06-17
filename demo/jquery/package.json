@@ -22,29 +22,29 @@
     "url": "https://github.com/tsparticles/jquery/issues"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/jquery": "workspace:^",
-    "@tsparticles/preset-links": "workspace:^",
-    "jquery": "^3.7.1",
-    "tsparticles": "workspace:^"
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/jquery": "workspace:*",
+    "@tsparticles/preset-links": "workspace:*",
+    "jquery": "^4.0.0",
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
-    "@typescript-eslint/eslint-plugin": "^8.59.1",
-    "@typescript-eslint/parser": "^8.59.1",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
-    "express": "^4.18.2",
+    "express": "^5.2.1",
     "express-rate-limit": "^8.5.2",
-    "helmet": "^8.1.0",
-    "jsoneditor": "^10.0.0",
-    "lodash": "^4.17.21",
-    "prettier": "^3.1.1",
-    "pug": "^3.0.2",
-    "stats.ts": "^1.1.0",
+    "helmet": "^8.2.0",
+    "jsoneditor": "^10.4.3",
+    "lodash": "^4.18.1",
+    "prettier": "^3.8.4",
+    "pug": "^3.0.4",
+    "stats.ts": "^2.1.6",
     "stylus": "^0.64.0",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   }
 }

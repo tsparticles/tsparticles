@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@tsparticles/animation-utils": "workspace:*",
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*"
   },
   "publishConfig": {

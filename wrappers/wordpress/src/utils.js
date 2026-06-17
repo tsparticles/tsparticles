@@ -11,7 +11,7 @@ export function transformLoadableObject(source) {
 export async function handlePlugin(source, pluginName, engine) {
 	const bundle = source.find((t) => t.name === pluginName);
 
-	if (bundle && bundle.load) {
+	if (bundle?.load) {
 		await bundle.load(engine);
 
 		return true;

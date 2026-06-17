@@ -49,7 +49,7 @@
     "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*"
   },
   "exports": {

@@ -97,7 +97,7 @@
     }
   },
   "peerDependencies": {
-    "astro": "^6.1.6",
+    "astro": "^6",
     "@tsparticles/engine": "__VERSION__"
   },
   "publishConfig": {

@@ -123,26 +123,26 @@
     "linkDirectory": true
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:^"
+    "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@tsparticles/prettier-config": "workspace:^",
-    "@types/node": "^25.6.0",
-    "@typescript-eslint/parser": "^8.58.1",
+    "@tsparticles/prettier-config": "workspace:*",
+    "@types/node": "^25.9.3",
+    "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-vue2": "^2.3.4",
-    "eslint": "^10.2.0",
-    "eslint-plugin-vue": "^10.8.0",
-    "globals": "^17.5.0",
-    "prettier": "^3.8.2",
-    "typescript": "^6.0.2",
-    "vite": "^6.4.1",
-    "vite-plugin-dts": "^5.0.1",
+    "eslint": "^10.5.0",
+    "eslint-plugin-vue": "^10.9.2",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.3",
+    "vite": "^6.4.3",
+    "vite-plugin-dts": "^5.0.2",
     "vue": "^2.7.16",
     "vue-class-component": "^7.2.6",
-    "vue-eslint-parser": "^10.4.0",
+    "vue-eslint-parser": "^10.4.1",
     "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.7.16",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.3.5"
   }
 }

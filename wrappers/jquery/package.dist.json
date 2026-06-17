@@ -85,7 +85,7 @@
   "prettier": "@tsparticles/prettier-config",
   "main": "jquery.particles.min.js",
   "peerDependencies": {
-    "jquery": "^3.7.1",
+    "jquery": "^3 || ^4",
     "@tsparticles/engine": "__VERSION__"
   },
   "publishConfig": {

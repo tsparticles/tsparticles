@@ -8,16 +8,16 @@ import { getShapes, handleShapes } from "./plugins/shapes";
 import { getUpdaters, handleUpdaters } from "./plugins/updaters";
 
 export function getAllPlugins(attributes) {
-	const allPlugins = [];
-
-	allPlugins.push(...getBundles());
-	allPlugins.push(...getEffects());
-	allPlugins.push(...getInteractions());
-	allPlugins.push(...getPaths());
-	allPlugins.push(...getPlugins());
-	allPlugins.push(...getPresets());
-	allPlugins.push(...getShapes());
-	allPlugins.push(...getUpdaters());
+	const allPlugins = [
+		...getBundles(),
+		...getEffects(),
+		...getInteractions(),
+		...getPaths(),
+		...getPlugins(),
+		...getPresets(),
+		...getShapes(),
+		...getUpdaters()
+	];
 
 	if (!attributes) {
 		return allPlugins;

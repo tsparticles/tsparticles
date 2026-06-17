@@ -92,7 +92,8 @@
     }
   },
   "peerDependencies": {
-    "@tsparticles/engine": "__VERSION__"
+    "@tsparticles/engine": "__VERSION__",
+    "vue": "^3"
   },
   "publishConfig": {
     "access": "public"

@@ -97,7 +97,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
-    "@tsparticles/cli-command-build": "workspace:^"
+    "@tsparticles/cli-build": "workspace:*",
+    "@tsparticles/cli-command-build": "workspace:*"
   }
 }

@@ -39,10 +39,8 @@
     "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
     "prepack": "pnpm run build"
   },
-  "dependencies": {
-    "@tsparticles/engine": "workspace:^"
-  },
   "devDependencies": {
+    "@tsparticles/engine": "workspace:*",
     "@stencil/core": "^4.43.5",
     "typescript": "^6.0.3"
   },
@@ -60,6 +58,7 @@
     }
   },
   "peerDependencies": {
-    "@tsparticles/engine": "workspace:*"
+    "@tsparticles/engine": "workspace:*",
+    "@stencil/core": "^4"
   }
 }

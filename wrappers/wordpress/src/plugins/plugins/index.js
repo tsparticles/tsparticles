@@ -60,6 +60,26 @@ const group = __("Plugins"),
 		...getEmitterShapes(group, name => `${__("Emitters")} ${__("Shape")} ${name}`),
 		...getExports(group, name => `${__("Export")} ${name}`),
 		{
+			name: "plugin-hex-color",
+			description: `${__("Hex")} ${__("Color")}`,
+			group,
+			load: async () => {
+				const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color");
+
+				await loadHexColorPlugin();
+			},
+		},
+		{
+			name: "plugin-hsl-color",
+			description: `${__("HSL")} ${__("Color")}`,
+			group,
+			load: async () => {
+				const { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color");
+
+				await loadHslColorPlugin();
+			},
+		},
+		{
 			name: "plugin-hsv-color",
 			description: `${__("HSV")} ${__("Color")}`,
 			group,
@@ -90,6 +110,16 @@ const group = __("Plugins"),
 			},
 		},
 		{
+			name: "plugin-interactivity",
+			description: `${__("Custom")} ${__("Interactivity")}`,
+			group,
+			load: async engine => {
+				const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+
+				await loadInteractivityPlugin(engine);
+			},
+		},
+		{
 			name: "plugin-lab-color",
 			description: `${__("LAB")} ${__("Color")}`,
 			group,
@@ -107,6 +137,26 @@ const group = __("Plugins"),
 				const { loadLchColorPlugin } = await import("@tsparticles/plugin-lch-color");
 
 				await loadLchColorPlugin();
+			},
+		},
+		{
+			name: "plugin-oklch-color",
+			description: `${__("OKLCH")} ${__("Color")}`,
+			group,
+			load: async () => {
+				const { loadOklchColorPlugin } = await import("@tsparticles/plugin-oklch-color");
+
+				await loadOklchColorPlugin();
+			},
+		},
+		{
+			name: "plugin-rgb-color",
+			description: `${__("RGB")} ${__("Color")}`,
+			group,
+			load: async () => {
+				const { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color");
+
+				await loadRgbColorPlugin();
 			},
 		},
 		{
@@ -157,16 +207,6 @@ const group = __("Plugins"),
 				const { loadOklabColorPlugin } = await import("@tsparticles/plugin-oklab-color");
 
 				await loadOklabColorPlugin();
-			},
-		},
-		{
-			name: "plugin-oklch-color",
-			description: `${__("OKLCH")} ${__("Color")}`,
-			group,
-			load: async () => {
-				const { loadOklchColorPlugin } = await import("@tsparticles/plugin-oklch-color");
-
-				await loadOklchColorPlugin();
 			},
 		},
 		{

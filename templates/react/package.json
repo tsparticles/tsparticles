@@ -88,7 +88,7 @@
   ],
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
-    "@tsparticles/react": "workspace:^",
+    "@tsparticles/react": "workspace:*",
     "tslib": "^2.8.1",
     "tsparticles": "workspace:*"
   },

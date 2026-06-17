@@ -113,7 +113,7 @@
     "./package.json": "./dist/package.json"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/smooth-value-noise": "workspace:*"
   },

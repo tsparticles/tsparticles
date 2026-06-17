@@ -72,7 +72,7 @@
     "@tsparticles/simplex-noise": "workspace:*"
   },
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/noise-field": "workspace:*",
     "@tsparticles/plugin-move": "workspace:*",

@@ -25,7 +25,7 @@
 		},
 		"options": {
 			"type": "string",
-			"default": "{\n  \"fullScreen\": {\n    \"enable\": false\n  },\n  \"fpsLimit\": 120,\n  \"particles\": {\n    \"number\": {\n      \"value\": 80,\n      \"density\": {\n        \"enable\": true\n      }\n    },\n    \"color\": {\n      \"value\": \"#ff0000\",\n      \"animation\": {\n        \"enable\": true,\n        \"speed\": 20,\n        \"sync\": true\n      }\n    },\n    \"shape\": {\n      \"type\": \"circle\"\n    },\n    \"opacity\": {\n      \"value\": 0.5\n    },\n    \"size\": {\n      \"value\": {\n        \"min\": 1,\n        \"max\": 3\n      }\n    },\n    \"links\": {\n      \"enable\": true,\n      \"distance\": 100,\n      \"color\": \"#ffffff\",\n      \"opacity\": 0.4,\n      \"width\": 1\n    },\n    \"move\": {\n      \"enable\": true,\n      \"speed\": 6,\n      \"direction\": \"none\",\n      \"random\": false,\n      \"straight\": false,\n      \"outModes\": {\n        \"default\": \"out\"\n      }\n    }\n  },\n  \"interactivity\": {\n    \"events\": {\n      \"onHover\": {\n        \"enable\": true,\n        \"mode\": \"repulse\"\n      },\n      \"onClick\": {\n        \"enable\": true,\n        \"mode\": \"push\"\n      }\n    },\n    \"modes\": {\n      \"repulse\": {\n        \"distance\": 200\n      },\n      \"push\": {\n        \"quantity\": 4\n      }\n    }\n  },\n  \"detectRetina\": true,\n  \"background\": {\n    \"color\": \"#000000\"\n  }\n}"
+			"default": "{\n  \"fullScreen\": {\n    \"enable\": false\n  },\n  \"particles\": {\n    \"number\": {\n      \"value\": 80,\n      \"density\": {\n        \"enable\": true\n      }\n    },\n    \"paint\": {\n      \"color\": {\n        \"value\": \"#ff0000\",\n        \"animation\": {\n          \"enable\": true,\n          \"speed\": 20,\n          \"sync\": true\n        }\n      }\n    },\n    \"shape\": {\n      \"type\": \"circle\"\n    },\n    \"opacity\": {\n      \"value\": 0.5\n    },\n    \"size\": {\n      \"value\": {\n        \"min\": 1,\n        \"max\": 3\n      }\n    },\n    \"links\": {\n      \"enable\": true,\n      \"distance\": 100,\n      \"color\": \"#ffffff\",\n      \"opacity\": 0.4,\n      \"width\": 1\n    },\n    \"move\": {\n      \"enable\": true,\n      \"speed\": 6,\n      \"direction\": \"none\",\n      \"random\": false,\n      \"straight\": false,\n      \"outModes\": {\n        \"default\": \"out\"\n      }\n    }\n  },\n  \"interactivity\": {\n    \"events\": {\n      \"onHover\": {\n        \"enable\": true,\n        \"mode\": \"repulse\"\n      },\n      \"onClick\": {\n        \"enable\": true,\n        \"mode\": \"push\"\n      }\n    },\n    \"modes\": {\n      \"repulse\": {\n        \"distance\": 200\n      },\n      \"push\": {\n        \"quantity\": 4\n      }\n    }\n  },\n  \"detectRetina\": true,\n  \"background\": {\n    \"color\": \"#000000\"\n  }\n}"
 		},
 		"bundle-basic": {
 			"type": "boolean",
@@ -64,6 +64,14 @@
 			"default": false
 		},
 		"interaction-external-connect": {
+			"type": "boolean",
+			"default": false
+		},
+		"interaction-external-destroy": {
+			"type": "boolean",
+			"default": false
+		},
+		"interaction-external-drag": {
 			"type": "boolean",
 			"default": false
 		},
@@ -227,11 +235,23 @@
 			"type": "boolean",
 			"default": false
 		},
+		"plugin-hex-color": {
+			"type": "boolean",
+			"default": false
+		},
+		"plugin-hsl-color": {
+			"type": "boolean",
+			"default": false
+		},
 		"plugin-hsv-color": {
 			"type": "boolean",
 			"default": false
 		},
 		"plugin-infection": {
+			"type": "boolean",
+			"default": false
+		},
+		"plugin-interactivity": {
 			"type": "boolean",
 			"default": false
 		},
@@ -336,6 +356,10 @@
 			"default": false
 		},
 		"shape-polygon": {
+			"type": "boolean",
+			"default": false
+		},
+		"shape-ribbon": {
 			"type": "boolean",
 			"default": false
 		},
@@ -539,6 +563,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"plugin-rgb-color": {
+			"type": "boolean",
+			"default": false
+		},
 		"plugin-responsive": {
 			"type": "boolean",
 			"default": false
@@ -580,6 +608,14 @@
 			"default": false
 		},
 		"preset-matrix": {
+			"type": "boolean",
+			"default": false
+		},
+		"preset-meteors": {
+			"type": "boolean",
+			"default": false
+		},
+		"preset-party": {
 			"type": "boolean",
 			"default": false
 		},

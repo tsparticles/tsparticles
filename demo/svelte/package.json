@@ -32,10 +32,10 @@
     "typescript": "~6.0.3"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/svelte": "workspace:^",
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/svelte": "workspace:*",
     "sirv-cli": "^3.0.1",
-    "tsparticles": "workspace:^"
+    "tsparticles": "workspace:*"
   }
 }
