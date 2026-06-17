@@ -6,6 +6,7 @@ export type ParticlesPluginRegistrar = (engine: Engine) => Promise<void> | void;
 let initialized = false;
 let initPromise: Promise<void> | undefined;
 let initCallback: ParticlesPluginRegistrar | undefined;
+let waitResolve: (() => void) | undefined;
 
 export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Promise<void> {
   if (initialized) {
@@ -33,6 +34,7 @@ export async function initParticlesEngine(init?: ParticlesPluginRegistrar): Prom
     }
 
     initialized = true;
+    waitResolve?.();
   })().catch((error: unknown) => {
     initPromise = undefined;
     initCallback = undefined;
@@ -49,5 +51,13 @@ export function isParticlesEngineInitialized(): boolean {
 }
 
 export async function waitForParticlesEngineInitialization(): Promise<void> {
+  if (initialized) return;
+  if (initPromise) {
+    await initPromise;
+    return;
+  }
+  await new Promise<void>(resolve => {
+    waitResolve = resolve;
+  });
   await (initPromise ?? Promise.resolve());
 }

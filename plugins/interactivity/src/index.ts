@@ -70,7 +70,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
 }
 
 /**
- * @param e -
+ * @param e - The event object
  */
 export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
   if (!e.pluginManager.addInteractor) {

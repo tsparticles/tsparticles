@@ -30,7 +30,8 @@ const shorthandHexRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
 export class HexColorManager implements IColorManager {
   /**
    * Checks if the input starts with #
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("#");
@@ -38,7 +39,8 @@ export class HexColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     return this.#parseString(color.value);
@@ -46,7 +48,8 @@ export class HexColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     return this.#parseString(color.value);
@@ -54,7 +57,8 @@ export class HexColorManager implements IColorManager {
 
   /**
    * Parses a hex color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     return this.#parseString(input);

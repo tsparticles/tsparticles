@@ -5,7 +5,7 @@ import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadMovePlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
@@ -50,7 +50,7 @@ export async function loadMovePlugin(engine: Engine): Promise<void> {
 }
 
 /**
- * @param e -
+ * @param e - The event object
  */
 export function ensureBaseMoverLoaded(e: MoveEngine): void {
   if (!e.pluginManager.addPathGenerator) {

@@ -1,4 +1,4 @@
-import { Component, type JSX, Prop, Watch, h } from "@stencil/core";
+import { Component, type JSX, Prop, Watch, Event, EventEmitter, h } from "@stencil/core";
 import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
 import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 import { initParticlesEngine } from "../../initParticlesEngine";
@@ -9,10 +9,13 @@ import { initParticlesEngine } from "../../initParticlesEngine";
 export class StencilParticles {
   private containerElement?: HTMLDivElement;
 
+  @Event() particlesLoaded!: EventEmitter<Container | undefined>;
+
   @Prop() options?: ISourceOptions;
   @Prop() url?: string;
   @Prop() init?: ParticlesPluginRegistrar;
   @Prop() containerId?: string;
+  @Prop() theme?: string;
 
   private container?: Container;
   private renderId = 0;
@@ -33,6 +36,12 @@ export class StencilParticles {
   @Watch("containerId")
   protected async onPropsChange(): Promise<void> {
     await this.loadParticles(++this.renderId);
+  }
+
+  @Watch("theme")
+  protected async onThemeChange(): Promise<void> {
+    if (!this.container) return;
+    (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
   }
 
   private async loadParticles(currentRenderId: number): Promise<void> {
@@ -79,6 +88,12 @@ export class StencilParticles {
     }
 
     this.container = container;
+
+    this.particlesLoaded.emit(container);
+
+    if (container && this.theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
+    }
   }
 
   render(): JSX.Element {

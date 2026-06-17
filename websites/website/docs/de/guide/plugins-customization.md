@@ -482,6 +482,58 @@ Das reicht aus, um jeden Erweiterungstyp lokal zu prototypen und spater in eigen
 - Nutze **Preset** fur Verhaltens-Wiederverwendung und **Palette** fur visuelle Wiederverwendung.
 - Behalte benutzerdefinierte Erweiterungen zunachst app-lokal und veroffentliche sie erst bei projektubergreifender Wiederverwendung.
 
+## Globale Runtime-Konfiguration
+
+tsParticles stellt einige Hilfsfunktionen auf dem globalen `tsParticles`-Objekt für erweiterte Runtime-Anpassungen bereit.
+
+### Benutzerdefinierter Zufallszahlengenerator
+
+Ersetze die interne Zufallsfunktion durch eine eigene (nützlich für kontrollierte Zufälligkeit in benutzerdefinierten Plugins):
+
+```js
+// Eine benutzerdefinierte Zufallsfunktion setzen
+tsParticles.setParticlesRandom(() => {
+  // deine benutzerdefinierte Zufallslogik
+  return Math.random();
+});
+
+// Eine Zufallszahl mit der aktuellen Funktion erhalten
+const value = tsParticles.getParticlesRandom();
+
+// Die Referenz der aktuellen Zufallsfunktion erhalten
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Benutzerdefinierte Protokollierung
+
+Ersetze den internen Logger durch einen eigenen (nützlich für lautlose Modi oder benutzerdefinierte Logbehandlung):
+
+```js
+// Einen benutzerdefinierten Logger setzen
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Den aktuellen Logger erhalten
+const logger = tsParticles.getParticlesLogger();
+```
+
+Bei Verwendung der Bibliothek über ein UMD-Script-Tag sind diese Funktionen auch direkt auf `globalThis` verfügbar:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Praktische Regeln
 
 - Halte Erweiterungsnamen eindeutig (zum Beispiel `app-*` oder Firmenprefix).

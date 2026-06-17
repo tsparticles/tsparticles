@@ -1,12 +1,24 @@
-import {
-  type SingleOrMultiple,
-  executeOnSingleOrMultiple,
-  findItemFromSingleOrMultiple,
-  isArray,
-  isInArray,
-} from "@tsparticles/engine";
+import { type SingleOrMultiple, executeOnSingleOrMultiple, isArray, isInArray } from "@tsparticles/engine";
 import type { DivEvent } from "./Options/Classes/Events/DivEvent.js";
 import type { IModeDiv } from "./Options/Interfaces/Modes/IModeDiv.js";
+
+/**
+ * @param obj - The object
+ * @param callback - The callback
+ * @returns the item found, if present
+ */
+function findItemFromSingleOrMultiple<T>(
+  obj: SingleOrMultiple<T>,
+  callback: (obj: T, index: number) => boolean,
+): T | undefined {
+  if (isArray(obj)) {
+    return obj.find((t, index) => callback(t, index));
+  }
+
+  const defaultIndex = 0;
+
+  return callback(obj, defaultIndex) ? obj : undefined;
+}
 
 /**
  * Checks if the given selectors matches the element

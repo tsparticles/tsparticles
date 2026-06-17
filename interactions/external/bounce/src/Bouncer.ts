@@ -8,7 +8,7 @@ import {
   isDivModeEnabled,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { divBounce, mouseBounce } from "./Utils.js";
 import { Bounce } from "./Options/Classes/Bounce.js";
 
@@ -24,17 +24,14 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     const container = this.container,
       bounce = container.actualOptions.interactivity?.modes.bounce;
@@ -48,7 +45,6 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -70,7 +66,6 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     }
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -89,19 +84,13 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     );
   }
 
-  /** @inheritDoc */
   loadModeOptions(
     options: Modes & BounceMode,
     ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
   ): void {
-    options.bounce ??= new Bounce();
-
-    for (const source of sources) {
-      options.bounce.load(source?.bounce);
-    }
+    loadOptionProperty(options, "bounce", Bounce, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

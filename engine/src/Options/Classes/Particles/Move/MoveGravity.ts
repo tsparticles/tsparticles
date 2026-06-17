@@ -1,51 +1,28 @@
+import { loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /** Movement gravity options class */
-export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
+export class MoveGravity extends OptionLoader<IMoveGravity> implements IMoveGravity {
   /** Gravity acceleration value */
-  acceleration: RangeValue;
+  acceleration: RangeValue = 9.81;
   /** Enables or disables gravity */
-  enable;
+  enable = false;
   /** If true, gravity pulls particles upward instead of downward */
-  inverse;
+  inverse = false;
   /** Maximum speed limit for gravity-affected particles */
-  maxSpeed: RangeValue;
-
-  constructor() {
-    this.acceleration = 9.81;
-    this.enable = false;
-    this.inverse = false;
-    this.maxSpeed = 50;
-  }
+  maxSpeed: RangeValue = 50;
 
   /**
    * Loads gravity options from the given data
-   * @param data -
+   * @param data - The data to handle
    */
-  load(data?: RecursivePartial<IMoveGravity>): void {
-    if (isNull(data)) {
-      return;
-    }
-
-    if (data.acceleration !== undefined) {
-      this.acceleration = setRangeValue(data.acceleration);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.inverse !== undefined) {
-      this.inverse = data.inverse;
-    }
-
-    if (data.maxSpeed !== undefined) {
-      this.maxSpeed = setRangeValue(data.maxSpeed);
-    }
+  protected doLoad(data: RecursivePartial<IMoveGravity>): void {
+    loadRangeProperty(this, "acceleration", data.acceleration);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "inverse", data.inverse);
+    loadRangeProperty(this, "maxSpeed", data.maxSpeed);
   }
 }

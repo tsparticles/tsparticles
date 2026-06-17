@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/inferno-demo",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "private": true,
   "description": "> TODO: description",
   "main": "index.js",
@@ -18,28 +18,27 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "dependencies": {
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/inferno": "workspace:^",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/inferno": "workspace:*",
     "inferno": "^9.1.0",
-    "tsparticles": "workspace:^"
+    "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.7",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-typescript": "^7.18.6",
-    "babel-loader": "^9.1.0",
-    "babel-plugin-inferno": "^6.5.0",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.0",
+    "@babel/preset-typescript": "^8.0.0",
+    "babel-loader": "^10.1.1",
+    "babel-plugin-inferno": "^6.8.5",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.7.3",
-    "html-webpack-plugin": "^5.5.0",
-    "sass": "^1.81.0",
-    "sass-loader": "^16.0.0",
-    "source-map-loader": "^4.0.1",
-    "style-loader": "^3.3.1",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^5.2.4"
+    "css-loader": "^7.1.4",
+    "html-webpack-plugin": "^5.6.7",
+    "sass": "^1.101.0",
+    "sass-loader": "^17.0.0",
+    "source-map-loader": "^5.0.0",
+    "style-loader": "^4.0.0",
+    "typescript": "^6.0.3",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.5"
   }
 }

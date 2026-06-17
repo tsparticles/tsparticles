@@ -373,12 +373,22 @@ const options: ISourceOptions = {
 </script>
 ```
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Props du composant
 
-| Prop                 | Type             | Défaut                    | Description                                           |
-| -------------------- | ---------------- | ------------------------- | ----------------------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | ID de l'élément DOM pour le conteneur                 |
-| `options`            | `ISourceOptions` | `{}`                      | Objet de configuration complet tsParticles            |
-| `url`                | `string`         | —                         | Charger la configuration depuis une URL JSON distante |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | Classe CSS pour l'élément canvas                      |
-| `container`          | `object`         | —                         | Instance `Container` préexistante (avancé)            |
+| Prop                 | Type             | Défaut                    | Description                                                               |
+| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | ID de l'élément DOM pour le conteneur                                     |
+| `options`            | `ISourceOptions` | `{}`                      | Objet de configuration complet tsParticles                                |
+| `url`                | `string`         | —                         | Charger la configuration depuis une URL JSON distante                     |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | Classe CSS pour l'élément canvas                                          |
+| `container`          | `object`         | —                         | Instance `Container` préexistante (avancé)                                |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |

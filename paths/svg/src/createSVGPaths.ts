@@ -2,7 +2,7 @@ import type { SVGPathData } from "./types.js";
 import { safeDocument } from "@tsparticles/engine";
 
 /**
- * @param data -
+ * @param data - The data to handle
  * @returns the created SVG paths
  */
 export function createSVGPaths(data: string[]): SVGPathData[] {

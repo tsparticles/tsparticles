@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "ES2022",
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["node"]
   },
   "exclude": [
     "node_modules"

@@ -1,17 +1,11 @@
-import { type IOptionLoader, type RecursivePartial, deepExtend, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, deepExtend, isNull, loadProperty } from "@tsparticles/engine";
 import { EmitterShapeReplace } from "./EmitterShapeReplace.js";
 import type { IEmitterShape } from "../Interfaces/IEmitterShape.js";
 
 export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape> {
-  options: Record<string, unknown>;
-  replace;
-  type: string;
-
-  constructor() {
-    this.options = {};
-    this.replace = new EmitterShapeReplace();
-    this.type = "square";
-  }
+  options: Record<string, unknown> = {};
+  readonly replace = new EmitterShapeReplace();
+  type = "square";
 
   load(data?: RecursivePartial<IEmitterShape>): void {
     if (isNull(data)) {
@@ -24,8 +18,6 @@ export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape>
 
     this.replace.load(data.replace);
 
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "type", data.type);
   }
 }

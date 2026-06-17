@@ -1,5 +1,3 @@
-import type { EasingType, EasingTypeAlt } from "@tsparticles/engine";
-
 /** Restore behavior options after repulse interaction */
 export interface IRepulseRestore {
   /** Delay in seconds before restoring starts */
@@ -21,7 +19,7 @@ export interface IRepulseBase {
   /** Repulse animation duration in seconds */
   duration: number;
   /** Repulse animation easing type */
-  easing: EasingType | EasingTypeAlt;
+  easing: string;
   /** Repulse factor multiplier */
   factor: number;
   /** Maximum repulse speed */

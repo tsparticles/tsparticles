@@ -1,9 +1,10 @@
-import { DestroyType, type IDelta, updateAnimation, updateColor } from "@tsparticles/engine";
+import { DestroyType, type IDelta, updateColor } from "@tsparticles/engine";
 import type { GradientParticle } from "./Types.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 /**
- * @param particle -
- * @param delta -
+ * @param particle - The particle to process
+ * @param delta - The delta time
  */
 export function updateGradient(particle: GradientParticle, delta: IDelta): void {
   const { gradient } = particle;

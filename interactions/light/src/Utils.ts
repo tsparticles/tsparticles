@@ -14,9 +14,9 @@ export const lightMode = "light";
 
 /**
  * Draw the light area around the mouse
- * @param container
- * @param context
- * @param mousePos
+ * @param container - The container to handle
+ * @param context - The rendering context
+ * @param mousePos - The mouse position
  */
 export function drawLight(
   container: LightContainer,
@@ -55,10 +55,10 @@ export function drawLight(
 
 /**
  * Draw the shadow of a particle in light mode
- * @param container
- * @param context
- * @param particle
- * @param mousePos
+ * @param container - The container to handle
+ * @param context - The rendering context
+ * @param particle - The particle to process
+ * @param mousePos - The mouse position
  */
 export function drawParticleShadow(
   container: LightContainer,

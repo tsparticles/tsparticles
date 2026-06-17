@@ -236,13 +236,7 @@ Die `<vue-particles>`-Komponente sendet mehrere Lebenszyklus-Ereignisse:
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-      @particles-init="onInit"
-      @particles-destroy="onDestroy"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -258,25 +252,15 @@ const options = {
   },
 };
 
-const onInit = (engine: Engine) => {
-  console.log("Engine initialisiert", engine);
-};
-
-const onLoaded = (container: Container) => {
-  console.log("Container geladen", container.id);
-};
-
-const onDestroy = () => {
-  console.log("Container zerstört");
+const onLoaded = (container?: Container) => {
+  console.log("Container geladen", container?.id);
 };
 </script>
 ```
 
-| Ereignis             | Payload     | Beschreibung                                                                    |
-| -------------------- | ----------- | ------------------------------------------------------------------------------- |
-| `@particles-init`    | `Engine`    | Wird einmal ausgelöst, wenn die tsParticles-Engine initialisiert wird           |
-| `@particles-loaded`  | `Container` | Wird jedes Mal ausgelöst, wenn der Container das Laden oder Neuladen abschließt |
-| `@particles-destroy` | keins       | Wird ausgelöst, wenn der Container zerstört wird                                |
+| Ereignis            | Payload                  | Beschreibung                                                                    |
+| ------------------- | ------------------------ | ------------------------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | Wird jedes Mal ausgelöst, wenn der Container das Laden oder Neuladen abschließt |
 
 ## Vollständiges TypeScript-Beispiel
 
@@ -286,12 +270,7 @@ Eine vollständige, typisierte Komponente mit expliziten Importen und Lebenszykl
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-        @particles-init="onParticlesInit"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Fortsetzen" : "Pause" }}</button>
@@ -327,11 +306,7 @@ const options: ISourceOptions = {
   },
 };
 
-const onParticlesInit = async (engine: Engine) => {
-  await loadFull(engine);
-};
-
-const onParticlesLoaded = (container: Container) => {
+const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
 };
 
@@ -446,6 +421,15 @@ import { tsParticles } from "@tsparticles/engine";
 await loadStarsPreset(tsParticles);
 </script>
 ```
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Fehlerbehebung
 

@@ -7,7 +7,8 @@ import {
   RotateDirection,
   type RotateDirectionAlt,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation.js";
 import type { IGradientAngle } from "../Interfaces/Gradients.js";
@@ -17,22 +18,16 @@ export class GradientAngle
   implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>
 {
   /** Angle animation */
-  animation;
+  readonly animation = new GradientAngleAnimation();
   /** Angle direction */
-  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt = RotateDirection.clockwise;
   /** Angle value */
-  value: RangeValue;
-
+  value: RangeValue = 0;
   /** GradientAngle constructor */
-  constructor() {
-    this.value = 0;
-    this.animation = new GradientAngleAnimation();
-    this.direction = RotateDirection.clockwise;
-  }
 
   /**
    * Loads the gradient angle from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IGradientAngle & IAnimatable<IAnimation>>): void {
     if (isNull(data)) {
@@ -41,12 +36,7 @@ export class GradientAngle
 
     this.animation.load(data.animation);
 
-    if (data.value !== undefined) {
-      this.value = setRangeValue(data.value);
-    }
-
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadRangeProperty(this, "value", data.value);
+    loadProperty(this, "direction", data.direction);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/solid",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
   "license": "MIT",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
@@ -18,7 +18,7 @@
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/tsparticles/solid/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "repository": {
     "url": "git+https://github.com/tsparticles/tsparticles.git",
@@ -125,7 +125,8 @@
     "prettify": "prettier --write \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prettify:ci": "prettier --check \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"README.md\"",
     "prepack": "pnpm build",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
   },
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*",
@@ -133,26 +134,26 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/prettier-config": "workspace:^",
-    "@types/node": "^20.12.12",
-    "@typescript-eslint/eslint-plugin": "^8.59.1",
-    "@typescript-eslint/parser": "^8.59.1",
-    "concurrently": "^9.2.1",
-    "esbuild": "^0.21.3",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/prettier-config": "workspace:*",
+    "@types/node": "^20.14.8",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
+    "concurrently": "^10.0.3",
+    "esbuild": "^0.28.1",
     "esbuild-plugin-solid": "^0.6.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.5.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-no-only-tests": "^3.3.0",
-    "jsdom": "^29.0.2",
+    "eslint-plugin-no-only-tests": "^3.4.0",
+    "jsdom": "^29.1.1",
     "prettier": "3.8.2",
-    "solid-js": "^1.8.17",
-    "tsup": "^8.0.2",
+    "solid-js": "^1.9.13",
+    "tsup": "^8.5.1",
     "tsup-preset-solid": "^2.2.0",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.11",
-    "vite-plugin-solid": "^2.10.2",
-    "vitest": "^1.6.0"
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-solid": "^2.11.12",
+    "vitest": "^4.1.9"
   },
   "browser": {},
   "typesVersions": {}

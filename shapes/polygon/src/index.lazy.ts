@@ -3,7 +3,7 @@ import { type Engine } from "@tsparticles/engine/lazy";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadGenericPolygonShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
@@ -16,7 +16,7 @@ export async function loadGenericPolygonShape(engine: Engine): Promise<void> {
 }
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadTriangleShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
@@ -29,7 +29,7 @@ export async function loadTriangleShape(engine: Engine): Promise<void> {
 }
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadPolygonShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

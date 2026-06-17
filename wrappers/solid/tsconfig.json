@@ -4,7 +4,8 @@
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noEmit": true,
@@ -15,8 +16,7 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": [],
-    "baseUrl": "."
+    "types": []
   },
   "exclude": ["node_modules", "dist", "./dev"]
 }

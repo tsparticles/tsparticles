@@ -3,9 +3,9 @@ import { type ICoordinates, doublePI, half } from "@tsparticles/engine";
 const defaultRotation = 0;
 
 /**
- * @param sides -
- * @param radius -
- * @param rot -
+ * @param sides - The sides
+ * @param radius - The radius
+ * @param rot - The rot
  * @returns polygon coordinates
  */
 export function polygon(sides: number, radius: number, rot = defaultRotation): ICoordinates[] {
@@ -20,9 +20,9 @@ export function polygon(sides: number, radius: number, rot = defaultRotation): I
 }
 
 /**
- * @param context -
- * @param path -
- * @param radius -
+ * @param context - The rendering context
+ * @param path - The path
+ * @param radius - The radius
  */
 export function roundedPath(context: OffscreenCanvasRenderingContext2D, path: ICoordinates[], radius: number): void {
   const index1 = 0,

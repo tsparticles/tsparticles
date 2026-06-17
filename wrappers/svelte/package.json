@@ -1,6 +1,6 @@
 {
 	"name": "@tsparticles/svelte",
-	"version": "4.1.3",
+	"version": "4.2.0",
 	"description": "Official tsParticles Svelte Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Riot.js, Solid.js, Inferno.",
 	"repository": {
 		"type": "git",
@@ -9,6 +9,10 @@
 	},
 	"author": "Matteo Bruni <matteo.bruni@me.com>",
 	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/tsparticles/tsparticles/issues"
+	},
+	"homepage": "https://particles.js.org",
 	"keywords": [
 		"front-end",
 		"frontend",
@@ -72,12 +76,15 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+		"prepack": "pnpm run build"
 	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
 		}
 	},
 	"files": [
@@ -90,30 +97,27 @@
 	},
 	"peerDependencies": {
 		"@tsparticles/engine": "workspace:*",
-		"svelte": "^4.2.17"
-	},
-	"dependencies": {
-		"@tsparticles/engine": "workspace:^"
+		"svelte": "^4 || ^5"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.57.1",
-		"@sveltejs/package": "^2.5.7",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@types/eslint": "^9.6.1",
-		"@typescript-eslint/eslint-plugin": "^8.58.2",
-		"@typescript-eslint/parser": "^8.58.2",
-		"eslint": "^10.2.0",
+		"@sveltejs/kit": "^2.65.2",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@tsparticles/engine": "workspace:*",
+		"@typescript-eslint/eslint-plugin": "^8.61.1",
+		"@typescript-eslint/parser": "^8.61.1",
+		"eslint": "^10.5.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.17.0",
-		"prettier": "^3.8.2",
-		"prettier-plugin-svelte": "^4.0.1",
-		"publint": "^0.3.18",
-		"svelte": "^5.55.3",
-		"svelte-check": "^4.4.6",
+		"eslint-plugin-svelte": "^3.19.0",
+		"prettier": "^3.8.4",
+		"prettier-plugin-svelte": "^4.1.1",
+		"publint": "^0.3.21",
+		"svelte": "^5.56.3",
+		"svelte-check": "^4.6.0",
 		"tslib": "^2.8.1",
-		"typescript": "^6.0.2",
-		"vite": "^8.0.8"
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

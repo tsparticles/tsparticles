@@ -1,15 +1,16 @@
 import Controller from "@ember/controller";
 import { tracked } from "@glimmer/tracking";
-import type { Container, Engine } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import { loadSnowPreset } from "@tsparticles/preset-snow";
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadFull } from "tsparticles";
-import { CONFETTI_OPTIONS, LINK_OPTIONS } from "../utils/options";
+import { CONFETTI_OPTIONS, LINK_OPTIONS, SNOW_OPTIONS } from "../utils/options";
 
 export default class ApplicationController extends Controller {
   @tracked isConfettiVisible = false;
+  @tracked options: ISourceOptions = LINK_OPTIONS;
+  @tracked theme = "default";
 
-  options = LINK_OPTIONS;
   confetti = CONFETTI_OPTIONS;
 
   // Use a typed args parameter for compatibility with Ember/TS
@@ -27,7 +28,15 @@ export default class ApplicationController extends Controller {
     }
   }
 
-  loadedCallback(container: Container) {
+  loadedCallback = (container?: Container) => {
     console.log("Particles loaded", container);
-  }
+  };
+
+  switchConfig = () => {
+    this.options = (this.options === LINK_OPTIONS ? SNOW_OPTIONS : LINK_OPTIONS) as ISourceOptions;
+  };
+
+  toggleTheme = () => {
+    this.theme = this.theme === "default" ? "dark" : "default";
+  };
 }

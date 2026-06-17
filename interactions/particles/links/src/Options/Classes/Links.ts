@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILinks } from "../Interfaces/ILinks.js";
 import { LinksShadow } from "./LinksShadow.js";
 import { LinksTriangle } from "./LinksTriangle.js";
@@ -8,90 +8,54 @@ import { LinksTriangle } from "./LinksTriangle.js";
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
   /** Enables random blinking of link colors */
-  blink;
+  blink = false;
   /** Link line color */
-  color;
+  color = new OptionsColor();
   /** Whether a random color applies to all links (consent) */
-  consent;
+  consent = false;
   /** Maximum link line distance */
-  distance;
+  distance = 100;
   /** Enables particle links */
-  enable;
+  enable = false;
   /** Link frequency */
-  frequency;
+  frequency = 1;
   /** Link ID for grouping */
   id?: string;
   /** Maximum link opacity */
-  opacity;
+  opacity = 1;
   /** Link shadow options */
-  shadow;
+  shadow = new LinksShadow();
   /** Link triangle fill options */
-  triangles;
+  triangles = new LinksTriangle();
   /** Enable link wrap around canvas edges */
-  warp;
+  warp = false;
   /** Link line width */
-  width;
+  width = 1;
 
   constructor() {
-    this.blink = false;
-    this.color = new OptionsColor();
     this.color.value = "#fff";
-    this.consent = false;
-    this.distance = 100;
-    this.enable = false;
-    this.frequency = 1;
-    this.opacity = 1;
-    this.shadow = new LinksShadow();
-    this.triangles = new LinksTriangle();
-    this.width = 1;
-    this.warp = false;
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILinks>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.id !== undefined) {
-      this.id = data.id;
-    }
-
-    if (data.blink !== undefined) {
-      this.blink = data.blink;
-    }
+    loadProperty(this, "id", data.id);
+    loadProperty(this, "blink", data.blink);
 
     this.color = OptionsColor.create(this.color, data.color);
 
-    if (data.consent !== undefined) {
-      this.consent = data.consent;
-    }
-
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.frequency !== undefined) {
-      this.frequency = data.frequency;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = data.opacity;
-    }
+    loadProperty(this, "consent", data.consent);
+    loadProperty(this, "distance", data.distance);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "frequency", data.frequency);
+    loadProperty(this, "opacity", data.opacity);
 
     this.shadow.load(data.shadow);
     this.triangles.load(data.triangles);
 
-    if (data.width !== undefined) {
-      this.width = data.width;
-    }
-
-    if (data.warp !== undefined) {
-      this.warp = data.warp;
-    }
+    loadProperty(this, "width", data.width);
+    loadProperty(this, "warp", data.warp);
   }
 }

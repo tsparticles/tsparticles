@@ -15,7 +15,7 @@
         }
       }
     ],
-    ["@babel/typescript", {"isTSX": true, "allExtensions": true}]
+    ["@babel/typescript", {"ignoreExtensions": true}]
   ],
-  "plugins": [["babel-plugin-inferno", { "imports": true }], ["@babel/plugin-proposal-class-properties", { "loose": false }]]
+  "plugins": [["babel-plugin-inferno", { "imports": true }], ["@babel/plugin-transform-class-properties", { "loose": false }]]
 }

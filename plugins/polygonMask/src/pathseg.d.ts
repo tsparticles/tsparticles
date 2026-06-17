@@ -12,7 +12,10 @@ interface SVGElementInstanceList {
   /** Length value */
   readonly length: number;
 
-  /** Item value */
+  /**
+   * Item value
+   * @returns The result
+   */
   item(index: number): SVGElementInstance;
 }
 
@@ -68,7 +71,10 @@ interface SVGPathSeg {
 declare var SVGPathSeg: {
   /** Prototype value */
   prototype: SVGPathSeg;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSeg;
   /** Absolute arcto path segment type */
   readonly PATHSEG_ARC_ABS: number;
@@ -134,7 +140,10 @@ interface SVGPathSegArcAbs extends SVGPathSeg {
 declare var SVGPathSegArcAbs: {
   /** Prototype value */
   prototype: SVGPathSegArcAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegArcAbs;
 };
 
@@ -160,7 +169,10 @@ interface SVGPathSegArcRel extends SVGPathSeg {
 declare var SVGPathSegArcRel: {
   /** Prototype value */
   prototype: SVGPathSegArcRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegArcRel;
 };
 
@@ -171,7 +183,10 @@ type SVGPathSegClosePath = SVGPathSeg;
 declare var SVGPathSegClosePath: {
   /** Prototype value */
   prototype: SVGPathSegClosePath;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegClosePath;
 };
 
@@ -195,7 +210,10 @@ interface SVGPathSegCurvetoCubicAbs extends SVGPathSeg {
 declare var SVGPathSegCurvetoCubicAbs: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoCubicAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoCubicAbs;
 };
 
@@ -219,7 +237,10 @@ interface SVGPathSegCurvetoCubicRel extends SVGPathSeg {
 declare var SVGPathSegCurvetoCubicRel: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoCubicRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoCubicRel;
 };
 
@@ -239,7 +260,10 @@ interface SVGPathSegCurvetoCubicSmoothAbs extends SVGPathSeg {
 declare var SVGPathSegCurvetoCubicSmoothAbs: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoCubicSmoothAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoCubicSmoothAbs;
 };
 
@@ -259,7 +283,10 @@ interface SVGPathSegCurvetoCubicSmoothRel extends SVGPathSeg {
 declare var SVGPathSegCurvetoCubicSmoothRel: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoCubicSmoothRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoCubicSmoothRel;
 };
 
@@ -279,7 +306,10 @@ interface SVGPathSegCurvetoQuadraticAbs extends SVGPathSeg {
 declare var SVGPathSegCurvetoQuadraticAbs: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoQuadraticAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoQuadraticAbs;
 };
 
@@ -299,7 +329,10 @@ interface SVGPathSegCurvetoQuadraticRel extends SVGPathSeg {
 declare var SVGPathSegCurvetoQuadraticRel: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoQuadraticRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoQuadraticRel;
 };
 
@@ -315,7 +348,10 @@ interface SVGPathSegCurvetoQuadraticSmoothAbs extends SVGPathSeg {
 declare var SVGPathSegCurvetoQuadraticSmoothAbs: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoQuadraticSmoothAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoQuadraticSmoothAbs;
 };
 
@@ -331,7 +367,10 @@ interface SVGPathSegCurvetoQuadraticSmoothRel extends SVGPathSeg {
 declare var SVGPathSegCurvetoQuadraticSmoothRel: {
   /** Prototype value */
   prototype: SVGPathSegCurvetoQuadraticSmoothRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegCurvetoQuadraticSmoothRel;
 };
 
@@ -347,7 +386,10 @@ interface SVGPathSegLinetoAbs extends SVGPathSeg {
 declare var SVGPathSegLinetoAbs: {
   /** Prototype value */
   prototype: SVGPathSegLinetoAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoAbs;
 };
 
@@ -361,7 +403,10 @@ interface SVGPathSegLinetoHorizontalAbs extends SVGPathSeg {
 declare var SVGPathSegLinetoHorizontalAbs: {
   /** Prototype value */
   prototype: SVGPathSegLinetoHorizontalAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoHorizontalAbs;
 };
 
@@ -375,7 +420,10 @@ interface SVGPathSegLinetoHorizontalRel extends SVGPathSeg {
 declare var SVGPathSegLinetoHorizontalRel: {
   /** Prototype value */
   prototype: SVGPathSegLinetoHorizontalRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoHorizontalRel;
 };
 
@@ -391,7 +439,10 @@ interface SVGPathSegLinetoRel extends SVGPathSeg {
 declare var SVGPathSegLinetoRel: {
   /** Prototype value */
   prototype: SVGPathSegLinetoRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoRel;
 };
 
@@ -405,7 +456,10 @@ interface SVGPathSegLinetoVerticalAbs extends SVGPathSeg {
 declare var SVGPathSegLinetoVerticalAbs: {
   /** Prototype value */
   prototype: SVGPathSegLinetoVerticalAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoVerticalAbs;
 };
 
@@ -419,7 +473,10 @@ interface SVGPathSegLinetoVerticalRel extends SVGPathSeg {
 declare var SVGPathSegLinetoVerticalRel: {
   /** Prototype value */
   prototype: SVGPathSegLinetoVerticalRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegLinetoVerticalRel;
 };
 
@@ -428,25 +485,43 @@ interface SVGPathSegList {
   /** Numberofitems value */
   readonly numberOfItems: number;
 
-  /** Appenditem value */
+  /**
+   * Appenditem value
+   * @returns The result
+   */
   appendItem(newItem: SVGPathSeg): SVGPathSeg;
 
   /** Clear value */
   clear(): void;
 
-  /** Getitem value */
+  /**
+   * Getitem value
+   * @returns The result
+   */
   getItem(index: number): SVGPathSeg;
 
-  /** Initialize value */
+  /**
+   * Initialize value
+   * @returns The result
+   */
   initialize(newItem: SVGPathSeg): SVGPathSeg;
 
-  /** Insertitembefore value */
+  /**
+   * Insertitembefore value
+   * @returns The result
+   */
   insertItemBefore(newItem: SVGPathSeg, index: number): SVGPathSeg;
 
-  /** Removeitem value */
+  /**
+   * Removeitem value
+   * @returns The result
+   */
   removeItem(index: number): SVGPathSeg;
 
-  /** Replaceitem value */
+  /**
+   * Replaceitem value
+   * @returns The result
+   */
   replaceItem(newItem: SVGPathSeg, index: number): SVGPathSeg;
 }
 
@@ -454,7 +529,10 @@ interface SVGPathSegList {
 declare var SVGPathSegList: {
   /** Prototype value */
   prototype: SVGPathSegList;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegList;
 };
 
@@ -470,7 +548,10 @@ interface SVGPathSegMovetoAbs extends SVGPathSeg {
 declare var SVGPathSegMovetoAbs: {
   /** Prototype value */
   prototype: SVGPathSegMovetoAbs;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegMovetoAbs;
 };
 
@@ -486,7 +567,10 @@ interface SVGPathSegMovetoRel extends SVGPathSeg {
 declare var SVGPathSegMovetoRel: {
   /** Prototype value */
   prototype: SVGPathSegMovetoRel;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathSegMovetoRel;
 };
 
@@ -520,7 +604,10 @@ interface SVGZoomEvent extends UIEvent {
 declare var SVGZoomEvent: {
   /** Prototype value */
   prototype: SVGZoomEvent;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGZoomEvent;
 };
 
@@ -529,10 +616,16 @@ interface SVGPathElement extends SVGGraphicsElement {
   /** Pathseglist value */
   readonly pathSegList?: SVGPathSegList;
 
-  /** Getpointatlength value */
+  /**
+   * Getpointatlength value
+   * @returns The result
+   */
   getPointAtLength(distance: number): SVGPoint;
 
-  /** Gettotallength value */
+  /**
+   * Gettotallength value
+   * @returns The numeric value
+   */
   getTotalLength(): number;
 }
 
@@ -540,7 +633,10 @@ interface SVGPathElement extends SVGGraphicsElement {
 declare var SVGPathElement: {
   /** Prototype value */
   prototype: SVGPathElement;
-  /** New value */
+  /**
+   * New value
+   * @returns The result
+   */
   new (): SVGPathElement;
 };
 

@@ -4,7 +4,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { ITwinkleLinksValues } from "../Interfaces/ITwinkleLinksValues.js";
 
@@ -13,22 +14,16 @@ export class TwinkleLinksValues implements ITwinkleLinksValues, IOptionLoader<IT
   /** Twinkle links color */
   color?: OptionsColor;
   /** Enables the twinkle links */
-  enable;
+  enable = false;
   /** Twinkle links frequency */
-  frequency;
+  frequency = 0.05;
   /** Twinkle links opacity */
-  opacity: RangeValue;
-
+  opacity: RangeValue = 1;
   /** TwinkleLinksValues constructor */
-  constructor() {
-    this.enable = false;
-    this.frequency = 0.05;
-    this.opacity = 1;
-  }
 
   /**
    * Loads the twinkle links values from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ITwinkleLinksValues>): void {
     if (isNull(data)) {
@@ -39,16 +34,8 @@ export class TwinkleLinksValues implements ITwinkleLinksValues, IOptionLoader<IT
       this.color = OptionsColor.create(this.color, data.color);
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.frequency !== undefined) {
-      this.frequency = data.frequency;
-    }
-
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "frequency", data.frequency);
+    loadRangeProperty(this, "opacity", data.opacity);
   }
 }

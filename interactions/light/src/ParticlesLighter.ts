@@ -5,7 +5,6 @@ import { drawParticleShadow, lightMode } from "./Utils.js";
 
 /** Particles lighter interactor */
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
-  /** @inheritDoc */
   readonly maxDistance;
 
   readonly #pluginManager;
@@ -17,17 +16,14 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     this.maxDistance = 0;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(particle: LightParticle, interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions;
@@ -47,7 +43,6 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     });
   }
 
-  /** @inheritDoc */
   isEnabled(particle: LightParticle, interactivityData: IInteractivityData): boolean {
     const interactivity = particle.interactivity,
       mouse = interactivityData.mouse,
@@ -68,7 +63,6 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     return res;
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

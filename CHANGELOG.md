@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed anglar secondary wrappers and their bundles with proper destroy ([120fe5d](https://github.com/tsparticles/tsparticles/commit/120fe5d697a93a9fe3faf20bfeb1f65f8a397273))
+- fixed angular wrapper ([10d09a8](https://github.com/tsparticles/tsparticles/commit/10d09a80b588b8af4eb4e19ea1e6e3a555c7f4b1))
+- fixed angular wrapper ([472fbd4](https://github.com/tsparticles/tsparticles/commit/472fbd4dd08f74a1ed216511604cc06f0a485d8f))
+- fixed angular wrapper ([ab59ef1](https://github.com/tsparticles/tsparticles/commit/ab59ef10549d0e255e09c04f14ae41968dce8651))
+- fixed astro wrapper ([46e9e44](https://github.com/tsparticles/tsparticles/commit/46e9e44838552f9d1ad0ea3fe58b2d48b140f91a))
+- fixed astro wrapper ([1edf67f](https://github.com/tsparticles/tsparticles/commit/1edf67f4f81f560c3ef845bdd65eacc6cb4b5157))
+- fixed ember wrapper ([ad417d8](https://github.com/tsparticles/tsparticles/commit/ad417d8340661f1a7a12d28e60fb64e98ec84868))
+- fixed hdr setup, and improved it too ([e2720fc](https://github.com/tsparticles/tsparticles/commit/e2720fcd20842aaaafd9849ae9ee8e9413409577))
+- fixed inferno wrapper ([054a1a4](https://github.com/tsparticles/tsparticles/commit/054a1a4c225453a57d2f8fa71f33f40f1f0b3e6b))
+- fixed issue with ribbons and confetti websites ([7ae50f3](https://github.com/tsparticles/tsparticles/commit/7ae50f3c89c2e5bf65750584d4b1535516c66673))
+- fixed jquery wrapper ([e0620d7](https://github.com/tsparticles/tsparticles/commit/e0620d782baf2e1a5b745dce93dc73efa2476991))
+- fixed lit wrapper ([08e8c87](https://github.com/tsparticles/tsparticles/commit/08e8c8792986b99b8c1da1df6864646a67134842))
+- fixed preact wrapper ([8c7d9f9](https://github.com/tsparticles/tsparticles/commit/8c7d9f9a10b4806c9085457dfe58bd43373bd5aa))
+- fixed qwik wrapper ([4d04ed9](https://github.com/tsparticles/tsparticles/commit/4d04ed907201dae50a16d130417e0aa3c00b73a4))
+- fixed riot wrapper ([3711e63](https://github.com/tsparticles/tsparticles/commit/3711e63c74c68ecbc078f3bbb4be5156d6ecdae3))
+- fixed solid wrapper ([fdd51c2](https://github.com/tsparticles/tsparticles/commit/fdd51c2c05bf140d83c04114250e9234f9c31bd1))
+- fixed some circular deps ([88b7b76](https://github.com/tsparticles/tsparticles/commit/88b7b76e6d23393922f1c90893e689ac4b1ebcd3))
+- fixed some eslint configs and circular deps ([93d7b8b](https://github.com/tsparticles/tsparticles/commit/93d7b8b766e2d13a4e2c8c18c6ac66f5b460e71b))
+- fixed stencil wrapper ([4096a4a](https://github.com/tsparticles/tsparticles/commit/4096a4aafa5f5bdc53865c7df93f786d07d96957))
+- fixed svelte wrapper ([9667e21](https://github.com/tsparticles/tsparticles/commit/9667e214a02c933dbf0778999fb878b78aa0efd7))
+- fixed vue 2 wrapper ([7e1cd65](https://github.com/tsparticles/tsparticles/commit/7e1cd65b270b9e148aac68b0c7d50a5adcd4edc1))
+- fixed vue 3 wrapper ([53482f1](https://github.com/tsparticles/tsparticles/commit/53482f141597e1a8082141a3d66a0e8970b449d2))
+- fixed webcomponents wrapper ([53bef05](https://github.com/tsparticles/tsparticles/commit/53bef05388ea31285e2d9b4c4ad8b86747553f37))
+- various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
+- various fixes after deeper review ([b68a5cb](https://github.com/tsparticles/tsparticles/commit/b68a5cb87c358c6cb32ddaac664eb29b327bcb4a))
+- various fixes after deeper review ([7f39804](https://github.com/tsparticles/tsparticles/commit/7f398048915819a380856bdce4b6b4af4aaab9a4))
+- various fixes after deeper review ([58b7ef8](https://github.com/tsparticles/tsparticles/commit/58b7ef83b48a4979519349c3cb6fd3cfe2cf6f5b))
+- various fixes after deeper review ([b54b5db](https://github.com/tsparticles/tsparticles/commit/b54b5dbc8acc42c15f81f8c8d02c29d2867517ac))
+- various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
+
+### Features
+
+- added new meteors config ([f659e05](https://github.com/tsparticles/tsparticles/commit/f659e051d0cc31034250110773d9f719d4333518))
+- added new meteors preset ([2387a3c](https://github.com/tsparticles/tsparticles/commit/2387a3c727b3fbddd4c79d09aef333516645b27e))
+- added positionX option to ribbons bundle, deprecating position object ([7f01bf2](https://github.com/tsparticles/tsparticles/commit/7f01bf2852d0d4c08af803216d5b8d905603a701))
+- adding templates to cli create ([bc118ef](https://github.com/tsparticles/tsparticles/commit/bc118efa3f40497f9fa84186ac6102411a19fda7))
+- after publish ([32eda42](https://github.com/tsparticles/tsparticles/commit/32eda425bf5f786c2b62efae8e92f95acf523260))
+- completed adding templates plan ([bce1a7e](https://github.com/tsparticles/tsparticles/commit/bce1a7ee481e2146b04be234923571e6cf16c717))
+- preparing create packages for the new templates structure ([dc15d30](https://github.com/tsparticles/tsparticles/commit/dc15d30d4021d630b90ec767df7dd8ec6af1781e))
+- working on an mcp server for AI integrations for creating options and other ([c233bf4](https://github.com/tsparticles/tsparticles/commit/c233bf4418a48e0c3a7a247f8d2b0ea9ce1d536e))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 ### Bug Fixes

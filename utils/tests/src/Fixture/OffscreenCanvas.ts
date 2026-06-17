@@ -35,8 +35,9 @@ export class TestOffscreenCanvas {
 
 /**
  *
- * @param width
- * @param height
+ * @param width - The width
+ * @param height - The height
+ * @returns The result
  */
 export function createTestOffscreenCanvas(width: number, height: number): TestOffscreenCanvas {
   return new TestOffscreenCanvas(width, height);
@@ -44,7 +45,7 @@ export function createTestOffscreenCanvas(width: number, height: number): TestOf
 
 /**
  *
- * @param target
+ * @param target - The target
  */
 export function installTransferControlToOffscreen(target: object): void {
   Object.defineProperty(target, "transferControlToOffscreen", {

@@ -49,12 +49,15 @@ async function waitForParticlesEngineInitialization(): Promise<void> {
   await (initPromise ?? Promise.resolve());
 }
 
+const containers = new WeakMap<Element, Container>();
+
 /**
  * Extend the jQuery result declaration with the example plugin.
  */
 type ParticlesResult = {
   load: (options: ISourceOptions) => Promise<Container | undefined>;
   ajax: (jsonUrl: string) => Promise<Container | undefined>;
+  setTheme: (theme: string) => Promise<void>;
 };
 
 type StaticParticlesResult = {
@@ -106,7 +109,13 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        return await tsParticles.load({ id: element.id, options });
+        const container = await tsParticles.load({ id: element.id, options });
+
+        if (container) {
+          containers.set(element, container);
+        }
+
+        return container;
       })();
 
       promises.push(p);
@@ -130,7 +139,13 @@ $.fn.particles = function (): ParticlesResult {
           throw new Error("$.particles.init(...) must be called once before rendering jQuery particles.");
         }
 
-        return await tsParticles.load({ id: element.id, url: jsonUrl });
+        const container = await tsParticles.load({ id: element.id, url: jsonUrl });
+
+        if (container) {
+          containers.set(element, container);
+        }
+
+        return container;
       })();
 
       promises.push(p);
@@ -139,7 +154,17 @@ $.fn.particles = function (): ParticlesResult {
     return Promise.all(promises).then(list => (list.length > 0 ? list[0] : undefined));
   };
 
-  return { load, ajax };
+  const setTheme = async (theme: string): Promise<void> => {
+    for (const element of this) {
+      const container = containers.get(element);
+
+      if (container) {
+        await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+      }
+    }
+  };
+
+  return { load, ajax, setTheme };
 };
 
 $.particles = function (): StaticParticlesResult {

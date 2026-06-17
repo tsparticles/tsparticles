@@ -40,7 +40,7 @@ export class Retina {
 
   /**
    * Initializes retina-scaled properties for a particle
-   * @param particle -
+   * @param particle - The particle to process
    */
   initParticle(particle: Particle): void {
     const options = particle.options,

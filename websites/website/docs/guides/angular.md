@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container: Container): void {
+  particlesLoaded(container?: Container): void {
     console.log("Particles container loaded", container);
   }
 }
@@ -366,7 +366,7 @@ export class ParticlesComponent implements OnInit {
     detectRetina: true,
   };
 
-  particlesLoaded(container: Container): void {
+  particlesLoaded(container?: Container): void {
     console.log("Container loaded", container);
   }
 }
@@ -390,7 +390,8 @@ The `ngx-particles` component emits the `particlesLoaded` event:
 import type { Container } from "@tsparticles/engine";
 
 // Component method
-onParticlesLoaded(container: Container): void {
+onParticlesLoaded(container?: Container): void {
+  if (!container) return;
   // Access the container API
   container.pause();
   container.play();
@@ -478,7 +479,7 @@ export class ParticlesComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container: Container): void {
+  particlesLoaded(container?: Container): void {
     console.log("Loaded", container);
   }
 }
@@ -562,7 +563,7 @@ export class AppComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container: Container): void {
+  particlesLoaded(container?: Container): void {
     console.log("Particles loaded", container);
   }
 }
@@ -609,17 +610,29 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` Inputs
 
-| Input     | Type             | Default         | Description            |
-| --------- | ---------------- | --------------- | ---------------------- |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID      |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration |
-| `url`     | `string`         | —               | Remote JSON config URL |
+| Input     | Type             | Default         | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                        |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration. Change triggers destroy+reload.                   |
+| `url`     | `string`         | —               | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### `ngx-particles` Outputs
 
-| Output            | Payload     | Description                               |
-| ----------------- | ----------- | ----------------------------------------- |
-| `particlesLoaded` | `Container` | Emitted when the container is initialised |
+| Output            | Payload                  | Description                                                             |
+| ----------------- | ------------------------ | ----------------------------------------------------------------------- |
+| `particlesLoaded` | `Container \| undefined` | Emitted when the container is initialised; may be undefined on failure. |
+
+### Reactive behavior
+
+The component detects changes to `id`, `options`, `url`, and `theme` inputs via Angular's `OnChanges` lifecycle hook:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the current container. This requires the optional `@tsparticles/plugin-themes` package to be loaded.
+
+### Cleanup
+
+When the component is destroyed, the particles container is automatically destroyed — no orphan animations remain.
 
 ---
 

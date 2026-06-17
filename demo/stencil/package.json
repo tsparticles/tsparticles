@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/stencil-demo",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "private": true,
   "description": "Stencil demo for @tsparticles/stencil",
   "repository": {
@@ -14,13 +14,14 @@
     "build:ci": "stencil build"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:^",
-    "@tsparticles/engine": "workspace:^",
-    "@tsparticles/slim": "workspace:^",
-    "@tsparticles/stencil": "workspace:^"
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-themes": "workspace:*",
+    "@tsparticles/slim": "workspace:*",
+    "@tsparticles/stencil": "workspace:*"
   },
   "devDependencies": {
-    "@stencil/core": "^4.43.4",
+    "@stencil/core": "^4.43.5",
     "typescript": "^6.0.3"
   }
 }

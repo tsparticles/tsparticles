@@ -8,19 +8,14 @@ import { TwinkleParticlesValues } from "./TwinkleParticlesValues.js";
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
   /** Twinkle links values */
-  links;
+  readonly links = new TwinkleLinksValues();
   /** Twinkle particles values */
-  particles;
-
+  readonly particles = new TwinkleParticlesValues();
   /** Twinkle constructor */
-  constructor() {
-    this.links = new TwinkleLinksValues();
-    this.particles = new TwinkleParticlesValues();
-  }
 
   /**
    * Loads the twinkle options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ITwinkle>): void {
     if (isNull(data)) {

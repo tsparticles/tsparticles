@@ -2,8 +2,17 @@ import type { Engine, ISourceOptions, RecursivePartial } from "@tsparticles/engi
 import type { IParticlesOptions } from "./IParticlesOptions.js";
 import type { ParticlesInstance } from "./ParticlesInstance.js";
 
-const instances = new Map<string, ParticlesInstance | Promise<ParticlesInstance | undefined>>(),
-  defaultCount = 80,
+const instances = new Map<string, ParticlesInstance | Promise<ParticlesInstance | undefined>>();
+
+/**
+ * @param id
+ * @internal
+ */
+export function deleteParticlesInstance(id: string): void {
+  instances.delete(id);
+}
+
+const defaultCount = 80,
   defaultLinksWidth = 100,
   defaultSpeed = 3,
   defaultOpacity = 1,
@@ -73,7 +82,11 @@ export async function getParticlesInstance(
   }
 
   if (existing) {
-    return existing;
+    if (!existing.destroyed) {
+      return existing;
+    }
+
+    instances.delete(id);
   }
 
   const create = async (): Promise<ParticlesInstance | undefined> => {
@@ -87,7 +100,7 @@ export async function getParticlesInstance(
       }
 
       const { ParticlesInstance } = await import("./ParticlesInstance.js"),
-        instance = new ParticlesInstance(container);
+        instance = new ParticlesInstance(container, id);
 
       instances.set(id, instance);
 

@@ -94,7 +94,7 @@ async function doInitPlugins(engine: Engine): Promise<void> {
 
 /**
  * This function prepares all the plugins needed by the confetti bundle
- * @param engine -
+ * @param engine - The engine to load the shape in
  * @returns the init plugins promise
  * @internal
  */
@@ -137,8 +137,8 @@ export async function confetti(
 
 /**
  *
- * @param canvas -
- * @param options -
+ * @param canvas - The canvas
+ * @param options - The options to handle
  * @returns the confetti function to use for the given canvas animations
  */
 confetti.create = async (

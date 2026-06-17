@@ -3,7 +3,7 @@ import { type Engine } from "@tsparticles/engine/lazy";
 const paletteName = "confetti-winter";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadConfettiWinterPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

@@ -7,7 +7,7 @@ import { drawPath } from "@tsparticles/path-utils";
 export class PathDrawer implements IShapeDrawer<PathParticle> {
   /**
    * Draws the SVG path shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<PathParticle>): void {
     const { context, particle, radius } = data;
@@ -21,8 +21,8 @@ export class PathDrawer implements IShapeDrawer<PathParticle> {
 
   /**
    * Initializes the path data for the particle
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: PathParticle): void {
     const shape = particle.shapeData as IShapePathData | undefined;

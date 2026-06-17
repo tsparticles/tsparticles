@@ -4,7 +4,7 @@ const paletteName = "mermaid";
 
 /**
  *
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadMermaidPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

@@ -7,7 +7,7 @@ declare const __VERSION__: string;
 export const branchingPathName = "branchesPathGenerator";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadBranchesPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

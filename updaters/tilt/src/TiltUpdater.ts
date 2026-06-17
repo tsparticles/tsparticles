@@ -13,11 +13,12 @@ import {
   getRangeValue,
   half,
   identity,
-  updateAnimation,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 const maxAngle = 360;
 
@@ -28,7 +29,7 @@ export class TiltUpdater implements IParticleUpdater {
 
   /**
    * TiltUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -36,7 +37,8 @@ export class TiltUpdater implements IParticleUpdater {
 
   /**
    * Gets the transform values for the tilt effect
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The result
    */
   getTransformValues(particle: TiltParticle): Partial<IParticleTransformValues> {
     const tilt = particle.tilt?.enable && particle.tilt;
@@ -49,7 +51,7 @@ export class TiltUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle tilt
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: TiltParticle): void {
     const tiltOptions = particle.options.tilt;
@@ -103,7 +105,8 @@ export class TiltUpdater implements IParticleUpdater {
 
   /**
    * Checks if tilt animation is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: TiltParticle): boolean {
     const tiltAnimation = particle.options.tilt?.animation;
@@ -113,24 +116,20 @@ export class TiltUpdater implements IParticleUpdater {
 
   /**
    * Loads the tilt options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: TiltParticlesOptions,
     ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
   ): void {
-    options.tilt ??= new Tilt();
-
-    for (const source of sources) {
-      options.tilt.load(source?.tilt);
-    }
+    loadOptionProperty(options, "tilt", Tilt, ...sources);
   }
 
   /**
    * Updates the particle tilt
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: TiltParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.tilt) {

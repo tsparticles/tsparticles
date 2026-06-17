@@ -471,7 +471,7 @@ export class PerlinNoise {
   }
 
   /**
-   * @param t -
+   * @param t - The t
    * @returns the fade value
    */
   #fade(t: number): number {
@@ -479,9 +479,9 @@ export class PerlinNoise {
   }
 
   /**
-   * @param a -
-   * @param b -
-   * @param t -
+   * @param a - The alpha component
+   * @param b - The blue component
+   * @param t - The t
    * @returns the linear interpolation value
    */
   #lerp(a: number, b: number, t: number): number {

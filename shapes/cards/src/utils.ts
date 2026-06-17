@@ -24,12 +24,12 @@ const cardWidthRatio = (double * double) / triple,
 /**
  * Draws a rounded card with suit and value side-by-side.
  * The suit is slightly offset from the edge to avoid touching the border.
- * @param ctx -
- * @param radius -
- * @param cardData -
- * @param hdr -
- * @param flipped -
- * @param canvasSettings -
+ * @param ctx - The rendering context
+ * @param radius - The radius
+ * @param cardData - The cardData
+ * @param hdr - The hdr
+ * @param flipped - The flipped
+ * @param canvasSettings - The canvasSettings
  */
 export function drawRoundedCard(
   ctx: OffscreenCanvasRenderingContext2D,
@@ -74,9 +74,9 @@ export function drawRoundedCard(
 }
 
 /**
- * @param radius -
- * @param hdr -
- * @param cardData -
+ * @param radius - The radius
+ * @param hdr - The hdr
+ * @param cardData - The cardData
  * @returns -
  */
 function getCacheKey(radius: number, hdr: boolean, cardData: ICardData): string {
@@ -84,18 +84,18 @@ function getCacheKey(radius: number, hdr: boolean, cardData: ICardData): string 
 }
 
 /**
- * @param ctx -
- * @param radius -
+ * @param ctx - The rendering context
+ * @param radius - The radius
  */
 function drawRoundedCardBack(ctx: OffscreenCanvasRenderingContext2D, radius: number): void {
   drawCardBody(ctx, radius);
 }
 
 /**
- * @param ctx -
- * @param radius -
- * @param cardData -
- * @param hdr -
+ * @param ctx - The rendering context
+ * @param radius - The radius
+ * @param cardData - The cardData
+ * @param hdr - The hdr
  */
 function drawRoundedCardFront(
   ctx: OffscreenCanvasRenderingContext2D,
@@ -183,8 +183,8 @@ function drawRoundedCardFront(
 }
 
 /**
- * @param ctx -
- * @param radius -
+ * @param ctx - The rendering context
+ * @param radius - The radius
  */
 function drawCardBody(ctx: OffscreenCanvasRenderingContext2D, radius: number): void {
   const cardWidth = radius * cardWidthRatio,

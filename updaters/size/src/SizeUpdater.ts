@@ -5,11 +5,11 @@ import {
   type RecursivePartial,
   getRandom,
   getRangeValue,
-  initParticleNumericAnimationValue,
+  loadOptionProperty,
   percentDenominator,
-  updateAnimation,
 } from "@tsparticles/engine";
 import type { ISizeParticlesOptions, SizeParticle, SizeParticlesOptions } from "./Types.js";
+import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
 import { Size } from "./Options/Classes/Size.js";
 
 const minLoops = 0;
@@ -21,7 +21,7 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * SizeUpdater constructor
-   * @param container -
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -29,7 +29,7 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle size animation velocity
-   * @param particle -
+   * @param particle - The particle to process
    */
   init(particle: SizeParticle): void {
     const container = this.#container,
@@ -56,7 +56,7 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Checks if size animation is enabled
-   * @param particle -
+   * @param particle - The particle to process
    * @returns true if size animation is enabled, false otherwise
    */
   isEnabled(particle: SizeParticle): boolean {
@@ -72,23 +72,19 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Loads the size options
-   * @param options -
-   * @param sources -
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: SizeParticlesOptions,
     ...sources: (RecursivePartial<ISizeParticlesOptions> | undefined)[]
   ): void {
-    options.size ??= new Size();
-
-    for (const source of sources) {
-      options.size.load(source?.size);
-    }
+    loadOptionProperty(options, "size", Size, ...sources);
   }
 
   /**
    * Pre-initializes the particle size
-   * @param particle -
+   * @param particle - The particle to process
    */
   preInit(particle: SizeParticle): void {
     const pxRatio = this.#container.retina.pixelRatio,
@@ -107,7 +103,7 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Resets the particle size state
-   * @param particle -
+   * @param particle - The particle to process
    */
   reset(particle: SizeParticle): void {
     particle.size.time = 0;
@@ -116,8 +112,8 @@ export class SizeUpdater implements IParticleUpdater {
 
   /**
    * Updates the particle size
-   * @param particle -
-   * @param delta -
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: SizeParticle, delta: IDelta): void {
     if (!this.isEnabled(particle) || !particle.options.size) {

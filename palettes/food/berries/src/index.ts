@@ -5,7 +5,7 @@ const paletteName = "berries";
 
 /**
  *
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadBerriesPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

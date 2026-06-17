@@ -14,7 +14,7 @@ import type { MatrixParticle } from "./MatrixParticle.js";
  */
 export const matrixChars: string[] = [
   // Katakana (base)
-  "\u30A2", // ア
+  "ア", // ア
   "\u30A4", // イ
   "\u30A6", // ウ
   "\u30A8", // エ
@@ -219,8 +219,8 @@ function randomChar(): string {
 }
 
 /**
- * @param minInterval -
- * @param maxInterval -
+ * @param minInterval - The minInterval
+ * @param maxInterval - The maxInterval
  * @returns a random interval between MIN_INTERVAL and MAX_INTERVAL
  */
 function randomInterval(minInterval: number, maxInterval: number): number {
@@ -228,9 +228,9 @@ function randomInterval(minInterval: number, maxInterval: number): number {
 }
 
 /**
- * @param particle -
- * @param minInterval -
- * @param maxInterval -
+ * @param particle - The particle to process
+ * @param minInterval - The minInterval
+ * @param maxInterval - The maxInterval
  * @returns the state for the given particle
  */
 function getState(particle: Particle, minInterval: number, maxInterval: number): MatrixCharState {

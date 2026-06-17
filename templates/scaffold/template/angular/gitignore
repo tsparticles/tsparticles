@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# Angular CLI cache
+.angular/cache
+
+# misc
+.DS_Store
+*.local
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

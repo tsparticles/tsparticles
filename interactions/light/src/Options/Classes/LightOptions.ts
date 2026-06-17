@@ -1,16 +1,20 @@
 import type { InteractivityOptions, InteractivityParticlesOptions } from "@tsparticles/plugin-interactivity";
-import type { LightMode } from "../../Types.js";
+import type { Light } from "./Light.js";
 
 /** Light interaction options */
 export type LightOptions = InteractivityOptions & {
   interactivity?: {
-    modes: LightMode;
+    modes: {
+      light?: Light;
+    };
   };
 };
 
 /** Light particle options */
 export type LightParticlesOptions = InteractivityParticlesOptions & {
   interactivity?: {
-    modes: LightMode;
+    modes: {
+      light?: Light;
+    };
   };
 };

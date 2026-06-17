@@ -312,7 +312,7 @@ const modes = [
     ],
     fn: function () {
       ribbons({
-        position: { x: 50, y: 0 },
+        positionX: 50,
         emitterSize: { width: 0, height: 0 },
       });
     },

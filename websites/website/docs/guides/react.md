@@ -38,39 +38,51 @@ yarn add @tsparticles/react tsparticles
 
 ## Basic Usage
 
-The simplest setup: render the `<Particles />` component with an options object.
+The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
 
 ```jsx
-import { useCallback } from "react";
-import Particles from "@tsparticles/react";
+import { useCallback, useMemo } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine) => {
+  await loadSlim(engine);
+};
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
     console.log("Particles container loaded", container);
   }, []);
 
-  const options = {
-    fpsLimit: 120,
-    particles: {
-      number: { value: 80 },
-      color: { value: "#00d4ff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.6 },
-      size: { value: { min: 2, max: 5 } },
-      move: {
-        enable: true,
-        speed: 2,
-        outModes: { default: "bounce" },
+  const options = useMemo(
+    () => ({
+      fpsLimit: 120,
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00d4ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: { min: 2, max: 5 } },
+        move: {
+          enable: true,
+          speed: 2,
+          outModes: { default: "bounce" },
+        },
       },
-    },
-    background: { color: "#0d1117" },
-  };
+      background: { color: "#0d1117" },
+    }),
+    [],
+  );
 
-  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
+  return (
+    <ParticlesProvider init={particlesInit}>
+      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
+    </ParticlesProvider>
+  );
 }
 ```
 
-**Important**: The `<Particles />` component requires the engine to be initialized first. Use `initParticlesEngine` from `@tsparticles/react` or the `<ParticlesProvider>` to load your presets before rendering the component.
+**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
 
 ---
 
@@ -563,6 +575,17 @@ export default function CustomConfig() {
   return <Particles id="custom-config" particlesLoaded={particlesLoaded} options={options} />;
 }
 ```
+
+---
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ---
 

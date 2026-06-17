@@ -17,4 +17,5 @@ export interface IParticlesProps {
 	loaded?: (container?: Container) => Promise<void> | void;
 	// alternative name used by other wrappers
 	particlesLoaded?: (container?: Container) => Promise<void> | void;
+	theme?: string;
 }

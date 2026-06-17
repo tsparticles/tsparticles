@@ -180,7 +180,7 @@ export default class ApplicationController extends Controller {
 
   @action
   loadedCallback(container: Container) {
-    console.log("Particules chargées", container.id);
+    console.log("Particules chargées", container?.id);
 
     // Exemple de contrôle programmatique :
     setTimeout(() => {
@@ -251,6 +251,15 @@ Le décorateur `@tracked` garantit que le template se ré-affiche automatiquemen
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Exemple TypeScript
 
 Voici un contrôleur d'application Ember complet et typé démontrant le modèle d'intégration complet avec le préréglage slim, l'interactivité et la gestion du cycle de vie.
@@ -319,9 +328,9 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  private handleParticlesLoaded(container: Container): void {
+  private handleParticlesLoaded(container?: Container): void {
     this.container = container;
-    console.log("Particules chargées dans le conteneur :", container.id);
+    console.log("Particules chargées dans le conteneur :", container?.id);
   }
 }
 ```

@@ -29,7 +29,8 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
 
   /**
    * Generates a curl noise vector for the given particle
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The result
    */
   generate(particle: Particle): Vector {
     const pos = particle.getPosition(),

@@ -74,18 +74,33 @@ export default class App extends Component {
 
 ## Props
 
-| Prop            | Type     | Definition                                                                                                                                  |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| id              | string   | The id of the element.                                                                                                                      |
-| width           | string   | The width of the canvas.                                                                                                                    |
-| height          | string   | The height of the canvas.                                                                                                                   |
-| options         | object   | The options of the particles instance.                                                                                                      |
-| url             | string   | The remote options url, called using an AJAX request                                                                                        |
-| style           | object   | The style of the canvas element.                                                                                                            |
-| className       | string   | The class name of the canvas wrapper.                                                                                                       |
-| canvasClassName | string   | The class name of the canvas.                                                                                                               |
-| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
-| loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+| Prop            | Type                                                                                                                                     | Definition                                                                                                                                                         |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id              | string                                                                                                                                   | The id of the element.                                                                                                                                             |
+| width           | string                                                                                                                                   | The width of the canvas.                                                                                                                                           |
+| height          | string                                                                                                                                   | The height of the canvas.                                                                                                                                          |
+| options         | object                                                                                                                                   | The options of the particles instance.                                                                                                                             |
+| url             | string                                                                                                                                   | The remote options url, called using an AJAX request                                                                                                               |
+| style           | object                                                                                                                                   | The style of the canvas element.                                                                                                                                   |
+| className       | string                                                                                                                                   | The class name of the canvas wrapper.                                                                                                                              |
+| canvasClassName | string                                                                                                                                   | The class name of the canvas.                                                                                                                                      |
+| container       | object                                                                                                                                   | A ref-like object (`{ current?: Container }`) that receives the particles [container](https://particles.js.org/docs/modules/Core_Container.html) instance on load. |
+| loaded          | function                                                                                                                                 | Callback invoked when particles are correctly loaded in canvas, receives `(container?: Container)`.                                                                |
+| particlesLoaded | function                                                                                                                                 | Alias for `loaded`, receives `(container?: Container)`.                                                                                                            |
+| theme           | string                                                                                                                                   | Theme name to apply. Requires `@tsparticles/plugin-themes` to be registered. Without the plugin, setting this prop is a safe no-op.                                |
+
+### Reactivity
+
+- Changing `id` destroys the current container and creates a new one.
+- Changing `options` or `url` destroys the current container and reloads particles.
+- Changing `theme` applies the theme via `loadTheme` without a full reload.
+- The `loaded` and `particlesLoaded` callbacks fire after each successful reload.
+
+> **Note**: Theme support requires the optional `@tsparticles/plugin-themes` package. Without it, `theme` changes are silently ignored and do not error.
+
+### Cleanup
+
+When the component unmounts, the container is destroyed automatically. No orphan animations remain.
 
 Find your parameters configuration [here](https://particles.js.org).
 

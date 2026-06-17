@@ -21,7 +21,7 @@ export class BounceOutMode implements IOutModeManager {
 
   /**
    * BounceOutMode constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -34,10 +34,10 @@ export class BounceOutMode implements IOutModeManager {
 
   /**
    * Updates the particle bouncing off the canvas edges
-   * @param particle
-   * @param direction
-   * @param delta
-   * @param outMode
+   * @param particle - The particle to process
+   * @param direction - The direction
+   * @param delta - The delta time
+   * @param outMode - The out mode
    */
   update(
     particle: Particle,

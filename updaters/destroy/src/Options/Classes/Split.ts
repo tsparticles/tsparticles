@@ -8,6 +8,7 @@ import {
   deepExtend,
   executeOnSingleOrMultiple,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ISplit } from "../Interfaces/ISplit.js";
 import { SplitFactor } from "./SplitFactor.js";
@@ -16,9 +17,9 @@ import { SplitRate } from "./SplitRate.js";
 /** Split options class */
 export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split count */
-  count: number;
+  count = 1;
   /** The split factor */
-  factor: SplitFactor;
+  readonly factor: SplitFactor = new SplitFactor();
   /** The split fill color */
   fillColor?: OptionsColor;
   /** The split fill color offset */
@@ -26,25 +27,19 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
   /** The split particles options */
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   /** The split rate */
-  rate: SplitRate;
+  readonly rate: SplitRate = new SplitRate();
   /** The split size offset */
-  sizeOffset: boolean;
+  sizeOffset = true;
   /** The split stroke color */
   strokeColor?: OptionsColor;
   /** The split stroke color offset */
   strokeColorOffset?: Partial<IRangeHsl>;
 
   /** Split constructor */
-  constructor() {
-    this.count = 1;
-    this.factor = new SplitFactor();
-    this.rate = new SplitRate();
-    this.sizeOffset = true;
-  }
 
   /**
    * Loads the split options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<ISplit>): void {
     if (isNull(data)) {
@@ -59,9 +54,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
-    if (data.count !== undefined) {
-      this.count = data.count;
-    }
+    loadProperty(this, "count", data.count);
 
     this.factor.load(data.factor);
     this.rate.load(data.rate);
@@ -70,9 +63,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
     });
 
-    if (data.sizeOffset !== undefined) {
-      this.sizeOffset = data.sizeOffset;
-    }
+    loadProperty(this, "sizeOffset", data.sizeOffset);
 
     if (data.fillColorOffset) {
       this.fillColorOffset = this.fillColorOffset ?? {};

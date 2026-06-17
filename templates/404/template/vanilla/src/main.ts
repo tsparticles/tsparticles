@@ -1,0 +1,48 @@
+import "./style.css";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+(async () => {
+  await loadSlim(tsParticles);
+
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      fullScreen: { enable: true, zIndex: -1 },
+      particles: {
+        number: { value: 50 },
+        color: {
+          value: [
+            "#3998D0", "#2EB6AF", "#A9BD33", "#FEC73B",
+            "#F89930", "#F45623", "#D62E32", "#EB586E", "#9952CF"
+          ]
+        },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.8,
+          random: { enable: true, minimumValue: 0.4 }
+        },
+        size: {
+          value: 400,
+          random: { enable: true, minimumValue: 200 },
+          animation: {
+            enable: true,
+            speed: 100,
+            minimumValue: 200,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: 10,
+          direction: "top",
+          random: false,
+          straight: false,
+          outModes: { default: "out" }
+        }
+      },
+      background: { color: "#ffffff" },
+      detectRetina: true
+    }
+  });
+})();

@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vanilla-new-demo",
   "private": true,
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -25,9 +25,9 @@
   },
   "homepage": "https://particles.js.org",
   "devDependencies": {
-    "@swc/core": "^1.15.33",
+    "@swc/core": "^1.15.41",
     "minify": "^15.3.1",
-    "sass": "^1.99.0"
+    "sass": "^1.101.0"
   },
   "dependencies": {
     "@tsparticles/all": "workspace:*",

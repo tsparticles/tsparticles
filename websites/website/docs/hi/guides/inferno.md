@@ -298,6 +298,15 @@ render(<App />, document.getElementById("app"));
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## टाइपस्क्रिप्ट उदाहरण
 
 यहाँ एक पूर्ण, टाइप किया गया इन्फेर्नो एप्लिकेशन है जिसमें एक उत्तरदायी पार्टिकल कॉन्फ़िगरेशन और पूर्ण-स्क्रीन पृष्ठभूमि है।

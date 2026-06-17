@@ -6,7 +6,7 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { IParallaxMode, ParallaxContainer, ParallaxMode } from "./Types.js";
-import { type Particle, type RecursivePartial, half, isInArray } from "@tsparticles/engine";
+import { type Particle, type RecursivePartial, half, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { Parallax } from "./Options/Classes/Parallax.js";
 
 const parallaxMode = "parallax";
@@ -15,7 +15,6 @@ const parallaxMode = "parallax";
  * Particle parallax manager
  */
 export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -23,24 +22,20 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     super(container);
   }
 
-  /** @inheritDoc */
   clear(): void {
     // no-op
   }
 
-  /** @inheritDoc */
   init(): void {
     // no-op
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
       this.#parallaxInteract(interactivityData, particle);
     }
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -49,19 +44,13 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     return !!events?.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
   }
 
-  /** @inheritDoc */
   loadModeOptions(
     options: Modes & ParallaxMode,
     ...sources: RecursivePartial<(IModes & IParallaxMode) | undefined>[]
   ): void {
-    options.parallax ??= new Parallax();
-
-    for (const source of sources) {
-      options.parallax.load(source?.parallax);
-    }
+    loadOptionProperty(options, "parallax", Parallax, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // no-op
   }

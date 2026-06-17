@@ -1,0 +1,21 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "@tsparticles/engine": "^4.0.0",
+    "@tsparticles/particles": "^4.0.0",
+    "@tsparticles/configs": "^4.0.0",
+    "@tsparticles/jquery": "^4.1.3"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}

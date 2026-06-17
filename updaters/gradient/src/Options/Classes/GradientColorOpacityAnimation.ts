@@ -4,7 +4,8 @@ import {
   type RecursivePartial,
   StartValueType,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
 
@@ -13,66 +14,36 @@ export class GradientColorOpacityAnimation
   implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>
 {
   /** Animation repeat count */
-  count: RangeValue;
+  count: RangeValue = 0;
   /** Animation decay */
-  decay: RangeValue;
+  decay: RangeValue = 0;
   /** Animation delay */
-  delay: RangeValue;
+  delay: RangeValue = 0;
   /** Enables the animation */
-  enable;
+  enable = false;
   /** Animation speed */
-  speed: RangeValue;
+  speed: RangeValue = 0;
   /** Animation start value */
-  startValue: StartValueType | keyof typeof StartValueType;
+  startValue: StartValueType | keyof typeof StartValueType = StartValueType.random;
   /** Enables animation sync */
-  sync;
-
+  sync = false;
   /** GradientColorOpacityAnimation constructor */
-  constructor() {
-    this.count = 0;
-    this.enable = false;
-    this.speed = 0;
-    this.decay = 0;
-    this.delay = 0;
-    this.sync = false;
-    this.startValue = StartValueType.random;
-  }
 
   /**
    * Loads the gradient color opacity animation from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IGradientColorOpacityAnimation>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.count !== undefined) {
-      this.count = setRangeValue(data.count);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
-
-    if (data.sync !== undefined) {
-      this.sync = data.sync;
-    }
-
-    if (data.startValue !== undefined) {
-      this.startValue = data.startValue;
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
+    loadRangeProperty(this, "count", data.count);
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "speed", data.speed);
+    loadProperty(this, "sync", data.sync);
+    loadProperty(this, "startValue", data.startValue);
+    loadRangeProperty(this, "decay", data.decay);
+    loadRangeProperty(this, "delay", data.delay);
   }
 }

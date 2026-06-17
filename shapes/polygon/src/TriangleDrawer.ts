@@ -8,15 +8,19 @@ const sides = 3,
 
 /** Triangle shape drawer plugin */
 export class TriangleDrawer extends PolygonDrawerBase {
-  /** Gets the sides count for a triangle */
+  /**
+   * Gets the sides count for a triangle
+   * @returns The numeric value
+   */
   override getSidesCount(): number {
     return sides;
   }
 
   /**
    * Gets the side data for the triangle
-   * @param _particle
-   * @param radius
+   * @param _particle - The particle to process
+   * @param radius - The radius
+   * @returns The result
    */
   getSidesData(_particle: Particle, radius: number): ISide {
     return {

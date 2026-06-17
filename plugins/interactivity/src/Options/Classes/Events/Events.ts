@@ -14,15 +14,9 @@ import type { IEvents } from "../../Interfaces/Events/IEvents.js";
  * [[include:Options/Interactivity/Events.md]]
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
-  readonly onClick;
-  onDiv: SingleOrMultiple<DivEvent>;
-  readonly onHover;
-
-  constructor() {
-    this.onClick = new ClickEvent();
-    this.onDiv = new DivEvent();
-    this.onHover = new HoverEvent();
-  }
+  readonly onClick = new ClickEvent();
+  onDiv: SingleOrMultiple<DivEvent> = new DivEvent();
+  readonly onHover = new HoverEvent();
 
   load(data?: RecursivePartial<IEvents>): void {
     if (isNull(data)) {

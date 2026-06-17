@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticles/engine";
+import { type EasingFunction } from "@tsparticles/engine";
 
-const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+const easingsFunctions = new Map<string, EasingFunction>();
 
-easingsFunctions.set(EasingType.easeInQuad, value => value ** 2);
-easingsFunctions.set(EasingType.easeOutQuad, value => 1 - (1 - value) ** 2);
-easingsFunctions.set(EasingType.easeInOutQuad, value => (value < 0.5 ? 2 * value ** 2 : 1 - (-2 * value + 2) ** 2 / 2));
+easingsFunctions.set("ease-in-quad", value => value ** 2);
+easingsFunctions.set("ease-out-quad", value => 1 - (1 - value) ** 2);
+easingsFunctions.set("ease-in-out-quad", value => (value < 0.5 ? 2 * value ** 2 : 1 - (-2 * value + 2) ** 2 / 2));
 
 export { easingsFunctions };

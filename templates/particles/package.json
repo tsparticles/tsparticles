@@ -1,0 +1,14 @@
+{
+  "name": "@tsparticles/template-particles",
+  "version": "4.2.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "node scripts/prebuild.js",
+    "build": "pnpm run prebuild",
+    "build:ci": "pnpm run prebuild",
+    "version": "pnpm run build && git add template.json"
+  }
+}

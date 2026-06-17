@@ -10,7 +10,7 @@ interface TsParticlesPackageJson {
 const emptyCount = 0;
 
 /**
- * @param scriptName -
+ * @param scriptName - The scriptName
  * @returns -
  */
 function createScriptTarget(scriptName: string): Record<string, unknown> {
@@ -24,7 +24,7 @@ function createScriptTarget(scriptName: string): Record<string, unknown> {
 }
 
 /**
- * @param scripts -
+ * @param scripts - The scripts
  * @returns -
  */
 function createFallbackScriptTargets(scripts?: Record<string, string>): Record<string, unknown> {
@@ -46,8 +46,8 @@ function createFallbackScriptTargets(scripts?: Record<string, string>): Record<s
 }
 
 /**
- * @param packageJsonPath -
- * @param workspaceRoot -
+ * @param packageJsonPath - The packageJsonPath
+ * @param workspaceRoot - The workspaceRoot
  * @returns -
  */
 function createProjectAugmentation(packageJsonPath: string, workspaceRoot: string): Record<string, unknown> {

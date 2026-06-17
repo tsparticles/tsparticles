@@ -8,7 +8,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Astro compone
 
 [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Installation
 
@@ -106,12 +106,24 @@ Notes:
 
 ### Props
 
-| Prop    | Type   | Definition                                                      |
-| ------- | ------ | --------------------------------------------------------------- |
-| id      | string | The id of the element.                                          |
-| loaded  | string | The name of a global callback called once particles are loaded. |
-| options | object | The options of the particles instance.                          |
-| url     | string | The remote options url, called using an AJAX request            |
+| Prop    | Type   | Definition                                                                             |
+| ------- | ------ | -------------------------------------------------------------------------------------- |
+| id      | string | The id of the element.                                                                 |
+| loaded  | string | The name of a global callback called once particles are loaded.                        |
+| options | object | The options of the particles instance.                                                 |
+| url     | string | The remote options url, called using an AJAX request.                                  |
+| theme   | string | The theme name to apply (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+
+### Reactive updates
+
+The component uses a `connectedCallback` / `attributeChangedCallback` pattern to react to attribute changes:
+
+- **`id` change** → destroys the current container and reloads particles with the new id.
+- **`options` change** → destroys the current container and reloads particles with the new options.
+- **`url` change** → destroys the current container and reloads particles from the new url.
+- **`theme` change** → applies the theme via `loadTheme` without a full reload (requires `@tsparticles/plugin-themes`; safe no-op when the plugin is missing).
+
+On component teardown (`disconnectedCallback`) the container is destroyed, preventing orphan animations.
 
 #### particles.json
 

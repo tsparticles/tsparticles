@@ -267,6 +267,15 @@ Riot 封装导出一个 `initParticlesEngine` 函数。在组件的 `onBeforeMou
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## 完整组件
 
 以下是一个完整的 `.riot` 文件，将所有内容整合在一起：`onBeforeMount` 中的引擎初始化、带状态的条件渲染、丰富的交互配置以及通过组件内置支持的加载事件的 `particlesLoaded` 回调。

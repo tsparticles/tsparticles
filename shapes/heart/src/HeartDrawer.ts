@@ -5,7 +5,7 @@ import { drawHeart } from "./Utils.js";
 export class HeartDrawer implements IShapeDrawer {
   /**
    * Draws the heart shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData): void {
     drawHeart(data);

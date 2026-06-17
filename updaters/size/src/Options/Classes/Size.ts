@@ -6,13 +6,9 @@ import { SizeAnimation } from "./SizeAnimation.js";
  * [[include:Options/Particles/Size.md]]
  */
 export class Size extends RangedAnimationValueWithRandom implements ISize, IOptionLoader<ISize> {
-  override readonly animation;
+  override readonly animation = new SizeAnimation();
 
-  constructor() {
-    super();
-    this.animation = new SizeAnimation();
-    this.value = 3;
-  }
+  override value = 3;
 
   override load(data?: RecursivePartial<ISize>): void {
     super.load(data);

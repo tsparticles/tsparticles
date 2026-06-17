@@ -1,36 +1,30 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IAttract, IAttractRestore } from "../Interfaces/IAttract.js";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 
 /** Attract mode options class */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
   /** Attraction distance in pixels */
-  distance;
+  distance = 200;
 
   /** Attraction animation duration in seconds */
-  duration;
+  duration = 0.4;
 
   /** Easing type used for the attraction animation */
-  easing: EasingType | EasingTypeAlt;
+  easing = "ease-out-quad";
 
   /** Attraction factor multiplier */
-  factor;
+  factor = 1;
 
   /** Maximum speed of attracted particles */
-  maxSpeed;
+  maxSpeed = 50;
 
   /** Restore behavior after attract interaction */
   restore: IAttractRestore;
 
   /** Attraction speed */
-  speed;
+  speed = 1;
 
   constructor() {
-    this.distance = 200;
-    this.duration = 0.4;
-    this.easing = EasingType.easeOutQuad;
-    this.factor = 1;
-    this.maxSpeed = 50;
-    this.speed = 1;
     this.restore = {
       enable: false,
       delay: 0,
@@ -39,35 +33,26 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
     };
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<IAttract>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
 
-    if (data.duration !== undefined) {
-      this.duration = data.duration;
-    }
+    loadProperty(this, "duration", data.duration);
 
     if (data.easing !== undefined) {
       this.easing = data.easing;
     }
 
-    if (data.factor !== undefined) {
-      this.factor = data.factor;
-    }
+    loadProperty(this, "factor", data.factor);
 
     if (data.maxSpeed !== undefined) {
       this.maxSpeed = data.maxSpeed;
     }
 
-    if (data.speed !== undefined) {
-      this.speed = data.speed;
-    }
+    loadProperty(this, "speed", data.speed);
 
     if (data.restore !== undefined) {
       this.restore.enable = data.restore.enable ?? this.restore.enable;

@@ -9,14 +9,14 @@ const sizeFactor = 8,
 
 /**
  * Adds an emitter to the container for ribbon particles
- * @param container -
- * @param actualOptions -
+ * @param container - The container to handle
+ * @param actualOptions - The actualOptions
  */
 export async function addEmitter(container: EmitterContainer, actualOptions: RibbonsOptions): Promise<void> {
   await container.addEmitter?.({
     startCount: actualOptions.count,
     position: {
-      x: actualOptions.position.x,
+      x: actualOptions.positionX,
       y: emitterTop,
     },
     shape: {
@@ -89,8 +89,8 @@ export async function addEmitter(container: EmitterContainer, actualOptions: Rib
 
 /**
  * Converts ribbons options to tsParticles source options
- * @param actualOptions -
- * @param params -
+ * @param actualOptions - The actualOptions
+ * @param params - The parameters
  * @returns the converted options
  */
 export function convertOptions(actualOptions: RibbonsOptions, params: RibbonsParams): ISourceOptions {
@@ -163,7 +163,7 @@ export function convertOptions(actualOptions: RibbonsOptions, params: RibbonsPar
       name: "ribbons",
       startCount: actualOptions.count,
       position: {
-        x: actualOptions.position.x,
+        x: actualOptions.positionX,
         y: emitterTop,
       },
       shape: {

@@ -20,7 +20,7 @@ export type JsonUpdater<T> = (data: T) => T;
 
 /**
  *
- * @param options -
+ * @param options - The options to handle
  */
 export async function replaceTokensInFiles(options: ReplaceTokensOptions[]): Promise<void> {
   for (const item of options) {
@@ -40,7 +40,7 @@ export async function replaceTokensInFiles(options: ReplaceTokensOptions[]): Pro
 
 /**
  *
- * @param options -
+ * @param options - The options to handle
  */
 export async function replaceTokensInFile(options: ReplaceTokensOptions): Promise<void> {
   await replaceTokensInFiles([options]);
@@ -60,7 +60,7 @@ export async function updateJsonFile<T>(filePath: string, updater: JsonUpdater<T
 
 /**
  *
- * @param destination -
+ * @param destination - The destination point
  * @returns the destination directory path
  */
 export async function getDestinationDir(destination: string): Promise<string> {

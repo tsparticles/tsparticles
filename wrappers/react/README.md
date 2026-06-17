@@ -326,13 +326,14 @@ const App = () => {
 
 ### Props
 
-| Prop      | Type   | Definition                                           |
-| --------- | ------ | ---------------------------------------------------- |
-| id        | string | The id of the element.                               |
-| options   | object | The options of the particles instance.               |
-| url       | string | The remote options url, called using an AJAX request |
-| style     | object | The style of the canvas element.                     |
-| className | string | The class name of the canvas wrapper.                |
+| Prop            | Type     | Definition                                                                        |
+| --------------- | -------- | --------------------------------------------------------------------------------- |
+| id              | string   | The id of the element.                                                            |
+| options         | object   | The options of the particles instance.                                            |
+| url             | string   | The remote options url, called using an AJAX request                              |
+| style           | object   | The style of the canvas element.                                                  |
+| className       | string   | The class name of the canvas wrapper.                                             |
+| particlesLoaded | function | Callback invoked when the container is loaded, receives `(container?: Container)` |
 
 #### particles.json
 

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IPoisson } from "../Interfaces/IPoisson.js";
 
 /**
@@ -6,43 +6,24 @@ import type { IPoisson } from "../Interfaces/IPoisson.js";
  */
 export class Poisson implements IPoisson, IOptionLoader<IPoisson> {
   /** The poisson dimensions */
-  dimensions;
+  dimensions = 2;
   /** Enables the poisson disc sampling */
-  enable;
+  enable = false;
   /** The poisson radius */
-  radius;
+  radius = 0;
   /** The poisson retries */
-  retries;
+  retries = 30;
   /** The poisson steps */
-  steps;
-
-  constructor() {
-    this.enable = false;
-    this.dimensions = 2;
-    this.radius = 0;
-    this.retries = 30;
-    this.steps = 0;
-  }
+  steps = 0;
 
   load(data?: RecursivePartial<IPoisson>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.dimensions !== undefined) {
-      this.dimensions = data.dimensions;
-    }
-
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
-
-    if (data.retries !== undefined) {
-      this.retries = data.retries;
-    }
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "dimensions", data.dimensions);
+    loadProperty(this, "radius", data.radius);
+    loadProperty(this, "retries", data.retries);
   }
 }

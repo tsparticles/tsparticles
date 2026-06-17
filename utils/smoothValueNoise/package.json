@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/smooth-value-noise",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles smooth value noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -119,7 +119,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:^",
+    "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*"
   }
 }

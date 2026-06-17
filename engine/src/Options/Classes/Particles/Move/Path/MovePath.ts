@@ -1,43 +1,25 @@
 import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath.js";
-import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../../../../Utils/OptionLoader.js";
 import type { PathOptions } from "../../../../../Types/PathOptions.js";
 import type { RecursivePartial } from "../../../../../Types/RecursivePartial.js";
 import { ValueWithRandom } from "../../../ValueWithRandom.js";
 import { deepExtend } from "../../../../../Utils/Utils.js";
-import { isNull } from "../../../../../Utils/TypeUtils.js";
+import { loadProperty } from "../../../../../Utils/OptionsUtils.js";
 
 /**
  * Path movement options.
  */
-export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
-  clamp;
-  delay;
-  enable;
+export class MovePath extends OptionLoader<IMovePath> implements IMovePath {
+  clamp = true;
+  readonly delay = new ValueWithRandom();
+  enable = false;
   generator?: string;
-  options: PathOptions;
+  options: PathOptions = {};
 
-  constructor() {
-    this.clamp = true;
-    this.delay = new ValueWithRandom();
-    this.enable = false;
-    this.options = {};
-  }
-
-  load(data?: RecursivePartial<IMovePath>): void {
-    if (isNull(data)) {
-      return;
-    }
-
-    if (data.clamp !== undefined) {
-      this.clamp = data.clamp;
-    }
-
+  protected doLoad(data: RecursivePartial<IMovePath>): void {
+    loadProperty(this, "clamp", data.clamp);
     this.delay.load(data.delay);
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
+    loadProperty(this, "enable", data.enable);
     this.generator = data.generator;
 
     if (data.options) {

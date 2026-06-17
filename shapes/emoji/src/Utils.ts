@@ -5,8 +5,8 @@ export const validTypes = ["emoji"];
 
 /**
  *
- * @param data -
- * @param image -
+ * @param data - The data to handle
+ * @param image - The image
  */
 export function drawEmoji(data: IShapeDrawData<EmojiParticle>, image: ImageBitmap | HTMLCanvasElement): void {
   const { context, opacity } = data,

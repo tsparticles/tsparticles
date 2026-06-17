@@ -7,7 +7,13 @@ import {
   type Modes,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type PluginManager, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
+import {
+  type PluginManager,
+  type RecursivePartial,
+  isInArray,
+  loadOptionProperty,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
 import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
 
@@ -26,7 +32,6 @@ interface IAttractRestoreData {
  * Particle external attract manager
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
-  /** @inheritDoc */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly #interactedThisFrame;
@@ -80,17 +85,14 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     };
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     const container = this.container,
       attract = container.actualOptions.interactivity?.modes.attract;
@@ -104,7 +106,6 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     this.#interactedThisFrame.clear();
 
@@ -146,9 +147,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param interactivityData
-   * @param particle
+   * @param interactivityData - The interactivity data
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
@@ -167,22 +168,16 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadModeOptions(
     options: Modes & AttractMode,
     ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
   ): void {
-    options.attract ??= new Attract();
-
-    for (const source of sources) {
-      options.attract.load(source?.attract);
-    }
+    loadOptionProperty(options, "attract", Attract, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

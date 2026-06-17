@@ -8,7 +8,7 @@ import { options } from "./options.js";
 const presetName = "fountain";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadFountainPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

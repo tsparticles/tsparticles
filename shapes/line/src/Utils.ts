@@ -6,7 +6,7 @@ interface ILineData {
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawLine(data: IShapeDrawData): void {
   const { context, particle, radius } = data,

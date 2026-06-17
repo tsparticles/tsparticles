@@ -124,6 +124,16 @@ const group = __("Shapes"),
 			},
 		},
 		{
+			name: "shape-ribbon",
+			description: __("Ribbon"),
+			group,
+			load: async engine => {
+				const { loadRibbonShape } = await import("@tsparticles/shape-ribbon");
+
+				await loadRibbonShape(engine);
+			},
+		},
+		{
 			name: "shape-rounded-polygon",
 			description: `${__("Rounded")} ${__("Polygon")}`,
 			group,

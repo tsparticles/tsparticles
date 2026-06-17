@@ -2,7 +2,7 @@ import { type Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 const paletteName = "vibrant-retro";
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadVibrantRetroPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

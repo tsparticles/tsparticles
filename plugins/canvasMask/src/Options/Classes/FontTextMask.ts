@@ -1,44 +1,22 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IFontTextMask } from "../Interfaces/IFontTextMask.js";
 
 export class FontTextMask implements IFontTextMask, IOptionLoader<IFontTextMask> {
-  family: string;
-  size: string | number;
-  style: string;
-  variant: string;
-  weight: string;
-
-  constructor() {
-    this.family = "sans-serif";
-    this.size = 100;
-    this.style = "";
-    this.variant = "";
-    this.weight = "";
-  }
+  family = "sans-serif";
+  size: string | number = 100;
+  style = "";
+  variant = "";
+  weight = "";
 
   load(data?: RecursivePartial<IFontTextMask>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.family !== undefined) {
-      this.family = data.family;
-    }
-
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
-
-    if (data.style !== undefined) {
-      this.style = data.style;
-    }
-
-    if (data.variant !== undefined) {
-      this.variant = data.variant;
-    }
-
-    if (data.weight !== undefined) {
-      this.weight = data.weight;
-    }
+    loadProperty(this, "family", data.family);
+    loadProperty(this, "size", data.size);
+    loadProperty(this, "style", data.style);
+    loadProperty(this, "variant", data.variant);
+    loadProperty(this, "weight", data.weight);
   }
 }

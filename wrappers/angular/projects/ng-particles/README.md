@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public particlesLoaded(container: Container): void {
+  public particlesLoaded(container?: Container): void {
     console.log(container);
   }
 }
@@ -113,6 +113,15 @@ export class AppComponent implements OnInit {
 <ngx-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
 ```
 
+### Reactive prop changes
+
+The component detects changes to `id`, `options`, `url`, and `theme` inputs via Angular's `OnChanges` lifecycle hook:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the current container. This requires the optional `@tsparticles/plugin-themes` package to be loaded. Without the plugin, theme changes are a safe no-op (no crash, no throw).
+
+The component does **not** track deep mutations of the `options` object — it uses reference equality. To trigger a reload, provide a new object reference.
+
 ### Module setup
 
 ```ts
@@ -124,6 +133,27 @@ import { NgxParticlesModule } from "@tsparticles/angular";
 })
 export class AppModule {}
 ```
+
+### Component API
+
+| Input     | Type             | Default         | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | The DOM element id for the particle container. Change triggers reload.    |
+| `options` | `ISourceOptions` | —               | The particle configuration object. Change triggers reload.                |
+| `url`     | `string`         | —               | A URL to a JSON particle config. Change triggers reload.                  |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`). Safe no-op otherwise. |
+
+| Output            | Type                                   | Description                                                   |
+| ----------------- | -------------------------------------- | ------------------------------------------------------------- |
+| `particlesLoaded` | `EventEmitter<Container \| undefined>` | Emitted after `tsParticles.load` resolves with the container. |
+
+### Cleanup
+
+When the component is destroyed (`ngOnDestroy`), the particle container is automatically destroyed — no orphan animations remain.
+
+## Theme support
+
+The `theme` input prop requires the optional `@tsparticles/plugin-themes` package to be installed and registered during `NgParticlesService.init(...)`. Without the plugin, theme changes are silently ignored.
 
 ## Demos
 

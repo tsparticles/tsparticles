@@ -1,35 +1,100 @@
 # テンプレートとリソース
 
-テンプレートは、メインのモノリポジトリの `templates` フォルダーの下に保持されます。
+tsParticles には、**スキャフォールドテンプレート**（フレームワークのスケルトン）と**ユースケーステンプレート**（完全なサンプルアプリケーション）の2種類のテンプレートがあります。
 
-## 公式テンプレート
+## CLI を使ったクイックスタート
 
-- テンプレートフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- バニラ JavaScript と複数のフレームワークのスターター セットアップが含まれています。
+テンプレートを使用する最も簡単な方法は、CLI を使うことです：
 
-## テンプレートを使用する場合
+```bash
+npm create tsparticles@latest
+```
 
-- すでに配線されたプロジェクト構造を備えた準備の整ったベースラインが必要です。
-- カスタム ラッパーを作成する前に、フレームワーク固有のサンプルが必要です。
-- バンドルの選択肢 (`basic`、`slim`、`full`、`all`) をすばやく比較したい。
+または、特定のバンドルを直接使用することもできます：
 
-## 寄付の流れ
+```bash
+npm create particles@latest
+npm create confetti@latest
+npm create ribbons@latest
+```
 
-再利用可能な設計または統合レシピを構築する場合:
+非対話的な使用法：
 
-1. メインのモノリポジトリをフォークします。
-2. 明確なセットアップと実行手順を含むテンプレートを追加します。
-3. プル リクエストを開き、スクリーンショット/GIF とパッケージ バージョンを含めます。
+```bash
+npx tsparticles-create app my-project --template scaffold --framework react
+npx tsparticles-create app my-project --template confetti --framework vanilla
+```
 
-## 関連フォルダー
+## スキャフォールドテンプレート
 
-- メインのモノリポジトリ: <https://github.com/tsparticles/tsparticles>
-- テンプレート: <https://github.com/tsparticles/tsparticles/tree/main/templates>
-- プリセット: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- パレット: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+スキャフォールドテンプレートは、tsParticles があらかじめ設定された最小限の Vite + TypeScript プロジェクトスケルトンを提供します。以下のフレームワークで利用可能です：
+
+| Framework | CLI option            | Package                          |
+| --------- | --------------------- | -------------------------------- |
+| Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
+| React     | `--framework react`   | `@tsparticles/template-scaffold` |
+| Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
+| Angular   | `--framework angular` | `@tsparticles/template-scaffold` |
+| Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
+| Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
+
+例：
+
+```bash
+npx tsparticles-create app my-react-app --template scaffold --framework react
+cd my-react-app
+npm install
+npm run dev
+```
+
+## ユースケーステンプレート
+
+ユースケーステンプレートは、実際の tsParticles の使用例を示す完全なサンプルアプリケーションです。
+
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
+
+例：
+
+```bash
+npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
+cd my-portfolio
+npm install
+npm run dev
+```
+
+## npm create ラッパー
+
+バンドル固有のテンプレートについては、専用の npm create ラッパーを使用できます：
+
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
+
+## CLI リファレンス
+
+```bash
+tsparticles-create app [destination] [options]
+
+Options:
+  --template <name>     Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
+  --framework <name>    Framework (vanilla|react|vue3|angular|svelte|solid)
+  --skip-install        Skip npm install after scaffolding
+  -h, --help            Display help
+```
 
 ## 関連ページ
 
-- [`/guide/frameworks`](/ja/guide/frameworks)
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/demos/`](/ja/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/demos/`](/demos/)

@@ -11,6 +11,7 @@ export interface IParticlesProps {
   style?: CSSProperties;
   className?: string;
   canvasClassName?: string;
-  container?: RefObject<Container>;
-  particlesLoaded?: (container: Container) => Promise<void>;
+  container?: RefObject<Container | undefined>;
+  particlesLoaded?: (container?: Container) => Promise<void>;
+  theme?: string;
 }

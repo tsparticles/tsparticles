@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ISounds } from "../Interfaces/ISounds.js";
 import { SoundsEvent } from "./SoundsEvent.js";
 import { SoundsIcons } from "./SoundsIcons.js";
@@ -10,36 +10,23 @@ import { SoundsVolume } from "./SoundsVolume.js";
  */
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
   /** Enables auto play */
-  autoPlay: boolean;
+  autoPlay = true;
   /** Enables the sounds */
-  enable;
+  enable = false;
   /** The sounds events */
-  events: SoundsEvent[];
+  events: SoundsEvent[] = [];
   /** The sounds icons */
-  icons;
+  readonly icons = new SoundsIcons();
   /** The sounds volume */
-  volume;
-
-  constructor() {
-    this.autoPlay = true;
-    this.enable = false;
-    this.events = [];
-    this.icons = new SoundsIcons();
-    this.volume = new SoundsVolume();
-  }
+  readonly volume = new SoundsVolume();
 
   load(data?: RecursivePartial<ISounds>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.autoPlay !== undefined) {
-      this.autoPlay = data.autoPlay;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "autoPlay", data.autoPlay);
+    loadProperty(this, "enable", data.enable);
 
     if (data.events !== undefined) {
       this.events = data.events.map(t => {

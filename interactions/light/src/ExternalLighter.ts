@@ -5,13 +5,18 @@ import {
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
-import { type PluginManager, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import {
+  type PluginManager,
+  type RecursivePartial,
+  isInArray,
+  loadOptionProperty,
+  rangeColorToRgb,
+} from "@tsparticles/engine";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
 /** External light interactor */
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
-  /** @inheritDoc */
   readonly maxDistance = 0;
   readonly #pluginManager;
 
@@ -21,17 +26,14 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     this.#pluginManager = pluginManager;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -52,7 +54,6 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     });
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: LightParticle): boolean {
     const container = this.container,
       mouse = interactivityData.mouse,
@@ -77,16 +78,10 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     return res;
   }
 
-  /** @inheritDoc */
   loadModeOptions(options: Modes & LightMode, ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]): void {
-    options.light ??= new Light();
-
-    for (const source of sources) {
-      options.light.load(source?.light);
-    }
+    loadOptionProperty(options, "light", Light, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

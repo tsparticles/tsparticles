@@ -13,7 +13,6 @@ export class ThemesPluginInstance implements IContainerPlugin {
     this.#container = container;
   }
 
-  /** @inheritDoc */
   init(): Promise<void> {
     const container = this.#container;
 
@@ -59,7 +58,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
 
   /**
    * Manages theme media query listeners
-   * @param add
+   * @param add - The add
    */
   manageListeners(add: boolean): void {
     const container = this.#container;
@@ -67,19 +66,16 @@ export class ThemesPluginInstance implements IContainerPlugin {
     container.manageMediaMatch?.(add);
   }
 
-  /** @inheritDoc */
   async start(): Promise<void> {
     this.manageListeners(true);
 
     return Promise.resolve();
   }
 
-  /** @inheritDoc */
   stop(): void {
     this.manageListeners(false);
   }
 
-  /** @inheritDoc */
   updateActualOptions(): boolean {
     const container = this.#container;
 
@@ -93,7 +89,7 @@ export class ThemesPluginInstance implements IContainerPlugin {
    * @param e - the media query event
    * @internal
    */
-  readonly #handleThemeChange = (e: Event): void => {
+  #handleThemeChange(e: Event): void {
     const mediaEvent = e as MediaQueryListEvent,
       container = this.#container,
       options = container.options,
@@ -104,5 +100,5 @@ export class ThemesPluginInstance implements IContainerPlugin {
     if (theme?.default.auto) {
       void container.loadTheme?.(themeName);
     }
-  };
+  }
 }

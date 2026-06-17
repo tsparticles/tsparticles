@@ -6,7 +6,7 @@ import { drawMatrix } from "./Utils.js";
 export class MatrixDrawer implements IShapeDrawer<MatrixParticle> {
   /**
    * Draws the matrix character shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<MatrixParticle>): void {
     drawMatrix(data);

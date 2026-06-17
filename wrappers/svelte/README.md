@@ -8,7 +8,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS comp
 
 [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Installation
 
@@ -26,7 +26,7 @@ yarn add @tsparticles/svelte
 
 ```html
 <script>
-	import Particles, { particlesInit } from '@tsparticles/svelte';
+	import Particles, { initParticlesEngine } from '@tsparticles/svelte';
 	//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 	import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 
@@ -57,7 +57,7 @@ yarn add @tsparticles/svelte
 		// (from the core library) methods like play, pause, refresh, start, stop
 	};
 
-	void particlesInit(async (engine) => {
+	void initParticlesEngine(async (engine) => {
 		// call this once per app
 		// you can use main to customize the tsParticles instance adding presets or custom shapes
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -86,7 +86,61 @@ yarn add @tsparticles/svelte
 />
 ```
 
-### SSR
+## Component props
+
+| Prop      | Type             | Default         | Description                                                           |
+| --------- | ---------------- | --------------- | --------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | The DOM element id used for the particles container.                  |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Reactive: changing replaces particles. |
+| `url`     | `string`         | `""`            | Remote JSON config URL. Reactive: changing reloads from URL.          |
+| `theme`   | `string`         | —               | Theme name to apply (requires `@tsparticles/plugin-themes`).          |
+
+## Reactive behavior
+
+All reactive props (`id`, `options`, `url`) trigger a **destroy + reload** cycle when changed at runtime:
+
+- `id` change → old container destroyed, new one created with the new id
+- `options` change → particles are reloaded with the new config
+- `url` change → config fetched from the new URL and loaded
+
+> **Note**: `options` uses a reactive key based on `JSON.stringify`. For frequent updates, create a new object reference rather than mutating deeply to avoid unexpected reloads.
+
+The `theme` prop is special: changing it calls `loadTheme()` on the existing container without destroying or reloading particles. This requires the optional theme plugin.
+
+## Theme support
+
+The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the prop is safely ignored (no crash, no throw).
+
+```ts
+import { loadThemePlugin } from '@tsparticles/plugin-themes';
+
+void initParticlesEngine(async (engine) => {
+	await loadThemePlugin(engine);
+	// ... load other presets/plugins
+});
+```
+
+When the plugin is loaded, changing `theme` applies the new theme on the fly without destroying the container.
+
+## Particles loaded event
+
+The `on:particlesLoaded` event fires with `Container | undefined` after `tsParticles.load()` resolves. Always guard for `undefined`:
+
+```html
+<script>
+	let handleParticlesLoaded = (event) => {
+		const container = event.detail.particles;
+
+		if (container) {
+			console.log('Particles ready', container);
+		}
+	};
+</script>
+
+<Particles on:particlesLoaded="{handleParticlesLoaded}" />
+```
+
+## SSR
 
 The particles component isn't built for SSR, so you have to force the component to be called client side
 with `async import`.
@@ -95,7 +149,7 @@ You can see a sample below:
 
 ```html
 <script>
-	import { particlesInit } from '@tsparticles/svelte';
+	import { initParticlesEngine } from '@tsparticles/svelte';
 	import { onMount } from 'svelte';
 	//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 	import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
@@ -135,7 +189,7 @@ You can see a sample below:
 		// (from the core library) methods like play, pause, refresh, start, stop
 	};
 
-	void particlesInit(async (engine) => {
+	void initParticlesEngine(async (engine) => {
 		// call this once per app
 		// you can use main to customize the tsParticles instance adding presets or custom shapes
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready

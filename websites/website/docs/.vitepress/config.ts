@@ -10,14 +10,30 @@ const gaMeasurementId = loadedEnv.VITE_GA_MEASUREMENT_ID ?? "";
 const nav: DefaultTheme.NavItem[] = [
   { text: "Start", link: "/guide/getting-started" },
   { text: "Playground", link: "/playground/" },
-  { text: "Guides", link: "/guides/" },
-  { text: "Showcase", link: "/showcase/" },
-  { text: "Demos", link: "/demos/" },
-  { text: "Wrappers", link: "/guide/wrappers" },
-  { text: "Options", link: "/options/" },
-  { text: "API", link: "/api/" },
-  { text: "Confetti", link: "https://confetti.js.org", target: "_blank" },
-  { text: "Ribbons", link: "https://ribbons.js.org", target: "_blank" },
+  {
+    text: "Demos",
+    items: [
+      { text: "Demos", link: "/demos/" },
+      { text: "Showcase", link: "/showcase/" },
+    ],
+  },
+  {
+    text: "Docs",
+    items: [
+      { text: "Guides", link: "/guides/" },
+      { text: "Wrappers", link: "/guide/wrappers" },
+      { text: "Options", link: "/options/" },
+      { text: "API", link: "/api/" },
+      { text: "Versioning & Migration", link: "/migrations/" },
+    ],
+  },
+  {
+    text: "More",
+    items: [
+      { text: "Confetti", link: "https://confetti.js.org", target: "_blank" },
+      { text: "Ribbons", link: "https://ribbons.js.org", target: "_blank" },
+    ],
+  },
   {
     text: "Sponsor",
     items: [
@@ -25,7 +41,6 @@ const nav: DefaultTheme.NavItem[] = [
       { text: "@tsparticles", link: "https://github.com/tsparticles" },
     ],
   },
-  { text: "Versioning & Migration", link: "/migrations/" },
 ];
 
 const baseSidebar: DefaultTheme.Sidebar = {
@@ -107,6 +122,7 @@ const baseSidebar: DefaultTheme.Sidebar = {
           ],
         },
         { text: "Templates & Resources", link: "/guide/templates-resources" },
+        { text: "MCP Server (AI Integration)", link: "/guide/mcp-server" },
         { text: "Video Tutorials", link: "/guide/video-tutorials" },
         { text: "Dependency Graph", link: "/guide/dependency-graph" },
         { text: "Troubleshooting & FAQ", link: "/guide/troubleshooting" },

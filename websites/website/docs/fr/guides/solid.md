@@ -351,7 +351,7 @@ const App: Component = () => {
     },
   };
 
-  const particlesLoaded = (c: Container) => {
+  const particlesLoaded = (c?: Container) => {
     setContainer(c);
   };
 
@@ -495,15 +495,25 @@ export default App;
 
 Le préréglage fournit des valeurs par défaut pour chaque option, et vos surcharges sont fusionnées par-dessus — vous n'avez besoin de spécifier que les propriétés que vous voulez modifier.
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## Dépannage
 
 | Symptôme                        | Cause                                       | Solution                                                                           |
-| ------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------- |
+| ------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | Élément DOM vide                | Moteur non initialisé avant le rendu        | Encapsulez `<Particles>` dans `<Show when={initialized()}>`                        |
 | Aucune particule visible        | `move.enable` ou `number.value` manquant    | Assurez-vous `particles.move.enable: true` et `particles.number.value > 0`         |
 | Canvas derrière le contenu      | `zIndex` manquant dans fullScreen           | Utilisez `fullScreen: { zIndex: -1 }`                                              |
 | Changement d'options sans effet | La référence d'objet ne change pas          | Encapsulez les options dans une fonction ou un store ; évitez les objets statiques |
 | Moteur non trouvé               | Import manquant de `loadFull` ou `loadSlim` | Installez `tsparticles` ou `@tsparticles/slim` et appelez `loadFull(engine)`       |
+| `theme`                         | `string`                                    | —                                                                                  | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ## Prochaines étapes
 

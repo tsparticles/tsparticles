@@ -6,7 +6,7 @@ const defaultInset = 2,
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawStar(data: IShapeDrawData<StarParticle>): void {
   const { context, particle, radius } = data,

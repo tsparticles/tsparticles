@@ -1,12 +1,19 @@
 import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
 import { type InteractivityContainer, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
-import { type Particle, type RecursivePartial, Vector, clamp, getDistances, getRangeValue } from "@tsparticles/engine";
+import {
+  type Particle,
+  type RecursivePartial,
+  Vector,
+  clamp,
+  getDistances,
+  getRangeValue,
+  identity,
+  loadOptionProperty,
+  minDistance,
+  minVelocity,
+  squareExp,
+} from "@tsparticles/engine";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
-
-const minDistance = 0,
-  identity = 1,
-  squareExp = 2,
-  minVelocity = 0;
 
 /** Repulse particle extension type */
 export type RepulseParticle = Particle & {
@@ -36,22 +43,18 @@ export class Repulser extends ParticlesInteractorBase {
     this.#velocityVec = Vector.origin;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   interact(p1: RepulseParticle): void {
     const container = this.container;
 
@@ -107,24 +110,17 @@ export class Repulser extends ParticlesInteractorBase {
     }
   }
 
-  /** @inheritDoc */
   isEnabled(particle: RepulseParticle): boolean {
     return particle.options.repulse?.enabled ?? false;
   }
 
-  /** @inheritDoc */
-  loadParticlesOptions?(
+  loadParticlesOptions(
     options: RepulseParticlesOptions,
     ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
   ): void {
-    options.repulse ??= new ParticlesRepulse();
-
-    for (const source of sources) {
-      options.repulse.load(source?.repulse);
-    }
+    loadOptionProperty(options, "repulse", ParticlesRepulse, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

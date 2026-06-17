@@ -20,12 +20,18 @@ export interface IPlugin {
     source?: RecursivePartial<IParticlesOptions>,
   ) => void;
 
-  /** Gets the container plugin instance for the given container */
+  /**
+   * Gets the container plugin instance for the given container
+   * @returns A promise
+   */
   getPlugin(container: Container): Promise<IContainerPlugin>;
 
   /** Loads the plugin options into the given options object */
   loadOptions(container: Container, options: Options, source?: ISourceOptions): void;
 
-  /** Checks if this plugin is needed for the given options */
+  /**
+   * Checks if this plugin is needed for the given options
+   * @returns The boolean value
+   */
   needsPlugin(options?: ISourceOptions): boolean;
 }

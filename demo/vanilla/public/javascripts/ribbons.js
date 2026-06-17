@@ -4,10 +4,7 @@ const end = Date.now() + 8 * 1000,
 function frame() {
   ribbons({
     count: 1,
-    position: {
-      x: Math.floor(Math.random() * 100),
-      y: 0,
-    },
+    positionX: Math.floor(Math.random() * 100),
     colors,
   });
 

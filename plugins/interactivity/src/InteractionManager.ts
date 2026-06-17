@@ -1,10 +1,4 @@
-import {
-  type Container,
-  type ICoordinates,
-  type IDelta,
-  type Particle,
-  safeIntersectionObserver,
-} from "@tsparticles/engine";
+import { type Container, type ICoordinates, type IDelta, type Particle } from "@tsparticles/engine";
 import {
   clickEvent,
   touchCancelEvent,
@@ -17,7 +11,7 @@ import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
 import { InteractivityEventListeners } from "./InteractivityEventListeners.js";
-import type { InteractivityPluginManager } from "./types.js";
+import type { InteractivityPluginManager } from "./InteractivityPluginManagerTypes.js";
 import { InteractorType } from "./Enums/InteractorType.js";
 
 const clickRadius = 1,
@@ -26,6 +20,21 @@ const clickRadius = 1,
 
 /** Container click handler type */
 type ContainerClickHandler = (evt: Event) => void;
+
+/**
+ * Safely creates an IntersectionObserver if supported
+ * @param callback - the observer callback
+ * @returns the intersection observer, if supported
+ */
+function safeIntersectionObserver(
+  callback: (records: IntersectionObserverEntry[]) => void,
+): IntersectionObserver | undefined {
+  if (typeof IntersectionObserver === "undefined") {
+    return;
+  }
+
+  return new IntersectionObserver(callback);
+}
 
 export class InteractionManager {
   /** The current interactivity state data */
@@ -362,7 +371,7 @@ export class InteractionManager {
     container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
-  readonly #intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
+  #intersectionManager(entries: IntersectionObserverEntry[]): void {
     const container = this.#container;
 
     if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
@@ -380,5 +389,5 @@ export class InteractionManager {
         container.pause();
       }
     }
-  };
+  }
 }

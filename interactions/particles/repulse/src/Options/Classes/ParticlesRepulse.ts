@@ -4,33 +4,24 @@ import {
   type RecursivePartial,
   ValueWithRandom,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse.js";
 
 /** Particles repulse options class */
 export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepulse, IOptionLoader<IParticlesRepulse> {
   /** Repulse distance */
-  distance: RangeValue;
+  distance: RangeValue = 1;
   /** Repulse duration */
-  duration: RangeValue;
+  duration: RangeValue = 1;
   /** Enables particle repulse */
-  enabled;
+  enabled = false;
   /** Repulse factor */
-  factor: RangeValue;
+  factor: RangeValue = 1;
   /** Repulse speed */
-  speed: RangeValue;
+  speed: RangeValue = 1;
 
-  constructor() {
-    super();
-    this.enabled = false;
-    this.distance = 1;
-    this.duration = 1;
-    this.factor = 1;
-    this.speed = 1;
-  }
-
-  /** @inheritDoc */
   override load(data?: RecursivePartial<IParticlesRepulse>): void {
     super.load(data);
 
@@ -38,24 +29,10 @@ export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepul
       return;
     }
 
-    if (data.enabled !== undefined) {
-      this.enabled = data.enabled;
-    }
-
-    if (data.distance !== undefined) {
-      this.distance = setRangeValue(data.distance);
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = setRangeValue(data.duration);
-    }
-
-    if (data.factor !== undefined) {
-      this.factor = setRangeValue(data.factor);
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadProperty(this, "enabled", data.enabled);
+    loadRangeProperty(this, "distance", data.distance);
+    loadRangeProperty(this, "duration", data.duration);
+    loadRangeProperty(this, "factor", data.factor);
+    loadRangeProperty(this, "speed", data.speed);
   }
 }

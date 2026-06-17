@@ -89,7 +89,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
   /**
    * TrailDrawer constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -97,7 +97,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
   /**
    * Draws the particle trail after particle rendering
-   * @param data
+   * @param data - The data to handle
    */
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
     const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
@@ -248,8 +248,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
   /**
    * Initializes trail-related particle properties
-   * @param container
-   * @param particle
+   * @param container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(container: Container, particle: TrailParticle): void {
     particle.trail = [];

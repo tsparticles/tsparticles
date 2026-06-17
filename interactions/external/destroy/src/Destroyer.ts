@@ -8,7 +8,7 @@ import {
   isDivModeEnabled,
   mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
-import { type RecursivePartial, isInArray } from "@tsparticles/engine";
+import { type RecursivePartial, isInArray, loadOptionProperty } from "@tsparticles/engine";
 import { divDestroy, mouseDestroy } from "./Utils.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
 
@@ -24,17 +24,14 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     const container = this.container,
       destroy = container.actualOptions.interactivity?.modes.destroy;
@@ -48,7 +45,6 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     container.retina.destroyModeDistance = destroy.distance * container.retina.pixelRatio;
   }
 
-  /** @inheritDoc */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,
       options = container.actualOptions,
@@ -70,7 +66,6 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     }
   }
 
-  /** @inheritDoc */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
       options = container.actualOptions,
@@ -89,19 +84,13 @@ export class Destroyer extends ExternalInteractorBase<DestroyContainer> {
     );
   }
 
-  /** @inheritDoc */
   loadModeOptions(
     options: Modes & DestroyMode,
     ...sources: RecursivePartial<(IModes & IDestroyMode) | undefined>[]
   ): void {
-    options.destroy ??= new Destroy();
-
-    for (const source of sources) {
-      options.destroy.load(source?.destroy);
-    }
+    loadOptionProperty(options, "destroy", Destroy, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

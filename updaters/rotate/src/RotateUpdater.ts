@@ -16,10 +16,11 @@ import {
   getRandom,
   getRangeValue,
   identity,
-  updateAnimation,
+  loadOptionProperty,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
+import { updateAnimation } from "@tsparticles/animation-utils";
 
 /**
  * Rotate particle extension type
@@ -55,7 +56,7 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * RotateUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -63,7 +64,7 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle rotation
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: RotateParticle): void {
     const rotateOptions = particle.options.rotate;
@@ -120,7 +121,8 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Checks if rotation is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: RotateParticle): boolean {
     const rotate = particle.options.rotate;
@@ -134,24 +136,20 @@ export class RotateUpdater implements IParticleUpdater {
 
   /**
    * Loads the rotate options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: RotateParticlesOptions,
     ...sources: (RecursivePartial<IRotateParticlesOptions> | undefined)[]
   ): void {
-    options.rotate ??= new Rotate();
-
-    for (const source of sources) {
-      options.rotate.load(source?.rotate);
-    }
+    loadOptionProperty(options, "rotate", Rotate, ...sources);
   }
 
   /**
    * Updates the particle rotation
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: RotateParticle, delta: IDelta): void {
     if (!this.isEnabled(particle)) {

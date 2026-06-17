@@ -32,7 +32,8 @@ const hslRegex = /hsla?\(\s*(\d+)\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(
 export class HslColorManager implements IColorManager {
   /**
    * Checks if the input starts with hsl
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("hsl");
@@ -40,7 +41,8 @@ export class HslColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -55,7 +57,8 @@ export class HslColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
@@ -74,7 +77,8 @@ export class HslColorManager implements IColorManager {
 
   /**
    * Parses an HSL color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {

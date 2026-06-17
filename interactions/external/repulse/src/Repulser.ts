@@ -10,6 +10,7 @@ import {
   getDistances,
   half,
   isInArray,
+  loadOptionProperty,
   millisecondsToSeconds,
   safeDocument,
 } from "@tsparticles/engine";
@@ -51,7 +52,6 @@ interface IRepulseRestoreData {
  * Particle repulse manager
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
-  /** {@inheritDoc} */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   readonly #clickVec: Vector;
@@ -113,12 +113,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     return this.#maxDistance;
   }
 
-  /** {@inheritDoc} */
   clear(): void {
     // do nothing
   }
 
-  /** {@inheritDoc} */
   init(): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
@@ -133,8 +131,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param interactivityData
+   * @param interactivityData - The interactivity data
    */
   interact(interactivityData: IInteractivityData): void {
     this.#interactedThisFrame.clear();
@@ -170,9 +167,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param interactivityData
-   * @param particle
+   * @param interactivityData - The interactivity data
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
     const container = this.container,
@@ -200,27 +197,21 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
   }
 
   /**
-   * {@inheritDoc}
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadModeOptions(
     options: Modes & RepulseMode,
     ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
   ): void {
-    options.repulse ??= new Repulse();
-
-    for (const source of sources) {
-      options.repulse.load(source?.repulse);
-    }
+    loadOptionProperty(options, "repulse", Repulse, ...sources);
   }
 
-  /** {@inheritDoc} */
   reset(): void {
     // do nothing
   }
 
-  readonly #clickRepulse: (interactivityData: IInteractivityData) => void = interactivityData => {
+  #clickRepulse(interactivityData: IInteractivityData): void {
     const container = this.container,
       repulseOptions = container.actualOptions.interactivity?.modes.repulse;
 
@@ -282,9 +273,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
       repulse.particles = [];
     }
-  };
+  }
 
-  readonly #hoverRepulse: (interactivityData: IInteractivityData) => void = interactivityData => {
+  #hoverRepulse(interactivityData: IInteractivityData): void {
     const container = this.container,
       mousePos = interactivityData.mouse.position,
       repulseRadius = container.retina.repulseModeDistance;
@@ -294,15 +285,15 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
 
     this.#processRepulse(interactivityData, mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
-  };
+  }
 
-  readonly #processRepulse: (
+  #processRepulse(
     interactivityData: IInteractivityData,
     position: ICoordinates,
     repulseRadius: number,
     area: BaseRange,
     divRepulse?: RepulseDiv,
-  ) => void = (interactivityData, position, repulseRadius, area, divRepulse) => {
+  ): void {
     const container = this.container,
       query = container.particles.grid.query(area, p => this.isEnabled(interactivityData, p)),
       repulseOptions = container.actualOptions.interactivity?.modes.repulse;
@@ -325,7 +316,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       this.#trackInteractedParticle(particle);
       particle.position.addTo(this.#normVec);
     }
-  };
+  }
 
   #restoreParticles(): void {
     const restore = this.container.actualOptions.interactivity?.modes.repulse?.restore;
@@ -381,11 +372,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     }
   }
 
-  readonly #singleSelectorRepulse: (interactivityData: IInteractivityData, selector: string, div: DivEvent) => void = (
-    interactivityData,
-    selector,
-    div,
-  ) => {
+  #singleSelectorRepulse(interactivityData: IInteractivityData, selector: string, div: DivEvent): void {
     const container = this.container,
       repulse = container.actualOptions.interactivity?.modes.repulse;
 
@@ -421,7 +408,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
       this.#processRepulse(interactivityData, pos, repulseRadius, area, divRepulse);
     });
-  };
+  }
 
   #trackInteractedParticle(particle: InteractivityParticle): void {
     this.#interactedThisFrame.add(particle);

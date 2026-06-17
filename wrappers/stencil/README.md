@@ -66,6 +66,19 @@ You can also load options from URL:
 - `options`: inline particles options (`ISourceOptions`)
 - `url`: path/url to a JSON options file
 - `init`: async callback used to register plugins on the same engine instance used by the component
+- `theme`: theme name to apply (requires `@tsparticles/plugin-themes` to be loaded in `init`; without the plugin, the prop is a safe no-op)
+
+## Events
+
+- `particlesLoaded`: emitted when the particles container has been successfully initialized
+
+### Reactive behavior
+
+The component reloads particles when `container-id`, `options`, or `url` props change. Changes to `theme` apply the theme via `loadTheme` without a full reload.
+
+### Cleanup
+
+When the component is removed from the DOM, the particles container is automatically destroyed, stopping all animations and freeing resources.
 
 ## Monorepo references
 

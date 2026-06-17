@@ -154,6 +154,26 @@ const group = __("Presets"),
 			},
 		},
 		{
+			name: "preset-meteors",
+			description: __("Meteors"),
+			group,
+			load: async engine => {
+				const { loadMeteorsPreset } = await import("@tsparticles/preset-meteors");
+
+				await loadMeteorsPreset(engine);
+			},
+		},
+		{
+			name: "preset-party",
+			description: __("Party"),
+			group,
+			load: async engine => {
+				const { loadPartyPreset } = await import("@tsparticles/preset-party");
+
+				await loadPartyPreset(engine);
+			},
+		},
+		{
 			name: "preset-sea-anemone",
 			description: `${__("Sea")} ${__("Anemone")}`,
 			group,

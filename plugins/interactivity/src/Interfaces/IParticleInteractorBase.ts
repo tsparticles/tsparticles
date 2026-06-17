@@ -1,7 +1,15 @@
-import type { IDelta, Particle, RecursivePartial } from "@tsparticles/engine";
-import type { IInteractivityParticlesOptions, InteractivityParticlesOptions } from "../types.js";
+import type { IDelta, IParticlesOptions, Particle, ParticlesOptions, RecursivePartial } from "@tsparticles/engine";
+import type { IInteractivity } from "../Options/Interfaces/IInteractivity.js";
 import type { IInteractivityData } from "./IInteractivityData.js";
 import type { IInteractor } from "./IInteractor.js";
+
+type IInteractivityParticlesOptions = IParticlesOptions & {
+  interactivity?: RecursivePartial<IInteractivity>;
+};
+
+type InteractivityParticlesOptions = RecursivePartial<ParticlesOptions> & {
+  interactivity?: RecursivePartial<IInteractivity>;
+};
 
 /** Particle interactor base interface */
 export interface IParticleInteractorBase<TParticle extends Particle = Particle> extends IInteractor {

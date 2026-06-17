@@ -609,11 +609,12 @@ export class AppComponent implements OnInit {
 
 ### `ngx-particles` 入力
 
-| 入力      | タイプ           | デフォルト      | 説明                   |
-| --------- | ---------------- | --------------- | ---------------------- |
-| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID      |
-| `options` | `ISourceOptions` | `{}`            | パーティクル設定       |
-| `url`     | `string`         | —               | リモート JSON 設定 URL |
+| 入力      | タイプ           | デフォルト      | 説明                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID                                                         |
+| `options` | `ISourceOptions` | `{}`            | パーティクル設定                                                          |
+| `url`     | `string`         | —               | リモート JSON 設定 URL                                                    |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### `ngx-particles` 出力
 
@@ -622,6 +623,15 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | コンテナが初期化されたときに発行されます |
 
 ---
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## トラブルシューティング
 

@@ -2,6 +2,19 @@
 
 tsParticles è una libreria JavaScript/TypeScript per creare animazioni di particelle, coriandoli, fuochi d'artificio e molto altro. Funziona in qualsiasi browser moderno ed è disponibile sia come pacchetto npm sia via CDN con tag `<script>`.
 
+## Quick start
+
+Il modo più veloce per iniziare è usare la nostra CLI:
+
+```bash
+npm create tsparticles@latest
+```
+
+Segui i prompt interattivi per scegliere un template e un framework.
+Un nuovo progetto con tsParticles preconfigurato verrà creato nella directory corrente.
+
+---
+
 ## Architettura: engine + bundle
 
 `@tsparticles/engine` da solo **non fa nulla di visibile**. Contiene solo il motore interno (loop di animazione, canvas, gestione eventi) ma **nessuna forma, nessuna interazione, nessun effetto visivo**. Per vedere qualcosa devi caricare almeno un **bundle** o dei **plugin individuali**.

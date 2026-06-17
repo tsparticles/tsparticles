@@ -1,9 +1,8 @@
-import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
+import { isArray, isString } from "../../Utils/TypeUtils.js";
 import { HslAnimation } from "./HslAnimation.js";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor.js";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";
 import type { IHslAnimation } from "../Interfaces/IHslAnimation.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import { OptionsColor } from "./OptionsColor.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -11,14 +10,8 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 /**
  * [[include:Options/Particles/Color.md]]
  */
-export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
-  animation;
-
-  constructor() {
-    super();
-
-    this.animation = new HslAnimation();
-  }
+export class AnimatableColor extends OptionsColor implements IAnimatableColor {
+  readonly animation = new HslAnimation();
 
   /**
    * Creates an animatable color from optional source and input data.
@@ -45,12 +38,8 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
     return color;
   }
 
-  override load(data?: RecursivePartial<IAnimatableColor>): void {
-    super.load(data);
-
-    if (isNull(data)) {
-      return;
-    }
+  protected override doLoad(data: RecursivePartial<IAnimatableColor>): void {
+    super.doLoad(data);
 
     const colorAnimation = data.animation as RecursivePartial<IColorAnimation | undefined>;
 

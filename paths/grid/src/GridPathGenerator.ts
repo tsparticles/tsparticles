@@ -34,7 +34,7 @@ export class GridPathGenerator implements IMovePathGenerator {
 
   /**
    * GridPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -50,7 +50,8 @@ export class GridPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector along the grid
-   * @param p
+   * @param p - The particle
+   * @returns The result
    */
   generate(p: GridPathParticle): Vector {
     const size = this.options.cellSize;
@@ -122,7 +123,7 @@ export class GridPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle grid state
-   * @param p
+   * @param p - The particle
    */
   reset(p: GridPathParticle): void {
     delete p.grid;

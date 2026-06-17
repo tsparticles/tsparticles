@@ -7,7 +7,7 @@ import { options } from "./options.js";
 const presetName = "links";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadLinksPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

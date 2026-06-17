@@ -8,7 +8,7 @@ import { options } from "./options.js";
 const presetName = "meteors";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadMeteorsPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

@@ -236,13 +236,7 @@ const options: ISourceOptions = {
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-      @particles-init="onInit"
-      @particles-destroy="onDestroy"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -258,25 +252,15 @@ const options = {
   },
 };
 
-const onInit = (engine: Engine) => {
-  console.log("引擎已初始化", engine);
-};
-
-const onLoaded = (container: Container) => {
-  console.log("容器已加载", container.id);
-};
-
-const onDestroy = () => {
-  console.log("容器已销毁");
+const onLoaded = (container?: Container) => {
+  console.log("容器已加载", container?.id);
 };
 </script>
 ```
 
-| 事件                 | 负载类型    | 描述                             |
-| -------------------- | ----------- | -------------------------------- |
-| `@particles-init`    | `Engine`    | tsParticles 引擎初始化时触发一次 |
-| `@particles-loaded`  | `Container` | 容器完成加载或重新加载时触发     |
-| `@particles-destroy` | 无          | 容器销毁时触发                   |
+| 事件                | 负载类型                 | 描述                         |
+| ------------------- | ------------------------ | ---------------------------- |
+| `@particles-loaded` | `Container \| undefined` | 容器完成加载或重新加载时触发 |
 
 ## 完整 TypeScript 示例
 
@@ -286,12 +270,7 @@ const onDestroy = () => {
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-        @particles-init="onParticlesInit"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "恢复" : "暂停" }}</button>
@@ -327,11 +306,7 @@ const options: ISourceOptions = {
   },
 };
 
-const onParticlesInit = async (engine: Engine) => {
-  await loadFull(engine);
-};
-
-const onParticlesLoaded = (container: Container) => {
+const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
 };
 
@@ -455,6 +430,15 @@ await loadStarsPreset(tsParticles);
 | 预设无效果            | 组件挂载前未加载预设           | 在 `<script setup>` 中使用顶级 await 调用 `loadXPreset()` |
 | 画布未填满视口        | 未启用 `fullScreen`            | 在选项中添加 `fullScreen: { zIndex: -1 }`                 |
 | 控制按钮无法暂停/恢复 | 未设置容器引用                 | 在 `@particles-loaded` 处理程序中分配容器                 |
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## 下一步
 

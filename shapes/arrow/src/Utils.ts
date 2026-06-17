@@ -6,7 +6,7 @@ const defaultHeightFactor = half,
   defaultBodyHeightFactor = half;
 
 /**
- * @param data -
+ * @param data - The data to handle
  */
 export function drawArrow(data: IShapeDrawData<ArrowParticle>): void {
   const { context, particle, radius } = data,

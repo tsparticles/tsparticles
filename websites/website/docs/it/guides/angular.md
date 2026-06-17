@@ -609,11 +609,12 @@ export class AppComponent implements OnInit {
 
 ### Input di `ngx-particles`
 
-| Input     | Tipo             | Default         | Descrizione               |
-| --------- | ---------------- | --------------- | ------------------------- |
-| `id`      | `string`         | `"tsparticles"` | ID dell'elemento canvas   |
-| `options` | `ISourceOptions` | `{}`            | Configurazione particelle |
-| `url`     | `string`         | —               | URL config JSON remota    |
+| Input     | Tipo             | Default         | Descrizione                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID dell'elemento canvas                                                   |
+| `options` | `ISourceOptions` | `{}`            | Configurazione particelle                                                 |
+| `url`     | `string`         | —               | URL config JSON remota                                                    |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ### Output di `ngx-particles`
 
@@ -622,6 +623,15 @@ export class AppComponent implements OnInit {
 | `particlesLoaded` | `Container` | Emesso quando il container è inizializzato |
 
 ---
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Risoluzione dei Problemi
 

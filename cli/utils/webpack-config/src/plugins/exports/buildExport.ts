@@ -12,7 +12,7 @@ interface ExportParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPluginExport(params: ExportParams): unknown {

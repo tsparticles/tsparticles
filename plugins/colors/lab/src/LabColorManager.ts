@@ -19,7 +19,8 @@ const labRegex = /lab\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/
 export class LabColorManager implements IColorManager {
   /**
    * Checks if the input starts with lab
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return input.startsWith("lab");
@@ -27,7 +28,8 @@ export class LabColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     const colorValue = color.value as IValueColor,
@@ -42,7 +44,8 @@ export class LabColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     const colorValue = color.value as IRangeValueColor,
@@ -61,7 +64,8 @@ export class LabColorManager implements IColorManager {
 
   /**
    * Parses a LAB color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     if (!this.accepts(input)) {

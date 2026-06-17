@@ -1,10 +1,10 @@
 import { clamp } from "@tsparticles/engine";
 
 /**
- * @param particleValue -
- * @param modeValue -
- * @param optionsValue -
- * @param ratio -
+ * @param particleValue - The particleValue
+ * @param modeValue - The modeValue
+ * @param optionsValue - The optionsValue
+ * @param ratio - The ratio
  * @returns the calculated value
  */
 export function calculateBubbleValue(

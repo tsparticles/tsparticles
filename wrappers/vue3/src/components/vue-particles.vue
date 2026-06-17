@@ -7,13 +7,11 @@ import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/e
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useParticlesProvider } from "./particles-provider";
 
-export type IParticlesProps = ISourceOptions;
-
 let container: Container | undefined;
 
 const props = defineProps<{
     id: string;
-    options?: IParticlesProps;
+    options?: ISourceOptions;
     url?: string;
     theme?: string;
   }>(),
@@ -30,6 +28,10 @@ const props = defineProps<{
       url: props.url,
       options: props.options,
     });
+
+    if (container && props.theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
+    }
 
     emit("particlesLoaded", container);
   };
@@ -68,5 +70,41 @@ watch(
     }
   },
   { immediate: true },
+);
+
+watch(
+  () => props.id,
+  () => {
+    if (provider.loaded && isMounted.value) {
+      void loadParticles();
+    }
+  },
+);
+
+watch(
+  () => props.options,
+  () => {
+    if (provider.loaded && isMounted.value) {
+      void loadParticles();
+    }
+  },
+  { deep: true },
+);
+
+watch(
+  () => props.url,
+  () => {
+    if (provider.loaded && isMounted.value) {
+      void loadParticles();
+    }
+  },
+);
+
+watch(
+  () => props.theme,
+  newTheme => {
+    if (!container) return;
+    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+  },
 );
 </script>

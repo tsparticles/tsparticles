@@ -123,27 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-## 在组件中使用 `particlesInit`
-
-如果你不希望使用全局插件，直接传递 `init` 回调：
-
-```vue
-<script setup lang="ts">
-import type { Engine } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-</script>
-
-<template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" />
-</template>
-```
-
----
-
 ## 事件
 
 组件会触发多个生命周期事件：
@@ -155,15 +134,10 @@ import type { Container } from "@tsparticles/engine";
 const particlesLoaded = async (container: Container): Promise<void> => {
   console.log("粒子容器已加载", container);
 };
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  console.log("引擎已初始化");
-  await loadFull(engine);
-};
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -177,14 +151,9 @@ const particlesInit = async (engine: Engine): Promise<void> => {
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadConfettiPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "confetti",
@@ -195,30 +164,17 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="confetti" :options="options" :init="particlesInit" />
+  <vue-particles id="confetti" :options="options" />
 </template>
-```
 
-对于一次性爆发效果，可加载预设后在方法内部以编程方式调用 `tsParticles.load()`。
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadConfettiPreset`（参见[基本使用](#基本使用)）。
+对于一次性爆发效果，可加载预设后在方法内部以编程方式调用 `tsParticles.load()`。 --- ## 烟花效果
+烟花预设可创建高冲击力的粒子爆炸效果： ```bash npm install @tsparticles/preset-fireworks
+````
 
----
-
-## 烟花效果
-
-烟花预设可创建高冲击力的粒子爆炸效果：
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFireworksPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "fireworks",
@@ -229,30 +185,17 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="fireworks" :options="options" :init="particlesInit" />
+  <vue-particles id="fireworks" :options="options" />
 </template>
-```
 
-> **提示：** 烟花预设消耗资源较多。通过切换绑定到组件的 `v-if`，在用户交互（如按钮点击）时触发。
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadFireworksPreset`（参见[基本使用](#基本使用)）。 > **提示：**
+烟花预设消耗资源较多。通过切换绑定到组件的 `v-if`，在用户交互（如按钮点击）时触发。 --- ## 下雪效果
+使用雪花预设模拟下雪： ```bash npm install @tsparticles/preset-snow
+````
 
----
-
-## 下雪效果
-
-使用雪花预设模拟下雪：
-
-```bash
-npm install @tsparticles/preset-snow
-```
-
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSnowPreset } from "@tsparticles/preset-snow";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadSnowPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "snow",
@@ -263,17 +206,11 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="snow" :options="options" :init="particlesInit" />
+  <vue-particles id="snow" :options="options" />
 </template>
-```
 
----
-
-## 交互式粒子
-
-添加悬停和点击交互模式：
-
-```vue
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadSnowPreset`（参见[基本使用](#基本使用)）。 --- ## 交互式粒子
+添加悬停和点击交互模式： ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -338,7 +275,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 可用的交互模式：`grab`、`repulse`、`bubble`、`connect`、`push`、`remove`、`trail`、`attract`、`light`。
 
@@ -408,7 +345,15 @@ const toggleTheme = () => {
 </template>
 ```
 
-或者，使用内置的 [themes](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html#themes) 选项和容器上的 `theme` 属性进行零配置切换。
+`<vue-particles>` 组件还支持用于零配置切换的 `theme` 属性。当 `theme` 属性更改时，组件会应用新主题，而无需销毁和重新创建容器：
+
+```vue
+<template>
+  <vue-particles id="tsparticles" :options="options" :theme="currentTheme" />
+</template>
+```
+
+> **注意：** `theme` 属性需要可选的 [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) 包。如果没有它，`theme` 属性是安全的无操作——不会抛出错误，但主题更改会被忽略。
 
 ---
 
@@ -420,15 +365,10 @@ const toggleTheme = () => {
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadLinksPreset } from "@tsparticles/preset-links";
+import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadLinksPreset(engine);
-};
 
 const options: ISourceOptions = {
   ...particlesConfig,
@@ -439,60 +379,29 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="config-particles" :options="options" :init="particlesInit" />
+  <vue-particles id="config-particles" :options="options" />
 </template>
-```
 
-浏览 `@tsparticles/configs` 包中的可用配置，获取即用型布局。
-
----
-
-## 引擎初始化方式
-
-有两种初始化引擎的方式：
-
-### 1. 全局插件（推荐）
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **注意：** 在应用入口中通过插件的 `init` 回调注册 `loadLinksPreset`（参见[基本使用](#基本使用)）。 浏览
+`@tsparticles/configs` 包中的可用配置，获取即用型布局。 --- ## 引擎初始化方式 有两种初始化引擎的方式： ### 1.
+全局插件（推荐） ```typescript // main.ts import { createApp } from "vue"; import App from "./App.vue"; import type {
+Engine } from "@tsparticles/engine"; import { ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from
+"tsparticles"; createApp(App) .use(ParticlesPlugin, { init: async (engine: Engine) => { await loadFull(engine); }, })
+.mount("#app");
+````
 
 引擎随后全局可用，所有 `<vue-particles>` 实例共享它。
 
-### 2. 组件级别初始化
-
-为每个 `<vue-particles>` 实例传递一个 `:init` 回调。当不同组件需要不同的插件集时很有用：
-
-```vue
-<template>
-  <vue-particles id="a" :options="optionsA" :init="initA" />
-  <vue-particles id="b" :options="optionsB" :init="initB" />
-</template>
-```
-
-### 3. Particles Provider（组合式 API）
+### 2. Particles Provider（组合式 API）
 
 使用 provider 以编程方式访问引擎：
 
 ```vue
 <script setup lang="ts">
-import { useParticles } from "@tsparticles/vue3";
+import { useParticlesProvider } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 
-const { init } = useParticles();
+const { init } = useParticlesProvider();
 
 await init(async (engine: Engine) => {
   await loadFull(engine);
@@ -509,8 +418,7 @@ await init(async (engine: Engine) => {
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 const particlesContainer = ref<Container | null>(null);
 
@@ -581,10 +489,6 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-
 const particlesLoaded = async (container: Container): Promise<void> => {
   particlesContainer.value = container;
   console.log("容器就绪", container);
@@ -592,7 +496,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -600,17 +504,16 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API 参考
 
-| 属性      | 类型                                | 默认值          | 描述                   |
-| --------- | ----------------------------------- | --------------- | ---------------------- |
-| `id`      | `string`                            | `"tsparticles"` | 画布元素 ID            |
-| `options` | `ISourceOptions`                    | `{}`            | 粒子配置               |
-| `init`    | `(engine: Engine) => Promise<void>` | —               | 引擎初始化回调         |
-| `url`     | `string`                            | —               | 要加载 JSON 配置的 URL |
+| 属性      | 类型             | 默认值          | 描述                                                            |
+| --------- | ---------------- | --------------- | --------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | 画布元素 ID                                                     |
+| `options` | `ISourceOptions` | `{}`            | 粒子配置                                                        |
+| `url`     | `string`         | —               | 要加载 JSON 配置的 URL                                          |
+| `theme`   | `string`         | —               | 主题名称（需要 `@tsparticles/plugin-themes`；缺少时安全无操作） |
 
 | 事件                | 负载类型    | 描述                 |
 | ------------------- | ----------- | -------------------- |
 | `@particles-loaded` | `Container` | 容器完全初始化时触发 |
-| `@particles-init`   | `Engine`    | 引擎初始化后触发     |
 
 ---
 

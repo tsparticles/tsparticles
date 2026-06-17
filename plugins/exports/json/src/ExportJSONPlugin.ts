@@ -15,7 +15,10 @@ export class ExportJSONPlugin implements IPlugin {
     // do nothing
   }
 
-  /** Checks if the plugin is needed */
+  /**
+   * Checks if the plugin is needed
+   * @returns The boolean value
+   */
   needsPlugin(): boolean {
     return true;
   }

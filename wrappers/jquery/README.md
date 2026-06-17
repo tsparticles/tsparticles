@@ -8,7 +8,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 
 [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Installation
 
@@ -100,6 +100,14 @@ $("#tsparticles")
   .then(container => {
     // container ready
   });
+
+// Change the active theme at runtime (requires @tsparticles/plugin-themes)
+$("#tsparticles")
+  .particles()
+  .setTheme("dark")
+  .then(() => {
+    // theme applied
+  });
 ```
 
 Notes
@@ -110,6 +118,17 @@ Notes
 - Use the jQuery plugin methods `.load(options)` and `.ajax(url)` to mount
   containers on selected elements. These methods return a Promise that
   resolves with the Container instance.
+- Use `.setTheme(name)` to switch the active theme at runtime. This method
+  requires the `@tsparticles/plugin-themes` package to be registered. If the
+  theme plugin is not loaded, the call is safely ignored.
+- Calling `.load(options)` or `.ajax(url)` again on the same element replaces
+  the previous container — the old one is destroyed automatically.
+- Each method returns a Promise that resolves with the `Container` instance
+  (or `undefined` if initialization failed).
+- Containers are tracked per element via `WeakMap`. When the DOM element is
+  removed, the associated container is not automatically destroyed — call
+  `.load({})` with an empty config or destroy the container manually via the
+  returned Promise.
 
 ## Demos
 

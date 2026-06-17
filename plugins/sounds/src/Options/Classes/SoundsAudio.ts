@@ -1,14 +1,9 @@
-import { type IOptionLoader, type RecursivePartial, isNull, isObject } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, isObject, loadProperty } from "@tsparticles/engine";
 import type { ISoundsAudio } from "../Interfaces/ISoundsAudio.js";
 
 export class SoundsAudio implements ISoundsAudio, IOptionLoader<ISoundsAudio> {
-  loop: boolean;
-  source: string;
-
-  constructor() {
-    this.loop = false;
-    this.source = "";
-  }
+  loop = false;
+  source = "";
 
   load(data?: RecursivePartial<ISoundsAudio | string>): void {
     if (isNull(data)) {
@@ -16,9 +11,7 @@ export class SoundsAudio implements ISoundsAudio, IOptionLoader<ISoundsAudio> {
     }
 
     if (isObject(data)) {
-      if (data.loop !== undefined) {
-        this.loop = data.loop;
-      }
+      loadProperty(this, "loop", data.loop);
 
       if (data.source !== undefined) {
         this.source = data.source;

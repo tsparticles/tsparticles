@@ -25,8 +25,8 @@ const energyCorrectionMinRatio = 1e-6,
   };
 
 /**
- * @param p1 -
- * @param p2 -
+ * @param p1 - The first point
+ * @param p2 - The second point
  */
 export function bounce(p1: BounceParticle, p2: BounceParticle): void {
   const m1 = p1.getMass(),

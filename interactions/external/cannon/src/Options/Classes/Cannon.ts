@@ -1,79 +1,37 @@
+import { type RecursivePartial, loadProperty } from "@tsparticles/engine";
 import type { ICannon } from "../Interfaces/ICannon.js";
-import type { RecursivePartial } from "@tsparticles/engine";
 
 /** Cannon mode options class */
 export class Cannon implements ICannon {
   /** Whether to draw the aiming vector */
-  drawVector;
-
+  drawVector = true;
   /** Maximum drag distance in pixels */
-  maxDragDistance;
-
+  maxDragDistance = 0;
   /** Maximum number of particles to spawn */
-  maxParticles;
-
+  maxParticles = 200;
   /** Minimum number of particles to spawn */
-  minParticles;
-
+  minParticles = 5;
   /** Particles per pixel of drag distance */
-  particleFactor;
-
+  particleFactor = 0.2;
   /** Spread angle in degrees */
-  spread;
-
+  spread = 30;
   /** CSS color for the aiming vector line */
-  vectorColor;
-
+  vectorColor = "#ffffff80";
   /** Velocity multiplier from drag distance */
-  velocityFactor;
+  velocityFactor = 0.5;
 
-  constructor() {
-    this.spread = 30;
-    this.velocityFactor = 0.5;
-    this.particleFactor = 0.2;
-    this.maxDragDistance = 0;
-    this.minParticles = 5;
-    this.maxParticles = 200;
-    this.drawVector = true;
-    this.vectorColor = "#ffffff80";
-  }
-
-  /** @inheritDoc */
   load(data?: RecursivePartial<ICannon>): void {
     if (!data) {
       return;
     }
 
-    if (data.spread !== undefined) {
-      this.spread = data.spread;
-    }
-
-    if (data.velocityFactor !== undefined) {
-      this.velocityFactor = data.velocityFactor;
-    }
-
-    if (data.particleFactor !== undefined) {
-      this.particleFactor = data.particleFactor;
-    }
-
-    if (data.minParticles !== undefined) {
-      this.minParticles = data.minParticles;
-    }
-
-    if (data.maxParticles !== undefined) {
-      this.maxParticles = data.maxParticles;
-    }
-
-    if (data.maxDragDistance !== undefined) {
-      this.maxDragDistance = data.maxDragDistance;
-    }
-
-    if (data.drawVector !== undefined) {
-      this.drawVector = data.drawVector;
-    }
-
-    if (data.vectorColor !== undefined) {
-      this.vectorColor = data.vectorColor;
-    }
+    loadProperty(this, "spread", data.spread);
+    loadProperty(this, "velocityFactor", data.velocityFactor);
+    loadProperty(this, "particleFactor", data.particleFactor);
+    loadProperty(this, "minParticles", data.minParticles);
+    loadProperty(this, "maxParticles", data.maxParticles);
+    loadProperty(this, "maxDragDistance", data.maxDragDistance);
+    loadProperty(this, "drawVector", data.drawVector);
+    loadProperty(this, "vectorColor", data.vectorColor);
   }
 }

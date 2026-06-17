@@ -53,9 +53,9 @@ function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth
 }
 
 /**
- * @param pluginManager -
- * @param container -
- * @param sourceOptionsArr -
+ * @param pluginManager - The plugin manager
+ * @param container - The container to handle
+ * @param sourceOptionsArr - The sourceOptionsArr
  * @returns the options loaded
  */
 function loadContainerOptions(
@@ -174,7 +174,7 @@ export class Container {
 
   /**
    * This is the core class, create an instance to have a new working particles manager
-   * @param params -
+   * @param params - The parameters
    */
   constructor(params: ContainerParams) {
     const { dispatchCallback, pluginManager, id, onDestroy, sourceOptions } = params;
@@ -243,7 +243,7 @@ export class Container {
 
   /**
    * Adds to the container lifetime
-   * @param value -
+   * @param value - The value
    */
   addLifeTime(value: number): void {
     this.#lifeTime += value;
@@ -299,8 +299,8 @@ export class Container {
 
   /**
    * Dispatches an event from the container
-   * @param type -
-   * @param data -
+   * @param type - The type
+   * @param data - The data to handle
    */
   dispatchEvent(type: string, data?: unknown): void {
     this.#dispatchCallback(type, {
@@ -311,7 +311,7 @@ export class Container {
 
   /**
    * Draws a frame
-   * @param force -
+   * @param force - The force
    */
   draw(force: boolean): void {
     if (!guardCheck(this)) {
@@ -333,8 +333,8 @@ export class Container {
 
   /**
    * Exports the container canvas to the specified format
-   * @param type -
-   * @param options -
+   * @param type - The type
+   * @param options - The options to handle
    * @returns the promise for the export data
    */
   async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -483,7 +483,7 @@ export class Container {
 
   /**
    * Starts animations and resume from pause
-   * @param force -
+   * @param force - The force
    */
   play(force?: boolean): void {
     if (!guardCheck(this)) {
@@ -532,7 +532,7 @@ export class Container {
 
   /**
    * Resets the container with new options
-   * @param sourceOptions -
+   * @param sourceOptions - The sourceOptions
    * @returns the promise for the reset
    */
   async reset(sourceOptions?: ISourceOptions): Promise<void> {
@@ -629,7 +629,7 @@ export class Container {
     return refresh;
   }
 
-  readonly #nextFrame = (timestamp: DOMHighResTimeStamp): void => {
+  #nextFrame(timestamp: DOMHighResTimeStamp): void {
     try {
       if (
         !this.#smooth &&
@@ -668,5 +668,5 @@ export class Container {
     } catch (e) {
       getLogger().error("error in animation loop", e);
     }
-  };
+  }
 }

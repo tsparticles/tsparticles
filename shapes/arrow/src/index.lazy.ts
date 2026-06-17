@@ -3,7 +3,7 @@ import { type Engine } from "@tsparticles/engine/lazy";
 declare const __VERSION__: string;
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadArrowShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

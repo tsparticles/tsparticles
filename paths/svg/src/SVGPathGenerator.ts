@@ -81,7 +81,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
   /**
    * SVGPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -96,8 +96,9 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next position along the SVG path
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
+   * @returns The result
    */
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
     const container = this.#container,

@@ -5,7 +5,7 @@ declare const __VERSION__: string;
 
 /**
  * Loads the JSON export plugin for tsParticles
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadExportJSONPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

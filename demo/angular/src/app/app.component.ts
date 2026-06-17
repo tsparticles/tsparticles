@@ -24,6 +24,8 @@ export class AppComponent {
     origin: { y: 0.6 },
   };
   fireworksOptions = {};
+  configIndex = 0;
+  configList: ISourceOptions[] = [configs.basic, configs.bubble, configs.snow];
 
   toggleParticlesClick(): void {
     console.log("particles clicked");
@@ -41,7 +43,11 @@ export class AppComponent {
     console.log("confetti clicked");
 
     this.fire = Math.random() + 1;
-    //this.confettiVisible = !this.confettiVisible;
+  }
+
+  switchConfig(): void {
+    this.configIndex = (this.configIndex + 1) % this.configList.length;
+    this.particlesOptions = this.configList[this.configIndex];
   }
 
   constructor(private ngParticlesService: NgParticlesService) {}
@@ -54,7 +60,7 @@ export class AppComponent {
     });
   }
 
-  public particlesLoaded(container: Container): void {
+  public particlesLoaded(container?: Container): void {
     console.log("loaded", container);
   }
 }

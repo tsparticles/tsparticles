@@ -1,0 +1,20 @@
+{
+  "name": "{{projectName}}",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "preview": "nuxt start"
+  },
+  "dependencies": {
+    "nuxt": "^2.18.1",
+    "vue": "^2.7.16",
+    "vue-template-compiler": "^2.7.16",
+    "@tsparticles/engine": "^4.0.0",
+    "@tsparticles/particles": "^4.0.0",
+    "@tsparticles/configs": "^4.0.0",
+    "@tsparticles/vue2": "^4.1.3"
+  }
+}

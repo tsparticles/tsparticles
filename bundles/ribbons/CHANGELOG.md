@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed some eslint configs and circular deps ([93d7b8b](https://github.com/tsparticles/tsparticles/commit/93d7b8b766e2d13a4e2c8c18c6ac66f5b460e71b))
+- various fixes after deeper review ([b54b5db](https://github.com/tsparticles/tsparticles/commit/b54b5dbc8acc42c15f81f8c8d02c29d2867517ac))
+- various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
+
+### Features
+
+- added positionX option to ribbons bundle, deprecating position object ([7f01bf2](https://github.com/tsparticles/tsparticles/commit/7f01bf2852d0d4c08af803216d5b8d905603a701))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 ### Bug Fixes

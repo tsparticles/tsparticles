@@ -5,7 +5,7 @@ import { drawInfinity } from "./Utils.js";
 export class InfinityDrawer implements IShapeDrawer {
   /**
    * Draws the infinity shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData): void {
     drawInfinity(data);

@@ -29,14 +29,19 @@ Nuxt renders components on the server by default. Since tsParticles needs the br
 <template>
   <div class="page">
     <client-only>
-      <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
+      <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
     </client-only>
     <h1>My Nuxt App</h1>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ISourceOptions, Container } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
+};
 
 const options: ISourceOptions = {
   fullScreen: {
@@ -236,18 +241,12 @@ The `<vue-particles>` component emits several lifecycle events:
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-      @particles-init="onInit"
-      @particles-destroy="onDestroy"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
 <script setup lang="ts">
-import type { Container, Engine } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 
 const options = {
   fullScreen: { zIndex: -1 },
@@ -258,25 +257,15 @@ const options = {
   },
 };
 
-const onInit = (engine: Engine) => {
-  console.log("Engine initialized", engine);
-};
-
-const onLoaded = (container: Container) => {
-  console.log("Container loaded", container.id);
-};
-
-const onDestroy = () => {
-  console.log("Container destroyed");
+const onLoaded = (container?: Container) => {
+  console.log("Container loaded", container?.id);
 };
 </script>
 ```
 
-| Event                | Payload     | Description                                                  |
-| -------------------- | ----------- | ------------------------------------------------------------ |
-| `@particles-init`    | `Engine`    | Fires once when the tsParticles engine initializes           |
-| `@particles-loaded`  | `Container` | Fires every time the container finishes loading or reloading |
-| `@particles-destroy` | none        | Fires when the container is destroyed                        |
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
 
 ## Full TypeScript Example
 
@@ -286,12 +275,7 @@ A complete, typed component with explicit imports and lifecycle awareness:
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-        @particles-init="onParticlesInit"
-      />
+      <vue-particles id="full-example" :init="particlesInit" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Resume" : "Pause" }}</button>
@@ -301,8 +285,12 @@ A complete, typed component with explicit imports and lifecycle awareness:
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { loadFull } from "tsparticles";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
+};
 
 const containerRef = ref<Container | undefined>(undefined);
 const paused = ref(false);
@@ -327,11 +315,7 @@ const options: ISourceOptions = {
   },
 };
 
-const onParticlesInit = async (engine: Engine) => {
-  await loadFull(engine);
-};
-
-const onParticlesLoaded = (container: Container) => {
+const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
 };
 
@@ -447,6 +431,29 @@ await loadStarsPreset(tsParticles);
 </script>
 ```
 
+## Reactive Behavior
+
+The `<vue-particles>` component reacts to prop changes at runtime:
+
+- **`:options`**, **`:url`**, or **`id`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** attribute change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Component API
+
+| Prop       | Type                        | Description                                                               |
+| ---------- | --------------------------- | ------------------------------------------------------------------------- |
+| `id`       | `string`                    | Canvas element id. Change triggers destroy+reload.                        |
+| `:options` | `ISourceOptions`            | Particle configuration object. Change triggers destroy+reload.            |
+| `:url`     | `string`                    | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`    | `string`                    | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| `:init`    | `(Engine) => Promise<void>` | Async callback to load engine plugins during initialization.              |
+
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
+
 ## Troubleshooting
 
 | Symptom                           | Cause                                    | Fix                                                           |
@@ -455,6 +462,7 @@ await loadStarsPreset(tsParticles);
 | Preset has no effect              | Preset not loaded before component mount | Call `loadXPreset()` with top-level await in `<script setup>` |
 | Canvas does not fill the viewport | `fullScreen` not enabled                 | Add `fullScreen: { zIndex: -1 }` to the options               |
 | Controls do not pause/resume      | Container ref not set                    | Assign the container in the `@particles-loaded` handler       |
+| Theme change ignored              | `@tsparticles/plugin-themes` not loaded  | Install plugin and load it during engine initialization       |
 
 ## Next Steps
 

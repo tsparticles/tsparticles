@@ -23,9 +23,9 @@ interface ConfigParams {
 
 /**
  *
- * @param params -
- * @param min -
- * @param lazy -
+ * @param params - The parameters
+ * @param min - The minimum value
+ * @param lazy - The lazy
  * @returns the webpack configuration
  */
 function getSingleConfig(params: ConfigParams, min: boolean, lazy: boolean): unknown {

@@ -58,7 +58,7 @@ yarn workspace @org/app add @org/ui
 Result in `package.json`:
 
 ```json
-{ "dependencies": { "@org/ui": "workspace:^" } }
+{ "dependencies": { "@org/ui": "workspace:*" } }
 ```
 
 ---

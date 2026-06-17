@@ -52,14 +52,29 @@ export default class ApplicationController extends Controller {
 ```
 
 ```hbs
-<Particles @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
+<Particles @options={{this.options}} @theme={{this.theme}} @particlesLoaded={{this.loadedCallback}} />
 ```
 
 The component accepts these named args:
 
-- `@options`: particles options object
-- `@url`: remote JSON config URL
-- `@particlesLoaded`: callback invoked with the loaded container
+| Arg                | Type                                       | Description                                                                                                 |
+|--------------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `@options`         | `Options`                                  | Particles options object                                                                                    |
+| `@url`             | `string`                                   | Remote JSON config URL                                                                                      |
+| `@particlesLoaded` | `(container?: Container) => void`          | Callback invoked when the container is loaded, receives `Container \| undefined`                            |
+| `@theme`           | `string` (optional)                        | Theme name to apply. Requires `@tsparticles/plugin-themes` to be loaded. Without the plugin, this is a safe no-op. |
+
+### Reactive behavior
+
+The modifier reloads particles when `@options` or `@url` changes. Changes to `@theme` apply the theme via `loadTheme` without a full reload.
+
+### Theme support
+
+The `@theme` prop requires the optional `@tsparticles/plugin-themes` package to be registered with the engine. Without it, setting `@theme` is a safe no-op (no crash, no error).
+
+### Cleanup
+
+When the element is removed from the DOM (or the modifier is torn down), the particles container is automatically destroyed, stopping all animations and freeing resources. The destructor is registered once and runs exactly once to avoid memory leaks.
 
 ### Template import syntax (`.gjs`)
 

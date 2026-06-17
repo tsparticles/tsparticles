@@ -11,21 +11,24 @@ const sides = 12,
 export class CircleDrawer implements IShapeDrawer<CircleParticle> {
   /**
    * Draws the circle shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<CircleParticle>): void {
     drawCircle(data);
   }
 
-  /** Gets the number of sides for this shape */
+  /**
+   * Gets the number of sides for this shape
+   * @returns The numeric value
+   */
   getSidesCount(): number {
     return sides;
   }
 
   /**
    * Initializes circle-specific particle properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: CircleParticle): void {
     const shapeData = particle.shapeData as ICircleShapeData | undefined,

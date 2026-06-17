@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed hdr setup, and improved it too ([e2720fc](https://github.com/tsparticles/tsparticles/commit/e2720fcd20842aaaafd9849ae9ee8e9413409577))
+- fixed some circular deps ([88b7b76](https://github.com/tsparticles/tsparticles/commit/88b7b76e6d23393922f1c90893e689ac4b1ebcd3))
+- fixed some eslint configs and circular deps ([93d7b8b](https://github.com/tsparticles/tsparticles/commit/93d7b8b766e2d13a4e2c8c18c6ac66f5b460e71b))
+- various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 ### Bug Fixes

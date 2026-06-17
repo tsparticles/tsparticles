@@ -278,3 +278,11 @@ export default function App() {
 ```
 
 The `particlesLoaded` callback receives the `Container` instance, which you can use to call methods like `refresh()`, `pause()`, `play()`, or `destroy()`.
+
+## Reactive Behavior
+
+The `<Particles>` component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
+
+## Cleanup
+
+On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.

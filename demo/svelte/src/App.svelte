@@ -1,11 +1,11 @@
 <script lang="ts">
     import configs from "@tsparticles/configs";
     import type { Container, Engine } from "@tsparticles/engine";
-    import Particles, { particlesInit } from "@tsparticles/svelte";
+    import Particles, { initParticlesEngine } from "@tsparticles/svelte";
     import { loadFull } from "tsparticles";
     import type { EventHandler } from "svelte/elements";
 
-    void particlesInit(async (engine: Engine) => {
+    void initParticlesEngine(async (engine: Engine) => {
         await loadFull(engine);
     });
 

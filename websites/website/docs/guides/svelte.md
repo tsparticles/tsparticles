@@ -328,10 +328,10 @@ Add mouse hover and click interactivity:
 />
 ```
 
-| Event                | Detail      | Fires                              |
-| -------------------- | ----------- | ---------------------------------- |
-| `on:init`            | `Engine`    | After the engine is initialised    |
-| `on:particlesLoaded` | `Container` | After the container is fully ready |
+| Event                | Detail                   | Fires                              |
+| -------------------- | ------------------------ | ---------------------------------- |
+| `on:init`            | `Engine`                 | After the engine is initialised    |
+| `on:particlesLoaded` | `Container \| undefined` | After the container is fully ready |
 
 ---
 
@@ -418,7 +418,7 @@ Full typed component:
 
 ## Dynamic Options
 
-Reactive options update the particles without recreating the instance:
+Reactive options update the particles by destroying and reloading with the new configuration:
 
 ```svelte
 <script lang="ts">
@@ -558,16 +558,31 @@ Or wrap the import in a client-only component. For SvelteKit 2+, you can also us
 
 ## API Reference
 
-| Prop      | Type             | Default         | Description                   |
-| --------- | ---------------- | --------------- | ----------------------------- |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID             |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration object |
-| `url`     | `string`         | —               | URL to a remote JSON config   |
+| Prop      | Type             | Default         | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                        |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.            |
+| `url`     | `string`         | —               | URL to a remote JSON config. Change triggers destroy+reload.              |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
-| Event                | Detail      | Description                                                |
-| -------------------- | ----------- | ---------------------------------------------------------- |
-| `on:init`            | `Engine`    | Fires when the engine is initialised (use to load plugins) |
-| `on:particlesLoaded` | `Container` | Fires when the container is fully ready                    |
+| Event                | Detail                   | Description                                                |
+| -------------------- | ------------------------ | ---------------------------------------------------------- |
+| `on:init`            | `Engine`                 | Fires when the engine is initialised (use to load plugins) |
+| `on:particlesLoaded` | `Container \| undefined` | Fires when the container is fully ready                    |
+
+### Reactive behavior
+
+All reactive props (`id`, `options`, `url`) trigger a destroy + reload cycle when changed at runtime:
+
+- `id` change → old container destroyed, new one created with the new id
+- `options` change → particles are reloaded with the new config
+- `url` change → config fetched from the new URL and loaded
+
+The `theme` prop is special: changing it calls `loadTheme()` on the existing container without destroying or reloading particles. This requires the optional theme plugin (`@tsparticles/plugin-themes`).
+
+### Cleanup
+
+When the component is removed from the DOM, the particles container is automatically destroyed — no orphan animations remain.
 
 ---
 

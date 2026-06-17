@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "glitch";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadGlitchPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

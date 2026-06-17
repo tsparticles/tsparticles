@@ -11,8 +11,8 @@ enum Sides {
 }
 
 /**
- * @param position -
- * @param offset -
+ * @param position - The position
+ * @param offset - The offset
  * @returns the offset
  */
 function randomSquareCoordinate(position: number, offset: number): number {
@@ -20,7 +20,7 @@ function randomSquareCoordinate(position: number, offset: number): number {
 }
 
 /**
- * @param sides -
+ * @param sides - The sides
  * @returns the number of sides
  */
 function getRandomSize(sides: number): Sides {

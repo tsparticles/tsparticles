@@ -16,7 +16,7 @@ export * from "./Enums/Types/DestroyType.js";
 export * from "./Enums/Types/GradientType.js";
 export * from "./Enums/Types/ParticleOutType.js";
 export * from "./Enums/Types/StartValueType.js";
-export * from "./Enums/Types/EasingType.js";
+
 export * from "./Enums/Types/EventType.js";
 
 export * from "./Enums/AnimationStatus.js";
@@ -62,10 +62,11 @@ export * from "./Options/Classes/Particles/ZIndex/ZIndex.js";
 export * from "./Options/Classes/ResizeEvent.js";
 export * from "./Options/Classes/ValueWithRandom.js";
 
-export * from "./Utils/CanvasUtils.js";
 export * from "./Utils/ColorUtils.js";
 export * from "./Utils/LogUtils.js";
 export * from "./Utils/MathUtils.js";
+export * from "./Utils/OptionLoader.js";
+export * from "./Utils/ParticlesOptionsLoader.js";
 export * from "./Utils/OptionsUtils.js";
 export * from "./Utils/Utils.js";
 export * from "./Utils/TypeUtils.js";

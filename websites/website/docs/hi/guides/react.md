@@ -427,7 +427,7 @@ export default function PerformanceExample() {
   // कॉलबैक मेमोइज़ करें — रेंडर के बीच स्थिर संदर्भ
   const particlesLoaded = useCallback(async (container) => {
     // प्रति कंटेनर माउंट एक बार कॉल होता है
-    console.log("कंटेनर तैयार", container.id);
+    console.log("कंटेनर तैयार", container?.id);
   }, []);
 
   // विकल्प ऑब्जेकट मेमोइज़ करें — केवल डिपेंडेंसी बदलने पर पुनर्गणना
@@ -485,6 +485,15 @@ export default function PerformanceExample() {
 - जब यह ऑफ-स्क्रीन हो तो सशर्त रूप से `<Particles />` अनमाउंट करें।
 
 ---
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## कस्टम कॉन्फ़िगरेशन
 

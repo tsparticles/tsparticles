@@ -3,12 +3,12 @@
 import { getRandom } from "@tsparticles/engine";
 
 /**
- * @param rndFunc -
- * @param period -
- * @param nbHarmonics -
- * @param attenHarmonics -
- * @param lowValue -
- * @param highValue -
+ * @param rndFunc - The rndFunc
+ * @param period - The period
+ * @param nbHarmonics - The nbHarmonics
+ * @param attenHarmonics - The attenHarmonics
+ * @param lowValue - The lowValue
+ * @param highValue - The highValue
  * @returns the generated value
  */
 export function CurvesPathGen(

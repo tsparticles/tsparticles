@@ -1,7 +1,7 @@
 <svelte:options accessors={true} />
 
 <script lang="ts">
-	import { afterUpdate, createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import type { Container, ISourceOptions } from '@tsparticles/engine';
 	import { tsParticles } from '@tsparticles/engine';
 	import * as particlesEngineInitialization from './utils.js';
@@ -15,14 +15,26 @@
 	export let options: ISourceOptions = {};
 	export let url = '';
 	export let id = 'tsparticles';
+	export let theme: string | undefined = undefined;
 
 	const dispatch = createEventDispatcher<{
 			particlesLoaded: { particles?: Container };
 		}>(),
 		particlesLoadedEvent = 'particlesLoaded';
 
-	let oldId = id;
 	let currentContainer: Container | undefined;
+
+	$: loadKey = `${id}|${url}|${JSON.stringify(options)}`;
+
+	$: if (mounted && loadKey) {
+		void loadParticles();
+	}
+
+	$: if (mounted && theme && currentContainer) {
+		(currentContainer as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
+			theme
+		);
+	}
 
 	function destroyOldContainer() {
 		currentContainer?.destroy();
@@ -35,7 +47,6 @@
 
 	onMount(() => {
 		mounted = true;
-		void loadParticles();
 	});
 
 	async function loadParticles(): Promise<void> {
@@ -62,8 +73,6 @@
 				dispatch(particlesLoadedEvent, {
 					particles: container
 				});
-
-				oldId = id;
 			};
 
 			const container = await tsParticles.load({
@@ -74,6 +83,12 @@
 
 			currentContainer = container;
 
+			if (container && theme) {
+				(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
+					theme
+				);
+			}
+
 			cb(container);
 		} else {
 			dispatch(particlesLoadedEvent, {
@@ -81,10 +96,6 @@
 			});
 		}
 	}
-
-	afterUpdate(async () => {
-		await loadParticles();
-	});
 </script>
 
 <div {id} class={cssClass} {style}></div>

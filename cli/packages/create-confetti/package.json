@@ -1,0 +1,68 @@
+{
+  "name": "create-confetti",
+  "version": "4.2.0",
+  "description": "Scaffold a @tsparticles/confetti project — npm create confetti",
+  "homepage": "https://particles.js.org",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-confetti": "bin/create-confetti.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tagVersionPrefix": "v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "cli/packages/create-confetti"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "confetti",
+    "ribbons",
+    "front-end",
+    "web",
+    "animation",
+    "canvas",
+    "html5",
+    "cli",
+    "scaffold",
+    "create",
+    "template"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "scripts": {
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:readme": "prettier --write ./README.md",
+    "build": "pnpm run prettify:readme",
+    "build:ci": "pnpm run prettify:ci:readme",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@tsparticles/cli-create": "workspace:*"
+  },
+  "devDependencies": {
+    "@tsparticles/prettier-config": "workspace:*"
+  }
+}

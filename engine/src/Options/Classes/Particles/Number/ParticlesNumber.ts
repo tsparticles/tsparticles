@@ -1,34 +1,21 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { ParticlesDensity } from "./ParticlesDensity.js";
 import { ParticlesNumberLimit } from "./ParticlesNumberLimit.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
+import { loadProperty } from "../../../../Utils/OptionsUtils.js";
 
 /**
  * [[include:Options/Particles/Number.md]]
  */
-export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
-  readonly density;
-  limit;
-  value;
+export class ParticlesNumber extends OptionLoader<IParticlesNumber> implements IParticlesNumber {
+  readonly density = new ParticlesDensity();
+  readonly limit = new ParticlesNumberLimit();
+  value = 0;
 
-  constructor() {
-    this.density = new ParticlesDensity();
-    this.limit = new ParticlesNumberLimit();
-    this.value = 0;
-  }
-
-  load(data?: RecursivePartial<IParticlesNumber>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  protected doLoad(data: RecursivePartial<IParticlesNumber>): void {
     this.density.load(data.density);
     this.limit.load(data.limit);
-
-    if (data.value !== undefined) {
-      this.value = data.value;
-    }
+    loadProperty(this, "value", data.value);
   }
 }

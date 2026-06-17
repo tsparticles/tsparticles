@@ -11,7 +11,7 @@ interface InteractionParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesInteraction(params: InteractionParams): unknown {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-falling",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles confetti falling preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,15 +106,15 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.1.3",
-    "@tsparticles/engine": "4.1.3",
-    "@tsparticles/palette-confetti": "4.1.3",
-    "@tsparticles/plugin-motion": "4.1.3",
-    "@tsparticles/shape-square": "4.1.3",
-    "@tsparticles/updater-roll": "4.1.3",
-    "@tsparticles/updater-rotate": "4.1.3",
-    "@tsparticles/updater-tilt": "4.1.3",
-    "@tsparticles/updater-wobble": "4.1.3"
+    "@tsparticles/basic": "4.2.0",
+    "@tsparticles/engine": "4.2.0",
+    "@tsparticles/palette-confetti": "4.2.0",
+    "@tsparticles/plugin-motion": "4.2.0",
+    "@tsparticles/shape-square": "4.2.0",
+    "@tsparticles/updater-roll": "4.2.0",
+    "@tsparticles/updater-rotate": "4.2.0",
+    "@tsparticles/updater-tilt": "4.2.0",
+    "@tsparticles/updater-wobble": "4.2.0"
   },
   "publishConfig": {
     "access": "public"

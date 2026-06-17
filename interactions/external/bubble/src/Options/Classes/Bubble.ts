@@ -14,7 +14,6 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
   /** Bubble divs to apply the mode to */
   divs?: SingleOrMultiple<BubbleDiv>;
 
-  /** @inheritDoc */
   override load(data?: RecursivePartial<IBubble>): void {
     super.load(data);
 

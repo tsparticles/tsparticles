@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "smoke-warm";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadSmokeWarmPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

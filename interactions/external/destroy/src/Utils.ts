@@ -1,15 +1,13 @@
-import { Circle, Rectangle, type SingleOrMultiple, double, safeDocument } from "@tsparticles/engine";
+import { Circle, Rectangle, type SingleOrMultiple, double, half, minRadius, safeDocument } from "@tsparticles/engine";
 import { type DivEvent, DivType, type IInteractivityData, divModeExecute } from "@tsparticles/plugin-interactivity";
 import type { DestroyContainer } from "./Types.js";
 
-const half = 0.5,
-  toleranceFactor = 10,
-  minRadius = 0;
+const toleranceFactor = 10;
 
 /**
  * Process destroy in an area
- * @param container
- * @param area
+ * @param container - The container to handle
+ * @param area - The area
  */
 function processDestroy(container: DestroyContainer, area: Circle | Rectangle): void {
   const query = container.particles.grid.query(area);
@@ -21,9 +19,9 @@ function processDestroy(container: DestroyContainer, area: Circle | Rectangle): 
 
 /**
  * Process destroy for a single selector
- * @param container
- * @param selector
- * @param div
+ * @param container - The container to handle
+ * @param selector - The selector
+ * @param div - The div
  */
 function singleSelectorDestroy(container: DestroyContainer, selector: string, div: DivEvent): void {
   const query = safeDocument().querySelectorAll(selector);
@@ -57,9 +55,9 @@ function singleSelectorDestroy(container: DestroyContainer, selector: string, di
 
 /**
  * Destroy particles in div elements
- * @param container
- * @param divs
- * @param destroyMode
+ * @param container - The container to handle
+ * @param divs - The divs
+ * @param destroyMode - The destroyMode
  */
 export function divDestroy(container: DestroyContainer, divs: SingleOrMultiple<DivEvent>, destroyMode: string): void {
   divModeExecute(destroyMode, divs, (selector, div): void => {
@@ -69,8 +67,8 @@ export function divDestroy(container: DestroyContainer, divs: SingleOrMultiple<D
 
 /**
  * Destroy particles at mouse position
- * @param container
- * @param interactivityData
+ * @param container - The container to handle
+ * @param interactivityData - The interactivity data
  */
 export function mouseDestroy(container: DestroyContainer, interactivityData: IInteractivityData): void {
   const pxRatio = container.retina.pixelRatio,

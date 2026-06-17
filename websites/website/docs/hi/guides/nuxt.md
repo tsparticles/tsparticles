@@ -236,13 +236,7 @@ const options: ISourceOptions = {
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-      @particles-init="onInit"
-      @particles-destroy="onDestroy"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -258,25 +252,15 @@ const options = {
   },
 };
 
-const onInit = (engine: Engine) => {
-  console.log("इंजन आरंभ हुआ", engine);
-};
-
-const onLoaded = (container: Container) => {
-  console.log("कंटेनर लोड हुआ", container.id);
-};
-
-const onDestroy = () => {
-  console.log("कंटेनर नष्ट हुआ");
+const onLoaded = (container?: Container) => {
+  console.log("कंटेनर लोड हुआ", container?.id);
 };
 </script>
 ```
 
-| इवेंट                | पेलोड       | विवरण                                                         |
-| -------------------- | ----------- | ------------------------------------------------------------- |
-| `@particles-init`    | `Engine`    | एक बार फायर होता है जब tsParticles इंजन आरंभ होता है          |
-| `@particles-loaded`  | `Container` | हर बार फायर होता है जब कंटेनर लोडिंग या रीलोडिंग पूरी करता है |
-| `@particles-destroy` | कोई नहीं    | फायर होता है जब कंटेनर नष्ट होता है                           |
+| इवेंट               | पेलोड                    | विवरण                                                         |
+| ------------------- | ------------------------ | ------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | हर बार फायर होता है जब कंटेनर लोडिंग या रीलोडिंग पूरी करता है |
 
 ## पूर्ण टाइपस्क्रिप्ट उदाहरण
 
@@ -286,12 +270,7 @@ const onDestroy = () => {
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-        @particles-init="onParticlesInit"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "पुनरारंभ" : "रोकें" }}</button>
@@ -327,11 +306,7 @@ const options: ISourceOptions = {
   },
 };
 
-const onParticlesInit = async (engine: Engine) => {
-  await loadFull(engine);
-};
-
-const onParticlesLoaded = (container: Container) => {
+const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
 };
 
@@ -446,6 +421,15 @@ import { tsParticles } from "@tsparticles/engine";
 await loadStarsPreset(tsParticles);
 </script>
 ```
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## समस्या निवारण
 

@@ -1,11 +1,10 @@
-import { OutMode, OutModeDirection, getRangeValue } from "@tsparticles/engine";
+import { OutMode, OutModeDirection, getRangeValue, minVelocity } from "@tsparticles/engine";
 import type { IBounceData } from "./IBounceData.js";
 
-const minVelocity = 0,
-  boundsMin = 0;
+const boundsMin = 0;
 
 /**
- * @param data -
+ * @param data - The data to handle
  */
 export function bounceHorizontal(data: IBounceData): void {
   if (
@@ -54,7 +53,7 @@ export function bounceHorizontal(data: IBounceData): void {
 }
 
 /**
- * @param data -
+ * @param data - The data to handle
  */
 export function bounceVertical(data: IBounceData): void {
   if (

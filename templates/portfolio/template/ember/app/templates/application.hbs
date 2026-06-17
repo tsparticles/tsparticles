@@ -1,0 +1,61 @@
+<Particles @id="tsparticles" @options={{this.options}} />
+
+<nav id="navbar">
+  {{#each this.navItems as |item|}}
+    <a href="#{{item.lowerCase}}" class="nav-link">{{item}}</a>
+  {{/each}}
+</nav>
+
+<section id="hero" class="section">
+  <div class="hero-content">
+    <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+    <p class="subtitle">Full-Stack Developer &amp; Designer</p>
+  </div>
+</section>
+
+<section id="about" class="section content-section">
+  <div class="container">
+    <h2>About Me</h2>
+    <p>A passionate developer who loves building beautiful and performant web applications. Experienced in modern JavaScript frameworks, cloud infrastructure, and UI/UX design.</p>
+  </div>
+</section>
+
+<section id="projects" class="section content-section">
+  <div class="container">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      {{#each this.projects as |p|}}
+        <div class="project-card">
+          <h3>{{p.title}}</h3>
+          <p>{{p.desc}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section content-section">
+  <div class="container">
+    <h2>Skills</h2>
+    {{#each this.skills as |s|}}
+      <div class="skill-bar">
+        <span class="skill-name">{{s.name}}</span>
+        <div class="bar"><div class="fill" style="width: {{s.pct}}%"></div></div>
+      </div>
+    {{/each}}
+  </div>
+</section>
+
+<section id="contact" class="section content-section">
+  <div class="container">
+    <h2>Contact</h2>
+    <form id="contactForm" {{on "submit" this.handleSubmit}}>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+{{outlet}}

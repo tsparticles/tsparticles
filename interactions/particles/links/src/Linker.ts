@@ -8,6 +8,7 @@ import {
   getDistances,
   getLinkColor,
   getLinkRandomColor,
+  loadOptionProperty,
   originPoint,
 } from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
@@ -49,23 +50,19 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     this.#maxDistance = 0;
   }
 
-  /** @inheritDoc */
   get maxDistance(): number {
     return this.#maxDistance;
   }
 
-  /** @inheritDoc */
   clear(): void {
     // do nothing
   }
 
-  /** @inheritDoc */
   init(): void {
     this.container.particles.linksColor = undefined;
     this.container.particles.linksColors = new Map();
   }
 
-  /** @inheritDoc */
   interact(p1: LinkParticle): void {
     if (!p1.options.links) {
       return;
@@ -137,23 +134,17 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     }
   }
 
-  /** @inheritDoc */
   isEnabled(particle: LinkParticle): boolean {
     return !!particle.options.links?.enable;
   }
 
-  /** @inheritDoc */
   loadParticlesOptions(
     options: ParticlesLinkOptions,
     ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
   ): void {
-    options.links ??= new Links();
-    for (const source of sources) {
-      options.links.load(source?.links);
-    }
+    loadOptionProperty(options, "links", Links, ...sources);
   }
 
-  /** @inheritDoc */
   reset(): void {
     // do nothing
   }

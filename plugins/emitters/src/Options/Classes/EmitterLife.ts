@@ -1,4 +1,11 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
+import {
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  loadProperty,
+  loadRangeProperty,
+} from "@tsparticles/engine";
 import type { IEmitterLife } from "../Interfaces/IEmitterLife.js";
 
 /**
@@ -20,11 +27,7 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
   /**
    * If enabled the first delay will be applied
    */
-  wait;
-
-  constructor() {
-    this.wait = false;
-  }
+  wait = false;
 
   /**
    * Loads the emitter life options from the given data
@@ -35,20 +38,9 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
       return;
     }
 
-    if (data.count !== undefined) {
-      this.count = data.count;
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = setRangeValue(data.delay);
-    }
-
-    if (data.duration !== undefined) {
-      this.duration = setRangeValue(data.duration);
-    }
-
-    if (data.wait !== undefined) {
-      this.wait = data.wait;
-    }
+    loadProperty(this, "count", data.count);
+    loadRangeProperty(this, "delay", data.delay);
+    loadRangeProperty(this, "duration", data.duration);
+    loadProperty(this, "wait", data.wait);
   }
 }

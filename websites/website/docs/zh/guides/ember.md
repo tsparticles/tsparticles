@@ -180,7 +180,7 @@ export default class ApplicationController extends Controller {
 
   @action
   loadedCallback(container: Container) {
-    console.log("粒子已加载", container.id);
+    console.log("粒子已加载", container?.id);
 
     // 程序化控制示例：
     setTimeout(() => {
@@ -251,6 +251,15 @@ export default class ApplicationController extends Controller {
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## TypeScript 示例
 
 以下是一个完整的、带类型标注的 Ember 应用控制器，演示了使用 slim 预设、交互功能和生命周期管理的完整集成模式。
@@ -319,9 +328,9 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  private handleParticlesLoaded(container: Container): void {
+  private handleParticlesLoaded(container?: Container): void {
     this.container = container;
-    console.log("粒子已在容器中加载：", container.id);
+    console.log("粒子已在容器中加载：", container?.id);
   }
 }
 ```

@@ -38,8 +38,8 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * GradientUpdater constructor
-   * @param pluginManager
-   * @param container
+   * @param pluginManager - The plugin manager
+   * @param container - The container to handle
    */
   constructor(pluginManager: PluginManager, container: Container) {
     this.#pluginManager = pluginManager;
@@ -48,10 +48,11 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * Gets the color styles for the gradient
-   * @param particle
-   * @param context
-   * @param radius
-   * @param opacity
+   * @param particle - The particle to process
+   * @param context - The rendering context
+   * @param radius - The radius
+   * @param opacity - The opacity value
+   * @returns The color styles for the gradient
    */
   getColorStyles(
     particle: GradientParticle,
@@ -94,7 +95,7 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * Initializes the particle gradient
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: GradientParticle): void {
     const gradient = itemFromSingleOrMultiple(particle.options.gradient);
@@ -208,7 +209,8 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * Checks if gradient animation is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: GradientParticle): boolean {
     return (
@@ -221,8 +223,8 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * Loads the gradient options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: GradientParticlesOptions,
@@ -247,8 +249,8 @@ export class GradientUpdater implements IParticleUpdater {
 
   /**
    * Updates particle gradient animation
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: GradientParticle, delta: IDelta): void {
     updateGradient(particle, delta);

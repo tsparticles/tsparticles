@@ -162,7 +162,8 @@ const namedColors = new Map<string, IRgb>([
 export class NamedColorManager implements IColorManager {
   /**
    * Checks if the input is a named CSS color
-   * @param input
+   * @param input - The input value
+   * @returns The boolean value
    */
   accepts(input: string): boolean {
     return namedColors.has(input.toLowerCase());
@@ -170,7 +171,8 @@ export class NamedColorManager implements IColorManager {
 
   /**
    * Converts an IColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleColor(color: IColor): IRgb | undefined {
     return this.#parseString(color.value);
@@ -178,7 +180,8 @@ export class NamedColorManager implements IColorManager {
 
   /**
    * Converts an IRangeColor to RGB
-   * @param color
+   * @param color - The color
+   * @returns The value, or undefined if not available
    */
   handleRangeColor(color: IRangeColor): IRgb | undefined {
     return this.#parseString(color.value);
@@ -186,7 +189,8 @@ export class NamedColorManager implements IColorManager {
 
   /**
    * Parses a named color string to RGBA
-   * @param input
+   * @param input - The input value
+   * @returns The value, or undefined if not available
    */
   parseString(input: string): IRgba | undefined {
     return this.#parseString(input);

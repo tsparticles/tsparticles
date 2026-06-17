@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticles/engine";
+import { type EasingFunction } from "@tsparticles/engine";
 
-const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+const easingsFunctions = new Map<string, EasingFunction>();
 
-easingsFunctions.set(EasingType.easeInElastic, value => {
+easingsFunctions.set("ease-in-elastic", value => {
   if (value === 0 || value === 1) {
     return value;
   }
   return -Math.pow(2, 10 * (value - 1)) * Math.sin(((value - 1.075) * (2 * Math.PI)) / 0.3);
 });
 
-easingsFunctions.set(EasingType.easeOutElastic, value => {
+easingsFunctions.set("ease-out-elastic", value => {
   if (value === 0 || value === 1) {
     return value;
   }
   return Math.pow(2, -10 * value) * Math.sin(((value - 0.075) * (2 * Math.PI)) / 0.3) + 1;
 });
 
-easingsFunctions.set(EasingType.easeInOutElastic, value => {
+easingsFunctions.set("ease-in-out-elastic", value => {
   if (value === 0 || value === 1) {
     return value;
   }

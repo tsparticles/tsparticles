@@ -50,7 +50,7 @@ export class EventListeners {
    * Handles blur event
    * @internal
    */
-  readonly #handleVisibilityChange: () => void = () => {
+  #handleVisibilityChange(): void {
     const container = this.#container,
       options = container.actualOptions;
 
@@ -71,13 +71,9 @@ export class EventListeners {
         container.draw(true);
       }
     }
-  };
+  }
 
-  /**
-   * Handles window resize event
-   * @internal
-   */
-  readonly #handleWindowResize = (): void => {
+  #handleWindowResize(): void {
     if (this.#resizeTimeout) {
       clearTimeout(this.#resizeTimeout);
 
@@ -94,21 +90,21 @@ export class EventListeners {
       () => void handleResize(),
       this.#container.actualOptions.resize.delay * millisecondsToSeconds,
     );
-  };
+  }
 
   /**
    * Initializing event listeners
-   * @param add -
+   * @param add - The add
    */
-  readonly #manageListeners: (add: boolean) => void = add => {
+  #manageListeners(add: boolean): void {
     const handlers = this.#handlers;
 
     this.#manageResize(add);
 
     manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
-  };
+  }
 
-  readonly #manageResize: (add: boolean) => void = add => {
+  #manageResize(add: boolean): void {
     const handlers = this.#handlers,
       container = this.#container,
       options = container.actualOptions;
@@ -146,5 +142,5 @@ export class EventListeners {
 
       this.#resizeObserver.observe(canvasEl);
     }
-  };
+  }
 }

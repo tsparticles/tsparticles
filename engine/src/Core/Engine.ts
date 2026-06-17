@@ -42,7 +42,7 @@ interface DataFromUrlParams {
 }
 
 /**
- * @param data -
+ * @param data - The data to handle
  * @returns the options object from the jsonUrl
  */
 async function getDataFromUrl(

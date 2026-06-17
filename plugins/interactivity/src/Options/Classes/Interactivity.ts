@@ -2,7 +2,7 @@ import { type Container, type IOptionLoader, type RecursivePartial, isNull } fro
 import { Events } from "./Events/Events.js";
 import type { IInteractivity } from "../Interfaces/IInteractivity.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
-import type { InteractivityPluginManager } from "../../types.js";
+import type { InteractivityPluginManager } from "../../InteractivityPluginManagerTypes.js";
 import { Modes } from "./Modes/Modes.js";
 
 /**
@@ -11,14 +11,12 @@ import { Modes } from "./Modes/Modes.js";
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
   [name: string]: unknown;
 
-  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect = InteractivityDetect.window;
 
-  readonly events;
+  readonly events = new Events();
   readonly modes;
 
   constructor(pluginManager: InteractivityPluginManager, container?: Container) {
-    this.detectsOn = InteractivityDetect.window;
-    this.events = new Events();
     this.modes = new Modes(pluginManager, container);
   }
 

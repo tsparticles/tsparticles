@@ -1,0 +1,61 @@
+<div id="particles-container" {{did-insert this.initParticles}} {{particles options=this.options}}>
+</div>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>{{if this.isLogin "Login" "Register"}}</h1>
+      <button class="theme-btn" type="button" {{on "click" this.toggleTheme}} aria-label="Toggle theme">{{if (eq this.theme "dark") "🌙" "☀️"}}</button>
+    </div>
+    <form {{on "submit" this.handleSubmit}} novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <Input id="email" @type="email" @value={{this.email}} placeholder="you@example.com" required />
+        <span class="error">{{this.emailErr}}</span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <Input id="password" @type="password" @value={{this.password}} placeholder="Enter password" required />
+        <span class="error">{{this.passErr}}</span>
+      </div>
+      {{#unless this.isLogin}}
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <Input id="confirmPassword" @type="password" @value={{this.confirm}} placeholder="Confirm password" />
+          <span class="error">{{this.confirmErr}}</span>
+        </div>
+      {{/unless}}
+      <button type="submit">{{if this.isLogin "Sign In" "Create Account"}}</button>
+    </form>
+    <p class="toggle-text">
+      <span>{{if this.isLogin "Don't have an account?" "Already have an account?"}}</span>
+      <a href="#" {{on "click" this.toggleMode}}>{{if this.isLogin "Register" "Login"}}</a>
+    </p>
+  </div>
+</div>
+
+{{outlet}}
+
+<style>
+  :root { --bg: #0f0f1a; --card-bg: rgba(255, 255, 255, 0.05); --text: #fff; --border: rgba(255, 255, 255, 0.1); --input-bg: rgba(255, 255, 255, 0.08); --accent: #6c5ce7; --accent-hover: #a29bfe; --error: #e74c3c; }
+  [data-theme="light"] { --bg: #f0f0f5; --card-bg: rgba(255, 255, 255, 0.8); --text: #1a1a2e; --border: rgba(0, 0, 0, 0.1); --input-bg: rgba(0, 0, 0, 0.05); }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+  .auth-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 100%; max-width: 400px; padding: 1rem; }
+  .auth-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+  .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .auth-header h1 { margin: 0; font-size: 1.8em; }
+  .theme-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.4em 0.6em; font-size: 1.2em; cursor: pointer; transition: background 0.2s; }
+  .theme-btn:hover { background: var(--input-bg); }
+  .form-group { margin-bottom: 1rem; }
+  label { display: block; margin-bottom: 0.3em; font-size: 0.9em; opacity: 0.8; }
+  input { width: 100%; padding: 0.7em 1em; font-size: 1em; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg); color: var(--text); outline: none; transition: border-color 0.2s; }
+  input:focus { border-color: var(--accent); }
+  input::placeholder { color: var(--text); opacity: 0.4; }
+  .error { display: block; margin-top: 0.3em; font-size: 0.8em; color: var(--error); min-height: 1em; }
+  button[type="submit"] { width: 100%; padding: 0.8em; font-size: 1em; font-weight: 600; border: none; border-radius: 8px; background: var(--accent); color: #fff; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+  button[type="submit"]:hover { background: var(--accent-hover); }
+  .toggle-text { text-align: center; margin-top: 1.5rem; font-size: 0.9em; opacity: 0.7; }
+  .toggle-text a { color: var(--accent); text-decoration: none; margin-left: 0.3em; }
+  .toggle-text a:hover { text-decoration: underline; }
+</style>

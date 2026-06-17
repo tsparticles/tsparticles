@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ISoundsIcons } from "../Interfaces/ISoundsIcons.js";
 import { SoundsIcon } from "./SoundsIcon.js";
 
@@ -59,9 +59,7 @@ export class SoundsIcons implements ISoundsIcons, IOptionLoader<ISoundsIcons> {
       return;
     }
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "enable", data.enable);
 
     this.mute.load(data.mute);
     this.unmute.load(data.unmute);

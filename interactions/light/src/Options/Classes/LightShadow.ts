@@ -1,22 +1,18 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { ILightShadow } from "../Interfaces/ILightShadow.js";
 
 /** Light shadow options class */
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
   /** The shadow color */
-  color;
+  color = new OptionsColor();
 
   /** The shadow length */
-  length;
+  length = 2000;
 
   constructor() {
-    this.color = new OptionsColor();
     this.color.value = "#000000";
-
-    this.length = 2000;
   }
 
-  /** @inheritDoc */
   load(data?: RecursivePartial<ILightShadow>): void {
     if (isNull(data)) {
       return;
@@ -24,8 +20,6 @@ export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
 
     this.color = OptionsColor.create(this.color, data.color);
 
-    if (data.length !== undefined) {
-      this.length = data.length;
-    }
+    loadProperty(this, "length", data.length);
   }
 }

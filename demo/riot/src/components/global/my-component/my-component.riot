@@ -1,33 +1,40 @@
 <my-component>
     <p>{ props.message }</p>
 
-    <riot-particles if={state.particlesInitialized} id="tsparticles" options='{particlesConfig}' particlesInit='{particlesInit}'
+    <div>
+        <button onClick={switchConfig}>
+            Switch Config
+        </button>
+    </div>
+
+    <riot-particles id="tsparticles" options='{particlesConfig}'
                     particlesLoaded='{particlesLoaded}'/>
 
     <script>
-        import RiotParticles, { initParticlesEngine } from "@tsparticles/riot";
+        import { initParticlesEngine } from "@tsparticles/riot";
         import { loadFull } from "tsparticles";
         import configs from "@tsparticles/configs";
 
+        let toggle = false;
+
         export default {
-            components: {
-                RiotParticles
-            },
             particlesConfig: configs.basic,
             particlesLoaded: (container) => console.log(container),
             onBeforeMount() {
-                this.state.particlesInitialized = false;
-
                 // Riot can be used server-side; guard initialization to client only.
                 if (typeof window !== "undefined") {
                     initParticlesEngine(async (engine) => {
                         await loadFull(engine);
 
                         console.log("particles initialized");
-                    }).then(() => {
-                        this.update({ particlesInitialized: true });
                     });
                 }
+            },
+            switchConfig() {
+                toggle = !toggle;
+
+                this.particlesConfig = toggle ? configs.star : configs.basic;
+                this.update();
             },
         }
     </script>

@@ -10,16 +10,11 @@ export class EmittersPolygonShapeOptions
   /**
    * The rotation angle of the polygon in radians
    */
-  angle: number;
+  angle = 0;
   /**
    * The number of sides of the polygon
    */
-  sides: number;
-
-  constructor() {
-    this.angle = 0;
-    this.sides = 5;
-  }
+  sides = 5;
 
   /**
    * Loads the polygon shape options from the given data

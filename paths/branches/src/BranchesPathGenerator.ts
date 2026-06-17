@@ -26,7 +26,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
   /**
    * BranchesPathGenerator constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -40,7 +40,8 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
   /**
    * Generates the next movement vector for the particle
-   * @param p
+   * @param p - The particle
+   * @returns The result
    */
   generate(p: BranchesPathParticle): Vector {
     const opts = this.options;
@@ -115,7 +116,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
   /**
    * Resets the particle branching state
-   * @param p
+   * @param p - The particle
    */
   reset(p: BranchesPathParticle): void {
     delete p.branching;

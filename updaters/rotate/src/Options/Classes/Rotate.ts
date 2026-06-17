@@ -5,6 +5,7 @@ import {
   type RotateDirectionAlt,
   ValueWithRandom,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { IRotate } from "../Interfaces/IRotate.js";
 import { RotateAnimation } from "./RotateAnimation.js";
@@ -14,24 +15,14 @@ import { RotateAnimation } from "./RotateAnimation.js";
  */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
   /** Rotate animation options */
-  animation;
+  readonly animation = new RotateAnimation();
   /** Rotate direction */
-  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+  direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt = RotateDirection.clockwise;
   /** Enables path rotation */
-  path;
-
-  /** Rotate constructor */
-  constructor() {
-    super();
-    this.animation = new RotateAnimation();
-    this.direction = RotateDirection.clockwise;
-    this.path = false;
-    this.value = 0;
-  }
-
+  path = false;
   /**
    * Loads the rotate options from data
-   * @param data
+   * @param data - The data to handle
    */
   override load(data?: RecursivePartial<IRotate>): void {
     if (isNull(data)) {
@@ -40,14 +31,10 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
 
     super.load(data);
 
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadProperty(this, "direction", data.direction);
 
     this.animation.load(data.animation);
 
-    if (data.path !== undefined) {
-      this.path = data.path;
-    }
+    loadProperty(this, "path", data.path);
   }
 }

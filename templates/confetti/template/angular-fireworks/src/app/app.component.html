@@ -1,0 +1,11 @@
+<div id="app">
+  <h1>Confetti!</h1>
+  <div class="controls">
+    <button (click)="fireConfetti()">Fire Confetti</button>
+    <select [(ngModel)]="mode">
+      <option value="cannon">Cannon</option>
+      <option value="waterfall">Waterfall</option>
+      <option value="random">Random</option>
+    </select>
+  </div>
+</div>

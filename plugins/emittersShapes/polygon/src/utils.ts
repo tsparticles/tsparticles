@@ -5,10 +5,10 @@ const defaultRotation = 0,
 
 /**
  *
- * @param position -
- * @param sides -
- * @param radius -
- * @param rotationAngle -
+ * @param position - The position
+ * @param sides - The sides
+ * @param radius - The radius
+ * @param rotationAngle - The rotationAngle
  * @returns the polygon coordinates
  */
 export function generateRandomPolygon(
@@ -34,7 +34,7 @@ export function generateRandomPolygon(
 
 /**
  *
- * @param polygon -
+ * @param polygon - The polygon
  * @returns a random point within the polygon
  */
 export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoordinates | null {
@@ -86,7 +86,7 @@ export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoor
 
 /**
  *
- * @param polygon -
+ * @param polygon - The polygon
  * @returns a random point on the perimeter of the polygon
  */
 export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): ICoordinates | undefined {
@@ -111,8 +111,8 @@ export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): 
 
 /**
  *
- * @param point -
- * @param polygon -
+ * @param point - The point
+ * @param polygon - The polygon
  * @returns whether the point is within the polygon
  */
 export function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): boolean {

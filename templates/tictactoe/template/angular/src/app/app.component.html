@@ -1,0 +1,21 @@
+<ngx-particles id="tsparticles" [options]="particlesOptions" />
+
+<div id="app">
+  <h1>Tic-Tac-Toe</h1>
+  <div class="scoreboard">
+    <span>X: <strong>{{ scores.X }}</strong></span>
+    <span>Draws: <strong>{{ scores.draw }}</strong></span>
+    <span>O: <strong>{{ scores.O }}</strong></span>
+  </div>
+  <div class="turn">{{ status }}</div>
+  <div class="board">
+    <div
+      *ngFor="let cell of board; let i = index"
+      [ngClass]="['cell', { taken: cell, win: winLine?.includes(i) }]"
+      (click)="handleMove(i)"
+    >
+      {{ cell }}
+    </div>
+  </div>
+  <button class="reset-btn" (click)="handleReset()">New Game</button>
+</div>

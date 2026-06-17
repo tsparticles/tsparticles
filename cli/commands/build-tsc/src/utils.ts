@@ -48,7 +48,7 @@ const compileConfigs: Record<CompileType, CompileConfig> = {
 };
 
 /**
- * @param type -
+ * @param type - The type
  * @returns -
  */
 function getDefaultOptions(type: CompileType): unknown {
@@ -65,8 +65,8 @@ function getDefaultOptions(type: CompileType): unknown {
 }
 
 /**
- * @param basePath -
- * @param file -
+ * @param basePath - The basePath
+ * @param file - The file
  * @returns the file content or undefined if the file doesn't exist
  */
 async function readConfig(basePath: string, file: string): Promise<string | undefined> {
@@ -82,9 +82,9 @@ async function readConfig(basePath: string, file: string): Promise<string | unde
 }
 
 /**
- * @param basePath -
- * @param type -
- * @param silent -
+ * @param basePath - The basePath
+ * @param type - The type
+ * @param silent - The silent
  * @returns the exit code
  */
 async function compile(basePath: string, type: CompileType, silent: boolean): Promise<CompileResult> {
@@ -188,8 +188,8 @@ async function compile(basePath: string, type: CompileType, silent: boolean): Pr
 }
 
 /**
- * @param basePath -
- * @param silent -
+ * @param basePath - The basePath
+ * @param silent - The silent
  * @returns true if the build was successful
  */
 export async function buildTS(basePath: string, silent: boolean): Promise<boolean> {

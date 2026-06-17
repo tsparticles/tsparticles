@@ -32,6 +32,10 @@ fs.readFile(libPackage, function (error, data) {
     mainPackage.dependencies["@tsparticles/fireworks"],
     mainPackage.version,
   );
+  libObj.peerDependencies["@tsparticles/engine"] = resolveWorkspaceDependency(
+    mainPackage.dependencies["@tsparticles/engine"],
+    mainPackage.version,
+  );
 
   fs.writeFile(libPackage, JSON.stringify(libObj, undefined, 2), 'utf-8', function () {
     console.log(`lib package.json updated successfully to version ${mainPackage.version}`);
@@ -45,5 +49,17 @@ fs.readFile(libPackage, function (error, data) {
     fs.writeFile(libReadme, readmeData.toString(), "utf-8", function () {
       console.log("README.md updated successfully");
     });
+  });
+});
+
+fs.readFile("./projects/ng-fireworks/package.dist.json", function (distError, distData) {
+  if (distError) {
+    console.error("Failed to read package.dist.json:", distError.message);
+    return;
+  }
+  const distObj = JSON.parse(distData);
+  distObj.version = mainPackage.version;
+  fs.writeFile("./projects/ng-fireworks/package.dist.json", JSON.stringify(distObj, undefined, 2), 'utf-8', function () {
+    console.log(`lib package.dist.json updated successfully to version ${mainPackage.version}`);
   });
 });

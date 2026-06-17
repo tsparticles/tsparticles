@@ -258,6 +258,15 @@ class ParticlesBackground extends LitElement {
 }
 ```
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## डायनामिक अपडेट
 
 क्योंकि `<lit-particles>` लिट की रिएक्टिव प्रॉपर्टीज़ का उपयोग करता है, `options` प्रॉपर्टी बदलने से पार्टिकल्स स्वचालित रूप से अपडेट हो जाते हैं:

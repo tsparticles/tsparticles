@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/confetti-website",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles confetti webpage",
   "private": true,
   "type": "module",
@@ -53,11 +53,15 @@
     ],
     "targets": {
       "build": {
+        "cache": false,
         "inputs": [
           "{projectRoot}/vite.config.js",
           "production",
           "^production"
         ]
+      },
+      "build:ci": {
+        "cache": false
       }
     }
   }

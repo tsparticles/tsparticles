@@ -370,4 +370,15 @@ render(<App />, document.getElementById("app"));
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+---
+
 You now have everything needed to integrate tsParticles into an Inferno application. Each example is self-contained and ready to be copied into your project.

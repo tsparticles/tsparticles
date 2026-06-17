@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/stencil",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "Official tsParticles Stencil Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -29,7 +29,8 @@
     }
   },
   "peerDependencies": {
-    "@tsparticles/engine": "__VERSION__"
+    "@tsparticles/engine": "__VERSION__",
+    "@stencil/core": "^4"
   },
   "publishConfig": {
     "access": "public"

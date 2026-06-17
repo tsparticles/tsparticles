@@ -2,19 +2,11 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ITextFontOptions } from "../Interfaces/ITextFontOptions.js";
 
 export class TextFontOptions implements ITextFontOptions, IOptionLoader<ITextFontOptions> {
-  family: string;
-  size: string | number;
-  style: string;
-  variant: string;
-  weight: string;
-
-  constructor() {
-    this.family = "Verdana";
-    this.size = 32;
-    this.style = "";
-    this.variant = "";
-    this.weight = "";
-  }
+  family = "Verdana";
+  size: string | number = 32;
+  style = "";
+  variant = "";
+  weight = "";
 
   load(data?: RecursivePartial<ITextFontOptions>): void {
     if (isNull(data)) {

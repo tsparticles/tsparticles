@@ -1,0 +1,16 @@
+{
+  "name": "create-tsparticles",
+  "$schema": "https://json.schemastore.org/nx-project.json",
+  "projectType": "library",
+  "sourceRoot": "cli/packages/create-tsparticles",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["pnpm run build"],
+        "cwd": "cli/packages/create-tsparticles"
+      },
+      "dependsOn": ["^build"]
+    }
+  }
+}

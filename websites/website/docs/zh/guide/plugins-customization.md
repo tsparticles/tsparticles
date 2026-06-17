@@ -482,6 +482,58 @@ await loadAppUpdater(tsParticles);
 - 用 **preset** 复用行为，用 **palette** 复用视觉风格。
 - 先保持应用内本地扩展，只有在跨项目复用时再发布。
 
+## 全局运行时配置
+
+tsParticles 在全局 `tsParticles` 对象上暴露了一些实用工具，用于高级运行时定制。
+
+### 自定义随机数生成器
+
+用你自己的函数替换内部随机函数（适用于自定义插件中的受控随机性）：
+
+```js
+// 设置自定义随机函数
+tsParticles.setParticlesRandom(() => {
+  // 你的自定义随机逻辑
+  return Math.random();
+});
+
+// 使用当前函数获取随机数
+const value = tsParticles.getParticlesRandom();
+
+// 获取当前随机函数的引用
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### 自定义日志记录
+
+用你自己的记录器替换内部记录器（适用于静默模式或自定义日志处理）：
+
+```js
+// 设置自定义记录器
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// 获取当前记录器
+const logger = tsParticles.getParticlesLogger();
+```
+
+通过 UMD script 标签使用库时，这些函数也直接在 `globalThis` 上可用：
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## 实用规则
 
 - 保持扩展名称唯一（例如 `app-*` 或公司前缀）。

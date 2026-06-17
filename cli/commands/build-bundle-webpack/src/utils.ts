@@ -2,8 +2,8 @@ import path from "node:path";
 import webpack from "webpack";
 
 /**
- * @param basePath -
- * @param silent -
+ * @param basePath - The basePath
+ * @param silent - The silent
  * @returns true if the bundle was created
  */
 export async function bundleWebpack(basePath: string, silent: boolean): Promise<boolean> {

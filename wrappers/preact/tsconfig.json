@@ -5,7 +5,7 @@
     "module": "esnext",
     "target": "es2015",
     "jsx": "react",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "removeComments": true,
     "esModuleInterop": true,
     "importHelpers": false

@@ -1,37 +1,22 @@
 import type { IMoveAngle } from "../../../Interfaces/Particles/Move/IMoveAngle.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
+import { loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 
 /** Movement angle options class */
-export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
+export class MoveAngle extends OptionLoader<IMoveAngle> implements IMoveAngle {
   /** Angle offset value */
-  offset: RangeValue;
+  offset: RangeValue = 0;
   /** Angle value in degrees */
-  value: RangeValue;
-
-  constructor() {
-    this.offset = 0; // 45;
-    this.value = 90;
-  }
+  value: RangeValue = 90;
 
   /**
    * Loads move angle options from the given data
-   * @param data -
+   * @param data - The data to handle
    */
-  load(data?: RecursivePartial<IMoveAngle>): void {
-    if (isNull(data)) {
-      return;
-    }
-
-    if (data.offset !== undefined) {
-      this.offset = setRangeValue(data.offset);
-    }
-
-    if (data.value !== undefined) {
-      this.value = setRangeValue(data.value);
-    }
+  protected doLoad(data: RecursivePartial<IMoveAngle>): void {
+    loadRangeProperty(this, "offset", data.offset);
+    loadRangeProperty(this, "value", data.value);
   }
 }

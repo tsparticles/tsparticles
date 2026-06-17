@@ -29,14 +29,28 @@ const _animationLoop: AnimationLoop = {
 /**
  * Replaces the library random function with a custom one.
  * @param rnd - A random function that returns a number between 0 and 1.
+ * @remarks
+ * Also available on globalThis as `setParticlesRandom` in UMD/browser builds.
  */
 export function setRandom(rnd: () => number = Math.random): void {
   _random = rnd;
 }
 
 /**
+ * Returns the current random function used by the library.
+ * @returns the current random function
+ * @remarks
+ * Also available on globalThis as `getParticlesRandomFn` in UMD/browser builds.
+ */
+export function getRandomFn(): () => number {
+  return _random;
+}
+
+/**
  * Returns a random number between 0 and 1 using the library random function.
  * @returns a random number between 0 and 1
+ * @remarks
+ * Also available on globalThis as `getParticlesRandom` in UMD/browser builds.
  */
 export function getRandom(): number {
   const min = 0,
@@ -97,10 +111,10 @@ export function clamp(num: number, min: number, max: number): number {
 }
 
 /**
- * @param comp1 -
- * @param comp2 -
- * @param weight1 -
- * @param weight2 -
+ * @param comp1 - The comp1
+ * @param comp2 - The comp2
+ * @param weight1 - The weight1
+ * @param weight2 - The weight2
  * @returns the mixed value
  */
 export function mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
@@ -108,7 +122,7 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
 }
 
 /**
- * @param r -
+ * @param r - The red component
  * @returns the random value in the given range
  */
 export function randomInRangeValue(r: RangeValue): number {
@@ -125,7 +139,7 @@ export function randomInRangeValue(r: RangeValue): number {
 }
 
 /**
- * @param value -
+ * @param value - The value
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue): number {
@@ -133,7 +147,7 @@ export function getRangeValue(value: RangeValue): number {
 }
 
 /**
- * @param value -
+ * @param value - The value
  * @returns the minimum value of the range
  */
 export function getRangeMin(value: RangeValue): number {
@@ -141,7 +155,7 @@ export function getRangeMin(value: RangeValue): number {
 }
 
 /**
- * @param value -
+ * @param value - The value
  * @returns the maximum value of the range
  */
 export function getRangeMax(value: RangeValue): number {
@@ -149,8 +163,8 @@ export function getRangeMax(value: RangeValue): number {
 }
 
 /**
- * @param source -
- * @param value -
+ * @param source - The source
+ * @param value - The value
  * @returns the range value with the new value
  */
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
@@ -225,9 +239,9 @@ export function degToRad(degrees: number): number {
 }
 
 /**
- * @param direction -
- * @param position -
- * @param center -
+ * @param direction - The direction
+ * @param position - The position
+ * @param center - The center point
  * @returns the angle of the direction
  */
 export function getParticleDirectionAngle(
@@ -280,10 +294,10 @@ export function getParticleBaseVelocity(direction: number): Vector {
 }
 
 /**
- * @param v1 -
- * @param v2 -
- * @param m1 -
- * @param m2 -
+ * @param v1 - The v1
+ * @param v2 - The v2
+ * @param m1 - The m1
+ * @param m2 - The m2
  * @returns the velocity after collision
  */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
@@ -345,21 +359,7 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
 }
 
 /**
- * Gets exact position from exact position, or a random one if not specified, based on the given size
- * @param data - the data to use for calculating the position
- * @returns the exact position
- */
-export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
-  const position = {
-    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
-  };
-
-  return calcExactPositionOrRandomFromSize({ size: data.size, position });
-}
-
-/**
- * @param input -
+ * @param input - The input value
  * @returns the parsed color
  */
 export function parseAlpha(input?: string): number {

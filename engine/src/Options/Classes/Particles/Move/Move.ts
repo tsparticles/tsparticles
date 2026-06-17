@@ -1,76 +1,47 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import { isNull, isNumber, isObject } from "../../../../Utils/TypeUtils.js";
+import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
+import { loadProperty, loadRangeProperty } from "../../../../Utils/OptionsUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { MoveAngle } from "./MoveAngle.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
+import { OptionLoader } from "../../../../Utils/OptionLoader.js";
 import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { Spin } from "./Spin.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]
  */
-export class Move implements IMove, IOptionLoader<IMove> {
-  readonly angle;
-  readonly center: MoveCenter;
-  decay: RangeValue;
-  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
-  distance: Partial<IDistance>;
-  drift: RangeValue;
-  enable;
-  readonly gravity;
-  readonly outModes: OutModes;
-  readonly path;
-  random;
-  size;
-  speed: RangeValue;
-  readonly spin;
-  straight;
-  vibrate;
-  warp;
+export class Move extends OptionLoader<IMove> implements IMove {
+  readonly angle = new MoveAngle();
+  readonly center = new MoveCenter();
+  decay: RangeValue = 0;
+  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number = MoveDirection.none;
+  distance: Partial<IDistance> = {};
+  drift: RangeValue = 0;
+  enable = false;
+  readonly gravity = new MoveGravity();
+  readonly outModes = new OutModes();
+  readonly path = new MovePath();
+  random = false;
+  size = false;
+  speed: RangeValue = 2;
+  readonly spin = new Spin();
+  straight = false;
+  vibrate = false;
+  warp = false;
 
-  constructor() {
-    this.angle = new MoveAngle();
-    this.center = new MoveCenter();
-    this.decay = 0;
-    this.distance = {};
-    this.direction = MoveDirection.none;
-    this.drift = 0;
-    this.enable = false;
-    this.gravity = new MoveGravity();
-    this.path = new MovePath();
-    this.outModes = new OutModes();
-    this.random = false;
-    this.size = false;
-    this.speed = 2;
-    this.spin = new Spin();
-    this.straight = false;
-    this.vibrate = false;
-    this.warp = false;
-  }
-
-  load(data?: RecursivePartial<IMove>): void {
-    if (isNull(data)) {
-      return;
-    }
-
+  protected doLoad(data: RecursivePartial<IMove>): void {
     this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);
 
     this.center.load(data.center);
 
-    if (data.decay !== undefined) {
-      this.decay = setRangeValue(data.decay);
-    }
-
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadRangeProperty(this, "decay", data.decay);
+    loadProperty(this, "direction", data.direction);
 
     if (data.distance !== undefined) {
       this.distance = isNumber(data.distance)
@@ -81,13 +52,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
         : { ...data.distance };
     }
 
-    if (data.drift !== undefined) {
-      this.drift = setRangeValue(data.drift);
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadRangeProperty(this, "drift", data.drift);
+    loadProperty(this, "enable", data.enable);
 
     this.gravity.load(data.gravity);
 
@@ -105,30 +71,14 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     this.path.load(data.path);
 
-    if (data.random !== undefined) {
-      this.random = data.random;
-    }
-
-    if (data.size !== undefined) {
-      this.size = data.size;
-    }
-
-    if (data.speed !== undefined) {
-      this.speed = setRangeValue(data.speed);
-    }
+    loadProperty(this, "random", data.random);
+    loadProperty(this, "size", data.size);
+    loadRangeProperty(this, "speed", data.speed);
 
     this.spin.load(data.spin);
 
-    if (data.straight !== undefined) {
-      this.straight = data.straight;
-    }
-
-    if (data.vibrate !== undefined) {
-      this.vibrate = data.vibrate;
-    }
-
-    if (data.warp !== undefined) {
-      this.warp = data.warp;
-    }
+    loadProperty(this, "straight", data.straight);
+    loadProperty(this, "vibrate", data.vibrate);
+    loadProperty(this, "warp", data.warp);
   }
 }

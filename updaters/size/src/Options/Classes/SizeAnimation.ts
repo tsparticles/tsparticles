@@ -4,6 +4,7 @@ import {
   RangedAnimationOptions,
   type RecursivePartial,
   isNull,
+  loadProperty,
 } from "@tsparticles/engine";
 import type { ISizeAnimation } from "../Interfaces/ISizeAnimation.js";
 
@@ -11,14 +12,7 @@ import type { ISizeAnimation } from "../Interfaces/ISizeAnimation.js";
  * Size animation options.
  */
 export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
-  destroy: DestroyType | keyof typeof DestroyType;
-
-  constructor() {
-    super();
-
-    this.destroy = DestroyType.none;
-    this.speed = 5;
-  }
+  destroy: DestroyType | keyof typeof DestroyType = DestroyType.none;
 
   override load(data?: RecursivePartial<ISizeAnimation>): void {
     super.load(data);
@@ -27,8 +21,6 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
       return;
     }
 
-    if (data.destroy !== undefined) {
-      this.destroy = data.destroy;
-    }
+    loadProperty(this, "destroy", data.destroy);
   }
 }

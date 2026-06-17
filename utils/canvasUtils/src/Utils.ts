@@ -35,10 +35,10 @@ export function drawLine(context: OffscreenCanvasRenderingContext2D, begin: ICoo
 }
 
 /**
- * @param ctx -
- * @param size -
- * @param offset -
- * @param clear -
+ * @param ctx - The rendering context
+ * @param size - The size
+ * @param offset - The offset
+ * @param clear - The clear
  * @returns the canvas pixel data
  */
 export function getCanvasImageData(
@@ -86,9 +86,9 @@ export function getCanvasImageData(
 }
 
 /**
- * @param src -
- * @param offset -
- * @param canvasSettings -
+ * @param src - The src
+ * @param offset - The offset
+ * @param canvasSettings - The canvasSettings
  * @returns the canvas pixel data
  */
 export function getImageData(
@@ -138,10 +138,10 @@ export function getImageData(
 }
 
 /**
- * @param textOptions -
- * @param offset -
- * @param fill -
- * @param canvasSettings -
+ * @param textOptions - The textOptions
+ * @param offset - The offset
+ * @param fill - The fill flag
+ * @param canvasSettings - The canvasSettings
  * @returns the canvas pixel data
  */
 export function getTextData(

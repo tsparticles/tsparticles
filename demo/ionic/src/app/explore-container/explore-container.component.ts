@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./explore-container.component.scss'],
 })
 export class ExploreContainerComponent implements OnInit {
-  @Input() name: string;
+  @Input() name!: string;
 
   constructor() { }
 

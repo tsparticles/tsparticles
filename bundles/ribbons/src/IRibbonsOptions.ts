@@ -11,7 +11,7 @@ export interface IRibbonsOptions {
   /** Disables ribbons for users who prefer reduced motion */
   disableForReducedMotion: boolean;
 
-  /** Emitter size for particle spawn area (in percent). Default: { width: 100, height: 0 } */
+  /** Emitter size for particle spawn area (in percent). Default: \{ width: 100, height: 0 \} */
   emitterSize: IDimension;
 
   /**
@@ -24,8 +24,13 @@ export interface IRibbonsOptions {
    */
   particleCount: number;
 
-  /** Ribbons position in percent */
+  /**
+   * @deprecated use positionX instead
+   */
   position: ICoordinates;
+
+  /** Ribbons horizontal spawn position (percent). Default: 50 */
+  positionX: number;
 
   /** Ribbon shape options */
   ribbonOptions: SingleOrMultiple<IShapeValues>;

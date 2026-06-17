@@ -7,7 +7,7 @@ declare const __VERSION__: string;
 export const levyPathName = "levyPathGenerator";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadLevyPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

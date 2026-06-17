@@ -6,7 +6,7 @@ const minAngle = 0,
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawCogHole(data: IShapeDrawData<CogParticle>): void {
   const { context, particle, radius } = data;
@@ -36,7 +36,7 @@ export function drawCogHole(data: IShapeDrawData<CogParticle>): void {
 
 /**
  *
- * @param data -
+ * @param data - The data to handle
  */
 export function drawCog(data: IShapeDrawData<CogParticle>): void {
   const { context, particle, radius } = data;

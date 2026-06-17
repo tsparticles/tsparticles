@@ -10,9 +10,35 @@
             border: solid 1px blue;
             padding: 8px;
         }
+        #theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <lit-particles options='{ "background": { "color": "#000" }, "particles": { "links": { "enable": true }, "move": { "enable": true }, "number": { "value": 100 } } }' />
+
+<button id="theme-toggle">Switch Theme</button>
+
+<script>
+    const particles = document.querySelector("lit-particles");
+
+    particles.addEventListener("particlesLoaded", (e) => {
+        console.log("particlesLoaded:", e.detail);
+    });
+
+    const themes = ["dark", "light"];
+    let themeIndex = 0;
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        themeIndex = (themeIndex + 1) % themes.length;
+        particles.theme = themes[themeIndex];
+    });
+</script>
 </body>
 </html>

@@ -236,13 +236,7 @@ El componente `<vue-particles>` emite varios eventos del ciclo de vida:
 ```vue
 <template>
   <client-only>
-    <vue-particles
-      id="event-demo"
-      :options="options"
-      @particles-loaded="onLoaded"
-      @particles-init="onInit"
-      @particles-destroy="onDestroy"
-    />
+    <vue-particles id="event-demo" :options="options" @particles-loaded="onLoaded" />
   </client-only>
 </template>
 
@@ -258,25 +252,15 @@ const options = {
   },
 };
 
-const onInit = (engine: Engine) => {
-  console.log("Motor inicializado", engine);
-};
-
-const onLoaded = (container: Container) => {
-  console.log("Contenedor cargado", container.id);
-};
-
-const onDestroy = () => {
-  console.log("Contenedor destruido");
+const onLoaded = (container?: Container) => {
+  console.log("Contenedor cargado", container?.id);
 };
 </script>
 ```
 
-| Evento               | Carga       | Descripción                                                            |
-| -------------------- | ----------- | ---------------------------------------------------------------------- |
-| `@particles-init`    | `Engine`    | Se dispara una vez cuando el motor tsParticles se inicializa           |
-| `@particles-loaded`  | `Container` | Se dispara cada vez que el contenedor termina de cargarse o recargarse |
-| `@particles-destroy` | ninguno     | Se dispara cuando el contenedor se destruye                            |
+| Evento              | Carga                    | Descripción                                                            |
+| ------------------- | ------------------------ | ---------------------------------------------------------------------- |
+| `@particles-loaded` | `Container \| undefined` | Se dispara cada vez que el contenedor termina de cargarse o recargarse |
 
 ## Ejemplo TypeScript Completo
 
@@ -286,12 +270,7 @@ Un componente tipado completo con importaciones explícitas y conocimiento del c
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles
-        id="full-example"
-        :options="options"
-        @particles-loaded="onParticlesLoaded"
-        @particles-init="onParticlesInit"
-      />
+      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
       <button @click="togglePause">{{ paused ? "Reanudar" : "Pausar" }}</button>
@@ -327,11 +306,7 @@ const options: ISourceOptions = {
   },
 };
 
-const onParticlesInit = async (engine: Engine) => {
-  await loadFull(engine);
-};
-
-const onParticlesLoaded = (container: Container) => {
+const onParticlesLoaded = (container?: Container) => {
   containerRef.value = container;
 };
 
@@ -446,6 +421,15 @@ import { tsParticles } from "@tsparticles/engine";
 await loadStarsPreset(tsParticles);
 </script>
 ```
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Solución de Problemas
 

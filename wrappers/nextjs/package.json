@@ -1,6 +1,31 @@
 {
   "name": "@tsparticles/nextjs",
-  "version": "4.1.3",
+  "version": "4.2.0",
+  "description": "Official tsParticles Next.js Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "particle",
+    "canvas",
+    "animation",
+    "web",
+    "background",
+    "confetti",
+    "fireworks",
+    "nextjs",
+    "next.js",
+    "next",
+    "react",
+    "ssr",
+    "server-components"
+  ],
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "homepage": "https://particles.js.org",
   "type": "module",
   "repository": {
     "type": "git",
@@ -17,7 +42,9 @@
     "preview": "vite preview",
     "prettify": "prettier --write \"src/**/*.{ts,tsx}\" && prettier --write \"lib/**/*.{ts,tsx}\"",
     "prettify:ci": "prettier --check \"src/**/*.{ts,tsx}\" && prettier --check \"lib/**/*.{ts,tsx}\"",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "exports": {
     ".": {
@@ -31,28 +58,28 @@
   "license": "MIT",
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*",
-    "@tsparticles/react": "workspace:^",
+    "@tsparticles/react": "workspace:*",
     "next": ">=13.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@tsparticles/react": "workspace:^",
-    "@types/react": "^19.2.14",
+    "@tsparticles/react": "workspace:*",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.58.2",
-    "@typescript-eslint/parser": "^8.58.2",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^10.2.0",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
+    "@vitejs/plugin-react": "^6.0.2",
+    "eslint": "^10.5.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
     "glob": "^13.0.6",
-    "next": "^16.2.3",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.8",
-    "vite-plugin-dts": "^5.0.1"
+    "next": "^16.2.8",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-dts": "^5.0.2"
   },
   "nx": {
     "targets": {

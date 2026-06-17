@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IBlend } from "../Interfaces/IBlend.js";
 
 /**
@@ -8,30 +8,19 @@ export class Blend implements IBlend, IOptionLoader<IBlend> {
   /**
    * Blend enabling options
    */
-  enable;
-
+  enable = false;
   /**
    * Canvas composite operation
    * values here: https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D/globalCompositeOperation
    */
-  mode: GlobalCompositeOperation;
-
-  constructor() {
-    this.mode = "destination-out";
-    this.enable = false;
-  }
+  mode: GlobalCompositeOperation = "destination-out";
 
   load(data?: RecursivePartial<IBlend>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.mode !== undefined) {
-      this.mode = data.mode;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
+    loadProperty(this, "mode", data.mode);
+    loadProperty(this, "enable", data.enable);
   }
 }

@@ -18,6 +18,11 @@ export default class Particles extends Component<IParticlesProps> {
 	}
 
 	componentDidUpdate(prevProps: IParticlesProps) {
+		// Apply theme change without full reload
+		if (prevProps.theme !== this.props.theme && this._container) {
+			(this._container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
+		}
+
 		// Reload the container if relevant props changed
 		if (
 			prevProps.id !== this.props.id ||
@@ -46,9 +51,30 @@ export default class Particles extends Component<IParticlesProps> {
 				return;
 			}
 
-			const { id, url, options } = this.props;
+			const { id, url, options, loaded, particlesLoaded, container, theme } = this.props;
 
-			this._container = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
+
+			if (this._cancelled) {
+				newContainer?.destroy();
+
+				return;
+			}
+
+			this._container = newContainer;
+
+			if (container) {
+				container.current = newContainer;
+			}
+
+			if (newContainer && theme) {
+				(newContainer as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+			}
+
+			if (newContainer) {
+				await loaded?.(newContainer);
+				await particlesLoaded?.(newContainer);
+			}
 		} catch (e) {
 			getLogger().error("Particles: error during load", e);
 		}

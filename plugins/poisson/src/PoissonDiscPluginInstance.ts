@@ -27,7 +27,6 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
     this.#currentIndex = 0;
   }
 
-  /** @inheritDoc */
   async init(): Promise<void> {
     await this.#initData();
   }

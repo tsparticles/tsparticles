@@ -14,7 +14,6 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
   /** Repulse divs to apply the mode to */
   divs?: SingleOrMultiple<RepulseDiv>;
 
-  /** @inheritDoc */
   override load(data?: RecursivePartial<IRepulse>): void {
     super.load(data);
 

@@ -21,8 +21,17 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
 
 /**
+ * @param id
+ * @internal
+ */
+export function deleteFireworksInstance(id: string): void {
+  instances.delete(id);
+}
+
+/**
  * Checks if a particle supports explosion sounds
- * @param args
+ * @param args - The arguments
+ * @returns The boolean value
  */
 export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
   const data = args.data as { particle?: Particle } | undefined;
@@ -32,8 +41,8 @@ export const explodeSoundCheck = (args: CustomEventArgs): boolean => {
 
 /**
  * Converts firework options to tsParticles source options
- * @param options -
- * @param canvas -
+ * @param options - The options to handle
+ * @param canvas - The canvas
  * @returns the options for the tsParticles instance
  */
 export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISourceOptions {
@@ -205,10 +214,10 @@ export function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement
 
 /**
  * Gets or creates a fireworks instance for the given id
- * @param engine -
- * @param id -
- * @param sourceOptions -
- * @param canvas -
+ * @param engine - The engine to load the shape in
+ * @param id - The id
+ * @param sourceOptions - The sourceOptions
+ * @param canvas - The canvas
  * @returns the loaded instance
  */
 export async function getFireworksInstance(
@@ -225,7 +234,12 @@ export async function getFireworksInstance(
   }
 
   if (existing) {
-    return existing; // Return existing instance
+    if (!existing.destroyed) {
+      return existing; // Return existing valid instance
+    }
+
+    /* Discard the destroyed instance so a new one is created below */
+    instances.delete(id);
   }
 
   /* Create a locking promise */
@@ -244,7 +258,7 @@ export async function getFireworksInstance(
       }
 
       const { FireworksInstance } = await import("./FireworksInstance.js"),
-        instance = new FireworksInstance(container);
+        instance = new FireworksInstance(container, id);
 
       /* Swap the promise for the actual instance */
       instances.set(id, instance);

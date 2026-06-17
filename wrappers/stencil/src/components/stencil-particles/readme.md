@@ -10,7 +10,15 @@
 | `containerId` | `container-id` |             | `string`                                    | `undefined` |
 | `init`        | --             |             | `(engine: Engine) => void \| Promise<void>` | `undefined` |
 | `options`     | --             |             | `IOptions`                                  | `undefined` |
+| `theme`       | `theme`        |             | `string`                                    | `undefined` |
 | `url`         | `url`          |             | `string`                                    | `undefined` |
+
+
+## Events
+
+| Event             | Description | Type                     |
+| ----------------- | ----------- | ------------------------ |
+| `particlesLoaded` |             | `CustomEvent<Container>` |
 
 
 ----------------------------------------------

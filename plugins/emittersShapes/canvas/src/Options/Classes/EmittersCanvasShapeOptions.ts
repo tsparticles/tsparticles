@@ -16,37 +16,31 @@ export class EmittersCanvasShapeOptions
    */
   element?: HTMLCanvasElement;
   /**
-   * A filter function or string to apply to pixels
-   */
-  filter: string | ((pixel: IRgba) => boolean);
-  /**
    * The image element to use as the shape source
    */
   image?: HTMLImageElement;
   /**
    * The pixels options
    */
-  pixels: PixelsOptions;
+  readonly pixels: PixelsOptions = new PixelsOptions();
   /**
    * The scale factor for the shape
    */
-  scale: number;
+  scale = 1;
   /**
    * The CSS selector for the canvas element
    */
-  selector: string;
+  selector = "";
   /**
    * The text options for rendering text as the shape
    */
-  text: TextOptions;
-
-  constructor() {
-    this.filter = (pixel): boolean => pixel.a > minAlpha;
-    this.pixels = new PixelsOptions();
-    this.scale = 1;
-    this.selector = "";
-    this.text = new TextOptions();
-  }
+  readonly text: TextOptions = new TextOptions();
+  /**
+   * A filter function or string to apply to pixels
+   * @param pixel - The pixel
+   * @returns The boolean value
+   */
+  filter: string | ((pixel: IRgba) => boolean) = (pixel): boolean => pixel.a > minAlpha;
 
   /**
    * Loads the canvas shape options from the given data

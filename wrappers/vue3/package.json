@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/vue3",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "type": "module",
   "main": "dist/particles.es.js",
   "types": "dist/index.d.ts",
@@ -74,7 +74,9 @@
     "prettify:readme": "prettier --write ./README.md",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "files": [
     "dist",
@@ -88,7 +90,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tsparticles/vue3/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "homepage": "https://particles.js.org",
   "funding": [
@@ -111,35 +113,34 @@
     "directory": "dist",
     "linkDirectory": true
   },
-  "dependencies": {
-    "@tsparticles/engine": "workspace:^",
-    "vue": "^3.5.32"
+  "peerDependencies": {
+    "@tsparticles/engine": "workspace:*",
+    "vue": "^3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@rushstack/eslint-patch": "^1.16.1",
     "@tsconfig/node18": "^18.2.6",
-    "@tsparticles/prettier-config": "workspace:^",
-    "@types/node": "^25.6.0",
-    "@typescript-eslint/parser": "^8.58.1",
-    "@vitejs/plugin-vue": "^6.0.5",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/prettier-config": "workspace:*",
+    "@types/node": "^25.9.3",
+    "@typescript-eslint/parser": "^8.61.1",
+    "@vitejs/plugin-vue": "^6.0.7",
     "@vitejs/plugin-vue-jsx": "^5.1.5",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "@vue/eslint-config-typescript": "^14.7.0",
-    "@vue/language-core": "^3.3.2",
+    "@vue/eslint-config-typescript": "^14.8.0",
+    "@vue/language-core": "^3.3.5",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.0",
-    "eslint-plugin-vue": "^10.8.0",
-    "globals": "^17.5.0",
-    "prettier": "^3.8.2",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.8",
-    "vite-plugin-dts": "^5.0.1",
-    "vue-eslint-parser": "^10.4.0",
-    "vue-tsc": "^3.2.6"
+    "eslint": "^10.5.0",
+    "eslint-plugin-vue": "^10.9.2",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-dts": "^5.0.2",
+    "vue": "3.5.38",
+    "vue-eslint-parser": "^10.4.1",
+    "vue-tsc": "^3.3.5"
   },
-  "module": "dist/particles.es.js",
-  "peerDependencies": {
-    "@tsparticles/engine": "workspace:*"
-  }
+  "module": "dist/particles.es.js"
 }

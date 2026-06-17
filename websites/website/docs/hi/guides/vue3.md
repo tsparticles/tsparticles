@@ -123,27 +123,6 @@ const options: ISourceOptions = {
 
 ---
 
-## घटक के साथ `particlesInit` का उपयोग
-
-यदि आप वैश्विक प्लगइन का उपयोग नहीं करना चाहते हैं, तो सीधे `init` कॉलबैक पास करें:
-
-```vue
-<script setup lang="ts">
-import type { Engine } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-</script>
-
-<template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" />
-</template>
-```
-
----
-
 ## ईवेंट
 
 घटक कई जीवनचक्र ईवेंट उत्सर्जित करता है:
@@ -155,15 +134,10 @@ import type { Container } from "@tsparticles/engine";
 const particlesLoaded = async (container: Container): Promise<void> => {
   console.log("पार्टिकल्स कंटेनर लोड हुआ", container);
 };
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  console.log("इंजन आरंभीकृत हुआ");
-  await loadFull(engine);
-};
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -177,14 +151,9 @@ const particlesInit = async (engine: Engine): Promise<void> => {
 npm install @tsparticles/preset-confetti
 ```
 
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadConfettiPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "confetti",
@@ -195,30 +164,18 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="confetti" :options="options" :init="particlesInit" />
+  <vue-particles id="confetti" :options="options" />
 </template>
-```
 
-एक बार के विस्फोट के लिए, प्रीसेट लोड करें फिर किसी विधि के अंदर प्रोग्रामेटिक रूप से `tsParticles.load()` कॉल करें।
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadConfettiPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। एक बार के विस्फोट के लिए, प्रीसेट लोड करें फिर किसी विधि के अंदर प्रोग्रामेटिक रूप से
+`tsParticles.load()` कॉल करें। --- ## आतिशबाजी प्रभाव आतिशबाजी प्रीसेट उच्च-प्रभाव वाले कण विस्फोट बनाता है: ```bash npm
+install @tsparticles/preset-fireworks
+````
 
----
-
-## आतिशबाजी प्रभाव
-
-आतिशबाजी प्रीसेट उच्च-प्रभाव वाले कण विस्फोट बनाता है:
-
-```bash
-npm install @tsparticles/preset-fireworks
-```
-
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFireworksPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "fireworks",
@@ -229,30 +186,18 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="fireworks" :options="options" :init="particlesInit" />
+  <vue-particles id="fireworks" :options="options" />
 </template>
-```
 
-> **टिप:** आतिशबाजी प्रीसेट संसाधन-गहन है। इसे घटक से बंधे `v-if` को टॉगल करके उपयोगकर्ता इंटरैक्शन (जैसे, बटन क्लिक) पर ट्रिगर करें।
-
----
-
-## बर्फ प्रभाव
-
-बर्फ प्रीसेट के साथ गिरती बर्फ का अनुकरण करें:
-
-```bash
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadFireworksPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। > **टिप:** आतिशबाजी प्रीसेट संसाधन-गहन है। इसे घटक से बंधे `v-if` को टॉगल करके उपयोगकर्ता
+इंटरैक्शन (जैसे, बटन क्लिक) पर ट्रिगर करें। --- ## बर्फ प्रभाव बर्फ प्रीसेट के साथ गिरती बर्फ का अनुकरण करें: ```bash
 npm install @tsparticles/preset-snow
-```
+````
 
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadSnowPreset } from "@tsparticles/preset-snow";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadSnowPreset(engine);
-};
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   preset: "snow",
@@ -263,17 +208,11 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="snow" :options="options" :init="particlesInit" />
+  <vue-particles id="snow" :options="options" />
 </template>
-```
 
----
-
-## इंटरैक्टिव कण
-
-होवर और क्लिक इंटरैक्टिविटी मोड जोड़ें:
-
-```vue
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadSnowPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। --- ## इंटरैक्टिव कण होवर और क्लिक इंटरैक्टिविटी मोड जोड़ें: ```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -338,7 +277,7 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-```
+````
 
 उपलब्ध इंटरैक्शन मोड: `grab`, `repulse`, `bubble`, `connect`, `push`, `remove`, `trail`, `attract`, `light`.
 
@@ -408,7 +347,15 @@ const toggleTheme = () => {
 </template>
 ```
 
-वैकल्पिक रूप से, शून्य-कॉन्फ़िग स्विचिंग के लिए अंतर्निहित [themes](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html#themes) विकल्प और कंटेनर पर `theme` प्रॉपर्टी का उपयोग करें।
+`<vue-particles>` घटक शून्य-कॉन्फ़िग स्विचिंग के लिए एक `theme` प्रॉप का भी समर्थन करता है। जब `theme` प्रॉप बदलता है, तो घटक कंटेनर को नष्ट और पुनर्निर्मित किए बिना नई थीम लागू करता है:
+
+```vue
+<template>
+  <vue-particles id="tsparticles" :options="options" :theme="currentTheme" />
+</template>
+```
+
+> **नोट:** `theme` प्रॉप के लिए वैकल्पिक [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) पैकेज आवश्यक है। इसके बिना, `theme` प्रॉप एक सुरक्षित नो-ऑप है — कोई त्रुटि नहीं फेंकी जाती, लेकिन थीम परिवर्तन अनदेखा कर दिया जाता है।
 
 ---
 
@@ -420,15 +367,10 @@ const toggleTheme = () => {
 npm install @tsparticles/configs
 ```
 
-```vue
+````vue
 <script setup lang="ts">
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadLinksPreset } from "@tsparticles/preset-links";
+import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
-
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadLinksPreset(engine);
-};
 
 const options: ISourceOptions = {
   ...particlesConfig,
@@ -439,60 +381,29 @@ const options: ISourceOptions = {
 </script>
 
 <template>
-  <vue-particles id="config-particles" :options="options" :init="particlesInit" />
+  <vue-particles id="config-particles" :options="options" />
 </template>
-```
 
-तैयार-से-उपयोग लेआउट के लिए `@tsparticles/configs` पैकेज में उपलब्ध कॉन्फ़िग देखें।
-
----
-
-## इंजन आरंभीकरण दृष्टिकोण
-
-इंजन को आरंभ करने के दो तरीके हैं:
-
-### 1. वैश्विक प्लगइन (अनुशंसित)
-
-```typescript
-// main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import type { Engine } from "@tsparticles/engine";
-import { ParticlesPlugin } from "@tsparticles/vue3";
-import { loadFull } from "tsparticles";
-
-createApp(App)
-  .use(ParticlesPlugin, {
-    init: async (engine: Engine) => {
-      await loadFull(engine);
-    },
-  })
-  .mount("#app");
-```
+> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadLinksPreset` पंजीकृत करें ([मूल
+उपयोग](#मूल-उपयोग) देखें)। तैयार-से-उपयोग लेआउट के लिए `@tsparticles/configs` पैकेज में उपलब्ध कॉन्फ़िग देखें। --- ##
+इंजन आरंभीकरण दृष्टिकोण इंजन को आरंभ करने के दो तरीके हैं: ### 1. वैश्विक प्लगइन (अनुशंसित) ```typescript // main.ts
+import { createApp } from "vue"; import App from "./App.vue"; import type { Engine } from "@tsparticles/engine"; import
+{ ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from "tsparticles"; createApp(App)
+.use(ParticlesPlugin, { init: async (engine: Engine) => { await loadFull(engine); }, }) .mount("#app");
+````
 
 इंजन फिर वैश्विक रूप से उपलब्ध है और सभी `<vue-particles>` इंस्टेंस इसे साझा करते हैं।
 
-### 2. घटक-स्तरीय आरंभीकरण
-
-प्रत्येक `<vue-particles>` इंस्टेंस को एक `:init` कॉलबैक पास करें। तब उपयोगी जब विभिन्न घटकों को विभिन्न प्लगइन सेट की आवश्यकता हो:
-
-```vue
-<template>
-  <vue-particles id="a" :options="optionsA" :init="initA" />
-  <vue-particles id="b" :options="optionsB" :init="initB" />
-</template>
-```
-
-### 3. पार्टिकल्स प्रोवाइडर (कम्पोज़िशन API)
+### 2. पार्टिकल्स प्रोवाइडर (कम्पोज़िशन API)
 
 इंजन तक प्रोग्रामेटिक रूप से पहुँचने के लिए प्रोवाइडर का उपयोग करें:
 
 ```vue
 <script setup lang="ts">
-import { useParticles } from "@tsparticles/vue3";
+import { useParticlesProvider } from "@tsparticles/vue3";
 import { loadFull } from "tsparticles";
 
-const { init } = useParticles();
+const { init } = useParticlesProvider();
 
 await init(async (engine: Engine) => {
   await loadFull(engine);
@@ -509,8 +420,7 @@ await init(async (engine: Engine) => {
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 const particlesContainer = ref<Container | null>(null);
 
@@ -581,10 +491,6 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-const particlesInit = async (engine: Engine): Promise<void> => {
-  await loadFull(engine);
-};
-
 const particlesLoaded = async (container: Container): Promise<void> => {
   particlesContainer.value = container;
   console.log("कंटेनर तैयार", container);
@@ -592,7 +498,7 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 </script>
 
 <template>
-  <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
+  <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
 </template>
 ```
 
@@ -600,17 +506,16 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ## API संदर्भ
 
-| प्रॉप     | प्रकार                              | डिफ़ॉल्ट        | विवरण                         |
-| --------- | ----------------------------------- | --------------- | ----------------------------- |
-| `id`      | `string`                            | `"tsparticles"` | कैनवास तत्व आईडी              |
-| `options` | `ISourceOptions`                    | `{}`            | कण कॉन्फ़िगरेशन               |
-| `init`    | `(engine: Engine) => Promise<void>` | —               | इंजन आरंभीकरण कॉलबैक          |
-| `url`     | `string`                            | —               | JSON कॉन्फ़िग लोड करने का URL |
+| प्रॉप     | प्रकार           | डिफ़ॉल्ट        | विवरण                                                                          |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------ |
+| `id`      | `string`         | `"tsparticles"` | कैनवास तत्व आईडी                                                               |
+| `options` | `ISourceOptions` | `{}`            | कण कॉन्फ़िगरेशन                                                                |
+| `url`     | `string`         | —               | JSON कॉन्फ़िग लोड करने का URL                                                  |
+| `theme`   | `string`         | —               | थीम नाम (`@tsparticles/plugin-themes` आवश्यक; अनुपलब्ध होने पर सुरक्षित नो-ऑप) |
 
 | ईवेंट               | पेलोड       | विवरण                                                     |
 | ------------------- | ----------- | --------------------------------------------------------- |
 | `@particles-loaded` | `Container` | जब कंटेनर पूरी तरह से आरंभीकृत हो जाता है तब फायर होता है |
-| `@particles-init`   | `Engine`    | इंजन आरंभीकृत होने के बाद फायर होता है                    |
 
 ---
 

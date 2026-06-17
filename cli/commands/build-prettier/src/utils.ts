@@ -7,8 +7,8 @@ import prettier from "prettier";
 type PrettierSupportedParser = "typescript" | "json" | "markdown";
 
 /**
- * @param basePath -
- * @param parser -
+ * @param basePath - The basePath
+ * @param parser - The parser
  * @returns -
  */
 async function getPrettierOptions(
@@ -28,10 +28,10 @@ async function getPrettierOptions(
 }
 
 /**
- * @param filePath -
- * @param options -
- * @param ci -
- * @param errorMessage -
+ * @param filePath - The filePath
+ * @param options - The options to handle
+ * @param ci - The ci
+ * @param errorMessage - The errorMessage
  */
 async function formatOrCheckFile(
   filePath: string,
@@ -57,10 +57,10 @@ async function formatOrCheckFile(
 }
 
 /**
- * @param basePath -
- * @param srcPath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param srcPath - The srcPath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify src process was successful
  */
 export async function prettifySrc(basePath: string, srcPath: string, ci: boolean, silent: boolean): Promise<boolean> {
@@ -96,9 +96,9 @@ export async function prettifySrc(basePath: string, srcPath: string, ci: boolean
 }
 
 /**
- * @param basePath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify package.json process was successful
  */
 export async function prettifyPackageJson(basePath: string, ci: boolean, silent: boolean): Promise<boolean> {
@@ -128,9 +128,9 @@ export async function prettifyPackageJson(basePath: string, ci: boolean, silent:
 }
 
 /**
- * @param basePath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify package.dist.json process was successful
  */
 export async function prettifyPackageDistJson(basePath: string, ci: boolean, silent: boolean): Promise<boolean> {
@@ -160,9 +160,9 @@ export async function prettifyPackageDistJson(basePath: string, ci: boolean, sil
 }
 
 /**
- * @param basePath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify readme process was successful
  */
 export async function prettifyReadme(basePath: string, ci: boolean, silent: boolean): Promise<boolean> {
@@ -193,9 +193,9 @@ export async function prettifyReadme(basePath: string, ci: boolean, silent: bool
 }
 
 /**
- * @param basePath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify traductions process was successful
  */
 async function prettifyTraductions(basePath: string, ci: boolean, silent: boolean): Promise<boolean> {
@@ -239,9 +239,9 @@ async function prettifyTraductions(basePath: string, ci: boolean, silent: boolea
 }
 
 /**
- * @param basePath -
- * @param ci -
- * @param silent -
+ * @param basePath - The basePath
+ * @param ci - The ci
+ * @param silent - The silent
  * @returns true if the prettify markdown typedoc files process was successful
  */
 async function prettifyMarkdownTypeDocFiles(basePath: string, ci: boolean, silent: boolean): Promise<boolean> {

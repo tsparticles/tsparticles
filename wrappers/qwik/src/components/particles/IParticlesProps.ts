@@ -8,6 +8,7 @@ export interface IParticlesProps {
   options?: ISourceOptions;
   url?: string;
   params?: ISourceOptions;
+  theme?: string;
   style?: CSSProperties;
   class?: ClassList | Signal<ClassList>;
   canvasClassName?: ClassList | Signal<ClassList>;

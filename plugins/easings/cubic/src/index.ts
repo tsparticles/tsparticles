@@ -5,7 +5,7 @@ declare const __VERSION__: string;
 
 /**
  * Loads the easing cubic plugin for tsParticles
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadEasingCubicPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);

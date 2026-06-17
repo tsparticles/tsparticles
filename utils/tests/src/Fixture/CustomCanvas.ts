@@ -5,8 +5,8 @@ import { installTransferControlToOffscreen } from "./OffscreenCanvas.js";
 
 /**
  *
- * @param width -
- * @param height -
+ * @param width - The width
+ * @param height - The height
  * @returns the custom canvas
  */
 export function createCustomCanvas(width: number, height: number): Canvas {

@@ -6,7 +6,8 @@ import {
   type RangeValue,
   type RecursivePartial,
   isNull,
-  setRangeValue,
+  loadProperty,
+  loadRangeProperty,
 } from "@tsparticles/engine";
 import type { IOrbit } from "../Interfaces/IOrbit.js";
 import { OrbitRotation } from "./OrbitRotation.js";
@@ -16,32 +17,24 @@ import { OrbitRotation } from "./OrbitRotation.js";
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
   /** Orbit animation options */
-  animation;
+  readonly animation = new AnimationOptions();
   /** Orbit color */
   color?: OptionsColor;
   /** Enables the orbit */
-  enable: boolean;
+  enable = false;
   /** Orbit opacity */
-  opacity: RangeValue;
+  opacity: RangeValue = 1;
   /** Orbit radius */
   radius?: RangeValue;
   /** Orbit rotation */
-  rotation;
+  readonly rotation = new OrbitRotation();
   /** Orbit width */
-  width: RangeValue;
-
+  width: RangeValue = 1;
   /** Orbit constructor */
-  constructor() {
-    this.animation = new AnimationOptions();
-    this.enable = false;
-    this.opacity = 1;
-    this.rotation = new OrbitRotation();
-    this.width = 1;
-  }
 
   /**
    * Loads the orbit options from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IOrbit>): void {
     if (isNull(data)) {
@@ -52,18 +45,10 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
 
     this.rotation.load(data.rotation);
 
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-    if (data.opacity !== undefined) {
-      this.opacity = setRangeValue(data.opacity);
-    }
-    if (data.width !== undefined) {
-      this.width = setRangeValue(data.width);
-    }
-    if (data.radius !== undefined) {
-      this.radius = setRangeValue(data.radius);
-    }
+    loadProperty(this, "enable", data.enable);
+    loadRangeProperty(this, "opacity", data.opacity);
+    loadRangeProperty(this, "width", data.width);
+    loadRangeProperty(this, "radius", data.radius);
     if (data.color !== undefined) {
       this.color = OptionsColor.create(this.color, data.color);
     }

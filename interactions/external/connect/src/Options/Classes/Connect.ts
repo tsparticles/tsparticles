@@ -1,38 +1,25 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { ConnectLinks } from "./ConnectLinks.js";
 import type { IConnect } from "../Interfaces/IConnect.js";
 
 /** Connect mode options class */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
   /** Connect distance in pixels */
-  distance;
-
+  distance = 80;
   /** Connect links options */
-  links;
-
+  readonly links = new ConnectLinks();
   /** Connect radius in pixels */
-  radius;
+  radius = 60;
 
-  constructor() {
-    this.distance = 80;
-    this.links = new ConnectLinks();
-    this.radius = 60;
-  }
-
-  /** @inheritDoc */
   load(data?: RecursivePartial<IConnect>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.distance !== undefined) {
-      this.distance = data.distance;
-    }
+    loadProperty(this, "distance", data.distance);
 
     this.links.load(data.links);
 
-    if (data.radius !== undefined) {
-      this.radius = data.radius;
-    }
+    loadProperty(this, "radius", data.radius);
   }
 }

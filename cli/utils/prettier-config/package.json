@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/prettier-config",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles default Prettier Configuration",
   "main": "dist/index.cjs",
   "exports": {
@@ -27,10 +27,10 @@
     "prettier": "^3"
   },
   "dependencies": {
-    "prettier-plugin-multiline-arrays": "^4.1.8"
+    "prettier-plugin-multiline-arrays": "^4.1.9"
   },
   "devDependencies": {
     "cpx2": "^9.0.0",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.4"
   }
 }

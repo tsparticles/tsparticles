@@ -10,7 +10,7 @@ const rollupConfigCandidates = ["rollup.config.mjs", "rollup.config.js", "rollup
   emptyCount = 0;
 
 /**
- * @param configData -
+ * @param configData - The configData
  * @returns -
  */
 function normalizeRollupConfigs(configData: RollupOptions | RollupOptions[]): RollupOptions[] {
@@ -18,7 +18,7 @@ function normalizeRollupConfigs(configData: RollupOptions | RollupOptions[]): Ro
 }
 
 /**
- * @param basePath -
+ * @param basePath - The basePath
  * @returns -
  */
 async function loadRollupConfig(basePath: string): Promise<RollupOptions[]> {
@@ -56,8 +56,8 @@ async function loadRollupConfig(basePath: string): Promise<RollupOptions[]> {
 }
 
 /**
- * @param bundleResult -
- * @param output -
+ * @param bundleResult - The bundleResult
+ * @param output - The output
  * @returns -
  */
 async function writeRollupOutput(
@@ -74,8 +74,8 @@ async function writeRollupOutput(
 }
 
 /**
- * @param basePath -
- * @param silent -
+ * @param basePath - The basePath
+ * @param silent - The silent
  * @returns true if the bundle was created
  */
 export async function bundleRollup(basePath: string, silent: boolean): Promise<boolean> {

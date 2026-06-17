@@ -364,4 +364,23 @@ Below is a complete `.riot` file that ties everything together: engine initializ
 
 ---
 
+## Component API
+
+| Prop      | Type             | Default         | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element id. Change triggers destroy+reload.                        |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.            |
+| `url`     | `string`         | —               | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+
+## Reactive Behavior
+
+The `<riot-particles>` tag reloads particles when `id`, `options`, or `url` props change. The `theme` prop applies via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the `<riot-particles>` element is unmounted, the container is automatically destroyed — no orphan animations remain.
+
+---
+
 You now have everything needed to integrate tsParticles into a Riot.js application. Each example is self-contained and ready to be copied into your project.

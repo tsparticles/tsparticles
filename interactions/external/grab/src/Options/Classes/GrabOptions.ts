@@ -1,9 +1,11 @@
-import type { GrabMode } from "../../Types.js";
+import type { Grab } from "./Grab.js";
 import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
 
 /** Grab interaction options */
 export type GrabOptions = InteractivityOptions & {
   interactivity?: {
-    modes: GrabMode;
+    modes: {
+      grab?: Grab;
+    };
   };
 };

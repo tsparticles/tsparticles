@@ -5,7 +5,7 @@ const paletteName = "apple-red";
 
 /**
  * Register the apple-red palette
- * @param engine
+ * @param engine - The engine to load the shape in
  */
 export async function loadAppleRedPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

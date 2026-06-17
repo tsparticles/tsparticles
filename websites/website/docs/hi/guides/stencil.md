@@ -258,6 +258,15 @@ export class AppRoot {
 
 ---
 
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
 ## टाइपस्क्रिप्ट उदाहरण
 
 यहाँ एक पूर्ण, टाइप किया गया स्टेंसिल एप्लिकेशन कम्पोनेंट है जो स्लिम प्रीसेट, होवर इंटरैक्टिविटी और एक कस्टम डार्क थीम के साथ tsParticles को एकीकृत करता है।

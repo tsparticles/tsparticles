@@ -8,6 +8,7 @@ import {
   getRandom,
   getRangeValue,
   getStyleFromHsl,
+  loadOptionProperty,
   rangeColorToHsl,
 } from "@tsparticles/engine";
 import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
@@ -22,8 +23,8 @@ export class TwinkleUpdater implements IParticleUpdater {
 
   /**
    * TwinkleUpdater constructor
-   * @param pluginManager
-   * @param container
+   * @param pluginManager - The plugin manager
+   * @param container - The container to handle
    */
   constructor(pluginManager: PluginManager, container: Container) {
     this.#pluginManager = pluginManager;
@@ -32,10 +33,11 @@ export class TwinkleUpdater implements IParticleUpdater {
 
   /**
    * Gets the twinkle color styles
-   * @param particle
-   * @param _context
-   * @param _radius
-   * @param opacity
+   * @param particle - The particle to process
+   * @param _context - The rendering context
+   * @param _radius - The radius
+   * @param opacity - The opacity value
+   * @returns The color styles
    */
   getColorStyles(
     particle: Particle,
@@ -91,7 +93,8 @@ export class TwinkleUpdater implements IParticleUpdater {
 
   /**
    * Checks if twinkle is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: TwinkeParticle): boolean {
     const pOptions = particle.options,
@@ -106,18 +109,14 @@ export class TwinkleUpdater implements IParticleUpdater {
 
   /**
    * Loads the twinkle options
-   * @param options
-   * @param sources
+   * @param options - The options to handle
+   * @param sources - The sources
    */
   loadOptions(
     options: TwinkleParticlesOptions,
     ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
   ): void {
-    options.twinkle ??= new Twinkle();
-
-    for (const source of sources) {
-      options.twinkle.load(source?.twinkle);
-    }
+    loadOptionProperty(options, "twinkle", Twinkle, ...sources);
   }
 
   /** Updates the twinkle (no-op) */

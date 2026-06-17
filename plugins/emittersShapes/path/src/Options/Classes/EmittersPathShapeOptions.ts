@@ -10,11 +10,7 @@ export class EmittersPathShapeOptions implements IEmittersPathShapeOptions, IOpt
   /**
    * The points defining the path
    */
-  points: ICoordinates[];
-
-  constructor() {
-    this.points = [];
-  }
+  points: ICoordinates[] = [];
 
   /**
    * Loads the path shape options from the given data

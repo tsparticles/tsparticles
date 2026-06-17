@@ -14,17 +14,17 @@ import {
   double,
   getRangeValue,
   half,
+  minRadius,
+  minVelocity,
   safeDocument,
+  squareExp,
 } from "@tsparticles/engine";
 import { type DivEvent, DivType, type IInteractivityData, divModeExecute } from "@tsparticles/plugin-interactivity";
 import type { BounceContainer } from "./Types.js";
 import type { IRectSideResult } from "./IRectSideResult.js";
 
-const squareExp = 2,
-  halfPI = Math.PI * half,
-  toleranceFactor = 10,
-  minRadius = 0,
-  minVelocity = 0;
+const halfPI = Math.PI * half,
+  toleranceFactor = 10;
 
 interface RectSideBounceData {
   /**

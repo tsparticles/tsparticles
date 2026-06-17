@@ -36,6 +36,58 @@ tsParticles can be extended at runtime with custom shapes, presets, plugins, and
 - Keep a tiny config fixture while developing (faster regressions checks).
 - If a feature is missing, verify the required package is loaded (shape, interaction, updater, plugin).
 
+## Global runtime configuration
+
+tsParticles exposes a few utilities on the global `tsParticles` object for advanced runtime customization.
+
+### Custom random number generator
+
+Replace the internal random function with your own (useful for seeded/controlled randomness in custom plugins):
+
+```js
+// Set a custom random function
+tsParticles.setParticlesRandom(() => {
+  // your custom random logic
+  return Math.random();
+});
+
+// Get a random number using the current random function
+const value = tsParticles.getParticlesRandom();
+
+// Get the current random function reference
+const randomFn = tsParticles.getParticlesRandomFn();
+```
+
+### Custom logger
+
+Replace the internal logger with your own (useful for silent modes or custom log handling):
+
+```js
+// Set a custom logger
+tsParticles.setParticlesLogger({
+  debug: (msg) => {},
+  error: (msg) => console.error("[myApp]", msg),
+  info: (msg) => {},
+  log: (msg) => {},
+  trace: (msg) => {},
+  verbose: (msg) => {},
+  warning: (msg) => {},
+});
+
+// Get the current logger
+const logger = tsParticles.getParticlesLogger();
+```
+
+When using the library via a UMD script tag, these are also available directly on `globalThis`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
+<script>
+  globalThis.setParticlesRandom(myRandomFn);
+  globalThis.setParticlesLogger(myLogger);
+</script>
+```
+
 ## Next steps
 
 Choose an extension type above for step-by-step guides with inline code and package creation instructions.

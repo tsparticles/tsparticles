@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles cards shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -190,13 +190,13 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.1.3"
+    "@tsparticles/engine": "4.2.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "dependencies": {
-    "@tsparticles/path-utils": "4.1.3"
+    "@tsparticles/path-utils": "4.2.0"
   }
 }

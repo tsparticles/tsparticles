@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-vaporwave",
-  "version": "4.1.3",
+  "version": "4.2.0",
   "description": "tsParticles vaporwave palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.1.3"
+    "@tsparticles/engine": "4.2.0"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

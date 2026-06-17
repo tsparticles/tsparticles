@@ -3,7 +3,7 @@ import { loadAbsorbersInteraction } from "./interaction.js";
 import { loadAbsorbersPluginSimple } from "./plugin.js";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
   await loadAbsorbersPluginSimple(engine);

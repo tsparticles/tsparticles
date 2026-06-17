@@ -1,4 +1,4 @@
-import { GradientType, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { GradientType, type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import { AnimatableGradientColor } from "./AnimatableGradientColor.js";
 import { GradientAngle } from "./GradientAngle.js";
 import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient.js";
@@ -9,22 +9,16 @@ import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient.js";
  */
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
   /** Gradient angle */
-  angle: GradientAngle;
+  readonly angle: GradientAngle = new GradientAngle();
   /** Gradient colors */
-  colors: AnimatableGradientColor[];
+  colors: AnimatableGradientColor[] = [];
   /** Gradient type */
-  type: GradientType;
-
+  type: GradientType = GradientType.random;
   /** AnimatableGradient constructor */
-  constructor() {
-    this.angle = new GradientAngle();
-    this.colors = [];
-    this.type = GradientType.random;
-  }
 
   /**
    * Loads the animatable gradient from data
-   * @param data
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IAnimatableGradient>): void {
     if (isNull(data)) {
@@ -43,8 +37,6 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
       });
     }
 
-    if (data.type !== undefined) {
-      this.type = data.type;
-    }
+    loadProperty(this, "type", data.type);
   }
 }

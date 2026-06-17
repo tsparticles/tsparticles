@@ -10,6 +10,7 @@ import {
   deepExtend,
   executeOnSingleOrMultiple,
   isNull,
+  loadProperty,
   setRangeValue,
 } from "@tsparticles/engine";
 import { EmitterLife } from "./EmitterLife.js";
@@ -26,7 +27,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * Starts the emitter automatically
    */
-  autoPlay;
+  autoPlay = true;
   /**
    * The direction of the emitted particles
    */
@@ -38,11 +39,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * Sets if the particles will spawn at the emitter perimeter or inside the area
    */
-  fill;
+  fill = true;
   /**
    * The emitter life options
    */
-  life;
+  readonly life = new EmitterLife();
   /**
    * The emitter name
    */
@@ -58,11 +59,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * The particles emitting rate options
    */
-  rate;
+  readonly rate = new EmitterRate();
   /**
    * The emitter shape options
    */
-  shape;
+  readonly shape = new EmitterShape();
   /**
    * The size of the particles emitter area
    */
@@ -70,7 +71,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * The emitter spawn options
    */
-  spawn;
+  readonly spawn = new EmitterSpawn();
   /**
    * The particle spawn fill color
    */
@@ -80,17 +81,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
    */
   spawnStrokeColor?: AnimatableColor;
   /** The number of starting particles of the emitter */
-  startCount;
-
-  constructor() {
-    this.autoPlay = true;
-    this.fill = true;
-    this.life = new EmitterLife();
-    this.rate = new EmitterRate();
-    this.shape = new EmitterShape();
-    this.spawn = new EmitterSpawn();
-    this.startCount = 0;
-  }
+  startCount = 0;
 
   /**
    * Loads the emitter options from the given data
@@ -101,9 +92,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
       return;
     }
 
-    if (data.autoPlay !== undefined) {
-      this.autoPlay = data.autoPlay;
-    }
+    loadProperty(this, "autoPlay", data.autoPlay);
 
     if (data.size !== undefined) {
       this.size ??= new EmitterSize();
@@ -111,19 +100,15 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
       this.size.load(data.size);
     }
 
-    if (data.direction !== undefined) {
-      this.direction = data.direction;
-    }
+    loadProperty(this, "direction", data.direction);
 
-    this.domId = data.domId;
+    loadProperty(this, "domId", data.domId);
 
-    if (data.fill !== undefined) {
-      this.fill = data.fill;
-    }
+    loadProperty(this, "fill", data.fill);
 
     this.life.load(data.life);
 
-    this.name = data.name;
+    loadProperty(this, "name", data.name);
 
     this.particles = executeOnSingleOrMultiple(data.particles, particles => {
       return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
@@ -157,8 +142,6 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
       this.spawnStrokeColor.load(data.spawnStrokeColor);
     }
 
-    if (data.startCount !== undefined) {
-      this.startCount = data.startCount;
-    }
+    loadProperty(this, "startCount", data.startCount);
   }
 }

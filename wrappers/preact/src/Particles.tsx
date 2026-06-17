@@ -52,14 +52,36 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
       nextProps.width !== this.props.width ||
       !deepCompare(nextProps.style, this.props.style) ||
       nextProps.particlesLoaded !== this.props.particlesLoaded ||
+      nextProps.theme !== this.props.theme ||
       !deepCompare(nextProps.options ?? nextProps.params, this.props.options ?? this.props.params, key =>
         key.startsWith("_"),
       )
     );
   }
 
-  componentDidUpdate(): void {
-    this.refresh();
+  componentDidUpdate(prevProps: Readonly<IParticlesProps>): void {
+    if (prevProps.theme !== this.props.theme && this.state.library) {
+      void (this.state.library as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
+        this.props.theme,
+      );
+    }
+
+    if (
+      !this.state.library ||
+      prevProps.url !== this.props.url ||
+      prevProps.id !== this.props.id ||
+      prevProps.canvasClassName !== this.props.canvasClassName ||
+      prevProps.className !== this.props.className ||
+      prevProps.height !== this.props.height ||
+      prevProps.width !== this.props.width ||
+      !deepCompare(prevProps.style, this.props.style) ||
+      prevProps.particlesLoaded !== this.props.particlesLoaded ||
+      !deepCompare(prevProps.options ?? prevProps.params, this.props.options ?? this.props.params, key =>
+        key.startsWith("_"),
+      )
+    ) {
+      this.refresh();
+    }
   }
 
   forceUpdate(): void {
@@ -123,12 +145,16 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
     const cb = async (container?: Container) => {
       if (this.props.container) {
-        (this.props.container as MutableRefObject<Container>).current = container;
+        (this.props.container as MutableRefObject<Container | undefined>).current = container;
       }
 
       this.setState({
         library: container,
       });
+
+      if (container && this.props.theme) {
+        await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.props.theme);
+      }
 
       if (this.props.particlesLoaded) {
         await this.props.particlesLoaded(container);

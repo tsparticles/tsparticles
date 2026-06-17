@@ -351,7 +351,7 @@ const App: Component = () => {
     },
   };
 
-  const particlesLoaded = (c: Container) => {
+  const particlesLoaded = (c?: Container) => {
     setContainer(c);
   };
 
@@ -494,6 +494,15 @@ export default App;
 ```
 
 El preset proporciona valores por defecto para cada opción, y tus personalizaciones se fusionan encima — solo necesitas especificar las propiedades que quieres cambiar.
+
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
 ## Solución de Problemas
 

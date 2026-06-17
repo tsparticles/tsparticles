@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+
+### Bug Fixes
+
+- fixed issue with ribbons and confetti websites ([7ae50f3](https://github.com/tsparticles/tsparticles/commit/7ae50f3c89c2e5bf65750584d4b1535516c66673))
+- various fixes after deeper review ([58b7ef8](https://github.com/tsparticles/tsparticles/commit/58b7ef83b48a4979519349c3cb6fd3cfe2cf6f5b))
+
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 
 **Note:** Version bump only for package @tsparticles/confetti-website

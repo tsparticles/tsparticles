@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/confetti",
-  "version": "4.1.3",
-  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "version": "4.2.0",
+  "description": "tsParticles confetti bundle — easily create confetti, confetti cannon, confetti explosions, confetti falling, and confetti parade animations with presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
@@ -105,22 +105,22 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.1.3",
-    "@tsparticles/engine": "4.1.3",
-    "@tsparticles/plugin-emitters": "4.1.3",
-    "@tsparticles/plugin-motion": "4.1.3",
-    "@tsparticles/shape-cards": "4.1.3",
-    "@tsparticles/shape-emoji": "4.1.3",
-    "@tsparticles/shape-heart": "4.1.3",
-    "@tsparticles/shape-image": "4.1.3",
-    "@tsparticles/shape-polygon": "4.1.3",
-    "@tsparticles/shape-square": "4.1.3",
-    "@tsparticles/shape-star": "4.1.3",
-    "@tsparticles/updater-life": "4.1.3",
-    "@tsparticles/updater-roll": "4.1.3",
-    "@tsparticles/updater-rotate": "4.1.3",
-    "@tsparticles/updater-tilt": "4.1.3",
-    "@tsparticles/updater-wobble": "4.1.3"
+    "@tsparticles/basic": "4.2.0",
+    "@tsparticles/engine": "4.2.0",
+    "@tsparticles/plugin-emitters": "4.2.0",
+    "@tsparticles/plugin-motion": "4.2.0",
+    "@tsparticles/shape-cards": "4.2.0",
+    "@tsparticles/shape-emoji": "4.2.0",
+    "@tsparticles/shape-heart": "4.2.0",
+    "@tsparticles/shape-image": "4.2.0",
+    "@tsparticles/shape-polygon": "4.2.0",
+    "@tsparticles/shape-square": "4.2.0",
+    "@tsparticles/shape-star": "4.2.0",
+    "@tsparticles/updater-life": "4.2.0",
+    "@tsparticles/updater-roll": "4.2.0",
+    "@tsparticles/updater-rotate": "4.2.0",
+    "@tsparticles/updater-tilt": "4.2.0",
+    "@tsparticles/updater-wobble": "4.2.0"
   },
   "publishConfig": {
     "access": "public"

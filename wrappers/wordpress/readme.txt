@@ -3,8 +3,8 @@ Contributors:      matteobruni
 Donate link:       https://github.com/sponsors/matteobruni
 Tags:              block, particles, confetti, fireworks, animations, javascript, tsparticles, particles js, background, particle background, animated background, particlesjs
 Requires at least: 5.9
-Tested up to:      6.1
-Stable tag:        4.1.3
+Tested up to:      7.0
+Stable tag:        4.2.0
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,34 @@ There are some ways to ask for support:
 Nothing to say
 
 == Changelog ==
+
+= 4.2.0
+
+This major update migrates tsParticles from v3 to v4, adding full compatibility with the new engine architecture. All packages are now sourced from the monorepo using `workspace:*` references.
+
+## Breaking Changes
+
+- Removed `@tsparticles/updater-color` and `@tsparticles/updater-stroke-color`, consolidated into `@tsparticles/updater-paint`
+- Removed `@tsparticles/move-base` and `@tsparticles/move-parallax`, consolidated into `@tsparticles/plugin-move`
+- Default options updated: removed `fpsLimit`, changed `particles.color` to `particles.paint.color`
+
+## Bug Fixes
+
+- Fixed default options alignment with engine v4 API (`particles.color` → `particles.paint.color`)
+- Fixed missing `plugin-lch-color` and duplicate `plugin-oklch-color` in source loaders
+- Fixed missing toggle attributes for various packages in block.json
+- Fixed alignment between package.json dependencies, block.json toggles, and source loaders (all 151 toggleable packages now match)
+
+## New Features
+
+- Added toggleable support for all new v4 packages:
+    - **Effects**: filter, particles, shadow
+    - **Interactions**: external-cannon, external-destroy, external-drag, external-parallax, external-particle
+    - **Paths**: branches, brownian, fractal-noise, grid, levy, random, spiral, zig-zag
+    - **Plugins**: background-mask, blend, easing-bounce, easing-elastic, easing-gaussian, easing-sigmoid, easing-smoothstep, hex-color, hsl-color, hwb-color, interactivity, lab-color, lch-color, manual-particles, move, named-color, oklab-color, oklch-color, poisson-disc, responsive, rgb-color, themes, trail, zoom
+    - **Presets**: ambient, confetti-cannon, confetti-explosions, confetti-falling, confetti-parade, hyperspace, matrix, meteors, party
+    - **Shapes**: infinity, matrix, ribbon, squircle
+- Full integration with the v4 plugin architecture (easings, color space plugins, emitter shapes, exports)
 
 = 3.0.0
 

@@ -4,10 +4,10 @@ const maxAttempts = 100;
 
 /**
  *
- * @param ctx -
- * @param path -
- * @param center -
- * @param size -
+ * @param ctx - The rendering context
+ * @param path - The path
+ * @param center - The center point
+ * @param size - The size
  * @returns the random point within the path
  */
 export function generateRandomPointWithinPath(
@@ -36,10 +36,10 @@ export function generateRandomPointWithinPath(
 
 /**
  *
- * @param ctx -
- * @param path -
- * @param center -
- * @param size -
+ * @param ctx - The rendering context
+ * @param path - The path
+ * @param center - The center point
+ * @param size - The size
  * @returns the random point on the perimeter of the path
  */
 export function generateRandomPointOnPathPerimeter(

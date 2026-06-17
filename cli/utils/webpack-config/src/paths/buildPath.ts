@@ -11,7 +11,7 @@ interface PathParams {
 }
 
 /**
- * @param params -
+ * @param params - The parameters
  * @returns the webpack config
  */
 function loadParticlesPath(params: PathParams): unknown {

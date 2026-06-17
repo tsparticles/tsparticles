@@ -4,7 +4,7 @@ import { options } from "./options.js";
 const paletteName = "candlelight";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadCandlelightPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

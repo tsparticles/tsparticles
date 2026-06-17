@@ -2,7 +2,7 @@ import { type Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 const paletteName = "monochrome-purples";
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadMonochromePurplesPalette(engine: Engine): Promise<void> {
   await engine.pluginManager.register(e => {

@@ -33,7 +33,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * OutOfCanvasUpdater constructor
-   * @param container
+   * @param container - The container to handle
    */
   constructor(container: Container) {
     this.#container = container;
@@ -42,7 +42,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Initializes particle out mode handlers
-   * @param particle
+   * @param particle - The particle to process
    */
   init(particle: Particle): void {
     this.#addUpdaterIfMissing(particle, OutMode.bounce, container => new BounceOutMode(container));
@@ -53,7 +53,8 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Checks if out of canvas handling is enabled
-   * @param particle
+   * @param particle - The particle to process
+   * @returns The boolean value
    */
   isEnabled(particle: Particle): boolean {
     return !particle.destroyed && !particle.spawning;
@@ -61,8 +62,8 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
   /**
    * Updates particle out mode handling
-   * @param particle
-   * @param delta
+   * @param particle - The particle to process
+   * @param delta - The delta time
    */
   update(particle: Particle, delta: IDelta): void {
     const outModes = particle.options.move.outModes;
@@ -75,26 +76,26 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     this.#updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
   }
 
-  readonly #addUpdaterIfMissing = (
+  #addUpdaterIfMissing(
     particle: Particle,
     outMode: OutMode,
     getUpdater: (container: Container) => IOutModeManager,
-  ): void => {
+  ): void {
     const outModes = particle.options.move.outModes;
 
     if (!this.updaters.has(outMode) && checkOutMode(outModes, outMode)) {
       this.updaters.set(outMode, getUpdater(this.#container));
     }
-  };
+  }
 
-  readonly #updateOutMode = (
+  #updateOutMode(
     particle: Particle,
     delta: IDelta,
     outMode: OutMode | keyof typeof OutMode,
     direction: OutModeDirection,
-  ): void => {
+  ): void {
     for (const updater of this.updaters.values()) {
       updater.update(particle, direction, delta, outMode);
     }
-  };
+  }
 }

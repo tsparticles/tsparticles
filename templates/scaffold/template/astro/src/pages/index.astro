@@ -1,0 +1,35 @@
+---
+import { initParticlesEngine } from "@tsparticles/astro";
+import { loadSlim } from "@tsparticles/slim";
+
+const id = "tsparticles";
+
+// On the server, just defer to the client component.
+// The init script below runs client-side.
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{projectName}}</title>
+    <style>
+      body { margin: 0; overflow: hidden; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
+      #app { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; color: #fff; pointer-events: none; }
+      h1 { font-size: 3.2em; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello, tsParticles!</h1>
+    </div>
+  </body>
+</html>
+
+<script>
+  import { initParticlesEngine } from "@tsparticles/astro";
+  import { loadSlim } from "@tsparticles/slim";
+
+  await initParticlesEngine(async (engine) => {
+    await loadSlim(engine);
+  });
+</script>

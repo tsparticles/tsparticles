@@ -53,6 +53,26 @@ export function getExternalInteractions(group, localizeFn) {
 			},
 		},
 		{
+			name: "interaction-external-destroy",
+			description: localizeFn(__("Destroy")),
+			group,
+			load: async engine => {
+				const { loadExternalDestroyInteraction } = await import("@tsparticles/interaction-external-destroy");
+
+				await loadExternalDestroyInteraction(engine);
+			},
+		},
+		{
+			name: "interaction-external-drag",
+			description: localizeFn(__("Drag")),
+			group,
+			load: async engine => {
+				const { loadExternalDragInteraction } = await import("@tsparticles/interaction-external-drag");
+
+				await loadExternalDragInteraction(engine);
+			},
+		},
+		{
 			name: "interaction-external-grab",
 			description: localizeFn(__("Grab")),
 			group,

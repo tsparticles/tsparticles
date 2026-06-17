@@ -2,13 +2,8 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ITextLinesOptions } from "../Interfaces/ITextLinesOptions.js";
 
 export class TextLinesOptions implements ITextLinesOptions, IOptionLoader<ITextLinesOptions> {
-  separator: string;
-  spacing: number;
-
-  constructor() {
-    this.separator = "\n";
-    this.spacing = 0;
-  }
+  separator = "\n";
+  spacing = 0;
 
   load(data?: RecursivePartial<ITextLinesOptions>): void {
     if (isNull(data)) {

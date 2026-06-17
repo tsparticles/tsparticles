@@ -44,6 +44,7 @@ import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js"
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
 import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
 import type { IParticleTransformValues } from "../export-types.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
@@ -56,7 +57,7 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
 
 /**
  * @internal
@@ -78,17 +79,17 @@ interface FixOutModeParams {
    */
   radius: number;
   /**
-   * @param value -
+   * @param value - The value
    */
   setCb: (value: number) => void;
 }
 
 /**
  *
- * @param effect -
- * @param effectOptions -
- * @param id -
- * @param reduceDuplicates -
+ * @param effect - The effect
+ * @param effectOptions - The effectOptions
+ * @param id - The id
+ * @param reduceDuplicates - The reduceDuplicates
  * @returns the effect data
  */
 function loadEffectData(
@@ -109,10 +110,10 @@ function loadEffectData(
 
 /**
  *
- * @param shape -
- * @param shapeOptions -
- * @param id -
- * @param reduceDuplicates -
+ * @param shape - The shape
+ * @param shapeOptions - The shapeOptions
+ * @param id - The id
+ * @param reduceDuplicates - The reduceDuplicates
  * @returns the shape data
  */
 function loadShapeData(
@@ -134,7 +135,7 @@ function loadShapeData(
 /**
  * fixes out mode, calling the given callback if needed
  * @internal
- * @param data -
+ * @param data - The data to handle
  */
 function fixOutMode(data: FixOutModeParams): void {
   if (!isInArray(data.outMode, data.checkModes)) {
@@ -147,6 +148,223 @@ function fixOutMode(data: FixOutModeParams): void {
     data.setCb(-data.radius);
   } else if (data.coord < diameter) {
     data.setCb(data.radius);
+  }
+}
+
+/**
+ *
+ * @param angle - The angle
+ * @param modulus - The modulus
+ * @returns -
+ */
+function normalizeAngle(angle: number, modulus: number): number {
+  const normalized = angle % modulus;
+
+  return normalized < defaultAngle ? normalized + modulus : normalized;
+}
+
+/**
+ *
+ * @param particle - The particle to process
+ * @param id - The id
+ * @param group - The group
+ */
+function initParticleState(particle: Particle, id: number, group?: string): void {
+  particle.id = id;
+  particle.group = group;
+  particle.justWarped = false;
+  particle.effectClose = true;
+  particle.shapeClose = true;
+  particle.pathRotation = false;
+  particle.lastPathTime = 0;
+  particle.destroyed = false;
+  particle.unbreakable = false;
+  particle.isRotating = false;
+  particle.rotation = 0;
+  particle.misplaced = false;
+  particle.retina = {
+    maxDistance: {},
+    maxSpeed: 0,
+    moveDrift: 0,
+    moveSpeed: 0,
+    sizeAnimationSpeed: 0,
+  };
+  particle.size = {
+    value: 1,
+    max: 1,
+    min: 1,
+    enable: false,
+  };
+  particle.outType = ParticleOutType.normal;
+  particle.ignoresResizeRatio = true;
+}
+
+/**
+ *
+ * @param particle - The particle to process
+ * @param container - The container to handle
+ * @param pluginManager - The plugin manager
+ * @param overrideOptions - The overrideOptions
+ * @returns the resolved particles options
+ */
+function resolveParticleOptions(
+  particle: Particle,
+  container: Container,
+  pluginManager: PluginManager,
+  overrideOptions?: RecursivePartial<IParticlesOptions>,
+): ParticlesOptions {
+  const mainOptions = container.actualOptions,
+    particlesOptions = loadParticlesOptions(pluginManager, container, mainOptions.particles),
+    reduceDuplicates = particlesOptions.reduceDuplicates;
+
+  particle.effect = itemFromSingleOrMultiple(particlesOptions.effect.type, particle.id, reduceDuplicates);
+  particle.shape = itemFromSingleOrMultiple(particlesOptions.shape.type, particle.id, reduceDuplicates);
+
+  const effectOptions = particlesOptions.effect,
+    shapeOptions = particlesOptions.shape;
+
+  if (overrideOptions) {
+    if (overrideOptions.effect) {
+      const overrideEffectType = overrideOptions.effect.type;
+
+      if (overrideEffectType && overrideEffectType !== particle.effect) {
+        const effect = itemFromSingleOrMultiple(overrideEffectType, particle.id, reduceDuplicates);
+
+        if (effect) {
+          particle.effect = effect;
+        }
+      }
+
+      effectOptions.load(overrideOptions.effect);
+    }
+
+    if (overrideOptions.shape) {
+      const overrideShapeType = overrideOptions.shape.type;
+
+      if (overrideShapeType && overrideShapeType !== particle.shape) {
+        const shape = itemFromSingleOrMultiple(overrideShapeType, particle.id, reduceDuplicates);
+
+        if (shape) {
+          particle.shape = shape;
+        }
+      }
+
+      shapeOptions.load(overrideOptions.shape);
+    }
+  }
+
+  if (particle.effect === randomColorValue) {
+    const availableEffects = [...container.effectDrawers.keys()];
+
+    particle.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
+  }
+
+  if (particle.shape === randomColorValue) {
+    const availableShapes = [...container.shapeDrawers.keys()];
+
+    particle.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
+  }
+
+  particle.effectData = particle.effect
+    ? loadEffectData(particle.effect, effectOptions, particle.id, reduceDuplicates)
+    : undefined;
+  particle.shapeData = particle.shape
+    ? loadShapeData(particle.shape, shapeOptions, particle.id, reduceDuplicates)
+    : undefined;
+
+  particlesOptions.load(overrideOptions);
+
+  const effectData = particle.effectData,
+    shapeData = particle.shapeData;
+
+  if (effectData) {
+    particlesOptions.load(effectData.particles);
+  }
+
+  if (shapeData) {
+    particlesOptions.load(shapeData.particles);
+  }
+
+  particle.effectClose = effectData?.close ?? particlesOptions.effect.close;
+  particle.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
+
+  return particlesOptions;
+}
+
+/**
+ *
+ * @param particle - The particle to process
+ * @param container - The container to handle
+ */
+function initParticleDrawers(particle: Particle, container: Container): void {
+  let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
+
+  if (particle.effect) {
+    effectDrawer = container.effectDrawers.get(particle.effect);
+  }
+
+  if (effectDrawer?.loadEffect) {
+    effectDrawer.loadEffect(particle);
+  }
+
+  if (particle.shape) {
+    shapeDrawer = container.shapeDrawers.get(particle.shape);
+  }
+
+  if (shapeDrawer?.loadShape) {
+    shapeDrawer.loadShape(particle);
+  }
+
+  const sideCountFunc = shapeDrawer?.getSidesCount;
+
+  if (sideCountFunc) {
+    particle.sides = sideCountFunc(particle);
+  }
+}
+
+/**
+ *
+ * @param updaters - The updaters
+ * @param particle - The particle to process
+ */
+function runUpdaterPreInit(updaters: IParticleUpdater[], particle: Particle): void {
+  for (const updater of updaters) {
+    updater.preInit?.(particle);
+  }
+}
+
+/**
+ *
+ * @param updaters - The updaters
+ * @param particle - The particle to process
+ */
+function runUpdaterInit(updaters: IParticleUpdater[], particle: Particle): void {
+  for (const updater of updaters) {
+    updater.init(particle);
+  }
+}
+
+/**
+ *
+ * @param container - The container to handle
+ * @param particle - The particle to process
+ */
+function runDrawerInit(container: Container, particle: Particle): void {
+  const shapeDrawer = particle.shape ? container.shapeDrawers.get(particle.shape) : undefined,
+    effectDrawer = particle.effect ? container.effectDrawers.get(particle.effect) : undefined;
+
+  effectDrawer?.particleInit?.(container, particle);
+  shapeDrawer?.particleInit?.(container, particle);
+}
+
+/**
+ *
+ * @param container - The container to handle
+ * @param particle - The particle to process
+ */
+function runParticleCreatedPlugins(container: Container, particle: Particle): void {
+  for (const plugin of container.particleCreatedPlugins) {
+    plugin.particleCreated?.(particle);
   }
 }
 
@@ -387,7 +605,7 @@ export class Particle {
 
   /**
    * Destroys the particle
-   * @param override -
+   * @param override - The override
    */
   destroy(override?: boolean): void {
     if (this.unbreakable || this.destroyed) {
@@ -418,7 +636,7 @@ export class Particle {
 
   /**
    * Draws the particle
-   * @param delta -
+   * @param delta - The delta time
    */
   draw(delta: IDelta): void {
     const container = this.#container,
@@ -514,7 +732,7 @@ export class Particle {
 
   /**
    * Gets the particle transform data
-   * @param externalTransform -
+   * @param externalTransform - The externalTransform
    * @returns get transform data
    */
   getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
@@ -535,10 +753,10 @@ export class Particle {
 
   /**
    * Initializes the particle with the given parameters
-   * @param id -
-   * @param position -
-   * @param overrideOptions -
-   * @param group -
+   * @param id - The id
+   * @param position - The position
+   * @param overrideOptions - The overrideOptions
+   * @param group - The group
    */
   init(
     id: number,
@@ -548,113 +766,13 @@ export class Particle {
   ): void {
     const container = this.#container;
 
-    this.id = id;
-    this.group = group;
-    this.justWarped = false;
-    this.effectClose = true;
-    this.shapeClose = true;
-    this.pathRotation = false;
-    this.lastPathTime = 0;
-    this.destroyed = false;
-    this.unbreakable = false;
-    this.isRotating = false;
-    this.rotation = 0;
-    this.misplaced = false;
-    this.retina = {
-      maxDistance: {},
-      maxSpeed: 0,
-      moveDrift: 0,
-      moveSpeed: 0,
-      sizeAnimationSpeed: 0,
-    };
-    this.size = {
-      value: 1,
-      max: 1,
-      min: 1,
-      enable: false,
-    };
-    this.outType = ParticleOutType.normal;
-    this.ignoresResizeRatio = true;
+    initParticleState(this, id, group);
 
-    const mainOptions = container.actualOptions,
-      particlesOptions = loadParticlesOptions(this.#pluginManager, container, mainOptions.particles),
-      reduceDuplicates = particlesOptions.reduceDuplicates,
-      effectType = particlesOptions.effect.type,
-      shapeType = particlesOptions.shape.type;
-
-    this.effect = itemFromSingleOrMultiple(effectType, this.id, reduceDuplicates);
-    this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
-
-    const effectOptions = particlesOptions.effect,
-      shapeOptions = particlesOptions.shape;
-
-    if (overrideOptions) {
-      if (overrideOptions.effect) {
-        const overrideEffectType = overrideOptions.effect.type;
-
-        if (overrideEffectType && overrideEffectType !== this.effect) {
-          const effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
-
-          if (effect) {
-            this.effect = effect;
-          }
-        }
-
-        effectOptions.load(overrideOptions.effect);
-      }
-
-      if (overrideOptions.shape) {
-        const overrideShapeType = overrideOptions.shape.type;
-
-        if (overrideShapeType && overrideShapeType !== this.shape) {
-          const shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
-
-          if (shape) {
-            this.shape = shape;
-          }
-        }
-
-        shapeOptions.load(overrideOptions.shape);
-      }
-    }
-
-    if (this.effect === randomColorValue) {
-      const availableEffects = [...this.#container.effectDrawers.keys()];
-
-      this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
-    }
-
-    if (this.shape === randomColorValue) {
-      const availableShapes = [...this.#container.shapeDrawers.keys()];
-
-      this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
-    }
-
-    this.effectData = this.effect ? loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates) : undefined;
-    this.shapeData = this.shape ? loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates) : undefined;
-
-    particlesOptions.load(overrideOptions);
-
-    const effectData = this.effectData,
-      shapeData = this.shapeData;
-
-    if (effectData) {
-      particlesOptions.load(effectData.particles);
-    }
-
-    if (shapeData) {
-      particlesOptions.load(shapeData.particles);
-    }
-
-    this.effectClose = effectData?.close ?? particlesOptions.effect.close;
-    this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
-    this.options = particlesOptions;
+    this.options = resolveParticleOptions(this, container, this.#pluginManager, overrideOptions);
 
     container.retina.initParticle(this);
 
-    for (const updater of container.particleUpdaters) {
-      updater.preInit?.(this);
-    }
+    runUpdaterPreInit(container.particleUpdaters, this);
 
     /* position */
     this.bubble = {
@@ -675,42 +793,15 @@ export class Particle {
     this.zIndexFactor = this.position.z / container.zLayers;
     this.sides = 24;
 
-    let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
-
-    if (this.effect) {
-      effectDrawer = container.effectDrawers.get(this.effect);
-    }
-
-    if (effectDrawer?.loadEffect) {
-      effectDrawer.loadEffect(this);
-    }
-
-    if (this.shape) {
-      shapeDrawer = container.shapeDrawers.get(this.shape);
-    }
-
-    if (shapeDrawer?.loadShape) {
-      shapeDrawer.loadShape(this);
-    }
-
-    const sideCountFunc = shapeDrawer?.getSidesCount;
-
-    if (sideCountFunc) {
-      this.sides = sideCountFunc(this);
-    }
+    initParticleDrawers(this, container);
 
     this.spawning = false;
 
-    for (const updater of container.particleUpdaters) {
-      updater.init(this);
-    }
+    runUpdaterInit(container.particleUpdaters, this);
 
-    effectDrawer?.particleInit?.(container, this);
-    shapeDrawer?.particleInit?.(container, this);
+    runDrawerInit(container, this);
 
-    for (const plugin of container.particleCreatedPlugins) {
-      plugin.particleCreated?.(this);
-    }
+    runParticleCreatedPlugins(container, this);
   }
 
   /**
@@ -744,22 +835,19 @@ export class Particle {
     const angle = this.roll.angle;
 
     if (this.roll.horizontal && this.roll.vertical) {
-      const normalizedAngle = angle % doublePI,
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + doublePI : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle, doublePI);
 
       return adjustedAngle >= Math.PI * half && adjustedAngle < Math.PI * triple * half;
     }
 
     if (this.roll.horizontal) {
-      const normalizedAngle = (angle + Math.PI * half) % (Math.PI * double),
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle + Math.PI * half, doublePI);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }
 
     if (this.roll.vertical) {
-      const normalizedAngle = angle % (Math.PI * double),
-        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+      const adjustedAngle = normalizeAngle(angle, doublePI);
 
       return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
     }
@@ -784,10 +872,7 @@ export class Particle {
     }
   }
 
-  readonly #calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
-    position,
-    zIndex,
-  ) => {
+  #calcPosition(position: ICoordinates | undefined, zIndex: number): Vector3d | undefined {
     let tryCount = defaultRetryCount,
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
@@ -795,11 +880,9 @@ export class Particle {
       plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
-      canvasSize = container.canvas.size,
-      abortController = new AbortController(),
-      { signal } = abortController;
+      canvasSize = container.canvas.size;
 
-    while (!signal.aborted) {
+    for (;;) {
       for (const plugin of plugins) {
         const pluginPos = plugin.particlePosition?.(posVec, this);
 
@@ -838,11 +921,9 @@ export class Particle {
 
       posVec = undefined;
     }
+  }
 
-    return posVec;
-  };
-
-  readonly #calculateVelocity: () => Vector = () => {
+  #calculateVelocity(): Vector {
     const moveOptions = this.options.move,
       baseVelocity = getParticleBaseVelocity(this.direction),
       res = baseVelocity.copy();
@@ -867,9 +948,9 @@ export class Particle {
     }
 
     return res;
-  };
+  }
 
-  readonly #fixHorizontal = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
+  #fixHorizontal(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -878,9 +959,9 @@ export class Particle {
       setCb: (value: number) => (pos.x += value),
       radius,
     });
-  };
+  }
 
-  readonly #fixVertical = (pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void => {
+  #fixVertical(pos: ICoordinates, radius: number, outMode: OutMode | keyof typeof OutMode): void {
     fixOutMode({
       outMode,
       checkModes: [OutMode.bounce],
@@ -889,12 +970,12 @@ export class Particle {
       setCb: (value: number) => (pos.y += value),
       radius,
     });
-  };
+  }
 
-  readonly #getDefaultInsideCanvasResult = (
+  #getDefaultInsideCanvasResult(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
-  ): IParticleCanvasBoundsResult => {
+  ): IParticleCanvasBoundsResult {
     const radius = this.getRadius(),
       canvasSize = this.#container.canvas.size,
       position = this.position,
@@ -936,12 +1017,12 @@ export class Particle {
         position.x <= canvasSize.width + radius,
       reason: "default",
     };
-  };
+  }
 
-  readonly #getInsideCanvasCallbackData = (
+  #getInsideCanvasCallbackData(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
-  ): IParticleCanvasBoundsData => {
+  ): IParticleCanvasBoundsData {
     return {
       canvasSize: this.#container.canvas.size,
       direction,
@@ -949,12 +1030,12 @@ export class Particle {
       particle: this,
       radius: this.getRadius(),
     };
-  };
+  }
 
-  readonly #getInsideCanvasResult = (data: {
+  #getInsideCanvasResult(data: {
     direction?: OutModeDirection;
     outMode?: OutMode | keyof typeof OutMode;
-  }): IParticleCanvasBoundsResult => {
+  }): IParticleCanvasBoundsResult {
     const defaultResult = this.#getDefaultInsideCanvasResult(data.direction, data.outMode),
       container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
@@ -981,9 +1062,9 @@ export class Particle {
     }
 
     return shapeResult ?? effectResult ?? defaultResult;
-  };
+  }
 
-  readonly #getRollColor: (color?: IHsl) => IHsl | undefined = color => {
+  #getRollColor(color?: IHsl): IHsl | undefined {
     if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
       return color;
     }
@@ -1001,9 +1082,9 @@ export class Particle {
     }
 
     return color;
-  };
+  }
 
-  readonly #initPosition: (position?: ICoordinates) => void = position => {
+  #initPosition(position?: ICoordinates): void {
     const container = this.#container,
       zIndexValue = Math.floor(getRangeValue(this.options.zIndex.value)),
       initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
@@ -1039,12 +1120,12 @@ export class Particle {
 
     /* parallax */
     this.offset = Vector.origin;
-  };
+  }
 
-  readonly #normalizeInsideCanvasResult = (
+  #normalizeInsideCanvasResult(
     result: boolean | IParticleCanvasBoundsResult,
     reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,
-  ): IParticleCanvasBoundsResult => {
+  ): IParticleCanvasBoundsResult {
     if (typeof result === "boolean") {
       return {
         inside: result,
@@ -1057,5 +1138,5 @@ export class Particle {
       margin: result.margin,
       reason: result.reason ?? reason,
     };
-  };
+  }
 }

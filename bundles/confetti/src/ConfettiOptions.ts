@@ -8,6 +8,7 @@ import {
   deepExtend,
   isArray,
   isNull,
+  loadProperty,
   percentDenominator,
 } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
@@ -121,16 +122,14 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
   /**
    * Loads confetti options from the provided data
-   * @param data -
+   * @param data - The data to handle
    */
   load(data?: RecursivePartial<IConfettiOptions>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.angle !== undefined) {
-      this.angle = data.angle;
-    }
+    loadProperty(this, "angle", data.angle);
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const count = data.count ?? data.particleCount;
@@ -139,33 +138,13 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
       this.count = count;
     }
 
-    if (data.spread !== undefined) {
-      this.spread = data.spread;
-    }
-
-    if (data.startVelocity !== undefined) {
-      this.startVelocity = data.startVelocity;
-    }
-
-    if (data.decay !== undefined) {
-      this.decay = data.decay;
-    }
-
-    if (data.flat !== undefined) {
-      this.flat = data.flat;
-    }
-
-    if (data.gravity !== undefined) {
-      this.gravity = data.gravity;
-    }
-
-    if (data.drift !== undefined) {
-      this.drift = data.drift;
-    }
-
-    if (data.ticks !== undefined) {
-      this.ticks = data.ticks;
-    }
+    loadProperty(this, "spread", data.spread);
+    loadProperty(this, "startVelocity", data.startVelocity);
+    loadProperty(this, "decay", data.decay);
+    loadProperty(this, "flat", data.flat);
+    loadProperty(this, "gravity", data.gravity);
+    loadProperty(this, "drift", data.drift);
+    loadProperty(this, "ticks", data.ticks);
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const origin = data.origin;
@@ -217,16 +196,8 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
       }
     }
 
-    if (data.scalar !== undefined) {
-      this.scalar = data.scalar;
-    }
-
-    if (data.zIndex !== undefined) {
-      this.zIndex = data.zIndex;
-    }
-
-    if (data.disableForReducedMotion !== undefined) {
-      this.disableForReducedMotion = data.disableForReducedMotion;
-    }
+    loadProperty(this, "scalar", data.scalar);
+    loadProperty(this, "zIndex", data.zIndex);
+    loadProperty(this, "disableForReducedMotion", data.disableForReducedMotion);
   }
 }

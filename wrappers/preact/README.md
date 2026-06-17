@@ -8,7 +8,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact compon
 
 [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
-[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_source=badge-tsparticles) <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Installation
 
@@ -200,6 +200,17 @@ class App extends Component {
 | canvasClassName | string   | the class name of the canvas.                                                                                                               |
 | container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                        |
 | particlesLoaded | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here |
+| theme           | string   | The theme name to apply. Requires `@tsparticles/plugin-themes` to be installed and loaded via `initParticlesEngine`                         |
+
+> **Note**: The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the `loadTheme()` method is not available on the container and the prop is silently ignored.
+
+### Reactive behavior
+
+The component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload.
+
+### Cleanup
+
+On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.
 
 Find your parameters configuration [here](https://particles.js.org).
 

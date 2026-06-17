@@ -12,7 +12,7 @@ const defaultHoleRadius = 44,
 export class CogDrawer implements IShapeDrawer<CogParticle> {
   /**
    * Draws the cog hole after the main shape
-   * @param data
+   * @param data - The data to handle
    */
   afterDraw(data: IShapeDrawData<CogParticle>): void {
     drawCogHole(data);
@@ -20,7 +20,7 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
 
   /**
    * Draws the cog shape
-   * @param data
+   * @param data - The data to handle
    */
   draw(data: IShapeDrawData<CogParticle>): void {
     drawCog(data);
@@ -28,8 +28,8 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
 
   /**
    * Initializes cog-specific particle properties
-   * @param _container
-   * @param particle
+   * @param _container - The container to handle
+   * @param particle - The particle to process
    */
   particleInit(_container: Container, particle: CogParticle): void {
     const shapeData = particle.shapeData;

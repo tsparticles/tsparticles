@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Effect Filter",
   particles: {
     number: {
-      value: 80,
+      value: 30,
       density: {
         enable: true,
       },
@@ -27,7 +27,7 @@ const options: ISourceOptions = {
       type: "filter",
       options: {
         filter: {
-          blur: 4,
+          blur: 10,
         },
       },
     },
@@ -36,7 +36,7 @@ const options: ISourceOptions = {
     },
     size: {
       value: {
-        min: 5,
+        min: 20,
         max: 50,
       },
     },

@@ -7,7 +7,7 @@ import { options } from "./options.js";
 const presetName = "triangles";
 
 /**
- * @param engine -
+ * @param engine - The engine to load the shape in
  */
 export async function loadTrianglesPreset(engine: Engine): Promise<void> {
   await engine.pluginManager.register(async e => {

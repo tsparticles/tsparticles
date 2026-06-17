@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
 import type { IInfection } from "../Interfaces/IInfection.js";
 import { InfectionStage } from "./InfectionStage.js";
 
@@ -30,21 +30,10 @@ export class Infection implements IInfection, IOptionLoader<IInfection> {
       return;
     }
 
-    if (data.cure !== undefined) {
-      this.cure = data.cure;
-    }
-
-    if (data.delay !== undefined) {
-      this.delay = data.delay;
-    }
-
-    if (data.enable !== undefined) {
-      this.enable = data.enable;
-    }
-
-    if (data.infections !== undefined) {
-      this.infections = data.infections;
-    }
+    loadProperty(this, "cure", data.cure);
+    loadProperty(this, "delay", data.delay);
+    loadProperty(this, "enable", data.enable);
+    loadProperty(this, "infections", data.infections);
 
     if (data.stages === undefined) {
       return;
