@@ -136,7 +136,7 @@
     "globals": "^17.6.0",
     "prettier": "^3.8.4",
     "typescript": "^6.0.3",
-    "vite": "^6.4.3",
+    "vite": "^8.0.16",
     "vite-plugin-dts": "^5.0.2",
     "vue": "^2.7.16",
     "vue-class-component": "^7.2.6",
