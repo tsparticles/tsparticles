@@ -23,7 +23,7 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
-    "@babel/core": "^8.0.0",
+    "@babel/core": "^8.0.1",
     "@eslint/js": "^10.0.1",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/nuxt3": "workspace:*",

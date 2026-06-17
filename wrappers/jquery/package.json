@@ -112,7 +112,7 @@
     "jquery": "^3 || ^4"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.0",
+    "@babel/core": "^8.0.1",
     "@babel/preset-env": "^8.0.0",
     "@rollup/plugin-babel": "^7.1.0",
     "@tsparticles/engine": "workspace:*",

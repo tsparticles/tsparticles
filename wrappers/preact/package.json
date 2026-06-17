@@ -103,7 +103,7 @@
     "preact": "^10"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.0",
+    "@babel/core": "^8.0.1",
     "@babel/plugin-transform-runtime": "^8.0.0",
     "@babel/preset-env": "^8.0.0",
     "@babel/runtime": "^8.0.0",

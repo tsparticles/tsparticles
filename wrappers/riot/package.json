@@ -106,7 +106,7 @@
     "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.0",
+    "@babel/core": "^8.0.1",
     "@babel/preset-typescript": "^8.0.0",
     "@riotjs/cli": "^10.0.0",
     "@riotjs/compiler": "^10.0.2",
