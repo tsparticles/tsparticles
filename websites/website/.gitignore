@@ -365,6 +365,7 @@ css/*.map
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 docs/.vitepress/temp/
+docs/.vitepress/.temp/
 
 # TypeDoc generated API docs (HTML output)
 typedoc-dist/
@@ -381,4 +382,3 @@ yarn-error.log*
 
 # Temporary local check scripts
 .tmp-check-*.py
-
