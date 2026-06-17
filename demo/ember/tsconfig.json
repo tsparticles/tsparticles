@@ -1,8 +1,24 @@
 {
-  "extends": "@tsconfig/ember/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "es2021",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noEmitOnError": false,
+    "noEmit": true,
     "ignoreDeprecations": "6.0",
+    "experimentalDecorators": true,
+    "declaration": false,
+    "declarationMap": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "types": [],
+    "baseUrl": ".",
     "paths": {
       "ember-demo/*": [
         "app/*"
