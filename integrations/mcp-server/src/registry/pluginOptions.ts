@@ -65,9 +65,9 @@ const manualEntries: OptionPluginMapping[] = [
     description: "Particle lifetime control",
   },
   {
-    optionPath: "particles.opacity.animation",
+    optionPath: "particles.opacity",
     packageName: "@tsparticles/updater-opacity",
-    description: "Opacity animation",
+    description: "Opacity animation and static values",
   },
   {
     optionPath: "particles.orbit",
@@ -90,9 +90,9 @@ const manualEntries: OptionPluginMapping[] = [
     description: "Rotation animation",
   },
   {
-    optionPath: "particles.size.animation",
+    optionPath: "particles.size",
     packageName: "@tsparticles/updater-size",
-    description: "Size animation",
+    description: "Size animation and static values",
   },
   {
     optionPath: "particles.tilt",

@@ -38,9 +38,6 @@ export interface IRibbonsOptions {
   /** Ribbons size scalar */
   scalar: number;
 
-  /** Number of animation ticks */
-  ticks: number;
-
   /** Ribbons z-index */
   zIndex: number;
 }

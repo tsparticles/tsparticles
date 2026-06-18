@@ -36,9 +36,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
   /** Ribbons size scalar */
   scalar: number;
 
-  /** Ribbons animation ticks */
-  ticks: number;
-
   /** Ribbons z-index */
   zIndex: number;
 
@@ -50,7 +47,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
       height: 0,
     };
     this.positionX = 50;
-    this.ticks = 200;
     this.colors = ["#FF0055", "#00D1FF", "#FFD23F", "#61FF7E", "#B284FF"];
     this.ribbonOptions = {
       angle: 45,
@@ -146,8 +142,6 @@ export class RibbonsOptions implements IRibbonsOptions, IOptionLoader<IRibbonsOp
     if (count !== undefined) {
       this.count = count;
     }
-
-    loadProperty(this, "ticks", data.ticks);
 
     if (data.emitterSize) {
       if (data.emitterSize.width !== undefined) {

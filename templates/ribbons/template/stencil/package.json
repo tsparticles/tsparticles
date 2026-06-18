@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{packageName}}",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@stencil/core": "^4.20.0",
     "@tsparticles/engine": "^3.8.1",
-    "@tsparticles/ribbons": "^3.8.1",
+
     "@tsparticles/stencil": "^4.1.3"
   }
 }
