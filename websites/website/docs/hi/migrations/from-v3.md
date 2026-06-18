@@ -45,7 +45,7 @@ const options = {
   particles: {
     paint: {
       fill: {
-        value: "#ff0000",
+        color: "#ff0000",
       },
       stroke: {
         width: 2,
