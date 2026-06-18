@@ -11,7 +11,9 @@
   "dependencies": {
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "@tsparticles/react": "^4.1.3"
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
+    "@tsparticles/react": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1"

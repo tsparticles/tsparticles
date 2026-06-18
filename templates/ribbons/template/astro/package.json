@@ -9,8 +9,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@tsparticles/astro": "^4.1.3",
-    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/astro": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
 
     "astro": "^5.0.0"
   }

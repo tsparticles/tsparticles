@@ -9,9 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
 
-    "@tsparticles/vue2": "^4.1.3",
+    "@tsparticles/vue2": "workspace:*",
     "vue": "^2.7.16"
   },
   "devDependencies": {

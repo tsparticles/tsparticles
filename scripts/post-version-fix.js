@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { execSync } from "node:child_process";
+import { execFileSync, execSync } from "node:child_process";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -23,9 +23,10 @@ const rootPkg = JSON.parse(readFileSync(rootPkgPath, "utf-8"));
 const engineVersion = enginePkg.version;
 
 if (rootPkg.version !== engineVersion) {
+  const oldVersion = rootPkg.version;
   rootPkg.version = engineVersion;
   writeFileSync(rootPkgPath, `${JSON.stringify(rootPkg, null, 2)}\n`, "utf-8");
-  console.log(`  📝 Root package.json: ${rootPkg.version} → ${engineVersion}`);
+  console.log(`  📝 Root package.json: ${oldVersion} → ${engineVersion}`);
   modifiedFiles.push(rootPkgPath);
 }
 
@@ -98,10 +99,10 @@ for (const f of unique) {
 if (modifiedFiles.length > 0) {
   const tag = execSync("git describe --tags --abbrev=0", { cwd: root, encoding: "utf-8" }).trim();
 
-  execSync(`git add ${modifiedFiles.join(" ")}`, { cwd: root, stdio: "inherit" });
+  execFileSync("git", ["add", ...modifiedFiles], { cwd: root, stdio: "inherit" });
   execSync("git commit --amend --no-edit", { cwd: root, stdio: "inherit" });
-  execSync(`git tag -d ${tag}`, { cwd: root, stdio: "pipe" });
-  execSync(`git tag -a ${tag} -m ${tag}`, { cwd: root, stdio: "pipe" });
+  execFileSync("git", ["tag", "-d", tag], { cwd: root, stdio: "pipe" });
+  execFileSync("git", ["tag", "-a", tag, "-m", tag], { cwd: root, stdio: "pipe" });
 
   console.log(`\n✅ Lerna commit amended with workspace:* fixes.`);
   console.log(`   Tag ${tag} relocated to the amended commit.`);
