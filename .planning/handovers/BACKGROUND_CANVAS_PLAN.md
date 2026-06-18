@@ -1,5 +1,30 @@
 # Background Canvas Plan (v5.0 Agent-Ready)
 
+## Summary
+
+| | |
+|---|---|
+| **Target** | `@tsparticles/engine` |
+| **Phases** | 8 (0–8) |
+| **Type** | Engine enhancement |
+| **Load function** | N/A (built into engine) |
+| **Key decision gate** | Phase 1: bundle impact → engine vs plugin; Phase 1b: 4.2.0 vs 4.3.0 |
+
+### Progress
+
+- [ ] Phase 0: Baseline scan
+- [ ] Phase 1: Bundle impact + decision
+- [ ] Phase 1b: Release target decision
+- [ ] Phase 2: Type contract
+- [ ] Phase 3: Runtime hook
+- [ ] Phase 4: Target resolution/cache
+- [ ] Phase 5: Error/warning handling
+- [ ] Phase 6: Tests
+- [ ] Phase 7: Docs/examples
+- [ ] Phase 8: Validation gate
+
+---
+
 ## Context
 
 Current `background` support is CSS-style only and applied to the particles DOM canvas style (`color`, `image`, `position`, `repeat`, `size`, `opacity`).

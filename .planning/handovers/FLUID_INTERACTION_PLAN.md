@@ -1,5 +1,30 @@
 # Fluid Particle Interaction - Deep Technical Specification (Draft v2)
 
+## Summary
+
+| | |
+|---|---|
+| **Target** | `@tsparticles/interaction-particles-fluid` |
+| **Steps** | 10 (0–9) |
+| **Type** | New package |
+| **Load function** | `loadParticlesFluidInteraction(engine)` |
+| **Key constraints** | Don't touch engine; agent must NOT commit/PR |
+
+### Progress
+
+- [ ] Step 0: Repository alignment + constraints
+- [ ] Step 1: Package skeleton (noop)
+- [ ] Step 2: Options contract + loaders
+- [ ] Step 3: Baseline DDR solver
+- [ ] Step 4: Constraints + boundary behavior
+- [ ] Step 5: Viscosity + pointer stirring
+- [ ] Step 6: Interoperability hardening
+- [ ] Step 7: Performance + soak validation
+- [ ] Step 8: Docs, presets, release readiness
+- [ ] Step 9: (optional) Advanced path
+
+---
+
 ## Document status
 
 - Scope: planning only (no implementation in this session)

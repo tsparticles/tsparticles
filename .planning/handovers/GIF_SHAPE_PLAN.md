@@ -1,5 +1,26 @@
 # Plan: Separate Animated GIF from Image Shape
 
+## Summary
+
+| | |
+|---|---|
+| **Target** | `@tsparticles/shape-gif` (new), `@tsparticles/shape-image` (modified), `@tsparticles/all` (modified) |
+| **Steps** | 6 (1–6) |
+| **Type** | Refactor + new package |
+| **Load function** | `loadGifShape(engine)` |
+| **Files** | ~17 new (shape-gif), ~9 modified (shape-image), ~2 modified (all bundle) |
+
+### Progress
+
+- [ ] Step 1: Scaffold `shapes/gif/` (17 files)
+- [ ] Step 2: Copy `GifUtils/` from image shape — adapt `drawGif`, remove `loadGifImage`
+- [ ] Step 3: Remove GIF from `@tsparticles/shape-image` (9 files)
+- [ ] Step 4: Add `@tsparticles/shape-gif` to `@tsparticles/all` bundle
+- [ ] Step 5: Build + verify
+- [ ] Step 6: Update demo config (`utils/configs/src/g/gifs.ts`)
+
+---
+
 ## Goal
 
 Extract all animated GIF handling from `@tsparticles/shape-image` into a new `@tsparticles/shape-gif` package.
