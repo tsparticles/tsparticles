@@ -257,16 +257,16 @@
         "tsparticles": "workspace:*"
     },
     "devDependencies": {
-        "prettier": "^3.8.3",
+        "prettier": "^3.8.4",
         "typedoc": "^0.28.19",
         "typedoc-plugin-clarity": "^1.6.0",
         "typedoc-plugin-coverage": "^4.0.3",
         "typedoc-plugin-google-ads": "^1.6.0",
         "typedoc-plugin-keywords": "^1.6.0",
-        "typedoc-plugin-markdown": "^4.11.0",
+        "typedoc-plugin-markdown": "^4.12.0",
         "typedoc-plugin-mdn-links": "^5.1.1",
         "typedoc-plugin-missing-exports": "^4.1.3",
-        "vite": "8.0.14",
+        "vite": "^8.0.16",
         "vitepress": "^1.6.4"
     },
     "nx": {
