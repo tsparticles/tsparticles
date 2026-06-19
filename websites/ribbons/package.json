@@ -42,7 +42,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.3",
-    "vite": "^8.0.14"
+    "vite": "^7.3.5"
   },
   "nx": {
     "implicitDependencies": [
