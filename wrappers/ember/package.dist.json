@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Ember.js component for using tsParticles",
   "repository": {
     "type": "git",

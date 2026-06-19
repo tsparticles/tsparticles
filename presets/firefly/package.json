@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-firefly",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles preset for creating glowing firefly bioluminescence particle effects",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -3,19 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
+## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 
+**Note:** Version bump only for package @tsparticles/svelte
+
+# [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
 
 ### Bug Fixes
 
-* fixed svelte wrapper ([9667e21](https://github.com/tsparticles/tsparticles/commit/9667e214a02c933dbf0778999fb878b78aa0efd7))
-* various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
-* various fixes after deeper review ([b54b5db](https://github.com/tsparticles/tsparticles/commit/b54b5dbc8acc42c15f81f8c8d02c29d2867517ac))
-* various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
-
-
-
-
+- fixed svelte wrapper ([9667e21](https://github.com/tsparticles/tsparticles/commit/9667e214a02c933dbf0778999fb878b78aa0efd7))
+- various fixes after deeper review ([0e28456](https://github.com/tsparticles/tsparticles/commit/0e28456f760ee43a2550a332522b16b048cf717d))
+- various fixes after deeper review ([b54b5db](https://github.com/tsparticles/tsparticles/commit/b54b5dbc8acc42c15f81f8c8d02c29d2867517ac))
+- various fixes after deeper review ([49e9af4](https://github.com/tsparticles/tsparticles/commit/49e9af44e178ec460934db8485ed624b09527464))
 
 ## [4.1.3](https://github.com/tsparticles/tsparticles/compare/v4.1.2...v4.1.3) (2026-06-03)
 

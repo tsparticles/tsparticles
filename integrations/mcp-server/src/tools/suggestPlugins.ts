@@ -128,7 +128,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   }
 
   // -- Effect Detection --
-  const effectType = (options as Record<string, unknown>).effect as Record<string, unknown> | undefined;
+  const effectType = (options.particles as Record<string, unknown> | undefined)?.effect as Record<string, unknown> | undefined;
   if (effectType?.type) {
     const effectMap: Record<string, string> = {
       bubble: "@tsparticles/effect-bubble",

@@ -1,9 +1,14 @@
 {
   "name": "@tsparticles/template-landing",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": false,
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "templates/landing"
   },
   "scripts": {
     "prebuild": "node scripts/prebuild.js",

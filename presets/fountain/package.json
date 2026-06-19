@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fountain",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles preset for creating water fountain-like particle spray effects",
   "homepage": "https://particles.js.org",
   "scripts": {

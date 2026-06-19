@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-create-app",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -35,6 +35,15 @@
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
+    "@tsparticles/template-404": "workspace:*",
+    "@tsparticles/template-confetti": "workspace:*",
+    "@tsparticles/template-landing": "workspace:*",
+    "@tsparticles/template-login": "workspace:*",
+    "@tsparticles/template-particles": "workspace:*",
+    "@tsparticles/template-portfolio": "workspace:*",
+    "@tsparticles/template-ribbons": "workspace:*",
+    "@tsparticles/template-scaffold": "workspace:*",
+    "@tsparticles/template-tictactoe": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "dependency-cruiser": "^17.4.3",
     "eslint": "^10.5.0",

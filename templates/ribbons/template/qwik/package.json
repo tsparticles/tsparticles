@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{packageName}}",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@builder.io/qwik": "^1.12.0",
-    "@tsparticles/engine": "^3.8.1",
-    "@tsparticles/qwik": "^4.1.3",
-    "@tsparticles/ribbons": "^3.8.1"
-  },
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
+    "@tsparticles/qwik": "workspace:*"
+ },
   "devDependencies": {
     "typescript": "~5.8.2"
   }

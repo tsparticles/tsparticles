@@ -1,5 +1,5 @@
 {
-  "name": "{{projectName}}",
+  "name": "{{packageName}}",
   "private": true,
   "version": "{{version}}",
   "scripts": {
