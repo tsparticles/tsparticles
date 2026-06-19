@@ -31,7 +31,7 @@
     "nx": "^22"
   },
   "dependencies": {
-    "@nx/devkit": "^22.7.5",
+    "@nx/devkit": "^23.0.0",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
