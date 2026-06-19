@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-wobble",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles updater for adding wobbly, swaying motion animation to particles with configurable frequency and amplitude",
   "homepage": "https://particles.js.org",
   "scripts": {

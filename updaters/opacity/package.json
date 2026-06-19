@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-opacity",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles updater for animating particle opacity/transparency over time with customizable fade-in, fade-out, and pulsing effects",
   "homepage": "https://particles.js.org",
   "scripts": {

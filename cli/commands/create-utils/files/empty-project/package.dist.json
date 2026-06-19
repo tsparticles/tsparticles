@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/empty-template",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": true,
   "type": "module",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
@@ -73,6 +73,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "peerDependencies": {
-    "@tsparticles/engine": "^4.2.0"
+    "@tsparticles/engine": "^4.2.1"
   }
 }

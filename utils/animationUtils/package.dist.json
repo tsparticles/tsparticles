@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/animation-utils",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles animation utils library",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -109,7 +109,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.2.0"
+    "@tsparticles/engine": "4.2.1"
   },
   "type": "module"
 }

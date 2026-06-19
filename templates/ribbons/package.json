@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/template-ribbons",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": false,
   "publishConfig": {
     "access": "public"

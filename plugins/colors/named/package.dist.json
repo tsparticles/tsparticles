@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-named-color",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles named color plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.2.0"
+    "@tsparticles/engine": "4.2.1"
   },
   "publishConfig": {
     "access": "public"

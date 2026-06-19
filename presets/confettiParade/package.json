@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-parade",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles preset for creating confetti parade and celebration streamer effects",
   "homepage": "https://particles.js.org",
   "scripts": {
