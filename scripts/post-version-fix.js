@@ -9,13 +9,6 @@ const root = resolve(__dirname, "..");
 
 const modifiedFiles = [];
 
-// ── 0. Ensure working tree is clean before we start ──
-const status = execSync("git status --porcelain", { cwd: root, encoding: "utf-8" }).trim();
-if (status) {
-  console.error("❌ Working tree is not clean. Commit or stash changes before running this script.");
-  process.exit(1);
-}
-
 // ── 1. Sync root package.json version with engine ──
 const enginePkg = JSON.parse(readFileSync(join(root, "engine", "package.json"), "utf-8"));
 const rootPkgPath = join(root, "package.json");
@@ -95,17 +88,26 @@ for (const f of unique) {
   }
 }
 
-// ── 3. Amend lerna's commit with our fixes and relocate the tag ──
-if (modifiedFiles.length > 0) {
-  const tag = execSync("git describe --tags --abbrev=0", { cwd: root, encoding: "utf-8" }).trim();
+// ── 3. Create single commit with version bumps + fixes ──
+const tagVersion = engineVersion;
 
-  execFileSync("git", ["add", ...modifiedFiles], { cwd: root, stdio: "inherit" });
-  execSync("git commit --amend --no-edit", { cwd: root, stdio: "inherit" });
-  execFileSync("git", ["tag", "-d", tag], { cwd: root, stdio: "pipe" });
-  execFileSync("git", ["tag", "-a", tag, "-m", tag], { cwd: root, stdio: "pipe" });
+execSync("git add -A", { cwd: root, stdio: "inherit" });
 
-  console.log(`\n✅ Lerna commit amended with workspace:* fixes.`);
-  console.log(`   Tag ${tag} relocated to the amended commit.`);
+const hasNewChanges = execSync("git diff --cached --name-only", { cwd: root, encoding: "utf-8" }).trim();
+if (hasNewChanges || modifiedFiles.length > 0) {
+  console.log(`\n📦 Creating single commit and tag for ${tagVersion}...`);
+
+  execSync(`git commit -m "chore(release): published new version"`, { cwd: root, stdio: "inherit" });
+  execFileSync("git", ["tag", "-a", `v${tagVersion}`, "-m", `v${tagVersion}`], { cwd: root, stdio: "pipe" });
+
+  console.log(`   ✅ Commit and tag v${tagVersion} created.`);
 } else {
-  console.log("✅ No fixes needed — all @tsparticles/ deps use workspace:* and root version matches.");
+  console.log("✅ No changes to commit.");
 }
+
+// ── 4. Push branch and tag ──
+const branch = execSync("git rev-parse --abbrev-ref HEAD", { cwd: root, encoding: "utf-8" }).trim();
+console.log(`\n🚀 Pushing branch ${branch} and tag v${tagVersion}...`);
+execSync(`git push origin ${branch}`, { cwd: root, stdio: "inherit" });
+execSync(`git push origin v${tagVersion}`, { cwd: root, stdio: "inherit" });
+console.log(`   ✅ Branch ${branch} and tag v${tagVersion} pushed.`);
