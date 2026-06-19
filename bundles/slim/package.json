@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/slim",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Slim tsParticles bundle — core engine with essential plugins, presets, and interactions for lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-responsive",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles plugin for configuring responsive breakpoints that adapt particle settings to screen size",
   "homepage": "https://particles.js.org",
   "scripts": {

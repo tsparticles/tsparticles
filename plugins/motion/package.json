@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-motion",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles plugin for respecting user reduced-motion preferences and browser motion settings",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
+
+### Bug Fixes
+
+- fixed docs, fixes [#5862](https://github.com/tsparticles/tsparticles/issues/5862) ([bb0cb44](https://github.com/tsparticles/tsparticles/commit/bb0cb44e380f70f9ef58565123edf072664c6a32))
+
 # [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)
 
 ### Bug Fixes

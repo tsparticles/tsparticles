@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/eslint-config",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles default ESLint Configuration (ESLint 10 + Flat Config)",
   "type": "module",
   "main": "dist/eslint.config.js",

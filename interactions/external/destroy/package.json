@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-destroy",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "tsParticles external interaction for destroying particles on mouse click or touch",
   "homepage": "https://particles.js.org",
   "scripts": {
