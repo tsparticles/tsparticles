@@ -376,6 +376,7 @@
     "@tsparticles/shape-circle": "workspace:*",
     "@tsparticles/shape-cog": "workspace:*",
     "@tsparticles/shape-emoji": "workspace:*",
+    "@tsparticles/shape-gif": "workspace:*",
     "@tsparticles/shape-heart": "workspace:*",
     "@tsparticles/shape-image": "workspace:*",
     "@tsparticles/shape-infinity": "workspace:*",

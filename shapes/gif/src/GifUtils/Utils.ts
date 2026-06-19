@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
 import { type IRgb, type IRgba, type IShapeDrawData, half, originPoint } from "@tsparticles/engine";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
@@ -9,6 +8,7 @@ import { DisposalMethod } from "./Enums/DisposalMethod.js";
 import type { GIF } from "./Types/GIF.js";
 import { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
 import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction.js";
+import type { GifParticle } from "../types.js";
 
 const defaultFrame = 0,
   initialTime = 0,
@@ -638,15 +638,15 @@ export async function decodeGIF(
  * @param data - The data to handle
  * @param canvasSettings - The canvasSettings
  */
-export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
+export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
   const { context, radius, particle, delta } = data,
-    image = particle.image;
+    gifData = particle.gifData;
 
-  if (!image?.gifData || !image.gif) {
+  if (!gifData) {
     return;
   }
 
-  const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
+  const offscreenCanvas = new OffscreenCanvas(gifData.width, gifData.height),
     offscreenContext = offscreenCanvas.getContext("2d", canvasSettings);
 
   if (!offscreenContext) {
@@ -658,12 +658,10 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 
   offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
 
-  particle.gifLoopCount ??= image.gifLoopCount ?? defaultLoopCount;
-
   let frameIndex = particle.gifFrame ?? defaultFrame;
 
-  const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
-    frame = image.gifData.frames[frameIndex]!;
+  const pos = { x: -gifData.width * half, y: -gifData.height * half },
+    frame = gifData.frames[frameIndex]!;
 
   particle.gifTime ??= initialTime;
 
@@ -671,7 +669,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
     return;
   }
 
-  context.scale(radius / image.gifData.width, radius / image.gifData.height);
+  context.scale(radius / gifData.width, radius / gifData.height);
 
   switch (frame.disposalMethod) {
     case DisposalMethod.UndefinedA: // ! fall through
@@ -699,10 +697,10 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 
       offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
 
-      if (!image.gifData.globalColorTable.length) {
-        offscreenContext.putImageData(image.gifData.frames[firstIndex]!.image, pos.x + frame.left, pos.y + frame.top);
+      if (!gifData.globalColorTable.length) {
+        offscreenContext.putImageData(gifData.frames[firstIndex]!.image, pos.x + frame.left, pos.y + frame.top);
       } else {
-        offscreenContext.putImageData(image.gifData.backgroundImage, pos.x, pos.y);
+        offscreenContext.putImageData(gifData.backgroundImage, pos.x, pos.y);
       }
 
       break;
@@ -730,8 +728,8 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
   if (particle.gifTime > frame.delayTime) {
     particle.gifTime -= frame.delayTime;
 
-    if (++frameIndex >= image.gifData.frames.length) {
-      if (--particle.gifLoopCount <= defaultLoopCount) {
+    if (++frameIndex >= gifData.frames.length) {
+      if (particle.gifLoopCount == null || --particle.gifLoopCount <= defaultLoopCount) {
         return;
       }
 
@@ -744,34 +742,5 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
     particle.gifFrame = frameIndex;
   }
 
-  context.scale(image.gifData.width / radius, image.gifData.height / radius);
-}
-
-/**
- * Loads the GIF image
- * @param image - the image to load
- * @param canvasSettings - settings for the canvas used to render the GIF frames
- */
-export async function loadGifImage(image: IImage, canvasSettings: CanvasRenderingContext2DSettings): Promise<void> {
-  if (image.type !== "gif") {
-    await loadImage(image);
-
-    return;
-  }
-
-  image.loading = true;
-
-  try {
-    image.gifData = await decodeGIF(image.source, canvasSettings);
-
-    image.gifLoopCount = getGIFLoopAmount(image.gifData);
-
-    if (!image.gifLoopCount) {
-      image.gifLoopCount = Infinity;
-    }
-  } catch {
-    image.error = true;
-  }
-
-  image.loading = false;
+  context.scale(gifData.width / radius, gifData.height / radius);
 }

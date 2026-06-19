@@ -2,22 +2,22 @@
 
 ## Summary
 
-| | |
-|---|---|
-| **Target** | `@tsparticles/shape-gif` (new), `@tsparticles/shape-image` (modified), `@tsparticles/all` (modified) |
-| **Steps** | 6 (1–6) |
-| **Type** | Refactor + new package |
-| **Load function** | `loadGifShape(engine)` |
-| **Files** | ~17 new (shape-gif), ~9 modified (shape-image), ~2 modified (all bundle) |
+|                   |                                                                                                      |
+|-------------------|------------------------------------------------------------------------------------------------------|
+| **Target**        | `@tsparticles/shape-gif` (new), `@tsparticles/shape-image` (modified), `@tsparticles/all` (modified) |
+| **Steps**         | 6 (1–6)                                                                                              |
+| **Type**          | Refactor + new package                                                                               |
+| **Load function** | `loadGifShape(engine)`                                                                               |
+| **Files**         | ~17 new (shape-gif), ~9 modified (shape-image), ~2 modified (all bundle)                             |
 
 ### Progress
 
-- [ ] Step 1: Scaffold `shapes/gif/` (17 files)
-- [ ] Step 2: Copy `GifUtils/` from image shape — adapt `drawGif`, remove `loadGifImage`
-- [ ] Step 3: Remove GIF from `@tsparticles/shape-image` (9 files)
-- [ ] Step 4: Add `@tsparticles/shape-gif` to `@tsparticles/all` bundle
-- [ ] Step 5: Build + verify
-- [ ] Step 6: Update demo config (`utils/configs/src/g/gifs.ts`)
+- [x] Step 1: Scaffold `shapes/gif/` (17 files)
+- [x] Step 2: Copy `GifUtils/` from image shape — adapt `drawGif`, remove `loadGifImage`
+- [x] Step 3: Remove GIF from `@tsparticles/shape-image` (9 files)
+- [x] Step 4: Add `@tsparticles/shape-gif` to `@tsparticles/all` bundle
+- [x] Step 5: Build + verify
+- [x] Step 6: Update demo config (`utils/configs/src/g/gifs.ts`)
 
 ---
 
@@ -605,17 +605,17 @@ export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: Canv
 
 Check that all imported paths resolve correctly:
 
-| File | Imports | Status |
-|---|---|---|
-| `ByteStream.ts` | `./Types/GIFDataHeaders.js` | ✅ Internal |
-| `Constants.ts` | none | ✅ |
-| `Utils.ts` | `@tsparticles/engine`, `../types.js`, `./Constants.js`, `./ByteStream.js`, `./Enums/DisposalMethod.js`, `./Types/GIF.js`, `./Types/GIFDataHeaders.js`, `./Types/GIFProgressCallbackFunction.js` | ✅ Fixed in 2.2 |
-| `Enums/DisposalMethod.ts` | none | ✅ |
-| `Types/GIF.ts` | `@tsparticles/engine`, `./ApplicationExtension.js`, `./Frame.js` | ✅ |
-| `Types/Frame.ts` | `@tsparticles/engine`, `../Enums/DisposalMethod.js`, `./PlainTextData.js` | ✅ |
-| `Types/GIFProgressCallbackFunction.ts` | `@tsparticles/engine` | ✅ |
-| `Types/PlainTextData.ts` | `@tsparticles/engine` | ✅ |
-| Others | none | ✅ |
+| File                                   | Imports                                                                                                                                                                                         | Status         |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| `ByteStream.ts`                        | `./Types/GIFDataHeaders.js`                                                                                                                                                                     | ✅ Internal     |
+| `Constants.ts`                         | none                                                                                                                                                                                            | ✅              |
+| `Utils.ts`                             | `@tsparticles/engine`, `../types.js`, `./Constants.js`, `./ByteStream.js`, `./Enums/DisposalMethod.js`, `./Types/GIF.js`, `./Types/GIFDataHeaders.js`, `./Types/GIFProgressCallbackFunction.js` | ✅ Fixed in 2.2 |
+| `Enums/DisposalMethod.ts`              | none                                                                                                                                                                                            | ✅              |
+| `Types/GIF.ts`                         | `@tsparticles/engine`, `./ApplicationExtension.js`, `./Frame.js`                                                                                                                                | ✅              |
+| `Types/Frame.ts`                       | `@tsparticles/engine`, `../Enums/DisposalMethod.js`, `./PlainTextData.js`                                                                                                                       | ✅              |
+| `Types/GIFProgressCallbackFunction.ts` | `@tsparticles/engine`                                                                                                                                                                           | ✅              |
+| `Types/PlainTextData.ts`               | `@tsparticles/engine`                                                                                                                                                                           | ✅              |
+| Others                                 | none                                                                                                                                                                                            | ✅              |
 
 ---
 
@@ -1065,73 +1065,73 @@ Step 6 (demo config)
 
 ### New files (17)
 
-| # | File | Sub-step |
-|---|---|---|
-| 1 | `shapes/gif/package.json` | 1.2 |
-| 2 | `shapes/gif/package.dist.json` | 1.3 |
-| 3 | `shapes/gif/.browserslistrc` | 1.4 |
-| 4 | `shapes/gif/eslint.config.js` | 1.5 |
-| 5 | `shapes/gif/rollup.config.js` | 1.6 |
-| 6 | `shapes/gif/tsconfig.base.json` | 1.7 |
-| 7 | `shapes/gif/tsconfig.json` | 1.7 |
-| 8 | `shapes/gif/tsconfig.browser.json` | 1.7 |
-| 9 | `shapes/gif/tsconfig.module.json` | 1.7 |
-| 10 | `shapes/gif/tsconfig.types.json` | 1.7 |
-| 11 | `shapes/gif/typedoc.json` | 1.8 |
-| 12 | `shapes/gif/src/IGifShape.ts` | 1.9 |
-| 13 | `shapes/gif/src/types.ts` | 1.10 |
-| 14 | `shapes/gif/src/GifDrawer.ts` | 1.11 |
-| 15 | `shapes/gif/src/index.ts` | 1.12 |
-| 16 | `shapes/gif/src/index.lazy.ts` | 1.13 |
-| 17 | `shapes/gif/src/browser.ts` | 1.14 |
+| #  | File                               | Sub-step |
+|----|------------------------------------|----------|
+| 1  | `shapes/gif/package.json`          | 1.2      |
+| 2  | `shapes/gif/package.dist.json`     | 1.3      |
+| 3  | `shapes/gif/.browserslistrc`       | 1.4      |
+| 4  | `shapes/gif/eslint.config.js`      | 1.5      |
+| 5  | `shapes/gif/rollup.config.js`      | 1.6      |
+| 6  | `shapes/gif/tsconfig.base.json`    | 1.7      |
+| 7  | `shapes/gif/tsconfig.json`         | 1.7      |
+| 8  | `shapes/gif/tsconfig.browser.json` | 1.7      |
+| 9  | `shapes/gif/tsconfig.module.json`  | 1.7      |
+| 10 | `shapes/gif/tsconfig.types.json`   | 1.7      |
+| 11 | `shapes/gif/typedoc.json`          | 1.8      |
+| 12 | `shapes/gif/src/IGifShape.ts`      | 1.9      |
+| 13 | `shapes/gif/src/types.ts`          | 1.10     |
+| 14 | `shapes/gif/src/GifDrawer.ts`      | 1.11     |
+| 15 | `shapes/gif/src/index.ts`          | 1.12     |
+| 16 | `shapes/gif/src/index.lazy.ts`     | 1.13     |
+| 17 | `shapes/gif/src/browser.ts`        | 1.14     |
 
 ### Copied files (10)
 
-| File | From | To | Edit needed |
-|---|---|---|---|
-| `GifUtils/ByteStream.ts` | `shapes/image/src/GifUtils/` | `shapes/gif/src/GifUtils/` | No |
-| `GifUtils/Constants.ts` | same | same | No |
-| `GifUtils/Utils.ts` | same | same | **Yes** — 2.2, 2.3, 2.4 |
-| `GifUtils/Enums/DisposalMethod.ts` | same | same | No |
-| `GifUtils/Types/GIF.ts` | same | same | No |
-| `GifUtils/Types/Frame.ts` | same | same | No |
-| `GifUtils/Types/ApplicationExtension.ts` | same | same | No |
-| `GifUtils/Types/GIFDataHeaders.ts` | same | same | No |
-| `GifUtils/Types/GIFProgressCallbackFunction.ts` | same | same | No |
-| `GifUtils/Types/PlainTextData.ts` | same | same | No |
+| File                                            | From                         | To                         | Edit needed             |
+|-------------------------------------------------|------------------------------|----------------------------|-------------------------|
+| `GifUtils/ByteStream.ts`                        | `shapes/image/src/GifUtils/` | `shapes/gif/src/GifUtils/` | No                      |
+| `GifUtils/Constants.ts`                         | same                         | same                       | No                      |
+| `GifUtils/Utils.ts`                             | same                         | same                       | **Yes** — 2.2, 2.3, 2.4 |
+| `GifUtils/Enums/DisposalMethod.ts`              | same                         | same                       | No                      |
+| `GifUtils/Types/GIF.ts`                         | same                         | same                       | No                      |
+| `GifUtils/Types/Frame.ts`                       | same                         | same                       | No                      |
+| `GifUtils/Types/ApplicationExtension.ts`        | same                         | same                       | No                      |
+| `GifUtils/Types/GIFDataHeaders.ts`              | same                         | same                       | No                      |
+| `GifUtils/Types/GIFProgressCallbackFunction.ts` | same                         | same                       | No                      |
+| `GifUtils/Types/PlainTextData.ts`               | same                         | same                       | No                      |
 
 ### Modified files (10)
 
-| File | Change | Sub-step |
-|---|---|---|
-| `shapes/image/src/Utils.ts` | Remove GIF import + 7 gif fields + 1 `gif:` in literal | 3.2 |
-| `shapes/image/src/IImageShape.ts` | Remove `gif: boolean` | 3.3 |
-| `shapes/image/src/Options/Classes/Preload.ts` | Remove `gif` property + `loadProperty("gif")` | 3.4 |
-| `shapes/image/src/Options/Interfaces/IPreload.ts` | Remove `gif: boolean` | 3.5 |
-| `shapes/image/src/ImageDrawer.ts` | Remove drawGif import, if-gif branch, gif fields in particleInit, gif in loadImageShape | 3.6 |
-| `shapes/image/src/index.ts` | Remove loadGifImage import, gif literal field, if(data.gif) branch | 3.7 |
-| `shapes/image/src/index.lazy.ts` | Same as index.ts | 3.8 |
-| `bundles/all/package.json` | Add `@tsparticles/shape-gif` dependency | 4.1 |
-| `bundles/all/src/index.ts` | Add import + loadGifShape call | 4.3 |
-| `utils/configs/src/g/gifs.ts` | Change `type: "image"` + gif opts → `type: "gif"` | 6.1 |
+| File                                              | Change                                                                                  | Sub-step |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------|----------|
+| `shapes/image/src/Utils.ts`                       | Remove GIF import + 7 gif fields + 1 `gif:` in literal                                  | 3.2      |
+| `shapes/image/src/IImageShape.ts`                 | Remove `gif: boolean`                                                                   | 3.3      |
+| `shapes/image/src/Options/Classes/Preload.ts`     | Remove `gif` property + `loadProperty("gif")`                                           | 3.4      |
+| `shapes/image/src/Options/Interfaces/IPreload.ts` | Remove `gif: boolean`                                                                   | 3.5      |
+| `shapes/image/src/ImageDrawer.ts`                 | Remove drawGif import, if-gif branch, gif fields in particleInit, gif in loadImageShape | 3.6      |
+| `shapes/image/src/index.ts`                       | Remove loadGifImage import, gif literal field, if(data.gif) branch                      | 3.7      |
+| `shapes/image/src/index.lazy.ts`                  | Same as index.ts                                                                        | 3.8      |
+| `bundles/all/package.json`                        | Add `@tsparticles/shape-gif` dependency                                                 | 4.1      |
+| `bundles/all/src/index.ts`                        | Add import + loadGifShape call                                                          | 4.3      |
+| `utils/configs/src/g/gifs.ts`                     | Change `type: "image"` + gif opts → `type: "gif"`                                       | 6.1      |
 
 ### Deleted (1)
 
-| Path | Sub-step |
-|---|---|
-| `shapes/image/src/GifUtils/` | 3.1 |
+| Path                         | Sub-step |
+|------------------------------|----------|
+| `shapes/image/src/GifUtils/` | 3.1      |
 
 ### No changes needed
 
-| Reason | |
-|---|---|
-| `pnpm-workspace.yaml` | Already includes `shapes/*` |
-| `bundles/all/src/bundle.ts` | Re-exports from `./index.js` |
-| `bundles/all/src/browser.ts` | Re-exports from `./index.js` |
-| `shapes/image/src/types.ts` | No GIF-specific types |
-| `shapes/image/src/ImagePreloader.ts` | No GIF-specific code |
-| `shapes/image/src/ImagePreloaderInstance.ts` | No GIF-specific code |
-| `shapes/image/src/browser.ts` | No GIF-specific code |
+| Reason                                       |                              |
+|----------------------------------------------|------------------------------|
+| `pnpm-workspace.yaml`                        | Already includes `shapes/*`  |
+| `bundles/all/src/bundle.ts`                  | Re-exports from `./index.js` |
+| `bundles/all/src/browser.ts`                 | Re-exports from `./index.js` |
+| `shapes/image/src/types.ts`                  | No GIF-specific types        |
+| `shapes/image/src/ImagePreloader.ts`         | No GIF-specific code         |
+| `shapes/image/src/ImagePreloaderInstance.ts` | No GIF-specific code         |
+| `shapes/image/src/browser.ts`                | No GIF-specific code         |
 
 ---
 

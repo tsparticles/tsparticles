@@ -181,6 +181,7 @@
     "@tsparticles/shape-arrow": "workspace:*",
     "@tsparticles/shape-cards": "workspace:*",
     "@tsparticles/shape-cog": "workspace:*",
+    "@tsparticles/shape-gif": "workspace:*",
     "@tsparticles/shape-heart": "workspace:*",
     "@tsparticles/shape-infinity": "workspace:*",
     "@tsparticles/shape-matrix": "workspace:*",

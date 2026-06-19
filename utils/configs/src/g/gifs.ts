@@ -33,14 +33,13 @@ const options: ISourceOptions = {
     },
     shape: {
       options: {
-        image: {
-          gif: true,
+        gif: {
           height: 200,
           src: "https://particles.js.org/images/mario.gif",
           width: 200,
         },
       },
-      type: "image",
+      type: "gif",
     },
     size: {
       value: {

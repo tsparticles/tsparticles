@@ -1,5 +1,4 @@
 import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
-import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -15,9 +14,6 @@ export interface IImage {
   color?: IHsl;
   element?: HTMLImageElement;
   error: boolean;
-  gif: boolean;
-  gifData?: GIF;
-  gifLoopCount?: number;
   loading: boolean;
   name: string;
   ratio?: number;
@@ -34,9 +30,6 @@ export interface IParticleImage {
   color?: IHsl;
   data: IImage;
   element?: HTMLImageElement;
-  gif: boolean;
-  gifData?: GIF;
-  gifLoopCount?: number;
   loaded?: boolean;
   ratio: number;
   replaceColor: boolean;
@@ -47,9 +40,6 @@ export interface IParticleImage {
  * The Particle extension type
  */
 export type ImageParticle = Particle & {
-  gifFrame?: number;
-  gifLoopCount?: number;
-  gifTime?: number;
   image?: IParticleImage;
 };
 
@@ -163,7 +153,6 @@ export function replaceImageColor(
   const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr),
     imageRes: IParticleImage = {
       color,
-      gif: imageData.gif,
       data: {
         ...image,
         svgData: svgColoredData,

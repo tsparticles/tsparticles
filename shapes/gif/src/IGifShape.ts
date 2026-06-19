@@ -1,9 +1,9 @@
 import type { IShapeValues } from "@tsparticles/engine";
 
-export interface IImageShape extends IShapeValues {
+export interface IGifShape extends IShapeValues {
   height: number;
-  name: string;
-  replaceColor: boolean;
+  loopCount?: number;
+  name?: string;
   src: string;
   width: number;
 }
