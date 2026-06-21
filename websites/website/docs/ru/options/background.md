@@ -27,6 +27,8 @@ background: {
 - `opacity`: альфа-канал для фонового слоя.
 - `image`: необязательное фоновое изображение.
 - `position`, `repeat`, `size`: поведение, подобное CSS.
+- `element`: опциональный CSS-селектор, `HTMLCanvasElement` или `OffscreenCanvas` для пользовательского draw callback. Если не указано, используется холст частиц.
+- `draw`: опциональный покадровый callback `(context, delta) => void` для пользовательской отрисовки фона.
 
 ## `fullScreen`
 

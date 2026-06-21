@@ -12,16 +12,16 @@
 
 ### Progress
 
-- [ ] Phase 0: Baseline scan
-- [ ] Phase 1: Bundle impact + decision
-- [ ] Phase 1b: Release target decision
-- [ ] Phase 2: Type contract
-- [ ] Phase 3: Runtime hook
-- [ ] Phase 4: Target resolution/cache
-- [ ] Phase 5: Error/warning handling
-- [ ] Phase 6: Tests
-- [ ] Phase 7: Docs/examples
-- [ ] Phase 8: Validation gate
+- [x] Phase 0: Baseline scan
+- [x] Phase 1: Bundle impact + decision
+- [x] Phase 1b: Release target decision → 4.3.0 (additive, backward-compatible, no semver risk)
+- [x] Phase 2: Type contract
+- [x] Phase 3: Runtime hook
+- [x] Phase 4: Target resolution/cache
+- [x] Phase 5: Error/warning handling
+- [x] Phase 6: Tests (8 tests, 147 total passing)
+- [x] Phase 7: Docs/examples (11 doc files: 1 English + 9 translations + 1 TypeDoc include)
+- [x] Phase 8: Validation gate (147 tests passed, 461 Nx projects built ok)
 
 ---
 

@@ -27,6 +27,8 @@ background: {
 - `opacity`：背景层的 Alpha 通道。
 - `image`：可选背景图像。
 - `position`、`repeat`、`size`：类似 CSS 的行为。
+- `element`：可选的 CSS 选择器、`HTMLCanvasElement` 或 `OffscreenCanvas`，用于自定义 draw 回调。省略时使用粒子画布。
+- `draw`：可选的逐帧回调 `(context, delta) => void`，用于自定义背景渲染。
 
 ## `fullScreen`
 

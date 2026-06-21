@@ -8,6 +8,7 @@ import {
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import { getStyleFromHsl, rangeColorToHsl } from "../Utils/ColorUtils.js";
+import type { BackgroundDrawContext } from "../Options/Interfaces/Background/IBackground.js";
 import type { CanvasManager } from "./CanvasManager.js";
 import type { Container } from "./Container.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -22,6 +23,7 @@ import type { IShapeDrawData } from "./Interfaces/IShapeDrawData.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { Particle } from "./Particle.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
+import { getLogger } from "../Utils/LogUtils.js";
 
 const fColorIndex = 0,
   sColorIndex = 1;
@@ -47,6 +49,8 @@ function setTransformValue(
  * Canvas manager
  */
 export class RenderManager {
+  #backgroundContext: BackgroundDrawContext | null;
+  readonly #backgroundWarnings: Set<string>;
   #canvasClearPlugins: IContainerPlugin[];
   readonly #canvasManager: CanvasManager;
   #canvasPaintPlugins: IContainerPlugin[];
@@ -82,6 +86,8 @@ export class RenderManager {
     this.#container = container;
     this.#canvasManager = canvasManager;
     this.#context = null;
+    this.#backgroundContext = null;
+    this.#backgroundWarnings = new Set<string>();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
     this.#colorPlugins = [];
@@ -142,6 +148,8 @@ export class RenderManager {
   destroy(): void {
     this.stop();
 
+    this.#backgroundContext = null;
+    this.#backgroundWarnings.clear();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
     this.#colorPlugins = [];
@@ -261,6 +269,8 @@ export class RenderManager {
 
     this.clear();
 
+    this.#drawBackground(delta);
+
     /* update each particle before drawing */
     particles.update(delta);
 
@@ -291,6 +301,7 @@ export class RenderManager {
   init(): void {
     this.initUpdaters();
     this.initPlugins();
+    this.#resolveBackgroundContext();
     this.paint();
   }
 
@@ -509,6 +520,26 @@ export class RenderManager {
     drawer.drawAfter(data);
   }
 
+  #drawBackground(delta: IDelta): void {
+    const background = this.#container.actualOptions.background;
+
+    if (!background.draw) {
+      return;
+    }
+
+    const ctx = this.#backgroundContext ?? this.#context;
+
+    if (!ctx) {
+      return;
+    }
+
+    try {
+      background.draw(ctx, delta);
+    } catch (_e) {
+      this.#warnOnce("background-draw-error", "Error in background.draw callback");
+    }
+  }
+
   #drawBeforeEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
     if (!drawer?.drawBefore) {
       return;
@@ -671,5 +702,59 @@ export class RenderManager {
     this.#reusablePluginColors[sColorIndex] = sColor;
 
     return this.#reusablePluginColors;
+  }
+
+  #resolveBackgroundContext(): void {
+    const background = this.#container.actualOptions.background;
+
+    this.#backgroundContext = null;
+
+    if (!background.element) {
+      return;
+    }
+
+    let element: HTMLCanvasElement | OffscreenCanvas | null = null;
+
+    if (typeof background.element === "string") {
+      if (typeof document !== "undefined") {
+        const node = document.querySelector(background.element);
+
+        if (node instanceof HTMLCanvasElement) {
+          element = node;
+        } else if (node) {
+          this.#warnOnce(
+            "background-element-not-canvas",
+            `Background element "${background.element}" is not a canvas element`,
+          );
+        } else {
+          this.#warnOnce(
+            "background-element-selector-not-found",
+            `Background element selector "${background.element}" not found`,
+          );
+        }
+      }
+    } else if (background.element instanceof HTMLCanvasElement || background.element instanceof OffscreenCanvas) {
+      element = background.element;
+    }
+
+    if (!element) {
+      return;
+    }
+
+    const ctx = element.getContext("2d");
+
+    if (ctx) {
+      this.#backgroundContext = ctx;
+    } else {
+      this.#warnOnce("background-element-context-unavailable", "Failed to get 2D context from background element");
+    }
+  }
+
+  #warnOnce(key: string, message: string): void {
+    if (!this.#backgroundWarnings.has(key)) {
+      this.#backgroundWarnings.add(key);
+
+      getLogger().warning(message);
+    }
   }
 }

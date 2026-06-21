@@ -27,6 +27,8 @@ background: {
 - `opacity`: canal alfa para a camada de fundo.
 - `image`: imagem de fundo opcional.
 - `position`, `repeat`, `size`: comportamento semelhante ao CSS.
+- `element`: seletor CSS opcional, `HTMLCanvasElement` ou `OffscreenCanvas` para o draw callback. Se omitido, a tela de partículas é usada.
+- `draw`: callback opcional por quadro `(context, delta) => void` para renderização personalizada do fundo.
 
 ## `fullScreen`
 

@@ -27,6 +27,8 @@ background: {
 - `opacity`: पृष्ठभूमि परत के लिए अल्फा चैनल।
 - `image`: वैकल्पिक पृष्ठभूमि छवि।
 - `position`, `repeat`, `size`: CSS जैसा व्यवहार।
+- `element`: कस्टम draw कॉलबैक के लिए वैकल्पिक CSS सेलेक्टर, `HTMLCanvasElement` या `OffscreenCanvas`। छोड़े जाने पर कण कैनवास का उपयोग होता है।
+- `draw`: कस्टम पृष्ठभूमि रेंडरिंग के लिए वैकल्पिक प्रति-फ्रेम कॉलबैक `(context, delta) => void`।
 
 ## `fullScreen`
 

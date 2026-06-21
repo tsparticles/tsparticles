@@ -27,6 +27,8 @@ background: {
 - `opacity` : canal alpha pour le calque d'arrière-plan.
 - `image` : image de fond optionnelle.
 - `position`, `repeat`, `size` : comportement de type CSS.
+- `element` : sélecteur CSS, `HTMLCanvasElement` ou `OffscreenCanvas` optionnel pour le draw callback. S'il est omis, le canvas des particules est utilisé.
+- `draw` : callback optionnel par frame `(context, delta) => void` pour le rendu personnalisé de l'arrière-plan.
 
 ## `fullScreen`
 

@@ -1,3 +1,4 @@
+import backgroundCanvas from "./backgroundCanvas.js";
 import backgroundMask from "./backgroundMask.js";
 import backgroundMaskImage from "./backgroundMaskImage.js";
 import basic from "./basic.js";
@@ -9,6 +10,7 @@ import blackHole from "./blackHole.js";
 import bubble from "./bubble.js";
 
 export default {
+  backgroundCanvas,
   backgroundMask,
   backgroundMaskImage,
   basic,

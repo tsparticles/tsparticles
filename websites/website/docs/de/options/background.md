@@ -27,6 +27,8 @@ background: {
 - `opacity`: Alphakanal für die Hintergrundebene.
 - `image`: optionales Hintergrundbild.
 - `position`, `repeat`, `size`: CSS-ähnliches Verhalten.
+- `element`: optionaler CSS-Selektor, `HTMLCanvasElement` oder `OffscreenCanvas` für den benutzerdefinierten draw-Callback. Standardmäßig wird der Partikel-Canvas verwendet.
+- `draw`: optionaler Frame-Callback `(context, delta) => void` für benutzerdefinierte Hintergrunddarstellung.
 
 ## `fullScreen`
 

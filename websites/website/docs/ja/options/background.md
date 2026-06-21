@@ -27,6 +27,8 @@ background: {
 - `opacity`: 背景レイヤーのアルファ チャネル。
 - `image`: オプションの背景画像。
 - `position`、`repeat`、`size`: CSS のような動作。
+- `element`: カスタム draw コールバック用のオプションの CSS セレクター、`HTMLCanvasElement` または `OffscreenCanvas`。省略するとパーティクルキャンバスが使用されます。
+- `draw`: カスタム背景描画用のオプションのフレームごとのコールバック `(context, delta) => void`。
 
 ## `fullScreen`
 

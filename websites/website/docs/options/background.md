@@ -27,6 +27,8 @@ background: {
 - `opacity`: alpha channel for the background layer.
 - `image`: optional background image.
 - `position`, `repeat`, `size`: CSS-like behavior.
+- `element`: optional CSS selector, `HTMLCanvasElement`, or `OffscreenCanvas` for the custom draw callback target. If omitted, the particles canvas is used.
+- `draw`: optional per-frame callback `(context, delta) => void` for custom background rendering. Receives the 2D context of the target element (or the particles canvas) and the frame delta.
 
 ## `fullScreen`
 
