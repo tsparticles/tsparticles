@@ -8,7 +8,6 @@ import {
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import { getStyleFromHsl, rangeColorToHsl } from "../Utils/ColorUtils.js";
-import type { BackgroundDrawContext } from "../Options/Interfaces/Background/IBackground.js";
 import type { CanvasManager } from "./CanvasManager.js";
 import type { Container } from "./Container.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -49,7 +48,7 @@ function setTransformValue(
  * Canvas manager
  */
 export class RenderManager {
-  #backgroundContext: BackgroundDrawContext | null;
+  #backgroundElement: CanvasImageSource | null;
   readonly #backgroundWarnings: Set<string>;
   #canvasClearPlugins: IContainerPlugin[];
   readonly #canvasManager: CanvasManager;
@@ -86,7 +85,7 @@ export class RenderManager {
     this.#container = container;
     this.#canvasManager = canvasManager;
     this.#context = null;
-    this.#backgroundContext = null;
+    this.#backgroundElement = null;
     this.#backgroundWarnings = new Set<string>();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
@@ -148,7 +147,7 @@ export class RenderManager {
   destroy(): void {
     this.stop();
 
-    this.#backgroundContext = null;
+    this.#backgroundElement = null;
     this.#backgroundWarnings.clear();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
@@ -301,7 +300,7 @@ export class RenderManager {
   init(): void {
     this.initUpdaters();
     this.initPlugins();
-    this.#resolveBackgroundContext();
+    this.#resolveBackgroundElement();
     this.paint();
   }
 
@@ -521,22 +520,32 @@ export class RenderManager {
   }
 
   #drawBackground(delta: IDelta): void {
-    const background = this.#container.actualOptions.background;
-
-    if (!background.draw) {
-      return;
-    }
-
-    const ctx = this.#backgroundContext ?? this.#context;
+    const background = this.#container.actualOptions.background,
+      ctx = this.#context;
 
     if (!ctx) {
       return;
     }
 
-    try {
-      background.draw(ctx, delta);
-    } catch (_e) {
-      this.#warnOnce("background-draw-error", "Error in background.draw callback");
+    const width = this.#canvasManager.size.width,
+      height = this.#canvasManager.size.height;
+
+    // Layer 0: auto-draw external element
+    if (this.#backgroundElement) {
+      try {
+        ctx.drawImage(this.#backgroundElement, originPoint.x, originPoint.y, width, height);
+      } catch {
+        this.#warnOnce("background-element-draw-error", "Error drawing background element onto canvas");
+      }
+    }
+
+    // Layer 1: custom draw callback (always on main context)
+    if (background.draw) {
+      try {
+        background.draw(ctx, delta);
+      } catch {
+        this.#warnOnce("background-draw-error", "Error in background.draw callback");
+      }
     }
   }
 
@@ -704,49 +713,40 @@ export class RenderManager {
     return this.#reusablePluginColors;
   }
 
-  #resolveBackgroundContext(): void {
+  #resolveBackgroundElement(): void {
     const background = this.#container.actualOptions.background;
 
-    this.#backgroundContext = null;
+    this.#backgroundElement = null;
 
     if (!background.element) {
       return;
     }
 
-    let element: HTMLCanvasElement | OffscreenCanvas | null = null;
-
     if (typeof background.element === "string") {
       if (typeof document !== "undefined") {
         const node = document.querySelector(background.element);
 
-        if (node instanceof HTMLCanvasElement) {
-          element = node;
+        if (node instanceof HTMLCanvasElement || node instanceof HTMLVideoElement || node instanceof HTMLImageElement) {
+          this.#backgroundElement = node;
         } else if (node) {
           this.#warnOnce(
-            "background-element-not-canvas",
-            `Background element "${background.element}" is not a canvas element`,
+            "background-element-not-supported",
+            `Background element "${background.element}" is not a supported drawable element (canvas, video, or img)`,
           );
         } else {
           this.#warnOnce(
-            "background-element-selector-not-found",
+            "background-element-not-found",
             `Background element selector "${background.element}" not found`,
           );
         }
       }
-    } else if (background.element instanceof HTMLCanvasElement || background.element instanceof OffscreenCanvas) {
-      element = background.element;
-    }
-
-    if (!element) {
-      return;
-    }
-
-    const ctx = element.getContext("2d");
-
-    if (ctx) {
-      this.#backgroundContext = ctx;
-    } else {
-      this.#warnOnce("background-element-context-unavailable", "Failed to get 2D context from background element");
+    } else if (
+      background.element instanceof HTMLCanvasElement ||
+      background.element instanceof OffscreenCanvas ||
+      background.element instanceof HTMLVideoElement ||
+      background.element instanceof HTMLImageElement
+    ) {
+      this.#backgroundElement = background.element;
     }
   }
 

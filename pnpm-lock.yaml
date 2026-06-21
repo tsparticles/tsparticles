@@ -87,7 +87,7 @@ importers:
         version: 10.1.8(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1))
       eslint-plugin-jsdoc:
         specifier: ^63.0.6
-        version: 63.0.6(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1))
+        version: 63.0.6(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)
       eslint-plugin-prettier:
         specifier: ^5.5.6
         version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1))(prettier@3.8.4)
@@ -62479,7 +62479,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jsdoc@63.0.6(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1)):
+  eslint-plugin-jsdoc@63.0.6(eslint@10.5.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
       '@es-joy/jsdoccomment': 0.87.0
       '@es-joy/resolve.exports': 1.2.0

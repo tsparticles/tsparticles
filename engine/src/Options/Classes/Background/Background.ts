@@ -10,7 +10,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 export class Background extends OptionLoader<IBackground> implements IBackground {
   color: OptionsColor;
   draw?: (context: BackgroundDrawContext, delta: IDelta) => void;
-  element?: string | HTMLCanvasElement | OffscreenCanvas;
+  element?: string | HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement;
   image = "";
   opacity = 1;
   position = "";
@@ -29,7 +29,7 @@ export class Background extends OptionLoader<IBackground> implements IBackground
     }
 
     loadProperty(this, "element", data.element);
-    this.draw = data.draw as typeof this.draw;
+    loadProperty(this, "draw", data.draw as typeof this.draw);
     loadProperty(this, "image", data.image);
     loadProperty(this, "position", data.position);
     loadProperty(this, "repeat", data.repeat);

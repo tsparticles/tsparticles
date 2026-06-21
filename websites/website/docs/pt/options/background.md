@@ -2,14 +2,15 @@
 
 Esta seção controla a camada de tela e o comportamento de tela cheia.
 
-## Propriedades principais
+## Ordem das camadas (de trás para frente)
 
-- `background.color`
-- `background.opacity`
-- `background.image`
-- `background.position`
-- `background.repeat`
-- `background.size`
+1. **Fundo CSS** (`color`, `image`, `position`, `repeat`, `size`) — aplicado como estilo DOM da tela
+2. **`clear()`** — limpeza de pixels da tela por quadro
+3. **`background.element` desenho automático** — se definido, `ctx.drawImage(element, ...)`
+4. **`background.draw` callback** — se definido, chamado com o contexto de renderização principal + delta
+5. **Partículas** — desenhadas por cima
+
+`element` e `draw` são **camadas independentes**. Ambos são opcionais e podem ser usados juntos ou separadamente.
 
 ## `background`
 
@@ -23,12 +24,91 @@ background: {
 }
 ```
 
-- `color`: cor de fundo da tela.
-- `opacity`: canal alfa para a camada de fundo.
-- `image`: imagem de fundo opcional.
-- `position`, `repeat`, `size`: comportamento semelhante ao CSS.
-- `element`: seletor CSS opcional, `HTMLCanvasElement` ou `OffscreenCanvas` para o draw callback. Se omitido, a tela de partículas é usada.
-- `draw`: callback opcional por quadro `(context, delta) => void` para renderização personalizada do fundo.
+| Chave      | Tipo                                                                                         | Descrição                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `color`    | `string` / `object`                                                                          | Cor de fundo da tela.                                                                                |
+| `opacity`  | `number`                                                                                     | Canal alfa para a cor de fundo, de `0` a `1`.                                                        |
+| `image`    | `string`                                                                                     | Valor CSS `background-image` (ex. `url('...')`).                                                     |
+| `position` | `string`                                                                                     | Valor CSS `background-position`.                                                                     |
+| `repeat`   | `string`                                                                                     | Valor CSS `background-repeat`.                                                                       |
+| `size`     | `string`                                                                                     | Valor CSS `background-size`.                                                                         |
+| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | Elemento externo desenhado automaticamente a cada quadro via `drawImage`. Não gerenciado pelo motor. |
+| `draw`     | `(context, delta) => void`                                                                   | Callback por quadro para renderização personalizada de fundo no contexto principal da tela.          |
+
+### `element`
+
+Quando `element` é definido, o conteúdo visual atual do elemento é desenhado na tela principal a cada quadro via `ctx.drawImage()`. O elemento **não é gerenciado pelo motor** — o código externo gerencia sua renderização.
+
+Tipos de elemento suportados:
+
+- `HTMLCanvasElement` / `OffscreenCanvas`
+- `HTMLVideoElement` (desenha o quadro atual)
+- `HTMLImageElement`
+- String seletor CSS correspondente a qualquer um dos acima no DOM
+
+```json
+{
+  "background": {
+    "element": "#my-bg-canvas"
+  }
+}
+```
+
+```ts
+// Desenhar automaticamente um elemento <video> externo como fundo
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    background: {
+      element: "#bg-video",
+    },
+  },
+});
+```
+
+### `draw`
+
+Um callback por quadro para renderização personalizada do fundo. Sempre recebe o **contexto principal da tela** (`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`), nunca o contexto do elemento.
+
+```json
+{
+  "background": {
+    "draw": "(ctx, delta) => { ctx.fillStyle = 'blue'; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height); }"
+  }
+}
+```
+
+(TypeScript usa uma referência de função, não uma string.)
+
+```ts
+import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
+
+const drawBackground = (ctx: BackgroundDrawContext, delta: IDelta): void => {
+  ctx.fillStyle = "#ff0000";
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+};
+```
+
+### Elemento + Draw combinados
+
+Ambas as camadas são executadas independentemente a cada quadro. O elemento é desenhado primeiro, depois o callback draw:
+
+```ts
+import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
+
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    background: {
+      element: "#bg-canvas",
+      draw: (ctx: BackgroundDrawContext, delta: IDelta) => {
+        ctx.fillStyle = `rgba(0,0,0,${0.05 * delta.factor})`;
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      },
+    },
+  },
+});
+```
 
 ## `fullScreen`
 

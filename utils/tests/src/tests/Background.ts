@@ -73,14 +73,14 @@ describe("Background options", () => {
     expect(bg.element).to.equal(canvas);
   });
 
-  it("loading draw with undefined clears it", () => {
+  it("loading draw with undefined does not clear it", () => {
     const bg = new Background();
 
     bg.load({ draw: () => undefined });
     expect(bg.draw).to.be.a("function");
 
     bg.load({ draw: undefined as unknown as RecursivePartial<{ draw?: never }> });
-    expect(bg.draw).to.be.undefined;
+    expect(bg.draw).to.be.a("function");
   });
 
   it("loading element with undefined does not clear it", () => {
@@ -134,5 +134,75 @@ describe("Background options", () => {
 
     bg.draw?.({} as never, { value: 16.67, factor: 1 });
     expect(called).to.be.true;
+  });
+
+  // --- V2 layered redesign tests ---
+
+  it("loading element HTMLVideoElement", () => {
+    const bg = new Background();
+
+    if (typeof HTMLVideoElement === "undefined") {
+      return;
+    }
+
+    const video = document.createElement("video");
+
+    bg.load({ element: video });
+    expect(bg.element).to.equal(video);
+  });
+
+  it("loading element HTMLImageElement", () => {
+    const bg = new Background();
+
+    if (typeof HTMLImageElement === "undefined") {
+      return;
+    }
+
+    const img = document.createElement("img");
+
+    bg.load({ element: img });
+    expect(bg.element).to.equal(img);
+  });
+
+  it("element and draw are independent layers", () => {
+    const bg = new Background(),
+      canvas = document.createElement("canvas");
+    let drawCalled = false;
+
+    bg.load({
+      element: canvas,
+      draw: () => {
+        drawCalled = true;
+      },
+    });
+
+    expect(bg.element).to.equal(canvas);
+    expect(bg.draw).to.be.a("function");
+
+    // element does NOT affect draw — draw still works independently
+    bg.draw?.({} as never, { value: 16.67, factor: 1 });
+    expect(drawCalled).to.be.true;
+  });
+
+  it("element can be unset independently of draw", () => {
+    const bg = new Background();
+    let callCount = 0;
+
+    bg.load({
+      element: "#bg-canvas",
+      draw: () => {
+        callCount++;
+      },
+    });
+
+    expect(bg.element).to.equal("#bg-canvas");
+    expect(bg.draw).to.be.a("function");
+
+    // clear only element
+    bg.load({ element: undefined as unknown as RecursivePartial<{ element?: never }> });
+    expect(bg.element).to.equal("#bg-canvas");
+    // draw still works
+    bg.draw?.({} as never, { value: 16.67, factor: 1 });
+    expect(callCount).to.equal(1);
   });
 });

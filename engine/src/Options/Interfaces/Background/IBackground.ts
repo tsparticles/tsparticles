@@ -23,10 +23,11 @@ export interface IBackground {
   draw?: (context: BackgroundDrawContext, delta: IDelta) => void;
 
   /**
-   * An optional target canvas element (CSS selector, HTMLCanvasElement, or OffscreenCanvas) for the custom background draw callback.
-   * If not specified, the internal rendering context is used.
+   * An optional external element (CSS selector, canvas, video, image, or OffscreenCanvas) that is
+   * auto-drawn onto the main canvas each frame via ctx.drawImage().
+   * The element is not managed by the engine — external code handles its rendering.
    */
-  element?: string | HTMLCanvasElement | OffscreenCanvas;
+  element?: string | HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement;
 
   /**
    * The `image` property sets the canvas style `background-image` property.
