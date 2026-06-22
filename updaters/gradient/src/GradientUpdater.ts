@@ -253,6 +253,6 @@ export class GradientUpdater implements IParticleUpdater {
    * @param delta - The delta time
    */
   update(particle: GradientParticle, delta: IDelta): void {
-    updateGradient(particle, delta);
+    updateGradient(particle, delta, this.#container.hdr);
   }
 }

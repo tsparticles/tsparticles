@@ -5,6 +5,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-18)
 
+### Features
+
+- added hdr precision enhancement — floating-point RGB pipeline for display-p3 colors, reduced banding and compensated animation speed in HDR mode ([#FEATURE-F](https://github.com/tsparticles/tsparticles/issues/F))
+
 **Note:** Version bump only for package @tsparticles/engine
 
 # [4.2.0](https://github.com/tsparticles/tsparticles/compare/v4.1.3...v4.2.0) (2026-06-17)

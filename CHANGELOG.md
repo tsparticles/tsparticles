@@ -5,6 +5,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 
+### Features
+
+- added hdr precision enhancement ([#FEATURE-F](https://github.com/tsparticles/tsparticles/issues/F))
+
 ### Bug Fixes
 
 - fixed docs, fixes [#5862](https://github.com/tsparticles/tsparticles/issues/5862) ([bb0cb44](https://github.com/tsparticles/tsparticles/commit/bb0cb44e380f70f9ef58565123edf072664c6a32))

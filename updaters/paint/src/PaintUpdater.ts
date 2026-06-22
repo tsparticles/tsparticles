@@ -129,7 +129,7 @@ export class PaintUpdater implements IParticleUpdater {
       return;
     }
 
-    updateColor(particle.fillColor, delta);
-    updateColor(particle.strokeColor, delta);
+    updateColor(particle.fillColor, delta, this.#container.hdr);
+    updateColor(particle.strokeColor, delta, this.#container.hdr);
   }
 }

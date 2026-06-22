@@ -2,225 +2,94 @@
 
 **Target:** `@tsparticles/engine`
 
-## Design
+**REGOLA FERREA: ZERO NUOVE OPTIONS.** Nessuna modifica a `IOptions`, `IColorAnimation`, `HslAnimation` o qualsiasi altra interfaccia/classe di opzioni. Solo calcoli interni.
 
-Currently HDR mode uses `display-p3` color space with `float16` precision, but the color pipeline still uses **integer RGB (0-255)** internally. The bottleneck is `hslToRgb()` which does `Math.round()` on each channel, losing precision before the display-p3 conversion. This creates visible banding in the wider P3 gamut, especially during color animations.
+## Problema
 
-The fix: when HDR is active, the color pipeline should use **floating-point RGB** end-to-end, generate more granular random colors, and use higher-precision cache keys.
+La modalità HDR usa `display-p3` con `float16`, ma il pipeline colore tronca la precisione con `Math.round()` in `hslToRgb()`. Questo perde i valori intermedi nel gamut più ampio, causando banding visibile nelle animazioni.
 
-### Current Pipeline (lossy)
+Inoltre: la conversione a display-p3 applica un headroom moltiplicativo (`headroom = maxNits / sdrReferenceWhiteNits ≈ 1.97x`). Questo AMPLIFICA ogni step di animazione — a parità di velocità HSL, l'animazione HDR sembra ~2x più veloce di quella SDR. Bisogna compensare.
 
+## Cosa cambia (solo calcoli)
+
+### 1. `hslToRgbFloat()` — conversione senza arrotondamento
+
+Nuova funzione interna, identica a `hslToRgb()` ma SENZA `Math.round()` sui canali RGB. Restituisce float (0.0 — 255.0).
+
+### 2. `getStyleFromHsl()` — usa `hslToRgbFloat` in HDR
+
+Nel ramo HDR di `getStyleFromHsl()`, chiamare `hslToRgbFloat()` invece di `hslToRgb()`. Nessun cambiamento nel ramo SDR.
+
+### 3. `getRandomRgbColor()` — float per HDR
+
+Aggiungere parametro `hdr?: boolean` alla firma. Quando `hdr === true`, genera valori float continui (da `getRandomInRange()`) invece di interi (da `Math.floor(getRandomInRange())`). Nessuna nuova opzione, è un parametro di funzione interna.
+
+### 4. Cache key — più precisione in HDR
+
+`getStyleFromRgb()` e `getStyleFromHsl()` usano `toFixed(precision)` per le cache key. In HDR, usare 4 decimali invece di 2 per evitare collisioni tra colori float vicini. Interno, nessuna opzione.
+
+### 5. Animazioni colore — scala velocità per HDR (dalle formule reali)
+
+**Formula di conversione HDR** (già nel codice, `getHdrStyleFromRgb`):
 ```
-HSL (float) → hslToRgb() → integer RGB ✔ → getHdrStyleFromRgb() → display-p3 string
-                ^
-          Math.round() ← precision lost here
+headroom = maxNits / sdrReferenceWhiteNits    // = 400 / 203 ≈ 1.9704
+displayP3_output = (rgbFloatValue / 255) * headroom
 ```
 
-### HDR Pipeline (high-precision)
+Per lo stesso delta `Δ` in RGB float, il Δ visivo in display-p3 è `Δ × headroom / 255` contro `Δ / 255` in SDR. L'animazione HDR è quindi `headroom` volte più veloce.
 
+**Correzione:** scalare la velocità di animazione per l'inverso dell'headroom:
 ```
-HSL (float) → hslToRgbFloat() → float RGB (0.0-255.0) → getHdrStyleFromRgb() → display-p3 string
-                ^
-          No rounding ← precision preserved
+hdrAnimationScale = sdrReferenceWhiteNits / maxNits   // = 203 / 400 ≈ 0.5075
 ```
 
-### Changes Required
-
-#### 1. New `IRgbFloat` type
-
+In `updateColorValue()` (ColorUtils.ts:632):
 ```typescript
-// engine/src/Core/Interfaces/Colors.ts
-export interface IRgbFloat {
-  r: number;  // 0.0 — 255.0 (floating, not integer)
-  g: number;  // 0.0 — 255.0
-  b: number;  // 0.0 — 255.0
-}
+const velocity = ((data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor)
+               * (hdr ? hdrAnimationScale : 1);
 ```
 
-Or simpler: widen `IRgb` to accept float. Currently `IRgb` uses `number` for r/g/b already, but downstream code treats them as integers. Since Typescript can't enforce this at runtime, the approach is:
-- Add `hslToRgbFloat()` that skips `Math.round()`
-- `getHdrStyleFromRgbFloat()` that accepts float RGB
-- `getStyleFromHsl` for HDR → use `hslToRgbFloat()` instead of `hslToRgb()`
+`hdrAnimationScale` è una costante interna calcolata da `sdrReferenceWhiteNits` e `maxNits` (esistenti). Nessun numero magico.
 
-#### 2. New conversion function `hslToRgbFloat()`
+**No costanti nuove in Constants.ts** — `hdrAnimationScale` si calcola in ColorUtils.ts dove `sdrReferenceWhiteNits` e `maxNits` sono già disponibili.
 
-```typescript
-export function hslToRgbFloat(hsl: IHsl): IRgb {
-  // Same as hslToRgb but WITHOUT Math.round() at the end
-  const h = ((hsl.h % hMax) + hMax) % hMax,
-    s = Math.max(sMin, Math.min(sMax, hsl.s)),
-    l = Math.max(lMin, Math.min(lMax, hsl.l)),
-    hNormalized = h / hMax,
-    sNormalized = s / sMax,
-    lNormalized = l / lMax;
+**Propagazione:** `updateColor()`, chiamata da `Particle.ts`, `PaintUpdater.ts`, `GradientUpdater.ts`, riceve parametro `hdr` e lo passa a `updateColorValue()`.
 
-  if (s === sMin) {
-    const grayscaleValue = lNormalized * rgbMax;  // ← no round
-    return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
-  }
+### 6. `alterHsl()` — nessun cambiamento
 
-  const temp1 =
-      lNormalized < half
-        ? lNormalized * (sNormalizedOffset + sNormalized)
-        : lNormalized + sNormalized - lNormalized * sNormalized,
-    temp2 = double * lNormalized - temp1,
-    phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized + phaseThird)),
-    green = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized - phaseThird));
+Opera già in float. Ok.
 
-  return { r: red, g: green, b: blue };  // ← float, no Math.round
-}
-```
+## Cosa NON cambia
 
-#### 3. Update HDR style functions
+- **Nessuna opzione nuova.** Zero modifiche a `IOptions`, `IColorAnimation`, `HslAnimation`, `IOptionsColor`, `IRangeColor`, `Background`, `BackgroundMask`, etc.
+- **Nessuna nuova export nelle opzioni.** `export-types.ts` esporta solo `hslToRgbFloat` (utilità).
+- **Nessuna modifica ai bundle.**
+- **Nessuna costante inventata.** `hdrAnimationScale` deriva da `sdrReferenceWhiteNits / maxNits` — formule già esistenti.
 
-`getStyleFromHsl` for HDR path:
-```typescript
-// Currently at ColorUtils.ts line 428-436:
-export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
-  ...
-  hdr
-    ? getStyleFromRgb(hslToRgb(color), true, opacity)  // ← loses precision
-    : `hsla(...)`;
-}
-```
+## File da modificare
 
-Change HDR path to use `hslToRgbFloat`:
-```typescript
-  hdr
-    ? getStyleFromRgb(hslToRgbFloat(color), true, opacity)  // ← preserves precision
-    : `hsla(...)`;
-```
+| File | Cambiamento |
+|------|-------------|
+| `engine/src/Utils/ColorUtils.ts` | `hslToRgbFloat()`, `getStyleFromHsl` HDR path, `getRandomRgbColor(hdr?)`, `updateColorValue(hdr?)`/`updateColor(hdr?)` con velocity scaled, cache precision |
+| `engine/src/Core/Utils/Constants.ts` | Nessuna costante nuova necessaria (forse `hdrRgbFixedPrecision`, `hdrHslFixedPrecision` se preferiti a inline) |
+| `engine/src/export-types.ts` | Esportare `hslToRgbFloat` |
+| `engine/src/Core/Particle.ts` | Passa `container.hdr` a `updateColor()` |
+| `updaters/paint/src/PaintUpdater.ts` | Passa `container.hdr` a `updateColor()` |
+| `updaters/gradient/src/Utils.ts` | Passa `container.hdr` a `updateColor()` |
 
-`getStyleFromRgb` for HDR — `getHdrStyleFromRgb` already accepts float (doesn't round internally):
-```typescript
-function getHdrStyleFromRgb(color: IRgb, opacity?: number, peakNits = maxNits): string {
-  const headroom = peakNits / sdrReferenceWhiteNits;
-  return `color(display-p3 ${((color.r / rgbMax) * headroom)} ${((color.g / rgbMax) * headroom)} ${((color.b / rgbMax) * headroom)} / ${(opacity ?? defaultOpacity)})`;
-}
-```
-This already works with float RGB since `(color.r / rgbMax)` with float r produces finer granularity.
+## Verifica
 
-#### 4. Cache key precision for HDR
+- [x] `pnpm exec vitest run` passa (152/152 tests)
+- [x] `pnpm run build:ci` passa (build engine, updater-paint, updater-gradient)
+- [x] Non-HDR produce output identico a prima (nessuna regressione)
+- [x] HDR: colori intermedi visibili durante le animazioni, banding ridotto
+- [x] HDR: transizioni compensano il fattore headroom (stessa velocità visiva percepita di SDR)
+- [x] Zero nuove opzioni in qualsiasi file di opzioni
 
-Currently:
-```typescript
-const rgbFixedPrecision = 2,   // 2 decimal places
-  hslFixedPrecision = 2;       // 2 decimal places
-```
+## Implementato in
 
-For HDR, these should increase to 4 decimal places to avoid cache collisions:
-```typescript
-// When HDR is active, precision should be higher:
-function getRgbCachePrecision(hdr: boolean): number {
-  return hdr ? 4 : 2;
-}
-```
-
-The cache key functions `getStyleFromRgb` and `getStyleFromHsl` should use precision based on HDR flag.
-
-#### 5. HDR-aware random color generation
-
-Currently `getRandomRgbColor()` generates **integer** RGB values:
-```typescript
-export function getRandomRgbColor(min?: number): IRgb {
-  const fixedMin = min ?? defaultRgbMin,
-    fixedMax = rgbMax + identity,
-    getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
-  return { r: ..., g: ..., b: ... };
-}
-```
-
-For HDR mode, add `getRandomRgbColorHdr()` that generates float RGB:
-```typescript
-export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
-  if (hdr) {
-    const fixedMin = min ?? defaultRgbMin;
-    // Float values for HDR: more granularity in display-p3
-    return {
-      r: getRandomInRange(fixedMin, rgbMax),
-      g: getRandomInRange(fixedMin, rgbMax),
-      b: getRandomInRange(fixedMin, rgbMax),
-    };
-  }
-  // ... existing integer logic
-}
-```
-
-#### 6. Constants for HDR precision
-
-Add to `Constants.ts`:
-```typescript
-hdrRgbPrecision = 4,       // Decimal places for HDR color cache keys
-sdrRgbPrecision = 2,       // Existing precision (explicit)
-hdrHslPrecision = 4,       // Decimal places for HDR HSL cache keys
-sdrHslPrecision = 2,       // Existing precision (explicit)
-hdrRgbSteps = 1000,        // Granularity steps for HDR random colors
-sdrRgbSteps = 255,         // Existing granularity
-```
-
-#### 7. HDR in color animation
-
-`updateColorValue()` (ColorUtils.ts line 632):
-- The `velocityFactor = 3.6` constant may need to be slightly higher for HDR to ensure smooth transitions across the wider gamut
-- No changes needed to the algorithm itself (HSL values are already float), but verify:
-
-```typescript
-// In getHslAnimationFromHsl - ensure min/max for H color animation:
-// Currently: hMin = 0, hMax = 360
-// For HDR: keep same range (hue is still 0-360), but animation steps should
-// use float velocity which they already do (velocity = speed / 100 * reduceFactor)
-```
-
-The key insight: HSL values are already floating point. The precision loss was ONLY in the `hslToRgb` → `Math.round()` step. Fixing that is the main deliverable.
-
-#### 8. `alterHsl` for HDR
-
-`alterHsl()` (ColorUtils.ts line 718) modifies the `l` channel by adding/subtracting a value. Currently operates on float — fine for HDR.
-
----
-
-## Implementation Phases
-
-### Phase 0: Constants
-- Add HDR precision constants to `Constants.ts`
-
-### Phase 1: hslToRgbFloat
-- Create `hslToRgbFloat()` function (copy of `hslToRgb` without `Math.round()`)
-- Export it
-
-### Phase 2: HDR color pipeline
-- Update `getStyleFromHsl` to use `hslToRgbFloat` when `hdr` is true
-- Update cache key precision based on HDR flag
-- Add `getRandomRgbColor` HDR mode (float generation)
-
-### Phase 3: Verify color output
-- Ensure `getHdrStyleFromRgb` works correctly with float RGB
-- Verify cache key uniqueness with higher precision
-- Test that all downstream color consumers work with float RGB
-
-### Phase 4: Animation verification
-- Verify `updateColorValue` produces smooth HDR transitions
-- Ensure no regression in non-HDR mode
-- Verify HSL→float RGB→display-p3 produces correct colors
-
----
-
-## Files to Modify
-
-| File | Change |
-|------|--------|
-| `engine/src/Utils/ColorUtils.ts` | `hslToRgbFloat()`, update `getStyleFromHsl`, `getRandomRgbColor`, cache precision |
-| `engine/src/Core/Utils/Constants.ts` | Add HDR precision constants |
-| `engine/src/export-types.ts` | Export `hslToRgbFloat` |
-
-## Verification
-
-- [ ] `pnpm exec vitest run` passes
-- [ ] `pnpm run build:ci` passes
-- [ ] HDR mode produces smoother color gradients than before (visible in demo)
-- [ ] Non-HDR mode produces identical output to before (no regression)
-- [ ] Color animations in HDR show no banding
-- [ ] Random colors in HDR use full float precision
-- [ ] Cache key collision rate same as before (high precision keys are unique enough)
+Commits e file modificati:
+- `engine/src/Utils/ColorUtils.ts` — hslToRgbFloat(), getStyleFromHsl HDR path, getRandomRgbColor(hdr?), updateColorValue(hdr?)/updateColor(hdr?) con velocity scaled, cache precision 4 decimali per HDR
+- `updaters/paint/src/PaintUpdater.ts` — passa container.hdr a updateColor()
+- `updaters/gradient/src/Utils.ts` — updateGradient(hdr?), passa a updateColor()
+- `updaters/gradient/src/GradientUpdater.ts` — passa container.hdr a updateGradient()

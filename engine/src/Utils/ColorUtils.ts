@@ -54,7 +54,10 @@ const styleCache = new Map<string, string>(),
   maxStyleCacheSize = 2000,
   rgbFixedPrecision = 2,
   hslFixedPrecision = 2,
-  sdrReferenceWhiteNits = 203;
+  hdrRgbFixedPrecision = 4,
+  hdrHslFixedPrecision = 4,
+  sdrReferenceWhiteNits = 203,
+  hdrAnimationScale = sdrReferenceWhiteNits / maxNits;
 
 /**
  * Generic cache function for color styles
@@ -349,6 +352,38 @@ export function hslToRgb(hsl: IHsl): IRgb {
 }
 
 /**
+ *
+ * @param hsl - The HSL color
+ * @returns The result with floating-point RGB values (0.0-255.0)
+ */
+export function hslToRgbFloat(hsl: IHsl): IRgb {
+  const h = ((hsl.h % hMax) + hMax) % hMax,
+    s = Math.max(sMin, Math.min(sMax, hsl.s)),
+    l = Math.max(lMin, Math.min(lMax, hsl.l)),
+    hNormalized = h / hMax,
+    sNormalized = s / sMax,
+    lNormalized = l / lMax;
+
+  if (s === sMin) {
+    const grayscaleValue = lNormalized * rgbMax;
+
+    return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
+  }
+
+  const temp1 =
+      lNormalized < half
+        ? lNormalized * (sNormalizedOffset + sNormalized)
+        : lNormalized + sNormalized - lNormalized * sNormalized,
+    temp2 = double * lNormalized - temp1,
+    phaseThird = phaseNumerator / triple,
+    red = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized + phaseThird)),
+    green = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized)),
+    blue = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized - phaseThird));
+
+  return { r: red, g: green, b: blue };
+}
+
+/**
  * Converts HSLA color to RGBA color
  * @param hsla - the HSLA color to convert
  * @returns the RGBA color
@@ -367,11 +402,21 @@ export function hslaToRgba(hsla: IHsla): IRgba {
 /**
  * Returns a random ({@link IRgb}) color
  * @param min - the minimum value for the color
+ * @param hdr
  * @returns the random ({@link IRgb}) color
  */
-export function getRandomRgbColor(min?: number): IRgb {
-  const fixedMin = min ?? defaultRgbMin,
-    fixedMax = rgbMax + identity,
+export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
+  const fixedMin = min ?? defaultRgbMin;
+
+  if (hdr) {
+    return {
+      r: getRandomInRange(fixedMin, rgbMax),
+      g: getRandomInRange(fixedMin, rgbMax),
+      b: getRandomInRange(fixedMin, rgbMax),
+    };
+  }
+
+  const fixedMax = rgbMax + identity,
     getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
 
   return {
@@ -389,8 +434,9 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
-  const op = opacity ?? defaultOpacity,
-    key = `rgb-${color.r.toFixed(rgbFixedPrecision)}-${color.g.toFixed(rgbFixedPrecision)}-${color.b.toFixed(rgbFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+  const rgbPrecision = hdr ? hdrRgbFixedPrecision : rgbFixedPrecision,
+    op = opacity ?? defaultOpacity,
+    key = `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
 
   return getCachedStyle(key, () => (hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity)));
 }
@@ -426,12 +472,13 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
-  const op = opacity ?? defaultOpacity,
-    key = `hsl-${color.h.toFixed(hslFixedPrecision)}-${color.s.toFixed(hslFixedPrecision)}-${color.l.toFixed(hslFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+  const hslPrecision = hdr ? hdrHslFixedPrecision : hslFixedPrecision,
+    op = opacity ?? defaultOpacity,
+    key = `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
 
   return getCachedStyle(key, () =>
     hdr
-      ? getStyleFromRgb(hslToRgb(color), true, opacity)
+      ? getStyleFromRgb(hslToRgbFloat(color), true, opacity)
       : `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${op.toString()})`,
   );
 }
@@ -628,8 +675,9 @@ function setColorAnimation(
  * @param data - the color animation data
  * @param decrease - whether the color should decrease over time
  * @param delta - the frame delta time
+ * @param hdr
  */
-export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta): void {
+export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta, hdr?: boolean): void {
   const minLoops = 0,
     minDelay = 0,
     identity = 1,
@@ -655,7 +703,8 @@ export function updateColorValue(data: IParticleColorAnimation, decrease: boolea
   }
 
   const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
-    velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
+    velocity =
+      ((data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor) * (hdr ? hdrAnimationScale : identity),
     decay = data.decay ?? identity,
     max = data.max,
     min = data.min;
@@ -695,17 +744,18 @@ export function updateColorValue(data: IParticleColorAnimation, decrease: boolea
  * Updates all HSL color channels for the current frame
  * @param color - the HSL animation to update
  * @param delta - the frame delta time
+ * @param hdr
  */
-export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta): void {
+export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta, hdr?: boolean): void {
   if (!color) {
     return;
   }
 
   const { h, s, l } = color;
 
-  updateColorValue(h, false, delta);
-  updateColorValue(s, true, delta);
-  updateColorValue(l, true, delta);
+  updateColorValue(h, false, delta, hdr);
+  updateColorValue(s, true, delta, hdr);
+  updateColorValue(l, true, delta, hdr);
 }
 
 /**
