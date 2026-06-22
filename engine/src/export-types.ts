@@ -1,6 +1,6 @@
 export type * from "./Core/Interfaces/Colors.js";
 export type * from "./Core/Interfaces/IBounds.js";
-export type * from "./Core/Interfaces/IBubbleParticleData.js";
+
 export type * from "./Core/Interfaces/ICircleBouncer.js";
 export type * from "./Core/Interfaces/IColorManager.js";
 export type * from "./Core/Interfaces/IContainerPlugin.js";
@@ -16,6 +16,7 @@ export type * from "./Core/Interfaces/IParticleCanvasBounds.js";
 export type * from "./Core/Interfaces/IParticleColorStyle.js";
 export type * from "./Core/Interfaces/IParticleHslAnimation.js";
 export type * from "./Core/Interfaces/IParticleLife.js";
+export type * from "./Core/Interfaces/IParticleModifier.js";
 export type * from "./Core/Interfaces/IParticleRetinaProps.js";
 export type * from "./Core/Interfaces/IParticleRoll.js";
 export type * from "./Core/Interfaces/IParticleTransformValues.js";
@@ -27,7 +28,6 @@ export type * from "./Core/Interfaces/IRangeValue.js";
 export type * from "./Core/Interfaces/IShapeDrawData.js";
 export type * from "./Core/Interfaces/IShapeDrawer.js";
 export type * from "./Core/Interfaces/IShapeValues.js";
-export type * from "./Core/Interfaces/ISlowParticleData.js";
 
 export type * from "./Options/Interfaces/Background/IBackground.js";
 

@@ -218,7 +218,9 @@ export function applyPath(particle: MoveParticle, delta: IDelta): void {
  * @returns proximity speed factor
  */
 export function getProximitySpeedFactor(particle: Particle): number {
-  return particle.slow.inRange ? particle.slow.factor : identity;
+  const mod = particle.getModifier("slow");
+
+  return mod?.enabled ? (mod.speedFactor ?? identity) : identity;
 }
 
 /**

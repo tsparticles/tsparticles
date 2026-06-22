@@ -20,6 +20,7 @@ export async function loadExternalBubbleInteraction(engine: Engine): Promise<voi
   });
 }
 
+export * from "./BubbleModifier.js";
 export * from "./Options/Classes/BubbleBase.js";
 export * from "./Options/Classes/BubbleDiv.js";
 export * from "./Options/Classes/Bubble.js";

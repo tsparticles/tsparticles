@@ -19,5 +19,6 @@ export async function loadExternalSlowInteraction(engine: Engine): Promise<void>
   });
 }
 
+export * from "./SlowModifier.js";
 export * from "./Options/Classes/Slow.js";
 export type * from "./Options/Interfaces/ISlow.js";

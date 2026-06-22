@@ -32,12 +32,12 @@ import {
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import { EventType } from "../Enums/Types/EventType.js";
-import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
+import type { IParticleModifier } from "./Interfaces/IParticleModifier.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
 import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
@@ -49,7 +49,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { IShapeValues } from "./Interfaces/IShapeValues.js";
-import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
@@ -378,11 +377,6 @@ export class Particle {
   backColor?: IHsl;
 
   /**
-   * Gets particles bubble data
-   */
-  bubble!: IBubbleParticleData;
-
-  /**
    * Checks if the particle is destroyed
    */
   destroyed!: boolean;
@@ -536,11 +530,6 @@ export class Particle {
   size!: IParticleNumericValueAnimation;
 
   /**
-   * Gets particle slow options
-   */
-  slow!: ISlowParticleData;
-
-  /**
    * Check if the particle is spawning, and can't be touched
    */
   spawning!: boolean;
@@ -592,6 +581,8 @@ export class Particle {
 
   readonly #container;
 
+  readonly #modifiers: IParticleModifier[] = [];
+
   /**
    * Gets the particle containing engine instance
    * @internal
@@ -604,6 +595,22 @@ export class Particle {
   }
 
   /**
+   * Adds a modifier to this particle, sorted by priority
+   * @param modifier - The modifier to add
+   */
+  addModifier(modifier: IParticleModifier): void {
+    this.#modifiers.push(modifier);
+    this.#modifiers.sort((a, b) => a.priority - b.priority);
+  }
+
+  /**
+   * Removes all modifiers from this particle
+   */
+  clearModifiers(): void {
+    this.#modifiers.length = 0;
+  }
+
+  /**
    * Destroys the particle
    * @param override - The override
    */
@@ -613,8 +620,7 @@ export class Particle {
     }
 
     this.destroyed = true;
-    this.bubble.inRange = false;
-    this.slow.inRange = false;
+    this.clearModifiers();
 
     const container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
@@ -659,7 +665,7 @@ export class Particle {
    * @returns the fill color object
    */
   getFillColor(): IHsl | undefined {
-    return this.#getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
+    return this.#getRollColor(this.#applyModifiers(getHslFromAnimation(this.fillColor), m => m.fillColor));
   }
 
   /**
@@ -671,6 +677,15 @@ export class Particle {
   }
 
   /**
+   * Gets a modifier by its id
+   * @param id - The modifier id to find
+   * @returns the modifier or undefined
+   */
+  getModifier(id: string): IParticleModifier | undefined {
+    return this.#modifiers.find(m => m.id === id);
+  }
+
+  /**
    * Gets the particle opacity
    * @returns the opacity object
    */
@@ -678,7 +693,9 @@ export class Particle {
     const zIndexOptions = this.options.zIndex,
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-      opacity = this.bubble.opacity ?? getRangeValue(this.opacity?.value ?? defaultOpacity),
+      baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity),
+      modifierOpacity = this.#applyModifiers<number | undefined>(undefined, m => m.opacity),
+      opacity = modifierOpacity ?? baseOpacity,
       fillOpacity = this.fillOpacity ?? defaultOpacity,
       strokeOpacity = this.strokeOpacity ?? defaultOpacity;
 
@@ -706,7 +723,7 @@ export class Particle {
    * @returns the particle radius
    */
   getRadius(): number {
-    return this.bubble.radius ?? this.size.value;
+    return this.#applyModifiers(this.size.value, m => m.radius);
   }
 
   /**
@@ -727,7 +744,7 @@ export class Particle {
    * @returns the stroke color
    */
   getStrokeColor(): IHsl | undefined {
-    return this.#getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
+    return this.#getRollColor(this.#applyModifiers(getHslFromAnimation(this.strokeColor), m => m.strokeColor));
   }
 
   /**
@@ -775,14 +792,6 @@ export class Particle {
     runUpdaterPreInit(container.particleUpdaters, this);
 
     /* position */
-    this.bubble = {
-      inRange: false,
-    };
-    this.slow = {
-      inRange: false,
-      factor: 1,
-    };
-
     this.#initPosition(position);
 
     /* animation - velocity for speed */
@@ -864,12 +873,40 @@ export class Particle {
   }
 
   /**
+   * Removes a modifier by its id
+   * @param id - The modifier id to remove
+   */
+  removeModifier(id: string): void {
+    const idx = this.#modifiers.findIndex(m => m.id === id);
+
+    if (idx >= defaultAngle) {
+      this.#modifiers.splice(idx, identity);
+    }
+  }
+
+  /**
    * This method is used when the particle has lost a life and needs some value resets
    */
   reset(): void {
     for (const updater of this.#container.particleUpdaters) {
       updater.reset?.(this);
     }
+  }
+
+  #applyModifiers<T>(base: T, getter: (mod: IParticleModifier) => T | undefined): T {
+    let value = base;
+
+    for (const mod of this.#modifiers) {
+      if (mod.enabled) {
+        const override = getter(mod);
+
+        if (override !== undefined) {
+          value = override;
+        }
+      }
+    }
+
+    return value;
   }
 
   #calcPosition(position: ICoordinates | undefined, zIndex: number): Vector3d | undefined {
