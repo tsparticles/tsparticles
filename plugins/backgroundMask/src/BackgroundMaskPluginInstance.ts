@@ -1,4 +1,5 @@
 import {
+  DrawLayer,
   type IContainerPlugin,
   type PluginManager,
   getLogger,
@@ -10,6 +11,8 @@ import {
 import type { BackgroundMaskContainer } from "./types.js";
 
 export class BackgroundMaskPluginInstance implements IContainerPlugin {
+  readonly layer: DrawLayer = DrawLayer.BackgroundMask;
+
   readonly #container;
   #coverColorStyle?: string;
   #coverImage?: { image: HTMLImageElement; opacity: number };

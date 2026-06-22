@@ -10,6 +10,7 @@ import {
 import { getStyleFromHsl, rangeColorToHsl } from "../Utils/ColorUtils.js";
 import type { CanvasManager } from "./CanvasManager.js";
 import type { Container } from "./Container.js";
+import { DrawLayer } from "../Enums/DrawLayer.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDrawParticleParams } from "./Interfaces/IDrawParticleParams.js";
@@ -52,8 +53,6 @@ export class RenderManager {
   readonly #backgroundWarnings: Set<string>;
   #canvasClearPlugins: IContainerPlugin[];
   readonly #canvasManager: CanvasManager;
-  #canvasPaintPlugins: IContainerPlugin[];
-  #clearDrawPlugins: IContainerPlugin[];
   #colorPlugins: IContainerPlugin[];
   readonly #container;
   /**
@@ -64,9 +63,16 @@ export class RenderManager {
   #drawParticlePlugins: IContainerPlugin[];
   #drawParticlesCleanupPlugins: IContainerPlugin[];
   #drawParticlesSetupPlugins: IContainerPlugin[];
-  #drawPlugins: IContainerPlugin[];
-  #drawSettingsCleanupPlugins: IContainerPlugin[];
-  #drawSettingsSetupPlugins: IContainerPlugin[];
+  /**
+   * Layer-based plugin storage: each plugin is pushed to ALL layers where it has relevant hooks.
+   * For example, a plugin implementing both `canvasPaint` and `drawSettingsSetup` appears in
+   * both `BackgroundMask` and `CanvasSetup` layers.
+   *
+   * Populated by {@link initPlugins} and consumed by {@link drawParticles} which iterates
+   * layers 0-7 in ordinal order.
+   * @see DrawLayer
+   */
+  #layers: Record<DrawLayer, IContainerPlugin[]>;
   readonly #pluginManager;
   #postDrawUpdaters: IParticleUpdater[];
   #preDrawUpdaters: IParticleUpdater[];
@@ -89,16 +95,21 @@ export class RenderManager {
     this.#backgroundWarnings = new Set<string>();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
-    this.#colorPlugins = [];
     this.#canvasClearPlugins = [];
-    this.#canvasPaintPlugins = [];
-    this.#clearDrawPlugins = [];
+    this.#colorPlugins = [];
     this.#drawParticlePlugins = [];
     this.#drawParticlesCleanupPlugins = [];
     this.#drawParticlesSetupPlugins = [];
-    this.#drawPlugins = [];
-    this.#drawSettingsSetupPlugins = [];
-    this.#drawSettingsCleanupPlugins = [];
+    this.#layers = {
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+    };
   }
 
   /**
@@ -121,21 +132,33 @@ export class RenderManager {
   }
 
   /**
-   * Clears the canvas content
+   * Clears the canvas content through the layer system.
+   *
+   * First checks plugins registered in the dedicated `#canvasClearPlugins` array (plugins that
+   * implement `canvasClear` as their only rendering hook, e.g. trail), then iterates all layers
+   * in ordinal order (0–7) for any additional `canvasClear` implementations.
+   *
+   * The first plugin that returns `true` short-circuits the clear. If no plugin handles it,
+   * falls back to {@link canvasClear} which respects `actualOptions.clear`.
+   * @see IContainerPlugin.canvasClear
    */
   clear(): void {
-    let pluginHandled = false;
-
+    /* check dedicated canvasClear plugins first (e.g. trail, which has no layer hooks) */
     for (const plugin of this.#canvasClearPlugins) {
-      pluginHandled = plugin.canvasClear?.() ?? false;
-
-      if (pluginHandled) {
-        break;
+      if (plugin.canvasClear?.() ?? false) {
+        return;
       }
     }
 
-    if (pluginHandled) {
-      return;
+    /* then check all layer plugins */
+    for (const layer of Object.values(DrawLayer)) {
+      if (typeof layer === "number") {
+        for (const plugin of this.#getLayerPlugins(layer)) {
+          if (plugin.canvasClear?.() ?? false) {
+            return;
+          }
+        }
+      }
     }
 
     this.canvasClear();
@@ -151,16 +174,16 @@ export class RenderManager {
     this.#backgroundWarnings.clear();
     this.#preDrawUpdaters = [];
     this.#postDrawUpdaters = [];
-    this.#colorPlugins = [];
     this.#canvasClearPlugins = [];
-    this.#canvasPaintPlugins = [];
-    this.#clearDrawPlugins = [];
+    this.#colorPlugins = [];
     this.#drawParticlePlugins = [];
     this.#drawParticlesCleanupPlugins = [];
     this.#drawParticlesSetupPlugins = [];
-    this.#drawPlugins = [];
-    this.#drawSettingsSetupPlugins = [];
-    this.#drawSettingsCleanupPlugins = [];
+    for (const layer of Object.values(DrawLayer)) {
+      if (typeof layer === "number") {
+        this.#layers[layer] = [];
+      }
+    }
   }
 
   /**
@@ -260,37 +283,77 @@ export class RenderManager {
   }
 
   /**
-   * Draws all particles for the current frame
+   * Draws all particles for the current frame via the layer-based rendering pipeline.
+   *
+   * Layer order (back to front):
+   * 0. BackgroundElement — auto-draw `background.element` via `ctx.drawImage`
+   * 1. BackgroundDraw — execute `background.draw(ctx, delta)` callback
+   * 2. BackgroundMask — `plugin.canvasPaint()` for each plugin
+   * 3. CanvasSetup — `plugin.drawSettingsSetup(ctx, delta)` for each plugin
+   * 4. PluginContent — `plugin.draw(ctx, delta)` for each plugin
+   * 5. Particles — `particles.drawParticles(delta)` (core particle rendering)
+   * 6. CanvasCleanup — `plugin.clearDraw()` + `plugin.drawSettingsCleanup()` for each plugin
+   * 7. Foreground — reserved for future overlay/fx
    * @param delta - The delta time
+   * @see DrawLayer
    */
   drawParticles(delta: IDelta): void {
-    const { particles } = this.#container;
+    const { particles, actualOptions } = this.#container;
 
     this.clear();
-
-    this.#drawBackground(delta);
 
     /* update each particle before drawing */
     particles.update(delta);
 
     this.draw(ctx => {
-      for (const plugin of this.#drawSettingsSetupPlugins) {
+      const width = this.#canvasManager.size.width,
+        height = this.#canvasManager.size.height;
+
+      /* Layer 0 — BackgroundElement: background.element auto-draw */
+      if (this.#backgroundElement) {
+        try {
+          ctx.drawImage(this.#backgroundElement, originPoint.x, originPoint.y, width, height);
+        } catch {
+          this.#warnOnce("background-element-draw-error", "Error drawing background element onto canvas");
+        }
+      }
+
+      /* Layer 1 — BackgroundDraw: background.draw callback */
+      const background = actualOptions.background;
+
+      if (background.draw) {
+        try {
+          background.draw(ctx, delta);
+        } catch {
+          this.#warnOnce("background-draw-error", "Error in background.draw callback");
+        }
+      }
+
+      /* Layer 2 — BackgroundMask: plugin canvasPaint */
+      for (const plugin of this.#getLayerPlugins(DrawLayer.BackgroundMask)) {
+        plugin.canvasPaint?.();
+      }
+
+      /* Layer 3 — CanvasSetup: plugin drawSettingsSetup */
+      for (const plugin of this.#getLayerPlugins(DrawLayer.CanvasSetup)) {
         plugin.drawSettingsSetup?.(ctx, delta);
       }
 
-      for (const plugin of this.#drawPlugins) {
+      /* Layer 4 — PluginContent: plugin draw behind particles */
+      for (const plugin of this.#getLayerPlugins(DrawLayer.PluginContent)) {
         plugin.draw?.(ctx, delta);
       }
 
+      /* Layer 5 — Particles */
       particles.drawParticles(delta);
 
-      for (const plugin of this.#clearDrawPlugins) {
+      /* Layer 6 — CanvasCleanup: plugin clearDraw + drawSettingsCleanup */
+      for (const plugin of this.#getLayerPlugins(DrawLayer.CanvasCleanup)) {
         plugin.clearDraw?.(ctx, delta);
-      }
-
-      for (const plugin of this.#drawSettingsCleanupPlugins) {
         plugin.drawSettingsCleanup?.(ctx, delta);
       }
+
+      /* Layer 7 — Foreground: reserved */
     });
   }
 
@@ -305,31 +368,35 @@ export class RenderManager {
   }
 
   /**
-   * Initializes the plugins needed by canvas
+   * Initializes the plugins needed by canvas.
+   *
+   * Assigns each plugin to ALL layers where it has relevant hooks, not just one primary layer.
+   * This enables plugins like {@link BackgroundMaskPluginInstance} that implement multiple hooks
+   * (`canvasPaint`→BackgroundMask, `drawSettingsSetup`→CanvasSetup, `drawSettingsCleanup`→CanvasCleanup)
+   * to participate in all the layers they need.
+   *
+   * Hook-independent features (`particleFillColor`, `particleStrokeColor`, `drawParticle`,
+   * `drawParticleSetup`, `drawParticleCleanup`) are collected into separate arrays for
+   * per-particle use during rendering.
+   * @see DrawLayer
+   * @see IContainerPlugin
    */
   initPlugins(): void {
-    this.#colorPlugins = [];
     this.#canvasClearPlugins = [];
-    this.#canvasPaintPlugins = [];
-    this.#clearDrawPlugins = [];
+    this.#colorPlugins = [];
     this.#drawParticlePlugins = [];
     this.#drawParticlesSetupPlugins = [];
     this.#drawParticlesCleanupPlugins = [];
-    this.#drawPlugins = [];
-    this.#drawSettingsSetupPlugins = [];
-    this.#drawSettingsCleanupPlugins = [];
+
+    for (const layer of Object.values(DrawLayer)) {
+      if (typeof layer === "number") {
+        this.#layers[layer] = [];
+      }
+    }
 
     for (const plugin of this.#container.plugins) {
       if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
         this.#colorPlugins.push(plugin);
-      }
-
-      if (plugin.canvasClear) {
-        this.#canvasClearPlugins.push(plugin);
-      }
-
-      if (plugin.canvasPaint) {
-        this.#canvasPaintPlugins.push(plugin);
       }
 
       if (plugin.drawParticle) {
@@ -344,20 +411,25 @@ export class RenderManager {
         this.#drawParticlesCleanupPlugins.push(plugin);
       }
 
-      if (plugin.draw) {
-        this.#drawPlugins.push(plugin);
+      if (plugin.canvasClear) {
+        this.#canvasClearPlugins.push(plugin);
+      }
+
+      /* assign plugin to all layers where it has relevant hooks */
+      if (plugin.canvasPaint) {
+        this.#getLayerPlugins(DrawLayer.BackgroundMask).push(plugin);
       }
 
       if (plugin.drawSettingsSetup) {
-        this.#drawSettingsSetupPlugins.push(plugin);
+        this.#getLayerPlugins(DrawLayer.CanvasSetup).push(plugin);
       }
 
-      if (plugin.drawSettingsCleanup) {
-        this.#drawSettingsCleanupPlugins.push(plugin);
+      if (plugin.draw) {
+        this.#getLayerPlugins(DrawLayer.PluginContent).push(plugin);
       }
 
-      if (plugin.clearDraw) {
-        this.#clearDrawPlugins.push(plugin);
+      if (plugin.clearDraw ?? plugin.drawSettingsCleanup) {
+        this.#getLayerPlugins(DrawLayer.CanvasCleanup).push(plugin);
       }
     }
   }
@@ -386,7 +458,7 @@ export class RenderManager {
   paint(): void {
     let handled = false;
 
-    for (const plugin of this.#canvasPaintPlugins) {
+    for (const plugin of this.#getLayerPlugins(DrawLayer.BackgroundMask)) {
       handled = plugin.canvasPaint?.() ?? false;
 
       if (handled) {
@@ -517,36 +589,6 @@ export class RenderManager {
     }
 
     drawer.drawAfter(data);
-  }
-
-  #drawBackground(delta: IDelta): void {
-    const background = this.#container.actualOptions.background,
-      ctx = this.#context;
-
-    if (!ctx) {
-      return;
-    }
-
-    const width = this.#canvasManager.size.width,
-      height = this.#canvasManager.size.height;
-
-    // Layer 0: auto-draw external element
-    if (this.#backgroundElement) {
-      try {
-        ctx.drawImage(this.#backgroundElement, originPoint.x, originPoint.y, width, height);
-      } catch {
-        this.#warnOnce("background-element-draw-error", "Error drawing background element onto canvas");
-      }
-    }
-
-    // Layer 1: custom draw callback (always on main context)
-    if (background.draw) {
-      try {
-        background.draw(ctx, delta);
-      } catch {
-        this.#warnOnce("background-draw-error", "Error in background.draw callback");
-      }
-    }
   }
 
   #drawBeforeEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
@@ -688,6 +730,10 @@ export class RenderManager {
     }
 
     drawer.beforeDraw(data);
+  }
+
+  #getLayerPlugins(layer: DrawLayer): IContainerPlugin[] {
+    return this.#layers[layer];
   }
 
   #getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {

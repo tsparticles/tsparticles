@@ -21,6 +21,8 @@ export * from "./Enums/Types/EventType.js";
 
 export * from "./Enums/AnimationStatus.js";
 
+export * from "./Enums/DrawLayer.js";
+
 export * from "./Options/Classes/AnimatableColor.js";
 export * from "./Options/Classes/AnimationOptions.js";
 

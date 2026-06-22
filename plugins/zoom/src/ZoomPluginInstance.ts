@@ -1,8 +1,10 @@
-import { type IContainerPlugin, type IShapeDrawData, defaultZoom } from "@tsparticles/engine";
+import { DrawLayer, type IContainerPlugin, type IShapeDrawData, defaultZoom } from "@tsparticles/engine";
 import type { ZoomContainer } from "./types.js";
 import { ZoomEventListeners } from "./ZoomEventListeners.js";
 
 export class ZoomPluginInstance implements IContainerPlugin {
+  readonly layer: DrawLayer = DrawLayer.CanvasSetup;
+
   readonly #container;
   readonly #listeners;
 
