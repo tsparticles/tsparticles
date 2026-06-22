@@ -444,6 +444,7 @@ export class CanvasManager {
         container.actualOptions.hdr &&
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
+
     this.render.setContextSettings({
       alpha: true,
       desynchronized: true,
@@ -452,6 +453,7 @@ export class CanvasManager {
         ? { colorSpace: "display-p3" as const, colorType: "float16" as const }
         : { colorSpace: "srgb" as const }),
     });
+
     const renderCanvas = this.renderCanvas;
 
     if (!renderCanvas) {
