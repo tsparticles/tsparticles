@@ -2,12 +2,12 @@
 
 ## Summary
 
-| | |
-|---|---|
-| **Target** | `@tsparticles/interaction-particles-fluid` |
-| **Steps** | 10 (0–9) |
-| **Type** | New package |
-| **Load function** | `loadParticlesFluidInteraction(engine)` |
+|                     |                                              |
+|---------------------|----------------------------------------------|
+| **Target**          | `@tsparticles/interaction-particles-fluid`   |
+| **Steps**           | 10 (0–9)                                     |
+| **Type**            | New package                                  |
+| **Load function**   | `loadParticlesFluidInteraction(engine)`      |
 | **Key constraints** | Don't touch engine; agent must NOT commit/PR |
 
 ### Progress
