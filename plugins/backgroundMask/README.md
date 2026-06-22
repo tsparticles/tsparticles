@@ -94,6 +94,8 @@ import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
 - Calling `tsParticles.load(...)` before `loadBackgroundMaskPlugin(...)`
 - Verify required peer packages before enabling advanced options
 - Change one option group at a time to isolate regressions quickly
+- When using `cover.draw` or `cover.element`, `cover.color` and `cover.image` become optional. If none of the four are set, the mask cover is transparent (no static fallback). Fixed in 4.3.0 — earlier builds hang if both color and image are omitted.
+- The `draw` callback receives a fake `delta` (`{ value: 0, factor: 1 }`) because `canvasPaint()` doesn't have access to the real frame delta.
 
 ## Dynamic Mask Sources (since 4.3.0)
 
@@ -189,12 +191,30 @@ Configs without `element` or `draw` work identically to before (static color/ima
   - No match → warning logged once (`mask-element-not-found`)
 - `undefined`/`null`: skipped, static cover used
 
+### Warning keys (logged once per key)
+
+| Key                          | Message                                                                                    | Condition                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| `mask-element-not-found`     | `Mask cover element selector "..." not found in the DOM`                                   | CSS selector didn't match any element            |
+| `mask-element-not-supported` | `Mask cover element "..." matched a non-drawable element (expected canvas, video, or img)` | selector matched a non-drawable element          |
+| `mask-element-draw-error`    | `Error drawing background mask cover element onto canvas`                                  | `ctx.drawImage()` threw during element auto-draw |
+| `mask-draw-error`            | `Error in mask cover.draw callback`                                                        | the `cover.draw` callback threw                  |
+
 ### Environment notes
 
 - Non-DOM environments safely skip CSS selector resolution
 - `drawImage()` auto-scales the element to fill the canvas
 - Video frame playback is managed externally (plugin reads current frame only)
 - `OffscreenCanvas` must be controlled externally
+
+### Demo configs
+
+Two demo configurations are available in `utils/configs/src/b/`:
+
+- **Background Mask Draw** (`key: "backgroundMaskDraw"`) — animated HSL gradient via `cover.draw`
+- **Background Mask Element** (`key: "backgroundMaskElement"`) — CSS selector `#mask-video` via `cover.element`
+
+Both require `backgroundMask.enable: true` and load via the `@tsparticles/configs` package. Use the `tsparticles` all bundle (`loadAll`) or load the background mask plugin manually.
 
 ## Related docs
 
