@@ -81,12 +81,12 @@
     }
   ],
   "prettier": "@tsparticles/prettier-config",
-  "types": "index.d.ts",
+  "types": "src/Particles/index.d.ts",
   "module": "vue2-particles.es.js",
   "main": "vue2-particles.umd.js",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
+      "types": "./src/Particles/index.d.ts",
       "import": "./vue2-particles.es.js",
       "require": "./vue2-particles.umd.js",
       "default": "./vue2-particles.umd.js"

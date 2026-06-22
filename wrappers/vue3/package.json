@@ -3,10 +3,10 @@
   "version": "4.2.1",
   "type": "module",
   "main": "dist/particles.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/components/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/components/index.d.ts",
       "default": "./dist/particles.es.js"
     }
   },

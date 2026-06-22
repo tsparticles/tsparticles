@@ -82,12 +82,12 @@
     }
   ],
   "prettier": "@tsparticles/prettier-config",
-  "types": "index.d.ts",
+  "types": "src/components/index.d.ts",
   "module": "particles.es.js",
   "main": "particles.es.js",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
+      "types": "./src/components/index.d.ts",
       "default": "./particles.es.js"
     }
   },

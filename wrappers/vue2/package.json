@@ -3,10 +3,10 @@
   "version": "4.2.1",
   "main": "dist/vue2-particles.umd.js",
   "module": "dist/vue2-particles.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/Particles/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/Particles/index.d.ts",
       "import": "./dist/vue2-particles.es.js",
       "require": "./dist/vue2-particles.umd.js",
       "default": "./dist/vue2-particles.umd.js"
