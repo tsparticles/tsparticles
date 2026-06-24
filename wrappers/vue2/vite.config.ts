@@ -21,7 +21,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), dts({ insertTypesEntry: true })],
+  plugins: [vue(), dts({ compilerOptions: { rootDir: path.resolve(__dirname, "src/Particles") } })],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
