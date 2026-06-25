@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "noisePlanesPerlin",
   name: "Noise Planes Perlin",
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   interactivity: {
     events: {

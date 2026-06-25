@@ -105,7 +105,7 @@ const options: ISourceOptions = {
     },
   ],
   background: {
-    color: "#fff",
+    color: "#f5f7fa",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

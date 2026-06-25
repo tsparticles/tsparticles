@@ -15,13 +15,13 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       paint: {
         fill: {
           color: {
-            value: "#000",
+            value: "#1a1a1a",
           },
           enable: true,
         },
         stroke: {
           width: 1,
-          color: { value: "#000" },
+          color: { value: "#1a1a1a" },
         },
       },
       number: {
@@ -94,7 +94,7 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       },
     },
     background: {
-      color: "#fff",
+      color: "#f5f7fa",
     },
   };
 

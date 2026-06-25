@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "mouseParticle2",
   name: "Mouse Particle 2",
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   particles: {
     number: {
@@ -41,7 +41,7 @@ const options: ISourceOptions = {
     links: {
       enable: true,
       distance: 200,
-      color: "#ffffff",
+      color: "#f0f0f0",
       opacity: 0.4,
       width: 1,
     },

@@ -23,13 +23,13 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
     },
     links: {
-      color: "#ffffff",
+      color: "#f0f0f0",
       distance: 30,
       enable: true,
       opacity: 0.4,
@@ -65,7 +65,7 @@ const options: ISourceOptions = {
     draw: {
       enable: true,
       stroke: {
-        color: "#fff",
+        color: "#f0f0f0",
         width: 0.5,
         opacity: 0.2,
       },
@@ -92,7 +92,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

@@ -73,7 +73,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   style: {
     filter: "blur(50px)",
@@ -82,7 +82,7 @@ const options: ISourceOptions = {
     enable: true,
     length: 50,
     fill: {
-      color: "#000",
+      color: "#121212",
     },
   },
 };

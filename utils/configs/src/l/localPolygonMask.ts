@@ -23,14 +23,14 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
     },
     links: {
       blink: false,
-      color: "#ffffff",
+      color: "#f0f0f0",
       consent: false,
       distance: 30,
       enable: false,
@@ -62,7 +62,7 @@ const options: ISourceOptions = {
     draw: {
       enable: true,
       stroke: {
-        color: "#fff",
+        color: "#f0f0f0",
         width: 0.5,
         opacity: 0.2,
       },
@@ -83,7 +83,7 @@ const options: ISourceOptions = {
     data: '<svg xmlns="http://www.w3.org/2000/svg" height="200" width="150"><path d="M 75,0 0,200 h 150 z" /></svg>',
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

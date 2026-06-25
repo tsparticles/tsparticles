@@ -28,18 +28,18 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
       stroke: {
-        color: { value: "#ffffff" },
+        color: { value: "#f0f0f0" },
         width: 1,
       },
     },
     links: {
       blink: false,
-      color: "#ffffff",
+      color: "#f0f0f0",
       consent: false,
       distance: 150,
       enable: true,

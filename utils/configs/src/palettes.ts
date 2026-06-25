@@ -3,7 +3,7 @@ import type { IPalette } from "@tsparticles/engine";
 export const palettes: Record<string, IPalette> = {
   test: {
     name: "Test",
-    background: "#000000",
+    background: "#0d0d0d",
     blendMode: "lighter",
     colors: {
       fill: {

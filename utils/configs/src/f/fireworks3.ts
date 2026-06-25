@@ -9,7 +9,7 @@ const thirdFactor = 3,
       enable: true,
     },
     background: {
-      color: "#000",
+      color: "#0d0d0d",
     },
     blend: {
       enable: true,

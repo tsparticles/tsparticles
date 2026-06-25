@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "trails",
   name: "Trails",
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   emitters: {
     position: {
@@ -98,7 +98,7 @@ const options: ISourceOptions = {
   },
   trail: {
     enable: true,
-    fill: { color: "#000000" },
+    fill: { color: "#121212" },
     length: 20,
   },
 };

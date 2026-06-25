@@ -21,7 +21,7 @@ const emitterRate = {
       },
     },
     background: {
-      color: "#000000",
+      color: "#0d0d0d",
     },
     emitters: [
       {

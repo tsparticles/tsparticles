@@ -5,14 +5,14 @@ const options: ISourceOptions = {
   name: "Delay Size",
   background: {
     color: {
-      value: "#000",
+      value: "#0d0d0d",
     },
   },
   particles: {
     paint: {
       fill: {
         color: {
-          value: "#fff",
+          value: "#f0f0f0",
         },
         enable: true,
       },

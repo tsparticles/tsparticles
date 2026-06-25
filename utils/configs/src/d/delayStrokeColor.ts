@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Delay Stroke Color",
   background: {
     color: {
-      value: "#000",
+      value: "#0d0d0d",
     },
   },
   particles: {

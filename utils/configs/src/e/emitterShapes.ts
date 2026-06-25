@@ -54,7 +54,7 @@ const rate = {
       paint: {
         fill: {
           color: {
-            value: "#000000",
+            value: "#1a1a1a",
           },
           enable: true,
         },
@@ -70,7 +70,7 @@ const rate = {
       },
     },
     background: {
-      color: "#fff",
+      color: "#f5f7fa",
     },
     emitters: [
       generateEmitter("square", {}, true, { x: 25, y: 25 }),

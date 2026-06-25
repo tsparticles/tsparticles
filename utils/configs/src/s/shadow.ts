@@ -14,7 +14,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
       },
     },
@@ -22,7 +22,7 @@ const options: ISourceOptions = {
       type: "shadow",
       options: {
         shadow: {
-          color: "#000000",
+          color: "#1a1a1a",
           blur: 5,
           offset: {
             x: 3,
@@ -46,13 +46,13 @@ const options: ISourceOptions = {
     links: {
       enable: true,
       distance: 150,
-      color: "#ffffff",
+      color: "#f0f0f0",
       opacity: 0.4,
       width: 1,
       shadow: {
         enable: true,
         blur: 5,
-        color: "#000000",
+        color: "#1a1a1a",
       },
     },
     move: {

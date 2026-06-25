@@ -13,7 +13,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: ["#ffffff", "#ff0000"],
+          value: ["#f0f0f0", "#ff0000"],
         },
         enable: true,
       },
@@ -98,7 +98,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
 };
 

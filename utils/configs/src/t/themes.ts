@@ -13,13 +13,13 @@ const options: ISourceOptions = {
       },
       options: {
         background: {
-          color: "#ffffff",
+          color: "#f5f7fa",
         },
         particles: {
           paint: {
             fill: {
               color: {
-                value: ["#000000", "#0000ff"],
+                value: ["#1a1a1a", "#0000ff"],
               },
               enable: true,
             },
@@ -36,13 +36,13 @@ const options: ISourceOptions = {
       },
       options: {
         background: {
-          color: "#000000",
+          color: "#0d0d0d",
         },
         particles: {
           paint: {
             fill: {
               color: {
-                value: ["#ffffff", "#ff0000"],
+                value: ["#f0f0f0", "#ff0000"],
               },
               enable: true,
             },
@@ -60,7 +60,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#ffffff", "#000000"],
+                value: ["#f0f0f0", "#1a1a1a"],
               },
               enable: true,
             },
@@ -78,7 +78,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#000000", "#0000ff"],
+                value: ["#1a1a1a", "#0000ff"],
               },
               enable: true,
             },
@@ -96,7 +96,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#ffffff", "#00ff00"],
+                value: ["#f0f0f0", "#00ff00"],
               },
               enable: true,
             },
@@ -114,7 +114,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#000000", "#ff0000"],
+                value: ["#1a1a1a", "#ff0000"],
               },
               enable: true,
             },
@@ -132,7 +132,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#000000", "#ff00ff"],
+                value: ["#1a1a1a", "#ff00ff"],
               },
               enable: true,
             },
@@ -150,7 +150,7 @@ const options: ISourceOptions = {
           paint: {
             fill: {
               color: {
-                value: ["#ffffff", "#000000"],
+                value: ["#f0f0f0", "#1a1a1a"],
               },
               enable: true,
             },

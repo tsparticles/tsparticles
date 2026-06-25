@@ -7,7 +7,7 @@ const options: ISourceOptions = {
     enable: true,
   },
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   emitters: {
     direction: "top",
@@ -182,7 +182,7 @@ const options: ISourceOptions = {
       },
       stroke: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         width: 1,
       },
@@ -225,7 +225,7 @@ const options: ISourceOptions = {
     volume: 50,
   },
   trail: {
-    fill: { color: "#000" },
+    fill: { color: "#121212" },
     enable: true,
     length: 10,
   },

@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "colors",
   name: "Colors",
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   interactivity: {
     events: {

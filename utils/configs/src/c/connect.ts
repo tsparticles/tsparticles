@@ -55,13 +55,13 @@ const options: ISourceOptions = {
         enable: true,
       },
       stroke: {
-        color: { value: "#fff" },
+        color: { value: "#f0f0f0" },
         width: 1,
       },
     },
     links: {
       blink: false,
-      color: "#ffffff",
+      color: "#f0f0f0",
       consent: false,
       distance: 150,
       enable: false,
@@ -97,7 +97,7 @@ const options: ISourceOptions = {
   polygon: {
     draw: {
       enable: false,
-      lineColor: "#ffffff",
+      lineColor: "#f0f0f0",
       lineWidth: 0.5,
     },
     move: {
@@ -108,7 +108,7 @@ const options: ISourceOptions = {
     url: "",
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

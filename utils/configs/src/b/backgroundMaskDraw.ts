@@ -13,7 +13,7 @@ const saturation = 70,
       paint: {
         fill: {
           color: {
-            value: "#ffffff",
+            value: "#f0f0f0",
           },
           enable: true,
         },
@@ -79,7 +79,7 @@ const saturation = 70,
       },
     },
     background: {
-      color: "#000000",
+      color: "#0d0d0d",
     },
   };
 

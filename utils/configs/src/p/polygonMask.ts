@@ -55,14 +55,14 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
     },
     links: {
       blink: false,
-      color: "#ffffff",
+      color: "#f0f0f0",
       consent: false,
       distance: 30,
       enable: true,
@@ -99,7 +99,7 @@ const options: ISourceOptions = {
     draw: {
       enable: true,
       stroke: {
-        color: "#fff",
+        color: "#f0f0f0",
         width: 1,
         opacity: 0.2,
       },
@@ -120,7 +120,7 @@ const options: ISourceOptions = {
     url: "https://particles.js.org/images/hdr/smalldeer.svg",
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

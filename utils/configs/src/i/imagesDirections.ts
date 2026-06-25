@@ -88,7 +88,7 @@ const options: ISourceOptions = {
     draw: {
       enable: false,
       stroke: {
-        color: "#fff",
+        color: "#f0f0f0",
         width: 0.5,
         opacity: 0.2,
       },
@@ -101,7 +101,7 @@ const options: ISourceOptions = {
     url: "",
   },
   background: {
-    color: "#fff",
+    color: "#f5f7fa",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

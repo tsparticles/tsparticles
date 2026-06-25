@@ -44,11 +44,11 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   trail: {
     fill: {
-      color: "#000",
+      color: "#121212",
     },
     enable: true,
     length: 1000,

@@ -16,7 +16,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
@@ -36,7 +36,7 @@ const options: ISourceOptions = {
     links: {
       enable: true,
       distance: 150,
-      color: "#ffffff",
+      color: "#f0f0f0",
       opacity: 0.4,
       width: 1,
     },

@@ -9,7 +9,7 @@ const options: ISourceOptions = {
     },
     paint: {
       color: {
-        value: "#000",
+        value: "#1a1a1a",
       },
     },
     effect: {
@@ -45,7 +45,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#fff",
+    color: "#f5f7fa",
   },
   emitters: {
     position: {

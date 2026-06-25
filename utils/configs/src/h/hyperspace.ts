@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "hyperspace",
   name: "Hyperspace",
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   particles: {
     paint: {
@@ -65,7 +65,7 @@ const options: ISourceOptions = {
     },
   },
   trail: {
-    fill: { color: "#000" },
+    fill: { color: "#121212" },
     length: 30,
     enable: true,
   },

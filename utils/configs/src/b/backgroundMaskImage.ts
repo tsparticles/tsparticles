@@ -10,7 +10,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
@@ -67,7 +67,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#ffffff",
+    color: "#f5f7fa",
     image: "url('https://particles.js.org/images/hdr/background3.jpg')",
     position: "50% 50%",
     repeat: "no-repeat",

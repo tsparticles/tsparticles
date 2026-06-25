@@ -99,7 +99,7 @@ const options: ISourceOptions = {
     draw: {
       enable: true,
       stroke: {
-        color: "#fff",
+        color: "#f0f0f0",
         width: 0.5,
         opacity: 0.2,
       },
@@ -120,7 +120,7 @@ const options: ISourceOptions = {
     url: "https://particles.js.org/images/hdr/google.svg",
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

@@ -24,7 +24,7 @@ const options: ISourceOptions = {
       },
       stroke: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
           animation: {
             enable: true,
             speed: 8,
@@ -69,7 +69,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
 };
 
