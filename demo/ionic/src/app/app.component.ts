@@ -1,10 +1,13 @@
 import { Component } from "@angular/core";
-import { NgParticlesService } from "@tsparticles/angular";
+import { IonicModule } from "@ionic/angular";
+import { RouterModule } from "@angular/router";
+import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 import { loadFull } from "tsparticles";
 
 @Component({
   selector: "app-root",
-  standalone: false,
+  standalone: true,
+  imports: [IonicModule, RouterModule, NgxParticlesModule],
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })

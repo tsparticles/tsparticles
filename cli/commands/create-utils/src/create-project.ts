@@ -585,7 +585,6 @@ export async function ${loadFunction}(engine: Engine): Promise<void> {
 
 /**
  *
- * @param nameData - The nameData
  * @param loadFunction - The loadFunction
  * @param pluginClass - The pluginClass
  * @returns The string value

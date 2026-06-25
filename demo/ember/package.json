@@ -41,7 +41,7 @@
     "@types/ember__application": "^4.0.11",
     "@types/ember__controller": "^4.0.12",
     "@types/ember__routing": "^4.0.23",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/qunit": "^2.19.14",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~7.0.1",

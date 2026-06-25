@@ -37,7 +37,7 @@
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.9.2",
-    "globals": "^17.6.0",
+    "globals": "^17.7.0",
     "lint-staged": "^17.0.7",
     "nuxt": "^4.4.8",
     "prettier": "^3.8.4",

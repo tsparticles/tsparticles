@@ -120,7 +120,7 @@
     "nyc": "^18.0.0",
     "prettier": "^3.8.4",
     "riot": "^10.1.4",
-    "rollup": "^4.62.0",
+    "rollup": "^4.62.2",
     "rollup-plugin-riot": "^10.0.0"
   },
   "publishConfig": {

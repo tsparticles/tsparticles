@@ -20,7 +20,7 @@
     "build:ci": "cpx \"./src/**.*\" ./dist/"
   },
   "devDependencies": {
-    "browserslist": "^4.28.2",
+    "browserslist": "^4.28.4",
     "cpx2": "^9.0.0"
   },
   "peerDependencies": {

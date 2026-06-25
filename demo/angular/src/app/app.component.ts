@@ -1,12 +1,23 @@
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import configs from "@tsparticles/configs";
-import { NgParticlesService } from "@tsparticles/angular";
+import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
+import { NgxConfettiModule } from "angular-confetti";
+import { NgxFireworksModule } from "angular-fireworks";
 
 @Component({
   selector: "app-root",
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgxParticlesModule,
+    NgxConfettiModule,
+    NgxFireworksModule,
+  ],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })

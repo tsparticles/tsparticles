@@ -109,7 +109,7 @@
     "@babel/runtime": "^8.0.0",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.61.1",

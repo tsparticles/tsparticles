@@ -130,7 +130,7 @@ export async function runInstall(destPath: string): Promise<void> {
       },
       error => {
         if (error) {
-          reject(error);
+          reject(new Error(error.message));
 
           return;
         }
@@ -158,7 +158,7 @@ export async function runBuild(destPath: string): Promise<void> {
       },
       error => {
         if (error) {
-          reject(error);
+          reject(new Error(error.message));
 
           return;
         }
