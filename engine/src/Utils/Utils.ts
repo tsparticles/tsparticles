@@ -173,10 +173,8 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
     // Micro-optimization + safety: if the source is a shallow object (no nested objects/arrays),
     // perform a fast shallow copy for common-case merges. Also explicitly ignore dangerous
-    // prototype/constructor keys to avoid prototype pollution. See .planning/research/PITFALLS.md
-    // for rationale.
+    // prototype/constructor keys to avoid prototype pollution.
     const sourceKeys = Object.keys(source),
-      dangerousKeys = new Set(["__proto__", "constructor", "prototype"]),
       // Detect if the source contains nested structures that need full deep merging
       hasNested = sourceKeys.some(k => {
         const v = (source as Record<string, unknown>)[k];
@@ -190,17 +188,14 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
         destDict = destination as Record<string, unknown>;
 
       for (const key of sourceKeys) {
-        if (dangerousKeys.has(key)) {
+        if (key === "__proto__" || key === "constructor" || key === "prototype") {
           continue;
         }
 
-        // Avoid assigning undefined keys and preserve type-safety
-        if (key in sourceDict) {
-          const v = sourceDict[key];
+        const v = sourceDict[key];
 
-          if (v !== undefined) {
-            destDict[key] = v;
-          }
+        if (v !== undefined) {
+          destDict[key] = v;
         }
       }
 
@@ -208,7 +203,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     }
 
     for (const key of sourceKeys) {
-      if (dangerousKeys.has(key)) {
+      if (key === "__proto__" || key === "constructor" || key === "prototype") {
         continue;
       }
 
