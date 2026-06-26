@@ -1,7 +1,9 @@
 export const LINK_OPTIONS = {
   particles: {
-    color: {
-      value: "#ffffff",
+    paint: {
+      color: {
+        value: "#ffffff",
+      },
     },
     links: {
       color: "#ffffff",
@@ -44,8 +46,10 @@ export const SNOW_OPTIONS = {
     zIndex: -1,
   },
   particles: {
-    color: {
-      value: "#fff",
+    paint: {
+      color: {
+        value: "#fff",
+      },
     },
     move: {
       direction: "bottom",
@@ -98,8 +102,10 @@ export const CONFETTI_OPTIONS = {
     },
   },
   particles: {
-    color: {
-      value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
+    paint: {
+      color: {
+        value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
+      },
     },
     move: {
       decay: 0.05,
