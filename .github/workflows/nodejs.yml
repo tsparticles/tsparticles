@@ -104,6 +104,7 @@ jobs:
 
       - name: Deploy to Firebase (PR preview)
         if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
+        continue-on-error: true
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
