@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "mouseFollow",
   name: "Mouse Follow",
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   interactivity: {
     events: {
@@ -36,7 +36,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#000000",
+          value: "#1a1a1a",
         },
         enable: true,
       },

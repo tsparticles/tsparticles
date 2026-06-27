@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-links",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles particle interaction that draws connecting lines between nearby particles",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/react-demo",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": true,
   "type": "module",
   "repository": {
@@ -27,6 +27,6 @@
     "@eslint/js": "^10.0.1",
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^10.5.0",
-    "vite": "^8.0.16"
+    "vite": "^8.1.0"
   }
 }

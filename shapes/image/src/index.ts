@@ -3,7 +3,6 @@ import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import { ImageDrawer } from "./ImageDrawer.js";
 import { ImagePreloaderPlugin } from "./ImagePreloader.js";
-import { loadGifImage } from "./GifUtils/Utils.js";
 
 const extLength = 3;
 
@@ -45,7 +44,6 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
     try {
       const image: IImage = {
-        gif: data.gif,
         name: data.name ?? data.src,
         source: data.src,
         type: data.src.substring(data.src.length - extLength),
@@ -61,9 +59,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       let imageFunc: (image: IImage) => Promise<void>;
 
-      if (data.gif) {
-        imageFunc = (img): Promise<void> => loadGifImage(img, { colorSpace: "srgb" });
-      } else if (data.replaceColor) {
+      if (data.replaceColor) {
         imageFunc = downloadSvgImage;
       } else {
         imageFunc = loadImage;

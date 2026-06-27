@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Test",
   background: {
     color: {
-      value: "#000",
+      value: "#0d0d0d",
     },
   },
   particles: {
@@ -67,7 +67,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#fff",
+          value: "#f0f0f0",
         },
         enable: true,
       },

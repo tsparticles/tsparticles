@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/solid",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
   "license": "MIT",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
@@ -151,7 +151,7 @@
     "tsup": "^8.5.1",
     "tsup-preset-solid": "^2.2.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.16",
+    "vite": "^8.1.0",
     "vite-plugin-solid": "^2.11.12",
     "vitest": "^4.1.9"
   },

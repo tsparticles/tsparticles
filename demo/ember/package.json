@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember-demo",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": true,
   "description": "Ember demo for @tsparticles/ember",
   "repository": {
@@ -30,7 +30,7 @@
     "ember-modifier": "^4.3.0",
     "ember-page-title": "^9.0.3",
     "ember-resolver": "^13.2.0",
-    "ember-source": "~7.0.0",
+    "ember-source": "~7.1.0",
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "@types/ember__application": "^4.0.11",
     "@types/ember__controller": "^4.0.12",
     "@types/ember__routing": "^4.0.23",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/qunit": "^2.19.14",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~7.0.1",
@@ -53,8 +53,8 @@
     "ember-template-lint": "^7.9.3",
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-ember": "^13.3.2",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-ember": "^13.4.0",
+    "eslint-plugin-n": "^18.2.1",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-qunit": "^8.2.6",
     "loader.js": "^4.7.0",
@@ -62,6 +62,6 @@
     "qunit": "^2.26.0",
     "qunit-dom": "^3.5.1",
     "typescript": "^6.0.3",
-    "webpack": "^5.107.2"
+    "webpack": "^5.108.0"
   }
 }

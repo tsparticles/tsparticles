@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "wobble",
   name: "Wobble",
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   particles: {
     bounce: {

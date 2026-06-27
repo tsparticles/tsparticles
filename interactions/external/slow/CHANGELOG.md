@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
+
+
+### Features
+
+* added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
+
+
+
+
+
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 
 **Note:** Version bump only for package @tsparticles/interaction-external-slow

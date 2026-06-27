@@ -1,7 +1,5 @@
 /** The preload image options */
 export interface IPreload {
-  /** Enables gif support */
-  gif: boolean;
   /** The image height */
   height?: number;
   /** The image name */

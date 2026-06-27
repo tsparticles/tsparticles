@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-lagoon",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles lagoon palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.2.1"
+    "@tsparticles/engine": "4.3.0"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

@@ -87,7 +87,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#ffffff",
+    color: "#f5f7fa",
   },
 };
 

@@ -43,7 +43,14 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
       const cover = data.cover as IBackgroundMaskCover,
         color = (isString(data.cover) ? { color: data.cover } : data.cover) as IColor;
 
-      this.cover.load(cover.color !== undefined || cover.image !== undefined ? cover : { color: color });
+      this.cover.load(
+        cover.color !== undefined ||
+          cover.draw !== undefined ||
+          cover.element !== undefined ||
+          cover.image !== undefined
+          ? cover
+          : { color: color },
+      );
     }
 
     loadProperty(this, "enable", data.enable);

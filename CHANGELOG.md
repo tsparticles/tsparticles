@@ -3,7 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
+
+
+### Bug Fixes
+
+* fixed angular confetti ([6f25a4a](https://github.com/tsparticles/tsparticles/commit/6f25a4a1eaa69c47f2668316e7b396fe55195f84))
+* fixed some issues in deepExtend ([9d9fc9f](https://github.com/tsparticles/tsparticles/commit/9d9fc9f39fadf8d9df96f6e7b7cc8cde98e3ae21))
+* improved deepExtend ([af9d1d9](https://github.com/tsparticles/tsparticles/commit/af9d1d9f146cdc994945abf5dbc32cffbeea7b08))
+
+
+### Features
+
+* added new draw layer system ([5442bbb](https://github.com/tsparticles/tsparticles/commit/5442bbb848fde8aa7d622c5c751c7c32570d78a9))
+* added new hdr precision system ([627ec92](https://github.com/tsparticles/tsparticles/commit/627ec92fbd68cd4e776f1d912ff2ca0166603dec))
+* added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
+* added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
+* added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
+* improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
+
+
+
+
+
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
+
+### Features
+
+- added hdr precision enhancement ([#FEATURE-F](https://github.com/tsparticles/tsparticles/issues/F))
 
 ### Bug Fixes
 

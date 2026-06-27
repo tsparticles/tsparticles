@@ -7,7 +7,7 @@ const options: ISourceOptions = {
     enable: true,
   },
   background: {
-    color: "#ffffff",
+    color: "#f5f7fa",
     image: "url('https://particles.js.org/images/hdr/background3.jpg')",
     position: "50% 50%",
     repeat: "no-repeat",
@@ -16,7 +16,7 @@ const options: ISourceOptions = {
   backgroundMask: {
     enable: true,
     cover: {
-      color: "#000",
+      color: "#1a1a1a",
     },
   },
   emitters: {
@@ -43,7 +43,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#fff",
+          value: "#f0f0f0",
         },
         enable: true,
       },

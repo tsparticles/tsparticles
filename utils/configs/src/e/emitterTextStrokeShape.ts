@@ -87,7 +87,7 @@ const minAlphaFilter = 0,
       },
     },
     background: {
-      color: "#fff",
+      color: "#f5f7fa",
     },
     emitters: [
       generateEmitter(

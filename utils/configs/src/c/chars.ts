@@ -16,7 +16,7 @@ const options: ISourceOptions = {
       },
       stroke: {
         width: 1,
-        color: { value: "#ffffff" },
+        color: { value: "#f0f0f0" },
       },
     },
     shape: {

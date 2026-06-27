@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nextjs-demo",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "@tsparticles/nextjs": "workspace:*",
     "@tsparticles/plugin-themes": "workspace:*",
     "@tsparticles/slim": "workspace:*",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "next": "^16.2.8",

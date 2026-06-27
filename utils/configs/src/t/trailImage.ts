@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "trailsImage",
   name: "Trails Image",
   background: {
-    color: "#ffffff",
+    color: "#f5f7fa",
     image: "url('https://particles.js.org/images/hdr/background3.jpg')",
     position: "50% 50%",
     repeat: "no-repeat",
@@ -50,7 +50,7 @@ const options: ISourceOptions = {
     links: {
       enable: false,
       distance: 150,
-      color: "#ffffff",
+      color: "#f0f0f0",
       opacity: 0.4,
       width: 1,
     },

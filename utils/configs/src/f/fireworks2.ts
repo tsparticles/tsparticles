@@ -7,7 +7,7 @@ const options: ISourceOptions = {
     enable: true,
   },
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
   emitters: {
     direction: "top",
@@ -33,7 +33,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#fff",
+          value: "#f0f0f0",
         },
         enable: true,
       },

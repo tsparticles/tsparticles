@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Official tsParticles Ember.js Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "keywords": [
     "ember-addon",
@@ -56,7 +56,8 @@
     "ember-test-selectors": "^7.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.29.7",
+    "@babel/eslint-parser": "^7.29.7",
     "@ember/optional-features": "^3.0.0",
     "@ember/test-helpers": "^5.4.3",
     "@embroider/test-setup": "^4.0.0",
@@ -96,14 +97,14 @@
     "ember-qunit": "^9.1.0",
     "ember-resolver": "^13.2.0",
     "ember-sinon-qunit": "^7.5.0",
-    "ember-source": "~7.0.0",
+    "ember-source": "~7.1.0",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^7.9.3",
     "ember-try": "^4.0.0",
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-ember": "^13.3.2",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-ember": "^13.4.0",
+    "eslint-plugin-n": "^18.2.1",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-qunit": "^8.2.6",
     "loader.js": "^4.7.0",
@@ -113,7 +114,7 @@
     "qunit-dom": "^3.5.1",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "webpack": "^5.107.2"
+    "webpack": "^5.108.0"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

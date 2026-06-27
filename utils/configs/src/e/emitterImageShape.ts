@@ -92,7 +92,7 @@ const minFilterValue = 30,
       },
     },
     background: {
-      color: "#fff",
+      color: "#f5f7fa",
     },
     emitters: [
       generateEmitter(

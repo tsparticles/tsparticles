@@ -1,4 +1,7 @@
+import type { IDelta } from "../../../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../IOptionsColor.js";
+
+export type BackgroundDrawContext = OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D;
 
 /**
  * The background options used by the canvas element, it's not drawn, it's applied in the style
@@ -11,6 +14,20 @@ export interface IBackground {
    * This color is set to canvas style `background-color` property, if this property is not set the background will be transparent.
    */
   color: string | IOptionsColor;
+
+  /**
+   * An optional per-frame callback for custom background rendering.
+   * When specified, it is called each frame after the canvas is cleared and before particles are drawn.
+   * The callback receives the drawing context and delta time.
+   */
+  draw?: (context: BackgroundDrawContext, delta: IDelta) => void;
+
+  /**
+   * An optional external element (CSS selector, canvas, video, image, or OffscreenCanvas) that is
+   * auto-drawn onto the main canvas each frame via ctx.drawImage().
+   * The element is not managed by the engine — external code handles its rendering.
+   */
+  element?: string | HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement;
 
   /**
    * The `image` property sets the canvas style `background-image` property.

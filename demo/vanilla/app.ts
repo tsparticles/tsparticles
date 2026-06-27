@@ -485,6 +485,7 @@ app.use(
 app.use("/interaction-particles-links", express.static("./node_modules/@tsparticles/interaction-particles-links"));
 app.use("/shape-circle", express.static("./node_modules/@tsparticles/shape-circle"));
 app.use("/shape-emoji", express.static("./node_modules/@tsparticles/shape-emoji"));
+app.use("/shape-gif", express.static("./node_modules/@tsparticles/shape-gif"));
 app.use("/shape-image", express.static("./node_modules/@tsparticles/shape-image"));
 app.use("/shape-line", express.static("./node_modules/@tsparticles/shape-line"));
 app.use("/shape-polygon", express.static("./node_modules/@tsparticles/shape-polygon"));

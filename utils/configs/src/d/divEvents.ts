@@ -53,7 +53,7 @@ const options: ISourceOptions = {
         duration: 2,
         opacity: 0.8,
         size: 6,
-        color: "#000000",
+        color: "#1a1a1a",
       },
       grab: {
         distance: 400,
@@ -77,13 +77,13 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#ffffff",
+          value: "#f0f0f0",
         },
         enable: true,
       },
     },
     links: {
-      color: "#ffffff",
+      color: "#f0f0f0",
       distance: 150,
       enable: true,
       opacity: 0.4,

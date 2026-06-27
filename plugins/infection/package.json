@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-infection",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles plugin for infecting particles with color or state changes when they touch each other",
   "homepage": "https://particles.js.org",
   "scripts": {

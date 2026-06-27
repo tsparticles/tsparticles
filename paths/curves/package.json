@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-curves",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles path for moving particles along curved Bézier paths",
   "homepage": "https://particles.js.org",
   "scripts": {

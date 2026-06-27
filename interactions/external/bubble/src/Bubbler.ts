@@ -34,6 +34,7 @@ import {
 } from "@tsparticles/plugin-interactivity";
 import { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
+import { BubbleModifier } from "./BubbleModifier.js";
 import type { Interfaces } from "./Interfaces.js";
 import { ProcessBubbleType } from "./Enums.js";
 import { calculateBubbleValue } from "./Utils.js";
@@ -54,6 +55,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   #maxDistance;
+  readonly #modifiers = new WeakMap<Particle, BubbleModifier>();
   readonly #pluginManager;
 
   constructor(pluginManager: PluginManager, container: BubbleContainer) {
@@ -80,14 +82,29 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   }
 
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
-    if (particle.bubble.inRange && !force) {
+    const mod = this.#modifiers.get(particle);
+
+    if (mod?.inRange && !force) {
       return;
     }
 
-    delete particle.bubble.div;
-    delete particle.bubble.opacity;
-    delete particle.bubble.radius;
-    delete particle.bubble.color;
+    particle.removeModifier(bubbleMode);
+
+    this.#modifiers.delete(particle);
+  }
+
+  getOrCreateModifier(particle: Particle): BubbleModifier {
+    let mod = this.#modifiers.get(particle);
+
+    if (!mod) {
+      mod = new BubbleModifier();
+
+      this.#modifiers.set(particle, mod);
+
+      particle.addModifier(mod);
+    }
+
+    return mod;
   }
 
   init(): void {
@@ -163,7 +180,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   }
 
   reset(_interactivityData: IInteractivityData, particle: Particle): void {
-    particle.bubble.inRange = false;
+    const mod = this.#modifiers.get(particle);
+
+    if (mod) {
+      mod.enabled = false;
+      mod.inRange = false;
+    }
   }
 
   #clickBubble(interactivityData: IInteractivityData): void {
@@ -194,7 +216,10 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         continue;
       }
 
-      particle.bubble.inRange = !bubble.durationEnd;
+      const mod = this.getOrCreateModifier(particle);
+
+      mod.enabled = !bubble.durationEnd;
+      mod.inRange = !bubble.durationEnd;
 
       const pos = particle.getPosition(),
         distMouse = getDistance(pos, mouseClickPos),
@@ -213,7 +238,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       const sizeData: Interfaces = {
         bubbleObj: {
           optValue: container.retina.bubbleModeSize,
-          value: particle.bubble.radius,
+          value: mod.radius,
         },
         particlesObj: {
           optValue: particle.size.max,
@@ -227,7 +252,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       const opacityData: Interfaces = {
         bubbleObj: {
           optValue: bubbleOptions.opacity,
-          value: particle.bubble.opacity,
+          value: mod.opacity,
         },
         particlesObj: {
           optValue: particle.opacity?.max ?? defaultOpacity,
@@ -241,7 +266,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       if (!bubble.durationEnd && distMouse <= distance) {
         this.#hoverBubbleColor(particle, distMouse);
       } else {
-        delete particle.bubble.color;
+        mod.fillColor = undefined;
+        mod.strokeColor = undefined;
       }
     }
   }
@@ -257,9 +283,11 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     const query = container.particles.grid.queryCircle(mousePos, distance, p => this.isEnabled(interactivityData, p));
 
-    // for (const { distance, particle } of query) {
     for (const particle of query) {
-      particle.bubble.inRange = true;
+      const mod = this.getOrCreateModifier(particle);
+
+      mod.enabled = true;
+      mod.inRange = true;
 
       const pos = particle.getPosition(),
         pointDistance = getDistance(pos, mousePos),
@@ -290,13 +318,14 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
   #hoverBubbleColor(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
     const options = this.container.actualOptions,
-      bubbleOptions = divBubble ?? options.interactivity?.modes.bubble;
+      bubbleOptions = divBubble ?? options.interactivity?.modes.bubble,
+      mod = this.getOrCreateModifier(particle);
 
     if (!bubbleOptions) {
       return;
     }
 
-    if (!particle.bubble.finalColor) {
+    if (!mod.finalColor) {
       const modeColor = bubbleOptions.color;
 
       if (!modeColor) {
@@ -305,23 +334,31 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
       const bubbleColor = itemFromSingleOrMultiple(modeColor);
 
-      particle.bubble.finalColor = rangeColorToHsl(this.#pluginManager, bubbleColor);
+      mod.finalColor = rangeColorToHsl(this.#pluginManager, bubbleColor);
     }
 
-    if (!particle.bubble.finalColor) {
+    if (!mod.finalColor) {
       return;
     }
 
     if (bubbleOptions.mix) {
-      particle.bubble.color = undefined;
+      mod.fillColor = undefined;
+      mod.strokeColor = undefined;
 
       const pColor = particle.getFillColor();
 
-      particle.bubble.color = pColor
-        ? rgbToHsl(colorMix(pColor, particle.bubble.finalColor, ratioOffset - ratio, ratio))
-        : particle.bubble.finalColor;
+      if (pColor) {
+        const mixedColor = rgbToHsl(colorMix(pColor, mod.finalColor, ratioOffset - ratio, ratio));
+
+        mod.fillColor = mixedColor;
+        mod.strokeColor = mixedColor;
+      } else {
+        mod.fillColor = mod.finalColor;
+        mod.strokeColor = mod.finalColor;
+      }
     } else {
-      particle.bubble.color = particle.bubble.finalColor;
+      mod.fillColor = mod.finalColor;
+      mod.strokeColor = mod.finalColor;
     }
   }
 
@@ -338,7 +375,9 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       opacity = calculateBubbleValue(pOpacity, modeOpacity, particle.opacity?.max ?? defaultOpacity, ratio);
 
     if (opacity !== undefined) {
-      particle.bubble.opacity = opacity;
+      const mod = this.getOrCreateModifier(particle);
+
+      mod.opacity = opacity;
     }
   }
 
@@ -354,7 +393,9 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       size = calculateBubbleValue(pSize, modeSize, particle.size.max, ratio);
 
     if (size !== undefined) {
-      particle.bubble.radius = size;
+      const mod = this.getOrCreateModifier(particle);
+
+      mod.radius = size;
     }
   }
 
@@ -381,14 +422,16 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     container.bubble ??= {};
 
+    const mod = this.getOrCreateModifier(particle);
+
     if (container.bubble.durationEnd) {
       if (pObjBubble) {
         if (type === ProcessBubbleType.size) {
-          delete particle.bubble.radius;
+          mod.radius = undefined;
         }
 
         if (type === ProcessBubbleType.opacity) {
-          delete particle.bubble.opacity;
+          mod.opacity = undefined;
         }
       }
     } else {
@@ -399,20 +442,20 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
           const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
 
           if (type === ProcessBubbleType.size) {
-            particle.bubble.radius = value;
+            mod.radius = value;
           }
 
           if (type === ProcessBubbleType.opacity) {
-            particle.bubble.opacity = value;
+            mod.opacity = value;
           }
         }
       } else {
         if (type === ProcessBubbleType.size) {
-          delete particle.bubble.radius;
+          mod.radius = undefined;
         }
 
         if (type === ProcessBubbleType.opacity) {
-          delete particle.bubble.opacity;
+          mod.opacity = undefined;
         }
       }
     }
@@ -451,15 +494,18 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
           continue;
         }
 
-        particle.bubble.inRange = true;
+        const mod = this.getOrCreateModifier(particle);
+
+        mod.enabled = true;
+        mod.inRange = true;
 
         const divs = bubble.divs,
           divBubble = divMode(divs, elem);
 
-        if (!particle.bubble.div || particle.bubble.div !== elem) {
+        if (!mod.div || mod.div !== elem) {
           this.clear(particle, delta, true);
 
-          particle.bubble.div = elem;
+          mod.div = elem;
         }
 
         /* size */

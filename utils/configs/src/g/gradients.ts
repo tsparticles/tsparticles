@@ -17,7 +17,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -31,7 +31,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -45,7 +45,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -59,7 +59,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -73,7 +73,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -116,7 +116,7 @@ const options: ISourceOptions = {
           },
           {
             stop: 1,
-            value: "#000000",
+            value: "#1a1a1a",
             opacity: 0,
           },
         ],
@@ -171,7 +171,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000",
+    color: "#0d0d0d",
   },
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-party",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles party preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,18 +106,18 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.2.1",
-    "@tsparticles/engine": "4.2.1",
-    "@tsparticles/palette-confetti": "4.2.1",
-    "@tsparticles/plugin-emitters": "4.2.1",
-    "@tsparticles/plugin-emitters-shape-square": "4.2.1",
-    "@tsparticles/shape-polygon": "4.2.1",
-    "@tsparticles/shape-ribbon": "4.2.1",
-    "@tsparticles/shape-square": "4.2.1",
-    "@tsparticles/updater-roll": "4.2.1",
-    "@tsparticles/updater-rotate": "4.2.1",
-    "@tsparticles/updater-tilt": "4.2.1",
-    "@tsparticles/updater-wobble": "4.2.1"
+    "@tsparticles/basic": "4.3.0",
+    "@tsparticles/engine": "4.3.0",
+    "@tsparticles/palette-confetti": "4.3.0",
+    "@tsparticles/plugin-emitters": "4.3.0",
+    "@tsparticles/plugin-emitters-shape-square": "4.3.0",
+    "@tsparticles/shape-polygon": "4.3.0",
+    "@tsparticles/shape-ribbon": "4.3.0",
+    "@tsparticles/shape-square": "4.3.0",
+    "@tsparticles/updater-roll": "4.3.0",
+    "@tsparticles/updater-rotate": "4.3.0",
+    "@tsparticles/updater-tilt": "4.3.0",
+    "@tsparticles/updater-wobble": "4.3.0"
   },
   "publishConfig": {
     "access": "public"

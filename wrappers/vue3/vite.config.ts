@@ -25,7 +25,7 @@ export default defineConfig({
             },
         },
     },
-    plugins: [ vue(), vueJsx(), dts() ],
+    plugins: [ vue(), vueJsx(), dts({ compilerOptions: { rootDir: path.resolve(__dirname, "src/components") } }) ],
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),

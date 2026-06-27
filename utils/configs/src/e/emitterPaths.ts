@@ -10,7 +10,7 @@ const options: ISourceOptions = {
     paint: {
       fill: {
         color: {
-          value: "#000000",
+          value: "#1a1a1a",
         },
         enable: true,
       },
@@ -30,7 +30,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#fff",
+    color: "#f5f7fa",
   },
   emitters: [
     {
@@ -89,7 +89,7 @@ const options: ISourceOptions = {
   ],
   trail: {
     enable: true,
-    fill: { color: "#fff" },
+    fill: { color: "#f0f0f0" },
     length: 20,
   },
 };

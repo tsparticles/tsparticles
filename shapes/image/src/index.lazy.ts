@@ -42,7 +42,6 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
     try {
       const image: IImage = {
-        gif: data.gif,
         name: data.name ?? data.src,
         source: data.src,
         type: data.src.substring(data.src.length - extLength),
@@ -58,11 +57,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       let imageFunc: (image: IImage) => Promise<void>;
 
-      if (data.gif) {
-        const { loadGifImage } = await import("./GifUtils/Utils.js");
-
-        imageFunc = (img): Promise<void> => loadGifImage(img, { colorSpace: "srgb" });
-      } else if (data.replaceColor) {
+      if (data.replaceColor) {
         const { downloadSvgImage } = await import("./Utils.js");
 
         imageFunc = downloadSvgImage;

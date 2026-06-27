@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Disappearing",
   background: {
     color: {
-      value: "#000",
+      value: "#0d0d0d",
     },
   },
   emitters: {

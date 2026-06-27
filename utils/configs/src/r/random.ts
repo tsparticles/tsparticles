@@ -57,7 +57,7 @@ const options: ISourceOptions = {
     },
     links: {
       blink: false,
-      color: "#ffffff",
+      color: "#f0f0f0",
       consent: false,
       distance: 150,
       enable: false,
@@ -89,7 +89,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
     image: "",
     position: "50% 50%",
     repeat: "no-repeat",

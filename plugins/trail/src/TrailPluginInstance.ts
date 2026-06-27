@@ -1,4 +1,5 @@
 import {
+  DrawLayer,
   type IContainerPlugin,
   type IRgb,
   type PluginManager,
@@ -23,6 +24,8 @@ interface ITrailFillData {
 }
 
 export class TrailPluginInstance implements IContainerPlugin {
+  readonly layer: DrawLayer = DrawLayer.PluginContent;
+
   /** The particles container */
   readonly #container;
   /** The plugin manager */

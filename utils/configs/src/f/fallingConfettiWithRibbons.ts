@@ -4,7 +4,7 @@ const options: ISourceOptions = {
   key: "fallingConfettiWithRibbons",
   name: "Falling Confetti with Ribbons",
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
   particles: {
     paint: {

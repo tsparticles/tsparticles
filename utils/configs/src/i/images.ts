@@ -112,7 +112,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#fff",
+    color: "#f5f7fa",
   },
   preload: [
     {

@@ -41,7 +41,7 @@ const options: ISourceOptions = {
     links: {
       enable: true,
       distance: 100,
-      color: "#ffffff",
+      color: "#f0f0f0",
       opacity: 0.4,
       width: 1,
     },
@@ -72,7 +72,7 @@ const options: ISourceOptions = {
     },
   },
   background: {
-    color: "#000000",
+    color: "#0d0d0d",
   },
 };
 

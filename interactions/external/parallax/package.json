@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-parallax",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles external interaction creating a depth parallax effect based on cursor or scroll position",
   "homepage": "https://particles.js.org",
   "scripts": {

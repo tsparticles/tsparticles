@@ -94,6 +94,127 @@ import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
 - Calling `tsParticles.load(...)` before `loadBackgroundMaskPlugin(...)`
 - Verify required peer packages before enabling advanced options
 - Change one option group at a time to isolate regressions quickly
+- When using `cover.draw` or `cover.element`, `cover.color` and `cover.image` become optional. If none of the four are set, the mask cover is transparent (no static fallback). Fixed in 4.3.0 — earlier builds hang if both color and image are omitted.
+- The `draw` callback receives a fake `delta` (`{ value: 0, factor: 1 }`) because `canvasPaint()` doesn't have access to the real frame delta.
+
+## Dynamic Mask Sources (since 4.3.0)
+
+The `cover` object now supports two dynamic sources: `element` (auto-draw external visual source) and `draw` (custom callback). When either is set, the static cover (color/image) is skipped.
+
+### Layer order
+
+```
+clear()                            ← canvas pixel clear
+cover.element auto-draw            ← ctx.drawImage() of external element (if set)
+cover.draw callback                ← custom draw function on main context (if set)
+static cover (color/image)         ← fallback, only if neither element nor draw is set
+globalCompositeOperation           ← activated by drawSettingsSetup (unchanged)
+particles                          ← unmasked particles (unchanged)
+```
+
+### `cover.element`
+
+Type: `string | HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement`
+
+Auto-draws an external element onto the canvas every frame via `ctx.drawImage()`, before the mask composite mode is applied. The element's rendering/playback is managed by external code — the plugin only reads its visual content.
+
+```typescript
+// JS config — direct canvas reference
+const animCanvas = document.getElementById("myAnimation") as HTMLCanvasElement;
+
+await tsParticles.load({
+  id: "tsparticles",
+  options: {
+    backgroundMask: {
+      enable: true,
+      cover: {
+        element: animCanvas,
+        opacity: 1,
+      },
+    },
+  },
+});
+```
+
+```jsonc
+// JSON config — CSS selector for a video element in the DOM
+{
+  "backgroundMask": {
+    "enable": true,
+    "cover": {
+      "element": "#webcam",
+      "opacity": 0.8,
+    },
+  },
+}
+```
+
+### `cover.draw`
+
+Type: `(context: BackgroundDrawContext, delta: IDelta) => void`
+
+Custom draw callback executed every frame during `canvasPaint()`. Receives the **main canvas context** (never the element context). Note: `delta` is currently a fallback `{ value: 0, factor: 1 }` since `canvasPaint()` does not receive a real delta.
+
+```typescript
+// JS config — animated gradient as mask
+await tsParticles.load({
+  id: "tsparticles",
+  options: {
+    backgroundMask: {
+      enable: true,
+      cover: {
+        draw: (ctx, delta) => {
+          const t = performance.now() * 0.001;
+          ctx.fillStyle = `hsl(${(t * 50) % 360}, 70%, 50%)`;
+          ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        },
+      },
+    },
+  },
+});
+```
+
+### Using both `element` and `draw`
+
+If both are set, `element` is auto-drawn first, then `draw` is called. Both layers are independent.
+
+### Legacy behavior unchanged
+
+Configs without `element` or `draw` work identically to before (static color/image cover).
+
+### Element resolution rules
+
+- Direct reference (`HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement`): stored directly
+- CSS selector string: resolved via `document.querySelector()` in DOM environments
+  - Matched drawable element → stored
+  - Matched non-drawable element → warning logged once (`mask-element-not-supported`)
+  - No match → warning logged once (`mask-element-not-found`)
+- `undefined`/`null`: skipped, static cover used
+
+### Warning keys (logged once per key)
+
+| Key                          | Message                                                                                    | Condition                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| `mask-element-not-found`     | `Mask cover element selector "..." not found in the DOM`                                   | CSS selector didn't match any element            |
+| `mask-element-not-supported` | `Mask cover element "..." matched a non-drawable element (expected canvas, video, or img)` | selector matched a non-drawable element          |
+| `mask-element-draw-error`    | `Error drawing background mask cover element onto canvas`                                  | `ctx.drawImage()` threw during element auto-draw |
+| `mask-draw-error`            | `Error in mask cover.draw callback`                                                        | the `cover.draw` callback threw                  |
+
+### Environment notes
+
+- Non-DOM environments safely skip CSS selector resolution
+- `drawImage()` auto-scales the element to fill the canvas
+- Video frame playback is managed externally (plugin reads current frame only)
+- `OffscreenCanvas` must be controlled externally
+
+### Demo configs
+
+Two demo configurations are available in `utils/configs/src/b/`:
+
+- **Background Mask Draw** (`key: "backgroundMaskDraw"`) — animated HSL gradient via `cover.draw`
+- **Background Mask Element** (`key: "backgroundMaskElement"`) — CSS selector `#mask-video` via `cover.element`
+
+Both require `backgroundMask.enable: true` and load via the `@tsparticles/configs` package. Use the `tsparticles` all bundle (`loadAll`) or load the background mask plugin manually.
 
 ## Related docs
 

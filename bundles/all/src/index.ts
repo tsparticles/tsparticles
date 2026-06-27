@@ -34,6 +34,7 @@ import { loadExternalPopInteraction } from "@tsparticles/interaction-external-po
 import { loadFilterEffect } from "@tsparticles/effect-filter";
 import { loadFractalNoisePath } from "@tsparticles/path-fractal-noise";
 import { loadFull } from "tsparticles";
+import { loadGifShape } from "@tsparticles/shape-gif";
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 import { loadGridPath } from "@tsparticles/path-grid";
 import { loadHeartShape } from "@tsparticles/shape-heart";
@@ -177,6 +178,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadArrowShape(e),
       loadCardsShape(e),
       loadCogShape(e),
+      loadGifShape(e),
       loadHeartShape(e),
       loadInfinityShape(e),
       loadMatrixShape(e),

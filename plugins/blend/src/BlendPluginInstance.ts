@@ -1,7 +1,9 @@
 import type { BlendContainer, BlendParticle } from "./types.js";
-import { type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
+import { DrawLayer, type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
 
 export class BlendPluginInstance implements IContainerPlugin {
+  readonly layer: DrawLayer = DrawLayer.CanvasSetup;
+
   readonly #container;
   #defaultCompositeValue?: GlobalCompositeOperation;
 

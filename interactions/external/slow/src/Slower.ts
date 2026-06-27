@@ -15,6 +15,7 @@ import {
 } from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
+import { SlowModifier } from "./SlowModifier.js";
 
 const slowMode = "slow",
   minRadius = 0;
@@ -24,6 +25,7 @@ const slowMode = "slow",
  */
 export class Slower extends ExternalInteractorBase<SlowContainer> {
   #maxDistance;
+  readonly #modifiers = new WeakMap<Particle, SlowModifier>();
 
   constructor(container: SlowContainer) {
     super(container);
@@ -36,11 +38,29 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
   }
 
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
-    if (particle.slow.inRange && !force) {
+    const mod = this.#modifiers.get(particle);
+
+    if (mod?.enabled && !force) {
       return;
     }
 
-    particle.slow.factor = 1;
+    particle.removeModifier(slowMode);
+
+    this.#modifiers.delete(particle);
+  }
+
+  getOrCreateModifier(particle: Particle): SlowModifier {
+    let mod = this.#modifiers.get(particle);
+
+    if (!mod) {
+      mod = new SlowModifier();
+
+      this.#modifiers.set(particle, mod);
+
+      particle.addModifier(mod);
+    }
+
+    return mod;
   }
 
   init(): void {
@@ -73,7 +93,11 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
   }
 
   reset(interactivityData: IInteractivityData, particle: Particle): void {
-    particle.slow.inRange = false;
+    const mod = this.#modifiers.get(particle);
+
+    if (mod) {
+      mod.enabled = false;
+    }
 
     const container = this.container,
       options = container.actualOptions,
@@ -88,13 +112,15 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     const particlePos = particle.getPosition(),
       dist = getDistance(mousePos, particlePos),
       proximityFactor = dist / radius,
-      slowFactor = slowOptions.factor,
-      { slow } = particle;
+      slowFactor = slowOptions.factor;
+
     if (dist > radius) {
       return;
     }
 
-    slow.inRange = true;
-    slow.factor = proximityFactor / slowFactor;
+    const activeMod = this.getOrCreateModifier(particle);
+
+    activeMod.enabled = true;
+    activeMod.speedFactor = proximityFactor / slowFactor;
   }
 }

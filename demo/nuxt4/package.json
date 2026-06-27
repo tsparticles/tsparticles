@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt4-demo",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": true,
   "type": "module",
   "repository": {
@@ -37,7 +37,7 @@
     "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.9.2",
-    "globals": "^17.6.0",
+    "globals": "^17.7.0",
     "lint-staged": "^17.0.7",
     "nuxt": "^4.4.8",
     "prettier": "^3.8.4",

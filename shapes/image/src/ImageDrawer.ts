@@ -9,7 +9,6 @@ import {
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
-import { drawGif } from "./GifUtils/Utils.js";
 
 const sides = 12;
 
@@ -45,9 +44,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
     context.globalAlpha = opacity;
 
-    if (image.gif && image.gifData) {
-      drawGif(data, this.#container.canvas.render.settings);
-    } else if (element) {
+    if (element) {
       const ratio = image.ratio,
         pos = {
           x: -radius,
@@ -155,9 +152,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
           color,
           data: image,
           element: image.element,
-          gif: image.gif,
-          gifData: image.gifData,
-          gifLoopCount: image.gifLoopCount,
           loaded: true,
           ratio:
             imageData.width && imageData.height ? imageData.width / imageData.height : (image.ratio ?? defaultRatio),
@@ -193,7 +187,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     await this.#engine.loadImage(container, {
-      gif: imageShape.gif,
       name: imageShape.name,
       replaceColor: imageShape.replaceColor,
       src: imageShape.src,

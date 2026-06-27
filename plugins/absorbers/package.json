@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-absorbers",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles plugin for creating black hole-like absorbers that attract, rotate, and remove particles",
   "homepage": "https://particles.js.org",
   "scripts": {

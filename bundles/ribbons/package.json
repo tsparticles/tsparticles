@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles ribbons bundle — easily create animated ribbons, ribbon bursts and ribbon falling effects. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {
