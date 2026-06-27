@@ -4,12 +4,26 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 1 — Developer Experience & Docs
+**Current focus:** Phase 2 — 4.4.0 Fluid Interaction
 
-## Session Status — 2026-06-14
+## Session Status — 2026-06-27
 
-### Objective
-Plan and implement wrapper reactivity (options/url/theme prop changes) across Vue 3, Vue 2, Angular, Solid, Qwik, and Astro wrappers, plus fix Vue 3 docs describing nonexistent `:init`/`@particles-init` features.
+### 4.3.0 — Released ✅
+
+All 6 features implemented and gate checks passed:
+- A: GIF Shape — new `@tsparticles/shape-gif` package
+- B: Background Canvas — layered background pipeline
+- C: Background Mask Dynamic — `cover.element` + `cover.draw`
+- D: Draw Layer System — 8 named layers replacing 11 arrays
+- E: Particle Modifier System — generic `IParticleModifier` API
+- F: HDR Precision — floating-point RGB pipeline
+
+Build: 461 projects ✅ | Tests: 152/152 ✅ | Issue aperti: nessun blocco.
+
+### 4.4.0 — Fluid Interaction (next)
+
+**Target:** `@tsparticles/interaction-particles-fluid` — DDR-based liquid simulation.
+See `.planning/handovers/4.4.0_PLAN.md`.
 
 ### Outcome
 **S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
