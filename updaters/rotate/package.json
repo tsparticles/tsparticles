@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-rotate",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles updater for animating particle rotation over time with configurable speed, direction, and acceleration",
   "homepage": "https://particles.js.org",
   "scripts": {

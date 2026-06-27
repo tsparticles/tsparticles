@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-attract",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles particle interaction for attracting particles toward each other",
   "homepage": "https://particles.js.org",
   "scripts": {

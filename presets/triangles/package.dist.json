@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-triangles",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,10 +106,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.2.1",
-    "@tsparticles/engine": "4.2.1",
-    "@tsparticles/interaction-particles-links": "4.2.1",
-    "@tsparticles/plugin-interactivity": "4.2.1"
+    "@tsparticles/basic": "4.3.0",
+    "@tsparticles/engine": "4.3.0",
+    "@tsparticles/interaction-particles-links": "4.3.0",
+    "@tsparticles/plugin-interactivity": "4.3.0"
   },
   "publishConfig": {
     "access": "public"

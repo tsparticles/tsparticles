@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-gif",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles shape for rendering particles as animated GIFs",
   "homepage": "https://particles.js.org",
   "scripts": {

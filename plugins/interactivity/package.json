@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-interactivity",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles plugin for creating custom interaction behaviors beyond built-in interactions",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons-website",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles ribbons webpage",
   "private": true,
   "type": "module",

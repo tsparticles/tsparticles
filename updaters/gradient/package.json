@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-gradient",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles updater for animating particle color gradients over time with smooth multi-color transitions",
   "homepage": "https://particles.js.org",
   "scripts": {

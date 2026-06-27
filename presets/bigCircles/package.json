@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-big-circles",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles preset for creating large, slowly moving circular particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

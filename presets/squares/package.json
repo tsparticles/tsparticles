@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-squares",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles preset for creating animated square particle effects",
   "homepage": "https://particles.js.org",
   "scripts": {

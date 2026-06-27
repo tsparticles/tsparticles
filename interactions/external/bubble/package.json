@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-bubble",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "tsParticles external interaction that enlarges particles near the mouse cursor, creating a bubble effect",
   "homepage": "https://particles.js.org",
   "scripts": {

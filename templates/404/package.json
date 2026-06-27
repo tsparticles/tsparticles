@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/template-404",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": false,
   "publishConfig": {
     "access": "public"
