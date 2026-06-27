@@ -168,7 +168,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
         destination = [];
       }
     } else if (!isObject(destination) || Array.isArray(destination)) {
-      destination = {};
+      destination = Object.create(null) as Record<string, unknown>;
     }
 
     // Micro-optimization + safety: if the source is a shallow object (no nested objects/arrays),
