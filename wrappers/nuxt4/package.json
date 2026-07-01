@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt4",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Official tsParticles Nuxt 4 Module - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "keywords": [
     "tsparticles",

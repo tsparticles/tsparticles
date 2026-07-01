@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/all",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "All-inclusive tsParticles bundle — all engine packages, plugins, interactions, presets, shapes, updaters, effects, paths, emitters, sounds, and palettes in one dependency. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

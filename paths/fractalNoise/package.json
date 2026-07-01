@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-fractal-noise",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles path for moving particles along fractal noise-based paths",
   "homepage": "https://particles.js.org",
   "scripts": {

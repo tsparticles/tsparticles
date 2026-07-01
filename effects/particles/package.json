@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/effect-particles",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles effect for rendering particles as miniature particle clusters, creating fractal-like patterns",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-meteors",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles meteors preset",
   "homepage": "https://particles.js.org",
   "scripts": {
