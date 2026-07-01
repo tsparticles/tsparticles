@@ -15,6 +15,10 @@ import { percentDenominator } from "../Core/Utils/Constants.js";
 
 const minRadius = 0;
 
+/**
+ *
+ * @param key
+ */
 function isForbiddenKey(key: string): boolean {
   return key === "__proto__" || key === "constructor" || key === "prototype";
 }
