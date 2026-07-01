@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/web-particles": "^4.1.3"
+    "@tsparticles/webcomponents": "^4.1.3"
   },
   "devDependencies": {
     "typescript": "~5.7.0",

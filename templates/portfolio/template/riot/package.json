@@ -16,7 +16,7 @@
     "riot": "^9.5.0"
   },
   "devDependencies": {
-    "@riotjs/vite": "^9.2.0",
+    "rollup-plugin-riot": "^9.0.0",
     "typescript": "~5.8.0",
     "vite": "^7.0.0"
   }
