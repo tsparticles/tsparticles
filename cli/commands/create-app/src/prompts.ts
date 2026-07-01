@@ -28,15 +28,7 @@ export type Framework =
   | "webcomponents";
 
 export type UseCase =
-  | "none"
-  | "login"
-  | "portfolio"
-  | "landing"
-  | "tictactoe"
-  | "confetti"
-  | "ribbons"
-  | "particles"
-  | "404";
+  "none" | "login" | "portfolio" | "landing" | "tictactoe" | "confetti" | "ribbons" | "particles" | "404";
 
 export interface IAppPromptResult {
   destinationPath: string;

@@ -63,9 +63,7 @@ A partial {@link Options} object. Only the properties you specify will override 
 ```javascript
 const container = await tsParticles.load({
   id: "tsparticles",
-  options: {
-    /* ... */
-  },
+  options: {/* ... */},
 });
 
 // Switch to a named theme

@@ -69,9 +69,7 @@ Or with inline options:
 ```js
 tsParticles.load({
   id: "tsparticles",
-  options: {
-    /* options */
-  },
+  options: {/* options */},
 });
 ```
 

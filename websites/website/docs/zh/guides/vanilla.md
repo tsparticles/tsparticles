@@ -53,9 +53,7 @@ description: 使用纯 JavaScript 集成 tsParticles 的完整指南。
 
         await tsParticles.load({
           id: "tsparticles",
-          options: {
-            /* ... */
-          },
+          options: {/* ... */},
         });
       })();
     </script>
@@ -80,9 +78,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* ... */
-    },
+    options: {/* ... */},
   });
 })();
 ```

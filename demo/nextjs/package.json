@@ -31,7 +31,7 @@
     "@next/eslint-plugin-next": "^16.2.8",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "eslint-config-next": "^16.2.8"
   }
 }

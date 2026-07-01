@@ -123,10 +123,10 @@
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "jquery": "^4.0.0",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.4",
     "rollup": "^4.62.2",
     "typescript": "^5.9.3",
     "uglify-js": "^3.19.3"

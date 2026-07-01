@@ -36,9 +36,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* options */
-    },
+    options: {/* options */},
   });
 })();
 ```

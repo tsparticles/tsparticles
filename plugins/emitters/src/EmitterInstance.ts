@@ -299,12 +299,10 @@ export class EmitterInstance {
       return;
     }
 
-    if (
-      !(
-        (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
-        (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
-      )
-    ) {
+    if (!(
+      (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
+      (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
+    )) {
       return;
     }
 

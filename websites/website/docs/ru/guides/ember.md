@@ -174,9 +174,7 @@ import { action } from "@ember/object";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export default class ApplicationController extends Controller {
-  options: ISourceOptions = {
-    /* ... */
-  };
+  options: ISourceOptions = {/* ... */};
 
   @action
   loadedCallback(container: Container) {

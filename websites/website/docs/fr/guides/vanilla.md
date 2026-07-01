@@ -53,9 +53,7 @@ Ajoutez un `<div>` fictif et des balises script dans votre HTML. Vous avez besoi
 
         await tsParticles.load({
           id: "tsparticles",
-          options: {
-            /* ... */
-          },
+          options: {/* ... */},
         });
       })();
     </script>
@@ -80,9 +78,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* ... */
-    },
+    options: {/* ... */},
   });
 })();
 ```

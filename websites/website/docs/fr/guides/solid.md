@@ -506,14 +506,14 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## Dépannage
 
-| Symptôme                        | Cause                                       | Solution                                                                           |
+| Symptôme | Cause | Solution |
 | ------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Élément DOM vide                | Moteur non initialisé avant le rendu        | Encapsulez `<Particles>` dans `<Show when={initialized()}>`                        |
-| Aucune particule visible        | `move.enable` ou `number.value` manquant    | Assurez-vous `particles.move.enable: true` et `particles.number.value > 0`         |
-| Canvas derrière le contenu      | `zIndex` manquant dans fullScreen           | Utilisez `fullScreen: { zIndex: -1 }`                                              |
-| Changement d'options sans effet | La référence d'objet ne change pas          | Encapsulez les options dans une fonction ou un store ; évitez les objets statiques |
-| Moteur non trouvé               | Import manquant de `loadFull` ou `loadSlim` | Installez `tsparticles` ou `@tsparticles/slim` et appelez `loadFull(engine)`       |
-| `theme`                         | `string`                                    | —                                                                                  | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| Élément DOM vide | Moteur non initialisé avant le rendu | Encapsulez `<Particles>` dans `<Show when={initialized()}>` |
+| Aucune particule visible | `move.enable` ou `number.value` manquant | Assurez-vous `particles.move.enable: true` et `particles.number.value > 0` |
+| Canvas derrière le contenu | `zIndex` manquant dans fullScreen | Utilisez `fullScreen: { zIndex: -1 }` |
+| Changement d'options sans effet | La référence d'objet ne change pas | Encapsulez les options dans une fonction ou un store ; évitez les objets statiques |
+| Moteur non trouvé | Import manquant de `loadFull` ou `loadSlim` | Installez `tsparticles` ou `@tsparticles/slim` et appelez `loadFull(engine)` |
+| `theme` | `string` | — | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ## Prochaines étapes
 

@@ -20,9 +20,7 @@ Check the following:
    await loadBasic(tsParticles);
    await tsParticles.load({
      id: "tsparticles",
-     options: {
-       /* ... */
-     },
+     options: {/* ... */},
    });
    ```
 

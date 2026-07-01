@@ -68,13 +68,13 @@ export default class App extends Vue {
 
 ## Component props
 
-| Prop              | Type             | Default  | Description                                                           |
+| Prop | Type | Default | Description |
 | ----------------- | ---------------- | -------- | --------------------------------------------------------------------- | -------------------------------- |
-| `id`              | `string`         | required | The DOM element id used for the particles container.                  |
-| `options`         | `ISourceOptions` | —        | Particle configuration object. Reactive: changing replaces particles. |
-| `url`             | `string`         | —        | Remote JSON config URL. Reactive: changing reloads from URL.          |
-| `theme`           | `string`         | —        | Theme name to apply (requires `@tsparticles/plugin-themes`).          |
-| `particlesLoaded` | callback         | —        | Fires with `Container                                                 | undefined` after load completes. |
+| `id` | `string` | required | The DOM element id used for the particles container. |
+| `options` | `ISourceOptions` | — | Particle configuration object. Reactive: changing replaces particles. |
+| `url` | `string` | — | Remote JSON config URL. Reactive: changing reloads from URL. |
+| `theme` | `string` | — | Theme name to apply (requires `@tsparticles/plugin-themes`). |
+| `particlesLoaded` | callback | — | Fires with `Container                                                 | undefined` after load completes. |
 
 ## Reactive behavior
 

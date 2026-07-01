@@ -113,9 +113,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* options */
-    },
+    options: {/* options */},
   });
 })();
 ```
@@ -199,9 +197,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```
 
 ```ts
-const options = {
-  /* custom options */
-};
+const options = {/* custom options */};
 
 async function particlesInit(engine: Engine): Promise<void> {
   await loadFull(engine);
@@ -220,9 +216,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```
 
 ```js
-let options = {
-  /* custom options */
-};
+let options = {/* custom options */};
 
 let particlesInit = async engine => {
   await loadFull(engine);
