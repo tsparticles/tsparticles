@@ -16,7 +16,7 @@
     "@tsparticles/riot": "^4.1.3"
   },
   "devDependencies": {
-    "@riotjs/vite-plugin": "^9.4.0",
+    "rollup-plugin-riot": "^9.0.0",
     "vite": "^6.0.0"
   }
 }
