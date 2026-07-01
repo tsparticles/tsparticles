@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-explosions",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles preset for creating confetti explosion and burst effects",
   "homepage": "https://particles.js.org",
   "scripts": {

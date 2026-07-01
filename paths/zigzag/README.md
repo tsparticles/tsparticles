@@ -36,9 +36,7 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* options */
-    },
+    options: {/* options */},
   });
 })();
 ```

@@ -314,12 +314,10 @@ export class AbsorberInstance {
    * Play method that prepares the absorber to be drawn and updated
    */
   #play(): void {
-    if (
-      !(
-        (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
-        (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
-      )
-    ) {
+    if (!(
+      (this.#lifeCount > minLifeCount || this.#immortal || !this.options.life.count) &&
+      (this.#firstSpawn || this.#currentSpawnDelay >= (this.#spawnDelay ?? defaultSpawnDelay))
+    )) {
       return;
     }
 

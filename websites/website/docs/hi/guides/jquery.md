@@ -178,9 +178,7 @@ npm install tsparticles-preset-stars
 const $container = $("#tsparticles");
 
 // पार्टिकल्स लोड करें
-$container.particles().load({
-  /* options */
-});
+$container.particles().load({/* options */});
 
 // कुछ सेकंड बाद प्ले/पॉज़ करें
 setTimeout(() => {

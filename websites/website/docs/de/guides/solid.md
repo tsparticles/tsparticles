@@ -506,14 +506,14 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ## Fehlerbehebung
 
-| Symptom                        | Ursache                                      | Lösung                                                                                       |
+| Symptom | Ursache | Lösung |
 | ------------------------------ | -------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Leeres DOM-Element             | Engine vor dem Rendern nicht initialisiert   | Wickeln Sie `<Particles>` in `<Show when={initialized()}>`                                   |
-| Keine Partikel sichtbar        | Fehlendes `move.enable` oder `number.value`  | Stellen Sie `particles.move.enable: true` und `particles.number.value > 0` sicher            |
-| Canvas hinter Inhalt           | Fehlendes `zIndex` in fullScreen             | Verwenden Sie `fullScreen: { zIndex: -1 }`                                                   |
-| Optionsänderung nicht sichtbar | Objektreferenz ändert sich nicht             | Wickeln Sie Optionen in eine Funktion oder einen Store; vermeiden Sie statische Objekte      |
-| Engine nicht gefunden          | Fehlender `loadFull`- oder `loadSlim`-Import | Installieren Sie `tsparticles` oder `@tsparticles/slim` und rufen Sie `loadFull(engine)` auf |
-| `theme`                        | `string`                                     | —                                                                                            | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| Leeres DOM-Element | Engine vor dem Rendern nicht initialisiert | Wickeln Sie `<Particles>` in `<Show when={initialized()}>` |
+| Keine Partikel sichtbar | Fehlendes `move.enable` oder `number.value` | Stellen Sie `particles.move.enable: true` und `particles.number.value > 0` sicher |
+| Canvas hinter Inhalt | Fehlendes `zIndex` in fullScreen | Verwenden Sie `fullScreen: { zIndex: -1 }` |
+| Optionsänderung nicht sichtbar | Objektreferenz ändert sich nicht | Wickeln Sie Optionen in eine Funktion oder einen Store; vermeiden Sie statische Objekte |
+| Engine nicht gefunden | Fehlender `loadFull`- oder `loadSlim`-Import | Installieren Sie `tsparticles` oder `@tsparticles/slim` und rufen Sie `loadFull(engine)` auf |
+| `theme` | `string` | — | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
 ## Nächste Schritte
 

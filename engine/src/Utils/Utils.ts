@@ -16,6 +16,14 @@ import { percentDenominator } from "../Core/Utils/Constants.js";
 const minRadius = 0;
 
 /**
+ *
+ * @param key
+ */
+function isForbiddenKey(key: string): boolean {
+  return key === "__proto__" || key === "constructor" || key === "prototype";
+}
+
+/**
  * @returns true if the environment supports matchMedia feature
  */
 function hasMatchMedia(): boolean {
@@ -188,7 +196,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
         destDict = destination as Record<string, unknown>;
 
       for (const key of sourceKeys) {
-        if (key === "__proto__" || key === "constructor" || key === "prototype") {
+        if (isForbiddenKey(key)) {
           continue;
         }
 
@@ -203,7 +211,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     }
 
     for (const key of sourceKeys) {
-      if (key === "__proto__" || key === "constructor" || key === "prototype") {
+      if (isForbiddenKey(key)) {
         continue;
       }
 

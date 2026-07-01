@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/confetti",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles confetti bundle — easily create confetti, confetti cannon, confetti explosions, confetti falling, and confetti parade animations with presets. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

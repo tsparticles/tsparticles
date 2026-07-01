@@ -53,9 +53,7 @@ Agrega un `<div>` como marcador de posición y etiquetas de script en tu HTML. N
 
         await tsParticles.load({
           id: "tsparticles",
-          options: {
-            /* ... */
-          },
+          options: {/* ... */},
         });
       })();
     </script>
@@ -80,9 +78,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* ... */
-    },
+    options: {/* ... */},
   });
 })();
 ```

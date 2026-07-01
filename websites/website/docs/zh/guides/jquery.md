@@ -178,9 +178,7 @@ npm install tsparticles-preset-stars
 const $container = $("#tsparticles");
 
 // 加载粒子
-$container.particles().load({
-  /* 选项 */
-});
+$container.particles().load({/* 选项 */});
 
 // 几秒后播放/暂停
 setTimeout(() => {

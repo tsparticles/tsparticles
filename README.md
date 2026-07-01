@@ -328,36 +328,20 @@ tsParticles
 
 tsParticles.load({
   id: "tsparticles",
-  options: {
-    /* options here */
-  },
+  options: {/* options here */},
 });
 
 //or
 
 tsParticles.load({
   id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
+  options: [{/* options here */}, {/* other options here */}],
 });
 //random object
 
 tsParticles.load({
   id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
+  options: [{/* options here */}, {/* other options here */}],
   index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.

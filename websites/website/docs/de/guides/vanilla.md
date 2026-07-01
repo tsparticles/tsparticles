@@ -53,9 +53,7 @@ Fügen Sie einen `<div>`-Platzhalter und Script-Tags in Ihr HTML ein. Sie benöt
 
         await tsParticles.load({
           id: "tsparticles",
-          options: {
-            /* ... */
-          },
+          options: {/* ... */},
         });
       })();
     </script>
@@ -80,9 +78,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* ... */
-    },
+    options: {/* ... */},
   });
 })();
 ```

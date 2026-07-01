@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Full-featured tsParticles bundle — create stunning particle, confetti and fireworks animations with all official plugins and presets included. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {

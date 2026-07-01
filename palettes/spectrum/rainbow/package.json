@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-rainbow",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "tsParticles rainbow - maximum saturation srgb palette",
   "homepage": "https://particles.js.org",
   "scripts": {

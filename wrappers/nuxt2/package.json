@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt2",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Official tsParticles Nuxt 2 Module - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "keywords": [
     "tsparticles",
@@ -56,7 +56,7 @@
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "typescript": "^6.0.3"
   },

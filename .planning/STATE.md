@@ -6,7 +6,7 @@ See: .planning/PROJECT.md (initialized)
 
 **Current focus:** Phase 2 — 4.4.0 Fluid Interaction
 
-## Session Status — 2026-06-27
+## Session Status — 2026-06-29
 
 ### 4.3.0 — Released ✅
 
@@ -18,12 +18,19 @@ All 6 features implemented and gate checks passed:
 - E: Particle Modifier System — generic `IParticleModifier` API
 - F: HDR Precision — floating-point RGB pipeline
 
-Build: 461 projects ✅ | Tests: 152/152 ✅ | Issue aperti: nessun blocco.
+Build: 461 projects ✅ | Tests: 152/152 ✅ | No blocking issues.
 
-### 4.4.0 — Fluid Interaction (next)
+### 4.4.0 — Fluid Interaction (v4 planning)
 
-**Target:** `@tsparticles/interaction-particles-fluid` — DDR-based liquid simulation.
-See `.planning/handovers/4.4.0_PLAN.md`.
+v3 implementation completed and reverted. Code did not produce fluid behavior.
+See `.planning/handovers/FLUID_INTERACTION_PLAN.md` for full retrospective and v4 plan.
+
+**v4 plan completed** (2026-06-29). Key changes from v3:
+- Velocity reconstruction added (critical fix)
+- Correct `q` factor in DDR displacement formula
+- Explicit boundary handling (soft spring + hard clamp) instead of outModes
+- Per-particle `prevPos` state for velocity reconstruction
+- Confirmed ParticlesInteractorBase is the correct integration point with these fixes
 
 ### Outcome
 **S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
@@ -66,9 +73,9 @@ See `.planning/handovers/4.4.0_PLAN.md`.
 10. ✅ **S10 WebComponents** — done (`data-id`/`data-theme` added to `observedAttributes`, `attributeChangedCallback` handles both, `id` setter syncs to `data-id`, deprecated `particlesInit` event removed, README documented with observed attributes table and theme caveat, build passes)
 11. ✅ **S11 React docs** — README props table updated with `particlesLoaded`, demo/template check passed
 12. ✅ **S12 Preact** — wrapper (theme prop, loadTheme, selective componentDidUpdate senza refresh per solo-theme), demo (constructor init + conditional render — module-level init freeze Preact, tenuto pattern originale), README aligned
-13. ✅ **S13 Svelte** — wrapper reactivity (`theme` prop, `afterUpdate` → reactive `$:` statements with `loadKey`, `loadTheme` on initial load + theme change), demo alignment (`particlesInit` → `initParticlesEngine`, Svelte 5 `mount()` API, SSR-safe dynamic imports), README with props table, reactive behavior docs, theme plugin docs. Svelte demo + SvelteKit demo entrambi verificati funzionanti dall'utente.
-14. ✅ **S14 Stencil** — done (`theme` prop + `particlesLoaded` event + `@Watch("theme")` + demo con theme toggle + `@tsparticles/plugin-themes` installato, build passa).
-15. ✅ **S15 Ember** — done (`theme` prop, `#container` instance tracking per memory leak fix, `registerDestructor` chiamato una sola volta, `particlesLoaded` type corretto a `(container?: Container)`, template `particles.hbs` aggiornato con `theme=@theme`, demo con config switch + theme toggle buttons, README con tabella args e caveat plugin opzionale, build passa).
+13. ✅ **S13 Svelte** — wrapper reactivity (`theme` prop, `afterUpdate` → reactive `$:` statements with `loadKey`, `loadTheme` on initial load + theme change), demo alignment (`particlesInit` → `initParticlesEngine`, Svelte 5 `mount()` API, SSR-safe dynamic imports), README with props table, reactive behavior docs, theme plugin docs. Svelte demo + SvelteKit demo both verified working by the user.
+14. ✅ **S14 Stencil** — done (`theme` prop + `particlesLoaded` event + `@Watch("theme")` + demo with theme toggle + `@tsparticles/plugin-themes` installed, build passes).
+15. ✅ **S15 Ember** — done (`theme` prop, `#container` instance tracking for memory leak fix, `registerDestructor` called once, `particlesLoaded` type fixed to `(container?: Container)`, template `particles.hbs` updated with `theme=@theme`, demo with config switch + theme toggle buttons, README with args table and optional plugin caveat, build passes).
 16. ✅ **S16 jQuery** — done (`setTheme` method added to `ParticlesResult` type, `WeakMap<Element, Container>` for per-element container tracking, `load`/`ajax` track containers, `setTheme` method with safe `loadTheme?.()` optional plugin invocation, README updated with `setTheme` docs and theme plugin caveat, build passes).
 17. ✅ **S17 Angular-fireworks** — done: `OnChanges` implemented for `id`/`options` reactivity, `#destroyed` guard prevents post-destroy execution, `#startFireworks` stops previous instance before creating new one, `ngOnDestroy` calls `.destroy()` (not `.stop()`), demo N/A (no standalone demo dir), templates N/A (no templates dir), README updated with `OnChanges` behavior docs, build passes.
 18. ✅ **S18 EN docs (vue3.md)** — done: removed stale `:init`, `@particles-init`, `particlesInit` from EN guide (all examples + API table); removed Component-Level Init section; fixed `useParticles` → `useParticlesProvider`; added `theme` prop to API table with optional plugin caveat; added `theme` prop docs in Theme Switching section. File reduced from 622→575 lines.

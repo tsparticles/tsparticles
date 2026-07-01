@@ -53,9 +53,7 @@ Add a `<div>` placeholder and script tags in your HTML. You need at least the en
 
         await tsParticles.load({
           id: "tsparticles",
-          options: {
-            /* ... */
-          },
+          options: {/* ... */},
         });
       })();
     </script>
@@ -80,9 +78,7 @@ import { loadSlim } from "@tsparticles/slim";
 
   await tsParticles.load({
     id: "tsparticles",
-    options: {
-      /* ... */
-    },
+    options: {/* ... */},
   });
 })();
 ```

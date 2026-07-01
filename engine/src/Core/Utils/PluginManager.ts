@@ -30,10 +30,7 @@ export type AsyncLoadPluginNoEngine = () => Promise<void>;
 export type SyncLoadPluginNoEngine = () => void;
 /** Plugin loader function type */
 export type LoadPluginFunction =
-  | AsyncLoadPluginFunction
-  | SyncLoadPluginFunction
-  | AsyncLoadPluginNoEngine
-  | SyncLoadPluginNoEngine;
+  AsyncLoadPluginFunction | SyncLoadPluginFunction | AsyncLoadPluginNoEngine | SyncLoadPluginNoEngine;
 
 /**
  * Stores and resolves plugins, shapes, effects, palettes and updaters.

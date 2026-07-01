@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
+
+
+### Bug Fixes
+
+* fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
+* fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
+
+
+
+
+
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
 
 

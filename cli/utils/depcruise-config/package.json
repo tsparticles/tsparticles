@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/depcruise-config",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "private": false,
   "type": "module",
   "publishConfig": {
@@ -47,14 +47,14 @@
     "@tsparticles/prettier-config": "workspace:*",
     "@types/node": "^26.0.1",
     "dependency-cruiser": "^17.4.3",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^63.0.8",
+    "eslint-plugin-jsdoc": "^63.0.10",
     "eslint-plugin-tsdoc": "^0.5.2",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.4",
     "prettier-plugin-multiline-arrays": "^4.1.9",
     "tsdown": "^0.22.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0"
+    "typescript-eslint": "^8.62.1"
   }
 }

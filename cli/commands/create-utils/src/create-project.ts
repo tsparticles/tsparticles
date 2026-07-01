@@ -12,15 +12,7 @@ import {
 } from "./template-utils.js";
 
 export type CreateProjectKind =
-  | "bundle"
-  | "effect"
-  | "interaction"
-  | "palette"
-  | "path"
-  | "plugin"
-  | "preset"
-  | "shape"
-  | "updater";
+  "bundle" | "effect" | "interaction" | "palette" | "path" | "plugin" | "preset" | "shape" | "updater";
 
 export type InteractionType = "external" | "generic" | "particles";
 

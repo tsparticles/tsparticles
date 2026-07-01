@@ -86,9 +86,7 @@ import { initPjs } from "@tsparticles/pjs";
 
 await initPjs(tsParticles);
 
-await globalThis.particlesJS("tsparticles", {
-  /* particles.js-style options */
-});
+await globalThis.particlesJS("tsparticles", {/* particles.js-style options */});
 ```
 
 ### CDN / Vanilla JS / jQuery
@@ -117,9 +115,7 @@ Using `particlesJS` compatibility:
 (async engine => {
   await initPjs(engine);
 
-  particlesJS("tsparticles", {
-    /* options */
-  });
+  particlesJS("tsparticles", {/* options */});
 })(tsParticles);
 ```
 
@@ -129,9 +125,7 @@ Using `Particles` compatibility:
 (async engine => {
   await initPjs(engine);
 
-  Particles.init({
-    /* options */
-  });
+  Particles.init({/* options */});
 })(tsParticles);
 ```
 

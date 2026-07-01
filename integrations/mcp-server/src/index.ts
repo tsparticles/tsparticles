@@ -25,6 +25,7 @@ import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
 
 const PACKAGE_VERSION = "0.1.0";
+const MAX_REQUEST_BODY_BYTES = 1024 * 1024; // 1 MB
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -397,14 +398,38 @@ async function startHttp(port: number) {
 
     // MCP endpoint — accept POST with JSON body
     if (req.method === "POST" && req.url === "/mcp") {
-      const body = await new Promise<string>((resolve, reject) => {
-        const chunks: Buffer[] = [];
-        req.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
-        req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
-        req.on("error", reject);
-      });
+      let body: string;
 
-      const parsedBody = body ? JSON.parse(body) : undefined;
+      try {
+        body = await new Promise<string>((resolve, reject) => {
+          const chunks: Buffer[] = [];
+          let receivedBytes = 0;
+          req.on("data", (chunk: Buffer) => {
+            receivedBytes += chunk.length;
+            if (receivedBytes > MAX_REQUEST_BODY_BYTES) {
+              req.destroy(new Error("Request body too large"));
+              return;
+            }
+            chunks.push(chunk);
+          });
+          req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+          req.on("error", reject);
+        });
+      } catch {
+        res.writeHead(413, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Request body too large" }));
+        return;
+      }
+
+      let parsedBody: unknown;
+      try {
+        parsedBody = body ? JSON.parse(body) : undefined;
+      } catch {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Invalid JSON" }));
+        return;
+      }
+
       await transport.handleRequest(req, res, parsedBody);
       return;
     }
