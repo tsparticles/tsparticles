@@ -72,7 +72,16 @@ export function loadLazyProperty(
  */
 export function loadExtendProperty<T extends object, K extends keyof T>(obj: T, key: K, value: T[K] | undefined): void {
   if (value !== undefined) {
-    (obj as Record<string, unknown>)[key as string] = deepExtend(obj[key] ?? {}, value);
+    const keyStr = key as string;
+
+    if (keyStr === "__proto__" || keyStr === "constructor" || keyStr === "prototype") {
+      return;
+    }
+
+    const objRecord = obj as Record<string, unknown>,
+      currentValue = Object.prototype.hasOwnProperty.call(objRecord, keyStr) ? objRecord[keyStr] : {};
+
+    objRecord[keyStr] = deepExtend(currentValue, value);
   }
 }
 
