@@ -1,8 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "baseBranchPatterns": ["v4"],
-  "extends": ["config:recommended", ":preserveSemverRanges"],
+  "extends": [":preserveSemverRanges"],
+  "enabledManagers": ["npm", "github-actions"],
   "ignorePaths": [
+    "**/.angular/**",
+    "**/.output/**",
     "**/public/manifest.json",
     "**/src/manifest.json"
   ]
