@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Надежная основа для геометрических макетов и дизайна в стиле тек.
+
+Демо: <https://particles.js.org/demos/recipes/triangles>

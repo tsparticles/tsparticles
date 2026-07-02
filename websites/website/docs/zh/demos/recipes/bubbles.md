@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 对于具有更明显运动的交互部分很有用。
+
+演示： <https://particles.js.org/demos/recipes/bubbles>

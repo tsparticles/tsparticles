@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 अंतरिक्ष/ब्रह्मांडीय लैंडिंग पृष्ठों और डार्क थीम के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/stars>

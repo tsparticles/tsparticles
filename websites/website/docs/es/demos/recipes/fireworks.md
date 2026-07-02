@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ajuste preestablecido de alto impacto: ejecútelo solo en la interacción explícita del usuario (clic de CTA).
+
+Demostración: <https://particles.js.org/demos/recipes/fireworks>

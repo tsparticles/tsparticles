@@ -82,8 +82,8 @@ Use configs when you want a concrete example object you can inspect and modify d
 
 Use presets when you want a reusable effect name such as `stars`, `fireworks`, or `confetti`.
 
-- Repository: <https://github.com/tsparticles/presets>
-- Demo catalog: <https://particles.js.org/samples/presets/>
+- Repository: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Demo catalog: <https://particles.js.org/demos/presets>
 
 Main preset catalog:
 

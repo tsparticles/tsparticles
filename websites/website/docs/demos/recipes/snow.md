@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Lightweight seasonal preset for winter promotions.
+
+Demo: <https://particles.js.org/demos/recipes/snow>

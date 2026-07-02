@@ -12,7 +12,7 @@
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/meteors/images/sample.png)](https://particles.js.org/samples/presets/meteors)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/meteors/images/sample.png)](https://particles.js.org/demos/recipes/meteors)
 
 ## Quick checklist
 

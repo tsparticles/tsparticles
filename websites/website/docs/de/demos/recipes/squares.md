@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfekt für geometrische, strukturierte Designs und moderne Layouts.
+
+Demo: <https://particles.js.org/demos/recipes/squares>

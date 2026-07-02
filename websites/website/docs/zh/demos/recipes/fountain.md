@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合优雅、流畅的粒子动画和水主题效果。
+
+演示： <https://particles.js.org/demos/recipes/fountain>

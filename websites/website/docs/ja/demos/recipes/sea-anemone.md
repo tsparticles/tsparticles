@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 水中をイメージした有機的で流れるようなアニメーションに最適です。
+
+デモ: <https://particles.js.org/demos/recipes/sea-anemone>

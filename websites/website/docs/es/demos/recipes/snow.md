@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Preajuste estacional ligero para promociones de invierno.
+
+Demostración: <https://particles.js.org/demos/recipes/snow>

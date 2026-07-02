@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 适用于自然英雄部分、讲故事和作品集的优雅预设。
+
+演示： <https://particles.js.org/demos/recipes/firefly>

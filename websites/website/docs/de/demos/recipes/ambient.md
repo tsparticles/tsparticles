@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideal für weiche, kontinuierliche Hintergründe mit geringem visuellen Rauschen.
+
+Demo: <https://particles.js.org/demos/recipes/ambient>

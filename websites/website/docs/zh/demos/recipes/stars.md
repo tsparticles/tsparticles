@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合太空/宇宙登陆页面和黑暗主题。
+
+演示： <https://particles.js.org/demos/recipes/stars>

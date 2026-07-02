@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 सास-शैली नायक/नेटवर्क पृष्ठभूमि के लिए आदर्श।
+
+डेमो: <https://particles.js.org/demos/recipes/links>

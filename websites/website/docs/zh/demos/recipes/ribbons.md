@@ -63,3 +63,5 @@ await ribbons({
 ```
 
 这对于从按钮或页面上的特定元素触发彩带非常有用。
+
+演示： <https://particles.js.org/demos/recipes/ribbons>

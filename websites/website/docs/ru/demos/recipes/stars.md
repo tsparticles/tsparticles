@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Идеально подходит для космических/космических целевых страниц и темных тем.
+
+Демо: <https://particles.js.org/demos/recipes/stars>

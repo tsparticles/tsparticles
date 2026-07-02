@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 ज्यामितीय लेआउट और तकनीकी-शैली डिज़ाइन के लिए एक ठोस आधार।
+
+डेमो: <https://particles.js.org/demos/recipes/triangles>

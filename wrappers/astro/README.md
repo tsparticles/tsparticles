@@ -135,7 +135,7 @@ configurations [here](https://github.com/matteobruni/tsparticles/tree/main/websi
 
 ## Demos
 
-Preset demos can be found [here](https://particles.js.org/samples/presets/index.html)
+Preset demos can be found [here](https://particles.js.org/demos/presets)
 
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 

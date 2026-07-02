@@ -63,3 +63,5 @@ await ribbons({
 ```
 
 यह किसी बटन या आपके पेज के किसी विशिष्ट तत्व से रिबन ट्रिगर करने के लिए उपयोगी है।
+
+डेमो: <https://particles.js.org/demos/recipes/ribbons>

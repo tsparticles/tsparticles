@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Elegante Voreinstellung für natürliche Heldenabschnitte, Geschichtenerzählen und Portfolios.
+
+Demo: <https://particles.js.org/demos/recipes/firefly>

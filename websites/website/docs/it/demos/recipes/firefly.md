@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Preimpostazione elegante per sezioni di eroi naturali, narrazione e portfolio.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/firefly>

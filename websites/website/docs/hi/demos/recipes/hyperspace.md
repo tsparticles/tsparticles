@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 ओटिमो प्रति सेज़ियोनी वाह-इफ़ेक्ट और इंट्रो प्रोडोटो।
+
+डेमो: <https://particles.js.org/demos/recipes/hyperspace>

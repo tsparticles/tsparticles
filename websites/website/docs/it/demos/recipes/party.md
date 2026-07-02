@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfetto per scene di celebrazione, eventi e overlay a tema festa.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/party>

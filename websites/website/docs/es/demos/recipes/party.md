@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfecto para escenas de celebración, eventos y superposiciones con temática de fiesta.
+
+Demostración: <https://particles.js.org/demos/recipes/party>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 驚異的な効果とイントロのサウンドを実現します。
+
+デモ: <https://particles.js.org/demos/recipes/hyperspace>

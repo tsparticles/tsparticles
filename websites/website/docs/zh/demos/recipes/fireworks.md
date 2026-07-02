@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 高影响力预设：仅在显式用户交互（CTA 单击）时运行。
+
+演示： <https://particles.js.org/demos/recipes/fireworks>

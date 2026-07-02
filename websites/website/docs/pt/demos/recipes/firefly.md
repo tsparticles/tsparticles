@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Predefinição elegante para seções de heróis naturais, narrativas e portfólios.
+
+Demonstração: <https://particles.js.org/demos/recipes/firefly>

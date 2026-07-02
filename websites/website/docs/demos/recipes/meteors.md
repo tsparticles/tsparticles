@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfect for shooting star effects, meteor showers, and dynamic trail animations.
+
+Demo: <https://particles.js.org/demos/recipes/meteors>

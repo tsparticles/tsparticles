@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfecto para celebraciones, anuncios y diseños festivos. Combínelo con diferentes paletas de colores para variar.
+
+Demostración: <https://particles.js.org/demos/recipes/confetti>

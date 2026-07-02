@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideal para fondos de héroe/red estilo SaaS.
+
+Demostración: <https://particles.js.org/demos/recipes/links>

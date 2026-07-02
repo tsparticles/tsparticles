@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Préréglage saisonnier léger pour les promotions d'hiver.
+
+Démo : <https://particles.js.org/demos/recipes/snow>

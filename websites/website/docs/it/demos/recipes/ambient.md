@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ottimo per sfondi morbidi e continui con basso rumore visivo.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/ambient>

@@ -63,3 +63,5 @@ await ribbons({
 ```
 
 これは、ボタンやページ上の特定の要素からリボンをトリガーするのに便利です。
+
+デモ: <https://particles.js.org/demos/recipes/ribbons>

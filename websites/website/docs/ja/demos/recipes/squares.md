@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 幾何学的で構造的なデザインやモダンなレイアウトに最適です。
+
+デモ: <https://particles.js.org/demos/recipes/squares>

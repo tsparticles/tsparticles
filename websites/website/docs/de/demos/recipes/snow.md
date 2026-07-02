@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Leichte saisonale Voreinstellung für Winteraktionen.
+
+Demo: <https://particles.js.org/demos/recipes/snow>

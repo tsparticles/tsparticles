@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideal für Helden-/Netzwerkhintergründe im SaaS-Stil.
+
+Demo: <https://particles.js.org/demos/recipes/links>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Great for soft, continuous backgrounds with low visual noise.
+
+Demo: <https://particles.js.org/demos/recipes/ambient>

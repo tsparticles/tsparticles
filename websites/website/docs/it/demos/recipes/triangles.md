@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Una base solida per layout geometrici e design in stile tech.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/triangles>

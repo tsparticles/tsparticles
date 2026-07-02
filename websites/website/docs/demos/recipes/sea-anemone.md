@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfect for organic, flowing underwater-inspired animations.
+
+Demo: <https://particles.js.org/demos/recipes/sea-anemone>

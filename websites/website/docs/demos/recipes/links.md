@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideal for SaaS-style hero/network backgrounds.
+
+Demo: <https://particles.js.org/demos/recipes/links>

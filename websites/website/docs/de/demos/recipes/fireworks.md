@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Wirkungsvolle Voreinstellung: Führen Sie sie nur bei expliziter Benutzerinteraktion (CTA-Klick) aus.
+
+Demo: <https://particles.js.org/demos/recipes/fireworks>

@@ -61,3 +61,5 @@ await ribbons({
 ```
 
 This is useful for triggering ribbons from a button or a specific element on your page.
+
+Demo: <https://particles.js.org/demos/recipes/ribbons>

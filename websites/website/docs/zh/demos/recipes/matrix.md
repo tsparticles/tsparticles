@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合技术/黑客美学设计和数字主题。
+
+演示： <https://particles.js.org/demos/recipes/matrix>

@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 प्राकृतिक नायक अनुभागों, कहानी कहने और पोर्टफ़ोलियो के लिए सुंदर प्रीसेट।
+
+डेमो: <https://particles.js.org/demos/recipes/firefly>

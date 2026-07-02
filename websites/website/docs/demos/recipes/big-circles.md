@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfect for minimal, modern designs with large animated circles.
+
+Demo: <https://particles.js.org/demos/recipes/big-circles>

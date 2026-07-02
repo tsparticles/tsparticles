@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 お祝いや発表、お祝いのデザインに最適です。さまざまなカラーパレットを組み合わせてバリエーションを広げます。
+
+デモ: <https://particles.js.org/demos/recipes/confetti>

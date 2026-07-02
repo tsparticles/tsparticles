@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfekt für Tech-/Hacker-Ästhetikdesigns und digitale Themen.
+
+Demo: <https://particles.js.org/demos/recipes/matrix>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 शीतकालीन प्रचार के लिए हल्का मौसमी प्रीसेट।
+
+डेमो: <https://particles.js.org/demos/recipes/snow>

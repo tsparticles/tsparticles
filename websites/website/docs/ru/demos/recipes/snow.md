@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Легкий сезонный пресет для зимних акций.
+
+Демо: <https://particles.js.org/demos/recipes/snow>

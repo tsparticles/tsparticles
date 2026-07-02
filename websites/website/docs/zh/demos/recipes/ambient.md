@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合视觉噪音低的柔和、连续的背景。
+
+演示： <https://particles.js.org/demos/recipes/ambient>

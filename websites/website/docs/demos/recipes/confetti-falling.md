@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/samples/presets/confettiFalling>
+Demo: <https://particles.js.org/demos/recipes/confetti-falling>
 
 Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
