@@ -3,6 +3,9 @@
   "extends": [
     "local>tsparticles/tsparticles:renovate-base"
   ],
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 5,
   "ignorePaths": [
     "**/.angular/**",
     "**/.output/**",

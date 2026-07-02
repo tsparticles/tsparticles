@@ -3,6 +3,9 @@
   "extends": [
     "local>tsparticles/tsparticles:renovate-base"
   ],
+  "prConcurrentLimit": 2,
+  "branchConcurrentLimit": 2,
+  "prHourlyLimit": 2,
   "includePaths": ["websites/**"],
   "branchPrefix": "renovate-websites/",
   "dependencyDashboardTitle": "Renovate Dashboard (websites)"
