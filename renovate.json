@@ -1,4 +1,20 @@
 {
-  "baseBranchPatterns": ["v4"],
-  "extends": ["config:recommended", ":preserveSemverRanges"]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>tsparticles/tsparticles:renovate-base"
+  ],
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 5,
+  "ignorePaths": [
+    "**/.angular/**",
+    "**/.output/**",
+    "**/public/manifest.json",
+    "**/src/manifest.json",
+    "templates/**",
+    "wrappers/**",
+    "demo/**",
+    "cli/**",
+    "websites/**"
+  ]
 }

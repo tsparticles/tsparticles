@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Idéal pour les arrière-plans doux et continus avec un faible bruit visuel.
+
+Démo : <https://particles.js.org/demos/recipes/ambient>

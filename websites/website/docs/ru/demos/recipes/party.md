@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Идеально подходит для праздничных сцен, мероприятий и оверлеев в стиле вечеринки.
+
+Демо: <https://particles.js.org/demos/recipes/party>

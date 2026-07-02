@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfeito para animações de partículas fluidas e elegantes e efeitos com tema de água.
+
+Demonstração: <https://particles.js.org/demos/recipes/fountain>

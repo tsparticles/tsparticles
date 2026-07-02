@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Predefinição de alto impacto: execute-a apenas com interação explícita do usuário (clique no CTA).
+
+Demonstração: <https://particles.js.org/demos/recipes/fireworks>

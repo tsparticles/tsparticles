@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 影響力の高いプリセット: 明示的なユーザー操作 (CTA クリック) があった場合にのみ実行されます。
+
+デモ: <https://particles.js.org/demos/recipes/fireworks>

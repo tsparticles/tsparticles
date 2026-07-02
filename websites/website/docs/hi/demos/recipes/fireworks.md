@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 उच्च-प्रभाव प्रीसेट: इसे केवल स्पष्ट उपयोगकर्ता इंटरैक्शन (सीटीए क्लिक) पर चलाएं।
+
+डेमो: <https://particles.js.org/demos/recipes/fireworks>

@@ -13,7 +13,7 @@ the [confetti palette](https://github.com/tsparticles/palettes/tree/main/palette
 
 ## Sample
 
-[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/confettiExplosions/images/sample.png)](https://particles.js.org/samples/presets/confettiExplosions)
+[![demo](https://raw.githubusercontent.com/tsparticles/tsparticles/main/presets/confettiExplosions/images/sample.png)](https://particles.js.org/demos/recipes/confetti-explosions)
 
 ## Quick checklist
 

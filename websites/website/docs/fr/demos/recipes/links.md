@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Idéal pour les arrière-plans de héros/réseau de style SaaS.
+
+Démo : <https://particles.js.org/demos/recipes/links>

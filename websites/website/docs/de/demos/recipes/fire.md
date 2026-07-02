@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfekt für dramatische, energiegeladene Designs und Effektdemonstrationen.
+
+Demo: <https://particles.js.org/demos/recipes/fire>

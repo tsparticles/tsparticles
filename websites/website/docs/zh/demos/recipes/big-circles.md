@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合带有大型动画圆圈的简约现代设计。
+
+演示： <https://particles.js.org/demos/recipes/big-circles>

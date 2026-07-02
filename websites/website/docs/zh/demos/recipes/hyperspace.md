@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ottimo 讲述了令人惊叹的效果和介绍产品。
+
+演示： <https://particles.js.org/demos/recipes/hyperspace>

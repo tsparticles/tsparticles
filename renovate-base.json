@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranchPatterns": ["v4"],
+  "extends": [":preserveSemverRanges", ":dependencyDashboard"],
+  "enabledManagers": ["npm", "github-actions"],
+  "fetchChangeLogs": "off",
+  "ignorePaths": [
+    "**/.angular/**",
+    "**/.output/**",
+    "**/public/manifest.json",
+    "**/src/manifest.json"
+  ],
+  "extractHostRulesFromCache": true
+}

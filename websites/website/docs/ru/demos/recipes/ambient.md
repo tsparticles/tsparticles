@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Отлично подходит для мягкого непрерывного фона с низким визуальным шумом.
+
+Демо: <https://particles.js.org/demos/recipes/ambient>

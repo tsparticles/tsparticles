@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Plus pour les sections wow-effect et le produit d'introduction.
+
+Démo : <https://particles.js.org/demos/recipes/hyperspace>

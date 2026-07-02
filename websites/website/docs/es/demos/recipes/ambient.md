@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideal para fondos suaves y continuos con poco ruido visual.
+
+Demostración: <https://particles.js.org/demos/recipes/ambient>

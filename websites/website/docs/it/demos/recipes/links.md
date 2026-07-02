@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ideale per sfondi di rete/eroe in stile SaaS.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/links>

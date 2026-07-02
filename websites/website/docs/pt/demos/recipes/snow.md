@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Predefinição sazonal leve para promoções de inverno.
+
+Demonstração: <https://particles.js.org/demos/recipes/snow>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 जैविक, बहते पानी के नीचे-प्रेरित एनिमेशन के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/sea-anemone>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 エレガントで流れるようなパーティクル アニメーションや水をテーマにしたエフェクトに最適です。
+
+デモ: <https://particles.js.org/demos/recipes/fountain>

@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 ナチュラルヒーローセクション、ストーリーテリング、ポートフォリオ用のエレガントなプリセット。
+
+デモ: <https://particles.js.org/demos/recipes/firefly>

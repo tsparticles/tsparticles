@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Лучшее для отдельных разделов с вау-эффектом и вводным продуктом.
+
+Демо: <https://particles.js.org/demos/recipes/hyperspace>

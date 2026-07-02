@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Utile per sezioni interattive con movimento più visibile.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/bubbles>

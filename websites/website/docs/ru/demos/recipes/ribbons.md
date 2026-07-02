@@ -63,3 +63,5 @@ await ribbons({
 ```
 
 Полезно для запуска лент с кнопки или конкретного элемента на вашей странице.
+
+Демо: <https://particles.js.org/demos/recipes/ribbons>

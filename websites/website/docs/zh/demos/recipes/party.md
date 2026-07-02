@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合庆祝场景、活动和派对主题叠加层。
+
+演示： <https://particles.js.org/demos/recipes/party>

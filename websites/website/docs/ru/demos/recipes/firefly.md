@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Элегантный набор настроек для разделов с естественными героями, рассказывания историй и портфолио.
+
+Демо: <https://particles.js.org/demos/recipes/firefly>

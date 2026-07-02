@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 बड़े एनिमेटेड सर्कल के साथ न्यूनतम, आधुनिक डिज़ाइन के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/big-circles>

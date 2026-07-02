@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合庆祝活动、公告和节日设计。结合不同的调色板以实现多样性。
+
+演示： <https://particles.js.org/demos/recipes/confetti>

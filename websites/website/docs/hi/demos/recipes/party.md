@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 उत्सव के दृश्यों, आयोजनों और पार्टी-थीम वाले ओवरले के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/party>

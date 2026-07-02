@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Préréglage élégant pour les sections de héros naturels, la narration et les portfolios.
+
+Démo : <https://particles.js.org/demos/recipes/firefly>

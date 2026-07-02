@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 幾何学的なレイアウトとハイテクスタイルのデザインのための強固なベース。
+
+デモ: <https://particles.js.org/demos/recipes/triangles>

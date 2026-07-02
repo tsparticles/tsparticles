@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 用于冬季促销的轻量级季节性预设。
+
+演示： <https://particles.js.org/demos/recipes/snow>

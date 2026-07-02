@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 大きなアニメーション円を備えたミニマルでモダンなデザインに最適です。
+
+デモ: <https://particles.js.org/demos/recipes/big-circles>

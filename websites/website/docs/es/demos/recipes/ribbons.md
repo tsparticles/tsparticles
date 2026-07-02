@@ -63,3 +63,5 @@ await ribbons({
 ```
 
 Útil para activar ribbons desde un botón o un elemento específico de tu página.
+
+Demostración: <https://particles.js.org/demos/recipes/ribbons>

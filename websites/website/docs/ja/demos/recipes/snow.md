@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 冬のプロモーション用の軽量の季節プリセット。
+
+デモ: <https://particles.js.org/demos/recipes/snow>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 お祝いのシーン、イベント、パーティーをテーマにしたオーバーレイに最適です。
+
+デモ: <https://particles.js.org/demos/recipes/party>

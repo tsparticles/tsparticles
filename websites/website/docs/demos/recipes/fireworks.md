@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 High-impact preset: run it only on explicit user interaction (CTA click).
+
+Demo: <https://particles.js.org/demos/recipes/fireworks>

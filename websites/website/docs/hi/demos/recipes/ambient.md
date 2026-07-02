@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 कम दृश्य शोर के साथ नरम, सतत पृष्ठभूमि के लिए बढ़िया।
+
+डेमो: <https://particles.js.org/demos/recipes/ambient>

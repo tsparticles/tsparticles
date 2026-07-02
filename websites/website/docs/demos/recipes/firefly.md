@@ -42,3 +42,5 @@ export function resume(): void {
 ```
 
 Elegant preset for natural hero sections, storytelling, and portfolios.
+
+Demo: <https://particles.js.org/demos/recipes/firefly>

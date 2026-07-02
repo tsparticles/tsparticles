@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Préréglage à fort impact : exécutez-le uniquement sur une interaction explicite de l'utilisateur (clic CTA).
+
+Démo : <https://particles.js.org/demos/recipes/fireworks>

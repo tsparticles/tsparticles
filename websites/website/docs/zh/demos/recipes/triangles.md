@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 几何布局和科技风格设计的坚实基础。
+
+演示： <https://particles.js.org/demos/recipes/triangles>

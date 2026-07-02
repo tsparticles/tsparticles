@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Идеально подходит для героев/сетевых фонов в стиле SaaS.
+
+Демо: <https://particles.js.org/demos/recipes/links>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfetto per design minimali e moderni con grandi cerchi animati.
+
+Dimostrazione: <https://particles.js.org/demos/recipes/big-circles>

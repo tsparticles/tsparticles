@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 非常适合 SaaS 风格的英雄/网络背景。
+
+演示： <https://particles.js.org/demos/recipes/links>

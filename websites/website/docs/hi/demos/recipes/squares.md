@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 ज्यामितीय, संरचित डिज़ाइन और आधुनिक लेआउट के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/squares>

@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 सुरुचिपूर्ण, प्रवाहित कण एनिमेशन और जल-थीम वाले प्रभावों के लिए बिल्कुल सही।
+
+डेमो: <https://particles.js.org/demos/recipes/fountain>

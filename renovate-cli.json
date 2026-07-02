@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>tsparticles/tsparticles:renovate-base"
+  ],
+  "prConcurrentLimit": 2,
+  "branchConcurrentLimit": 2,
+  "prHourlyLimit": 2,
+  "includePaths": ["cli/**"],
+  "branchPrefix": "renovate-cli/",
+  "dependencyDashboardTitle": "Renovate Dashboard (cli)"
+}

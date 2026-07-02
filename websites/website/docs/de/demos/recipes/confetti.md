@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfekt für Feiern, Ankündigungen und festliche Designs. Kombinieren Sie es mit verschiedenen Farbpaletten für Abwechslung.
+
+Demo: <https://particles.js.org/demos/recipes/confetti>

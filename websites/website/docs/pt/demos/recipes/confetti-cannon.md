@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Demonstração: <https://particles.js.org/samples/presets/confettiCannon>
+Demonstração: <https://particles.js.org/demos/recipes/confetti-cannon>
 
 Documentos de origem: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>

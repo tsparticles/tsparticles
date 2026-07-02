@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 उत्सवों, घोषणाओं और उत्सव के डिज़ाइनों के लिए बिल्कुल सही। विविधता के लिए विभिन्न रंग पट्टियों के साथ संयोजन करें।
+
+डेमो: <https://particles.js.org/demos/recipes/confetti>

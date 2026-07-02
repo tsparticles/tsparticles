@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Ótimo para temporadas com efeito wow e produto de introdução.
+
+Demonstração: <https://particles.js.org/demos/recipes/hyperspace>

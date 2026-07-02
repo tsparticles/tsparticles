@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 Perfeito para landing pages espaciais/cósmicas e temas sombrios.
+
+Demonstração: <https://particles.js.org/demos/recipes/stars>

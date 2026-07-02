@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>tsparticles/tsparticles:renovate-base"
+  ],
+  "prConcurrentLimit": 2,
+  "branchConcurrentLimit": 2,
+  "prHourlyLimit": 2,
+  "includePaths": ["templates/**"],
+  "branchPrefix": "renovate-templates/",
+  "dependencyDashboardTitle": "Renovate Dashboard (templates)",
+  "packageRules": [
+    {
+      "matchFileNames": ["templates/**"],
+      "groupName": "templates dependencies"
+    }
+  ]
+}

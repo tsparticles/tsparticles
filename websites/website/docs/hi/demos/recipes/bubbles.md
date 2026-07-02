@@ -40,3 +40,5 @@ export function resume(): void {
 ```
 
 अधिक दृश्यमान गति वाले इंटरैक्टिव अनुभागों के लिए उपयोगी।
+
+डेमो: <https://particles.js.org/demos/recipes/bubbles>
