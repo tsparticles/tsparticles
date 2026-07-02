@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranchPatterns": ["v4"],
+  "extends": [":preserveSemverRanges"],
+  "enabledManagers": ["npm", "github-actions"],
+  "fetchChangeLogs": "off",
+  "ignorePaths": [
+    "**/.angular/**",
+    "**/.output/**",
+    "**/public/manifest.json",
+    "**/src/manifest.json"
+  ],
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 5,
+  "extractHostRulesFromCache": true
+}
