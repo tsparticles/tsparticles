@@ -48,12 +48,12 @@
     "@tsparticles/webpack-plugin": "workspace:*",
     "@types/node": "^26.1.0",
     "@types/webpack-env": "^1.18.8",
-    "browserslist": "^4.28.4",
+    "browserslist": "^4.28.5",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^63.0.10",
+    "eslint-plugin-jsdoc": "^63.0.12",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.2",
     "fs-extra": "^11.3.6",
@@ -72,11 +72,11 @@
     "ts-json-schema-generator": "^2.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.1",
-    "webpack": "^5.108.3",
+    "typescript-eslint": "^8.63.0",
+    "webpack": "^5.108.4",
     "webpack-bundle-analyzer": "^5.3.0",
-    "webpack-cli": "^7.1.0",
+    "webpack-cli": "^7.2.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.10.0"
 }

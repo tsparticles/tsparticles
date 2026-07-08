@@ -86,7 +86,7 @@
     "@electron/windows-sign": "^2.0.6",
     "@malept/cross-spawn-promise": "^2.0.0",
     "@sec-ant/readable-stream": "^0.7.0",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@xmldom/xmldom": "^0.9.10",
     "author-regex": "^1.0.0",
     "balanced-match": "^4.0.4",
