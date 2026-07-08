@@ -105,7 +105,7 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-transform-private-property-in-object": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-env": "^8.0.2",
     "@babel/preset-typescript": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@tsparticles/engine": "workspace:*",
