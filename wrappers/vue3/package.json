@@ -123,7 +123,7 @@
     "@tsconfig/node18": "^18.2.6",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vitejs/plugin-vue-jsx": "^5.1.5",

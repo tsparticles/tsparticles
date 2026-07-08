@@ -126,8 +126,8 @@
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "typescript": "^6.0.3",
-    "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.3",
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^5.2.5"
   },
   "publishConfig": {

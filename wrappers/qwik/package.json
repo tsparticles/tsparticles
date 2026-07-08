@@ -78,7 +78,7 @@
     "@builder.io/qwik": "^1.20.0",
     "@tsparticles/engine": "workspace:*",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
     "eslint": "^10.6.0",

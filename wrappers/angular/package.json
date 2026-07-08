@@ -101,7 +101,7 @@
     "@angular/compiler-cli": "~22.0.4",
     "@tsparticles/prettier-config": "workspace:*",
     "@types/jasmine": "~6.0.0",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "jasmine-core": "~6.3.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",

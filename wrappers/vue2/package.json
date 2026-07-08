@@ -128,7 +128,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tsparticles/prettier-config": "workspace:*",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-vue2": "^2.3.4",
     "eslint": "^10.6.0",
