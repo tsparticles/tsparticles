@@ -10,5 +10,11 @@
     "**/public/manifest.json",
     "**/src/manifest.json"
   ],
-  "extractHostRulesFromCache": true
+  "extractHostRulesFromCache": true,
+  "toolSettings": {
+    "nodeMaxMemory": 2560
+  },
+  "env": {
+    "PNPM_MAX_WORKERS": "2"
+  }
 }
