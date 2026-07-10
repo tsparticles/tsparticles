@@ -1,5 +1,6 @@
-import { MAX_SESSION_ID_LENGTH, RATE_LIMIT_MAX_REQUESTS_PER_WINDOW, RATE_LIMIT_WINDOW_MS, SESSION_ID_PATTERN } from "./constants.js";
 import { timingSafeEqual } from "node:crypto";
+
+import { MAX_SESSION_ID_LENGTH, RATE_LIMIT_MAX_REQUESTS_PER_WINDOW, RATE_LIMIT_WINDOW_MS, SESSION_ID_PATTERN } from "./constants.js";
 
 export function normalizeOrigin(origin: string): string | undefined {
   try {
@@ -108,7 +109,7 @@ export function extractBearerToken(header: string | string[] | undefined): strin
   const value = Array.isArray(header) ? header[0] : header;
   if (!value) return undefined;
 
-  const match = /^Bearer\s+(.+)$/i.exec(value.trim());
+  const match = /^Bearer\s+(\S+)$/i.exec(value.trim());
   return match ? match[1] : undefined;
 }
 

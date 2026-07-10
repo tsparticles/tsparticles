@@ -26,6 +26,7 @@ export async function startHttpServer({
   port,
   allowedOrigins,
   authToken,
+  trustedProxies,
   packageVersion,
   createMcpServer,
 }: StartHttpServerParams): Promise<void> {
@@ -86,8 +87,18 @@ export async function startHttpServer({
 
       // Basic per-IP rate limiting, ahead of auth/origin checks so a
       // flood of requests can't be used to brute-force the auth token
-      // or exhaust the session table.
-      const clientIp = req.socket.remoteAddress ?? "unknown";
+      // or exhaust the session table.  When the request arrives through
+      // a trusted reverse proxy the real client IP is read from the
+      // first value in the X-Forwarded-For header.
+      let clientIp: string;
+      const remoteAddress = req.socket.remoteAddress;
+      if (trustedProxies?.length && remoteAddress && trustedProxies.includes(remoteAddress)) {
+        const forwardedFor = req.headers["x-forwarded-for"];
+        clientIp =
+          typeof forwardedFor === "string" ? forwardedFor.split(",")[0]?.trim() || remoteAddress : remoteAddress;
+      } else {
+        clientIp = remoteAddress ?? "unknown";
+      }
       if (!rateLimiter.allow(clientIp)) {
         res.writeHead(429, { "Content-Type": "application/json", "Retry-After": "60" });
         res.end(JSON.stringify({ error: "Too many requests" }));
@@ -226,11 +237,16 @@ export async function startHttpServer({
 
       // No session id: this must be an initialize request. Spin up a
       // brand new Server + Transport pair dedicated to this session so
-      // that response routing can never cross sessions.
+      // that response routing can never cross sessions.  If setup or
+      // request processing fails before onsessioninitialized fires the
+      // pair is cleaned up explicitly since it was never registered in
+      // the sessions map and would otherwise leak.
       const newServer = createMcpServer();
+      let sessionRegistered = false;
       const transport = new StreamableHTTPServerTransport({
         sessionIdGenerator: () => randomUUID(),
         onsessioninitialized: (newSessionId: string) => {
+          sessionRegistered = true;
           sessions.set(newSessionId, { server: newServer, transport, lastActivity: Date.now() });
         },
         onsessionclosed: (closedSessionId: string) => {
@@ -238,8 +254,15 @@ export async function startHttpServer({
         },
       });
 
-      await newServer.connect(transport);
-      await transport.handleRequest(req, res, parsedBody);
+      try {
+        await newServer.connect(transport);
+        await transport.handleRequest(req, res, parsedBody);
+      } catch (error) {
+        if (!sessionRegistered) {
+          transport.close().catch(() => {});
+        }
+        throw error;
+      }
     } catch (error) {
       console.error("Unhandled HTTP request error:", error);
 

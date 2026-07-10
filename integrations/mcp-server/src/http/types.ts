@@ -19,6 +19,18 @@ export interface StartHttpServerParams {
    * an Origin header at all).
    */
   authToken?: string;
+  /**
+   * Optional list of trusted reverse proxy IP addresses (e.g. the IP of
+   * your nginx/Cloudflare/ALB).  When the direct peer matches one of
+   * these addresses the rate-limiter extracts the client IP from the
+   * first value of the `X-Forwarded-For` header instead of using
+   * `req.socket.remoteAddress` (which would always show the proxy IP).
+   * Falls back to the socket address when the peer is not in this list
+   * or when the header is absent.  If you terminate TLS at a reverse
+   * proxy you should also set this so that origin checks function
+   * correctly.
+   */
+  trustedProxies?: string[];
   packageVersion: string;
   createMcpServer: () => McpServer;
 }

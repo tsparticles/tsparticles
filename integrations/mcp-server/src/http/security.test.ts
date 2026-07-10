@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { afterEach, describe, it, expect, vi } from "vitest";
 import {
   extractBearerToken,
   isInitializeRequest,
@@ -137,6 +137,10 @@ describe("isValidAuthToken", () => {
 });
 
 describe("RateLimiter", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("allows requests under the limit", () => {
     const limiter = new RateLimiter(60_000, 3);
     expect(limiter.allow("client-a")).toBe(true);
@@ -158,19 +162,21 @@ describe("RateLimiter", () => {
     expect(limiter.allow("client-c")).toBe(false);
   });
 
-  it("resets the window after it elapses", async () => {
+  it("resets the window after it elapses", () => {
+    vi.useFakeTimers();
     const limiter = new RateLimiter(10, 1);
     expect(limiter.allow("client-e")).toBe(true);
     expect(limiter.allow("client-e")).toBe(false);
-    await new Promise(resolve => setTimeout(resolve, 20));
+    vi.advanceTimersByTime(15);
     expect(limiter.allow("client-e")).toBe(true);
   });
 
-  it("sweep() removes stale entries", async () => {
+  it("sweep() removes stale entries", () => {
+    vi.useFakeTimers();
     const limiter = new RateLimiter(10, 1);
     limiter.allow("client-f");
     expect(limiter.size).toBe(1);
-    await new Promise(resolve => setTimeout(resolve, 20));
+    vi.advanceTimersByTime(15);
     limiter.sweep();
     expect(limiter.size).toBe(0);
   });
