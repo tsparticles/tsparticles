@@ -19,7 +19,7 @@ export function getBundlesGuideResource(): string {
     "- **@tsparticles/slim**: Standard setup. Use for most projects with interactivity, links, multiple shapes.",
   );
   lines.push(
-    "- **@tsparticles/full**: Advanced setup. Use when you need absorbers, emitters, drag, extra effects.",
+    "- **tsparticles**: Full setup. Use when you need absorbers, emitters, drag, extra effects.",
   );
   lines.push(
     "- **@tsparticles/all**: Maximum setup. Use when you want everything available.",
@@ -36,6 +36,9 @@ export function getBundlesGuideResource(): string {
   lines.push(
     "- **@tsparticles/ribbons**: Ribbon/trail effects. Use for flowing ribbon animations.",
   );
+  lines.push(
+    "- **@tsparticles/pjs**: particles.js compatibility layer. Migrate existing particles.js projects.",
+  );
   lines.push("");
 
   lines.push("## Bundle Hierarchy");
@@ -47,10 +50,12 @@ export function getBundlesGuideResource(): string {
   lines.push("@tsparticles/slim     (basic + interactivity + more shapes/updaters)");
   lines.push("    │");
   lines.push("    ▼");
-  lines.push("@tsparticles/full     (slim + absorbers + emitters + more)");
+  lines.push("tsparticles           (slim + absorbers + emitters + more)");
   lines.push("    │");
-  lines.push("    ▼");
-  lines.push("@tsparticles/all      (full + everything else)");
+  lines.push("    ├──────────────┐");
+  lines.push("    ▼              ▼");
+  lines.push("@tsparticles/all  @tsparticles/pjs");
+  lines.push("    (everything)  (particles.js compat)");
   lines.push("");
   lines.push("Also available (standalone, each extends basic):");
   lines.push("- @tsparticles/confetti");

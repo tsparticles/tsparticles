@@ -2,38 +2,35 @@ import type { SuggestPluginsResult, PackageImport } from "../types.js";
 import { packageCatalog } from "../registry/packages.js";
 import { optionToPlugin } from "../registry/pluginOptions.js";
 import { bundles } from "../registry/bundles.js";
+import { getOptionValue, isOptionEnabled, asArray } from "../utils/optionPath.js";
 
-function getOptionValue(obj: Record<string, unknown>, path: string): unknown {
-  const parts = path.split(".");
-  let current: unknown = obj;
+const EMITTER_SHAPE_PACKAGES: Record<string, string> = {
+  circle: "@tsparticles/plugin-emitters-shape-circle",
+  square: "@tsparticles/plugin-emitters-shape-square",
+  canvas: "@tsparticles/plugin-emitters-shape-canvas",
+  path: "@tsparticles/plugin-emitters-shape-path",
+  polygon: "@tsparticles/plugin-emitters-shape-polygon",
+};
 
-  for (const part of parts) {
-    if (current === undefined || current === null || typeof current !== "object") {
-      return undefined;
-    }
-    current = (current as Record<string, unknown>)[part];
-  }
-
-  return current;
-}
-
-function isOptionEnabled(obj: Record<string, unknown>, path: string): boolean {
-  const value = getOptionValue(obj, path);
-
-  if (value === undefined) return false;
-
-  if (typeof value === "boolean") return value;
-
-  if (Array.isArray(value)) return value.length > 0;
-
-  if (typeof value === "object" && value !== null) {
-    const enableVal = (value as Record<string, unknown>)["enable"];
-    if (typeof enableVal === "boolean") return enableVal;
-    return true;
-  }
-
-  return true;
-}
+const INTERACTION_MODE_PACKAGES: Record<string, string> = {
+  attract: "@tsparticles/interaction-external-attract",
+  bounce: "@tsparticles/interaction-external-bounce",
+  bubble: "@tsparticles/interaction-external-bubble",
+  cannon: "@tsparticles/interaction-external-cannon",
+  connect: "@tsparticles/interaction-external-connect",
+  destroy: "@tsparticles/interaction-external-destroy",
+  drag: "@tsparticles/interaction-external-drag",
+  grab: "@tsparticles/interaction-external-grab",
+  particle: "@tsparticles/interaction-external-particle",
+  pause: "@tsparticles/interaction-external-pause",
+  pop: "@tsparticles/interaction-external-pop",
+  push: "@tsparticles/interaction-external-push",
+  remove: "@tsparticles/interaction-external-remove",
+  repulse: "@tsparticles/interaction-external-repulse",
+  slow: "@tsparticles/interaction-external-slow",
+  trail: "@tsparticles/interaction-external-trail",
+  light: "@tsparticles/interaction-light",
+};
 
 function findBundle(packages: string[]): string | undefined {
   const allNames = new Set(packages);
@@ -49,7 +46,11 @@ function findBundle(packages: string[]): string | undefined {
     },
     {
       name: "@tsparticles/slim",
-      pkgs: ["@tsparticles/plugin-interactivity", "@tsparticles/interaction-particles-links", "@tsparticles/shape-image"],
+      pkgs: [
+        "@tsparticles/plugin-interactivity",
+        "@tsparticles/interaction-particles-links",
+        "@tsparticles/shape-image",
+      ],
     },
     {
       name: "@tsparticles/basic",
@@ -57,13 +58,15 @@ function findBundle(packages: string[]): string | undefined {
     },
   ];
 
+  // Return the first (most feature-complete) bundle whose signature
+  // packages are all present in the matched set. Previously this branch
+  // computed an "extra packages" count and compared it against a
+  // threshold, but returned `bundle.name` unconditionally either way —
+  // the check had no effect on the result and has been removed rather
+  // than kept as dead code.
   for (const bundle of bundlePriority) {
     const allPresent = bundle.pkgs.every(p => allNames.has(p));
     if (allPresent) {
-      const extra = packages.filter(p => !bundle.pkgs.includes(p) && !p.startsWith("@tsparticles/plugin-easing-") && !p.startsWith("@tsparticles/plugin-export-") && p !== "@tsparticles/plugin-blend");
-      if (extra.length <= 3) {
-        return bundle.name;
-      }
       return bundle.name;
     }
   }
@@ -86,7 +89,8 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   const hasAbsorber = options.absorbers !== undefined;
 
   // -- Shape Detection --
-  const shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as Record<string, unknown> | undefined;
+  const shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as
+    Record<string, unknown> | undefined;
   const shapeType = shapeSection?.type;
   const shapeOptions = shapeSection?.options as Record<string, unknown> | undefined;
 
@@ -128,7 +132,8 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   }
 
   // -- Effect Detection --
-  const effectType = (options.particles as Record<string, unknown> | undefined)?.effect as Record<string, unknown> | undefined;
+  const effectType = (options.particles as Record<string, unknown> | undefined)?.effect as
+    Record<string, unknown> | undefined;
   if (effectType?.type) {
     const effectMap: Record<string, string> = {
       bubble: "@tsparticles/effect-bubble",
@@ -143,24 +148,26 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   }
 
   // -- Emitter Shape Detection --
-  const emitterShape = options.emitters as Record<string, unknown> | undefined;
-  if (emitterShape) {
-    const esTypeRaw = (emitterShape.shape as Record<string, unknown> | undefined)?.type;
-    const esNames = getShapeNames(esTypeRaw);
-    const esShapeMap: Record<string, string> = {
-      circle: "@tsparticles/plugin-emitters-shape-circle",
-      square: "@tsparticles/plugin-emitters-shape-square",
-      canvas: "@tsparticles/plugin-emitters-shape-canvas",
-      path: "@tsparticles/plugin-emitters-shape-path",
-      polygon: "@tsparticles/plugin-emitters-shape-polygon",
-    };
-    for (const name of esNames) {
-      const pkg = esShapeMap[name];
-      if (pkg) matched.add(pkg);
+  // `emitters` may be a single config object or an array of them — walk
+  // every entry so array-form configs aren't silently skipped.
+  const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
+  const matchedEmitterShapePackages = new Set<string>();
+  for (const emitter of emitterEntries) {
+    const esTypeRaw = getOptionValue(emitter, "shape.type");
+    for (const name of getShapeNames(esTypeRaw)) {
+      const pkg = EMITTER_SHAPE_PACKAGES[name];
+      if (pkg) {
+        matched.add(pkg);
+        matchedEmitterShapePackages.add(pkg);
+      }
     }
   }
 
-  if (hasInteractivity && !hasInteractivityTools()) {
+  // tsParticles requires @tsparticles/plugin-interactivity whenever
+  // `interactivity` is configured at all — there's no partial substitute
+  // for it, so this is unconditional rather than gated behind a stub
+  // check that always evaluated to true anyway.
+  if (hasInteractivity) {
     matched.add("@tsparticles/plugin-interactivity");
   }
 
@@ -177,17 +184,22 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const interactivityModes = (options.interactivity as Record<string, unknown> | undefined)?.modes as Record<string, unknown> | undefined;
+  const interactivityModes = (options.interactivity as Record<string, unknown> | undefined)?.modes as
+    Record<string, unknown> | undefined;
   if (interactivityModes) {
     for (const mode of Object.keys(interactivityModes)) {
-      const pkg = findInteractionPackageForMode(mode);
+      const pkg = INTERACTION_MODE_PACKAGES[mode];
       if (pkg) matched.add(pkg);
     }
   }
 
   if (hasEmitter) {
     matched.add("@tsparticles/plugin-emitters");
-    if (!matched.has("@tsparticles/plugin-emitters-shape-circle") && !matched.has("@tsparticles/plugin-emitters-shape-square")) {
+    // Only fall back to the default circle emitter shape if none of the
+    // configured emitters resolved to ANY known emitter-shape package
+    // (previously this only checked circle/square, so an emitter using
+    // e.g. "polygon" would incorrectly also get "circle" added).
+    if (matchedEmitterShapePackages.size === 0) {
       matched.add("@tsparticles/plugin-emitters-shape-circle");
     }
   }
@@ -214,7 +226,9 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
   if (suggestedBundle) {
     const bundleInfo = bundles.find(b => b.name === suggestedBundle);
     if (bundleInfo) {
-      alreadyInBundle = matchedArr.filter(p => bundleInfo.packages.includes(p) || bundleInfo.packages.includes(p.replace("@tsparticles/", "")));
+      alreadyInBundle = matchedArr.filter(
+        p => bundleInfo.packages.includes(p) || bundleInfo.packages.includes(p.replace("@tsparticles/", "")),
+      );
     }
   }
 
@@ -224,32 +238,4 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     suggestedBundle: suggestedBundle,
     alreadyInBundle,
   };
-}
-
-function findInteractionPackageForMode(mode: string): string | undefined {
-  const modeMap: Record<string, string> = {
-    attract: "@tsparticles/interaction-external-attract",
-    bounce: "@tsparticles/interaction-external-bounce",
-    bubble: "@tsparticles/interaction-external-bubble",
-    cannon: "@tsparticles/interaction-external-cannon",
-    connect: "@tsparticles/interaction-external-connect",
-    destroy: "@tsparticles/interaction-external-destroy",
-    drag: "@tsparticles/interaction-external-drag",
-    grab: "@tsparticles/interaction-external-grab",
-    particle: "@tsparticles/interaction-external-particle",
-    pause: "@tsparticles/interaction-external-pause",
-    pop: "@tsparticles/interaction-external-pop",
-    push: "@tsparticles/interaction-external-push",
-    remove: "@tsparticles/interaction-external-remove",
-    repulse: "@tsparticles/interaction-external-repulse",
-    slow: "@tsparticles/interaction-external-slow",
-    trail: "@tsparticles/interaction-external-trail",
-    light: "@tsparticles/interaction-light",
-  };
-
-  return modeMap[mode];
-}
-
-function hasInteractivityTools(): boolean {
-  return false;
 }

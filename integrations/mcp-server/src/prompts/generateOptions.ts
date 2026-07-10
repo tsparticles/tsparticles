@@ -1,4 +1,15 @@
-export const generateOptionsPrompt = {
+import type { Prompt } from "@modelcontextprotocol/sdk/types.js";
+
+// ── Prompt metadata ──────────────────────────────────────────────────
+//
+// This is the object returned by `prompts/list`. Per the MCP spec it
+// should only carry metadata (name, description, arguments) — not the
+// actual message content. Typing it explicitly against the SDK's
+// `Prompt` type means the compiler will flag it (excess-property /
+// missing-property errors) if extra fields like `messages` sneak back
+// in here, instead of only being caught by manual review.
+
+export const generateOptionsPrompt: Prompt = {
   name: "generate-options",
   description: "Generate tsParticles configuration from a natural language description",
   arguments: [
@@ -8,12 +19,22 @@ export const generateOptionsPrompt = {
       required: true,
     },
   ],
-  messages: [
-    {
-      role: "system" as const,
-      content: {
-        type: "text" as const,
-        text: `You are a tsParticles configuration expert. Your task is to convert natural language descriptions into valid tsParticles options.
+};
+
+// ── Prompt system text ───────────────────────────────────────────────
+//
+// This is NOT part of the `Prompt` object and is never returned by
+// `prompts/list`. It is plain internal content consumed only by the
+// `prompts/get` handler, which interpolates the actual `description`
+// argument into it at request time and returns a single "user" message
+// (the MCP prompt message schema only allows "user" | "assistant"
+// roles — there is no "system" role to put this in).
+//
+// There is no "{{description}}" placeholder here to substitute — the
+// handler appends the real description as a suffix instead, so there's
+// no templating step to forget or get wrong.
+
+export const generateOptionsSystemText = `You are a tsParticles configuration expert. Your task is to convert natural language descriptions into valid tsParticles options.
 
 ## How to generate configurations:
 
@@ -61,15 +82,4 @@ The options must be valid ISourceOptions. Use only options that correspond to ac
 - \`particles.shape.type\` defaults to "circle" — only specify if different
 - \`particles.move.enable\` is true by default
 - Always include \`background.color\` unless the user wants transparent
-- Use \`preset\` for pre-configured effects when appropriate`,
-      },
-    },
-    {
-      role: "user" as const,
-      content: {
-        type: "text" as const,
-        text: "Generate tsParticles options for: {{description}}",
-      },
-    },
-  ],
-};
+- Use \`preset\` for pre-configured effects when appropriate`;
