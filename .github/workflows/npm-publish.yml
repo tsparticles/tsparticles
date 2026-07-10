@@ -94,14 +94,18 @@ jobs:
       - name: Build and push MCP server Docker image
         env:
           TAG: ${{ github.ref_name }}
+          # Configurable via repo/org variable so the target Docker Hub
+          # namespace isn't hardcoded in the workflow. Set a
+          # "DOCKER_HUB_IMAGE" repository variable (Settings > Secrets
+          # and variables > Actions > Variables) to override the default.
+          IMAGE: ${{ vars.DOCKER_HUB_IMAGE || 'tsparticles/mcp-server' }}
         run: |
-          IMAGE=caelan/tsparticles-mcp-server
-          docker build -f integrations/mcp-server/Dockerfile -t $IMAGE:$TAG .
+          docker build -f integrations/mcp-server/Dockerfile -t "$IMAGE:$TAG" .
           if [ "$IS_STABLE" = "true" ]; then
-            docker tag $IMAGE:$TAG $IMAGE:latest
-            docker push $IMAGE:latest
+            docker tag "$IMAGE:$TAG" "$IMAGE:latest"
+            docker push "$IMAGE:latest"
           fi
-          docker push $IMAGE:$TAG
+          docker push "$IMAGE:$TAG"
 
       # 🧠 Create release + upload assets with retry/backoff
       - name: Create Release (raw)

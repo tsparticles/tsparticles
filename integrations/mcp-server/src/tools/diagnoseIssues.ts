@@ -1,6 +1,7 @@
 import { packageCatalog } from "../registry/packages.js";
 import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
 import { getOptionValue, asArray } from "../utils/optionPath.js";
+import { collectInteractivityModes, parseModeNames } from "../utils/interactivityModes.js";
 
 export interface DiagnosticIssue {
   severity: "error" | "warning" | "info";
@@ -45,37 +46,6 @@ const KNOWN_PARTICLES_KEYS = new Set([
   "bounce",
   "interactivity",
 ]);
-
-function parseModeNames(value: unknown): string[] {
-  if (typeof value === "string") return value.split(/[,\s]+/).filter(Boolean);
-  if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string" && v.length > 0);
-  return [];
-}
-
-function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
-  if (!interactivity) return [];
-
-  const modeNames = new Set<string>();
-  const modesSection = interactivity.modes as Record<string, unknown> | undefined;
-  if (modesSection) {
-    for (const mode of Object.keys(modesSection)) {
-      modeNames.add(mode);
-    }
-  }
-
-  const events = interactivity.events as Record<string, unknown> | undefined;
-  const eventEntries = [events?.onClick, events?.onHover];
-
-  for (const entry of eventEntries) {
-    if (!entry || typeof entry !== "object") continue;
-    const mode = (entry as Record<string, unknown>).mode;
-    for (const modeName of parseModeNames(mode)) {
-      modeNames.add(modeName);
-    }
-  }
-
-  return [...modeNames];
-}
 
 export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssue[] {
   const issues: DiagnosticIssue[] = [];
