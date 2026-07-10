@@ -1,4 +1,5 @@
 import { confetti } from '@tsparticles/confetti';
+import { ribbons } from '@tsparticles/ribbons';
 import './style.css';
 import './cookie-consent.js';
 import ace from 'ace-builds';
@@ -16,6 +17,7 @@ ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
 ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
 
 window.confetti = confetti;
+window.ribbons = ribbons;
 
 const editors = [];
 
@@ -768,6 +770,57 @@ const modes = [
       })();
     },
   },
+
+  {
+    id: 'confetti-ribbons',
+    name: 'Confetti + Ribbons',
+    description: [
+      {
+        cssClass: '',
+        text: 'Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.',
+      },
+      {
+        cssClass: 'center',
+        text: 'Double the celebration!',
+      },
+    ],
+    fn: function () {
+      const duration = 6000;
+      const animationEnd = Date.now() + duration;
+
+      const confettiInterval = setInterval(function () {
+        if (Date.now() >= animationEnd) {
+          return clearInterval(confettiInterval);
+        }
+
+        confetti({
+          particleCount: 8,
+          angle: 90,
+          spread: 70,
+          origin: { x: Math.random(), y: 0 },
+          gravity: 1.2,
+          ticks: 0,
+          colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
+        });
+      }, 50);
+
+      setTimeout(function () {
+        ribbons({
+          colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
+        });
+
+        const ribbonsInterval = setInterval(function () {
+          if (Date.now() >= animationEnd) {
+            return clearInterval(ribbonsInterval);
+          }
+
+          ribbons({
+            colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
+          });
+        }, 2000);
+      }, 2000);
+    },
+  },
 ];
 
 function renderModes(modes) {
@@ -842,7 +895,14 @@ function getCode(name) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await confetti.init();
+  // IMPORTANT: All tsParticles plugins (confetti, ribbons, etc.) must be registered
+  // BEFORE the engine is initialized via engine.load(). Once engine.load() runs
+  // (triggered by any confetti() or ribbons() call), PluginManager.init() is called
+  // and any subsequent pluginManager.register() will throw:
+  //   "Register plugins can only be done before calling tsParticles.load()"
+  // We register both confetti and ribbons upfront to guarantee all plugins are
+  // available regardless of which demo the user runs first.
+  await Promise.all([confetti.init(), ribbons.init()]);
 
   updateShareLinks();
   updateShareOrder();
