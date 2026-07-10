@@ -1,9 +1,4 @@
 FROM node:22-alpine AS build
-# NOTE: pin this to a specific digest for fully reproducible/immutable
-# builds once you've verified one for your target platform(s), e.g.:
-#   docker pull node:22-alpine && docker inspect --format='{{index .RepoDigests 0}}' node:22-alpine
-# then replace the line above with `FROM node:22-alpine@sha256:<digest> AS build`
-# (and the second FROM below with the same digest).
 RUN corepack enable
 WORKDIR /app
 
@@ -21,13 +16,16 @@ RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server --ignore-scr
 # Build
 RUN pnpm --filter @tsparticles/mcp-server exec tsc
 
-# Prune to production deps only
-RUN pnpm --filter @tsparticles/mcp-server deploy --prod --legacy /tmp/app
+# Copy build output + package.json to a clean directory
+RUN mkdir -p /tmp/app/dist && \
+    cp integrations/mcp-server/dist/* /tmp/app/dist/ && \
+    cp integrations/mcp-server/package.json /tmp/app/
+
+# Install production deps outside the workspace
+WORKDIR /tmp/app
+RUN npm install --omit=dev --ignore-scripts
 
 FROM node:22-alpine
-# tini acts as a proper PID 1: reaps zombie processes and forwards
-# signals (SIGTERM/SIGINT) to the Node process so graceful shutdown
-# actually runs instead of the container being killed outright.
 RUN apk add --no-cache tini
 RUN addgroup --system --gid 1001 app && adduser --system --uid 1001 app
 WORKDIR /app
