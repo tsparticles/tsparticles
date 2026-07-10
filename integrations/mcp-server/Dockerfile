@@ -17,8 +17,8 @@ RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server --ignore-scr
 RUN pnpm --filter @tsparticles/mcp-server exec tsc
 
 # Copy build output + package.json to a clean directory
-RUN mkdir -p /tmp/app/dist && \
-    cp integrations/mcp-server/dist/* /tmp/app/dist/ && \
+RUN mkdir -p /tmp/app && \
+    cp -r integrations/mcp-server/dist /tmp/app/dist && \
     cp integrations/mcp-server/package.json /tmp/app/
 
 # Install production deps outside the workspace
