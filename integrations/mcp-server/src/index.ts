@@ -395,6 +395,7 @@ async function startHttp(port: number) {
         await transport.close();
       }
       sessions.clear();
+      requestToSession.clear();
     },
     send: async (message, options) => {
       const msg = message as { id?: string | number };
@@ -459,7 +460,8 @@ async function startHttp(port: number) {
         return;
       }
 
-      const sessionId = req.headers["mcp-session-id"] as string | undefined;
+      const sessionIdHeader = req.headers["mcp-session-id"];
+      const sessionId = Array.isArray(sessionIdHeader) ? sessionIdHeader[0] : sessionIdHeader;
 
       if (sessionId) {
         const transport = sessions.get(sessionId);
@@ -470,9 +472,11 @@ async function startHttp(port: number) {
         }
         await transport.handleRequest(req, res, parsedBody);
       } else {
+        let currentSessionId: string | undefined;
         const transport = new StreamableHTTPServerTransport({
           sessionIdGenerator: () => randomUUID(),
           onsessioninitialized: (newSessionId: string) => {
+            currentSessionId = newSessionId;
             sessions.set(newSessionId, transport);
           },
           onsessionclosed: (closedSessionId: string) => {
@@ -487,8 +491,8 @@ async function startHttp(port: number) {
 
         transport.onmessage = (message, extra) => {
           const msg = message as { id?: string | number };
-          if (msg.id !== undefined) {
-            requestToSession.set(msg.id, transport.sessionId!);
+          if (msg.id !== undefined && currentSessionId) {
+            requestToSession.set(msg.id, currentSessionId);
           }
           routingTransport.onmessage?.(message, extra);
         };
