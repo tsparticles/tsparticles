@@ -11,6 +11,7 @@ import {
   ListPromptsRequestSchema,
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
+import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 
 import { suggestPlugins } from "./tools/suggestPlugins.js";
 import { listPackages } from "./tools/listPackages.js";
@@ -384,9 +385,37 @@ async function startStdio() {
 }
 
 async function startHttp(port: number) {
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
-  });
+  const sessions = new Map<string, StreamableHTTPServerTransport>();
+  const requestToSession = new Map<string | number, string>();
+
+  const routingTransport: Transport = {
+    start: async () => {},
+    close: async () => {
+      for (const transport of sessions.values()) {
+        await transport.close();
+      }
+      sessions.clear();
+    },
+    send: async (message, options) => {
+      const msg = message as { id?: string | number };
+      const requestId = msg.id ?? options?.relatedRequestId;
+      if (requestId !== undefined) {
+        const sessionId = requestToSession.get(requestId);
+        if (sessionId) {
+          const transport = sessions.get(sessionId);
+          if (transport) {
+            await transport.send(message, options);
+          }
+        }
+      }
+    },
+    onclose: undefined,
+    onerror: undefined,
+    onmessage: undefined,
+    sessionId: undefined,
+  };
+
+  await server.connect(routingTransport);
 
   const httpServer = createServer(async (req, res) => {
     // Health check endpoint
@@ -430,7 +459,46 @@ async function startHttp(port: number) {
         return;
       }
 
-      await transport.handleRequest(req, res, parsedBody);
+      const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+      if (sessionId) {
+        const transport = sessions.get(sessionId);
+        if (!transport) {
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Session not found" }));
+          return;
+        }
+        await transport.handleRequest(req, res, parsedBody);
+      } else {
+        const transport = new StreamableHTTPServerTransport({
+          sessionIdGenerator: () => randomUUID(),
+          onsessioninitialized: (newSessionId: string) => {
+            sessions.set(newSessionId, transport);
+          },
+          onsessionclosed: (closedSessionId: string) => {
+            sessions.delete(closedSessionId);
+            for (const [rid, sid] of requestToSession) {
+              if (sid === closedSessionId) {
+                requestToSession.delete(rid);
+              }
+            }
+          },
+        });
+
+        transport.onmessage = (message, extra) => {
+          const msg = message as { id?: string | number };
+          if (msg.id !== undefined) {
+            requestToSession.set(msg.id, transport.sessionId!);
+          }
+          routingTransport.onmessage?.(message, extra);
+        };
+
+        transport.onerror = (error) => {
+          routingTransport.onerror?.(error);
+        };
+
+        await transport.handleRequest(req, res, parsedBody);
+      }
       return;
     }
 
@@ -442,8 +510,6 @@ async function startHttp(port: number) {
     console.error(`tsParticles MCP server running on http://0.0.0.0:${port}/mcp`);
     console.error(`Health check: http://0.0.0.0:${port}/health`);
   });
-
-  await server.connect(transport);
 }
 
 async function main() {

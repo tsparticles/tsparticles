@@ -113,8 +113,10 @@ jobs:
       # ✨ Prettify changelog → per package
       - name: Prettify changelog
         if: env.IS_STABLE == 'true'
+        env:
+          RELEASE_BODY: ${{ steps.release.outputs.body }}
         run: |
-          echo "${{ steps.release.outputs.body }}" > RAW_RELEASE.md
+          printf '%s\n' "$RELEASE_BODY" > RAW_RELEASE.md
           pnpm run release:prettify-changelog
 
       # 🔁 Update release con changelog finale
