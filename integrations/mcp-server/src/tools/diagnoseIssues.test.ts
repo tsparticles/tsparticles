@@ -53,6 +53,16 @@ describe("diagnoseIssues", () => {
     expect(issues.some(i => i.title.includes("Interactivity plugin"))).toBe(true);
   });
 
+  it("should detect interaction mode from events.onClick.mode", () => {
+    const issues = diagnoseIssues({
+      interactivity: {
+        events: { onClick: { mode: "push" } },
+      },
+    });
+
+    expect(issues.some(i => i.title.includes("Interaction mode 'push'"))).toBe(true);
+  });
+
   it("should detect shape plugin needed", () => {
     const issues = diagnoseIssues({
       particles: {

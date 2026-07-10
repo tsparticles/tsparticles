@@ -1,4 +1,5 @@
 import { packageCatalog } from "../registry/packages.js";
+import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
 import { getOptionValue, asArray } from "../utils/optionPath.js";
 
 export interface DiagnosticIssue {
@@ -45,6 +46,37 @@ const KNOWN_PARTICLES_KEYS = new Set([
   "interactivity",
 ]);
 
+function parseModeNames(value: unknown): string[] {
+  if (typeof value === "string") return value.split(/[,\s]+/).filter(Boolean);
+  if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string" && v.length > 0);
+  return [];
+}
+
+function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
+  if (!interactivity) return [];
+
+  const modeNames = new Set<string>();
+  const modesSection = interactivity.modes as Record<string, unknown> | undefined;
+  if (modesSection) {
+    for (const mode of Object.keys(modesSection)) {
+      modeNames.add(mode);
+    }
+  }
+
+  const events = interactivity.events as Record<string, unknown> | undefined;
+  const eventEntries = [events?.onClick, events?.onHover];
+
+  for (const entry of eventEntries) {
+    if (!entry || typeof entry !== "object") continue;
+    const mode = (entry as Record<string, unknown>).mode;
+    for (const modeName of parseModeNames(mode)) {
+      modeNames.add(modeName);
+    }
+  }
+
+  return [...modeNames];
+}
+
 export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssue[] {
   const issues: DiagnosticIssue[] = [];
 
@@ -68,7 +100,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
       relatedPackages: [
         "@tsparticles/basic",
         "@tsparticles/slim",
-        "@tsparticles/full",
+        "tsparticles",
       ],
     });
   }
@@ -165,7 +197,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
       typeof shapeType === "string"
         ? shapeType.split(/[,\s]+/).filter(Boolean)
         : Array.isArray(shapeType)
-          ? shapeType.filter(Boolean)
+          ? shapeType.filter((v): v is string => typeof v === "string" && v.length > 0)
           : [];
     for (const name of names) {
       const cleanName = name.replace("@tsparticles/", "");
@@ -207,38 +239,17 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   }
 
   // ── Missing Interaction Packages ────────────────────────────────
-  const modes = getOptionValue(options, "interactivity.modes") as Record<string, unknown> | undefined;
-  if (modes) {
-    const modeToPackage: Record<string, string> = {
-      attract: "@tsparticles/interaction-external-attract",
-      bounce: "@tsparticles/interaction-external-bounce",
-      bubble: "@tsparticles/interaction-external-bubble",
-      cannon: "@tsparticles/interaction-external-cannon",
-      connect: "@tsparticles/interaction-external-connect",
-      destroy: "@tsparticles/interaction-external-destroy",
-      drag: "@tsparticles/interaction-external-drag",
-      grab: "@tsparticles/interaction-external-grab",
-      particle: "@tsparticles/interaction-external-particle",
-      pause: "@tsparticles/interaction-external-pause",
-      pop: "@tsparticles/interaction-external-pop",
-      push: "@tsparticles/interaction-external-push",
-      remove: "@tsparticles/interaction-external-remove",
-      repulse: "@tsparticles/interaction-external-repulse",
-      slow: "@tsparticles/interaction-external-slow",
-      trail: "@tsparticles/interaction-external-trail",
-      light: "@tsparticles/interaction-light",
-    };
-
-    for (const [mode, pkg] of Object.entries(modeToPackage)) {
-      if (getOptionValue(options, `interactivity.modes.${mode}`) !== undefined) {
-        issues.push({
-          severity: "info",
-          title: `Interaction mode '${mode}' needs package`,
-          description: `Interactivity mode '${mode}' is configured. Make sure ${pkg} is loaded, otherwise the mode won't produce any effect.`,
-          fix: `Install and load ${pkg}.`,
-          relatedPackages: [pkg],
-        });
-      }
+  const interactionModes = collectInteractivityModes(interactivity as Record<string, unknown> | undefined);
+  for (const mode of interactionModes) {
+    const pkg = INTERACTION_MODE_PACKAGES[mode];
+    if (pkg) {
+      issues.push({
+        severity: "info",
+        title: `Interaction mode '${mode}' needs package`,
+        description: `Interactivity mode '${mode}' is configured. Make sure ${pkg} is loaded, otherwise the mode won't produce any effect.`,
+        fix: `Install and load ${pkg}.`,
+        relatedPackages: [pkg],
+      });
     }
   }
 
@@ -342,31 +353,26 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // `emitters` may be a single object or an array of emitter configs —
   // normalize before reading `.shape.type` so array configs aren't
   // silently skipped.
-  const esShapeMap: Record<string, string> = {
-    circle: "@tsparticles/plugin-emitters-shape-circle",
-    square: "@tsparticles/plugin-emitters-shape-square",
-    canvas: "@tsparticles/plugin-emitters-shape-canvas",
-    path: "@tsparticles/plugin-emitters-shape-path",
-    polygon: "@tsparticles/plugin-emitters-shape-polygon",
-  };
   const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
   const reportedEmitterShapes = new Set<string>();
   for (const emitter of emitterEntries) {
     const shapeType = getOptionValue(emitter, "shape.type");
     if (!shapeType) continue;
-    const name = String(shapeType);
-    if (reportedEmitterShapes.has(name)) continue;
-    reportedEmitterShapes.add(name);
 
-    const pkg = esShapeMap[name];
-    if (pkg) {
-      issues.push({
-        severity: "info",
-        title: `Emitter shape '${name}' needs package`,
-        description: `Emitter shape type '${name}' requires ${pkg}. Without it, the default circle shape will be used.`,
-        fix: `Install and load ${pkg}.`,
-        relatedPackages: [pkg],
-      });
+    for (const name of parseModeNames(shapeType)) {
+      if (reportedEmitterShapes.has(name)) continue;
+      reportedEmitterShapes.add(name);
+
+      const pkg = EMITTER_SHAPE_PACKAGES[name];
+      if (pkg) {
+        issues.push({
+          severity: "info",
+          title: `Emitter shape '${name}' needs package`,
+          description: `Emitter shape type '${name}' requires ${pkg}. Without it, the default circle shape will be used.`,
+          fix: `Install and load ${pkg}.`,
+          relatedPackages: [pkg],
+        });
+      }
     }
   }
 

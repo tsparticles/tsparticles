@@ -136,6 +136,21 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/interaction-external-bubble");
   });
 
+  it("should detect interactivity mode from events.onClick.mode", () => {
+    const result = suggestPlugins({
+      interactivity: {
+        events: {
+          onClick: {
+            mode: "push",
+          },
+        },
+      },
+    });
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+    expect(result.npmPackages).toContain("@tsparticles/interaction-external-push");
+  });
+
   it("should detect emitter shapes", () => {
     const result = suggestPlugins({
       emitters: {

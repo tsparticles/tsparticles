@@ -8,6 +8,20 @@ services:
     restart: unless-stopped
     environment:
       - PORT=3000
+      # Set this to require an Authorization: Bearer <token> header on
+      # every /mcp request. Strongly recommended if this service is
+      # reachable outside your local machine (tunnel, reverse proxy, etc).
+      - MCP_AUTH_TOKEN=${MCP_AUTH_TOKEN:-}
+    # Container hardening: no extra Linux capabilities, no privilege
+    # escalation, read-only root filesystem (the app doesn't need to
+    # write to disk — it only serves in-memory data).
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
 
   # Cloudflare Tunnel — exposes the server via HTTPS without opening firewall ports.
   #   docker compose --profile tunnel up
@@ -19,5 +33,7 @@ services:
     depends_on:
       - mcp-server
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     profiles:
       - tunnel

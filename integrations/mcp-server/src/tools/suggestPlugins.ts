@@ -3,34 +3,38 @@ import { packageCatalog } from "../registry/packages.js";
 import { optionToPlugin } from "../registry/pluginOptions.js";
 import { bundles } from "../registry/bundles.js";
 import { getOptionValue, isOptionEnabled, asArray } from "../utils/optionPath.js";
+import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
 
-const EMITTER_SHAPE_PACKAGES: Record<string, string> = {
-  circle: "@tsparticles/plugin-emitters-shape-circle",
-  square: "@tsparticles/plugin-emitters-shape-square",
-  canvas: "@tsparticles/plugin-emitters-shape-canvas",
-  path: "@tsparticles/plugin-emitters-shape-path",
-  polygon: "@tsparticles/plugin-emitters-shape-polygon",
-};
+function parseModeNames(value: unknown): string[] {
+  if (typeof value === "string") return value.split(/[,\s]+/).filter(Boolean);
+  if (Array.isArray(value)) return value.filter((v): v is string => typeof v === "string" && v.length > 0);
+  return [];
+}
 
-const INTERACTION_MODE_PACKAGES: Record<string, string> = {
-  attract: "@tsparticles/interaction-external-attract",
-  bounce: "@tsparticles/interaction-external-bounce",
-  bubble: "@tsparticles/interaction-external-bubble",
-  cannon: "@tsparticles/interaction-external-cannon",
-  connect: "@tsparticles/interaction-external-connect",
-  destroy: "@tsparticles/interaction-external-destroy",
-  drag: "@tsparticles/interaction-external-drag",
-  grab: "@tsparticles/interaction-external-grab",
-  particle: "@tsparticles/interaction-external-particle",
-  pause: "@tsparticles/interaction-external-pause",
-  pop: "@tsparticles/interaction-external-pop",
-  push: "@tsparticles/interaction-external-push",
-  remove: "@tsparticles/interaction-external-remove",
-  repulse: "@tsparticles/interaction-external-repulse",
-  slow: "@tsparticles/interaction-external-slow",
-  trail: "@tsparticles/interaction-external-trail",
-  light: "@tsparticles/interaction-light",
-};
+function collectInteractivityModes(interactivity: Record<string, unknown> | undefined): string[] {
+  if (!interactivity) return [];
+
+  const modeNames = new Set<string>();
+  const modesSection = interactivity.modes as Record<string, unknown> | undefined;
+  if (modesSection) {
+    for (const mode of Object.keys(modesSection)) {
+      modeNames.add(mode);
+    }
+  }
+
+  const events = interactivity.events as Record<string, unknown> | undefined;
+  const eventEntries = [events?.onClick, events?.onHover];
+
+  for (const entry of eventEntries) {
+    if (!entry || typeof entry !== "object") continue;
+    const mode = (entry as Record<string, unknown>).mode;
+    for (const modeName of parseModeNames(mode)) {
+      modeNames.add(modeName);
+    }
+  }
+
+  return [...modeNames];
+}
 
 function findBundle(packages: string[]): string | undefined {
   const allNames = new Set(packages);
@@ -41,7 +45,7 @@ function findBundle(packages: string[]): string | undefined {
       pkgs: ["@tsparticles/plugin-background-mask", "@tsparticles/plugin-canvas-mask", "@tsparticles/plugin-sounds"],
     },
     {
-      name: "@tsparticles/full",
+      name: "tsparticles",
       pkgs: ["@tsparticles/plugin-absorbers", "@tsparticles/plugin-emitters", "@tsparticles/interaction-external-drag"],
     },
     {
@@ -184,13 +188,10 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const interactivityModes = (options.interactivity as Record<string, unknown> | undefined)?.modes as
-    Record<string, unknown> | undefined;
-  if (interactivityModes) {
-    for (const mode of Object.keys(interactivityModes)) {
-      const pkg = INTERACTION_MODE_PACKAGES[mode];
-      if (pkg) matched.add(pkg);
-    }
+  const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
+  for (const mode of interactivityModes) {
+    const pkg = INTERACTION_MODE_PACKAGES[mode];
+    if (pkg) matched.add(pkg);
   }
 
   if (hasEmitter) {

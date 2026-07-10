@@ -84,6 +84,25 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # 🐳 Build & push MCP server Docker image
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push MCP server Docker image
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          IMAGE=caelan/tsparticles-mcp-server
+          docker build -f integrations/mcp-server/Dockerfile -t $IMAGE:$TAG .
+          if [ "$IS_STABLE" = "true" ]; then
+            docker tag $IMAGE:$TAG $IMAGE:latest
+            docker push $IMAGE:latest
+          fi
+          docker push $IMAGE:$TAG
+
       # 🧠 Create release + upload assets with retry/backoff
       - name: Create Release (raw)
         if: env.IS_STABLE == 'true'

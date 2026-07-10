@@ -52,7 +52,7 @@ export const generateOptionsSystemText = `You are a tsParticles configuration ex
 ## Bundle recommendation rules:
 - **Simple circles with basic movement** → \`@tsparticles/basic\`
 - **Interactivity (hover/click) + links + multiple shapes** → \`@tsparticles/slim\`
-- **Emitters/absorbers + extra effects** → \`@tsparticles/full\`
+- **Emitters/absorbers + extra effects** → \`tsparticles\`
 - **Everything** → \`@tsparticles/all\`
 - **Confetti effects** → \`@tsparticles/confetti\`
 - **Fireworks effects** → \`@tsparticles/fireworks\`

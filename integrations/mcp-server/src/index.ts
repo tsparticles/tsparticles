@@ -2,7 +2,6 @@
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
@@ -11,6 +10,9 @@ import {
   ListPromptsRequestSchema,
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 
 import { suggestPlugins } from "./tools/suggestPlugins.js";
 import { listPackages } from "./tools/listPackages.js";
@@ -20,14 +22,35 @@ import { getOptionsGuideResource } from "./resources/optionsGuide.js";
 import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
 import { generateOptionsPrompt, generateOptionsSystemText } from "./prompts/generateOptions.js";
 import { diagnoseIssues } from "./tools/diagnoseIssues.js";
+import { startHttpServer } from "./http/server.js";
+import { normalizeOrigin } from "./http/security.js";
+import {
+  diagnoseIssuesArgsSchema,
+  formatZodError,
+  getPackageInfoArgsSchema,
+  listPackagesArgsSchema,
+  suggestPluginsArgsSchema,
+} from "./validation.js";
 
-import { createServer } from "node:http";
-import { randomUUID } from "node:crypto";
+// Read the package version from package.json at runtime instead of
+// hardcoding a value here, so `/health` and the MCP handshake never
+// drift out of sync with the published package version. Falls back to
+// "0.0.0" if, for some reason, package.json can't be located/parsed —
+// this must never throw and prevent the server from starting.
+function readPackageVersion(): string {
+  try {
+    const __dirname = dirname(fileURLToPath(import.meta.url));
+    // dist/index.js -> ../package.json (works both from src via ts-node
+    // style resolution and from the compiled dist/ output).
+    const pkgPath = join(__dirname, "..", "package.json");
+    const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as { version?: string };
+    return typeof pkg.version === "string" ? pkg.version : "0.0.0";
+  } catch {
+    return "0.0.0";
+  }
+}
 
-const PACKAGE_VERSION = "0.1.0";
-const MAX_REQUEST_BODY_BYTES = 1024 * 1024; // 1 MB
-const SESSION_IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
-const SESSION_SWEEP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
+const PACKAGE_VERSION = readPackageVersion();
 
 // ── CLI args ───────────────────────────────────────────────────────
 
@@ -35,6 +58,7 @@ interface ParsedArgs {
   mode: "stdio" | "http";
   port?: number;
   allowedOrigins?: string[];
+  authToken?: string;
 }
 
 function parseArgs(): ParsedArgs {
@@ -53,7 +77,18 @@ function parseArgs(): ParsedArgs {
       rawPort = args[i].split("=")[1];
     } else if (args[i] === "--allowed-origin" && i + 1 < args.length) {
       result.allowedOrigins = (result.allowedOrigins ?? []).concat(args[++i]);
+    } else if (args[i] === "--auth-token" && i + 1 < args.length) {
+      result.authToken = args[++i];
+    } else if (args[i].startsWith("--auth-token=")) {
+      result.authToken = args[i].slice("--auth-token=".length);
     }
+  }
+
+  // Allow the token to be supplied via environment variable too, so it
+  // doesn't need to appear in shell history / process listings. The CLI
+  // flag takes precedence if both are set.
+  if (!result.authToken && process.env.MCP_AUTH_TOKEN) {
+    result.authToken = process.env.MCP_AUTH_TOKEN;
   }
 
   if (result.mode === "http") {
@@ -65,6 +100,26 @@ function parseArgs(): ParsedArgs {
       process.exit(1);
     }
     result.port = port;
+
+    if (result.allowedOrigins && result.allowedOrigins.length > 0) {
+      const normalized = result.allowedOrigins.map((origin) => normalizeOrigin(origin));
+
+      if (normalized.some((origin) => !origin)) {
+        console.error("Invalid --allowed-origin value. Use full origin like http://localhost:3000");
+        process.exit(1);
+      }
+
+      result.allowedOrigins = [...new Set(normalized as string[])];
+    }
+  } else {
+    if (result.allowedOrigins && result.allowedOrigins.length > 0) {
+      console.error("--allowed-origin can only be used with HTTP mode (--port <number>)");
+      process.exit(1);
+    }
+    if (result.authToken) {
+      console.error("--auth-token can only be used with HTTP mode (--port <number>)");
+      process.exit(1);
+    }
   }
 
   return result;
@@ -161,6 +216,7 @@ function createMcpServer(): Server {
                   "plugin",
                   "interaction-external",
                   "interaction-particles",
+                  "interaction-light",
                   "updater",
                   "shape",
                   "effect",
@@ -216,69 +272,89 @@ function createMcpServer(): Server {
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
 
-    switch (name) {
-      case "suggest_plugins": {
-        const options = args?.options as Record<string, unknown>;
-        if (!options) {
+    try {
+      switch (name) {
+        case "suggest_plugins": {
+          const parsed = suggestPluginsArgsSchema.safeParse(args);
+          if (!parsed.success) {
+            return {
+              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
+              isError: true,
+            };
+          }
+          const result = suggestPlugins(parsed.data.options);
+          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+        }
+
+        case "list_packages": {
+          const parsed = listPackagesArgsSchema.safeParse(args ?? {});
+          if (!parsed.success) {
+            return {
+              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
+              isError: true,
+            };
+          }
+          const result = listPackages(parsed.data);
+          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+        }
+
+        case "get_package_info": {
+          const parsed = getPackageInfoArgsSchema.safeParse(args);
+          if (!parsed.success) {
+            return {
+              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
+              isError: true,
+            };
+          }
+          const result = getPackageInfo(parsed.data.package);
+          if (!result) {
+            return {
+              content: [
+                {
+                  type: "text",
+                  text: `Package "${parsed.data.package}" not found. Use list_packages to see all available packages.`,
+                },
+              ],
+              isError: true,
+            };
+          }
+          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+        }
+
+        case "diagnose_issues": {
+          const parsed = diagnoseIssuesArgsSchema.safeParse(args);
+          if (!parsed.success) {
+            return {
+              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
+              isError: true,
+            };
+          }
+          const issues = diagnoseIssues(parsed.data.options);
           return {
-            content: [{ type: "text", text: "Missing required argument: options" }],
-            isError: true,
+            content: [{ type: "text", text: JSON.stringify({ issues, total: issues.length }, null, 2) }],
           };
         }
-        const result = suggestPlugins(options);
-        return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
-      }
 
-      case "list_packages": {
-        const filters: { category?: string; query?: string } = {};
-        if (args?.category) filters.category = args.category as string;
-        if (args?.query) filters.query = args.query as string;
-        const result = listPackages(filters);
-        return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
-      }
-
-      case "get_package_info": {
-        const pkg = args?.package as string;
-        if (!pkg) {
+        default:
           return {
-            content: [{ type: "text", text: "Missing required argument: package" }],
+            content: [{ type: "text", text: `Unknown tool: ${name}` }],
             isError: true,
           };
-        }
-        const result = getPackageInfo(pkg);
-        if (!result) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: `Package "${pkg}" not found. Use list_packages to see all available packages.`,
-              },
-            ],
-            isError: true,
-          };
-        }
-        return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
       }
-
-      case "diagnose_issues": {
-        const options = args?.options as Record<string, unknown>;
-        if (!options) {
-          return {
-            content: [{ type: "text", text: "Missing required argument: options" }],
-            isError: true,
-          };
-        }
-        const issues = diagnoseIssues(options);
-        return {
-          content: [{ type: "text", text: JSON.stringify({ issues, total: issues.length }, null, 2) }],
-        };
-      }
-
-      default:
-        return {
-          content: [{ type: "text", text: `Unknown tool: ${name}` }],
-          isError: true,
-        };
+    } catch (error) {
+      // Tool implementations are expected to be pure/synchronous and
+      // shouldn't normally throw, but a malformed-yet-schema-valid
+      // options object (or a future bug) could still trigger an
+      // unexpected exception. Without this guard, that exception would
+      // propagate out of the handler and either crash the transport or
+      // produce a malformed JSON-RPC response instead of a clean
+      // `isError: true` tool result.
+      console.error(`Error running tool "${name}":`, error);
+      const message = error instanceof Error ? error.message : String(error);
+      return {
+        content: [{ type: "text", text: `Internal error running tool "${name}": ${message}` }],
+        isError: true,
+      };
     }
   });
 
@@ -365,203 +441,19 @@ async function startStdio() {
   console.error("tsParticles MCP server running on stdio");
 }
 
-// ── Start Server: HTTP (Streamable HTTP transport) ──────────────────
-
-interface SessionEntry {
-  server: Server;
-  transport: StreamableHTTPServerTransport;
-  lastActivity: number;
-}
-
-function isOriginAllowed(origin: string | undefined, allowedOrigins?: string[]): boolean {
-  // No Origin header at all (e.g. non-browser clients, curl) is allowed —
-  // the Origin check exists to defend against DNS-rebinding attacks from
-  // browser contexts, which always send this header.
-  if (!origin) return true;
-
-  if (allowedOrigins && allowedOrigins.length > 0) {
-    return allowedOrigins.includes(origin);
-  }
-
-  // Default: only allow local origins when no explicit allow-list is
-  // configured, since the server binds to 0.0.0.0 with no auth.
-  try {
-    const { hostname } = new URL(origin);
-    return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1";
-  } catch {
-    return false;
-  }
-}
-
-async function startHttp(port: number, allowedOrigins?: string[]) {
-  const sessions = new Map<string, SessionEntry>();
-
-  function touchSession(sessionId: string) {
-    const entry = sessions.get(sessionId);
-    if (entry) entry.lastActivity = Date.now();
-  }
-
-  async function closeSession(sessionId: string) {
-    const entry = sessions.get(sessionId);
-    if (!entry) return;
-    sessions.delete(sessionId);
-    try {
-      await entry.transport.close();
-    } catch (err) {
-      console.error(`Error closing session ${sessionId}:`, err);
-    }
-  }
-
-  // Periodically sweep idle sessions so a client that disconnects
-  // without a clean DELETE doesn't leak memory indefinitely.
-  const sweepInterval = setInterval(() => {
-    const now = Date.now();
-    for (const [sessionId, entry] of sessions) {
-      if (now - entry.lastActivity > SESSION_IDLE_TIMEOUT_MS) {
-        void closeSession(sessionId);
-      }
-    }
-  }, SESSION_SWEEP_INTERVAL_MS);
-  sweepInterval.unref();
-
-  const httpServer = createServer(async (req, res) => {
-    // Health check endpoint
-    if (req.method === "GET" && req.url === "/health") {
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ status: "ok", version: PACKAGE_VERSION }));
-      return;
-    }
-
-    if (req.url !== "/mcp") {
-      res.writeHead(404);
-      res.end("Not found");
-      return;
-    }
-
-    // Defend against DNS rebinding: reject browser-originated requests
-    // from origins we don't recognize.
-    const originHeader = req.headers.origin;
-    if (!isOriginAllowed(originHeader, allowedOrigins)) {
-      res.writeHead(403, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Origin not allowed" }));
-      return;
-    }
-
-    const sessionIdHeader = req.headers["mcp-session-id"];
-    const sessionId = Array.isArray(sessionIdHeader) ? sessionIdHeader[0] : sessionIdHeader;
-
-    // GET is used by clients to open the server->client SSE stream on an
-    // existing session.
-    if (req.method === "GET") {
-      if (!sessionId || !sessions.has(sessionId)) {
-        res.writeHead(404, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Session not found" }));
-        return;
-      }
-      touchSession(sessionId);
-      await sessions.get(sessionId)!.transport.handleRequest(req, res);
-      return;
-    }
-
-    // DELETE is used by clients to explicitly terminate a session.
-    if (req.method === "DELETE") {
-      if (!sessionId || !sessions.has(sessionId)) {
-        res.writeHead(404, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Session not found" }));
-        return;
-      }
-      await closeSession(sessionId);
-      res.writeHead(204);
-      res.end();
-      return;
-    }
-
-    if (req.method !== "POST") {
-      res.writeHead(405, { "Content-Type": "application/json", Allow: "GET, POST, DELETE" });
-      res.end(JSON.stringify({ error: "Method not allowed" }));
-      return;
-    }
-
-    // POST: either an existing session's message, or a new session's
-    // initialize request.
-    let body: string;
-    try {
-      body = await new Promise<string>((resolve, reject) => {
-        const chunks: Buffer[] = [];
-        let receivedBytes = 0;
-        req.on("data", (chunk: Buffer) => {
-          receivedBytes += chunk.length;
-          if (receivedBytes > MAX_REQUEST_BODY_BYTES) {
-            req.destroy(new Error("Request body too large"));
-            return;
-          }
-          chunks.push(chunk);
-        });
-        req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
-        req.on("error", reject);
-      });
-    } catch {
-      res.writeHead(413, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Request body too large" }));
-      return;
-    }
-
-    let parsedBody: unknown;
-    try {
-      parsedBody = body ? JSON.parse(body) : undefined;
-    } catch {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Invalid JSON" }));
-      return;
-    }
-
-    if (sessionId) {
-      const entry = sessions.get(sessionId);
-      if (!entry) {
-        res.writeHead(404, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Session not found" }));
-        return;
-      }
-      touchSession(sessionId);
-      await entry.transport.handleRequest(req, res, parsedBody);
-      return;
-    }
-
-    // No session id: this must be an initialize request. Spin up a
-    // brand new Server + Transport pair dedicated to this session so
-    // that response routing can never cross sessions.
-    const newServer = createMcpServer();
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: () => randomUUID(),
-      onsessioninitialized: (newSessionId: string) => {
-        sessions.set(newSessionId, { server: newServer, transport, lastActivity: Date.now() });
-      },
-      onsessionclosed: (closedSessionId: string) => {
-        sessions.delete(closedSessionId);
-      },
-    });
-
-    await newServer.connect(transport);
-    await transport.handleRequest(req, res, parsedBody);
-  });
-
-  httpServer.on("close", () => {
-    clearInterval(sweepInterval);
-  });
-
-  httpServer.listen(port, "0.0.0.0", () => {
-    console.error(`tsParticles MCP server running on http://0.0.0.0:${port}/mcp`);
-    console.error(`Health check: http://0.0.0.0:${port}/health`);
-  });
-}
-
 // ── Entry point ──────────────────────────────────────────────────────
 
 async function main() {
   const args = parseArgs();
 
   if (args.mode === "http" && args.port) {
-    await startHttp(args.port, args.allowedOrigins);
+    await startHttpServer({
+      port: args.port,
+      allowedOrigins: args.allowedOrigins,
+      authToken: args.authToken,
+      packageVersion: PACKAGE_VERSION,
+      createMcpServer,
+    });
   } else {
     await startStdio();
   }
