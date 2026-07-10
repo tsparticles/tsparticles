@@ -1,4 +1,4 @@
-FROM node:22-alpine AS build
+FROM node:24-alpine AS build
 RUN corepack enable
 WORKDIR /app
 
@@ -25,7 +25,7 @@ RUN mkdir -p /tmp/app && \
 WORKDIR /tmp/app
 RUN npm install --omit=dev --ignore-scripts
 
-FROM node:22-alpine
+FROM node:24-alpine
 RUN apk add --no-cache tini
 RUN addgroup --system --gid 1001 app && adduser --system --uid 1001 app
 WORKDIR /app
