@@ -182,7 +182,8 @@ setTimeout(() => {
 
       <h2>Event-Triggered Combos</h2>
       <p>Combine both effects in response to user actions for memorable interactions:</p>
-      <pre><code>document.getElementById('subscribe-btn').addEventListener('click', async () => {
+      <pre><code>document.getElementById('subscribe-btn').addEventListener('click', async function (e) {
+  const btn = e.currentTarget;
   await ribbons.init();
   await confetti.init();
 
@@ -211,8 +212,8 @@ setTimeout(() => {
   }, 600);
 
   // Show success state
-  this.textContent = 'Subscribed!';
-  this.disabled = true;
+  btn.textContent = 'Subscribed!';
+  btn.disabled = true;
 });</code></pre>
 
       <h2>Performance Considerations</h2>
@@ -276,8 +277,7 @@ setTimeout(() => {
         var k = 'tsparticles-ribbons/theme',
           s = parseInt(localStorage.getItem(k), 10) || 0,
           p = window.matchMedia('(prefers-color-scheme:light)'),
-          t = ['auto', 'dark', 'light'],
-          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+          t = ['auto', 'dark', 'light'];
         function u() {
           var th = t[s],
             a = th === 'auto';

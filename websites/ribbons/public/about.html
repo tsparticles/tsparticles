@@ -22,7 +22,7 @@
         <a href="/cookie-policy.html">Cookie Policy</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
       </div>
-      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+      <button type="button" class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
     </nav>
 
     <main class="content-page">
@@ -204,8 +204,7 @@
         var k = 'tsparticles-ribbons/theme',
           s = parseInt(localStorage.getItem(k), 10) || 0,
           p = window.matchMedia('(prefers-color-scheme:light)'),
-          t = ['auto', 'dark', 'light'],
-          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+          t = ['auto', 'dark', 'light'];
         function u() {
           var th = t[s],
             a = th === 'auto';

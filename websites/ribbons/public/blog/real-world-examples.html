@@ -184,7 +184,7 @@ ribbons({ colors });</code></pre>
 
   await ribbons.init();
 
-  // Burst of confetti from the submit button
+  // Burst of ribbons from the submit button
   ribbons({
     count: 20,
     colors: ['#2196F3', '#03A9F4', '#00BCD4', '#009688'],
@@ -329,8 +329,7 @@ ribbons({
         var k = 'tsparticles-ribbons/theme',
           s = parseInt(localStorage.getItem(k), 10) || 0,
           p = window.matchMedia('(prefers-color-scheme:light)'),
-          t = ['auto', 'dark', 'light'],
-          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+          t = ['auto', 'dark', 'light'];
         function u() {
           var th = t[s],
             a = th === 'auto';

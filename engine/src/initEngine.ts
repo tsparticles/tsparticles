@@ -9,9 +9,11 @@ export function initEngine(): Engine {
    * CDN bundle scripts each inline `@tsparticles/engine`). In v5 the global
    * singleton will be removed and this guard can be dropped.
    */
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- globalThis.tsParticles may not exist at runtime (declare global is aspirational)
-  if (globalThis.tsParticles) {
-    return globalThis.tsParticles;
+
+  const existing = globalThis.tsParticles as Engine | undefined;
+
+  if (existing?.pluginManager) {
+    return existing;
   }
 
   return new Engine();

@@ -35,6 +35,15 @@ const shareMobileOrder = ['x', 'whatsapp', 'telegram', 'facebook', 'linkedin', '
 
 let activeTheme = 'dark';
 let currentStep = parseInt(localStorage.getItem('tsparticles-ribbons/theme'), 10) || 0;
+let activeIntervals = [];
+let activeTimeouts = [];
+
+function cleanupActiveEffects() {
+  activeIntervals.forEach(clearInterval);
+  activeIntervals = [];
+  activeTimeouts.forEach(clearTimeout);
+  activeTimeouts = [];
+}
 
 const prefersLightTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
 const themes = {
@@ -288,6 +297,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       const duration = 8000;
       const animationEnd = Date.now() + duration;
 
@@ -300,6 +311,8 @@ const modes = [
 
         ribbons();
       }, 260);
+
+      activeIntervals.push(interval);
     },
   },
 
@@ -330,6 +343,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       (async () => {
         const canvas = document.getElementById('my-canvas');
 
@@ -349,6 +364,8 @@ const modes = [
 
           canvas.ribbons();
         }, 300);
+
+        activeIntervals.push(interval);
       })();
     },
   },
@@ -367,6 +384,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       const duration = 6000;
       const animationEnd = Date.now() + duration;
 
@@ -381,12 +400,14 @@ const modes = [
           spread: 70,
           origin: { x: Math.random(), y: 0 },
           gravity: 1.2,
-          ticks: 0,
+          ticks: 200,
           colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
         });
       }, 50);
 
-      setTimeout(function () {
+      activeIntervals.push(confettiInterval);
+
+      const ribbonStartTimeout = setTimeout(function () {
         ribbons({
           colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
         });
@@ -400,7 +421,11 @@ const modes = [
             colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
           });
         }, 2000);
+
+        activeIntervals.push(ribbonsInterval);
       }, 2000);
+
+      activeTimeouts.push(ribbonStartTimeout);
     },
   },
 ];
@@ -547,6 +572,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (ev && typeof ev.preventDefault === 'function') {
         ev.preventDefault();
       }
+
+      cleanupActiveEffects();
 
       try {
         eval(editor.getValue());

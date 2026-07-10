@@ -39,7 +39,7 @@ Add a new MCP tool `generate_code` that deterministically generates complete, fr
 2. **No network calls** — no npm install, no fetch. The tool returns an `installCommand` string for the client to execute.
 3. **No NLP/LLM dependency** — bundle selection and option generation use deterministic keyword matching and heuristics. The tool does not call any external AI service.
 4. **Backward compatible** — no changes to existing tools, resources, or prompts.
-5. **Single file scope** — all new code lives under `src/tools/` and `src/validation.ts`. Registry/catalog files are read-only imports.
+5. **Limited file scope** — new code lives under `src/tools/` and `src/validation.ts`. Modifications to `src/types.ts`, `src/index.ts`, and `README.md` are permitted for integration. Registry/catalog files are read-only imports.
 6. **Specialized bundles preferred** — when description matches a specialized bundle (`confetti`, `fireworks`, `ribbons`, `particles`), that bundle MUST be suggested over generic `slim`/`full`/`all`.
 7. **Framework-agnostic core** — the options generation logic is framework-independent; framework-specific code is a template layer on top.
 
@@ -56,7 +56,7 @@ Add a new MCP tool `generate_code` that deterministically generates complete, fr
 
 ### 1.1 Current user flow (without `generate_code`)
 
-```
+```text
 User: "I want confetti on my website"
   → AI uses generate-options prompt (or guesses)
   → AI may suggest: import { loadBasic } + loadEmittersPlugin + loadMotionPlugin + 7 shapes + 5 updaters
@@ -66,7 +66,7 @@ User: "I want confetti on my website"
 
 ### 1.2 Target user flow (with `generate_code`)
 
-```
+```text
 User: "I want confetti on my React website"
   → AI calls generate_code({ description: "confetti", framework: "react" })
   → Tool returns: @tsparticles/confetti, 1 import, React component code, npm install command
@@ -87,7 +87,7 @@ A deterministic tool that **always** recommends `@tsparticles/confetti` for conf
 
 ### 2.1 Tool position in the MCP server
 
-```
+```text
 Existing tools:                New tool:
   suggest_plugins                generate_code
   list_packages                    ↓
@@ -101,7 +101,7 @@ Existing tools:                New tool:
 
 ### 2.2 Data flow
 
-```
+```text
 Input: { description, framework?, typescript? }
   ↓
 1. Keyword extraction from description
@@ -154,7 +154,7 @@ When no specialized keyword matches:
 2. **Has emitters** (emit, spawn, shoot, source mentioned) OR **has absorbers**:
    → `tsparticles`
 
-3. **Simple** (few keywords, basic movement):
+3. **Simple** (≤ 3 keywords total, no interactivity/link/emitter/absorber keywords, only basic movement verbs like "move", "fall", "float", "drift"):
    → `@tsparticles/basic`
 
 4. **Default**:
@@ -165,14 +165,23 @@ When no specialized keyword matches:
 For presets (snow, fire, matrix, stars, etc.):
 - Bundle is `@tsparticles/basic` (minimum needed)
 - Additional package: the preset package itself (e.g., `@tsparticles/preset-snow`)
-- Load function changes: `loadBasic` + `loadSnowPreset` instead of just `loadBasic`
+- Load functions: `loadBasic` (engine loader) + preset loader (e.g., `loadSnowPreset`)
 - Options use `{ preset: "snow" }` instead of full particle config
 
-### 3.4 Bundle metadata resolution
+### 3.4 Auto-initialized bundles
+
+For self-contained bundles (confetti, fireworks, ribbons):
+- Bundle exposes a single initializer function (e.g., `confetti()`, `fireworks()`, `ribbons()`)
+- No manual `loadBasic` or plugin registration required — plugins auto-initialize
+- Options follow the bundle's own schema (e.g., `confetti()` accepts `particleCount`, `spread`, etc.), not the standard tsParticles engine schema
+
+### 3.5 Bundle metadata resolution
 
 From `src/registry/bundles.ts`:
 - `bundle.name` → npm package name
-- `bundle.loadFunction` → import function name
+- `bundle.loadFunction` → primary load/init function name
+- `bundle.loadFunctions` → (presets only) array of all required loaders in order (e.g., `["loadBasic", "loadSnowPreset"]`)
+- `bundle.isAutoInitialized` → (confetti/fireworks/ribbons) `true` when the bundle self-initializes without manual loading
 - `bundle.packages` → all included packages (for install command)
 - `bundle.extends` → parent bundle (for import chain)
 
@@ -190,48 +199,37 @@ The tool does NOT try to be an AI. It uses a **template + override** approach:
 
 ### 4.2 Base templates
 
-#### Confetti template
+#### Confetti template (uses `@tsparticles/confetti` option schema)
 
 ```typescript
 {
-  emitters: [{
-    position: { x: 50, y: 0 },
-    life: { duration: 0.1 },
-    rate: { quantity: 50, delay: 0 }
-  }],
-  particles: {
-    number: { value: 0 },
-    color: { value: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"] },
-    shape: { type: ["square", "circle"] },
-    opacity: { value: { min: 0.1, max: 1 }, animation: { enable: true, minimumValue: 0.1, speed: 1, sync: false } },
-    rotate: { value: { min: 0, max: 360 }, direction: "random" },
-    tilt: { enable: true, value: { min: 0, max: 360 }, direction: "random" },
-    wobble: { enable: true, distance: 10, speed: { min: -10, max: 10 } },
-    roll: { enable: true, speed: { min: -5, max: 5 } },
-    move: { enable: true, speed: { min: 10, max: 50 }, gravity: { enable: true, acceleration: 10 }, decay: 0.1 }
-  }
+  particleCount: 120,
+  spread: 100,
+  origin: { y: 0.7 },
+  colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+  gravity: 1.2,
+  ticks: 200
 }
 ```
 
-#### Fireworks template
+> **Note:** These are `confetti()`-specific options, not standard tsParticles engine options. The `@tsparticles/confetti` bundle handles emitters, shapes, and motion internally.
+
+#### Fireworks template (uses `@tsparticles/fireworks` option schema)
 
 ```typescript
 {
-  emitters: [{
-    position: { x: 50, y: 100 },
-    life: { duration: 0.05 },
-    rate: { quantity: 1, delay: 0.4 }
-  }],
-  particles: {
-    number: { value: 0 },
-    color: { value: ["#ff0000", "#ffff00", "#00ff00", "#00ffff", "#ff00ff"] },
-    shape: { type: "circle" },
-    opacity: { value: 1, animation: { enable: true, speed: 0.2, minimumValue: 0, sync: false } },
-    size: { value: { min: 1, max: 4 }, animation: { enable: true, speed: 5, minimumValue: 0.5, sync: false } },
-    move: { enable: true, speed: { min: 10, max: 50 }, decay: 0.5, direction: "none" }
-  }
+  particleCount: 50,
+  spread: 360,
+  startVelocity: 30,
+  decay: 0.9,
+  gravity: 0.8,
+  ticks: 200,
+  colors: ["#ff0000", "#ffff00", "#00ff00", "#00ffff", "#ff00ff"],
+  origin: { x: 0.5, y: 0.8 }
 }
 ```
+
+> **Note:** These are `fireworks()`-specific options. The `@tsparticles/fireworks` bundle handles the explosion physics internally.
 
 #### Generic template (slim/basic/full)
 
@@ -310,6 +308,7 @@ init();
 
 ```typescript
 import { useCallback } from "react";
+import type { Engine } from "@tsparticles/engine";
 import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
@@ -330,6 +329,8 @@ export function ParticlesBackground() {
   );
 }
 ```
+
+> **Note:** `@tsparticles/engine` is included in `installPackages` so the `Engine` type import compiles.
 
 #### Vue 3
 
@@ -384,19 +385,43 @@ onMounted(async () => {
 ```typescript
 // component.ts
 import { Component, OnInit } from "@angular/core";
+import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
-@Component({ /* ... */ })
+@Component({
+  selector: "app-particles",
+  template: `<tsparticles id="tsparticles" [options]="particlesOptions"></tsparticles>`,
+})
 export class ParticlesComponent implements OnInit {
+  particlesOptions = { /* generated options */ };
+
   async ngOnInit() {
     await loadSlim(tsParticles);
+    await tsParticles.load({ id: "tsparticles", options: this.particlesOptions });
   }
 }
 ```
 
-```html
-<!-- component.html -->
-<tsparticles id="tsparticles" [options]="particlesOptions"></tsparticles>
+When `typescript: false`, emit a plain JavaScript component without `OnInit`, type annotations, or other type-only syntax:
+
+```javascript
+// component.js
+import { Component } from "@angular/core";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+@Component({
+  selector: "app-particles",
+  template: `<tsparticles id="tsparticles" [options]="particlesOptions"></tsparticles>`,
+})
+export class ParticlesComponent {
+  particlesOptions = { /* generated options */ };
+
+  async ngOnInit() {
+    await loadSlim(tsParticles);
+    await tsParticles.load({ id: "tsparticles", options: this.particlesOptions });
+  }
+}
 ```
 
 ### 5.3 Specialized bundle codegen
@@ -469,11 +494,13 @@ interface GenerateCodeOutput {
 
 ```typescript
 export const generateCodeArgsSchema = z.object({
-  description: z.string().min(1, "description must be a non-empty string"),
+  description: z.string().trim().min(1, "description must be a non-empty string"),
   framework: z.enum(["vanilla", "react", "vue3", "svelte", "angular"]).optional(),
   typescript: z.boolean().optional(),
 });
 ```
+
+> **Note:** `.trim()` strips leading/trailing whitespace before the `.min(1)` check, so whitespace-only strings are rejected.
 
 ---
 
@@ -586,7 +613,7 @@ Add:
 
 ```typescript
 export const generateCodeArgsSchema = z.object({
-  description: z.string().min(1, "description must be a non-empty string"),
+  description: z.string().trim().min(1, "description must be a non-empty string"),
   framework: z.enum(["vanilla", "react", "vue3", "svelte", "angular"]).optional(),
   typescript: z.boolean().optional(),
 });
@@ -844,25 +871,21 @@ Add `generate_code` to the tools table:
 ```json
 {
   "options": {
-    "emitters": [{ "position": { "x": 50, "y": 0 }, "life": { "duration": 0.1 }, "rate": { "quantity": 50, "delay": 0 } }],
-    "particles": {
-      "number": { "value": 0 },
-      "color": { "value": ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"] },
-      "shape": { "type": ["square", "circle"] },
-      "move": { "enable": true, "speed": { "min": 10, "max": 50 }, "gravity": { "enable": true, "acceleration": 10 }, "decay": 0.1 },
-      "rotate": { "value": { "min": 0, "max": 360 }, "direction": "random" },
-      "tilt": { "enable": true, "value": { "min": 0, "max": 360 }, "direction": "random" },
-      "wobble": { "enable": true, "distance": 10, "speed": { "min": -10, "max": 10 } },
-      "roll": { "enable": true, "speed": { "min": -5, "max": 5 } }
-    }
+    "particleCount": 120,
+    "spread": 100,
+    "origin": { "y": 0.7 },
+    "colors": ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
+    "gravity": 1.2,
+    "ticks": 200
   },
   "bundle": "@tsparticles/confetti",
-  "loadFunction": "doInitPlugins",
+  "loadFunction": "confetti",
+  "isAutoInitialized": true,
   "installPackages": ["@tsparticles/confetti"],
   "installCommand": "npm install @tsparticles/confetti",
   "framework": "vanilla",
   "html": "<div id=\"tsparticles\"></div>",
-  "code": "import { confetti } from \"@tsparticles/confetti\";\n\nawait confetti({\n  // ... generated options\n});",
+  "code": "import { confetti } from \"@tsparticles/confetti\";\n\nawait confetti({\n  particleCount: 120,\n  spread: 100,\n  origin: { y: 0.7 },\n  colors: [\"#26ccff\", \"#a25afd\", \"#ff5e7e\", \"#88ff5a\", \"#fcff42\", \"#ffa62d\", \"#ff36ff\"],\n  gravity: 1.2,\n  ticks: 200\n});",
   "notes": ["@tsparticles/confetti auto-initializes all plugins — no manual load() needed."]
 }
 ```
