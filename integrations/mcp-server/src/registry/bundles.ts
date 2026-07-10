@@ -53,8 +53,8 @@ export const bundles: BundleInfo[] = [
     ],
   },
   {
-    name: "@tsparticles/full",
-    description: "Full bundle (also published as `tsparticles`). Extends slim with absorbers, emitters, drag/trail interactions, extra updaters (destroy, roll, tilt, twinkle, wobble), text shape.",
+    name: "tsparticles",
+    description: "Full bundle. Extends slim with absorbers, emitters, drag/trail interactions, extra updaters (destroy, roll, tilt, twinkle, wobble), text shape.",
     loadFunction: "loadFull",
     extends: "@tsparticles/slim",
     packages: [
@@ -77,9 +77,9 @@ export const bundles: BundleInfo[] = [
     name: "@tsparticles/all",
     description: "Everything bundle. Extends full with all plugins (export, infection, background-mask, canvas-mask, manual-particles, motion, poisson, polygon-mask, responsive, sounds, themes, trail, zoom), all easing, all colors, all shapes, all effects, all paths, extra interactions, extra emitter shapes.",
     loadFunction: "loadAll",
-    extends: "@tsparticles/full",
+    extends: "tsparticles",
     packages: [
-      "@tsparticles/full",
+      "tsparticles",
       "@tsparticles/plugin-export-image",
       "@tsparticles/plugin-export-json",
       "@tsparticles/plugin-export-video",
@@ -110,12 +110,12 @@ export const bundles: BundleInfo[] = [
         (e) => `@tsparticles/plugin-easing-${e}`,
       ),
       ...["bubble", "filter", "particles", "shadow", "trail"].map((e) => `@tsparticles/effect-${e}`),
-      ...["arrow", "cards", "cog", "heart", "infinity", "matrix", "path", "ribbon", "rounded-polygon", "rounded-rect", "spiral", "squircle"].map(
+      ...["arrow", "cards", "cog", "gif", "heart", "infinity", "matrix", "path", "ribbon", "rounded-polygon", "rounded-rect", "spiral", "squircle"].map(
         (s) => `@tsparticles/shape-${s}`,
       ),
       "@tsparticles/updater-gradient",
       "@tsparticles/updater-orbit",
-      ...["branches", "brownian", "curl-noise", "curves", "fractal-noise", "grid", "levy", "perlin-noise", "polygon", "random", "simplex-noise", "spiral", "svg", "zigzag"].map(
+      ...["branches", "brownian", "curl-noise", "curves", "fractal-noise", "grid", "levy", "perlin-noise", "polygon", "random", "simplex-noise", "spiral", "svg", "zig-zag"].map(
         (p) => `@tsparticles/path-${p}`,
       ),
     ],
@@ -185,6 +185,16 @@ export const bundles: BundleInfo[] = [
       "@tsparticles/plugin-emitters-shape-square",
       "@tsparticles/shape-ribbon",
       "@tsparticles/updater-life",
+    ],
+  },
+  {
+    name: "@tsparticles/pjs",
+    description: "particles.js compatibility layer. Drop-in replacement for particles.js with full API compatibility. Wraps the full tsparticles bundle.",
+    loadFunction: "doInitPlugins",
+    extends: "tsparticles",
+    packages: [
+      "tsparticles",
+      "@tsparticles/plugin-responsive",
     ],
   },
 ];

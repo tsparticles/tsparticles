@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-build-prettier",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

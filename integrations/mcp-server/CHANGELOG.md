@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
+
+
+### Bug Fixes
+
+* fixed issue in publish workflow and in mcp server ([d3b5672](https://github.com/tsparticles/tsparticles/commit/d3b5672bd61bb847abfa21193c34eabf7aba6896))
+* fixed other issues in mcp server ([18aa336](https://github.com/tsparticles/tsparticles/commit/18aa3367608d070ffacd28e9d1d238ad9ebd6911))
+* fixed other issues in mcp server ([90b52f8](https://github.com/tsparticles/tsparticles/commit/90b52f844fd950638a5f188c40b804d69cc22355))
+* fixed other issues in mcp server ([2063a19](https://github.com/tsparticles/tsparticles/commit/2063a191b59d700bbfab83540c028903717be142))
+* fixed other issues in mcp server ([41f5d3d](https://github.com/tsparticles/tsparticles/commit/41f5d3d54dd9bf57bf6f1e01a09e65d6b9a24a5c))
+* fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
+* fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
+
+
+
+
+
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 

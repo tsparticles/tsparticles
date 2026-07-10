@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-spiral",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles path for moving particles along spiral trajectories",
   "homepage": "https://particles.js.org",
   "scripts": {

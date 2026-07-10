@@ -56,6 +56,35 @@ Add this to your `claude_desktop_config.json`:
 
 The server can also run as an HTTP endpoint, accessible by any MCP client that supports SSE.
 
+> **Security note:** the HTTP transport has no authentication by default — it's meant for
+> localhost/trusted-network use. If you expose it beyond your machine (tunnel, reverse proxy,
+> port forward, etc.), always set an auth token (see below). Without one, anyone who can reach
+> the endpoint can call every tool.
+
+### Authentication
+
+Set a bearer token to require `Authorization: Bearer <token>` on every request to `/mcp`:
+
+```bash
+# via CLI flag
+npx @tsparticles/mcp-server --port 3000 --auth-token "$(openssl rand -hex 32)"
+
+# or via environment variable (recommended so the token doesn't end up in shell history)
+MCP_AUTH_TOKEN="$(openssl rand -hex 32)" npx @tsparticles/mcp-server --port 3000
+```
+
+Configure your MCP client to send that token as a bearer token when connecting. If no token is
+set, the server prints a startup warning and falls back to allowing only local origins
+(`localhost`/`127.0.0.1`) by default for browser-originated requests — non-browser clients
+(curl, most MCP clients) aren't affected by that check, so it's not a substitute for auth.
+
+### Rate limiting
+
+The server applies a basic in-memory per-IP rate limit (120 requests/minute by default) and caps
+total concurrent sessions at 500, to keep a single misbehaving client from exhausting the
+process. This is not a substitute for rate limiting at a reverse proxy or CDN if you're exposing
+the server publicly — it only protects the Node process itself.
+
 ### Option 1: Direct access (no tunnel)
 
 ```bash
@@ -65,7 +94,27 @@ npx @tsparticles/mcp-server --port 3000
 # MCP endpoint:  http://localhost:3000/mcp
 ```
 
-### Option 2: Docker
+### Option 2: Docker (pre-built image)
+
+Pull and run directly from Docker Hub (no build needed):
+
+```bash
+docker run -d -p 3000:3000 tsparticles/mcp-server
+```
+
+Or use a specific version:
+
+```bash
+docker run -d -p 3000:3000 tsparticles/mcp-server:v4.3.1
+```
+
+With auth token:
+
+```bash
+docker run -d -p 3000:3000 -e MCP_AUTH_TOKEN="$(openssl rand -hex 32)" tsparticles/mcp-server
+```
+
+### Option 3: Docker Compose (build from source)
 
 ```bash
 # Build and start
@@ -75,9 +124,13 @@ docker compose up -d
 docker compose --profile tunnel up
 ```
 
+Set `MCP_AUTH_TOKEN` in your environment (or a `.env` file next to `docker-compose.yml`, see
+`.env.example`) before running this if the container is reachable from outside your machine —
+this is required reading before using the tunnel/reverse-proxy options below.
+
 This prints a temporary URL like `https://random.trycloudflare.com`. Configure your MCP client with `https://random.trycloudflare.com/mcp` as the endpoint.
 
-### Option 3: Docker + Synology Reverse Proxy
+### Option 4: Docker + Synology Reverse Proxy
 
 If you have a Synology NAS:
 
@@ -101,7 +154,7 @@ docker compose up -d
 
 3. Configure your MCP client with `https://your-nas-domain.example.com:8443/mcp`.
 
-### Option 4: Docker + Cloudflare Tunnel (permanent)
+### Option 5: Docker + Cloudflare Tunnel (permanent)
 
 For a permanent URL (instead of the random `trycloudflare.com`):
 

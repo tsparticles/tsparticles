@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "Full-featured tsParticles bundle — create stunning particle, confetti and fireworks animations with all official plugins and presets included. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -105,20 +105,20 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.3.1",
-    "@tsparticles/interaction-external-drag": "4.3.1",
-    "@tsparticles/interaction-external-trail": "4.3.1",
-    "@tsparticles/plugin-absorbers": "4.3.1",
-    "@tsparticles/plugin-emitters": "4.3.1",
-    "@tsparticles/plugin-emitters-shape-circle": "4.3.1",
-    "@tsparticles/plugin-emitters-shape-square": "4.3.1",
-    "@tsparticles/shape-text": "4.3.1",
-    "@tsparticles/slim": "4.3.1",
-    "@tsparticles/updater-destroy": "4.3.1",
-    "@tsparticles/updater-roll": "4.3.1",
-    "@tsparticles/updater-tilt": "4.3.1",
-    "@tsparticles/updater-twinkle": "4.3.1",
-    "@tsparticles/updater-wobble": "4.3.1"
+    "@tsparticles/engine": "4.3.2",
+    "@tsparticles/interaction-external-drag": "4.3.2",
+    "@tsparticles/interaction-external-trail": "4.3.2",
+    "@tsparticles/plugin-absorbers": "4.3.2",
+    "@tsparticles/plugin-emitters": "4.3.2",
+    "@tsparticles/plugin-emitters-shape-circle": "4.3.2",
+    "@tsparticles/plugin-emitters-shape-square": "4.3.2",
+    "@tsparticles/shape-text": "4.3.2",
+    "@tsparticles/slim": "4.3.2",
+    "@tsparticles/updater-destroy": "4.3.2",
+    "@tsparticles/updater-roll": "4.3.2",
+    "@tsparticles/updater-tilt": "4.3.2",
+    "@tsparticles/updater-twinkle": "4.3.2",
+    "@tsparticles/updater-wobble": "4.3.2"
   },
   "publishConfig": {
     "access": "public"

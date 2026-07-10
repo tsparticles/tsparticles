@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
+
+**Note:** Version bump only for package @tsparticles/path-levy
+
+
+
+
+
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 **Note:** Version bump only for package @tsparticles/path-levy

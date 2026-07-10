@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/effect-trail",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles effect for creating visual motion trails that follow behind moving particles",
   "homepage": "https://particles.js.org",
   "scripts": {

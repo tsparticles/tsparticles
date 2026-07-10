@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
+
+
+### Bug Fixes
+
+* fixed some broken pages in websites, closes [#5882](https://github.com/tsparticles/tsparticles/issues/5882) ([061e623](https://github.com/tsparticles/tsparticles/commit/061e6234acf8c2a9de1ff35cfdc07b91bc7c0178))
+
+
+
+
+
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 **Note:** Version bump only for package @tsparticles/preset-big-circles
