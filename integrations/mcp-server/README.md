@@ -94,7 +94,27 @@ npx @tsparticles/mcp-server --port 3000
 # MCP endpoint:  http://localhost:3000/mcp
 ```
 
-### Option 2: Docker
+### Option 2: Docker (pre-built image)
+
+Pull and run directly from Docker Hub (no build needed):
+
+```bash
+docker run -d -p 3000:3000 tsparticles/mcp-server
+```
+
+Or use a specific version:
+
+```bash
+docker run -d -p 3000:3000 tsparticles/mcp-server:v4.3.1
+```
+
+With auth token:
+
+```bash
+docker run -d -p 3000:3000 -e MCP_AUTH_TOKEN="$(openssl rand -hex 32)" tsparticles/mcp-server
+```
+
+### Option 3: Docker Compose (build from source)
 
 ```bash
 # Build and start
@@ -110,7 +130,7 @@ this is required reading before using the tunnel/reverse-proxy options below.
 
 This prints a temporary URL like `https://random.trycloudflare.com`. Configure your MCP client with `https://random.trycloudflare.com/mcp` as the endpoint.
 
-### Option 3: Docker + Synology Reverse Proxy
+### Option 4: Docker + Synology Reverse Proxy
 
 If you have a Synology NAS:
 
@@ -134,7 +154,7 @@ docker compose up -d
 
 3. Configure your MCP client with `https://your-nas-domain.example.com:8443/mcp`.
 
-### Option 4: Docker + Cloudflare Tunnel (permanent)
+### Option 5: Docker + Cloudflare Tunnel (permanent)
 
 For a permanent URL (instead of the random `trycloudflare.com`):
 
