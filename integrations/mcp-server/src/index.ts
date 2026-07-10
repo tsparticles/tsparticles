@@ -386,7 +386,6 @@ async function startStdio() {
 
 async function startHttp(port: number) {
   const sessions = new Map<string, StreamableHTTPServerTransport>();
-  const requestToSession = new Map<string | number, string>();
 
   const routingTransport: Transport = {
     start: async () => {},
@@ -395,21 +394,8 @@ async function startHttp(port: number) {
         await transport.close();
       }
       sessions.clear();
-      requestToSession.clear();
     },
-    send: async (message, options) => {
-      const msg = message as { id?: string | number };
-      const requestId = msg.id ?? options?.relatedRequestId;
-      if (requestId !== undefined) {
-        const sessionId = requestToSession.get(requestId);
-        if (sessionId) {
-          const transport = sessions.get(sessionId);
-          if (transport) {
-            await transport.send(message, options);
-          }
-        }
-      }
-    },
+    send: async () => {},
     onclose: undefined,
     onerror: undefined,
     onmessage: undefined,
@@ -472,29 +458,25 @@ async function startHttp(port: number) {
         }
         await transport.handleRequest(req, res, parsedBody);
       } else {
-        let currentSessionId: string | undefined;
         const transport = new StreamableHTTPServerTransport({
           sessionIdGenerator: () => randomUUID(),
           onsessioninitialized: (newSessionId: string) => {
-            currentSessionId = newSessionId;
             sessions.set(newSessionId, transport);
           },
           onsessionclosed: (closedSessionId: string) => {
             sessions.delete(closedSessionId);
-            for (const [rid, sid] of requestToSession) {
-              if (sid === closedSessionId) {
-                requestToSession.delete(rid);
-              }
-            }
           },
         });
 
         transport.onmessage = (message, extra) => {
           const msg = message as { id?: string | number };
-          if (msg.id !== undefined && currentSessionId) {
-            requestToSession.set(msg.id, currentSessionId);
+          if (msg.id !== undefined) {
+            (server as unknown as { _transport: Transport })._transport = transport;
           }
           routingTransport.onmessage?.(message, extra);
+          if (msg.id !== undefined) {
+            (server as unknown as { _transport: Transport })._transport = routingTransport;
+          }
         };
 
         transport.onerror = (error) => {
