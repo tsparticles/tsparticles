@@ -21,6 +21,16 @@ window.ribbons = ribbons;
 
 const editors = [];
 
+let activeIntervals = [];
+let activeTimeouts = [];
+
+function cleanupActiveEffects() {
+  activeIntervals.forEach(clearInterval);
+  activeIntervals = [];
+  activeTimeouts.forEach(clearTimeout);
+  activeTimeouts = [];
+}
+
 const sharePlatformTemplates = {
   facebook: (url) => `https://www.facebook.com/sharer/sharer.php?u=${url}`,
   x: (url, text) => `https://x.com/intent/tweet?url=${url}&text=${text}`,
@@ -570,6 +580,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       const duration = 15 * 1000,
         animationEnd = Date.now() + duration,
         defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -600,6 +612,8 @@ const modes = [
           })
         );
       }, 250);
+
+      activeIntervals.push(interval);
     },
   },
 
@@ -785,6 +799,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       const duration = 6000;
       const animationEnd = Date.now() + duration;
 
@@ -804,7 +820,9 @@ const modes = [
         });
       }, 50);
 
-      setTimeout(function () {
+      activeIntervals.push(confettiInterval);
+
+      const ribbonStartTimeout = setTimeout(function () {
         ribbons({
           colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
         });
@@ -818,7 +836,11 @@ const modes = [
             colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
           });
         }, 2000);
+
+        activeIntervals.push(ribbonsInterval);
       }, 2000);
+
+      activeTimeouts.push(ribbonStartTimeout);
     },
   },
 ];
@@ -965,6 +987,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (ev && typeof ev.preventDefault === 'function') {
         ev.preventDefault();
       }
+
+      cleanupActiveEffects();
 
       try {
         eval(editor.getValue());
