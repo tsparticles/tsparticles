@@ -16,7 +16,7 @@ COPY integrations/mcp-server/package.json integrations/mcp-server/tsconfig.json 
 COPY integrations/mcp-server/src/ ./integrations/mcp-server/src/
 
 # Install only this package's dependencies
-RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server
+RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server --ignore-scripts
 
 # Build
 RUN pnpm --filter @tsparticles/mcp-server exec tsc
