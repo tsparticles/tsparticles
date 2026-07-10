@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vue2-demo",
   "private": true,
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",

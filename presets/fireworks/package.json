@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fireworks",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles preset for creating spectacular fireworks display particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

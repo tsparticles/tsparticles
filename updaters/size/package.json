@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-size",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles updater for animating particle size over time — grow, shrink, or pulse particle sizes with customizable animation curves",
   "homepage": "https://particles.js.org",
   "scripts": {

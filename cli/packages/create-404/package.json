@@ -1,6 +1,6 @@
 {
   "name": "create-404",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "Scaffold a @tsparticles/template-404 project — npm create 404",
   "homepage": "https://particles.js.org",
   "license": "MIT",

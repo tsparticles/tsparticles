@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-bounce",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles external interaction for bouncing particles away from the mouse cursor or touch area",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-square",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles square shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -65,7 +65,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.3.1"
+    "@tsparticles/engine": "4.3.2"
   },
   "publishConfig": {
     "access": "public"

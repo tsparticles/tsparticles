@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-connect",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "tsParticles external interaction that draws connecting lines between particles near the cursor",
   "homepage": "https://particles.js.org",
   "scripts": {
