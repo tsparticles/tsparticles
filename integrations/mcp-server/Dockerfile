@@ -9,6 +9,7 @@ WORKDIR /app
 
 # Workspace root files
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY patches/ ./patches/
 
 # Package files
 COPY integrations/mcp-server/package.json integrations/mcp-server/tsconfig.json ./integrations/mcp-server/
