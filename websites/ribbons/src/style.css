@@ -499,6 +499,89 @@ footer a:hover {
   background: var(--secondary-color);
 }
 
+.intro-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.intro-lead {
+  font-size: 1.15em;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.intro-sub {
+  font-size: 0.95em;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.features-section,
+.usecases-section,
+.quickstart-section {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.features-section h2,
+.usecases-section h2,
+.quickstart-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.feature-card h3 {
+  text-align: left;
+  margin: 0 0 0.5rem;
+  font-size: 1em;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.usecases-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.usecases-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.6;
+}
+
+.usecases-list li:last-child {
+  border-bottom: none;
+}
+
+.quickstart-section pre {
+  max-width: 700px;
+}
+
+.quickstart-section pre code {
+  font-size: 0.85em;
+}
+
 @media (min-width: 44em) {
   .container {
     width: 95%;

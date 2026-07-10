@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Troubleshoot common tsParticles Ribbon issues — fix rendering problems, color glitches, and performance bottlenecks."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Troubleshooting Common Issues | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Troubleshooting Common Issues",
+        "description": "Troubleshoot common tsParticles Ribbon issues — fix rendering problems, color glitches, and performance bottlenecks.",
+        "author": {
+          "@type": "Person",
+          "name": "Matteo Bruni",
+          "url": "https://github.com/matteobruni"
+        },
+        "datePublished": "2026-06-09",
+        "publisher": {
+          "@type": "Organization",
+          "name": "tsParticles"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://ribbons.js.org/blog/troubleshooting.html"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/about.html">About</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Troubleshooting Common Issues</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        While tsParticles Ribbons is designed to work out of the box, you may occasionally run into
+        issues depending on your setup. This guide covers the most common problems and their
+        solutions.
+      </p>
+
+      <h2>Ribbons Not Appearing</h2>
+      <p>
+        If you've added the script and called <code>ribbons()</code> but nothing shows up, check
+        these common causes:
+      </p>
+
+      <h3>Script Not Loaded</h3>
+      <p>
+        Verify the script is loaded before calling <code>ribbons()</code>. Open your browser's
+        DevTools console and check for errors like <code>ribbons is not defined</code>:
+      </p>
+      <pre><code>// Make sure the script is in the &lt;head&gt; or before your code
+&lt;script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@latest/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;
+
+// Then call ribbons() after the script loads
+&lt;script&gt;
+  ribbons();
+&lt;/script&gt;</code></pre>
+
+      <h3>Missing init() Call</h3>
+      <p>
+        When using the npm package, you must call <code>await ribbons.init()</code> before creating
+        any ribbons:
+      </p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+
+// This is required!
+await ribbons.init();
+
+// Now you can create ribbons
+ribbons();</code></pre>
+      <p>
+        The <code>init()</code> method loads the tsParticles engine and necessary plugins. Without
+        it, the ribbon function has no underlying engine to render with.
+      </p>
+
+      <h3>Canvas Behind Other Elements</h3>
+      <p>
+        If ribbons are created but hidden behind your content, check the z-index. By default,
+        ribbons render on top of everything. If you need them behind specific elements, set the
+        <code>zIndex</code> option:
+      </p>
+      <pre><code>ribbons({
+  zIndex: -1, // render behind page content
+});</code></pre>
+      <p>
+        Ensure the parent container has a non-static position (like <code>relative</code> or
+        <code>absolute</code>) for z-index to work correctly.
+      </p>
+
+      <h2>Ribbons Look Different Than Expected</h2>
+
+      <h3>Colors Are Wrong</h3>
+      <p>
+        tsParticles uses a default color palette when no colors are specified. If your ribbons
+        appear in unexpected colors, you may be seeing the default palette. Override it with your
+        own colors:
+      </p>
+      <pre><code>ribbons({
+  colors: ['#FF0000', '#00FF00', '#0000FF'],
+});</code></pre>
+      <p>
+        Colors can be any valid CSS value: hex codes, named colors, RGB, HSL, or even CSS custom
+        properties.
+      </p>
+
+      <h3>Ribbons Are Too Small or Large</h3>
+      <p>
+        The visual size of ribbons depends on your viewport size and the emitter configuration. To
+        make ribbons appear larger, you can adjust the particle size through the underlying
+        tsParticles options:
+      </p>
+      <pre><code>ribbons({
+  // Adjust the underlying particle configuration
+  size: {
+    value: 5,
+  },
+});</code></pre>
+
+      <h2>Performance Issues</h2>
+
+      <h3>Frame Rate Drops</h3>
+      <p>
+        If ribbons cause your page to stutter, you're likely running too many simultaneous
+        animations. Here's how to diagnose and fix:
+      </p>
+      <ol>
+        <li>Open Chrome DevTools and go to the Performance tab</li>
+        <li>Record a session while ribbons are active</li>
+        <li>Look for long frames (red triangles in the frame rate chart)</li>
+      </ol>
+      <p>Common fixes:</p>
+      <pre><code>// Reduce ribbon count
+ribbons({
+  count: 12,
+});
+
+// Use custom canvas instead of full-screen
+const canvas = document.getElementById('my-canvas');
+const shoot = await ribbons.create(canvas, { zIndex: 0 });
+shoot();
+
+// Limit to one burst at a time
+ribbons();</code></pre>
+
+      <h3>Memory Leaks</h3>
+      <p>
+        If you're creating ribbons in a loop or on repeated events, ensure you're not accumulating
+        canvas elements. The <code>ribbons.create()</code> method returns a reusable function — call
+        it multiple times instead of creating new instances:
+      </p>
+      <pre><code>// Bad: Creates a new canvas each time
+function onClick() {
+  ribbons.create(document.createElement('canvas'));
+}
+
+// Good: Reuse the same canvas
+const canvas = document.getElementById('my-canvas');
+const shoot = await ribbons.create(canvas);
+
+function onClick() {
+  shoot(); // Reuses existing canvas
+}</code></pre>
+
+      <h2>Framework-Specific Issues</h2>
+
+      <h3>React: Ribbons Render Twice in Strict Mode</h3>
+      <p>
+        React 18's Strict Mode calls effects twice in development. This can cause duplicate ribbon
+        animations. Wrap your initialization in a ref to prevent double-initialization:
+      </p>
+      <pre><code>import { useEffect, useRef } from 'react';
+import { ribbons } from '@tsparticles/ribbons';
+
+export function RibbonsEffect() {
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (initialized.current) return;
+    initialized.current = true;
+
+    ribbons.init().then(() => ribbons());
+  }, []);
+
+  return null;
+}</code></pre>
+
+      <h3>Vue: Ribbons Don't Animate After Navigation</h3>
+      <p>
+        If you're using Vue Router and ribbons stop working after navigating between pages, the
+        canvas may have been removed from the DOM. Re-initialize ribbons in the route's
+        <code>onMounted</code> hook:
+      </p>
+      <pre><code>import { onMounted } from 'vue';
+import { ribbons } from '@tsparticles/ribbons';
+
+export default {
+  setup() {
+    onMounted(async () => {
+      await ribbons.init();
+      ribbons();
+    });
+  },
+};</code></pre>
+
+      <h2>Getting Help</h2>
+      <p>
+        If you're still experiencing issues after trying the solutions above, here are some
+        resources:
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://github.com/tsparticles/tsparticles/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub Issues</a
+          >
+          — Search existing issues or file a new one
+        </li>
+        <li>
+          <a href="https://discord.gg/hACwv45Hme" target="_blank" rel="noopener noreferrer"
+            >Discord</a
+          >
+          — Get help from the community in real-time
+        </li>
+        <li>
+          <a
+            href="https://github.com/tsparticles/tsparticles/blob/main/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Documentation</a
+          >
+          — Comprehensive API reference and guides
+        </li>
+      </ul>
+      <p>
+        When filing an issue, include your browser version, operating system, and a minimal
+        reproduction (a CodePen or JSFiddle link works great).
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

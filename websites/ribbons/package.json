@@ -30,6 +30,8 @@
   },
   "homepage": "https://ribbons.js.org",
   "dependencies": {
+    "@tsparticles/confetti": "workspace:^",
+    "@tsparticles/engine": "workspace:^",
     "@tsparticles/ribbons": "workspace:*",
     "ace-builds": "^1.44.0",
     "js-beautify": "^1.15.4"

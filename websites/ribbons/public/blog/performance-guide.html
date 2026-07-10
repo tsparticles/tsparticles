@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Optimize tsParticles Ribbon animations for maximum performance — tips for smooth 60fps rendering on all devices."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Performance Optimization Guide | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Performance Optimization Guide",
+        "description": "Optimize tsParticles Ribbon animations for maximum performance — tips for smooth 60fps rendering on all devices.",
+        "author": {
+          "@type": "Person",
+          "name": "Matteo Bruni",
+          "url": "https://github.com/matteobruni"
+        },
+        "datePublished": "2026-06-09",
+        "publisher": {
+          "@type": "Organization",
+          "name": "tsParticles"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://ribbons.js.org/blog/performance-guide.html"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/about.html">About</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Performance Optimization Guide</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        tsParticles Ribbons is designed to be fast out of the box. However, understanding how the
+        animation pipeline works and following a few best practices can help you maintain smooth
+        60fps rendering even on lower-end devices. This guide covers everything you need to know
+        about ribbon animation performance.
+      </p>
+
+      <h2>How Ribbon Rendering Works</h2>
+      <p>
+        Under the hood, tsParticles Ribbons uses the HTML5 Canvas 2D API. Each ribbon is a series of
+        connected bezier curves that follow a physics simulation. The rendering pipeline involves
+        three main stages:
+      </p>
+      <ul>
+        <li>
+          <strong>Physics update:</strong> Each ribbon's position, velocity, rotation, and opacity
+          are calculated based on gravity, drag, and decay parameters. This happens on the main
+          thread.
+        </li>
+        <li>
+          <strong>Canvas drawing:</strong> Updated ribbon paths are drawn to a Canvas element using
+          bezier curves and gradient fills. Modern browsers hardware-accelerate this step.
+        </li>
+        <li>
+          <strong>Composition:</strong> The canvas is composited over your page content using CSS
+          positioning and opacity.
+        </li>
+      </ul>
+      <p>
+        The most expensive operation is typically the canvas drawing step, especially when ribbons
+        are long and have many segments. Understanding this helps you make informed decisions about
+        configuration.
+      </p>
+
+      <h2>Limit Simultaneous Animations</h2>
+      <p>
+        Each call to <code>ribbons()</code> creates a burst of ribbons. Multiple simultaneous bursts
+        multiply the rendering workload. Here's a practical guideline:
+      </p>
+      <pre><code>// Good: Stagger bursts to avoid peak load
+ribbons();
+setTimeout(() => ribbons(), 300);
+setTimeout(() => ribbons(), 600);
+
+// Better: Use fewer, larger bursts instead
+ribbons({
+  count: 50, // spawn more ribbons per burst
+});</code></pre>
+      <p>
+        On desktop browsers, 2-3 simultaneous bursts typically maintain 60fps without issues. On
+        mobile devices, limit yourself to 1-2 concurrent animations. If you need more ribbons,
+        increase the <code>count</code> option rather than calling <code>ribbons()</code> multiple
+        times.
+      </p>
+
+      <h2>Use Custom Canvas for Section Animations</h2>
+      <p>
+        Full-screen canvas overlays are convenient but wasteful when you only need ribbons in a
+        specific area. Using a custom canvas reduces the drawing area significantly:
+      </p>
+      <pre><code>// Instead of full-screen ribbons
+const canvas = document.getElementById('hero-canvas');
+const shoot = await ribbons.create(canvas, {
+  zIndex: 0,
+});
+
+// Only the hero section needs animation
+shoot();</code></pre>
+      <p>
+        A custom canvas that covers 20% of the viewport uses roughly 80% less GPU memory than a
+        full-screen canvas. This is especially important on mobile devices where GPU memory is
+        limited.
+      </p>
+
+      <h2>Control Ribbon Count</h2>
+      <p>
+        The number of individual ribbons in a burst directly affects rendering performance. Each
+        ribbon is an independent path that must be drawn every frame. The default count is tuned for
+        visual appeal, but you can reduce it for better performance:
+      </p>
+      <pre><code>ribbons({
+  count: 15, // fewer ribbons, less GPU work
+});</code></pre>
+      <p>
+        Reducing from 30 to 15 ribbons typically improves frame rates by 20-30% on lower-end devices
+        while still providing a visually satisfying effect.
+      </p>
+
+      <h2>Animation Duration</h2>
+      <p>Longer animations mean more frames to render. Keep animation durations reasonable:</p>
+      <ul>
+        <li><strong>Click effects:</strong> 3-5 seconds is ideal for button-triggered bursts</li>
+        <li>
+          <strong>Page load animations:</strong> 5-8 seconds provides a nice entrance without
+          overstaying its welcome
+        </li>
+        <li>
+          <strong>Background effects:</strong> Use shorter intervals (200-300ms) with moderate
+          duration (8-12 seconds)
+        </li>
+      </ul>
+      <p>
+        For continuous background animations, consider using
+        <code>requestAnimationFrame</code> instead of <code>setInterval</code> to stay in sync with
+        the browser's render cycle:
+      </p>
+      <pre><code>const duration = 8000;
+const animationEnd = Date.now() + duration;
+
+function spawn() {
+  if (Date.now() >= animationEnd) return;
+  ribbons();
+  requestAnimationFrame(() => {
+    setTimeout(spawn, 260);
+  });
+}
+
+spawn();</code></pre>
+
+      <h2>Mobile Optimization</h2>
+      <p>
+        Mobile devices have less powerful GPUs and tighter memory constraints. Follow these
+        guidelines for mobile-friendly ribbons:
+      </p>
+      <ul>
+        <li>Use fewer ribbons per burst (10-15 instead of 20-30)</li>
+        <li>Limit to one burst at a time on mobile</li>
+        <li>Use custom canvases instead of full-screen overlays</li>
+        <li>Set shorter animation durations (3-5 seconds)</li>
+        <li>Avoid continuous animations on mobile — prefer user-triggered effects</li>
+      </ul>
+      <p>You can detect mobile devices and adjust settings accordingly:</p>
+      <pre><code>const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+ribbons({
+  count: isMobile ? 12 : 25,
+});</code></pre>
+
+      <h2>Avoiding Layout Thrashing</h2>
+      <p>
+        Ribbon canvases are positioned using CSS. Avoid forcing layout recalculations during
+        animations by:
+      </p>
+      <ul>
+        <li>
+          Using <code>position: fixed</code> or <code>position: absolute</code> for ribbon canvases
+          (avoids affecting document flow)
+        </li>
+        <li>
+          Setting <code>pointer-events: none</code> on the canvas so it doesn't interfere with click
+          handling
+        </li>
+        <li>
+          Using <code>will-change: transform</code> or <code>transform: translateZ(0)</code> to
+          promote the canvas to its own compositor layer
+        </li>
+      </ul>
+      <p>
+        tsParticles handles most of these optimizations automatically, but if you're using custom
+        canvases, ensure these CSS properties are set.
+      </p>
+
+      <h2>Measuring Performance</h2>
+      <p>Use your browser's DevTools to monitor animation performance:</p>
+      <ul>
+        <li>
+          <strong>Chrome DevTools Performance panel:</strong> Record a session while ribbons are
+          running and look for dropped frames in the frame rate chart
+        </li>
+        <li>
+          <strong>Layers panel:</strong> Check how many compositor layers are being created — each
+          ribbon canvas should be a single layer
+        </li>
+        <li>
+          <strong>Lighthouse:</strong> Run a performance audit to identify any JavaScript execution
+          bottlenecks
+        </li>
+      </ul>
+      <p>
+        A well-optimized ribbon animation should use less than 5ms of CPU time per frame, leaving
+        plenty of budget for your page content and interactions.
+      </p>
+
+      <h2>Summary</h2>
+      <p>
+        Performance optimization for ribbon animations comes down to three principles: minimize the
+        rendering area, limit concurrent animations, and keep ribbon counts reasonable. Following
+        the guidelines in this guide will ensure smooth, jank-free ribbon animations across all
+        devices.
+      </p>
+      <p>
+        For more tips, check out the
+        <a href="/blog/customization-guide.html">customization guide</a> or explore the
+        <a href="/">interactive playground</a> to experiment with different configurations.
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

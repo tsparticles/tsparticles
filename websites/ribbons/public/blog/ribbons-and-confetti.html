@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Combine tsParticles Ribbons and Confetti for stunning double celebration effects — product launches, milestones, and holiday greetings."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Combining Ribbons and Confetti | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Combining Ribbons and Confetti",
+        "description": "Combine tsParticles Ribbons and Confetti for stunning double celebration effects.",
+        "author": {
+          "@type": "Person",
+          "name": "Matteo Bruni",
+          "url": "https://github.com/matteobruni"
+        },
+        "datePublished": "2026-06-09",
+        "publisher": {
+          "@type": "Organization",
+          "name": "tsParticles"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://ribbons.js.org/blog/ribbons-and-confetti.html"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/about.html">About</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Combining Ribbons and Confetti</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        tsParticles offers two powerful celebration effects: ribbons and confetti. While each looks
+        great on its own, combining them creates a truly spectacular visual experience. Ribbons flow
+        across the screen with organic, physics-driven curves while confetti rains down with
+        colorful, tumbling particles. Together, they create a multi-layered celebration that's
+        greater than the sum of its parts.
+      </p>
+
+      <h2>Why Combine Them?</h2>
+      <p>Each effect brings something unique to the table:</p>
+      <ul>
+        <li>
+          <strong>Ribbons</strong> provide flowing, curved movement with smooth physics. They feel
+          organic and elegant, drifting gracefully across the viewport.
+        </li>
+        <li>
+          <strong>Confetti</strong> adds density and variety — colorful pieces rain down from above,
+          tumbling and spinning as they fall, creating a sense of abundance and excitement.
+        </li>
+      </ul>
+      <p>
+        When layered together, ribbons give the scene structure and flow while confetti fills the
+        gaps with vibrant, chaotic energy. The contrast between the two creates visual depth that
+        neither effect achieves alone.
+      </p>
+
+      <h2>Basic Combination</h2>
+      <p>
+        The simplest way to combine ribbons and confetti is to call both functions in a staggered
+        loop:
+      </p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+import { confetti } from '@tsparticles/confetti';
+
+await ribbons.init();
+await confetti.init();
+
+const duration = 6000;
+const animationEnd = Date.now() + duration;
+
+const interval = setInterval(() => {
+  if (Date.now() >= animationEnd) {
+    return clearInterval(interval);
+  }
+
+  // Confetti raining from random positions across the top
+  confetti({
+    particleCount: 5,
+    angle: 90,
+    spread: 70,
+    origin: { x: Math.random(), y: 0 },
+    gravity: 1.2,
+    colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
+  });
+
+  // Ribbons flowing across
+  ribbons({
+    colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
+  });
+}, 320);</code></pre>
+      <p>
+        Confetti drops from random positions along the top edge while ribbons flow from above,
+        creating a layered rain effect — colorful particles tumbling down while ribbons drift
+        gracefully through them.
+      </p>
+
+      <h2>Color Coordination</h2>
+      <p>
+        The key to a polished look is coordinating colors between the two effects. Use the same
+        palette for both, but let each effect interpret the colors differently:
+      </p>
+      <pre><code>const celebrationColors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1'];
+
+confetti({
+  particleCount: 5,
+  spread: 70,
+  origin: { y: 0.6 },
+  colors: celebrationColors,
+});
+
+ribbons({
+  colors: celebrationColors,
+});</code></pre>
+      <p>
+        Since confetti uses solid-colored shapes and ribbons use gradient fills, the same colors
+        will look slightly different in each context — creating visual variety without clashing.
+      </p>
+
+      <h2>Timing Strategies</h2>
+      <p>How you time the two effects dramatically changes the feel:</p>
+
+      <h3>Simultaneous Burst</h3>
+      <p>
+        Fire both at the same time for maximum impact — great for the moment a user completes a
+        significant action:
+      </p>
+      <pre><code>// Big simultaneous celebration
+confetti({ particleCount: 100, spread: 100, origin: { y: 0.5 } });
+ribbons();
+ribbons();</code></pre>
+
+      <h3>Staggered Cascade</h3>
+      <p>Start confetti first, then layer ribbons a moment later for a building effect:</p>
+      <pre><code>confetti({ particleCount: 80, spread: 90, origin: { y: 0.4 } });
+
+setTimeout(() => {
+  ribbons({
+    colors: ['#FFD700', '#FFA500'],
+  });
+}, 300);</code></pre>
+
+      <h3>Continuous Background</h3>
+      <p>Light, ongoing rain of both effects for ambient celebration:</p>
+      <pre><code>setInterval(() => {
+  confetti({
+    particleCount: 2,
+    spread: 40,
+    origin: { y: 0 },
+    gravity: 0.8,
+    colors: ['#FFD700', '#FF69B4'],
+  });
+
+  ribbons({
+    count: 5,
+  });
+}, 500);</code></pre>
+
+      <h2>Event-Triggered Combos</h2>
+      <p>Combine both effects in response to user actions for memorable interactions:</p>
+      <pre><code>document.getElementById('subscribe-btn').addEventListener('click', async () => {
+  await ribbons.init();
+  await confetti.init();
+
+  // Immediate confetti burst
+  confetti({
+    particleCount: 120,
+    spread: 100,
+    origin: { y: 0.7 },
+    colors: ['#FFD700', '#FF69B4', '#4ECDC4'],
+  });
+
+  // Ribbons follow after a beat
+  setTimeout(() => {
+    ribbons({
+      colors: ['#FFD700', '#FF69B4', '#4ECDC4'],
+    });
+  }, 150);
+
+  // Second wave
+  setTimeout(() => {
+    confetti({
+      particleCount: 60,
+      spread: 80,
+      origin: { y: 0.6 },
+    });
+  }, 600);
+
+  // Show success state
+  this.textContent = 'Subscribed!';
+  this.disabled = true;
+});</code></pre>
+
+      <h2>Performance Considerations</h2>
+      <p>
+        Running both effects simultaneously is more demanding than either alone. Keep these
+        guidelines in mind:
+      </p>
+      <ul>
+        <li>
+          <strong>Limit concurrent confetti:</strong> Use lower <code>particleCount</code> values
+          (3-5 per burst) when combining with ribbons
+        </li>
+        <li>
+          <strong>Keep durations short:</strong> 4-6 seconds is the sweet spot for combined effects
+        </li>
+        <li>
+          <strong>Avoid mobile overload:</strong> On mobile, consider using only one effect or
+          reducing particle counts significantly
+        </li>
+        <li>
+          <strong>Use requestAnimationFrame:</strong> For continuous combos, sync with the browser's
+          render cycle for smoother animation
+        </li>
+      </ul>
+      <p>
+        For detailed performance optimization tips, see the
+        <a href="/blog/performance-guide.html">performance optimization guide</a>.
+      </p>
+
+      <h2>Try It Live</h2>
+      <p>
+        You can experiment with the ribbons and confetti combination directly on the
+        <a href="/">playground page</a>. The "Ribbons + Confetti" mode demonstrates this exact
+        pattern — click "Run" to see the double celebration effect in action.
+      </p>
+      <p>
+        For more examples, check out the
+        <a href="/blog/real-world-examples.html">real-world examples guide</a> or explore the
+        <a href="/blog/customization-guide.html">customization guide</a> to fine-tune the effects
+        for your specific use case.
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'],
+          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

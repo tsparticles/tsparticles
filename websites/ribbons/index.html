@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="tsParticles - Easily create highly customizable ribbon animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+      content="Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source."
     />
     <meta name="author" content="Matteo Bruni" />
     <meta
@@ -111,6 +111,7 @@
 
     <header>
       <div class="header-left">
+        <a class="header-link" href="/about.html">About</a>
         <a class="header-link" href="/blog/index.html">Blog</a>
         <a class="header-link" href="/cookie-policy.html">Cookie</a>
         <a class="header-link" href="/privacy-policy.html">Privacy</a>
@@ -246,6 +247,112 @@
     </header>
 
     <h1>tsParticles Ribbons</h1>
+
+    <div class="intro-section">
+      <p class="intro-lead">
+        Create stunning, flowing ribbon animations for your website with just a few lines of
+        JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance
+        your site's visual appeal without slowing it down.
+      </p>
+      <p class="intro-sub">
+        Whether you're building a celebration effect, an interactive background, or a subtle ambient
+        animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash,
+        just pure HTML5 Canvas.
+      </p>
+    </div>
+
+    <div class="features-section">
+      <h2>Why Choose tsParticles Ribbons?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Lightweight &amp; Fast</h3>
+          <p>
+            The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps
+            using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile
+            devices.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Zero Dependencies</h3>
+          <p>
+            Use it with a simple script tag or install via npm. No jQuery, no React, no build tools
+            required — though it integrates seamlessly with all major frameworks.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Fully Customizable</h3>
+          <p>
+            Control colors, physics, positioning, and timing. Create anything from subtle background
+            effects to dramatic celebration bursts with just a few configuration options.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Cross-Browser Compatible</h3>
+          <p>
+            Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful
+            fallback for older browsers — your site stays functional everywhere.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Framework Support</h3>
+          <p>
+            Official packages available for React, Vue.js, Angular, and Svelte. One-line integration
+            with dedicated components that handle canvas lifecycle automatically.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Open Source</h3>
+          <p>
+            MIT licensed and backed by the tsParticles community. Full source code available on
+            GitHub with comprehensive documentation and examples.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="usecases-section">
+      <h2>Perfect For</h2>
+      <ul class="usecases-list">
+        <li>
+          <strong>Product launches &amp; announcements:</strong> Celebrate new releases with
+          eye-catching ribbon bursts that draw attention to your message.
+        </li>
+        <li>
+          <strong>Holiday &amp; seasonal themes:</strong> Add festive ribbon animations for
+          holidays, sales events, or special occasions.
+        </li>
+        <li>
+          <strong>Interactive backgrounds:</strong> Create engaging ambient effects that respond to
+          user interactions without distracting from your content.
+        </li>
+        <li>
+          <strong>Gamification &amp; rewards:</strong> Trigger ribbon animations when users complete
+          actions, earn achievements, or reach milestones.
+        </li>
+        <li>
+          <strong>Portfolio &amp; creative sites:</strong> Add a unique visual element that makes
+          your portfolio stand out from the crowd.
+        </li>
+        <li>
+          <strong>E-commerce &amp; conversions:</strong> Highlight special offers, discount reveals,
+          or successful purchases with celebratory effects.
+        </li>
+      </ul>
+    </div>
+
+    <div class="quickstart-section">
+      <h2>Quick Start</h2>
+      <p>Add ribbons to any website in under a minute. Include the script and call one function:</p>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@latest/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  ribbons();
+&lt;/script&gt;</code></pre>
+      <p>
+        That's it! Ribbons will fall from random positions across the top of your page. Want to
+        customize? Check out the interactive examples below, or read the
+        <a href="/blog/customization-guide.html">customization guide</a>.
+      </p>
+    </div>
 
     <div class="share-menu-wrapper">
       <details class="share-menu">
@@ -388,27 +495,6 @@
       </details>
     </div>
 
-    <div>
-      <div class="container">
-        <div class="html-group">
-          <div class="flex-rows">
-            <div class="left">
-              <h2><a href="#usage" id="usage" class="anchor">Usage</a></h2>
-            </div>
-            <div class="description">
-              <p>
-                First of all include the script in your page, only if using in plain HTML/JS pages:
-              </p>
-            </div>
-          </div>
-          <div class="editor">
-            &lt;script
-            src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@__RIBBONS_VERSION__/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="ribbons-modes"></div>
 
     <footer>
@@ -423,6 +509,7 @@
         <span> by <b>tsParticles</b></span>
       </a>
       <div class="footer-links">
+        <a href="/about.html" class="cookie-policy-link">About</a>
         <a href="/blog/index.html" class="cookie-policy-link">Blog</a>
         <a href="/cookie-policy.html" class="cookie-policy-link">Cookie Policy</a>
         <a href="/privacy-policy.html" class="cookie-policy-link">Privacy Policy</a>
