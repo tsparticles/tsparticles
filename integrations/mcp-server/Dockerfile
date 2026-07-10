@@ -22,7 +22,7 @@ RUN pnpm install --frozen-lockfile --filter @tsparticles/mcp-server --ignore-scr
 RUN pnpm --filter @tsparticles/mcp-server exec tsc
 
 # Prune to production deps only
-RUN pnpm --filter @tsparticles/mcp-server deploy --prod /tmp/app
+RUN pnpm --filter @tsparticles/mcp-server deploy --prod --legacy /tmp/app
 
 FROM node:22-alpine
 # tini acts as a proper PID 1: reaps zombie processes and forwards
