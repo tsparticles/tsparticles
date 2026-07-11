@@ -17,6 +17,7 @@
     <nav class="site-nav">
       <div class="site-nav-links">
         <a href="/">Playground</a>
+        <a href="/about.html">About</a>
         <a href="/blog/index.html" class="site-nav-current">Blog</a>
         <a href="/cookie-policy.html">Cookie Policy</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
@@ -57,6 +58,38 @@
             frameworks including React, Vue.js, Angular, and Svelte.
           </p>
         </li>
+        <li>
+          <h2><a href="/blog/performance-guide.html">Performance Optimization Guide</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Optimize your ribbon animations for maximum performance — tips for smooth 60fps
+            rendering on desktop and mobile devices.
+          </p>
+        </li>
+        <li>
+          <h2><a href="/blog/troubleshooting.html">Troubleshooting Common Issues</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Fix rendering problems, color glitches, and performance bottlenecks. Solutions for
+            React, Vue, Angular, and vanilla JavaScript setups.
+          </p>
+        </li>
+        <li>
+          <h2><a href="/blog/real-world-examples.html">Real-World Examples and Use Cases</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Product launches, shopping cart effects, ambient backgrounds, and more — complete,
+            copy-paste-ready code snippets for common scenarios.
+          </p>
+        </li>
+        <li>
+          <h2><a href="/blog/ribbons-and-confetti.html">Combining Ribbons and Confetti</a></h2>
+          <p class="blog-meta">June 9, 2026</p>
+          <p class="blog-excerpt">
+            Layer ribbons with confetti for a double celebration effect. Timing strategies, color
+            coordination, and performance tips for combining both animations.
+          </p>
+        </li>
       </ul>
     </main>
 
@@ -80,8 +113,7 @@
         var k = 'tsparticles-ribbons/theme',
           s = parseInt(localStorage.getItem(k), 10) || 0,
           p = window.matchMedia('(prefers-color-scheme:light)'),
-          t = ['auto', 'dark', 'light'],
-          e = ['\uD83C\uDF13', '\uD83C\uDF19', '\u2600\uFE0F'];
+          t = ['auto', 'dark', 'light'];
         function u() {
           var th = t[s],
             a = th === 'auto';

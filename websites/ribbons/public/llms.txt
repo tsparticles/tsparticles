@@ -5,9 +5,14 @@
 ## Docs
 
 - [Ribbons Modes](https://ribbons.js.org/): Interactive ribbon animation demos with live code editor
+- [About tsParticles Ribbons](https://ribbons.js.org/about.html): Overview, features, and the tsParticles ecosystem
 - [Getting Started Guide](https://ribbons.js.org/blog/getting-started.html): Quick start with script tags, npm, and framework components
 - [Customization Guide](https://ribbons.js.org/blog/customization-guide.html): Colors, physics, positioning, and timing options
 - [Framework Integration](https://ribbons.js.org/blog/framework-integration.html): Using ribbons with React, Vue, Angular, and Svelte
+- [Performance Optimization](https://ribbons.js.org/blog/performance-guide.html): Tips for smooth 60fps rendering on all devices
+- [Troubleshooting](https://ribbons.js.org/blog/troubleshooting.html): Fix rendering problems, color glitches, and framework issues
+- [Real-World Examples](https://ribbons.js.org/blog/real-world-examples.html): Product launches, celebrations, backgrounds, and more
+- [Ribbons + Confetti](https://ribbons.js.org/blog/ribbons-and-confetti.html): Combining both effects for double celebrations
 - [tsParticles Documentation](https://particles.js.org/): Main tsParticles documentation site
 - [tsParticles GitHub](https://github.com/tsparticles/tsparticles): Source code and issue tracker
 

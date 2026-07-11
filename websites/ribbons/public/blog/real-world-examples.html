@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Real-world examples of tsParticles Ribbon animations — product launches, celebrations, backgrounds, and more."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>Real-World Examples and Use Cases | tsParticles Ribbons Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Real-World Examples and Use Cases",
+        "description": "Real-world examples of tsParticles Ribbon animations — product launches, celebrations, backgrounds, and more.",
+        "author": {
+          "@type": "Person",
+          "name": "Matteo Bruni",
+          "url": "https://github.com/matteobruni"
+        },
+        "datePublished": "2026-06-09",
+        "publisher": {
+          "@type": "Organization",
+          "name": "tsParticles"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://ribbons.js.org/blog/real-world-examples.html"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/about.html">About</a>
+        <a href="/blog/index.html" class="site-nav-current">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button class="site-nav-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    </nav>
+
+    <main class="content-page">
+      <a class="back-link" href="/blog/index.html">&larr; Back to blog</a>
+
+      <h1>Real-World Examples and Use Cases</h1>
+      <p class="meta">June 9, 2026 by Matteo Bruni</p>
+
+      <p>
+        One of the best ways to learn a new tool is to see how others use it. In this guide, we'll
+        walk through real-world examples of tsParticles Ribbons in action — from product launch
+        celebrations to ambient backgrounds — with complete, copy-paste-ready code snippets you can
+        adapt for your own projects.
+      </p>
+
+      <h2>Product Launch Celebration</h2>
+      <p>
+        When you launch a new product or feature, a well-timed ribbon animation can create a moment
+        of delight. Here's how to trigger a celebration when a user clicks a "Launch" button:
+      </p>
+      <pre><code>document.getElementById('launch-btn').addEventListener('click', async () => {
+  await ribbons.init();
+
+  // Gold and silver burst from center
+  ribbons({
+    colors: ['#FFD700', '#FFC0CB', '#FFFFFF', '#FF69B4'],
+    positionX: 50,
+    emitterSize: { width: 20, height: 0 },
+  });
+
+  // Second burst after a short delay
+  setTimeout(() => {
+    ribbons({
+      colors: ['#00CED1', '#40E0D0', '#7FFFD4'],
+      positionX: 50,
+      emitterSize: { width: 40, height: 0 },
+    });
+  }, 200);
+});</code></pre>
+      <p>
+        This creates a two-layered burst effect — an inner gold/pink burst followed by a wider
+        turquoise wave — giving the celebration a sense of depth and progression.
+      </p>
+
+      <h2>Shopping Cart Success Effect</h2>
+      <p>
+        E-commerce sites can use ribbon animations to confirm actions. When a user adds an item to
+        their cart, a subtle ribbon burst from the cart icon reinforces the action:
+      </p>
+      <pre><code>async function animateCartAdd(buttonElement) {
+  await ribbons.init();
+
+  const rect = buttonElement.getBoundingClientRect();
+  const xPercent = (rect.left + rect.width / 2) / window.innerWidth * 100;
+
+  ribbons({
+    count: 12,
+    colors: ['#4CAF50', '#8BC34A', '#CDDC39'],
+    positionX: xPercent,
+    emitterSize: { width: 10, height: 0 },
+  });
+}
+
+// Usage
+document.querySelector('.add-to-cart').addEventListener('click', function () {
+  animateCartAdd(this);
+  addToCart(this.dataset.productId);
+});</code></pre>
+      <p>
+        Using fewer ribbons (12 instead of the default 30) keeps the effect subtle and
+        non-intrusive, while the green color palette reinforces the positive action.
+      </p>
+
+      <h2>Ambient Page Background</h2>
+      <p>
+        For creative portfolios or landing pages, continuous ribbon animations can serve as a living
+        background that adds visual interest without distracting from the content:
+      </p>
+      <pre><code>async function startAmbient() {
+  await ribbons.init();
+
+  const canvas = document.getElementById('bg-canvas');
+  const shoot = await ribbons.create(canvas, {
+    zIndex: -1,
+  });
+
+  // Spawn ribbons every 2 seconds
+  function spawnLoop() {
+    shoot();
+    setTimeout(spawnLoop, 2000);
+  }
+
+  spawnLoop();
+}
+
+startAmbient();</code></pre>
+      <p>
+        The key here is using a custom canvas with <code>zIndex: -1</code> so the ribbons render
+        behind your content. The 2-second interval creates a gentle, flowing effect that doesn't
+        overwhelm the page.
+      </p>
+
+      <h2>Holiday Theme Switcher</h2>
+      <p>
+        Seasonal websites can use ribbon color changes to match holidays. Here's a simple approach
+        that ties ribbon colors to the current month:
+      </p>
+      <pre><code>const holidayColors = {
+  january: ['#E8F5E9', '#C8E6C9', '#A5D6A7'],     // New Year silver/green
+  february: ['#FCE4EC', '#F8BBD0', '#F48FB1'],    // Valentine pink
+  march: ['#E8F5E9', '#C8E6C9', '#FFEB3B'],       // St. Patrick green/gold
+  july: ['#E3F2FD', '#1565C0', '#FFD600'],         // Independence Day
+  october: ['#4A148C', '#FF6F00', '#000000'],      // Halloween
+  december: ['#C62828', '#FFD600', '#FFFFFF'],     // Christmas
+};
+
+const month = new Date().toLocaleString('en', { month: 'long' }).toLowerCase();
+const colors = holidayColors[month] || ['#FF4500', '#FF6347', '#FFD700'];
+
+ribbons({ colors });</code></pre>
+      <p>
+        This pattern is great for e-commerce sites, event pages, or any site that wants to feel
+        timely and relevant.
+      </p>
+
+      <h2>Form Submission Feedback</h2>
+      <p>
+        Replace generic "success" messages with a visual celebration when a form is submitted
+        successfully:
+      </p>
+      <pre><code>document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const rect = submitBtn.getBoundingClientRect();
+  const x = (rect.left + rect.width / 2) / window.innerWidth * 100;
+
+  await ribbons.init();
+
+  // Burst of ribbons from the submit button
+  ribbons({
+    count: 20,
+    colors: ['#2196F3', '#03A9F4', '#00BCD4', '#009688'],
+    positionX: x,
+    emitterSize: { width: 30, height: 0 },
+  });
+
+  // Show success message
+  submitBtn.textContent = 'Sent!';
+  submitBtn.disabled = true;
+});</code></pre>
+      <p>
+        This creates a memorable moment that makes form submission feel rewarding instead of
+        mundane.
+      </p>
+
+      <h2>Multi-Color Wave Effect</h2>
+      <p>
+        For dramatic page transitions or hero sections, you can create a wave of colors that sweeps
+        across the screen:
+      </p>
+      <pre><code>async function colorWave() {
+  await ribbons.init();
+
+  const colors = [
+    ['#FF0000', '#FF4500'],
+    ['#FF8C00', '#FFD700'],
+    ['#00FF00', '#32CD32'],
+    ['#00BFFF', '#1E90FF'],
+    ['#8A2BE2', '#9370DB'],
+  ];
+
+  colors.forEach((palette, i) => {
+    setTimeout(() => {
+      ribbons({
+        colors: palette,
+        positionX: 10 + i * 20,
+      });
+    }, i * 150);
+  });
+}
+
+colorWave();</code></pre>
+      <p>
+        Each burst is positioned 20% further across the viewport, with 150ms delays creating a
+        left-to-right wave effect. The color progression from red through the spectrum creates a
+        rainbow wave.
+      </p>
+
+      <h2>Interactive Cursor Trail</h2>
+      <p>
+        You can create ribbons that follow the mouse cursor for an interactive experience. This
+        works particularly well on portfolio sites and creative agencies:
+      </p>
+      <pre><code>async function cursorRibbons() {
+  await ribbons.init();
+
+  let lastTrigger = 0;
+  const throttle = 400; // ms between bursts
+
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastTrigger < throttle) return;
+    lastTrigger = now;
+
+    const x = (e.clientX / window.innerWidth) * 100;
+
+    ribbons({
+      count: 5,
+      positionX: x,
+      emitterSize: { width: 5, height: 0 },
+    });
+  });
+}
+
+cursorRibbons();</code></pre>
+      <p>
+        The 400ms throttle prevents too many ribbons from spawning at once, while the low count (5)
+        keeps each burst lightweight. The result is a trail of ribbons that follows your cursor
+        across the page.
+      </p>
+
+      <h2>Combining with Other Effects</h2>
+      <p>
+        Ribbons work great alongside other tsParticles effects. Here's how to combine them with
+        particles for a rich, layered animation:
+      </p>
+      <pre><code>import { ribbons } from '@tsparticles/ribbons';
+import { tsParticles } from '@tsparticles/engine';
+
+await ribbons.init();
+
+// Add ambient particles first
+await tsParticles.load('particles-bg', {
+  particles: {
+    number: { value: 30 },
+    color: { value: '#ffffff' },
+    move: { enable: true, speed: 0.5 },
+    opacity: { value: 0.3 },
+  },
+});
+
+// Then add ribbons on top
+ribbons({
+  colors: ['#FF6B6B', '#4ECDC4', '#45B7D1'],
+});</code></pre>
+      <p>
+        The subtle particle background adds depth, while the ribbons provide the main visual impact.
+        Together they create a more immersive experience than either effect alone.
+      </p>
+
+      <h2>Next Steps</h2>
+      <p>
+        These examples should give you a solid foundation for incorporating ribbon animations into
+        your projects. Experiment with different configurations on the
+        <a href="/">interactive playground</a>, and check out the
+        <a href="/blog/customization-guide.html">customization guide</a> for more advanced options.
+      </p>
+      <p>
+        For performance tips when using these patterns, see the
+        <a href="/blog/performance-guide.html">performance optimization guide</a>.
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

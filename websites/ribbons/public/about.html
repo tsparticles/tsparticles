@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="About tsParticles Ribbons — the open-source JavaScript library for creating beautiful ribbon animations on any website."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta name="theme-color" content="#393939" />
+    <title>About | tsParticles Ribbons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="site-nav-links">
+        <a href="/">Playground</a>
+        <a href="/about.html" class="site-nav-current">About</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <button
+        type="button"
+        class="site-nav-theme"
+        id="themeToggle"
+        aria-label="Toggle theme"
+      ></button>
+    </nav>
+
+    <main class="content-page">
+      <h1>About tsParticles Ribbons</h1>
+      <p class="meta">Last updated: June 9, 2026</p>
+
+      <p>
+        tsParticles Ribbons is an open-source JavaScript library that makes it easy to add
+        beautiful, physics-driven ribbon animations to any website. It's part of the larger
+        <a href="https://github.com/tsparticles/tsparticles">tsParticles</a> ecosystem, which
+        provides a comprehensive suite of particle and animation tools for web developers.
+      </p>
+
+      <h2>What Are Ribbons?</h2>
+      <p>
+        Ribbons are flowing, curved strips of color that animate across your screen using physics
+        simulation. Unlike simple CSS animations, ribbons follow natural-looking paths with gravity,
+        velocity, and rotation, creating organic, eye-catching effects. They can be used for
+        celebrations, ambient backgrounds, interactive effects, and much more.
+      </p>
+      <p>
+        Each ribbon is rendered on an HTML5 Canvas element using bezier curves and gradient fills.
+        The animation runs at 60fps using hardware-accelerated rendering, ensuring smooth
+        performance across devices.
+      </p>
+
+      <h2>Who Is It For?</h2>
+      <p>
+        tsParticles Ribbons is designed for web developers, designers, and anyone who wants to add
+        visual flair to their website without writing complex animation code. Whether you're
+        building a personal blog, an e-commerce store, a SaaS dashboard, or a creative portfolio,
+        ribbons can enhance your site's visual appeal.
+      </p>
+      <p>The library is particularly useful for:</p>
+      <ul>
+        <li>Frontend developers looking for quick, high-quality animation effects</li>
+        <li>Designers who want to prototype interactive animations without code</li>
+        <li>Marketing teams creating product launch pages and landing pages</li>
+        <li>Open-source contributors who want to enhance their projects with animations</li>
+      </ul>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li>
+          <strong>Simple API:</strong> Add ribbons with a single function call. No complex
+          configuration required for basic usage.
+        </li>
+        <li>
+          <strong>Fully customizable:</strong> Control colors, physics, positioning, timing, and
+          more through a simple options object.
+        </li>
+        <li>
+          <strong>Framework support:</strong> Official packages for React, Vue.js, Angular, and
+          Svelte with dedicated components.
+        </li>
+        <li>
+          <strong>Lightweight:</strong> The core bundle is just a few kilobytes gzipped, with no
+          heavy dependencies.
+        </li>
+        <li>
+          <strong>Cross-browser:</strong> Works in all modern browsers including Chrome, Firefox,
+          Safari, and Edge.
+        </li>
+        <li><strong>MIT licensed:</strong> Free to use in personal and commercial projects.</li>
+      </ul>
+
+      <h2>How It Works</h2>
+      <p>
+        Under the hood, tsParticles Ribbons uses the tsParticles engine — a powerful, optimized
+        particle system that handles rendering, physics, and lifecycle management. When you call the
+        <code>ribbons()</code> function, it:
+      </p>
+      <ol>
+        <li>Creates a canvas element (full-screen by default, or a custom element you provide)</li>
+        <li>
+          Spawns a set of ribbon objects, each with random position, velocity, color, and rotation
+        </li>
+        <li>Runs a physics simulation that updates ribbon positions each frame</li>
+        <li>Draws each ribbon as a bezier curve with gradient fills</li>
+        <li>Automatically removes ribbons when they fade out or leave the viewport</li>
+      </ol>
+
+      <h2>The tsParticles Ecosystem</h2>
+      <p>
+        tsParticles Ribbons is one of several specialized packages in the tsParticles ecosystem.
+        Other available packages include:
+      </p>
+      <ul>
+        <li>
+          <strong>@tsparticles/engine</strong> — the core particle engine that powers everything
+        </li>
+        <li><strong>@tsparticles/slim</strong> — a slim bundle with essential features</li>
+        <li><strong>@tsparticles/confetti</strong> — confetti effects for celebrations</li>
+        <li><strong>@tsparticles/fireworks</strong> — realistic firework animations</li>
+      </ul>
+      <p>
+        Each package is tree-shakable and can be used independently, so you only load the features
+        you need.
+      </p>
+
+      <h2>Contributing</h2>
+      <p>
+        tsParticles Ribbons is open-source and welcomes contributions. Whether you want to fix a
+        bug, add a feature, or improve documentation, your help is appreciated.
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://github.com/tsparticles/tsparticles"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub Repository</a
+          >
+          — source code, issues, and pull requests
+        </li>
+        <li>
+          <a href="https://discord.gg/hACwv45Hme" target="_blank" rel="noopener noreferrer"
+            >Discord</a
+          >
+          — community chat and support
+        </li>
+        <li>
+          <a href="https://www.reddit.com/r/tsParticles/" target="_blank" rel="noopener noreferrer"
+            >Reddit</a
+          >
+          — discussions and showcases
+        </li>
+      </ul>
+
+      <h2>Support the Project</h2>
+      <p>
+        tsParticles Ribbons is free and open-source. If you find it useful, consider supporting the
+        project:
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://github.com/sponsors/matteobruni"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub Sponsors</a
+          >
+          — monthly sponsorship
+        </li>
+        <li>
+          <a
+            href="https://www.buymeacoffee.com/matteobruni"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Buy Me a Coffee</a
+          >
+          — one-time donation
+        </li>
+        <li>Star the repository on GitHub — it helps others discover the project</li>
+      </ul>
+
+      <p>
+        <a href="/">Back to the playground</a>
+      </p>
+    </main>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        background: var(--secondary-color);
+        color: var(--inner-color);
+      "
+    >
+      <p>
+        <a href="https://github.com/tsparticles" style="color: var(--inner-color)">tsParticles</a>
+        &mdash; JavaScript ribbon animations for your website
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        var k = 'tsparticles-ribbons/theme',
+          s = parseInt(localStorage.getItem(k), 10) || 0,
+          p = window.matchMedia('(prefers-color-scheme:light)'),
+          t = ['auto', 'dark', 'light'];
+        function u() {
+          var th = t[s],
+            a = th === 'auto';
+          if (a) {
+            document.body.setAttribute('auto-theme', '');
+            document.body.setAttribute('data-theme', p.matches ? 'light' : 'dark');
+          } else {
+            document.body.removeAttribute('auto-theme');
+            document.body.setAttribute('data-theme', th);
+          }
+        }
+        u();
+        document.getElementById('themeToggle').addEventListener('click', function () {
+          s = (s + 1) % 3;
+          localStorage.setItem(k, s);
+          u();
+        });
+      })();
+    </script>
+  </body>
+</html>

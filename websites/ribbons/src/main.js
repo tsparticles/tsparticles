@@ -1,4 +1,5 @@
 import { ribbons } from '@tsparticles/ribbons';
+import { confetti } from '@tsparticles/confetti';
 import './style.css';
 import './cookie-consent.js';
 import ace from 'ace-builds';
@@ -16,6 +17,7 @@ ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
 ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
 
 window.ribbons = ribbons;
+window.confetti = confetti;
 
 const editors = [];
 
@@ -33,6 +35,15 @@ const shareMobileOrder = ['x', 'whatsapp', 'telegram', 'facebook', 'linkedin', '
 
 let activeTheme = 'dark';
 let currentStep = parseInt(localStorage.getItem('tsparticles-ribbons/theme'), 10) || 0;
+let activeIntervals = [];
+let activeTimeouts = [];
+
+function cleanupActiveEffects() {
+  activeIntervals.forEach(clearInterval);
+  activeIntervals = [];
+  activeTimeouts.forEach(clearTimeout);
+  activeTimeouts = [];
+}
 
 const prefersLightTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
 const themes = {
@@ -286,6 +297,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       const duration = 8000;
       const animationEnd = Date.now() + duration;
 
@@ -298,6 +311,8 @@ const modes = [
 
         ribbons();
       }, 260);
+
+      activeIntervals.push(interval);
     },
   },
 
@@ -328,6 +343,8 @@ const modes = [
       },
     ],
     fn: function () {
+      cleanupActiveEffects();
+
       (async () => {
         const canvas = document.getElementById('my-canvas');
 
@@ -347,7 +364,68 @@ const modes = [
 
           canvas.ribbons();
         }, 300);
+
+        activeIntervals.push(interval);
       })();
+    },
+  },
+
+  {
+    id: 'ribbons-confetti',
+    name: 'Ribbons + Confetti',
+    description: [
+      {
+        cssClass: '',
+        text: 'Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.',
+      },
+      {
+        cssClass: 'center',
+        text: '🎉 Double the celebration! 🎉',
+      },
+    ],
+    fn: function () {
+      cleanupActiveEffects();
+
+      const duration = 6000;
+      const animationEnd = Date.now() + duration;
+
+      const confettiInterval = setInterval(function () {
+        if (Date.now() >= animationEnd) {
+          return clearInterval(confettiInterval);
+        }
+
+        confetti({
+          particleCount: 8,
+          angle: 90,
+          spread: 70,
+          origin: { x: Math.random(), y: 0 },
+          gravity: 1.2,
+          ticks: 200,
+          colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
+        });
+      }, 50);
+
+      activeIntervals.push(confettiInterval);
+
+      const ribbonStartTimeout = setTimeout(function () {
+        ribbons({
+          colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
+        });
+
+        const ribbonsInterval = setInterval(function () {
+          if (Date.now() >= animationEnd) {
+            return clearInterval(ribbonsInterval);
+          }
+
+          ribbons({
+            colors: ['#FF4500', '#FFD700', '#FF69B4', '#00CED1'],
+          });
+        }, 2000);
+
+        activeIntervals.push(ribbonsInterval);
+      }, 2000);
+
+      activeTimeouts.push(ribbonStartTimeout);
     },
   },
 ];
@@ -424,7 +502,14 @@ function getCode(name) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await ribbons.init();
+  // IMPORTANT: All tsParticles plugins (ribbons, confetti, etc.) must be registered
+  // BEFORE the engine is initialized via engine.load(). Once engine.load() runs
+  // (triggered by any ribbons() or confetti() call), PluginManager.init() is called
+  // and any subsequent pluginManager.register() will throw:
+  //   "Register plugins can only be done before calling tsParticles.load()"
+  // We register both ribbons and confetti upfront to guarantee all plugins are
+  // available regardless of which demo the user runs first.
+  await Promise.all([ribbons.init(), confetti.init()]);
 
   updateShareLinks();
   updateShareOrder();
@@ -487,6 +572,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (ev && typeof ev.preventDefault === 'function') {
         ev.preventDefault();
       }
+
+      cleanupActiveEffects();
 
       try {
         eval(editor.getValue());

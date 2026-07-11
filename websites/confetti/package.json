@@ -31,6 +31,7 @@
   "homepage": "https://confetti.js.org",
   "dependencies": {
     "@tsparticles/confetti": "workspace:*",
+    "@tsparticles/ribbons": "workspace:*",
     "ace-builds": "^1.44.0",
     "js-beautify": "^1.15.4"
   },
