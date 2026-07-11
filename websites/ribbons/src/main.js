@@ -386,24 +386,23 @@ const modes = [
     fn: function () {
       cleanupActiveEffects();
 
-      const duration = 6000;
-      const animationEnd = Date.now() + duration;
+      const duration = 6000,
+        animationEnd = Date.now() + duration,
+        confettiInterval = setInterval(function () {
+          if (Date.now() >= animationEnd) {
+            return clearInterval(confettiInterval);
+          }
 
-      const confettiInterval = setInterval(function () {
-        if (Date.now() >= animationEnd) {
-          return clearInterval(confettiInterval);
-        }
-
-        confetti({
-          particleCount: 8,
-          angle: 90,
-          spread: 70,
-          origin: { x: Math.random(), y: 0 },
-          gravity: 1.2,
-          ticks: 200,
-          colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
-        });
-      }, 50);
+          confetti({
+            particleCount: 8,
+            angle: 90,
+            spread: 70,
+            origin: { x: Math.random(), y: 0 },
+            gravity: 1.2,
+            ticks: 0,
+            colors: ['#FFD700', '#FF69B4', '#00CED1', '#FF4500'],
+          });
+        }, 50);
 
       activeIntervals.push(confettiInterval);
 
