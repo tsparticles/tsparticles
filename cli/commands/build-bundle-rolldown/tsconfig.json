@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": ".",
+    "resolveJsonModule": true,
+    "composite": true,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": [
+      "ESNext",
+      "ES2024",
+      "ES2023",
+      "ES2022",
+      "ES2021",
+      "ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016",
+      "ES2015"
+    ],
+    "types": [
+      "node",
+      "klaw",
+      "prompts",
+      "eslint"
+    ],
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
