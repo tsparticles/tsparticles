@@ -63,7 +63,7 @@
     "@nuxt/schema": "^4.4.8",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "globals": "^17.7.0",
     "nuxt": "^4.4.8",
     "typescript": "^6.0.3"

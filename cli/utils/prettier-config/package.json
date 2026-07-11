@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "cpx2": "^9.0.0",
-    "prettier": "^3.9.4"
+    "prettier": "^3.9.5"
   }
 }

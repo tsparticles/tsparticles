@@ -4,7 +4,7 @@ export const defaultConfig: IConfiguration = {
   forbidden: [
     {
       name: "no-circular",
-      severity: "warn",
+      severity: "error",
       comment:
         "This dependency is part of a circular relationship. You might want to revise " +
         "your solution (i.e. use dependency inversion, make sure the modules have a single responsibility) ",
