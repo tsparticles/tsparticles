@@ -784,9 +784,6 @@ importers:
       '@swc/core':
         specifier: ^1.15.43
         version: 1.15.43
-      '@tsparticles/cli-command-build-bundle-rolldown':
-        specifier: workspace:*
-        version: link:../build-bundle-rolldown
       '@tsparticles/cli-command-build-bundle-rollup':
         specifier: workspace:*
         version: link:../build-bundle-rollup
@@ -923,109 +920,6 @@ importers:
       webpack-cli:
         specifier: ^7.2.1
         version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
-
-  cli/commands/build-bundle-rolldown:
-    dependencies:
-      '@swc/core':
-        specifier: ^1.15.43
-        version: 1.15.43
-      '@tsparticles/depcruise-config':
-        specifier: workspace:*
-        version: link:../../utils/depcruise-config
-      '@tsparticles/eslint-config':
-        specifier: workspace:*
-        version: link:../../utils/eslint-config
-      '@tsparticles/prettier-config':
-        specifier: workspace:*
-        version: link:../../utils/prettier-config
-      '@tsparticles/rolldown-plugin':
-        specifier: workspace:*
-        version: link:../../utils/rolldown-plugin
-      '@tsparticles/tsconfig':
-        specifier: workspace:*
-        version: link:../../utils/tsconfig
-      dependency-cruiser:
-        specifier: ^18.0.0
-        version: 18.0.0
-      eslint:
-        specifier: ^10.7.0
-        version: 10.7.0(jiti@2.7.0)
-      eslint-config-prettier:
-        specifier: ^10.1.8
-        version: 10.1.8(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-jsdoc:
-        specifier: ^63.0.13
-        version: 63.0.13(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-prettier:
-        specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.7.0(jiti@2.7.0)))(eslint@10.7.0(jiti@2.7.0))(prettier@3.9.5)
-      eslint-plugin-tsdoc:
-        specifier: ^0.5.2
-        version: 0.5.2(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
-      klaw:
-        specifier: ^4.1.0
-        version: 4.1.0
-      lookpath:
-        specifier: ^1.2.3
-        version: 1.2.3
-      path-scurry:
-        specifier: ^2.0.2
-        version: 2.0.2
-      prettier:
-        specifier: ^3.9.5
-        version: 3.9.5
-      prettier-plugin-multiline-arrays:
-        specifier: ^4.1.10
-        version: 4.1.10(prettier@3.9.5)
-      prompts:
-        specifier: ^2.4.2
-        version: 2.4.2
-      rimraf:
-        specifier: ^6.1.3
-        version: 6.1.3
-      rolldown:
-        specifier: ^1.0.0
-        version: 1.1.5
-      swc-loader:
-        specifier: ^0.2.7
-        version: 0.2.7(@swc/core@1.15.43)(webpack@5.108.4)
-      typescript:
-        specifier: ^6.0.3
-        version: 6.0.3
-      typescript-eslint:
-        specifier: ^8.63.0
-        version: 8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
-    devDependencies:
-      '@types/estree':
-        specifier: ^1.0.9
-        version: 1.0.9
-      '@types/klaw':
-        specifier: ^3.0.7
-        version: 3.0.7
-      '@types/node':
-        specifier: ^26.1.1
-        version: 26.1.1
-      '@types/prompts':
-        specifier: ^2.4.9
-        version: 2.4.9
-      browserslist:
-        specifier: ^4.28.5
-        version: 4.28.5
-      commander:
-        specifier: ^15.0.0
-        version: 15.0.0
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      cross-env:
-        specifier: ^10.1.0
-        version: 10.1.0
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3)
-      vitest:
-        specifier: ^4.1.10
-        version: 4.1.10(@opentelemetry/api@1.9.1)(@types/node@26.1.1)(@vitest/coverage-v8@4.1.9)(@vitest/ui@4.1.9)(jsdom@29.1.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.1.0(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))
 
   cli/commands/build-bundle-rollup:
     dependencies:
@@ -3073,58 +2967,6 @@ importers:
       prettier:
         specifier: ^3.9.5
         version: 3.9.5
-
-  cli/utils/rolldown-plugin:
-    dependencies:
-      '@stylistic/eslint-plugin':
-        specifier: ^5.10.0
-        version: 5.10.0(eslint@10.7.0(jiti@2.7.0))
-      '@tsparticles/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@tsparticles/prettier-config':
-        specifier: workspace:*
-        version: link:../prettier-config
-      eslint:
-        specifier: ^10.7.0
-        version: 10.7.0(jiti@2.7.0)
-      eslint-config-prettier:
-        specifier: ^10.1.8
-        version: 10.1.8(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-jsdoc:
-        specifier: ^63.0.13
-        version: 63.0.13(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-tsdoc:
-        specifier: ^0.5.2
-        version: 0.5.2(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
-      prettier:
-        specifier: ^3.9.5
-        version: 3.9.5
-      prettier-plugin-multiline-arrays:
-        specifier: ^4.1.10
-        version: 4.1.10(prettier@3.9.5)
-    devDependencies:
-      '@rollup/plugin-typescript':
-        specifier: ^12.3.0
-        version: 12.3.0(rollup@4.62.2)(tslib@2.8.1)(typescript@6.0.3)
-      '@types/node':
-        specifier: ^26.1.1
-        version: 26.1.1
-      rimraf:
-        specifier: ^6.1.3
-        version: 6.1.3
-      rolldown:
-        specifier: ^1.0.0
-        version: 1.1.5
-      rollup:
-        specifier: ^4.62.2
-        version: 4.62.2
-      typescript:
-        specifier: ^6.0.3
-        version: 6.0.3
-      typescript-eslint:
-        specifier: ^8.63.0
-        version: 8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
 
   cli/utils/rollup-plugin:
     dependencies:

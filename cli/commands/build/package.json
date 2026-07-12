@@ -38,7 +38,6 @@
   "dependencies": {
     "@swc/core": "^1.15.43",
     "@tsparticles/cli-command-build-bundle-rollup": "workspace:*",
-    "@tsparticles/cli-command-build-bundle-rolldown": "workspace:*",
     "@tsparticles/cli-command-build-bundle-webpack": "workspace:*",
     "@tsparticles/cli-command-build-circular-deps": "workspace:*",
     "@tsparticles/cli-command-build-clear": "workspace:*",
