@@ -699,9 +699,9 @@ export class Particle {
       fillOpacity = this.fillOpacity ?? defaultOpacity,
       strokeOpacity = this.strokeOpacity ?? defaultOpacity;
 
-    this.#cachedOpacityData.fillOpacity = opacity * fillOpacity * zOpacityFactor;
+    this.#cachedOpacityData.fillOpacity = fillOpacity;
     this.#cachedOpacityData.opacity = opacity * zOpacityFactor;
-    this.#cachedOpacityData.strokeOpacity = opacity * strokeOpacity * zOpacityFactor;
+    this.#cachedOpacityData.strokeOpacity = strokeOpacity;
 
     return this.#cachedOpacityData;
   }
