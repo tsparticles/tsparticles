@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-text",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles shape for rendering particles as custom text characters and strings",
   "homepage": "https://particles.js.org",
   "scripts": {

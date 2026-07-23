@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/depcruise-config",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "private": false,
   "type": "module",
   "publishConfig": {

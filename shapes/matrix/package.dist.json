@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-matrix",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles matrix shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.3.2"
+    "@tsparticles/engine": "4.3.3"
   },
   "publishConfig": {
     "access": "public"

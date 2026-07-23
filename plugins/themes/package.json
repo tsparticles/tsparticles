@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-themes",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles plugin for supporting dark mode, light mode, and custom themes that change particle appearance",
   "homepage": "https://particles.js.org",
   "scripts": {

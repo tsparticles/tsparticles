@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
+
+
+### Bug Fixes
+
+* fixed common instance usage in engine initialization ([77d6718](https://github.com/tsparticles/tsparticles/commit/77d67187216afb9591c4fa92700176f64771a3a9))
+* fixed dockerfile for mcp server ([addc3a0](https://github.com/tsparticles/tsparticles/commit/addc3a0be98f1f5954dd6260abca15e084bd14c4))
+* fixed dockerfile for mcp server ([bcced5a](https://github.com/tsparticles/tsparticles/commit/bcced5a638cebca57eb0bc5b9bdaf34fe268761c))
+* fixed dockerfile for mcp server ([f3a82a4](https://github.com/tsparticles/tsparticles/commit/f3a82a499854c1b94b27c85b676b22a8c65ed0b8))
+* fixed dockerfile for mcp server ([7ba7e76](https://github.com/tsparticles/tsparticles/commit/7ba7e76b841441a4448645312e7d330fb1a342af))
+* fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
+* fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
+* fixed double opacity calc, fixes [#5903](https://github.com/tsparticles/tsparticles/issues/5903) ([3e128d2](https://github.com/tsparticles/tsparticles/commit/3e128d2a8f2c346a3cfc96c13569b72f8523a32e))
+
+
+
+
+
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 

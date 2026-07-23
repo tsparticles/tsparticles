@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-falling",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles preset for creating gently falling confetti particle animations",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/effect-filter",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles effect for applying CSS filter effects (blur, grayscale, sepia, etc.) to particles",
   "homepage": "https://particles.js.org",
   "scripts": {

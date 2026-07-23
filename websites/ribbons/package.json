@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons-website",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles ribbons webpage",
   "private": true,
   "type": "module",
@@ -30,8 +30,8 @@
   },
   "homepage": "https://ribbons.js.org",
   "dependencies": {
-    "@tsparticles/confetti": "workspace:^",
-    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/confetti": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
     "@tsparticles/ribbons": "workspace:*",
     "ace-builds": "^1.44.0",
     "js-beautify": "^1.15.4"

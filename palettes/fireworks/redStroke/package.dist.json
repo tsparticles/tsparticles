@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/palette-fireworks-red-stroke",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles fireworks red stroke palette",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,7 +106,7 @@
     }
   },
   "dependencies": {
-    "@tsparticles/engine": "4.3.2"
+    "@tsparticles/engine": "4.3.3"
   },
   "type": "module",
   "jsdelivr": "tsparticles.palette-colored-smoke-amber.min.js",

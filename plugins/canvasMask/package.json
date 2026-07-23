@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-canvas-mask",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles plugin for masking particles using canvas-based mask shapes and images",
   "homepage": "https://particles.js.org",
   "scripts": {

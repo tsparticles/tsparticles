@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-grab",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles external interaction for pulling particles toward the cursor, creating a grabbing effect",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fountain",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles fountain preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -106,11 +106,11 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.3.2",
-    "@tsparticles/engine": "4.3.2",
-    "@tsparticles/plugin-emitters": "4.3.2",
-    "@tsparticles/plugin-trail": "4.3.2",
-    "@tsparticles/updater-destroy": "4.3.2"
+    "@tsparticles/basic": "4.3.3",
+    "@tsparticles/engine": "4.3.3",
+    "@tsparticles/plugin-emitters": "4.3.3",
+    "@tsparticles/plugin-trail": "4.3.3",
+    "@tsparticles/updater-destroy": "4.3.3"
   },
   "publishConfig": {
     "access": "public"
