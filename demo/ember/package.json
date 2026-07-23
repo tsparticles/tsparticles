@@ -34,7 +34,7 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
+    "@babel/core": "8.0.1",
     "@ember/optional-features": "^3.0.0",
     "@ember/test-helpers": "^5.4.3",
     "@types/ember": "^4.0.11",
