@@ -236,7 +236,7 @@
 		"postcss": "^8.5.16",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
-		"typescript": "^6.0.3",
+		"typescript": "^7.0.2",
 		"webpack": "^5.97.0",
 		"webpack-cli": "^5.1.4"
 	}

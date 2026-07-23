@@ -58,7 +58,7 @@
     "eslint-plugin-tsdoc": "^0.5.2",
     "prettier": "^3.9.5",
     "rimraf": "^6.1.3",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.63.0"
   },
   "devDependencies": {

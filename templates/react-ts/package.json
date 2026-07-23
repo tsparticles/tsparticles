@@ -99,7 +99,7 @@
     "@types/react-dom": "^19.2.3",
     "tslib": "^2.8.1",
     "tsparticles": "workspace:*",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "web-vitals": "^5.2.0"
   },
   "devDependencies": {

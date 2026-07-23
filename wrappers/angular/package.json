@@ -110,7 +110,7 @@
     "karma-jasmine-html-reporter": "~2.2.0",
     "ng-packagr": "~22.0.0",
     "prettier": "^3.9.5",
-    "typescript": "~6.0.3"
+    "typescript": "~7.0.2"
   },
   "nx": {
     "targets": {
