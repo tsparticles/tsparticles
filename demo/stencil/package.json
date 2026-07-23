@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "@stencil/core": "^4.43.5",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }

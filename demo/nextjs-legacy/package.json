@@ -22,7 +22,7 @@
     "next": "^16.2.8",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^16.2.8",

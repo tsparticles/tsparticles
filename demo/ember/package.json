@@ -61,7 +61,7 @@
     "prettier": "^3.9.5",
     "qunit": "^2.26.0",
     "qunit-dom": "^3.5.1",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "webpack": "^5.108.0"
   }
 }

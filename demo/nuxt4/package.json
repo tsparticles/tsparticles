@@ -42,7 +42,7 @@
     "nuxt": "^4.4.8",
     "prettier": "^3.9.5",
     "tsparticles": "workspace:*",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue": "^3.5.38",
     "vue-eslint-parser": "^10.4.1"
   }

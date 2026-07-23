@@ -49,7 +49,7 @@
     "prettier-plugin-multiline-arrays": "^4.1.10",
     "rimraf": "^6.1.3",
     "swc-loader": "^0.2.7",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.63.0"
   },
   "devDependencies": {

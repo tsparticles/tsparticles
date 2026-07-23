@@ -135,7 +135,7 @@
     "eslint-plugin-vue": "^10.9.2",
     "globals": "^17.7.0",
     "prettier": "^3.9.5",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^6.4.3",
     "vite-plugin-dts": "^5.0.2",
     "vue": "^2.7.16",
