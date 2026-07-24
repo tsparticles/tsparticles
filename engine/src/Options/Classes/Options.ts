@@ -4,6 +4,7 @@ import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import { HDROptions } from "./HDROptions.js";
+import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { OptionLoader } from "../../Utils/OptionLoader.js";
@@ -118,6 +119,8 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
 
     if (isBoolean(hdrData)) {
       this.hdr.enable = hdrData;
+      this.hdr.mode = HdrMode.standard;
+      this.hdr.peakNits = 400;
     } else {
       this.hdr.load(hdrData);
     }

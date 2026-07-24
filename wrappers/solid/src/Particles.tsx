@@ -49,6 +49,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
   });
 
   onCleanup(() => {
+    ++loadId;
     container?.destroy();
   });
 

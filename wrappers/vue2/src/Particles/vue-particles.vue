@@ -21,7 +21,14 @@ async function particlesInit(component: Particles): Promise<void> {
     );
   }
 
+  const generation = component._loadGeneration;
+
   const cb = (container?: Container) => {
+    if (generation !== component._loadGeneration) {
+      container?.destroy();
+      return;
+    }
+
     component.container = container;
 
     if (container && component.particlesLoaded) {
@@ -34,6 +41,11 @@ async function particlesInit(component: Particles): Promise<void> {
     options: component.options ?? {},
     url: component.url,
   });
+
+  if (generation !== component._loadGeneration) {
+    container?.destroy();
+    return;
+  }
 
   if (container && component.theme) {
     (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(component.theme);
@@ -51,6 +63,7 @@ export default class Particles extends Vue {
   @Prop() readonly particlesLoaded?: (container?: Container) => void;
 
   container?: Container;
+  _loadGeneration = 0;
 
   @Watch("options")
   @Watch("url")
@@ -58,6 +71,7 @@ export default class Particles extends Vue {
   onPropChange(): void {
     if (this.container) {
       this.container.destroy();
+      this._loadGeneration++;
       void particlesInit(this);
     }
   }

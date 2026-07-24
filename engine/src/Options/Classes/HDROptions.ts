@@ -10,7 +10,7 @@ const defaultPeakNits = 400;
  * [[include:Options/HDR.md]]
  */
 export class HDROptions extends OptionLoader<IHDROptions> implements IHDROptions {
-  enable = true;
+  enable = false;
 
   mode: HdrMode | keyof typeof HdrMode = HdrMode.standard;
 

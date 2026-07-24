@@ -102,12 +102,12 @@ export class Container {
   /**
    * The container hdr support flag
    */
-  hdr;
+  hdr: boolean;
 
   /**
    * The HDR rendering mode preset
    */
-  hdrMode;
+  hdrMode: HdrMode;
 
   /** The container id */
   readonly id;
@@ -135,7 +135,7 @@ export class Container {
   /**
    * The peak brightness in nits for HDR rendering
    */
-  peakNits;
+  peakNits: number;
 
   /**
    * All the plugins used by the container

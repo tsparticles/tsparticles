@@ -55,7 +55,7 @@ export function drawRoundedCard(
   if (flipped) {
     drawRoundedCardBack(ctx, radius);
   } else {
-    const cacheKey = getCacheKey(radius, hdr, cardData),
+    const cacheKey = getCacheKey(radius, hdr, cardData, peakNits, mode),
       cardWidth = radius * cardWidthRatio,
       cardHeight = radius * cardHeightRatio,
       halfWidth = cardWidth * half,
@@ -90,10 +90,12 @@ export function drawRoundedCard(
  * @param radius - The radius
  * @param hdr - The hdr
  * @param cardData - The cardData
+ * @param peakNits
+ * @param mode
  * @returns -
  */
-function getCacheKey(radius: number, hdr: boolean, cardData: ICardData): string {
-  return `${radius.toFixed(fixedCacheKey)}-${hdr ? "hdr" : "sdr"}-${cardData.suit}-${cardData.value}`;
+function getCacheKey(radius: number, hdr: boolean, cardData: ICardData, peakNits?: number, mode?: HdrMode): string {
+  return `${radius.toFixed(fixedCacheKey)}-${hdr ? "hdr" : "sdr"}-${peakNits !== undefined ? peakNits.toFixed(fixedCacheKey) : "default"}-${mode ?? "default"}-${cardData.suit}-${cardData.value}`;
 }
 
 /**

@@ -60,7 +60,6 @@ const styleCache = new Map<string, string>(),
   hdrRgbFixedPrecision = 4,
   hdrHslFixedPrecision = 4,
   sdrReferenceWhiteNits = 203,
-  hdrAnimationScale = sdrReferenceWhiteNits / maxNits,
   acesA = 2.51,
   acesB = 0.03,
   acesC = 2.43,
@@ -886,8 +885,14 @@ function setColorAnimation(
  * @param decrease - whether the color should decrease over time
  * @param delta - the frame delta time
  * @param hdr - the HDR flag
+ * @param _hdr
  */
-export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta, hdr?: boolean): void {
+export function updateColorValue(
+  data: IParticleColorAnimation,
+  decrease: boolean,
+  delta: IDelta,
+  _hdr?: boolean,
+): void {
   const minLoops = 0,
     minDelay = 0,
     identity = 1,
@@ -913,8 +918,7 @@ export function updateColorValue(data: IParticleColorAnimation, decrease: boolea
   }
 
   const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
-    velocity =
-      ((data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor) * (hdr ? hdrAnimationScale : identity),
+    velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
     decay = data.decay ?? identity,
     max = data.max,
     min = data.min;

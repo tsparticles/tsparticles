@@ -174,7 +174,7 @@ After applying all 6 fixes:
 
 These are lower-priority or edge-case findings. Do NOT include them in the main fix pass. Apply them only if the main 6 fixes all pass cleanly.
 
-### Optional A: OffscreenCanvas guard in worker context
+### Optional A: OffscreenCanvas guard in worker context ✅ DONE
 
 **File:** `engine/src/Core/RenderManager.ts` ~lines 794-797
 
@@ -197,7 +197,7 @@ Same pattern should be applied to the string-selector branch at ~line 779 if des
 
 ---
 
-### Optional B: Qwik wrapper — reject on missing init
+### Optional B: Qwik wrapper — reject on missing init ✅ DONE
 
 **File:** `wrappers/qwik/src/components/particles/initParticlesEngine.ts` ~lines 59-61
 
@@ -220,19 +220,19 @@ export async function waitForParticlesEngineInitialization(): Promise<void> {
 
 ---
 
-### Optional C: Svelte wrapper — track options without JSON.stringify
+### Optional C: Svelte wrapper — track options without JSON.stringify ✅ DONE
 
 **File:** `wrappers/svelte/src/lib/Particles.svelte` ~line 27
 
 **Problem:** `JSON.stringify(options)` drops functions. If options contain non-serializable values (e.g. `background.draw` callback), changing them won't trigger a reload.
 
-**Fix:** Use a counter or version signal instead of stringified key. This requires structural changes to the Svelte component and should be evaluated carefully.
+**Fix:** Replaced `JSON.stringify`-based `loadKey` with reference equality. The `$:` reactive block now references `id`, `url`, `options` directly — Svelte detects reference changes and re-runs `loadParticles()`. This matches the pattern used by React (`useEffect` deps), Vue (`@Watch`), and Stencil (`@Watch`).
 
-**Risk:** Medium — structural change to the Svelte wrapper. Only worth it if non-serializable options are a supported use case.
+**Risk:** Low — aligns with all other wrappers. Deep mutations on the same object won't trigger reload (same behavior as React/Vue).
 
 ---
 
-### Optional D: Stencil wrapper — forward both url and options
+### Optional D: Stencil wrapper — forward both url and options ✅ DONE
 
 **File:** `wrappers/stencil/src/components/stencil-particles/stencil-particles.tsx` ~line 75
 

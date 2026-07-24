@@ -450,6 +450,117 @@ function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData
 
 /**
  *
+ * @param hasStroke
+ * @param frontFill
+ * @param frontStroke
+ * @param shapeData
+ * @param particle
+ * @param hdr
+ * @param peakNits
+ * @param mode
+ */
+function resolveBackFill(
+  hasStroke: boolean,
+  frontFill: string,
+  frontStroke: string,
+  shapeData: RibbonParticle["shapeData"],
+  particle: RibbonParticle,
+  hdr: boolean,
+  peakNits?: number,
+  mode?: HdrMode,
+): string {
+  let backFill = hasStroke ? frontStroke : frontFill;
+
+  if (shapeData?.backColor) {
+    backFill = shapeData.backColor;
+  } else if (shapeData?.darken?.enable) {
+    const frontHsl = getHslFromAnimation(particle.fillColor);
+
+    if (frontHsl) {
+      const altered = alterHsl(frontHsl, AlterType.darken, getRangeValue(shapeData.darken.value));
+
+      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
+    }
+  } else if (shapeData?.enlighten?.enable) {
+    const frontHsl = getHslFromAnimation(particle.fillColor);
+
+    if (frontHsl) {
+      const altered = alterHsl(frontHsl, AlterType.enlighten, getRangeValue(shapeData.enlighten.value));
+
+      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
+    }
+  }
+
+  return backFill;
+}
+
+/**
+ *
+ * @param context
+ * @param currentBase
+ * @param nextBase
+ * @param currentSide
+ * @param nextSide
+ * @param isFirst
+ * @param isLast
+ * @param hasFill
+ * @param hasStroke
+ */
+function drawEdgeSegments(
+  context: OffscreenCanvasRenderingContext2D,
+  currentBase: Vector,
+  nextBase: Vector,
+  currentSide: Vector,
+  nextSide: Vector,
+  isFirst: boolean,
+  isLast: boolean,
+  hasFill: boolean,
+  hasStroke: boolean,
+): void {
+  if (isFirst) {
+    drawPolygonSegment(context, {
+      a: currentBase,
+      b: nextBase,
+      c: getMidpoint(nextBase, nextSide),
+      fill: hasFill,
+      stroke: hasStroke,
+    });
+    drawPolygonSegment(context, {
+      a: nextSide,
+      b: currentSide,
+      c: getMidpoint(nextBase, nextSide),
+      fill: hasFill,
+      stroke: hasStroke,
+    });
+  } else if (isLast) {
+    drawPolygonSegment(context, {
+      a: currentBase,
+      b: nextBase,
+      c: getMidpoint(currentBase, currentSide),
+      fill: hasFill,
+      stroke: hasStroke,
+    });
+    drawPolygonSegment(context, {
+      a: nextSide,
+      b: currentSide,
+      c: getMidpoint(currentBase, currentSide),
+      fill: hasFill,
+      stroke: hasStroke,
+    });
+  } else {
+    drawPolygonSegment(context, {
+      a: currentBase,
+      b: nextBase,
+      c: nextSide,
+      d: currentSide,
+      fill: hasFill,
+      stroke: hasStroke,
+    });
+  }
+}
+
+/**
+ *
  * @param data - The data to handle
  * @param hdr - The HDR flag
  * @param peakNits - The peak brightness in nits
@@ -476,28 +587,8 @@ export function drawRibbon(
     center = particle.position,
     frontFill = typeof context.fillStyle === "string" ? context.fillStyle : "",
     frontStroke = typeof context.strokeStyle === "string" ? context.strokeStyle : "",
-    shapeData = particle.shapeData;
-  let backFill = hasStroke ? frontStroke : frontFill;
-
-  if (shapeData?.backColor) {
-    backFill = shapeData.backColor;
-  } else if (shapeData?.darken?.enable) {
-    const frontHsl = getHslFromAnimation(particle.fillColor);
-
-    if (frontHsl) {
-      const altered = alterHsl(frontHsl, AlterType.darken, getRangeValue(shapeData.darken.value));
-
-      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
-    }
-  } else if (shapeData?.enlighten?.enable) {
-    const frontHsl = getHslFromAnimation(particle.fillColor);
-
-    if (frontHsl) {
-      const altered = alterHsl(frontHsl, AlterType.enlighten, getRangeValue(shapeData.enlighten.value));
-
-      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
-    }
-  }
+    shapeData = particle.shapeData,
+    backFill = resolveBackFill(hasStroke, frontFill, frontStroke, shapeData, particle, hdr, peakNits, mode);
 
   context.lineWidth = lineWidth;
   context.lineJoin = "round";
@@ -541,44 +632,11 @@ export function drawRibbon(
     }
 
     if (i === noPoint) {
-      drawPolygonSegment(context, {
-        a: currentBase,
-        b: nextBase,
-        c: getMidpoint(nextBase, nextSide),
-        fill: hasFill,
-        stroke: hasStroke,
-      });
-      drawPolygonSegment(context, {
-        a: nextSide,
-        b: currentSide,
-        c: getMidpoint(nextBase, nextSide),
-        fill: hasFill,
-        stroke: hasStroke,
-      });
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, true, false, hasFill, hasStroke);
     } else if (i === points.length - secondPoint) {
-      drawPolygonSegment(context, {
-        a: currentBase,
-        b: nextBase,
-        c: getMidpoint(currentBase, currentSide),
-        fill: hasFill,
-        stroke: hasStroke,
-      });
-      drawPolygonSegment(context, {
-        a: nextSide,
-        b: currentSide,
-        c: getMidpoint(currentBase, currentSide),
-        fill: hasFill,
-        stroke: hasStroke,
-      });
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, false, true, hasFill, hasStroke);
     } else {
-      drawPolygonSegment(context, {
-        a: currentBase,
-        b: nextBase,
-        c: nextSide,
-        d: currentSide,
-        fill: hasFill,
-        stroke: hasStroke,
-      });
+      drawEdgeSegments(context, currentBase, nextBase, currentSide, nextSide, false, false, hasFill, hasStroke);
     }
   }
 

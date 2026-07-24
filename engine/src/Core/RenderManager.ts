@@ -776,7 +776,11 @@ export class RenderManager {
       if (typeof document !== "undefined") {
         const node = document.querySelector(background.element);
 
-        if (node instanceof HTMLCanvasElement || node instanceof HTMLVideoElement || node instanceof HTMLImageElement) {
+        if (
+          (typeof HTMLCanvasElement !== "undefined" && node instanceof HTMLCanvasElement) ||
+          (typeof HTMLVideoElement !== "undefined" && node instanceof HTMLVideoElement) ||
+          (typeof HTMLImageElement !== "undefined" && node instanceof HTMLImageElement)
+        ) {
           this.#backgroundElement = node;
         } else if (node) {
           this.#warnOnce(
@@ -791,10 +795,10 @@ export class RenderManager {
         }
       }
     } else if (
-      background.element instanceof HTMLCanvasElement ||
+      (typeof HTMLCanvasElement !== "undefined" && background.element instanceof HTMLCanvasElement) ||
       background.element instanceof OffscreenCanvas ||
-      background.element instanceof HTMLVideoElement ||
-      background.element instanceof HTMLImageElement
+      (typeof HTMLVideoElement !== "undefined" && background.element instanceof HTMLVideoElement) ||
+      (typeof HTMLImageElement !== "undefined" && background.element instanceof HTMLImageElement)
     ) {
       this.#backgroundElement = background.element;
     }

@@ -457,6 +457,10 @@ export class CanvasManager {
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
 
+    container.hdr = canSupportHdr ?? false;
+    container.hdrMode = container.actualOptions.hdr.mode as HdrMode;
+    container.peakNits = container.actualOptions.hdr.peakNits;
+
     this.render.setContextSettings({
       alpha: true,
       desynchronized: true,

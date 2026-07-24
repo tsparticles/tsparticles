@@ -51,6 +51,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
 
   public ngOnDestroy(): void {
     this.#destroyed = true;
+    ++this.#loadId;
 
     this.#fireworksInstance?.destroy();
 

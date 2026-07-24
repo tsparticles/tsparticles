@@ -103,12 +103,10 @@ export class Particles extends HTMLElement {
     // element is connected. Otherwise store the value and let connectedCallback
     // initiate the load.
     if (name === "data-id") {
+      super.id = newValue ?? "";
+
       if (this.isConnected) {
         this.container.current?.destroy();
-
-        if (newValue) {
-          super.id = newValue;
-        }
 
         void this.#loadParticles(++this.#loadId);
       }

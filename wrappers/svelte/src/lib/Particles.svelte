@@ -24,9 +24,8 @@
 
 	let currentContainer: Container | undefined;
 
-	$: loadKey = `${id}|${url}|${JSON.stringify(options)}`;
-
-	$: if (mounted && loadKey) {
+	$: if (mounted) {
+		(id, url, options);
 		void loadParticles();
 	}
 
