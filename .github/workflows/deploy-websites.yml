@@ -55,7 +55,7 @@ jobs:
 
       - name: Generate GitHub App token (confetti)
         id: token-confetti
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.PAGES_APP_ID }}
           private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
@@ -65,7 +65,7 @@ jobs:
 
       - name: Generate GitHub App token (ribbons)
         id: token-ribbons
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.PAGES_APP_ID }}
           private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
@@ -75,7 +75,7 @@ jobs:
 
       - name: Generate GitHub App token (website)
         id: token-website
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.PAGES_APP_ID }}
           private-key: ${{ secrets.PAGES_APP_PRIVATE_KEY }}
