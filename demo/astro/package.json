@@ -19,7 +19,7 @@
   "dependencies": {
     "@tsparticles/astro": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "astro": "^6.4.7",
+    "astro": "^7.1.0",
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
