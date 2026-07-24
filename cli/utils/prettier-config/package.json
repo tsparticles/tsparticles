@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/prettier-config",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles default Prettier Configuration",
   "main": "dist/index.cjs",
   "exports": {
@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "cpx2": "^9.0.0",
-    "prettier": "^3.9.4"
+    "prettier": "^3.9.5"
   }
 }

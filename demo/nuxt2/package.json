@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt2-demo",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "private": true,
   "repository": {
     "type": "git",
@@ -45,13 +45,13 @@
     "@typescript-eslint/parser": "^8.61.1",
     "babel-loader": "^8.4.1",
     "css-loader": "^5.2.7",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^10.9.2",
     "globals": "^17.7.0",
     "postcss-loader": "^4.3.0",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "ts-loader": "^8.4.0",
     "vue-eslint-parser": "^10.4.1",
     "vue-loader": "^15.11.1",

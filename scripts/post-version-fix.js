@@ -88,6 +88,28 @@ for (const f of unique) {
   }
 }
 
+// ── 2b. Regenerate lockfile to reflect restored workspace:* specifiers ──
+if (modifiedFiles.length > 0) {
+  console.log("\n🔄 Regenerating lockfile...");
+  execSync("pnpm install --no-frozen-lockfile", { cwd: root, stdio: "inherit" });
+}
+
+// ── 2c. Clean up extra blank lines lerna adds to CHANGELOG.md files ──
+const allChangelogPaths = [
+  join(root, "CHANGELOG.md"),
+  ...unique.map(f => join(dirname(f), "CHANGELOG.md"))
+];
+
+for (const changelogPath of allChangelogPaths) {
+  if (!statSync(changelogPath, { throwIfNoEntry: false })) continue;
+  const content = readFileSync(changelogPath, "utf-8");
+  const cleaned = content.replace(/\n{3,}/g, "\n\n");
+  if (cleaned !== content) {
+    writeFileSync(changelogPath, cleaned, "utf-8");
+    console.log(`  🧹 ${changelogPath.replace(root, "")}: removed extra blank lines`);
+  }
+}
+
 // ── 3. Create single commit with version bumps + fixes ──
 const tagVersion = engineVersion;
 

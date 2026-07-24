@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/angular-demo",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
@@ -99,7 +99,7 @@
     "@angular/cli": "~22.0.4",
     "@angular/compiler-cli": "~22.0.4",
     "@types/jasmine": "~6.0.0",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "jasmine-core": "~6.3.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",

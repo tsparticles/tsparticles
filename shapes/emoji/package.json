@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-emoji",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles shape for rendering particles as emoji characters",
   "homepage": "https://particles.js.org",
   "scripts": {

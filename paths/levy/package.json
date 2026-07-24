@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-levy",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles path for moving particles with Lévy flight random motion patterns",
   "homepage": "https://particles.js.org",
   "scripts": {

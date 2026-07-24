@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-repulse",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles external interaction for repelling particles away from the cursor or touch position",
   "homepage": "https://particles.js.org",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/qwik-demo",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "private": true,
   "type": "module",
   "repository": {
@@ -20,7 +20,7 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "typescript": "^6.0.3",
     "vite": "^8.1.0",
     "vite-tsconfig-paths": "^6.1.1"

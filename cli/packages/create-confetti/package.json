@@ -1,6 +1,6 @@
 {
   "name": "create-confetti",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "Scaffold a @tsparticles/confetti project — npm create confetti",
   "homepage": "https://particles.js.org",
   "license": "MIT",

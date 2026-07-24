@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-tilt",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles particles tilt updater",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -93,10 +93,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/animation-utils": "4.3.2"
+    "@tsparticles/animation-utils": "4.3.3"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.3.2"
+    "@tsparticles/engine": "4.3.3"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vanilla-demo",
   "private": true,
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "> TODO: description",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
@@ -30,7 +30,7 @@
     "@types/connect-livereload": "^0.6.3",
     "@types/express": "^5.0.6",
     "@types/livereload": "^0.9.5",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "@types/stylus": "^0.48.43",
     "ace-builds": "^1.44.0",
     "bootstrap": "^5.3.8",

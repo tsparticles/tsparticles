@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ionic-demo",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -113,12 +113,12 @@
     "@ionic/angular-toolkit": "^12.3.0",
     "@types/jasmine": "~6.0.0",
     "@types/jasminewd2": "~2.0.13",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsdoc": "^63.0.12",
+    "eslint-plugin-jsdoc": "^63.0.13",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "jasmine-core": "~6.3.0",
     "jasmine-spec-reporter": "~7.0.0",

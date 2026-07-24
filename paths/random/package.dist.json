@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-random",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles zig zag path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -107,8 +107,8 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.3.2",
-    "@tsparticles/plugin-move": "4.3.2"
+    "@tsparticles/engine": "4.3.3",
+    "@tsparticles/plugin-move": "4.3.3"
   },
   "publishConfig": {
     "access": "public"

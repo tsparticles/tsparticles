@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-create-plugin",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -37,17 +37,17 @@
     "@tsparticles/prettier-config": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "dependency-cruiser": "^18.0.0",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^63.0.12",
+    "eslint-plugin-jsdoc": "^63.0.13",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.2",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "prettier-plugin-multiline-arrays": "^4.1.10"
   },
   "devDependencies": {
     "@types/estree": "^1.0.9",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "browserslist": "^4.28.5",
     "commander": "^15.0.0",
     "copyfiles": "^2.4.1",

@@ -62,11 +62,11 @@ buildCommand.addCommand(tscCommand);
 
 buildCommand.option(
   "-a, --all",
-  "Do all build steps (default if no flags are specified) (same as --bundle-rollup -c -d -l -p -t)",
+  "Do all build steps (default if no flags are specified) (same as -b -c -d -l -p -t)",
   false,
 );
-buildCommand.option("-b, --bundle-webpack", "Bundle the library using Webpack", false);
-buildCommand.option("--bundle-rollup", "Bundle the library using Rollup", false);
+buildCommand.option("-b, --bundle-rollup", "Bundle the library using Rollup", false);
+buildCommand.option("--bundle-webpack", "Bundle the library using Webpack", false);
 buildCommand.option("-c, --clean", "Clean the dist folder", false);
 buildCommand.option(
   "--ci",

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-out-modes",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles updater for controlling particle behavior when they exit the canvas — bounce, destroy, or loop",
   "homepage": "https://particles.js.org",
   "scripts": {

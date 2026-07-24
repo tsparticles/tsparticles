@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
+
+
+### Bug Fixes
+
+* fixed common instance usage in engine initialization ([77d6718](https://github.com/tsparticles/tsparticles/commit/77d67187216afb9591c4fa92700176f64771a3a9))
+* fixed double opacity calc, fixes [#5903](https://github.com/tsparticles/tsparticles/issues/5903) ([3e128d2](https://github.com/tsparticles/tsparticles/commit/3e128d2a8f2c346a3cfc96c13569b72f8523a32e))
+
+
+
+
+
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 

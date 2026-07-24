@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/astro",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "Official tsParticles Astro Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React.js, Riot.js, Solid.js, Inferno.",
   "type": "module",
   "scripts": {
@@ -116,7 +116,7 @@
   "devDependencies": {
     "@tsparticles/prettier-config": "workspace:*",
     "astro": "^6.4.7",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
   },

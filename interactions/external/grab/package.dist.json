@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-grab",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "tsParticles grab external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -97,10 +97,10 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@tsparticles/engine": "4.3.2",
-    "@tsparticles/plugin-interactivity": "4.3.2"
+    "@tsparticles/engine": "4.3.3",
+    "@tsparticles/plugin-interactivity": "4.3.3"
   },
   "dependencies": {
-    "@tsparticles/canvas-utils": "4.3.2"
+    "@tsparticles/canvas-utils": "4.3.3"
   }
 }
