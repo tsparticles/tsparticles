@@ -66,14 +66,20 @@ export class TwinkleUpdater implements IParticleUpdater {
           return undefined;
         }
 
-        return getStyleFromHsl(twinkleFillRgb, container.hdr, twinklingOpacity);
+        return getStyleFromHsl(twinkleFillRgb, container.hdr, twinklingOpacity, container.peakNits, container.hdrMode);
       },
       getTwinkleStrokeStyle = (): string | undefined => {
         if (!twinkleStrokeRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(twinkleStrokeRgb, container.hdr, twinklingOpacity);
+        return getStyleFromHsl(
+          twinkleStrokeRgb,
+          container.hdr,
+          twinklingOpacity,
+          container.peakNits,
+          container.hdrMode,
+        );
       },
       twinkleFillStyle = getTwinkleFillStyle(),
       twinkleStrokeStyle = getTwinkleStrokeStyle(),

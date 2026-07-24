@@ -106,6 +106,10 @@ export class Particles extends HTMLElement {
       if (this.isConnected) {
         this.container.current?.destroy();
 
+        if (newValue) {
+          super.id = newValue;
+        }
+
         void this.#loadParticles(++this.#loadId);
       }
     } else if (name === "data-theme") {

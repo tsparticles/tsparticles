@@ -7,6 +7,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
   const merged = mergeProps({ id: "tsparticles" }, props);
 
   let container: Container | undefined;
+  let loadId = 0;
 
   const loadParams = createMemo(() => ({
     id: props.id ?? "tsparticles",
@@ -16,6 +17,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
   createEffect(() => {
     const { id, options, url } = loadParams();
+    const currentLoadId = ++loadId;
 
     void (async () => {
       container?.destroy();
@@ -26,7 +28,14 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
       }
 
-      container = await tsParticles.load({ id, options, url });
+      const newContainer = await tsParticles.load({ id, options, url });
+
+      if (currentLoadId !== loadId) {
+        newContainer?.destroy();
+        return;
+      }
+
+      container = newContainer;
 
       props.particlesLoaded?.(container);
     })();

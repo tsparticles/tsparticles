@@ -1,4 +1,5 @@
 import {
+  type HdrMode,
   type IHsl,
   type IHsla,
   type IHsv,
@@ -72,10 +73,18 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
  * @param color - the {@link IHsv} input color
  * @param hdr - indicates if the color is in HDR space
  * @param opacity - the opacity value
+ * @param peakNits - the peak brightness in nits
+ * @param mode - the HDR mode
  * @returns the CSS style string
  */
-export function getStyleFromHsv(color: IHsv, hdr: boolean, opacity?: number): string {
-  return getStyleFromHsl(hsvToHsl(color), hdr, opacity);
+export function getStyleFromHsv(
+  color: IHsv,
+  hdr: boolean,
+  opacity?: number,
+  peakNits?: number,
+  mode?: HdrMode,
+): string {
+  return getStyleFromHsl(hsvToHsl(color), hdr, opacity, peakNits, mode);
 }
 
 /**

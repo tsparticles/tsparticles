@@ -233,7 +233,13 @@ export class AbsorberInstance {
     context.beginPath();
     context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
     context.closePath();
-    context.fillStyle = getStyleFromRgb(this.color, this.#container.hdr, this.opacity);
+    context.fillStyle = getStyleFromRgb(
+      this.color,
+      this.#container.hdr,
+      this.opacity,
+      this.#container.peakNits,
+      this.#container.hdrMode,
+    );
     context.fill();
   }
 

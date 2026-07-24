@@ -57,6 +57,7 @@ export default class Particles extends Vue {
   @Watch("id")
   onPropChange(): void {
     if (this.container) {
+      this.container.destroy();
       void particlesInit(this);
     }
   }

@@ -235,8 +235,12 @@ export class RenderManager {
       { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
       transform = this.#reusableTransform,
       colorStyles = this.#reusableColorStyles,
-      fill = fColor ? getStyleFromHsl(fColor, container.hdr, fillOpacity * opacity) : undefined,
-      stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity * opacity) : fill;
+      fill = fColor
+        ? getStyleFromHsl(fColor, container.hdr, fillOpacity * opacity, container.peakNits, container.hdrMode)
+        : undefined,
+      stroke = sColor
+        ? getStyleFromHsl(sColor, container.hdr, strokeOpacity * opacity, container.peakNits, container.hdrMode)
+        : fill;
 
     transform.a = transform.b = transform.c = transform.d = undefined;
 

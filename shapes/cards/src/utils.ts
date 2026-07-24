@@ -1,4 +1,13 @@
-import { type IRgb, double, doublePI, getStyleFromRgb, half, originPoint, triple } from "@tsparticles/engine";
+import {
+  type HdrMode,
+  type IRgb,
+  double,
+  doublePI,
+  getStyleFromRgb,
+  half,
+  originPoint,
+  triple,
+} from "@tsparticles/engine";
 import type { ICardData } from "./ICardData.js";
 import { SuitType } from "./SuitType.js";
 import { drawPath } from "@tsparticles/path-utils";
@@ -30,6 +39,8 @@ const cardWidthRatio = (double * double) / triple,
  * @param hdr - The hdr
  * @param flipped - The flipped
  * @param canvasSettings - The canvasSettings
+ * @param peakNits - The peak brightness in nits
+ * @param mode - The HDR mode
  */
 export function drawRoundedCard(
   ctx: OffscreenCanvasRenderingContext2D,
@@ -38,6 +49,8 @@ export function drawRoundedCard(
   hdr: boolean,
   flipped: boolean,
   canvasSettings?: CanvasRenderingContext2DSettings,
+  peakNits?: number,
+  mode?: HdrMode,
 ): void {
   if (flipped) {
     drawRoundedCardBack(ctx, radius);
@@ -57,7 +70,7 @@ export function drawRoundedCard(
       if (cacheCtx) {
         cacheCtx.translate(halfWidth, halfHeight);
 
-        drawRoundedCardFront(cacheCtx, radius, cardData, hdr);
+        drawRoundedCardFront(cacheCtx, radius, cardData, hdr, peakNits, mode);
 
         cachedData = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
 
@@ -68,7 +81,7 @@ export function drawRoundedCard(
     if (cachedData) {
       ctx.drawImage(cachedData, -halfWidth, -halfHeight, cardWidth, cardHeight);
     } else {
-      drawRoundedCardFront(ctx, radius, cardData, hdr);
+      drawRoundedCardFront(ctx, radius, cardData, hdr, peakNits, mode);
     }
   }
 }
@@ -96,12 +109,16 @@ function drawRoundedCardBack(ctx: OffscreenCanvasRenderingContext2D, radius: num
  * @param radius - The radius
  * @param cardData - The cardData
  * @param hdr - The hdr
+ * @param peakNits - The peak brightness in nits
+ * @param mode - The HDR mode
  */
 function drawRoundedCardFront(
   ctx: OffscreenCanvasRenderingContext2D,
   radius: number,
   cardData: ICardData,
   hdr: boolean,
+  peakNits?: number,
+  mode?: HdrMode,
 ): void {
   const { suit, value } = cardData,
     cardWidth = radius * cardWidthRatio,
@@ -117,16 +134,18 @@ function drawRoundedCardFront(
     // Extra padding to keep the suit away from the card edge
     suitEdgeBuffer = radius * suitEdgeBufferFactor,
     isRed = suit === SuitType.hearts || suit === SuitType.diamonds,
-    color = isRed ? getStyleFromRgb(redSuitColor, hdr) : getStyleFromRgb(blackSuitColor, hdr);
+    color = isRed
+      ? getStyleFromRgb(redSuitColor, hdr, undefined, peakNits, mode)
+      : getStyleFromRgb(blackSuitColor, hdr, undefined, peakNits, mode);
 
   ctx.save();
 
   // --- 1. Drawing Card Body ---
   drawCardBody(ctx, radius);
 
-  ctx.fillStyle = getStyleFromRgb({ r: 255, g: 255, b: 255 }, hdr);
+  ctx.fillStyle = getStyleFromRgb({ r: 255, g: 255, b: 255 }, hdr, undefined, peakNits, mode);
   ctx.fill();
-  ctx.strokeStyle = getStyleFromRgb({ r: 0, g: 0, b: 0 }, hdr);
+  ctx.strokeStyle = getStyleFromRgb({ r: 0, g: 0, b: 0 }, hdr, undefined, peakNits, mode);
   ctx.stroke();
 
   // --- 2. Text and Suit Style Configuration ---

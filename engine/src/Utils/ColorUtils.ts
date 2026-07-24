@@ -27,6 +27,8 @@ import {
   maxNits,
   midColorValue,
   millisecondsToSeconds,
+  none,
+  one,
   percentDenominator,
   phaseNumerator,
   randomColorValue,
@@ -40,6 +42,7 @@ import {
 import { isArray, isString } from "./TypeUtils.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import { HdrMode } from "../Enums/Modes/HdrMode.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
@@ -57,7 +60,29 @@ const styleCache = new Map<string, string>(),
   hdrRgbFixedPrecision = 4,
   hdrHslFixedPrecision = 4,
   sdrReferenceWhiteNits = 203,
-  hdrAnimationScale = sdrReferenceWhiteNits / maxNits;
+  hdrAnimationScale = sdrReferenceWhiteNits / maxNits,
+  acesA = 2.51,
+  acesB = 0.03,
+  acesC = 2.43,
+  acesD = 0.59,
+  acesE = 0.14,
+  saturationBoost = 1.15,
+  lightnessBoost = 1.05,
+  temperatureR = 1.05,
+  temperatureB = 0.95,
+  contrastFactor = 1.1,
+  luminanceR = 0.2126,
+  luminanceG = 0.7152,
+  luminanceB = 0.0722,
+  dynamicLuminanceFactor = 2,
+  channelCount = 3,
+  srgbThreshold = 0.04045,
+  srgbDivisor = 12.92,
+  srgbOffset = 0.055,
+  srgbScale = 1.055,
+  srgbExponent = 2.4,
+  linearThreshold = 0.0031308,
+  linearScale = 12.92;
 
 /**
  * Generic cache function for color styles
@@ -79,6 +104,90 @@ function getCachedStyle(key: string, generator: () => string): string {
   }
 
   return cached;
+}
+
+/**
+ * ACES Filmic tone mapping approximation
+ * @param x - the linear value to map
+ * @returns the tone-mapped value in [0, 1]
+ */
+function acesFilmic(x: number): number {
+  return clamp((x * (acesA * x + acesB)) / (x * (acesC * x + acesD) + acesE), none, one);
+}
+
+/**
+ * Converts an sRGB gamma-encoded value to linear space
+ * @param c - the sRGB value in [0, 1]
+ * @returns the linear value
+ */
+function srgbToLinear(c: number): number {
+  return c <= srgbThreshold ? c / srgbDivisor : Math.pow((c + srgbOffset) / srgbScale, srgbExponent);
+}
+
+/**
+ * Converts a linear value to sRGB gamma-encoded space
+ * @param c - the linear value in [0, 1]
+ * @returns the sRGB value
+ */
+function linearToSrgb(c: number): number {
+  return c <= linearThreshold ? c * linearScale : srgbScale * Math.pow(c, one / srgbExponent) - srgbOffset;
+}
+
+/**
+ * Applies HDR mode-specific color adjustments after tone mapping
+ * @param r - the red channel [0, 1]
+ * @param g - the green channel [0, 1]
+ * @param b - the blue channel [0, 1]
+ * @param mode - the HDR rendering mode
+ * @returns the adjusted RGB values
+ */
+function applyHdrModeAdjustments(r: number, g: number, b: number, mode: HdrMode): { b: number; g: number; r: number } {
+  switch (mode) {
+    case HdrMode.vivid: {
+      const avg = (r + g + b) / channelCount;
+
+      return {
+        b: clamp(avg + (b - avg) * saturationBoost, none, one) * lightnessBoost,
+        g: clamp(avg + (g - avg) * saturationBoost, none, one) * lightnessBoost,
+        r: clamp(avg + (r - avg) * saturationBoost, none, one) * lightnessBoost,
+      };
+    }
+
+    case HdrMode.cinematic: {
+      const tempR = r * temperatureR,
+        tempB = b * temperatureB,
+        avg = (tempR + g + tempB) / channelCount;
+
+      return {
+        b: clamp(avg + (tempB - avg) * contrastFactor, none, one),
+        g: clamp(avg + (g - avg) * contrastFactor, none, one),
+        r: clamp(avg + (tempR - avg) * contrastFactor, none, one),
+      };
+    }
+
+    case HdrMode.dynamic: {
+      const luminance = luminanceR * r + luminanceG * g + luminanceB * b,
+        vividWeight = Math.min(one, luminance * dynamicLuminanceFactor),
+        naturalWeight = one - vividWeight,
+        avg = (r + g + b) / channelCount,
+        vividR = clamp(avg + (r - avg) * saturationBoost, none, one) * lightnessBoost,
+        vividG = clamp(avg + (g - avg) * saturationBoost, none, one) * lightnessBoost,
+        vividB = clamp(avg + (b - avg) * saturationBoost, none, one) * lightnessBoost;
+
+      return {
+        b: r * naturalWeight + vividB * vividWeight,
+        g: g * naturalWeight + vividG * vividWeight,
+        r: r * naturalWeight + vividR * vividWeight,
+      };
+    }
+
+    case HdrMode.standard:
+      return { b, g, r };
+
+    case HdrMode.natural:
+    default:
+      return { b, g, r };
+  }
 }
 
 /**
@@ -402,7 +511,7 @@ export function hslaToRgba(hsla: IHsla): IRgba {
 /**
  * Returns a random ({@link IRgb}) color
  * @param min - the minimum value for the color
- * @param hdr
+ * @param hdr - the HDR flag
  * @returns the random ({@link IRgb}) color
  */
 export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
@@ -431,14 +540,24 @@ export function getRandomRgbColor(min?: number, hdr?: boolean): IRgb {
  * @param color - the {@link IRgb} input color
  * @param hdr - whether the color is in HDR mode or not
  * @param opacity - the opacity value
+ * @param peakNits - the peak brightness in nits for HDR rendering
+ * @param mode - the HDR rendering mode
  * @returns the CSS style string
  */
-export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
+export function getStyleFromRgb(
+  color: IRgb,
+  hdr: boolean,
+  opacity?: number,
+  peakNits?: number,
+  mode?: HdrMode,
+): string {
   const rgbPrecision = hdr ? hdrRgbFixedPrecision : rgbFixedPrecision,
     op = opacity ?? defaultOpacity,
-    key = `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+    key = `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`;
 
-  return getCachedStyle(key, () => (hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity)));
+  return getCachedStyle(key, () =>
+    hdr ? getHdrStyleFromRgb(color, opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
+  );
 }
 
 /**
@@ -446,12 +565,73 @@ export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): st
  * @param color - the {@link IRgb} input color
  * @param opacity - the opacity value
  * @param peakNits - the peak brightness in nits, for future HDR API support, defaults to 400
+ * @param mode - the HDR mode
  * @returns the CSS style string
  */
-function getHdrStyleFromRgb(color: IRgb, opacity?: number, peakNits = maxNits): string {
-  const headroom = peakNits / sdrReferenceWhiteNits;
+function getHdrStyleFromRgb(
+  color: IRgb,
+  opacity?: number,
+  peakNits = maxNits,
+  mode: HdrMode = HdrMode.standard,
+): string {
+  const headroom = peakNits / sdrReferenceWhiteNits,
+    middleGray = 0.18,
+    mapped = hdrToneMapColor(color, headroom, middleGray, mode);
 
-  return `color(display-p3 ${((color.r / rgbMax) * headroom).toString()} ${((color.g / rgbMax) * headroom).toString()} ${((color.b / rgbMax) * headroom).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+  return `color(display-p3 ${mapped.r.toString()} ${mapped.g.toString()} ${mapped.b.toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Applies HDR tone mapping preserving hue and saturation.
+ * Maps luminance through ACES Filmic while scaling channels proportionally.
+ * @param color - the input RGB color
+ * @param headroom - the HDR headroom ratio
+ * @param middleGray - the middle gray threshold
+ * @param mode - the HDR mode
+ * @returns the tone-mapped RGB values
+ */
+function hdrToneMapColor(
+  color: IRgb,
+  headroom: number,
+  middleGray: number,
+  mode: HdrMode,
+): { b: number; g: number; r: number } {
+  const rNorm = color.r / rgbMax,
+    gNorm = color.g / rgbMax,
+    bNorm = color.b / rgbMax;
+
+  if (mode !== HdrMode.natural && mode !== HdrMode.vivid && mode !== HdrMode.cinematic && mode !== HdrMode.dynamic) {
+    return { b: bNorm, g: gNorm, r: rNorm };
+  }
+
+  const luminance = luminanceR * rNorm + luminanceG * gNorm + luminanceB * bNorm,
+    mappedLuminance = hdrToneMap(luminance, headroom, middleGray),
+    scale = luminance > none ? mappedLuminance / luminance : one;
+
+  return applyHdrModeAdjustments(
+    clamp(rNorm * scale, none, one),
+    clamp(gNorm * scale, none, one),
+    clamp(bNorm * scale, none, one),
+    mode,
+  );
+}
+
+/**
+ * Applies ACES Filmic tone mapping with selective HDR expansion above middle gray.
+ * Preserves SDR fidelity for dark tones while extending bright highlights.
+ * @param normalized - the sRGB value normalized to [0, 1]
+ * @param headroom - the HDR headroom ratio (peakNits / referenceWhite)
+ * @param middleGray - the middle gray threshold
+ * @returns the tone-mapped value
+ */
+function hdrToneMap(normalized: number, headroom: number, middleGray: number): number {
+  if (normalized <= middleGray) {
+    return acesFilmic(normalized);
+  }
+
+  const expanded = normalized + (normalized - middleGray) * (headroom - one);
+
+  return acesFilmic(expanded);
 }
 
 /**
@@ -469,16 +649,24 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
  * @param color - the {@link IHsl} input color
  * @param hdr - whether the color is in HDR mode or not
  * @param opacity - the opacity value
+ * @param peakNits - the peak brightness in nits for HDR rendering
+ * @param mode - the HDR rendering mode
  * @returns the CSS style string
  */
-export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
+export function getStyleFromHsl(
+  color: IHsl,
+  hdr: boolean,
+  opacity?: number,
+  peakNits?: number,
+  mode?: HdrMode,
+): string {
   const hslPrecision = hdr ? hdrHslFixedPrecision : hslFixedPrecision,
     op = opacity ?? defaultOpacity,
-    key = `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+    key = `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`;
 
   return getCachedStyle(key, () =>
     hdr
-      ? getStyleFromRgb(hslToRgbFloat(color), true, opacity)
+      ? getStyleFromRgb(hslToRgbFloat(color), true, opacity, peakNits, mode)
       : `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${op.toString()})`,
   );
 }
@@ -489,18 +677,39 @@ export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): st
  * @param color2 - the second color
  * @param size1 - the size of the first color
  * @param size2 - the size of the second color
+ * @param hdr - whether to mix in linear space for HDR
  * @returns the mixed RGB color
  */
-export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number, hdr?: boolean): IRgb {
   let rgb1 = color1 as IRgb,
     rgb2 = color2 as IRgb;
 
   if (!("r" in rgb1)) {
-    rgb1 = hslToRgb(color1 as IHsl);
+    rgb1 = hdr ? hslToRgbFloat(color1 as IHsl) : hslToRgb(color1 as IHsl);
   }
 
   if (!("r" in rgb2)) {
-    rgb2 = hslToRgb(color2 as IHsl);
+    rgb2 = hdr ? hslToRgbFloat(color2 as IHsl) : hslToRgb(color2 as IHsl);
+  }
+
+  if (hdr) {
+    const lin1 = {
+        b: srgbToLinear(rgb1.b / rgbMax),
+        g: srgbToLinear(rgb1.g / rgbMax),
+        r: srgbToLinear(rgb1.r / rgbMax),
+      },
+      lin2 = {
+        b: srgbToLinear(rgb2.b / rgbMax),
+        g: srgbToLinear(rgb2.g / rgbMax),
+        r: srgbToLinear(rgb2.r / rgbMax),
+      },
+      totalWeight = size1 + size2;
+
+    return {
+      b: linearToSrgb((lin1.b * size1 + lin2.b * size2) / totalWeight) * rgbMax,
+      g: linearToSrgb((lin1.g * size1 + lin2.g * size2) / totalWeight) * rgbMax,
+      r: linearToSrgb((lin1.r * size1 + lin2.r * size2) / totalWeight) * rgbMax,
+    };
   }
 
   return {
@@ -515,9 +724,10 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @param p1 - the first particle
  * @param p2 - the second particle
  * @param linkColor - the link color configuration
+ * @param hdr - the HDR flag
  * @returns the calculated link color
  */
-export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb): IRgb | undefined {
+export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb, hdr?: boolean): IRgb | undefined {
   if (linkColor === randomColorValue) {
     return getRandomRgbColor();
   } else if (linkColor === midColorValue) {
@@ -525,7 +735,7 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
       destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
     if (sourceColor && destColor && p2) {
-      return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
+      return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius(), hdr);
     } else {
       const hslColor = sourceColor ?? destColor;
 
@@ -675,7 +885,7 @@ function setColorAnimation(
  * @param data - the color animation data
  * @param decrease - whether the color should decrease over time
  * @param delta - the frame delta time
- * @param hdr
+ * @param hdr - the HDR flag
  */
 export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta, hdr?: boolean): void {
   const minLoops = 0,
@@ -744,7 +954,7 @@ export function updateColorValue(data: IParticleColorAnimation, decrease: boolea
  * Updates all HSL color channels for the current frame
  * @param color - the HSL animation to update
  * @param delta - the frame delta time
- * @param hdr
+ * @param hdr - the HDR flag
  */
 export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta, hdr?: boolean): void {
   if (!color) {
