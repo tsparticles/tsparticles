@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @tsparticles/ribbons-website
 
-
-
-
-
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 **Note:** Version bump only for package @tsparticles/ribbons-website
