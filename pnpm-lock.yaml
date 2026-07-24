@@ -153,7 +153,7 @@ importers:
         version: 5.3.0
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
       yargs:
         specifier: ^18.0.0
         version: 18.0.0
@@ -919,7 +919,7 @@ importers:
         version: 5.3.0
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
 
   cli/commands/build-bundle-rollup:
     dependencies:
@@ -1137,7 +1137,7 @@ importers:
         version: 5.3.0
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
 
   cli/commands/build-circular-deps:
     dependencies:
@@ -3090,7 +3090,7 @@ importers:
         version: 5.3.0
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     devDependencies:
       '@types/node':
         specifier: ^26.1.1
@@ -3577,7 +3577,7 @@ importers:
         version: 5.0.0(supports-color@8.1.1)
       '@electron/notarize':
         specifier: ^3.1.1
-        version: 3.1.1(supports-color@8.1.1)
+        version: 3.1.1
       '@electron/osx-sign':
         specifier: ^2.5.0
         version: 2.5.0(supports-color@8.1.1)
@@ -3760,7 +3760,7 @@ importers:
         version: link:../../presets/snow/dist
       ember-auto-import:
         specifier: ^2.13.1
-        version: 2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ember-cli-babel:
         specifier: ^8.3.1
         version: 8.3.1(@babel/core@7.29.0)
@@ -3875,7 +3875,7 @@ importers:
         version: 6.0.3
       webpack:
         specifier: ^5.108.0
-        version: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   demo/inferno:
     dependencies:
@@ -3936,10 +3936,10 @@ importers:
         version: 5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
       webpack-dev-server:
         specifier: ^5.2.5
-        version: 5.2.5(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
+        version: 5.2.6(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
 
   demo/ionic:
     dependencies:
@@ -4544,7 +4544,7 @@ importers:
         version: 3.49.0
       nuxt:
         specifier: ^2.18.1
-        version: 2.18.1(@vue/compiler-sfc@3.5.38)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 2.18.1(@vue/compiler-sfc@3.5.38)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       tsparticles:
         specifier: workspace:*
         version: link:../../bundles/full/dist
@@ -4584,13 +4584,13 @@ importers:
         version: 2.18.1
       '@nuxt/typescript-build':
         specifier: ^3.0.2
-        version: 3.0.2(@nuxt/types@2.18.1)(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 3.0.2(@nuxt/types@2.18.1)(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@nuxtjs/eslint-config-typescript':
         specifier: ^12.1.0
         version: 12.1.0(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)(typescript@6.0.3)
       '@nuxtjs/eslint-module':
         specifier: ^4.1.0
-        version: 4.1.0(eslint@10.7.0(jiti@2.7.0))(vite@8.1.0(@types/node@20.19.43)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 4.1.0(eslint@10.7.0(jiti@2.7.0))(vite@8.1.0(@types/node@20.19.43)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@types/node':
         specifier: ^20.14.8
         version: 20.19.43
@@ -4599,10 +4599,10 @@ importers:
         version: 8.61.1(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)(typescript@6.0.3)
       babel-loader:
         specifier: ^8.4.1
-        version: 8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       css-loader:
         specifier: ^5.2.7
-        version: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       eslint:
         specifier: ^10.7.0
         version: 10.7.0(jiti@2.7.0)
@@ -4620,25 +4620,25 @@ importers:
         version: 17.7.0
       postcss-loader:
         specifier: ^4.3.0
-        version: 4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       prettier:
         specifier: ^3.9.5
         version: 3.9.5
       ts-loader:
         specifier: ^8.4.0
-        version: 8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-eslint-parser:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-template-babel-compiler:
         specifier: ^2.0.0
         version: 2.0.0(vue-template-compiler@2.7.16)
       webpack:
         specifier: ^4.47.0
-        version: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   demo/nuxt3:
     dependencies:
@@ -4834,7 +4834,7 @@ importers:
         version: 3.0.0
       preact-cli:
         specifier: ^3.5.1
-        version: 3.5.1(@types/babel__core@7.20.5)(encoding@0.1.13)(eslint@10.7.0(jiti@2.7.0))(preact-render-to-string@6.7.0(preact@10.29.2))(preact@10.29.2)(ts-node@10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 3.5.1(@types/babel__core@7.20.5)(encoding@0.1.13)(eslint@10.7.0(jiti@2.7.0))(preact-render-to-string@6.7.0(preact@10.29.2))(preact@10.29.2)(ts-node@10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       prettier:
         specifier: ^3.9.5
         version: 3.9.5
@@ -4975,10 +4975,10 @@ importers:
         version: 5.108.4(@swc/core@1.15.43)(postcss@8.5.16)(webpack-cli@7.2.1)
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
       webpack-dev-server:
         specifier: ^5.2.5
-        version: 5.2.5(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
+        version: 5.2.6(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
 
   demo/solid:
     dependencies:
@@ -6416,16 +6416,16 @@ importers:
         version: 8.61.1(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)(typescript@6.0.3)
       '@vue/cli-plugin-babel':
         specifier: ^5.0.9
-        version: 5.0.9(@swc/core@1.15.43)(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))(core-js@3.49.0)(encoding@0.1.13)(postcss@8.5.15)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 5.0.9(@swc/core@1.15.43)(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))(core-js@3.49.0)(encoding@0.1.13)(postcss@8.5.15)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       '@vue/cli-plugin-typescript':
         specifier: ^5.0.9
-        version: 5.0.9(9be875d94fb9077ca4628027147f0056)
+        version: 5.0.9(416d6f7a470ed9077bcdb7286ff4a479)
       '@vue/cli-service':
         specifier: ^5.0.9
-        version: 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)
+        version: 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)
       babel-loader:
         specifier: ^10.1.1
-        version: 10.1.1(@babel/core@8.0.1)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 10.1.1(@babel/core@8.0.1)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       eslint:
         specifier: ^10.7.0
         version: 10.7.0(jiti@2.7.0)
@@ -6437,7 +6437,7 @@ importers:
         version: 10.9.2(@stylistic/eslint-plugin@5.10.0(eslint@10.7.0(jiti@2.7.0)))(@typescript-eslint/parser@8.61.1(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0))(vue-eslint-parser@10.4.1(eslint@10.7.0(jiti@2.7.0)))
       fork-ts-checker-webpack-plugin:
         specifier: ^9.1.0
-        version: 9.1.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 9.1.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       globals:
         specifier: ^17.7.0
         version: 17.7.0
@@ -6473,13 +6473,13 @@ importers:
         version: 10.4.1(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-template-compiler:
         specifier: ^2.7.16
         version: 2.7.16
       webpack:
         specifier: ^4.47.0
-        version: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   demo/vue3:
     dependencies:
@@ -12791,7 +12791,7 @@ importers:
         version: link:../../engine/dist
       ember-auto-import:
         specifier: ^2.13.1
-        version: 2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ember-cli-babel:
         specifier: ^8.3.1
         version: 8.3.1(@babel/core@7.29.7)
@@ -12984,7 +12984,7 @@ importers:
         version: 6.0.3
       webpack:
         specifier: ^5.108.0
-        version: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+        version: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   wrappers/inferno:
     devDependencies:
@@ -13065,10 +13065,10 @@ importers:
         version: 5.108.4(@swc/core@1.15.43)(webpack-cli@7.2.1)
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
       webpack-dev-server:
         specifier: ^5.2.5
-        version: 5.2.5(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
+        version: 5.2.6(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
     publishDirectory: dist
 
   wrappers/jquery:
@@ -13379,7 +13379,7 @@ importers:
         version: 5.3.0
       webpack-cli:
         specifier: ^7.2.1
-        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+        version: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
       webpack-node-externals:
         specifier: ^3.0.0
         version: 3.0.0
@@ -13718,7 +13718,7 @@ importers:
         version: 6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0)
       vite-plugin-dts:
         specifier: ^5.0.2
-        version: 5.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+        version: 5.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue:
         specifier: ^2.7.16
         version: 2.7.16
@@ -26308,9 +26308,6 @@ packages:
   body@5.1.0:
     resolution: {integrity: sha512-chUsBxGRtuElD6fmw1gHLpvnKdVLK302peeFa9ZqAEk8TyzZ3fygLyUEDDPTJvL9+Bor0dIwn6ePOsRM2y0zQQ==}
 
-  bonjour-service@1.4.1:
-    resolution: {integrity: sha512-9KM4QMPKnaJqaja1v7gYO/+TXZGLtzPA05NmUTqDAJjcsWeVoOXKMvU9g0gfuuoYTQqJZ924hivICd5R/bCJbA==}
-
   bonjour-service@1.4.2:
     resolution: {integrity: sha512-lMskhnsW70yWHr4PhPeh2rvaIkLSaDpp+nmtbXBZaNKTXwxL73QOkW6HhbzqTImXjevn9TreGT4GACGBCGP9nQ==}
 
@@ -27770,6 +27767,7 @@ packages:
   conventional-changelog-core@5.0.1:
     resolution: {integrity: sha512-Rvi5pH+LvgsqGwZPZ3Cq/tz4ty7mjijhr3qR4m9IBXNbxGGYgTVVO+duXzz9aArmHxFtwZ+LRkrNIMDQzgoY4A==}
     engines: {node: '>=14'}
+    deprecated: Deprecated and no longer maintained. Please use conventional-changelog instead.
 
   conventional-changelog-preset-loader@3.0.0:
     resolution: {integrity: sha512-qy9XbdSLmVnwnvzEisjxdDiLA4OmV3o8db+Zdg4WiFw14fP3B6XNz98X0swPPpkTd/pc1K7+adKgEDM1JCUMiA==}
@@ -30886,7 +30884,7 @@ packages:
   git-raw-commits@3.0.0:
     resolution: {integrity: sha512-b5OHmZ3vAgGrDn/X0kS+9qCfNKWe4K/jFnhwzVWWg0/k5eLa3060tZShrRg8Dja5kPc+YjS0Gc6y7cRr44Lpjw==}
     engines: {node: '>=14'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-remote-origin-url@2.0.0:
@@ -30900,7 +30898,7 @@ packages:
   git-semver-tags@5.0.1:
     resolution: {integrity: sha512-hIvOeZwRbQ+7YEUmCkHqo8FOLQZCEn18yevLHADlFPZY02KJGsu5FZt9YW/lybfK2uhWFI7Qg/07LekJiTv7iA==}
     engines: {node: '>=14'}
-    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-up@7.0.0:
@@ -31577,15 +31575,6 @@ packages:
 
   http-proxy-middleware@2.0.10:
     resolution: {integrity: sha512-RKzRWNPxUZqbuk3BC5mGVJbBnWgr+diEnjJexIOytFbBzDy88Fbh/YvBr3DsNrl1jYAfjWfpATEv0NO35FDuPQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@types/express': ^4.17.13
-    peerDependenciesMeta:
-      '@types/express':
-        optional: true
-
-  http-proxy-middleware@2.0.9:
-    resolution: {integrity: sha512-c1IyJYLYppU574+YI7R4QyX2ystMtVXZwIdzazUIPIJsHuWNd+mho2j+bKoHftndicGj9yh+xjd+l0yj7VeT1Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@types/express': ^4.17.13
@@ -42100,6 +42089,19 @@ packages:
       webpack-cli:
         optional: true
 
+  webpack-dev-server@5.2.6:
+    resolution: {integrity: sha512-HNLRmamRvVavZQ+avceZifmv8hmdUjg43t6MI4SqJDwFdW7RPQwH5vzGhDRZSX59SgfbeHhLnq3g+uooWo7pVw==}
+    engines: {node: '>= 18.12.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^5.0.0
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack:
+        optional: true
+      webpack-cli:
+        optional: true
+
   webpack-fix-style-only-entries@0.6.1:
     resolution: {integrity: sha512-wyIhoxS3DD3Fr9JA8hQPA+ZmaWnqPxx12Nv166wcsI/0fbReqyEtiIk2llOFYIg57WVS3XX5cZJxw2ji70R0sA==}
 
@@ -46634,7 +46636,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@electron/notarize@3.1.1(supports-color@8.1.1)':
+  '@electron/notarize@3.1.1':
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
       promise-retry: 2.0.1
@@ -46655,7 +46657,7 @@ snapshots:
       '@electron-internal/extract-zip': 1.0.4
       '@electron/asar': 4.2.0
       '@electron/get': 5.0.0(supports-color@8.1.1)
-      '@electron/notarize': 3.1.1(supports-color@8.1.1)
+      '@electron/notarize': 3.1.1
       '@electron/osx-sign': 2.5.0(supports-color@8.1.1)
       '@electron/universal': 3.0.5
       '@electron/windows-sign': 2.0.6
@@ -48003,7 +48005,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ionic/utils-fs@3.1.7(supports-color@8.1.1)':
+  '@ionic/utils-fs@3.1.7':
     dependencies:
       '@types/fs-extra': 8.1.5
       debug: 4.4.3(supports-color@8.1.1)
@@ -48040,7 +48042,7 @@ snapshots:
   '@ionic/utils-subprocess@3.0.1(supports-color@8.1.1)':
     dependencies:
       '@ionic/utils-array': 2.1.6(supports-color@8.1.1)
-      '@ionic/utils-fs': 3.1.7(supports-color@8.1.1)
+      '@ionic/utils-fs': 3.1.7
       '@ionic/utils-process': 2.1.12(supports-color@8.1.1)
       '@ionic/utils-stream': 3.1.7(supports-color@8.1.1)
       '@ionic/utils-terminal': 2.3.5
@@ -49089,12 +49091,12 @@ snapshots:
       - supports-color
       - vue
 
-  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))':
+  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
@@ -49465,6 +49467,14 @@ snapshots:
       error-stack-parser: 2.1.4
       string-width: 4.2.3
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  '@nuxt/friendly-errors-webpack-plugin@2.6.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))':
+    dependencies:
+      chalk: 2.4.2
+      consola: 3.4.2
+      error-stack-parser: 2.1.4
+      string-width: 4.2.3
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   '@nuxt/generator@2.18.1':
     dependencies:
@@ -49847,13 +49857,13 @@ snapshots:
       '@types/webpack-bundle-analyzer': 3.9.5
       '@types/webpack-hot-middleware': 2.25.5
 
-  '@nuxt/typescript-build@3.0.2(@nuxt/types@2.18.1)(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))':
+  '@nuxt/typescript-build@3.0.2(@nuxt/types@2.18.1)(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))':
     dependencies:
       '@nuxt/types': 2.18.1
       consola: 3.4.2
       defu: 6.1.7
-      fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      ts-loader: 8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      ts-loader: 8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       typescript: 6.0.3
     transitivePeerDependencies:
       - eslint
@@ -50088,56 +50098,56 @@ snapshots:
       vue-meta: 2.4.0
       vue-server-renderer: 2.7.16(patch_hash=7374e4bf5b7956d7097feec494aaea43bf8f6a02e2b64e8a3cc57e19c2f65132)
 
-  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))':
+  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))':
     dependencies:
       '@babel/core': 7.29.7
       '@nuxt/babel-preset-app': 2.18.1(vue@2.7.16)
-      '@nuxt/friendly-errors-webpack-plugin': 2.6.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      '@nuxt/friendly-errors-webpack-plugin': 2.6.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@nuxt/utils': 2.18.1
-      babel-loader: 8.4.1(@babel/core@7.29.7)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      babel-loader: 8.4.1(@babel/core@7.29.7)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       caniuse-lite: 1.0.30001799
       consola: 3.4.2
-      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       cssnano: 7.1.9(postcss@8.5.16)
       eventsource-polyfill: 0.9.6
-      extract-css-chunks-webpack-plugin: 4.10.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      extract-css-chunks-webpack-plugin: 4.10.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       glob: 8.1.0
-      hard-source-webpack-plugin: 0.13.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      hard-source-webpack-plugin: 0.13.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       hash-sum: 2.0.0
-      html-webpack-plugin: 4.5.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      html-webpack-plugin: 4.5.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       lodash: 4.18.1
       memfs: 4.57.7(tslib@2.8.1)
       mkdirp: 0.5.6
-      optimize-css-assets-webpack-plugin: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      optimize-css-assets-webpack-plugin: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       pify: 5.0.0
       pnp-webpack-plugin: 1.7.0(typescript@6.0.3)
       postcss: 8.5.16
       postcss-import: 15.1.0(postcss@8.5.16)
       postcss-import-resolver: 2.0.0
-      postcss-loader: 4.3.0(postcss@8.5.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      postcss-loader: 4.3.0(postcss@8.5.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       postcss-preset-env: 9.6.0(postcss@8.5.16)
       postcss-url: 10.1.4(postcss@8.5.16)
       semver: 7.8.5
       std-env: 3.10.0
-      style-resources-loader: 1.5.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      terser-webpack-plugin: 4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      thread-loader: 3.0.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      time-fix-plugin: 2.0.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      style-resources-loader: 1.5.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      terser-webpack-plugin: 4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      thread-loader: 3.0.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      time-fix-plugin: 2.0.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ufo: 1.6.4
       upath: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-style-loader: 4.1.3
       vue-template-compiler: 2.7.16
       watchpack: 2.5.2
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-bundle-analyzer: 4.10.2
-      webpack-dev-middleware: 5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-dev-middleware: 5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       webpack-hot-middleware: 2.26.1
       webpack-node-externals: 3.0.0
-      webpackbar: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpackbar: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - arc-templates
@@ -50350,12 +50360,12 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  '@nuxtjs/eslint-module@4.1.0(eslint@10.7.0(jiti@2.7.0))(vite@8.1.0(@types/node@20.19.43)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))':
+  '@nuxtjs/eslint-module@4.1.0(eslint@10.7.0(jiti@2.7.0))(vite@8.1.0(@types/node@20.19.43)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))':
     dependencies:
       '@nuxt/kit': 3.21.8(magicast@0.5.3)
       chokidar: 3.6.0
       eslint: 10.7.0(jiti@2.7.0)
-      eslint-webpack-plugin: 4.2.0(eslint@10.7.0(jiti@2.7.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      eslint-webpack-plugin: 4.2.0(eslint@10.7.0(jiti@2.7.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       pathe: 1.1.2
       vite-plugin-eslint: 1.8.1(eslint@10.7.0(jiti@2.7.0))(vite@8.1.0(@types/node@20.19.43)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))
     transitivePeerDependencies:
@@ -51771,13 +51781,13 @@ snapshots:
 
   '@prefresh/utils@1.2.1': {}
 
-  '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.29.2)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))':
+  '@prefresh/webpack@3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.29.2)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))':
     dependencies:
       '@prefresh/babel-plugin': 0.4.4
       '@prefresh/core': 1.5.10(preact@10.29.2)
       '@prefresh/utils': 1.2.1
       preact: 10.29.2
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   '@prisma/instrumentation@6.11.1(@opentelemetry/api@1.9.1)':
     dependencies:
@@ -51795,7 +51805,7 @@ snapshots:
       debug: 4.4.3(supports-color@8.1.1)
       extract-zip: 2.0.1(supports-color@8.1.1)
       progress: 2.0.3
-      proxy-agent: 6.5.0
+      proxy-agent: 6.5.0(supports-color@8.1.1)
       semver: 7.8.5
       tar-fs: 3.1.2
       yargs: 17.7.2
@@ -51810,7 +51820,7 @@ snapshots:
       debug: 4.4.3(supports-color@8.1.1)
       extract-zip: 2.0.1(supports-color@8.1.1)
       progress: 2.0.3
-      proxy-agent: 6.5.0
+      proxy-agent: 6.5.0(supports-color@8.1.1)
       semver: 7.8.5
       tar-fs: 3.1.2
       unbzip2-stream: 1.4.3
@@ -52848,13 +52858,13 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
-  '@soda/friendly-errors-webpack-plugin@1.8.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))':
+  '@soda/friendly-errors-webpack-plugin@1.8.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))':
     dependencies:
       chalk: 3.0.0
       error-stack-parser: 2.1.4
       string-width: 4.2.3
       strip-ansi: 6.0.1
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   '@soda/get-current-script@1.0.2': {}
 
@@ -53464,6 +53474,26 @@ snapshots:
 
   '@types/deep-eql@4.0.2': {}
 
+  '@types/ember@4.0.11':
+    dependencies:
+      '@types/ember__application': 4.0.11(@babel/core@7.29.0)
+      '@types/ember__array': 4.0.10
+      '@types/ember__component': 4.0.22
+      '@types/ember__controller': 4.0.12
+      '@types/ember__debug': 4.0.8
+      '@types/ember__engine': 4.0.11
+      '@types/ember__error': 4.0.6
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__polyfills': 4.0.6
+      '@types/ember__routing': 4.0.23
+      '@types/ember__runloop': 4.0.10
+      '@types/ember__service': 4.0.9
+      '@types/ember__string': 3.0.15
+      '@types/ember__template': 4.0.7
+      '@types/ember__test': 4.0.6(@babel/core@7.29.0)
+      '@types/ember__utils': 4.0.7
+      '@types/rsvp': 4.0.9
+
   '@types/ember@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__application': 4.0.11(@babel/core@7.29.0)
@@ -53534,6 +53564,11 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__array@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
+
   '@types/ember__array@4.0.10(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
@@ -53550,10 +53585,15 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  '@types/ember__component@4.0.22':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__object': 4.0.12
+
   '@types/ember__component@4.0.22(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__object': 4.0.12
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -53561,10 +53601,14 @@ snapshots:
   '@types/ember__component@4.0.22(@babel/core@7.29.7)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.7)
-      '@types/ember__object': 4.0.12(@babel/core@7.29.7)
+      '@types/ember__object': 4.0.12
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__controller@4.0.12':
+    dependencies:
+      '@types/ember__object': 4.0.12
 
   '@types/ember__controller@4.0.12(@babel/core@7.29.0)':
     dependencies:
@@ -53579,6 +53623,11 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__debug@4.0.8':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
 
   '@types/ember__debug@4.0.8(@babel/core@7.29.0)':
     dependencies:
@@ -53598,6 +53647,11 @@ snapshots:
 
   '@types/ember__destroyable@4.0.5': {}
 
+  '@types/ember__engine@4.0.11':
+    dependencies:
+      '@types/ember__object': 4.0.12
+      '@types/ember__owner': 4.0.9
+
   '@types/ember__engine@4.0.11(@babel/core@7.29.0)':
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.29.0)
@@ -53615,6 +53669,11 @@ snapshots:
       - supports-color
 
   '@types/ember__error@4.0.6': {}
+
+  '@types/ember__object@4.0.12':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/rsvp': 4.0.9
 
   '@types/ember__object@4.0.12(@babel/core@7.29.0)':
     dependencies:
@@ -53636,12 +53695,19 @@ snapshots:
 
   '@types/ember__polyfills@4.0.6': {}
 
+  '@types/ember__routing@4.0.23':
+    dependencies:
+      '@types/ember': 4.0.11
+      '@types/ember__controller': 4.0.12
+      '@types/ember__object': 4.0.12
+      '@types/ember__service': 4.0.9
+
   '@types/ember__routing@4.0.23(@babel/core@7.29.0)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.0)
-      '@types/ember__controller': 4.0.12(@babel/core@7.29.7)
-      '@types/ember__object': 4.0.12(@babel/core@7.29.7)
-      '@types/ember__service': 4.0.9(@babel/core@7.29.7)
+      '@types/ember__controller': 4.0.12
+      '@types/ember__object': 4.0.12(@babel/core@7.29.0)
+      '@types/ember__service': 4.0.9
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -53649,12 +53715,16 @@ snapshots:
   '@types/ember__routing@4.0.23(@babel/core@7.29.7)':
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.29.7)
-      '@types/ember__controller': 4.0.12(@babel/core@7.29.7)
+      '@types/ember__controller': 4.0.12
       '@types/ember__object': 4.0.12(@babel/core@7.29.7)
-      '@types/ember__service': 4.0.9(@babel/core@7.29.7)
+      '@types/ember__service': 4.0.9
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__runloop@4.0.10':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__runloop@4.0.10(@babel/core@7.29.0)':
     dependencies:
@@ -53669,6 +53739,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__service@4.0.9':
+    dependencies:
+      '@types/ember__object': 4.0.12
 
   '@types/ember__service@4.0.9(@babel/core@7.29.0)':
     dependencies:
@@ -53705,6 +53779,10 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+
+  '@types/ember__utils@4.0.7':
+    dependencies:
+      '@types/ember': 4.0.11
 
   '@types/ember__utils@4.0.7(@babel/core@7.29.0)':
     dependencies:
@@ -54372,7 +54450,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/scope-manager': 6.21.0
       '@typescript-eslint/types': 6.21.0
-      '@typescript-eslint/typescript-estree': 6.21.0(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 6.21.0(supports-color@8.1.1)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 6.21.0
       debug: 4.4.3(supports-color@8.1.1)
       eslint: 10.7.0(jiti@2.7.0)
@@ -54537,7 +54615,7 @@ snapshots:
 
   '@typescript-eslint/type-utils@6.21.0(eslint@10.7.0(jiti@2.7.0))(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/typescript-estree': 6.21.0(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 6.21.0(supports-color@8.1.1)(typescript@6.0.3)
       '@typescript-eslint/utils': 6.21.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
       debug: 4.4.3(supports-color@8.1.1)
       eslint: 10.7.0(jiti@2.7.0)
@@ -54619,7 +54697,7 @@ snapshots:
 
   '@typescript-eslint/types@8.63.0': {}
 
-  '@typescript-eslint/typescript-estree@6.21.0(typescript@6.0.3)':
+  '@typescript-eslint/typescript-estree@6.21.0(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/visitor-keys': 6.21.0
@@ -54716,7 +54794,7 @@ snapshots:
       '@types/semver': 7.7.1
       '@typescript-eslint/scope-manager': 6.21.0
       '@typescript-eslint/types': 6.21.0
-      '@typescript-eslint/typescript-estree': 6.21.0(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 6.21.0(supports-color@8.1.1)(typescript@6.0.3)
       eslint: 10.7.0(jiti@2.7.0)
       semver: 7.8.5
     transitivePeerDependencies:
@@ -55420,11 +55498,11 @@ snapshots:
 
   '@vue/cli-overlay@5.0.9': {}
 
-  '@vue/cli-plugin-babel@5.0.9(@swc/core@1.15.43)(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))(core-js@3.49.0)(encoding@0.1.13)(postcss@8.5.15)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))':
+  '@vue/cli-plugin-babel@5.0.9(@swc/core@1.15.43)(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))(core-js@3.49.0)(encoding@0.1.13)(postcss@8.5.15)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))':
     dependencies:
       '@babel/core': 7.29.0
       '@vue/babel-preset-app': 5.0.9(@babel/core@7.29.0)(core-js@3.49.0)(vue@2.7.16)
-      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)
+      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1))
       thread-loader: 3.0.4(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1))
@@ -55448,18 +55526,18 @@ snapshots:
       - vue
       - webpack-cli
 
-  '@vue/cli-plugin-router@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))(encoding@0.1.13)':
+  '@vue/cli-plugin-router@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))(encoding@0.1.13)':
     dependencies:
-      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)
+      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
-  '@vue/cli-plugin-typescript@5.0.9(9be875d94fb9077ca4628027147f0056)':
+  '@vue/cli-plugin-typescript@5.0.9(416d6f7a470ed9077bcdb7286ff4a479)':
     dependencies:
       '@babel/core': 7.29.0
       '@types/webpack-env': 1.18.8
-      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)
+      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1))
       fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1))
@@ -55470,7 +55548,7 @@ snapshots:
       vue: 2.7.16
       webpack: 5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)
     optionalDependencies:
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -55491,22 +55569,22 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@vue/cli-plugin-vuex@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))':
+  '@vue/cli-plugin-vuex@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))':
     dependencies:
-      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)
+      '@vue/cli-service': 5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)
 
-  '@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0)':
+  '@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0)':
     dependencies:
       '@babel/helper-compilation-targets': 7.29.7
-      '@soda/friendly-errors-webpack-plugin': 1.8.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      '@soda/friendly-errors-webpack-plugin': 1.8.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@soda/get-current-script': 1.0.2
       '@types/minimist': 1.2.5
       '@vue/cli-overlay': 5.0.9
-      '@vue/cli-plugin-router': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))(encoding@0.1.13)
-      '@vue/cli-plugin-vuex': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack-sources@3.5.0))
+      '@vue/cli-plugin-router': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))(encoding@0.1.13)
+      '@vue/cli-plugin-vuex': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.15.43)(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(supports-color@8.1.1)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack-sources@3.5.0))
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
-      '@vue/vue-loader-v15': vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      '@vue/vue-loader-v15': vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@vue/web-component-wrapper': 1.3.0
       acorn: 8.17.0
       acorn-walk: 8.3.5
@@ -55517,9 +55595,9 @@ snapshots:
       cli-highlight: 2.1.11
       clipboardy: 2.3.0
       cliui: 7.0.4
-      copy-webpack-plugin: 9.1.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      css-loader: 6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      css-minimizer-webpack-plugin: 3.4.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      copy-webpack-plugin: 9.1.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      css-loader: 6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      css-minimizer-webpack-plugin: 3.4.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       cssnano: 5.1.15(postcss@8.5.15)
       debug: 4.4.3(supports-color@8.1.1)
       default-gateway: 6.0.3
@@ -55528,32 +55606,32 @@ snapshots:
       fs-extra: 9.1.0
       globby: 11.1.0
       hash-sum: 2.0.0
-      html-webpack-plugin: 5.6.7(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      html-webpack-plugin: 5.6.7(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       is-file-esm: 1.0.0
       launch-editor-middleware: 2.14.1
       lodash.defaultsdeep: 4.6.1
       lodash.mapvalues: 4.6.0
-      mini-css-extract-plugin: 2.10.2(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      mini-css-extract-plugin: 2.10.2(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       minimist: 1.2.8
       module-alias: 2.3.4
       portfinder: 1.0.38(supports-color@8.1.1)
       postcss: 8.5.15
-      postcss-loader: 6.2.1(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      progress-webpack-plugin: 1.0.16(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      postcss-loader: 6.2.1(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      progress-webpack-plugin: 1.0.16(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ssri: 8.0.1
-      terser-webpack-plugin: 5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      thread-loader: 3.0.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      vue-loader: 17.4.2(@vue/compiler-sfc@3.5.38)(vue@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      thread-loader: 3.0.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      vue-loader: 17.4.2(@vue/compiler-sfc@3.5.38)(vue@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-style-loader: 4.1.3
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-bundle-analyzer: 4.10.2
       webpack-chain: 6.5.1
-      webpack-dev-server: 4.15.2(debug@4.4.3(supports-color@8.1.1))(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-dev-server: 4.15.2(debug@4.4.3(supports-color@8.1.1))(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       webpack-merge: 5.10.0
       webpack-virtual-modules: 0.4.6
       whatwg-fetch: 3.6.20
     optionalDependencies:
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       vue-template-compiler: 2.7.16
       webpack-sources: 3.5.0
     transitivePeerDependencies:
@@ -57936,11 +58014,11 @@ snapshots:
       esutils: 2.0.3
       js-tokens: 3.0.2
 
-  babel-esm-plugin@0.9.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  babel-esm-plugin@0.9.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       chalk: 2.4.1
       deepcopy: 1.0.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   babel-helper-builder-binary-assignment-operator-visitor@6.24.1:
     dependencies:
@@ -58052,12 +58130,12 @@ snapshots:
     optionalDependencies:
       webpack: 5.108.4(@swc/core@1.15.43)(webpack-cli@7.2.1)
 
-  babel-loader@10.1.1(@babel/core@8.0.1)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  babel-loader@10.1.1(@babel/core@8.0.1)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/core': 8.0.1
       find-up: 5.0.0
     optionalDependencies:
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   babel-loader@10.1.1(@babel/core@8.0.1)(webpack@5.108.4):
     dependencies:
@@ -58066,23 +58144,23 @@ snapshots:
     optionalDependencies:
       webpack: 5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)
 
-  babel-loader@8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  babel-loader@8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/core': 7.29.0
       find-cache-dir: 3.3.2
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
-  babel-loader@8.4.1(@babel/core@7.29.0)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  babel-loader@8.4.1(@babel/core@7.29.0)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/core': 7.29.0
       find-cache-dir: 3.3.2
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   babel-loader@8.4.1(@babel/core@7.29.0)(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)):
     dependencies:
@@ -58101,6 +58179,15 @@ snapshots:
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  babel-loader@8.4.1(@babel/core@7.29.7)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      '@babel/core': 7.29.7
+      find-cache-dir: 3.3.2
+      loader-utils: 2.0.4
+      make-dir: 3.1.0
+      schema-utils: 2.7.1
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   babel-loader@9.2.1(@babel/core@7.29.7)(webpack@5.108.4):
     dependencies:
@@ -58863,11 +58950,6 @@ snapshots:
       raw-body: 1.1.7
       safe-json-parse: 1.0.1
 
-  bonjour-service@1.4.1:
-    dependencies:
-      fast-deep-equal: 3.1.3
-      multicast-dns: 7.2.5
-
   bonjour-service@1.4.2:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -59590,6 +59672,16 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 2.7.1
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      buffer-json: 2.0.0
+      find-cache-dir: 3.3.2
+      loader-utils: 1.4.2
+      mkdirp: 0.5.6
+      neo-async: 2.6.2
+      schema-utils: 2.7.1
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   cacheable-request@6.1.0:
     dependencies:
@@ -60320,13 +60412,13 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  compression-webpack-plugin@6.1.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  compression-webpack-plugin@6.1.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       cacache: 15.3.0
       find-cache-dir: 3.3.2
       schema-utils: 3.3.0
       serialize-javascript: 5.0.1
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-sources: 1.4.3
     transitivePeerDependencies:
       - bluebird
@@ -60623,7 +60715,7 @@ snapshots:
       serialize-javascript: 6.0.2
       webpack: 5.108.4(@swc/core@1.15.43)(cssnano@6.1.2(postcss@8.5.16))(esbuild@0.27.7)(lightningcss@1.32.0)(postcss@8.5.16)(webpack-cli@5.1.4)
 
-  copy-webpack-plugin@6.4.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  copy-webpack-plugin@6.4.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       cacache: 15.3.0
       fast-glob: 3.3.3
@@ -60635,12 +60727,12 @@ snapshots:
       p-limit: 3.1.0
       schema-utils: 3.3.0
       serialize-javascript: 5.0.1
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-sources: 1.4.3
     transitivePeerDependencies:
       - bluebird
 
-  copy-webpack-plugin@9.1.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  copy-webpack-plugin@9.1.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       fast-glob: 3.3.3
       glob-parent: 6.0.2
@@ -60648,7 +60740,7 @@ snapshots:
       normalize-path: 3.0.0
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   copyfiles@2.4.1:
     dependencies:
@@ -60803,7 +60895,7 @@ snapshots:
 
   create-require@1.1.1: {}
 
-  critters-webpack-plugin@2.5.0(html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))):
+  critters-webpack-plugin@2.5.0(html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))):
     dependencies:
       css: 2.2.4
       cssnano: 4.1.11
@@ -60815,7 +60907,7 @@ snapshots:
       webpack-log: 2.0.0
       webpack-sources: 1.4.3
     optionalDependencies:
-      html-webpack-plugin: 3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      html-webpack-plugin: 3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -60931,7 +61023,7 @@ snapshots:
       semver: 7.8.5
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
-  css-loader@5.2.7(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.15)
       loader-utils: 2.0.4
@@ -60943,9 +61035,23 @@ snapshots:
       postcss-value-parser: 4.2.0
       schema-utils: 3.3.0
       semver: 7.8.5
-      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
-  css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  css-loader@5.2.7(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.15)
+      loader-utils: 2.0.4
+      postcss: 8.5.15
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.15)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.15)
+      postcss-modules-scope: 3.2.1(postcss@8.5.15)
+      postcss-modules-values: 4.0.0(postcss@8.5.15)
+      postcss-value-parser: 4.2.0
+      schema-utils: 3.3.0
+      semver: 7.8.5
+      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
+  css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.15)
       postcss: 8.5.15
@@ -60956,7 +61062,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   css-loader@6.11.0(webpack@5.108.4):
     dependencies:
@@ -60971,7 +61077,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.108.4(@swc/core@1.15.43)(postcss@8.5.16)(webpack-cli@7.2.1)
 
-  css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.15)
       postcss: 8.5.15
@@ -60982,7 +61088,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   css-loader@7.1.4(webpack@5.108.4):
     dependencies:
@@ -60997,7 +61103,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)
 
-  css-minimizer-webpack-plugin@3.4.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  css-minimizer-webpack-plugin@3.4.1(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       cssnano: 5.1.15(postcss@8.5.16)
       jest-worker: 27.5.1
@@ -61005,7 +61111,7 @@ snapshots:
       schema-utils: 4.3.3
       serialize-javascript: 6.0.2
       source-map: 0.6.1
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   css-prefers-color-scheme@9.0.1(postcss@8.5.16):
     dependencies:
@@ -61993,7 +62099,7 @@ snapshots:
 
   email-addresses@5.0.0: {}
 
-  ember-auto-import@2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  ember-auto-import@2.13.1(supports-color@8.1.1)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.29.0)
@@ -62004,7 +62110,7 @@ snapshots:
       '@embroider/macros': 1.20.4(@babel/core@7.29.0)
       '@embroider/reverse-exports': 0.2.0
       '@embroider/shared-internals': 2.9.2(supports-color@8.1.1)
-      babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       babel-plugin-ember-modules-api-polyfill: 3.5.0
       babel-plugin-ember-template-compilation: 2.4.1
       babel-plugin-htmlbars-inline-precompile: 5.3.1
@@ -62014,7 +62120,7 @@ snapshots:
       broccoli-merge-trees: 4.2.0
       broccoli-plugin: 4.0.7
       broccoli-source: 3.0.1
-      css-loader: 5.2.7(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      css-loader: 5.2.7(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       debug: 4.4.3(supports-color@8.1.1)
       fs-extra: 10.1.0
       fs-tree-diff: 2.0.1
@@ -62022,14 +62128,14 @@ snapshots:
       is-subdir: 1.2.0
       js-string-escape: 1.0.1
       lodash: 4.18.1
-      mini-css-extract-plugin: 2.10.2(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      mini-css-extract-plugin: 2.10.2(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       minimatch: 3.1.5
       parse5: 6.0.1
       pkg-entry-points: 1.1.2
       resolve: 1.22.12
       resolve-package-path: 4.0.3
       semver: 7.8.5
-      style-loader: 2.0.0(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      style-loader: 2.0.0(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       typescript-memoize: 1.1.1
       walk-sync: 3.0.0
     transitivePeerDependencies:
@@ -64177,7 +64283,7 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint-webpack-plugin@4.2.0(eslint@10.7.0(jiti@2.7.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  eslint-webpack-plugin@4.2.0(eslint@10.7.0(jiti@2.7.0))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@types/eslint': 8.56.12
       eslint: 10.7.0(jiti@2.7.0)
@@ -64185,7 +64291,7 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       schema-utils: 4.3.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   eslint@10.7.0(jiti@2.7.0):
     dependencies:
@@ -64613,6 +64719,14 @@ snapshots:
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
       webpack-sources: 1.4.3
 
+  extract-css-chunks-webpack-plugin@4.10.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      loader-utils: 2.0.4
+      normalize-url: 1.9.1
+      schema-utils: 1.0.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-sources: 1.4.3
+
   extract-stack@2.0.0: {}
 
   extract-zip@2.0.1(supports-color@8.1.1):
@@ -64751,6 +64865,12 @@ snapshots:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      loader-utils: 2.0.4
+      schema-utils: 3.3.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   file-loader@6.2.0(webpack@5.108.4):
     dependencies:
@@ -65049,7 +65169,7 @@ snapshots:
 
   forever-agent@0.6.1: {}
 
-  fork-ts-checker-webpack-plugin@6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  fork-ts-checker-webpack-plugin@6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/code-frame': 7.29.7
       '@types/json-schema': 7.0.15
@@ -65065,7 +65185,7 @@ snapshots:
       semver: 7.8.5
       tapable: 1.1.3
       typescript: 6.0.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       eslint: 10.7.0(jiti@2.7.0)
       vue-template-compiler: 2.7.16
@@ -65091,7 +65211,7 @@ snapshots:
       eslint: 10.7.0(jiti@2.7.0)
       vue-template-compiler: 2.7.16
 
-  fork-ts-checker-webpack-plugin@9.1.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  fork-ts-checker-webpack-plugin@9.1.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@babel/code-frame': 7.29.7
       chalk: 4.1.2
@@ -65106,7 +65226,7 @@ snapshots:
       semver: 7.8.5
       tapable: 2.3.3
       typescript: 6.0.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   form-data@2.3.3:
     dependencies:
@@ -65443,7 +65563,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  get-uri@6.0.5:
+  get-uri@6.0.5(supports-color@8.1.1):
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
@@ -65883,6 +66003,23 @@ snapshots:
       webpack-sources: 1.4.3
       write-json-file: 2.3.0
 
+  hard-source-webpack-plugin@0.13.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      chalk: 2.4.2
+      find-cache-dir: 2.1.0
+      graceful-fs: 4.2.11
+      lodash: 4.18.1
+      mkdirp: 0.5.6
+      node-object-hash: 1.4.2
+      parse-json: 4.0.0
+      pkg-dir: 3.0.0
+      rimraf: 2.7.1
+      semver: 5.7.2
+      tapable: 1.1.3
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-sources: 1.4.3
+      write-json-file: 2.3.0
+
   harmony-reflect@1.6.2: {}
 
   has-ansi@2.0.0:
@@ -66268,7 +66405,7 @@ snapshots:
 
   html-webpack-exclude-assets-plugin@0.0.7: {}
 
-  html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       html-minifier: 3.5.21
       loader-utils: 0.2.17
@@ -66277,7 +66414,7 @@ snapshots:
       tapable: 1.1.3
       toposort: 1.0.7
       util.promisify: 1.0.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   html-webpack-plugin@4.5.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
@@ -66292,7 +66429,20 @@ snapshots:
       util.promisify: 1.0.0
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
-  html-webpack-plugin@5.6.7(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  html-webpack-plugin@4.5.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      '@types/html-minifier-terser': 5.1.2
+      '@types/tapable': 1.0.12
+      '@types/webpack': 4.41.40
+      html-minifier-terser: 5.1.1
+      loader-utils: 1.4.2
+      lodash: 4.18.1
+      pretty-error: 2.1.2
+      tapable: 1.1.3
+      util.promisify: 1.0.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
+  html-webpack-plugin@5.6.7(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -66300,7 +66450,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   html-webpack-plugin@5.6.7(webpack@5.108.4):
     dependencies:
@@ -66397,8 +66547,9 @@ snapshots:
       '@types/express': 4.17.25
     transitivePeerDependencies:
       - debug
+    optional: true
 
-  http-proxy-middleware@2.0.9(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1)):
+  http-proxy-middleware@2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1)):
     dependencies:
       '@types/http-proxy': 1.17.17
       http-proxy: 1.18.1(debug@4.4.3(supports-color@8.1.1))
@@ -69785,24 +69936,24 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  mini-css-extract-plugin@1.6.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  mini-css-extract-plugin@1.6.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-sources: 1.4.3
 
-  mini-css-extract-plugin@2.10.2(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  mini-css-extract-plugin@2.10.2(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.3
-      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
-  mini-css-extract-plugin@2.10.2(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  mini-css-extract-plugin@2.10.2(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.3
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   mini-css-extract-plugin@2.10.2(webpack@5.108.4):
     dependencies:
@@ -69886,13 +70037,13 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@swc/core': 1.15.43
       cssnano: 5.1.15(postcss@8.5.15)
@@ -69912,13 +70063,13 @@ snapshots:
       lightningcss: 1.32.0
       postcss: 8.5.16
 
-  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@swc/core': 1.15.43
       esbuild: 0.28.1
@@ -69958,13 +70109,13 @@ snapshots:
       '@swc/core': 1.15.43
       postcss: 8.5.16
 
-  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  minimizer-webpack-plugin@5.6.1(@swc/core@1.15.43)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@swc/core': 1.15.43
 
@@ -70303,7 +70454,7 @@ snapshots:
 
   native-run@2.0.3(supports-color@8.1.1):
     dependencies:
-      '@ionic/utils-fs': 3.1.7(supports-color@8.1.1)
+      '@ionic/utils-fs': 3.1.7
       '@ionic/utils-terminal': 2.3.5
       bplist-parser: 0.3.2
       debug: 4.4.3(supports-color@8.1.1)
@@ -71171,10 +71322,10 @@ snapshots:
     optionalDependencies:
       chokidar: 3.6.0
 
-  nuxt@2.18.1(@vue/compiler-sfc@3.5.38)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)):
+  nuxt@2.18.1(@vue/compiler-sfc@3.5.38)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
     dependencies:
       '@nuxt/babel-preset-app': 2.18.1(vue@2.7.16)
-      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       '@nuxt/cli': 2.18.1(buffer@6.0.3)
       '@nuxt/components': 2.2.1(consola@3.4.2)
       '@nuxt/config': 2.18.1
@@ -71187,7 +71338,7 @@ snapshots:
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
       '@nuxt/vue-renderer': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.38)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - arc-templates
@@ -72235,6 +72386,13 @@ snapshots:
       postcss: 8.5.16
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
+  optimize-css-assets-webpack-plugin@6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      cssnano: 5.1.15(postcss@8.5.16)
+      last-call-webpack-plugin: 3.0.0
+      postcss: 8.5.16
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
   optionator@0.8.3:
     dependencies:
       deep-is: 0.1.4
@@ -72680,12 +72838,12 @@ snapshots:
     dependencies:
       p-reduce: 2.1.0
 
-  pac-proxy-agent@7.2.0:
+  pac-proxy-agent@7.2.0(supports-color@8.1.1):
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
-      get-uri: 6.0.5
+      get-uri: 6.0.5(supports-color@8.1.1)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       pac-resolver: 7.0.1
@@ -73577,7 +73735,7 @@ snapshots:
       yaml: 2.9.0
     optional: true
 
-  postcss-loader@4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  postcss-loader@4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       cosmiconfig: 7.1.0
       klona: 2.0.6
@@ -73585,7 +73743,7 @@ snapshots:
       postcss: 8.5.15
       schema-utils: 3.3.0
       semver: 7.8.5
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   postcss-loader@4.3.0(postcss@8.5.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
@@ -73597,13 +73755,23 @@ snapshots:
       semver: 7.8.5
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
-  postcss-loader@6.2.1(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  postcss-loader@4.3.0(postcss@8.5.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      cosmiconfig: 7.1.0
+      klona: 2.0.6
+      loader-utils: 2.0.4
+      postcss: 8.5.16
+      schema-utils: 3.3.0
+      semver: 7.8.5
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
+  postcss-loader@6.2.1(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       cosmiconfig: 7.1.0
       klona: 2.0.6
       postcss: 8.5.15
       semver: 7.8.5
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   postcss-loader@6.2.1(postcss@8.5.16)(webpack@5.108.4):
     dependencies:
@@ -74551,7 +74719,7 @@ snapshots:
 
   powershell-utils@0.2.0: {}
 
-  preact-cli@3.5.1(@types/babel__core@7.20.5)(encoding@0.1.13)(eslint@10.7.0(jiti@2.7.0))(preact-render-to-string@6.7.0(preact@10.29.2))(preact@10.29.2)(ts-node@10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)):
+  preact-cli@3.5.1(@types/babel__core@7.20.5)(encoding@0.1.13)(eslint@10.7.0(jiti@2.7.0))(preact-render-to-string@6.7.0(preact@10.29.2))(preact@10.29.2)(ts-node@10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.29.0)
@@ -74564,67 +74732,67 @@ snapshots:
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.0)
       '@preact/async-loader': 3.0.2(preact@10.29.2)
       '@prefresh/babel-plugin': 0.4.4
-      '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.29.2)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      '@prefresh/webpack': 3.3.4(@prefresh/babel-plugin@0.4.4)(preact@10.29.2)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       '@types/webpack': 4.41.40
       autoprefixer: 10.5.0(postcss@8.5.15)
-      babel-esm-plugin: 0.9.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      babel-esm-plugin: 0.9.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      babel-loader: 8.4.1(@babel/core@7.29.0)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       babel-plugin-macros: 3.1.0
       babel-plugin-transform-react-remove-prop-types: 0.4.24
       browserslist: 4.28.5
-      compression-webpack-plugin: 6.1.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      compression-webpack-plugin: 6.1.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       console-clear: 1.1.1
-      copy-webpack-plugin: 6.4.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      critters-webpack-plugin: 2.5.0(html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))
+      copy-webpack-plugin: 6.4.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      critters-webpack-plugin: 2.5.0(html-webpack-plugin@3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))
       cross-spawn-promise: 0.10.2
-      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       dotenv: 16.6.1
       ejs-loader: 0.5.0
       envinfo: 7.21.0
       esm: 3.2.25
-      file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       get-port: 5.1.1
       gittar: 0.1.1
       glob: 8.1.0
       html-webpack-exclude-assets-plugin: 0.0.7
-      html-webpack-plugin: 3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      html-webpack-plugin: 3.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ip: 1.1.9
       isomorphic-unfetch: 3.1.0(encoding@0.1.13)
       kleur: 4.1.5
       loader-utils: 2.0.4
-      mini-css-extract-plugin: 1.6.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      mini-css-extract-plugin: 1.6.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       minimatch: 3.1.5
       native-url: 0.3.4
-      optimize-css-assets-webpack-plugin: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      optimize-css-assets-webpack-plugin: 6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ora: 5.4.1
       pnp-webpack-plugin: 1.7.0(typescript@6.0.3)
       postcss: 8.5.15
       postcss-load-config: 3.1.4(postcss@8.5.15)(ts-node@10.9.2(@swc/core@1.15.43)(@types/node@26.1.1)(typescript@6.0.3))
-      postcss-loader: 4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      postcss-loader: 4.3.0(postcss@8.5.15)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       preact: 10.29.2
       preact-render-to-string: 6.7.0(preact@10.29.2)
-      progress-bar-webpack-plugin: 2.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      progress-bar-webpack-plugin: 2.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       promise-polyfill: 8.3.0
       prompts: 2.4.2
-      raw-loader: 4.0.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      raw-loader: 4.0.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       react-refresh: 0.10.0
       rimraf: 3.0.2
       sade: 1.8.1
-      size-plugin: 3.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      size-plugin: 3.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       source-map: 0.7.6
-      source-map-loader: 1.1.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      source-map-loader: 1.1.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       stack-trace: 0.0.10
-      style-loader: 2.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      terser-webpack-plugin: 4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      style-loader: 2.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      terser-webpack-plugin: 4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       update-notifier: 5.1.0
-      url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       validate-npm-package-name: 4.0.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-bundle-analyzer: 4.10.2
-      webpack-dev-server: 4.15.2(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-dev-server: 4.15.2(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       webpack-fix-style-only-entries: 0.6.1
-      webpack-manifest-plugin: 4.1.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-manifest-plugin: 4.1.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       webpack-merge: 5.10.0
       webpack-plugin-replace: 1.2.0
       which: 2.0.2
@@ -74633,7 +74801,7 @@ snapshots:
       workbox-precaching: 6.6.0
       workbox-routing: 6.6.0
       workbox-strategies: 6.6.0
-      workbox-webpack-plugin: 6.6.0(@types/babel__core@7.20.5)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      workbox-webpack-plugin: 6.6.0(@types/babel__core@7.20.5)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
     optionalDependencies:
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -74776,18 +74944,18 @@ snapshots:
 
   proggy@3.0.0: {}
 
-  progress-bar-webpack-plugin@2.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  progress-bar-webpack-plugin@2.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       chalk: 3.0.0
       progress: 2.0.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
-  progress-webpack-plugin@1.0.16(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  progress-webpack-plugin@1.0.16(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       chalk: 2.4.2
       figures: 2.0.0
       log-update: 2.3.0
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   progress@2.0.3: {}
 
@@ -74850,14 +75018,14 @@ snapshots:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
-  proxy-agent@6.5.0:
+  proxy-agent@6.5.0(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
-      pac-proxy-agent: 7.2.0
+      pac-proxy-agent: 7.2.0(supports-color@8.1.1)
       proxy-from-env: 1.1.0
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
@@ -75158,11 +75326,11 @@ snapshots:
       iconv-lite: 0.7.2
       unpipe: 1.0.0
 
-  raw-loader@4.0.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  raw-loader@4.0.2(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   rawth@3.0.0:
     dependencies:
@@ -76766,7 +76934,7 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  size-plugin@3.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  size-plugin@3.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       axios: 0.21.4
       chalk: 2.4.2
@@ -76776,7 +76944,7 @@ snapshots:
       minimatch: 3.1.5
       pretty-bytes: 5.6.0
       util.promisify: 1.1.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     transitivePeerDependencies:
       - debug
 
@@ -77011,14 +77179,14 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
-  source-map-loader@1.1.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  source-map-loader@1.1.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       abab: 2.0.6
       iconv-lite: 0.6.3
       loader-utils: 2.0.4
       schema-utils: 3.3.0
       source-map: 0.6.1
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       whatwg-mimetype: 2.3.0
 
   source-map-loader@3.0.2(webpack@5.108.4):
@@ -77512,17 +77680,17 @@ snapshots:
 
   stubborn-utils@1.0.2: {}
 
-  style-loader@2.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  style-loader@2.0.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
-  style-loader@2.0.0(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  style-loader@2.0.0(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   style-loader@4.0.0(webpack@5.108.4):
     dependencies:
@@ -77535,6 +77703,14 @@ snapshots:
       schema-utils: 2.7.1
       tslib: 2.8.1
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  style-resources-loader@1.5.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      glob: 7.2.3
+      loader-utils: 2.0.4
+      schema-utils: 2.7.1
+      tslib: 2.8.1
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   style-search@0.1.0: {}
 
@@ -78087,6 +78263,19 @@ snapshots:
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
 
+  terser-webpack-plugin@1.4.6(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      cacache: 12.0.4
+      find-cache-dir: 2.1.0
+      is-wsl: 1.1.0
+      schema-utils: 1.0.0
+      serialize-javascript: 4.0.0
+      source-map: 0.6.1
+      terser: 4.8.1
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-sources: 1.4.3
+      worker-farm: 1.7.0
+
   terser-webpack-plugin@4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
       cacache: 15.3.0
@@ -78102,13 +78291,28 @@ snapshots:
     transitivePeerDependencies:
       - bluebird
 
-  terser-webpack-plugin@5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  terser-webpack-plugin@4.2.3(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      cacache: 15.3.0
+      find-cache-dir: 3.3.2
+      jest-worker: 26.6.2
+      p-limit: 3.1.0
+      schema-utils: 3.3.0
+      serialize-javascript: 5.0.1
+      source-map: 0.6.1
+      terser: 5.48.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-sources: 1.4.3
+    transitivePeerDependencies:
+      - bluebird
+
+  terser-webpack-plugin@5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@swc/core': 1.15.43
       cssnano: 5.1.15(postcss@8.5.15)
@@ -78375,14 +78579,23 @@ snapshots:
       schema-utils: 3.3.0
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
-  thread-loader@3.0.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  thread-loader@3.0.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       json-parse-better-errors: 1.0.2
       loader-runner: 4.3.2
       loader-utils: 2.0.4
       neo-async: 2.6.2
       schema-utils: 3.3.0
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
+  thread-loader@3.0.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      json-parse-better-errors: 1.0.2
+      loader-runner: 4.3.2
+      loader-utils: 2.0.4
+      neo-async: 2.6.2
+      schema-utils: 3.3.0
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   thread-loader@3.0.4(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)):
     dependencies:
@@ -78414,6 +78627,10 @@ snapshots:
   time-fix-plugin@2.0.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+
+  time-fix-plugin@2.0.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   timers-browserify@2.0.12:
     dependencies:
@@ -78674,7 +78891,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
 
-  ts-loader@8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  ts-loader@8.4.0(typescript@6.0.3)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 4.5.0
@@ -78682,7 +78899,7 @@ snapshots:
       micromatch: 4.0.8
       semver: 7.8.5
       typescript: 6.0.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   ts-loader@9.6.1(loader-utils@3.3.1)(typescript@6.0.3)(webpack@5.108.4(@swc/core@1.15.43)(postcss@8.5.15)(webpack-cli@7.2.1)):
     dependencies:
@@ -79387,7 +79604,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  unplugin-dts@1.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  unplugin-dts@1.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
       '@volar/typescript': 2.4.28
@@ -79403,7 +79620,7 @@ snapshots:
       rolldown: 1.1.5
       rollup: 4.62.2
       vite: 6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0)
-      webpack: 5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     transitivePeerDependencies:
       - supports-color
 
@@ -79594,6 +79811,15 @@ snapshots:
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
     optionalDependencies:
       file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+
+  url-loader@4.1.1(file-loader@6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      loader-utils: 2.0.4
+      mime-types: 2.1.35
+      schema-utils: 3.3.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+    optionalDependencies:
+      file-loader: 6.2.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
 
   url-loader@4.1.1(file-loader@6.2.0(webpack@5.108.4))(webpack@5.108.4):
     dependencies:
@@ -79916,9 +80142,9 @@ snapshots:
       - typescript
       - webpack
 
-  vite-plugin-dts@5.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  vite-plugin-dts@5.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
-      unplugin-dts: 1.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      unplugin-dts: 1.0.2(esbuild@0.28.1)(rolldown@1.1.5)(rollup@4.62.2)(typescript@6.0.3)(vite@6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0))(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
     optionalDependencies:
       rollup: 4.62.2
       vite: 6.4.3(@types/node@26.1.1)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass@1.101.0)(stylus@0.64.0)(terser@5.48.0)(yaml@2.9.0)
@@ -80546,75 +80772,6 @@ snapshots:
 
   vue-hot-reload-api@2.3.4: {}
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
-    dependencies:
-      '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
-      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      hash-sum: 1.0.2
-      loader-utils: 1.4.2
-      vue-hot-reload-api: 2.3.4
-      vue-style-loader: 4.1.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
-    optionalDependencies:
-      '@vue/compiler-sfc': 3.5.38
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
-      prettier: 3.9.5
-      vue-template-compiler: 2.7.16
-    transitivePeerDependencies:
-      - arc-templates
-      - atpl
-      - babel-core
-      - bracket-template
-      - coffee-script
-      - dot
-      - dust
-      - dustjs-helpers
-      - dustjs-linkedin
-      - eco
-      - ect
-      - ejs
-      - haml-coffee
-      - hamlet
-      - hamljs
-      - handlebars
-      - hogan.js
-      - htmling
-      - jade
-      - jazz
-      - jqtpl
-      - just
-      - liquid-node
-      - liquor
-      - lodash
-      - marko
-      - mote
-      - mustache
-      - nunjucks
-      - plates
-      - pug
-      - qejs
-      - ractive
-      - razor-tmpl
-      - react
-      - react-dom
-      - slm
-      - squirrelly
-      - swig
-      - swig-templates
-      - teacup
-      - templayed
-      - then-jade
-      - then-pug
-      - tinyliquid
-      - toffee
-      - twig
-      - twing
-      - underscore
-      - vash
-      - velocityjs
-      - walrus
-      - whiskers
-
   vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(lodash@4.18.1)(prettier@3.9.5)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
@@ -80684,18 +80841,18 @@ snapshots:
       - walrus
       - whiskers
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
-      css-loader: 6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      css-loader: 5.2.7(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       hash-sum: 1.0.2
       loader-utils: 1.4.2
       vue-hot-reload-api: 2.3.4
       vue-style-loader: 4.1.3
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.38
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       prettier: 3.9.5
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
@@ -80753,18 +80910,18 @@ snapshots:
       - walrus
       - whiskers
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
-      css-loader: 7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      css-loader: 6.11.0(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       hash-sum: 1.0.2
       loader-utils: 1.4.2
       vue-hot-reload-api: 2.3.4
       vue-style-loader: 4.1.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.38
-      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       prettier: 3.9.5
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
@@ -80822,12 +80979,81 @@ snapshots:
       - walrus
       - whiskers
 
-  vue-loader@17.4.2(@vue/compiler-sfc@3.5.38)(vue@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.38)(cache-loader@4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(css-loader@7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.5)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(pug@3.0.4)(underscore@1.13.8)
+      css-loader: 7.1.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      hash-sum: 1.0.2
+      loader-utils: 1.4.2
+      vue-hot-reload-api: 2.3.4
+      vue-style-loader: 4.1.3
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+    optionalDependencies:
+      '@vue/compiler-sfc': 3.5.38
+      cache-loader: 4.1.0(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      prettier: 3.9.5
+      vue-template-compiler: 2.7.16
+    transitivePeerDependencies:
+      - arc-templates
+      - atpl
+      - babel-core
+      - bracket-template
+      - coffee-script
+      - dot
+      - dust
+      - dustjs-helpers
+      - dustjs-linkedin
+      - eco
+      - ect
+      - ejs
+      - haml-coffee
+      - hamlet
+      - hamljs
+      - handlebars
+      - hogan.js
+      - htmling
+      - jade
+      - jazz
+      - jqtpl
+      - just
+      - liquid-node
+      - liquor
+      - lodash
+      - marko
+      - mote
+      - mustache
+      - nunjucks
+      - plates
+      - pug
+      - qejs
+      - ractive
+      - razor-tmpl
+      - react
+      - react-dom
+      - slm
+      - squirrelly
+      - swig
+      - swig-templates
+      - teacup
+      - templayed
+      - then-jade
+      - then-pug
+      - tinyliquid
+      - toffee
+      - twig
+      - twing
+      - underscore
+      - vash
+      - velocityjs
+      - walrus
+      - whiskers
+
+  vue-loader@17.4.2(@vue/compiler-sfc@3.5.38)(vue@2.7.16)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       chalk: 4.1.2
       hash-sum: 2.0.0
       watchpack: 2.5.2
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.38
       vue: 2.7.16
@@ -81154,6 +81380,24 @@ snapshots:
       json5: 2.2.3
       webpack-bundle-analyzer: 5.3.0
       webpack-dev-server: 5.2.5(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
+    optional: true
+
+  webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4):
+    dependencies:
+      '@discoveryjs/json-ext': 1.1.0
+      commander: 14.0.3
+      cross-spawn: 7.0.6
+      envinfo: 7.21.0
+      import-local: 3.2.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.108.4(@swc/core@1.15.43)(webpack-cli@7.2.1)
+      webpack-merge: 6.0.1
+    optionalDependencies:
+      js-yaml: 4.3.0
+      json5: 2.2.3
+      webpack-bundle-analyzer: 5.3.0
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4)
 
   webpack-dev-middleware@5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
     dependencies:
@@ -81164,14 +81408,23 @@ snapshots:
       schema-utils: 4.3.3
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
 
-  webpack-dev-middleware@5.3.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  webpack-dev-middleware@5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       colorette: 2.0.20
       memfs: 3.6.0
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.3.3
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+
+  webpack-dev-middleware@5.3.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      colorette: 2.0.20
+      memfs: 3.6.0
+      mime-types: 2.1.35
+      range-parser: 1.2.1
+      schema-utils: 4.3.3
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
 
   webpack-dev-middleware@5.3.4(webpack@5.108.4):
     dependencies:
@@ -81195,7 +81448,7 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@4.15.2(debug@4.4.3(supports-color@8.1.1))(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  webpack-dev-server@4.15.2(debug@4.4.3(supports-color@8.1.1))(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -81205,7 +81458,7 @@ snapshots:
       '@types/sockjs': 0.3.36
       '@types/ws': 8.18.1
       ansi-html-community: 0.0.8
-      bonjour-service: 1.4.1
+      bonjour-service: 1.4.2
       chokidar: 3.6.0
       colorette: 2.0.20
       compression: 1.8.1
@@ -81214,7 +81467,7 @@ snapshots:
       express: 4.22.2
       graceful-fs: 4.2.11
       html-entities: 2.6.0
-      http-proxy-middleware: 2.0.9(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
+      http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
       ipaddr.js: 2.4.0
       launch-editor: 2.14.1
       open: 8.4.2
@@ -81225,11 +81478,11 @@ snapshots:
       serve-index: 1.9.2
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 5.3.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-dev-middleware: 5.3.4(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ws: 8.21.0
     optionalDependencies:
-      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack: 5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -81246,7 +81499,7 @@ snapshots:
       '@types/sockjs': 0.3.36
       '@types/ws': 8.18.1
       ansi-html-community: 0.0.8
-      bonjour-service: 1.4.1
+      bonjour-service: 1.4.2
       chokidar: 3.6.0
       colorette: 2.0.20
       compression: 1.8.1
@@ -81255,7 +81508,7 @@ snapshots:
       express: 4.22.2
       graceful-fs: 4.2.11
       html-entities: 2.6.0
-      http-proxy-middleware: 2.0.9(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
+      http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
       ipaddr.js: 2.4.0
       launch-editor: 2.14.1
       open: 8.4.2
@@ -81277,7 +81530,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  webpack-dev-server@4.15.2(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  webpack-dev-server@4.15.2(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -81287,7 +81540,7 @@ snapshots:
       '@types/sockjs': 0.3.36
       '@types/ws': 8.18.1
       ansi-html-community: 0.0.8
-      bonjour-service: 1.4.1
+      bonjour-service: 1.4.2
       chokidar: 3.6.0
       colorette: 2.0.20
       compression: 1.8.1
@@ -81296,7 +81549,7 @@ snapshots:
       express: 4.22.2
       graceful-fs: 4.2.11
       html-entities: 2.6.0
-      http-proxy-middleware: 2.0.9(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
+      http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
       ipaddr.js: 2.4.0
       launch-editor: 2.14.1
       open: 8.4.2
@@ -81307,11 +81560,11 @@ snapshots:
       serve-index: 1.9.2
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      webpack-dev-middleware: 5.3.4(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       ws: 8.21.0
     optionalDependencies:
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -81357,6 +81610,47 @@ snapshots:
       - supports-color
       - tslib
       - utf-8-validate
+    optional: true
+
+  webpack-dev-server@5.2.6(tslib@2.8.1)(webpack-cli@7.2.1)(webpack@5.108.4):
+    dependencies:
+      '@types/bonjour': 3.5.13
+      '@types/connect-history-api-fallback': 1.5.4
+      '@types/express': 4.17.25
+      '@types/express-serve-static-core': 4.19.8
+      '@types/serve-index': 1.9.4
+      '@types/serve-static': 1.15.10
+      '@types/sockjs': 0.3.36
+      '@types/ws': 8.18.1
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.4.2
+      chokidar: 3.6.0
+      colorette: 2.0.20
+      compression: 1.8.1
+      connect-history-api-fallback: 2.0.0
+      express: 4.22.2
+      graceful-fs: 4.2.11
+      http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
+      ipaddr.js: 2.4.0
+      launch-editor: 2.14.1
+      open: 10.2.0
+      p-retry: 6.2.1
+      schema-utils: 4.3.3
+      selfsigned: 5.5.0
+      serve-index: 1.9.2
+      sockjs: 0.3.24
+      spdy: 4.0.2
+      webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.108.4)
+      ws: 8.21.0
+    optionalDependencies:
+      webpack: 5.108.4(@swc/core@1.15.43)(webpack-cli@7.2.1)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - tslib
+      - utf-8-validate
 
   webpack-fix-style-only-entries@0.6.1: {}
 
@@ -81371,10 +81665,10 @@ snapshots:
       ansi-colors: 3.2.4
       uuid: 3.4.0
 
-  webpack-manifest-plugin@4.1.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  webpack-manifest-plugin@4.1.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       tapable: 2.3.3
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-sources: 2.3.1
 
   webpack-merge@5.10.0:
@@ -81439,7 +81733,37 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)):
+  webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
+    dependencies:
+      '@webassemblyjs/ast': 1.9.0
+      '@webassemblyjs/helper-module-context': 1.9.0
+      '@webassemblyjs/wasm-edit': 1.9.0
+      '@webassemblyjs/wasm-parser': 1.9.0
+      acorn: 6.4.2
+      ajv: 6.15.0
+      ajv-keywords: 3.5.2(ajv@6.15.0)
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 4.5.0
+      eslint-scope: 4.0.3
+      json-parse-better-errors: 1.0.2
+      loader-runner: 2.4.0
+      loader-utils: 1.4.2
+      memory-fs: 0.4.1
+      micromatch: 3.1.10
+      mkdirp: 0.5.6
+      neo-async: 2.6.2
+      node-libs-browser: 2.2.1
+      schema-utils: 1.0.0
+      tapable: 1.1.3
+      terser-webpack-plugin: 1.4.6(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
+      watchpack: 1.7.5
+      webpack-sources: 1.4.3
+    optionalDependencies:
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
+    transitivePeerDependencies:
+      - supports-color
+
+  webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -81457,14 +81781,14 @@ snapshots:
       graceful-fs: 4.2.11
       loader-runner: 4.3.2
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(webpack@5.108.0(@swc/core@1.15.43)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81479,7 +81803,7 @@ snapshots:
       - postcss
       - uglify-js
 
-  webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)):
+  webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -81497,14 +81821,14 @@ snapshots:
       graceful-fs: 4.2.11
       loader-runner: 4.3.2
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack@5.108.4(@swc/core@1.15.43)(cssnano@5.1.15(postcss@8.5.15))(postcss@8.5.15)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81559,7 +81883,7 @@ snapshots:
       - postcss
       - uglify-js
 
-  webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)):
+  webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -81577,14 +81901,14 @@ snapshots:
       graceful-fs: 4.2.11
       loader-runner: 4.3.2
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)))
+      minimizer-webpack-plugin: 5.6.1(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack@5.108.4(@swc/core@1.15.43)(esbuild@0.28.1)(lightningcss@1.32.0)(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81625,7 +81949,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81665,7 +81989,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81705,7 +82029,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81745,7 +82069,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4)
+      webpack-cli: 7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -81770,6 +82094,18 @@ snapshots:
       pretty-time: 1.1.0
       std-env: 3.10.0
       webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      wrap-ansi: 7.0.0
+
+  webpackbar@6.0.1(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      consola: 3.4.2
+      figures: 3.2.0
+      markdown-table: 2.0.0
+      pretty-time: 1.1.0
+      std-env: 3.10.0
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       wrap-ansi: 7.0.0
 
   websocket-driver@0.7.5:
@@ -82060,12 +82396,12 @@ snapshots:
 
   workbox-sw@6.6.0: {}
 
-  workbox-webpack-plugin@6.6.0(@types/babel__core@7.20.5)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))):
+  workbox-webpack-plugin@6.6.0(@types/babel__core@7.20.5)(webpack@4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))):
     dependencies:
       fast-json-stable-stringify: 2.1.0
       pretty-bytes: 5.6.0
       upath: 1.2.0
-      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.5)(webpack@5.108.4))
+      webpack: 4.47.0(webpack-cli@7.2.1(js-yaml@4.3.0)(json5@2.2.3)(webpack-bundle-analyzer@5.3.0)(webpack-dev-server@5.2.6)(webpack@5.108.4))
       webpack-sources: 1.4.3
       workbox-build: 6.6.0(@types/babel__core@7.20.5)
     transitivePeerDependencies:
