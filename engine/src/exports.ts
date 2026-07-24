@@ -7,6 +7,7 @@ export * from "./Enums/Directions/RotateDirection.js";
 export * from "./Enums/Directions/OutModeDirection.js";
 
 export * from "./Enums/Modes/AnimationMode.js";
+export * from "./Enums/Modes/HdrMode.js";
 export * from "./Enums/Modes/LimitMode.js";
 export * from "./Enums/Modes/OutMode.js";
 export * from "./Enums/Modes/PixelMode.js";
@@ -31,6 +32,8 @@ export * from "./Options/Classes/Background/Background.js";
 export * from "./Options/Classes/ColorAnimation.js";
 
 export * from "./Options/Classes/FullScreen/FullScreen.js";
+
+export * from "./Options/Classes/HDROptions.js";
 
 export * from "./Options/Classes/HslAnimation.js";
 

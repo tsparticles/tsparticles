@@ -162,7 +162,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
         ? container.particles.linksColors.get(linksOptions.id)
         : container.particles.linksColor;
 
-    return getLinkColor(p1, p2, linkColor);
+    return getLinkColor(p1, p2, linkColor, container.hdr);
   }
 
   #setColor(p1: LinkParticle): void {

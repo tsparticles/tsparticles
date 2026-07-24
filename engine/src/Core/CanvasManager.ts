@@ -2,6 +2,7 @@ import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } 
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
 import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
+import type { HdrMode } from "../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
@@ -119,6 +120,7 @@ export class CanvasManager {
 
   readonly #container;
   #generated;
+  #hdrMediaListeners?: { handler: () => void; mql: MediaQueryList }[];
   #mutationObserver?: MutationObserver;
   #originalStyle?: CSSStyleDeclaration;
   readonly #pluginManager;
@@ -232,6 +234,7 @@ export class CanvasManager {
 
     this.initPlugins();
     this.#initContext();
+    this.#initHdrListeners();
     this.render.init();
   }
 
@@ -252,7 +255,15 @@ export class CanvasManager {
       color = rangeColorToRgb(this.#pluginManager, background.color);
 
     if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, container.actualOptions.hdr, background.opacity);
+      const hdrOptions = container.actualOptions.hdr;
+
+      elementStyle.backgroundColor = getStyleFromRgb(
+        color,
+        hdrOptions.enable,
+        background.opacity,
+        hdrOptions.peakNits,
+        hdrOptions.mode as HdrMode,
+      );
     } else {
       elementStyle.backgroundColor = "";
     }
@@ -407,6 +418,7 @@ export class CanvasManager {
     });
 
     this.#mutationObserver = undefined;
+    this.#removeHdrListeners();
 
     this.render.stop();
   }
@@ -441,7 +453,7 @@ export class CanvasManager {
   #initContext(): void {
     const container = this.#container,
       canSupportHdr =
-        container.actualOptions.hdr &&
+        container.actualOptions.hdr.enable &&
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
 
@@ -461,6 +473,29 @@ export class CanvasManager {
     }
 
     this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
+  }
+
+  #initHdrListeners(): void {
+    this.#removeHdrListeners();
+
+    const p3Query = safeMatchMedia("(color-gamut: p3)"),
+      hdrQuery = safeMatchMedia("(dynamic-range: high)"),
+      handleChange = (): void => {
+        this.#initContext();
+      },
+      listeners: { handler: () => void; mql: MediaQueryList }[] = [];
+
+    if (p3Query) {
+      p3Query.addEventListener("change", handleChange);
+      listeners.push({ handler: handleChange, mql: p3Query });
+    }
+
+    if (hdrQuery) {
+      hdrQuery.addEventListener("change", handleChange);
+      listeners.push({ handler: handleChange, mql: hdrQuery });
+    }
+
+    this.#hdrMediaListeners = listeners;
   }
 
   #initStyle(): void {
@@ -490,6 +525,18 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
+  }
+
+  #removeHdrListeners(): void {
+    if (!this.#hdrMediaListeners) {
+      return;
+    }
+
+    for (const { handler, mql } of this.#hdrMediaListeners) {
+      mql.removeEventListener("change", handler);
+    }
+
+    this.#hdrMediaListeners = undefined;
   }
 
   #repairStyle(): void {

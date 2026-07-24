@@ -101,7 +101,7 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
     }
 
     updateRibbon(data);
-    drawRibbon(data, this.#container.hdr);
+    drawRibbon(data, this.#container.hdr, this.#container.peakNits, this.#container.hdrMode);
   }
 
   /**

@@ -1,5 +1,6 @@
 import {
   AlterType,
+  type HdrMode,
   type IShapeDrawData,
   Vector,
   alterHsl,
@@ -450,9 +451,16 @@ function drawPolygonSegment(context: OffscreenCanvasRenderingContext2D, drawData
 /**
  *
  * @param data - The data to handle
- * @param hdr - The hdr
+ * @param hdr - The HDR flag
+ * @param peakNits - The peak brightness in nits
+ * @param mode - The HDR mode
  */
-export function drawRibbon(data: IShapeDrawData<RibbonParticle>, hdr: boolean): void {
+export function drawRibbon(
+  data: IShapeDrawData<RibbonParticle>,
+  hdr: boolean,
+  peakNits?: number,
+  mode?: HdrMode,
+): void {
   const { context, particle, radius } = data,
     points = particle.ribbonPoints,
     offsets = particle.ribbonOffsets,
@@ -479,7 +487,7 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>, hdr: boolean): 
     if (frontHsl) {
       const altered = alterHsl(frontHsl, AlterType.darken, getRangeValue(shapeData.darken.value));
 
-      backFill = getStyleFromHsl(altered, hdr);
+      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
     }
   } else if (shapeData?.enlighten?.enable) {
     const frontHsl = getHslFromAnimation(particle.fillColor);
@@ -487,7 +495,7 @@ export function drawRibbon(data: IShapeDrawData<RibbonParticle>, hdr: boolean): 
     if (frontHsl) {
       const altered = alterHsl(frontHsl, AlterType.enlighten, getRangeValue(shapeData.enlighten.value));
 
-      backFill = getStyleFromHsl(altered, hdr);
+      backFill = getStyleFromHsl(altered, hdr, undefined, peakNits, mode);
     }
   }
 

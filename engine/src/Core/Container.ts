@@ -4,6 +4,7 @@ import { CanvasManager } from "./CanvasManager.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
+import { HdrMode } from "../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import { type IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
@@ -103,6 +104,11 @@ export class Container {
    */
   hdr;
 
+  /**
+   * The HDR rendering mode preset
+   */
+  hdrMode;
+
   /** The container id */
   readonly id;
 
@@ -125,6 +131,11 @@ export class Container {
    * The particles manager
    */
   readonly particles;
+
+  /**
+   * The peak brightness in nits for HDR rendering
+   */
+  peakNits;
 
   /**
    * All the plugins used by the container
@@ -185,6 +196,8 @@ export class Container {
     this.id = Symbol(id);
     this.fpsLimit = 120;
     this.hdr = false;
+    this.hdrMode = HdrMode.standard;
+    this.peakNits = 400;
     this.#smooth = false;
     this.#delay = 0;
     this.#duration = 0;
@@ -416,9 +429,12 @@ export class Container {
     this.canvas.initBackground();
     this.canvas.resize();
 
-    const { delay, duration, fpsLimit, hdr, smooth, zLayers } = this.actualOptions;
+    const { delay, duration, fpsLimit, smooth, zLayers } = this.actualOptions,
+      hdrOptions = this.actualOptions.hdr;
 
-    this.hdr = hdr;
+    this.hdr = hdrOptions.enable;
+    this.hdrMode = hdrOptions.mode as HdrMode;
+    this.peakNits = hdrOptions.peakNits;
     this.zLayers = zLayers;
     this.#duration = getRangeValue(duration) * millisecondsToSeconds;
     this.#delay = getRangeValue(delay) * millisecondsToSeconds;

@@ -35,7 +35,13 @@ export function drawEllipse(
   const pos = particle.getPosition();
 
   if (fillColorValue) {
-    context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);
+    context.strokeStyle = getStyleFromHsl(
+      fillColorValue,
+      container.hdr,
+      opacity,
+      container.peakNits,
+      container.hdrMode,
+    );
   }
 
   context.lineWidth = width;

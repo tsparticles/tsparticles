@@ -1,5 +1,6 @@
 import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
+import type { IHDROptions } from "./IHDROptions.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { IResizeEvent } from "./IResizeEvent.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
@@ -57,9 +58,9 @@ export interface IOptions {
   fullScreen: RecursivePartial<IFullScreen> | boolean;
 
   /**
-   * Enables or disables the HDR mode, if enabled the particles will be rendered in a higher color precision
+   * HDR rendering options, if set to `true` HDR will be enabled with default options
    */
-  hdr: boolean;
+  hdr: RecursivePartial<IHDROptions> | boolean;
 
   /**
    * The key used to store the options in the {@link Engine.configs} collection

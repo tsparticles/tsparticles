@@ -129,7 +129,7 @@ ribbons.create = async (
       subOptions = subRibbonsOptions ?? options;
     } else {
       subId = id;
-      subOptions = idOrOptions ?? {};
+      subOptions = idOrOptions ?? options;
     }
 
     return setRibbons(tsParticles, {

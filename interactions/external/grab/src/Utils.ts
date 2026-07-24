@@ -1,5 +1,5 @@
 import type { GrabContainer, LinkParticle } from "./Types.js";
-import { type ICoordinates, type IRgb, getStyleFromRgb } from "@tsparticles/engine";
+import { type HdrMode, type ICoordinates, type IRgb, getStyleFromRgb } from "@tsparticles/engine";
 import { drawLine } from "@tsparticles/canvas-utils";
 
 const defaultWidth = 0;
@@ -13,6 +13,8 @@ const defaultWidth = 0;
  * @param colorLine - The color of the line.
  * @param opacity - The opacity of the line.
  * @param hdr - Whether the line should be drawn in HDR mode or not.
+ * @param peakNits - The peak nits value
+ * @param mode - The HDR mode
  */
 export function drawGrabLine(
   context: OffscreenCanvasRenderingContext2D,
@@ -22,10 +24,12 @@ export function drawGrabLine(
   colorLine: IRgb,
   opacity: number,
   hdr = false,
+  peakNits?: number,
+  mode?: HdrMode,
 ): void {
   drawLine(context, begin, end);
 
-  context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
+  context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity, peakNits, mode);
   context.lineWidth = width;
   context.stroke();
 }
@@ -56,6 +60,8 @@ export function drawGrab(
       lineColor,
       opacity,
       container.hdr,
+      container.peakNits,
+      container.hdrMode,
     );
   });
 }

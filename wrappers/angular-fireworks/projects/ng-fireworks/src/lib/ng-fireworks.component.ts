@@ -23,6 +23,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
 
   #fireworksInstance?: Awaited<ReturnType<typeof fireworks>>;
   #destroyed = false;
+  #loadId = 0;
 
   constructor(@Inject(PLATFORM_ID) protected platformId: string) {}
 
@@ -58,11 +59,17 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
 
   async #startFireworks(): Promise<void> {
     this.#fireworksInstance?.destroy();
-
     this.#fireworksInstance = undefined;
 
-    this.#fireworksInstance = await fireworks(this.id, this.options);
+    const currentLoadId = ++this.#loadId;
+    const instance = await fireworks(this.id, this.options);
 
+    if (currentLoadId !== this.#loadId) {
+      instance?.destroy();
+      return;
+    }
+
+    this.#fireworksInstance = instance;
     this.#fireworksInstance?.play();
   }
 }

@@ -120,7 +120,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         );
       }
 
-      const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor);
+      const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor, container.hdr);
 
       if (!colorLine) {
         continue;

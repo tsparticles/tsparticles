@@ -146,7 +146,15 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       let imageRes: IParticleImage;
 
       if (image.svgData && color) {
-        imageRes = await replaceImageColor(image, imageData, color, particle, container.hdr);
+        imageRes = await replaceImageColor(
+          image,
+          imageData,
+          color,
+          particle,
+          container.hdr,
+          container.peakNits,
+          container.hdrMode,
+        );
       } else {
         imageRes = {
           color,
