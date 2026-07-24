@@ -88,6 +88,12 @@ for (const f of unique) {
   }
 }
 
+// ── 2b. Regenerate lockfile to reflect restored workspace:* specifiers ──
+if (modifiedFiles.length > 0) {
+  console.log("\n🔄 Regenerating lockfile...");
+  execSync("pnpm install --no-frozen-lockfile", { cwd: root, stdio: "inherit" });
+}
+
 // ── 3. Create single commit with version bumps + fixes ──
 const tagVersion = engineVersion;
 

@@ -11764,10 +11764,10 @@ importers:
   websites/ribbons:
     dependencies:
       '@tsparticles/confetti':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../bundles/confetti/dist
       '@tsparticles/engine':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../engine/dist
       '@tsparticles/ribbons':
         specifier: workspace:*
