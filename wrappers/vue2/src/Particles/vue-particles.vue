@@ -69,11 +69,10 @@ export default class Particles extends Vue {
   @Watch("url")
   @Watch("id")
   onPropChange(): void {
-    if (this.container) {
-      this.container.destroy();
-      this._loadGeneration++;
-      void particlesInit(this);
-    }
+    this.container?.destroy();
+    this.container = undefined;
+    this._loadGeneration++;
+    void particlesInit(this);
   }
 
   @Watch("theme")

@@ -432,7 +432,7 @@ export class Container {
     const { delay, duration, fpsLimit, smooth, zLayers } = this.actualOptions,
       hdrOptions = this.actualOptions.hdr;
 
-    this.hdr = hdrOptions.enable;
+    this.hdr = this.hdr && hdrOptions.enable;
     this.hdrMode = hdrOptions.mode as HdrMode;
     this.peakNits = hdrOptions.peakNits;
     this.zLayers = zLayers;

@@ -134,21 +134,28 @@ function linearToSrgb(c: number): number {
 
 /**
  * Applies HDR mode-specific color adjustments after tone mapping
- * @param r - the red channel [0, 1]
- * @param g - the green channel [0, 1]
- * @param b - the blue channel [0, 1]
+ * @param r - the red channel
+ * @param g - the green channel
+ * @param b - the blue channel
  * @param mode - the HDR rendering mode
+ * @param maxChannel - the maximum channel value the display can reproduce
  * @returns the adjusted RGB values
  */
-function applyHdrModeAdjustments(r: number, g: number, b: number, mode: HdrMode): { b: number; g: number; r: number } {
+function applyHdrModeAdjustments(
+  r: number,
+  g: number,
+  b: number,
+  mode: HdrMode,
+  maxChannel: number,
+): { b: number; g: number; r: number } {
   switch (mode) {
     case HdrMode.vivid: {
       const avg = (r + g + b) / channelCount;
 
       return {
-        b: clamp(avg + (b - avg) * saturationBoost, none, one) * lightnessBoost,
-        g: clamp(avg + (g - avg) * saturationBoost, none, one) * lightnessBoost,
-        r: clamp(avg + (r - avg) * saturationBoost, none, one) * lightnessBoost,
+        b: clamp(clamp(avg + (b - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
+        g: clamp(clamp(avg + (g - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
+        r: clamp(clamp(avg + (r - avg) * saturationBoost, none, maxChannel) * lightnessBoost, none, maxChannel),
       };
     }
 
@@ -158,9 +165,9 @@ function applyHdrModeAdjustments(r: number, g: number, b: number, mode: HdrMode)
         avg = (tempR + g + tempB) / channelCount;
 
       return {
-        b: clamp(avg + (tempB - avg) * contrastFactor, none, one),
-        g: clamp(avg + (g - avg) * contrastFactor, none, one),
-        r: clamp(avg + (tempR - avg) * contrastFactor, none, one),
+        b: clamp(avg + (tempB - avg) * contrastFactor, none, maxChannel),
+        g: clamp(avg + (g - avg) * contrastFactor, none, maxChannel),
+        r: clamp(avg + (tempR - avg) * contrastFactor, none, maxChannel),
       };
     }
 
@@ -169,14 +176,14 @@ function applyHdrModeAdjustments(r: number, g: number, b: number, mode: HdrMode)
         vividWeight = Math.min(one, luminance * dynamicLuminanceFactor),
         naturalWeight = one - vividWeight,
         avg = (r + g + b) / channelCount,
-        vividR = clamp(avg + (r - avg) * saturationBoost, none, one) * lightnessBoost,
-        vividG = clamp(avg + (g - avg) * saturationBoost, none, one) * lightnessBoost,
-        vividB = clamp(avg + (b - avg) * saturationBoost, none, one) * lightnessBoost;
+        vividR = clamp(avg + (r - avg) * saturationBoost, none, maxChannel) * lightnessBoost,
+        vividG = clamp(avg + (g - avg) * saturationBoost, none, maxChannel) * lightnessBoost,
+        vividB = clamp(avg + (b - avg) * saturationBoost, none, maxChannel) * lightnessBoost;
 
       return {
-        b: r * naturalWeight + vividB * vividWeight,
-        g: g * naturalWeight + vividG * vividWeight,
-        r: r * naturalWeight + vividR * vividWeight,
+        b: clamp(b * naturalWeight + vividB * vividWeight, none, maxChannel),
+        g: clamp(g * naturalWeight + vividG * vividWeight, none, maxChannel),
+        r: clamp(r * naturalWeight + vividR * vividWeight, none, maxChannel),
       };
     }
 
@@ -552,7 +559,9 @@ export function getStyleFromRgb(
 ): string {
   const rgbPrecision = hdr ? hdrRgbFixedPrecision : rgbFixedPrecision,
     op = opacity ?? defaultOpacity,
-    key = `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`;
+    key = hdr
+      ? `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-hdr-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`
+      : `rgb-${color.r.toFixed(rgbPrecision)}-${color.g.toFixed(rgbPrecision)}-${color.b.toFixed(rgbPrecision)}-sdr-${op.toString()}`;
 
   return getCachedStyle(key, () =>
     hdr ? getHdrStyleFromRgb(color, opacity, peakNits, mode) : getSdrStyleFromRgb(color, opacity),
@@ -603,15 +612,17 @@ function hdrToneMapColor(
     return { b: bNorm, g: gNorm, r: rNorm };
   }
 
-  const luminance = luminanceR * rNorm + luminanceG * gNorm + luminanceB * bNorm,
+  const maxChannel = Math.max(one, headroom),
+    luminance = luminanceR * rNorm + luminanceG * gNorm + luminanceB * bNorm,
     mappedLuminance = hdrToneMap(luminance, headroom, middleGray),
     scale = luminance > none ? mappedLuminance / luminance : one;
 
   return applyHdrModeAdjustments(
-    clamp(rNorm * scale, none, one),
-    clamp(gNorm * scale, none, one),
-    clamp(bNorm * scale, none, one),
+    clamp(rNorm * scale, none, maxChannel),
+    clamp(gNorm * scale, none, maxChannel),
+    clamp(bNorm * scale, none, maxChannel),
     mode,
+    maxChannel,
   );
 }
 
@@ -661,7 +672,9 @@ export function getStyleFromHsl(
 ): string {
   const hslPrecision = hdr ? hdrHslFixedPrecision : hslFixedPrecision,
     op = opacity ?? defaultOpacity,
-    key = `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`;
+    key = hdr
+      ? `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-hdr-${op.toString()}-${(peakNits ?? maxNits).toString()}-${mode ?? HdrMode.standard}`
+      : `hsl-${color.h.toFixed(hslPrecision)}-${color.s.toFixed(hslPrecision)}-${color.l.toFixed(hslPrecision)}-sdr-${op.toString()}`;
 
   return getCachedStyle(key, () =>
     hdr
@@ -884,8 +897,7 @@ function setColorAnimation(
  * @param data - the color animation data
  * @param decrease - whether the color should decrease over time
  * @param delta - the frame delta time
- * @param hdr - the HDR flag
- * @param _hdr
+ * @param _hdr - the HDR flag
  */
 export function updateColorValue(
   data: IParticleColorAnimation,

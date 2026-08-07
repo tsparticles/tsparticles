@@ -259,7 +259,7 @@ export class CanvasManager {
 
       elementStyle.backgroundColor = getStyleFromRgb(
         color,
-        hdrOptions.enable,
+        container.hdr,
         background.opacity,
         hdrOptions.peakNits,
         hdrOptions.mode as HdrMode,
@@ -461,6 +461,12 @@ export class CanvasManager {
     container.hdrMode = container.actualOptions.hdr.mode as HdrMode;
     container.peakNits = container.actualOptions.hdr.peakNits;
 
+    const renderCanvas = this.renderCanvas;
+
+    if (!renderCanvas) {
+      return;
+    }
+
     this.render.setContextSettings({
       alpha: true,
       desynchronized: true,
@@ -470,13 +476,30 @@ export class CanvasManager {
         : { colorSpace: "srgb" as const }),
     });
 
-    const renderCanvas = this.renderCanvas;
+    let context: OffscreenCanvasRenderingContext2D | null;
 
-    if (!renderCanvas) {
-      return;
+    try {
+      context = renderCanvas.getContext("2d", this.render.settings);
+    } catch {
+      context = null;
     }
 
-    this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
+    if (canSupportHdr && !context) {
+      container.hdr = false;
+
+      const sdrSettings: CanvasRenderingContext2DSettings = {
+        alpha: true,
+        desynchronized: true,
+        willReadFrequently: false,
+        colorSpace: "srgb" as const,
+      };
+
+      this.render.setContextSettings(sdrSettings);
+
+      context = renderCanvas.getContext("2d", sdrSettings);
+    }
+
+    this.render.setContext(context);
   }
 
   #initHdrListeners(): void {

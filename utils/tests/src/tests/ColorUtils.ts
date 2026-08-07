@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,no-console,@typescript-eslint/no-unused-expressions */
 import {
+  HdrMode,
   type IColor,
   type IHsl,
   type IHsla,
@@ -352,5 +353,91 @@ describe("ColorUtils", async () => {
     //
     //     expect(getStyleFromHsv(color)).to.equal("hsla(0, 100%, 50%, 1)");
     // });
+  });
+
+  describe("getStyleFromRgb HDR", () => {
+    const referenceWhiteNits = 203,
+      parseDisplayP3 = (style: string): { b: number; g: number; r: number } => {
+        const match = /^color\(display-p3 ([\d.]+) ([\d.]+) ([\d.]+) \/ ([\d.]+)\)$/u.exec(style);
+
+        expect(match).not.be.null;
+
+        return {
+          b: parseFloat(match?.[3] ?? ""),
+          g: parseFloat(match?.[2] ?? ""),
+          r: parseFloat(match?.[1] ?? ""),
+        };
+      };
+
+    it("standard mode outputs untone-mapped normalized channels", () => {
+      expect(getStyleFromRgb(red, true)).to.equal("color(display-p3 1 0 0 / 1)");
+    });
+
+    it("SDR output ignores HDR-only params", () => {
+      expect(getStyleFromRgb(red, false, 1, 1000, HdrMode.vivid)).to.equal("rgba(255, 0, 0, 1)");
+    });
+
+    it("keeps all channels within the display headroom for every mode", () => {
+      for (const mode of [
+        HdrMode.natural,
+        HdrMode.vivid,
+        HdrMode.cinematic,
+        HdrMode.dynamic,
+      ]) {
+        const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, mode)),
+          maxChannel = Math.max(1, 400 / referenceWhiteNits);
+
+        for (const channel of [channels.r, channels.g, channels.b]) {
+          expect(channel).to.be.at.least(0).and.to.be.at.most(maxChannel);
+        }
+      }
+    });
+
+    it("allows channels beyond 1 for bright colors on capable displays", () => {
+      const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, HdrMode.natural));
+
+      expect(channels.r).to.be.above(1);
+    });
+
+    it("vivid mode keeps channels within the display headroom", () => {
+      const channels = parseDisplayP3(getStyleFromRgb(red, true, 1, 400, HdrMode.vivid));
+
+      expect(channels.r).to.be.at.most(400 / referenceWhiteNits);
+    });
+
+    it("dynamic mode keeps the blue channel intact", () => {
+      const blue: IRgb = {
+          b: 255,
+          g: 0,
+          r: 0,
+        },
+        channels = parseDisplayP3(getStyleFromRgb(blue, true, 1, 400, HdrMode.dynamic));
+
+      expect(channels.b).to.be.at.least(0.9);
+    });
+
+    it("different modes produce different output", () => {
+      const gray: IRgb = {
+        b: 128,
+        g: 128,
+        r: 128,
+      };
+
+      expect(getStyleFromRgb(gray, true, 1, 400, HdrMode.standard)).not.to.equal(
+        getStyleFromRgb(gray, true, 1, 400, HdrMode.natural),
+      );
+    });
+
+    it("peakNits affects tone-mapped output", () => {
+      const gray: IRgb = {
+        b: 128,
+        g: 128,
+        r: 128,
+      };
+
+      expect(getStyleFromRgb(gray, true, 1, 400, HdrMode.natural)).not.to.equal(
+        getStyleFromRgb(gray, true, 1, 1000, HdrMode.natural),
+      );
+    });
   });
 });

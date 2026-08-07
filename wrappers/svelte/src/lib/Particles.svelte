@@ -24,8 +24,7 @@
 
 	let currentContainer: Container | undefined;
 
-	$: if (mounted) {
-		(id, url, options);
+	$: if (mounted && (id || url || options)) {
 		void loadParticles();
 	}
 
