@@ -35,7 +35,7 @@
     "@babel/eslint-parser": "^7.0.0",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.0.0",
     "@babel/plugin-transform-optional-chaining": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-env": "^8.0.2",
     "@eslint/js": "^10.0.1",
     "@nuxt/types": "2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
