@@ -88,6 +88,7 @@ export default class Particles extends Vue {
   }
 
   beforeDestroy(): void {
+    this._loadGeneration++;
     this.container?.destroy();
   }
 }

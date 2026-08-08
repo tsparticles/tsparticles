@@ -26,6 +26,15 @@ function getArg(name) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
+function parseNonNegativeInt(value, flagName) {
+  if (value === null) return null;
+  const trimmed = value.trim();
+  if (!/^\d+$/u.test(trimmed)) {
+    throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
+  }
+  return Number(trimmed);
+}
+
 function output(result) {
   console.log(JSON.stringify(result));
 }
@@ -120,7 +129,8 @@ function cycleCheck() {
   const status = getArg("--code");
   const wasAgentTriggered = getFlag("--agent-triggered");
   let cycleCount = parseInt(getArg("--cycle-count") || "0", 10);
-  const maxCycles = parseInt(getArg("--max-cycles") || "10", 10);
+  const maxCyclesArg = getArg("--max-cycles");
+  const maxCycles = maxCyclesArg === null ? 10 : parseNonNegativeInt(maxCyclesArg, "--max-cycles");
   let envRerunCount = parseInt(getArg("--env-rerun-count") || "0", 10);
 
   // Cycle classification: if previous cycle was agent-triggered, count it

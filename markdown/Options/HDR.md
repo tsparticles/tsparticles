@@ -6,7 +6,7 @@ High dynamic range rendering options. When `enable` is `true` and the display su
 
 | Key        | Type      | Default    | Notes                                           |
 | ---------- | --------- | ---------- | ----------------------------------------------- |
-| `enable`   | `boolean` | `false`    | Enables HDR rendering when the display supports |
+| `enable`   | `boolean` | `true`     | Enables HDR rendering when the display supports |
 | `mode`     | `HdrMode` | `standard` | Rendering mode preset                           |
 | `peakNits` | `number`  | `400`      | Peak brightness in nits                         |
 

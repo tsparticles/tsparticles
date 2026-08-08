@@ -416,28 +416,33 @@ describe("ColorUtils", async () => {
       expect(channels.b).to.be.at.least(0.9);
     });
 
-    it("different modes produce different output", () => {
-      const gray: IRgb = {
-        b: 128,
-        g: 128,
-        r: 128,
-      };
+    it("each HdrMode produces its documented distinct transformation", () => {
+      const color: IRgb = {
+          b: 160,
+          g: 40,
+          r: 80,
+        },
+        styles = new Set(
+          [HdrMode.standard, HdrMode.natural, HdrMode.vivid, HdrMode.cinematic, HdrMode.dynamic].map(mode =>
+            getStyleFromRgb(color, true, 1, 400, mode),
+          ),
+        );
 
-      expect(getStyleFromRgb(gray, true, 1, 400, HdrMode.standard)).not.to.equal(
-        getStyleFromRgb(gray, true, 1, 400, HdrMode.natural),
-      );
+      expect(styles.size).to.equal(5);
     });
 
-    it("peakNits affects tone-mapped output", () => {
-      const gray: IRgb = {
-        b: 128,
-        g: 128,
-        r: 128,
-      };
+    it("increasing peakNits expands luminance for bright colors", () => {
+      const color: IRgb = {
+          b: 160,
+          g: 40,
+          r: 80,
+        },
+        luminanceOf = (channels: { b: number; g: number; r: number }): number =>
+          0.2126 * channels.r + 0.7152 * channels.g + 0.0722 * channels.b,
+        luminance400 = luminanceOf(parseDisplayP3(getStyleFromRgb(color, true, 1, 400, HdrMode.natural))),
+        luminance1000 = luminanceOf(parseDisplayP3(getStyleFromRgb(color, true, 1, 1000, HdrMode.natural)));
 
-      expect(getStyleFromRgb(gray, true, 1, 400, HdrMode.natural)).not.to.equal(
-        getStyleFromRgb(gray, true, 1, 1000, HdrMode.natural),
-      );
+      expect(luminance1000).to.be.above(luminance400);
     });
   });
 });

@@ -796,7 +796,7 @@ export class RenderManager {
       }
     } else if (
       (typeof HTMLCanvasElement !== "undefined" && background.element instanceof HTMLCanvasElement) ||
-      background.element instanceof OffscreenCanvas ||
+      (typeof OffscreenCanvas !== "undefined" && background.element instanceof OffscreenCanvas) ||
       (typeof HTMLVideoElement !== "undefined" && background.element instanceof HTMLVideoElement) ||
       (typeof HTMLImageElement !== "undefined" && background.element instanceof HTMLImageElement)
     ) {

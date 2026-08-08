@@ -40,17 +40,29 @@ function getArg(name) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
+function parseNonNegativeInt(value, flagName) {
+  if (value === null) return null;
+  const trimmed = value.trim();
+  if (!/^\d+$/u.test(trimmed)) {
+    throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
+  }
+  return Number(trimmed);
+}
+
 const waitMode = getFlag("--wait-mode");
 const prevCipeUrl = getArg("--prev-cipe-url");
 const expectedSha = getArg("--expected-sha");
 const prevStatus = getArg("--prev-status");
 // Flags are documented in minutes; convert to seconds for internal comparison.
-const timeoutSeconds = parseInt(getArg("--timeout") || "0", 10) * 60;
-const newCipeTimeoutSeconds = parseInt(getArg("--new-cipe-timeout") || "0", 10) * 60;
+const timeoutArg = getArg("--timeout");
+const timeoutSeconds = (timeoutArg === null ? 0 : parseNonNegativeInt(timeoutArg, "--timeout")) * 60;
+const newCipeTimeoutArg = getArg("--new-cipe-timeout");
+const newCipeTimeoutSeconds =
+  (newCipeTimeoutArg === null ? 0 : parseNonNegativeInt(newCipeTimeoutArg, "--new-cipe-timeout")) * 60;
 // Wall-clock seconds since monitoring began (carried across attempts); null when
 // the orchestrator doesn't supply it (see isTimedOut for that fallback).
 const elapsedArg = getArg("--elapsed-seconds");
-const elapsedSeconds = elapsedArg !== null ? parseInt(elapsedArg, 10) : null;
+const elapsedSeconds = elapsedArg !== null ? parseNonNegativeInt(elapsedArg, "--elapsed-seconds") : null;
 const envRerunCount = parseInt(getArg("--env-rerun-count") || "0", 10);
 const inputNoProgressCount = parseInt(getArg("--no-progress-count") || "0", 10);
 const prevCipeStatus = getArg("--prev-cipe-status");
