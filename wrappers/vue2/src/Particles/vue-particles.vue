@@ -13,6 +13,8 @@ async function particlesInit(component: Particles): Promise<void> {
     throw new Error("Prop 'id' is required!");
   }
 
+  const generation = component._loadGeneration;
+
   await waitForParticlesInitialization();
 
   if (!isParticlesInitialized()) {
@@ -20,8 +22,6 @@ async function particlesInit(component: Particles): Promise<void> {
       "@tsparticles/vue2 plugin initialization must be completed before rendering <VueParticles /> components.",
     );
   }
-
-  const generation = component._loadGeneration;
 
   const cb = (container?: Container) => {
     if (generation !== component._loadGeneration) {

@@ -26,12 +26,25 @@ function getArg(name) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
+function getArgValue(name) {
+  const idx = args.indexOf(name);
+  if (idx === -1) return null;
+  if (idx + 1 >= args.length) {
+    throw new Error(`Missing value for ${name}`);
+  }
+  return args[idx + 1];
+}
+
 function parseNonNegativeInt(value, flagName) {
   const trimmed = value.trim();
   if (!/^\d+$/u.test(trimmed)) {
     throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
   }
-  return Number(trimmed);
+  const parsed = Number(trimmed);
+  if (!Number.isSafeInteger(parsed)) {
+    throw new Error(`Invalid value for ${flagName}: "${value}" (number too large, expected a safe non-negative integer)`);
+  }
+  return parsed;
 }
 
 function output(result) {
@@ -128,7 +141,7 @@ function cycleCheck() {
   const status = getArg("--code");
   const wasAgentTriggered = getFlag("--agent-triggered");
   let cycleCount = parseInt(getArg("--cycle-count") || "0", 10);
-  const maxCyclesArg = getArg("--max-cycles");
+  const maxCyclesArg = getArgValue("--max-cycles");
   const maxCycles = maxCyclesArg === null ? 10 : parseNonNegativeInt(maxCyclesArg, "--max-cycles");
   let envRerunCount = parseInt(getArg("--env-rerun-count") || "0", 10);
 

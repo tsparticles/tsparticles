@@ -221,7 +221,6 @@ export class CanvasManager {
 
     this.resize();
     this.#initStyle();
-    this.initBackground();
     this.#safeMutationObserver(obs => {
       const element = this.domElement;
 
@@ -234,6 +233,7 @@ export class CanvasManager {
 
     this.initPlugins();
     this.#initContext();
+    this.initBackground();
     this.#initHdrListeners();
     this.render.init();
   }
@@ -508,7 +508,9 @@ export class CanvasManager {
     const p3Query = safeMatchMedia("(color-gamut: p3)"),
       hdrQuery = safeMatchMedia("(dynamic-range: high)"),
       handleChange = (): void => {
+        this.#recreateRenderCanvas();
         this.#initContext();
+        this.initBackground();
       },
       listeners: { handler: () => void; mql: MediaQueryList }[] = [];
 
@@ -552,6 +554,21 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
+  }
+
+  /**
+   * Recreates the render canvas so the next context creation applies the current
+   * color space and pixel format settings, since an existing 2D context cannot
+   * change them.
+   */
+  #recreateRenderCanvas(): void {
+    const renderCanvas = this.renderCanvas;
+
+    if (!renderCanvas) {
+      return;
+    }
+
+    this.renderCanvas = new OffscreenCanvas(renderCanvas.width, renderCanvas.height);
   }
 
   #removeHdrListeners(): void {

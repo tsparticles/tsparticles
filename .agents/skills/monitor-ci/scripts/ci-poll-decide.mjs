@@ -40,12 +40,25 @@ function getArg(name) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
+function getArgValue(name) {
+  const idx = args.indexOf(name);
+  if (idx === -1) return null;
+  if (idx + 1 >= args.length) {
+    throw new Error(`Missing value for ${name}`);
+  }
+  return args[idx + 1];
+}
+
 function parseNonNegativeInt(value, flagName) {
   const trimmed = value.trim();
   if (!/^\d+$/u.test(trimmed)) {
     throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
   }
-  return Number(trimmed);
+  const parsed = Number(trimmed);
+  if (!Number.isSafeInteger(parsed)) {
+    throw new Error(`Invalid value for ${flagName}: "${value}" (number too large, expected a safe non-negative integer)`);
+  }
+  return parsed;
 }
 
 const waitMode = getFlag("--wait-mode");
@@ -53,14 +66,14 @@ const prevCipeUrl = getArg("--prev-cipe-url");
 const expectedSha = getArg("--expected-sha");
 const prevStatus = getArg("--prev-status");
 // Flags are documented in minutes; convert to seconds for internal comparison.
-const timeoutArg = getArg("--timeout");
+const timeoutArg = getArgValue("--timeout");
 const timeoutSeconds = (timeoutArg === null ? 0 : parseNonNegativeInt(timeoutArg, "--timeout")) * 60;
-const newCipeTimeoutArg = getArg("--new-cipe-timeout");
+const newCipeTimeoutArg = getArgValue("--new-cipe-timeout");
 const newCipeTimeoutSeconds =
   (newCipeTimeoutArg === null ? 0 : parseNonNegativeInt(newCipeTimeoutArg, "--new-cipe-timeout")) * 60;
 // Wall-clock seconds since monitoring began (carried across attempts); null when
 // the orchestrator doesn't supply it (see isTimedOut for that fallback).
-const elapsedArg = getArg("--elapsed-seconds");
+const elapsedArg = getArgValue("--elapsed-seconds");
 const elapsedSeconds = elapsedArg !== null ? parseNonNegativeInt(elapsedArg, "--elapsed-seconds") : null;
 const envRerunCount = parseInt(getArg("--env-rerun-count") || "0", 10);
 const inputNoProgressCount = parseInt(getArg("--no-progress-count") || "0", 10);
