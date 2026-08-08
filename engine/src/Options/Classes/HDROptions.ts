@@ -5,7 +5,13 @@ import type { IHDROptions } from "../Interfaces/IHDROptions.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 const defaultPeakNits = 400,
-  minPeakNits = 0;
+  minPeakNits = 0,
+  /**
+   * Converts a value to a string for error messages without throwing on symbols.
+   * @param value - The value to convert
+   * @returns The string representation of the value
+   */
+  toStringValue = (value: unknown): string => String(value);
 
 /**
  * HDR rendering options
@@ -28,11 +34,14 @@ export class HDROptions extends OptionLoader<IHDROptions> implements IHDROptions
       (typeof data.mode !== "string" || !Object.values(HdrMode).includes(data.mode as HdrMode))
     ) {
       throw new Error(
-        `Invalid HDR "mode" value: expected one of ${Object.values(HdrMode).join(", ")}, got "${data.mode}"`,
+        `Invalid HDR "mode" value: expected one of ${Object.values(HdrMode).join(", ")}, got "${toStringValue(data.mode)}"`,
       );
     }
 
-    if (data.peakNits !== undefined && (!isNumber(data.peakNits) || data.peakNits <= minPeakNits)) {
+    if (
+      data.peakNits !== undefined &&
+      (!isNumber(data.peakNits) || !Number.isFinite(data.peakNits) || data.peakNits <= minPeakNits)
+    ) {
       throw new Error(`Invalid HDR "peakNits" value: expected a positive number, got "${String(data.peakNits)}"`);
     }
 

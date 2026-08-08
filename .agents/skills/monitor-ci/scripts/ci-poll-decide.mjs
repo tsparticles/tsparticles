@@ -61,16 +61,32 @@ function parseNonNegativeInt(value, flagName) {
   return parsed;
 }
 
+// Largest minute count whose conversion to seconds (minutes * 60) stays a safe integer.
+const maxSafeMinutes = Math.floor(Number.MAX_SAFE_INTEGER / 60);
+
+// Minutes are documented in minutes but compared in seconds internally; reject
+// values large enough that minutes * 60 would exceed Number.MAX_SAFE_INTEGER.
+function parseTimeoutMinutes(value, flagName) {
+  const minutes = value === null ? 0 : parseNonNegativeInt(value, flagName);
+
+  if (minutes > maxSafeMinutes) {
+    throw new Error(
+      `Invalid value for ${flagName}: "${value}" (too large, expected at most ${maxSafeMinutes} minutes to stay within the safe seconds range)`,
+    );
+  }
+
+  return minutes;
+}
+
 const waitMode = getFlag("--wait-mode");
 const prevCipeUrl = getArg("--prev-cipe-url");
 const expectedSha = getArg("--expected-sha");
 const prevStatus = getArg("--prev-status");
 // Flags are documented in minutes; convert to seconds for internal comparison.
 const timeoutArg = getArgValue("--timeout");
-const timeoutSeconds = (timeoutArg === null ? 0 : parseNonNegativeInt(timeoutArg, "--timeout")) * 60;
+const timeoutSeconds = parseTimeoutMinutes(timeoutArg, "--timeout") * 60;
 const newCipeTimeoutArg = getArgValue("--new-cipe-timeout");
-const newCipeTimeoutSeconds =
-  (newCipeTimeoutArg === null ? 0 : parseNonNegativeInt(newCipeTimeoutArg, "--new-cipe-timeout")) * 60;
+const newCipeTimeoutSeconds = parseTimeoutMinutes(newCipeTimeoutArg, "--new-cipe-timeout") * 60;
 // Wall-clock seconds since monitoring began (carried across attempts); null when
 // the orchestrator doesn't supply it (see isTimedOut for that fallback).
 const elapsedArg = getArgValue("--elapsed-seconds");

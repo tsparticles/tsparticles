@@ -13,7 +13,7 @@ async function particlesInit(component: Particles): Promise<void> {
     throw new Error("Prop 'id' is required!");
   }
 
-  const generation = component._loadGeneration;
+  const generation = component.loadGeneration;
 
   await waitForParticlesInitialization();
 
@@ -24,7 +24,7 @@ async function particlesInit(component: Particles): Promise<void> {
   }
 
   const cb = (container?: Container) => {
-    if (generation !== component._loadGeneration) {
+    if (generation !== component.loadGeneration) {
       container?.destroy();
       return;
     }
@@ -42,7 +42,7 @@ async function particlesInit(component: Particles): Promise<void> {
     url: component.url,
   });
 
-  if (generation !== component._loadGeneration) {
+  if (generation !== component.loadGeneration) {
     container?.destroy();
     return;
   }
@@ -63,7 +63,7 @@ export default class Particles extends Vue {
   @Prop() readonly particlesLoaded?: (container?: Container) => void;
 
   container?: Container;
-  _loadGeneration = 0;
+  loadGeneration = 0;
 
   @Watch("options")
   @Watch("url")
@@ -71,7 +71,7 @@ export default class Particles extends Vue {
   onPropChange(): void {
     this.container?.destroy();
     this.container = undefined;
-    this._loadGeneration++;
+    this.loadGeneration++;
     void particlesInit(this);
   }
 
@@ -88,7 +88,7 @@ export default class Particles extends Vue {
   }
 
   beforeDestroy(): void {
-    this._loadGeneration++;
+    this.loadGeneration++;
     this.container?.destroy();
   }
 }

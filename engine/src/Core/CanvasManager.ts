@@ -496,7 +496,11 @@ export class CanvasManager {
 
       this.render.setContextSettings(sdrSettings);
 
-      context = renderCanvas.getContext("2d", sdrSettings);
+      try {
+        context = renderCanvas.getContext("2d", sdrSettings);
+      } catch {
+        context = null;
+      }
     }
 
     this.render.setContext(context);
@@ -568,6 +572,16 @@ export class CanvasManager {
       return;
     }
 
+    if (this.domElement) {
+      /* A DOM-backed render canvas is transfer-backed by loadCanvas and controls
+       * the placeholder element's bitmap; replacing it with a detached
+       * OffscreenCanvas would render to a surface that is never displayed. A
+       * transferred canvas cannot be re-created in place, so keep it to continue
+       * drawing to the represented DOM surface. */
+      return;
+    }
+
+    /* Caller-provided detached OffscreenCanvas: recreate it with the same size. */
     this.renderCanvas = new OffscreenCanvas(renderCanvas.width, renderCanvas.height);
   }
 
