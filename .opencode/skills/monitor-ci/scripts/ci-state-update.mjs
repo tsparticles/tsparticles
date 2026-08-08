@@ -27,7 +27,6 @@ function getArg(name) {
 }
 
 function parseNonNegativeInt(value, flagName) {
-  if (value === null) return null;
   const trimmed = value.trim();
   if (!/^\d+$/u.test(trimmed)) {
     throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
