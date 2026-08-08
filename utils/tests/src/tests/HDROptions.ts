@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { HDROptions, HdrMode, type IHDROptions } from "@tsparticles/engine";
-import type { RecursivePartial } from "@tsparticles/engine";
+import { HDROptions, HdrMode, type IHDROptions, type RecursivePartial } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 
 describe("HDR options", () => {
@@ -39,38 +38,52 @@ describe("HDR options", () => {
   it("rejects an invalid mode", () => {
     const hdr = new HDROptions();
 
-    expect(() => hdr.load({ mode: "unknown-mode" })).to.throw(/Invalid HDR "mode" value/);
-    expect(() => hdr.load({ mode: 42 as unknown as IHDROptions["mode"] })).to.throw(/Invalid HDR "mode" value/);
+    expect(() => {
+      hdr.load({ mode: "unknown-mode" });
+    }).to.throw(/Invalid HDR "mode" value/);
+    expect(() => {
+      hdr.load({ mode: 42 as unknown as IHDROptions["mode"] });
+    }).to.throw(/Invalid HDR "mode" value/);
   });
 
   it("rejects a Symbol mode with a validation error instead of a TypeError", () => {
     const hdr = new HDROptions();
 
-    expect(() =>
-      hdr.load({ mode: Symbol("custom") as unknown as IHDROptions["mode"] }),
-    ).to.throw(Error, /Invalid HDR "mode" value/);
+    expect(() => {
+      hdr.load({ mode: Symbol("custom") as unknown as IHDROptions["mode"] });
+    }).to.throw(Error, /Invalid HDR "mode" value/);
   });
 
   it("rejects peakNits at or below minPeakNits", () => {
     const hdr = new HDROptions();
 
-    expect(() => hdr.load({ peakNits: 0 })).to.throw(/Invalid HDR "peakNits" value/);
-    expect(() => hdr.load({ peakNits: -100 })).to.throw(/Invalid HDR "peakNits" value/);
+    expect(() => {
+      hdr.load({ peakNits: 0 });
+    }).to.throw(/Invalid HDR "peakNits" value/);
+    expect(() => {
+      hdr.load({ peakNits: -100 });
+    }).to.throw(/Invalid HDR "peakNits" value/);
   });
 
   it("rejects non-finite peakNits", () => {
     const hdr = new HDROptions();
 
-    expect(() => hdr.load({ peakNits: Number.NaN })).to.throw(/Invalid HDR "peakNits" value/);
-    expect(() => hdr.load({ peakNits: Number.POSITIVE_INFINITY })).to.throw(/Invalid HDR "peakNits" value/);
-    expect(() => hdr.load({ peakNits: Number.NEGATIVE_INFINITY })).to.throw(/Invalid HDR "peakNits" value/);
+    expect(() => {
+      hdr.load({ peakNits: Number.NaN });
+    }).to.throw(/Invalid HDR "peakNits" value/);
+    expect(() => {
+      hdr.load({ peakNits: Number.POSITIVE_INFINITY });
+    }).to.throw(/Invalid HDR "peakNits" value/);
+    expect(() => {
+      hdr.load({ peakNits: Number.NEGATIVE_INFINITY });
+    }).to.throw(/Invalid HDR "peakNits" value/);
   });
 
   it("rejects a non-number peakNits", () => {
     const hdr = new HDROptions();
 
-    expect(() => hdr.load({ peakNits: "500" as unknown as RecursivePartial<IHDROptions>["peakNits"] })).to.throw(
-      /Invalid HDR "peakNits" value/,
-    );
+    expect(() => {
+      hdr.load({ peakNits: "500" as unknown as RecursivePartial<IHDROptions>["peakNits"] });
+    }).to.throw(/Invalid HDR "peakNits" value/);
   });
 });
