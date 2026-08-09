@@ -40,7 +40,7 @@ export class NgxFireworksComponent implements AfterViewInit, OnChanges, OnDestro
       return;
     }
 
-    if (this.#destroyed) {
+    if (this.#destroyed || !this.#fireworksInstance) {
       return;
     }
 

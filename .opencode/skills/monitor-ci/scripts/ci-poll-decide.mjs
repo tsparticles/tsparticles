@@ -40,57 +40,17 @@ function getArg(name) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
-function getArgValue(name) {
-  const idx = args.indexOf(name);
-  if (idx === -1) return null;
-  if (idx + 1 >= args.length) {
-    throw new Error(`Missing value for ${name}`);
-  }
-  return args[idx + 1];
-}
-
-function parseNonNegativeInt(value, flagName) {
-  const trimmed = value.trim();
-  if (!/^\d+$/u.test(trimmed)) {
-    throw new Error(`Invalid value for ${flagName}: "${value}" (expected a non-negative integer)`);
-  }
-  const parsed = Number(trimmed);
-  if (!Number.isSafeInteger(parsed)) {
-    throw new Error(`Invalid value for ${flagName}: "${value}" (number too large, expected a safe non-negative integer)`);
-  }
-  return parsed;
-}
-
-// Largest minute count whose conversion to seconds (minutes * 60) stays a safe integer.
-const maxSafeMinutes = Math.floor(Number.MAX_SAFE_INTEGER / 60);
-
-// Minutes are documented in minutes but compared in seconds internally; reject
-// values large enough that minutes * 60 would exceed Number.MAX_SAFE_INTEGER.
-function parseTimeoutMinutes(value, flagName) {
-  const minutes = value === null ? 0 : parseNonNegativeInt(value, flagName);
-
-  if (minutes > maxSafeMinutes) {
-    throw new Error(
-      `Invalid value for ${flagName}: "${value}" (too large, expected at most ${maxSafeMinutes} minutes to stay within the safe seconds range)`,
-    );
-  }
-
-  return minutes;
-}
-
 const waitMode = getFlag("--wait-mode");
 const prevCipeUrl = getArg("--prev-cipe-url");
 const expectedSha = getArg("--expected-sha");
 const prevStatus = getArg("--prev-status");
 // Flags are documented in minutes; convert to seconds for internal comparison.
-const timeoutArg = getArgValue("--timeout");
-const timeoutSeconds = parseTimeoutMinutes(timeoutArg, "--timeout") * 60;
-const newCipeTimeoutArg = getArgValue("--new-cipe-timeout");
-const newCipeTimeoutSeconds = parseTimeoutMinutes(newCipeTimeoutArg, "--new-cipe-timeout") * 60;
+const timeoutSeconds = parseInt(getArg("--timeout") || "0", 10) * 60;
+const newCipeTimeoutSeconds = parseInt(getArg("--new-cipe-timeout") || "0", 10) * 60;
 // Wall-clock seconds since monitoring began (carried across attempts); null when
 // the orchestrator doesn't supply it (see isTimedOut for that fallback).
-const elapsedArg = getArgValue("--elapsed-seconds");
-const elapsedSeconds = elapsedArg !== null ? parseNonNegativeInt(elapsedArg, "--elapsed-seconds") : null;
+const elapsedArg = getArg("--elapsed-seconds");
+const elapsedSeconds = elapsedArg !== null ? parseInt(elapsedArg, 10) : null;
 const envRerunCount = parseInt(getArg("--env-rerun-count") || "0", 10);
 const inputNoProgressCount = parseInt(getArg("--no-progress-count") || "0", 10);
 const prevCipeStatus = getArg("--prev-cipe-status");

@@ -1,17 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-explore-container',
-  // explicitly mark as non-standalone to avoid runtime mismatch when declared in NgModule
-  standalone: false,
-  templateUrl: './explore-container.component.html',
-  styleUrls: ['./explore-container.component.scss'],
+  selector: "app-explore-container",
+  standalone: true,
+  templateUrl: "./explore-container.component.html",
+  styleUrls: ["./explore-container.component.scss"],
 })
 export class ExploreContainerComponent implements OnInit {
   @Input() name!: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }

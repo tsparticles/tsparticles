@@ -15,7 +15,9 @@ declare module "@nuxt/schema" {
   }
 }
 
-export default defineNuxtModule<ITsParticlesNuxtOptions>({
+type TsParticlesNuxtModule = (resolvedOptions: ITsParticlesNuxtOptions, nuxt?: any) => unknown;
+
+const tsParticlesNuxtModule: TsParticlesNuxtModule = defineNuxtModule<ITsParticlesNuxtOptions>({
   meta: {
     name: "@tsparticles/nuxt3",
     configKey: "tsparticles",
@@ -49,3 +51,5 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
   },
 });
+
+export default tsParticlesNuxtModule;

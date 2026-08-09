@@ -108,15 +108,15 @@
   "browser": "./index.client.js",
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*",
-    "astro": "^6"
+    "astro": "^6 || ^7"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
     "@tsparticles/prettier-config": "workspace:*",
-    "astro": "^6.4.7",
-    "prettier": "^3.9.5",
+    "astro": "^7.2.0",
+    "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
   },

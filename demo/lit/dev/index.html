@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<lit-particles options='{ "background": { "color": "#000" }, "particles": { "links": { "enable": true }, "move": { "enable": true }, "number": { "value": 100 } } }' />
+<lit-particles options='{ "themes": [ { "name": "light", "default": { "value": true, "mode": "any" }, "options": { "background": { "color": "#ffffff" }, "particles": { "paint": { "color": { "value": "#000000" } }, "links": { "color": "#000000" } } } }, { "name": "dark", "options": { "background": { "color": "#000000" }, "particles": { "paint": { "color": { "value": "#ffffff" } }, "links": { "color": "#ffffff" } } } } ], "background": { "color": "#000" }, "particles": { "links": { "enable": true }, "move": { "enable": true }, "number": { "value": 100 } } }' />
 
 <button id="theme-toggle">Switch Theme</button>
 

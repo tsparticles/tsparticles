@@ -36,10 +36,11 @@ describe("HDR options", () => {
   });
 
   it("rejects an invalid mode", () => {
-    const hdr = new HDROptions();
+    const hdr = new HDROptions(),
+      data = { mode: "invalid-mode" } as unknown as RecursivePartial<IHDROptions>;
 
     expect(() => {
-      hdr.load({ mode: "unknown-mode" });
+      hdr.load(data);
     }).to.throw(/Invalid HDR "mode" value/);
     expect(() => {
       hdr.load({ mode: 42 as unknown as IHDROptions["mode"] });

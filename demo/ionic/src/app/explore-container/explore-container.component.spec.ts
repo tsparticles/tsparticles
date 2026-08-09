@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { provideIonicAngular } from "@ionic/angular/standalone";
 
-import { ExploreContainerComponent } from './explore-container.component';
+import { ExploreContainerComponent } from "./explore-container.component";
 
-describe('ExploreContainerComponent', () => {
+describe("ExploreContainerComponent", () => {
   let component: ExploreContainerComponent;
   let fixture: ComponentFixture<ExploreContainerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExploreContainerComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [ExploreContainerComponent],
+      providers: [provideIonicAngular()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExploreContainerComponent);
@@ -18,7 +18,7 @@ describe('ExploreContainerComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
