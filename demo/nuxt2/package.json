@@ -31,7 +31,7 @@
     "vue-template-compiler": "2.7.16"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^8.0.1",
     "@babel/eslint-parser": "^7.0.0",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.0.0",
     "@babel/plugin-transform-optional-chaining": "^7.0.0",
