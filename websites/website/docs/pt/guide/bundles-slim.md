@@ -1,14 +1,14 @@
 # Bundle: Slim
 
-`@tsparticles/slim` é o bundle recomendado para a maioria dos projetos. Inclui tudo o que é necessário para animações de partículas modernas com interações de mouse, múltiplas formas e links entre partículas.
+`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
 
-## Funcionalidades incluídas
+## Included features
 
-Herda tudo de `@tsparticles/basic` mais:
+Inherits everything from `@tsparticles/basic` plus:
 
-**Formas:** círculo, quadrado, estrela, polígono, linha, imagem, emoji
+**Shapes:** circle, square, star, polygon, line, image, emoji
 
-**Interações externas (mouse/toque):**
+**External interactions (mouse/touch):**
 
 - attract
 - bounce
@@ -23,32 +23,32 @@ Herda tudo de `@tsparticles/basic` mais:
 - repulse
 - slow
 
-**Interações entre partículas:**
+**Particle interactions:**
 
 - attract
-- colisões
-- links (conexões entre partículas)
+- collisions
+- links (particle connections)
 
-**Atualizadores adicionais:**
+**Additional updaters:**
 
-- life (ciclo de vida)
+- life (lifecycle)
 - rotate
 
 **Plugins:**
 
-- interatividade
+- interactivity
 - easing-quad
-- Plugins de cor HEX, HSL, RGB
+- HEX, HSL, RGB color plugins
 
-## Quando usar
+## When to use
 
-- Ponto de partida recomendado para a maioria dos projetos
-- Precisa de múltiplas formas (círculos, estrelas, polígonos, imagens)
-- Precisa de interações com mouse (clique, passar, bubble, repulse)
-- Precisa de links entre partículas
-- Bom equilíbrio entre tamanho do bundle e funcionalidades
+- Recommended starting point for most projects
+- Need multiple shapes (circles, stars, polygons, images)
+- Need mouse interactions (click, hover, bubble, repulse)
+- Need particle links
+- Good balance between bundle size and features
 
-## Instalação
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Erros comuns
+## Common mistakes
 
-- Chamar `tsParticles.load()` antes de `loadSlim(tsParticles)`.
-- Misturar versões diferentes entre o motor e o bundle — mantenha-os alinhados.
-- Esperar funcionalidades de bundles superiores (emissores, absorvedores, texto, wobble) — precisa de `tsparticles` (full) ou plugins individuais.
+- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
+- Mixing different versions between engine and bundle — keep them aligned.
+- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
 
-## Veja também
+## See also
 
-- [Visão geral de bundles](/pt/guide/bundles)
-- [Guia de instalação](/pt/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
