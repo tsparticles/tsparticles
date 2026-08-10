@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "pnpm run build:client && electron .",
-    "build": "pnpm run build:client && pnpx @electron/packager . electron-demo",
+    "build": "pnpm run build:client && pnpx @electron/packager . electron-demo --no-prune --ignore=node_modules",
     "build:client": "webpack --config webpack.config.cjs --mode production"
   },
   "keywords": [
