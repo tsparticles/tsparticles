@@ -1,33 +1,33 @@
 # Bundle: All
 
-`@tsparticles/all` lädt **alles** aus dem tsParticles-Repository: jede Form, Interaktion, Aktualisierer, Effekt, Pfad, Easing, Plugin und Export. Es ist das größte Bundle, gedacht für Prototyping und Demos.
+`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
 
-## Enthaltene Funktionen
+## Included features
 
-Erbt alles von `tsparticles` (full) plus:
+Inherits everything from `tsparticles` (full) plus:
 
-**Alle Formen:** Pfeil, Karten, Zahnrad, Herz, Unendlichkeit, Matrix, Pfad, Ribbon, abgerundetes Polygon, abgerundetes Rechteck, Spirale, Squircle
+**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**Alle externen Interaktionen:** Kanone, Licht, Partikel, Pop, Partikel-Abstoßen
+**All external interactions:** cannon, light, particle, pop, particles-repulse
 
-**Alle Effekte:** Blase, Filter, Partikel, Schatten, Spur
+**All effects:** bubble, filter, particles, shadow, trail
 
-**Alle Pfadgeneratoren:** Äste, Brownsch, Curl-Noise, Kurven, Fraktal-Noise, Gitter, Levy, Perlin-Noise, Polygon, Zufall, Simplex-Noise, Spirale, SVG, Zickzack
+**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**Alle Easings:** Back, Bounce, Circ, Cubic, Elastic, Expo, Gaussian, Linear, Quad, Quart, Quint, Sigmoid, Sine, Smoothstep
+**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**Alle Farb-Plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**Alle Plugins:** Absorber, Hintergrundmaske, Canvas-Maske, Emitter (alle Formen), Easings (alle), Export-Bild, Export-JSON, Export-Video, Infektion, Manuelle Partikel, Bewegung, Poisson-Scheibe, Polygon-Maske, Responsive, Töne, Themes, Spur, Zoom
+**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
 
-**Alle Aktualisierer:** Zerstören, Farbverlauf, Lebenszyklus, Opazität, Orbit, Aus-Modi, Farbe, Rollen, Drehen, Größe, Neigen, Funkeln, Wackeln
+**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## Wann verwenden
+## When to use
 
-- Schnelles Prototyping, um Möglichkeiten zu erkunden
-- Demos und Vorführungen
-- Entwicklungsumgebungen, in denen die Größe keine Rolle spielt
-- **Nicht für die Produktion empfohlen** — bevorzuge gezieltere Bundles
+- Rapid prototyping to explore possibilities
+- Demos and showcases
+- Development environments where size doesn't matter
+- **Not recommended for production** — prefer more targeted bundles
 
 ## Installation
 
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (Script-Tags)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Unterschied zwischen `tsparticles` und `@tsparticles/all`
+## Difference between `tsparticles` and `@tsparticles/all`
 
-Siehe die Vergleichstabelle auf der [Bundles-Full-Seite](/de/guide/bundles-full) für die detaillierte Aufschlüsselung.
+See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
 
-## Häufige Fehler
+## Common mistakes
 
-- Verwendung in der Produktion — bevorzuge `@tsparticles/slim` oder `tsparticles` für kleinere Bundles.
-- `tsParticles.load()` vor `loadAll(tsParticles)` aufrufen.
+- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
+- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
 
-## Siehe auch
+## See also
 
-- [Bundle-Übersicht](/de/guide/bundles)
-- [Installationsanleitung](/de/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
