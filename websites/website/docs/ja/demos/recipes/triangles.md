@@ -1,14 +1,14 @@
-# 三角形のプリセット
+# Triangles Preset
 
-`presets/presets/triangles` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/triangles` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-幾何学的なレイアウトとハイテクスタイルのデザインのための強固なベース。
+A solid base for geometric layouts and tech-style design.
 
-デモ: <https://particles.js.org/demos/recipes/triangles>
+Demo: <https://particles.js.org/demos/recipes/triangles>
