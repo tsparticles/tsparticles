@@ -1,52 +1,52 @@
 # Bundle: Slim
 
-`@tsparticles/slim` ist das empfohlene Bundle für die meisten Projekte. Enthält alles, was für moderne Partikelanimationen mit Maus-Interaktionen, mehreren Formen und Partikelverbindungen benötigt wird.
+`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
 
-## Enthaltene Funktionen
+## Included features
 
-Erbt alles von `@tsparticles/basic` plus:
+Inherits everything from `@tsparticles/basic` plus:
 
-**Formen:** Kreis, Quadrat, Stern, Polygon, Linie, Bild, Emoji
+**Shapes:** circle, square, star, polygon, line, image, emoji
 
-**Externe Interaktionen (Maus/Touch):**
+**External interactions (mouse/touch):**
 
-- Anziehen
-- Abprallen
-- Blase
-- Verbinden
-- Zerstören
-- Greifen
-- Parallaxe
-- Pausieren
-- Schieben
-- Entfernen
-- Abstoßen
-- Verlangsamen
+- attract
+- bounce
+- bubble
+- connect
+- destroy
+- grab
+- parallax
+- pause
+- push
+- remove
+- repulse
+- slow
 
-**Partikel-Interaktionen:**
+**Particle interactions:**
 
-- Anziehen
-- Kollisionen
-- Verbindungen (Partikel-Links)
+- attract
+- collisions
+- links (particle connections)
 
-**Zusätzliche Aktualisierer:**
+**Additional updaters:**
 
-- Lebenszyklus
-- Drehen
+- life (lifecycle)
+- rotate
 
 **Plugins:**
 
-- Interaktivität
-- Easing-Quad
-- HEX-, HSL-, RGB-Farb-Plugins
+- interactivity
+- easing-quad
+- HEX, HSL, RGB color plugins
 
-## Wann verwenden
+## When to use
 
-- Empfohlener Ausgangspunkt für die meisten Projekte
-- Du brauchst mehrere Formen (Kreise, Sterne, Polygone, Bilder)
-- Du brauchst Maus-Interaktionen (Klick, Hover, Blase, Abstoßen)
-- Du brauchst Partikelverbindungen
-- Gute Balance zwischen Bundle-Größe und Funktionen
+- Recommended starting point for most projects
+- Need multiple shapes (circles, stars, polygons, images)
+- Need mouse interactions (click, hover, bubble, repulse)
+- Need particle links
+- Good balance between bundle size and features
 
 ## Installation
 
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (Script-Tags)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Häufige Fehler
+## Common mistakes
 
-- `tsParticles.load()` vor `loadSlim(tsParticles)` aufrufen.
-- Unterschiedliche Versionen von Engine und Bundle mischen — halte sie auf dem gleichen Stand.
-- Funktionen aus höheren Bundles erwarten (Emitter, Absorber, Text, Wobble) — dafür wird `tsparticles` (full) oder einzelne Plugins benötigt.
+- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
+- Mixing different versions between engine and bundle — keep them aligned.
+- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
 
-## Siehe auch
+## See also
 
-- [Bundle-Übersicht](/de/guide/bundles)
-- [Installationsanleitung](/de/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
