@@ -1,14 +1,14 @@
-# Blasenvoreinstellung
+# Bubbles Preset
 
-Offizielle Voreinstellung aus dem Arbeitsbereich `presets/presets/bubbles`.
+Official preset from the `presets/presets/bubbles` workspace.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## Betriebsbereit (manueller Start/Stopp)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Nützlich für interaktive Abschnitte mit besser sichtbarer Bewegung.
+Useful for interactive sections with more visible motion.
 
 Demo: <https://particles.js.org/demos/recipes/bubbles>
