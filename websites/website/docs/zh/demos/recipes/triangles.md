@@ -1,14 +1,14 @@
-# 三角形预设
+# Triangles Preset
 
-来自 `presets/presets/triangles` 工作区的官方预设。
+Official preset from the `presets/presets/triangles` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-几何布局和科技风格设计的坚实基础。
+A solid base for geometric layouts and tech-style design.
 
-演示： <https://particles.js.org/demos/recipes/triangles>
+Demo: <https://particles.js.org/demos/recipes/triangles>
