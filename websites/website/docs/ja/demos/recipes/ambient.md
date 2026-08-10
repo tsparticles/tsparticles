@@ -1,14 +1,14 @@
-# アンビエントプリセット
+# Ambient Preset
 
-`presets/presets/ambient` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/ambient` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-ambient
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-視覚的なノイズが少なく、柔らかく連続した背景に最適です。
+Great for soft, continuous backgrounds with low visual noise.
 
-デモ: <https://particles.js.org/demos/recipes/ambient>
+Demo: <https://particles.js.org/demos/recipes/ambient>
