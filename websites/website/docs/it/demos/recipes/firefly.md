@@ -1,16 +1,16 @@
-# Preimpostazione Firefly
+# Firefly Preset
 
-Preimpostazione ufficiale dall'area di lavoro `presets/presets/firefly`.
+Official preset from the `presets/presets/firefly` workspace.
 
-Muovi il mouse all'interno dell'area di disegno per attivare il comportamento interattivo della lucciola.
+Move the mouse inside the canvas to activate the interactive firefly behavior.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Pronto all'uso (avvio/arresto manuale)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Preimpostazione elegante per sezioni di eroi naturali, narrazione e portfolio.
+Elegant preset for natural hero sections, storytelling, and portfolios.
 
-Dimostrazione: <https://particles.js.org/demos/recipes/firefly>
+Demo: <https://particles.js.org/demos/recipes/firefly>
