@@ -1,16 +1,16 @@
-# 紙吹雪キャノンプリセット
+# Confetti Cannon Preset
 
-`presets/presets/confettiCannon` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/confettiCannon` workspace.
 
-このプリセットで紙吹雪をトリガーするには、キャンバス領域上でマウスをドラッグします。
+To trigger confetti in this preset, drag the mouse over the canvas area.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-デモ: <https://particles.js.org/demos/recipes/confetti-cannon>
+Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-ソースドキュメント: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
