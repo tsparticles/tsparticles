@@ -1,14 +1,14 @@
-# 紙吹雪プリセット
+# Confetti Preset
 
-`presets/presets/confetti` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/confetti` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-お祝いや発表、お祝いのデザインに最適です。さまざまなカラーパレットを組み合わせてバリエーションを広げます。
+Perfect for celebrations, announcements, and festive designs. Combine with different color palettes for variety.
 
-デモ: <https://particles.js.org/demos/recipes/confetti>
+Demo: <https://particles.js.org/demos/recipes/confetti>
