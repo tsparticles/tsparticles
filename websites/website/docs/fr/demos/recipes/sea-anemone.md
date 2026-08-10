@@ -1,14 +1,14 @@
-# Préréglage d'anémone de mer
+# Sea Anemone Preset
 
-Préréglage officiel de l'espace de travail `presets/presets/seaAnemone`.
+Official preset from the `presets/presets/seaAnemone` workspace.
 
-## Installer
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ```
 
-## Prêt à l'emploi (démarrage/arrêt manuel)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Parfait pour les animations organiques et fluides d’inspiration sous-marine.
+Perfect for organic, flowing underwater-inspired animations.
 
-Démo : <https://particles.js.org/demos/recipes/sea-anemone>
+Demo: <https://particles.js.org/demos/recipes/sea-anemone>
