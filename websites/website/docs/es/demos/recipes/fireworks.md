@@ -1,14 +1,14 @@
-# Fuegos artificiales preestablecidos
+# Fireworks Preset
 
-Preajuste oficial del espacio de trabajo `presets/presets/fireworks`.
+Official preset from the `presets/presets/fireworks` workspace.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fireworks
 ```
 
-## Listo para usar (inicio/parada manual)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ajuste preestablecido de alto impacto: ejecútelo solo en la interacción explícita del usuario (clic de CTA).
+High-impact preset: run it only on explicit user interaction (CTA click).
 
-Demostración: <https://particles.js.org/demos/recipes/fireworks>
+Demo: <https://particles.js.org/demos/recipes/fireworks>
