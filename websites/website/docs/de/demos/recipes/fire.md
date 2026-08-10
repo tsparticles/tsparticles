@@ -1,14 +1,14 @@
-# Feuervoreinstellung
+# Fire Preset
 
-Offizielle Voreinstellung aus dem Arbeitsbereich `presets/presets/fire`.
+Official preset from the `presets/presets/fire` workspace.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fire
 ```
 
-## Betriebsbereit (manueller Start/Stopp)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfekt für dramatische, energiegeladene Designs und Effektdemonstrationen.
+Perfect for dramatic, high-energy designs and effect demonstrations.
 
 Demo: <https://particles.js.org/demos/recipes/fire>
