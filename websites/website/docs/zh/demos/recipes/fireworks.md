@@ -1,14 +1,14 @@
-# 烟花预设
+# Fireworks Preset
 
-来自 `presets/presets/fireworks` 工作区的官方预设。
+Official preset from the `presets/presets/fireworks` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fireworks
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-高影响力预设：仅在显式用户交互（CTA 单击）时运行。
+High-impact preset: run it only on explicit user interaction (CTA click).
 
-演示： <https://particles.js.org/demos/recipes/fireworks>
+Demo: <https://particles.js.org/demos/recipes/fireworks>
