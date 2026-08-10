@@ -1,8 +1,8 @@
-# 演示即用型
+# Demo Ready-to-Use
 
-这些配方使用 `presets/presets` 工作区中提供的官方预设（即将发布的 beta/alpha）。
+These recipes use the official presets available in the `presets/presets` workspace (beta/alpha toward release).
 
-## 模式基础开始/停止（无自动播放）
+## Pattern base start/stop (no autoplay)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -24,40 +24,63 @@ export function resume(): void {
 }
 ```
 
-## 预设食谱
+## Preset recipes
 
-- 预设目录：[`/demos/presets`](/zh/demos/presets)
-- 调色板目录：[`/demos/palettes`](/zh/demos/palettes)
-- 形状目录：[`/demos/shapes`](/zh/demos/shapes)
+- Presets catalog: [`/demos/presets`](/demos/presets)
 
-- [`Ambient`](/zh/demos/recipes/ambient)
-- [`Big Circles`](/zh/demos/recipes/big-circles)
-- [`Bubbles`](/zh/demos/recipes/bubbles)
-- [`Confetti`](/zh/demos/recipes/confetti)
-- [`Confetti Cannon`](/zh/demos/recipes/confetti-cannon)
-- [`Confetti Explosions`](/zh/demos/recipes/confetti-explosions)
-- [`Confetti Falling`](/zh/demos/recipes/confetti-falling)
-- [`Confetti Parade`](/zh/demos/recipes/confetti-parade)
-- [`Party`](/zh/demos/recipes/party)
-- [`Fire`](/zh/demos/recipes/fire)
-- [`Firefly`](/zh/demos/recipes/firefly)
-- [`Fireworks`](/zh/demos/recipes/fireworks)
-- [`Fountain`](/zh/demos/recipes/fountain)
-- [`Hyperspace`](/zh/demos/recipes/hyperspace)
-- [`Links`](/zh/demos/recipes/links)
-- [`Matrix`](/zh/demos/recipes/matrix)
-- [`Sea Anemone`](/zh/demos/recipes/sea-anemone)
-- [`Snow`](/zh/demos/recipes/snow)
-- [`Squares`](/zh/demos/recipes/squares)
-- [`Stars`](/zh/demos/recipes/stars)
-- [`Ribbons`](/zh/demos/recipes/ribbons)
-- [`Triangles`](/zh/demos/recipes/triangles)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
 
-要立即在 UI 中测试它们，请使用 [`Playground`](/zh/playground/) 并仅在需要时使用 `Start` 启动它们。
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
 
-## 框架演示项目
+- [`Ambient`](/demos/recipes/ambient)
 
-monorepo 还包括可运行的集成演示：
+- [`Big Circles`](/demos/recipes/big-circles)
 
-- 源文件夹：<https://github.com/tsparticles/tsparticles/tree/main/demo>
-- 可用演示包括：`angular`、`astro`、`electron`、`inferno`、`ionic`、`jquery`、`lit`、`nextjs`、`nextjs-legacy`、 `nuxt2`、`nuxt3`、`nuxt4`、`preact`、`react`、`riot`、`solid`、`svelte`、`svelte-kit`、 `vanilla`、`vanilla_new`、`vite`、`vue2`、`vue3`、`webcomponents`。
+- [`Bubbles`](/demos/recipes/bubbles)
+
+- [`Confetti`](/demos/recipes/confetti)
+
+- [`Confetti Cannon`](/demos/recipes/confetti-cannon)
+
+- [`Confetti Explosions`](/demos/recipes/confetti-explosions)
+
+- [`Confetti Falling`](/demos/recipes/confetti-falling)
+
+- [`Confetti Parade`](/demos/recipes/confetti-parade)
+
+- [`Party`](/demos/recipes/party)
+
+- [`Fire`](/demos/recipes/fire)
+
+- [`Firefly`](/demos/recipes/firefly)
+
+- [`Fireworks`](/demos/recipes/fireworks)
+
+- [`Fountain`](/demos/recipes/fountain)
+
+- [`Hyperspace`](/demos/recipes/hyperspace)
+
+- [`Links`](/demos/recipes/links)
+
+- [`Matrix`](/demos/recipes/matrix)
+
+- [`Sea Anemone`](/demos/recipes/sea-anemone)
+
+- [`Snow`](/demos/recipes/snow)
+
+- [`Squares`](/demos/recipes/squares)
+
+- [`Stars`](/demos/recipes/stars)
+
+- [`Ribbons`](/demos/recipes/ribbons)
+
+- [`Triangles`](/demos/recipes/triangles)
+
+To test them immediately in UI, use the [`Playground`](/playground/) and start them with `Start` only when needed.
+
+## Framework demo projects
+
+The monorepo also includes runnable integration demos:
+
+- Source folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Available demos include: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
