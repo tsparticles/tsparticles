@@ -1,35 +1,39 @@
-# Cookie 政策
+# Cookie Policy
 
-本网站使用一小组 cookie 和第三方技术来保持文档的有用性和可持续性。
+This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
 
-## 我们使用什么
+## What we use
 
-- **基本 cookie**：技术行为和导航所需。
-- **分析cookie**（Google Analytics）：用于了解流量和文档使用模式。
-- **广告 cookie** (Google AdSense)：用于衡量广告活动效果并展示广告。
+- **Essential cookies**: required for technical behavior and navigation.
+- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
+- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
 
-本项目当前配置的环境变量：
+Environment variables currently configured in this project:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
+- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
+- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## 同意如何运作
+## How consent works
 
-- 在您明确单击 Cookie 横幅中的 **接受** 之前，跟踪 Cookie 会被禁用。
-- 如果您点击 **拒绝**，分析/广告跟踪仍处于禁用状态。
-- 您的选择将保存在本地浏览器中。
+- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
+- You can reject all, accept all, or save granular choices for analytics and advertising.
+- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
+- When you reject ads, AdSense can run as non-personalized ads if configured.
+- Your choice is saved locally in your browser.
 
-## 如何改变你的选择
+## How to change your choice
 
-如果您想在选择后更改您的同意，请在浏览器设置中清除本网站的本地存储/cookie，然后重新加载页面。
+If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
 
-## 相关政策
+## Related policy
 
-- [`/privacy-policy`](/zh/privacy-policy)
+- [`/privacy-policy`](/privacy-policy)
 
-## 数据控制者和处理者
+## Data controllers and processors
 
-- 网站所有者：`@tsparticles/website` 维护者
-- 第三方服务：Google Analytics 和 Google AdSense
+- Website owner: `@tsparticles/website` maintainers
+- Third-party services: Google Analytics and Google AdSense
 
-对于法律/隐私请求，请使用项目存储库中列出的支持渠道。
+For legal/privacy requests, please use the support channels listed in the project repository.
