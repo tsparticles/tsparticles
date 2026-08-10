@@ -1,14 +1,14 @@
-# 矩阵预设
+# Matrix Preset
 
-来自 `presets/presets/matrix` 工作区的官方预设。
+Official preset from the `presets/presets/matrix` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-matrix
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-非常适合技术/黑客美学设计和数字主题。
+Perfect for tech/hacker aesthetic designs and digital themes.
 
-演示： <https://particles.js.org/demos/recipes/matrix>
+Demo: <https://particles.js.org/demos/recipes/matrix>
