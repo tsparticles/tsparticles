@@ -1,0 +1,63 @@
+name: Crowdin Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'websites/website/docs/**/*.md'
+      - 'websites/confetti/src/i18n/**'
+      - 'websites/ribbons/src/i18n/**'
+      - 'crowdin.yml'
+      - '.github/workflows/crowdin-sync.yml'
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: crowdin-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  crowdin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Crowdin push
+        uses: crowdin/github-action@v2
+        with:
+          config: crowdin.yml
+          upload_sources: true
+          upload_translations: false
+          download_translations: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Crowdin pull
+        uses: crowdin/github-action@v2
+        with:
+          config: crowdin.yml
+          upload_sources: false
+          upload_translations: true
+          download_translations: true
+          localization_branch_name: l10n_crowdin
+          create_pull_request: true
+          pull_request_title: 'New Crowdin translations'
+          pull_request_body: |
+            New Crowdin translations are available. This pull request was created automatically.
+          commit_message: 'chore: new Crowdin translations'
+          commit_title: 'chore: new Crowdin translations'
+          pull_request_base_branch_name: main
+          pull_request_assignees: matteobruni
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

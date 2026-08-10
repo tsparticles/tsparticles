@@ -1,0 +1,143 @@
+{
+  "languageName": "English",
+  "title": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
+  "description": "tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
+  "ogTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website",
+  "ogDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
+  "twitterTitle": "tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations",
+  "twitterDescription": "Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor.",
+  "header": {
+    "switchTheme": "Switch Theme",
+    "visitGitHub": "Visit on GitHub",
+    "viewSource": "View source on Github",
+    "joinDiscord": "Join Discord",
+    "joinDiscordAria": "Join tsParticles Discord",
+    "visitReddit": "Visit Reddit",
+    "visitRedditAria": "Visit tsParticles on Reddit",
+    "visitWebsite": "Visit tsParticles website",
+    "visitWebsiteAria": "Visit tsParticles website",
+    "visitRibbons": "Visit tsParticles ribbons website",
+    "visitRibbonsAria": "Visit tsParticles ribbons website",
+    "language": "Language"
+  },
+  "share": {
+    "shareThisPage": "Share this page",
+    "share": "Share",
+    "facebook": "Facebook",
+    "x": "X",
+    "linkedin": "LinkedIn",
+    "reddit": "Reddit",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copyLink": "Copy link"
+  },
+  "usage": {
+    "title": "Usage",
+    "description": "First of all include the script in your page, only if using in plain HTML/JS pages:"
+  },
+  "run": "Run",
+  "copied": "Copied",
+  "footer": {
+    "with": "with",
+    "by": "by",
+    "cookiePreferences": "Cookie preferences"
+  },
+  "cookie": {
+    "title": "Privacy settings",
+    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
+    "cookiePolicy": "cookie policy",
+    "analytics": "Analytics cookies",
+    "adsense": "Google AdSense",
+    "rejectAll": "Reject all",
+    "saveChoices": "Save choices",
+    "acceptAll": "Accept all"
+  },
+  "modes": {
+    "cannon": {
+      "name": "Basic Cannon",
+      "description": [
+        "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?"
+      ]
+    },
+    "random": {
+      "name": "Random Direction",
+      "description": [
+        "Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)"
+      ]
+    },
+    "realistic": {
+      "name": "Realistic Look",
+      "description": [
+        "If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even \"flattened cone\" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together."
+      ]
+    },
+    "hearts": {
+      "name": "Valentine's Day",
+      "description": [
+        "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
+        "❤️ Happy Valentine's Day! ❤️"
+      ]
+    },
+    "stars": {
+      "name": "Stars",
+      "description": [
+        "You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.",
+        "✨ Celebrate with a burst of stars! ✨"
+      ]
+    },
+    "emoji": {
+      "name": "Emoji and Unicorns",
+      "description": [
+        "You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄",
+        "🦄 Unicorns loves rainbows! 🦄"
+      ]
+    },
+    "images": {
+      "name": "Images",
+      "description": [
+        "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
+        "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋"
+      ]
+    },
+    "fireworks": {
+      "name": "Fireworks",
+      "description": [
+        "Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center."
+      ]
+    },
+    "snow": {
+      "name": "Snow",
+      "description": [
+        "The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page."
+      ]
+    },
+    "continuous": {
+      "name": "School Pride",
+      "description": [
+        "But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.",
+        "🌰 Go Buckeyes! 🌰"
+      ]
+    },
+    "customShapes": {
+      "name": "Custom Shapes",
+      "description": [
+        "Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!",
+        "🎃🎄💜"
+      ]
+    },
+    "custom": {
+      "name": "Custom Canvas",
+      "description": [
+        "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element."
+      ]
+    },
+    "confettiRibbons": {
+      "name": "Confetti + Ribbons",
+      "description": [
+        "Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
+        "Double the celebration!"
+      ]
+    }
+  }
+}

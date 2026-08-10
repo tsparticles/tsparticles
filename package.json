@@ -11,6 +11,9 @@
     "build:affected:ci": "pnpm run prettify:ci:readme && nx affected -t build --c=ci",
     "prettify:ci:readme": "prettier --config ./prettier.readme.config.json --check ./README.md ./markdown/*",
     "prettify:readme": "prettier --config ./prettier.readme.config.json --write ./README.md ./markdown/*",
+    "crowdin:upload": "crowdin push",
+    "crowdin:download": "crowdin pull",
+    "crowdin:sync": "crowdin push && crowdin pull",
     "postversion:fix": "node scripts/post-version-fix.js",
     "version:alpha": "lerna version prerelease --preid alpha --no-git-tag-version --yes && pnpm run postversion:fix",
     "version:beta": "lerna version prerelease --preid beta --no-git-tag-version --yes && pnpm run postversion:fix",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
+    "@crowdin/cli": "^4.15.0",
     "@nx/devkit": "^23.1.1",
     "@nx/js": "^23.1.1",
     "@swc-node/register": "^1.12.1",

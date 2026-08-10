@@ -107,6 +107,17 @@ header {
   fill: var(--primary-color);
 }
 
+.language-select {
+  margin-right: 12px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: var(--primary-color);
+  background: var(--background-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 h1,
 h2,
 .center {

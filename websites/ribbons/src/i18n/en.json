@@ -1,0 +1,151 @@
+{
+  "languageName": "English",
+  "title": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
+  "description": "Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source.",
+  "ogTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
+  "ogDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more.",
+  "twitterTitle": "tsParticles Ribbons | JavaScript Ribbon animations for your website",
+  "twitterDescription": "Create stunning ribbon animations with tsParticles. Interactive playground with live code editor.",
+  "header": {
+    "about": "About",
+    "blog": "Blog",
+    "cookie": "Cookie",
+    "privacy": "Privacy",
+    "switchTheme": "Switch Theme",
+    "visitGitHub": "Visit on GitHub",
+    "viewSource": "View source on Github",
+    "joinDiscord": "Join Discord",
+    "joinDiscordAria": "Join tsParticles Discord",
+    "visitReddit": "Visit Reddit",
+    "visitRedditAria": "Visit tsParticles on Reddit",
+    "visitWebsite": "Visit tsParticles website",
+    "visitWebsiteAria": "Visit tsParticles website",
+    "visitConfetti": "Visit tsParticles confetti website",
+    "visitConfettiAria": "Visit tsParticles confetti website",
+    "language": "Language"
+  },
+  "intro": {
+    "lead": "Create stunning, flowing ribbon animations for your website with just a few lines of JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance your site's visual appeal without slowing it down.",
+    "sub": "Whether you're building a celebration effect, an interactive background, or a subtle ambient animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash, just pure HTML5 Canvas."
+  },
+  "features": {
+    "title": "Why Choose tsParticles Ribbons?",
+    "lightweight": {
+      "title": "Lightweight & Fast",
+      "text": "The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile devices."
+    },
+    "zeroDependencies": {
+      "title": "Zero Dependencies",
+      "text": "Use it with a simple script tag or install via npm. No jQuery, no React, no build tools required — though it integrates seamlessly with all major frameworks."
+    },
+    "customizable": {
+      "title": "Fully Customizable",
+      "text": "Control colors, physics, positioning, and timing. Create anything from subtle background effects to dramatic celebration bursts with just a few configuration options."
+    },
+    "crossBrowser": {
+      "title": "Cross-Browser Compatible",
+      "text": "Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful fallback for older browsers — your site stays functional everywhere."
+    },
+    "frameworkSupport": {
+      "title": "Framework Support",
+      "text": "Official packages available for React, Vue.js, Angular, and Svelte. One-line integration with dedicated components that handle canvas lifecycle automatically."
+    },
+    "openSource": {
+      "title": "Open Source",
+      "text": "MIT licensed and backed by the tsParticles community. Full source code available on GitHub with comprehensive documentation and examples."
+    }
+  },
+  "usecases": {
+    "title": "Perfect For",
+    "launches": "Product launches & announcements: Celebrate new releases with eye-catching ribbon bursts that draw attention to your message.",
+    "holidays": "Holiday & seasonal themes: Add festive ribbon animations for holidays, sales events, or special occasions.",
+    "backgrounds": "Interactive backgrounds: Create engaging ambient effects that respond to user interactions without distracting from your content.",
+    "gamification": "Gamification & rewards: Trigger ribbon animations when users complete actions, earn achievements, or reach milestones.",
+    "portfolio": "Portfolio & creative sites: Add a unique visual element that makes your portfolio stand out from the crowd.",
+    "ecommerce": "E-commerce & conversions: Highlight special offers, discount reveals, or successful purchases with celebratory effects."
+  },
+  "quickstart": {
+    "title": "Quick Start",
+    "intro": "Add ribbons to any website in under a minute. Include the script and call one function:",
+    "outroHtml": "That's it! Ribbons will fall from random positions across the top of your page. Want to customize? Check out the interactive examples below, or read the <a href=\"/blog/customization-guide.html\">customization guide</a>."
+  },
+  "share": {
+    "shareThisPage": "Share this page",
+    "share": "Share",
+    "facebook": "Facebook",
+    "x": "X",
+    "linkedin": "LinkedIn",
+    "reddit": "Reddit",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copyLink": "Copy link"
+  },
+  "run": "Run",
+  "copied": "Copied",
+  "footer": {
+    "about": "About",
+    "blog": "Blog",
+    "cookiePolicy": "Cookie Policy",
+    "privacyPolicy": "Privacy Policy",
+    "with": "with",
+    "by": "by",
+    "cookiePreferences": "Cookie preferences"
+  },
+  "cookie": {
+    "title": "Privacy settings",
+    "text": "Choose how this site can use analytics and advertising technologies. If analytics cookies are disabled, anonymous cookieless measurement remains enabled.",
+    "cookiePolicy": "cookie policy",
+    "analytics": "Analytics cookies",
+    "adsense": "Google AdSense",
+    "rejectAll": "Reject all",
+    "saveChoices": "Save choices",
+    "acceptAll": "Accept all"
+  },
+  "modes": {
+    "basic": {
+      "name": "Basic Ribbons",
+      "description": [
+        "The default mode... ribbons fall from random positions across the top of the page with default colors and physics."
+      ]
+    },
+    "colors": {
+      "name": "Custom Colors",
+      "description": [
+        "You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.",
+        "🔥 Ocean to flame color transition! 🔥"
+      ]
+    },
+    "multiple": {
+      "name": "Multiple Bursts",
+      "description": [
+        "Spawn multiple ribbon bursts with staggered timing for a layered cascading effect."
+      ]
+    },
+    "continuous": {
+      "name": "Continuous Fall",
+      "description": [
+        "Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions."
+      ]
+    },
+    "fixedPosition": {
+      "name": "Fixed Position",
+      "description": [
+        "A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element."
+      ]
+    },
+    "customCanvas": {
+      "name": "Custom Canvas",
+      "description": [
+        "You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page."
+      ]
+    },
+    "ribbonsConfetti": {
+      "name": "Ribbons + Confetti",
+      "description": [
+        "Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.",
+        "🎉 Double the celebration! 🎉"
+      ]
+    }
+  }
+}
