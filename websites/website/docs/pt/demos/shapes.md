@@ -1,29 +1,111 @@
-# Catalogo de formas
+# Shapes Catalog
 
-Este catalogo lista os valores mais comuns de `particles.shape.type` e mostra quando `particles.shape.options` adiciona controles especificos por forma.
+This catalog lists the common `particles.shape.type` values and the related `particles.shape.options.<type>` customization keys used in v4.
 
-Pastas de origem:
+Source folders:
 
 - <https://github.com/tsparticles/tsparticles/tree/main/shapes>
-- Referencia de opcoes de forma: [`/options/particles-shape`](/pt/options/particles-shape)
+- Shape options reference: [`/options/particles-shape`](/options/particles-shape)
 
-## Tipos de forma comuns
+## Common shape types and option keys
 
-- `circle` (padrao, sem opcoes extras de forma)
-- `square` / `edge` (sem opcoes extras de forma)
-- `triangle` (sem opcoes extras de forma)
-- `line` (sem opcoes extras de forma)
-- `polygon` (`options.polygon.sides`)
-- `star` (`options.star.sides`, `options.star.inset`)
+- `circle` (`options.circle.close`)
+- `square` / `edge` (`options.square.close`)
+- `triangle` (`options.triangle.close`)
+- `line` (`options.line.cap`, `options.line.close`)
+- `polygon` (`options.polygon.sides`, `options.polygon.close`)
+- `star` (`options.star.sides`, `options.star.inset`, `options.star.close`)
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
-- `emoji` (`options.emoji.value`)
+- `emoji` (`options.emoji.value`, `font`, `padding`, `close`)
 - `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `arrow` (`options.arrow.heightFactor`, `headWidthFactor`, `bodyHeightFactor`)
+- `cog` (`options.cog.notches`, `innerRadius`, `holeRadius`, `innerTaper`, `outerTaper`)
+- `rounded-rect` (`options.rounded-rect.radius`)
+- `rounded-polygon` (`options.rounded-polygon.sides`, `radius`)
+- `spiral` (`options.spiral.innerRadius`, `lineSpacing`, `widthFactor`, `close`)
+- `squircle` (`options.squircle.exponent`, `steps`)
+- `matrix` (`options.matrix.interval`)
+- `path` (`options.path.half`, `options.path.segments`)
+- `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
-## Notas sobre aliases e bundles
+## Notes on aliases and bundles
 
-- `square` e `edge` sao aliases da mesma forma.
-- `character` e `char` sao aliases do mesmo grupo de opcoes.
-- `image` e `images` usam o mesmo objeto de opcoes.
-- A maioria das formas avancadas exige `@tsparticles/slim` (ou `@tsparticles/all`) ou pacotes de forma dedicados.
+- `square` and `edge` are aliases for the same shape.
+- `text` is the dedicated text shape package in v4.
+- `image` and `images` use the same options object.
+- Most advanced shapes require `@tsparticles/slim` (or `@tsparticles/all`) or dedicated shape packages.
 
-Para testar rapidamente com controles Start/Pause e JSON editavel, use [`/playground/shapes`](/pt/playground/shapes).
+## Quick usage examples
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
+
+### Text
+
+```ts
+particles: {
+  shape: {
+    type: "text",
+    options: {
+      text: {
+        value: ["TS", "DOCS"],
+        font: "Verdana",
+        weight: "700",
+        style: "",
+      },
+    },
+  },
+}
+```
+
+### Image
+
+```ts
+particles: {
+  shape: {
+    type: "image",
+    options: {
+      image: {
+        src: "https://particles.js.org/images/hdr/fruits/strawberry.png",
+        name: "strawberry",
+        width: 64,
+        height: 64,
+        gif: false,
+        replaceColor: false,
+      },
+    },
+  },
+}
+```
+
+To test these quickly with Start/Pause controls and editable JSON, use [`/playground/shapes`](/playground/shapes).
