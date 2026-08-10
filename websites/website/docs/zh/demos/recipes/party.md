@@ -1,14 +1,14 @@
-# 派对预设
+# Party Preset
 
-来自 `presets/presets/party` 工作区的官方预设。
+Official preset from the `presets/presets/party` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-party
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-非常适合庆祝场景、活动和派对主题叠加层。
+Perfect for celebration scenes, events, and party-themed overlays.
 
-演示： <https://particles.js.org/demos/recipes/party>
+Demo: <https://particles.js.org/demos/recipes/party>
