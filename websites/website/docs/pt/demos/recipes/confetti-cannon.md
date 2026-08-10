@@ -1,16 +1,16 @@
-# Predefinição de canhão de confete
+# Confetti Cannon Preset
 
-Predefinição oficial do espaço de trabalho `presets/presets/confettiCannon`.
+Official preset from the `presets/presets/confettiCannon` workspace.
 
-Para acionar confetes nesta predefinição, arraste o mouse sobre a área da tela.
+To trigger confetti in this preset, drag the mouse over the canvas area.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## Pronto para uso (partida/parada manual)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Demonstração: <https://particles.js.org/demos/recipes/confetti-cannon>
+Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-Documentos de origem: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
