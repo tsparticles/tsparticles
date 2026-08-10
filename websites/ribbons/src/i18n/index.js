@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 const jsonFiles = import.meta.glob('./*.json', { eager: true, import: 'default' });
 
 const messages = {};
@@ -82,7 +84,7 @@ export function applyTranslations() {
     const key = el.getAttribute('data-i18n-html');
 
     if (key) {
-      el.innerHTML = t(key);
+      el.innerHTML = DOMPurify.sanitize(t(key));
     }
   });
 

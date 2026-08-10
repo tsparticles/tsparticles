@@ -34,6 +34,7 @@
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/ribbons": "workspace:*",
     "ace-builds": "^1.44.0",
+    "dompurify": "^3.4.13",
     "js-beautify": "^2.0.3"
   },
   "devDependencies": {
