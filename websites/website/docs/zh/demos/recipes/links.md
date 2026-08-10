@@ -1,14 +1,14 @@
-# 链接预设
+# Links Preset
 
-来自 `presets/presets/links` 工作区的官方预设。
+Official preset from the `presets/presets/links` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-links
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-非常适合 SaaS 风格的英雄/网络背景。
+Ideal for SaaS-style hero/network backgrounds.
 
-演示： <https://particles.js.org/demos/recipes/links>
+Demo: <https://particles.js.org/demos/recipes/links>
