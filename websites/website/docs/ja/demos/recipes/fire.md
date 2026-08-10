@@ -1,14 +1,14 @@
-# 火のプリセット
+# Fire Preset
 
-`presets/presets/fire` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/fire` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fire
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-ドラマチックでエネルギーの高いデザインやエフェクトのデモンストレーションに最適です。
+Perfect for dramatic, high-energy designs and effect demonstrations.
 
-デモ: <https://particles.js.org/demos/recipes/fire>
+Demo: <https://particles.js.org/demos/recipes/fire>
