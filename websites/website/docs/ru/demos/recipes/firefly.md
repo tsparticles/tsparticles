@@ -1,16 +1,16 @@
-# Пресет Светлячка
+# Firefly Preset
 
-Официальный пресет из рабочей области `presets/presets/firefly`.
+Official preset from the `presets/presets/firefly` workspace.
 
-Переместите мышь внутри холста, чтобы активировать интерактивное поведение светлячка.
+Move the mouse inside the canvas to activate the interactive firefly behavior.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Элегантный набор настроек для разделов с естественными героями, рассказывания историй и портфолио.
+Elegant preset for natural hero sections, storytelling, and portfolios.
 
-Демо: <https://particles.js.org/demos/recipes/firefly>
+Demo: <https://particles.js.org/demos/recipes/firefly>
