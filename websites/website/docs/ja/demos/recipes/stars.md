@@ -1,14 +1,14 @@
-# 星のプリセット
+# Stars Preset
 
-`presets/presets/stars` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/stars` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-stars
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-宇宙/宇宙のランディング ページや暗いテーマに最適です。
+Perfect for space/cosmic landing pages and dark themes.
 
-デモ: <https://particles.js.org/demos/recipes/stars>
+Demo: <https://particles.js.org/demos/recipes/stars>
