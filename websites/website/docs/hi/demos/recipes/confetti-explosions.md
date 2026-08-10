@@ -1,14 +1,14 @@
-# कंफ़ेद्दी विस्फोट प्रीसेट
+# Confetti Explosions Preset
 
-`presets/presets/confettiExplosions` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/confettiExplosions` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-डेमो: <https://particles.js.org/demos/recipes/confetti-explosions>
+Demo: <https://particles.js.org/demos/recipes/confetti-explosions>
 
-स्रोत दस्तावेज़: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>
