@@ -1,17 +1,17 @@
-# Catalogo tavolozze
+# Palettes Catalog
 
-Le tavolozze provengono dall'area di lavoro `palettes` e sono precaricate nel parco giochi.
+Palettes come from the `palettes` workspace and are preloaded in the playground.
 
-L'ordinamento segue la struttura della fonte:
+Ordering follows the source structure:
 
-- primo livello: ordine delle categorie (basato sulle cartelle di origine delle tavolozze)
-- secondo livello: ordine degli slug della palette all'interno di ogni categoria (alfabetico)
+- first level: category order (based on palettes source folders)
+- second level: palette slug order inside each category (alphabetical)
 
-Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Gruppi di tavolozze disponibili
+## Available palette groups
 
-## Atmosfera (12 tavolozze)
+### Atmosphere (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `fog-morning`
 - `volcanic-ash`
 
-## Atmosferico (10 tavolozze)
+### Atmospheric (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `thermal-map`
 - `thunderstorm`
 
-## Coriandoli (12 palette)
+### Confetti (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Terra (7 tavolozze)
+### Earth (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Fantasia (8 tavolozze)
+### Fantasy (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Fuoco (8 tavolozze)
+### Fire (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `metal-sparks`
 - `molten-metal`
 
-## Fuochi d'artificio (24 tavolozze)
+### Fireworks (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Impatto (7 tavolozze)
+### Gaming (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,10 +130,9 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `shockwave-blast`
 - `splatter-dark`
 
-## Monocromatico (14 tavolozze)
+### Monochromatic (14 palettes)
 
 - `monochrome-blues`
-
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -141,7 +147,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Natura (9 tavolozze)
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +159,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `snowfall`
 - `spring-bloom`
 
-## Ottica (7 tavolozze)
+### Optics (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +169,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Pastello (5 tavolozze)
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +177,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `pastel-sunset`
 - `pastel-warm`
 
-## Spazio (10 tavolozze)
+### Space (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +190,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `solar-wind`
 - `supernova`
 
-## Spettro (10 tavolozze)
+### Spectrum (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +203,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `rainbow`
 - `rgb-primaries`
 
-## Tecnologia (9 tavolozze)
+### Tech (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +215,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `plasma-arc`
 - `vaporwave`
 
-## Vibrante (5 tavolozze)
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +223,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Acqua (8 tavolozze)
+### Water (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -228,11 +234,11 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `water`
 - `water-splash`
 
-Tutte le tavolozze attualmente pubblicate su npm sono incluse nel precaricamento del sito Web Playground.
+All palettes currently published on npm are included in the website playground preload.
 
-Alcune tavolozze possono apparire nel monorepo prima della pubblicazione; quelli verranno aggiunti qui non appena i loro pacchetti saranno disponibili.
+Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
 
-## Utilizzo rapido
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -247,6 +253,6 @@ await tsParticles.load({
 });
 ```
 
-Puoi combinare lo stesso `palette` con diverse preimpostazioni per ottenere varianti visive senza riscrivere il resto delle opzioni.
+You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
 
-Utilizza [`/playground/palettes`](/it/playground/palettes) per testarli con controlli Avvio/Pausa espliciti.
+Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.
