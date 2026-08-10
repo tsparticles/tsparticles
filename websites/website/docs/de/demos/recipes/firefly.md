@@ -1,16 +1,16 @@
-# Firefly-Voreinstellung
+# Firefly Preset
 
-Offizielle Voreinstellung aus dem Arbeitsbereich `presets/presets/firefly`.
+Official preset from the `presets/presets/firefly` workspace.
 
-Bewegen Sie die Maus innerhalb der Leinwand, um das interaktive Glühwürmchenverhalten zu aktivieren.
+Move the mouse inside the canvas to activate the interactive firefly behavior.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Betriebsbereit (manueller Start/Stopp)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegante Voreinstellung für natürliche Heldenabschnitte, Geschichtenerzählen und Portfolios.
+Elegant preset for natural hero sections, storytelling, and portfolios.
 
 Demo: <https://particles.js.org/demos/recipes/firefly>
