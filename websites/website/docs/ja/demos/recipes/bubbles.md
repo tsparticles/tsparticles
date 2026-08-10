@@ -1,14 +1,14 @@
-# バブルのプリセット
+# Bubbles Preset
 
-`presets/presets/bubbles` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/bubbles` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-動きがより目に見えるインタラクティブなセクションに役立ちます。
+Useful for interactive sections with more visible motion.
 
-デモ: <https://particles.js.org/demos/recipes/bubbles>
+Demo: <https://particles.js.org/demos/recipes/bubbles>
