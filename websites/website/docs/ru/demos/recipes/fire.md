@@ -1,14 +1,14 @@
-# Предустановка огня
+# Fire Preset
 
-Официальный пресет из рабочей области `presets/presets/fire`.
+Official preset from the `presets/presets/fire` workspace.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fire
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Идеально подходит для драматических, энергичных дизайнов и демонстрации эффектов.
+Perfect for dramatic, high-energy designs and effect demonstrations.
 
-Демо: <https://particles.js.org/demos/recipes/fire>
+Demo: <https://particles.js.org/demos/recipes/fire>
