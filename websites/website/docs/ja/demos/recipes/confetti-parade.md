@@ -1,14 +1,14 @@
-# 紙吹雪パレードプリセット
+# Confetti Parade Preset
 
-`presets/presets/confettiParade` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/confettiParade` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-parade
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-デモ: <https://particles.js.org/demos/recipes/confetti-parade>
+Demo: <https://particles.js.org/demos/recipes/confetti-parade>
 
-ソースドキュメント: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
