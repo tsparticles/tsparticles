@@ -1,14 +1,14 @@
-# 星星预设
+# Stars Preset
 
-来自 `presets/presets/stars` 工作区的官方预设。
+Official preset from the `presets/presets/stars` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-stars
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-非常适合太空/宇宙登陆页面和黑暗主题。
+Perfect for space/cosmic landing pages and dark themes.
 
-演示： <https://particles.js.org/demos/recipes/stars>
+Demo: <https://particles.js.org/demos/recipes/stars>
