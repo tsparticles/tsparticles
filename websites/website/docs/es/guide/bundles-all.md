@@ -1,37 +1,37 @@
 # Bundle: All
 
-`@tsparticles/all` carga **todo** el repositorio tsParticles: cada forma, interacción, updater, efecto, ruta, easing, plugin y exportación. Es el bundle más grande, pensado para prototipado y demos.
+`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
 
-## Funcionalidades incluidas
+## Included features
 
-Hereda todo de `tsparticles` (full) más:
+Inherits everything from `tsparticles` (full) plus:
 
-**Todas las formas:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
+**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**Todas las interacciones:** cannon, light, particle, pop, particles-repulse
+**All external interactions:** cannon, light, particle, pop, particles-repulse
 
-**Todos los efectos:** bubble, filter, particles, shadow, trail
+**All effects:** bubble, filter, particles, shadow, trail
 
-**Todos los generadores de path:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**Todos los easing:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**Todos los plugins de color:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**Todos los plugins:** absorbers, background-mask, canvas-mask, emitters (con todas las formas), easing (todos), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
 
-**Todos los updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## Cuándo usarlo
+## When to use
 
-- Prototipado rápido para explorar las posibilidades
-- Demos y showcases
-- Entornos de desarrollo donde el tamaño no es importante
-- **No recomendado en producción**: prefiere bundles más específicos
+- Rapid prototyping to explore possibilities
+- Demos and showcases
+- Development environments where size doesn't matter
+- **Not recommended for production** — prefer more targeted bundles
 
-## Instalación
+## Installation
 
-### Con npm/pnpm/yarn
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/all
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### Con CDN (etiqueta `<script>`)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Diferencia entre `tsparticles` y `@tsparticles/all`
+## Difference between `tsparticles` and `@tsparticles/all`
 
-Ver la tabla completa en la [página bundles-full](/es/guide/bundles-full) para la comparación detallada.
+See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
 
-## Errores comunes
+## Common mistakes
 
-- Usarlo en producción — prefiere `@tsparticles/slim` o `tsparticles` para bundles más pequeños.
-- Llamar `tsParticles.load()` antes de `loadAll(tsParticles)`.
+- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
+- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
 
-## Ver también
+## See also
 
-- [Panorámica de bundles](/es/guide/bundles)
-- [Guía de instalación](/es/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
