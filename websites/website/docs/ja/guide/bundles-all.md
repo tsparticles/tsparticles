@@ -1,35 +1,35 @@
 # Bundle: All
 
-`@tsparticles/all` は tsParticles リポジトリの**すべて**（あらゆる形状、インタラクション、アップデーター、エフェクト、パス、イージング、プラグイン、エクスポート）を読み込みます。最大のバンドルで、プロトタイピングとデモ向けです。
+`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
 
-## 含まれる機能
+## Included features
 
-`tsparticles`（full）のすべてを継承し、さらに:
+Inherits everything from `tsparticles` (full) plus:
 
-**すべての形状:** 矢印、カード、cog、ハート、infinity、matrix、path、リボン、角丸多角形、角丸四角、スパイラル、スクワークル
+**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**すべての外部インタラクション:** cannon、light、particle、pop、particles-repulse
+**All external interactions:** cannon, light, particle, pop, particles-repulse
 
-**すべてのエフェクト:** バブル、フィルター、パーティクル、シャドウ、トレイル
+**All effects:** bubble, filter, particles, shadow, trail
 
-**すべてのパスジェネレーター:** branches、brownian、curl-noise、curves、fractal-noise、grid、levy、perlin-noise、polygon、random、simplex-noise、spiral、svg、zig-zag
+**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**すべてのイージング:** back、bounce、circ、cubic、elastic、expo、gaussian、linear、quad、quart、quint、sigmoid、sine、smoothstep
+**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**すべてのカラープラグイン:** HEX、HSL、RGB、HSV、HWB、LAB、LCH、Named、OKLAB、OKLCH
+**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**すべてのプラグイン:** アブソーバー、background-mask、canvas-mask、エミッター（全形状）、イージング（全種類）、export-image、export-json、export-video、infection、manual-particles、motion、poisson-disc、polygon-mask、responsive、sounds、themes、trail、zoom
+**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
 
-**すべてのアップデーター:** destroy、gradient、life、opacity、orbit、out-modes、paint、roll、rotate、size、tilt、twinkle、wobble
+**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## 使用すべきケース
+## When to use
 
-- 可能性を探るための迅速なプロトタイピング
-- デモやショーケース
-- サイズが重要でない開発環境
-- **本番環境には非推奨** — よりターゲットを絞ったバンドルを使用してください
+- Rapid prototyping to explore possibilities
+- Demos and showcases
+- Development environments where size doesn't matter
+- **Not recommended for production** — prefer more targeted bundles
 
-## インストール
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN（script タグ）
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## `tsparticles` と `@tsparticles/all` の違い
+## Difference between `tsparticles` and `@tsparticles/all`
 
-詳細な比較表は[バンドル full ページ](/ja/guide/bundles-full)を参照してください。
+See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
 
-## よくある間違い
+## Common mistakes
 
-- 本番環境で使用する — より小さいバンドル（`@tsparticles/slim` または `tsparticles`）を優先してください。
-- `loadAll(tsParticles)` より前に `tsParticles.load()` を呼ぶ。
+- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
+- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
 
-## 関連ページ
+## See also
 
-- [バンドル概要](/ja/guide/bundles)
-- [インストールガイド](/ja/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
