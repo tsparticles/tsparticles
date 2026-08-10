@@ -1,14 +1,14 @@
-# Party-Voreinstellung
+# Party Preset
 
-Offizielle Voreinstellung aus dem Arbeitsbereich `presets/presets/party`.
+Official preset from the `presets/presets/party` workspace.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-party
 ```
 
-## Betriebsbereit (manueller Start/Stopp)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfekt für Feierszenen, Veranstaltungen und party-themenbezogene Overlays.
+Perfect for celebration scenes, events, and party-themed overlays.
 
 Demo: <https://particles.js.org/demos/recipes/party>
