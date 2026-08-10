@@ -1,16 +1,16 @@
-# Préréglage luciole
+# Firefly Preset
 
-Préréglage officiel de l'espace de travail `presets/presets/firefly`.
+Official preset from the `presets/presets/firefly` workspace.
 
-Déplacez la souris à l’intérieur du canevas pour activer le comportement interactif de luciole.
+Move the mouse inside the canvas to activate the interactive firefly behavior.
 
-## Installer
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Prêt à l'emploi (démarrage/arrêt manuel)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Préréglage élégant pour les sections de héros naturels, la narration et les portfolios.
+Elegant preset for natural hero sections, storytelling, and portfolios.
 
-Démo : <https://particles.js.org/demos/recipes/firefly>
+Demo: <https://particles.js.org/demos/recipes/firefly>
