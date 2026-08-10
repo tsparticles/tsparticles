@@ -7,6 +7,12 @@ files:
       - /websites/website/docs/.vitepress/**
       - /websites/website/docs/public/**
       - /websites/website/docs/api/**
+      - /websites/website/docs/cookie-policy.md
+      - /websites/website/docs/demos/**
+      - /websites/website/docs/migrations/**
+      - /websites/website/docs/playground/**
+      - /websites/website/docs/privacy-policy.md
+      - /websites/website/docs/showcase/**
       - /websites/website/docs/de/**
       - /websites/website/docs/es/**
       - /websites/website/docs/fr/**
