@@ -1,24 +1,24 @@
 # Bundle: Particles
 
-`@tsparticles/particles` は、インタラクティブなパーティクル背景を作成するための簡略化された API を提供します。`@tsparticles/basic` よりもリッチな代替手段で、手動のエンジン設定ではなく専用 API を使用します。
+`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
 
-## 含まれる機能
+## Included features
 
-**形状:** 円（basic から）
+**Shapes:** circle (from basic)
 
-**内部プラグイン:** interactivity（リンク、衝突）
+**Internal plugins:** interactivity (links, collisions)
 
-**インタラクション:** リンク（パーティクル接続）、衝突
+**Interactions:** links (particle connections), collisions
 
-**API:** `particles(options)` または `particles(canvasId, options)`
+**API:** `particles(options)` or `particles(canvasId, options)`
 
-## 使用すべきケース
+## When to use
 
-- Web サイトのパーティクル背景
-- パーティクルリンク付き背景（ノード風エフェクト）
-- エンジンを手動で設定したくない
+- Particle background for a website
+- Background with particle links (node-style effect)
+- You don't want to configure the engine manually
 
-## インストール
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// リンク付き背景
+// Background with links
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// 特定のキャンバス上で
+// On a specific canvas
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// カスタムカラーで
+// With custom colors
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -55,7 +55,7 @@ await particles({
 });
 ```
 
-### CDN（script タグ）
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### 主要パラメーター
+### Main parameters
 
-| パラメーター | 型                 | デフォルト | 説明               |
-| ------------ | ------------------ | ---------- | ------------------ |
-| `count`      | number             | 50         | パーティクルの数   |
-| `radius`     | number             | 3          | パーティクルの半径 |
-| `speed`      | number             | 2          | 移動速度           |
-| `opacity`    | number             | 0.8        | 不透明度（0-1）    |
-| `color`      | string \| string[] | "#ffffff"  | パーティクルの色   |
-| `links`      | boolean            | false      | リンクを表示       |
-| `linksColor` | string             | "#ffffff"  | リンクの色         |
-| `linksWidth` | number             | 1          | リンクの太さ       |
-| `shape`      | string[]           | ["circle"] | パーティクルの形状 |
+| Parameter    | Type                                                                   | Default                                                        | Description                          |
+| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
+| `count`      | number                                                                 | 50                                                             | Number of particles                  |
+| `radius`     | number                                                                 | 3                                                              | Particle radius                      |
+| `speed`      | number                                                                 | 2                                                              | Movement speed                       |
+| `opacity`    | number                                                                 | 0.8                                            | Opacity (0-1)     |
+| `color`      | string \| string[] | "#ffffff"                                                      | Particle color(s) |
+| `links`      | boolean                                                                | false                                                          | Show links                           |
+| `linksColor` | string                                                                 | "#ffffff"                                                      | Link color                           |
+| `linksWidth` | number                                                                 | 1                                                              | Link thickness                       |
+| `shape`      | string[]           | ["circle"] | Particle shapes                      |
 
-## よくある間違い
+## Common mistakes
 
-- `@tsparticles/particles` が `tsParticles` をエクスポートしていると思う — していません。
-- 同じ canvas ID を意図せず再利用する。
-- 高度な形状（星、多角形）を期待する — particles バンドルは basic ベースで円のみを使用します。
+- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
 
-## 関連ページ
+## See also
 
-- [バンドル概要](/ja/guide/bundles)
-- [はじめに](/ja/guide/getting-started)
+- [Bundle overview](/guide/bundles)
+- [Getting started](/guide/getting-started)
