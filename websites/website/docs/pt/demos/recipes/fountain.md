@@ -1,14 +1,14 @@
-# Predefinição de fonte
+# Fountain Preset
 
-Predefinição oficial do espaço de trabalho `presets/presets/fountain`.
+Official preset from the `presets/presets/fountain` workspace.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fountain
 ```
 
-## Pronto para uso (partida/parada manual)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfeito para animações de partículas fluidas e elegantes e efeitos com tema de água.
+Perfect for elegant, flowing particle animations and water-themed effects.
 
-Demonstração: <https://particles.js.org/demos/recipes/fountain>
+Demo: <https://particles.js.org/demos/recipes/fountain>
