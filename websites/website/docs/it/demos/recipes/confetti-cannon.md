@@ -1,16 +1,16 @@
-# Preimpostazione cannone coriandoli
+# Confetti Cannon Preset
 
-Preimpostazione ufficiale dall'area di lavoro `presets/presets/confettiCannon`.
+Official preset from the `presets/presets/confettiCannon` workspace.
 
-Per attivare i coriandoli in questa preimpostazione, trascina il mouse sull'area della tela.
+To trigger confetti in this preset, drag the mouse over the canvas area.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## Pronto all'uso (avvio/arresto manuale)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Dimostrazione: <https://particles.js.org/demos/recipes/confetti-cannon>
+Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-Documenti di origine: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
