@@ -1,8 +1,8 @@
-# Eventos de Interatividade
+# Interactivity Events
 
-`interactivity.events` controla quando os modos de interação são acionados.
+`interactivity.events` controls when interaction modes are triggered.
 
-## Exemplo
+## Example
 
 ```ts
 interactivity: {
@@ -20,10 +20,13 @@ interactivity: {
 }
 ```
 
-- `onHover`: comportamento do ponteiro ao passar o mouse.
-- `onClick`: comportamento de clique/toque.
-- `resize`: mantém o comportamento consistente após alterações na janela de visualização.
+- `onHover`: pointer hover behavior.
+- `onClick`: click/tap behavior.
+- `resize`: keeps behavior consistent after viewport changes.
 
-## Referência da fonte
+## Source reference
 
-- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Events.md> - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md> - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md> - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Events.md>
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
