@@ -1,8 +1,8 @@
-# Палитра частиц
+# Particles Palette
 
-`particles.palette` импортирует именованную палитру и применяет цвета частиц по умолчанию.
+`particles.palette` imports a named palette and applies particle color defaults.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -13,14 +13,14 @@ particles: {
 }
 ```
 
-## Что это меняет
+## What it changes
 
-- Устанавливает `particles.paint.fill` или `particles.paint.stroke` в зависимости от конфигурации палитры.
-- Если палитра имеет несколько вариантов цвета, `particles.paint` импортируется как массив вариантов.
-- Включает `particles.blend` с режимом наложения палитры.
-  — Сохраняет компактность конфигурации при повторном использовании наборов цветов.
+- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
+- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
+- Enables `particles.blend` with the palette blend mode.
+- Keeps your config compact when reusing color sets.
 
-## Новый формат палитры (для пользовательских палитр)
+## New palette format (for custom palettes)
 
 ```ts
 const palette = {
@@ -36,17 +36,16 @@ const palette = {
 };
 ```
 
-`colors` может быть:
+`colors` can be either:
 
-- один вариант объекта (`{ fill?, stroke? }`)
-- массив объектов вариантов (каждый вариант может определять `fill`, `stroke` или оба)
+- a single variant object (`{ fill?, stroke? }`)
+- an array of variant objects (each variant can define `fill`, `stroke`, or both)
 
-## Примечания
+## Notes
 
-— Неизвестные идентификаторы палитр игнорируются.
+- Unknown palette ids are ignored.
+- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
 
-- Явные значения `particles.paint.fill`, `particles.paint.stroke` или `particles.blend` переопределяют импортированные значения по умолчанию.
-
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>
