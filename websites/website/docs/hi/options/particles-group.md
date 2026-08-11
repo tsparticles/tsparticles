@@ -1,8 +1,8 @@
-# कण समूह
+# Particles Group
 
-`particles.groups` आपको एक ही दृश्य में नामित कण वेरिएंट को परिभाषित करने देता है।
+`particles.groups` lets you define named particle variants in the same scene.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -27,6 +27,6 @@ particles: {
 }
 ```
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Group.md>
