@@ -1,26 +1,26 @@
-# Bundle : Particles
+# Bundle: Particles
 
-`@tsparticles/particles` expose une API simplifiée pour créer des fonds de particules interactifs. C'est une alternative plus riche à `@tsparticles/basic` mais avec une API dédiée au lieu de configurer l'engine manuellement.
+`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
 
-## Fonctionnalités incluses
+## Included features
 
-**Formes :** cercle (de basic)
+**Shapes:** circle (from basic)
 
-**Plugins internes :** interactivity (liens, collisions)
+**Internal plugins:** interactivity (links, collisions)
 
-**Interactions :** links (liens entre particules), collisions
+**Interactions:** links (particle connections), collisions
 
-**API :** `particles(options)` ou `particles(canvasId, options)`
+**API:** `particles(options)` or `particles(canvasId, options)`
 
-## Quand l'utiliser
+## When to use
 
-- Fond de particules pour un site web
-- Fond avec liens entre particules (style "nœuds")
-- Vous ne voulez pas configurer l'engine manuellement
+- Particle background for a website
+- Background with particle links (node-style effect)
+- You don't want to configure the engine manually
 
 ## Installation
 
-### Avec npm/pnpm/yarn
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/particles
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// Fond avec liens
+// Background with links
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// Sur un canvas spécifique
+// On a specific canvas
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// Avec couleurs personnalisées
+// With custom colors
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -55,7 +55,7 @@ await particles({
 });
 ```
 
-### Avec CDN (balise `<script>`)
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### Paramètres principaux
+### Main parameters
 
-| Paramètre    | Type               | Défaut     | Description               |
-| ------------ | ------------------ | ---------- | ------------------------- |
-| `count`      | number             | 50         | Nombre de particules      |
-| `radius`     | number             | 3          | Rayon des particules      |
-| `speed`      | number             | 2          | Vitesse de déplacement    |
-| `opacity`    | number             | 0.8        | Opacité (0-1)             |
-| `color`      | string \| string[] | "#ffffff"  | Couleur(s) des particules |
-| `links`      | boolean            | false      | Afficher les liens        |
-| `linksColor` | string             | "#ffffff"  | Couleur des liens         |
-| `linksWidth` | number             | 1          | Épaisseur des liens       |
-| `shape`      | string[]           | ["circle"] | Formes des particules     |
+| Parameter    | Type                                                                   | Default                                                        | Description                          |
+| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
+| `count`      | number                                                                 | 50                                                             | Number of particles                  |
+| `radius`     | number                                                                 | 3                                                              | Particle radius                      |
+| `speed`      | number                                                                 | 2                                                              | Movement speed                       |
+| `opacity`    | number                                                                 | 0.8                                            | Opacity (0-1)     |
+| `color`      | string \| string[] | "#ffffff"                                                      | Particle color(s) |
+| `links`      | boolean                                                                | false                                                          | Show links                           |
+| `linksColor` | string                                                                 | "#ffffff"                                                      | Link color                           |
+| `linksWidth` | number                                                                 | 1                                                              | Link thickness                       |
+| `shape`      | string[]           | ["circle"] | Particle shapes                      |
 
-## Erreurs courantes
+## Common mistakes
 
-- Penser que `tsParticles` est exporté par `@tsparticles/particles` — ce n'est pas le cas.
-- Réutiliser le même ID de canvas sans le vouloir.
-- Attendre des formes avancées (étoiles, polygones) — le bundle particles est basé sur basic et utilise seulement des cercles.
+- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
 
-## Voir aussi
+## See also
 
-- [Vue d'ensemble des bundles](/fr/guide/bundles)
-- [Guide pour démarrer](/fr/guide/getting-started)
+- [Bundle overview](/guide/bundles)
+- [Getting started](/guide/getting-started)
