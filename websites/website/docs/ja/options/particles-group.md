@@ -1,8 +1,8 @@
-# パーティクルグループ
+# Particles Group
 
-`particles.groups` を使用すると、同じシーン内で名前付きパーティクル バリアントを定義できます。
+`particles.groups` lets you define named particle variants in the same scene.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -27,6 +27,6 @@ particles: {
 }
 ```
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Group.md>
