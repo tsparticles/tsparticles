@@ -1,8 +1,8 @@
-# パーティクルパレット
+# Particles Palette
 
-`particles.palette` は、名前付きパレットをインポートし、パーティクル カラーのデフォルトを適用します。
+`particles.palette` imports a named palette and applies particle color defaults.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -13,14 +13,14 @@ particles: {
 }
 ```
 
-## 何が変わるのか
+## What it changes
 
-- パレット構成に基づいて `particles.paint.fill` または `particles.paint.stroke` を設定します。
-- パレットに複数のカラー バリエーションがある場合、`particles.paint` はバリエーションの配列としてインポートされます。
-- パレット ブレンド モードで `particles.blend` を有効にします。
-- カラーセットを再利用するときに構成をコンパクトに保ちます。
+- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
+- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
+- Enables `particles.blend` with the palette blend mode.
+- Keeps your config compact when reusing color sets.
 
-## 新しいパレット形式 (カスタム パレット用)
+## New palette format (for custom palettes)
 
 ```ts
 const palette = {
@@ -36,16 +36,16 @@ const palette = {
 };
 ```
 
-`colors` は次のいずれかになります。
+`colors` can be either:
 
-- 単一のバリアント オブジェクト (`{ fill?, stroke? }`)
-- バリアント オブジェクトの配列 (各バリアントは `fill`、`stroke`、またはその両方を定義できます)
+- a single variant object (`{ fill?, stroke? }`)
+- an array of variant objects (each variant can define `fill`, `stroke`, or both)
 
-## 注意事項
+## Notes
 
-- 不明なパレット ID は無視されます。
-- 明示的な `particles.paint.fill`、`particles.paint.stroke`、または `particles.blend` 値は、インポートされたデフォルトをオーバーライドします。
+- Unknown palette ids are ignored.
+- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>
