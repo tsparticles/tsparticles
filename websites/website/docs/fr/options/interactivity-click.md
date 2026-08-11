@@ -1,8 +1,8 @@
-# Interactivité Clic
+# Interactivity Click
 
-`interactivity.events.onClick` définit ce qui se passe lorsque les utilisateurs cliquent/appuyent sur le canevas.
+`interactivity.events.onClick` defines what happens when users click/tap the canvas.
 
-## Exemple
+## Example
 
 ```ts
 interactivity: {
@@ -24,11 +24,11 @@ interactivity: {
 }
 ```
 
-## Conseils pratiques
+## Practical guidance
 
-- Commencez avec un mode, puis combinez les modes uniquement si nécessaire.
-- Gardez `quantity` et `distance` modérés pour un FPS stable.
+- Start with one mode, then combine modes only if needed.
+- Keep `quantity` and `distance` moderate for stable FPS.
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
