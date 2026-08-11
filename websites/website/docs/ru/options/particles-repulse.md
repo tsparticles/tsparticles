@@ -1,8 +1,8 @@
-# Отталкивание частиц
+# Particles Repulse
 
-`particles.repulse` управляет поведением отталкивания при взаимодействии частиц.
+`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Используйте умеренные расстояния, чтобы избежать резких скачков движения.
-- Настройтесь вместе с `interactivity.modes.repulse`, когда оба активны.
+- Use moderate distances to avoid abrupt motion jumps.
+- Tune together with `interactivity.modes.repulse` when both are active.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>
