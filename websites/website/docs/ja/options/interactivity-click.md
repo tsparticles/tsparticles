@@ -1,8 +1,8 @@
-# インタラクティブクリック
+# Interactivity Click
 
-`interactivity.events.onClick` は、ユーザーがキャンバスをクリック/タップしたときに何が起こるかを定義します。
+`interactivity.events.onClick` defines what happens when users click/tap the canvas.
 
-## 例
+## Example
 
 ```ts
 interactivity: {
@@ -24,11 +24,11 @@ interactivity: {
 }
 ```
 
-## 実践的な指導
+## Practical guidance
 
-- 1 つのモードから始めて、必要な場合にのみモードを組み合わせます。
-- FPS を安定させるには、`quantity` と `distance` を適度に保ちます。
+- Start with one mode, then combine modes only if needed.
+- Keep `quantity` and `distance` moderate for stable FPS.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
