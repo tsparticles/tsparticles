@@ -1,8 +1,8 @@
-# Темы
+# Themes
 
-`themes` позволяет определять именованные наборы опций (например, светлый и темный) и переключаться во время выполнения.
+`themes` lets you define named option sets (for example light and dark) and switch at runtime.
 
-## Пример
+## Example
 
 ```ts
 themes: [
@@ -33,12 +33,12 @@ themes: [
 ];
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Сохраняйте стабильный объект базовых параметров.
-- Переопределить только то, что отличается для каждой темы.
-- Сопряжение с состоянием темного режима на уровне приложения.
+- Keep a stable base options object.
+- Override only what differs per theme.
+- Pair with app-level dark mode state.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Themes.md>
