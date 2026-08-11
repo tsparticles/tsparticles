@@ -1,8 +1,8 @@
-# 粒子の寿命
+# Particles Life
 
-`particles.life` は、パーティクルごとのライフサイクル数と継続時間を制御します。
+`particles.life` controls lifecycle count and duration per particle.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -18,9 +18,9 @@ particles: {
 }
 ```
 
-- `count`: 各パーティクルのライフサイクル数。
-- `duration`: 各サイクルの持続時間。
+- `count`: how many life cycles each particle has.
+- `duration`: how long each cycle lasts.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Life.md>
