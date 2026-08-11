@@ -1,8 +1,8 @@
-# 粒子
+# Particles
 
-`particles` 内のオプションは、パーティクルの外観と動きを制御します。
+Options inside `particles` control particle appearance and movement.
 
-## 最もよく使用されるグループ
+## Most-used groups
 
 - `particles.number`
 - `particles.move`
@@ -13,14 +13,14 @@
 - `particles.size`
 - `particles.opacity`
 
-詳細ページを参照してください:
+See detailed pages:
 
-- [`Particles Number`](/ja/options/particles-number)
-- [`Particles Move`](/ja/options/particles-move)
-- [`Particles Links`](/ja/options/particles-links)
-- [`Particles Palette`](/ja/options/particles-palette)
-- [`Particles Paint`](/ja/options/particles-paint)
-- [`Particles Shape`](/ja/options/particles-shape)
+- [`Particles Number`](/options/particles-number)
+- [`Particles Move`](/options/particles-move)
+- [`Particles Links`](/options/particles-links)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Paint`](/options/particles-paint)
+- [`Particles Shape`](/options/particles-shape)
 
 ## `particles.number`
 
@@ -36,8 +36,8 @@ particles: {
 }
 ```
 
-- `value`: 基本粒子数。
-- `density.enable`: カウントをコンテナーのサイズに適応させます。
+- `value`: base particle count.
+- `density.enable`: adapts count to the container size.
 
 ## `particles.move`
 
@@ -52,8 +52,8 @@ move: {
 }
 ```
 
-- `speed`: 知覚される移動速度。
-- `outModes.default`: エッジ動作 (`out`、`bounce`、...)。
+- `speed`: perceived movement speed.
+- `outModes.default`: edge behavior (`out`, `bounce`, ...).
 
 ## `particles.links`
 
@@ -66,7 +66,7 @@ links: {
 }
 ```
 
-パーティクル間のリンクを有効にし、「ネットワーク」ヒーロー セクションに役立ちます。
+Enables links between particles, useful for "network" hero sections.
 
 ## `particles.palette`
 
@@ -74,12 +74,12 @@ links: {
 palette: "sunset";
 ```
 
-- 登録されたパレット ID から色とブレンドのデフォルトをインポートします。
-- パレットに応じて `paint.fill` または `paint.stroke` を自動的に設定します。
-- マルチバリアント パレットでは、`paint` がバリアントの配列としてロードされます。
-- 色の雰囲気をすばやく交換したい場合は、プリセットやデモを使用すると便利です。
+- Imports colors and blend defaults from a registered palette id.
+- Populates `paint.fill` or `paint.stroke` automatically depending on the palette.
+- With multi-variant palettes, `paint` is loaded as an array of variants.
+- Useful with presets and demos when you want to swap color mood quickly.
 
-## `particles.shape`、`size`、`opacity`
+## `particles.shape`, `size`, `opacity`
 
 ```ts
 shape: {
@@ -96,11 +96,11 @@ opacity: {
 }
 ```
 
-- `shape.type`: 単一のタイプまたはタイプのリスト。
-- `size.value`: 自然な変動の推奨範囲。
-- `opacity.value`: 平均的な透明度。
+- `shape.type`: single type or list of types.
+- `size.value`: recommended range for natural variation.
+- `opacity.value`: average transparency.
 
-## 次に確認する高度なグループ
+## Advanced groups to check next
 
 - `particles.collisions`
 - `particles.life`
@@ -111,29 +111,29 @@ opacity: {
 - `particles.twinkle`
 - `particles.wobble`
 
-詳細ページ:
+Detailed pages:
 
-- [`Particles Bounce`](/ja/options/particles-bounce)
-- [`Particles Paint`](/ja/options/particles-paint)
-- [`Particles Destroy`](/ja/options/particles-destroy)
-- [`Particles Group`](/ja/options/particles-group)
-- [`Particles Collisions`](/ja/options/particles-collisions)
-- [`Particles Life`](/ja/options/particles-life)
-- [`Particles Palette`](/ja/options/particles-palette)
-- [`Particles Opacity`](/ja/options/particles-opacity)
-- [`Particles Orbit`](/ja/options/particles-orbit)
-- [`Particles Repulse`](/ja/options/particles-repulse)
-- [`Particles Roll`](/ja/options/particles-roll)
-- [`Particles Rotate`](/ja/options/particles-rotate)
-- [`Particles Shadow`](/ja/options/particles-shadow)
-- [`Particles Size`](/ja/options/particles-size)
-- [`Particles Tilt`](/ja/options/particles-tilt)
-- [`Particles Twinkle`](/ja/options/particles-twinkle)
-- [`Particles Wobble`](/ja/options/particles-wobble)
-- [`Particles ZIndex`](/ja/options/particles-zindex)
-- [`Particles Move`](/ja/options/particles-move)
-- [`Particles Number`](/ja/options/particles-number)
-- [`Particles Links`](/ja/options/particles-links)
-- [`Particles Shape`](/ja/options/particles-shape)
+- [`Particles Bounce`](/options/particles-bounce)
+- [`Particles Paint`](/options/particles-paint)
+- [`Particles Destroy`](/options/particles-destroy)
+- [`Particles Group`](/options/particles-group)
+- [`Particles Collisions`](/options/particles-collisions)
+- [`Particles Life`](/options/particles-life)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Opacity`](/options/particles-opacity)
+- [`Particles Orbit`](/options/particles-orbit)
+- [`Particles Repulse`](/options/particles-repulse)
+- [`Particles Roll`](/options/particles-roll)
+- [`Particles Rotate`](/options/particles-rotate)
+- [`Particles Shadow`](/options/particles-shadow)
+- [`Particles Size`](/options/particles-size)
+- [`Particles Tilt`](/options/particles-tilt)
+- [`Particles Twinkle`](/options/particles-twinkle)
+- [`Particles Wobble`](/options/particles-wobble)
+- [`Particles ZIndex`](/options/particles-zindex)
+- [`Particles Move`](/options/particles-move)
+- [`Particles Number`](/options/particles-number)
+- [`Particles Links`](/options/particles-links)
+- [`Particles Shape`](/options/particles-shape)
 
-ソースページ: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
+Source pages: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
