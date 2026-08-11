@@ -1,8 +1,8 @@
-# Опция плагина: Эмиттеры
+# Plugin Option: Emitters
 
-`emitters` динамически порождает частицы и управляется плагином.
+`emitters` spawns particles dynamically and is plugin-driven.
 
-## Пример
+## Example
 
 ```ts
 emitters: {
@@ -17,11 +17,11 @@ emitters: {
 }
 ```
 
-## Примечания
+## Notes
 
-- Отлично подходит для взрывных эффектов и динамической генерации частиц.
-- Поддерживайте баланс выбросов, чтобы избежать скачков производительности.
+- Great for burst effects and dynamic particle generation.
+- Keep emission rates balanced to avoid performance spikes.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Emitters.md>
