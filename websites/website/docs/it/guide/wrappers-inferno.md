@@ -1,29 +1,29 @@
-# Involucro: @tsparticles/inferno
+# Wrapper: @tsparticles/inferno
 
-Wrapper ufficiale di Inferno per `tsParticles`.
+Official Inferno wrapper for `tsParticles`.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/inferno @tsparticles/engine @tsparticles/slim
 ```
 
-## Flusso di configurazione rapido
+## Quick setup flow
 
-1. Installa wrapper + `@tsparticles/engine` + pacchetto caricatore.
-2. Carica le funzionalità una volta nell'app init.
-3. Renderizzare il componente Inferno con le opzioni digitate.
+1. Install wrapper + `@tsparticles/engine` + loader package.
+2. Load features once in app init.
+3. Render the Inferno component with typed options.
 
-## Riferimenti a Monorepo
+## Monorepo references
 
-- Cartella del pacchetto: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno>
-- Applicazione dimostrativa: <https://github.com/tsparticles/tsparticles/tree/main/demo/inferno>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/inferno>
 
-## Leggimi
+## Readme
 
-- LEGGIMI wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme>
 
-## Documenti correlati
+## Related docs
 
-- [`/guide/wrappers`](/it/guide/wrappers)
-- [`/guide/frameworks`](/it/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
