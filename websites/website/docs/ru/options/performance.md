@@ -1,8 +1,8 @@
-# Руководство по производительности
+# Performance Guide
 
-Вот основные рычаги, позволяющие избежать падения FPS.
+Here are the main levers to avoid FPS drops.
 
-## 1) Количество частиц
+## 1. Particle count
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Меньше частиц = меньше вызовов отрисовки и меньше коллизий.
+Fewer particles = fewer draw calls and fewer collisions.
 
-## 2) Движение и ссылки
+## 2. Movement and links
 
-- Уменьшите `move.speed`, когда вам не нужен энергетический эффект.
-- Ограничьте `links.distance` и `links.opacity`.
-  - Избегайте сложных комбинаций (например, `links` + `collisions` + дополнительные эффекты) в полноэкранном режиме.
+- Reduce `move.speed` when you do not need an energetic effect.
+- Limit `links.distance` and `links.opacity`.
+- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
 
-## 3) Интерактивность
+## 3. Interactivity
 
-- Оставьте только несколько активных режимов.
-  - На мобильных устройствах рассмотрите возможность отключения режима наведения.
+- Keep only a few active modes.
+- On mobile, consider disabling hover mode.
 
-## 4) Сетчатка и изменение размера
+## 4. Retina and resize
 
 ```ts
 detectRetina: false;
 ```
 
-Полезно в контексте производительности или на более слабых устройствах.
+Useful in performance-first contexts or on weaker devices.
 
-## 5) Ручной контроль жизненного цикла
+## 5. Manual lifecycle control
 
-Для дорогих разделов используйте явные элементы управления:
+For expensive sections, use explicit controls:
 
-- `start` при нажатии пользователем
-- `stop`/`pause`, когда раздел не виден
-- `destroy` при удалении страницы/компонента
+- `start` on user click
+- `stop`/`pause` when the section is not visible
+- `destroy` on page/component teardown
