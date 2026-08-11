@@ -1,25 +1,25 @@
-# ビデオチュートリアル
+# Video Tutorials
 
-主要なプロジェクト リソースからの公式ビデオ リファレンスとビジュアル デモ。
+Official video references and visual demos from the main project resources.
 
-README ソースセクション: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
+README source section: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
 
-## ビデオハブ
+## Video hub
 
-- メインビデオページ: <https://particles.js.org/video.html>
+- Main video page: <https://particles.js.org/video.html>
 
-## 注目のデモ
+## Featured demos
 
-- パーティクルとしての文字: <https://particles.js.org/samples/#chars>
-- ポリゴンマスク: <https://particles.js.org/samples/#polygonMask>
-- アニメーションスター: <https://particles.js.org/samples/#nasa>
-- スクロールする星の上を飛ぶニャン猫: <https://particles.js.org/samples/#nyancat2>
-- 雪の粒子: <https://particles.js.org/samples/#snow>
-- 背景マスク パーティクル: <https://particles.js.org/samples/#background>
+- Characters as particles: <https://particles.js.org/samples/#chars>
+- Polygon mask: <https://particles.js.org/samples/#polygonMask>
+- Animated stars: <https://particles.js.org/samples/#nasa>
+- Nyan cat flying on scrolling stars: <https://particles.js.org/samples/#nyancat2>
+- Snow particles: <https://particles.js.org/samples/#snow>
+- Background mask particles: <https://particles.js.org/samples/#background>
 
-## 推奨される学習順序
+## Recommended learning order
 
-1. [`/guide/getting-started`](/ja/guide/getting-started) から開始します。
-2. スタック内の注目のサンプルを 1 つ再現します。
-3. [`/options/`](/ja/options/) に移動して、動作をカスタマイズします。
-4. カスタム機能には [`/guide/plugins-customization`](/ja/guide/plugins-customization) を使用します。
+1. Start from [`/guide/getting-started`](/guide/getting-started).
+2. Reproduce one featured sample in your stack.
+3. Move to [`/options/`](/options/) to customize behavior.
+4. Use [`/guide/plugins-customization`](/guide/plugins-customization) for custom features.
