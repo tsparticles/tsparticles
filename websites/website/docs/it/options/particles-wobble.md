@@ -1,8 +1,8 @@
-# Le particelle oscillano
+# Particles Wobble
 
-`particles.wobble` aggiunge movimento oscillatorio attorno al percorso di spostamento.
+`particles.wobble` adds oscillating motion around the move path.
 
-## Esempio
+## Example
 
 ```ts
 particles: {
@@ -17,6 +17,6 @@ particles: {
 }
 ```
 
-## Riferimento alla fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Wobble.md>
