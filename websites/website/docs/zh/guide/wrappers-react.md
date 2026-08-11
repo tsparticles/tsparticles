@@ -1,30 +1,30 @@
-# 包装：@tsparticles/react
+# Wrapper: @tsparticles/react
 
-`tsParticles` 的官方 React 包装器。
+Official React wrapper for `tsParticles`.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-## 快速设置流程
+## Quick setup flow
 
-1. 安装wrapper+engine+loader包。
-2. 将 `ParticlesProvider` 放置在应用根目录（例如 `main.tsx` 或 `layout.tsx`）——它只需在整个应用生命周期内渲染一次。
-3. 使用 `ParticlesProvider` 和 `loadSlim` 初始化一次。
-4. 使用类型化选项渲染 `Particles` 组件。
+1. Install wrapper + engine + loader package.
+2. Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`) — it must be rendered only once for the entire app lifecycle.
+3. Initialize once with `ParticlesProvider` and `loadSlim`.
+4. Render `Particles` component with typed options.
 
-## Monorepo 参考资料
+## Monorepo references
 
-- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
-- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/react>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
 
-## 自述文件
+## Readme
 
-- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
 
-## 相关文档
+## Related docs
 
-- [`/guide/wrappers`](/zh/guide/wrappers)
-- [`/guide/frameworks`](/zh/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
