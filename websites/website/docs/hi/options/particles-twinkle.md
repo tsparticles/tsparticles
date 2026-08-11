@@ -1,8 +1,8 @@
-# कण टिमटिमाते हैं
+# Particles Twinkle
 
-`particles.twinkle` चमक-जैसा चमकीला प्रभाव जोड़ता है।
+`particles.twinkle` adds sparkle-like blinking effects.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -19,11 +19,11 @@ particles: {
 }
 ```
 
-## व्यावहारिक मार्गदर्शन
+## Practical guidance
 
-- सूक्ष्म प्रभावों के लिए कम `frequency` से प्रारंभ करें।
-- बेहतर दृश्यता के लिए गहरे रंग की पृष्ठभूमि के साथ संयोजन करें।
+- Start with low `frequency` for subtle effects.
+- Combine with dark backgrounds for better visibility.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Twinkle.md>
