@@ -1,8 +1,8 @@
-パーティクルの移動数
+# Particles Move
 
-`particles.move` は、方向、速度、キャンバス外の動作を定義します。
+`particles.move` defines direction, speed, and out-of-canvas behavior.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-- `enable`: 移動をオンにします。
-- `speed`: 主に知覚される動きの強度。
-- `direction`: 固定方向または自由移動。
-- `outModes`: キャンバス境界での動作。
+- `enable`: turns movement on.
+- `speed`: primary perceived motion intensity.
+- `direction`: fixed direction or free movement.
+- `outModes`: behavior at canvas bounds.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Move.md>
