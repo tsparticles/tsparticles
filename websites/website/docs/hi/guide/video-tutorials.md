@@ -1,25 +1,25 @@
-# वीडियो ट्यूटोरियल
+# Video Tutorials
 
-मुख्य परियोजना संसाधनों से आधिकारिक वीडियो संदर्भ और दृश्य डेमो।
+Official video references and visual demos from the main project resources.
 
-README स्रोत अनुभाग: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
+README source section: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
 
-## वीडियो हब
+## Video hub
 
-- मुख्य वीडियो पेज: <https://particles.js.org/video.html>
+- Main video page: <https://particles.js.org/video.html>
 
-## विशेष रुप से प्रदर्शित डेमो
+## Featured demos
 
-- कणों के रूप में वर्ण: <https://particles.js.org/samples/#chars>
-- बहुभुज मुखौटा: <https://particles.js.org/samples/#polygonMask>
-- एनिमेटेड सितारे: <https://particles.js.org/samples/#nasa>
-- न्यान बिल्ली स्क्रॉल सितारों पर उड़ रही है: <https://particles.js.org/samples/#nyancat2>
-- बर्फ के कण: <https://particles.js.org/samples/#snow>
-- पृष्ठभूमि मुखौटा कण: <https://particles.js.org/samples/#background>
+- Characters as particles: <https://particles.js.org/samples/#chars>
+- Polygon mask: <https://particles.js.org/samples/#polygonMask>
+- Animated stars: <https://particles.js.org/samples/#nasa>
+- Nyan cat flying on scrolling stars: <https://particles.js.org/samples/#nyancat2>
+- Snow particles: <https://particles.js.org/samples/#snow>
+- Background mask particles: <https://particles.js.org/samples/#background>
 
-## अनुशंसित सीखने का क्रम
+## Recommended learning order
 
-1. [`/guide/getting-started`](/hi/guide/getting-started) से प्रारंभ करें।
-2. अपने स्टैक में एक विशेष नमूना पुन: प्रस्तुत करें।
-3. व्यवहार को अनुकूलित करने के लिए [`/options/`](/hi/options/) पर जाएं।
-4. कस्टम सुविधाओं के लिए [`/guide/plugins-customization`](/hi/guide/plugins-customization) का उपयोग करें।
+1. Start from [`/guide/getting-started`](/guide/getting-started).
+2. Reproduce one featured sample in your stack.
+3. Move to [`/options/`](/options/) to customize behavior.
+4. Use [`/guide/plugins-customization`](/guide/plugins-customization) for custom features.
