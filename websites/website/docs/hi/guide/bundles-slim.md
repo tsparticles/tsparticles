@@ -1,14 +1,14 @@
 # Bundle: Slim
 
-`@tsparticles/slim` अधिकांश प्रोजेक्ट्स के लिए अनुशंसित बंडल है। इसमें माउस इंटरैक्शन, कई शेप और कण लिंक के साथ आधुनिक कण एनिमेशन के लिए आवश्यक सब कुछ शामिल है।
+`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
 
-## शामिल सुविधाएँ
+## Included features
 
-`@tsparticles/basic` से सब कुछ इनहेरिट करता है, साथ ही:
+Inherits everything from `@tsparticles/basic` plus:
 
-**शेप:** circle, square, star, polygon, line, image, emoji
+**Shapes:** circle, square, star, polygon, line, image, emoji
 
-**बाहरी इंटरैक्शन (माउस/टच):**
+**External interactions (mouse/touch):**
 
 - attract
 - bounce
@@ -23,32 +23,32 @@
 - repulse
 - slow
 
-**कण इंटरैक्शन:**
+**Particle interactions:**
 
 - attract
 - collisions
-- links (कण कनेक्शन)
+- links (particle connections)
 
-**अतिरिक्त अपडेटर:**
+**Additional updaters:**
 
-- life (जीवनचक्र)
+- life (lifecycle)
 - rotate
 
-**प्लगइन:**
+**Plugins:**
 
 - interactivity
 - easing-quad
-- HEX, HSL, RGB रंग प्लगइन
+- HEX, HSL, RGB color plugins
 
-## कब उपयोग करें
+## When to use
 
-- अधिकांश प्रोजेक्ट्स के लिए अनुशंसित शुरुआती बिंदु
-- कई शेप (सर्कल, स्टार, पॉलीगॉन, इमेज) की आवश्यकता
-- माउस इंटरैक्शन (क्लिक, होवर, बबल, रिपल्स) की आवश्यकता
-- कण लिंक की आवश्यकता
-- बंडल आकार और सुविधाओं के बीच अच्छा संतुलन
+- Recommended starting point for most projects
+- Need multiple shapes (circles, stars, polygons, images)
+- Need mouse interactions (click, hover, bubble, repulse)
+- Need particle links
+- Good balance between bundle size and features
 
-## इंस्टॉलेशन
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script टैग)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## सामान्य गलतियाँ
+## Common mistakes
 
-- `loadSlim(tsParticles)` से पहले `tsParticles.load()` कॉल करना।
-- इंजन और बंडल के बीच अलग-अलग संस्करण मिलाना — उन्हें संरेखित रखें।
-- उच्च बंडलों (एमिटर, एब्ज़ॉर्बर, टेक्स्ट, वॉबल) की सुविधाओं की अपेक्षा — `tsparticles` (full) या व्यक्तिगत प्लगइन की आवश्यकता है।
+- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
+- Mixing different versions between engine and bundle — keep them aligned.
+- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
 
-## यह भी देखें
+## See also
 
-- [बंडल अवलोकन](/hi/guide/bundles)
-- [इंस्टॉलेशन गाइड](/hi/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)
