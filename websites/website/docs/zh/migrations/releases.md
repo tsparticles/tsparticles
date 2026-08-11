@@ -1,26 +1,26 @@
-# 发布和版本控制
+# Releases and Versioning
 
-该项目现在从单个存储库发货：`tsparticles/tsparticles`。
+This project now ships from a single repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## 发布工作发生的地方
+## Where release work happens
 
-- Monorepo 根：<https://github.com/tsparticles/tsparticles>
-- 捆绑包：<https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- 引擎：<https://github.com/tsparticles/tsparticles/tree/main/engine>
-- 包装器：<https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- 预设：<https://github.com/tsparticles/tsparticles/tree/main/presets>
-- 调色板：<https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Monorepo root: <https://github.com/tsparticles/tsparticles>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## 版本对齐规则
+## Version alignment rule
 
-- 使所有 `@tsparticles/*` 包与同一发布行对齐。
-- 避免在一个应用程序中混合不同的测试版或主要版本。
+- Keep all `@tsparticles/*` packages aligned to the same release line.
+- Avoid mixing different beta lines or major versions in one app.
 
-## 实用发布清单
+## Practical release checklist
 
-1. 验证工作区 `package.json` 文件中的目标包版本。
-2. 构建并测试受影响的项目。
-3. 验证文档链接和游乐场行为。
-4. 从 monorepo 发布流程发布。
+1. Verify target package versions in workspace `package.json` files.
+2. Build and test affected projects.
+3. Validate docs links and playground behavior.
+4. Publish from the monorepo release flow.
