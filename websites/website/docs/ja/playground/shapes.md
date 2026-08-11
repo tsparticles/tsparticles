@@ -1,5 +1,5 @@
-# プレイグラウンドの形状
+# Playground Shapes
 
-このページでは `shape.type` の値を個別に確認できます。形状ごとに分かりやすい設定を用意し、利用可能な場合は `shape.options` も明示しています。
+Use this page to explore particle `shape.type` values in isolation, with one focused config per shape and explicit `shape.options` when the shape supports them.
 
 <PlaygroundPanel mode="shapes"></PlaygroundPanel>
