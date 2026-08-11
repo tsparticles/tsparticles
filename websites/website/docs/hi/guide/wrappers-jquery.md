@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/jquery
+# Wrapper: @tsparticles/jquery
 
-`tsParticles` के लिए आधिकारिक jQuery प्लगइन रैपर।
+Official jQuery plugin wrapper for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/jquery @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. पैकेज स्थापित करें और इसे अपने jQuery सेटअप में लोड करें।
-2. आवश्यकतानुसार स्लिम/ऑल का उपयोग करके एक बार सुविधाओं को आरंभ करें।
-3. विकल्पों के साथ लक्ष्य तत्व पर प्लगइन लागू करें।
+1. Install package and load it in your jQuery setup.
+2. Initialize features once using slim/all as needed.
+3. Apply plugin on target element with options.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
