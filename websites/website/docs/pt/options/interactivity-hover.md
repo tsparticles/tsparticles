@@ -1,8 +1,8 @@
-# Hover Interatividade
+# Interactivity Hover
 
-`interactivity.events.onHover` controla as reações ao passar o ponteiro.
+`interactivity.events.onHover` controls pointer-hover reactions.
 
-## Exemplo
+## Example
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## Orientação prática
+## Practical guidance
 
-- Os efeitos de foco são mais caros em cenas densas.
-- No celular, considere desativar os modos de foco intenso.
+- Hover effects are more expensive on dense scenes.
+- On mobile, consider disabling hover-heavy modes.
 
-## Referência da fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
