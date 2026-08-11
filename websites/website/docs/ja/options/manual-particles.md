@@ -1,8 +1,8 @@
-# 手動パーティクル
+# Manual Particles
 
-`manualParticles` は、固定位置に明示的なパーティクルを追加します。
+`manualParticles` adds explicit particles at fixed positions.
 
-## 例
+## Example
 
 ```ts
 manualParticles: [
@@ -26,12 +26,12 @@ manualParticles: [
 ];
 ```
 
-## いつ使用するか
+## When to use it
 
-- アンカー付き視覚マーカー。
-- 固定パーティクルと動的パーティクルを混合したハイブリッド エフェクト。
-- デモまたはチュートリアルでの初期状態の制御。
+- Anchored visual markers.
+- Hybrid effects mixing fixed and dynamic particles.
+- Controlled initial states in demos or tutorials.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/ManualParticles.md>
