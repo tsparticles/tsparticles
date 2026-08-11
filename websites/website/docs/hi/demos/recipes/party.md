@@ -1,14 +1,14 @@
-# पार्टी प्रीसेट
+# Party Preset
 
-`presets/presets/party` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/party` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-party
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-उत्सव के दृश्यों, आयोजनों और पार्टी-थीम वाले ओवरले के लिए बिल्कुल सही।
+Perfect for celebration scenes, events, and party-themed overlays.
 
-डेमो: <https://particles.js.org/demos/recipes/party>
+Demo: <https://particles.js.org/demos/recipes/party>

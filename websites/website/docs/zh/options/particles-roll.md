@@ -1,8 +1,8 @@
-# 粒子滚动
+# Particles Roll
 
-`particles.roll` 应用滚动行为并可以创建类似深度的视觉运动。
+`particles.roll` applies rolling behavior and can create depth-like visual motion.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## 实用指导
+## Practical guidance
 
-- 首先以中等速度使用。
-- 与 `tilt` 和 `rotate` 仔细结合以提高可读性。
+- Use with moderate speed first.
+- Combine carefully with `tilt` and `rotate` for readability.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Roll.md>

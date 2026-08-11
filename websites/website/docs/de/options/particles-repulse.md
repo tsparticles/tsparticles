@@ -1,8 +1,8 @@
-# Partikel stoßen ab
+# Particles Repulse
 
-`particles.repulse` steuert das Abstoßungsverhalten bei Partikel-zu-Partikel-Wechselwirkungen.
+`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
 
-## Beispiel
+## Example
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## Praktische Anleitung
+## Practical guidance
 
-- Halten Sie moderate Abstände ein, um abrupte Bewegungssprünge zu vermeiden.
-  - Stimmen Sie zusammen mit `interactivity.modes.repulse` ab, wenn beide aktiv sind.
+- Use moderate distances to avoid abrupt motion jumps.
+- Tune together with `interactivity.modes.repulse` when both are active.
 
-## Quellenangabe
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>

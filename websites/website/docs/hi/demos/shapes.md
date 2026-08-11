@@ -1,29 +1,111 @@
-# शेप कैटलॉग
+# Shapes Catalog
 
-यह कैटलॉग `particles.shape.type` के सबसे सामान्य मान दिखाता है और बताता है कि कब `particles.shape.options` शेप-विशिष्ट नियंत्रण जोड़ता है।
+This catalog lists the common `particles.shape.type` values and the related `particles.shape.options.<type>` customization keys used in v4.
 
-स्रोत फोल्डर:
+Source folders:
 
 - <https://github.com/tsparticles/tsparticles/tree/main/shapes>
-- शेप विकल्प संदर्भ: [`/options/particles-shape`](/hi/options/particles-shape)
+- Shape options reference: [`/options/particles-shape`](/options/particles-shape)
 
-## सामान्य शेप प्रकार
+## Common shape types and option keys
 
-- `circle` (डिफॉल्ट, कोई अतिरिक्त शेप विकल्प नहीं)
-- `square` / `edge` (कोई अतिरिक्त शेप विकल्प नहीं)
-- `triangle` (कोई अतिरिक्त शेप विकल्प नहीं)
-- `line` (कोई अतिरिक्त शेप विकल्प नहीं)
-- `polygon` (`options.polygon.sides`)
-- `star` (`options.star.sides`, `options.star.inset`)
+- `circle` (`options.circle.close`)
+- `square` / `edge` (`options.square.close`)
+- `triangle` (`options.triangle.close`)
+- `line` (`options.line.cap`, `options.line.close`)
+- `polygon` (`options.polygon.sides`, `options.polygon.close`)
+- `star` (`options.star.sides`, `options.star.inset`, `options.star.close`)
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
-- `emoji` (`options.emoji.value`)
+- `emoji` (`options.emoji.value`, `font`, `padding`, `close`)
 - `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `arrow` (`options.arrow.heightFactor`, `headWidthFactor`, `bodyHeightFactor`)
+- `cog` (`options.cog.notches`, `innerRadius`, `holeRadius`, `innerTaper`, `outerTaper`)
+- `rounded-rect` (`options.rounded-rect.radius`)
+- `rounded-polygon` (`options.rounded-polygon.sides`, `radius`)
+- `spiral` (`options.spiral.innerRadius`, `lineSpacing`, `widthFactor`, `close`)
+- `squircle` (`options.squircle.exponent`, `steps`)
+- `matrix` (`options.matrix.interval`)
+- `path` (`options.path.half`, `options.path.segments`)
+- `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
-## एलियास और बंडल नोट्स
+## Notes on aliases and bundles
 
-- `square` और `edge` एक ही शेप के एलियास हैं।
-- `character` और `char` एक ही विकल्प समूह के एलियास हैं।
-- `image` और `images` एक ही विकल्प ऑब्जेक्ट का उपयोग करते हैं।
-- अधिकांश उन्नत शेप के लिए `@tsparticles/slim` (या `@tsparticles/all`) या समर्पित शेप पैकेज चाहिए।
+- `square` and `edge` are aliases for the same shape.
+- `text` is the dedicated text shape package in v4.
+- `image` and `images` use the same options object.
+- Most advanced shapes require `@tsparticles/slim` (or `@tsparticles/all`) or dedicated shape packages.
 
-Start/Pause कंट्रोल और संपादन योग्य JSON के साथ इन्हें जल्दी जांचने के लिए [`/playground/shapes`](/hi/playground/shapes) का उपयोग करें।
+## Quick usage examples
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
+
+### Text
+
+```ts
+particles: {
+  shape: {
+    type: "text",
+    options: {
+      text: {
+        value: ["TS", "DOCS"],
+        font: "Verdana",
+        weight: "700",
+        style: "",
+      },
+    },
+  },
+}
+```
+
+### Image
+
+```ts
+particles: {
+  shape: {
+    type: "image",
+    options: {
+      image: {
+        src: "https://particles.js.org/images/hdr/fruits/strawberry.png",
+        name: "strawberry",
+        width: 64,
+        height: 64,
+        gif: false,
+        replaceColor: false,
+      },
+    },
+  },
+}
+```
+
+To test these quickly with Start/Pause controls and editable JSON, use [`/playground/shapes`](/playground/shapes).

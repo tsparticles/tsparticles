@@ -1,17 +1,17 @@
-# 调色板目录
+# Palettes Catalog
 
-调色板来自 `palettes` 工作区并预加载在 Playground 中。
+Palettes come from the `palettes` workspace and are preloaded in the playground.
 
-排序遵循源结构：
+Ordering follows the source structure:
 
-- 第一级：类别顺序（基于调色板源文件夹）
-- 第二级：每个类别内的调色板顺序（按字母顺序排列）
+- first level: category order (based on palettes source folders)
+- second level: palette slug order inside each category (alphabetical)
 
-源文件夹：<https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## 可用的调色板组
+## Available palette groups
 
-## 氛围（12 个调色板）
+### Atmosphere (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## 大气（10 个调色板）
+### Atmospheric (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## 五彩纸屑（12 个调色板）
+### Confetti (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## 地球（7 个调色板）
+### Earth (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## 幻想（8 个调色板）
+### Fantasy (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## 火（8 个调色板）
+### Fire (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## 烟花（24 个调色板）
+### Fireworks (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## 影响力（7 个调色板）
+### Gaming (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,8 +130,9 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## 单色（14 个调色板）- `monochrome-blues`
+### Monochromatic (14 palettes)
 
+- `monochrome-blues`
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -139,7 +147,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## 自然（9 个调色板）
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -151,7 +159,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## 光学（7 个调色板）
+### Optics (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -161,7 +169,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## 粉彩（5 个调色板）
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -169,7 +177,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## 空间（10 个调色板）
+### Space (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -182,7 +190,7 @@
 - `solar-wind`
 - `supernova`
 
-## 光谱（10 个调色板）
+### Spectrum (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -195,7 +203,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## 科技（9 个调色板）
+### Tech (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -207,7 +215,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## 充满活力（5 个调色板）
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -215,7 +223,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## 水（8 盘）
+### Water (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -226,11 +234,11 @@
 - `water`
 - `water-splash`
 
-当前在 npm 上发布的所有调色板都包含在网站 Playground 预加载中。
+All palettes currently published on npm are included in the website playground preload.
 
-有些调色板可以在发布之前出现在 monorepo 中；一旦它们的软件包可用，它们将被添加到此处。
+Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
 
-## 快速使用
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -245,6 +253,6 @@ await tsParticles.load({
 });
 ```
 
-您可以将相同的 `palette` 与不同的预设组合起来以获得视觉变体，而无需重写其余选项。
+You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
 
-使用 [`/playground/palettes`](/zh/playground/palettes) 通过显式开始/暂停控件来测试它们。
+Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.

@@ -1,14 +1,14 @@
-# हाइपरस्पेस प्रीसेट
+# Hyperspace Preset
 
-कार्यस्थान `presets/presets/hyperspace` के लिए पूर्व निर्धारित अधिकारी।
+Preset ufficiale dal workspace `presets/presets/hyperspace`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-hyperspace
 ```
 
-## उपयोग के लिए तैयार (स्टार्ट/स्टॉप मैनुअल)
+## Ready-to-use (start/stop manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-ओटिमो प्रति सेज़ियोनी वाह-इफ़ेक्ट और इंट्रो प्रोडोटो।
+Ottimo per sezioni wow-effect e intro prodotto.
 
-डेमो: <https://particles.js.org/demos/recipes/hyperspace>
+Demo: <https://particles.js.org/demos/recipes/hyperspace>

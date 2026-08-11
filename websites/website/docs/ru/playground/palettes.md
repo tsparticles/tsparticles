@@ -1,5 +1,5 @@
-# Палитры игровых площадок
+# Playground Palettes
 
-Используйте эту страницу для тестирования демонстрационных версий только палитр, загруженных из проекта пресетов.
+Use this page to test palette-only demos loaded from the presets project.
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>

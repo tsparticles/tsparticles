@@ -1,17 +1,17 @@
-# पैलेट्स कैटलॉग
+# Palettes Catalog
 
-पैलेट्स `palettes` कार्यक्षेत्र से आते हैं और खेल के मैदान में पहले से लोड किए जाते हैं।
+Palettes come from the `palettes` workspace and are preloaded in the playground.
 
-ऑर्डरिंग स्रोत संरचना का अनुसरण करती है:
+Ordering follows the source structure:
 
-- प्रथम स्तर: श्रेणी क्रम (पैलेट स्रोत फ़ोल्डरों के आधार पर)
-- दूसरा स्तर: प्रत्येक श्रेणी के अंदर पैलेट स्लग क्रम (वर्णमाला)
+- first level: category order (based on palettes source folders)
+- second level: palette slug order inside each category (alphabetical)
 
-स्रोत फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## उपलब्ध पैलेट समूह
+## Available palette groups
 
-## वातावरण (12 पैलेट्स)
+### Atmosphere (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## वायुमंडलीय (10 पैलेट)
+### Atmospheric (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## कंफ़ेद्दी (12 पैलेट)
+### Confetti (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## पृथ्वी (7 पैलेट)
+### Earth (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## फंतासी (8 पैलेट)
+### Fantasy (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## आग (8 पैलेट)
+### Fire (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## आतिशबाज़ी (24 पैलेट)
+### Fireworks (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## प्रभाव (7 पैलेट)
+### Gaming (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,10 +130,9 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## मोनोक्रोमैटिक (14 पैलेट्स)
+### Monochromatic (14 palettes)
 
 - `monochrome-blues`
-
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -141,7 +147,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## प्रकृति (9 पैलेट)
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +159,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## प्रकाशिकी (7 पैलेट)
+### Optics (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +169,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## पेस्टल (5 पैलेट)
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +177,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## स्पेस (10 पैलेट्स)
+### Space (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +190,7 @@
 - `solar-wind`
 - `supernova`
 
-## स्पेक्ट्रम (10 पैलेट)
+### Spectrum (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +203,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## टेक (9 पैलेट्स)
+### Tech (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +215,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## जीवंत (5 पैलेट)
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +223,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## पानी (8 पैलेट)
+### Water (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -228,11 +234,11 @@
 - `water`
 - `water-splash`
 
-एनपीएम पर वर्तमान में प्रकाशित सभी पैलेट वेबसाइट प्लेग्राउंड प्रीलोड में शामिल हैं।
+All palettes currently published on npm are included in the website playground preload.
 
-कुछ पैलेट प्रकाशन से पहले मोनोरेपो में दिखाई दे सकते हैं; जैसे ही उनके पैकेज उपलब्ध होंगे उन्हें यहां जोड़ दिया जाएगा।
+Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
 
-## त्वरित उपयोग
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -247,6 +253,6 @@ await tsParticles.load({
 });
 ```
 
-आप बाकी विकल्पों को दोबारा लिखे बिना विज़ुअल वेरिएंट प्राप्त करने के लिए समान `palette` को विभिन्न प्रीसेट के साथ जोड़ सकते हैं।
+You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
 
-स्पष्ट प्रारंभ/रोक नियंत्रणों के साथ उनका परीक्षण करने के लिए [`/playground/palettes`](/hi/playground/palettes) का उपयोग करें।
+Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.

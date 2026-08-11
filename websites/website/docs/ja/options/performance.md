@@ -1,8 +1,8 @@
-# パフォーマンスガイド
+# Performance Guide
 
-FPS の低下を回避するための主な手段は次のとおりです。
+Here are the main levers to avoid FPS drops.
 
-## 1) 粒子数
+## 1. Particle count
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-パーティクルが少ない = 描画コールと衝突が少なくなります。
+Fewer particles = fewer draw calls and fewer collisions.
 
-## 2) 動きとリンク
+## 2. Movement and links
 
-- エネルギー効果が必要ない場合は、`move.speed` を減らします。
-- `links.distance` および `links.opacity` を制限します。
-- フルスクリーンでは、負荷の高い組み合わせ (`links` + `collisions` + 高度な効果など) を避けてください。
+- Reduce `move.speed` when you do not need an energetic effect.
+- Limit `links.distance` and `links.opacity`.
+- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
 
-## 3) インタラクティブ性
+## 3. Interactivity
 
-- いくつかのアクティブなモードのみを保持します。
-- モバイルでは、ホバー モードを無効にすることを検討してください。
+- Keep only a few active modes.
+- On mobile, consider disabling hover mode.
 
-## 4) Retina とサイズ変更
+## 4. Retina and resize
 
 ```ts
 detectRetina: false;
 ```
 
-パフォーマンス最優先のコンテキストまたは性能の低いデバイスで役立ちます。
+Useful in performance-first contexts or on weaker devices.
 
-## 5) 手動ライフサイクル制御
+## 5. Manual lifecycle control
 
-高価なセクションの場合は、明示的なコントロールを使用します。
+For expensive sections, use explicit controls:
 
-- ユーザーのクリック時の `start`
-- `stop`/`pause` セクションが表示されていない場合
-- `destroy` ページ/コンポーネントの分解
+- `start` on user click
+- `stop`/`pause` when the section is not visible
+- `destroy` on page/component teardown

@@ -1,14 +1,14 @@
-# Пресет конфетти
+# Confetti Preset
 
-Официальный пресет из рабочей области `presets/presets/confetti`.
+Official preset from the `presets/presets/confetti` workspace.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Идеально подходит для торжеств, объявлений и праздничного дизайна. Для разнообразия сочетайте разные цветовые палитры.
+Perfect for celebrations, announcements, and festive designs. Combine with different color palettes for variety.
 
-Демо: <https://particles.js.org/demos/recipes/confetti>
+Demo: <https://particles.js.org/demos/recipes/confetti>

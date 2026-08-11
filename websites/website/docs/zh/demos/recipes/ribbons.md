@@ -1,16 +1,16 @@
-# Ribbons 捆绑包
+# Ribbons Bundle
 
-来自 `bundles/ribbons` 工作区的官方捆绑包。
+Official bundle from the `bundles/ribbons` workspace.
 
-网站：<https://ribbons.js.org>
+Live website: <https://ribbons.js.org>
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/ribbons
 ```
 
-## 即用型（全页）
+## Ready-to-use (full page)
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -21,7 +21,7 @@ await ribbons({
 });
 ```
 
-## 限定在特定 Canvas 中
+## Scoped to a specific canvas
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -37,21 +37,19 @@ const fire = await ribbons.create(canvas, {
 export function start(): Promise<Container | undefined> {
   return fire();
 }
-
 export function stop(): void {
   fire.pause();
 }
-
 export function resume(): void {
   fire.play();
 }
 ```
 
-非常适合装饰性流动背景、庆祝性瀑布和彩色动画轨迹。
+Perfect for decorative flowing backgrounds, celebratory cascades, and colorful animated trails.
 
-## 固定位置（单点）
+## Fixed position (single point)
 
-默认情况下，每个彩带粒子在画布整个宽度上的随机x位置生成。使用 `emitterSize` 控制生成区域 — 将其设置为 `{ width: 0, height: 0 }` 可使所有彩带从同一点开始：
+By default each ribbon particle spawns at a random x position across the full canvas width. Use `emitterSize` to control the spawn area — set it to `{ width: 0, height: 0 }` to make all ribbons start from the same point:
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -62,6 +60,6 @@ await ribbons({
 });
 ```
 
-这对于从按钮或页面上的特定元素触发彩带非常有用。
+This is useful for triggering ribbons from a button or a specific element on your page.
 
-演示： <https://particles.js.org/demos/recipes/ribbons>
+Demo: <https://particles.js.org/demos/recipes/ribbons>

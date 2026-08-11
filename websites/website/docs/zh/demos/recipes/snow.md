@@ -1,14 +1,14 @@
-# 雪预设
+# Snow Preset
 
-来自 `presets/presets/snow` 工作区的官方预设。
+Official preset from the `presets/presets/snow` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-snow
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-用于冬季促销的轻量级季节性预设。
+Lightweight seasonal preset for winter promotions.
 
-演示： <https://particles.js.org/demos/recipes/snow>
+Demo: <https://particles.js.org/demos/recipes/snow>

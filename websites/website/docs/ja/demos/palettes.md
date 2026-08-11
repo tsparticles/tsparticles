@@ -1,17 +1,17 @@
-# パレットカタログ
+# Palettes Catalog
 
-パレットは `palettes` ワークスペースから取得され、プレイグラウンドにプリロードされます。
+Palettes come from the `palettes` workspace and are preloaded in the playground.
 
-順序付けはソース構造に従います。
+Ordering follows the source structure:
 
-- 最初のレベル: カテゴリの順序 (パレットのソース フォルダーに基づく)
-- 第 2 レベル: 各カテゴリ内のパレット スラグの順序 (アルファベット順)
+- first level: category order (based on palettes source folders)
+- second level: palette slug order inside each category (alphabetical)
 
-ソースフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## 使用可能なパレット グループ
+## Available palette groups
 
-## アトモスフィア (12 パレット)
+### Atmosphere (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## 大気 (10 パレット)
+### Atmospheric (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## コンフェッティ (12 パレット)
+### Confetti (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## アース (7 パレット)
+### Earth (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## ファンタジー (8 パレット)
+### Fantasy (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## 火 (8 パレット)
+### Fire (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## 花火 (24 パレット)
+### Fireworks (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## インパクト (7 パレット)
+### Gaming (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,10 +130,9 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## モノクロ (14 パレット)
+### Monochromatic (14 palettes)
 
 - `monochrome-blues`
-
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -141,7 +147,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## ネイチャー (9 パレット)
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +159,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## 光学系 (7 パレット)
+### Optics (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +169,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## パステル (5 パレット)
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +177,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## スペース (10 パレット)
+### Space (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +190,7 @@
 - `solar-wind`
 - `supernova`
 
-## スペクトル (10 パレット)
+### Spectrum (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +203,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## テック (9 パレット)
+### Tech (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +215,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## 鮮やか (5 パレット)
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +223,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## 水 (8パレット)
+### Water (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -228,11 +234,11 @@
 - `water`
 - `water-splash`
 
-現在 npm で公開されているすべてのパレットは、Web サイトのプレイグラウンド プリロードに含まれています。
+All palettes currently published on npm are included in the website playground preload.
 
-一部のパレットは公開前にモノリポジトリに表示されることがあります。これらは、パッケージが利用可能になり次第、ここに追加されます。
+Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
 
-## 簡単な使い方
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -247,6 +253,6 @@ await tsParticles.load({
 });
 ```
 
-残りのオプションを書き換えることなく、同じ `palette` を異なるプリセットと組み合わせて、視覚的なバリアントを取得できます。
+You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
 
-[`/playground/palettes`](/ja/playground/palettes) を使用して、明示的な開始/一時停止コントロールでテストします。
+Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.

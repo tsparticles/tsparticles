@@ -1,36 +1,39 @@
-# Политика использования файлов cookie
+# Cookie Policy
 
-Этот веб-сайт использует небольшой набор файлов cookie и сторонние технологии, чтобы документы оставались полезными и устойчивыми.
+This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
 
-## Что мы используем
+## What we use
 
-- **Основные файлы cookie**: необходимы для технического поведения и навигации.
-- **Аналитические файлы cookie** (Google Analytics): используются для понимания моделей использования трафика и документации.
-- **Рекламные файлы cookie** (Google AdSense): используются для измерения эффективности рекламной кампании и показа рекламы.
+- **Essential cookies**: required for technical behavior and navigation.
+- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
+- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
 
-Переменные среды, настроенные в данный момент в этом проекте:
+Environment variables currently configured in this project:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
+- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
+- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## Как работает согласие
+## How consent works
 
-- Отслеживающие файлы cookie отключены до тех пор, пока вы явно не нажмете **Принять** на баннере файлов cookie.
-  - Если вы нажмете **Отклонить**, аналитика и отслеживание рекламы останутся отключенными.
-- Ваш выбор сохраняется локально в вашем браузере.
+- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
+- You can reject all, accept all, or save granular choices for analytics and advertising.
+- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
+- When you reject ads, AdSense can run as non-personalized ads if configured.
+- Your choice is saved locally in your browser.
 
-## Как изменить свой выбор
+## How to change your choice
 
-Если вы хотите изменить свое согласие после выбора, очистите локальное хранилище и файлы cookie этого сайта в настройках браузера и перезагрузите страницу.
+If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
 
-## Соответствующая политика
+## Related policy
 
-- [`/privacy-policy`](/ru/privacy-policy)
+- [`/privacy-policy`](/privacy-policy)
 
-## Контроллеры и процессоры данных
+## Data controllers and processors
 
-- Владелец веб-сайта: `@tsparticles/website` сопровождающие.
+- Website owner: `@tsparticles/website` maintainers
+- Third-party services: Google Analytics and Google AdSense
 
-- Сторонние сервисы: Google Analytics и Google AdSense.
-
-Для запросов юридического характера/конфиденциальности используйте каналы поддержки, перечисленные в репозитории проекта.
+For legal/privacy requests, please use the support channels listed in the project repository.

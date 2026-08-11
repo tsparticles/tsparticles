@@ -1,24 +1,35 @@
-# Option-Rename-Matrix
+# Option Rename Matrix
 
-Schnellreferenz fuer die haeufigsten Umbenennungen waehrend Migrationen.
+Use this page as a fast lookup when migrating configs across major versions.
 
-## tsParticles
+## Core tsParticles option mappings
 
-| Legacy-Key         | Aktueller Key            | Hinweise                                       |
-| ------------------ | ------------------------ | ---------------------------------------------- |
-| `particles.color`  | `particles.paint.fill`   | Hauptfarbe wurde nach `paint.fill` verschoben. |
-| `particles.stroke` | `particles.paint.stroke` | Stroke wurde nach `paint.stroke` verschoben.   |
+| Legacy key         | Current key              | Notes                                                     |
+| ------------------ | ------------------------ | --------------------------------------------------------- |
+| `particles.color`  | `particles.paint.fill`   | Main color path moved under `paint.fill`. |
+| `particles.stroke` | `particles.paint.stroke` | Stroke path moved under `paint.stroke`.   |
 
-## particles.js legacy
+## Legacy particles.js compatibility mappings
 
-| particles.js-Key | Aktueller Key  | Hinweise                         |
-| ---------------- | -------------- | -------------------------------- |
-| `line_linked`    | `links`        | Auf modernen Key-Stil umbenannt. |
-| `retina_detect`  | `detectRetina` | Von snake_case auf camelCase.    |
+These mappings are useful if your config still comes from old particles.js JSON.
 
-## Load API
+| particles.js key | Current key    | Notes                                                      |
+| -------------------------------- | -------------- | ---------------------------------------------------------- |
+| `line_linked`                    | `links`        | Same concept, renamed to modern key style. |
+| `retina_detect`                  | `detectRetina` | Snake case to camel case.                  |
 
-| Legacy-API                        | Aktuelle API                              |
+## Load API migration quick map
+
+This is not an option key rename, but it is one of the most common migration breakages.
+
+| Legacy API                        | Current API                               |
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## See also
+
+- [`/migrations/from-v3`](/migrations/from-v3)
+- [`/migrations/from-v2`](/migrations/from-v2)
+- [`/migrations/from-v1`](/migrations/from-v1)
+- [`/migrations/particles-js`](/migrations/particles-js)

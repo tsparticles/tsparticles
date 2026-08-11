@@ -1,14 +1,14 @@
-# Préréglage de fête
+# Party Preset
 
-Préréglage officiel de l'espace de travail `presets/presets/party`.
+Official preset from the `presets/presets/party` workspace.
 
-## Installer
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-party
 ```
 
-## Prêt à l'emploi (démarrage/arrêt manuel)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Parfait pour les scènes de célébration, les événements et les superpositions à thème festif.
+Perfect for celebration scenes, events, and party-themed overlays.
 
-Démo : <https://particles.js.org/demos/recipes/party>
+Demo: <https://particles.js.org/demos/recipes/party>

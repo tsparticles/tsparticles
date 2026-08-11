@@ -1,17 +1,17 @@
-# Каталог палитр
+# Palettes Catalog
 
-Палитры берутся из рабочей области `palettes` и предварительно загружаются в игровую площадку.
+Palettes come from the `palettes` workspace and are preloaded in the playground.
 
-Порядок соответствует исходной структуре:
+Ordering follows the source structure:
 
-- первый уровень: порядок категорий (на основе исходных папок палитр)
-- второй уровень: порядок фрагментов палитры внутри каждой категории (в алфавитном порядке).
+- first level: category order (based on palettes source folders)
+- second level: palette slug order inside each category (alphabetical)
 
-Исходная папка: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Доступные группы палитр
+## Available palette groups
 
-## Атмосфера (12 палитр)
+### Atmosphere (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## Атмосферный (10 палитр)
+### Atmospheric (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## Конфетти (12 палитр)
+### Confetti (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Земля (7 палитр)
+### Earth (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Фэнтези (8 палитр)
+### Fantasy (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Огонь (8 палитр)
+### Fire (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## Фейерверк (24 палитры)
+### Fireworks (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Импакт (7 палитр)
+### Gaming (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,10 +130,9 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## Монохроматический (14 палитр)
+### Monochromatic (14 palettes)
 
 - `monochrome-blues`
-
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -141,7 +147,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Природа (9 палитр)
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +159,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## Оптика (7 палитр)
+### Optics (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +169,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Пастель (5 палитр)
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +177,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## Пространство (10 палитр)
+### Space (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +190,7 @@
 - `solar-wind`
 - `supernova`
 
-## Спектр (10 палитр)
+### Spectrum (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +203,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## Тех (9 палитр)
+### Tech (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +215,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## Яркий (5 палитр)
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +223,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Вода (8 палитр)
+### Water (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -228,11 +234,11 @@
 - `water`
 - `water-splash`
 
-Все палитры, опубликованные в настоящее время на npm, включены в предварительную загрузку игровой площадки веб-сайта.
+All palettes currently published on npm are included in the website playground preload.
 
-Некоторые палитры могут появиться в монорепозитории до публикации; они будут добавлены сюда, как только их пакеты станут доступны.
+Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
 
-## Быстрое использование
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -247,6 +253,6 @@ await tsParticles.load({
 });
 ```
 
-Вы можете комбинировать один и тот же `palette` с разными пресетами, чтобы получить визуальные варианты, не переписывая остальные параметры.
+You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
 
-Используйте [`/playground/palettes`](/ru/playground/palettes), чтобы протестировать их с явными элементами управления «Пуск/Пауза».
+Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.

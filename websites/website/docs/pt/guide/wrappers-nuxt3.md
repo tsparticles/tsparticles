@@ -1,29 +1,29 @@
-# Invólucro: @tsparticles/nuxt3
+# Wrapper: @tsparticles/nuxt3
 
-Wrapper oficial do módulo Nuxt 3 para `tsParticles`.
+Official Nuxt 3 module wrapper for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/nuxt3 @tsparticles/engine @tsparticles/slim
 ```
 
-## Fluxo de configuração rápida
+## Quick setup flow
 
-1. Instale módulo + motor + carregador selecionado.
-2. Registre o módulo/plugin com renderização do lado do cliente.
-3. Configure opções na configuração de componente ou composição.
+1. Install module + engine + selected loader.
+2. Register module/plugin with client-side rendering.
+3. Configure options in component or composable setup.
 
-## Referências Monorepo
+## Monorepo references
 
-- Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
-- Aplicativo de demonstração: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
 
-## Leia-me
+## Readme
 
-- LEIA-ME do wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/pt/guide/wrappers)
-- [`/guide/frameworks`](/pt/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

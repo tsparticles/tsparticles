@@ -1,14 +1,14 @@
-# सी एनीमोन प्रीसेट
+# Sea Anemone Preset
 
-`presets/presets/seaAnemone` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/seaAnemone` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-जैविक, बहते पानी के नीचे-प्रेरित एनिमेशन के लिए बिल्कुल सही।
+Perfect for organic, flowing underwater-inspired animations.
 
-डेमो: <https://particles.js.org/demos/recipes/sea-anemone>
+Demo: <https://particles.js.org/demos/recipes/sea-anemone>

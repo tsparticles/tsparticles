@@ -1,5 +1,5 @@
-# 游乐场预设
+# Playground Presets
 
-使用此页面进行基于预设的官方演示。
+Use this page for official preset-based demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

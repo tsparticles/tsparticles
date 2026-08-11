@@ -1,16 +1,16 @@
-# Ribbons बंडल
+# Ribbons Bundle
 
-`bundles/ribbons` कार्यक्षेत्र से आधिकारिक बंडल।
+Official bundle from the `bundles/ribbons` workspace.
 
-वेबसाइट: <https://ribbons.js.org>
+Live website: <https://ribbons.js.org>
 
-## इंस्टॉल करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/ribbons
 ```
 
-## उपयोग के लिए तैयार (पूरा पेज)
+## Ready-to-use (full page)
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -21,7 +21,7 @@ await ribbons({
 });
 ```
 
-## किसी विशिष्ट कैनवास तक सीमित
+## Scoped to a specific canvas
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -37,21 +37,19 @@ const fire = await ribbons.create(canvas, {
 export function start(): Promise<Container | undefined> {
   return fire();
 }
-
 export function stop(): void {
   fire.pause();
 }
-
 export function resume(): void {
   fire.play();
 }
 ```
 
-सजावटी बहते पृष्ठभूमि, उत्सव कैस्केड और रंगीन एनिमेटेड ट्रेल्स के लिए एकदम सही।
+Perfect for decorative flowing backgrounds, celebratory cascades, and colorful animated trails.
 
-## निश्चित स्थान (एकल बिंदु)
+## Fixed position (single point)
 
-डिफ़ॉल्ट रूप से प्रत्येक रिबन कण पूरे कैनवास की चौड़ाई में यादृच्छिक x स्थान पर उत्पन्न होता है। स्पॉन क्षेत्र को नियंत्रित करने के लिए `emitterSize` का उपयोग करें — सभी रिबन को एक ही बिंदु से शुरू करने के लिए इसे `{ width: 0, height: 0 }` पर सेट करें:
+By default each ribbon particle spawns at a random x position across the full canvas width. Use `emitterSize` to control the spawn area — set it to `{ width: 0, height: 0 }` to make all ribbons start from the same point:
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -62,6 +60,6 @@ await ribbons({
 });
 ```
 
-यह किसी बटन या आपके पेज के किसी विशिष्ट तत्व से रिबन ट्रिगर करने के लिए उपयोगी है।
+This is useful for triggering ribbons from a button or a specific element on your page.
 
-डेमो: <https://particles.js.org/demos/recipes/ribbons>
+Demo: <https://particles.js.org/demos/recipes/ribbons>

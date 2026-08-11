@@ -1,10 +1,10 @@
-# प्रीसेट कैटलॉग
+# Presets Catalog
 
-ये मुख्य `tsParticles` README में सूचीबद्ध आधिकारिक प्रीसेट हैं और प्रीसेट कार्यक्षेत्र में उपलब्ध हैं।
+These are the official presets listed in the main `tsParticles` README and available in the presets workspace.
 
-स्रोत फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 
-## प्रीसेट
+## Presets
 
 - `ambient` - <https://www.npmjs.com/package/@tsparticles/preset-ambient> - [/demos/recipes/ambient](/demos/recipes/ambient)
 - `big-circles` - <https://www.npmjs.com/package/@tsparticles/preset-big-circles> - [/demos/recipes/big-circles](/demos/recipes/big-circles)
@@ -21,7 +21,7 @@
 - `fountain` - <https://www.npmjs.com/package/@tsparticles/preset-fountain> - [/demos/recipes/fountain](/demos/recipes/fountain)
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - [/demos/recipes/hyperspace](/demos/recipes/hyperspace)
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - [/demos/recipes/links](/demos/recipes/links)
-- `matrix` - स्थानीय वेबसाइट डेमो रेसिपी [`/demos/recipes/matrix`](/hi/demos/recipes/matrix) में उपलब्ध है
+- `matrix` - local website demo recipe available in [`/demos/recipes/matrix`](/demos/recipes/matrix)
 - `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - [/demos/recipes/meteors](/demos/recipes/meteors)
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - [/demos/recipes/sea-anemone](/demos/recipes/sea-anemone)
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - [/demos/recipes/snow](/demos/recipes/snow)
@@ -29,11 +29,11 @@
 - `stars` - <https://www.npmjs.com/package/@tsparticles/preset-stars> - [/demos/recipes/stars](/demos/recipes/stars)
 - `triangles` - <https://www.npmjs.com/package/@tsparticles/preset-triangles> - [/demos/recipes/triangles](/demos/recipes/triangles)
 
-प्रत्येक प्रीसेट फ़ोल्डर में मोनोरेपो में दस्तावेज़ भी होते हैं, उदाहरण के लिए:
+Each preset folder also contains docs in the monorepo, for example:
 
 - <https://github.com/tsparticles/tsparticles/tree/main/presets/confetti#readme>
 
-## त्वरित उपयोग
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -47,6 +47,6 @@ await tsParticles.load({
 });
 ```
 
-उत्पादन सेटअप के लिए, मैन्युअल स्टार्ट/स्टॉप/रेज़्यूमे/डिस्ट्रॉय का उपयोग करें जैसा कि [`/demos/`](/hi/demos/) के अंतर्गत व्यंजनों में दिखाया गया है।
+For production setups, use manual start/stop/resume/destroy as shown in the recipes under [`/demos/`](/demos/).
 
-स्पष्ट स्टार्ट/पॉज़ नियंत्रणों के साथ प्रत्येक प्रीसेट का परीक्षण करने के लिए [`/playground/presets`](/hi/playground/presets) का उपयोग करें।
+Use [`/playground/presets`](/playground/presets) to test each preset with explicit Start/Pause controls.

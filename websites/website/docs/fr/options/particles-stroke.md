@@ -1,16 +1,16 @@
-# Particules AVC
+# Particles Stroke
 
-Les options de trait sont désormais documentées sous `particles.paint.stroke`.
+Stroke options are now documented under `particles.paint.stroke`.
 
-## Nouvelle page
+## New page
 
-- [`Particles Paint`](/fr/options/particles-paint)
+- [`Particles Paint`](/options/particles-paint)
 
-## Cartographie rapide
+## Quick mapping
 
-- Ancien : `particles.stroke`
-- Nouveau : `particles.paint.stroke`
+- Old: `particles.stroke`
+- New: `particles.paint.stroke`
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

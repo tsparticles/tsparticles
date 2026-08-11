@@ -1,14 +1,14 @@
-# Stelle preimpostate
+# Stars Preset
 
-Preimpostazione ufficiale dall'area di lavoro `presets/presets/stars`.
+Official preset from the `presets/presets/stars` workspace.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-stars
 ```
 
-## Pronto all'uso (avvio/arresto manuale)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfetto per pagine di destinazione spaziali/cosmiche e temi oscuri.
+Perfect for space/cosmic landing pages and dark themes.
 
-Dimostrazione: <https://particles.js.org/demos/recipes/stars>
+Demo: <https://particles.js.org/demos/recipes/stars>

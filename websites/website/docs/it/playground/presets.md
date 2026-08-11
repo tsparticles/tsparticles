@@ -1,5 +1,5 @@
-# Preset del parco giochi
+# Playground Presets
 
-Utilizza questa pagina per le demo ufficiali basate sui preset.
+Use this page for official preset-based demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

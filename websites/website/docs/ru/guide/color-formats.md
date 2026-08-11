@@ -1,8 +1,8 @@
-# Цветовые форматы
+# Color Formats
 
-tsParticles поддерживает несколько цветовых форматов в различных параметрах, таких как `background`, `particles.paint`, а также в настройках плагина.
+tsParticles accepts multiple color formats across options such as `background`, `particles.paint`, and plugin settings.
 
-## Общие форматы
+## Common formats
 
 ```ts
 color: "#60a5fa";
@@ -24,13 +24,13 @@ color: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Предпочитайте шестнадцатеричный код для удобства чтения в документах и примерах.
-- Используйте массивы цветов для более богатых рандомизированных сцен.
-- Сохраняйте высокий контраст, когда эффекты используются за текстом.
+- Prefer hex for readability in docs and examples.
+- Use arrays of colors for richer randomized scenes.
+- Keep contrast high when effects are used behind text.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Color.md>

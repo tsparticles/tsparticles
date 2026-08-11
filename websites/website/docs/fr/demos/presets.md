@@ -1,10 +1,10 @@
-# Catalogue de préréglages
+# Presets Catalog
 
-Ce sont les préréglages officiels répertoriés dans le `tsParticles` README principal et disponibles dans l'espace de travail des préréglages.
+These are the official presets listed in the main `tsParticles` README and available in the presets workspace.
 
-Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 
-## Préréglages
+## Presets
 
 - `ambient` - <https://www.npmjs.com/package/@tsparticles/preset-ambient> - [/demos/recipes/ambient](/demos/recipes/ambient)
 - `big-circles` - <https://www.npmjs.com/package/@tsparticles/preset-big-circles> - [/demos/recipes/big-circles](/demos/recipes/big-circles)
@@ -21,7 +21,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `fountain` - <https://www.npmjs.com/package/@tsparticles/preset-fountain> - [/demos/recipes/fountain](/demos/recipes/fountain)
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - [/demos/recipes/hyperspace](/demos/recipes/hyperspace)
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - [/demos/recipes/links](/demos/recipes/links)
-- `matrix` - recette de démonstration du site Web local disponible dans [`/demos/recipes/matrix`](/fr/demos/recipes/matrix)
+- `matrix` - local website demo recipe available in [`/demos/recipes/matrix`](/demos/recipes/matrix)
 - `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - [/demos/recipes/meteors](/demos/recipes/meteors)
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - [/demos/recipes/sea-anemone](/demos/recipes/sea-anemone)
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - [/demos/recipes/snow](/demos/recipes/snow)
@@ -29,11 +29,11 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `stars` - <https://www.npmjs.com/package/@tsparticles/preset-stars> - [/demos/recipes/stars](/demos/recipes/stars)
 - `triangles` - <https://www.npmjs.com/package/@tsparticles/preset-triangles> - [/demos/recipes/triangles](/demos/recipes/triangles)
 
-Chaque dossier prédéfini contient également des documents dans le monorepo, par exemple :
+Each preset folder also contains docs in the monorepo, for example:
 
 - <https://github.com/tsparticles/tsparticles/tree/main/presets/confetti#readme>
 
-## Utilisation rapide
+## Quick usage
 
 ```ts
 await tsParticles.load({
@@ -47,6 +47,6 @@ await tsParticles.load({
 });
 ```
 
-Pour les configurations de production, utilisez le démarrage/arrêt/reprise/destroy manuel comme indiqué dans les recettes sous [`/demos/`](/fr/demos/).
+For production setups, use manual start/stop/resume/destroy as shown in the recipes under [`/demos/`](/demos/).
 
-Utilisez [`/playground/presets`](/fr/playground/presets) pour tester chaque préréglage avec des commandes Démarrer/Pause explicites.
+Use [`/playground/presets`](/playground/presets) to test each preset with explicit Start/Pause controls.

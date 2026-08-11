@@ -1,16 +1,16 @@
-# Ribbons バンドル
+# Ribbons Bundle
 
-`bundles/ribbons` ワークスペースの公式バンドル。
+Official bundle from the `bundles/ribbons` workspace.
 
-Web サイト: <https://ribbons.js.org>
+Live website: <https://ribbons.js.org>
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/ribbons
 ```
 
-## すぐに使える（全ページ）
+## Ready-to-use (full page)
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -21,7 +21,7 @@ await ribbons({
 });
 ```
 
-## 特定のキャンバスに限定
+## Scoped to a specific canvas
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -37,21 +37,19 @@ const fire = await ribbons.create(canvas, {
 export function start(): Promise<Container | undefined> {
   return fire();
 }
-
 export function stop(): void {
   fire.pause();
 }
-
 export function resume(): void {
   fire.play();
 }
 ```
 
-装飾的な流れる背景、お祝いのカスケード、カラフルなアニメーショントレイルに最適です。
+Perfect for decorative flowing backgrounds, celebratory cascades, and colorful animated trails.
 
-## 固定位置（単一点）
+## Fixed position (single point)
 
-デフォルトでは、各リボン粒子はキャンバス幅全体のランダムなx位置に生成されます。`emitterSize`を使用して生成領域を制御します — `{ width: 0, height: 0 }`に設定すると、すべてのリボンが同じ点から始まります：
+By default each ribbon particle spawns at a random x position across the full canvas width. Use `emitterSize` to control the spawn area — set it to `{ width: 0, height: 0 }` to make all ribbons start from the same point:
 
 ```ts
 import { ribbons } from "@tsparticles/ribbons";
@@ -62,6 +60,6 @@ await ribbons({
 });
 ```
 
-これは、ボタンやページ上の特定の要素からリボンをトリガーするのに便利です。
+This is useful for triggering ribbons from a button or a specific element on your page.
 
-デモ: <https://particles.js.org/demos/recipes/ribbons>
+Demo: <https://particles.js.org/demos/recipes/ribbons>

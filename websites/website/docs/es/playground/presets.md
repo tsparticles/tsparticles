@@ -1,5 +1,5 @@
-# Ajustes preestablecidos del patio de juegos
+# Playground Presets
 
-Utilice esta página para demostraciones oficiales basadas en ajustes preestablecidos.
+Use this page for official preset-based demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

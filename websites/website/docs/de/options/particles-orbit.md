@@ -1,8 +1,8 @@
-# Teilchenbahn
+# Particles Orbit
 
-`particles.orbit` lässt Teilchen um Umlaufbahnzentren kreisen.
+`particles.orbit` makes particles revolve around orbit centers.
 
-## Beispiel
+## Example
 
 ```ts
 particles: {
@@ -16,10 +16,10 @@ particles: {
 }
 ```
 
-- `enable`: Aktiviert das Orbitverhalten.
-- `radius`: Umlaufbahnentfernung.
-- `rotation`: Steuerung des Umlaufwinkels.
+- `enable`: activates orbit behavior.
+- `radius`: orbit distance.
+- `rotation`: orbit angle control.
 
-## Quellenangabe
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Orbit.md>

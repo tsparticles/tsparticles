@@ -1,31 +1,31 @@
 ---
-title: स्टेंसिल गाइड
-description: स्टेंसिल कम्पोनेंट के साथ tsParticles को एकीकृत करने के लिए पूर्ण मार्गदर्शिका।
+title: Stencil Guide
+description: Complete guide for integrating tsParticles with Stencil components.
 ---
 
-# स्टेंसिल गाइड
+# Stencil Guide
 
-## विषय सूची
+## Table of Contents
 
-1. [इंस्टॉलेशन](#installation)
-2. [कस्टम एलिमेंट पंजीकरण](#custom-elements-registration)
-3. [मूल उपयोग](#basic-usage)
-4. [इंजन आरंभीकरण](#engine-initialization)
-5. [कस्टम कॉन्फ़िगरेशन](#custom-configuration)
-6. [कम्पोनेंट लाइफसाइकिल](#component-lifecycle)
-7. [टाइपस्क्रिप्ट उदाहरण](#typescript-example)
+1. [Installation](#installation)
+2. [Custom Elements Registration](#custom-elements-registration)
+3. [Basic Usage](#basic-usage)
+4. [Engine Initialization](#engine-initialization)
+5. [Custom Configuration](#custom-configuration)
+6. [Component Lifecycle](#component-lifecycle)
+7. [TypeScript Example](#typescript-example)
 
 ---
 
-## इंस्टॉलेशन
+## Installation
 
-स्टेंसिल रैपर और tsParticles इंजन को npm के माध्यम से इंस्टॉल करें:
+Install the Stencil wrapper and the tsParticles engine via npm:
 
 ```bash
 npm install @tsparticles/stencil tsparticles
 ```
 
-वैकल्पिक रूप से मैन्युअल कॉन्फ़िगरेशन कम करने के लिए एक प्रीसेट बंडल इंस्टॉल करें:
+Optionally install a preset bundle to reduce manual configuration:
 
 ```bash
 npm install @tsparticles/slim
@@ -33,24 +33,24 @@ npm install @tsparticles/slim
 
 ---
 
-## कस्टम एलिमेंट पंजीकरण
+## Custom Elements Registration
 
-`@tsparticles/stencil` पैकेज एक `defineCustomElements` फ़ंक्शन प्रदान करता है जो `<stencil-particles>` कस्टम एलिमेंट को ब्राउज़र के साथ पंजीकृत करता है। अपने ऐप में कहीं भी कम्पोनेंट का उपयोग करने से पहले इसे एक बार कॉल करें।
+The `@tsparticles/stencil` package provides a `defineCustomElements` function that registers the `<stencil-particles>` custom element with the browser. Call it once before using the component anywhere in your app.
 
 ```tsx
 import { defineCustomElements } from "@tsparticles/stencil/loader";
 
-// <stencil-particles> एलिमेंट पंजीकृत करें
+// Register the <stencil-particles> element
 defineCustomElements();
 ```
 
-लेज़ी-लोडिंग का उपयोग करने वाले स्टेंसिल प्रोजेक्ट के लिए, रेंडरिंग से पहले एलिमेंट उपलब्ध होना सुनिश्चित करने के लिए इसे `componentWillLoad` या अपने ऐप के रूट कम्पोनेंट में कॉल करें।
+For Stencil projects using lazy-loading, call this inside `componentWillLoad` or in your app's root component to ensure the element is available before rendering.
 
 ---
 
-## मूल उपयोग
+## Basic Usage
 
-एक बार कस्टम एलिमेंट पंजीकृत हो जाने पर, आप आवश्यक इंजन सुविधाओं को लोड करने के लिए `options` प्रॉप और `init` कॉलबैक के साथ अपने JSX में `<stencil-particles>` का उपयोग कर सकते हैं।
+Once the custom element is registered, you can use `<stencil-particles>` in your JSX with an `options` prop and an `init` callback to load the required engine features.
 
 ```tsx
 import { Component, h } from "@stencil/core";
@@ -101,32 +101,32 @@ export class MyParticles {
 
 ---
 
-## इंजन आरंभीकरण
+## Engine Initialization
 
-`init` प्रॉप इंजन इंस्टेंस प्राप्त करता है और आपको आवश्यक सुविधाएँ लोड करने देता है। यह `loadSlim`, `loadFull`, या व्यक्तिगत अपडेटर/इंटरैक्शन प्लगइन कॉल करने के लिए अनुशंसित स्थान है।
+The `init` prop receives the engine instance and lets you load the features you need. This is the recommended place to call `loadSlim`, `loadFull`, or individual updater/interaction plugins.
 
 ```tsx
 import { loadSlim } from "@tsparticles/slim";
 import { loadFull } from "tsparticles";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 
-// विकल्प A: हल्का (वृत्त, मूल हलचल, लिंक)
+// Option A: lightweight (circles, basic movement, links)
 init={async engine => { await loadSlim(engine); }}
 
-// विकल्प B: पूर्ण सुविधा सेट (सभी आकार, प्रभाव, प्रीसेट)
+// Option B: full feature set (all shapes, effects, presets)
 init={async engine => { await loadFull(engine); }}
 
-// विकल्प C: प्रीसेट (कॉन्फ़ेटी, आतिशबाज़ी, बर्फ, तारे)
+// Option C: presets (confetti, fireworks, snow, stars)
 init={async engine => { await loadConfettiPreset(engine); }}
 ```
 
-इंजन इंस्टेंस आरंभीकरण के बाद `container-id` विशेषता के माध्यम से भी पहुँच योग्य है, जिससे यदि आवश्यक हो तो बाद में पार्टिकल सिस्टम को प्रोग्रामेटिक रूप से नियंत्रित किया जा सकता है।
+The engine instance is also accessible after initialization through the `container-id` attribute, allowing you to programmatically control the particle system later if needed.
 
 ---
 
-## कस्टम कॉन्फ़िगरेशन
+## Custom Configuration
 
-नीचे इंटरैक्टिविटी, एकाधिक आकार प्रकार और होवर/क्लिक मोड के साथ एक पूर्ण कॉन्फ़िगरेशन है।
+Below is a full configuration with interactivity, multiple shape types, and hover/click modes.
 
 ```tsx
 import { Component, h } from "@stencil/core";
@@ -200,9 +200,9 @@ export class AppParticles {
 
 ---
 
-## कम्पोनेंट लाइफसाइकिल
+## Component Lifecycle
 
-स्टेंसिल में, एकमुश्त सेटअप के लिए अनुशंसित लाइफसाइकिल हुक `componentWillLoad` है। इसका उपयोग कस्टम एलिमेंट पंजीकृत करने और आरंभीकरण स्थिति प्रबंधित करने के लिए करें ताकि `<stencil-particles>` कम्पोनेंट केवल तब रेंडर हो जब इंजन तैयार हो।
+In Stencil, the recommended lifecycle hook for one-time setup is `componentWillLoad`. Use it to register custom elements and manage initialization state so that the `<stencil-particles>` component only renders when the engine is prepared.
 
 ```tsx
 import { Component, h, State } from "@stencil/core";
@@ -238,7 +238,7 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <h1>tsParticles + स्टेंसिल</h1>
+        <h1>tsParticles + Stencil</h1>
         {this.engineReady && (
           <stencil-particles
             container-id="tsparticles"
@@ -254,22 +254,13 @@ export class AppRoot {
 }
 ```
 
-`@State()` का उपयोग यह सुनिश्चित करता है कि इंजन तैयार होने पर कम्पोनेंट पुनः रेंडर होता है, और सशर्त रेंडर कस्टम एलिमेंट परिभाषित होने से पहले पार्टिकल्स कंटेनर को माउंट होने से रोकता है।
+Using `@State()` ensures the component re-renders when the engine becomes ready, and the conditional render prevents the particles container from mounting before the custom element is defined.
 
 ---
 
-## Reactive Behavior
+## TypeScript Example
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## टाइपस्क्रिप्ट उदाहरण
-
-यहाँ एक पूर्ण, टाइप किया गया स्टेंसिल एप्लिकेशन कम्पोनेंट है जो स्लिम प्रीसेट, होवर इंटरैक्टिविटी और एक कस्टम डार्क थीम के साथ tsParticles को एकीकृत करता है।
+Here is a complete, typed Stencil application component that integrates tsParticles with the slim preset, hover interactivity, and a custom dark theme.
 
 ```tsx
 import { Component, h, State, Prop } from "@stencil/core";
@@ -285,7 +276,7 @@ import { loadSlim } from "@tsparticles/slim";
 export class AppHome {
   @State() private initialized = false;
 
-  @Prop() readonly title: string = "स्वागत है";
+  @Prop() readonly title: string = "Welcome";
 
   private container?: Container;
 
@@ -338,14 +329,14 @@ export class AppHome {
 
   private handleLoaded = async (container?: Container): Promise<void> => {
     this.container = container;
-    console.log("पार्टिकल्स कंटेनर लोड हुआ:", container?.id);
+    console.log("Particles container loaded:", container?.id);
   };
 
   render() {
     return (
       <div class="home">
         <h1>{this.title}</h1>
-        <p>tsParticles और स्टेंसिल द्वारा संचालित</p>
+        <p>Powered by tsParticles and Stencil</p>
 
         {this.initialized && (
           <stencil-particles
@@ -361,8 +352,18 @@ export class AppHome {
 }
 ```
 
-`particlesLoaded` इवेंट पहला फ्रेम रेंडर होने पर फायर होता है, जो आपको प्रोग्रामेटिक नियंत्रण (प्ले, पॉज़, स्टॉप, थीम स्विच) के लिए `Container` इंस्टेंस तक पहुँच प्रदान करता है।
+The `particlesLoaded` event fires once the first frame is rendered, giving you access to the `Container` instance for programmatic control (play, pause, stop, switch themes).
 
 ---
 
-आपके पास अब स्टेंसिल एप्लिकेशन में tsParticles को एकीकृत करने के लिए आवश्यक सब कुछ है। प्रत्येक उदाहरण आत्मनिर्भर है और आपके प्रोजेक्ट में कॉपी करने के लिए तैयार है।
+## Reactive Behavior
+
+The component reloads particles when `container-id`, `options`, or `url` props change. Changes to `theme` apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
+
+## Cleanup
+
+When the component is removed from the DOM, the particles container is automatically destroyed, stopping all animations and freeing resources.
+
+---
+
+You now have everything needed to integrate tsParticles into a Stencil application. Each example is self-contained and ready to be copied into your project.

@@ -1,5 +1,5 @@
-# खेल का मैदान आकार
+# Playground Shapes
 
-इस पेज का उपयोग `shape.type` मानों को अलग से देखने के लिए करें, जहां हर आकार के लिए एक स्पष्ट कॉन्फिग हो और जहां उपलब्ध हो वहां स्पष्ट `shape.options` भी हों।
+Use this page to explore particle `shape.type` values in isolation, with one focused config per shape and explicit `shape.options` when the shape supports them.
 
 <PlaygroundPanel mode="shapes"></PlaygroundPanel>

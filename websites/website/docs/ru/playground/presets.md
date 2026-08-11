@@ -1,5 +1,5 @@
-# Пресеты игровой площадки
+# Playground Presets
 
-Используйте эту страницу для официальных демонстраций на основе пресетов.
+Use this page for official preset-based demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

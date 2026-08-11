@@ -1,35 +1,39 @@
-# कुकी नीति
+# Cookie Policy
 
-यह वेबसाइट दस्तावेज़ों को उपयोगी और टिकाऊ बनाए रखने के लिए कुकीज़ और तृतीय-पक्ष तकनीकों के एक छोटे सेट का उपयोग करती है।
+This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
 
-## हम क्या उपयोग करते हैं
+## What we use
 
-- **आवश्यक कुकीज़**: तकनीकी व्यवहार और नेविगेशन के लिए आवश्यक।
-- **एनालिटिक्स कुकीज़** (Google Analytics): ट्रैफ़िक और दस्तावेज़ीकरण उपयोग पैटर्न को समझने के लिए उपयोग किया जाता है।
-- **विज्ञापन कुकीज़** (Google AdSense): विज्ञापन अभियान के प्रदर्शन को मापने और विज्ञापन दिखाने के लिए उपयोग किया जाता है।
+- **Essential cookies**: required for technical behavior and navigation.
+- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
+- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
 
-इस प्रोजेक्ट में वर्तमान में कॉन्फ़िगर किए गए पर्यावरण चर:
+Environment variables currently configured in this project:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
+- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
+- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## सहमति कैसे काम करती है
+## How consent works
 
-- जब तक आप कुकी बैनर में **स्वीकार** पर स्पष्ट रूप से क्लिक नहीं करते, तब तक ट्रैकिंग कुकीज़ अक्षम हैं।
-- यदि आप **अस्वीकार** पर क्लिक करते हैं, तो एनालिटिक्स/विज्ञापन ट्रैकिंग अक्षम रहती है।
-- आपकी पसंद आपके ब्राउज़र में स्थानीय रूप से सहेजी गई है।
+- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
+- You can reject all, accept all, or save granular choices for analytics and advertising.
+- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
+- When you reject ads, AdSense can run as non-personalized ads if configured.
+- Your choice is saved locally in your browser.
 
-## अपनी पसंद कैसे बदलें
+## How to change your choice
 
-यदि आप चुनने के बाद अपनी सहमति बदलना चाहते हैं, तो अपनी ब्राउज़र सेटिंग में इस साइट के स्थानीय संग्रहण/कुकीज़ को साफ़ करें और पृष्ठ को पुनः लोड करें।
+If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
 
-## संबंधित नीति
+## Related policy
 
-- [`/privacy-policy`](/hi/privacy-policy)
+- [`/privacy-policy`](/privacy-policy)
 
-## डेटा नियंत्रक और प्रोसेसर
+## Data controllers and processors
 
-- वेबसाइट स्वामी: `@tsparticles/website` अनुरक्षक
-- तृतीय-पक्ष सेवाएँ: Google Analytics और Google AdSense
+- Website owner: `@tsparticles/website` maintainers
+- Third-party services: Google Analytics and Google AdSense
 
-कानूनी/गोपनीयता अनुरोधों के लिए, कृपया प्रोजेक्ट रिपॉजिटरी में सूचीबद्ध सहायता चैनलों का उपयोग करें।
+For legal/privacy requests, please use the support channels listed in the project repository.

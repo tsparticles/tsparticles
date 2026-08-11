@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/nuxt4
 
-Offizieller Nuxt 4-Modul-Wrapper für `tsParticles`.
+Official Nuxt 4 module wrapper for `tsParticles`.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/nuxt4 @tsparticles/engine @tsparticles/slim
 ```
 
-## Schneller Einrichtungsablauf
+## Quick setup flow
 
-1. Modul + Engine + Loader-Paket installieren.
-2. Registrieren Sie das Nuxt-Modul und behalten Sie das Canvas-Rendering auf dem Client bei.
-3. Übergeben Sie Optionen aus der App-Konfiguration/Komponenten.
+1. Install module + engine + loader package.
+2. Register Nuxt module and keep canvas rendering on client.
+3. Pass options from app config/components.
 
-## Monorepo-Referenzen
+## Monorepo references
 
-- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4>
-- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt4>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt4>
 
 ## Readme
 
-- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme>
 
-## Verwandte Dokumente
+## Related docs
 
-- [`/guide/wrappers`](/de/guide/wrappers)
-- [`/guide/frameworks`](/de/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

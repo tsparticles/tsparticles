@@ -1,16 +1,16 @@
-# 五彩纸屑大炮预设
+# Confetti Cannon Preset
 
-来自 `presets/presets/confettiCannon` 工作区的官方预设。
+Official preset from the `presets/presets/confettiCannon` workspace.
 
-要触发此预设中的五彩纸屑，请将鼠标拖动到画布区域上。
+To trigger confetti in this preset, drag the mouse over the canvas area.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-源文档：<https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-演示： <https://particles.js.org/demos/recipes/confetti-cannon>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>

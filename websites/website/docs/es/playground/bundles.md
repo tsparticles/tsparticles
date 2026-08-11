@@ -1,16 +1,16 @@
-# Paquetes de juegos infantiles
+# Playground Bundles
 
-Utilice esta página para probar las API enfocadas de estos paquetes:
+Use this page to test the focused APIs from these packages:
 
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
 - `@tsparticles/ribbons`
 
-Sitio de Ribbons: <https://ribbons.js.org>
+Ribbons website: <https://ribbons.js.org>
 
-Cada sección tiene su propio lienzo, editor JSON y controles.
+Each section has its own canvas, JSON editor, and controls.
 
-Las demostraciones tienen como alcance su elemento de lienzo local (`*.create(...)`), por lo que no ocupan toda la página.
+The demos are scoped to their local canvas element (`*.create(...)`) so they do not take over the full page.
 
 <PlaygroundBundlesPanel></PlaygroundBundlesPanel>

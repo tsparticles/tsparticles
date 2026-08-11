@@ -1,8 +1,8 @@
-# 插件选项：吸收器
+# Plugin Option: Absorbers
 
-`absorbers` 是一个插件选项，需要在您的捆绑包/设置中提供吸收器功能。
+`absorbers` is a plugin option and requires absorber features to be available in your bundle/setup.
 
-## 示例
+## Example
 
 ```ts
 absorbers: {
@@ -16,11 +16,11 @@ absorbers: {
 }
 ```
 
-## 注释
+## Notes
 
-- 在使用吸收器选项之前验证插件的可用性。
-- 从一个吸收器实例开始，然后逐渐扩展。
+- Validate plugin availability before using absorber options.
+- Start with one absorber instance, then scale gradually.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Absorbers.md>

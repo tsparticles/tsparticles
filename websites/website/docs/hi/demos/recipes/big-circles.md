@@ -1,14 +1,14 @@
-# बड़े वृत्त प्रीसेट
+# Big Circles Preset
 
-`presets/presets/bigCircles` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/bigCircles` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-big-circles
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-बड़े एनिमेटेड सर्कल के साथ न्यूनतम, आधुनिक डिज़ाइन के लिए बिल्कुल सही।
+Perfect for minimal, modern designs with large animated circles.
 
-डेमो: <https://particles.js.org/demos/recipes/big-circles>
+Demo: <https://particles.js.org/demos/recipes/big-circles>

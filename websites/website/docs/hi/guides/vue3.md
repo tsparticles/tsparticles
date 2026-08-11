@@ -1,43 +1,43 @@
 ---
-title: Vue 3 एकीकरण
-description: "@tsparticles/vue3 का उपयोग करके Vue 3 अनुप्रयोगों में tsParticles को एकीकृत करने के लिए चरण-दर-चरण मार्गदर्शिका।"
+title: Vue 3 Integration
+description: Step-by-step guide for integrating tsParticles into Vue 3 applications using @tsparticles/vue3.
 ---
 
-# Vue 3 एकीकरण
+# Vue 3 Integration
 
-`@tsparticles/vue3` पैकेज tsParticles के लिए एक मूल Vue 3 घटक और प्लगइन प्रणाली प्रदान करता है। यह मार्गदर्शिका मूल सेटअप से लेकर डायनामिक थीम स्विचिंग और कस्टम प्रीसेट जैसे उन्नत पैटर्न तक सब कुछ कवर करती है।
+The `@tsparticles/vue3` package provides a native Vue 3 component and plugin system for tsParticles. This guide covers everything from basic setup to advanced patterns like dynamic theme switching and custom presets.
 
 ---
 
-## स्थापना
+## Installation
 
 ```bash
 npm install @tsparticles/vue3 @tsparticles/engine
 ```
 
-वैकल्पिक रूप से कोई प्रीसेट या पूर्ण बंडल स्थापित करें:
+Optionally install a preset or the full bundle:
 
 ```bash
-# पूर्ण बंडल (सभी सुविधाएँ)
+# Full bundle (all features)
 npm install tsparticles
 
-# विशिष्ट प्रीसेट
+# Specific presets
 npm install @tsparticles/preset-confetti
 npm install @tsparticles/preset-fireworks
 npm install @tsparticles/preset-snow
 npm install @tsparticles/preset-stars
 
-# उपयोगिता कॉन्फ़िग
+# Utility configs
 npm install @tsparticles/configs
 ```
 
 ---
 
-## मूल उपयोग
+## Basic Usage
 
-अपने ऐप एंट्री पॉइंट में प्लगइन पंजीकृत करें, फिर `<vue-particles>` घटक का कहीं भी उपयोग करें।
+Register the plugin in your app entry point, then use the `<vue-particles>` component anywhere.
 
-### ऐप एंट्री (`main.ts`)
+### App entry (`main.ts`)
 
 ```typescript
 import { createApp } from "vue";
@@ -57,7 +57,7 @@ app.use(ParticlesPlugin, {
 app.mount("#app");
 ```
 
-### घटक (`App.vue`)
+### Component (`App.vue`)
 
 ```vue
 <script setup lang="ts">
@@ -123,16 +123,16 @@ const options: ISourceOptions = {
 
 ---
 
-## ईवेंट
+## Events
 
-घटक कई जीवनचक्र ईवेंट उत्सर्जित करता है:
+The component emits several lifecycle events:
 
 ```vue
 <script setup lang="ts">
 import type { Container } from "@tsparticles/engine";
 
 const particlesLoaded = async (container: Container): Promise<void> => {
-  console.log("पार्टिकल्स कंटेनर लोड हुआ", container);
+  console.log("Particles container loaded", container);
 };
 </script>
 
@@ -143,15 +143,15 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ---
 
-## कॉन्फ़ेटी प्रभाव
+## Confetti Effect
 
-उत्सवों के लिए कॉन्फ़ेटी प्रीसेट का उपयोग करें:
+Use the confetti preset for celebrations:
 
 ```bash
 npm install @tsparticles/preset-confetti
 ```
 
-````vue
+```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -167,13 +167,23 @@ const options: ISourceOptions = {
   <vue-particles id="confetti" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadConfettiPreset` पंजीकृत करें ([मूल
-उपयोग](#मूल-उपयोग) देखें)। एक बार के विस्फोट के लिए, प्रीसेट लोड करें फिर किसी विधि के अंदर प्रोग्रामेटिक रूप से
-`tsParticles.load()` कॉल करें। --- ## आतिशबाजी प्रभाव आतिशबाजी प्रीसेट उच्च-प्रभाव वाले कण विस्फोट बनाता है: ```bash npm
-install @tsparticles/preset-fireworks
-````
+> **Note:** Register the `loadConfettiPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
+```
 
-````vue
+For a one-shot burst, load the preset then call `tsParticles.load()` programmatically inside a method.
+
+---
+
+## Fireworks Effect
+
+The fireworks preset creates high-impact particle explosions:
+
+```bash
+npm install @tsparticles/preset-fireworks
+```
+
+```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -189,13 +199,23 @@ const options: ISourceOptions = {
   <vue-particles id="fireworks" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadFireworksPreset` पंजीकृत करें ([मूल
-उपयोग](#मूल-उपयोग) देखें)। > **टिप:** आतिशबाजी प्रीसेट संसाधन-गहन है। इसे घटक से बंधे `v-if` को टॉगल करके उपयोगकर्ता
-इंटरैक्शन (जैसे, बटन क्लिक) पर ट्रिगर करें। --- ## बर्फ प्रभाव बर्फ प्रीसेट के साथ गिरती बर्फ का अनुकरण करें: ```bash
-npm install @tsparticles/preset-snow
-````
+> **Note:** Register the `loadFireworksPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
+```
 
-````vue
+> **Tip:** The fireworks preset is resource-intensive. Trigger it on user interaction (e.g., button click) by toggling a `v-if` bound to the component.
+
+---
+
+## Snow Effect
+
+Simulate falling snow with the snow preset:
+
+```bash
+npm install @tsparticles/preset-snow
+```
+
+```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -211,8 +231,17 @@ const options: ISourceOptions = {
   <vue-particles id="snow" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadSnowPreset` पंजीकृत करें ([मूल
-उपयोग](#मूल-उपयोग) देखें)। --- ## इंटरैक्टिव कण होवर और क्लिक इंटरैक्टिविटी मोड जोड़ें: ```vue
+> **Note:** Register the `loadSnowPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
+```
+
+---
+
+## Interactive Particles
+
+Add hover and click interactivity modes:
+
+```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 
@@ -277,15 +306,15 @@ const options: ISourceOptions = {
 <template>
   <vue-particles id="interactive" :options="options" />
 </template>
-````
+```
 
-उपलब्ध इंटरैक्शन मोड: `grab`, `repulse`, `bubble`, `connect`, `push`, `remove`, `trail`, `attract`, `light`.
+Available interaction modes: `grab`, `repulse`, `bubble`, `connect`, `push`, `remove`, `trail`, `attract`, `light`.
 
 ---
 
-## थीम स्विचिंग
+## Theme Switching
 
-रिएक्टिव ऑप्शन ऑब्जेक्ट को अपडेट करके रनटाइम पर कण थीम को गतिशील रूप से बदलें:
+Dynamically swap particle themes at runtime by updating the reactive options object:
 
 ```vue
 <script setup lang="ts">
@@ -341,13 +370,13 @@ const toggleTheme = () => {
 
 <template>
   <div>
-    <button @click="toggleTheme">{{ isDark ? "लाइट" : "डार्क" }} पर स्विच करें</button>
+    <button @click="toggleTheme">Switch to {{ isDark ? "light" : "dark" }}</button>
     <vue-particles id="theme-particles" :options="options" />
   </div>
 </template>
 ```
 
-`<vue-particles>` घटक शून्य-कॉन्फ़िग स्विचिंग के लिए एक `theme` प्रॉप का भी समर्थन करता है। जब `theme` प्रॉप बदलता है, तो घटक कंटेनर को नष्ट और पुनर्निर्मित किए बिना नई थीम लागू करता है:
+The `<vue-particles>` component also supports a `theme` prop for zero-config switching. When the `theme` prop changes, the component applies the new theme without destroying and recreating the container:
 
 ```vue
 <template>
@@ -355,19 +384,19 @@ const toggleTheme = () => {
 </template>
 ```
 
-> **नोट:** `theme` प्रॉप के लिए वैकल्पिक [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) पैकेज आवश्यक है। इसके बिना, `theme` प्रॉप एक सुरक्षित नो-ऑप है — कोई त्रुटि नहीं फेंकी जाती, लेकिन थीम परिवर्तन अनदेखा कर दिया जाता है।
+> **Note:** The `theme` prop requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package. Without it, the `theme` prop is a safe no-op — no error is thrown, but the theme change is ignored.
 
 ---
 
-## @tsparticles/configs से कस्टम प्रीसेट
+## Custom Preset from @tsparticles/configs
 
-`@tsparticles/configs` पैकेज पूर्व-निर्मित कॉन्फ़िगरेशन ऑब्जेक्ट निर्यात करता है:
+The `@tsparticles/configs` package exports pre-made configuration objects:
 
 ```bash
 npm install @tsparticles/configs
 ```
 
-````vue
+```vue
 <script setup lang="ts">
 import type { ISourceOptions } from "@tsparticles/engine";
 import particlesConfig from "@tsparticles/configs/particles.json";
@@ -384,19 +413,42 @@ const options: ISourceOptions = {
   <vue-particles id="config-particles" :options="options" />
 </template>
 
-> **नोट:** अपने ऐप एंट्री पॉइंट में प्लगइन के `init` कॉलबैक के माध्यम से `loadLinksPreset` पंजीकृत करें ([मूल
-उपयोग](#मूल-उपयोग) देखें)। तैयार-से-उपयोग लेआउट के लिए `@tsparticles/configs` पैकेज में उपलब्ध कॉन्फ़िग देखें। --- ##
-इंजन आरंभीकरण दृष्टिकोण इंजन को आरंभ करने के दो तरीके हैं: ### 1. वैश्विक प्लगइन (अनुशंसित) ```typescript // main.ts
-import { createApp } from "vue"; import App from "./App.vue"; import type { Engine } from "@tsparticles/engine"; import
-{ ParticlesPlugin } from "@tsparticles/vue3"; import { loadFull } from "tsparticles"; createApp(App)
-.use(ParticlesPlugin, { init: async (engine: Engine) => { await loadFull(engine); }, }) .mount("#app");
-````
+> **Note:** Register the `loadLinksPreset` in your app entry point via the plugin's `init` callback (see [Basic
+Usage](#basic-usage)).
+```
 
-इंजन फिर वैश्विक रूप से उपलब्ध है और सभी `<vue-particles>` इंस्टेंस इसे साझा करते हैं।
+Browse available configs in the `@tsparticles/configs` package for ready-to-use layouts.
 
-### 2. पार्टिकल्स प्रोवाइडर (कम्पोज़िशन API)
+---
 
-इंजन तक प्रोग्रामेटिक रूप से पहुँचने के लिए प्रोवाइडर का उपयोग करें:
+## Engine Initialization Approaches
+
+There are two ways to initialise the engine:
+
+### 1. Global Plugin (recommended)
+
+```typescript
+// main.ts
+import { createApp } from "vue";
+import App from "./App.vue";
+import type { Engine } from "@tsparticles/engine";
+import { ParticlesPlugin } from "@tsparticles/vue3";
+import { loadFull } from "tsparticles";
+
+createApp(App)
+  .use(ParticlesPlugin, {
+    init: async (engine: Engine) => {
+      await loadFull(engine);
+    },
+  })
+  .mount("#app");
+```
+
+The engine is then available globally and all `<vue-particles>` instances share it.
+
+### 2. Particles Provider (Composition API)
+
+Use the provider to access the engine programmatically:
 
 ```vue
 <script setup lang="ts">
@@ -413,9 +465,9 @@ await init(async (engine: Engine) => {
 
 ---
 
-## नामित निर्यात + TypeScript
+## Named Exports + TypeScript
 
-सभी भागों के साथ पूर्ण TypeScript उदाहरण:
+Full TypeScript example with all the pieces together:
 
 ```vue
 <script setup lang="ts">
@@ -493,7 +545,7 @@ const options: ISourceOptions = {
 
 const particlesLoaded = async (container: Container): Promise<void> => {
   particlesContainer.value = container;
-  console.log("कंटेनर तैयार", container);
+  console.log("Container ready", container);
 };
 </script>
 
@@ -504,24 +556,24 @@ const particlesLoaded = async (container: Container): Promise<void> => {
 
 ---
 
-## API संदर्भ
+## API Reference
 
-| प्रॉप     | प्रकार           | डिफ़ॉल्ट        | विवरण                                                                          |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | कैनवास तत्व आईडी                                                               |
-| `options` | `ISourceOptions` | `{}`            | कण कॉन्फ़िगरेशन                                                                |
-| `url`     | `string`         | —               | JSON कॉन्फ़िग लोड करने का URL                                                  |
-| `theme`   | `string`         | —               | थीम नाम (`@tsparticles/plugin-themes` आवश्यक; अनुपलब्ध होने पर सुरक्षित नो-ऑप) |
+| Prop      | Type             | Default         | Description                                                                                           |
+| --------- | ---------------- | --------------- | ----------------------------------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element ID                                                                                     |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration                                                                                |
+| `url`     | `string`         | —               | URL to load JSON config from                                                                          |
+| `theme`   | `string`         | —               | Theme name to apply (requires `@tsparticles/plugin-themes`; safe no-op if missing) |
 
-| ईवेंट               | पेलोड       | विवरण                                                     |
-| ------------------- | ----------- | --------------------------------------------------------- |
-| `@particles-loaded` | `Container` | जब कंटेनर पूरी तरह से आरंभीकृत हो जाता है तब फायर होता है |
+| Event               | Payload     | Description                                   |
+| ------------------- | ----------- | --------------------------------------------- |
+| `@particles-loaded` | `Container` | Fires when the container is fully initialised |
 
 ---
 
-## समस्या निवारण
+## Troubleshooting
 
-- **त्रुटि: `tsparticles is not defined`** — सुनिश्चित करें कि घटक रेंडर होने से पहले `init` कॉलबैक के अंदर `tsparticles` (या आपके आवश्यक प्रीसेट) लोड किए गए हैं।
-- **कैनवस दिखाई नहीं दे रहा** — सत्यापित करें कि पैरेंट कंटेनर में गैर-शून्य ऊँचाई है। `#tsparticles { height: 100vh; }` जैसा CSS नियम जोड़ें।
-- **प्रदर्शन संबंधी समस्याएँ** — कम-अंत वाले उपकरणों पर `fpsLimit` कम करें, `particles.number.value` घटाएँ, या `detectRetina` अक्षम करें।
-- **SSR (Nuxt)** — `<vue-particles>` घटक केवल-क्लाइंट है। इसे `<ClientOnly>` में लपेटें या `client:only` डायरेक्टिव का उपयोग करें।
+- **Error: `tsparticles is not defined`** — Ensure `tsparticles` (or the presets you need) are loaded inside the `init` callback before the component renders.
+- **Canvas not showing** — Verify the parent container has a non-zero height. Add a CSS rule like `#tsparticles { height: 100vh; }`.
+- **Performance issues** — Lower `fpsLimit`, reduce `particles.number.value`, or disable `detectRetina` on low-end devices.
+- **SSR (Nuxt)** — The `<vue-particles>` component is client-only. Wrap it in `<ClientOnly>` or use the `client:only` directive.

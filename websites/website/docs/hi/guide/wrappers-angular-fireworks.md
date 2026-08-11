@@ -1,29 +1,29 @@
-# आवरण: कोणीय-आतिशबाजी
+# Wrapper: angular-fireworks
 
-`@tsparticles/fireworks` के आसपास आधिकारिक कोणीय आवरण।
+Official Angular wrapper around `@tsparticles/fireworks`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add angular-fireworks @tsparticles/fireworks
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + `@tsparticles/fireworks` स्थापित करें।
-2. एंगुलर ऐप बूटस्ट्रैप में एक बार इनिशियलाइज़ करें।
-3. अपने यूआई संचालकों से आतिशबाजी की गतिविधियों को ट्रिगर करें।
+1. Install wrapper + `@tsparticles/fireworks`.
+2. Initialize once in Angular app bootstrap.
+3. Trigger fireworks actions from your UI handlers.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

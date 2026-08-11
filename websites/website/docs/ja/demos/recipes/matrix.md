@@ -1,14 +1,14 @@
-# マトリックスプリセット
+# Matrix Preset
 
-`presets/presets/matrix` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/matrix` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-matrix
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-テクノロジー/ハッカーの美的デザインやデジタルテーマに最適です。
+Perfect for tech/hacker aesthetic designs and digital themes.
 
-デモ: <https://particles.js.org/demos/recipes/matrix>
+Demo: <https://particles.js.org/demos/recipes/matrix>

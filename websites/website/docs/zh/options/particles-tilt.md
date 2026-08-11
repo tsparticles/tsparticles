@@ -1,8 +1,8 @@
-# 粒子倾斜
+# Particles Tilt
 
-`particles.tilt` 控制倾斜角度和倾斜动画。
+`particles.tilt` controls tilt angle and tilt animation.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -22,6 +22,6 @@ particles: {
 }
 ```
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Tilt.md>

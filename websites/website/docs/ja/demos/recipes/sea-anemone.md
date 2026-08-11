@@ -1,14 +1,14 @@
-# イソギンチャクのプリセット
+# Sea Anemone Preset
 
-`presets/presets/seaAnemone` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/seaAnemone` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-水中をイメージした有機的で流れるようなアニメーションに最適です。
+Perfect for organic, flowing underwater-inspired animations.
 
-デモ: <https://particles.js.org/demos/recipes/sea-anemone>
+Demo: <https://particles.js.org/demos/recipes/sea-anemone>

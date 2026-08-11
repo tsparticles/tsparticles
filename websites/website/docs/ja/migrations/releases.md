@@ -1,26 +1,26 @@
-# リリースとバージョン管理
+# Releases and Versioning
 
-このプロジェクトは現在、単一のリポジトリ `tsparticles/tsparticles` から配布されています。
+This project now ships from a single repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## リリース作業が行われる場所
+## Where release work happens
 
-- モノリポジトリのルート: <https://github.com/tsparticles/tsparticles>
-- バンドル: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- エンジン: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- ラッパー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- プリセット: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- パレット: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Monorepo root: <https://github.com/tsparticles/tsparticles>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## バージョン調整ルール
+## Version alignment rule
 
-- すべての `@tsparticles/*` パッケージを同じリリースラインに揃えてください。
-- 1 つのアプリ内に異なるベータ版やメジャー バージョンを混在させないでください。
+- Keep all `@tsparticles/*` packages aligned to the same release line.
+- Avoid mixing different beta lines or major versions in one app.
 
-## 実際のリリースチェックリスト
+## Practical release checklist
 
-1. ワークスペース `package.json` ファイル内のターゲット パッケージのバージョンを確認します。
-2. 影響を受けるプロジェクトをビルドしてテストします。
-3. ドキュメントのリンクとプレイグラウンドの動作を検証します。
-4. モノリポジトリのリリースフローから公開します。
+1. Verify target package versions in workspace `package.json` files.
+2. Build and test affected projects.
+3. Validate docs links and playground behavior.
+4. Publish from the monorepo release flow.

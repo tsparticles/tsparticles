@@ -1,14 +1,14 @@
-# 气泡预设
+# Bubbles Preset
 
-来自 `presets/presets/bubbles` 工作区的官方预设。
+Official preset from the `presets/presets/bubbles` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-对于具有更明显运动的交互部分很有用。
+Useful for interactive sections with more visible motion.
 
-演示： <https://particles.js.org/demos/recipes/bubbles>
+Demo: <https://particles.js.org/demos/recipes/bubbles>

@@ -1,14 +1,14 @@
-# 花火プリセット
+# Fireworks Preset
 
-`presets/presets/fireworks` ワークスペースからの公式プリセット。
+Official preset from the `presets/presets/fireworks` workspace.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fireworks
 ```
 
-## すぐに使用可能 (手動開始/停止)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-影響力の高いプリセット: 明示的なユーザー操作 (CTA クリック) があった場合にのみ実行されます。
+High-impact preset: run it only on explicit user interaction (CTA click).
 
-デモ: <https://particles.js.org/demos/recipes/fireworks>
+Demo: <https://particles.js.org/demos/recipes/fireworks>

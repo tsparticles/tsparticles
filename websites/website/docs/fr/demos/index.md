@@ -1,8 +1,8 @@
-# Démo prête à l'emploi
+# Demo Ready-to-Use
 
-Ces recettes utilisent les préréglages officiels disponibles dans l'espace de travail `presets/presets` (bêta/alpha vers la sortie).
+These recipes use the official presets available in the `presets/presets` workspace (beta/alpha toward release).
 
-## Démarrage/arrêt de la base du modèle (pas de lecture automatique)
+## Pattern base start/stop (no autoplay)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -24,40 +24,63 @@ export function resume(): void {
 }
 ```
 
-## Recettes prédéfinies
+## Preset recipes
 
-- Catalogue de préréglages : [`/demos/presets`](/fr/demos/presets)
-- Catalogue de palettes : [`/demos/palettes`](/fr/demos/palettes)
-- Catalogue de formes : [`/demos/shapes`](/fr/demos/shapes)
+- Presets catalog: [`/demos/presets`](/demos/presets)
 
-- [`Ambient`](/fr/demos/recipes/ambient)
-- [`Big Circles`](/fr/demos/recipes/big-circles)
-- [`Bubbles`](/fr/demos/recipes/bubbles)
-- [`Confetti`](/fr/demos/recipes/confetti)
-- [`Confetti Cannon`](/fr/demos/recipes/confetti-cannon)
-- [`Confetti Explosions`](/fr/demos/recipes/confetti-explosions)
-- [`Confetti Falling`](/fr/demos/recipes/confetti-falling)
-- [`Confetti Parade`](/fr/demos/recipes/confetti-parade)
-- [`Party`](/fr/demos/recipes/party)
-- [`Fire`](/fr/demos/recipes/fire)
-- [`Firefly`](/fr/demos/recipes/firefly)
-- [`Fireworks`](/fr/demos/recipes/fireworks)
-- [`Fountain`](/fr/demos/recipes/fountain)
-- [`Hyperspace`](/fr/demos/recipes/hyperspace)
-- [`Links`](/fr/demos/recipes/links)
-- [`Matrix`](/fr/demos/recipes/matrix)
-- [`Sea Anemone`](/fr/demos/recipes/sea-anemone)
-- [`Snow`](/fr/demos/recipes/snow)
-- [`Squares`](/fr/demos/recipes/squares)
-- [`Stars`](/fr/demos/recipes/stars)
-- [`Ribbons`](/fr/demos/recipes/ribbons)
-- [`Triangles`](/fr/demos/recipes/triangles)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
 
-Pour les tester immédiatement dans l'interface utilisateur, utilisez le [`Playground`](/fr/playground/) et démarrez-les avec `Start` uniquement en cas de besoin.
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
 
-## Projets de démonstration du framework
+- [`Ambient`](/demos/recipes/ambient)
 
-Le monorepo comprend également des démos d'intégration exécutables :
+- [`Big Circles`](/demos/recipes/big-circles)
 
-- Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Les démos disponibles incluent : `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- [`Bubbles`](/demos/recipes/bubbles)
+
+- [`Confetti`](/demos/recipes/confetti)
+
+- [`Confetti Cannon`](/demos/recipes/confetti-cannon)
+
+- [`Confetti Explosions`](/demos/recipes/confetti-explosions)
+
+- [`Confetti Falling`](/demos/recipes/confetti-falling)
+
+- [`Confetti Parade`](/demos/recipes/confetti-parade)
+
+- [`Party`](/demos/recipes/party)
+
+- [`Fire`](/demos/recipes/fire)
+
+- [`Firefly`](/demos/recipes/firefly)
+
+- [`Fireworks`](/demos/recipes/fireworks)
+
+- [`Fountain`](/demos/recipes/fountain)
+
+- [`Hyperspace`](/demos/recipes/hyperspace)
+
+- [`Links`](/demos/recipes/links)
+
+- [`Matrix`](/demos/recipes/matrix)
+
+- [`Sea Anemone`](/demos/recipes/sea-anemone)
+
+- [`Snow`](/demos/recipes/snow)
+
+- [`Squares`](/demos/recipes/squares)
+
+- [`Stars`](/demos/recipes/stars)
+
+- [`Ribbons`](/demos/recipes/ribbons)
+
+- [`Triangles`](/demos/recipes/triangles)
+
+To test them immediately in UI, use the [`Playground`](/playground/) and start them with `Start` only when needed.
+
+## Framework demo projects
+
+The monorepo also includes runnable integration demos:
+
+- Source folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Available demos include: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.

@@ -1,14 +1,14 @@
-# Preestablecido de confeti
+# Confetti Preset
 
-Preajuste oficial del espacio de trabajo `presets/presets/confetti`.
+Official preset from the `presets/presets/confetti` workspace.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-## Listo para usar (inicio/parada manual)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfecto para celebraciones, anuncios y diseños festivos. Combínelo con diferentes paletas de colores para variar.
+Perfect for celebrations, announcements, and festive designs. Combine with different color palettes for variety.
 
-Demostración: <https://particles.js.org/demos/recipes/confetti>
+Demo: <https://particles.js.org/demos/recipes/confetti>

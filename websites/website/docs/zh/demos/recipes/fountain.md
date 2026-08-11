@@ -1,14 +1,14 @@
-# 喷泉预设
+# Fountain Preset
 
-来自 `presets/presets/fountain` 工作区的官方预设。
+Official preset from the `presets/presets/fountain` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fountain
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-非常适合优雅、流畅的粒子动画和水主题效果。
+Perfect for elegant, flowing particle animations and water-themed effects.
 
-演示： <https://particles.js.org/demos/recipes/fountain>
+Demo: <https://particles.js.org/demos/recipes/fountain>

@@ -1,8 +1,8 @@
-# Demo pronta all'uso
+# Demo Ready-to-Use
 
-Queste ricette utilizzano le preimpostazioni ufficiali disponibili nell'area di lavoro `presets/presets` (beta/alpha verso il rilascio).
+These recipes use the official presets available in the `presets/presets` workspace (beta/alpha toward release).
 
-## Avvio/arresto base pattern (nessuna riproduzione automatica)
+## Pattern base start/stop (no autoplay)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -24,40 +24,63 @@ export function resume(): void {
 }
 ```
 
-## Ricette preimpostate
+## Preset recipes
 
-- Catalogo preimpostazioni: [`/demos/presets`](/it/demos/presets)
-- Catalogo tavolozze: [`/demos/palettes`](/it/demos/palettes)
-- Catalogo forme: [`/demos/shapes`](/it/demos/shapes)
+- Presets catalog: [`/demos/presets`](/demos/presets)
 
-- [`Ambient`](/it/demos/recipes/ambient)
-- [`Big Circles`](/it/demos/recipes/big-circles)
-- [`Bubbles`](/it/demos/recipes/bubbles)
-- [`Confetti`](/it/demos/recipes/confetti)
-- [`Confetti Cannon`](/it/demos/recipes/confetti-cannon)
-- [`Confetti Explosions`](/it/demos/recipes/confetti-explosions)
-- [`Confetti Falling`](/it/demos/recipes/confetti-falling)
-- [`Confetti Parade`](/it/demos/recipes/confetti-parade)
-- [`Party`](/it/demos/recipes/party)
-- [`Fire`](/it/demos/recipes/fire)
-- [`Firefly`](/it/demos/recipes/firefly)
-- [`Fireworks`](/it/demos/recipes/fireworks)
-- [`Fountain`](/it/demos/recipes/fountain)
-- [`Hyperspace`](/it/demos/recipes/hyperspace)
-- [`Links`](/it/demos/recipes/links)
-- [`Matrix`](/it/demos/recipes/matrix)
-- [`Sea Anemone`](/it/demos/recipes/sea-anemone)
-- [`Snow`](/it/demos/recipes/snow)
-- [`Squares`](/it/demos/recipes/squares)
-- [`Stars`](/it/demos/recipes/stars)
-- [`Ribbons`](/it/demos/recipes/ribbons)
-- [`Triangles`](/it/demos/recipes/triangles)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
 
-Per testarli immediatamente nell'interfaccia utente, utilizza [`Playground`](/it/playground/) e avviali con `Start` solo quando necessario.
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
 
-## Progetti dimostrativi quadro
+- [`Ambient`](/demos/recipes/ambient)
 
-Il monorepo include anche demo di integrazione eseguibili:
+- [`Big Circles`](/demos/recipes/big-circles)
 
-- Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Le demo disponibili includono: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- [`Bubbles`](/demos/recipes/bubbles)
+
+- [`Confetti`](/demos/recipes/confetti)
+
+- [`Confetti Cannon`](/demos/recipes/confetti-cannon)
+
+- [`Confetti Explosions`](/demos/recipes/confetti-explosions)
+
+- [`Confetti Falling`](/demos/recipes/confetti-falling)
+
+- [`Confetti Parade`](/demos/recipes/confetti-parade)
+
+- [`Party`](/demos/recipes/party)
+
+- [`Fire`](/demos/recipes/fire)
+
+- [`Firefly`](/demos/recipes/firefly)
+
+- [`Fireworks`](/demos/recipes/fireworks)
+
+- [`Fountain`](/demos/recipes/fountain)
+
+- [`Hyperspace`](/demos/recipes/hyperspace)
+
+- [`Links`](/demos/recipes/links)
+
+- [`Matrix`](/demos/recipes/matrix)
+
+- [`Sea Anemone`](/demos/recipes/sea-anemone)
+
+- [`Snow`](/demos/recipes/snow)
+
+- [`Squares`](/demos/recipes/squares)
+
+- [`Stars`](/demos/recipes/stars)
+
+- [`Ribbons`](/demos/recipes/ribbons)
+
+- [`Triangles`](/demos/recipes/triangles)
+
+To test them immediately in UI, use the [`Playground`](/playground/) and start them with `Start` only when needed.
+
+## Framework demo projects
+
+The monorepo also includes runnable integration demos:
+
+- Source folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Available demos include: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.

@@ -1,35 +1,39 @@
-# Politique en matière de cookies
+# Cookie Policy
 
-Ce site Web utilise un petit ensemble de cookies et de technologies tierces pour que les documents restent utiles et durables.
+This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
 
-## Ce que nous utilisons
+## What we use
 
-- **Cookies essentiels** : nécessaires au comportement technique et à la navigation.
-- **Cookies analytiques** (Google Analytics) : utilisés pour comprendre les modèles d'utilisation du trafic et de la documentation.
-- **Cookies publicitaires** (Google AdSense) : utilisés pour mesurer les performances des campagnes publicitaires et diffuser des annonces.
+- **Essential cookies**: required for technical behavior and navigation.
+- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
+- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
 
-Variables d'environnement actuellement configurées dans ce projet :
+Environment variables currently configured in this project:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
+- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
+- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## Comment fonctionne le consentement
+## How consent works
 
-- Les cookies de suivi sont désactivés jusqu'à ce que vous cliquiez explicitement sur **Accepter** dans la bannière des cookies.
-- Si vous cliquez sur **Rejeter**, le suivi des analyses/annonces reste désactivé.
-- Votre choix est enregistré localement dans votre navigateur.
+- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
+- You can reject all, accept all, or save granular choices for analytics and advertising.
+- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
+- When you reject ads, AdSense can run as non-personalized ads if configured.
+- Your choice is saved locally in your browser.
 
-## Comment modifier votre choix
+## How to change your choice
 
-Si vous souhaitez modifier votre consentement après avoir choisi, effacez le stockage local/les cookies de ce site dans les paramètres de votre navigateur et rechargez la page.
+If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
 
-## Politique associée
+## Related policy
 
-- [`/privacy-policy`](/fr/privacy-policy)
+- [`/privacy-policy`](/privacy-policy)
 
-## Responsables du traitement et sous-traitants
+## Data controllers and processors
 
-- Propriétaire du site : mainteneurs `@tsparticles/website`
-- Services tiers : Google Analytics et Google AdSense
+- Website owner: `@tsparticles/website` maintainers
+- Third-party services: Google Analytics and Google AdSense
 
-Pour les demandes juridiques/de confidentialité, veuillez utiliser les canaux d'assistance répertoriés dans le référentiel du projet.
+For legal/privacy requests, please use the support channels listed in the project repository.

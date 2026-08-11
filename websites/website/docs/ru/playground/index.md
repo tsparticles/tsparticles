@@ -1,33 +1,39 @@
-# Детская площадка
+# Playground
 
-Разделить по вариантам использования:
+Split by use case:
 
-- [`Configs Playground`](/ru/playground/configs): более богатые демо-версии с полными редактируемыми параметрами.
-- [`Shapes Playground`](/ru/playground/shapes): демо, сфокусированные на `shape.type`, с параметрами для конкретных форм там, где они доступны.
-- [`Presets Playground`](/ru/playground/presets): официальные демо-версии с пресетами (`{ preset: "..." }`).
-- [`Palettes Playground`](/ru/playground/palettes): демонстрационные версии с палитрой из проекта пресетов.
-- [`Bundles Playground`](/ru/playground/bundles): выделенные игровые площадки для `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` и `@tsparticles/ribbons`.
+- [`Configs Playground`](/playground/configs): richer demos with full editable options.
+- [`Shapes Playground`](/playground/shapes): focused demos for particle `shape.type` with per-shape options when available.
+- [`Presets Playground`](/playground/presets): official preset-name demos (`{ preset: "..." }`).
+- [`Palettes Playground`](/playground/palettes): palette-focused demos from the presets project.
+- [`Bundles Playground`](/playground/bundles): dedicated playgrounds for `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, and `@tsparticles/ribbons`.
 
-Выполнение всегда **запускается только пользователем** (без автозапуска).
+Execution is always **user-triggered only** (no autoplay).
 
-## Общий поток
+## Shared flow
 
-Планировка всех игровых площадок одинакова:
+The layout is consistent across playgrounds:
 
-1. Сначала предварительный просмотр холста.
-2. Элементы управления запуском/паузой/возобновлением/уничтожением.
-3. Редактор JSON для опций.
+1. Canvas preview first.
 
-4. Выберите демо-версию из меню.
-5. Нажмите `Start`, чтобы запустить его (без автозапуска).
-6. Отредактируйте JSON в редакторе.
-7. Нажмите `Start` еще раз, чтобы перезагрузить новые параметры.
-8. Используйте `Pause`/`Resume` для управления производительностью и использованием ЦП.
+2. Controls for Start/Pause/Resume/Destroy.
 
-> Примечание. `Destroy` полностью освобождает экземпляр контейнера.
+3. JSON editor for options.
 
-## Рекомендуемый рабочий процесс
+4. Pick a demo from the menu.
 
-- Прототипируйте здесь, пока эффект не станет стабильным.
-- Скопируйте окончательный JSON в свой проект.
-- Введите его с помощью `ISourceOptions` в коде приложения.
+5. Press `Start` to run it (no autoplay).
+
+6. Edit the JSON in the editor.
+
+7. Press `Start` again to reload with your new options.
+
+8. Use `Pause`/`Resume` to control performance and CPU usage.
+
+> Note: `Destroy` fully releases the container instance.
+
+## Suggested workflow
+
+- Prototype here until the effect is stable.
+- Copy the final JSON into your project.
+- Type it with `ISourceOptions` in application code.

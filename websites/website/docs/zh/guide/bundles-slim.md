@@ -1,54 +1,54 @@
-# 捆绑包：Slim
+# Bundle: Slim
 
-`@tsparticles/slim` 是大多数项目的推荐捆绑包。包含现代粒子动画所需的一切，具备鼠标交互、多种形状和粒子连线功能。
+`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
 
-## 包含的功能
+## Included features
 
-继承 `@tsparticles/basic` 的全部功能，外加：
+Inherits everything from `@tsparticles/basic` plus:
 
-**形状：** 圆形、方形、星形、多边形、线条、图片、emoji
+**Shapes:** circle, square, star, polygon, line, image, emoji
 
-**外部交互（鼠标/触摸）：**
+**External interactions (mouse/touch):**
 
-- attract（吸引）
-- bounce（弹跳）
-- bubble（气泡）
-- connect（连接）
-- destroy（销毁）
-- grab（抓取）
-- parallax（视差）
-- pause（暂停）
-- push（推动）
-- remove（移除）
-- repulse（排斥）
-- slow（减速）
+- attract
+- bounce
+- bubble
+- connect
+- destroy
+- grab
+- parallax
+- pause
+- push
+- remove
+- repulse
+- slow
 
-**粒子交互：**
+**Particle interactions:**
 
-- attract（吸引）
-- collisions（碰撞）
-- links（粒子连线）
+- attract
+- collisions
+- links (particle connections)
 
-**额外的更新器：**
+**Additional updaters:**
 
-- life（生命周期）
-- rotate（旋转）
+- life (lifecycle)
+- rotate
 
-**插件：**
+**Plugins:**
 
-- interactivity（交互）
-- easing-quad（二次缓动）
-- HEX、HSL、RGB 颜色插件
+- interactivity
+- easing-quad
+- HEX, HSL, RGB color plugins
 
-## 何时使用
+## When to use
 
-- 推荐作为大多数项目的起点
-- 需要多种形状（圆形、星形、多边形、图片）
-- 需要鼠标交互（点击、悬停、气泡、排斥）
-- 需要粒子连线
-- 在捆绑包大小和功能之间取得良好平衡
+- Recommended starting point for most projects
+- Need multiple shapes (circles, stars, polygons, images)
+- Need mouse interactions (click, hover, bubble, repulse)
+- Need particle links
+- Good balance between bundle size and features
 
-## 安装
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN（script 标签）
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## 常见错误
+## Common mistakes
 
-- 在 `loadSlim(tsParticles)` 之前调用 `tsParticles.load()`。
-- 引擎和捆绑包版本混用——保持版本一致。
-- 期望更高级捆绑包的功能（发射器、吸收器、文本、摆动）——需要 `tsparticles`（full）或单独的插件。
+- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
+- Mixing different versions between engine and bundle — keep them aligned.
+- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
 
-## 参见
+## See also
 
-- [捆绑包概览](/zh/guide/bundles)
-- [安装指南](/zh/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

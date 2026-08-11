@@ -1,14 +1,14 @@
-# Предустановка парада конфетти
+# Confetti Parade Preset
 
-Официальный пресет из рабочей области `presets/presets/confettiParade`.
+Official preset from the `presets/presets/confettiParade` workspace.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-parade
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Демо: <https://particles.js.org/demos/recipes/confetti-parade>
+Demo: <https://particles.js.org/demos/recipes/confetti-parade>
 
-Исходные документы: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>

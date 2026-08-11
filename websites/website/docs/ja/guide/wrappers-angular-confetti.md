@@ -1,29 +1,29 @@
-# ラッパー: 角のある紙吹雪
+# Wrapper: angular-confetti
 
-`@tsparticles/confetti` の公式 Angular ラッパー。
+Official Angular wrapper around `@tsparticles/confetti`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add angular-confetti @tsparticles/confetti
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. ラッパー + `@tsparticles/confetti` をインストールします。
-2. Angular アプリの起動時に一度初期化します。
-3. コンポーネント/サービスから紙吹雪アクションをトリガーします。
+1. Install wrapper + `@tsparticles/confetti`.
+2. Initialize once in Angular app startup.
+3. Trigger confetti actions from components/services.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
-- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

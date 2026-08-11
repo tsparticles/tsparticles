@@ -1,8 +1,8 @@
-# Demonstração pronta para uso
+# Demo Ready-to-Use
 
-Essas receitas usam as predefinições oficiais disponíveis no espaço de trabalho `presets/presets` (beta/alfa em direção ao lançamento).
+These recipes use the official presets available in the `presets/presets` workspace (beta/alpha toward release).
 
-## Início/parada base do padrão (sem reprodução automática)
+## Pattern base start/stop (no autoplay)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -24,40 +24,63 @@ export function resume(): void {
 }
 ```
 
-## Receitas predefinidas
+## Preset recipes
 
-- Catálogo de predefinições: [`/demos/presets`](/pt/demos/presets)
-- Catálogo de paletas: [`/demos/palettes`](/pt/demos/palettes)
-- Catálogo de formas: [`/demos/shapes`](/pt/demos/shapes)
+- Presets catalog: [`/demos/presets`](/demos/presets)
 
-- [`Ambient`](/pt/demos/recipes/ambient)
-- [`Big Circles`](/pt/demos/recipes/big-circles)
-- [`Bubbles`](/pt/demos/recipes/bubbles)
-- [`Confetti`](/pt/demos/recipes/confetti)
-- [`Confetti Cannon`](/pt/demos/recipes/confetti-cannon)
-- [`Confetti Explosions`](/pt/demos/recipes/confetti-explosions)
-- [`Confetti Falling`](/pt/demos/recipes/confetti-falling)
-- [`Confetti Parade`](/pt/demos/recipes/confetti-parade)
-- [`Party`](/pt/demos/recipes/party)
-- [`Fire`](/pt/demos/recipes/fire)
-- [`Firefly`](/pt/demos/recipes/firefly)
-- [`Fireworks`](/pt/demos/recipes/fireworks)
-- [`Fountain`](/pt/demos/recipes/fountain)
-- [`Hyperspace`](/pt/demos/recipes/hyperspace)
-- [`Links`](/pt/demos/recipes/links)
-- [`Matrix`](/pt/demos/recipes/matrix)
-- [`Sea Anemone`](/pt/demos/recipes/sea-anemone)
-- [`Snow`](/pt/demos/recipes/snow)
-- [`Squares`](/pt/demos/recipes/squares)
-- [`Stars`](/pt/demos/recipes/stars)
-- [`Ribbons`](/pt/demos/recipes/ribbons)
-- [`Triangles`](/pt/demos/recipes/triangles)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
 
-Para testá-los imediatamente na UI, use [`Playground`](/pt/playground/) e inicie-os com `Start` somente quando necessário.
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
 
-## Projetos de demonstração de estrutura
+- [`Ambient`](/demos/recipes/ambient)
 
-O monorepo também inclui demonstrações de integração executáveis:
+- [`Big Circles`](/demos/recipes/big-circles)
 
-- Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- As demonstrações disponíveis incluem: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- [`Bubbles`](/demos/recipes/bubbles)
+
+- [`Confetti`](/demos/recipes/confetti)
+
+- [`Confetti Cannon`](/demos/recipes/confetti-cannon)
+
+- [`Confetti Explosions`](/demos/recipes/confetti-explosions)
+
+- [`Confetti Falling`](/demos/recipes/confetti-falling)
+
+- [`Confetti Parade`](/demos/recipes/confetti-parade)
+
+- [`Party`](/demos/recipes/party)
+
+- [`Fire`](/demos/recipes/fire)
+
+- [`Firefly`](/demos/recipes/firefly)
+
+- [`Fireworks`](/demos/recipes/fireworks)
+
+- [`Fountain`](/demos/recipes/fountain)
+
+- [`Hyperspace`](/demos/recipes/hyperspace)
+
+- [`Links`](/demos/recipes/links)
+
+- [`Matrix`](/demos/recipes/matrix)
+
+- [`Sea Anemone`](/demos/recipes/sea-anemone)
+
+- [`Snow`](/demos/recipes/snow)
+
+- [`Squares`](/demos/recipes/squares)
+
+- [`Stars`](/demos/recipes/stars)
+
+- [`Ribbons`](/demos/recipes/ribbons)
+
+- [`Triangles`](/demos/recipes/triangles)
+
+To test them immediately in UI, use the [`Playground`](/playground/) and start them with `Start` only when needed.
+
+## Framework demo projects
+
+The monorepo also includes runnable integration demos:
+
+- Source folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Available demos include: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.

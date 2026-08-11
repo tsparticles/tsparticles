@@ -1,14 +1,14 @@
-# Предустановка треугольников
+# Triangles Preset
 
-Официальный пресет из рабочей области `presets/presets/triangles`.
+Official preset from the `presets/presets/triangles` workspace.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Надежная основа для геометрических макетов и дизайна в стиле тек.
+A solid base for geometric layouts and tech-style design.
 
-Демо: <https://particles.js.org/demos/recipes/triangles>
+Demo: <https://particles.js.org/demos/recipes/triangles>

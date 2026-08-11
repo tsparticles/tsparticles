@@ -1,14 +1,14 @@
-# त्रिकोण प्रीसेट
+# Triangles Preset
 
-`presets/presets/triangles` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/triangles` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-ज्यामितीय लेआउट और तकनीकी-शैली डिज़ाइन के लिए एक ठोस आधार।
+A solid base for geometric layouts and tech-style design.
 
-डेमो: <https://particles.js.org/demos/recipes/triangles>
+Demo: <https://particles.js.org/demos/recipes/triangles>

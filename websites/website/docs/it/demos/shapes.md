@@ -1,13 +1,13 @@
-# Catalogo forme
+# Shapes Catalog
 
-Questo catalogo elenca i valori comuni di `particles.shape.type` e le chiavi `particles.shape.options.<type>` da usare in v4 per personalizzare ogni forma.
+This catalog lists the common `particles.shape.type` values and the related `particles.shape.options.<type>` customization keys used in v4.
 
-Cartelle sorgente:
+Source folders:
 
 - <https://github.com/tsparticles/tsparticles/tree/main/shapes>
-- Riferimento opzioni shape: [`/options/particles-shape`](/it/options/particles-shape)
+- Shape options reference: [`/options/particles-shape`](/options/particles-shape)
 
-## Tipi di forma comuni e chiavi opzioni
+## Common shape types and option keys
 
 - `circle` (`options.circle.close`)
 - `square` / `edge` (`options.square.close`)
@@ -27,15 +27,48 @@ Cartelle sorgente:
 - `matrix` (`options.matrix.interval`)
 - `path` (`options.path.half`, `options.path.segments`)
 - `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
-## Note su alias e bundle
+## Notes on aliases and bundles
 
-- `square` ed `edge` sono alias della stessa forma.
-- `text` e il pacchetto dedicato per il testo in v4.
-- `image` e `images` usano lo stesso oggetto opzioni.
-- La maggior parte delle forme avanzate richiede `@tsparticles/slim` (o `@tsparticles/all`) o pacchetti shape dedicati.
+- `square` and `edge` are aliases for the same shape.
+- `text` is the dedicated text shape package in v4.
+- `image` and `images` use the same options object.
+- Most advanced shapes require `@tsparticles/slim` (or `@tsparticles/all`) or dedicated shape packages.
 
-## Esempi rapidi
+## Quick usage examples
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
 
 ### Text
 
@@ -75,4 +108,4 @@ particles: {
 }
 ```
 
-Per provarle rapidamente con controlli Start/Pause e JSON modificabile, usa [`/playground/shapes`](/it/playground/shapes).
+To test these quickly with Start/Pause controls and editable JSON, use [`/playground/shapes`](/playground/shapes).

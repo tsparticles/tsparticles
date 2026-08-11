@@ -1,26 +1,26 @@
-# Rilasci e versioni
+# Releases and Versioning
 
-Questo progetto ora viene fornito da un unico repository: `tsparticles/tsparticles`.
+This project now ships from a single repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Dove avviene il lavoro di rilascio
+## Where release work happens
 
-- Radice monorepo: <https://github.com/tsparticles/tsparticles>
-- Pacchetti: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Motore: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Preimpostazioni: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Tavolozze: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Monorepo root: <https://github.com/tsparticles/tsparticles>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Regola di allineamento della versione
+## Version alignment rule
 
-- Mantieni tutti i pacchetti `@tsparticles/*` allineati alla stessa riga di rilascio.
-- Evita di mescolare diverse linee beta o versioni principali in un'unica app.
+- Keep all `@tsparticles/*` packages aligned to the same release line.
+- Avoid mixing different beta lines or major versions in one app.
 
-## Lista pratica di controllo del rilascio
+## Practical release checklist
 
-1. Verificare le versioni del pacchetto di destinazione nei file `package.json` dell'area di lavoro.
-2. Costruisci e testa i progetti interessati.
-3. Convalida i collegamenti ai documenti e il comportamento del parco giochi.
-4. Pubblicare dal flusso di rilascio monorepo.
+1. Verify target package versions in workspace `package.json` files.
+2. Build and test affected projects.
+3. Validate docs links and playground behavior.
+4. Publish from the monorepo release flow.

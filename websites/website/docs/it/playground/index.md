@@ -1,33 +1,39 @@
-# Parco giochi
+# Playground
 
-Suddiviso per caso d'uso:
+Split by use case:
 
-- [`Configs Playground`](/it/playground/configs): demo più ricche con opzioni completamente modificabili.
-- [`Shapes Playground`](/it/playground/shapes): demo focalizzate su `shape.type`, con opzioni specifiche per forma quando disponibili.
-- [`Presets Playground`](/it/playground/presets): demo ufficiali con nomi preimpostati (`{ preset: "..." }`).
-- [`Palettes Playground`](/it/playground/palettes): demo incentrate sulla tavolozza dal progetto dei preset.
-- [`Bundles Playground`](/it/playground/bundles): campi da gioco dedicati per `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles` e `@tsparticles/ribbons`.
+- [`Configs Playground`](/playground/configs): richer demos with full editable options.
+- [`Shapes Playground`](/playground/shapes): focused demos for particle `shape.type` with per-shape options when available.
+- [`Presets Playground`](/playground/presets): official preset-name demos (`{ preset: "..." }`).
+- [`Palettes Playground`](/playground/palettes): palette-focused demos from the presets project.
+- [`Bundles Playground`](/playground/bundles): dedicated playgrounds for `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, and `@tsparticles/ribbons`.
 
-L'esecuzione è sempre **solo attivata dall'utente** (nessuna riproduzione automatica).
+Execution is always **user-triggered only** (no autoplay).
 
-## Flusso condiviso
+## Shared flow
 
-Il layout è coerente in tutti i parchi gioco:
+The layout is consistent across playgrounds:
 
-1. Prima l'anteprima della tela.
-2. Controlli per Avvio/Pausa/Riprendi/Distruggi.
-3. Editor JSON per le opzioni.
+1. Canvas preview first.
 
-4. Scegli una demo dal menu.
-5. Premi `Start` per eseguirlo (nessuna riproduzione automatica).
-6. Modifica il JSON nell'editor.
-7. Premi di nuovo `Start` per ricaricare con le nuove opzioni.
-8. Utilizzare `Pause`/`Resume` per controllare le prestazioni e l'utilizzo della CPU.
+2. Controls for Start/Pause/Resume/Destroy.
 
-> Nota: `Destroy` rilascia completamente l'istanza del contenitore.
+3. JSON editor for options.
 
-## Flusso di lavoro suggerito
+4. Pick a demo from the menu.
 
-- Prototipa qui finché l'effetto non è stabile.
-- Copia il JSON finale nel tuo progetto.
-- Digitalo con `ISourceOptions` nel codice dell'applicazione.
+5. Press `Start` to run it (no autoplay).
+
+6. Edit the JSON in the editor.
+
+7. Press `Start` again to reload with your new options.
+
+8. Use `Pause`/`Resume` to control performance and CPU usage.
+
+> Note: `Destroy` fully releases the container instance.
+
+## Suggested workflow
+
+- Prototype here until the effect is stable.
+- Copy the final JSON into your project.
+- Type it with `ISourceOptions` in application code.

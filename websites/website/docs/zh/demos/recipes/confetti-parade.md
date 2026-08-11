@@ -1,14 +1,14 @@
-# 五彩纸屑游行预设
+# Confetti Parade Preset
 
-来自 `presets/presets/confettiParade` 工作区的官方预设。
+Official preset from the `presets/presets/confettiParade` workspace.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-parade
 ```
 
-## 随时可用（手动启动/停止）
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-源文档：<https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
+Demo: <https://particles.js.org/demos/recipes/confetti-parade>
 
-演示： <https://particles.js.org/demos/recipes/confetti-parade>
+Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>

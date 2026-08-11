@@ -1,54 +1,54 @@
-# 迁移和兼容性
+# Migration and compatibility
 
-如果您要从 `particles.js` 迁移，请使用以下顺序：
+If you are migrating from `particles.js`, use this order:
 
-1. 将旧脚本/包替换为 `@tsparticles/engine` + 捆绑包 (`@tsparticles/slim`)
-2. 迁移旧配置，并逐步映射不支持的字段
-3. 逐项测试交互（悬停/点击/链接）
+1. replace old script/package with `@tsparticles/engine` + bundle (`@tsparticles/slim`)
+2. move your old config and map unsupported fields incrementally
+3. test interactions (hover/click/links) one by one
 
-## 规范迁移注释
+## Canonical migration notes
 
-- 官方迁移指南来源：[`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
-- 演示文件夹中提供了旧版兼容性示例。
+- Official migration guide source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Legacy compatibility examples are available in the demo folders.
 
-## 兼容包
+## Compatibility package
 
-如果您在迁移旧配置时需要桥接层：
+If you need a bridge layer while migrating legacy configs:
 
-- npm：<https://www.npmjs.com/package/@tsparticles/pjs>
-- jsDelivr：<https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
+- npm: <https://www.npmjs.com/package/@tsparticles/pjs>
+- jsDelivr: <https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
 
-进一步阅读：
+Further reading:
 
-- 迁移文章：<https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
-- 切换的 5 个理由：<https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
+- Migration article: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
+- 5 reasons to switch: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
 
-## 常用映射技巧
+## Common mapping tips
 
-- 旧的 `particlesJS(...)` init 变为 `tsParticles.load({ id, options })`。
-- 许多旧值在 `particles`、`interactivity` 和 `detectRetina` 下仍然具有直接等效项。
-- 新的插件驱动架构意味着一些高级功能需要显式包加载。
+- Old `particlesJS(...)` init becomes `tsParticles.load({ id, options })`.
+- Many legacy values still have direct equivalents under `particles`, `interactivity`, and `detectRetina`.
+- New plugin-driven architecture means some advanced features require explicit package loading.
 
-## 生产迁移清单
+## Migration checklist for production
 
-- 验证桌面和移动设备中的视觉奇偶性。
-- 验证 CPU/GPU 对低端设备的影响。
-- 验证没有选项键被静默忽略。
-- 在发布周之前固定确切的软件包版本。
+- Verify visual parity in desktop and mobile.
+- Verify CPU/GPU impact on low-end devices.
+- Verify no option keys are ignored silently.
+- Pin exact package versions before release week.
 
-## 从画布五彩纸屑迁移到 `@tsparticles/confetti`
+## Migration from canvas-confetti to `@tsparticles/confetti`
 
-如果您要从 `canvas-confetti` 迁移，最简单的切换是将命令式调用替换为 `@tsparticles/confetti` API 调用。
+If you are migrating from `canvas-confetti`, the easiest switch is replacing imperative calls with `@tsparticles/confetti` API calls.
 
-## 典型映射
+### Typical mapping
 
 - `confetti({...})` -> `await confetti({...})`
-- 自定义画布 -> `const local = await confetti.create(canvas, defaults)` 然后 `await local({...})`
-- 重复拍摄 -> 保留现有的计时器/循环，在这些回调中调用 `await confetti(...)`
+- custom canvas -> `const local = await confetti.create(canvas, defaults)` then `await local({...})`
+- repeated shots -> keep your existing timers/loops, call `await confetti(...)` in those callbacks
 
-## 转换示例
+### Example conversion
 
-之前（`canvas-confetti` 样式）：
+Before (`canvas-confetti` style):
 
 ```ts
 import confetti from "canvas-confetti";
@@ -60,7 +60,7 @@ confetti({
 });
 ```
 
-(`@tsparticles/confetti`) 之后：
+After (`@tsparticles/confetti`):
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
@@ -72,10 +72,10 @@ await confetti({
 });
 ```
 
-## 选项名称注释
+### Option name notes
 
 - `particleCount` -> `count`
-- `0..1` 中的 `origin.x`/`origin.y` -> `0..100` 中的 `position.x`/`position.y`
-- `startVelocity`、`spread`、`angle` 和 `colors` 保持相同的语义
+- `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`
+- `startVelocity`, `spread`, `angle`, and `colors` keep the same semantics
 
-有关完整的 API 和帮助程序，请参阅：<https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>
+For complete API and helpers, see: <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>

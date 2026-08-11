@@ -1,8 +1,8 @@
-# Movimento de partículas
+# Particles Move
 
-`particles.move` define direção, velocidade e comportamento fora da tela.
+`particles.move` defines direction, speed, and out-of-canvas behavior.
 
-## Exemplo
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-- `enable`: ativa o movimento.
-- `speed`: intensidade de movimento percebida primária.
-- `direction`: direção fixa ou movimento livre.
-- `outModes`: comportamento nos limites do canvas.
+- `enable`: turns movement on.
+- `speed`: primary perceived motion intensity.
+- `direction`: fixed direction or free movement.
+- `outModes`: behavior at canvas bounds.
 
-## Referência da fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Move.md>

@@ -1,41 +1,41 @@
 ---
-title: ステップバイステップガイド
-description: tsParticles をプロジェクトに統合するためのフレームワーク別ガイドをご覧ください。
+title: Step-by-Step Guides
+description: Explore framework-specific guides for integrating tsParticles into your project.
 ---
 
-# ステップバイステップガイド
+# Step-by-Step Guides
 
-tsParticles ガイドセクションへようこそ。Vanilla JS の静的サイト、React や Vue のシングルページアプリケーション、Next.js や Nuxt のフルスタックアプリケーションのいずれを構築する場合でも、これらのステップバイステップチュートリアルでインストール、基本的な使い方、高度な設定、インタラクティブエフェクトを順を追って説明します。
+Welcome to the tsParticles guides section. Whether you are building a static Vanilla JS site, a single-page app in React or Vue, or a full-stack application with Next.js or Nuxt, these step-by-step tutorials will walk you through installation, basic usage, advanced configurations, and interactive effects.
 
-各ガイドは自己完結型で、すぐに始められるコピー＆ペースト可能なコード例が含まれています。
+Each guide is self-contained and includes copy-pasteable code examples so you can get started quickly.
 
-## 利用可能なガイド
+## Available Guides
 
-| フレームワーク / ラッパー         | パッケージ                                   | 説明                                                         |
-| --------------------------------- | -------------------------------------------- | ------------------------------------------------------------ |
-| [Vanilla JS](./vanilla)           | `tsparticles`（CDN または npm）              | `tsParticles.load()` を使用した直接 DOM 統合                 |
-| [React](./react)                  | `@tsparticles/react`                         | フックとコンポーネント API を備えた公式 React ラッパー       |
-| [Vue 3](./vue3)                   | `@tsparticles/vue3`                          | コンポーザブルを備えた公式 Vue 3 プラグイン                  |
-| [Angular](./angular)              | `@tsparticles/angular`                       | 公式 Angular コンポーネントとモジュール                      |
-| [Svelte](./svelte)                | `@tsparticles/svelte`                        | 公式 Svelte コンポーネント                                   |
-| [Next.js](./nextjs)               | `@tsparticles/react`（Next.js 使用）         | サーバーサイドレンダリングと動的インポート                   |
-| [Nuxt](./nuxt)                    | `@tsparticles/vue3`（Nuxt 使用）             | Nuxt プラグインとしての SSR セーフな統合                     |
-| [Solid](./solid)                  | `@tsparticles/solid`                         | 公式 SolidJS ラッパー                                        |
-| [Preact](./preact)                | `@tsparticles/preact`                        | Preact 互換コンポーネント                                    |
-| [Lit](./lit)                      | `@tsparticles/lit`                           | Lit Web コンポーネントラッパー                               |
-| [Qwik](./qwik)                    | `@tsparticles/qwik`                          | Qwik 最適化統合                                              |
-| [jQuery](./jquery)                | `@tsparticles/jquery`                        | レガシープロジェクト向け jQuery プラグイン                   |
-| [Astro](./astro)                  | `@tsparticles/react`（または任意のラッパー） | クライアントディレクティブを使用したアイランドアーキテクチャ |
-| [Web Components](./webcomponents) | `@tsparticles/webcomponents`                 | Custom Elements API 統合                                     |
-| [Stencil](./stencil)              | `@tsparticles/stencil`                       | Stencil コンポーネントラッパー                               |
-| [Ember](./ember)                  | `@tsparticles/ember`                         | Ember アドオン統合                                           |
-| [Riot](./riot)                    | `@tsparticles/riot`                          | Riot.js ラッパー                                             |
-| [Inferno](./inferno)              | `@tsparticles/inferno`                       | Inferno 互換コンポーネント                                   |
-| [WordPress](./wordpress)          | プラグイン + `tsparticles`                   | ブロックエディター / ショートコード統合                      |
+| Framework / Wrapper                 | Package                                                                | Description                                         |
+| ----------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------- |
+| [Vanilla JS](./vanilla)             | `tsparticles` (CDN or npm)                          | Direct DOM integration with `tsParticles.load()`    |
+| [React](./react)                    | `@tsparticles/react`                                                   | Official React wrapper with hooks and component API |
+| [Vue 3](./vue3)                     | `@tsparticles/vue3`                                                    | Official Vue 3 plugin with composables              |
+| [Angular](./angular)                | `@tsparticles/angular`                                                 | Official Angular component and module               |
+| [Svelte](./svelte)                  | `@tsparticles/svelte`                                                  | Official Svelte component                           |
+| [Next.js](./nextjs) | `@tsparticles/react` (with Next.js) | Server-side rendering and dynamic imports           |
+| [Nuxt](./nuxt)                      | `@tsparticles/vue3` (with Nuxt)                     | SSR-safe integration as a Nuxt plugin               |
+| [Solid](./solid)                    | `@tsparticles/solid`                                                   | Official SolidJS wrapper                            |
+| [Preact](./preact)                  | `@tsparticles/preact`                                                  | Preact-compatible component                         |
+| [Lit](./lit)                        | `@tsparticles/lit`                                                     | Lit web component wrapper                           |
+| [Qwik](./qwik)                      | `@tsparticles/qwik`                                                    | Qwik-optimized integration                          |
+| [jQuery](./jquery)                  | `@tsparticles/jquery`                                                  | jQuery plugin for legacy projects                   |
+| [Astro](./astro)                    | `@tsparticles/react` (or any wrapper)               | Island architecture with client directives          |
+| [Web Components](./webcomponents)   | `@tsparticles/webcomponents`                                           | Custom Elements API integration                     |
+| [Stencil](./stencil)                | `@tsparticles/stencil`                                                 | Stencil component wrapper                           |
+| [Ember](./ember)                    | `@tsparticles/ember`                                                   | Ember addon integration                             |
+| [Riot](./riot)                      | `@tsparticles/riot`                                                    | Riot.js wrapper                     |
+| [Inferno](./inferno)                | `@tsparticles/inferno`                                                 | Inferno-compatible component                        |
+| [WordPress](./wordpress)            | Plugin + `tsparticles`                                                 | Block editor / shortcode integration                |
 
-## ガイドを選ぶ
+## Choose Your Guide
 
-- [Vanilla JS（プレーン JavaScript）](./vanilla)
+- [Vanilla JS (plain JavaScript)](./vanilla)
 - [React](./react)
 - [Vue 3](./vue3)
 - [Angular](./angular)

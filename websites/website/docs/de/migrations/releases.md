@@ -1,26 +1,26 @@
-# Veröffentlichungen und Versionierung
+# Releases and Versioning
 
-Dieses Projekt wird jetzt aus einem einzigen Repository versendet: `tsparticles/tsparticles`.
+This project now ships from a single repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Wo Release-Arbeit stattfindet
+## Where release work happens
 
-- Monorepo-Stamm: <https://github.com/tsparticles/tsparticles>
-- Pakete: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Monorepo root: <https://github.com/tsparticles/tsparticles>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
 - Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Voreinstellungen: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Paletten: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Versionsausrichtungsregel
+## Version alignment rule
 
-- Halten Sie alle `@tsparticles/*`-Pakete an derselben Release-Linie ausgerichtet.
-- Vermeiden Sie das Mischen verschiedener Beta-Linien oder Hauptversionen in einer App.
+- Keep all `@tsparticles/*` packages aligned to the same release line.
+- Avoid mixing different beta lines or major versions in one app.
 
-## Praktische Release-Checkliste
+## Practical release checklist
 
-1. Überprüfen Sie die Zielpaketversionen in den `package.json`-Dateien des Arbeitsbereichs.
-2. Erstellen und testen Sie betroffene Projekte.
-3. Überprüfen Sie die Links zu Dokumenten und das Verhalten auf dem Spielplatz.
-4. Veröffentlichen Sie über den Monorepo-Release-Flow.
+1. Verify target package versions in workspace `package.json` files.
+2. Build and test affected projects.
+3. Validate docs links and playground behavior.
+4. Publish from the monorepo release flow.

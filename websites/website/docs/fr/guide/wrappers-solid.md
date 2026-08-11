@@ -1,29 +1,29 @@
-# Emballage : @tsparticles/solid
+# Wrapper: @tsparticles/solid
 
-Emballage solide officiel pour `tsParticles`.
+Official Solid wrapper for `tsParticles`.
 
-## Installer
+## Install
 
 ```bash
 pnpm add @tsparticles/solid @tsparticles/engine @tsparticles/slim
 ```
 
-## Flux de configuration rapide
+## Quick setup flow
 
-1. Installez le package wrapper + moteur + chargeur.
-2. Chargez l'ensemble de fonctionnalités sélectionné une fois au démarrage.
-3. Rendre le composant solide avec les accessoires d'options.
+1. Install wrapper + engine + loader package.
+2. Load selected feature set once at startup.
+3. Render Solid component with options props.
 
-## Références Monorepo
+## Monorepo references
 
-- Dossier du package : <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
-- Application de démonstration : <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
 
-## Lisez-moi
+## Readme
 
-- README du wrapper : <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
 
-## Documents associés
+## Related docs
 
-- [`/guide/wrappers`](/fr/guide/wrappers)
-- [`/guide/frameworks`](/fr/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

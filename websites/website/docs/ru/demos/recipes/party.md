@@ -1,14 +1,14 @@
-# Предустановка вечеринки
+# Party Preset
 
-Официальный пресет из рабочей области `presets/presets/party`.
+Official preset from the `presets/presets/party` workspace.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-party
 ```
 
-## Готов к использованию (ручной запуск/остановка)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Идеально подходит для праздничных сцен, мероприятий и оверлеев в стиле вечеринки.
+Perfect for celebration scenes, events, and party-themed overlays.
 
-Демо: <https://particles.js.org/demos/recipes/party>
+Demo: <https://particles.js.org/demos/recipes/party>

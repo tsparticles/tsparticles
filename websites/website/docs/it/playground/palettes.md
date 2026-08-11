@@ -1,5 +1,5 @@
-# Tavolozze del parco giochi
+# Playground Palettes
 
-Utilizza questa pagina per testare le demo delle sole tavolozze caricate dal progetto delle preimpostazioni.
+Use this page to test palette-only demos loaded from the presets project.
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>

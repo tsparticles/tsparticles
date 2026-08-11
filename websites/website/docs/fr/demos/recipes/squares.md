@@ -1,14 +1,14 @@
-# Carrés prédéfinis
+# Squares Preset
 
-Préréglage officiel de l'espace de travail `presets/presets/squares`.
+Official preset from the `presets/presets/squares` workspace.
 
-## Installer
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-squares
 ```
 
-## Prêt à l'emploi (démarrage/arrêt manuel)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Parfait pour les designs géométriques et structurés et les mises en page modernes.
+Perfect for geometric, structured designs and modern layouts.
 
-Démo : <https://particles.js.org/demos/recipes/squares>
+Demo: <https://particles.js.org/demos/recipes/squares>

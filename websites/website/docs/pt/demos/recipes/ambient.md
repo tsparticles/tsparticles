@@ -1,14 +1,14 @@
-# Predefinição de ambiente
+# Ambient Preset
 
-Predefinição oficial do espaço de trabalho `presets/presets/ambient`.
+Official preset from the `presets/presets/ambient` workspace.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-ambient
 ```
 
-## Pronto para uso (partida/parada manual)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ótimo para fundos suaves e contínuos com baixo ruído visual.
+Great for soft, continuous backgrounds with low visual noise.
 
-Demonstração: <https://particles.js.org/demos/recipes/ambient>
+Demo: <https://particles.js.org/demos/recipes/ambient>

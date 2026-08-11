@@ -1,14 +1,14 @@
-# लिंक प्रीसेट
+# Links Preset
 
-`presets/presets/links` कार्यक्षेत्र से आधिकारिक प्रीसेट।
+Official preset from the `presets/presets/links` workspace.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-links
 ```
 
-## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
+## Ready-to-use (manual start/stop)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-सास-शैली नायक/नेटवर्क पृष्ठभूमि के लिए आदर्श।
+Ideal for SaaS-style hero/network backgrounds.
 
-डेमो: <https://particles.js.org/demos/recipes/links>
+Demo: <https://particles.js.org/demos/recipes/links>
