@@ -1,16 +1,16 @@
-# Ход частицы
+# Particles Stroke
 
-Параметры обводки теперь документированы в разделе `particles.paint.stroke`.
+Stroke options are now documented under `particles.paint.stroke`.
 
-## Новая страница
+## New page
 
-- [`Particles Paint`](/ru/options/particles-paint)
+- [`Particles Paint`](/options/particles-paint)
 
-## Быстрое картографирование
+## Quick mapping
 
-- Старая версия: `particles.stroke`
-- Новое: `particles.paint.stroke`
+- Old: `particles.stroke`
+- New: `particles.paint.stroke`
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>
