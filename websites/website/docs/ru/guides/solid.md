@@ -1,31 +1,31 @@
 ---
-title: Интеграция с SolidJS
-description: Пошаговое руководство по интеграции tsParticles в приложение SolidJS с использованием официальной обёртки @tsparticles/solid.
+title: SolidJS Integration
+description: Step-by-step guide to integrating tsParticles into a SolidJS application using the official @tsparticles/solid wrapper.
 ---
 
-# Интеграция с SolidJS
+# SolidJS Integration
 
-В этом руководстве рассматривается интеграция tsParticles в проект **SolidJS** с использованием официальной обёртки `@tsparticles/solid`. Тонкозернистая реактивность SolidJS хорошо работает с tsParticles — изменения опций вызывают целевые обновления canvas без полной переинициализации.
+This guide covers integrating tsParticles into a **SolidJS** project using the official `@tsparticles/solid` wrapper.
 
-## Установка
+## Installation
 
-Установите обёртку SolidJS и выбранную сборку движка:
+Install the SolidJS wrapper and the engine bundle of your choice:
 
 ```bash
 npm install @tsparticles/solid tsparticles
 ```
 
-Для меньшей сборки используйте `@tsparticles/slim`:
+For a smaller bundle, use `@tsparticles/slim` instead:
 
 ```bash
 npm install @tsparticles/solid @tsparticles/slim
 ```
 
-## Базовое использование
+## Basic Usage
 
-SolidJS работает полностью в браузере (без SSR), поэтому вам не нужно защищаться от серверного рендеринга. Однако движок должен быть инициализирован асинхронно перед рендерингом частиц.
+SolidJS runs entirely in the browser (no SSR), so you do not need to guard against server rendering. However, the engine must be initialized asynchronously before rendering particles.
 
-Используйте `initParticlesEngine` внутри `onMount` для загрузки функций движка, затем условно рендерите компонент `<Particles>` с `<Show>`:
+Use `initParticlesEngine` inside `onMount` to load the engine features, then conditionally render the `<Particles>` component with `<Show>`:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -64,11 +64,11 @@ const App: Component = () => {
 export default App;
 ```
 
-Компонент `<Show>` гарантирует, что элемент `<Particles>` вставляется в DOM только после готовности движка.
+The `<Show>` component ensures the `<Particles>` element is only inserted into the DOM after the engine is ready.
 
-## Инициализация движка
+## Engine Initialization
 
-Функция `initParticlesEngine` принимает колбэк, который получает экземпляр `Engine`. Используйте этот колбэк для регистрации функций, необходимых вашей конфигурации:
+The `initParticlesEngine` function accepts a callback that receives the `Engine` instance. Use this callback to register the features your configuration needs:
 
 ```tsx
 import { initParticlesEngine } from "@tsparticles/solid";
@@ -77,27 +77,27 @@ import { loadSlim } from "@tsparticles/slim";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import type { Engine } from "@tsparticles/engine";
 
-// Минимально — только базовые формы и движение
+// Minimal — only basic shapes and moves
 initParticlesEngine((engine: Engine) => loadSlim(engine)).then(() => {
-  console.log("Движок готов (slim)");
+  console.log("Engine ready (slim)");
 });
 
-// Полный — все функции включены
+// Full — every feature included
 initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => {
-  console.log("Движок готов (full)");
+  console.log("Engine ready (full)");
 });
 
-// Только пресет — только функции, необходимые для конкретного пресета
+// Preset-only — just the features needed for a specific preset
 initParticlesEngine((engine: Engine) => loadConfettiPreset(engine)).then(() => {
-  console.log("Пресет конфетти загружен");
+  console.log("Confetti preset loaded");
 });
 ```
 
-Вызовите `initParticlesEngine` один раз в вашем приложении — обычно в `onMount` корневого компонента. Экземпляр движка кешируется, поэтому последующие вызовы возвращаются немедленно.
+Call `initParticlesEngine` once in your app — typically in the root component's `onMount`. The engine instance is cached, so subsequent calls return immediately.
 
-## Условный рендеринг
+## Conditional Rendering
 
-Используйте управляющий поток `<Show>` SolidJS для отложенного рендеринга до инициализации движка:
+Use SolidJS's `<Show>` control flow to defer rendering until the engine is initialized:
 
 ```tsx
 import { createSignal, Show, onMount } from "solid-js";
@@ -114,7 +114,7 @@ const App: Component = () => {
   });
 
   return (
-    <Show when={ready()} fallback={<p>Загрузка частиц...</p>}>
+    <Show when={ready()} fallback={<p>Loading particles...</p>}>
       <Particles
         id="tsparticles"
         options={{
@@ -127,11 +127,11 @@ const App: Component = () => {
 };
 ```
 
-Проп `fallback` показывает индикатор загрузки во время инициализации движка.
+The `fallback` prop shows a loading indicator while the engine initializes.
 
-## Использование пресетов
+## Preset Usage
 
-Используйте `@tsparticles/configs` для быстрых, готовых конфигураций:
+Use `@tsparticles/configs` for quick, pre-designed configurations:
 
 ```bash
 npm install @tsparticles/configs
@@ -165,11 +165,11 @@ const App: Component = () => {
 export default App;
 ```
 
-Доступные конфиги: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `confetti`, `links` и другие.
+Available configs include: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `confetti`, `links`, and more.
 
-## Интерактивные частицы
+## Interactive Particles
 
-Добавьте взаимодействия по клику и наведению, настроив раздел `interactivity`:
+Add click and hover interactions by configuring the `interactivity` section:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -215,12 +215,12 @@ const App: Component = () => {
 export default App;
 ```
 
-- **Режимы наведения**: `grab`, `bubble`, `repulse`, `attract`, `slow`, `connect`
-- **Режимы клика**: `push`, `remove`, `repulse`, `bubble`, `attract`, `pause`
+- **Hover modes**: `grab`, `bubble`, `repulse`, `attract`, `slow`, `connect`
+- **Click modes**: `push`, `remove`, `repulse`, `bubble`, `attract`, `pause`
 
-## Пользовательская конфигурация
+## Custom Configuration
 
-Полная пользовательская конфигурация с множеством форм частиц, цветовых палитр и настроек движения:
+A full custom configuration with multiple particle shapes, color palettes, and motion settings:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -317,9 +317,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## Полный пример TypeScript
+## Full TypeScript Example
 
-Полный типизированный компонент с ссылкой на контейнер, инициализацией движка и ручным управлением:
+A complete typed component with container reference, engine initialization, and manual controls:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -380,7 +380,7 @@ const App: Component = () => {
           padding: "8px 16px",
         }}
       >
-        {paused() ? "Возобновить" : "Пауза"}
+        {paused() ? "Resume" : "Pause"}
       </button>
     </Show>
   );
@@ -389,9 +389,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## Динамические опции с сигналами
+## Dynamic Options with Signals
 
-Одно из преимуществ SolidJS — тонкозернистая реактивность: вы можете использовать сигналы для управления опциями частиц, и canvas будет эффективно обновляться:
+SolidJS's signals drive reactive prop changes — when `id`, `options`, or `url` change, the component destroys the old container and reloads particles with the new values. Use signals to create new object references on each change:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -409,8 +409,8 @@ const App: Component = () => {
     initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
-  // опции — обычный объект; он будет реактивно читаться
-  // через внутреннее отслеживание компонента Particles
+  // options are a regular object — it will be read reactively through
+  // the Particle component's internal tracking
   const options = (): ISourceOptions => ({
     fullScreen: { zIndex: -1 },
     background: { color: "#000" },
@@ -427,11 +427,11 @@ const App: Component = () => {
       <Particles id="dynamic" options={options()} particlesLoaded={() => {}} />
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 10 }}>
         <label>
-          Цвет:
+          Color:
           <input type="color" value={color()} onInput={(e) => setColor(e.currentTarget.value)} />
         </label>
         <label>
-          Количество:
+          Count:
           <input
             type="range"
             min={10}
@@ -449,11 +449,11 @@ const App: Component = () => {
 export default App;
 ```
 
-Поскольку `options` — это функция, которая обращается к сигналам, при каждом изменении `color()` или `particleCount()` компонент `<Particles>` получает новый объект опций и применяет только изменённые свойства к существующему canvas.
+Because `options` is a function that accesses signals, every time `color()` or `particleCount()` changes, the `<Particles>` component receives a new options object and triggers a destroy+reload cycle with the updated configuration.
 
-## Пресет с пользовательскими переопределениями
+## Preset with Custom Overrides
 
-Загрузите пресет, затем объедините с пользовательскими переопределениями для индивидуального эффекта:
+Load a preset, then merge custom overrides for a tailored effect:
 
 ```tsx
 import { loadSnowPreset } from "@tsparticles/preset-snow";
@@ -476,9 +476,9 @@ const App: Component = () => {
     fullScreen: { zIndex: -1 },
     background: { color: "#0d0d2b" },
     particles: {
-      // Переопределяем цвет снега на синий
+      // Override the snow color to blue
       color: { value: "#88ccff" },
-      // Увеличиваем количество хлопьев
+      // Increase the number of flakes
       number: { value: 300 },
     },
   };
@@ -493,29 +493,30 @@ const App: Component = () => {
 export default App;
 ```
 
-Пресет предоставляет значения по умолчанию для каждой опции, а ваши переопределения объединяются поверх — нужно указать только те свойства, которые вы хотите изменить.
-
-## Устранение неполадок
-
-| Симптом                       | Причина                                      | Исправление                                                                    |
-| ----------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------ |
-| Пустой DOM-элемент            | Движок не инициализирован до рендеринга      | Оберните `<Particles>` в `<Show when={initialized()}>`                         |
-| Частицы не видны              | Отсутствует `move.enable` или `number.value` | Убедитесь, что `particles.move.enable: true` и `particles.number.value > 0`    |
-| Canvas позади контента        | Отсутствует `zIndex` в fullScreen            | Используйте `fullScreen: { zIndex: -1 }`                                       |
-| Изменение опций не отражается | Ссылка на объект не меняется                 | Оберните опции в функцию или store; избегайте статических объектов             |
-| Движок не найден              | Отсутствует импорт `loadFull` или `loadSlim` | Установите `tsparticles` или `@tsparticles/slim` и вызовите `loadFull(engine)` |
+The preset provides default values for every option, and your overrides are merged on top — you only need to specify the properties you want to change.
 
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`id`**, **`options`**, or **`url`** change → the current container is destroyed and particles are reloaded with the new values.
 - **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
 On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## Следующие шаги
+## Troubleshooting
 
-- Изучите [площадку Configs](/playground/configs) для готовых конфигураций.
-- Прочтите [Справочник параметров](/options/) для полного списка параметров.
-- Просмотрите [исходный код SolidJS](https://github.com/tsparticles/solid) на GitHub для внутренностей обёртки.
+| Symptom                      | Cause                                   | Fix                                                                      |
+| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
+| Blank DOM element            | Engine not initialized before render    | Wrap `<Particles>` in `<Show when={initialized()}>`                      |
+| No particles visible         | Missing `move.enable` or `number.value` | Ensure `particles.move.enable: true` and `particles.number.value > 0`    |
+| Canvas behind content        | Missing `zIndex` in fullScreen          | Use `fullScreen: { zIndex: -1 }`                                         |
+| Options change not reflected | Object reference not changing           | Wrap options in a function or store; avoid static objects                |
+| Engine not found             | Missing `loadFull` or `loadSlim` import | Install `tsparticles` or `@tsparticles/slim` and call `loadFull(engine)` |
+| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register `loadThemePlugin` during engine initialization      |
+
+## Next Steps
+
+- Explore the [Configs playground](/playground/configs) for ready-to-use configurations.
+- Read the [Options Reference](/options/) for the complete list of parameters.
+- Browse the [SolidJS source](https://github.com/tsparticles/solid) on GitHub for wrapper internals.
