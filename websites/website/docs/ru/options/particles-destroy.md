@@ -1,8 +1,8 @@
-# Частицы Уничтожить
+# Particles Destroy
 
-`particles.destroy` управляет тем, что происходит при уничтожении частиц.
+`particles.destroy` controls what happens when particles are destroyed.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -18,12 +18,11 @@ particles: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Начните с простых настроек `mode`, а затем разбивайте сложные цепочки.
+- Start with simple `mode` setups before complex split chains.
+- Re-check performance when using large split counts.
 
-- Повторно проверьте производительность при использовании большого количества разделений.
-
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Destroy.md>
