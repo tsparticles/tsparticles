@@ -1,34 +1,34 @@
-# Версионирование и миграция
+# Versioning & Migration
 
-Используйте этот раздел для навигации между основными версиями `tsParticles`, отслеживания релизов и понимания версионирования.
+Use this section to navigate between major `tsParticles` versions, track releases, and understand versioning.
 
-## Руководства по миграции
+## Migration guides
 
-- [`Миграция с v3.x`](/ru/migrations/from-v3)
-- [`Миграция с v2.x`](/ru/migrations/from-v2)
-- [`Миграция с v1.x`](/ru/migrations/from-v1)
+- [`Migrate from v3.x`](/migrations/from-v3)
+- [`Migrate from v2.x`](/migrations/from-v2)
+- [`Migrate from v1.x`](/migrations/from-v1)
 
-## Быстрый путь
+## Quick route
 
-- С `v3.x`: начните с [`/ru/migrations/from-v3`](/ru/migrations/from-v3) (фокус: изменения ключей опций + переименования пакетов).
-- С `v2.x`: начните с [`/ru/migrations/from-v2`](/ru/migrations/from-v2) (фокус: API `load(...)` + опции).
-- С `v1.x`: начните с [`/ru/migrations/from-v1`](/ru/migrations/from-v1) (фокус: пакеты, загрузчики, опции).
+- Coming from `v3.x`: start with [`/migrations/from-v3`](/migrations/from-v3) (focus: option key changes + package renames).
+- Coming from `v2.x`: start with [`/migrations/from-v2`](/migrations/from-v2) (focus: `load(...)` API + options).
+- Coming from `v1.x`: start with [`/migrations/from-v1`](/migrations/from-v1) (focus: packages, loaders, options audit).
 
-## Где обычно возникают проблемы
+## Where migrations usually break
 
-Большинство миграций между основными версиями нарушаются в двух местах:
+Most major migrations break in two places:
 
-1. **Форма Load API** (старые позиционные параметры vs новый объектный параметр).
-2. **Схема опций** (переименованные/перемещённые ключи).
+1. **Load API shape** (old positional params vs new object params).
+2. **Options schema** (renamed/moved keys).
 
-Если ваше приложение компилируется, но отображается неправильно, начните с сопоставления опций.
+If your app compiles but renders wrong visuals, start from option mappings first.
 
-## Быстрый поиск
+## Fast lookup
 
-- [Матрица переименований опций](/ru/migrations/option-rename-matrix) — быстрое сопоставление устаревших и текущих ключей опций.
+- [Option Rename Matrix](/migrations/option-rename-matrix) — quick mapping of legacy vs current option keys.
 
-## Также полезно
+## Also useful
 
-- [Changelog](/ru/migrations/changelog) — последние заметки о релизах.
-- [Релизы и Версионирование](/ru/migrations/releases) — правила выравнивания версий и чеклист релиза.
-- [Миграция с particles.js](/ru/migrations/particles-js) — миграция с устаревшего `particles.js` или `canvas-confetti`.
+- [Changelog](/migrations/changelog) — latest release notes.
+- [Releases & Versioning](/migrations/releases) — version alignment rules and release checklist.
+- [particles.js Migration](/migrations/particles-js) — migrating from legacy `particles.js` or `canvas-confetti`.
