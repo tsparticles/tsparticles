@@ -1,8 +1,8 @@
-# 粒子数
+# Particles Number
 
-`particles.number` は、アクティブなパーティクルの数を制御します。
+`particles.number` controls how many particles are active.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -16,14 +16,14 @@ particles: {
 }
 ```
 
-- `value`: パーティクルの基本量。
-- `density.enable`: カウントをキャンバス サイズに適応させます。
-- `density.area`: スケーリングに使用される参照領域。
+- `value`: base amount of particles.
+- `density.enable`: adapts count to canvas size.
+- `density.area`: reference area used for scaling.
 
-## パフォーマンスのヒント
+## Performance tip
 
-FPS が低下した場合は、最初に `value` を下げます。
+Lower `value` first when FPS drops.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Number.md>
