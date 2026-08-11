@@ -1,29 +1,29 @@
-# ラッパー: @tsparticles/nuxt4
+# Wrapper: @tsparticles/nuxt4
 
-`tsParticles` の公式 Nuxt 4 モジュール ラッパー。
+Official Nuxt 4 module wrapper for `tsParticles`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/nuxt4 @tsparticles/engine @tsparticles/slim
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. モジュール + エンジン + ローダー パッケージをインストールします。
-2. Nuxt モジュールを登録し、クライアント上でキャンバスのレンダリングを維持します。
-3. アプリ構成/コンポーネントからオプションを渡します。
+1. Install module + engine + loader package.
+2. Register Nuxt module and keep canvas rendering on client.
+3. Pass options from app config/components.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4>
-- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt4>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt4>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
