@@ -1,8 +1,8 @@
-パーティクルの衝突数
+# Particles Collisions
 
-`particles.collisions` は、パーティクル間の衝突動作を制御します。
+`particles.collisions` controls particle-to-particle collision behavior.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -13,13 +13,13 @@ particles: {
 }
 ```
 
-- `enable`: 衝突を有効にします。
-- `mode`: 衝突動作 (`bounce` が最も一般的)。
+- `enable`: activates collisions.
+- `mode`: collision behavior (`bounce` is the most common).
 
-## パフォーマンスのヒント
+## Performance tip
 
-パーティクル数が多い場合、衝突のコストが高くなる可能性があります。最初に `particles.number` を使用して調整します。
+Collisions can be costly at high particle counts. Tune with `particles.number` first.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Collisions.md>
