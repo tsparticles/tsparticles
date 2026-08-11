@@ -1,8 +1,8 @@
-# Schermo intero
+# Full Screen
 
-Utilizza `fullScreen` per controllare se la tela occupa l'intera visualizzazione.
+Use `fullScreen` to control whether the canvas takes the full viewport.
 
-## Configurazione tipica
+## Typical setup
 
 ```ts
 fullScreen: {
@@ -11,12 +11,12 @@ fullScreen: {
 }
 ```
 
-- `enable`: attiva/disattiva il comportamento dell'intera finestra.
-- `zIndex`: utile per mantenere le particelle dietro il contenuto dell'app.
+- `enable`: toggles full-viewport behavior.
+- `zIndex`: useful to keep particles behind app content.
 
-## Sezioni incorporate
+## Embedded sections
 
-Per anteprime di documenti, schede e pannelli di gioco:
+For docs previews, cards, and playground panels:
 
 ```ts
 fullScreen: {
@@ -24,8 +24,8 @@ fullScreen: {
 }
 ```
 
-Ciò evita la sovrapposizione con il layout della pagina e altre tele.
+This avoids overlap with page layout and other canvases.
 
-## Riferimento alla fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/FullScreen.md>
