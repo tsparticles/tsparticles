@@ -1,16 +1,16 @@
-# Интерактивность
+# Interactivity
 
-Параметры `interactivity` определяют, как частицы реагируют на наведение/щелчок.
+`interactivity` options define how particles react to hover/click.
 
-Для целенаправленных ссылок:
+For focused references:
 
-- [`Interactivity Click`](/ru/options/interactivity-click)
-- [`Interactivity Hover`](/ru/options/interactivity-hover)
-- [`Interactivity Div`](/ru/options/interactivity-div)
-- [`Interactivity Events`](/ru/options/interactivity-events)
-- [`Interactivity Modes`](/ru/options/interactivity-modes)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
 
-## Базовая структура
+## Base structure
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## Наиболее часто используемые события
+## Most used events
 
-- `onHover`: немедленная обратная связь для пользователей.
-- `onClick`: всплески или целевые действия.
-- `resize`: сохраняет единообразие поведения холста при изменении размера окна.
-- `onDiv`: целевое взаимодействие с конкретными элементами.
+- `onHover`: immediate feedback for users.
+- `onClick`: bursts or targeted actions.
+- `resize`: keeps canvas behavior consistent on window resize.
+- `onDiv`: target interactions on specific elements.
 
-## Лучшая практика
+## Best practice
 
-- Избегайте одновременного включения слишком большого количества режимов на устройствах низкого уровня.
-  - Сохраняйте `distance` умеренным, чтобы избежать скачков производительности.
-- Если эффект сильный, используйте ручное управление с помощью `Start/Pause`.
+- Avoid enabling too many modes at once on low-end devices.
+- Keep `distance` moderate to avoid performance spikes.
+- If the effect is heavy, use manual control with `Start/Pause`.
 
-## Подробные ссылки
+## Detailed references
 
-- Нажмите: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>.
-- Наведите курсор: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- Раздел: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
