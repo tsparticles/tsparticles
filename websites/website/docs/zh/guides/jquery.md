@@ -1,12 +1,12 @@
-# jQuery 集成
+# jQuery Integration
 
-使用官方 jQuery 插件封装将 tsParticles 集成到你的 jQuery 项目中。
+Integrate tsParticles into your jQuery-based projects with the official jQuery plugin wrapper.
 
-## 安装
+## Installation
 
-### 通过 CDN
+### Via CDN
 
-通过 script 标签引入 jQuery、tsParticles 和 jQuery 插件：
+Include jQuery, tsParticles, and the jQuery plugin via script tags:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -16,24 +16,24 @@
 
 ---
 
-### 通过 npm + 构建
+### Via npm + Build
 
-安装所需包：
+Install the required packages:
 
 ```bash
 npm install jquery @tsparticles/jquery tsparticles
 ```
 
-导入到你的项目中：
+Import into your project:
 
 ```javascript
 import $ from "jquery";
 import "@tsparticles/jquery";
 ```
 
-## 引擎初始化
+## Engine Initialization
 
-在渲染粒子之前，必须使用所需功能初始化 tsParticles 引擎。通过 `$.particles.init` 完成：
+Before particles can be rendered, the tsParticles engine must be initialized with the features you need. This is done via `$.particles.init`:
 
 ```javascript
 (async () => {
@@ -44,11 +44,11 @@ import "@tsparticles/jquery";
 })();
 ```
 
-> **为什么需要这样做？** tsParticles 采用模块化架构。`loadFull` 注册所有内置形状、交互和更新器。你可以导入更小的包（例如 `tsparticles-slim`）来减小打包体积。
+> **Why is this needed?** tsParticles uses a modular architecture. `loadFull` registers all built-in shapes, interactions, and updaters. You can import smaller bundles (e.g., `tsparticles-slim`) to reduce bundle size.
 
-## 基本使用
+## Basic Usage
 
-引擎初始化完毕且 DOM 就绪后，选择一个容器元素并调用 `.particles().load()`：
+Once the engine is initialized and the DOM is ready, select a container element and call `.particles().load()`:
 
 ```javascript
 $(document).ready(async () => {
@@ -72,15 +72,15 @@ $(document).ready(async () => {
 });
 ```
 
-容器元素必须存在于 DOM 中：
+The container element must exist in the DOM:
 
 ```html
 <div id="tsparticles"></div>
 ```
 
-## 自定义配置
+## Custom Configuration
 
-`.load()` 方法接受完整的 `ISourceOptions` 对象。以下是一个综合示例：
+The `.load()` method accepts the full `ISourceOptions` object. Here is a comprehensive example:
 
 ```javascript
 $("#tsparticles")
@@ -146,9 +146,9 @@ $("#tsparticles")
   });
 ```
 
-## 预设加载
+## Preset Loading
 
-如果你已安装预设包（例如 `tsparticles-preset-stars`），在引擎初始化时加载它并在配置中引用：
+If you have installed a preset package (e.g. `tsparticles-preset-stars`), load it during engine initialization and reference it in the configuration:
 
 ```bash
 npm install tsparticles-preset-stars
@@ -170,26 +170,26 @@ npm install tsparticles-preset-stars
 })();
 ```
 
-## 事件处理与容器控制
+## Event Handling and Container Control
 
-`.particles()` 返回一个 jQuery 插件实例。要访问底层的 tsParticles `Container` 并调用 `play()`、`pause()` 或 `destroy()` 等方法：
+`.particles()` returns a jQuery plugin instance. To access the underlying tsParticles `Container` and call methods like `play()`, `pause()`, or `destroy()`:
 
 ```javascript
 const $container = $("#tsparticles");
 
-// 加载粒子
-$container.particles().load({/* 选项 */});
+// Load particles
+$container.particles().load({/* options */});
 
-// 几秒后播放/暂停
+// Play/pause after a few seconds
 setTimeout(() => {
   const container = $container.particles().getContainer();
   container?.pause();
 }, 5000);
 ```
 
-## 完整示例
+## Full Example
 
-以下是一个完整的、自包含的 HTML 页面，通过 CDN 加载 tsParticles 并呈现带有交互效果的粒子场景：
+Below is a complete, self-contained HTML page that loads tsParticles via CDN and renders a particle scene with interactive effects:
 
 ```html
 <!DOCTYPE html>
@@ -261,21 +261,22 @@ setTimeout(() => {
 </html>
 ```
 
-## Reactive Behavior
+## API Reference
 
-The `<Particles>` component reacts to prop changes at runtime:
+| Method                             | Description                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------- |
+| `$.particles.init(fn)`             | Initialize the engine with a loader callback                                       |
+| `$(el).particles()`                | Create a particles plugin instance on the element                                  |
+| `$(el).particles().load(opts)`     | Load and start the particle configuration                                          |
+| `$(el).particles().ajax(url)`      | Load configuration from a remote JSON URL                                          |
+| `$(el).particles().setTheme(name)` | Switch the active theme (requires `@tsparticles/plugin-themes`) |
+| `$(el).particles().destroy()`      | Destroy the particle instance and clean up                                         |
+| `$(el).particles().getContainer()` | Return the underlying `Container` for imperative control                           |
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+### Reactive behavior
 
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+Calling `.load(options)` or `.ajax(url)` again on the same element replaces the previous container — the old one is destroyed automatically. Use `.setTheme(name)` to switch themes at runtime without a full reload (requires `@tsparticles/plugin-themes`).
 
-## API 参考
+### Cleanup
 
-| 方法                               | 描述                                    |
-| ---------------------------------- | --------------------------------------- |
-| `$.particles.init(fn)`             | 使用加载器回调初始化引擎                |
-| `$(el).particles()`                | 在元素上创建粒子插件实例                |
-| `$(el).particles().load(opts)`     | 加载并启动粒子配置                      |
-| `$(el).particles().destroy()`      | 销毁粒子实例并清理                      |
-| `$(el).particles().getContainer()` | 返回底层的 `Container` 以进行命令式控制 |
+Call `.destroy()` to remove the particle instance and free resources. Containers are tracked per element via `WeakMap` — when the DOM element is removed, the associated container should be manually destroyed or replaced with an empty `.load({})`.
