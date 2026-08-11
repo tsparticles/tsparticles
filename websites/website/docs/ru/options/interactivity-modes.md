@@ -1,8 +1,8 @@
-# Режимы интерактивности
+# Interactivity Modes
 
-`interactivity.modes` определяет настройки режима, используемые событиями.
+`interactivity.modes` defines mode-specific settings used by events.
 
-## Пример
+## Example
 
 ```ts
 interactivity: {
@@ -29,18 +29,18 @@ interactivity: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Включайте только те режимы, которые вы действительно используете.
-- Соблюдайте умеренные расстояния для стабильной работы.
-- Используйте элементы управления «Старт/Пауза» для дорогостоящих комбинаций режимов.
+- Enable only the modes you really use.
+- Keep distances moderate for stable performance.
+- Use Start/Pause controls for expensive mode combinations.
 
-Связанные страницы:
+Related pages:
 
-- [`Interactivity Click`](/ru/options/interactivity-click)
-- [`Interactivity Hover`](/ru/options/interactivity-hover)
-- [`Interactivity Div`](/ru/options/interactivity-div)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Modes.md>
