@@ -1,29 +1,29 @@
-# Обертка: @tsparticles/svelte
+# Wrapper: @tsparticles/svelte
 
-Официальная оболочка Svelte для `tsParticles`.
+Official Svelte wrapper for `tsParticles`.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
-## Быстрая настройка
+## Quick setup flow
 
-1. Установите пакет обертка + движок + загрузчик.
-2. Инициализируйте функции движка один раз.
-3. Отрисуйте компонент Svelte с опциями в реквизите.
+1. Install wrapper + engine + loader package.
+2. Initialize engine features once.
+3. Render Svelte component with options in props.
 
-## Ссылки на монорепо
+## Monorepo references
 
-- Папка пакета: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>.
-- Демонстрационные приложения: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>.
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
+- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
 
-## Информация
+## Readme
 
-- README оболочки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
 
-## Связанные документы
+## Related docs
 
-- [`/guide/wrappers`](/ru/guide/wrappers)
-- [`/guide/frameworks`](/ru/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
