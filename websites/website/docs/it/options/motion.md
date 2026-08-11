@@ -1,8 +1,8 @@
-# Movimento
+# Motion
 
-`motion` è utile quando hai bisogno di controllo a livello di animazione, incluso il comportamento a movimento ridotto.
+`motion` is useful when you need animation-level control, including reduced-motion behavior.
 
-## Struttura di base
+## Basic structure
 
 ```ts
 motion: {
@@ -14,14 +14,14 @@ motion: {
 }
 ```
 
-- `disable`: interrompe il comportamento relativo al movimento.
-- `reduce`: consente un'animazione più morbida su dispositivi vincolati o contesti a movimento ridotto.
+- `disable`: stops motion-related behavior.
+- `reduce`: allows softer animation on constrained devices or reduced-motion contexts.
 
-## Guida pratica
+## Practical guidance
 
-- Mantieni questo valore predefinito a meno che tu non abbia requisiti di accessibilità/prestazioni.
-- Test con preferenze di movimento ridotto e dispositivi di fascia bassa.
+- Keep this at defaults unless you have accessibility/performance requirements.
+- Test with reduced-motion preferences and low-end devices.
 
-## Riferimento alla fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Motion.md>
