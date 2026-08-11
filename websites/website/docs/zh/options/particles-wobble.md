@@ -1,8 +1,8 @@
-# 粒子摆动
+# Particles Wobble
 
-`particles.wobble` 添加围绕移动路径的振荡运动。
+`particles.wobble` adds oscillating motion around the move path.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -17,6 +17,6 @@ particles: {
 }
 ```
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Wobble.md>
