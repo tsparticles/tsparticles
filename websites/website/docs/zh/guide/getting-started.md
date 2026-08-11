@@ -1,53 +1,53 @@
-# 开始使用
+# Getting Started
 
-tsParticles 是一个用于创建粒子动画、彩纸、烟花等的 JavaScript/TypeScript 库。它适用于所有现代浏览器，既可作为 npm 包使用，也可通过 CDN 配合 `<script>` 标签使用。
+tsParticles is a JavaScript/TypeScript library for creating particle animations, confetti, fireworks, and more. It works in any modern browser and is available as both an npm package and via CDN with `<script>` tags.
 
 ## Quick start
 
-最快的方式是通过我们的 CLI 开始：
+The fastest way to start is with our CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-按照交互式提示选择模板和框架。
-一个新项目将在当前目录中创建，tsParticles 已预先配置。
+Follow the interactive prompts to choose a template and framework.
+A new project with tsParticles pre-configured will be created in the current directory.
 
 ---
 
-## 架构：引擎 + 捆绑包
+## Architecture: engine + bundle
 
-`@tsparticles/engine` 单独使用**不会显示任何内容**。它只包含核心引擎（动画循环、画布、事件管理），但**没有形状、没有交互、没有视觉效果**。要看到效果，你必须至少加载一个**捆绑包**或单独的**插件**。
+`@tsparticles/engine` alone **does nothing visible**. It contains only the core engine (animation loop, canvas, event management) but **no shapes, no interactions, no visual effects**. To see something you must load at least a **bundle** or individual **plugins**.
 
-| 概念                                                                       | 作用                                                               |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `@tsparticles/engine`                                                      | 核心引擎。导出 `tsParticles`、类型、选项。单独使用不绘制任何内容。 |
-| 捆绑包（`@tsparticles/basic`、`@tsparticles/slim` 等）                     | 预组装的包，在引擎上注册形状、交互和更新器。                       |
-| 单个插件（`@tsparticles/shape-circle`、`@tsparticles/updater-opacity` 等） | 可自由组合成自定义捆绑包的独立包。                                 |
+| Concept                                                                                                                   | Role                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `@tsparticles/engine`                                                                                                     | Core engine. Exports `tsParticles`, types, options. Alone it draws nothing. |
+| Bundle (`@tsparticles/basic`, `@tsparticles/slim`, etc.)                               | Pre-assembled package that registers shapes, interactions, and updaters on the engine.                      |
+| Individual plugins (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity`, etc.) | Single packages you can combine for a custom bundle.                                                        |
 
-## 选择你的路径
+## Choose your path
 
-### 路径 A — npm/pnpm/yarn（使用打包工具的现代项目）
+### Path A — npm/pnpm/yarn (modern projects with bundler)
 
-安装引擎 + 一个捆绑包：
+Install the engine + a bundle:
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
 ```
 
-然后在代码中：
+Then in your code:
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  // 1. 在引擎上注册 slim 捆绑包的所有功能
+  // 1. Register all slim bundle features on the engine
   await loadSlim(tsParticles);
 
-  // 2. 创建动画
+  // 2. Create the animation
   await tsParticles.load({
-    id: "tsparticles", // HTML 容器 ID
+    id: "tsparticles", // HTML container ID
     options: {
       background: {
         color: "#0b1020",
@@ -69,30 +69,30 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-HTML 容器：
+The HTML container:
 
 ```html
 <div id="tsparticles"></div>
 ```
 
-### 路径 B — 通过 CDN 使用 `<script>` 标签（无打包工具，原生 HTML）
+### Path B — CDN with `<script>` tags (no bundler, vanilla HTML)
 
-先加载引擎，再加载捆绑包。CDN 文件将所有内容暴露在 `window` 上——无需 `import`。
+Load the engine first, then the bundle. CDN files expose everything on `window` — no `import` needed.
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- tsParticles 引擎 -->
+    <!-- tsParticles engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-    <!-- Slim 捆绑包（全局暴露 loadSlim） -->
+    <!-- Slim bundle (exposes loadSlim globally) -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
   </head>
   <body>
     <div id="tsparticles"></div>
     <script>
       (async () => {
-        // loadSlim 可从 CDN 捆绑包全局获取
+        // loadSlim is available globally from the CDN bundle
         await loadSlim(tsParticles);
 
         await tsParticles.load({
@@ -112,13 +112,13 @@ HTML 容器：
 </html>
 ```
 
-> **注意**：即使使用 CDN 捆绑包，你**必须**在 `tsParticles.load()` 之前调用 `loadSlim(tsParticles)`（或 `loadBasic` / `loadFull` / `loadAll`）。CDN 捆绑包会全局暴露加载器函数，但**不会自动调用它**。
+> **Note**: even with CDN bundles you MUST call `loadSlim(tsParticles)` (or `loadBasic` / `loadFull` / `loadAll`) before `tsParticles.load()`. CDN bundles expose the loader function globally but do NOT auto-call it.
 
-`@tsparticles/basic` → `loadBasic`、`tsparticles` → `loadFull`、`@tsparticles/all` → `loadAll`，同理。
+Same pattern applies to `@tsparticles/basic` → `loadBasic`, `tsparticles` → `loadFull`, `@tsparticles/all` → `loadAll`.
 
-### 路径 C — 具有专用 API 的专业捆绑包（彩纸、烟花、粒子）
+### Path C — Specialized bundles with dedicated API (confetti, fireworks, particles)
 
-某些捆绑包拥有自己的简化 API，无需使用 `tsParticles.load()`：
+Some bundles have their own simplified API, no need to use `tsParticles.load()`:
 
 ```html
 <!DOCTYPE html>
@@ -134,26 +134,26 @@ HTML 容器：
 </html>
 ```
 
-`fireworks()`、`particles()`、`ribbons()` 同理。
+Same for `fireworks()`, `particles()`, `ribbons()`.
 
-## 选择哪个捆绑包？
+## Which bundle to choose?
 
-| 捆绑包                   | npm                      | 何时使用                                                                       |
-| ------------------------ | ------------------------ | ------------------------------------------------------------------------------ |
-| `@tsparticles/basic`     | `loadBasic(tsParticles)` | 最简：圆形、移动、透明度、大小。无交互。                                       |
-| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **推荐用于大多数项目。** 添加交互（点击/悬停）、粒子连线、图片、星形、多边形。 |
-| `tsparticles`            | `loadFull(tsParticles)`  | 完整的官方功能集：发射器、吸收器、文本形状、滚动、摆动、拖尾。                 |
-| `@tsparticles/all`       | `loadAll(tsParticles)`   | **仓库中的所有内容**：每种形状、交互、效果、缓动、路径、导出。仅限原型设计。   |
-| `@tsparticles/confetti`  | `confetti(options)`      | 一次函数调用即可实现彩纸效果。专用 API。                                       |
-| `@tsparticles/fireworks` | `fireworks(options)`     | 一次函数调用即可实现烟花效果。专用 API。                                       |
-| `@tsparticles/particles` | `particles(options)`     | 简化的粒子背景。专用 API。                                                     |
-| `@tsparticles/ribbons`   | `ribbons(options)`       | 丝带效果。专用 API。                                                           |
+| Bundle                   | npm                      | When to use                                                                                                                                                     |
+| ------------------------ | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@tsparticles/basic`     | `loadBasic(tsParticles)` | Minimum: circles, movement, opacity, size. No interactions.                                                     |
+| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **Recommended for most projects.** Adds interactions (click/hover), particle links, images, stars, polygons. |
+| `tsparticles`            | `loadFull(tsParticles)`  | Full official feature set: emitters, absorbers, text shapes, roll, wobble, trail.                                               |
+| `@tsparticles/all`       | `loadAll(tsParticles)`   | **Everything** in the repo: every shape, interaction, effect, easing, path, export. Prototyping only.           |
+| `@tsparticles/confetti`  | `confetti(options)`      | Confetti in one function call. Dedicated API.                                                                                   |
+| `@tsparticles/fireworks` | `fireworks(options)`     | Fireworks in one function call. Dedicated API.                                                                                  |
+| `@tsparticles/particles` | `particles(options)`     | Simplified particle background. Dedicated API.                                                                                  |
+| `@tsparticles/ribbons`   | `ribbons(options)`       | Ribbon effect. Dedicated API.                                                                                                   |
 
-更多详情：[`/zh/guide/bundles`](/zh/guide/bundles)。
+More details: [`/guide/bundles`](/guide/bundles).
 
-## 使用预设
+## Using presets
 
-`@tsparticles/configs` 包包含数十种现成的配置（吸收器、气泡、雪、星星、重力、碰撞等）。
+The `@tsparticles/configs` package contains dozens of ready-made configurations (absorbers, bubbles, snow, stars, gravity, collisions, etc.).
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
@@ -172,7 +172,7 @@ await tsParticles.load({
 });
 ```
 
-通过 CDN：
+With CDN:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -186,25 +186,25 @@ await tsParticles.load({
 </script>
 ```
 
-## 快速参考
+## Quick references
 
-- 选项文档：[`/zh/options/`](/zh/options/)
-- 捆绑包指南：[`/zh/guide/bundles`](/zh/guide/bundles)
-- 预设目录：[`/zh/demos/presets`](/zh/demos/presets)
-- 调色板目录：[`/zh/demos/palettes`](/zh/demos/palettes)
-- 形状目录：[`/zh/demos/shapes`](/zh/demos/shapes)
-- 框架封装器：[`/zh/guide/wrappers`](/zh/guide/wrappers)
-- 颜色格式：[`/zh/guide/color-formats`](/zh/guide/color-formats)
-- 容器生命周期：[`/zh/guide/container-lifecycle`](/zh/guide/container-lifecycle)
-- 插件与自定义：[`/zh/guide/plugins-customization`](/zh/guide/plugins-customization)
+- Options documentation: [`/options/`](/options/)
+- Bundle guide: [`/guide/bundles`](/guide/bundles)
+- Presets catalog: [`/demos/presets`](/demos/presets)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
+- Framework wrappers: [`/guide/wrappers`](/guide/wrappers)
+- Color formats: [`/guide/color-formats`](/guide/color-formats)
+- Container lifecycle: [`/guide/container-lifecycle`](/guide/container-lifecycle)
+- Plugins & customization: [`/guide/plugins-customization`](/guide/plugins-customization)
 
-## 故障排除
+## Troubleshooting
 
-| 问题                                                 | 可能原因                                                    | 解决方案                                                                   |
-| ---------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------- |
-| 空白屏幕，无粒子                                     | 调用 `tsParticles.load()` 时 `#tsparticles` 在 DOM 中不存在 | 确保 DIV 在脚本之前存在，或使用 `DOMContentLoaded`                         |
-| 空白屏幕，无粒子                                     | 只安装了 `@tsparticles/engine`                              | 同时安装一个捆绑包（`@tsparticles/slim`）或插件——引擎本身没有可绘制的形状  |
-| "loadBasic/loadSlim/loadFull is not a function" 错误 | 未安装捆绑包或导入错误                                      | `pnpm add @tsparticles/slim` 并导入 `{ loadSlim }`                         |
-| 粒子不移动                                           | `move.enable` 未设置为 `true`                               | 添加 `move: { enable: true, speed: 2 }`                                    |
-| 缺少功能（如连线、碰撞）                             | 选择的捆绑包不包含该功能                                    | 切换到更丰富的捆绑包（`@tsparticles/slim` 或 `tsparticles`）或安装特定插件 |
-| TypeScript 类型错误                                  | 包版本不同步                                                | 保持引擎和捆绑包的主/次版本一致                                            |
+| Problem                                                                                     | Likely cause                                                              | Solution                                                                                                           |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Blank screen, no particles                                                                  | `#tsparticles` doesn't exist in the DOM when calling `tsParticles.load()` | Ensure the DIV exists before the script, or use `DOMContentLoaded`                                                 |
+| Blank screen, no particles                                                                  | Installed only `@tsparticles/engine`                                      | Also install a bundle (`@tsparticles/slim`) or plugins — engine alone has no shapes to draw     |
+| "loadBasic/loadSlim/loadFull is not a function" error                                       | Bundle not installed or wrong import                                      | `pnpm add @tsparticles/slim` and import `{ loadSlim }`                                                             |
+| Particles don't move                                                                        | `move.enable` not set to `true`                                           | Add `move: { enable: true, speed: 2 }`                                                                             |
+| Missing feature (e.g. links, collisions) | Chosen bundle doesn't include it                                          | Switch to a richer bundle (`@tsparticles/slim` or `tsparticles`) or install the specific plugin |
+| TypeScript type errors                                                                      | Package versions out of sync                                              | Keep engine and bundle on the same major/minor version                                                             |
