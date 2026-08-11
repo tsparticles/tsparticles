@@ -1,39 +1,39 @@
 ---
-title: वैनिला JS गाइड
-description: सादे जावास्क्रिप्ट के साथ tsParticles को एकीकृत करने के लिए पूर्ण गाइड।
+title: Vanilla JS Guide
+description: Complete guide for integrating tsParticles with plain JavaScript.
 ---
 
-# वैनिला JS गाइड
+# Vanilla JS Guide
 
-## विषय-सूची
+## Table of Contents
 
-1. [आरंभ करना](#getting-started)
-2. [मूल कण](#basic-particles)
-3. [कॉन्फ़ेटी प्रभाव](#confetti-effect)
-4. [आतिशबाजी प्रभाव](#fireworks-effect)
-5. [रिबन प्रभाव](#ribbons-effect)
-6. [हिम प्रभाव](#snow-effect)
-7. [नेटवर्क / लिंक्स प्रभाव](#network-links-effect)
-8. [तारे प्रभाव](#stars-effect)
-9. [कस्टम कॉन्फ़िगरेशन](#custom-configuration)
-10. [एकाधिक कंटेनर](#multiple-containers)
-11. [डायनामिक नियंत्रण](#dynamic-controls)
+1. [Getting Started](#getting-started)
+2. [Basic Particles](#basic-particles)
+3. [Confetti Effect](#confetti-effect)
+4. [Fireworks Effect](#fireworks-effect)
+5. [Ribbons Effect](#ribbons-effect)
+6. [Snow Effect](#snow-effect)
+7. [Network / Links Effect](#network-links-effect)
+8. [Stars Effect](#stars-effect)
+9. [Custom Configuration](#custom-configuration)
+10. [Multiple Containers](#multiple-containers)
+11. [Dynamic Controls](#dynamic-controls)
 
 ---
 
-## आरंभ करना
+## Getting Started
 
-### CDN (त्वरित आरंभ)
+### CDN (quick start)
 
-अपने HTML में एक `<div>` प्लेसहोल्डर और स्क्रिप्ट टैग जोड़ें। आपको कम से कम इंजन + एक बंडल की आवश्यकता है, और `tsParticles.load()` से पहले लोडर को कॉल करना होगा।
+Add a `<div>` placeholder and script tags in your HTML. You need at least the engine + a bundle, and you must call the loader before `tsParticles.load()`.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tsParticles – आरंभ करना</title>
+    <title>tsParticles – Getting Started</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -67,7 +67,7 @@ description: सादे जावास्क्रिप्ट के सा�
 npm install @tsparticles/engine @tsparticles/slim
 ```
 
-फिर इसे आयात करें और उपयोग करें:
+Then import and use it:
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -83,21 +83,21 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-> **नोट:** `@tsparticles/engine` अकेला कुछ नहीं बनाता। दृश्य आकार प्राप्त करने के लिए आपको एक बंडल (`@tsparticles/slim` अनुशंसित) या व्यक्तिगत प्लगइन्स स्थापित करना होगा।
+> **Note:** `@tsparticles/engine` alone draws nothing. You must install a bundle (`@tsparticles/slim` recommended) or individual plugins to get visible shapes.
 
 ---
 
-## मूल कण
+## Basic Particles
 
-एक न्यूनतम कॉन्फ़िगरेशन जो 100 कणों को गोलाकार आकार, यादृच्छिक रंग और हल्की गति के साथ प्रस्तुत करता है। v4 में, कण रंग पुराने `color` गुण के बजाय `paint` के माध्यम से सेट किए जाते हैं।
+A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement. In v4, particle colors are set via `paint` instead of the old `color` property.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>मूल कण</title>
+    <title>Basic Particles</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -168,17 +168,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## कॉन्फ़ेटी प्रभाव
+## Confetti Effect
 
-एक उत्सवपूर्ण विस्फोट के लिए समर्पित `@tsparticles/confetti` बंडल का उपयोग करें, जो एक ही फ़ंक्शन कॉल से काम करता है।
+Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a single function call.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>कॉन्फ़ेटी</title>
+    <title>Confetti</title>
     <style>
       body {
         margin: 0;
@@ -203,17 +203,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## आतिशबाजी प्रभाव
+## Fireworks Effect
 
-ध्वनि प्रभावों के साथ समर्पित `@tsparticles/fireworks` बंडल का उपयोग करके एक आतिशबाजी प्रदर्शन।
+A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound effects.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>आतिशबाजी</title>
+    <title>Fireworks</title>
     <style>
       body {
         margin: 0;
@@ -235,17 +235,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## रिबन प्रभाव
+## Ribbons Effect
 
-प्रवाहमान रिबन एनिमेशन के लिए समर्पित `@tsparticles/ribbons` बंडल का उपयोग करें जो माउस की स्थिति पर प्रतिक्रिया करते हैं।
+Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations that react to mouse position.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>रिबन</title>
+    <title>Ribbons</title>
     <style>
       body {
         margin: 0;
@@ -273,17 +273,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## हिम प्रभाव
+## Snow Effect
 
-`@tsparticles/configs` प्रीसेट कैटलॉग का उपयोग करके हल्के से गिरते बर्फ के टुकड़े।
+Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>हिम प्रभाव</title>
+    <title>Snow Effect</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -318,7 +318,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-वैकल्पिक रूप से, स्वतंत्र प्रीसेट पैकेज का उपयोग करके:
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -339,17 +339,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## नेटवर्क / लिंक्स प्रभाव
+## Network / Links Effect
 
-माउस इंटरैक्टिविटी के साथ एक क्लासिक कनेक्टेड-नोड्स विज़ुअल। `@tsparticles/slim` बंडल में लिंक्स इंटरैक्शन और माउस ग्रैब मोड शामिल है।
+A classic connected-nodes visual with mouse interactivity. The `@tsparticles/slim` bundle includes the links interaction and mouse grab mode.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>नेटवर्क / लिंक्स</title>
+    <title>Network / Links</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -418,17 +418,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## तारे प्रभाव
+## Stars Effect
 
-`@tsparticles/configs` प्रीसेट कैटलॉग का उपयोग करके एक तारों भरा रात का आकाश।
+A starry-night sky using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>तारे प्रभाव</title>
+    <title>Stars Effect</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -463,7 +463,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-वैकल्पिक रूप से, स्वतंत्र प्रीसेट पैकेज का उपयोग करके:
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -484,17 +484,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## कस्टम कॉन्फ़िगरेशन
+## Custom Configuration
 
-स्लिम बंडल का उपयोग करके ग्रेडिएंट बैकग्राउंड, इंटरैक्टिव होवर प्रभाव और एकाधिक आकार प्रकारों के साथ स्क्रैच से एक कॉन्फ़िगरेशन बनाएं।
+Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types using the slim bundle.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>कस्टम कॉन्फ़िग</title>
+    <title>Custom Config</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -515,7 +515,7 @@ import { loadSlim } from "@tsparticles/slim";
     </style>
   </head>
   <body>
-    <h1>कस्टम कॉन्फ़िगरेशन</h1>
+    <h1>Custom Configuration</h1>
     <div id="tsparticles"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -624,17 +624,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## एकाधिक कंटेनर
+## Multiple Containers
 
-एक ही पेज पर अनेक स्वतंत्र कण इंस्टेंस चलाएं, प्रत्येक का अपना कॉन्फ़िगरेशन होता है।
+Run multiple independent particle instances on the same page, each with its own configuration.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>एकाधिक कंटेनर</title>
+    <title>Multiple Containers</title>
     <style>
       .particle-box {
         width: 45%;
@@ -668,7 +668,7 @@ import { loadSlim } from "@tsparticles/slim";
       (async () => {
         await loadSlim(tsParticles);
 
-        // कंटेनर 1 – धीमी गति वाले वृत्त
+        // Container 1 – circles with slow movement
         await tsParticles.load({
           id: "box1",
           options: {
@@ -686,7 +686,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // कंटेनर 2 – लिंक्स के साथ त्रिकोण
+        // Container 2 – triangles with links
         await tsParticles.load({
           id: "box2",
           options: {
@@ -705,7 +705,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // कंटेनर 3 – कॉन्फ़ेटी-जैसा विस्फोट
+        // Container 3 – confetti-like burst
         await tsParticles.load({
           id: "box3",
           options: {
@@ -739,7 +739,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // कंटेनर 4 – धीमी गति से तैरते तारे
+        // Container 4 – slow floating stars
         await tsParticles.load({
           id: "box4",
           options: {
@@ -764,17 +764,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## डायनामिक नियंत्रण
+## Dynamic Controls
 
-प्रोग्रामेटिक रूप से रनटाइम पर प्रारंभ करें, रोकें, थामें और थीम बदलें।
+Programmatically start, stop, pause, and switch themes at runtime.
 
 ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>डायनामिक नियंत्रण</title>
+    <title>Dynamic Controls</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -813,12 +813,12 @@ import { loadSlim } from "@tsparticles/slim";
   <body>
     <div id="tsparticles"></div>
     <div class="controls">
-      <button id="play-btn">▶ चलाएं</button>
-      <button id="pause-btn">⏸ विराम</button>
-      <button id="stop-btn">⏹ रोकें</button>
-      <button id="theme-dark-btn">🌙 डार्क थीम</button>
-      <button id="theme-light-btn">☀️ लाइट थीम</button>
-      <button id="restart-btn">🔄 पुनः आरंभ</button>
+      <button id="play-btn">▶ Play</button>
+      <button id="pause-btn">⏸ Pause</button>
+      <button id="stop-btn">⏹ Stop</button>
+      <button id="theme-dark-btn">🌙 Dark Theme</button>
+      <button id="theme-light-btn">☀️ Light Theme</button>
+      <button id="restart-btn">🔄 Restart</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -882,4 +882,4 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-अब आपने tsParticles v4 के लिए हर प्रमुख वैनिला JS एकीकरण पैटर्न को कवर कर लिया है। प्रत्येक उदाहरण एक स्वतंत्र HTML फ़ाइल है जिसे आप अपने ब्राउज़र में खोलकर tsParticles को क्रियाशील देख सकते हैं।
+You have now covered every major Vanilla JS integration pattern for tsParticles v4. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.
