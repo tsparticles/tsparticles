@@ -1,25 +1,25 @@
-# Tutorial video
+# Video Tutorials
 
-Riferimenti video ufficiali e demo visive dalle principali risorse del progetto.
+Official video references and visual demos from the main project resources.
 
-Sezione sorgente README: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
+README source section: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
 
-## Hub video
+## Video hub
 
-- Pagina video principale: <https://particles.js.org/video.html>
+- Main video page: <https://particles.js.org/video.html>
 
-## Demo in primo piano
+## Featured demos
 
-- Caratteri come particelle: <https://particles.js.org/samples/#chars>
-- Maschera poligonale: <https://particles.js.org/samples/#polygonMask>
-- Stelle animate: <https://particles.js.org/samples/#nasa>
-- Gatto Nyan che vola su stelle scorrevoli: <https://particles.js.org/samples/#nyancat2>
-- Particelle di neve: <https://particles.js.org/samples/#snow>
-- Particelle della maschera di sfondo: <https://particles.js.org/samples/#background>
+- Characters as particles: <https://particles.js.org/samples/#chars>
+- Polygon mask: <https://particles.js.org/samples/#polygonMask>
+- Animated stars: <https://particles.js.org/samples/#nasa>
+- Nyan cat flying on scrolling stars: <https://particles.js.org/samples/#nyancat2>
+- Snow particles: <https://particles.js.org/samples/#snow>
+- Background mask particles: <https://particles.js.org/samples/#background>
 
-## Ordine di apprendimento consigliato
+## Recommended learning order
 
-1. Inizia da [`/guide/getting-started`](/it/guide/getting-started).
-2. Riproduci un campione in primo piano nel tuo stack.
-3. Passa a [`/options/`](/it/options/) per personalizzare il comportamento.
-4. Utilizza [`/guide/plugins-customization`](/it/guide/plugins-customization) per funzionalità personalizzate.
+1. Start from [`/guide/getting-started`](/guide/getting-started).
+2. Reproduce one featured sample in your stack.
+3. Move to [`/options/`](/options/) to customize behavior.
+4. Use [`/guide/plugins-customization`](/guide/plugins-customization) for custom features.
