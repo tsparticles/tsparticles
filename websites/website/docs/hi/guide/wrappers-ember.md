@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/ember
+# Wrapper: @tsparticles/ember
 
-`tsParticles` के लिए आधिकारिक एम्बर रैपर।
+Official Ember wrapper for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/ember @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
-2. ऐप बूटस्ट्रैप में एक बार इंजन सुविधाओं को आरंभ करें।
-3. अपने विकल्पों के साथ एम्बर घटक को माउंट करें।
+1. Install wrapper + engine + loader package.
+2. Initialize engine features once in app bootstrap.
+3. Mount the Ember component with your options.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
