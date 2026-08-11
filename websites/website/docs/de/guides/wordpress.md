@@ -1,107 +1,107 @@
 ---
-title: WordPress-Anleitung
-description: Vollständige Anleitung zur Integration von tsParticles mit WordPress unter Verwendung des Plugins, Blocks, Shortcodes und Theme-Integration.
+title: WordPress Guide
+description: Complete guide for integrating tsParticles with WordPress using the plugin, blocks, shortcodes, and theme integration.
 ---
 
-# WordPress-Anleitung
+# WordPress Guide
 
-## Inhaltsverzeichnis
+## Table of Contents
 
 1. [Installation](#installation)
-2. [Plugin-Aktivierung](#plugin-activation)
-3. [Widget- und Block-Verwendung](#widget-and-block-usage)
-4. [Shortcode-Verwendung](#shortcode-usage)
-5. [PHP-Filter-Konfiguration](#php-filter-configuration)
-6. [Benutzerdefinierte Konfiguration via Filter](#custom-configuration-via-filter)
-7. [Theme-Integration](#theme-integration)
+2. [Plugin Activation](#plugin-activation)
+3. [Widget and Block Usage](#widget-and-block-usage)
+4. [Shortcode Usage](#shortcode-usage)
+5. [PHP Filter Configuration](#php-filter-configuration)
+6. [Custom Configuration via Filter](#custom-configuration-via-filter)
+7. [Theme Integration](#theme-integration)
 
 ---
 
 ## Installation
 
-Das tsParticles-WordPress-Plugin ist über das WordPress-Plugin-Verzeichnis verfügbar. Installieren Sie es direkt über Ihr WordPress-Admin-Dashboard.
+The tsParticles WordPress plugin is available through the WordPress Plugin Directory. Install it directly from your WordPress admin dashboard.
 
-### Vom WordPress-Admin
+### From WordPress Admin
 
-1. Navigieren Sie zu **Plugins → Installieren**
-2. Suchen Sie nach "tsParticles"
-3. Klicken Sie bei dem tsParticles-Plugin auf **Jetzt installieren**
-4. Klicken Sie auf **Aktivieren**
+1. Navigate to **Plugins → Add New**
+2. Search for "tsParticles"
+3. Click **Install Now** on the tsParticles plugin
+4. Click **Activate**
 
-### Manuelle Installation
+### Manual Installation
 
-1. Laden Sie das Plugin-ZIP vom WordPress-Plugin-Verzeichnis oder der [Releases-Seite](https://github.com/tsparticles/wordpress/releases) herunter
-2. Navigieren Sie zu **Plugins → Installieren → Plugin hochladen**
-3. Wählen Sie die ZIP-Datei und klicken Sie auf **Jetzt installieren**
-4. Klicken Sie auf **Aktivieren**
-
----
-
-## Plugin-Aktivierung
-
-Nach der Aktivierung registriert das Plugin:
-
-- Einen **Gutenberg-Block** namens "tsParticles", der im Block-Inserter verfügbar ist
-- Einen **Shortcode** `[tsparticles]` für die Verwendung im Classic Editor oder in benutzerdefinierten PHP-Vorlagen
-- Einen **PHP-Filter** `tsparticles_options` für Entwickler, um die Konfiguration programmatisch einzuspritzen
-- Frontend-Assets (JavaScript und CSS), die nur dann eingereiht werden, wenn der Block oder Shortcode auf der Seite vorhanden ist
-
-Nach der Aktivierung können Sie überprüfen, ob das Plugin funktioniert, indem Sie in der WordPress-Admin-Seitenleiste auf **Einstellungen → tsParticles** gehen, wo je nach Plugin-Version eine grundlegende Einstellungsseite verfügbar sein kann.
+1. Download the plugin ZIP from the WordPress Plugin Directory or the [releases page](https://github.com/tsparticles/wordpress/releases)
+2. Navigate to **Plugins → Add New → Upload Plugin**
+3. Choose the ZIP file and click **Install Now**
+4. Click **Activate**
 
 ---
 
-## Widget- und Block-Verwendung
+## Plugin Activation
 
-Das tsParticles-Plugin fügt einen benutzerdefinierten Gutenberg-Block für den Block-Editor (WordPress 5.0+) hinzu.
+Once activated, the plugin registers:
 
-### Hinzufügen des Blocks
+- A **Gutenberg block** named "tsParticles" available in the block inserter
+- A **shortcode** `[tsparticles]` for use in the Classic Editor or custom PHP templates
+- A **PHP filter** `tsparticles_options` for developers to inject configuration programmatically
+- Front-end assets (JavaScript and CSS) that are enqueued only when the block or shortcode is present on the page
 
-1. Bearbeiten Sie einen beliebigen Beitrag oder eine Seite mit dem Block-Editor (Gutenberg)
-2. Klicken Sie auf die **+** (Block hinzufügen)-Schaltfläche
-3. Suchen Sie nach "tsParticles" oder "Particles"
-4. Klicken Sie auf den **tsParticles**-Block, um ihn einzufügen
-
-### Block-Einstellungen
-
-Nach dem Einfügen bietet das Block-Inspektor-Panel (auf der rechten Seite) folgende Einstellungen:
-
-- **Container-ID** — eine eindeutige HTML-ID für den Partikel-Container (Standard: `tsparticles`)
-- **Breite / Höhe** — explizite Abmessungen festlegen oder Vollbildmodus verwenden
-- **Z-Index** — steuert die Überlagerung relativ zu anderen Inhalten
-- **Konfiguration** — ein JSON-Optionsobjekt einfügen, um das Partikel-Erscheinungsbild vollständig anzupassen
-
-Für Theme-Seitenleisten oder Widget-Bereiche, die keine Blöcke unterstützen, verwenden Sie stattdessen den [Shortcode](#shortcode-usage)-Ansatz.
+After activation, you can verify the plugin is working by visiting **Settings → tsParticles** in the WordPress admin sidebar, where a basic settings page may be available depending on the plugin version.
 
 ---
 
-## Shortcode-Verwendung
+## Widget and Block Usage
 
-Verwenden Sie den `[tsparticles]`-Shortcode im Classic Editor, in benutzerdefinierten HTML-Blöcken oder direkt in PHP-Vorlagendateien, um Partikel-Hintergründe überall auf Ihrer Website einzubetten.
+The tsParticles plugin adds a custom Gutenberg block for the block editor (WordPress 5.0+).
 
-### Einfacher Shortcode
+### Adding the Block
+
+1. Edit any post or page with the block editor (Gutenberg)
+2. Click the **+** (Add Block) button
+3. Search for "tsParticles" or "Particles"
+4. Click the **tsParticles** block to insert it
+
+### Block Settings
+
+Once inserted, the block inspector panel (on the right side) provides settings:
+
+- **Container ID** — a unique HTML ID for the particle container (default: `tsparticles`)
+- **Width / Height** — set explicit dimensions or use full-screen mode
+- **Z-Index** — controls layering relative to other content
+- **Configuration** — paste a JSON options object to fully customize the particle appearance
+
+For theme-sidebar or widget areas that do not support blocks, use the [Shortcode](#shortcode-usage) approach instead.
+
+---
+
+## Shortcode Usage
+
+Use the `[tsparticles]` shortcode in the Classic Editor, custom HTML blocks, or directly in PHP template files to embed particle backgrounds anywhere on your site.
+
+### Basic Shortcode
 
 ```
 [tsparticles]
 ```
 
-Dies rendert die Standard-Partikel-Konfiguration (einfach schwebende Kreise auf dunklem Hintergrund).
+This renders the default particle configuration (simple floating circles on a dark background).
 
-### Shortcode mit Optionen
+### Shortcode with Options
 
-Übergeben Sie JSON-Konfiguration direkt im Shortcode mit dem `options`-Attribut:
+Pass JSON configuration directly in the shortcode using the `options` attribute:
 
 ```
 [tsparticles options='{"particles":{"number":{"value":50},"color":{"value":"#ff0000"},"shape":{"type":"circle"},"opacity":{"value":0.5},"size":{"value":{"min":1,"max":3}},"move":{"enable":true,"speed":1,"outModes":{"default":"bounce"}}},"background":{"color":"#1a1a2e"}}']
 ```
 
-### Shortcode in PHP-Vorlagen
+### Shortcode in PHP Templates
 
 ```php
-// In der header.php oder footer.php Ihres Themes
+// In your theme's header.php or footer.php
 echo do_shortcode('[tsparticles]');
 ```
 
-Oder mit benutzerdefinierten Optionen:
+Or with custom options:
 
 ```php
 $options = [
@@ -129,11 +129,11 @@ echo do_shortcode('[tsparticles options=\'' . wp_json_encode($options) . '\']');
 
 ---
 
-## PHP-Filter-Konfiguration
+## PHP Filter Configuration
 
-Das Plugin stellt einen `tsparticles_options`-Filter bereit, mit dem Sie die Partikel-Konfiguration aus Ihrer `functions.php`-Datei des Themes oder einem benutzerdefinierten Plugin überschreiben oder erweitern können. Dies ist der empfohlene Ansatz für Entwickler, da er die Konfiguration in PHP hält und Inline-JSON vermeidet.
+The plugin exposes a `tsparticles_options` filter that lets you override or extend the particle configuration from your theme's `functions.php` file or a custom plugin. This is the recommended approach for developers because it keeps configuration in PHP and avoids inline JSON.
 
-### Einfacher Filter
+### Basic Filter
 
 ```php
 // functions.php
@@ -155,19 +155,19 @@ add_filter('tsparticles_options', function (array $options): array {
 });
 ```
 
-Dieser Filter wird ausgeführt, bevor der Shortcode oder Block rendert, sodass jede Instanz von tsParticles auf der Seite die angepasste Konfiguration erhält.
+This filter runs before the shortcode or block renders, so any instance of tsParticles on the page receives the customized configuration.
 
 ---
 
-## Benutzerdefinierte Konfiguration via Filter
+## Custom Configuration via Filter
 
-Hier ist eine vollständige benutzerdefinierte Konfiguration, die die volle Leistungsfähigkeit des Filters demonstriert — einschließlich Interaktivität, mehreren Formtypen und Theme-Unterstützung.
+Here is a complete custom configuration that demonstrates the full power of the filter — including interactivity, multiple shape types, and theme support.
 
 ```php
 // functions.php
 add_filter('tsparticles_options', function (array $options): array {
 
-    // Vollbild-Hintergrund
+    // Full-screen background
     $options['fullScreen'] = [
         'enable' => true,
         'zIndex' => -1,
@@ -175,7 +175,7 @@ add_filter('tsparticles_options', function (array $options): array {
 
     $options['fpsLimit'] = 60;
 
-    // Partikel-Einstellungen
+    // Particle settings
     $options['particles'] = [
         'number' => [
             'value' => 60,
@@ -213,7 +213,7 @@ add_filter('tsparticles_options', function (array $options): array {
         ],
     ];
 
-    // Interaktivität
+    // Interactivity
     $options['interactivity'] = [
         'events' => [
             'onHover' => ['enable' => true, 'mode' => 'attract'],
@@ -225,12 +225,12 @@ add_filter('tsparticles_options', function (array $options): array {
         ],
     ];
 
-    // Hintergrund
+    // Background
     $options['background'] = [
         'color' => '#0f0f23',
     ];
 
-    // Theme-Unterstützung — Hellmodus-Umschaltung
+    // Theme support — light mode toggle
     $options['themes'] = [
         [
             'name' => 'light',
@@ -251,14 +251,14 @@ add_filter('tsparticles_options', function (array $options): array {
 
 ---
 
-## Theme-Integration
+## Theme Integration
 
-Um tsParticles zu einem dauerhaften Hintergrund in Ihrem gesamten WordPress-Theme zu machen, fügen Sie den Shortcode oder einen direkten PHP-Aufruf in die `header.php` oder `footer.php` Ihres Themes ein.
+To make tsParticles a persistent background across your entire WordPress theme, add the shortcode or a direct PHP call to your theme's `header.php` or `footer.php`.
 
-### Header-Hintergrund
+### Header Background
 
 ```php
-<!-- In header.php, direkt nach <body> -->
+<!-- In header.php, right after <body> -->
 <?php if (function_exists('do_shortcode')): ?>
 <div id="tsparticles-background">
     <?php echo do_shortcode('[tsparticles]'); ?>
@@ -266,9 +266,9 @@ Um tsParticles zu einem dauerhaften Hintergrund in Ihrem gesamten WordPress-Them
 <?php endif; ?>
 ```
 
-### Vollbild-Hintergrund-Styles
+### Full-Screen Background Styles
 
-Fügen Sie das folgende CSS zu Ihrer `style.css` des Themes oder via `wp_add_inline_style` hinzu:
+Add the following CSS to your theme's `style.css` or via `wp_add_inline_style`:
 
 ```css
 #tsparticles-background {
@@ -281,19 +281,19 @@ Fügen Sie das folgende CSS zu Ihrer `style.css` des Themes oder via `wp_add_inl
   pointer-events: none;
 }
 
-/* Stellen Sie sicher, dass der Inhalt über den Partikeln erscheint */
+/* Ensure content appears above the particles */
 .site-content {
   position: relative;
   z-index: 1;
 }
 ```
 
-### Bedingtes Laden
+### Conditional Loading
 
-Um tsParticles nur auf bestimmten Seiten zu laden:
+To load tsParticles only on specific pages:
 
 ```php
-// In functions.php — nur auf der Startseite einreihen
+// In functions.php — enqueue only on the front page
 add_action('wp', function () {
     if (is_front_page()) {
         add_filter('tsparticles_options', function (array $options): array {
@@ -307,8 +307,8 @@ add_action('wp', function () {
 });
 ```
 
-Kombinieren Sie dies mit der Block- oder Shortcode-Platzierung für einen leistungsfähigen, seiten-spezifischen Partikel-Hintergrund.
+Combine this with the block or shortcode placement for a performant, page-specific particle background.
 
 ---
 
-Sie haben jetzt alles, was Sie benötigen, um tsParticles in eine WordPress-Seite zu integrieren. Egal, ob Sie den Block-Editor, Shortcodes oder die vollständige PHP-Steuerung bevorzugen, jeder Ansatz gibt Ihnen einen einzigartigen Partikel-Hintergrund mit minimalem Aufwand.
+You now have everything needed to integrate tsParticles into a WordPress site. Whether you prefer the block editor, shortcodes, or full PHP control, each approach gives you a unique particle background with minimal effort.
