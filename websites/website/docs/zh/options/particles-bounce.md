@@ -1,8 +1,8 @@
-# 粒子弹跳
+# Particles Bounce
 
-`particles.bounce` 自定义碰撞或边界应用弹跳逻辑时的弹跳行为。
+`particles.bounce` customizes rebound behavior when collisions or boundaries apply bounce logic.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## 实用指导
+## Practical guidance
 
-- `1` 附近的值保持自然反弹。
-- 较高的值可能看起来精力充沛，但不太现实。
+- Values around `1` keep natural rebounds.
+- Higher values can look energetic but less realistic.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Bounce.md>
