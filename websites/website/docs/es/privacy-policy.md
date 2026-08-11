@@ -1,49 +1,51 @@
-# Política de privacidad
+# Privacy Policy
 
-Esta página explica cómo `particles.js.org` maneja los datos personales relacionados con los servicios de análisis y publicidad.
+This page explains how `particles.js.org` handles personal data related to analytics and advertising services.
 
-## Alcance
+## Scope
 
-Esta política cubre el sitio web de documentos y las páginas relacionadas proporcionadas desde `particles.js.org`.
+This policy covers the docs website and related pages served from `particles.js.org`.
 
-## Datos que procesamos
+## Data we process
 
-- Datos técnicos de navegación (metadatos derivados de IP, agente de usuario, referente, URL de página).
-- Eventos analíticos para tendencias de uso de documentación.
-- Eventos relacionados con la publicidad requeridos por Google AdSense cuando se otorga el consentimiento.
+- Technical browsing data (IP-derived metadata, user agent, referrer, page URLs).
+- Analytics events for documentation usage trends.
+- Advertising-related events required by Google AdSense when consent is granted, or non-personalized ad delivery where legally permitted.
 
-## Servicios utilizados
+## Services used
 
-- **Google Analytics 4** para análisis de tráfico y uso.
-- **Google AdSense** para entrega de anuncios y medición de campañas.
+- **Google Analytics 4** for traffic and usage analytics.
+- **Google AdSense** for ad delivery and campaign measurement.
 
-## Base legal y consentimiento
+## Legal basis and consent
 
-- El almacenamiento técnico esencial se utiliza para el funcionamiento del sitio.
-- Las tecnologías de análisis y publicidad se habilitan solo después del consentimiento explícito a través del banner de cookies.
-- Puedes rechazar el consentimiento y seguir usando los documentos.
+- Essential technical storage is used for site operation.
+- Analytics cookies are enabled only after explicit consent.
+- When analytics consent is not granted, the site may use cookieless, aggregate analytics measurement (Google Consent Mode) where legally permitted.
+- Advertising can run in non-personalized mode when consent for personalized ads is not granted, where legally permitted and configured.
+- You can reject consent and continue using the docs.
 
-## Almacenamiento de consentimiento
+## Consent storage
 
-- La elección de consentimiento se almacena localmente en el almacenamiento del navegador bajo una clave específica del sitio.
-- No se activa ningún análisis/seguimiento de anuncios antes de aceptar el consentimiento.
+- Consent choice is stored locally in browser storage under a site-specific key.
+- Consent choice controls whether analytics/ads storage can be used.
 
-## Intercambio de datos
+## Data sharing
 
-- Google puede procesar los datos como procesador/controlador externo de acuerdo con los términos de servicio de Google.
-- No vendemos datos personales a través de este sitio web.
+- Data may be processed by Google as a third-party processor/controller according to Google service terms.
+- We do not sell personal data through this website.
 
-## Tus controles
+## Your controls
 
-- Aceptar o rechazar a través del banner de cookies.
-- Borre los datos del sitio del navegador (almacenamiento local/cookies) para restablecer su elección.
-- Utilice los controles de privacidad del navegador y la configuración de anuncios para restricciones adicionales.
+- Accept or reject via the cookie banner.
+- Clear browser site data (local storage/cookies) to reset your choice.
+- Use browser privacy controls and ad settings for additional restrictions.
 
-## Actualizaciones de políticas
+## Policy updates
 
-Esta política puede actualizarse cuando cambian las funciones de seguimiento o los requisitos legales.
+This policy may be updated when tracking features or legal requirements change.
 
-## Contacto
+## Contact
 
-Para solicitudes de privacidad, utilice los canales de soporte y contacto en el repositorio del proyecto:
+For privacy requests, use the support and contact channels in the project repository:
 <https://github.com/tsparticles/tsparticles>
