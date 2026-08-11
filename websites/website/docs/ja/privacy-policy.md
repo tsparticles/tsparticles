@@ -1,49 +1,51 @@
-# プライバシーポリシー
+# Privacy Policy
 
-このページでは、`particles.js.org` が分析および広告サービスに関連する個人データをどのように処理するかについて説明します。
+This page explains how `particles.js.org` handles personal data related to analytics and advertising services.
 
-## 範囲
+## Scope
 
-このポリシーは、`particles.js.org` から提供されるドキュメント Web サイトと関連ページを対象としています。
+This policy covers the docs website and related pages served from `particles.js.org`.
 
-## 当社が処理するデータ
+## Data we process
 
-- 技術的な閲覧データ (IP 由来のメタデータ、ユーザー エージェント、リファラー、ページ URL)。
-- ドキュメントの使用傾向に関する分析イベント。
-- 同意が与えられた場合に Google AdSense によって要求される広告関連のイベント。
+- Technical browsing data (IP-derived metadata, user agent, referrer, page URLs).
+- Analytics events for documentation usage trends.
+- Advertising-related events required by Google AdSense when consent is granted, or non-personalized ad delivery where legally permitted.
 
-## 使用されるサービス
+## Services used
 
-- **Google Analytics 4** によるトラフィックと使用状況の分析。
-- **Google AdSense** による広告配信とキャンペーンの測定。
+- **Google Analytics 4** for traffic and usage analytics.
+- **Google AdSense** for ad delivery and campaign measurement.
 
-## 法的根拠と同意
+## Legal basis and consent
 
-- 必須の技術ストレージはサイト運営に使用されます。
-- 分析および広告テクノロジーは、Cookie バナーを介して明示的に同意した場合にのみ有効になります。
-- 同意を拒否してドキュメントの使用を続けることができます。
+- Essential technical storage is used for site operation.
+- Analytics cookies are enabled only after explicit consent.
+- When analytics consent is not granted, the site may use cookieless, aggregate analytics measurement (Google Consent Mode) where legally permitted.
+- Advertising can run in non-personalized mode when consent for personalized ads is not granted, where legally permitted and configured.
+- You can reject consent and continue using the docs.
 
-## 同意ストレージ
+## Consent storage
 
-- 同意の選択は、サイト固有のキーの下でブラウザー ストレージにローカルに保存されます。
-- 同意が受け入れられるまで、分析/広告追跡はアクティブ化されません。
+- Consent choice is stored locally in browser storage under a site-specific key.
+- Consent choice controls whether analytics/ads storage can be used.
 
-## データ共有
+## Data sharing
 
-- データは、Google のサービス規約に従って、サードパーティのプロセッサ/管理者として Google によって処理される場合があります。
-- このウェブサイトを通じて個人データを販売することはありません。
+- Data may be processed by Google as a third-party processor/controller according to Google service terms.
+- We do not sell personal data through this website.
 
-## あなたのコントロール
+## Your controls
 
-- Cookie バナーを介して承認または拒否します。
-- ブラウザーのサイト データ (ローカル ストレージ/Cookie) をクリアして、選択をリセットします。
-- ブラウザのプライバシー制御と広告設定を使用して制限を追加します。
+- Accept or reject via the cookie banner.
+- Clear browser site data (local storage/cookies) to reset your choice.
+- Use browser privacy controls and ad settings for additional restrictions.
 
-## ポリシーの更新
+## Policy updates
 
-このポリシーは、追跡機能や法的要件が変更された場合に更新される場合があります。
+This policy may be updated when tracking features or legal requirements change.
 
-## 連絡先
+## Contact
 
-プライバシーのリクエストについては、プロジェクト リポジトリのサポート チャネルと連絡先チャネルを使用してください。
+For privacy requests, use the support and contact channels in the project repository:
 <https://github.com/tsparticles/tsparticles>
