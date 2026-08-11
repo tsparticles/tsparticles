@@ -1,8 +1,8 @@
-# Nombre de particules
+# Particles Number
 
-`particles.number` contrôle le nombre de particules actives.
+`particles.number` controls how many particles are active.
 
-## Exemple
+## Example
 
 ```ts
 particles: {
@@ -16,14 +16,14 @@ particles: {
 }
 ```
 
-- `value` : quantité de base de particules.
-- `density.enable` : adapte le nombre à la taille de la toile.
-- `density.area` : zone de référence utilisée pour la mise à l'échelle.
+- `value`: base amount of particles.
+- `density.enable`: adapts count to canvas size.
+- `density.area`: reference area used for scaling.
 
-## Conseil sur les performances
+## Performance tip
 
-Réduisez d'abord `value` lorsque le FPS chute.
+Lower `value` first when FPS drops.
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Number.md>
