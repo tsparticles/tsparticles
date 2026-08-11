@@ -1,107 +1,107 @@
 ---
-title: WordPress 指南
-description: 使用插件、块、短代码和主题集成将 tsParticles 与 WordPress 集成的完整指南。
+title: WordPress Guide
+description: Complete guide for integrating tsParticles with WordPress using the plugin, blocks, shortcodes, and theme integration.
 ---
 
-# WordPress 指南
+# WordPress Guide
 
-## 目录
+## Table of Contents
 
-1. [安装](#installation)
-2. [插件激活](#plugin-activation)
-3. [小工具和块使用](#widget-and-block-usage)
-4. [短代码使用](#shortcode-usage)
-5. [PHP 过滤器配置](#php-filter-configuration)
-6. [通过过滤器自定义配置](#custom-configuration-via-filter)
-7. [主题集成](#theme-integration)
-
----
-
-## 安装
-
-tsParticles WordPress 插件可通过 WordPress 插件目录获取。直接从你的 WordPress 管理后台安装。
-
-### 从 WordPress 管理后台
-
-1. 导航至 **插件 → 安装插件**
-2. 搜索 "tsParticles"
-3. 在 tsParticles 插件上点击 **立即安装**
-4. 点击 **启用**
-
-### 手动安装
-
-1. 从 WordPress 插件目录或[发布页面](https://github.com/tsparticles/wordpress/releases)下载插件 ZIP 文件
-2. 导航至 **插件 → 安装插件 → 上传插件**
-3. 选择 ZIP 文件并点击 **立即安装**
-4. 点击 **启用**
+1. [Installation](#installation)
+2. [Plugin Activation](#plugin-activation)
+3. [Widget and Block Usage](#widget-and-block-usage)
+4. [Shortcode Usage](#shortcode-usage)
+5. [PHP Filter Configuration](#php-filter-configuration)
+6. [Custom Configuration via Filter](#custom-configuration-via-filter)
+7. [Theme Integration](#theme-integration)
 
 ---
 
-## 插件激活
+## Installation
 
-激活后，插件将注册：
+The tsParticles WordPress plugin is available through the WordPress Plugin Directory. Install it directly from your WordPress admin dashboard.
 
-- 一个名为 "tsParticles" 的 **Gutenberg 块**，可在块插入器中使用
-- 一个 `[tsparticles]` **短代码**，用于经典编辑器或自定义 PHP 模板
-- 一个 **PHP 过滤器** `tsparticles_options`，供开发者以编程方式注入配置
-- 前端资源（JavaScript 和 CSS），仅在页面中存在块或短代码时才会入列
+### From WordPress Admin
 
-激活后，你可以通过访问 WordPress 管理侧边栏中的 **设置 → tsParticles** 来验证插件是否正常工作，根据插件版本，可能会显示一个基本设置页面。
+1. Navigate to **Plugins → Add New**
+2. Search for "tsParticles"
+3. Click **Install Now** on the tsParticles plugin
+4. Click **Activate**
 
----
+### Manual Installation
 
-## 小工具和块使用
-
-tsParticles 插件为块编辑器（WordPress 5.0+）添加了一个自定义的 Gutenberg 块。
-
-### 添加块
-
-1. 使用块编辑器（Gutenberg）编辑任何文章或页面
-2. 点击 **+**（添加块）按钮
-3. 搜索 "tsParticles" 或 "Particles"
-4. 点击 **tsParticles** 块以插入
-
-### 块设置
-
-插入后，块检查器面板（右侧）提供以下设置：
-
-- **容器 ID** — 粒子容器的唯一 HTML ID（默认：`tsparticles`）
-- **宽度 / 高度** — 设置明确的尺寸或使用全屏模式
-- **Z-Index** — 控制相对于其他内容的层级
-- **配置** — 粘贴 JSON 配置对象以完全自定义粒子外观
-
-对于不支持块的主题侧边栏或小工具区域，请改用[短代码](#shortcode-usage)方式。
+1. Download the plugin ZIP from the WordPress Plugin Directory or the [releases page](https://github.com/tsparticles/wordpress/releases)
+2. Navigate to **Plugins → Add New → Upload Plugin**
+3. Choose the ZIP file and click **Install Now**
+4. Click **Activate**
 
 ---
 
-## 短代码使用
+## Plugin Activation
 
-在经典编辑器、自定义 HTML 块或直接在 PHP 模板文件中使用 `[tsparticles]` 短代码，在站点任意位置嵌入粒子背景。
+Once activated, the plugin registers:
 
-### 基本短代码
+- A **Gutenberg block** named "tsParticles" available in the block inserter
+- A **shortcode** `[tsparticles]` for use in the Classic Editor or custom PHP templates
+- A **PHP filter** `tsparticles_options` for developers to inject configuration programmatically
+- Front-end assets (JavaScript and CSS) that are enqueued only when the block or shortcode is present on the page
+
+After activation, you can verify the plugin is working by visiting **Settings → tsParticles** in the WordPress admin sidebar, where a basic settings page may be available depending on the plugin version.
+
+---
+
+## Widget and Block Usage
+
+The tsParticles plugin adds a custom Gutenberg block for the block editor (WordPress 5.0+).
+
+### Adding the Block
+
+1. Edit any post or page with the block editor (Gutenberg)
+2. Click the **+** (Add Block) button
+3. Search for "tsParticles" or "Particles"
+4. Click the **tsParticles** block to insert it
+
+### Block Settings
+
+Once inserted, the block inspector panel (on the right side) provides settings:
+
+- **Container ID** — a unique HTML ID for the particle container (default: `tsparticles`)
+- **Width / Height** — set explicit dimensions or use full-screen mode
+- **Z-Index** — controls layering relative to other content
+- **Configuration** — paste a JSON options object to fully customize the particle appearance
+
+For theme-sidebar or widget areas that do not support blocks, use the [Shortcode](#shortcode-usage) approach instead.
+
+---
+
+## Shortcode Usage
+
+Use the `[tsparticles]` shortcode in the Classic Editor, custom HTML blocks, or directly in PHP template files to embed particle backgrounds anywhere on your site.
+
+### Basic Shortcode
 
 ```
 [tsparticles]
 ```
 
-这将渲染默认的粒子配置（深色背景上的简单浮动圆形）。
+This renders the default particle configuration (simple floating circles on a dark background).
 
-### 带选项的短代码
+### Shortcode with Options
 
-使用 `options` 属性直接在短代码中传入 JSON 配置：
+Pass JSON configuration directly in the shortcode using the `options` attribute:
 
 ```
 [tsparticles options='{"particles":{"number":{"value":50},"color":{"value":"#ff0000"},"shape":{"type":"circle"},"opacity":{"value":0.5},"size":{"value":{"min":1,"max":3}},"move":{"enable":true,"speed":1,"outModes":{"default":"bounce"}}},"background":{"color":"#1a1a2e"}}']
 ```
 
-### 在 PHP 模板中的短代码
+### Shortcode in PHP Templates
 
 ```php
-// 在你的主题的 header.php 或 footer.php 中
+// In your theme's header.php or footer.php
 echo do_shortcode('[tsparticles]');
 ```
 
-或者使用自定义选项：
+Or with custom options:
 
 ```php
 $options = [
@@ -129,11 +129,11 @@ echo do_shortcode('[tsparticles options=\'' . wp_json_encode($options) . '\']');
 
 ---
 
-## PHP 过滤器配置
+## PHP Filter Configuration
 
-插件暴露了一个 `tsparticles_options` 过滤器，让你可以从主题的 `functions.php` 文件或自定义插件中覆盖或扩展粒子配置。这是推荐给开发者的方式，因为它将配置保留在 PHP 中，避免了内联 JSON。
+The plugin exposes a `tsparticles_options` filter that lets you override or extend the particle configuration from your theme's `functions.php` file or a custom plugin. This is the recommended approach for developers because it keeps configuration in PHP and avoids inline JSON.
 
-### 基本过滤器
+### Basic Filter
 
 ```php
 // functions.php
@@ -155,19 +155,19 @@ add_filter('tsparticles_options', function (array $options): array {
 });
 ```
 
-此过滤器在短代码或块渲染之前运行，因此页面上任何 tsParticles 实例都会收到自定义配置。
+This filter runs before the shortcode or block renders, so any instance of tsParticles on the page receives the customized configuration.
 
 ---
 
-## 通过过滤器自定义配置
+## Custom Configuration via Filter
 
-以下是一个完整的自定义配置，展示了过滤器的全部功能——包括交互功能、多种形状类型和主题支持。
+Here is a complete custom configuration that demonstrates the full power of the filter — including interactivity, multiple shape types, and theme support.
 
 ```php
 // functions.php
 add_filter('tsparticles_options', function (array $options): array {
 
-    // 全屏背景
+    // Full-screen background
     $options['fullScreen'] = [
         'enable' => true,
         'zIndex' => -1,
@@ -175,7 +175,7 @@ add_filter('tsparticles_options', function (array $options): array {
 
     $options['fpsLimit'] = 60;
 
-    // 粒子设置
+    // Particle settings
     $options['particles'] = [
         'number' => [
             'value' => 60,
@@ -213,7 +213,7 @@ add_filter('tsparticles_options', function (array $options): array {
         ],
     ];
 
-    // 交互
+    // Interactivity
     $options['interactivity'] = [
         'events' => [
             'onHover' => ['enable' => true, 'mode' => 'attract'],
@@ -225,12 +225,12 @@ add_filter('tsparticles_options', function (array $options): array {
         ],
     ];
 
-    // 背景
+    // Background
     $options['background'] = [
         'color' => '#0f0f23',
     ];
 
-    // 主题支持——浅色模式切换
+    // Theme support — light mode toggle
     $options['themes'] = [
         [
             'name' => 'light',
@@ -251,14 +251,14 @@ add_filter('tsparticles_options', function (array $options): array {
 
 ---
 
-## 主题集成
+## Theme Integration
 
-要将 tsParticles 作为整个 WordPress 主题的持久背景，将短代码或直接 PHP 调用添加到主题的 `header.php` 或 `footer.php`。
+To make tsParticles a persistent background across your entire WordPress theme, add the shortcode or a direct PHP call to your theme's `header.php` or `footer.php`.
 
-### 页眉背景
+### Header Background
 
 ```php
-<!-- 在 header.php 中，紧跟 <body> 之后 -->
+<!-- In header.php, right after <body> -->
 <?php if (function_exists('do_shortcode')): ?>
 <div id="tsparticles-background">
     <?php echo do_shortcode('[tsparticles]'); ?>
@@ -266,9 +266,9 @@ add_filter('tsparticles_options', function (array $options): array {
 <?php endif; ?>
 ```
 
-### 全屏背景样式
+### Full-Screen Background Styles
 
-将以下 CSS 添加到主题的 `style.css` 或通过 `wp_add_inline_style` 添加：
+Add the following CSS to your theme's `style.css` or via `wp_add_inline_style`:
 
 ```css
 #tsparticles-background {
@@ -281,19 +281,19 @@ add_filter('tsparticles_options', function (array $options): array {
   pointer-events: none;
 }
 
-/* 确保内容出现在粒子之上 */
+/* Ensure content appears above the particles */
 .site-content {
   position: relative;
   z-index: 1;
 }
 ```
 
-### 有条件的加载
+### Conditional Loading
 
-要仅在特定页面上加载 tsParticles：
+To load tsParticles only on specific pages:
 
 ```php
-// 在 functions.php 中——仅在前台页面入列
+// In functions.php — enqueue only on the front page
 add_action('wp', function () {
     if (is_front_page()) {
         add_filter('tsparticles_options', function (array $options): array {
@@ -307,8 +307,8 @@ add_action('wp', function () {
 });
 ```
 
-将其与块或短代码放置结合使用，可创建高性能、页面特定的粒子背景。
+Combine this with the block or shortcode placement for a performant, page-specific particle background.
 
 ---
 
-你现在已拥有将 tsParticles 集成到 WordPress 站点所需的全部内容。无论你偏好块编辑器、短代码还是完整的 PHP 控制，每种方式都能以最小的努力为你带来独特的粒子背景。
+You now have everything needed to integrate tsParticles into a WordPress site. Whether you prefer the block editor, shortcodes, or full PHP control, each approach gives you a unique particle background with minimal effort.
