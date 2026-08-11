@@ -1,27 +1,29 @@
-# 包装：@tsparticles/solid
+# Wrapper: @tsparticles/solid
 
-`tsParticles` 的官方实体包装。
+Official Solid wrapper for `tsParticles`.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/solid @tsparticles/engine @tsparticles/slim
 ```
 
-## 快速设置流程
+## Quick setup flow
 
-1.安装wrapper+engine+loader包。2. 在启动时加载一次选定的功能集。3. 使用选项道具渲染 Solid 组件。
+1. Install wrapper + engine + loader package.
+2. Load selected feature set once at startup.
+3. Render Solid component with options props.
 
-## Monorepo 参考资料
+## Monorepo references
 
-- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
-- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
 
-## 自述文件
+## Readme
 
-- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
 
-## 相关文档
+## Related docs
 
-- [`/guide/wrappers`](/zh/guide/wrappers)
-- [`/guide/frameworks`](/zh/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
