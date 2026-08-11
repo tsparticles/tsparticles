@@ -1,8 +1,8 @@
-# Leistungsleitfaden
+# Performance Guide
 
-Hier sind die wichtigsten Hebel, um FPS-Einbrüche zu vermeiden.
+Here are the main levers to avoid FPS drops.
 
-## 1) Partikelanzahl
+## 1. Particle count
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Weniger Partikel = weniger Draw Calls und weniger Kollisionen.
+Fewer particles = fewer draw calls and fewer collisions.
 
-## 2) Bewegung und Links
+## 2. Movement and links
 
-- Reduzieren Sie `move.speed`, wenn Sie keine energetische Wirkung benötigen.
-- Begrenzen Sie `links.distance` und `links.opacity`.
-- Vermeiden Sie schwere Kombinationen (z. B. `links` + `collisions` + erweiterte Effekte) im Vollbildmodus.
+- Reduce `move.speed` when you do not need an energetic effect.
+- Limit `links.distance` and `links.opacity`.
+- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
 
-## 3) Interaktivität
+## 3. Interactivity
 
-- Behalten Sie nur wenige aktive Modi bei.
-- Erwägen Sie auf Mobilgeräten, den Hover-Modus zu deaktivieren.
+- Keep only a few active modes.
+- On mobile, consider disabling hover mode.
 
-## 4) Netzhaut und Größe ändern
+## 4. Retina and resize
 
 ```ts
 detectRetina: false;
 ```
 
-Nützlich in leistungsorientierten Kontexten oder auf schwächeren Geräten.
+Useful in performance-first contexts or on weaker devices.
 
-## 5) Manuelle Lebenszykluskontrolle
+## 5. Manual lifecycle control
 
-Verwenden Sie für teure Abschnitte explizite Steuerelemente:
+For expensive sections, use explicit controls:
 
-- `start` bei Benutzerklick
-- `stop`/`pause`, wenn der Abschnitt nicht sichtbar ist
-- `destroy` beim Seiten-/Komponenten-Teardown
+- `start` on user click
+- `stop`/`pause` when the section is not visible
+- `destroy` on page/component teardown
