@@ -1,5 +1,5 @@
-# खेल का मैदान विन्यास
+# Playground Configs
 
-`tsparticles/utils/configs` के उदाहरणों के आधार पर, समृद्ध विकल्प ऑब्जेक्ट (केवल `preset` नाम नहीं) वाले डेमो के लिए इस पृष्ठ का उपयोग करें।
+Use this page for demos with richer option objects (not only `preset` names), based on examples from `tsparticles/utils/configs`.
 
 <PlaygroundPanel mode="configs"></PlaygroundPanel>
