@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/astro
+# Wrapper: @tsparticles/astro
 
-`tsParticles` के लिए आधिकारिक एस्ट्रो रैपर।
+Official Astro wrapper for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + इंजन + चुना हुआ लोडर स्थापित करें (`@tsparticles/slim` सुझाया गया)।
-2. एस्ट्रो घटकों/लेआउट में क्लाइंट पक्ष पर कणों को पंजीकृत करें।
-3. रैपर घटक में विकल्प ऑब्जेक्ट या JSON पास करें।
+1. Install wrapper + engine + chosen loader (`@tsparticles/slim` suggested).
+2. Register particles on the client side in Astro components/layouts.
+3. Pass options object or JSON to the wrapper component.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
