@@ -1,8 +1,8 @@
-# 插件选项：发射器
+# Plugin Option: Emitters
 
-`emitters` 动态生成粒子并且是插件驱动的。
+`emitters` spawns particles dynamically and is plugin-driven.
 
-## 示例
+## Example
 
 ```ts
 emitters: {
@@ -17,11 +17,11 @@ emitters: {
 }
 ```
 
-## 注释
+## Notes
 
-- 非常适合爆发效果和动态粒子生成。
-- 保持排放率平衡以避免性能峰值。
+- Great for burst effects and dynamic particle generation.
+- Keep emission rates balanced to avoid performance spikes.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Emitters.md>
