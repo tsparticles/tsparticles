@@ -1,29 +1,29 @@
-# Wrapper: kantiges Konfetti
+# Wrapper: angular-confetti
 
-Offizieller Angular-Wrapper um `@tsparticles/confetti`.
+Official Angular wrapper around `@tsparticles/confetti`.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add angular-confetti @tsparticles/confetti
 ```
 
-## Schneller Einrichtungsablauf
+## Quick setup flow
 
-1. Wrapper + `@tsparticles/confetti` installieren.
-2. Einmal beim Start der Angular-App initialisieren.
-3. Konfetti-Aktionen von Komponenten/Diensten auslösen.
+1. Install wrapper + `@tsparticles/confetti`.
+2. Initialize once in Angular app startup.
+3. Trigger confetti actions from components/services.
 
-## Monorepo-Referenzen
+## Monorepo references
 
-- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
-- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
 ## Readme
 
-- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
 
-## Verwandte Dokumente
+## Related docs
 
-- [`/guide/wrappers`](/de/guide/wrappers)
-- [`/guide/frameworks`](/de/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
