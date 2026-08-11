@@ -1,8 +1,8 @@
 # Changelog
 
-I changelog completi di questo monorepo sono molto grandi.
+The full changelogs in this monorepo are very large.
 
-Per vedere le note piu recenti, usa:
+For the most up-to-date release notes, use the latest GitHub release page:
 
-- Ultima release: <https://github.com/tsparticles/tsparticles/releases/latest>
-- Tutte le release: <https://github.com/tsparticles/tsparticles/releases>
+- Latest release: <https://github.com/tsparticles/tsparticles/releases/latest>
+- All releases: <https://github.com/tsparticles/tsparticles/releases>
