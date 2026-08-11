@@ -1,8 +1,8 @@
-パーティクルのバウンス数
+# Particles Bounce
 
-`particles.bounce` は、衝突または境界がバウンス ロジックを適用する場合のリバウンド動作をカスタマイズします。
+`particles.bounce` customizes rebound behavior when collisions or boundaries apply bounce logic.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## 実践的な指導
+## Practical guidance
 
-- `1` 付近の値は自然なリバウンドを保ちます。
-- 値を高くすると、元気に見えますが、現実的ではなくなります。
+- Values around `1` keep natural rebounds.
+- Higher values can look energetic but less realistic.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Bounce.md>
