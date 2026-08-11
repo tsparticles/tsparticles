@@ -1,53 +1,53 @@
-# Начало работы
+# Getting Started
 
-tsParticles — это JavaScript/TypeScript библиотека для создания анимаций частиц, конфетти, фейерверков и многого другого. Она работает в любом современном браузере и доступна как в виде npm-пакета, так и через CDN с тегами `<script>`.
+tsParticles is a JavaScript/TypeScript library for creating particle animations, confetti, fireworks, and more. It works in any modern browser and is available as both an npm package and via CDN with `<script>` tags.
 
 ## Quick start
 
-Самый быстрый способ начать — использовать наш CLI:
+The fastest way to start is with our CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-Следуйте интерактивным подсказкам, чтобы выбрать шаблон и фреймворк.
-Новый проект с предварительно настроенным tsParticles будет создан в текущей директории.
+Follow the interactive prompts to choose a template and framework.
+A new project with tsParticles pre-configured will be created in the current directory.
 
 ---
 
-## Архитектура: engine + bundle
+## Architecture: engine + bundle
 
-`@tsparticles/engine` сам по себе **ничего не отображает**. Он содержит только ядро (цикл анимации, canvas, управление событиями), но **не содержит форм, взаимодействий или визуальных эффектов**. Чтобы увидеть что-то, необходимо загрузить хотя бы **bundle** или отдельные **плагины**.
+`@tsparticles/engine` alone **does nothing visible**. It contains only the core engine (animation loop, canvas, event management) but **no shapes, no interactions, no visual effects**. To see something you must load at least a **bundle** or individual **plugins**.
 
-| Концепция                                                                              | Роль                                                                                               |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `@tsparticles/engine`                                                                  | Ядро. Экспортирует `tsParticles`, типы, опции. Сам по себе ничего не рисует.                       |
-| Bundle (`@tsparticles/basic`, `@tsparticles/slim` и т.д.)                              | Предварительно собранный пакет, который регистрирует формы, взаимодействия и обновления на движке. |
-| Отдельные плагины (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity` и т.д.) | Отдельные пакеты, которые можно комбинировать для создания собственного bundle.                    |
+| Concept                                                                                                                   | Role                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `@tsparticles/engine`                                                                                                     | Core engine. Exports `tsParticles`, types, options. Alone it draws nothing. |
+| Bundle (`@tsparticles/basic`, `@tsparticles/slim`, etc.)                               | Pre-assembled package that registers shapes, interactions, and updaters on the engine.                      |
+| Individual plugins (`@tsparticles/shape-circle`, `@tsparticles/updater-opacity`, etc.) | Single packages you can combine for a custom bundle.                                                        |
 
-## Выберите свой путь
+## Choose your path
 
-### Путь A — npm/pnpm/yarn (современные проекты с бандлером)
+### Path A — npm/pnpm/yarn (modern projects with bundler)
 
-Установите движок + bundle:
+Install the engine + a bundle:
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
 ```
 
-Затем в вашем коде:
+Then in your code:
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  // 1. Зарегистрировать все возможности slim bundle на движке
+  // 1. Register all slim bundle features on the engine
   await loadSlim(tsParticles);
 
-  // 2. Создать анимацию
+  // 2. Create the animation
   await tsParticles.load({
-    id: "tsparticles", // ID HTML-контейнера
+    id: "tsparticles", // HTML container ID
     options: {
       background: {
         color: "#0b1020",
@@ -69,15 +69,15 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-HTML-контейнер:
+The HTML container:
 
 ```html
 <div id="tsparticles"></div>
 ```
 
-### Путь B — CDN с тегами `<script>` (без бандлера, чистый HTML)
+### Path B — CDN with `<script>` tags (no bundler, vanilla HTML)
 
-Сначала загрузите движок, затем bundle. CDN-файлы выставляют всё на `window` — `import` не нужен.
+Load the engine first, then the bundle. CDN files expose everything on `window` — no `import` needed.
 
 ```html
 <!DOCTYPE html>
@@ -85,14 +85,14 @@ HTML-контейнер:
   <head>
     <!-- tsParticles engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-    <!-- Slim bundle (делает loadSlim глобально доступным) -->
+    <!-- Slim bundle (exposes loadSlim globally) -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
   </head>
   <body>
     <div id="tsparticles"></div>
     <script>
       (async () => {
-        // loadSlim доступен глобально из CDN-сборки
+        // loadSlim is available globally from the CDN bundle
         await loadSlim(tsParticles);
 
         await tsParticles.load({
@@ -112,13 +112,13 @@ HTML-контейнер:
 </html>
 ```
 
-> **Примечание**: даже с CDN-сборками вы ОБЯЗАНЫ вызвать `loadSlim(tsParticles)` (или `loadBasic` / `loadFull` / `loadAll`) перед `tsParticles.load()`. CDN-сборки выставляют функцию загрузки глобально, но не вызывают её автоматически.
+> **Note**: even with CDN bundles you MUST call `loadSlim(tsParticles)` (or `loadBasic` / `loadFull` / `loadAll`) before `tsParticles.load()`. CDN bundles expose the loader function globally but do NOT auto-call it.
 
-Тот же принцип применим к `@tsparticles/basic` → `loadBasic`, `tsparticles` → `loadFull`, `@tsparticles/all` → `loadAll`.
+Same pattern applies to `@tsparticles/basic` → `loadBasic`, `tsparticles` → `loadFull`, `@tsparticles/all` → `loadAll`.
 
-### Путь C — Специализированные bundle с собственным API (confetti, fireworks, particles)
+### Path C — Specialized bundles with dedicated API (confetti, fireworks, particles)
 
-Некоторые bundle имеют свой упрощённый API, без необходимости использовать `tsParticles.load()`:
+Some bundles have their own simplified API, no need to use `tsParticles.load()`:
 
 ```html
 <!DOCTYPE html>
@@ -134,26 +134,26 @@ HTML-контейнер:
 </html>
 ```
 
-То же самое для `fireworks()`, `particles()`, `ribbons()`.
+Same for `fireworks()`, `particles()`, `ribbons()`.
 
-## Какой bundle выбрать?
+## Which bundle to choose?
 
-| Bundle                   | npm                      | Когда использовать                                                                                                                  |
-| ------------------------ | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `@tsparticles/basic`     | `loadBasic(tsParticles)` | Минимум: круги, движение, прозрачность, размер. Без взаимодействий.                                                                 |
-| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **Рекомендуется для большинства проектов.** Добавляет взаимодействия (клик/наведение), связи частиц, изображения, звёзды, полигоны. |
-| `tsparticles`            | `loadFull(tsParticles)`  | Полный официальный набор функций: эмиттеры, абсорберы, текстовые формы, roll, wobble, trail.                                        |
-| `@tsparticles/all`       | `loadAll(tsParticles)`   | **Всё** из репозитория: каждая форма, взаимодействие, эффект, easing, путь, экспорт. Только для прототипирования.                   |
-| `@tsparticles/confetti`  | `confetti(options)`      | Конфетти одним вызовом функции. Выделенное API.                                                                                     |
-| `@tsparticles/fireworks` | `fireworks(options)`     | Фейерверки одним вызовом функции. Выделенное API.                                                                                   |
-| `@tsparticles/particles` | `particles(options)`     | Упрощённый фон из частиц. Выделенное API.                                                                                           |
-| `@tsparticles/ribbons`   | `ribbons(options)`       | Эффект лент. Выделенное API.                                                                                                        |
+| Bundle                   | npm                      | When to use                                                                                                                                                     |
+| ------------------------ | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@tsparticles/basic`     | `loadBasic(tsParticles)` | Minimum: circles, movement, opacity, size. No interactions.                                                     |
+| `@tsparticles/slim`      | `loadSlim(tsParticles)`  | **Recommended for most projects.** Adds interactions (click/hover), particle links, images, stars, polygons. |
+| `tsparticles`            | `loadFull(tsParticles)`  | Full official feature set: emitters, absorbers, text shapes, roll, wobble, trail.                                               |
+| `@tsparticles/all`       | `loadAll(tsParticles)`   | **Everything** in the repo: every shape, interaction, effect, easing, path, export. Prototyping only.           |
+| `@tsparticles/confetti`  | `confetti(options)`      | Confetti in one function call. Dedicated API.                                                                                   |
+| `@tsparticles/fireworks` | `fireworks(options)`     | Fireworks in one function call. Dedicated API.                                                                                  |
+| `@tsparticles/particles` | `particles(options)`     | Simplified particle background. Dedicated API.                                                                                  |
+| `@tsparticles/ribbons`   | `ribbons(options)`       | Ribbon effect. Dedicated API.                                                                                                   |
 
-Подробнее: [`/ru/guide/bundles`](/ru/guide/bundles).
+More details: [`/guide/bundles`](/guide/bundles).
 
-## Использование пресетов
+## Using presets
 
-Пакет `@tsparticles/configs` содержит десятки готовых конфигураций (absorbers, bubbles, snow, stars, gravity, collisions и т.д.).
+The `@tsparticles/configs` package contains dozens of ready-made configurations (absorbers, bubbles, snow, stars, gravity, collisions, etc.).
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim @tsparticles/configs
@@ -172,7 +172,7 @@ await tsParticles.load({
 });
 ```
 
-С CDN:
+With CDN:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -186,25 +186,25 @@ await tsParticles.load({
 </script>
 ```
 
-## Быстрые ссылки
+## Quick references
 
-- Документация по опциям: [`/ru/options/`](/ru/options/)
-- Руководство по bundle: [`/ru/guide/bundles`](/ru/guide/bundles)
-- Каталог пресетов: [`/ru/demos/presets`](/ru/demos/presets)
-- Каталог палитр: [`/ru/demos/palettes`](/ru/demos/palettes)
-- Каталог форм: [`/ru/demos/shapes`](/ru/demos/shapes)
-- Обёртки для фреймворков: [`/ru/guide/wrappers`](/ru/guide/wrappers)
-- Цветовые форматы: [`/ru/guide/color-formats`](/ru/guide/color-formats)
-- Жизненный цикл контейнера: [`/ru/guide/container-lifecycle`](/ru/guide/container-lifecycle)
-- Плагины и настройка: [`/ru/guide/plugins-customization`](/ru/guide/plugins-customization)
+- Options documentation: [`/options/`](/options/)
+- Bundle guide: [`/guide/bundles`](/guide/bundles)
+- Presets catalog: [`/demos/presets`](/demos/presets)
+- Palettes catalog: [`/demos/palettes`](/demos/palettes)
+- Shapes catalog: [`/demos/shapes`](/demos/shapes)
+- Framework wrappers: [`/guide/wrappers`](/guide/wrappers)
+- Color formats: [`/guide/color-formats`](/guide/color-formats)
+- Container lifecycle: [`/guide/container-lifecycle`](/guide/container-lifecycle)
+- Plugins & customization: [`/guide/plugins-customization`](/guide/plugins-customization)
 
-## Устранение неполадок
+## Troubleshooting
 
-| Проблема                                               | Вероятная причина                                                  | Решение                                                                                                        |
-| ------------------------------------------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| Пустой экран, нет частиц                               | `#tsparticles` не существует в DOM при вызове `tsParticles.load()` | Убедитесь, что DIV существует перед скриптом, или используйте `DOMContentLoaded`                               |
-| Пустой экран, нет частиц                               | Установлен только `@tsparticles/engine`                            | Установите также bundle (`@tsparticles/slim`) или плагины — движок сам по себе не имеет форм для отрисовки     |
-| Ошибка "loadBasic/loadSlim/loadFull is not a function" | Bundle не установлен или неправильный импорт                       | `pnpm add @tsparticles/slim` и импортируйте `{ loadSlim }`                                                     |
-| Частицы не двигаются                                   | `move.enable` не установлен в `true`                               | Добавьте `move: { enable: true, speed: 2 }`                                                                    |
-| Отсутствует функция (например, links, collisions)      | Выбранный bundle не включает её                                    | Переключитесь на более богатый bundle (`@tsparticles/slim` или `tsparticles`) или установите конкретный плагин |
-| Ошибки типов TypeScript                                | Версии пакетов не синхронизированы                                 | Держите engine и bundle на одной major/minor версии                                                            |
+| Problem                                                                                     | Likely cause                                                              | Solution                                                                                                           |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Blank screen, no particles                                                                  | `#tsparticles` doesn't exist in the DOM when calling `tsParticles.load()` | Ensure the DIV exists before the script, or use `DOMContentLoaded`                                                 |
+| Blank screen, no particles                                                                  | Installed only `@tsparticles/engine`                                      | Also install a bundle (`@tsparticles/slim`) or plugins — engine alone has no shapes to draw     |
+| "loadBasic/loadSlim/loadFull is not a function" error                                       | Bundle not installed or wrong import                                      | `pnpm add @tsparticles/slim` and import `{ loadSlim }`                                                             |
+| Particles don't move                                                                        | `move.enable` not set to `true`                                           | Add `move: { enable: true, speed: 2 }`                                                                             |
+| Missing feature (e.g. links, collisions) | Chosen bundle doesn't include it                                          | Switch to a richer bundle (`@tsparticles/slim` or `tsparticles`) or install the specific plugin |
+| TypeScript type errors                                                                      | Package versions out of sync                                              | Keep engine and bundle on the same major/minor version                                                             |
