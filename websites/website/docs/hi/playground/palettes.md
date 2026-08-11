@@ -1,5 +1,5 @@
-# खेल का मैदान पैलेट्स
+# Playground Palettes
 
-प्रीसेट प्रोजेक्ट से लोड किए गए केवल-पैलेट डेमो का परीक्षण करने के लिए इस पृष्ठ का उपयोग करें।
+Use this page to test palette-only demos loaded from the presets project.
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>
