@@ -1,8 +1,8 @@
-# パーティクルペイント
+# Particles Paint
 
-`particles.paint` は、パーティクルの塗りつぶしとストロークのスタイル オプションをグループ化します。
+`particles.paint` groups particle fill and stroke style options.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## 入力 (`particles.paint.fill`)
+## Fill (`particles.paint.fill`)
 
-- パーティクルの内部の色を定義します。
-- 静的な値、配列、カラー アニメーションをサポートします。
+- Defines the particle inner color.
+- Supports static values, arrays, and color animation.
 
-## ストローク (`particles.paint.stroke`)
+## Stroke (`particles.paint.stroke`)
 
-- アウトラインの幅と色を定義します。
-- 形状のコントラストを高めるのに役立ちます。
+- Defines outline width and color.
+- Useful to increase shape contrast.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>
