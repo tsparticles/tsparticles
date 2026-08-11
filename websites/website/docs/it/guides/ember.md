@@ -1,31 +1,31 @@
 ---
-title: Guida Ember
-description: Guida completa per integrare tsParticles con applicazioni Ember.js.
+title: Ember Guide
+description: Complete guide for integrating tsParticles with Ember.js applications.
 ---
 
-# Guida Ember
+# Ember Guide
 
-## Indice dei Contenuti
+## Table of Contents
 
-1. [Installazione](#installazione)
-2. [Inizializzazione del Motore](#inizializzazione-del-motore)
-3. [Utilizzo Base](#utilizzo-base)
-4. [Configurazione Personalizzata](#configurazione-personalizzata)
-5. [Gestione Eventi](#gestione-eventi)
-6. [Rendering Condizionale](#rendering-condizionale)
-7. [Esempio TypeScript](#esempio-typescript)
+1. [Installation](#installation)
+2. [Engine Initialization](#engine-initialization)
+3. [Basic Usage](#basic-usage)
+4. [Custom Configuration](#custom-configuration)
+5. [Event Handling](#event-handling)
+6. [Conditional Rendering](#conditional-rendering)
+7. [TypeScript Example](#typescript-example)
 
 ---
 
-## Installazione
+## Installation
 
-Installa l'addon Ember e il motore tsParticles tramite ember-cli:
+Install the Ember addon and the tsParticles engine via ember-cli:
 
 ```bash
 ember install @tsparticles/ember
 ```
 
-Questo installerà l'addon e la sua dipendenza peer `tsparticles`. Puoi opzionalmente aggiungere pacchetti preset:
+This will install the addon and its peer dependency `tsparticles`. You can optionally add preset packages:
 
 ```bash
 npm install @tsparticles/slim
@@ -33,15 +33,15 @@ npm install @tsparticles/slim
 
 ---
 
-## Inizializzazione del Motore
+## Engine Initialization
 
-L'addon esporta un'utilità `initParticlesEngine` che chiami una volta a livello di applicazione. Riceve una callback asincrona dove caricare le funzionalità, i preset o le forme necessarie alla tua app.
+The addon exports an `initParticlesEngine` utility that you call once at the application level. It receives an async callback where you load the features, presets, or shapes your app needs.
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadFull } from "tsparticles";
 
-// Chiama questa durante il bootstrap dell'applicazione
+// Call this during application bootstrap
 if (typeof window !== "undefined") {
   void initParticlesEngine(async (engine) => {
     await loadFull(engine);
@@ -49,13 +49,13 @@ if (typeof window !== "undefined") {
 }
 ```
 
-Le posizioni tipiche per questa chiamata sono l'hook `beforeModel` della route applicazione, il costruttore di un controller applicazione o un inizializzatore di istanza. Il singleton del motore viene inizializzato una volta e condiviso tra tutti i componenti `<Particles>` della tua app.
+Typical locations for this call are the application route's `beforeModel` hook, an application controller's constructor, or an instance initializer. The engine singleton is initialized once and shared across all `<Particles>` components in your app.
 
 ---
 
-## Utilizzo Base
+## Basic Usage
 
-Dopo aver inizializzato il motore, usa il componente `<Particles>` in qualsiasi template. Passa la tua configurazione delle particelle tramite l'argomento `@options`.
+After initializing the engine, use the `<Particles>` component in any template. Pass your particle configuration via the `@options` argument.
 
 ```hbs
 {{! app/templates/application.hbs }}
@@ -99,9 +99,9 @@ export default class ApplicationController extends Controller {
 
 ---
 
-## Configurazione Personalizzata
+## Custom Configuration
 
-Costruisci una configurazione più ricca con interattività, forme multiple e densità reattiva.
+Build a richer configuration with interactivity, multiple shapes, and responsive density.
 
 ```typescript
 import Controller from "@ember/controller";
@@ -164,9 +164,9 @@ export default class IndexController extends Controller {
 
 ---
 
-## Gestione Eventi
+## Event Handling
 
-Il componente `<Particles>` attiva un'azione `@particlesLoaded` quando il container ha terminato l'inizializzazione e il primo frame è stato renderizzato. Usala per accedere all'istanza `Container` per il controllo programmatico.
+The `<Particles>` component fires a `@particlesLoaded` action when the container has finished initializing and the first frame is rendered. Use this to access the `Container` instance for programmatic control.
 
 ```typescript
 import Controller from "@ember/controller";
@@ -177,13 +177,13 @@ export default class ApplicationController extends Controller {
   options: ISourceOptions = {/* ... */};
 
   @action
-  loadedCallback(container: Container) {
-    console.log("Particelle caricate", container?.id);
+  loadedCallback(container?: Container) {
+    console.log("Particles loaded", container?.id);
 
-    // Esempio di controllo programmatico:
+    // Programmatic control example:
     setTimeout(() => {
       container.pause();
-      console.log("Particelle in pausa dopo 5 secondi");
+      console.log("Particles paused after 5 seconds");
     }, 5000);
   }
 }
@@ -193,13 +193,13 @@ export default class ApplicationController extends Controller {
 <Particles @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
 ```
 
-Puoi anche usare il pattern callback inline con un helper di template se preferisci non definire un'azione separata.
+You can also use the callback pattern inline with a template helper if you prefer not to define a separate action.
 
 ---
 
-## Rendering Condizionale
+## Conditional Rendering
 
-Usa l'helper `{{if}}` di Ember insieme a una proprietà `@tracked` per controllare quando il componente `<Particles>` viene renderizzato. È utile quando l'inizializzazione del motore è asincrona e vuoi evitare di renderizzare il componente prima che il motore sia pronto.
+Use Ember's `{{if}}` helper together with a `@tracked` property to control when the `<Particles>` component renders. This is useful when the engine initialization is asynchronous and you want to avoid rendering the component before the engine is ready.
 
 ```typescript
 import Controller from "@ember/controller";
@@ -241,26 +241,17 @@ export default class ApplicationController extends Controller {
 {{#if this.engineReady}}
   <Particles @options={{this.options}} @particlesLoaded={{this.loadedCallback}} />
 {{else}}
-  <p>Caricamento particelle...</p>
+  <p>Loading particles...</p>
 {{/if}}
 ```
 
-Il decoratore `@tracked` garantisce che il template venga ri-renderizzato automaticamente una volta che la promise si risolve.
+The `@tracked` decorator ensures the template re-renders automatically once the promise resolves.
 
 ---
 
-## Reactive Behavior
+## TypeScript Example
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## Esempio TypeScript
-
-Ecco un controller applicazione Ember completo e tipizzato che dimostra il pattern di integrazione completo con preset slim, interattività e gestione del ciclo di vita.
+Below is a complete, typed Ember application controller demonstrating the full integration pattern with slim preset, interactivity, and lifecycle management.
 
 ```typescript
 // app/controllers/application.ts
@@ -326,9 +317,9 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  private handleParticlesLoaded(container?: Container): void {
+  private handleParticlesLoaded(container: Container): void {
     this.container = container;
-    console.log("Particelle caricate nel container:", container?.id);
+    console.log("Particles loaded in container:", container.id);
   }
 }
 ```
@@ -343,11 +334,21 @@ export default class ApplicationController extends Controller {
   </div>
 {{else}}
   <div class="loading">
-    <p>Inizializzazione motore particelle...</p>
+    <p>Initializing particle engine...</p>
   </div>
 {{/if}}
 ```
 
 ---
 
-Ora hai tutto il necessario per integrare tsParticles in un'applicazione Ember.js. Ogni esempio è autonomo e pronto per essere copiato nel tuo progetto.
+## Reactive Behavior
+
+The component reloads particles when `@options` or `@url` changes. Changes to `@theme` apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the element is removed from the DOM, the particles container is automatically destroyed, stopping all animations and freeing resources.
+
+---
+
+You now have everything needed to integrate tsParticles into an Ember.js application. Each example is self-contained and ready to be copied into your project.
