@@ -1,49 +1,51 @@
-# Politique de confidentialité
+# Privacy Policy
 
-Cette page explique comment `particles.js.org` gère les données personnelles liées aux services d'analyse et de publicité.
+This page explains how `particles.js.org` handles personal data related to analytics and advertising services.
 
-## Portée
+## Scope
 
-Cette politique couvre le site Web de documentation et les pages associées proposées par `particles.js.org`.
+This policy covers the docs website and related pages served from `particles.js.org`.
 
-## Données que nous traitons
+## Data we process
 
-- Données techniques de navigation (métadonnées dérivées de l'IP, agent utilisateur, référent, URL des pages).
-- Événements d'analyse pour les tendances d'utilisation de la documentation.
-- Événements liés à la publicité requis par Google AdSense lorsque le consentement est accordé.
+- Technical browsing data (IP-derived metadata, user agent, referrer, page URLs).
+- Analytics events for documentation usage trends.
+- Advertising-related events required by Google AdSense when consent is granted, or non-personalized ad delivery where legally permitted.
 
-## Services utilisés
+## Services used
 
-- **Google Analytics 4** pour l'analyse du trafic et de l'utilisation.
-- **Google AdSense** pour la diffusion des annonces et la mesure des campagnes.
+- **Google Analytics 4** for traffic and usage analytics.
+- **Google AdSense** for ad delivery and campaign measurement.
 
-## Base juridique et consentement
+## Legal basis and consent
 
-- Le stockage technique indispensable est utilisé pour l'exploitation du site.
-- Les technologies d'analyse et de publicité ne sont activées qu'après consentement explicite via la bannière de cookies.
-- Vous pouvez refuser le consentement et continuer à utiliser les documents.
+- Essential technical storage is used for site operation.
+- Analytics cookies are enabled only after explicit consent.
+- When analytics consent is not granted, the site may use cookieless, aggregate analytics measurement (Google Consent Mode) where legally permitted.
+- Advertising can run in non-personalized mode when consent for personalized ads is not granted, where legally permitted and configured.
+- You can reject consent and continue using the docs.
 
-## Stockage du consentement
+## Consent storage
 
-- Le choix de consentement est stocké localement dans le stockage du navigateur sous une clé spécifique au site.
-- Aucune analyse/suivi publicitaire n'est activé avant que le consentement ne soit accepté.
+- Consent choice is stored locally in browser storage under a site-specific key.
+- Consent choice controls whether analytics/ads storage can be used.
 
-## Partage de données
+## Data sharing
 
-- Les données peuvent être traitées par Google en tant que sous-traitant/contrôleur tiers conformément aux conditions du service Google.
-- Nous ne vendons pas de données personnelles via ce site Web.
+- Data may be processed by Google as a third-party processor/controller according to Google service terms.
+- We do not sell personal data through this website.
 
-## Vos contrôles
+## Your controls
 
-- Accepter ou refuser via le bandeau cookie.
-- Effacer les données du site du navigateur (stockage local/cookies) pour réinitialiser votre choix.
-- Utilisez les contrôles de confidentialité du navigateur et les paramètres publicitaires pour des restrictions supplémentaires.
+- Accept or reject via the cookie banner.
+- Clear browser site data (local storage/cookies) to reset your choice.
+- Use browser privacy controls and ad settings for additional restrictions.
 
-## Mises à jour des règles
+## Policy updates
 
-Cette politique peut être mise à jour lorsque les fonctionnalités de suivi ou les exigences légales changent.
+This policy may be updated when tracking features or legal requirements change.
 
-## Contacter
+## Contact
 
-Pour les demandes de confidentialité, utilisez les canaux d'assistance et de contact dans le référentiel du projet :
+For privacy requests, use the support and contact channels in the project repository:
 <https://github.com/tsparticles/tsparticles>
