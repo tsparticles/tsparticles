@@ -1,8 +1,8 @@
-# कण हिलते हैं
+# Particles Move
 
-`particles.move` दिशा, गति और कैनवास से बाहर के व्यवहार को परिभाषित करता है।
+`particles.move` defines direction, speed, and out-of-canvas behavior.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-- `enable`: मूवमेंट चालू करता है।
-- `speed`: प्राथमिक अनुमानित गति तीव्रता।
-- `direction`: निश्चित दिशा या मुक्त संचलन।
-- `outModes`: कैनवास सीमा पर व्यवहार।
+- `enable`: turns movement on.
+- `speed`: primary perceived motion intensity.
+- `direction`: fixed direction or free movement.
+- `outModes`: behavior at canvas bounds.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Move.md>
