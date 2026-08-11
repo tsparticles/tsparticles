@@ -1,54 +1,54 @@
-# माइग्रेशन और संगतता
+# Migration and compatibility
 
-यदि आप `particles.js` से माइग्रेट कर रहे हैं, तो इस आदेश का उपयोग करें:
+If you are migrating from `particles.js`, use this order:
 
-1. पुरानी स्क्रिप्ट/पैकेज को `@tsparticles/engine` + बंडल (`@tsparticles/slim`) से बदलें
-2. अपने पुराने कॉन्फ़िगरेशन को स्थानांतरित करें और असमर्थित फ़ील्ड को क्रमिक रूप से मैप करें
-3. एक-एक करके इंटरैक्शन (होवर/क्लिक/लिंक) का परीक्षण करें
+1. replace old script/package with `@tsparticles/engine` + bundle (`@tsparticles/slim`)
+2. move your old config and map unsupported fields incrementally
+3. test interactions (hover/click/links) one by one
 
-## कैनोनिकल माइग्रेशन नोट्स
+## Canonical migration notes
 
-- आधिकारिक माइग्रेशन गाइड स्रोत: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
-- लीगेसी संगतता उदाहरण डेमो फ़ोल्डर्स में उपलब्ध हैं।
+- Official migration guide source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Legacy compatibility examples are available in the demo folders.
 
-## अनुकूलता पैकेज
+## Compatibility package
 
-यदि आपको लीगेसी कॉन्फ़िगरेशन को स्थानांतरित करते समय ब्रिज लेयर की आवश्यकता है:
+If you need a bridge layer while migrating legacy configs:
 
-- एनपीएम: <https://www.npmjs.com/package/@tsparticles/pjs>
+- npm: <https://www.npmjs.com/package/@tsparticles/pjs>
 - jsDelivr: <https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
 
-आगे पढ़ना:
+Further reading:
 
-- माइग्रेशन लेख: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
-- स्विच करने के 5 कारण: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
+- Migration article: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
+- 5 reasons to switch: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
 
-## सामान्य मानचित्रण युक्तियाँ
+## Common mapping tips
 
-- पुराना `particlesJS(...)` init `tsParticles.load({ id, options })` बन जाता है।
-- कई विरासत मूल्यों में अभी भी `particles`, `interactivity`, और `detectRetina` के अंतर्गत प्रत्यक्ष समकक्ष हैं।
-- नए प्लगइन-संचालित आर्किटेक्चर का मतलब है कि कुछ उन्नत सुविधाओं के लिए स्पष्ट पैकेज लोडिंग की आवश्यकता होती है।
+- Old `particlesJS(...)` init becomes `tsParticles.load({ id, options })`.
+- Many legacy values still have direct equivalents under `particles`, `interactivity`, and `detectRetina`.
+- New plugin-driven architecture means some advanced features require explicit package loading.
 
-## उत्पादन के लिए माइग्रेशन चेकलिस्ट
+## Migration checklist for production
 
-- डेस्कटॉप और मोबाइल में दृश्य समानता सत्यापित करें।
-- निम्न-स्तरीय उपकरणों पर सीपीयू/जीपीयू प्रभाव को सत्यापित करें।
-- सत्यापित करें कि कोई भी विकल्प कुंजी चुपचाप नजरअंदाज नहीं की जाती है।
-- रिलीज़ सप्ताह से पहले सटीक पैकेज संस्करण पिन करें।
+- Verify visual parity in desktop and mobile.
+- Verify CPU/GPU impact on low-end devices.
+- Verify no option keys are ignored silently.
+- Pin exact package versions before release week.
 
-## कैनवास-कंफ़ेटी से `@tsparticles/confetti` पर स्थानांतरण
+## Migration from canvas-confetti to `@tsparticles/confetti`
 
-यदि आप `canvas-confetti` से माइग्रेट कर रहे हैं, तो सबसे आसान स्विच अनिवार्य कॉल को `@tsparticles/confetti` API कॉल से बदलना है।
+If you are migrating from `canvas-confetti`, the easiest switch is replacing imperative calls with `@tsparticles/confetti` API calls.
 
-## विशिष्ट मानचित्रण
+### Typical mapping
 
 - `confetti({...})` -> `await confetti({...})`
-- कस्टम कैनवास -> `const local = await confetti.create(canvas, defaults)` फिर `await local({...})`
-- बार-बार शॉट -> अपने मौजूदा टाइमर/लूप रखें, उन कॉलबैक में `await confetti(...)` पर कॉल करें
+- custom canvas -> `const local = await confetti.create(canvas, defaults)` then `await local({...})`
+- repeated shots -> keep your existing timers/loops, call `await confetti(...)` in those callbacks
 
-## उदाहरण रूपांतरण
+### Example conversion
 
-पहले (`canvas-confetti` शैली):
+Before (`canvas-confetti` style):
 
 ```ts
 import confetti from "canvas-confetti";
@@ -60,7 +60,7 @@ confetti({
 });
 ```
 
-(`@tsparticles/confetti`) के बाद:
+After (`@tsparticles/confetti`):
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
@@ -72,10 +72,10 @@ await confetti({
 });
 ```
 
-## विकल्प नाम नोट्स
+### Option name notes
 
 - `particleCount` -> `count`
-- `origin.x`/`origin.y` `0..1` में -> `position.x`/`position.y` `0..100` में
-- `startVelocity`, `spread`, `angle`, और `colors` समान शब्दार्थ रखते हैं
+- `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`
+- `startVelocity`, `spread`, `angle`, and `colors` keep the same semantics
 
-संपूर्ण एपीआई और सहायकों के लिए, देखें: <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>
+For complete API and helpers, see: <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>
