@@ -1,16 +1,16 @@
-# Interactivité
+# Interactivity
 
-Les options `interactivity` définissent la façon dont les particules réagissent au survol/clic.
+`interactivity` options define how particles react to hover/click.
 
-Pour des références ciblées :
+For focused references:
 
-- [`Interactivity Click`](/fr/options/interactivity-click)
-- [`Interactivity Hover`](/fr/options/interactivity-hover)
-- [`Interactivity Div`](/fr/options/interactivity-div)
-- [`Interactivity Events`](/fr/options/interactivity-events)
-- [`Interactivity Modes`](/fr/options/interactivity-modes)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
 
-## Structure de base
+## Base structure
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## Événements les plus utilisés
+## Most used events
 
-- `onHover` : feedback immédiat pour les utilisateurs.
-- `onClick` : rafales ou actions ciblées.
-- `resize` : maintient le comportement du canevas cohérent lors du redimensionnement de la fenêtre.
-- `onDiv` : cibler les interactions sur des éléments spécifiques.
+- `onHover`: immediate feedback for users.
+- `onClick`: bursts or targeted actions.
+- `resize`: keeps canvas behavior consistent on window resize.
+- `onDiv`: target interactions on specific elements.
 
-## Bonne pratique
+## Best practice
 
-- Évitez d'activer trop de modes à la fois sur les appareils bas de gamme.
-- Gardez `distance` modéré pour éviter les pics de performances.
-- Si l'effet est lourd, utilisez le contrôle manuel avec `Start/Pause`.
+- Avoid enabling too many modes at once on low-end devices.
+- Keep `distance` moderate to avoid performance spikes.
+- If the effect is heavy, use manual control with `Start/Pause`.
 
-## Références détaillées
+## Detailed references
 
-- Cliquez sur : <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
-- Survol : <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- Div : <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
