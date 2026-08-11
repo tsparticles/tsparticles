@@ -1,8 +1,8 @@
-# कणों का आकार
+# Particles Size
 
-`particles.size` कण आकार सीमा और आकार एनीमेशन को नियंत्रित करता है।
+`particles.size` controls particle size range and size animation.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -20,6 +20,6 @@ particles: {
 }
 ```
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Size.md>
