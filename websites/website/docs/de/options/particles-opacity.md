@@ -1,8 +1,8 @@
-# Partikelopazität
+# Particles Opacity
 
-`particles.opacity` steuert die Transparenz- und Deckkraftanimation.
+`particles.opacity` controls transparency and opacity animation.
 
-## Beispiel
+## Example
 
 ```ts
 particles: {
@@ -20,6 +20,6 @@ particles: {
 }
 ```
 
-## Quellenangabe
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Opacity.md>
