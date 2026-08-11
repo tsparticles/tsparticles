@@ -1,16 +1,16 @@
-# Шаблоны и ресурсы
+# Templates and Resources
 
-tsParticles предоставляет две категории шаблонов: **шаблоны-заготовки** (каркасы фреймворков) и **шаблоны сценариев** (готовые примеры приложений).
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## Быстрый старт с CLI
+## Quick start with CLI
 
-Самый простой способ использовать любой шаблон — через CLI:
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-Или используйте конкретный пакет напрямую:
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,18 +18,18 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-Для неинтерактивного использования:
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## Шаблоны-заготовки
+## Scaffold templates
 
-Шаблоны-заготовки предоставляют минимальный каркас проекта на Vite + TypeScript с предварительно настроенным tsParticles. Они доступны для следующих фреймворков:
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
-| Фреймворк | Параметр CLI          | Пакет                            |
+| Framework | CLI option            | Package                          |
 | --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
@@ -38,7 +38,7 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-Пример:
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,21 +47,21 @@ npm install
 npm run dev
 ```
 
-## Шаблоны сценариев
+## Use-case templates
 
-Шаблоны сценариев — это готовые примеры приложений, демонстрирующие реальное использование tsParticles.
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
-| Шаблон      | Описание                                     | Имя шаблона CLI | Пакет                             |
-| ----------- | -------------------------------------------- | --------------- | --------------------------------- |
-| Login       | Страница входа/регистрации с фоном из частиц | `login`         | `@tsparticles/template-login`     |
-| Portfolio   | Личное портфолио с анимированным героем      | `portfolio`     | `@tsparticles/template-portfolio` |
-| Landing     | Маркетинговый лендинг с эффектными частицами | `landing`       | `@tsparticles/template-landing`   |
-| Tic Tac Toe | Крестики-нолики с праздничной конфетти       | `tictactoe`     | `@tsparticles/template-tictactoe` |
-| Confetti    | Демо-пушка конфетти                          | `confetti`      | `@tsparticles/template-confetti`  |
-| Ribbons     | Демо-анимация лент                           | `ribbons`       | `@tsparticles/template-ribbons`   |
-| Particles   | Классическое демо в стиле particles.js       | `particles`     | `@tsparticles/template-particles` |
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo | `particles`       | `@tsparticles/template-particles` |
 
-Пример:
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,31 +70,31 @@ npm install
 npm run dev
 ```
 
-## npm create обёртки
+## npm create wrappers
 
-Для шаблонов, привязанных к конкретным пакетам, можно использовать специальные обёртки npm create:
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
-| Команда                         | Шаблон       | Фреймворк    | Устанавливаемый пакет    |
-| ------------------------------- | ------------ | ------------ | ------------------------ |
-| `npm create tsparticles@latest` | Интерактивно | Интерактивно | Выбор пользователя       |
-| `npm create particles@latest`   | `particles`  | Vanilla      | `@tsparticles/particles` |
-| `npm create confetti@latest`    | `confetti`   | Vanilla      | `@tsparticles/confetti`  |
-| `npm create ribbons@latest`     | `ribbons`    | Vanilla      | `@tsparticles/ribbons`   |
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## Справочник по CLI
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
 
 Options:
-  --template <name>     Используемый шаблон (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
-  --framework <name>    Фреймворк (vanilla|react|vue3|angular|svelte|solid)
-  --skip-install        Пропустить npm install после создания каркаса
-  -h, --help            Показать справку
+  --template <name>     Template to use (scaffold|login|portfolio|landing|tictactoe|confetti|ribbons|particles)
+  --framework <name>    Framework (vanilla|react|vue3|angular|svelte|solid)
+  --skip-install        Skip npm install after scaffolding
+  -h, --help            Display help
 ```
 
-## Похожие страницы
+## Related pages
 
-- [`/guide/frameworks`](/ru/guide/frameworks)
-- [`/guide/wrappers`](/ru/guide/wrappers)
-- [`/demos/`](/ru/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/demos/`](/demos/)
