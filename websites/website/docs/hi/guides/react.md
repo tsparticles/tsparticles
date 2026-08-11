@@ -1,82 +1,94 @@
 ---
-title: React गाइड
-description: "@tsparticles/react का उपयोग करके React के साथ tsParticles को एकीकृत करने के लिए पूर्ण मार्गदर्शिका।"
+title: React Guide
+description: Complete guide for integrating tsParticles with React using @tsparticles/react.
 ---
 
-# React गाइड
+# React Guide
 
-## विषय सूची
+## Table of Contents
 
-1. [इंस्टॉलेशन](#installation)
-2. [मूल उपयोग](#basic-usage)
-3. [कॉन्फ़ेटी प्रभाव](#confetti-effect)
-4. [आतिशबाज़ी प्रभाव](#fireworks-effect)
-5. [बर्फ प्रभाव](#snow-effect)
-6. [इंटरैक्टिव लिंक](#interactive-links)
-7. [थीम स्विचिंग](#theme-switching)
+1. [Installation](#installation)
+2. [Basic Usage](#basic-usage)
+3. [Confetti Effect](#confetti-effect)
+4. [Fireworks Effect](#fireworks-effect)
+5. [Snow Effect](#snow-effect)
+6. [Interactive Links](#interactive-links)
+7. [Theme Switching](#theme-switching)
 8. [ParticlesProvider](#particlesprovider)
-9. [प्रदर्शन अनुकूलन](#performance-optimization)
-10. [कस्टम कॉन्फ़िगरेशन](#custom-configuration)
+9. [Performance Optimization](#performance-optimization)
+10. [Custom Configuration](#custom-configuration)
 
 ---
 
-## इंस्टॉलेशन
+## Installation
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-या Yarn के साथ:
+Or with Yarn:
 
 ```bash
 yarn add @tsparticles/react tsparticles
 ```
 
-`@tsparticles/react` आधिकारिक React रैपर है। `tsparticles` पैकेज कोर इंजन है।
+`@tsparticles/react` is the official React wrapper. The `tsparticles` package is the core engine.
 
 ---
 
-## मूल उपयोग
+## Basic Usage
 
-सबसे सरल सेटअप: एक विकल्प ऑब्जेकट के साथ `<Particles />` कम्पोनेंट रेंडर करें।
+The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
 
 ```jsx
-import { useCallback } from "react";
-import Particles from "@tsparticles/react";
+import { useCallback, useMemo } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine) => {
+  await loadSlim(engine);
+};
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("पार्टिकल्स कंटेनर लोड हुआ", container);
+    console.log("Particles container loaded", container);
   }, []);
 
-  const options = {
-    fpsLimit: 120,
-    particles: {
-      number: { value: 80 },
-      color: { value: "#00d4ff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.6 },
-      size: { value: { min: 2, max: 5 } },
-      move: {
-        enable: true,
-        speed: 2,
-        outModes: { default: "bounce" },
+  const options = useMemo(
+    () => ({
+      fpsLimit: 120,
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00d4ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: { min: 2, max: 5 } },
+        move: {
+          enable: true,
+          speed: 2,
+          outModes: { default: "bounce" },
+        },
       },
-    },
-    background: { color: "#0d1117" },
-  };
+      background: { color: "#0d1117" },
+    }),
+    [],
+  );
 
-  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
+  return (
+    <ParticlesProvider init={particlesInit}>
+      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
+    </ParticlesProvider>
+  );
 }
 ```
 
-**महत्वपूर्ण**: `<Particles />` कम्पोनेंट को पहले इंजन आरंभ होने की आवश्यकता है। कम्पोनेंट रेंडर करने से पहले अपने प्रीसेट लोड करने के लिए `@tsparticles/react` से `initParticlesEngine` या `<ParticlesProvider>` का उपयोग करें।
+**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
 
 ---
 
-## कॉन्फ़ेटी प्रभाव
+## Confetti Effect
 
-कॉन्फ़ेटी प्रीसेट का उपयोग करके एक कॉन्फ़ेटी विस्फोट रेंडर करें।
+Render a confetti burst using the confetti preset.
 
 ```jsx
 import Particles from "@tsparticles/react";
@@ -97,13 +109,13 @@ export default function Confetti() {
 }
 ```
 
-सुनिश्चित करें कि आपने कॉन्फ़ेटी प्रीसेट लोड किया है:
+Make sure you have loaded the confetti preset:
 
 ```bash
 npm install @tsparticles/preset-confetti
 ```
 
-फिर इसे अपने ऐप एंट्री पॉइंट में पंजीकृत करें:
+Then register it in your app entry point:
 
 ```jsx
 import { initParticlesEngine } from "@tsparticles/react";
@@ -116,9 +128,9 @@ initParticlesEngine(async (engine) => {
 
 ---
 
-## आतिशबाज़ी प्रभाव
+## Fireworks Effect
 
-एक पूर्ण-स्क्रीन आतिशबाजी प्रदर्शन।
+A full-screen fireworks display.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -126,7 +138,7 @@ import Particles from "@tsparticles/react";
 
 export default function Fireworks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("आतिशबाज़ी लोड हुई", container);
+    console.log("Fireworks loaded", container);
   }, []);
 
   const options = useMemo(
@@ -150,7 +162,7 @@ export default function Fireworks() {
 }
 ```
 
-प्रीसेट इंस्टॉल करें:
+Install the preset:
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -158,9 +170,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## बर्फ प्रभाव
+## Snow Effect
 
-बर्फ प्रीसेट का उपयोग करके हल्की गिरती बर्फ।
+Gentle falling snowflakes using the snow preset.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -168,7 +180,7 @@ import Particles from "@tsparticles/react";
 
 export default function Snow() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("बर्फ लोड हुई", container);
+    console.log("Snow loaded", container);
   }, []);
 
   const options = useMemo(
@@ -190,7 +202,7 @@ export default function Snow() {
 }
 ```
 
-प्रीसेट इंस्टॉल करें:
+Install the preset:
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -198,9 +210,9 @@ npm install @tsparticles/preset-snow
 
 ---
 
-## इंटरैक्टिव लिंक
+## Interactive Links
 
-माउस होवर ग्रैब और क्लिक पुश के साथ एक जुड़ा-नोड्स नेटवर्क।
+A connected-nodes network with mouse hover grab and click push.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -208,7 +220,7 @@ import Particles from "@tsparticles/react";
 
 export default function InteractiveLinks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("इंटरैक्टिव लिंक लोड हुए", container);
+    console.log("Interactive links loaded", container);
   }, []);
 
   const options = useMemo(
@@ -254,9 +266,9 @@ export default function InteractiveLinks() {
 
 ---
 
-## थीम स्विचिंग
+## Theme Switching
 
-एकाधिक थीम परिभाषित करें और एक बटन क्लिक के साथ उनके बीच स्विच करें।
+Define multiple themes and switch between them with a button click.
 
 ```jsx
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -333,13 +345,13 @@ export default function ThemeSwitcher() {
         }}
       >
         <button onClick={() => switchTheme("dark")} style={btnStyle(currentTheme === "dark")}>
-          गहरा
+          Dark
         </button>
         <button onClick={() => switchTheme("light")} style={btnStyle(currentTheme === "light")}>
-          हल्का
+          Light
         </button>
         <button onClick={() => switchTheme("forest")} style={btnStyle(currentTheme === "forest")}>
-          वन
+          Forest
         </button>
       </div>
     </div>
@@ -360,7 +372,7 @@ const btnStyle = (active) => ({
 
 ## ParticlesProvider
 
-एप रूट पर एक बार इंजन आरंभ करने के लिए `ParticlesProvider` का उपयोग करें। यह अनुशंसित दृष्टिकोण है जब आपके पास कई पार्टिकल कम्पोनेंट हों या कस्टम प्रीसेट का उपयोग करें।
+Use `ParticlesProvider` to initialize the engine once at the app root. This is the recommended approach when you have multiple particle components or use custom presets.
 
 ```jsx
 // App.jsx
@@ -370,7 +382,7 @@ import Home from "./Home";
 
 const engineInit = async (engine) => {
   await loadSlim(engine);
-  // यहाँ अतिरिक्त प्रीसेट लोड करें:
+  // Load additional presets here:
   // await loadConfettiPreset(engine);
   // await loadFireworksPreset(engine);
   // await loadSnowPreset(engine);
@@ -409,13 +421,13 @@ export default function Home() {
 }
 ```
 
-अपने ट्री को `ParticlesProvider` से लपेटने पर, हर चाइल्ड `<Particles />` कम्पोनेंट एक ही इंजन इंस्टेंस प्राप्त करता है। यह हर माउंट पर इंजन को पुनः आरंभ करने से बचाता है।
+When wrapping your tree with `ParticlesProvider`, every child `<Particles />` component inherits the same engine instance. This avoids re-initializing the engine on every mount.
 
 ---
 
-## प्रदर्शन अनुकूलन
+## Performance Optimization
 
-अनावश्यक पुनः रेंडर को रोकने के लिए हमेशा कॉलबैक और विकल्पों को मेमोइज़ करें।
+Always memoize callbacks and options to prevent unnecessary re-renders.
 
 ```jsx
 import { useCallback, useMemo, useState } from "react";
@@ -424,13 +436,13 @@ import Particles from "@tsparticles/react";
 export default function PerformanceExample() {
   const [visible, setVisible] = useState(true);
 
-  // कॉलबैक मेमोइज़ करें — रेंडर के बीच स्थिर संदर्भ
+  // Memoize the callback — stable reference across renders
   const particlesLoaded = useCallback(async (container) => {
-    // प्रति कंटेनर माउंट एक बार कॉल होता है
-    console.log("कंटेनर तैयार", container?.id);
+    // Called once per container mount
+    console.log("Container ready", container.id);
   }, []);
 
-  // विकल्प ऑब्जेकट मेमोइज़ करें — केवल डिपेंडेंसी बदलने पर पुनर्गणना
+  // Memoize the options object — only recomputes when dependencies change
   const options = useMemo(
     () => ({
       fpsLimit: 60,
@@ -457,7 +469,7 @@ export default function PerformanceExample() {
     [],
   );
 
-  // कम-शक्ति वाले उपकरणों पर कैनवास रिज़ॉल्यूशन कम करें
+  // Reduce canvas resolution on low-power devices
   const responsiveOptions = useMemo(
     () => ({
       ...options,
@@ -469,35 +481,26 @@ export default function PerformanceExample() {
 
   return (
     <div>
-      <button onClick={() => setVisible((v) => !v)}>{visible ? "छिपाएँ" : "दिखाएँ"} पार्टिकल्स</button>
+      <button onClick={() => setVisible((v) => !v)}>{visible ? "Hide" : "Show"} Particles</button>
       {visible && <Particles id="perf-particles" particlesLoaded={particlesLoaded} options={responsiveOptions} />}
     </div>
   );
 }
 ```
 
-**मुख्य सुझाव**:
+**Key tips**:
 
-- हमेशा `options` ऑब्जेकट के लिए `useMemo` का उपयोग करें।
-- हमेशा `particlesLoaded` हैंडलर के लिए `useCallback` का उपयोग करें।
-- मोबाइल पर `fpsLimit` कम करें।
-- 2x से अधिक पिक्सेल अनुपात वाले उपकरणों पर कैनवास आकार आधा करने के लिए `detectRetina: false` सेट करें।
-- जब यह ऑफ-स्क्रीन हो तो सशर्त रूप से `<Particles />` अनमाउंट करें।
+- Always use `useMemo` for the `options` object.
+- Always use `useCallback` for the `particlesLoaded` handler.
+- Lower `fpsLimit` on mobile.
+- Set `detectRetina: false` on devices with >2x pixel ratio to halve canvas size.
+- Conditionally unmount `<Particles />` when it is off-screen.
 
 ---
 
-## Reactive Behavior
+## Custom Configuration
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## कस्टम कॉन्फ़िगरेशन
-
-एकाधिक आकार, इंटरैक्टिविटी, थीम और ग्रेडिएंट पृष्ठभूमि को मिलाकर एक पूर्ण कस्टम उदाहरण।
+A full custom example combining multiple shapes, interactivity, themes, and a gradient background.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -505,7 +508,7 @@ import Particles from "@tsparticles/react";
 
 export default function CustomConfig() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("कस्टम कॉन्फ़िग लोड हुआ", container);
+    console.log("Custom config loaded", container);
   }, []);
 
   const options = useMemo(
@@ -575,4 +578,15 @@ export default function CustomConfig() {
 
 ---
 
-आपने अब React में tsParticles का उपयोग करने के मुख्य पैटर्न को कवर कर लिया है। प्रत्येक उदाहरण आत्मनिर्भर है और एक कम्पोनेंट फ़ाइल में डालने के लिए तैयार है।
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+---
+
+You have now covered the core patterns for using tsParticles in React. Each example is self-contained and ready to drop into a component file.
