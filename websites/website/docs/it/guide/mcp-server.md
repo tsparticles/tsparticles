@@ -1,8 +1,8 @@
-# MCP Server (Integrazione AI)
+# MCP Server (AI Integration)
 
-Il server [MCP (Model Context Protocol)](https://modelcontextprotocol.io) per tsParticles permette agli assistenti AI di ispezionare il catalogo dei pacchetti, suggerire plugin e bundle necessari a partire dalle opzioni, e generare configurazioni tsParticles da linguaggio naturale.
+The [MCP (Model Context Protocol)](https://modelcontextprotocol.io) server for tsParticles lets AI assistants inspect the package catalog, suggest required plugins and bundles from options, and generate tsParticles configurations from natural language.
 
-## Avvio rapido (locale)
+## Quick start (local)
 
 ```bash
 npx @tsparticles/mcp-server
@@ -10,7 +10,7 @@ npx @tsparticles/mcp-server
 
 ### Claude Desktop
 
-Aggiungi a `claude_desktop_config.json`:
+Add to `claude_desktop_config.json`:
 
 ```json
 {
@@ -25,43 +25,43 @@ Aggiungi a `claude_desktop_config.json`:
 
 ### Cursor
 
-Nelle impostazioni di Cursor, aggiungi un nuovo server MCP con:
+In Cursor settings, add a new MCP server with:
 
-- **Nome**: `tsparticles`
-- **Tipo**: `command`
-- **Comando**: `npx @tsparticles/mcp-server`
+- **Name**: `tsparticles`
+- **Type**: `command`
+- **Command**: `npx @tsparticles/mcp-server`
 
-## Strumenti
+## Tools
 
-Una volta connesso, l'assistente AI può usare questi strumenti:
+Once connected, the AI assistant can use these tools:
 
-| Strumento          | Descrizione                                                                             |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| `suggest_plugins`  | Dato un oggetto options tsParticles, restituisce i pacchetti npm e gli import necessari |
-| `list_packages`    | Elenca i pacchetti disponibili, opzionalmente filtrati per categoria o ricerca          |
-| `get_package_info` | Restituisce informazioni dettagliate su un pacchetto specifico                          |
+| Tool               | Description                                                                     |
+| ------------------ | ------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed |
+| `list_packages`    | Lists available packages, optionally filtered by category or search query       |
+| `get_package_info` | Returns detailed info about a specific package                                  |
 
-## Risorse
+## Resources
 
-Il server espone anche risorse di riferimento che l'AI può leggere:
+The server also exposes reference resources that the AI can read:
 
-| URI                           | Descrizione                                                                  |
-| ----------------------------- | ---------------------------------------------------------------------------- |
-| `tsparticles://packages`      | Catalogo completo dei pacchetti per categoria                                |
-| `tsparticles://options/guide` | Guida completa alla struttura delle opzioni con valori predefiniti ed esempi |
-| `tsparticles://bundles`       | Gerarchia dei bundle e guida alla selezione                                  |
+| URI                           | Description                                       |
+| ----------------------------- | ------------------------------------------------- |
+| `tsparticles://packages`      | Complete package catalog by category              |
+| `tsparticles://options/guide` | Full options structure with defaults and examples |
+| `tsparticles://bundles`       | Bundle hierarchy and selection guide              |
 
 ## Prompt
 
-Un template di prompt integrato permette di generare opzioni da descrizioni in linguaggio naturale:
+A built-in prompt template lets you generate options from natural language:
 
 > "Generate tsParticles options for a fireworks effect with colorful trails"
 
-L'AI produrrà una configurazione tsParticles completa.
+The AI will produce a complete tsParticles configuration.
 
-## Deploy remoto
+## Deploy remotely
 
-Il server può funzionare come endpoint HTTP per l'accesso remoto.
+The server can run as an HTTP endpoint for remote access.
 
 ### Docker
 
@@ -71,29 +71,44 @@ cd tsparticles/integrations/mcp-server
 docker compose up -d
 ```
 
-Il server ascolta su `http://localhost:3000/mcp`.
+The server listens on `http://localhost:3000/mcp`.
 
-### Docker + Cloudflare Tunnel (HTTPS pubblico)
+### Docker + Cloudflare Tunnel (public HTTPS)
 
 ```bash
 docker compose --profile tunnel up
 ```
 
-Questo stampa un URL pubblico temporaneo come `https://random.trycloudflare.com`. Usa `https://random.trycloudflare.com/mcp` come endpoint nel client MCP.
+This prints a temporary public URL like `https://random.trycloudflare.com`. Use `https://random.trycloudflare.com/mcp` as the endpoint in your MCP client.
 
 ### Docker + Synology NAS
 
-Se hai un Synology NAS, usa il **Proxy Inverso** in DSM:
+If you have a Synology NAS, use the **Reverse Proxy** in DSM:
 
-1. Esegui `docker compose up -d` sul NAS
-2. Vai su **Pannello di Controllo > Portale Applicazioni > Proxy Inverso**
-3. Crea una regola: origine `https://tuo-dominio:8443` → destinazione `http://localhost:3000`
-4. Il tuo endpoint sarà `https://tuo-dominio:8443/mcp`
+1. Run `docker compose up -d` on the NAS
+2. Go to **Control Panel > Application Portal > Reverse Proxy**
+3. Create a rule: source `https://your-nas-domain:8443` → destination `http://localhost:3000`
+4. Your endpoint will be `https://your-nas-domain:8443/mcp`
 
-## Configurazione client per accesso remoto
+## Client configuration for remote access
 
-Quando ti colleghi a un server remoto, il client MCP necessita dell'URL dell'endpoint:
+When connecting to a remote server, the MCP client needs the endpoint URL:
 
 ```
-https://tuo-server.com/mcp
+https://your-server.com/mcp
 ```
+
+### Claude Desktop (remote)
+
+```json
+{
+  "mcpServers": {
+    "tsparticles": {
+      "command": "npx",
+      "args": ["@tsparticles/mcp-server"]
+    }
+  }
+}
+```
+
+For the stdio transport, the server runs locally. For HTTP transport, follow the client's documentation for configuring SSE-based MCP servers.
