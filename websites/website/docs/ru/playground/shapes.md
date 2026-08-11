@@ -1,5 +1,5 @@
-# Формы игровой площадки
+# Playground Shapes
 
-Используйте эту страницу, чтобы отдельно изучать значения `shape.type`, с одной понятной конфигурацией на форму и явными `shape.options`, когда форма их поддерживает.
+Use this page to explore particle `shape.type` values in isolation, with one focused config per shape and explicit `shape.options` when the shape supports them.
 
 <PlaygroundPanel mode="shapes"></PlaygroundPanel>
