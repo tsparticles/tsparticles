@@ -1,29 +1,29 @@
 ---
-title: Next.js インテグレーション
-description: App Router を使用して tsParticles を Next.js アプリケーションに統合するためのステップバイステップガイド。
+title: Next.js Integration
+description: Step-by-step guide to integrating tsParticles into a Next.js application using the App Router.
 ---
 
-# Next.js インテグレーション
+# Next.js Integration
 
-このガイドでは、**App Router**（Next.js 13+）を使用して tsParticles を Next.js プロジェクトに統合する方法を説明します。従来の Pages Router については、下部の [従来の Pages Router](#legacy-pages-router) セクションを参照してください。
+This guide covers integrating tsParticles into a Next.js project using the **App Router** (Next.js 13+). For the legacy Pages Router, see the [Legacy Pages Router](#legacy-pages-router) section at the bottom.
 
-## インストール
+## Installation
 
-`@tsparticles/react` ラッパーと完全な `tsparticles` エンジン（またはより小さなビルド用のスリムバンドル）をインストールします:
+Install the `@tsparticles/react` wrapper and the full `tsparticles` engine (or a slim bundle for smaller builds):
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-より小さな `@tsparticles/slim` バンドルを希望する場合:
+If you prefer the smaller `@tsparticles/slim` bundle:
 
 ```bash
 npm install @tsparticles/react @tsparticles/slim
 ```
 
-## 基本的な使い方（App Router）
+## Basic Usage (App Router)
 
-Next.js App Router のコンポーネントはデフォルトでサーバーサイドです。tsParticles はブラウザの `canvas` API を必要とするため、コンポーネントに `"use client"` ディレクティブを指定する必要があります。
+Next.js App Router components are server-side by default. Since tsParticles requires the browser `canvas` API, you must mark the component with the `"use client"` directive.
 
 ```tsx
 "use client";
@@ -55,11 +55,11 @@ export default function ParticlesBackground() {
 }
 ```
 
-これを `components/particles-background.tsx` として作成し、任意のページまたはレイアウトにインポートします。ファイルが `"use client"` で始まるため、クライアントでレンダリングされます — tsParticles が必要とするまさにその場所です。
+Create this as `components/particles-background.tsx` and import it into any page or layout. Because the file starts with `"use client"`, it will be rendered on the client — exactly where tsParticles needs to be.
 
-## テーマ切り替え
+## Theme Switching
 
-tsParticles を Next.js のテーマトグルと組み合わせて、現在のテーマ状態からオプションを導出します:
+Combine tsParticles with Next.js theme toggles by deriving the options from the current theme state:
 
 ```tsx
 "use client";
@@ -116,11 +116,11 @@ export default function ThemeAwareParticles() {
 }
 ```
 
-`options` オブジェクトは `theme` が変更されるたびに `useMemo` を介して再作成されるため、キャンバスは自動的に更新されます。
+The `options` object is recreated via `useMemo` whenever `theme` changes, so the canvas updates automatically.
 
-## クラッカーエフェクト
+## Confetti Effect
 
-`@tsparticles/preset-confetti` を使用して、ボタンクリックなどのイベントでお祝いのクラッカーを発生させます:
+Use the `@tsparticles/preset-confetti` to trigger celebratory confetti on events like button clicks:
 
 ```bash
 npm install @tsparticles/preset-confetti
@@ -174,11 +174,11 @@ export default function ConfettiButton() {
 }
 ```
 
-`init` コールバックは、パーティクルが作成される前にクラッカープリセットをエンジンにロードします。
+The `init` callback loads the confetti preset into the engine before the particles are created.
 
-## 花火エフェクト
+## Fireworks Effect
 
-同様に、花火プリセットは壮観な花火ディスプレイを作成します:
+Similarly, the fireworks preset creates a spectacular firework display:
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -218,9 +218,9 @@ export default function FireworksBackground() {
 }
 ```
 
-## Container 参照を使用した完全な TypeScript の例
+## Full TypeScript Example with Container Ref
 
-`Container` インスタンスにアクセスして、アニメーションをプログラムで制御します（再生、一時停止、破棄、画像エクスポート）:
+Access the `Container` instance to control the animation programmatically (play, pause, destroy, export image):
 
 ```tsx
 "use client";
@@ -299,15 +299,15 @@ export default function ControllableParticles() {
 }
 ```
 
-重要なポイント:
+Key points:
 
-- `particlesInit` はエンジンの機能をロードします（コンポーネントのマウントごとに1回のみ実行されます）。
-- `particlesLoaded` はコンテナが完全に初期化されるたびに発生します。
-- `containerRef` は `Container` インスタンスを保持するため、後でそのメソッドを呼び出すことができます。
+- `particlesInit` loads the engine features (only runs once per component mount).
+- `particlesLoaded` fires every time the container is fully initialized.
+- `containerRef` holds the `Container` instance so you can call its methods later.
 
-## パフォーマンス: useMemo と useCallback
+## Performance: useMemo and useCallback
 
-静的またはほとんど変更されないオプションは常に `useMemo` でラップし、イベントハンドラーは `useCallback` でラップして、キャンバスの不要な再レンダリングを防ぎます:
+Always wrap static or rarely-changing options in `useMemo` and event handlers in `useCallback` to prevent unnecessary re-renders of the canvas:
 
 ```tsx
 "use client";
@@ -319,12 +319,12 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 export default function PerformanceExample() {
   const [particlesCount, setParticlesCount] = useState(80);
 
-  // 安定したコールバック — 依存関係が変更されない限り再作成されない
+  // Stable callback — never recreates unless deps change
   const particlesLoaded = useCallback((container?: Container) => {
     console.log("Container ready", container?.id);
   }, []);
 
-  // 安定したオプションオブジェクト — キャンバスの再初期化を防ぐ
+  // Stable options object — prevents canvas re-initialization
   const options: ISourceOptions = useMemo(
     () => ({
       fullScreen: { zIndex: -1 },
@@ -346,21 +346,21 @@ export default function PerformanceExample() {
 }
 ```
 
-これらの最適化がないと、親が再レンダリングされるたびに新しい `options` オブジェクトが作成され、キャンバスが再作成されることになります。
+Without these optimizations, every parent re-render would create a new `options` object, causing the canvas to be recreated.
 
-## ページ統合
+## Page Integration
 
-ページコンテンツに影響を与えずに、ページレイアウトにパーティクル背景を追加します:
+Add a particle background to a page layout without affecting the page content:
 
 ```tsx
-// app/layout.tsx（サーバーコンポーネント）
+// app/layout.tsx (server component)
 import dynamic from "next/dynamic";
 
 const ParticlesBackground = dynamic(() => import("@/components/particles-background"), { ssr: false });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <body>
         <ParticlesBackground />
         <main style={{ position: "relative", zIndex: 1 }}>{children}</main>
@@ -370,11 +370,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-`ssr: false` を指定した `dynamic()` を使用して、コンポーネントがサーバーサイドレンダリング中に実行されることがないようにします。パーティクルキャンバスは CSS の `z-index` を介してメインコンテンツの背後に配置されます。
+Use `dynamic()` with `ssr: false` to ensure the component never runs during server-side rendering. The particle canvas sits behind the main content via CSS `z-index`.
 
-## 複数のインスタンス
+## Multiple Instances
 
-同じページに複数の独立した `Particles` コンポーネントを、それぞれ独自の設定でレンダリングできます:
+You can render several independent `Particles` components on the same page, each with its own configuration:
 
 ```tsx
 "use client";
@@ -423,11 +423,11 @@ function ParticlesGallery() {
 }
 ```
 
-各 `Particles` コンポーネントは、独自のアニメーションループを持つ独立したキャンバスを作成します。`fullScreen: false` を設定し、それぞれに固定の高さを指定して、ドキュメントフロー内で共存できるようにします。
+Each `Particles` component creates an independent canvas with its own animation loop. Set `fullScreen: false` and give each a fixed height so they coexist in the document flow.
 
-## 従来の Pages Router
+## Legacy Pages Router
 
-Next.js の **Pages Router**（`pages/` ディレクトリ）を使用している場合、アプローチは似ていますが、`"use client"` ディレクティブは必要ありません。代わりに、ページコンポーネントで動的インポートを使用できます:
+If you are using the Next.js **Pages Router** (`pages/` directory), the approach is similar but without the `"use client"` directive. Instead, you can use a dynamic import in the page component:
 
 ```tsx
 // pages/index.tsx
@@ -448,7 +448,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-コンポーネント自体（`components/particles-component.tsx`）はプレーンな React コンポーネントです:
+The component itself (`components/particles-component.tsx`) is a plain React component:
 
 ```tsx
 import Particles from "@tsparticles/react";
@@ -474,28 +474,29 @@ export default function ParticlesComponent() {
 }
 ```
 
-Pages Router は `"use client"` を**必要としない**ことに注意してください。ページコンポーネントはデフォルトでクライアントレンダリングされるためです。
+Note that the Pages Router does **not** require `"use client"` because page components are already client-rendered by default.
+
+## Troubleshooting
+
+| Symptom                      | Cause                                   | Fix                                                              |
+| ---------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
+| Blank white page             | SSR rendering a canvas-dependent module | Use `dynamic(..., { ssr: false })` or wrap in a client component |
+| Canvas not showing           | Container has zero height               | Set `fullScreen: { zIndex: -1 }` or give it explicit dimensions  |
+| Options change not reflected | New object reference not created        | Use `useMemo` with proper dependency array                       |
+| Preset not working           | Preset not loaded before container init | Call `loadXPreset(engine)` inside the `init` callback            |
+| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register the plugin during engine initialization     |
 
 ## Reactive Behavior
 
-The `<Particles>` component reacts to prop changes at runtime:
+The `<Particles>` component reacts to prop changes:
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+- **`id`**, **`options`**, or **`url`** change → destroy current container and reload with new values.
+- **`theme`** change → `loadTheme` on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
 
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+On component unmount, the particles container is automatically destroyed.
 
-## トラブルシューティング
+## Next Steps
 
-| 症状                           | 原因                                             | 修正                                                                            |
-| ------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------- |
-| 空白の白いページ               | SSR が canvas 依存モジュールをレンダリング       | `dynamic(..., { ssr: false })` を使用するか、クライアントコンポーネントでラップ |
-| キャンバスが表示されない       | コンテナの高さがゼロ                             | `fullScreen: { zIndex: -1 }` を設定するか、明示的な寸法を指定                   |
-| オプションの変更が反映されない | 新しいオブジェクト参照が作成されていない         | 適切な依存配列を持つ `useMemo` を使用                                           |
-| プリセットが動作しない         | コンテナ初期化前にプリセットがロードされていない | `init` コールバック内で `loadXPreset(engine)` を呼び出す                        |
-
-## 次のステップ
-
-- [インタラクティブデモ](/demos/) で既成の設定を参照してください。
-- すべての利用可能なパラメーターについては、完全な [オプションリファレンス](/options/) をお読みください。
-- 雪、星、ホタルなどのより多くのプリセットについては、[プリセット](/demos/presets) ページをチェックしてください。
+- Browse the [Interactive Demos](/demos/) for ready-made configurations.
+- Read the full [Options Reference](/options/) for every available parameter.
+- Check the [Presets](/demos/presets) page for more pre-built presets like snow, stars, and firefly.
