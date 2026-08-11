@@ -1,12 +1,12 @@
-# jQuery インテグレーション
+# jQuery Integration
 
-公式の jQuery プラグラインラッパーを使用して、tsParticles を jQuery ベースのプロジェクトに統合します。
+Integrate tsParticles into your jQuery-based projects with the official jQuery plugin wrapper.
 
-## インストール
+## Installation
 
-### CDN 経由
+### Via CDN
 
-スクリプトタグを使用して、jQuery、tsParticles、および jQuery プラグインをインクルードします:
+Include jQuery, tsParticles, and the jQuery plugin via script tags:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -16,24 +16,24 @@
 
 ---
 
-### npm + ビルド経由
+### Via npm + Build
 
-必要なパッケージをインストールします:
+Install the required packages:
 
 ```bash
 npm install jquery @tsparticles/jquery tsparticles
 ```
 
-プロジェクトにインポートします:
+Import into your project:
 
 ```javascript
 import $ from "jquery";
 import "@tsparticles/jquery";
 ```
 
-## エンジンの初期化
+## Engine Initialization
 
-パーティクルをレンダリングする前に、tsParticles エンジンに必要な機能を初期化する必要があります。これは `$.particles.init` を介して行われます:
+Before particles can be rendered, the tsParticles engine must be initialized with the features you need. This is done via `$.particles.init`:
 
 ```javascript
 (async () => {
@@ -44,11 +44,11 @@ import "@tsparticles/jquery";
 })();
 ```
 
-> **なぜこれが必要なのですか？** tsParticles はモジュラーアーキテクチャを採用しています。`loadFull` はすべての組み込みシェイプ、インタラクション、アップデーターを登録します。より小さなバンドル（例: `tsparticles-slim`）をインポートして、バンドルサイズを削減できます。
+> **Why is this needed?** tsParticles uses a modular architecture. `loadFull` registers all built-in shapes, interactions, and updaters. You can import smaller bundles (e.g., `tsparticles-slim`) to reduce bundle size.
 
-## 基本的な使い方
+## Basic Usage
 
-エンジンが初期化され、DOM の準備ができたら、コンテナ要素を選択して `.particles().load()` を呼び出します:
+Once the engine is initialized and the DOM is ready, select a container element and call `.particles().load()`:
 
 ```javascript
 $(document).ready(async () => {
@@ -72,15 +72,15 @@ $(document).ready(async () => {
 });
 ```
 
-コンテナ要素は DOM に存在する必要があります:
+The container element must exist in the DOM:
 
 ```html
 <div id="tsparticles"></div>
 ```
 
-## カスタム設定
+## Custom Configuration
 
-`.load()` メソッドは完全な `ISourceOptions` オブジェクトを受け入れます。以下は包括的な例です:
+The `.load()` method accepts the full `ISourceOptions` object. Here is a comprehensive example:
 
 ```javascript
 $("#tsparticles")
@@ -146,9 +146,9 @@ $("#tsparticles")
   });
 ```
 
-## プリセットのロード
+## Preset Loading
 
-プリセットパッケージ（例: `tsparticles-preset-stars`）をインストールした場合、エンジン初期化時にロードして設定内で参照します:
+If you have installed a preset package (e.g. `tsparticles-preset-stars`), load it during engine initialization and reference it in the configuration:
 
 ```bash
 npm install tsparticles-preset-stars
@@ -170,30 +170,30 @@ npm install tsparticles-preset-stars
 })();
 ```
 
-## イベント処理とコンテナ制御
+## Event Handling and Container Control
 
-`.particles()` は jQuery プラグインインスタンスを返します。基礎となる tsParticles の `Container` にアクセスして `play()`、`pause()`、`destroy()` などのメソッドを呼び出すには:
+`.particles()` returns a jQuery plugin instance. To access the underlying tsParticles `Container` and call methods like `play()`, `pause()`, or `destroy()`:
 
 ```javascript
 const $container = $("#tsparticles");
 
-// パーティクルをロード
+// Load particles
 $container.particles().load({/* options */});
 
-// 数秒後に再生/一時停止
+// Play/pause after a few seconds
 setTimeout(() => {
   const container = $container.particles().getContainer();
   container?.pause();
 }, 5000);
 ```
 
-## 完全な例
+## Full Example
 
-以下は、CDN 経由で tsParticles をロードし、インタラクティブエフェクト付きのパーティクルシーンをレンダリングする、完全な自己完結型 HTML ページです:
+Below is a complete, self-contained HTML page that loads tsParticles via CDN and renders a particle scene with interactive effects:
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -261,21 +261,22 @@ setTimeout(() => {
 </html>
 ```
 
-## Reactive Behavior
+## API Reference
 
-The `<Particles>` component reacts to prop changes at runtime:
+| Method                             | Description                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------- |
+| `$.particles.init(fn)`             | Initialize the engine with a loader callback                                       |
+| `$(el).particles()`                | Create a particles plugin instance on the element                                  |
+| `$(el).particles().load(opts)`     | Load and start the particle configuration                                          |
+| `$(el).particles().ajax(url)`      | Load configuration from a remote JSON URL                                          |
+| `$(el).particles().setTheme(name)` | Switch the active theme (requires `@tsparticles/plugin-themes`) |
+| `$(el).particles().destroy()`      | Destroy the particle instance and clean up                                         |
+| `$(el).particles().getContainer()` | Return the underlying `Container` for imperative control                           |
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+### Reactive behavior
 
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+Calling `.load(options)` or `.ajax(url)` again on the same element replaces the previous container — the old one is destroyed automatically. Use `.setTheme(name)` to switch themes at runtime without a full reload (requires `@tsparticles/plugin-themes`).
 
-## API リファレンス
+### Cleanup
 
-| メソッド                           | 説明                                                   |
-| ---------------------------------- | ------------------------------------------------------ |
-| `$.particles.init(fn)`             | ローダーコールバックでエンジンを初期化します           |
-| `$(el).particles()`                | 要素上にパーティクルプラグインインスタンスを作成します |
-| `$(el).particles().load(opts)`     | パーティクル設定をロードして開始します                 |
-| `$(el).particles().destroy()`      | パーティクルインスタンスを破棄してクリーンアップします |
-| `$(el).particles().getContainer()` | 命令的な制御のための基礎となる `Container` を返します  |
+Call `.destroy()` to remove the particle instance and free resources. Containers are tracked per element via `WeakMap` — when the DOM element is removed, the associated container should be manually destroyed or replaced with an empty `.load({})`.
