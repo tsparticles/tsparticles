@@ -1,24 +1,24 @@
 # Bundle: Particles
 
-`@tsparticles/particles` fornece uma API simplificada para criar fundos de partículas interativos. Uma alternativa mais rica a `@tsparticles/basic` com uma API dedicada em vez de configuração manual do motor.
+`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
 
-## Funcionalidades incluídas
+## Included features
 
-**Formas:** círculo (do basic)
+**Shapes:** circle (from basic)
 
-**Plugins internos:** interatividade (links, colisões)
+**Internal plugins:** interactivity (links, collisions)
 
-**Interações:** links (conexões entre partículas), colisões
+**Interactions:** links (particle connections), collisions
 
-**API:** `particles(options)` ou `particles(canvasId, options)`
+**API:** `particles(options)` or `particles(canvasId, options)`
 
-## Quando usar
+## When to use
 
-- Fundo de partículas para um site
-- Fundo com links entre partículas (efeito estilo nó)
-- Você não quer configurar o motor manualmente
+- Particle background for a website
+- Background with particle links (node-style effect)
+- You don't want to configure the engine manually
 
-## Instalação
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// Fundo com links
+// Background with links
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// Em um canvas específico
+// On a specific canvas
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// Com cores personalizadas
+// With custom colors
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### Principais parâmetros
+### Main parameters
 
-| Parâmetro    | Tipo               | Padrão     | Descrição               |
-| ------------ | ------------------ | ---------- | ----------------------- |
-| `count`      | number             | 50         | Número de partículas    |
-| `radius`     | number             | 3          | Raio das partículas     |
-| `speed`      | number             | 2          | Velocidade de movimento |
-| `opacity`    | number             | 0.8        | Opacidade (0-1)         |
-| `color`      | string \| string[] | "#ffffff"  | Cor(es) das partículas  |
-| `links`      | boolean            | false      | Mostrar links           |
-| `linksColor` | string             | "#ffffff"  | Cor dos links           |
-| `linksWidth` | number             | 1          | Espessura dos links     |
-| `shape`      | string[]           | ["circle"] | Formas das partículas   |
+| Parameter    | Type                                                                   | Default                                                        | Description                          |
+| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
+| `count`      | number                                                                 | 50                                                             | Number of particles                  |
+| `radius`     | number                                                                 | 3                                                              | Particle radius                      |
+| `speed`      | number                                                                 | 2                                                              | Movement speed                       |
+| `opacity`    | number                                                                 | 0.8                                            | Opacity (0-1)     |
+| `color`      | string \| string[] | "#ffffff"                                                      | Particle color(s) |
+| `links`      | boolean                                                                | false                                                          | Show links                           |
+| `linksColor` | string                                                                 | "#ffffff"                                                      | Link color                           |
+| `linksWidth` | number                                                                 | 1                                                              | Link thickness                       |
+| `shape`      | string[]           | ["circle"] | Particle shapes                      |
 
-## Erros comuns
+## Common mistakes
 
-- Pensar que `tsParticles` é exportado por `@tsparticles/particles` — não é.
-- Reutilizar o mesmo ID de canvas sem intenção.
-- Esperar formas avançadas (estrelas, polígonos) — o bundle particles é baseado no basic e usa apenas círculos.
+- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
 
-## Veja também
+## See also
 
-- [Visão geral de bundles](/pt/guide/bundles)
-- [Primeiros passos](/pt/guide/getting-started)
+- [Bundle overview](/guide/bundles)
+- [Getting started](/guide/getting-started)
