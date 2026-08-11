@@ -1,54 +1,54 @@
-# Миграция и совместимость
+# Migration and compatibility
 
-Если вы переходите с `particles.js`, используйте следующий порядок:
+If you are migrating from `particles.js`, use this order:
 
-1. замените старый скрипт/пакет на `@tsparticles/engine` + бандл (`@tsparticles/slim`)
-2. постепенно перемещайте старую конфигурацию и сопоставляйте неподдерживаемые поля.
-3. тестируйте взаимодействия (наведение/щелчок/ссылки) одно за другим
+1. replace old script/package with `@tsparticles/engine` + bundle (`@tsparticles/slim`)
+2. move your old config and map unsupported fields incrementally
+3. test interactions (hover/click/links) one by one
 
-## Замечания по канонической миграции
+## Canonical migration notes
 
-- Официальный источник руководства по миграции: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md).
-- Примеры совместимости с устаревшими версиями доступны в демонстрационных папках.
+- Official migration guide source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Legacy compatibility examples are available in the demo folders.
 
-## Пакет совместимости
+## Compatibility package
 
-Если вам нужен мостовой уровень при переносе устаревших конфигураций:
+If you need a bridge layer while migrating legacy configs:
 
 - npm: <https://www.npmjs.com/package/@tsparticles/pjs>
 - jsDelivr: <https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
 
-Дальнейшее чтение:
+Further reading:
 
-- Статья о миграции: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>.
-- 5 причин перейти: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
+- Migration article: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
+- 5 reasons to switch: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
 
-## Общие советы по картографированию
+## Common mapping tips
 
-- Старый инициализатор `particlesJS(...)` становится `tsParticles.load({ id, options })`.
-- Многие устаревшие значения по-прежнему имеют прямые эквиваленты в `particles`, `interactivity` и `detectRetina`.
-- Новая архитектура, управляемая плагинами, означает, что некоторые расширенные функции требуют явной загрузки пакетов.
+- Old `particlesJS(...)` init becomes `tsParticles.load({ id, options })`.
+- Many legacy values still have direct equivalents under `particles`, `interactivity`, and `detectRetina`.
+- New plugin-driven architecture means some advanced features require explicit package loading.
 
-## Контрольный список миграции для производства
+## Migration checklist for production
 
-- Проверьте визуальное соответствие на настольном компьютере и мобильном устройстве.
-- Проверьте влияние процессора/графического процессора на устройства низкого уровня.
-- Убедитесь, что никакие дополнительные клавиши не игнорируются молча.
-- Прикрепите точные версии пакета до недели выпуска.
+- Verify visual parity in desktop and mobile.
+- Verify CPU/GPU impact on low-end devices.
+- Verify no option keys are ignored silently.
+- Pin exact package versions before release week.
 
-## Миграция с холста-конфетти на `@tsparticles/confetti`
+## Migration from canvas-confetti to `@tsparticles/confetti`
 
-Если вы переходите с `canvas-confetti`, самый простой вариант — заменить императивные вызовы вызовами API `@tsparticles/confetti`.
+If you are migrating from `canvas-confetti`, the easiest switch is replacing imperative calls with `@tsparticles/confetti` API calls.
 
-## Типичное сопоставление
+### Typical mapping
 
 - `confetti({...})` -> `await confetti({...})`
-- собственный холст -> `const local = await confetti.create(canvas, defaults)`, затем `await local({...})`
-- повторные снимки -> сохраните существующие таймеры/циклы, вызовите `await confetti(...)` в этих обратных вызовах
+- custom canvas -> `const local = await confetti.create(canvas, defaults)` then `await local({...})`
+- repeated shots -> keep your existing timers/loops, call `await confetti(...)` in those callbacks
 
-## Пример преобразования
+### Example conversion
 
-До (стиль `canvas-confetti`):
+Before (`canvas-confetti` style):
 
 ```ts
 import confetti from "canvas-confetti";
@@ -60,7 +60,7 @@ confetti({
 });
 ```
 
-После (`@tsparticles/confetti`):
+After (`@tsparticles/confetti`):
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
@@ -72,10 +72,10 @@ await confetti({
 });
 ```
 
-## Примечания к названию опции
+### Option name notes
 
 - `particleCount` -> `count`
-- `origin.x`/`origin.y` в `0..1` -> `position.x`/`position.y` в `0..100`
-- `startVelocity`, `spread`, `angle` и `colors` сохраняют одинаковую семантику.
+- `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`
+- `startVelocity`, `spread`, `angle`, and `colors` keep the same semantics
 
-Полный API и помощники см. в разделе <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>.
+For complete API and helpers, see: <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>
