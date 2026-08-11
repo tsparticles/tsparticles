@@ -1,8 +1,8 @@
-# Частицы движутся
+# Particles Move
 
-`particles.move` определяет направление, скорость и поведение за пределами холста.
+`particles.move` defines direction, speed, and out-of-canvas behavior.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-- `enable`: включает движение.
-- `speed`: первичная воспринимаемая интенсивность движения.
-- `direction`: фиксированное направление или свободное движение.
-- `outModes`: поведение на границах холста.
+- `enable`: turns movement on.
+- `speed`: primary perceived motion intensity.
+- `direction`: fixed direction or free movement.
+- `outModes`: behavior at canvas bounds.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Move.md>
