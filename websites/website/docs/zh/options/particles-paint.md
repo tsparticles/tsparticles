@@ -1,8 +1,8 @@
-# 粒子涂料
+# Particles Paint
 
-`particles.paint` 对粒子填充和描边样式选项进行分组。
+`particles.paint` groups particle fill and stroke style options.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## 填充 (`particles.paint.fill`)
+## Fill (`particles.paint.fill`)
 
-- 定义粒子内部颜色。
-- 支持静态值、数组和颜色动画。
+- Defines the particle inner color.
+- Supports static values, arrays, and color animation.
 
-## 行程 (`particles.paint.stroke`)
+## Stroke (`particles.paint.stroke`)
 
-- 定义轮廓宽度和颜色。
-- 有助于增加形状对比度。
+- Defines outline width and color.
+- Useful to increase shape contrast.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>
