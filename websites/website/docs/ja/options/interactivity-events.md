@@ -1,8 +1,8 @@
-# インタラクティブイベント
+# Interactivity Events
 
-`interactivity.events` は、対話モードがいつトリガーされるかを制御します。
+`interactivity.events` controls when interaction modes are triggered.
 
-## 例
+## Example
 
 ```ts
 interactivity: {
@@ -20,11 +20,11 @@ interactivity: {
 }
 ```
 
-- `onHover`: ポインターのホバー動作。
-- `onClick`: クリック/タップ動作。
-- `resize`: ビューポートの変更後も動作の一貫性を保ちます。
+- `onHover`: pointer hover behavior.
+- `onClick`: click/tap behavior.
+- `resize`: keeps behavior consistent after viewport changes.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Events.md>
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
