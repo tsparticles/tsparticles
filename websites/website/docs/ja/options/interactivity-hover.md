@@ -1,8 +1,8 @@
-# インタラクティブホバー
+# Interactivity Hover
 
-`interactivity.events.onHover` は、ポインターホバー反応を制御します。
+`interactivity.events.onHover` controls pointer-hover reactions.
 
-## 例
+## Example
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## 実践的な指導
+## Practical guidance
 
-- ホバー エフェクトは、密度の高いシーンではより高価になります。
-- モバイルでは、ホバーヘビー モードを無効にすることを検討してください。
+- Hover effects are more expensive on dense scenes.
+- On mobile, consider disabling hover-heavy modes.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
