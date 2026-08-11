@@ -1,39 +1,39 @@
 ---
-title: Vanilla JS ガイド
-description: tsParticles をプレーンな JavaScript と統合するための完全ガイド。
+title: Vanilla JS Guide
+description: Complete guide for integrating tsParticles with plain JavaScript.
 ---
 
-# Vanilla JS ガイド
+# Vanilla JS Guide
 
-## 目次
+## Table of Contents
 
-1. [はじめに](#getting-started)
-2. [基本のパーティクル](#basic-particles)
-3. [紙吹雪エフェクト](#confetti-effect)
-4. [花火エフェクト](#fireworks-effect)
-5. [リボンエフェクト](#ribbons-effect)
-6. [雪エフェクト](#snow-effect)
-7. [ネットワーク / リンクエフェクト](#network-links-effect)
-8. [星エフェクト](#stars-effect)
-9. [カスタム設定](#custom-configuration)
-10. [複数コンテナ](#multiple-containers)
-11. [動的コントロール](#dynamic-controls)
+1. [Getting Started](#getting-started)
+2. [Basic Particles](#basic-particles)
+3. [Confetti Effect](#confetti-effect)
+4. [Fireworks Effect](#fireworks-effect)
+5. [Ribbons Effect](#ribbons-effect)
+6. [Snow Effect](#snow-effect)
+7. [Network / Links Effect](#network-links-effect)
+8. [Stars Effect](#stars-effect)
+9. [Custom Configuration](#custom-configuration)
+10. [Multiple Containers](#multiple-containers)
+11. [Dynamic Controls](#dynamic-controls)
 
 ---
 
-## はじめに
+## Getting Started
 
-### CDN（クイックスタート）
+### CDN (quick start)
 
-HTML に `<div>` プレースホルダーと script タグを追加します。最低でもエンジンとバンドルが必要で、`tsParticles.load()` の前にローダーを呼び出す必要があります。
+Add a `<div>` placeholder and script tags in your HTML. You need at least the engine + a bundle, and you must call the loader before `tsParticles.load()`.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tsParticles – はじめに</title>
+    <title>tsParticles – Getting Started</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -67,7 +67,7 @@ HTML に `<div>` プレースホルダーと script タグを追加します。�
 npm install @tsparticles/engine @tsparticles/slim
 ```
 
-次にインポートして使用します:
+Then import and use it:
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -83,21 +83,21 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-> **注意:** `@tsparticles/engine` だけでは何も描画されません。バンドル（`@tsparticles/slim` 推奨）または個別のプラグインをインストールして、表示可能なシェイプを取得する必要があります。
+> **Note:** `@tsparticles/engine` alone draws nothing. You must install a bundle (`@tsparticles/slim` recommended) or individual plugins to get visible shapes.
 
 ---
 
-## 基本のパーティクル
+## Basic Particles
 
-円形のシェイプ、ランダムな色、穏やかな動きで 100 個のパーティクルを描画する最小限の設定です。v4 では、パーティクルの色は以前の `color` プロパティではなく `paint` を使用して設定します。
+A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement. In v4, particle colors are set via `paint` instead of the old `color` property.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>基本のパーティクル</title>
+    <title>Basic Particles</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -168,17 +168,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 紙吹雪エフェクト
+## Confetti Effect
 
-専用の `@tsparticles/confetti` バンドルを使用して、単一の関数呼び出しでお祝いの紙吹雪を表示します。
+Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a single function call.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>紙吹雪</title>
+    <title>Confetti</title>
     <style>
       body {
         margin: 0;
@@ -203,17 +203,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 花火エフェクト
+## Fireworks Effect
 
-専用の `@tsparticles/fireworks` バンドルを使用した、効果音付きの花火ショーです。
+A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound effects.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>花火</title>
+    <title>Fireworks</title>
     <style>
       body {
         margin: 0;
@@ -235,17 +235,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## リボンエフェクト
+## Ribbons Effect
 
-専用の `@tsparticles/ribbons` バンドルを使用して、マウスの位置に反応する流れるようなリボンアニメーションを表示します。
+Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations that react to mouse position.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>リボン</title>
+    <title>Ribbons</title>
     <style>
       body {
         margin: 0;
@@ -273,17 +273,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 雪エフェクト
+## Snow Effect
 
-`@tsparticles/configs` プリセットカタログを使用した、優しく降り注ぐ雪の結晶です。
+Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>雪エフェクト</title>
+    <title>Snow Effect</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -318,7 +318,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-または、スタンドアロンのプリセットパッケージを使用する方法:
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -339,17 +339,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## ネットワーク / リンクエフェクト
+## Network / Links Effect
 
-マウスインタラクション付きの、古典的な連結ノードのビジュアルです。`@tsparticles/slim` バンドルにはリンクインタラクションとマウスグラブモードが含まれています。
+A classic connected-nodes visual with mouse interactivity. The `@tsparticles/slim` bundle includes the links interaction and mouse grab mode.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ネットワーク / リンク</title>
+    <title>Network / Links</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -418,17 +418,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 星エフェクト
+## Stars Effect
 
-`@tsparticles/configs` プリセットカタログを使用した星空の夜空です。
+A starry-night sky using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>星エフェクト</title>
+    <title>Stars Effect</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -463,7 +463,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-または、スタンドアロンのプリセットパッケージを使用する方法:
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -484,17 +484,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## カスタム設定
+## Custom Configuration
 
-slim バンドルを使用して、グラデーション背景、インタラクティブなホバーエフェクト、複数のシェイプタイプを備えた設定をゼロから構築します。
+Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types using the slim bundle.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>カスタム設定</title>
+    <title>Custom Config</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -515,7 +515,7 @@ slim バンドルを使用して、グラデーション背景、インタラク
     </style>
   </head>
   <body>
-    <h1>カスタム設定</h1>
+    <h1>Custom Configuration</h1>
     <div id="tsparticles"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -624,17 +624,17 @@ slim バンドルを使用して、グラデーション背景、インタラク
 
 ---
 
-## 複数コンテナ
+## Multiple Containers
 
-同じページ上で複数の独立したパーティクルインスタンスを、それぞれ独自の設定で実行します。
+Run multiple independent particle instances on the same page, each with its own configuration.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>複数コンテナ</title>
+    <title>Multiple Containers</title>
     <style>
       .particle-box {
         width: 45%;
@@ -668,7 +668,7 @@ slim バンドルを使用して、グラデーション背景、インタラク
       (async () => {
         await loadSlim(tsParticles);
 
-        // コンテナ 1 – 円形、低速移動
+        // Container 1 – circles with slow movement
         await tsParticles.load({
           id: "box1",
           options: {
@@ -686,7 +686,7 @@ slim バンドルを使用して、グラデーション背景、インタラク
           },
         });
 
-        // コンテナ 2 – 三角形、リンク付き
+        // Container 2 – triangles with links
         await tsParticles.load({
           id: "box2",
           options: {
@@ -705,7 +705,7 @@ slim バンドルを使用して、グラデーション背景、インタラク
           },
         });
 
-        // コンテナ 3 – 紙吹雪のようなバースト
+        // Container 3 – confetti-like burst
         await tsParticles.load({
           id: "box3",
           options: {
@@ -739,7 +739,7 @@ slim バンドルを使用して、グラデーション背景、インタラク
           },
         });
 
-        // コンテナ 4 – ゆっくり浮かぶ星
+        // Container 4 – slow floating stars
         await tsParticles.load({
           id: "box4",
           options: {
@@ -764,17 +764,17 @@ slim バンドルを使用して、グラデーション背景、インタラク
 
 ---
 
-## 動的コントロール
+## Dynamic Controls
 
-プログラムによる開始、停止、一時停止、およびテーマの切り替えを実行時に実行します。
+Programmatically start, stop, pause, and switch themes at runtime.
 
 ```html
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>動的コントロール</title>
+    <title>Dynamic Controls</title>
     <style>
       #tsparticles {
         position: fixed;
@@ -813,12 +813,12 @@ slim バンドルを使用して、グラデーション背景、インタラク
   <body>
     <div id="tsparticles"></div>
     <div class="controls">
-      <button id="play-btn">▶ 再生</button>
-      <button id="pause-btn">⏸ 一時停止</button>
-      <button id="stop-btn">⏹ 停止</button>
-      <button id="theme-dark-btn">🌙 ダークテーマ</button>
-      <button id="theme-light-btn">☀️ ライトテーマ</button>
-      <button id="restart-btn">🔄 再起動</button>
+      <button id="play-btn">▶ Play</button>
+      <button id="pause-btn">⏸ Pause</button>
+      <button id="stop-btn">⏹ Stop</button>
+      <button id="theme-dark-btn">🌙 Dark Theme</button>
+      <button id="theme-light-btn">☀️ Light Theme</button>
+      <button id="restart-btn">🔄 Restart</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -882,4 +882,4 @@ slim バンドルを使用して、グラデーション背景、インタラク
 
 ---
 
-以上で、tsParticles v4 のすべての主要な Vanilla JS 統合パターンを網羅しました。各サンプルはスタンドアロンの HTML ファイルとして、ブラウザで開けば tsParticles の動作を確認できます。
+You have now covered every major Vanilla JS integration pattern for tsParticles v4. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.
