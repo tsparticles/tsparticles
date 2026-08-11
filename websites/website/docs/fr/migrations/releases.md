@@ -1,26 +1,26 @@
-# Versions et versionnage
+# Releases and Versioning
 
-Ce projet est désormais livré à partir d'un seul référentiel : `tsparticles/tsparticles`.
+This project now ships from a single repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Où se déroule le travail de publication
+## Where release work happens
 
-- Racine Monorepo : <https://github.com/tsparticles/tsparticles>
-- Offres groupées : <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Moteur : <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Emballages : <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Préréglages : <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes : <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Monorepo root: <https://github.com/tsparticles/tsparticles>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Règle d'alignement des versions
+## Version alignment rule
 
-- Gardez tous les packages `@tsparticles/*` alignés sur la même ligne de version.
-- Évitez de mélanger différentes lignes bêta ou versions majeures dans une seule application.
+- Keep all `@tsparticles/*` packages aligned to the same release line.
+- Avoid mixing different beta lines or major versions in one app.
 
-## Liste de contrôle pratique pour la publication
+## Practical release checklist
 
-1. Vérifiez les versions du package cible dans les fichiers de l'espace de travail `package.json`.
-2. Créez et testez les projets concernés.
-3. Validez les liens vers les documents et le comportement du terrain de jeu.
-4. Publiez à partir du flux de publication monorepo.
+1. Verify target package versions in workspace `package.json` files.
+2. Build and test affected projects.
+3. Validate docs links and playground behavior.
+4. Publish from the monorepo release flow.
