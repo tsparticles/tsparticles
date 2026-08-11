@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/preact
+# Wrapper: @tsparticles/preact
 
-`tsParticles` के लिए आधिकारिक प्रीएक्ट रैपर।
+Official Preact wrapper for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/preact @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
-2. ऐप रूट पर एक बार इंजन इनिशियलाइज़ करें।
-3. विकल्प ऑब्जेक्ट के साथ प्रीएक्ट घटक प्रस्तुत करें।
+1. Install wrapper + engine + loader package.
+2. Initialize engine once at app root.
+3. Render Preact component with options object.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
