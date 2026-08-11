@@ -1,29 +1,29 @@
-# Invólucro: @tsparticles/qwik
+# Wrapper: @tsparticles/qwik
 
-Wrapper oficial do Qwik para `tsParticles`.
+Official Qwik wrapper for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
-## Fluxo de configuração rápida
+## Quick setup flow
 
-1. Instale o pacote wrapper + motor + carregador.
-2. Inicialize o carregador no caminho de inicialização do Qwik.
-3. Renderize o componente wrapper com opções serializadas.
+1. Install wrapper + engine + loader package.
+2. Initialize loader in Qwik startup path.
+3. Render wrapper component with serialized options.
 
-## Referências Monorepo
+## Monorepo references
 
-- Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik>
-- Aplicativo de demonstração: <https://github.com/tsparticles/tsparticles/tree/main/demo/qwik>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/qwik>
 
-## Leia-me
+## Readme
 
-- LEIA-ME do wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/pt/guide/wrappers)
-- [`/guide/frameworks`](/pt/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
