@@ -1,8 +1,8 @@
-# Grupo de partículas
+# Particles Group
 
-`particles.groups` te permite definir variantes de partículas con nombre en la misma escena.
+`particles.groups` lets you define named particle variants in the same scene.
 
-## Ejemplo
+## Example
 
 ```ts
 particles: {
@@ -27,6 +27,6 @@ particles: {
 }
 ```
 
-## Referencia fuente
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Group.md>
