@@ -1,8 +1,8 @@
-# प्लगइन विकल्प: बहुभुज मास्क
+# Plugin Option: Polygon Mask
 
-`polygonMask` कणों को SVG या बहुभुज-आधारित क्षेत्रों तक सीमित करता है।
+`polygonMask` constrains particles to SVG or polygon-based regions.
 
-## उदाहरण
+## Example
 
 ```ts
 polygonMask: {
@@ -15,11 +15,11 @@ polygonMask: {
 }
 ```
 
-## नोट्स
+## Notes
 
-- बेहतर रनटाइम प्रदर्शन के लिए अनुकूलित एसवीजी पथ का उपयोग करें।
-- पथ लोडिंग और फ़ॉलबैक व्यवहार को मान्य करें।
+- Use optimized SVG paths for better runtime performance.
+- Validate path loading and fallback behavior.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/PolygonMask.md>
