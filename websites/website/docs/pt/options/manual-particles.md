@@ -1,8 +1,8 @@
-# Partículas Manuais
+# Manual Particles
 
-`manualParticles` adiciona partículas explícitas em posições fixas.
+`manualParticles` adds explicit particles at fixed positions.
 
-## Exemplo
+## Example
 
 ```ts
 manualParticles: [
@@ -26,12 +26,12 @@ manualParticles: [
 ];
 ```
 
-## Quando usar
+## When to use it
 
-- Marcadores visuais ancorados.
-- Efeitos híbridos misturando partículas fixas e dinâmicas.
-- Estados iniciais controlados em demonstrações ou tutoriais.
+- Anchored visual markers.
+- Hybrid effects mixing fixed and dynamic particles.
+- Controlled initial states in demos or tutorials.
 
-## Referência da fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/ManualParticles.md>
