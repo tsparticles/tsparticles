@@ -1,8 +1,8 @@
-# パーティクルが回転する
+# Particles Rotate
 
-`particles.rotate` は、パーティクルごとの回転動作を制御します。
+`particles.rotate` controls per-particle rotation behavior.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -21,10 +21,10 @@ particles: {
 }
 ```
 
-- `direction`: 時計回りまたは反時計回り。
-- `animation.speed`: 角速度。
-- `animation.sync`: 共有回転タイミングと独立回転タイミング。
+- `direction`: clockwise or counter-clockwise.
+- `animation.speed`: angular speed.
+- `animation.sync`: shared vs independent rotation timing.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Rotate.md>
