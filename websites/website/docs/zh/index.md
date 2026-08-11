@@ -1,73 +1,71 @@
 ---
-layout: home
-
-title: tsParticles
-titleTemplate: 几分钟内创建富有表现力的粒子背景
+layout: MyHome
 
 hero:
   name: tsParticles
-  text: 强大的粒子引擎，配合简洁顺手的开发流程
-  tagline: 在任意 framework 中快速交付交互式背景、特效与彩纸效果。
+  text: Powerful particle engine, simple developer workflow
+  tagline: Ship interactive backgrounds, effects, and confetti on any framework.
   image:
-    src: https://particles.js.org/images/banner3.png
+    src: /images/banner3.png
     alt: tsParticles
   actions:
     - theme: brand
-      text: 开始使用
-      link: /zh/guide/getting-started
+      text: Get Started
+      link: /guide/getting-started
     - theme: alt
-      text: 打开 Playground
-      link: /zh/playground/
+      text: Open Playground
+      link: /playground/
     - theme: alt
-      text: 即用演示
-      link: /zh/demos/
+      text: Ready-to-Use Demos
+      link: /demos/
 
 features:
-  - title: 快速上手
-    details: 从最小配置开始，逐步扩展到 presets、plugins 和自定义 shapes。
-  - title: framework 就绪
-    details: 支持 React、Vue、Angular、Svelte、Solid、Web Components 和 Vanilla JavaScript。
-  - title: 面向生产
-    details: 通过 @tsparticles/basic、@tsparticles/slim、tsparticles 或 @tsparticles/all 控制 bundle 大小。
-  - title: 专注 API
-    details: 使用 @tsparticles/particles、@tsparticles/confetti、@tsparticles/fireworks 和 @tsparticles/ribbons 一次调用即可完成集成。
+  - title: Fast onboarding
+    details: Start with a minimal setup, then scale to presets, plugins, and custom shapes.
+  - title: Framework ready
+    details: React, Vue, Angular, Svelte, Solid, Web Components, and vanilla JavaScript.
+  - title: Production focused
+    details: Control bundle size with @tsparticles/basic, @tsparticles/slim, tsparticles, or @tsparticles/all.
+  - title: Focused APIs
+    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks, and @tsparticles/ribbons for one-call setups.
 ---
 
-## 为什么这样组织文档
+## Why this docs experience
 
-本站围绕最常见的问题重新设计：**“现在该如何使用 tsParticles？”**
+The website has been redesigned around the most common question: **"How do I use tsParticles now?"**
 
-- 5 分钟内从可运行示例起步。
-- 无需翻找多个仓库也能选对 package。
-- 快速定位 options、config、presets 与 palettes。
-- 仅在需要时启用重特效，并配合明确的开始/暂停控制。
+- Start from a working snippet in under 5 minutes.
+- Choose the right package without digging through many repos.
+- Find options, configs, presets, and palettes quickly.
+- Run heavy effects only when you decide with explicit Start/Pause controls.
 
-## 建议先读这些页面
+## What to read first
 
-1. [`/guide/getting-started`](/zh/guide/getting-started)：安装、首次渲染、最小选项。
-2. [`/guide/installation`](/zh/guide/installation)：CDN/package manager 安装矩阵与 import 方式。
-3. [`/playground/`](/zh/playground/)：按命令启动演示并实时编辑 JSON。
-4. [`/demos/`](/zh/demos/)：可直接用于生产的配方示例。
-5. [`/options/`](/zh/options/)：根选项地图与深层链接。
-6. [`/migrations/particles-js`](/zh/migrations/particles-js)：从 particles.js 迁移及兼容说明。
-7. [`/guide/wrappers`](/zh/guide/wrappers)：官方 wrappers 与各 framework 入口。
-8. [`/guide/plugins-customization`](/zh/guide/plugins-customization)：自定义形状、presets 与 plugin 扩展。
-9. [`/guide/templates-resources`](/zh/guide/templates-resources)：起步仓库与可复用资源。
-10. [`/guide/video-tutorials`](/zh/guide/video-tutorials)：官方视频演示与参考资料。
-11. [`/guide/dependency-graph`](/zh/guide/dependency-graph)：engine 与 bundles 的依赖关系图。
+1. [`/guide/getting-started`](/guide/getting-started): installation, first render, minimal options.
+2. [`/guide/installation`](/guide/installation): CDN/package-manager install matrix and import styles.
+3. [`/playground/`](/playground/): launch demos only on command and edit JSON live.
+4. [`/demos/`](/demos/): copy ready-to-use recipes for production.
+5. [`/options/`](/options/): map of root options and deep links.
+6. [`/migrations/`](/migrations/): migrate from tsParticles v1/v2/v3 to current.
+7. [`/migrations/particles-js`](/migrations/particles-js): migrate from particles.js with compatibility notes.
+8. [`/guide/wrappers`](/guide/wrappers): official wrapper packages and framework links.
+9. [`/guide/plugins-customization`](/guide/plugins-customization): custom shapes, presets, and plugin extension.
+10. [`/guide/templates-resources`](/guide/templates-resources): starter repos and shareable resources.
+11. [`/guide/video-tutorials`](/guide/video-tutorials): official video demos and references.
+12. [`/guide/dependency-graph`](/guide/dependency-graph): package-level map for engine and bundles.
 
-## 核心源码与关键目录
+## Core source and folders
 
-- 主 monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
-- 主 README（快速上手、wrappers、presets）: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
-- wrappers 目录: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- demo 应用目录: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- presets 目录: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- palettes 目录: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
-- root options 源文档: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- migration 源文档: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Main monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
+- Main README: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
+- Wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- Demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- Presets workspace folders: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- Palettes workspace folders: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- Root options source: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- Migration source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
 
-## 支持项目
+## Support the project
 
-- 赞助 Matteo Bruni: <https://github.com/matteobruni>
-- 赞助 tsParticles organization: <https://github.com/tsparticles>
+- Sponsor Matteo Bruni: [https://github.com/matteobruni](https://github.com/matteobruni)
+- Sponsor tsParticles org: [https://github.com/tsparticles](https://github.com/tsparticles)
