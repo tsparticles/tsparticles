@@ -1,8 +1,8 @@
-# कण संख्या
+# Particles Number
 
-`particles.number` नियंत्रित करता है कि कितने कण सक्रिय हैं।
+`particles.number` controls how many particles are active.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -16,14 +16,14 @@ particles: {
 }
 ```
 
-- `value`: कणों की आधार मात्रा।
-- `density.enable`: गिनती को कैनवास के आकार के अनुसार अनुकूलित करता है।
-- `density.area`: स्केलिंग के लिए उपयोग किया जाने वाला संदर्भ क्षेत्र।
+- `value`: base amount of particles.
+- `density.enable`: adapts count to canvas size.
+- `density.area`: reference area used for scaling.
 
-## प्रदर्शन युक्ति
+## Performance tip
 
-FPS गिरने पर सबसे पहले `value` कम करें।
+Lower `value` first when FPS drops.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Number.md>
