@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/riot
+# Wrapper: @tsparticles/riot
 
-`tsParticles` के लिए आधिकारिक दंगा रैपर।
+Official Riot wrapper for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/riot @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
-2. Riot ऐप सेटअप में एक बार सुविधाओं को रजिस्टर/लोड करें।
-3. विकल्पों के साथ दंगा रैपर प्रस्तुत करें।
+1. Install wrapper + engine + loader package.
+2. Register/load features once in Riot app setup.
+3. Render Riot wrapper with options.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
