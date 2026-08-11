@@ -1,39 +1,34 @@
-# Playground
+# 遊び場
 
-Split by use case:
+ユースケースごとに分割:
 
-- [`Configs Playground`](/playground/configs): richer demos with full editable options.
-- [`Shapes Playground`](/playground/shapes): focused demos for particle `shape.type` with per-shape options when available.
-- [`Presets Playground`](/playground/presets): official preset-name demos (`{ preset: "..." }`).
-- [`Palettes Playground`](/playground/palettes): palette-focused demos from the presets project.
-- [`Bundles Playground`](/playground/bundles): dedicated playgrounds for `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, and `@tsparticles/ribbons`.
+- [`Configs Playground`](/ja/playground/configs): 完全な編集可能なオプションを備えた豊富なデモ。
+- [`Shapes Playground`](/ja/playground/shapes): `shape.type` に特化したデモ。利用可能な場合は形状固有のオプションも含みます。
+- [`Presets Playground`](/ja/playground/presets): 公式プリセット名のデモ (`{ preset: "..." }`)。
+- [`Palettes Playground`](/ja/playground/palettes): プリセット プロジェクトからのパレットに焦点を当てたデモ。
+- [`Bundles Playground`](/ja/playground/bundles): `@tsparticles/confetti`、`@tsparticles/fireworks`、`@tsparticles/particles`、および `@tsparticles/ribbons` の専用プレイグラウンド。
 
-Execution is always **user-triggered only** (no autoplay).
+実行は常に **ユーザーによるトリガーのみ** (自動再生はありません)。
 
-## Shared flow
+## 共有フロー
 
-The layout is consistent across playgrounds:
+レイアウトはどの遊び場でも一貫しています。
 
-1. Canvas preview first.
+1. まずキャンバスをプレビューします。
+2. 開始/一時停止/再開/破棄のコントロール。
+3. オプションの JSON エディター。
 
-2. Controls for Start/Pause/Resume/Destroy.
+4. メニューからデモを選択します。
+5. `Start` を押して実行します (自動再生なし)。
+6. エディターで JSON を編集します。
+7. もう一度 `Start` を押して、新しいオプションを再ロードします。
+8. `Pause`/`Resume` を使用して、パフォーマンスと CPU 使用率を制御します。
 
-3. JSON editor for options.
+> 注: `Destroy` はコンテナ インスタンスを完全に解放します。
 
-4. Pick a demo from the menu.
+## 推奨されるワークフロー
 
-5. Press `Start` to run it (no autoplay).
+・効果が安定するまでここで試作します。
 
-6. Edit the JSON in the editor.
-
-7. Press `Start` again to reload with your new options.
-
-8. Use `Pause`/`Resume` to control performance and CPU usage.
-
-> Note: `Destroy` fully releases the container instance.
-
-## Suggested workflow
-
-- Prototype here until the effect is stable.
-- Copy the final JSON into your project.
-- Type it with `ISourceOptions` in application code.
+- 最終的な JSON をプロジェクトにコピーします。
+- アプリケーション コードに `ISourceOptions` を使用して入力します。

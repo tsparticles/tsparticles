@@ -1,35 +1,35 @@
 ---
-title: Vanilla JS Guide
-description: Complete guide for integrating tsParticles with plain JavaScript.
+title: Guía de JavaScript Vanilla
+description: Guía completa para integrar tsParticles con JavaScript puro.
 ---
 
-# Vanilla JS Guide
+# Guía de JavaScript Vanilla
 
-## Table of Contents
+## Tabla de Contenidos
 
-1. [Getting Started](#getting-started)
-2. [Basic Particles](#basic-particles)
-3. [Confetti Effect](#confetti-effect)
-4. [Fireworks Effect](#fireworks-effect)
-5. [Ribbons Effect](#ribbons-effect)
-6. [Snow Effect](#snow-effect)
-7. [Network / Links Effect](#network-links-effect)
-8. [Stars Effect](#stars-effect)
-9. [Custom Configuration](#custom-configuration)
-10. [Multiple Containers](#multiple-containers)
-11. [Dynamic Controls](#dynamic-controls)
+1. [Comenzando](#getting-started)
+2. [Partículas Básicas](#basic-particles)
+3. [Efecto de Confeti](#confetti-effect)
+4. [Efecto de Fuegos Artificiales](#fireworks-effect)
+5. [Efecto de Cintas](#ribbons-effect)
+6. [Efecto de Nieve](#snow-effect)
+7. [Efecto de Red / Conexiones](#network-links-effect)
+8. [Efecto de Estrellas](#stars-effect)
+9. [Configuración Personalizada](#custom-configuration)
+10. [Múltiples Contenedores](#multiple-containers)
+11. [Controles Dinámicos](#dynamic-controls)
 
 ---
 
-## Getting Started
+## Comenzando
 
-### CDN (quick start)
+### CDN (inicio rápido)
 
-Add a `<div>` placeholder and script tags in your HTML. You need at least the engine + a bundle, and you must call the loader before `tsParticles.load()`.
+Agrega un `<div>` como marcador de posición y etiquetas de script en tu HTML. Necesitas al menos el motor + un bundle, y debes llamar al cargador antes de `tsParticles.load()`.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,7 +67,7 @@ Add a `<div>` placeholder and script tags in your HTML. You need at least the en
 npm install @tsparticles/engine @tsparticles/slim
 ```
 
-Then import and use it:
+Luego impórtalo y úsalo:
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -83,17 +83,17 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-> **Note:** `@tsparticles/engine` alone draws nothing. You must install a bundle (`@tsparticles/slim` recommended) or individual plugins to get visible shapes.
+> **Nota:** `@tsparticles/engine` por sí solo no dibuja nada. Debes instalar un bundle (`@tsparticles/slim` recomendado) o plugins individuales para obtener formas visibles.
 
 ---
 
-## Basic Particles
+## Partículas Básicas
 
-A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement. In v4, particle colors are set via `paint` instead of the old `color` property.
+Una configuración mínima que renderiza 100 partículas con forma circular, colores aleatorios y movimiento suave. En v4, los colores de las partículas se configuran mediante `paint` en lugar de la antigua propiedad `color`.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -168,13 +168,13 @@ A minimal configuration that renders 100 particles with a circular shape, random
 
 ---
 
-## Confetti Effect
+## Efecto de Confeti
 
-Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a single function call.
+Usa el bundle dedicado `@tsparticles/confetti` para una explosión festiva con una sola llamada a una función.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -203,13 +203,13 @@ Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a 
 
 ---
 
-## Fireworks Effect
+## Efecto de Fuegos Artificiales
 
-A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound effects.
+Un espectáculo de fuegos artificiales usando el bundle dedicado `@tsparticles/fireworks` con efectos de sonido.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -235,13 +235,13 @@ A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound 
 
 ---
 
-## Ribbons Effect
+## Efecto de Cintas
 
-Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations that react to mouse position.
+Usa el bundle dedicado `@tsparticles/ribbons` para animaciones de cintas fluidas que reaccionan a la posición del ratón.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -273,13 +273,13 @@ Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations th
 
 ---
 
-## Snow Effect
+## Efecto de Nieve
 
-Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
+Suaves copos de nieve cayendo usando el catálogo de presets `@tsparticles/configs`.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -318,7 +318,7 @@ Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
 </html>
 ```
 
-Alternatively, using the standalone preset package:
+Alternativamente, usando el paquete de preset independiente:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -339,13 +339,13 @@ Alternatively, using the standalone preset package:
 
 ---
 
-## Network / Links Effect
+## Efecto de Red / Conexiones
 
-A classic connected-nodes visual with mouse interactivity. The `@tsparticles/slim` bundle includes the links interaction and mouse grab mode.
+Un visual clásico de nodos conectados con interactividad del ratón. El bundle `@tsparticles/slim` incluye la interacción de conexiones y el modo de agarre con el ratón.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -418,13 +418,13 @@ A classic connected-nodes visual with mouse interactivity. The `@tsparticles/sli
 
 ---
 
-## Stars Effect
+## Efecto de Estrellas
 
-A starry-night sky using the `@tsparticles/configs` preset catalog.
+Un cielo nocturno estrellado usando el catálogo de presets `@tsparticles/configs`.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -463,7 +463,7 @@ A starry-night sky using the `@tsparticles/configs` preset catalog.
 </html>
 ```
 
-Alternatively, using the standalone preset package:
+Alternativamente, usando el paquete de preset independiente:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -484,13 +484,13 @@ Alternatively, using the standalone preset package:
 
 ---
 
-## Custom Configuration
+## Configuración Personalizada
 
-Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types using the slim bundle.
+Construye una configuración desde cero con un fondo degradado, efectos interactivos al pasar el ratón y múltiples tipos de formas usando el bundle slim.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -515,7 +515,7 @@ Build a configuration from scratch with a gradient background, interactive hover
     </style>
   </head>
   <body>
-    <h1>Custom Configuration</h1>
+    <h1>Configuración Personalizada</h1>
     <div id="tsparticles"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -624,13 +624,13 @@ Build a configuration from scratch with a gradient background, interactive hover
 
 ---
 
-## Multiple Containers
+## Múltiples Contenedores
 
-Run multiple independent particle instances on the same page, each with its own configuration.
+Ejecuta múltiples instancias de partículas independientes en la misma página, cada una con su propia configuración.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -668,7 +668,7 @@ Run multiple independent particle instances on the same page, each with its own 
       (async () => {
         await loadSlim(tsParticles);
 
-        // Container 1 – circles with slow movement
+        // Contenedor 1 – círculos con movimiento lento
         await tsParticles.load({
           id: "box1",
           options: {
@@ -686,7 +686,7 @@ Run multiple independent particle instances on the same page, each with its own 
           },
         });
 
-        // Container 2 – triangles with links
+        // Contenedor 2 – triángulos con conexiones
         await tsParticles.load({
           id: "box2",
           options: {
@@ -705,7 +705,7 @@ Run multiple independent particle instances on the same page, each with its own 
           },
         });
 
-        // Container 3 – confetti-like burst
+        // Contenedor 3 – explosión tipo confeti
         await tsParticles.load({
           id: "box3",
           options: {
@@ -739,7 +739,7 @@ Run multiple independent particle instances on the same page, each with its own 
           },
         });
 
-        // Container 4 – slow floating stars
+        // Contenedor 4 – estrellas flotantes lentas
         await tsParticles.load({
           id: "box4",
           options: {
@@ -764,13 +764,13 @@ Run multiple independent particle instances on the same page, each with its own 
 
 ---
 
-## Dynamic Controls
+## Controles Dinámicos
 
-Programmatically start, stop, pause, and switch themes at runtime.
+Inicia, detén, pausa y cambia temas programáticamente en tiempo de ejecución.
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -813,12 +813,12 @@ Programmatically start, stop, pause, and switch themes at runtime.
   <body>
     <div id="tsparticles"></div>
     <div class="controls">
-      <button id="play-btn">▶ Play</button>
-      <button id="pause-btn">⏸ Pause</button>
-      <button id="stop-btn">⏹ Stop</button>
-      <button id="theme-dark-btn">🌙 Dark Theme</button>
-      <button id="theme-light-btn">☀️ Light Theme</button>
-      <button id="restart-btn">🔄 Restart</button>
+      <button id="play-btn">▶ Reproducir</button>
+      <button id="pause-btn">⏸ Pausa</button>
+      <button id="stop-btn">⏹ Detener</button>
+      <button id="theme-dark-btn">🌙 Tema Oscuro</button>
+      <button id="theme-light-btn">☀️ Tema Claro</button>
+      <button id="restart-btn">🔄 Reiniciar</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -882,4 +882,4 @@ Programmatically start, stop, pause, and switch themes at runtime.
 
 ---
 
-You have now covered every major Vanilla JS integration pattern for tsParticles v4. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.
+Ahora has cubierto todos los patrones principales de integración de JavaScript Vanilla para tsParticles v4. Cada ejemplo es un archivo HTML independiente que puedes abrir en tu navegador para ver tsParticles en acción.

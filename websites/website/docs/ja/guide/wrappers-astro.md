@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/astro
+# ラッパー: @tsparticles/astro
 
-Official Astro wrapper for `tsParticles`.
+`tsParticles` の公式 Astro ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + chosen loader (`@tsparticles/slim` suggested).
-2. Register particles on the client side in Astro components/layouts.
-3. Pass options object or JSON to the wrapper component.
+1. ラッパー + エンジン + 選択したローダー (`@tsparticles/slim` を推奨) をインストールします。
+2. クライアント側のパーティクルをAstroコンポーネント/レイアウトに登録します。
+3. オプション オブジェクトまたは JSON をラッパー コンポーネントに渡します。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

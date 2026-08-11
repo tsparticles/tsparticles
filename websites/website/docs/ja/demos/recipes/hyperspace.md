@@ -1,14 +1,14 @@
-# Hyperspace Preset
+# ハイパースペースプリセット
 
-Preset ufficiale dal workspace `presets/presets/hyperspace`.
+プリセットの ufficiale dal ワークスペース `presets/presets/hyperspace`。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-hyperspace
 ```
 
-## Ready-to-use (start/stop manuale)
+## すぐに使用可能 (開始/停止マニュアル)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ottimo per sezioni wow-effect e intro prodotto.
+驚異的な効果とイントロのサウンドを実現します。
 
-Demo: <https://particles.js.org/demos/recipes/hyperspace>
+デモ: <https://particles.js.org/demos/recipes/hyperspace>

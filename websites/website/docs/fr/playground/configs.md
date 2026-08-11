@@ -1,5 +1,5 @@
-# Playground Configs
+# Configurations de terrain de jeu
 
-Use this page for demos with richer option objects (not only `preset` names), based on examples from `tsparticles/utils/configs`.
+Utilisez cette page pour des démonstrations avec des objets d'options plus riches (pas seulement les noms `preset`), basées sur des exemples de `tsparticles/utils/configs`.
 
 <PlaygroundPanel mode="configs"></PlaygroundPanel>

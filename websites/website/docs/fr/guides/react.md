@@ -1,22 +1,22 @@
 ---
-title: React Guide
-description: Complete guide for integrating tsParticles with React using @tsparticles/react.
+title: Guide React
+description: Guide complet pour intégrer tsParticles avec React en utilisant @tsparticles/react.
 ---
 
-# React Guide
+# Guide React
 
-## Table of Contents
+## Table des matières
 
 1. [Installation](#installation)
-2. [Basic Usage](#basic-usage)
-3. [Confetti Effect](#confetti-effect)
-4. [Fireworks Effect](#fireworks-effect)
-5. [Snow Effect](#snow-effect)
-6. [Interactive Links](#interactive-links)
-7. [Theme Switching](#theme-switching)
+2. [Utilisation de base](#utilisation-de-base)
+3. [Effet Confetti](#effet-confetti)
+4. [Effet Feux d'artifice](#effet-feux-dartifice)
+5. [Effet Neige](#effet-neige)
+6. [Liens interactifs](#liens-interactifs)
+7. [Changement de thème](#changement-de-thème)
 8. [ParticlesProvider](#particlesprovider)
-9. [Performance Optimization](#performance-optimization)
-10. [Custom Configuration](#custom-configuration)
+9. [Optimisation des performances](#optimisation-des-performances)
+10. [Configuration personnalisée](#configuration-personnalisée)
 
 ---
 
@@ -26,69 +26,57 @@ description: Complete guide for integrating tsParticles with React using @tspart
 npm install @tsparticles/react tsparticles
 ```
 
-Or with Yarn:
+Ou avec Yarn :
 
 ```bash
 yarn add @tsparticles/react tsparticles
 ```
 
-`@tsparticles/react` is the official React wrapper. The `tsparticles` package is the core engine.
+`@tsparticles/react` est l'encapsuleur React officiel. Le package `tsparticles` est le moteur principal.
 
 ---
 
-## Basic Usage
+## Utilisation de base
 
-The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
+La configuration la plus simple : affichez le composant `<Particles />` avec un objet d'options.
 
 ```jsx
-import { useCallback, useMemo } from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-
-const particlesInit = async (engine) => {
-  await loadSlim(engine);
-};
+import { useCallback } from "react";
+import Particles from "@tsparticles/react";
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Particles container loaded", container);
+    console.log("Conteneur de particules chargé", container);
   }, []);
 
-  const options = useMemo(
-    () => ({
-      fpsLimit: 120,
-      particles: {
-        number: { value: 80 },
-        color: { value: "#00d4ff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.6 },
-        size: { value: { min: 2, max: 5 } },
-        move: {
-          enable: true,
-          speed: 2,
-          outModes: { default: "bounce" },
-        },
+  const options = {
+    fpsLimit: 120,
+    particles: {
+      number: { value: 80 },
+      color: { value: "#00d4ff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
+      size: { value: { min: 2, max: 5 } },
+      move: {
+        enable: true,
+        speed: 2,
+        outModes: { default: "bounce" },
       },
-      background: { color: "#0d1117" },
-    }),
-    [],
-  );
+    },
+    background: { color: "#0d1117" },
+  };
 
-  return (
-    <ParticlesProvider init={particlesInit}>
-      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
-    </ParticlesProvider>
-  );
+  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
 }
 ```
 
-**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
+**Important** : Le composant `<Particles />` nécessite que le moteur soit initialisé en premier. Utilisez `initParticlesEngine` de `@tsparticles/react` ou `<ParticlesProvider>` pour charger vos préréglages avant d'afficher le composant.
 
 ---
 
-## Confetti Effect
+## Effet Confetti
 
-Render a confetti burst using the confetti preset.
+Affichez une explosion de confettis en utilisant le préréglage confetti.
 
 ```jsx
 import Particles from "@tsparticles/react";
@@ -109,13 +97,13 @@ export default function Confetti() {
 }
 ```
 
-Make sure you have loaded the confetti preset:
+Assurez-vous d'avoir chargé le préréglage confetti :
 
 ```bash
 npm install @tsparticles/preset-confetti
 ```
 
-Then register it in your app entry point:
+Enregistrez-le ensuite dans le point d'entrée de votre application :
 
 ```jsx
 import { initParticlesEngine } from "@tsparticles/react";
@@ -128,9 +116,9 @@ initParticlesEngine(async (engine) => {
 
 ---
 
-## Fireworks Effect
+## Effet Feux d'artifice
 
-A full-screen fireworks display.
+Un affichage de feux d'artifice en plein écran.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -138,7 +126,7 @@ import Particles from "@tsparticles/react";
 
 export default function Fireworks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Fireworks loaded", container);
+    console.log("Feux d'artifice chargés", container);
   }, []);
 
   const options = useMemo(
@@ -162,7 +150,7 @@ export default function Fireworks() {
 }
 ```
 
-Install the preset:
+Installez le préréglage :
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -170,9 +158,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Snow Effect
+## Effet Neige
 
-Gentle falling snowflakes using the snow preset.
+De doux flocons de neige tombant en utilisant le préréglage neige.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -180,7 +168,7 @@ import Particles from "@tsparticles/react";
 
 export default function Snow() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Snow loaded", container);
+    console.log("Neige chargée", container);
   }, []);
 
   const options = useMemo(
@@ -202,7 +190,7 @@ export default function Snow() {
 }
 ```
 
-Install the preset:
+Installez le préréglage :
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -210,9 +198,9 @@ npm install @tsparticles/preset-snow
 
 ---
 
-## Interactive Links
+## Liens interactifs
 
-A connected-nodes network with mouse hover grab and click push.
+Un réseau de nœuds connectés avec attrape au survol de la souris et poussée au clic.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -220,7 +208,7 @@ import Particles from "@tsparticles/react";
 
 export default function InteractiveLinks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Interactive links loaded", container);
+    console.log("Liens interactifs chargés", container);
   }, []);
 
   const options = useMemo(
@@ -266,9 +254,9 @@ export default function InteractiveLinks() {
 
 ---
 
-## Theme Switching
+## Changement de thème
 
-Define multiple themes and switch between them with a button click.
+Définissez plusieurs thèmes et basculez entre eux d'un clic.
 
 ```jsx
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -345,13 +333,13 @@ export default function ThemeSwitcher() {
         }}
       >
         <button onClick={() => switchTheme("dark")} style={btnStyle(currentTheme === "dark")}>
-          Dark
+          Sombre
         </button>
         <button onClick={() => switchTheme("light")} style={btnStyle(currentTheme === "light")}>
-          Light
+          Clair
         </button>
         <button onClick={() => switchTheme("forest")} style={btnStyle(currentTheme === "forest")}>
-          Forest
+          Forêt
         </button>
       </div>
     </div>
@@ -372,7 +360,7 @@ const btnStyle = (active) => ({
 
 ## ParticlesProvider
 
-Use `ParticlesProvider` to initialize the engine once at the app root. This is the recommended approach when you have multiple particle components or use custom presets.
+Utilisez `ParticlesProvider` pour initialiser le moteur une fois à la racine de l'application. C'est l'approche recommandée lorsque vous avez plusieurs composants de particules ou utilisez des préréglages personnalisés.
 
 ```jsx
 // App.jsx
@@ -382,7 +370,7 @@ import Home from "./Home";
 
 const engineInit = async (engine) => {
   await loadSlim(engine);
-  // Load additional presets here:
+  // Chargez des préréglages supplémentaires ici :
   // await loadConfettiPreset(engine);
   // await loadFireworksPreset(engine);
   // await loadSnowPreset(engine);
@@ -421,13 +409,13 @@ export default function Home() {
 }
 ```
 
-When wrapping your tree with `ParticlesProvider`, every child `<Particles />` component inherits the same engine instance. This avoids re-initializing the engine on every mount.
+En encapsulant votre arborescence avec `ParticlesProvider`, chaque composant enfant `<Particles />` hérite de la même instance de moteur. Cela évite de réinitialiser le moteur à chaque montage.
 
 ---
 
-## Performance Optimization
+## Optimisation des performances
 
-Always memoize callbacks and options to prevent unnecessary re-renders.
+Mémorisez toujours les callbacks et les options pour éviter des re-rendus inutiles.
 
 ```jsx
 import { useCallback, useMemo, useState } from "react";
@@ -436,13 +424,13 @@ import Particles from "@tsparticles/react";
 export default function PerformanceExample() {
   const [visible, setVisible] = useState(true);
 
-  // Memoize the callback — stable reference across renders
+  // Mémorisez le callback — référence stable entre les rendus
   const particlesLoaded = useCallback(async (container) => {
-    // Called once per container mount
-    console.log("Container ready", container.id);
+    // Appelé une fois par montage du conteneur
+    console.log("Conteneur prêt", container?.id);
   }, []);
 
-  // Memoize the options object — only recomputes when dependencies change
+  // Mémorisez l'objet options — ne recalcule que lorsque les dépendances changent
   const options = useMemo(
     () => ({
       fpsLimit: 60,
@@ -469,7 +457,7 @@ export default function PerformanceExample() {
     [],
   );
 
-  // Reduce canvas resolution on low-power devices
+  // Réduisez la résolution du canvas sur les appareils à faible puissance
   const responsiveOptions = useMemo(
     () => ({
       ...options,
@@ -481,26 +469,35 @@ export default function PerformanceExample() {
 
   return (
     <div>
-      <button onClick={() => setVisible((v) => !v)}>{visible ? "Hide" : "Show"} Particles</button>
+      <button onClick={() => setVisible((v) => !v)}>{visible ? "Cacher" : "Afficher"} les particules</button>
       {visible && <Particles id="perf-particles" particlesLoaded={particlesLoaded} options={responsiveOptions} />}
     </div>
   );
 }
 ```
 
-**Key tips**:
+**Conseils clés** :
 
-- Always use `useMemo` for the `options` object.
-- Always use `useCallback` for the `particlesLoaded` handler.
-- Lower `fpsLimit` on mobile.
-- Set `detectRetina: false` on devices with >2x pixel ratio to halve canvas size.
-- Conditionally unmount `<Particles />` when it is off-screen.
+- Utilisez toujours `useMemo` pour l'objet `options`.
+- Utilisez toujours `useCallback` pour le gestionnaire `particlesLoaded`.
+- Abaissez `fpsLimit` sur mobile.
+- Définissez `detectRetina: false` sur les appareils avec un rapport de pixels >2 pour réduire de moitié la taille du canvas.
+- Démontez `<Particles />` de manière conditionnelle lorsqu'il est hors écran.
 
 ---
 
-## Custom Configuration
+## Reactive Behavior
 
-A full custom example combining multiple shapes, interactivity, themes, and a gradient background.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Configuration personnalisée
+
+Un exemple personnalisé complet combinant formes multiples, interactivité, thèmes et un fond dégradé.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -508,7 +505,7 @@ import Particles from "@tsparticles/react";
 
 export default function CustomConfig() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Custom config loaded", container);
+    console.log("Configuration personnalisée chargée", container);
   }, []);
 
   const options = useMemo(
@@ -578,15 +575,4 @@ export default function CustomConfig() {
 
 ---
 
-## Reactive Behavior
-
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
----
-
-You have now covered the core patterns for using tsParticles in React. Each example is self-contained and ready to drop into a component file.
+Vous avez maintenant couvert les modèles principaux pour utiliser tsParticles dans React. Chaque exemple est autonome et prêt à être intégré dans un fichier composant.

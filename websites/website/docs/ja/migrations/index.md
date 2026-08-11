@@ -1,34 +1,34 @@
 # Versioning & Migration
 
-Use this section to navigate between major `tsParticles` versions, track releases, and understand versioning.
+このセクションでは、`tsParticles` のメジャーバージョン間の移行、リリースの追跡、バージョニングの理解に使用します。
 
-## Migration guides
+## 移行ガイド
 
-- [`Migrate from v3.x`](/migrations/from-v3)
-- [`Migrate from v2.x`](/migrations/from-v2)
-- [`Migrate from v1.x`](/migrations/from-v1)
+- [`v3.x から移行`](/ja/migrations/from-v3)
+- [`v2.x から移行`](/ja/migrations/from-v2)
+- [`v1.x から移行`](/ja/migrations/from-v1)
 
-## Quick route
+## クイックルート
 
-- Coming from `v3.x`: start with [`/migrations/from-v3`](/migrations/from-v3) (focus: option key changes + package renames).
-- Coming from `v2.x`: start with [`/migrations/from-v2`](/migrations/from-v2) (focus: `load(...)` API + options).
-- Coming from `v1.x`: start with [`/migrations/from-v1`](/migrations/from-v1) (focus: packages, loaders, options audit).
+- `v3.x` から： [`/ja/migrations/from-v3`](/ja/migrations/from-v3) から開始（焦点：オプションキーの変更 + パッケージ名変更）。
+- `v2.x` から： [`/ja/migrations/from-v2`](/ja/migrations/from-v2) から開始（焦点：`load(...)` API + オプション）。
+- `v1.x` から： [`/ja/migrations/from-v1`](/ja/migrations/from-v1) から開始（焦点：パッケージ、ローダー、オプション）。
 
-## Where migrations usually break
+## 移行で通常発生する問題
 
-Most major migrations break in two places:
+ほとんどのメジャーバージョン移行は2箇所で問題が発生します：
 
-1. **Load API shape** (old positional params vs new object params).
-2. **Options schema** (renamed/moved keys).
+1. **Load API の形式**（古い位置引数 vs 新しいオブジェクト引数）。
+2. **オプションスキーマ**（名前変更/移動されたキー）。
 
-If your app compiles but renders wrong visuals, start from option mappings first.
+アプリがコンパイルできても表示がおかしい場合は、オプションマッピングから始めてください。
 
-## Fast lookup
+## クイックルックアップ
 
-- [Option Rename Matrix](/migrations/option-rename-matrix) — quick mapping of legacy vs current option keys.
+- [オプション名変更マトリックス](/ja/migrations/option-rename-matrix) — レガシーと現在のオプションキーのクイックマッピング。
 
-## Also useful
+## 参考情報
 
-- [Changelog](/migrations/changelog) — latest release notes.
-- [Releases & Versioning](/migrations/releases) — version alignment rules and release checklist.
-- [particles.js Migration](/migrations/particles-js) — migrating from legacy `particles.js` or `canvas-confetti`.
+- [Changelog](/ja/migrations/changelog) — 最新リリースノート。
+- [リリースとバージョニング](/ja/migrations/releases) — バージョン調整ルールとリリースチェックリスト。
+- [particles.js からの移行](/ja/migrations/particles-js) — レガシー `particles.js` または `canvas-confetti` からの移行。

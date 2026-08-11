@@ -1,8 +1,8 @@
-# Particles Bounce
+# कण उछलते हैं
 
-`particles.bounce` customizes rebound behavior when collisions or boundaries apply bounce logic.
+जब टकराव या सीमाएं बाउंस तर्क लागू करती हैं तो `particles.bounce` रिबाउंड व्यवहार को अनुकूलित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## व्यावहारिक मार्गदर्शन
 
-- Values around `1` keep natural rebounds.
-- Higher values can look energetic but less realistic.
+- `1` के आसपास के मान प्राकृतिक प्रतिक्षेप बनाए रखते हैं।
+- उच्च मूल्य ऊर्जावान दिख सकते हैं लेकिन कम यथार्थवादी।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Bounce.md>

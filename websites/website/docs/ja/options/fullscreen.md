@@ -1,8 +1,8 @@
-# Full Screen
+# 全画面表示
 
-Use `fullScreen` to control whether the canvas takes the full viewport.
+`fullScreen` を使用して、キャンバスがビューポート全体を使用するかどうかを制御します。
 
-## Typical setup
+## 一般的なセットアップ
 
 ```ts
 fullScreen: {
@@ -11,12 +11,12 @@ fullScreen: {
 }
 ```
 
-- `enable`: toggles full-viewport behavior.
-- `zIndex`: useful to keep particles behind app content.
+- `enable`: フルビューポートの動作を切り替えます。
+- `zIndex`: アプリ コンテンツの背後にパーティクルを保持するのに役立ちます。
 
-## Embedded sections
+## 埋め込みセクション
 
-For docs previews, cards, and playground panels:
+ドキュメントのプレビュー、カード、プレイグラウンド パネルの場合:
 
 ```ts
 fullScreen: {
@@ -24,8 +24,8 @@ fullScreen: {
 }
 ```
 
-This avoids overlap with page layout and other canvases.
+これにより、ページ レイアウトや他のキャンバスとの重複が回避されます。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/FullScreen.md>

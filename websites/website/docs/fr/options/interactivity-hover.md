@@ -1,8 +1,8 @@
-# Interactivity Hover
+# Survol d'interactivité
 
-`interactivity.events.onHover` controls pointer-hover reactions.
+`interactivity.events.onHover` contrôle les réactions au survol du pointeur.
 
-## Example
+## Exemple
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## Conseils pratiques
 
-- Hover effects are more expensive on dense scenes.
-- On mobile, consider disabling hover-heavy modes.
+- Les effets de survol sont plus coûteux sur les scènes denses.
+- Sur mobile, pensez à désactiver les modes de survol intensif.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>

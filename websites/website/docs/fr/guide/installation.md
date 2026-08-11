@@ -1,89 +1,89 @@
 # Installation
 
-## Choose your path
+## Choisissez votre parcours
 
-| Scenario                                     | Command                                           |
-| -------------------------------------------- | ------------------------------------------------- |
-| Quick start (recommended) | `pnpm add @tsparticles/engine @tsparticles/slim`  |
-| Minimal setup                                | `pnpm add @tsparticles/engine @tsparticles/basic` |
-| Full feature set                             | `pnpm add @tsparticles/engine tsparticles`        |
-| Everything in the repo                       | `pnpm add @tsparticles/engine @tsparticles/all`   |
-| Confetti only                                | `pnpm add @tsparticles/confetti`                  |
-| Fireworks only                               | `pnpm add @tsparticles/fireworks`                 |
-| Particle background                          | `pnpm add @tsparticles/particles`                 |
-| Ribbon effect                                | `pnpm add @tsparticles/ribbons`                   |
+| Scénario                            | Commande                                          |
+| ----------------------------------- | ------------------------------------------------- |
+| Démarrage rapide (recommandé)       | `pnpm add @tsparticles/engine @tsparticles/slim`  |
+| Minimum indispensable               | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| Ensemble complet de fonctionnalités | `pnpm add @tsparticles/engine tsparticles`        |
+| Tout l'écosystème                   | `pnpm add @tsparticles/engine @tsparticles/all`   |
+| Confettis uniquement                | `pnpm add @tsparticles/confetti`                  |
+| Feux d'artifice uniquement          | `pnpm add @tsparticles/fireworks`                 |
+| Fond de particules                  | `pnpm add @tsparticles/particles`                 |
+| Effet rubans                        | `pnpm add @tsparticles/ribbons`                   |
 
-> **Important**: `@tsparticles/engine` alone draws nothing. You must always add a bundle (to load shapes and animations) or individual plugins. See the [bundle guide](/guide/bundles).
+> **Important** : `@tsparticles/engine` seul ne dessine rien. Vous devez toujours ajouter un bundle (pour charger les formes et animations) ou des plugins individuels. Voir le [guide des bundles](/fr/guide/bundles).
 
-## npm
+## Avec npm
 
 ```bash
-# engine + slim (recommended for most projects)
+# engine + slim (recommandé pour la plupart des projets)
 npm install @tsparticles/engine @tsparticles/slim
 
-# engine + basic (minimal)
+# engine + basic (minimum)
 npm install @tsparticles/engine @tsparticles/basic
 
 # engine + full (tsparticles)
 npm install @tsparticles/engine tsparticles
 
-# engine + all
+# engine + all (tout)
 npm install @tsparticles/engine @tsparticles/all
 
-# Dedicated API bundles (no explicit engine needed)
+# Bundle à API dédiée (pas besoin d'engine explicite)
 npm install @tsparticles/confetti
 npm install @tsparticles/fireworks
 npm install @tsparticles/particles
 npm install @tsparticles/ribbons
 ```
 
-## yarn
+## Avec yarn
 
 ```bash
 yarn add @tsparticles/engine @tsparticles/slim
-# ... same pattern for other bundles
+# ... même schéma pour les autres bundles
 ```
 
-## pnpm
+## Avec pnpm
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
-# ... same pattern for other bundles
+# ... même schéma pour les autres bundles
 ```
 
-## CDN (script tags)
+## Avec CDN (balise `<script>`)
 
-All packages are available on jsDelivr, unpkg, and cdnjs.
+Tous les packages sont disponibles sur jsDelivr, unpkg et cdnjs.
 
 ### jsDelivr
 
-| Bundle                                     | URL                                                                                         |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| Engine                                     | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
-| Basic                                      | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
-| Slim                                       | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
-| Full (`tsparticles`)    | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
-| All                                        | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
-| Confetti                                   | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
-| Fireworks                                  | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
-| Particles                                  | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
-| Ribbons                                    | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
-| particles.js compatibility | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
+| Bundle                     | URL                                                                                         |
+| -------------------------- | ------------------------------------------------------------------------------------------- |
+| Engine                     | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
+| Basic                      | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
+| Slim                       | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
+| Full (`tsparticles`)       | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
+| All                        | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
+| Confetti                   | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
+| Fireworks                  | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| Particles                  | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| Ribbons                    | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
+| Compatibilité particles.js | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
 
 ### unpkg
 
-Same structure: `https://unpkg.com/{package-name}@{version}/{filename}`
+Même structure : `https://unpkg.com/{package-name}@{version}/{filename}`
 
-Example:
+Exemple :
 `https://unpkg.com/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`
 
 ### cdnjs
 
 `https://cdnjs.com/libraries/tsparticles`
 
-## Import examples
+## Exemples d'import
 
-### With bundler (ES module import)
+### Avec bundler (import ES module)
 
 ```ts
 // Engine + bundle loader
@@ -94,7 +94,7 @@ await loadSlim(tsParticles);
 await tsParticles.load({ id: "tsparticles", options: { ... } });
 ```
 
-### With CommonJS (require)
+### Avec CommonJS (require)
 
 ```ts
 const { tsParticles } = require("@tsparticles/engine");
@@ -106,17 +106,17 @@ const { loadSlim } = require("@tsparticles/slim");
 })();
 ```
 
-### With CDN (script tag)
+### Avec CDN (balise script)
 
 ```html
 <!-- 1. Engine -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-<!-- 2. Bundle (exposes loadBasic/loadSlim/loadFull/loadAll globally) -->
+<!-- 2. Bundle (expose loadBasic/loadSlim/loadFull/loadAll globalement) -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
-<!-- 3. Your script -->
+<!-- 3. Votre script -->
 <script>
   (async () => {
-    await loadSlim(tsParticles); // register features
+    await loadSlim(tsParticles); // enregistre les fonctionnalités
     await tsParticles.load({
       id: "tsparticles",
       options: {
@@ -130,7 +130,7 @@ const { loadSlim } = require("@tsparticles/slim");
 </script>
 ```
 
-With dedicated API bundles:
+Avec les bundles à API dédiée :
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -139,8 +139,9 @@ With dedicated API bundles:
 </script>
 ```
 
-## Related pages
+## Pages associées
 
-- [Getting started](/guide/getting-started)
-- [Bundle guide](/guide/bundles)
-- [Framework wrappers](/guide/wrappers)
+- [Pour démarrer](/fr/guide/getting-started)
+- [Guide des bundles](/fr/guide/bundles)
+- [Catalogue de préréglages](/demos/presets)
+- [Wrappers framework](/fr/guide/wrappers)

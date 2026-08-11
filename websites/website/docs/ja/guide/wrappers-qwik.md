@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/qwik
+# ラッパー: @tsparticles/qwik
 
-Official Qwik wrapper for `tsParticles`.
+`tsParticles` の公式 Qwik ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/qwik @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Initialize loader in Qwik startup path.
-3. Render wrapper component with serialized options.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. Qwik 起動パスでローダーを初期化します。
+3. シリアル化されたオプションを使用してラッパー コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/qwik>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/qwik>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

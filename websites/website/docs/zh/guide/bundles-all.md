@@ -1,35 +1,35 @@
-# Bundle: All
+# 捆绑包：All
 
-`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
+`@tsparticles/all` 加载 tsParticles 仓库中的**所有内容**：每种形状、交互、更新器、效果、路径、缓动、插件和导出。它是体积最大的捆绑包，适用于原型设计和演示。
 
-## Included features
+## 包含的功能
 
-Inherits everything from `tsparticles` (full) plus:
+继承 `tsparticles`（full）的全部功能，外加：
 
-**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
+**所有形状：** 箭头、扑克花色、齿轮、心形、无穷、矩阵、路径、丝带、圆角多边形、圆角矩形、螺旋、圆方角形
 
-**All external interactions:** cannon, light, particle, pop, particles-repulse
+**所有外部交互：** cannon、light、particle、pop、particles-repulse
 
-**All effects:** bubble, filter, particles, shadow, trail
+**所有效果：** 气泡、滤镜、粒子、阴影、拖尾
 
-**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+**所有路径生成器：** branches、brownian、curl-noise、curves、fractal-noise、grid、levy、perlin-noise、polygon、random、simplex-noise、spiral、svg、zig-zag
 
-**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+**所有缓动：** back、bounce、circ、cubic、elastic、expo、gaussian、linear、quad、quart、quint、sigmoid、sine、smoothstep
 
-**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**所有颜色插件：** HEX、HSL、RGB、HSV、HWB、LAB、LCH、Named、OKLAB、OKLCH
 
-**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+**所有插件：** absorbers、background-mask、canvas-mask、emitters（所有形状）、easings（所有）、export-image、export-json、export-video、infection、manual-particles、motion、poisson-disc、polygon-mask、responsive、sounds、themes、trail、zoom
 
-**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+**所有更新器：** destroy、gradient、life、opacity、orbit、out-modes、paint、roll、rotate、size、tilt、twinkle、wobble
 
-## When to use
+## 何时使用
 
-- Rapid prototyping to explore possibilities
-- Demos and showcases
-- Development environments where size doesn't matter
-- **Not recommended for production** — prefer more targeted bundles
+- 快速原型设计以探索可能性
+- 演示和展示
+- 不关心大小的开发环境
+- **不推荐用于生产环境**——优先选择更有针对性的捆绑包
 
-## Installation
+## 安装
 
 ### npm/pnpm/yarn
 
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script 标签）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## `tsparticles` 与 `@tsparticles/all` 的区别
 
-See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
+详情请参见 [bundles-full 页面](/zh/guide/bundles-full)的比较表格。
 
-## Common mistakes
+## 常见错误
 
-- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
-- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
+- 在生产环境中使用——优先选择 `@tsparticles/slim` 或 `tsparticles` 以获得更小的捆绑包。
+- 在 `loadAll(tsParticles)` 之前调用 `tsParticles.load()`。
 
-## See also
+## 参见
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [捆绑包概览](/zh/guide/bundles)
+- [安装指南](/zh/guide/installation)

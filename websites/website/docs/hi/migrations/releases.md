@@ -1,26 +1,26 @@
-# Releases and Versioning
+# रिलीज़ और संस्करण
 
-This project now ships from a single repository: `tsparticles/tsparticles`.
+यह प्रोजेक्ट अब एक ही रिपॉजिटरी से शिप होता है: `tsparticles/tsparticles`।
 
 <WebsiteVersionInfo />
 
-## Where release work happens
+## जहां रिलीज का काम होता है
 
-- Monorepo root: <https://github.com/tsparticles/tsparticles>
-- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- मोनोरेपो रूट: <https://github.com/tsparticles/tsparticles>
+- बंडल: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- इंजन: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- रैपर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- प्रीसेट: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- पैलेट्स: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Version alignment rule
+## संस्करण संरेखण नियम
 
-- Keep all `@tsparticles/*` packages aligned to the same release line.
-- Avoid mixing different beta lines or major versions in one app.
+- सभी `@tsparticles/*` पैकेजों को एक ही रिलीज़ लाइन से संरेखित रखें।
+- विभिन्न बीटा लाइनों या प्रमुख संस्करणों को एक ऐप में मिलाने से बचें।
 
-## Practical release checklist
+## व्यावहारिक रिलीज़ चेकलिस्ट
 
-1. Verify target package versions in workspace `package.json` files.
-2. Build and test affected projects.
-3. Validate docs links and playground behavior.
-4. Publish from the monorepo release flow.
+1. कार्यक्षेत्र `package.json` फ़ाइलों में लक्ष्य पैकेज संस्करण सत्यापित करें।
+2. प्रभावित परियोजनाओं का निर्माण और परीक्षण करें।
+3. दस्तावेज़ लिंक और खेल के मैदान के व्यवहार को मान्य करें।
+4. मोनोरेपो रिलीज़ फ़्लो से प्रकाशित करें।

@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/solid
+# रैपर: @tsparticles/solid
 
-Official Solid wrapper for `tsParticles`.
+`tsParticles` के लिए आधिकारिक सॉलिड रैपर।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/solid @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install wrapper + engine + loader package.
-2. Load selected feature set once at startup.
-3. Render Solid component with options props.
+1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
+2. स्टार्टअप पर चयनित फीचर सेट को एक बार लोड करें।
+3. विकल्प प्रॉप्स के साथ ठोस घटक प्रस्तुत करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
+- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
+- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/preact
+# Обертка: @tsparticles/preact
 
-Official Preact wrapper for `tsParticles`.
+Официальная оболочка Preact для `tsParticles`.
 
-## Install
+## Установить
 
 ```bash
 pnpm add @tsparticles/preact @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Быстрая настройка
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine once at app root.
-3. Render Preact component with options object.
+1. Установите пакет обертка + движок + загрузчик.
+2. Инициализируйте движок один раз в корне приложения.
+3. Отобразите компонент Preact с объектом параметров.
 
-## Monorepo references
+## Ссылки на монорепо
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>
+- Папка пакета: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>.
+  - Демо-приложение: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>.
 
-## Readme
+## Информация
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
+- README оболочки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
 
-## Related docs
+## Связанные документы
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ru/guide/wrappers)
+- [`/guide/frameworks`](/ru/guide/frameworks)

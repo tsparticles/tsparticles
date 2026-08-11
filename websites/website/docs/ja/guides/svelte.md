@@ -1,21 +1,21 @@
 ---
-title: Svelte Integration
-description: Step-by-step guide for integrating tsParticles into Svelte and SvelteKit applications using @tsparticles/svelte.
+title: Svelte インテグレーション
+description: "@tsparticles/svelte を使用して tsParticles を Svelte および SvelteKit アプリケーションに統合するためのステップバイステップガイド。"
 ---
 
-# Svelte Integration
+# Svelte インテグレーション
 
-The `@tsparticles/svelte` package provides a native Svelte component for tsParticles. This guide covers Svelte (with Vite) and SvelteKit, including reactive options, event handling, and multiple instances.
+`@tsparticles/svelte` パッケージは、tsParticles のネイティブ Svelte コンポーネントを提供します。このガイドでは、Svelte（Vite 使用）と SvelteKit について、リアクティブオプション、イベント処理、複数インスタンスを含めて説明します。
 
 ---
 
-## Installation
+## インストール
 
 ```bash
 npm install @tsparticles/svelte @tsparticles/engine
 ```
 
-For the full bundle or presets:
+完全なバンドルまたはプリセットの場合:
 
 ```bash
 npm install tsparticles
@@ -27,7 +27,7 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Basic Usage
+## 基本的な使い方
 
 ```svelte
 <script lang="ts">
@@ -88,9 +88,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Engine Initialisation
+## エンジンの初期化
 
-Pass an `on:init` event handler to load the plugins and presets your app needs:
+アプリに必要なプラグインとプリセットをロードするために、`on:init` イベントハンドラーを渡します:
 
 ```svelte
 <script lang="ts">
@@ -111,7 +111,7 @@ Pass an `on:init` event handler to load the plugins and presets your app needs:
 />
 ```
 
-Alternatively, use the `initParticlesEngine` utility before mounting:
+または、マウント前に `initParticlesEngine` ユーティリティを使用します:
 
 ```svelte
 <script lang="ts">
@@ -136,7 +136,7 @@ Alternatively, use the `initParticlesEngine` utility before mounting:
 
 ---
 
-## Snow Effect
+## 雪エフェクト
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -167,7 +167,7 @@ npm install @tsparticles/preset-snow
 />
 ```
 
-Customise the preset behaviour by merging additional options:
+追加オプションをマージしてプリセットの動作をカスタマイズします:
 
 ```svelte
 <script lang="ts">
@@ -176,10 +176,10 @@ Customise the preset behaviour by merging additional options:
     background: { color: "#0f0f23" },
     particles: {
       move: {
-        speed: 1.5,  // slower snowfall
+        speed: 1.5,  // より遅い降雪
       },
       opacity: {
-        value: 0.8,  // more visible flakes
+        value: 0.8,  // より目立つフレーク
       },
     },
   };
@@ -188,7 +188,7 @@ Customise the preset behaviour by merging additional options:
 
 ---
 
-## Stars Effect
+## 星エフェクト
 
 ```bash
 npm install @tsparticles/preset-stars
@@ -221,9 +221,9 @@ npm install @tsparticles/preset-stars
 
 ---
 
-## Interactive Particles
+## インタラクティブパーティクル
 
-Add mouse hover and click interactivity:
+マウスホバーとクリックのインタラクティビティを追加します:
 
 ```svelte
 <script lang="ts">
@@ -290,7 +290,7 @@ Add mouse hover and click interactivity:
 
 ---
 
-## Event Handling
+## イベント処理
 
 ```svelte
 <script lang="ts">
@@ -328,16 +328,16 @@ Add mouse hover and click interactivity:
 />
 ```
 
-| Event                | Detail                   | Fires                              |
-| -------------------- | ------------------------ | ---------------------------------- |
-| `on:init`            | `Engine`                 | After the engine is initialised    |
-| `on:particlesLoaded` | `Container \| undefined` | After the container is fully ready |
+| イベント             | 詳細        | 発生タイミング               |
+| -------------------- | ----------- | ---------------------------- |
+| `on:init`            | `Engine`    | エンジンが初期化された後     |
+| `on:particlesLoaded` | `Container` | コンテナが完全に準備できた後 |
 
 ---
 
-## TypeScript Example
+## TypeScript の例
 
-Full typed component:
+完全な型付けコンポーネント:
 
 ```svelte
 <script lang="ts">
@@ -416,9 +416,9 @@ Full typed component:
 
 ---
 
-## Dynamic Options
+## 動的オプション
 
-Reactive options update the particles by destroying and reloading with the new configuration:
+リアクティブオプションは、インスタンスを再作成せずにパーティクルを更新します:
 
 ```svelte
 <script lang="ts">
@@ -473,13 +473,13 @@ Reactive options update the particles by destroying and reloading with the new c
 />
 ```
 
-The `$:` reactive declaration recomputes `options` whenever `color` changes, and the `Particles` component picks up the new configuration automatically.
+`$:` リアクティブ宣言は、`color` が変更されるたびに `options` を再計算し、`Particles` コンポーネントが新しい設定を自動的に取得します。
 
 ---
 
-## Multiple Instances
+## 複数のインスタンス
 
-Render several independent particle systems on the same page:
+同じページに複数の独立したパーティクルシステムをレンダリングします:
 
 ```svelte
 <script lang="ts">
@@ -524,13 +524,13 @@ Render several independent particle systems on the same page:
 </div>
 ```
 
-Each `<Particles>` component gets its own `id`, canvas, and engine context.
+各 `<Particles>` コンポーネントは、独自の `id`、キャンバス、およびエンジンコンテキストを取得します。
 
 ---
 
-## SvelteKit Usage
+## SvelteKit での使用
 
-In SvelteKit, the canvas requires the browser environment. Disable SSR for the component:
+SvelteKit では、キャンバスはブラウザ環境を必要とします。コンポーネントの SSR を無効にします:
 
 ```svelte
 <script lang="ts">
@@ -552,44 +552,39 @@ In SvelteKit, the canvas requires the browser environment. Disable SSR for the c
 {/if}
 ```
 
-Or wrap the import in a client-only component. For SvelteKit 2+, you can also use the `vite-plugin-svelte` SSR excludes.
+または、インポートをクライアント専用コンポーネントでラップします。SvelteKit 2+ では、`vite-plugin-svelte` SSR 除外を使用することもできます。
 
 ---
 
-## API Reference
+## API リファレンス
 
-| Prop      | Type             | Default         | Description                                                                                                  |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                           |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.               |
-| `url`     | `string`         | —               | URL to a remote JSON config. Change triggers destroy+reload.                 |
+| プロップ  | タイプ           | デフォルト      | 説明                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | キャンバス要素 ID                                                         |
+| `options` | `ISourceOptions` | `{}`            | パーティクル設定オブジェクト                                              |
+| `url`     | `string`         | —               | リモート JSON 設定の URL                                                  |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
-| Event                | Detail                   | Description                                                                   |
-| -------------------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `on:init`            | `Engine`                 | Fires when the engine is initialised (use to load plugins) |
-| `on:particlesLoaded` | `Container \| undefined` | Fires when the container is fully ready                                       |
-
-### Reactive behavior
-
-All reactive props (`id`, `options`, `url`) trigger a destroy + reload cycle when changed at runtime:
-
-- `id` change → old container destroyed, new one created with the new id
-- `options` change → particles are reloaded with the new config
-- `url` change → config fetched from the new URL and loaded
-
-The `theme` prop is special: changing it calls `loadTheme()` on the existing container without destroying or reloading particles. This requires the optional theme plugin (`@tsparticles/plugin-themes`).
-
-### Cleanup
-
-When the component is removed from the DOM, the particles container is automatically destroyed — no orphan animations remain.
+| イベント             | 詳細        | 説明                                                                 |
+| -------------------- | ----------- | -------------------------------------------------------------------- |
+| `on:init`            | `Engine`    | エンジンが初期化されたときに発生（プラグインをロードするために使用） |
+| `on:particlesLoaded` | `Container` | コンテナが完全に準備できたときに発生                                 |
 
 ---
 
-## Troubleshooting
+## Reactive Behavior
 
-- **Canvas not visible** — Ensure the parent container has explicit dimensions (`height: 100%`, `height: 100vh`, or a fixed pixel value).
-- **`loadFull is not a function`** — Verify `tsparticles` is installed and that you're importing `loadFull` from `tsparticles` (not `@tsparticles/engine`).
-- **Reactivity not working** — Make sure `options` is a reactive variable (`$:` or `let` bound to a reactive source). Plain `const` values will not update.
-- **SvelteKit blank screen** — Import `@tsparticles/svelte` dynamically or use `browser` guard as shown in the SvelteKit section above.
-- **TypeScript errors for `event.detail`** — Use `CustomEvent<Engine>` and `CustomEvent<Container>` types for the event handlers.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## トラブルシューティング
+
+- **キャンバスが表示されない** — 親コンテナに明示的な寸法（`height: 100%`、`height: 100vh`、または固定ピクセル値）があることを確認してください。
+- **`loadFull is not a function`** — `tsparticles` がインストールされていて、`loadFull` を `tsparticles`（`@tsparticles/engine` ではない）からインポートしていることを確認してください。
+- **リアクティビティが機能しない** — `options` がリアクティブ変数（`$:` またはリアクティブソースにバインドされた `let`）であることを確認してください。プレーンな `const` 値は更新されません。
+- **SvelteKit の空白画面** — `@tsparticles/svelte` を動的にインポートするか、上記の SvelteKit セクションに示すように `browser` ガードを使用してください。
+- **`event.detail` の TypeScript エラー** — イベントハンドラーに `CustomEvent<Engine>` および `CustomEvent<Container>` 型を使用してください。

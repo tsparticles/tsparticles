@@ -1,5 +1,5 @@
-# Playground Shapes
+# Spielplatzformen
 
-Use this page to explore particle `shape.type` values in isolation, with one focused config per shape and explicit `shape.options` when the shape supports them.
+Verwenden Sie diese Seite, um die Werte von `shape.type` isoliert zu erkunden, mit einer fokussierten Konfiguration pro Form und expliziten `shape.options`, wenn die Form sie unterstutzt.
 
 <PlaygroundPanel mode="shapes"></PlaygroundPanel>

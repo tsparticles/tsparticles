@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/svelte
+# रैपर: @tsparticles/svelte
 
-Official Svelte wrapper for `tsParticles`.
+`tsParticles` के लिए आधिकारिक स्वेल्ट रैपर।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine features once.
-3. Render Svelte component with options in props.
+1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
+2. इंजन सुविधाओं को एक बार प्रारंभ करें।
+3. प्रॉप्स में विकल्पों के साथ स्वेल्ट घटक प्रस्तुत करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
-- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
+- डेमो ऐप्स: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
+- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

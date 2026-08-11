@@ -1,8 +1,8 @@
-# Particles Palette
+# Tavolozza delle particelle
 
-`particles.palette` imports a named palette and applies particle color defaults.
+`particles.palette` importa una tavolozza con nome e applica i colori predefiniti delle particelle.
 
-## Example
+## Esempio
 
 ```ts
 particles: {
@@ -13,14 +13,14 @@ particles: {
 }
 ```
 
-## What it changes
+## Cosa cambia
 
-- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
-- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
-- Enables `particles.blend` with the palette blend mode.
-- Keeps your config compact when reusing color sets.
+- Imposta `particles.paint.fill` o `particles.paint.stroke` in base alla configurazione della tavolozza.
+- Se la tavolozza ha più varianti di colore, `particles.paint` viene importato come array di varianti.
+- Abilita `particles.blend` con la modalità di fusione tavolozza.
+- Mantiene compatta la configurazione quando si riutilizzano i set di colori.
 
-## New palette format (for custom palettes)
+## Nuovo formato tavolozza (per tavolozze personalizzate)
 
 ```ts
 const palette = {
@@ -36,16 +36,16 @@ const palette = {
 };
 ```
 
-`colors` can be either:
+`colors` può essere:
 
-- a single variant object (`{ fill?, stroke? }`)
-- an array of variant objects (each variant can define `fill`, `stroke`, or both)
+- un singolo oggetto variante (`{ fill?, stroke? }`)
+- un array di oggetti variante (ogni variante può definire `fill`, `stroke` o entrambi)
 
-## Notes
+## Note
 
-- Unknown palette ids are ignored.
-- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
+- Gli ID tavolozza sconosciuti vengono ignorati.
+- I valori espliciti `particles.paint.fill`, `particles.paint.stroke` o `particles.blend` sostituiscono i valori predefiniti importati.
 
-## Source reference
+## Riferimento alla fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>

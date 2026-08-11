@@ -1,24 +1,24 @@
 # Bundle: Particles
 
-`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
+`@tsparticles/particles` इंटरैक्टिव कण पृष्ठभूमि बनाने के लिए एक सरलीकृत API प्रदान करता है। `@tsparticles/basic` का एक समृद्ध विकल्प जिसमें मैन्युअल इंजन कॉन्फ़िगरेशन के बजाय समर्पित API है।
 
-## Included features
+## शामिल सुविधाएँ
 
-**Shapes:** circle (from basic)
+**शेप:** circle (basic से)
 
-**Internal plugins:** interactivity (links, collisions)
+**आंतरिक प्लगइन:** interactivity (links, collisions)
 
-**Interactions:** links (particle connections), collisions
+**इंटरैक्शन:** links (कण कनेक्शन), collisions
 
-**API:** `particles(options)` or `particles(canvasId, options)`
+**API:** `particles(options)` या `particles(canvasId, options)`
 
-## When to use
+## कब उपयोग करें
 
-- Particle background for a website
-- Background with particle links (node-style effect)
-- You don't want to configure the engine manually
+- वेबसाइट के लिए कण पृष्ठभूमि
+- कण लिंक के साथ पृष्ठभूमि (नोड-शैली प्रभाव)
+- आप मैन्युअल रूप से इंजन कॉन्फ़िगर नहीं करना चाहते
 
-## Installation
+## इंस्टॉलेशन
 
 ### npm/pnpm/yarn
 
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// Background with links
+// लिंक के साथ पृष्ठभूमि
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// On a specific canvas
+// किसी विशिष्ट कैनवास पर
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// With custom colors
+// कस्टम रंगों के साथ
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -55,7 +55,7 @@ await particles({
 });
 ```
 
-### CDN (script tag)
+### CDN (script टैग)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### Main parameters
+### मुख्य पैरामीटर
 
-| Parameter    | Type                                                                   | Default                                                        | Description                          |
-| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
-| `count`      | number                                                                 | 50                                                             | Number of particles                  |
-| `radius`     | number                                                                 | 3                                                              | Particle radius                      |
-| `speed`      | number                                                                 | 2                                                              | Movement speed                       |
-| `opacity`    | number                                                                 | 0.8                                            | Opacity (0-1)     |
-| `color`      | string \| string[] | "#ffffff"                                                      | Particle color(s) |
-| `links`      | boolean                                                                | false                                                          | Show links                           |
-| `linksColor` | string                                                                 | "#ffffff"                                                      | Link color                           |
-| `linksWidth` | number                                                                 | 1                                                              | Link thickness                       |
-| `shape`      | string[]           | ["circle"] | Particle shapes                      |
+| पैरामीटर     | टाइप               | डिफ़ॉल्ट   | विवरण             |
+| ------------ | ------------------ | ---------- | ----------------- |
+| `count`      | number             | 50         | कणों की संख्या    |
+| `radius`     | number             | 3          | कण त्रिज्या       |
+| `speed`      | number             | 2          | गति               |
+| `opacity`    | number             | 0.8        | अपारदर्शिता (0-1) |
+| `color`      | string \| string[] | "#ffffff"  | कण रंग            |
+| `links`      | boolean            | false      | लिंक दिखाएँ       |
+| `linksColor` | string             | "#ffffff"  | लिंक रंग          |
+| `linksWidth` | number             | 1          | लिंक मोटाई        |
+| `shape`      | string[]           | ["circle"] | कण शेप            |
 
-## Common mistakes
+## सामान्य गलतियाँ
 
-- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
-- Reusing the same canvas ID unintentionally.
-- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
+- यह सोचना कि `@tsparticles/particles` से `tsParticles` एक्सपोर्ट होता है — ऐसा नहीं है।
+- अनजाने में उसी कैनवास ID का पुन: उपयोग करना।
+- उन्नत शेप (स्टार, पॉलीगॉन) की अपेक्षा — particles बंडल basic पर आधारित है और केवल सर्कल का उपयोग करता है।
 
-## See also
+## यह भी देखें
 
-- [Bundle overview](/guide/bundles)
-- [Getting started](/guide/getting-started)
+- [बंडल अवलोकन](/hi/guide/bundles)
+- [आरंभ करना](/hi/guide/getting-started)

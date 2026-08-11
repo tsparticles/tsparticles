@@ -1,8 +1,8 @@
 # Changelog
 
-The full changelogs in this monorepo are very large.
+这个 monorepo 的完整 changelog 非常大。
 
-For the most up-to-date release notes, use the latest GitHub release page:
+查看最新发布说明请使用:
 
-- Latest release: <https://github.com/tsparticles/tsparticles/releases/latest>
-- All releases: <https://github.com/tsparticles/tsparticles/releases>
+- 最新发布: <https://github.com/tsparticles/tsparticles/releases/latest>
+- 全部发布: <https://github.com/tsparticles/tsparticles/releases>

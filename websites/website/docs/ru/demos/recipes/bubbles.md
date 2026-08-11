@@ -1,14 +1,14 @@
-# Bubbles Preset
+# Предустановка пузырьков
 
-Official preset from the `presets/presets/bubbles` workspace.
+Официальный пресет из рабочей области `presets/presets/bubbles`.
 
-## Install
+## Установить
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## Ready-to-use (manual start/stop)
+## Готов к использованию (ручной запуск/остановка)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Useful for interactive sections with more visible motion.
+Полезно для интерактивных разделов с более заметным движением.
 
-Demo: <https://particles.js.org/demos/recipes/bubbles>
+Демо: <https://particles.js.org/demos/recipes/bubbles>

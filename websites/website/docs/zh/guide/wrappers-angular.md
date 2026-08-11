@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/angular
+# 包装：@tsparticles/angular
 
-Official Angular wrapper (`<ngx-particles />`) for `tsParticles`.
+`tsParticles` 的官方 Angular 包装器 (`<ngx-particles />`)。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/angular @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Register `NgParticlesService` once in app startup.
-2. Load features with `loadSlim(engine)`.
-3. Render `<ngx-particles [id] [options] />` in templates.
+1. 在应用启动时注册一次`NgParticlesService`。
+2. 使用 `loadSlim(engine)` 加载功能。
+3. 在模板中渲染 `<ngx-particles [id] [options] />`。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

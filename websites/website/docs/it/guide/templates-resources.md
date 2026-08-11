@@ -1,16 +1,16 @@
-# Templates and Resources
+# Modelli e risorse
 
-tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
+tsParticles fornisce due categorie di modelli: **modelli scaffold** (scheletri di framework) e **modelli per casi d'uso** (applicazioni di esempio complete).
 
-## Quick start with CLI
+## Avvio rapido con la CLI
 
-The easiest way to use any template is through the CLI:
+Il modo più semplice per utilizzare qualsiasi modello è tramite la CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-Or use a specific bundle directly:
+Oppure utilizza direttamente un bundle specifico:
 
 ```bash
 npm create particles@latest
@@ -18,18 +18,18 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-For non-interactive usage:
+Per un utilizzo non interattivo:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## Scaffold templates
+## Modelli scaffold
 
-Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
+I modelli scaffold forniscono uno scheletro di progetto minimo Vite + TypeScript con tsParticles preconfigurato. Sono disponibili per i seguenti framework:
 
-| Framework | CLI option            | Package                          |
+| Framework | Opzione CLI           | Pacchetto                        |
 | --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
@@ -38,7 +38,7 @@ Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsP
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-Example:
+Esempio:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,21 +47,21 @@ npm install
 npm run dev
 ```
 
-## Use-case templates
+## Modelli per casi d'uso
 
-Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
+I modelli per casi d'uso sono applicazioni di esempio complete che dimostrano l'utilizzo reale di tsParticles.
 
-| Template    | Description                                     | CLI template name | Package                           |
-| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
-| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
-| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
-| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
-| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
-| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
-| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
-| Particles   | Classic particles.js-style demo | `particles`       | `@tsparticles/template-particles` |
+| Modello     | Descrizione                                              | Nome CLI modello | Pacchetto                         |
+| ----------- | -------------------------------------------------------- | ---------------- | --------------------------------- |
+| Login       | Pagina di login/registrazione con sfondo a particelle    | `login`          | `@tsparticles/template-login`     |
+| Portfolio   | Portfolio personale con hero animato                     | `portfolio`      | `@tsparticles/template-portfolio` |
+| Landing     | Pagina di atterraggio marketing con particelle d'impatto | `landing`        | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Gioco del tris con festa di coriandoli                   | `tictactoe`      | `@tsparticles/template-tictactoe` |
+| Confetti    | Demo del cannone di coriandoli                           | `confetti`       | `@tsparticles/template-confetti`  |
+| Ribbons     | Demo di animazione a nastri                              | `ribbons`        | `@tsparticles/template-ribbons`   |
+| Particles   | Demo classica in stile particles.js                      | `particles`      | `@tsparticles/template-particles` |
 
-Example:
+Esempio:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,18 +70,18 @@ npm install
 npm run dev
 ```
 
-## npm create wrappers
+## Wrapper npm create
 
-For bundle-specific templates, you can use dedicated npm create wrappers:
+Per i modelli specifici di un bundle, puoi utilizzare wrapper npm create dedicati:
 
-| Command                         | Template    | Framework   | Installed bundle         |
+| Comando                         | Modello     | Framework   | Bundle installato        |
 | ------------------------------- | ----------- | ----------- | ------------------------ |
-| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create tsparticles@latest` | Interattivo | Interattivo | Scelta dell'utente       |
 | `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
 | `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
 | `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## CLI reference
+## Riferimento CLI
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,7 +93,7 @@ Options:
   -h, --help            Display help
 ```
 
-## Related pages
+## Pagine correlate
 
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)

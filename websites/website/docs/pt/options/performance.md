@@ -1,8 +1,8 @@
-# Performance Guide
+# Guia de desempenho
 
-Here are the main levers to avoid FPS drops.
+Aqui estão as principais alavancas para evitar quedas de FPS.
 
-## 1. Particle count
+## 1) Contagem de partículas
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Fewer particles = fewer draw calls and fewer collisions.
+Menos partículas = menos chamadas de desenho e menos colisões.
 
-## 2. Movement and links
+## 2) Movimento e links
 
-- Reduce `move.speed` when you do not need an energetic effect.
-- Limit `links.distance` and `links.opacity`.
-- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
+- Reduza `move.speed` quando não precisar de efeito energético.
+- Limite `links.distance` e `links.opacity`.
+- Evite combinações pesadas (por exemplo `links` + `collisions` + efeitos avançados) em tela cheia.
 
-## 3. Interactivity
+## 3) Interatividade
 
-- Keep only a few active modes.
-- On mobile, consider disabling hover mode.
+- Mantenha apenas alguns modos ativos.
+- No celular, considere desativar o modo suspenso.
 
-## 4. Retina and resize
+## 4) Retina e redimensionamento
 
 ```ts
 detectRetina: false;
 ```
 
-Useful in performance-first contexts or on weaker devices.
+Útil em contextos que priorizam o desempenho ou em dispositivos mais fracos.
 
-## 5. Manual lifecycle control
+## 5) Controle manual do ciclo de vida
 
-For expensive sections, use explicit controls:
+Para seções caras, use controles explícitos:
 
-- `start` on user click
-- `stop`/`pause` when the section is not visible
-- `destroy` on page/component teardown
+- `start` no clique do usuário
+- `stop`/`pause` quando a seção não está visível
+- `destroy` na desmontagem de página/componente

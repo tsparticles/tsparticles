@@ -1,14 +1,14 @@
-# Confetti Explosions Preset
+# Preimpostazione esplosioni di coriandoli
 
-Official preset from the `presets/presets/confettiExplosions` workspace.
+Preimpostazione ufficiale dall'area di lavoro `presets/presets/confettiExplosions`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto all'uso (avvio/arresto manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-explosions>
+Dimostrazione: <https://particles.js.org/demos/recipes/confetti-explosions>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>
+Documenti di origine: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>

@@ -1,6 +1,6 @@
 # Wrapper: @tsparticles/stencil
 
-Official Stencil wrapper for `tsParticles`.
+`tsParticles` के लिए आधिकारिक Stencil wrapper।
 
 ## Install
 
@@ -10,9 +10,9 @@ pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 
 ## Quick setup flow
 
-1. Install wrapper + engine + loader package.
-2. Register Stencil custom elements once using `@tsparticles/stencil/loader`.
-3. Render `<stencil-particles />` and pass `init` + `options` (or `url`).
+1. wrapper + engine + loader package install करें।
+2. `@tsparticles/stencil/loader` का उपयोग करके Stencil custom elements एक बार register करें।
+3. `<stencil-particles />` render करें और `init` + `options` (या `url`) पास करें।
 
 ## Monorepo references
 
@@ -25,5 +25,5 @@ pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 
 ## Related docs
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

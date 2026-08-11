@@ -1,26 +1,26 @@
-# Releases and Versioning
+# Rilasci e versioni
 
-This project now ships from a single repository: `tsparticles/tsparticles`.
+Questo progetto ora viene fornito da un unico repository: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Where release work happens
+## Dove avviene il lavoro di rilascio
 
-- Monorepo root: <https://github.com/tsparticles/tsparticles>
-- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Radice monorepo: <https://github.com/tsparticles/tsparticles>
+- Pacchetti: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Motore: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Preimpostazioni: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Tavolozze: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Version alignment rule
+## Regola di allineamento della versione
 
-- Keep all `@tsparticles/*` packages aligned to the same release line.
-- Avoid mixing different beta lines or major versions in one app.
+- Mantieni tutti i pacchetti `@tsparticles/*` allineati alla stessa riga di rilascio.
+- Evita di mescolare diverse linee beta o versioni principali in un'unica app.
 
-## Practical release checklist
+## Lista pratica di controllo del rilascio
 
-1. Verify target package versions in workspace `package.json` files.
-2. Build and test affected projects.
-3. Validate docs links and playground behavior.
-4. Publish from the monorepo release flow.
+1. Verificare le versioni del pacchetto di destinazione nei file `package.json` dell'area di lavoro.
+2. Costruisci e testa i progetti interessati.
+3. Convalida i collegamenti ai documenti e il comportamento del parco giochi.
+4. Pubblicare dal flusso di rilascio monorepo.

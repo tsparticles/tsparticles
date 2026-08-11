@@ -1,12 +1,12 @@
-# Dependency Graph
+# Grafico delle dipendenze
 
-This is a practical map of the package layering exposed in the main `tsParticles` README.
+Questa è una mappa pratica della stratificazione dei pacchetti esposta nel file README principale `tsParticles`.
 
-For the full, exhaustive graph, see:
+Per il grafico completo ed esaustivo si veda:
 
 - <https://github.com/tsparticles/tsparticles/blob/main/README.md#dependency-graph>
 
-## High-level package flow
+## Flusso dei pacchetti di alto livello
 
 ```text
 tsParticles Engine
@@ -19,15 +19,15 @@ tsParticles Engine
          `- tsParticles All
 ```
 
-## How to use this map
+## Come utilizzare questa mappa
 
-- Start from `engine` + `slim` for most production apps.
-- Move to `tsparticles` if you need extra built-in interactions/plugins.
-- Move to `all` only when you need the complete feature set.
-- Use dedicated bundles (`confetti`, `fireworks`, `particles`) for focused effects.
+- Inizia da `engine` + `slim` per la maggior parte delle app di produzione.
+- Passa a `tsparticles` se hai bisogno di interazioni/plugin integrati aggiuntivi.
+- Passa a `all` solo quando hai bisogno del set completo di funzionalità.
+- Utilizza pacchetti dedicati (`confetti`, `fireworks`, `particles`) per effetti mirati.
 
-## Related pages
+## Pagine correlate
 
-- [`/guide/getting-started`](/guide/getting-started)
-- [`/guide/installation`](/guide/installation)
-- [`/options/performance`](/options/performance)
+- [`/guide/getting-started`](/it/guide/getting-started)
+- [`/guide/installation`](/it/guide/installation)
+- [`/options/performance`](/it/options/performance)

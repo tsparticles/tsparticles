@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/svelte
+# ラッパー: @tsparticles/svelte
 
-Official Svelte wrapper for `tsParticles`.
+`tsParticles` の公式 Svelte ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine features once.
-3. Render Svelte component with options in props.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. エンジン機能を一度初期化します。
+3. props のオプションを使用して Svelte コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
-- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
+- デモ アプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>、<https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

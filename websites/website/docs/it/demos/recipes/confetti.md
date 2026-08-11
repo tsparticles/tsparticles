@@ -1,14 +1,14 @@
-# Confetti Preset
+# Preimpostazione coriandoli
 
-Official preset from the `presets/presets/confetti` workspace.
+Preimpostazione ufficiale dall'area di lavoro `presets/presets/confetti`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto all'uso (avvio/arresto manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for celebrations, announcements, and festive designs. Combine with different color palettes for variety.
+Perfetto per celebrazioni, annunci e design festivi. Combina con diverse tavolozze di colori per varietà.
 
-Demo: <https://particles.js.org/demos/recipes/confetti>
+Dimostrazione: <https://particles.js.org/demos/recipes/confetti>

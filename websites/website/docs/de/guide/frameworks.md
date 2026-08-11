@@ -1,25 +1,25 @@
-# Framework Integrations
+# Framework-Integrationen
 
-`tsParticles` supports multiple wrappers, but the runtime flow is always the same:
+`tsParticles` unterstutzt mehrere Wrapper, aber der Runtime-Ablauf bleibt immer gleich:
 
-1. initialize the engine once
-2. load only the features you need (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
-3. render the wrapper component with your options
+1. die Engine einmal initialisieren
+2. nur die benotigten Features laden (`@tsparticles/slim`, `@tsparticles/all`, oder eigene Plugins)
+3. die Wrapper-Komponente mit den eigenen Optionen rendern
 
-## Quick checklist
+## Schnelle Checkliste
 
-- Keep all `@tsparticles/*` package versions aligned.
-- Run the loader once at app startup.
-- Start with a small options object and grow incrementally.
-- For SSR frameworks, mount particles client-side only.
+- Halte alle `@tsparticles/*`-Versionen auf dem gleichen Stand.
+- Fuhre den Loader nur einmal beim App-Start aus.
+- Starte mit einem kleinen Optionsobjekt und erweitere schrittweise.
+- Bei SSR-Frameworks nur clientseitig mounten.
 
-## Start from the wrapper guide
+## Einstieg uber den Wrapper-Guide
 
-For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid, and others), see:
+Die komplette Wrapper-Matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid und weitere) findest du hier:
 
-- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/wrappers`](/de/guide/wrappers)
 
-## Core integration examples
+## Kernbeispiele fur Integrationen
 
 ### React
 
@@ -107,15 +107,15 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## Practical guidance
+## Praktische Hinweise
 
-- Prefer `@tsparticles/slim` as baseline for most apps.
-- Keep options in dedicated config files when they grow.
-- For expensive scenes, expose start/stop controls in your UI.
+- Nutze `@tsparticles/slim` als Basis fur die meisten Anwendungen.
+- Lege Optionen in dedizierte Konfigurationsdateien aus, sobald sie wachsen.
+- Fur aufwendige Szenen: Start/Stopp-Kontrollen in der UI anbieten.
 
-## Source references
+## Quellen
 
-- Wrappers source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Framework demos source: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Wrapper-Quellen: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Framework-Demos: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Engine-Paket: <https://github.com/tsparticles/tsparticles/tree/main/engine>
 - Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>

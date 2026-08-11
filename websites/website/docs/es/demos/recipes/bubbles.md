@@ -1,14 +1,14 @@
-# Bubbles Preset
+# Burbujas preestablecidas
 
-Official preset from the `presets/presets/bubbles` workspace.
+Preajuste oficial del espacio de trabajo `presets/presets/bubbles`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## Ready-to-use (manual start/stop)
+## Listo para usar (inicio/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Useful for interactive sections with more visible motion.
+Útil para secciones interactivas con movimiento más visible.
 
-Demo: <https://particles.js.org/demos/recipes/bubbles>
+Demostración: <https://particles.js.org/demos/recipes/bubbles>

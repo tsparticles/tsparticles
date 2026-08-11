@@ -1,16 +1,16 @@
-# Background & Canvas
+# 背景和画布
 
-This section controls the canvas layer and full-screen behavior.
+此部分控制画布层和全屏行为。
 
-## Layer order (back to front)
+## 图层顺序（从后到前）
 
-1. **CSS background** (`color`, `image`, `position`, `repeat`, `size`) — applied as DOM canvas style
-2. **`clear()`** — canvas pixel clear each frame
-3. **`background.element` auto-draw** — if set, `ctx.drawImage(element, ...)` composites the external element as-is
-4. **`background.draw` callback** — if set, called with the main rendering context + delta
-5. **Particles** — drawn on top
+1. **CSS 背景**（`color`、`image`、`position`、`repeat`、`size`）— 作为 DOM 画布样式应用
+2. **`clear()`** — 每帧清除画布像素
+3. **`background.element` 自动绘制** — 如果设置，`ctx.drawImage(element, ...)` 合成外部元素
+4. **`background.draw` 回调** — 如果设置，使用主渲染上下文 + delta 调用
+5. **粒子** — 绘制在上面
 
-`element` and `draw` are **independent layers**. Both are optional and can be used together or separately.
+`element` 和 `draw` 是**独立的图层**。两者都是可选的，可以一起或单独使用。
 
 ## `background`
 
@@ -24,27 +24,27 @@ background: {
 }
 ```
 
-| Key        | Type                                                                                         | Description                                                                                                          |
-| ---------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `color`    | `string` / `object`                                                                          | Canvas background color. Supports {@link IColor}.                       |
-| `opacity`  | `number`                                                                                     | Alpha channel for the background color, from `0` to `1`.                                             |
-| `image`    | `string`                                                                                     | CSS `background-image` value (e.g. `url('...')`). |
-| `position` | `string`                                                                                     | CSS `background-position` value.                                                                     |
-| `repeat`   | `string`                                                                                     | CSS `background-repeat` value.                                                                       |
-| `size`     | `string`                                                                                     | CSS `background-size` value.                                                                         |
-| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element auto-drawn each frame via `drawImage`. Not managed by the engine.   |
-| `draw`     | `(context, delta) => void`                                                                   | Per-frame custom background callback on the main canvas context.                                     |
+| 键         | 类型                                                                                         | 描述                                                    |
+| ---------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `color`    | `string` / `object`                                                                          | 画布背景颜色。                                          |
+| `opacity`  | `number`                                                                                     | 背景颜色的 Alpha 通道，从 `0` 到 `1`。                  |
+| `image`    | `string`                                                                                     | CSS `background-image` 值（例如 `url('...')`）。        |
+| `position` | `string`                                                                                     | CSS `background-position` 值。                          |
+| `repeat`   | `string`                                                                                     | CSS `background-repeat` 值。                            |
+| `size`     | `string`                                                                                     | CSS `background-size` 值。                              |
+| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | 每帧通过 `drawImage` 自动绘制的外部元素。不由引擎管理。 |
+| `draw`     | `(context, delta) => void`                                                                   | 在主画布上下文上进行自定义背景绘制的逐帧回调。          |
 
 ### `element`
 
-When `element` is set, the element's current visual content is drawn onto the main canvas each frame via `ctx.drawImage()`. The element is **not managed** by the engine — external code handles its rendering.
+当设置 `element` 后，元素的当前视觉内容每帧通过 `ctx.drawImage()` 绘制到主画布上。该元素**不由引擎管理**——外部代码负责其渲染。
 
-Supported element types:
+支持的元素类型：
 
 - `HTMLCanvasElement` / `OffscreenCanvas`
-- `HTMLVideoElement` (draws the current frame)
+- `HTMLVideoElement`（绘制当前帧）
 - `HTMLImageElement`
-- CSS selector string matching any of the above in the DOM
+- DOM 中匹配上述任一元素的 CSS 选择器字符串
 
 ```json
 {
@@ -55,7 +55,7 @@ Supported element types:
 ```
 
 ```ts
-// Auto-draw an external <video> element as background
+// 自动绘制外部 <video> 元素作为背景
 tsParticles.load({
   id: "tsparticles",
   options: {
@@ -68,7 +68,7 @@ tsParticles.load({
 
 ### `draw`
 
-A per-frame callback for custom background rendering. Always receives the **main canvas context** (`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`), never the element's context.
+用于自定义背景渲染的逐帧回调。始终接收**主画布上下文**（`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`），从不接收元素的上下文。
 
 ```json
 {
@@ -78,7 +78,7 @@ A per-frame callback for custom background rendering. Always receives the **main
 }
 ```
 
-(TypeScript uses a function reference, not a string.)
+（TypeScript 使用函数引用，而不是字符串。）
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -89,9 +89,9 @@ const drawBackground = (ctx: BackgroundDrawContext, delta: IDelta): void => {
 };
 ```
 
-### Combined element + draw
+### 组合使用 element + draw
 
-Both layers run independently every frame. Element is drawn first, then the draw callback:
+两个图层每帧独立运行。先绘制元素，然后执行 draw 回调：
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -119,10 +119,10 @@ fullScreen: {
 }
 ```
 
-- `enable`: makes the canvas full viewport.
-- `zIndex`: useful to place particles behind your content.
+- `enable`：使画布充满视口。
+- `zIndex`：用于将粒子放置在内容后面。
 
-For embedded playgrounds and inline docs previews, set:
+对于嵌入式 Playground 和内联文档预览，请设置：
 
 ```ts
 fullScreen: {
@@ -136,10 +136,10 @@ fullScreen: {
 detectRetina: true;
 ```
 
-Improves rendering on HiDPI screens, but increases GPU/CPU load.
+改进了 HiDPI 屏幕上的渲染，但增加了 GPU/CPU 负载。
 
-## Practical notes
+## 实用笔记
 
-- For landing pages, use `fullScreen.enable: true` with `zIndex: -1`.
-- If you see slowdowns on mobile, try `detectRetina: false`.
-- If a config is designed for fullscreen, disable `fullScreen` before embedding it in a bounded section.
+- 对于登陆页面，请使用 `fullScreen.enable: true` 和 `zIndex: -1`。
+- 如果您发现移动设备速度变慢，请尝试 `detectRetina: false`。
+- 如果配置是为全屏设计的，请在将其嵌入有界部分之前禁用 `fullScreen`。

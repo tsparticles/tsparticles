@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/lit
+# ラッパー: @tsparticles/lit
 
-Official Lit wrapper for `tsParticles`.
+`tsParticles` の公式 Lit ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/lit @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Register/load features during app startup.
-3. Use Lit component with options passed as props.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. アプリ起動時に機能を登録/ロードします。
+3. props として渡されたオプションを含む Lit コンポーネントを使用します。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
 
-## Readme
+## リードミー
 
-- Wrapper folder docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- ラッパーフォルダーのドキュメント: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

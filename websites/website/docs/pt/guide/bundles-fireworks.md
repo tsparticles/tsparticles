@@ -1,24 +1,24 @@
 # Bundle: Fireworks
 
-`@tsparticles/fireworks` provides a simplified API for creating fireworks effects with a single function call. Supports sounds, custom colors, and instance control (pause/play).
+`@tsparticles/fireworks` fornece uma API simplificada para criar efeitos de fogos de artifício com uma única chamada de função. Suporta sons, cores personalizadas e controle de instância (pausar/reproduzir).
 
-## Included features
+## Funcionalidades incluídas
 
-**Shapes:** line, circle (from basic)
+**Formas:** linha, círculo (do basic)
 
-**Internal plugins:** emitters, emitters-shape-square, blend (blending), sounds
+**Plugins internos:** emissores, emitters-shape-square, blend (mesclagem), sons
 
-**Updaters:** destroy, life, paint, rotate
+**Atualizadores:** destroy, life, paint, rotate
 
-**API:** `fireworks(options)` — returns a controllable instance
+**API:** `fireworks(options)` — retorna uma instância controlável
 
-## When to use
+## Quando usar
 
-- New Year or celebration effect
-- Celebration UI
-- You don't want to configure the engine manually
+- Efeito de Ano Novo ou celebração
+- UI de celebração
+- Você não quer configurar o motor manualmente
 
-## Installation
+## Instalação
 
 ### npm/pnpm/yarn
 
@@ -29,17 +29,17 @@ pnpm add @tsparticles/fireworks
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
-// Basic effect
+// Efeito básico
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
   sounds: true,
 });
 
-// Instance control
+// Controle de instância
 instance?.pause();
 instance?.play();
 
-// On a specific canvas
+// Em um canvas específico
 await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
@@ -52,30 +52,30 @@ await fireworks("my-canvas", {
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
 <script>
-  // Immediate fireworks
+  // Fogos imediatos
   fireworks();
 </script>
 ```
 
-### Main parameters
+### Principais parâmetros
 
-| Parameter    | Type                                                         | Default | Description                                             |
-| ------------ | ------------------------------------------------------------ | ------- | ------------------------------------------------------- |
-| `colors`     | string[] | —       | Explosion colors                                        |
-| `rate`       | number                                                       | —       | Fireworks per second                                    |
-| `speed`      | { min, max }                                                 | —       | Particle speed                                          |
-| `sounds`     | boolean                                                      | true    | Enable sound effects                                    |
-| `gravity`    | number                                                       | —       | Gravity (default: 0) |
-| `opacity`    | number                                                       | —       | Opacity (0-1)                        |
-| `brightness` | { min, max }                                                 | —       | Explosion brightness                                    |
+| Parâmetro    | Tipo         | Padrão | Descrição                 |
+| ------------ | ------------ | ------ | ------------------------- |
+| `colors`     | string[]     | —      | Cores da explosão         |
+| `rate`       | number       | —      | Fogos por segundo         |
+| `speed`      | { min, max } | —      | Velocidade das partículas |
+| `sounds`     | boolean      | true   | Ativar efeitos sonoros    |
+| `gravity`    | number       | —      | Gravidade (padrão: 0)     |
+| `opacity`    | number       | —      | Opacidade (0-1)           |
+| `brightness` | { min, max } | —      | Brilho da explosão        |
 
-## Common mistakes
+## Erros comuns
 
-- Thinking `tsParticles` is exported by `@tsparticles/fireworks` — it is not.
-- Calling `fireworks()` in a loop without managing the instance — the effect is already continuous.
-- Not stopping the instance when leaving the page — call `instance?.pause()` or `instance?.stop()`.
+- Pensar que `tsParticles` é exportado por `@tsparticles/fireworks` — não é.
+- Chamar `fireworks()` em um loop sem gerenciar a instância — o efeito já é contínuo.
+- Não parar a instância ao sair da página — chame `instance?.pause()` ou `instance?.stop()`.
 
-## See also
+## Veja também
 
-- [Bundle overview](/guide/bundles)
-- [Confetti bundle](/guide/bundles-confetti)
+- [Visão geral de bundles](/pt/guide/bundles)
+- [Bundle Confetti](/pt/guide/bundles-confetti)

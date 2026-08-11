@@ -1,39 +1,35 @@
-# Cookie Policy
+# Política de Cookies
 
-This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
+Este site utiliza um pequeno conjunto de cookies e tecnologias de terceiros para manter os documentos úteis e sustentáveis.
 
-## What we use
+## O que usamos
 
-- **Essential cookies**: required for technical behavior and navigation.
-- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
-- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
+- **Cookies essenciais**: necessários para comportamento técnico e navegação.
+- **Cookies analíticos** (Google Analytics): utilizados para compreender padrões de utilização de tráfego e documentação.
+- **Cookies publicitários** (Google AdSense): utilizados para medir o desempenho de campanhas publicitárias e exibir anúncios.
 
-Environment variables currently configured in this project:
+Variáveis de ambiente atualmente configuradas neste projeto:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
-- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
-- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## How consent works
+## Como funciona o consentimento
 
-- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
-- You can reject all, accept all, or save granular choices for analytics and advertising.
-- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
-- When you reject ads, AdSense can run as non-personalized ads if configured.
-- Your choice is saved locally in your browser.
+- Os cookies de rastreamento são desativados até você clicar explicitamente em **Aceitar** no banner de cookies.
+- Se você clicar em **Rejeitar**, o rastreamento de análises/anúncios permanecerá desativado.
+- Sua escolha é salva localmente no seu navegador.
 
-## How to change your choice
+## Como mudar sua escolha
 
-If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
+Se você quiser alterar seu consentimento após escolher, limpe o armazenamento local/cookies deste site nas configurações do seu navegador e recarregue a página.
 
-## Related policy
+## Política relacionada
 
-- [`/privacy-policy`](/privacy-policy)
+- [`/privacy-policy`](/pt/privacy-policy)
 
-## Data controllers and processors
+## Controladores e processadores de dados
 
-- Website owner: `@tsparticles/website` maintainers
-- Third-party services: Google Analytics and Google AdSense
+- Proprietário do site: `@tsparticles/website` mantenedores
+- Serviços de terceiros: Google Analytics e Google AdSense
 
-For legal/privacy requests, please use the support channels listed in the project repository.
+Para solicitações legais/de privacidade, use os canais de suporte listados no repositório do projeto.

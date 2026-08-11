@@ -1,41 +1,41 @@
-# Bundle: tsparticles (Full)
+# 捆绑包：tsparticles（Full）
 
-`tsparticles` (npm: `tsparticles`, loader: `loadFull`) is the official full bundle. Includes everything from Slim plus emitters, absorbers, text shapes, and advanced animations (wobble, roll, tilt, twinkle, destroy).
+`tsparticles`（npm：`tsparticles`，加载器：`loadFull`）是官方的完整捆绑包。包含 Slim 的所有功能，加上发射器、吸收器、文本形状和高级动画（摆动、滚动、倾斜、闪烁、销毁）。
 
-## Included features
+## 包含的功能
 
-Inherits everything from `@tsparticles/slim` plus:
+继承 `@tsparticles/slim` 的全部功能，外加：
 
-**Additional shapes:** text (with custom fonts)
+**额外的形状：** 文本（支持自定义字体）
 
-**Additional external interactions:**
+**额外的外部交互：**
 
-- drag (drag particles with mouse)
-- trail (particle trail behind mouse)
+- drag（用鼠标拖拽粒子）
+- trail（鼠标后的粒子拖尾）
 
-**Additional updaters:**
+**额外的更新器：**
 
-- destroy (particle destruction animation)
-- roll (rolling)
-- tilt (3D tilt)
-- twinkle (intermittent sparkle)
-- wobble (oscillation)
+- destroy（粒子销毁动画）
+- roll（滚动）
+- tilt（3D 倾斜）
+- twinkle（间歇闪烁）
+- wobble（摆动）
 
-**Plugins:**
+**插件：**
 
-- absorbers (black holes that suck in particles)
-- emitters (continuous particle sources)
-- emitters-shape-circle, emitters-shape-square (emitter shapes)
+- absorbers（吸收粒子黑洞）
+- emitters（持续粒子源）
+- emitters-shape-circle、emitters-shape-square（发射器形状）
 
-## When to use
+## 何时使用
 
-- Need emitters (particles spawning continuously)
-- Need absorbers (particles being sucked in)
-- Need text shapes with custom fonts
-- Need advanced animations (wobble, tilt, roll, twinkle)
-- Good stepping stone before going to individual plugins
+- 需要发射器（持续生成粒子）
+- 需要吸收器（吸收粒子）
+- 需要带有自定义字体的文本形状
+- 需要高级动画（摆动、倾斜、滚动、闪烁）
+- 在使用单个插件之前的良好过渡选择
 
-## Installation
+## 安装
 
 ### npm/pnpm/yarn
 
@@ -68,7 +68,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script 标签）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -91,26 +91,26 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## `tsparticles` 与 `@tsparticles/all` 的区别
 
-| Aspect        | `tsparticles` (full)                 | `@tsparticles/all`                                                                                                     |
-| ------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Size          | Moderate                                                | Very large                                                                                                             |
-| Shapes        | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.)                   |
-| Interactions  | Slim + drag + trail                                     | All (cannon, light, pop, particle, repulse)                                                         |
-| Paths         | Quad easing only                                        | 14 path generators                                                                                                     |
-| Effects       | None                                                    | 5 effects (bubble, filter, shadow, etc.)                                            |
-| Exports       | None                                                    | Image, JSON, Video                                                                                                     |
-| Extra plugins | absorbers, emitters                                     | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing        | Quad                                                    | 15 easings                                                                                                             |
+| 方面     | `tsparticles`（full）                             | `@tsparticles/all`                                               |
+| -------- | ------------------------------------------------- | ---------------------------------------------------------------- |
+| 大小     | 适中                                              | 非常大                                                           |
+| 形状     | 圆形、方形、星形、多边形、线条、图片、emoji、文本 | 所有形状（心形、扑克花色、箭头、螺旋、齿轮、圆角矩形等）         |
+| 交互     | Slim + drag + trail                               | 全部（cannon、light、pop、particle、repulse）                    |
+| 路径     | 仅 Quad 缓动                                      | 14 种路径生成器                                                  |
+| 效果     | 无                                                | 5 种效果（气泡、滤镜、阴影等）                                   |
+| 导出     | 无                                                | 图片、JSON、视频                                                 |
+| 额外插件 | absorbers、emitters                               | 全部（声音、主题、拖尾、缩放、多边形遮罩、画布遮罩、背景遮罩等） |
+| 缓动     | Quad                                              | 15 种缓动                                                        |
 
-## Common mistakes
+## 常见错误
 
-- Confusing `tsparticles` with `@tsparticles/all` — they are different packages.
-- Calling `tsParticles.load()` before `loadFull(tsParticles)`.
-- The npm package is `tsparticles` (not `@tsparticles/full`), the loader is `loadFull`.
+- 混淆 `tsparticles` 和 `@tsparticles/all`——它们是不同的包。
+- 在 `loadFull(tsParticles)` 之前调用 `tsParticles.load()`。
+- npm 包名是 `tsparticles`（不是 `@tsparticles/full`），加载器是 `loadFull`。
 
-## See also
+## 参见
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [捆绑包概览](/zh/guide/bundles)
+- [安装指南](/zh/guide/installation)

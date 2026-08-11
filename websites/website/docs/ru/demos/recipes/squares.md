@@ -1,14 +1,14 @@
-# Squares Preset
+# Предустановленные квадраты
 
-Official preset from the `presets/presets/squares` workspace.
+Официальный пресет из рабочей области `presets/presets/squares`.
 
-## Install
+## Установить
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-squares
 ```
 
-## Ready-to-use (manual start/stop)
+## Готов к использованию (ручной запуск/остановка)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for geometric, structured designs and modern layouts.
+Идеально подходит для геометрических, структурированных дизайнов и современных макетов.
 
-Demo: <https://particles.js.org/demos/recipes/squares>
+Демо: <https://particles.js.org/demos/recipes/squares>

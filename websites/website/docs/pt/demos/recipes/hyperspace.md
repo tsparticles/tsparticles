@@ -1,14 +1,14 @@
-# Hyperspace Preset
+# Predefinição de hiperespaço
 
-Preset ufficiale dal workspace `presets/presets/hyperspace`.
+Predefinição oficial do espaço de trabalho `presets/presets/hyperspace`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-hyperspace
 ```
 
-## Ready-to-use (start/stop manuale)
+## Pronto para usar (manual de partida/parada)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ottimo per sezioni wow-effect e intro prodotto.
+Ótimo para temporadas com efeito wow e produto de introdução.
 
-Demo: <https://particles.js.org/demos/recipes/hyperspace>
+Demonstração: <https://particles.js.org/demos/recipes/hyperspace>

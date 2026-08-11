@@ -1,8 +1,8 @@
-# Particles
+# Частицы
 
-Options inside `particles` control particle appearance and movement.
+Параметры внутри `particles` управляют внешним видом и движением частиц.
 
-## Most-used groups
+## Наиболее часто используемые группы
 
 - `particles.number`
 - `particles.move`
@@ -13,14 +13,14 @@ Options inside `particles` control particle appearance and movement.
 - `particles.size`
 - `particles.opacity`
 
-See detailed pages:
+Смотрите подробные страницы:
 
-- [`Particles Number`](/options/particles-number)
-- [`Particles Move`](/options/particles-move)
-- [`Particles Links`](/options/particles-links)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Paint`](/options/particles-paint)
-- [`Particles Shape`](/options/particles-shape)
+- [`Particles Number`](/ru/options/particles-number)
+- [`Particles Move`](/ru/options/particles-move)
+- [`Particles Links`](/ru/options/particles-links)
+- [`Particles Palette`](/ru/options/particles-palette)
+- [`Particles Paint`](/ru/options/particles-paint)
+- [`Particles Shape`](/ru/options/particles-shape)
 
 ## `particles.number`
 
@@ -36,8 +36,8 @@ particles: {
 }
 ```
 
-- `value`: base particle count.
-- `density.enable`: adapts count to the container size.
+- `value`: количество базовых частиц.
+- `density.enable`: адаптирует количество к размеру контейнера.
 
 ## `particles.move`
 
@@ -52,8 +52,8 @@ move: {
 }
 ```
 
-- `speed`: perceived movement speed.
-- `outModes.default`: edge behavior (`out`, `bounce`, ...).
+- `speed`: воспринимаемая скорость движения.
+- `outModes.default`: поведение края (`out`, `bounce`, ...).
 
 ## `particles.links`
 
@@ -66,7 +66,7 @@ links: {
 }
 ```
 
-Enables links between particles, useful for "network" hero sections.
+Включает связи между частицами, что полезно для «сетевых» разделов героев.
 
 ## `particles.palette`
 
@@ -74,10 +74,10 @@ Enables links between particles, useful for "network" hero sections.
 palette: "sunset";
 ```
 
-- Imports colors and blend defaults from a registered palette id.
-- Populates `paint.fill` or `paint.stroke` automatically depending on the palette.
-- With multi-variant palettes, `paint` is loaded as an array of variants.
-- Useful with presets and demos when you want to swap color mood quickly.
+- Импортирует цвета и настройки смешивания по умолчанию из зарегистрированного идентификатора палитры.
+- Заполняет `paint.fill` или `paint.stroke` автоматически в зависимости от палитры.
+- При использовании многовариантных палитр `paint` загружается как массив вариантов.
+- Полезно с пресетами и демонстрациями, если вы хотите быстро поменять цветовое настроение.
 
 ## `particles.shape`, `size`, `opacity`
 
@@ -96,11 +96,11 @@ opacity: {
 }
 ```
 
-- `shape.type`: single type or list of types.
-- `size.value`: recommended range for natural variation.
-- `opacity.value`: average transparency.
+- `shape.type`: один тип или список типов.
+- `size.value`: рекомендуемый диапазон для естественного изменения.
+- `opacity.value`: средняя прозрачность.
 
-## Advanced groups to check next
+## Расширенные группы, которые стоит проверить дальше
 
 - `particles.collisions`
 - `particles.life`
@@ -111,29 +111,29 @@ opacity: {
 - `particles.twinkle`
 - `particles.wobble`
 
-Detailed pages:
+Подробные страницы:
 
-- [`Particles Bounce`](/options/particles-bounce)
-- [`Particles Paint`](/options/particles-paint)
-- [`Particles Destroy`](/options/particles-destroy)
-- [`Particles Group`](/options/particles-group)
-- [`Particles Collisions`](/options/particles-collisions)
-- [`Particles Life`](/options/particles-life)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Opacity`](/options/particles-opacity)
-- [`Particles Orbit`](/options/particles-orbit)
-- [`Particles Repulse`](/options/particles-repulse)
-- [`Particles Roll`](/options/particles-roll)
-- [`Particles Rotate`](/options/particles-rotate)
-- [`Particles Shadow`](/options/particles-shadow)
-- [`Particles Size`](/options/particles-size)
-- [`Particles Tilt`](/options/particles-tilt)
-- [`Particles Twinkle`](/options/particles-twinkle)
-- [`Particles Wobble`](/options/particles-wobble)
-- [`Particles ZIndex`](/options/particles-zindex)
-- [`Particles Move`](/options/particles-move)
-- [`Particles Number`](/options/particles-number)
-- [`Particles Links`](/options/particles-links)
-- [`Particles Shape`](/options/particles-shape)
+- [`Particles Bounce`](/ru/options/particles-bounce)
+- [`Particles Paint`](/ru/options/particles-paint)
+- [`Particles Destroy`](/ru/options/particles-destroy)
+- [`Particles Group`](/ru/options/particles-group)
+- [`Particles Collisions`](/ru/options/particles-collisions)
+- [`Particles Life`](/ru/options/particles-life)
+- [`Particles Palette`](/ru/options/particles-palette)
+- [`Particles Opacity`](/ru/options/particles-opacity)
+- [`Particles Orbit`](/ru/options/particles-orbit)
+- [`Particles Repulse`](/ru/options/particles-repulse)
+- [`Particles Roll`](/ru/options/particles-roll)
+- [`Particles Rotate`](/ru/options/particles-rotate)
+- [`Particles Shadow`](/ru/options/particles-shadow)
+- [`Particles Size`](/ru/options/particles-size)
+- [`Particles Tilt`](/ru/options/particles-tilt)
+- [`Particles Twinkle`](/ru/options/particles-twinkle)
+- [`Particles Wobble`](/ru/options/particles-wobble)
+- [`Particles ZIndex`](/ru/options/particles-zindex)
+- [`Particles Move`](/ru/options/particles-move)
+- [`Particles Number`](/ru/options/particles-number)
+- [`Particles Links`](/ru/options/particles-links)
+- [`Particles Shape`](/ru/options/particles-shape)
 
-Source pages: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
+Исходные страницы: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>

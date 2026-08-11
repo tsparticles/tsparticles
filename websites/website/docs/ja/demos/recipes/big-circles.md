@@ -1,14 +1,14 @@
-# Big Circles Preset
+# 大きな円のプリセット
 
-Official preset from the `presets/presets/bigCircles` workspace.
+`presets/presets/bigCircles` ワークスペースからの公式プリセット。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-big-circles
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for minimal, modern designs with large animated circles.
+大きなアニメーション円を備えたミニマルでモダンなデザインに最適です。
 
-Demo: <https://particles.js.org/demos/recipes/big-circles>
+デモ: <https://particles.js.org/demos/recipes/big-circles>

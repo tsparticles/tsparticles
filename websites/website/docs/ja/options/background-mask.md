@@ -1,10 +1,10 @@
-# Background Mask
+# 背景マスク
 
-`backgroundMask` lets particles punch through or blend with a masked background layer.
+`backgroundMask` を使用すると、パーティクルがマスクされた背景レイヤーを突き抜けたり、ブレンドしたりできます。
 
-## Examples
+## 例
 
-### Static cover (legacy)
+### 静的カバー (legacy)
 
 ```ts
 backgroundMask: {
@@ -18,7 +18,7 @@ backgroundMask: {
 }
 ```
 
-### Dynamic draw callback _(since 4.3.0)_
+### 動的ドローコールバック _(4.3.0 以降)_
 
 ```ts
 backgroundMask: {
@@ -33,7 +33,7 @@ backgroundMask: {
 }
 ```
 
-### External element _(since 4.3.0)_
+### 外部要素 _(4.3.0 以降)_
 
 ```ts
 backgroundMask: {
@@ -45,38 +45,38 @@ backgroundMask: {
 }
 ```
 
-## Properties
+## プロパティ
 
-| Property    | Type                       | Description                                                                                  |
-| ----------- | -------------------------- | -------------------------------------------------------------------------------------------- |
-| `enable`    | `boolean`                  | Activates background masking                                                                 |
-| `composite` | `GlobalCompositeOperation` | Canvas composite operation (default: `"destination-out"`) |
-| `cover`     | `BackgroundMaskCover`      | Cover configuration                                                                          |
+| プロパティ  | 型                         | 説明                                                       |
+| ----------- | -------------------------- | ---------------------------------------------------------- |
+| `enable`    | `boolean`                  | 背景マスキングを有効にします                               |
+| `composite` | `GlobalCompositeOperation` | Canvas コンポジット操作（デフォルト: `"destination-out"`） |
+| `cover`     | `BackgroundMaskCover`      | カバー設定                                                 |
 
 ### `cover` (BackgroundMaskCover)
 
-| Property  | Type                                                                                         | Description                                                                                                               |
-| --------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `color`   | `string` / `OptionsColor`                                                                    | Cover color                                                                                                               |
-| `image`   | `string`                                                                                     | Cover image URL                                                                                                           |
-| `opacity` | `number`                                                                                     | Cover alpha level (0..1, default: `1`)                 |
-| `element` | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element or CSS selector auto-drawn each frame _(since 4.3.0)_ |
-| `draw`    | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | Custom draw callback on main canvas context each frame _(since 4.3.0)_ |
+| プロパティ | 型                                                                                           | 説明                                                                             |
+| ---------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `color`    | `string` / `OptionsColor`                                                                    | カバーの色                                                                       |
+| `image`    | `string`                                                                                     | カバー画像のURL                                                                  |
+| `opacity`  | `number`                                                                                     | アルファレベル（0..1、デフォルト: `1`）                                          |
+| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | 外部要素またはCSSセレクター（各フレーム自動描画）_(4.3.0 以降)_                  |
+| `draw`     | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | メインcanvasコンテキストでのカスタム描画コールバック（各フレーム）_(4.3.0 以降)_ |
 
-### Layer order _(since 4.3.0)_
+### レイヤー順序 _(4.3.0 以降)_
 
-1. `clear()` — canvas pixel clear
-2. `cover.element` auto-draw (if set)
-3. `cover.draw` callback (if set)
-4. Static cover (color/image) — fallback
-5. Global composite operation
+1. `clear()` — キャンバスのピクセルクリア
+2. `cover.element` 自動描画（設定されている場合）
+3. `cover.draw` コールバック（設定されている場合）
+4. 静的カバー（色/画像）— フォールバック
+5. グローバルコンポジット操作
 
-## When to use it
+## いつ使用するか
 
-- Spotlight-like effects.
-- Contrast-heavy hero sections.
-- Layered interactions on dark backgrounds.
+- スポットライトのような効果。
+- コントラストの強いヒーローセクション。
+- 暗い背景でのレイヤー化されたインタラクション。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/BackgroundMask.md>

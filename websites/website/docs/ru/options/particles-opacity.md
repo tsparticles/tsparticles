@@ -1,8 +1,8 @@
-# Particles Opacity
+# Непрозрачность частиц
 
-`particles.opacity` controls transparency and opacity animation.
+`particles.opacity` управляет анимацией прозрачности и непрозрачности.
 
-## Example
+## Пример
 
 ```ts
 particles: {
@@ -20,6 +20,6 @@ particles: {
 }
 ```
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Opacity.md>

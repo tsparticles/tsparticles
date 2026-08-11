@@ -1,14 +1,14 @@
-# Confetti Explosions Preset
+# 紙吹雪の爆発プリセット
 
-Official preset from the `presets/presets/confettiExplosions` workspace.
+`presets/presets/confettiExplosions` ワークスペースからの公式プリセット。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-explosions>
+デモ: <https://particles.js.org/demos/recipes/confetti-explosions>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>
+ソースドキュメント: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>

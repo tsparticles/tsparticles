@@ -1,29 +1,29 @@
 ---
-title: Next.js Integration
-description: Step-by-step guide to integrating tsParticles into a Next.js application using the App Router.
+title: Next.js 集成
+description: 将 tsParticles 集成到使用 App Router 的 Next.js 应用中的分步指南。
 ---
 
-# Next.js Integration
+# Next.js 集成
 
-This guide covers integrating tsParticles into a Next.js project using the **App Router** (Next.js 13+). For the legacy Pages Router, see the [Legacy Pages Router](#legacy-pages-router) section at the bottom.
+本指南涵盖了将 tsParticles 集成到使用 **App Router**（Next.js 13+）的 Next.js 项目中的方法。对于传统的 Pages Router，请参阅底部的 [Legacy Pages Router](#legacy-pages-router) 部分。
 
-## Installation
+## 安装
 
-Install the `@tsparticles/react` wrapper and the full `tsparticles` engine (or a slim bundle for smaller builds):
+安装 `@tsparticles/react` 封装和完整的 `tsparticles` 引擎（或使用 slim 包以减小构建体积）：
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-If you prefer the smaller `@tsparticles/slim` bundle:
+如果你偏好更小的 `@tsparticles/slim` 包：
 
 ```bash
 npm install @tsparticles/react @tsparticles/slim
 ```
 
-## Basic Usage (App Router)
+## 基本使用（App Router）
 
-Next.js App Router components are server-side by default. Since tsParticles requires the browser `canvas` API, you must mark the component with the `"use client"` directive.
+Next.js App Router 组件默认在服务端运行。由于 tsParticles 需要浏览器的 `canvas` API，你必须使用 `"use client"` 指令标记组件。
 
 ```tsx
 "use client";
@@ -34,7 +34,7 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export default function ParticlesBackground() {
   const particlesLoaded = useCallback((container?: Container) => {
-    console.log("Particles loaded", container);
+    console.log("粒子已加载", container);
   }, []);
 
   const options: ISourceOptions = useMemo(
@@ -55,11 +55,11 @@ export default function ParticlesBackground() {
 }
 ```
 
-Create this as `components/particles-background.tsx` and import it into any page or layout. Because the file starts with `"use client"`, it will be rendered on the client — exactly where tsParticles needs to be.
+创建此文件为 `components/particles-background.tsx`，然后导入到任何页面或布局中。由于文件以 `"use client"` 开头，它将在客户端渲染——这正是 tsParticles 需要的位置。
 
-## Theme Switching
+## 主题切换
 
-Combine tsParticles with Next.js theme toggles by deriving the options from the current theme state:
+通过从当前主题状态派生出选项，将 tsParticles 与 Next.js 主题切换结合：
 
 ```tsx
 "use client";
@@ -109,18 +109,18 @@ export default function ThemeAwareParticles() {
           padding: "8px 16px",
         }}
       >
-        Switch to {theme === "dark" ? "Light" : "Dark"} Mode
+        切换到{theme === "dark" ? "浅色" : "深色"}模式
       </button>
     </>
   );
 }
 ```
 
-The `options` object is recreated via `useMemo` whenever `theme` changes, so the canvas updates automatically.
+每当 `theme` 变化时，`options` 对象通过 `useMemo` 重新创建，画布会自动更新。
 
-## Confetti Effect
+## 五彩纸屑效果
 
-Use the `@tsparticles/preset-confetti` to trigger celebratory confetti on events like button clicks:
+使用 `@tsparticles/preset-confetti` 在按钮点击等事件上触发庆祝性的五彩纸屑效果：
 
 ```bash
 npm install @tsparticles/preset-confetti
@@ -167,18 +167,18 @@ export default function ConfettiButton() {
     <>
       {active && <Particles id="confetti" init={particlesInit} particlesLoaded={particlesLoaded} options={options} />}
       <button onClick={handleCelebrate} style={{ position: "fixed", top: 16, left: 16, zIndex: 10 }}>
-        Celebrate!
+        庆祝！
       </button>
     </>
   );
 }
 ```
 
-The `init` callback loads the confetti preset into the engine before the particles are created.
+`init` 回调查在创建粒子之前将五彩纸屑预设加载到引擎中。
 
-## Fireworks Effect
+## 烟花效果
 
-Similarly, the fireworks preset creates a spectacular firework display:
+同样，烟花预设可以创建壮观的烟花展示：
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -218,9 +218,9 @@ export default function FireworksBackground() {
 }
 ```
 
-## Full TypeScript Example with Container Ref
+## 带容器引用的完整 TypeScript 示例
 
-Access the `Container` instance to control the animation programmatically (play, pause, destroy, export image):
+访问 `Container` 实例以编程方式控制动画（播放、暂停、销毁、导出图片）：
 
 ```tsx
 "use client";
@@ -291,23 +291,23 @@ export default function ControllableParticles() {
           gap: 8,
         }}
       >
-        <button onClick={handlePause}>Pause</button>
-        <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePause}>暂停</button>
+        <button onClick={handlePlay}>播放</button>
       </div>
     </div>
   );
 }
 ```
 
-Key points:
+关键点：
 
-- `particlesInit` loads the engine features (only runs once per component mount).
-- `particlesLoaded` fires every time the container is fully initialized.
-- `containerRef` holds the `Container` instance so you can call its methods later.
+- `particlesInit` 加载引擎功能（每个组件挂载只运行一次）。
+- `particlesLoaded` 在容器完全初始化时触发。
+- `containerRef` 保存 `Container` 实例，以便稍后调用其方法。
 
-## Performance: useMemo and useCallback
+## 性能优化：useMemo 和 useCallback
 
-Always wrap static or rarely-changing options in `useMemo` and event handlers in `useCallback` to prevent unnecessary re-renders of the canvas:
+始终将静态或少变化的选项包裹在 `useMemo` 中，将事件处理函数包裹在 `useCallback` 中，以防止画布不必要的重新渲染：
 
 ```tsx
 "use client";
@@ -319,12 +319,12 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 export default function PerformanceExample() {
   const [particlesCount, setParticlesCount] = useState(80);
 
-  // Stable callback — never recreates unless deps change
+  // 稳定的回调——除非依赖项变化，否则不会重新创建
   const particlesLoaded = useCallback((container?: Container) => {
-    console.log("Container ready", container?.id);
+    console.log("容器就绪", container?.id);
   }, []);
 
-  // Stable options object — prevents canvas re-initialization
+  // 稳定的选项对象——防止画布重新初始化
   const options: ISourceOptions = useMemo(
     () => ({
       fullScreen: { zIndex: -1 },
@@ -340,20 +340,20 @@ export default function PerformanceExample() {
   return (
     <div>
       <Particles id="performance-particles" particlesLoaded={particlesLoaded} options={options} />
-      <button onClick={() => setParticlesCount((c) => c + 20)}>Add 20 particles</button>
+      <button onClick={() => setParticlesCount((c) => c + 20)}>增加 20 个粒子</button>
     </div>
   );
 }
 ```
 
-Without these optimizations, every parent re-render would create a new `options` object, causing the canvas to be recreated.
+如果没有这些优化，每次父组件重新渲染都会创建新的 `options` 对象，导致画布被重新创建。
 
-## Page Integration
+## 页面集成
 
-Add a particle background to a page layout without affecting the page content:
+将粒子背景添加到页面布局中，而不影响页面内容：
 
 ```tsx
-// app/layout.tsx (server component)
+// app/layout.tsx（服务端组件）
 import dynamic from "next/dynamic";
 
 const ParticlesBackground = dynamic(() => import("@/components/particles-background"), { ssr: false });
@@ -370,11 +370,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-Use `dynamic()` with `ssr: false` to ensure the component never runs during server-side rendering. The particle canvas sits behind the main content via CSS `z-index`.
+使用 `dynamic()` 配合 `ssr: false` 确保组件永远不会在服务端渲染期间运行。粒子画布通过 CSS `z-index` 位于主内容之后。
 
-## Multiple Instances
+## 多个实例
 
-You can render several independent `Particles` components on the same page, each with its own configuration:
+你可以在同一页面渲染多个独立的 `Particles` 组件，每个组件有自己的配置：
 
 ```tsx
 "use client";
@@ -423,11 +423,11 @@ function ParticlesGallery() {
 }
 ```
 
-Each `Particles` component creates an independent canvas with its own animation loop. Set `fullScreen: false` and give each a fixed height so they coexist in the document flow.
+每个 `Particles` 组件创建一个独立的画布，拥有自己的动画循环。设置 `fullScreen: false` 并为每个组件指定固定高度，使它们共存于文档流中。
 
 ## Legacy Pages Router
 
-If you are using the Next.js **Pages Router** (`pages/` directory), the approach is similar but without the `"use client"` directive. Instead, you can use a dynamic import in the page component:
+如果你使用的是 Next.js **Pages Router**（`pages/` 目录），方法类似但不需要 `"use client"` 指令。相反，你可以在页面组件中使用动态导入：
 
 ```tsx
 // pages/index.tsx
@@ -440,7 +440,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <ParticlesComponent />
-      <h1>Welcome</h1>
+      <h1>欢迎</h1>
     </div>
   );
 };
@@ -448,7 +448,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-The component itself (`components/particles-component.tsx`) is a plain React component:
+组件本身（`components/particles-component.tsx`）是一个纯 React 组件：
 
 ```tsx
 import Particles from "@tsparticles/react";
@@ -474,29 +474,28 @@ export default function ParticlesComponent() {
 }
 ```
 
-Note that the Pages Router does **not** require `"use client"` because page components are already client-rendered by default.
+请注意，Pages Router **不**需要 `"use client"`，因为页面组件默认已在客户端渲染。
 
-## Troubleshooting
+## 故障排除
 
-| Symptom                      | Cause                                   | Fix                                                              |
-| ---------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-| Blank white page             | SSR rendering a canvas-dependent module | Use `dynamic(..., { ssr: false })` or wrap in a client component |
-| Canvas not showing           | Container has zero height               | Set `fullScreen: { zIndex: -1 }` or give it explicit dimensions  |
-| Options change not reflected | New object reference not created        | Use `useMemo` with proper dependency array                       |
-| Preset not working           | Preset not loaded before container init | Call `loadXPreset(engine)` inside the `init` callback            |
-| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register the plugin during engine initialization     |
+| 症状           | 原因                         | 解决方法                                                 |
+| -------------- | ---------------------------- | -------------------------------------------------------- |
+| 空白白屏       | SSR 渲染了依赖 canvas 的模块 | 使用 `dynamic(..., { ssr: false })` 或包裹在客户端组件中 |
+| 画布不显示     | 容器高度为零                 | 设置 `fullScreen: { zIndex: -1 }` 或指定明确尺寸         |
+| 选项更改未反映 | 未创建新的对象引用           | 使用带正确依赖数组的 `useMemo`                           |
+| 预设不生效     | 容器初始化前未加载预设       | 在 `init` 回调中调用 `loadXPreset(engine)`               |
 
 ## Reactive Behavior
 
-The `<Particles>` component reacts to prop changes:
+The `<Particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → destroy current container and reload with new values.
-- **`theme`** change → `loadTheme` on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
-On component unmount, the particles container is automatically destroyed.
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## Next Steps
+## 下一步
 
-- Browse the [Interactive Demos](/demos/) for ready-made configurations.
-- Read the full [Options Reference](/options/) for every available parameter.
-- Check the [Presets](/demos/presets) page for more pre-built presets like snow, stars, and firefly.
+- 浏览[交互式演示](/demos/)以获取现成的配置。
+- 阅读完整的[选项参考](/options/)了解每个可用参数。
+- 查看[预设](/demos/presets)页面获取更多预构建预设，如雪花、星星和萤火虫。

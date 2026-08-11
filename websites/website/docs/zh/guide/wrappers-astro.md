@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/astro
+# 包装：@tsparticles/astro
 
-Official Astro wrapper for `tsParticles`.
+`tsParticles` 的官方 Astro 包装器。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install wrapper + engine + chosen loader (`@tsparticles/slim` suggested).
-2. Register particles on the client side in Astro components/layouts.
-3. Pass options object or JSON to the wrapper component.
+1. 安装包装器+引擎+选择的加载器（建议`@tsparticles/slim`）。
+2. 在客户端的 Astro 组件/布局中注册粒子。
+3. 将选项对象或 JSON 传递给包装器组件。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

@@ -1,14 +1,14 @@
-# Hyperspace Preset
+# 超空间预设
 
-Preset ufficiale dal workspace `presets/presets/hyperspace`.
+预设官方工作区 `presets/presets/hyperspace`。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-hyperspace
 ```
 
-## Ready-to-use (start/stop manuale)
+## 即用型（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ottimo per sezioni wow-effect e intro prodotto.
+Ottimo 讲述了令人惊叹的效果和介绍产品。
 
-Demo: <https://particles.js.org/demos/recipes/hyperspace>
+演示： <https://particles.js.org/demos/recipes/hyperspace>

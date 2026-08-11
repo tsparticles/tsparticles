@@ -1,8 +1,8 @@
-# Performance Guide
+# Guide des performances
 
-Here are the main levers to avoid FPS drops.
+Voici les principaux leviers pour éviter les baisses de FPS.
 
-## 1. Particle count
+## 1) Nombre de particules
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Fewer particles = fewer draw calls and fewer collisions.
+Moins de particules = moins d'appels de tirage et moins de collisions.
 
-## 2. Movement and links
+## 2) Mouvement et liens
 
-- Reduce `move.speed` when you do not need an energetic effect.
-- Limit `links.distance` and `links.opacity`.
-- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
+- Réduisez `move.speed` lorsque vous n'avez pas besoin d'un effet énergétique.
+- Limite `links.distance` et `links.opacity`.
+- Évitez les combinaisons lourdes (par exemple `links` + `collisions` + effets avancés) en plein écran.
 
-## 3. Interactivity
+## 3) Interactivité
 
-- Keep only a few active modes.
-- On mobile, consider disabling hover mode.
+- Ne conservez que quelques modes actifs.
+- Sur mobile, pensez à désactiver le mode survol.
 
-## 4. Retina and resize
+## 4) Rétine et redimensionnement
 
 ```ts
 detectRetina: false;
 ```
 
-Useful in performance-first contexts or on weaker devices.
+Utile dans des contextes axés sur les performances ou sur des appareils plus faibles.
 
-## 5. Manual lifecycle control
+## 5) Contrôle manuel du cycle de vie
 
-For expensive sections, use explicit controls:
+Pour les sections coûteuses, utilisez des contrôles explicites :
 
-- `start` on user click
-- `stop`/`pause` when the section is not visible
-- `destroy` on page/component teardown
+- `start` au clic de l'utilisateur
+- `stop`/`pause` lorsque la section n'est pas visible
+- `destroy` lors du démontage de la page/du composant

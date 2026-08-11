@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/vue2
 
-Official Vue 2 wrapper for `tsParticles`.
+Offizieller Vue 2-Wrapper für `tsParticles`.
 
-## Install
+## Installieren
 
 ```bash
 pnpm add @tsparticles/vue2 @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Schneller Einrichtungsablauf
 
-1. Install wrapper + engine + loader package.
-2. Register plugin once in Vue app bootstrap.
-3. Render Vue component with options object.
+1. Wrapper-, Engine- und Loader-Paket installieren.
+2. Registrieren Sie das Plugin einmal im Bootstrap der Vue-App.
+3. Rendern Sie die Vue-Komponente mit dem Optionsobjekt.
 
-## Monorepo references
+## Monorepo-Referenzen
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
+- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
+- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
 
 ## Readme
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
+- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
 
-## Related docs
+## Verwandte Dokumente
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/de/guide/wrappers)
+- [`/guide/frameworks`](/de/guide/frameworks)

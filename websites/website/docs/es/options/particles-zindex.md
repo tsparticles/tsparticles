@@ -1,8 +1,8 @@
-# Particles ZIndex
+# Partículas ZIndex
 
-`particles.zIndex` controls draw layering and optional z-index animation.
+`particles.zIndex` controla las capas de dibujo y la animación de índice z opcional.
 
-## Example
+## Ejemplo
 
 ```ts
 particles: {
@@ -18,11 +18,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Orientación práctica
 
-- Use z-index variation to create depth perception.
-- Keep ranges moderate to preserve visual consistency.
+- Utilice la variación del índice z para crear una percepción de profundidad.
+- Mantenga los rangos moderados para preservar la coherencia visual.
 
-## Source reference
+## Referencia fuente
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/ZIndex.md>

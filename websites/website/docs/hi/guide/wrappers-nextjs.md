@@ -1,30 +1,30 @@
-# Wrapper: @tsparticles/nextjs
+# रैपर: @tsparticles/nextjs
 
-Official Next.js wrapper built on `@tsparticles/react`.
+आधिकारिक Next.js रैपर `@tsparticles/react` पर बनाया गया।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install Next.js wrapper and dependencies.
-2. Keep rendering client-side only for particle canvas.
-3. Place `NextParticlesProvider` at your app root (`layout.tsx` or `_app.tsx`) — it must be rendered only once.
-4. Initialize engine once and render wrapper component.
+1. Next.js रैपर और निर्भरताएँ स्थापित करें।
+2. केवल पार्टिकल कैनवास के लिए क्लाइंट-साइड प्रस्तुत करते रहें।
+3. `NextParticlesProvider` को अपने ऐप रूट (`layout.tsx` या `_app.tsx`) पर रखें — इसे केवल एक बार रेंडर किया जाना चाहिए।
+4. इंजन को एक बार इनिशियलाइज़ करें और रैपर कंपोनेंट को रेंडर करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
-- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>, <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
+- डेमो ऐप्स: <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>, <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
+- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

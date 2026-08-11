@@ -1,16 +1,16 @@
-# Confetti Cannon Preset
+# Préréglage du canon à confettis
 
-Official preset from the `presets/presets/confettiCannon` workspace.
+Préréglage officiel de l'espace de travail `presets/presets/confettiCannon`.
 
-To trigger confetti in this preset, drag the mouse over the canvas area.
+Pour déclencher des confettis dans ce préréglage, faites glisser la souris sur la zone de canevas.
 
-## Install
+## Installer
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## Ready-to-use (manual start/stop)
+## Prêt à l'emploi (démarrage/arrêt manuel)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
+Documents sources : <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Démo : <https://particles.js.org/demos/recipes/confetti-cannon>

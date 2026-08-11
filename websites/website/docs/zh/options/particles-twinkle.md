@@ -1,8 +1,8 @@
-# Particles Twinkle
+# 粒子闪烁
 
-`particles.twinkle` adds sparkle-like blinking effects.
+`particles.twinkle` 添加类似闪光的闪烁效果。
 
-## Example
+## 示例
 
 ```ts
 particles: {
@@ -19,11 +19,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## 实用指导
 
-- Start with low `frequency` for subtle effects.
-- Combine with dark backgrounds for better visibility.
+- 从低 `frequency` 开始以获得微妙的效果。
+- 与深色背景结合以获得更好的可见性。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Twinkle.md>

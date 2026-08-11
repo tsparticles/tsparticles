@@ -1,14 +1,14 @@
-# Matrix Preset
+# Préréglage matriciel
 
-Official preset from the `presets/presets/matrix` workspace.
+Préréglage officiel de l'espace de travail `presets/presets/matrix`.
 
-## Install
+## Installer
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-matrix
 ```
 
-## Ready-to-use (manual start/stop)
+## Prêt à l'emploi (démarrage/arrêt manuel)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for tech/hacker aesthetic designs and digital themes.
+Parfait pour les conceptions esthétiques tech/hacker et les thèmes numériques.
 
-Demo: <https://particles.js.org/demos/recipes/matrix>
+Démo : <https://particles.js.org/demos/recipes/matrix>

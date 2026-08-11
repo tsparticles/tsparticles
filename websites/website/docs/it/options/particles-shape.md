@@ -1,8 +1,8 @@
-# Particles Shape
+# Forma delle particelle
 
-`particles.shape` defines how particles are drawn.
+`particles.shape` definisce come vengono disegnate le particelle.
 
-## Example
+## Esempio
 
 ```ts
 particles: {
@@ -12,10 +12,10 @@ particles: {
 }
 ```
 
-- `type`: one shape or a list of shapes.
-- common values: `circle`, `square`, `triangle`, `polygon`, `image`, `emoji`, `text`.
+- `type`: una forma o un elenco di forme.
+- valori comuni: `circle`, `square`, `triangle`, `polygon`, `image`, `emoji`, `text`.
 
-## With options
+## Con opzioni
 
 ```ts
 particles: {
@@ -30,6 +30,6 @@ particles: {
 }
 ```
 
-## Source reference
+## Riferimento alla fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shape.md>

@@ -1,14 +1,14 @@
-# Confetti Explosions Preset
+# Predefinição de explosões de confete
 
-Official preset from the `presets/presets/confettiExplosions` workspace.
+Predefinição oficial do espaço de trabalho `presets/presets/confettiExplosions`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-explosions
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto para uso (partida/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-explosions>
+Demonstração: <https://particles.js.org/demos/recipes/confetti-explosions>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>
+Documentos de origem: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiExplosions#readme>

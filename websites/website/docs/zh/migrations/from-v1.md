@@ -1,24 +1,16 @@
-# Migrate from v1.x
+# 从 v1.x 迁移
 
-Migrating from `v1.x` to current usually requires a full dependency refresh and config verification.
+从 `v1.x` 开始，建议按三步迁移: 包、`load(...)`、选项。
 
-The biggest practical blockers are:
+## 新版 Load API
 
-1. Old package/import patterns.
-2. `tsParticles.load(...)` call shape.
-3. Option key updates in modern schemas.
-
-## Load API migration
-
-Modern `load` accepts one params object:
-
-Before (legacy positional style):
+迁移前:
 
 ```ts
 await tsParticles.load("tsparticles", oldOptions);
 ```
 
-After:
+迁移后:
 
 ```ts
 await tsParticles.load({
@@ -27,63 +19,12 @@ await tsParticles.load({
 });
 ```
 
-If you load from JSON:
-
-```ts
-await tsParticles.load({
-  id: "tsparticles",
-  url: "/particles.json",
-});
-```
-
-## Options migration highlights
-
-Start by searching these keys in your configs:
+## 优先检查的重命名
 
 - `particles.color` -> `particles.paint.fill`
 - `particles.stroke` -> `particles.paint.stroke`
 
-Example rewrite:
+## 参考
 
-```ts
-// before
-particles: {
-  color: { value: ["#ff6b6b", "#4ecdc4"] },
-  stroke: { width: 0 }
-}
-
-// after
-particles: {
-  paint: {
-    fill: { value: ["#ff6b6b", "#4ecdc4"] },
-    stroke: { width: 0 }
-  }
-}
-```
-
-## Recommended steps
-
-1. Replace old package names with the current `@tsparticles/*` packages.
-2. Start from `@tsparticles/engine` + `@tsparticles/slim`, then add required plugins.
-3. Convert old `load` calls to the object-based `load({ ... })` signature.
-4. Validate option keys against current docs and fix renamed/removed fields.
-5. Run visual and performance checks in desktop and mobile targets.
-
-## Checklist
-
-- Remove obsolete imports from older package structure.
-- Confirm interactions, links, and custom shapes still behave as expected.
-- For legacy `particles.js` style configs, consider the compatibility layer.
-
-## Useful option docs
-
-- Option rename matrix: [`/migrations/option-rename-matrix`](/migrations/option-rename-matrix)
-- `particles.paint`: [`/options/particles-paint`](/options/particles-paint)
-- `particles.color` migration note: [`/options/particles-color`](/options/particles-color)
-- `particles.stroke` migration note: [`/options/particles-stroke`](/options/particles-stroke)
-
-## References
-
-- Legacy compatibility and particles.js bridge: [`/migrations/particles-js`](/migrations/particles-js)
-- Installation matrix: [`/guide/installation`](/guide/installation)
-- Root repository releases: <https://github.com/tsparticles/tsparticles/releases>
+- 重命名矩阵: [`/migrations/option-rename-matrix`](/zh/migrations/option-rename-matrix)
+- particles.js 迁移: [`/migrations/particles-js`](/zh/migrations/particles-js)

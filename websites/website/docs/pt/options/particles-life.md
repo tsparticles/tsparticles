@@ -1,8 +1,8 @@
-# Particles Life
+# Partículas de Vida
 
-`particles.life` controls lifecycle count and duration per particle.
+`particles.life` controla a contagem e a duração do ciclo de vida por partícula.
 
-## Example
+## Exemplo
 
 ```ts
 particles: {
@@ -18,9 +18,9 @@ particles: {
 }
 ```
 
-- `count`: how many life cycles each particle has.
-- `duration`: how long each cycle lasts.
+- `count`: quantos ciclos de vida cada partícula possui.
+- `duration`: quanto tempo dura cada ciclo.
 
-## Source reference
+## Referência da fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Life.md>

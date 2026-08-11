@@ -1,94 +1,82 @@
 ---
-title: React Guide
-description: Complete guide for integrating tsParticles with React using @tsparticles/react.
+title: React 指南
+description: 使用 @tsparticles/react 将 tsParticles 与 React 集成的完整指南。
 ---
 
-# React Guide
+# React 指南
 
-## Table of Contents
+## 目录
 
-1. [Installation](#installation)
-2. [Basic Usage](#basic-usage)
-3. [Confetti Effect](#confetti-effect)
-4. [Fireworks Effect](#fireworks-effect)
-5. [Snow Effect](#snow-effect)
-6. [Interactive Links](#interactive-links)
-7. [Theme Switching](#theme-switching)
+1. [安装](#installation)
+2. [基本使用](#basic-usage)
+3. [五彩纸屑效果](#confetti-effect)
+4. [烟花效果](#fireworks-effect)
+5. [下雪效果](#snow-effect)
+6. [交互式连线](#interactive-links)
+7. [主题切换](#theme-switching)
 8. [ParticlesProvider](#particlesprovider)
-9. [Performance Optimization](#performance-optimization)
-10. [Custom Configuration](#custom-configuration)
+9. [性能优化](#performance-optimization)
+10. [自定义配置](#custom-configuration)
 
 ---
 
-## Installation
+## 安装
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-Or with Yarn:
+或者使用 Yarn：
 
 ```bash
 yarn add @tsparticles/react tsparticles
 ```
 
-`@tsparticles/react` is the official React wrapper. The `tsparticles` package is the core engine.
+`@tsparticles/react` 是官方 React 封装。`tsparticles` 包是核心引擎。
 
 ---
 
-## Basic Usage
+## 基本使用
 
-The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
+最简单的设置：使用选项对象渲染 `<Particles />` 组件。
 
 ```jsx
-import { useCallback, useMemo } from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-
-const particlesInit = async (engine) => {
-  await loadSlim(engine);
-};
+import { useCallback } from "react";
+import Particles from "@tsparticles/react";
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Particles container loaded", container);
+    console.log("粒子容器已加载", container);
   }, []);
 
-  const options = useMemo(
-    () => ({
-      fpsLimit: 120,
-      particles: {
-        number: { value: 80 },
-        color: { value: "#00d4ff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.6 },
-        size: { value: { min: 2, max: 5 } },
-        move: {
-          enable: true,
-          speed: 2,
-          outModes: { default: "bounce" },
-        },
+  const options = {
+    fpsLimit: 120,
+    particles: {
+      number: { value: 80 },
+      color: { value: "#00d4ff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
+      size: { value: { min: 2, max: 5 } },
+      move: {
+        enable: true,
+        speed: 2,
+        outModes: { default: "bounce" },
       },
-      background: { color: "#0d1117" },
-    }),
-    [],
-  );
+    },
+    background: { color: "#0d1117" },
+  };
 
-  return (
-    <ParticlesProvider init={particlesInit}>
-      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
-    </ParticlesProvider>
-  );
+  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
 }
 ```
 
-**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
+**重要**：`<Particles />` 组件需要先初始化引擎。使用 `@tsparticles/react` 中的 `initParticlesEngine` 或 `<ParticlesProvider>` 在渲染组件之前加载预设。
 
 ---
 
-## Confetti Effect
+## 五彩纸屑效果
 
-Render a confetti burst using the confetti preset.
+使用五彩纸屑预设渲染纸屑爆发效果。
 
 ```jsx
 import Particles from "@tsparticles/react";
@@ -109,13 +97,13 @@ export default function Confetti() {
 }
 ```
 
-Make sure you have loaded the confetti preset:
+确保已加载五彩纸屑预设：
 
 ```bash
 npm install @tsparticles/preset-confetti
 ```
 
-Then register it in your app entry point:
+然后在应用入口注册：
 
 ```jsx
 import { initParticlesEngine } from "@tsparticles/react";
@@ -128,9 +116,9 @@ initParticlesEngine(async (engine) => {
 
 ---
 
-## Fireworks Effect
+## 烟花效果
 
-A full-screen fireworks display.
+全屏烟花展示。
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -138,7 +126,7 @@ import Particles from "@tsparticles/react";
 
 export default function Fireworks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Fireworks loaded", container);
+    console.log("烟花已加载", container);
   }, []);
 
   const options = useMemo(
@@ -162,7 +150,7 @@ export default function Fireworks() {
 }
 ```
 
-Install the preset:
+安装预设：
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -170,9 +158,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Snow Effect
+## 下雪效果
 
-Gentle falling snowflakes using the snow preset.
+使用雪花预设的柔和飘雪效果。
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -180,7 +168,7 @@ import Particles from "@tsparticles/react";
 
 export default function Snow() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Snow loaded", container);
+    console.log("雪花已加载", container);
   }, []);
 
   const options = useMemo(
@@ -202,7 +190,7 @@ export default function Snow() {
 }
 ```
 
-Install the preset:
+安装预设：
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -210,9 +198,9 @@ npm install @tsparticles/preset-snow
 
 ---
 
-## Interactive Links
+## 交互式连线
 
-A connected-nodes network with mouse hover grab and click push.
+一个连接的节点网络，支持鼠标悬停抓取和点击推送。
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -220,7 +208,7 @@ import Particles from "@tsparticles/react";
 
 export default function InteractiveLinks() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Interactive links loaded", container);
+    console.log("交互式连线已加载", container);
   }, []);
 
   const options = useMemo(
@@ -266,9 +254,9 @@ export default function InteractiveLinks() {
 
 ---
 
-## Theme Switching
+## 主题切换
 
-Define multiple themes and switch between them with a button click.
+定义多个主题并通过按钮点击切换。
 
 ```jsx
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -345,13 +333,13 @@ export default function ThemeSwitcher() {
         }}
       >
         <button onClick={() => switchTheme("dark")} style={btnStyle(currentTheme === "dark")}>
-          Dark
+          深色
         </button>
         <button onClick={() => switchTheme("light")} style={btnStyle(currentTheme === "light")}>
-          Light
+          浅色
         </button>
         <button onClick={() => switchTheme("forest")} style={btnStyle(currentTheme === "forest")}>
-          Forest
+          森林
         </button>
       </div>
     </div>
@@ -372,7 +360,7 @@ const btnStyle = (active) => ({
 
 ## ParticlesProvider
 
-Use `ParticlesProvider` to initialize the engine once at the app root. This is the recommended approach when you have multiple particle components or use custom presets.
+使用 `ParticlesProvider` 在应用根目录初始化引擎一次。当你有多个粒子组件或使用自定义预设时，这是推荐的方式。
 
 ```jsx
 // App.jsx
@@ -382,7 +370,7 @@ import Home from "./Home";
 
 const engineInit = async (engine) => {
   await loadSlim(engine);
-  // Load additional presets here:
+  // 在此处加载其他预设：
   // await loadConfettiPreset(engine);
   // await loadFireworksPreset(engine);
   // await loadSnowPreset(engine);
@@ -421,13 +409,13 @@ export default function Home() {
 }
 ```
 
-When wrapping your tree with `ParticlesProvider`, every child `<Particles />` component inherits the same engine instance. This avoids re-initializing the engine on every mount.
+当用 `ParticlesProvider` 包装你的组件树时，每个子 `<Particles />` 组件都继承同一个引擎实例。这避免了在每次挂载时重新初始化引擎。
 
 ---
 
-## Performance Optimization
+## 性能优化
 
-Always memoize callbacks and options to prevent unnecessary re-renders.
+始终对回调和选项进行记忆化，以防止不必要的重新渲染。
 
 ```jsx
 import { useCallback, useMemo, useState } from "react";
@@ -436,13 +424,13 @@ import Particles from "@tsparticles/react";
 export default function PerformanceExample() {
   const [visible, setVisible] = useState(true);
 
-  // Memoize the callback — stable reference across renders
+  // 记忆化回调——在渲染间保持稳定引用
   const particlesLoaded = useCallback(async (container) => {
-    // Called once per container mount
-    console.log("Container ready", container.id);
+    // 每次容器挂载时调用一次
+    console.log("容器就绪", container?.id);
   }, []);
 
-  // Memoize the options object — only recomputes when dependencies change
+  // 记忆化选项对象——仅当依赖项变化时重新计算
   const options = useMemo(
     () => ({
       fpsLimit: 60,
@@ -469,7 +457,7 @@ export default function PerformanceExample() {
     [],
   );
 
-  // Reduce canvas resolution on low-power devices
+  // 在低功耗设备上降低画布分辨率
   const responsiveOptions = useMemo(
     () => ({
       ...options,
@@ -481,26 +469,35 @@ export default function PerformanceExample() {
 
   return (
     <div>
-      <button onClick={() => setVisible((v) => !v)}>{visible ? "Hide" : "Show"} Particles</button>
+      <button onClick={() => setVisible((v) => !v)}>{visible ? "隐藏" : "显示"}粒子</button>
       {visible && <Particles id="perf-particles" particlesLoaded={particlesLoaded} options={responsiveOptions} />}
     </div>
   );
 }
 ```
 
-**Key tips**:
+**关键提示**：
 
-- Always use `useMemo` for the `options` object.
-- Always use `useCallback` for the `particlesLoaded` handler.
-- Lower `fpsLimit` on mobile.
-- Set `detectRetina: false` on devices with >2x pixel ratio to halve canvas size.
-- Conditionally unmount `<Particles />` when it is off-screen.
+- 始终为 `options` 对象使用 `useMemo`。
+- 始终为 `particlesLoaded` 处理程序使用 `useCallback`。
+- 在移动设备上降低 `fpsLimit`。
+- 在像素比 >2x 的设备上设置 `detectRetina: false`，可将画布大小减半。
+- 在粒子不可见时有条件地卸载 `<Particles />`。
 
 ---
 
-## Custom Configuration
+## Reactive Behavior
 
-A full custom example combining multiple shapes, interactivity, themes, and a gradient background.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## 自定义配置
+
+一个完整的自定义示例，结合了多种形状、交互功能、主题和渐变背景。
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -508,7 +505,7 @@ import Particles from "@tsparticles/react";
 
 export default function CustomConfig() {
   const particlesLoaded = useCallback(async (container) => {
-    console.log("Custom config loaded", container);
+    console.log("自定义配置已加载", container);
   }, []);
 
   const options = useMemo(
@@ -578,15 +575,4 @@ export default function CustomConfig() {
 
 ---
 
-## Reactive Behavior
-
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
----
-
-You have now covered the core patterns for using tsParticles in React. Each example is self-contained and ready to drop into a component file.
+你现在已经涵盖了在 React 中使用 tsParticles 的核心模式。每个示例都是独立的，可直接放入组件文件中。

@@ -1,5 +1,5 @@
-# Playground Presets
+# Spielplatzvoreinstellungen
 
-Use this page for official preset-based demos.
+Auf dieser Seite finden Sie offizielle voreingestellte Demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

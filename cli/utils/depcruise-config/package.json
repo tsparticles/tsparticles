@@ -46,15 +46,15 @@
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@types/node": "^26.2.0",
-    "dependency-cruiser": "^18.1.1",
-    "eslint": "^10.8.0",
+    "dependency-cruiser": "^18.2.0",
+    "eslint": "^10.8.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^63.3.3",
+    "eslint-plugin-jsdoc": "^64.1.0",
     "eslint-plugin-tsdoc": "^0.5.2",
     "prettier": "^3.9.6",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "tsdown": "^0.22.14",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.67.0"
   }
 }

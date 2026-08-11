@@ -1,14 +1,14 @@
-# Fireworks Preset
+# आतिशबाजी प्रीसेट
 
-Official preset from the `presets/presets/fireworks` workspace.
+`presets/presets/fireworks` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fireworks
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-High-impact preset: run it only on explicit user interaction (CTA click).
+उच्च-प्रभाव प्रीसेट: इसे केवल स्पष्ट उपयोगकर्ता इंटरैक्शन (सीटीए क्लिक) पर चलाएं।
 
-Demo: <https://particles.js.org/demos/recipes/fireworks>
+डेमो: <https://particles.js.org/demos/recipes/fireworks>

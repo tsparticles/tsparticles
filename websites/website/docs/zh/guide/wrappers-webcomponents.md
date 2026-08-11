@@ -1,29 +1,27 @@
-# Wrapper: @tsparticles/webcomponents
+# 包装：@tsparticles/webcomponents
 
-Official Web Components wrapper (`<web-particles />`) for `tsParticles`.
+`tsParticles` 的官方 Web 组件包装器 (`<web-particles />`)。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/webcomponents @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install package + engine + loader package.
-2. Register custom element in your app shell.
-3. Use `<web-particles />` and pass options.
+1.安装包+引擎+加载器包。2. 在您的应用程序 shell 中注册自定义元素。3. 使用 `<web-particles />` 并传递选项。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

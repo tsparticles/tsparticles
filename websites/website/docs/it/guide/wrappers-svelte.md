@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/svelte
+# Involucro: @tsparticles/svelte
 
-Official Svelte wrapper for `tsParticles`.
+Wrapper ufficiale Svelte per `tsParticles`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/svelte @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Flusso di configurazione rapido
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine features once.
-3. Render Svelte component with options in props.
+1. Installare il pacchetto wrapper + motore + caricatore.
+2. Inizializzare le funzionalità del motore una volta.
+3. Renderizza il componente Svelte con le opzioni negli oggetti di scena.
 
-## Monorepo references
+## Riferimenti a Monorepo
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
-- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
+- Cartella del pacchetto: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte>
+- App dimostrative: <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte>, <https://github.com/tsparticles/tsparticles/tree/main/demo/svelte-kit>
 
-## Readme
+## Leggimi
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
+- LEGGIMI wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme>
 
-## Related docs
+## Documenti correlati
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/it/guide/wrappers)
+- [`/guide/frameworks`](/it/guide/frameworks)

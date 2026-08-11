@@ -1,25 +1,25 @@
-# Video Tutorials
+# 视频教程
 
-Official video references and visual demos from the main project resources.
+来自主要项目资源的官方视频参考和视觉演示。
 
-README source section: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
+自述文件源部分：<https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
 
-## Video hub
+## 视频中心
 
-- Main video page: <https://particles.js.org/video.html>
+- 主视频页面：<https://particles.js.org/video.html>
 
-## Featured demos
+## 精选演示
 
-- Characters as particles: <https://particles.js.org/samples/#chars>
-- Polygon mask: <https://particles.js.org/samples/#polygonMask>
-- Animated stars: <https://particles.js.org/samples/#nasa>
-- Nyan cat flying on scrolling stars: <https://particles.js.org/samples/#nyancat2>
-- Snow particles: <https://particles.js.org/samples/#snow>
-- Background mask particles: <https://particles.js.org/samples/#background>
+- 字符作为粒子：<https://particles.js.org/samples/#chars>
+- 多边形蒙版：<https://particles.js.org/samples/#polygonMask>
+- 动画明星：<https://particles.js.org/samples/#nasa>
+- Nyan 猫在滚动的星星上飞翔：<https://particles.js.org/samples/#nyancat2>
+- 雪粒子：<https://particles.js.org/samples/#snow>
+- 背景遮罩粒子：<https://particles.js.org/samples/#background>
 
-## Recommended learning order
+## 推荐的学习顺序
 
-1. Start from [`/guide/getting-started`](/guide/getting-started).
-2. Reproduce one featured sample in your stack.
-3. Move to [`/options/`](/options/) to customize behavior.
-4. Use [`/guide/plugins-customization`](/guide/plugins-customization) for custom features.
+1. 从 [`/guide/getting-started`](/zh/guide/getting-started) 开始。
+2. 复制您堆栈中的一个特色样本。
+3. 移至 [`/options/`](/zh/options/) 以自定义行为。
+4. 使用 [`/guide/plugins-customization`](/zh/guide/plugins-customization) 实现自定义功能。

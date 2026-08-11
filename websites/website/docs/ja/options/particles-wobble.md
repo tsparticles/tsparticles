@@ -1,8 +1,8 @@
-# Particles Wobble
+# パーティクルのゆらぎ
 
-`particles.wobble` adds oscillating motion around the move path.
+`particles.wobble` は、移動パスの周囲に振動モーションを追加します。
 
-## Example
+## 例
 
 ```ts
 particles: {
@@ -17,6 +17,6 @@ particles: {
 }
 ```
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Wobble.md>

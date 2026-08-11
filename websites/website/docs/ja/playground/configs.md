@@ -1,5 +1,5 @@
-# Playground Configs
+# プレイグラウンド設定
 
-Use this page for demos with richer option objects (not only `preset` names), based on examples from `tsparticles/utils/configs`.
+`tsparticles/utils/configs` の例に基づいた、より豊富なオプション オブジェクト (`preset` 名だけでなく) のデモには、このページを使用してください。
 
 <PlaygroundPanel mode="configs"></PlaygroundPanel>

@@ -1,5 +1,5 @@
-# Playground Palettes
+# 遊び場パレット
 
-Use this page to test palette-only demos loaded from the presets project.
+このページを使用して、プリセット プロジェクトからロードされたパレットのみのデモをテストします。
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>

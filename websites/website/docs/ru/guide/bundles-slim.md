@@ -1,14 +1,14 @@
 # Bundle: Slim
 
-`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
+`@tsparticles/slim` — рекомендуемый bundle для большинства проектов. Включает всё необходимое для современных анимаций частиц с взаимодействием мыши, множеством форм и связями частиц.
 
-## Included features
+## Включённые возможности
 
-Inherits everything from `@tsparticles/basic` plus:
+Наследует всё из `@tsparticles/basic` плюс:
 
-**Shapes:** circle, square, star, polygon, line, image, emoji
+**Формы:** круг, квадрат, звезда, полигон, линия, изображение, эмодзи
 
-**External interactions (mouse/touch):**
+**Внешние взаимодействия (мышь/тач):**
 
 - attract
 - bounce
@@ -23,32 +23,32 @@ Inherits everything from `@tsparticles/basic` plus:
 - repulse
 - slow
 
-**Particle interactions:**
+**Взаимодействия частиц:**
 
 - attract
-- collisions
-- links (particle connections)
+- коллизии
+- связи (links) — соединения частиц
 
-**Additional updaters:**
+**Дополнительные обновления:**
 
-- life (lifecycle)
-- rotate
+- жизнь (lifecycle)
+- вращение
 
-**Plugins:**
+**Плагины:**
 
 - interactivity
 - easing-quad
-- HEX, HSL, RGB color plugins
+- HEX, HSL, RGB цветовые плагины
 
-## When to use
+## Когда использовать
 
-- Recommended starting point for most projects
-- Need multiple shapes (circles, stars, polygons, images)
-- Need mouse interactions (click, hover, bubble, repulse)
-- Need particle links
-- Good balance between bundle size and features
+- Рекомендуемая отправная точка для большинства проектов
+- Нужны несколько форм (круги, звёзды, полигоны, изображения)
+- Нужны взаимодействия мыши (клик, наведение, bubble, repulse)
+- Нужны связи частиц
+- Хороший баланс между размером bundle и функциями
 
-## Installation
+## Установка
 
 ### npm/pnpm/yarn
 
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN (теги script)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Common mistakes
+## Частые ошибки
 
-- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
-- Mixing different versions between engine and bundle — keep them aligned.
-- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
+- Вызов `tsParticles.load()` до `loadSlim(tsParticles)`.
+- Смешивание разных версий engine и bundle — держите их синхронизированными.
+- Ожидание функций из более полных bundle (эмиттеры, абсорберы, текст, wobble) — нужен `tsparticles` (full) или отдельные плагины.
 
-## See also
+## См. также
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [Обзор bundle](/ru/guide/bundles)
+- [Руководство по установке](/ru/guide/installation)

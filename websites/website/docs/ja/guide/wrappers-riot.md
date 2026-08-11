@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/riot
+# ラッパー: @tsparticles/riot
 
-Official Riot wrapper for `tsParticles`.
+`tsParticles` の公式 Riot ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/riot @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Register/load features once in Riot app setup.
-3. Render Riot wrapper with options.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. Riot アプリのセットアップで機能を一度登録/ロードします。
+3. オプションを使用して Riot ラッパーをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

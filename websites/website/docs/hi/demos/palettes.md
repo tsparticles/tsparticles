@@ -1,17 +1,17 @@
-# Palettes Catalog
+# पैलेट्स कैटलॉग
 
-Palettes come from the `palettes` workspace and are preloaded in the playground.
+पैलेट्स `palettes` कार्यक्षेत्र से आते हैं और खेल के मैदान में पहले से लोड किए जाते हैं।
 
-Ordering follows the source structure:
+ऑर्डरिंग स्रोत संरचना का अनुसरण करती है:
 
-- first level: category order (based on palettes source folders)
-- second level: palette slug order inside each category (alphabetical)
+- प्रथम स्तर: श्रेणी क्रम (पैलेट स्रोत फ़ोल्डरों के आधार पर)
+- दूसरा स्तर: प्रत्येक श्रेणी के अंदर पैलेट स्लग क्रम (वर्णमाला)
 
-Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+स्रोत फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Available palette groups
+## उपलब्ध पैलेट समूह
 
-### Atmosphere (12 palettes)
+## वातावरण (12 पैलेट्स)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fog-morning`
 - `volcanic-ash`
 
-### Atmospheric (10 palettes)
+## वायुमंडलीय (10 पैलेट)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `thermal-map`
 - `thunderstorm`
 
-### Confetti (12 palettes)
+## कंफ़ेद्दी (12 पैलेट)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `confetti-rainbow`
 - `confetti-winter`
 
-### Earth (7 palettes)
+## पृथ्वी (7 पैलेट)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-### Fantasy (8 palettes)
+## फंतासी (8 पैलेट)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `jellyfish-glow`
 - `poison-and-venom`
 
-### Fire (8 palettes)
+## आग (8 पैलेट)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `metal-sparks`
 - `molten-metal`
 
-### Fireworks (24 palettes)
+## आतिशबाज़ी (24 पैलेट)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,14 +113,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-### Gaming (4 palettes)
-
-- `minecraft`
-- `pacman`
-- `super-mario-bros`
-- `tetris`
-
-### Impact (7 palettes)
+## प्रभाव (7 पैलेट)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -130,9 +123,10 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `shockwave-blast`
 - `splatter-dark`
 
-### Monochromatic (14 palettes)
+## मोनोक्रोमैटिक (14 पैलेट्स)
 
 - `monochrome-blues`
+
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -147,7 +141,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `monochrome-white`
 - `monochrome-yellows`
 
-### Nature (9 palettes)
+## प्रकृति (9 पैलेट)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -159,7 +153,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `snowfall`
 - `spring-bloom`
 
-### Optics (7 palettes)
+## प्रकाशिकी (7 पैलेट)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -169,7 +163,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `lens-flare-dust`
 - `prism-spectrum`
 
-### Pastel (5 palettes)
+## पेस्टल (5 पैलेट)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -177,7 +171,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `pastel-sunset`
 - `pastel-warm`
 
-### Space (10 palettes)
+## स्पेस (10 पैलेट्स)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -190,7 +184,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `solar-wind`
 - `supernova`
 
-### Spectrum (10 palettes)
+## स्पेक्ट्रम (10 पैलेट)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -203,7 +197,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rainbow`
 - `rgb-primaries`
 
-### Tech (9 palettes)
+## टेक (9 पैलेट्स)
 
 - `crt-phosphor`
 - `glitch`
@@ -215,7 +209,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `plasma-arc`
 - `vaporwave`
 
-### Vibrant (5 palettes)
+## जीवंत (5 पैलेट)
 
 - `vibrant`
 - `vibrant-electric`
@@ -223,7 +217,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `vibrant-retro`
 - `vibrant-tropical`
 
-### Water (8 palettes)
+## पानी (8 पैलेट)
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -234,11 +228,11 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `water`
 - `water-splash`
 
-All palettes currently published on npm are included in the website playground preload.
+एनपीएम पर वर्तमान में प्रकाशित सभी पैलेट वेबसाइट प्लेग्राउंड प्रीलोड में शामिल हैं।
 
-Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
+कुछ पैलेट प्रकाशन से पहले मोनोरेपो में दिखाई दे सकते हैं; जैसे ही उनके पैकेज उपलब्ध होंगे उन्हें यहां जोड़ दिया जाएगा।
 
-## Quick usage
+## त्वरित उपयोग
 
 ```ts
 await tsParticles.load({
@@ -253,6 +247,6 @@ await tsParticles.load({
 });
 ```
 
-You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
+आप बाकी विकल्पों को दोबारा लिखे बिना विज़ुअल वेरिएंट प्राप्त करने के लिए समान `palette` को विभिन्न प्रीसेट के साथ जोड़ सकते हैं।
 
-Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.
+स्पष्ट प्रारंभ/रोक नियंत्रणों के साथ उनका परीक्षण करने के लिए [`/playground/palettes`](/hi/playground/palettes) का उपयोग करें।

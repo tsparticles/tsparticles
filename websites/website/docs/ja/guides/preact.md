@@ -1,23 +1,23 @@
 ---
 title: Preact
-description: Integrate tsParticles with Preact using the official @tsparticles/preact wrapper.
+description: 公式の @tsparticles/preact ラッパーを使用して tsParticles を Preact と統合します。
 ---
 
-# Preact Integration
+# Preact インテグレーション
 
-The `@tsparticles/preact` package provides a `<Particles>` component that works seamlessly with Preact, including both class and functional component patterns.
+`@tsparticles/preact` パッケージは、クラスコンポーネントと関数型コンポーネントの両方のパターンを含め、Preact とシームレスに動作する `<Particles>` コンポーネントを提供します。
 
-## Installation
+## インストール
 
 ```bash
 npm install @tsparticles/preact tsparticles
 ```
 
-The `@tsparticles/preact` package ships with TypeScript declarations. No additional type packages are needed.
+`@tsparticles/preact` パッケージには TypeScript 宣言が含まれています。追加の型パッケージは必要ありません。
 
-## Engine Initialization
+## エンジンの初期化
 
-Before you can render particles, you must initialize the engine with the plugins you need. Call `initParticlesEngine` once, before your app renders.
+パーティクルをレンダリングする前に、必要なプラグインでエンジンを初期化する必要があります。アプリがレンダリングされる前に、`initParticlesEngine` を1回呼び出します。
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -28,7 +28,7 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-For smaller bundles, load only the features you need:
+より小さなバンドルの場合は、必要な機能のみをロードします:
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -41,11 +41,11 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-`initParticlesEngine` returns a promise that resolves once all plugins are registered. The `<Particles>` component will not render until initialization is complete.
+`initParticlesEngine` は、すべてのプラグインが登録されると解決されるプロミスを返します。`<Particles>` コンポーネントは、初期化が完了するまでレンダリングされません。
 
-## Basic Usage
+## 基本的な使い方
 
-Once the engine is initialized, use the `<Particles>` component anywhere in your app:
+エンジンが初期化されたら、アプリ内の任意の場所で `<Particles>` コンポーネントを使用します:
 
 ```jsx
 import Particles from "@tsparticles/preact";
@@ -56,11 +56,11 @@ function App() {
 }
 ```
 
-The `id` attribute sets both the DOM element id and the container identifier used by tsParticles internally. The `options` prop accepts any valid tsParticles configuration object.
+`id` 属性は、DOM 要素 ID と tsParticles が内部で使用するコンテナ識別子の両方を設定します。`options` プロップは、任意の有効な tsParticles 設定オブジェクトを受け入れます。
 
-## Preset Switching
+## プリセットの切り替え
 
-Switch between presets dynamically by changing the `options` prop:
+`options` プロップを変更することで、プリセットを動的に切り替えます:
 
 ```jsx
 import { useState } from "preact/hooks";
@@ -91,11 +91,11 @@ function App() {
 }
 ```
 
-Using a `key` prop forces Preact to remount the component, fully restarting the particles for each preset.
+`key` プロップを使用すると、Preact がコンポーネントを再マウントし、プリセットごとにパーティクルを完全に再起動します。
 
-## Class Component
+## クラスコンポーネント
 
-For class-based components, initialize the engine in `componentDidMount` and manage state in `componentDidUpdate`:
+クラスベースのコンポーネントの場合、`componentDidMount` でエンジンを初期化し、`componentDidUpdate` で状態を管理します:
 
 ```jsx
 import { Component } from "preact";
@@ -146,9 +146,9 @@ export default class ParticlesApp extends Component {
 }
 ```
 
-## Functional Component
+## 関数型コンポーネント
 
-With hooks, use `useState` and `useEffect` to initialize the engine and manage configuration:
+フックを使用する場合、`useState` と `useEffect` を使用してエンジンを初期化し、設定を管理します:
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -169,9 +169,9 @@ export default function App() {
 }
 ```
 
-## Custom Configuration
+## カスタム設定
 
-Define a full configuration object directly instead of using presets:
+プリセットを使用せずに、設定オブジェクトを直接定義します:
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -245,9 +245,18 @@ export default function App() {
 }
 ```
 
-## Event Handling
+## Reactive Behavior
 
-Use the `particlesLoaded` callback to access the tsParticles `Container` instance after particles are fully rendered:
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## イベント処理
+
+`particlesLoaded` コールバックを使用して、パーティクルが完全にレンダリングされた後に tsParticles の `Container` インスタンスにアクセスします:
 
 ```jsx
 import { useCallback, useState, useEffect } from "preact/hooks";
@@ -277,12 +286,4 @@ export default function App() {
 }
 ```
 
-The `particlesLoaded` callback receives the `Container` instance, which you can use to call methods like `refresh()`, `pause()`, `play()`, or `destroy()`.
-
-## Reactive Behavior
-
-The `<Particles>` component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
-
-## Cleanup
-
-On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.
+`particlesLoaded` コールバックは `Container` インスタンスを受け取り、`refresh()`、`pause()`、`play()`、`destroy()` などのメソッドを呼び出すために使用できます。

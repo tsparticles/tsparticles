@@ -1,8 +1,8 @@
-# Demo Ready-to-Use
+# डेमो रेडी-टू-यूज़
 
-These recipes use the official presets available in the `presets/presets` workspace (beta/alpha toward release).
+ये रेसिपी `presets/presets` कार्यक्षेत्र (रिलीज की ओर बीटा/अल्फा) में उपलब्ध आधिकारिक प्रीसेट का उपयोग करती हैं।
 
-## Pattern base start/stop (no autoplay)
+## पैटर्न बेस स्टार्ट/स्टॉप (कोई ऑटोप्ले नहीं)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -24,63 +24,40 @@ export function resume(): void {
 }
 ```
 
-## Preset recipes
+## पूर्व निर्धारित व्यंजन
 
-- Presets catalog: [`/demos/presets`](/demos/presets)
+- प्रीसेट कैटलॉग: [`/demos/presets`](/hi/demos/presets)
+- पैलेट कैटलॉग: [`/demos/palettes`](/hi/demos/palettes)
+- शेप कैटलॉग: [`/demos/shapes`](/hi/demos/shapes)
 
-- Palettes catalog: [`/demos/palettes`](/demos/palettes)
+- [`Ambient`](/hi/demos/recipes/ambient)
+- [`Big Circles`](/hi/demos/recipes/big-circles)
+- [`Bubbles`](/hi/demos/recipes/bubbles)
+- [`Confetti`](/hi/demos/recipes/confetti)
+- [`Confetti Cannon`](/hi/demos/recipes/confetti-cannon)
+- [`Confetti Explosions`](/hi/demos/recipes/confetti-explosions)
+- [`Confetti Falling`](/hi/demos/recipes/confetti-falling)
+- [`Confetti Parade`](/hi/demos/recipes/confetti-parade)
+- [`Party`](/hi/demos/recipes/party)
+- [`Fire`](/hi/demos/recipes/fire)
+- [`Firefly`](/hi/demos/recipes/firefly)
+- [`Fireworks`](/hi/demos/recipes/fireworks)
+- [`Fountain`](/hi/demos/recipes/fountain)
+- [`Hyperspace`](/hi/demos/recipes/hyperspace)
+- [`Links`](/hi/demos/recipes/links)
+- [`Matrix`](/hi/demos/recipes/matrix)
+- [`Sea Anemone`](/hi/demos/recipes/sea-anemone)
+- [`Snow`](/hi/demos/recipes/snow)
+- [`Squares`](/hi/demos/recipes/squares)
+- [`Stars`](/hi/demos/recipes/stars)
+- [`Ribbons`](/hi/demos/recipes/ribbons)
+- [`Triangles`](/hi/demos/recipes/triangles)
 
-- Shapes catalog: [`/demos/shapes`](/demos/shapes)
+यूआई में उनका तुरंत परीक्षण करने के लिए, [`Playground`](/hi/playground/) का उपयोग करें और जरूरत पड़ने पर ही उन्हें `Start` से प्रारंभ करें।
 
-- [`Ambient`](/demos/recipes/ambient)
+## फ्रेमवर्क डेमो प्रोजेक्ट
 
-- [`Big Circles`](/demos/recipes/big-circles)
+मोनोरेपो में चलाने योग्य एकीकरण डेमो भी शामिल हैं:
 
-- [`Bubbles`](/demos/recipes/bubbles)
-
-- [`Confetti`](/demos/recipes/confetti)
-
-- [`Confetti Cannon`](/demos/recipes/confetti-cannon)
-
-- [`Confetti Explosions`](/demos/recipes/confetti-explosions)
-
-- [`Confetti Falling`](/demos/recipes/confetti-falling)
-
-- [`Confetti Parade`](/demos/recipes/confetti-parade)
-
-- [`Party`](/demos/recipes/party)
-
-- [`Fire`](/demos/recipes/fire)
-
-- [`Firefly`](/demos/recipes/firefly)
-
-- [`Fireworks`](/demos/recipes/fireworks)
-
-- [`Fountain`](/demos/recipes/fountain)
-
-- [`Hyperspace`](/demos/recipes/hyperspace)
-
-- [`Links`](/demos/recipes/links)
-
-- [`Matrix`](/demos/recipes/matrix)
-
-- [`Sea Anemone`](/demos/recipes/sea-anemone)
-
-- [`Snow`](/demos/recipes/snow)
-
-- [`Squares`](/demos/recipes/squares)
-
-- [`Stars`](/demos/recipes/stars)
-
-- [`Ribbons`](/demos/recipes/ribbons)
-
-- [`Triangles`](/demos/recipes/triangles)
-
-To test them immediately in UI, use the [`Playground`](/playground/) and start them with `Start` only when needed.
-
-## Framework demo projects
-
-The monorepo also includes runnable integration demos:
-
-- Source folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Available demos include: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`.
+- स्रोत फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- उपलब्ध डेमो में शामिल हैं: `angular`, `astro`, `electron`, `inferno`, `ionic`, `jquery`, `lit`, `nextjs`, `nextjs-legacy`, `nuxt2`, `nuxt3`, `nuxt4`, `preact`, `react`, `riot`, `solid`, `svelte`, `svelte-kit`, `vanilla`, `vanilla_new`, `vite`, `vue2`, `vue3`, `webcomponents`।

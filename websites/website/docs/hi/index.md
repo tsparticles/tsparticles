@@ -1,71 +1,73 @@
 ---
-layout: MyHome
+layout: home
+
+title: tsParticles
+titleTemplate: कुछ ही मिनटों में आकर्षक particle backgrounds बनाएं
 
 hero:
   name: tsParticles
-  text: Powerful particle engine, simple developer workflow
-  tagline: Ship interactive backgrounds, effects, and confetti on any framework.
+  text: शक्तिशाली particle engine, developers के लिए आसान development flow
+  tagline: किसी भी framework में interactive backgrounds, effects और confetti जल्दी से जोड़ें।
   image:
-    src: /images/banner3.png
+    src: https://particles.js.org/images/banner3.png
     alt: tsParticles
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/getting-started
+      text: शुरू करें
+      link: /hi/guide/getting-started
     - theme: alt
-      text: Open Playground
-      link: /playground/
+      text: Playground खोलें
+      link: /hi/playground/
     - theme: alt
-      text: Ready-to-Use Demos
-      link: /demos/
+      text: तैयार demos
+      link: /hi/demos/
 
 features:
-  - title: Fast onboarding
-    details: Start with a minimal setup, then scale to presets, plugins, and custom shapes.
-  - title: Framework ready
-    details: React, Vue, Angular, Svelte, Solid, Web Components, and vanilla JavaScript.
-  - title: Production focused
-    details: Control bundle size with @tsparticles/basic, @tsparticles/slim, tsparticles, or @tsparticles/all.
-  - title: Focused APIs
-    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks, and @tsparticles/ribbons for one-call setups.
+  - title: तेज़ शुरुआत
+    details: न्यूनतम setup से शुरू करें और धीरे-धीरे presets, plugins और custom shapes तक बढ़ें।
+  - title: framework-ready
+    details: React, Vue, Angular, Svelte, Solid, Web Components और Vanilla JavaScript के लिए तैयार।
+  - title: production-focused
+    details: "@tsparticles/basic, @tsparticles/slim, tsparticles या @tsparticles/all से bundle size नियंत्रित करें।"
+  - title: focused APIs
+    details: "@tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks और @tsparticles/ribbons के साथ एक ही call में setup करें।"
 ---
 
-## Why this docs experience
+## यह docs अनुभव क्यों
 
-The website has been redesigned around the most common question: **"How do I use tsParticles now?"**
+यह साइट सबसे आम सवाल के आधार पर पुन: व्यवस्थित की गई है: **"अब tsParticles कैसे इस्तेमाल करें?"**
 
-- Start from a working snippet in under 5 minutes.
-- Choose the right package without digging through many repos.
-- Find options, configs, presets, and palettes quickly.
-- Run heavy effects only when you decide with explicit Start/Pause controls.
+- 5 मिनट से कम समय में काम करने वाले snippet से शुरुआत करें।
+- कई repositories खंगाले बिना सही package चुनें।
+- options, configuration, presets और palettes जल्दी ढूंढें।
+- भारी effects तभी चलाएं जब ज़रूरत हो, और स्पष्ट start/pause controls रखें।
 
-## What to read first
+## पहले क्या पढ़ें
 
-1. [`/guide/getting-started`](/guide/getting-started): installation, first render, minimal options.
-2. [`/guide/installation`](/guide/installation): CDN/package-manager install matrix and import styles.
-3. [`/playground/`](/playground/): launch demos only on command and edit JSON live.
-4. [`/demos/`](/demos/): copy ready-to-use recipes for production.
-5. [`/options/`](/options/): map of root options and deep links.
-6. [`/migrations/`](/migrations/): migrate from tsParticles v1/v2/v3 to current.
-7. [`/migrations/particles-js`](/migrations/particles-js): migrate from particles.js with compatibility notes.
-8. [`/guide/wrappers`](/guide/wrappers): official wrapper packages and framework links.
-9. [`/guide/plugins-customization`](/guide/plugins-customization): custom shapes, presets, and plugin extension.
-10. [`/guide/templates-resources`](/guide/templates-resources): starter repos and shareable resources.
-11. [`/guide/video-tutorials`](/guide/video-tutorials): official video demos and references.
-12. [`/guide/dependency-graph`](/guide/dependency-graph): package-level map for engine and bundles.
+1. [`/guide/getting-started`](/hi/guide/getting-started): installation, पहला render, न्यूनतम options।
+2. [`/guide/installation`](/hi/guide/installation): CDN/package manager install matrix और import styles।
+3. [`/playground/`](/hi/playground/): command से demos चलाएं और JSON live edit करें।
+4. [`/demos/`](/hi/demos/): production-ready recipes कॉपी करें।
+5. [`/options/`](/hi/options/): root options का map और सीधे links।
+6. [`/migrations/particles-js`](/hi/migrations/particles-js): particles.js से migration और compatibility notes।
+7. [`/guide/wrappers`](/hi/guide/wrappers): official wrappers और framework links।
+8. [`/guide/plugins-customization`](/hi/guide/plugins-customization): custom shapes, presets और plugin extensions।
+9. [`/guide/templates-resources`](/hi/guide/templates-resources): शुरुआती repositories और reusable resources।
+10. [`/guide/video-tutorials`](/hi/guide/video-tutorials): official video demos और references।
+11. [`/guide/dependency-graph`](/hi/guide/dependency-graph): engine और bundles का package स्तर का map।
 
-## Core source and folders
+## मुख्य source और महत्वपूर्ण folders
 
-- Main monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
-- Main README: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
-- Wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- Demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- Presets workspace folders: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- Palettes workspace folders: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
-- Root options source: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- Migration source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- मुख्य monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
+- मुख्य README (त्वरित शुरुआत, wrappers, presets): [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
+- wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- presets folder: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- palettes folder: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- root options source: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- migration source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
 
-## Support the project
+## प्रोजेक्ट को सपोर्ट करें
 
-- Sponsor Matteo Bruni: [https://github.com/matteobruni](https://github.com/matteobruni)
-- Sponsor tsParticles org: [https://github.com/tsparticles](https://github.com/tsparticles)
+- Matteo Bruni को sponsor करें: <https://github.com/matteobruni>
+- tsParticles organization को sponsor करें: <https://github.com/tsparticles>

@@ -1,8 +1,8 @@
-# Container Lifecycle
+# 容器生命周期
 
-A `Container` is the runtime instance returned by `tsParticles.load(...)`.
+`Container` 是 `tsParticles.load(...)` 返回的运行时实例。
 
-## Basic lifecycle
+## 基本生命周期
 
 ```ts
 import type { Container } from "@tsparticles/engine";
@@ -15,13 +15,13 @@ container.play();
 container.destroy();
 ```
 
-## Recommended pattern
+## 推荐模式
 
-- `start`: create/recreate container with current options.
-- `stop`: `pause()` when not visible or not needed.
-- `resume`: `play()` when the user wants animation back.
-- `destroy`: free resources on route/component teardown.
+- `start`：使用当前选项创建/重新创建容器。
+- `stop`: `pause()` 当不可见或不需要时。
+- `resume`: `play()` 当用户想要恢复动画时。
+- `destroy`：关于路线/组件拆卸的免费资源。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Container.md>

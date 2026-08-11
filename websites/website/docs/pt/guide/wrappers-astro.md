@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/astro
+# Invólucro: @tsparticles/astro
 
-Official Astro wrapper for `tsParticles`.
+Wrapper oficial do Astro para `tsParticles`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/astro @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Fluxo de configuração rápida
 
-1. Install wrapper + engine + chosen loader (`@tsparticles/slim` suggested).
-2. Register particles on the client side in Astro components/layouts.
-3. Pass options object or JSON to the wrapper component.
+1. Instale o wrapper + mecanismo + carregador escolhido (`@tsparticles/slim` sugerido).
+2. Registre partículas no lado do cliente em componentes/layouts Astro.
+3. Passe o objeto de opções ou JSON para o componente wrapper.
 
-## Monorepo references
+## Referências Monorepo
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
+- Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro>
+- Aplicativo de demonstração: <https://github.com/tsparticles/tsparticles/tree/main/demo/astro>
 
-## Readme
+## Leia-me
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
+- LEIA-ME do wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme>
 
-## Related docs
+## Documentos relacionados
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/pt/guide/wrappers)
+- [`/guide/frameworks`](/pt/guide/frameworks)

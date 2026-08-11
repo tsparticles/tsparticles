@@ -1,21 +1,21 @@
 ---
-title: Svelte Integration
-description: Step-by-step guide for integrating tsParticles into Svelte and SvelteKit applications using @tsparticles/svelte.
+title: Svelte 集成
+description: 使用 @tsparticles/svelte 将 tsParticles 集成到 Svelte 和 SvelteKit 应用中的分步指南。
 ---
 
-# Svelte Integration
+# Svelte 集成
 
-The `@tsparticles/svelte` package provides a native Svelte component for tsParticles. This guide covers Svelte (with Vite) and SvelteKit, including reactive options, event handling, and multiple instances.
+`@tsparticles/svelte` 包为 tsParticles 提供了一个原生的 Svelte 组件。本指南涵盖 Svelte（配合 Vite）和 SvelteKit，包括响应式选项、事件处理和多个实例。
 
 ---
 
-## Installation
+## 安装
 
 ```bash
 npm install @tsparticles/svelte @tsparticles/engine
 ```
 
-For the full bundle or presets:
+如需完整包或预设：
 
 ```bash
 npm install tsparticles
@@ -27,7 +27,7 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Basic Usage
+## 基本使用
 
 ```svelte
 <script lang="ts">
@@ -88,9 +88,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Engine Initialisation
+## 引擎初始化
 
-Pass an `on:init` event handler to load the plugins and presets your app needs:
+传递一个 `on:init` 事件处理程序来加载应用所需的插件和预设：
 
 ```svelte
 <script lang="ts">
@@ -111,7 +111,7 @@ Pass an `on:init` event handler to load the plugins and presets your app needs:
 />
 ```
 
-Alternatively, use the `initParticlesEngine` utility before mounting:
+或者，在挂载前使用 `initParticlesEngine` 工具函数：
 
 ```svelte
 <script lang="ts">
@@ -136,7 +136,7 @@ Alternatively, use the `initParticlesEngine` utility before mounting:
 
 ---
 
-## Snow Effect
+## 下雪效果
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -167,7 +167,7 @@ npm install @tsparticles/preset-snow
 />
 ```
 
-Customise the preset behaviour by merging additional options:
+通过合并额外选项自定义预设行为：
 
 ```svelte
 <script lang="ts">
@@ -176,10 +176,10 @@ Customise the preset behaviour by merging additional options:
     background: { color: "#0f0f23" },
     particles: {
       move: {
-        speed: 1.5,  // slower snowfall
+        speed: 1.5,  // 较慢的下雪速度
       },
       opacity: {
-        value: 0.8,  // more visible flakes
+        value: 0.8,  // 更明显的雪花
       },
     },
   };
@@ -188,7 +188,7 @@ Customise the preset behaviour by merging additional options:
 
 ---
 
-## Stars Effect
+## 星星效果
 
 ```bash
 npm install @tsparticles/preset-stars
@@ -221,9 +221,9 @@ npm install @tsparticles/preset-stars
 
 ---
 
-## Interactive Particles
+## 交互式粒子
 
-Add mouse hover and click interactivity:
+添加鼠标悬停和点击交互：
 
 ```svelte
 <script lang="ts">
@@ -290,7 +290,7 @@ Add mouse hover and click interactivity:
 
 ---
 
-## Event Handling
+## 事件处理
 
 ```svelte
 <script lang="ts">
@@ -306,7 +306,7 @@ Add mouse hover and click interactivity:
 
   const handleLoaded = (event: CustomEvent<Container>) => {
     container = event.detail;
-    console.log("Container loaded", container);
+    console.log("容器已加载", container);
   };
 
   const pause = () => container?.pause();
@@ -315,9 +315,9 @@ Add mouse hover and click interactivity:
 </script>
 
 <div>
-  <button on:click={pause}>Pause</button>
-  <button on:click={resume}>Resume</button>
-  <button on:click={destroy}>Destroy</button>
+  <button on:click={pause}>暂停</button>
+  <button on:click={resume}>恢复</button>
+  <button on:click={destroy}>销毁</button>
 </div>
 
 <Particles
@@ -328,16 +328,16 @@ Add mouse hover and click interactivity:
 />
 ```
 
-| Event                | Detail                   | Fires                              |
-| -------------------- | ------------------------ | ---------------------------------- |
-| `on:init`            | `Engine`                 | After the engine is initialised    |
-| `on:particlesLoaded` | `Container \| undefined` | After the container is fully ready |
+| 事件                 | 详情        | 触发时机         |
+| -------------------- | ----------- | ---------------- |
+| `on:init`            | `Engine`    | 引擎初始化之后   |
+| `on:particlesLoaded` | `Container` | 容器完全就绪之后 |
 
 ---
 
-## TypeScript Example
+## TypeScript 示例
 
-Full typed component:
+完整的带类型标注的组件：
 
 ```svelte
 <script lang="ts">
@@ -416,9 +416,9 @@ Full typed component:
 
 ---
 
-## Dynamic Options
+## 动态选项
 
-Reactive options update the particles by destroying and reloading with the new configuration:
+响应式选项更新粒子而无需重新创建实例：
 
 ```svelte
 <script lang="ts">
@@ -461,7 +461,7 @@ Reactive options update the particles by destroying and reloading with the new c
 
 <div>
   <label>
-    Particle Color:
+    粒子颜色：
     <input type="color" bind:value={color} />
   </label>
 </div>
@@ -473,13 +473,13 @@ Reactive options update the particles by destroying and reloading with the new c
 />
 ```
 
-The `$:` reactive declaration recomputes `options` whenever `color` changes, and the `Particles` component picks up the new configuration automatically.
+`$:` 响应式声明在 `color` 变化时重新计算 `options`，而 `Particles` 组件会自动接收新的配置。
 
 ---
 
-## Multiple Instances
+## 多个实例
 
-Render several independent particle systems on the same page:
+在同一页面渲染多个独立的粒子系统：
 
 ```svelte
 <script lang="ts">
@@ -524,13 +524,13 @@ Render several independent particle systems on the same page:
 </div>
 ```
 
-Each `<Particles>` component gets its own `id`, canvas, and engine context.
+每个 `<Particles>` 组件拥有自己的 `id`、画布和引擎上下文。
 
 ---
 
-## SvelteKit Usage
+## SvelteKit 使用
 
-In SvelteKit, the canvas requires the browser environment. Disable SSR for the component:
+在 SvelteKit 中，画布需要浏览器环境。禁用组件的 SSR：
 
 ```svelte
 <script lang="ts">
@@ -552,44 +552,39 @@ In SvelteKit, the canvas requires the browser environment. Disable SSR for the c
 {/if}
 ```
 
-Or wrap the import in a client-only component. For SvelteKit 2+, you can also use the `vite-plugin-svelte` SSR excludes.
+或者将导入包装在仅客户端组件中。对于 SvelteKit 2+，你也可以使用 `vite-plugin-svelte` 的 SSR 排除项。
 
 ---
 
-## API Reference
+## API 参考
 
-| Prop      | Type             | Default         | Description                                                                                                  |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                           |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.               |
-| `url`     | `string`         | —               | URL to a remote JSON config. Change triggers destroy+reload.                 |
+| 属性      | 类型             | 默认值          | 描述                                                                      |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | 画布元素 ID                                                               |
+| `options` | `ISourceOptions` | `{}`            | 粒子配置对象                                                              |
+| `url`     | `string`         | —               | 远程 JSON 配置的 URL                                                      |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
-| Event                | Detail                   | Description                                                                   |
-| -------------------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `on:init`            | `Engine`                 | Fires when the engine is initialised (use to load plugins) |
-| `on:particlesLoaded` | `Container \| undefined` | Fires when the container is fully ready                                       |
-
-### Reactive behavior
-
-All reactive props (`id`, `options`, `url`) trigger a destroy + reload cycle when changed at runtime:
-
-- `id` change → old container destroyed, new one created with the new id
-- `options` change → particles are reloaded with the new config
-- `url` change → config fetched from the new URL and loaded
-
-The `theme` prop is special: changing it calls `loadTheme()` on the existing container without destroying or reloading particles. This requires the optional theme plugin (`@tsparticles/plugin-themes`).
-
-### Cleanup
-
-When the component is removed from the DOM, the particles container is automatically destroyed — no orphan animations remain.
+| 事件                 | 详情        | 描述                             |
+| -------------------- | ----------- | -------------------------------- |
+| `on:init`            | `Engine`    | 引擎初始化时触发（用于加载插件） |
+| `on:particlesLoaded` | `Container` | 容器完全就绪时触发               |
 
 ---
 
-## Troubleshooting
+## Reactive Behavior
 
-- **Canvas not visible** — Ensure the parent container has explicit dimensions (`height: 100%`, `height: 100vh`, or a fixed pixel value).
-- **`loadFull is not a function`** — Verify `tsparticles` is installed and that you're importing `loadFull` from `tsparticles` (not `@tsparticles/engine`).
-- **Reactivity not working** — Make sure `options` is a reactive variable (`$:` or `let` bound to a reactive source). Plain `const` values will not update.
-- **SvelteKit blank screen** — Import `@tsparticles/svelte` dynamically or use `browser` guard as shown in the SvelteKit section above.
-- **TypeScript errors for `event.detail`** — Use `CustomEvent<Engine>` and `CustomEvent<Container>` types for the event handlers.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## 故障排除
+
+- **画布不可见** — 确保父容器有明确尺寸（`height: 100%`、`height: 100vh` 或固定像素值）。
+- **`loadFull is not a function`** — 确认已安装 `tsparticles`，并且你从 `tsparticles`（而非 `@tsparticles/engine`）导入 `loadFull`。
+- **响应式不生效** — 确保 `options` 是一个响应式变量（`$:` 或绑定到响应式源的 `let`）。普通的 `const` 值不会更新。
+- **SvelteKit 黑屏** — 动态导入 `@tsparticles/svelte` 或使用如上 SvelteKit 部分所示的 `browser` 守卫。
+- **`event.detail` 的 TypeScript 错误** — 对事件处理程序使用 `CustomEvent<Engine>` 和 `CustomEvent<Container>` 类型。

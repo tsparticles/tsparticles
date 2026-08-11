@@ -1,8 +1,8 @@
-# Plugin Option: Absorbers
+# Opção de plugin: absorvedores
 
-`absorbers` is a plugin option and requires absorber features to be available in your bundle/setup.
+`absorbers` é uma opção de plugin e requer que recursos de absorção estejam disponíveis em seu pacote/configuração.
 
-## Example
+## Exemplo
 
 ```ts
 absorbers: {
@@ -16,11 +16,11 @@ absorbers: {
 }
 ```
 
-## Notes
+## Notas
 
-- Validate plugin availability before using absorber options.
-- Start with one absorber instance, then scale gradually.
+- Valide a disponibilidade do plugin antes de usar as opções do absorvedor.
+- Comece com uma instância de absorvedor e depois aumente gradualmente.
 
-## Source reference
+## Referência da fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Absorbers.md>

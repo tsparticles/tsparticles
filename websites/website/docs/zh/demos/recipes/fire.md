@@ -1,14 +1,14 @@
-# Fire Preset
+# 开火预设
 
-Official preset from the `presets/presets/fire` workspace.
+来自 `presets/presets/fire` 工作区的官方预设。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fire
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for dramatic, high-energy designs and effect demonstrations.
+非常适合戏剧性、高能量的设计和效果演示。
 
-Demo: <https://particles.js.org/demos/recipes/fire>
+演示： <https://particles.js.org/demos/recipes/fire>

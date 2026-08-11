@@ -1,23 +1,23 @@
 ---
 title: Preact
-description: Integrate tsParticles with Preact using the official @tsparticles/preact wrapper.
+description: Integra tsParticles con Preact usando il wrapper ufficiale @tsparticles/preact.
 ---
 
-# Preact Integration
+# Integrazione Preact
 
-The `@tsparticles/preact` package provides a `<Particles>` component that works seamlessly with Preact, including both class and functional component patterns.
+Il pacchetto `@tsparticles/preact` fornisce un componente `<Particles>` che funziona perfettamente con Preact, supportando sia i pattern con classi che con componenti funzionali.
 
-## Installation
+## Installazione
 
 ```bash
 npm install @tsparticles/preact tsparticles
 ```
 
-The `@tsparticles/preact` package ships with TypeScript declarations. No additional type packages are needed.
+Il pacchetto `@tsparticles/preact` include dichiarazioni TypeScript. Non sono necessari pacchetti di tipi aggiuntivi.
 
-## Engine Initialization
+## Inizializzazione del Motore
 
-Before you can render particles, you must initialize the engine with the plugins you need. Call `initParticlesEngine` once, before your app renders.
+Prima di poter renderizzare le particelle, devi inizializzare il motore con i plugin necessari. Chiama `initParticlesEngine` una volta, prima che la tua app venga renderizzata.
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -28,7 +28,7 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-For smaller bundles, load only the features you need:
+Per bundle più piccoli, carica solo le funzionalità di cui hai bisogno:
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -41,11 +41,11 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-`initParticlesEngine` returns a promise that resolves once all plugins are registered. The `<Particles>` component will not render until initialization is complete.
+`initParticlesEngine` restituisce una promise che si risolve una volta che tutti i plugin sono registrati. Il componente `<Particles>` non verrà renderizzato fino al completamento dell'inizializzazione.
 
-## Basic Usage
+## Utilizzo Base
 
-Once the engine is initialized, use the `<Particles>` component anywhere in your app:
+Una volta che il motore è inizializzato, usa il componente `<Particles>` in qualsiasi punto della tua app:
 
 ```jsx
 import Particles from "@tsparticles/preact";
@@ -56,11 +56,11 @@ function App() {
 }
 ```
 
-The `id` attribute sets both the DOM element id and the container identifier used by tsParticles internally. The `options` prop accepts any valid tsParticles configuration object.
+L'attributo `id` imposta sia l'ID dell'elemento DOM che l'identificatore del container usato internamente da tsParticles. La prop `options` accetta qualsiasi oggetto di configurazione tsParticles valido.
 
-## Preset Switching
+## Cambio Preset
 
-Switch between presets dynamically by changing the `options` prop:
+Passa da un preset all'altro dinamicamente cambiando la prop `options`:
 
 ```jsx
 import { useState } from "preact/hooks";
@@ -80,10 +80,10 @@ function App() {
   return (
     <div>
       <select onChange={(e) => setPreset(e.currentTarget.value)}>
-        <option value="basic">Basic</option>
-        <option value="snow">Snow</option>
-        <option value="stars">Stars</option>
-        <option value="fireworks">Fireworks</option>
+        <option value="basic">Base</option>
+        <option value="snow">Neve</option>
+        <option value="stars">Stelle</option>
+        <option value="fireworks">Fuochi d'Artificio</option>
       </select>
       <Particles id="tsparticles" key={preset} options={presets[preset]} />
     </div>
@@ -91,11 +91,11 @@ function App() {
 }
 ```
 
-Using a `key` prop forces Preact to remount the component, fully restarting the particles for each preset.
+Usando una prop `key`, Preact rimonta il componente, riavviando completamente le particelle per ogni preset.
 
-## Class Component
+## Componente con Classe
 
-For class-based components, initialize the engine in `componentDidMount` and manage state in `componentDidUpdate`:
+Per componenti basati su classi, inizializza il motore in `componentDidMount` e gestisci lo stato in `componentDidUpdate`:
 
 ```jsx
 import { Component } from "preact";
@@ -135,9 +135,9 @@ export default class ParticlesApp extends Component {
     return (
       <div>
         <select onChange={this.handlePresetChange}>
-          <option value="basic">Basic</option>
-          <option value="snow">Snow</option>
-          <option value="stars">Stars</option>
+          <option value="basic">Base</option>
+          <option value="snow">Neve</option>
+          <option value="stars">Stelle</option>
         </select>
         {engineReady && <Particles id="tsparticles" options={options} />}
       </div>
@@ -146,9 +146,9 @@ export default class ParticlesApp extends Component {
 }
 ```
 
-## Functional Component
+## Componente Funzionale
 
-With hooks, use `useState` and `useEffect` to initialize the engine and manage configuration:
+Con gli hook, usa `useState` e `useEffect` per inizializzare il motore e gestire la configurazione:
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -169,9 +169,9 @@ export default function App() {
 }
 ```
 
-## Custom Configuration
+## Configurazione Personalizzata
 
-Define a full configuration object directly instead of using presets:
+Definisci un oggetto di configurazione completo direttamente invece di usare preset:
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -245,9 +245,18 @@ export default function App() {
 }
 ```
 
-## Event Handling
+## Reactive Behavior
 
-Use the `particlesLoaded` callback to access the tsParticles `Container` instance after particles are fully rendered:
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Gestione Eventi
+
+Usa la callback `particlesLoaded` per accedere all'istanza `Container` di tsParticles dopo che le particelle sono state completamente renderizzate:
 
 ```jsx
 import { useCallback, useState, useEffect } from "preact/hooks";
@@ -265,7 +274,7 @@ export default function App() {
   }, []);
 
   const handleParticlesLoaded = useCallback(async (container) => {
-    console.log("Particles container ready:", container);
+    console.log("Container particelle pronto:", container);
     container?.refresh();
   }, []);
 
@@ -277,12 +286,4 @@ export default function App() {
 }
 ```
 
-The `particlesLoaded` callback receives the `Container` instance, which you can use to call methods like `refresh()`, `pause()`, `play()`, or `destroy()`.
-
-## Reactive Behavior
-
-The `<Particles>` component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
-
-## Cleanup
-
-On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.
+La callback `particlesLoaded` riceve l'istanza `Container`, che puoi usare per chiamare metodi come `refresh()`, `pause()`, `play()` o `destroy()`.

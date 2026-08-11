@@ -1,14 +1,14 @@
-# Confetti Parade Preset
+# Preimpostazione parata di coriandoli
 
-Official preset from the `presets/presets/confettiParade` workspace.
+Preimpostazione ufficiale dall'area di lavoro `presets/presets/confettiParade`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-parade
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto all'uso (avvio/arresto manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-parade>
+Dimostrazione: <https://particles.js.org/demos/recipes/confetti-parade>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
+Documenti di origine: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>

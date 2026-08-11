@@ -1,8 +1,8 @@
-# Particles Repulse
+# कण प्रतिकर्षण
 
-`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
+`particles.repulse` कण-से-कण अंतःक्रिया में प्रतिकर्षण व्यवहार को नियंत्रित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## व्यावहारिक मार्गदर्शन
 
-- Use moderate distances to avoid abrupt motion jumps.
-- Tune together with `interactivity.modes.repulse` when both are active.
+- अचानक गति में उछाल से बचने के लिए मध्यम दूरी का उपयोग करें।
+- जब दोनों सक्रिय हों तो `interactivity.modes.repulse` के साथ एक साथ ट्यून करें।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>

@@ -1,26 +1,26 @@
-# Releases and Versioning
+# Lanzamientos y versiones
 
-This project now ships from a single repository: `tsparticles/tsparticles`.
+Este proyecto ahora se envía desde un único repositorio: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Where release work happens
+## Dónde ocurre el trabajo de liberación
 
-- Monorepo root: <https://github.com/tsparticles/tsparticles>
-- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Raíz de Monorepo: <https://github.com/tsparticles/tsparticles>
+- Paquetes: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Motor: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Envoltorios: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Preajustes: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Paletas: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Version alignment rule
+## Regla de alineación de versiones
 
-- Keep all `@tsparticles/*` packages aligned to the same release line.
-- Avoid mixing different beta lines or major versions in one app.
+- Mantenga todos los paquetes `@tsparticles/*` alineados con la misma línea de lanzamiento.
+- Evite mezclar diferentes líneas beta o versiones principales en una sola aplicación.
 
-## Practical release checklist
+## Lista de verificación práctica de liberación
 
-1. Verify target package versions in workspace `package.json` files.
-2. Build and test affected projects.
-3. Validate docs links and playground behavior.
-4. Publish from the monorepo release flow.
+1. Verifique las versiones del paquete de destino en los archivos `package.json` del espacio de trabajo.
+2. Construir y probar los proyectos afectados.
+3. Validar los enlaces de documentos y el comportamiento del área de juegos.
+4. Publicar desde el flujo de lanzamiento de monorepo.

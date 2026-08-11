@@ -1,8 +1,8 @@
-# Particles Roll
+# कण रोल
 
-`particles.roll` applies rolling behavior and can create depth-like visual motion.
+`particles.roll` रोलिंग व्यवहार लागू करता है और गहराई जैसी दृश्य गति बना सकता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## व्यावहारिक मार्गदर्शन
 
-- Use with moderate speed first.
-- Combine carefully with `tilt` and `rotate` for readability.
+- पहले मध्यम गति से प्रयोग करें।
+- पठनीयता के लिए `tilt` और `rotate` को सावधानीपूर्वक संयोजित करें।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Roll.md>

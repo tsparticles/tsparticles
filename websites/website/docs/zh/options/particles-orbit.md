@@ -1,8 +1,8 @@
-# Particles Orbit
+# 粒子轨道
 
-`particles.orbit` makes particles revolve around orbit centers.
+`particles.orbit` 使粒子绕轨道中心旋转。
 
-## Example
+## 示例
 
 ```ts
 particles: {
@@ -16,10 +16,10 @@ particles: {
 }
 ```
 
-- `enable`: activates orbit behavior.
-- `radius`: orbit distance.
-- `rotation`: orbit angle control.
+- `enable`：激活轨道行为。
+- `radius`：轨道距离。
+- `rotation`：轨道角度控制。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Orbit.md>

@@ -1,12 +1,12 @@
 # Web Components
 
-Use tsParticles with native Web Components via the `@tsparticles/webcomponents` package. This approach requires no framework — just vanilla JavaScript and custom elements.
+Usa tsParticles con Web Components nativi tramite il pacchetto `@tsparticles/webcomponents`. Questo approccio non richiede framework — solo JavaScript puro e elementi personalizzati.
 
-## Installation
+## Installazione
 
 ### Via CDN
 
-Include the tsParticles core and the Web Components bundle:
+Includi il core tsParticles e il bundle Web Components:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.min.js"></script>
@@ -19,15 +19,15 @@ Include the tsParticles core and the Web Components bundle:
 npm install @tsparticles/webcomponents tsparticles
 ```
 
-Then import into your JavaScript bundle:
+Poi importa nel tuo bundle JavaScript:
 
 ```javascript
 import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
 ```
 
-## Engine Initialization
+## Inizializzazione del Motore
 
-Before the `<web-particles>` element can render, the engine must be initialized with the features you need. Call `initParticlesEngine` with a callback that loads the desired plugins:
+Prima che l'elemento `<web-particles>` possa renderizzare, il motore deve essere inizializzato con le funzionalità necessarie. Chiama `initParticlesEngine` con una callback che carica i plugin desiderati:
 
 ```javascript
 import { initParticlesEngine } from "@tsparticles/webcomponents";
@@ -39,11 +39,11 @@ await initParticlesEngine(async (engine) => {
 });
 ```
 
-> **Why `loadFull`?** It registers all built-in shapes (circle, square, polygon, image, etc.), interactions (hover, click), and updaters (opacity, size, color, etc.). For a smaller bundle, use `tsparticles-slim` or cherry-pick individual plugins.
+> **Perché `loadFull`?** Registra tutte le forme integrate (cerchio, quadrato, poligono, immagine, ecc.), interazioni (hover, click) e aggiornamenti (opacità, dimensione, colore, ecc.). Per un bundle più piccolo, usa `tsparticles-slim` o seleziona plugin individuali.
 
-## Defining the Custom Element
+## Definire l'Elemento Personalizzato
 
-After engine initialization, register the `<web-particles>` custom element:
+Dopo l'inizializzazione del motore, registra l'elemento personalizzato `<web-particles>`:
 
 ```javascript
 import { defineParticlesElement } from "@tsparticles/webcomponents";
@@ -51,15 +51,15 @@ import { defineParticlesElement } from "@tsparticles/webcomponents";
 defineParticlesElement();
 ```
 
-This registers the `web-particles` tag with the browser's `CustomElementRegistry`. It is safe to call multiple times — duplicate registrations are ignored.
+Questo registra il tag `web-particles` con il `CustomElementRegistry` del browser. È sicuro chiamarlo più volte — le registrazioni duplicate vengono ignorate.
 
-## Basic Usage
+## Utilizzo Base
 
-Once both `initParticlesEngine` and `defineParticlesElement` have run, use the element directly in HTML:
+Una volta che sia `initParticlesEngine` che `defineParticlesElement` sono stati eseguiti, usa l'elemento direttamente in HTML:
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,11 +93,11 @@ Once both `initParticlesEngine` and `defineParticlesElement` have run, use the e
 </html>
 ```
 
-## Custom Configuration
+## Configurazione Personalizzata
 
-The `<web-particles>` element accepts configuration via the `options` property (JavaScript object) or via JSON in the `options` attribute.
+L'elemento `<web-particles>` accetta la configurazione tramite la proprietà `options` (oggetto JavaScript) o tramite JSON nell'attributo `options`.
 
-### Via JavaScript Property
+### Tramite Proprietà JavaScript
 
 ```javascript
 const el = document.querySelector("web-particles");
@@ -135,7 +135,7 @@ el.options = {
 };
 ```
 
-### Via HTML Attribute (JSON)
+### Tramite Attributo HTML (JSON)
 
 ```html
 <web-particles
@@ -151,11 +151,11 @@ el.options = {
 ></web-particles>
 ```
 
-> When using the `options` attribute, the value must be valid JSON. Property assignment is preferred for complex configurations.
+> Quando usi l'attributo `options`, il valore deve essere JSON valido. L'assegnazione tramite proprietà è preferibile per configurazioni complesse.
 
-## Dynamic Creation
+## Creazione Dinamica
 
-You can create `<web-particles>` elements entirely in JavaScript and add them to the DOM at any time:
+Puoi creare elementi `<web-particles>` interamente in JavaScript e aggiungerli al DOM in qualsiasi momento:
 
 ```javascript
 import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
@@ -181,7 +181,7 @@ function createParticles(container, config) {
   return el;
 }
 
-// Usage
+// Utilizzo
 const particles = createParticles(document.body, {
   background: { color: "#1a1a2e" },
   particles: {
@@ -192,9 +192,9 @@ const particles = createParticles(document.body, {
 });
 ```
 
-## Extending the Custom Element
+## Estendere l'Elemento Personalizzato
 
-You can subclass `ParticlesElement` to create your own custom element with built-in configuration:
+Puoi creare una sottoclasse di `ParticlesElement` per creare il tuo elemento personalizzato con configurazione incorporata:
 
 ```javascript
 import { initParticlesEngine, ParticlesElement } from "@tsparticles/webcomponents";
@@ -232,39 +232,39 @@ class MyParticlesBackground extends ParticlesElement {
 customElements.define("my-particles-bg", MyParticlesBackground);
 ```
 
-Usage:
+Utilizzo:
 
 ```html
 <my-particles-bg></my-particles-bg>
 ```
 
-## Container Access and Control
+## Accesso e Controllo del Container
 
-The custom element exposes the tsParticles `Container` instance for imperative control:
+L'elemento personalizzato espone l'istanza `Container` di tsParticles per il controllo imperativo:
 
 ```javascript
 const el = document.querySelector("web-particles");
 
-// Access the container (available after connectedCallback)
+// Accedi al container (disponibile dopo connectedCallback)
 const container = el.container;
 container?.pause();
 container?.play();
 
-// Destroy and clean up
+// Distruggi e pulisci
 el.dispose();
 ```
 
-## Full Example
+## Esempio Completo
 
-A complete HTML page using the Web Components module with CDN scripts:
+Una pagina HTML completa che usa il modulo Web Components con script CDN:
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tsParticles Web Components Demo</title>
+    <title>Demo Web Components tsParticles</title>
     <style>
       body {
         margin: 0;
@@ -290,7 +290,7 @@ A complete HTML page using the Web Components module with CDN scripts:
   <body>
     <div class="content">
       <h1>tsParticles + Web Components</h1>
-      <p>Native custom elements, no framework required.</p>
+      <p>Elementi personalizzati nativi, nessun framework richiesto.</p>
     </div>
 
     <web-particles id="tsparticles"></web-particles>
@@ -349,22 +349,20 @@ A complete HTML page using the Web Components module with CDN scripts:
 
 ## Reactive Behavior
 
-The `<web-particles>` element reacts to property changes at runtime:
+The `<Particles>` component reacts to prop changes at runtime:
 
-- **`options`** change → the current container is destroyed and particles are reloaded with the new configuration.
-- **`theme`** attribute change → `loadTheme` is called on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
-## Cleanup
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-Call `element.dispose()` to destroy the container and free resources. When the element is removed from the DOM (`disconnectedCallback`), disposal happens automatically.
+## Riferimento API
 
-## API Reference
-
-| Export / Property               | Type                     | Description                                           |
-| ------------------------------- | ------------------------ | ----------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | Initialize the tsParticles engine with plugin loaders |
-| `defineParticlesElement()`      | `function`               | Register the `<web-particles>` custom element         |
-| `ParticlesElement`              | `class`                  | Base class you can extend for custom elements         |
-| `element.options`               | `ISourceOptions`         | Get/set the particle configuration object             |
-| `element.container`             | `Container \| undefined` | Read-only reference to the underlying `Container`     |
-| `element.dispose()`             | `function`               | Destroy the particle instance and clean up resources  |
+| Esportazione / Proprietà        | Tipo                     | Descrizione                                                |
+| ------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Inizializza il motore tsParticles con caricatori plugin    |
+| `defineParticlesElement()`      | `function`               | Registra l'elemento personalizzato `<web-particles>`       |
+| `ParticlesElement`              | `class`                  | Classe base che puoi estendere per elementi personalizzati |
+| `element.options`               | `ISourceOptions`         | Legge/imposta l'oggetto di configurazione particelle       |
+| `element.container`             | `Container \| undefined` | Riferimento in sola lettura al `Container` sottostante     |
+| `element.dispose()`             | `function`               | Distrugge l'istanza delle particelle e libera risorse      |

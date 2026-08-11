@@ -1,8 +1,8 @@
-# Plugin Option: Absorbers
+# Вариант плагина: Поглотители
 
-`absorbers` is a plugin option and requires absorber features to be available in your bundle/setup.
+`absorbers` — это опция плагина, требующая, чтобы функции поглотителя были доступны в вашем пакете/настройке.
 
-## Example
+## Пример
 
 ```ts
 absorbers: {
@@ -16,11 +16,11 @@ absorbers: {
 }
 ```
 
-## Notes
+## Примечания
 
-- Validate plugin availability before using absorber options.
-- Start with one absorber instance, then scale gradually.
+- Проверьте доступность плагина перед использованием опций поглотителя.
+- Начните с одного экземпляра поглотителя, затем постепенно масштабируйте его.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Absorbers.md>

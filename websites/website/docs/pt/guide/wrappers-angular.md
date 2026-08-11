@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/angular
+# Invólucro: @tsparticles/angular
 
-Official Angular wrapper (`<ngx-particles />`) for `tsParticles`.
+Wrapper Angular oficial (`<ngx-particles />`) para `tsParticles`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/angular @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Fluxo de configuração rápida
 
-1. Register `NgParticlesService` once in app startup.
-2. Load features with `loadSlim(engine)`.
-3. Render `<ngx-particles [id] [options] />` in templates.
+1. Registre `NgParticlesService` uma vez na inicialização do aplicativo.
+2. Carregue recursos com `loadSlim(engine)`.
+3. Renderize `<ngx-particles [id] [options] />` em modelos.
 
-## Monorepo references
+## Referências Monorepo
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
+- Aplicativo de demonstração: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## Readme
+## Leia-me
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
+- LEIA-ME do wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
 
-## Related docs
+## Documentos relacionados
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/pt/guide/wrappers)
+- [`/guide/frameworks`](/pt/guide/frameworks)

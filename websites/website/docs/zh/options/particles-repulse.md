@@ -1,8 +1,8 @@
-# Particles Repulse
+# 粒子排斥
 
-`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
+`particles.repulse` 控制粒子间相互作用中的排斥行为。
 
-## Example
+## 示例
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## 实用指导
 
-- Use moderate distances to avoid abrupt motion jumps.
-- Tune together with `interactivity.modes.repulse` when both are active.
+- 使用适中的距离以避免突然的运动跳跃。
+- 当两者都处于活动状态时，与 `interactivity.modes.repulse` 一起调整。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>

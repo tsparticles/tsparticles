@@ -1,8 +1,8 @@
-# Interactivity Modes
+# 交互模式
 
-`interactivity.modes` defines mode-specific settings used by events.
+`interactivity.modes` 定义事件使用的特定于模式的设置。
 
-## Example
+## 示例
 
 ```ts
 interactivity: {
@@ -29,18 +29,18 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## 实用指导
 
-- Enable only the modes you really use.
-- Keep distances moderate for stable performance.
-- Use Start/Pause controls for expensive mode combinations.
+- 仅启用您真正使用的模式。
+- 保持适度的距离以获得稳定的性能。
+- 使用开始/暂停控件进行昂贵的模式组合。
 
-Related pages:
+相关页面：
 
-- [`Interactivity Click`](/options/interactivity-click)
-- [`Interactivity Hover`](/options/interactivity-hover)
-- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Click`](/zh/options/interactivity-click)
+- [`Interactivity Hover`](/zh/options/interactivity-hover)
+- [`Interactivity Div`](/zh/options/interactivity-div)
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Modes.md>

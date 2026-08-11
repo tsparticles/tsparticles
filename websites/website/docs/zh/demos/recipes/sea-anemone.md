@@ -1,14 +1,14 @@
-# Sea Anemone Preset
+# 海葵预设
 
-Official preset from the `presets/presets/seaAnemone` workspace.
+来自 `presets/presets/seaAnemone` 工作区的官方预设。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-sea-anemone
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for organic, flowing underwater-inspired animations.
+非常适合有机、流畅的水下动画。
 
-Demo: <https://particles.js.org/demos/recipes/sea-anemone>
+演示： <https://particles.js.org/demos/recipes/sea-anemone>

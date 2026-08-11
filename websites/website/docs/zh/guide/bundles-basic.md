@@ -1,39 +1,39 @@
-# Bundle: Basic
+# 捆绑包：Basic
 
-`@tsparticles/basic` is the lightest bundle. Only includes the essentials: circles that move with animatable opacity and size.
+`@tsparticles/basic` 是最轻量的捆绑包。仅包含基本要素：可移动的圆形，以及可动画的透明度和大小。
 
-## Included features
+## 包含的功能
 
-**Shapes:** circle
+**形状：** 圆形
 
-**Updaters:**
+**更新器：**
 
-- paint (color)
-- opacity
-- out-modes (behavior when leaving the screen)
-- size
+- paint（颜色）
+- opacity（透明度）
+- out-modes（离开屏幕时的行为）
+- size（大小）
 
-**Plugins:**
+**插件：**
 
-- move
-- blend (color blending)
-- HEX, HSL, RGB color plugins
+- move（移动）
+- blend（颜色混合）
+- HEX、HSL、RGB 颜色插件
 
-**Not included:**
+**不包含：**
 
-- Mouse/touch interactions
-- Particle links
-- Other shapes (squares, stars, images, polygons, etc.)
-- Emitters, absorbers, sounds
-- Rotation, life, roll, tilt, wobble
+- 鼠标/触摸交互
+- 粒子连线
+- 其他形状（方形、星形、图片、多边形等）
+- 发射器、吸收器、声音
+- 旋转、生命周期、滚动、倾斜、摆动
 
-## When to use
+## 何时使用
 
-- Bundle size is your top priority
-- You only need dots moving around
-- No interactions or complex shapes needed
+- 捆绑包大小是你的首要关注点
+- 你只需要点移动的效果
+- 不需要交互或复杂形状
 
-## Installation
+## 安装
 
 ### npm/pnpm/yarn
 
@@ -64,7 +64,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script 标签）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -85,13 +85,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Common mistakes
+## 常见错误
 
-- Expecting features not included (e.g., `links`, mouse interactions) — these require higher bundles.
-- Calling `tsParticles.load()` before `loadBasic(tsParticles)` — shapes and updaters aren't registered yet.
-- Installing only `@tsparticles/engine` without a bundle — the engine alone draws nothing.
+- 期望不包含的功能（例如 `links`、鼠标交互）——这些需要更高级的捆绑包。
+- 在 `loadBasic(tsParticles)` 之前调用 `tsParticles.load()`——形状和更新器尚未注册。
+- 只安装 `@tsparticles/engine` 而不安装捆绑包——引擎本身不绘制任何内容。
 
-## See also
+## 参见
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [捆绑包概览](/zh/guide/bundles)
+- [安装指南](/zh/guide/installation)

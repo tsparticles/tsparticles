@@ -1,8 +1,8 @@
-# Interactivity Div
+# Divisão de Interatividade
 
-`interactivity.events.onDiv` applies interaction modes to specific HTML elements.
+`interactivity.events.onDiv` aplica modos de interação a elementos HTML específicos.
 
-## Example
+## Exemplo
 
 ```ts
 interactivity: {
@@ -23,11 +23,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## Orientação prática
 
-- Use it for targeted UX zones instead of full-canvas reactions.
-- Keep selector lists explicit and easy to maintain.
+- Use-o para zonas UX direcionadas em vez de reações em tela inteira.
+- Mantenha as listas de seletores explícitas e fáceis de manter.
 
-## Source reference
+## Referência da fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

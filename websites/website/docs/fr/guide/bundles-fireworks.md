@@ -1,26 +1,26 @@
-# Bundle: Fireworks
+# Bundle : Fireworks
 
-`@tsparticles/fireworks` provides a simplified API for creating fireworks effects with a single function call. Supports sounds, custom colors, and instance control (pause/play).
+`@tsparticles/fireworks` expose une API simplifiée pour créer des effets de feux d'artifice avec un seul appel. Prend en charge les sons, les couleurs personnalisées et le contrôle de l'instance (pause/play).
 
-## Included features
+## Fonctionnalités incluses
 
-**Shapes:** line, circle (from basic)
+**Formes :** ligne, cercle (de basic)
 
-**Internal plugins:** emitters, emitters-shape-square, blend (blending), sounds
+**Plugins internes :** émetteurs, emitters-shape-square, blend (mélange), sons (sounds)
 
-**Updaters:** destroy, life, paint, rotate
+**Updaters :** destroy, life, paint, rotate
 
-**API:** `fireworks(options)` — returns a controllable instance
+**API :** `fireworks(options)`, retourne une instance contrôlable
 
-## When to use
+## Quand l'utiliser
 
-- New Year or celebration effect
-- Celebration UI
-- You don't want to configure the engine manually
+- Effet Nouvel An ou fête
+- UI de célébration
+- Vous ne voulez pas configurer l'engine manuellement
 
 ## Installation
 
-### npm/pnpm/yarn
+### Avec npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/fireworks
@@ -29,17 +29,17 @@ pnpm add @tsparticles/fireworks
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
-// Basic effect
+// Effet de base
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
   sounds: true,
 });
 
-// Instance control
+// Contrôle de l'instance
 instance?.pause();
 instance?.play();
 
-// On a specific canvas
+// Sur un canvas spécifique
 await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
@@ -47,35 +47,35 @@ await fireworks("my-canvas", {
 });
 ```
 
-### CDN (script tag)
+### Avec CDN (balise `<script>`)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
 <script>
-  // Immediate fireworks
+  // Feux d'artifice immédiats
   fireworks();
 </script>
 ```
 
-### Main parameters
+### Paramètres principaux
 
-| Parameter    | Type                                                         | Default | Description                                             |
-| ------------ | ------------------------------------------------------------ | ------- | ------------------------------------------------------- |
-| `colors`     | string[] | —       | Explosion colors                                        |
-| `rate`       | number                                                       | —       | Fireworks per second                                    |
-| `speed`      | { min, max }                                                 | —       | Particle speed                                          |
-| `sounds`     | boolean                                                      | true    | Enable sound effects                                    |
-| `gravity`    | number                                                       | —       | Gravity (default: 0) |
-| `opacity`    | number                                                       | —       | Opacity (0-1)                        |
-| `brightness` | { min, max }                                                 | —       | Explosion brightness                                    |
+| Paramètre    | Type         | Défaut | Description               |
+| ------------ | ------------ | ------ | ------------------------- |
+| `colors`     | string[]     | —      | Couleurs d'explosion      |
+| `rate`       | number       | —      | Feux par seconde          |
+| `speed`      | { min, max } | —      | Vitesse des particules    |
+| `sounds`     | boolean      | true   | Active les effets sonores |
+| `gravity`    | number       | —      | Gravité (défaut : 0)      |
+| `opacity`    | number       | —      | Opacité (0-1)             |
+| `brightness` | { min, max } | —      | Luminosité de l'explosion |
 
-## Common mistakes
+## Erreurs courantes
 
-- Thinking `tsParticles` is exported by `@tsparticles/fireworks` — it is not.
-- Calling `fireworks()` in a loop without managing the instance — the effect is already continuous.
-- Not stopping the instance when leaving the page — call `instance?.pause()` or `instance?.stop()`.
+- Penser que `tsParticles` est exporté par `@tsparticles/fireworks` — ce n'est pas le cas.
+- Appeler `fireworks()` en boucle sans gérer l'instance : l'effet est déjà continu, pas besoin d'intervalle.
+- Ne pas arrêter l'instance quand l'utilisateur change de page : appelez `instance?.pause()` ou `instance?.stop()`.
 
-## See also
+## Voir aussi
 
-- [Bundle overview](/guide/bundles)
-- [Confetti bundle](/guide/bundles-confetti)
+- [Vue d'ensemble des bundles](/fr/guide/bundles)
+- [Bundle confetti](/fr/guide/bundles-confetti)

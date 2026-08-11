@@ -1,8 +1,8 @@
-# Particles Palette
+# Palette de particules
 
-`particles.palette` imports a named palette and applies particle color defaults.
+`particles.palette` importe une palette nommée et applique les couleurs par défaut des particules.
 
-## Example
+## Exemple
 
 ```ts
 particles: {
@@ -13,14 +13,14 @@ particles: {
 }
 ```
 
-## What it changes
+## Ce que ça change
 
-- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
-- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
-- Enables `particles.blend` with the palette blend mode.
-- Keeps your config compact when reusing color sets.
+- Définit `particles.paint.fill` ou `particles.paint.stroke` en fonction de la configuration de la palette.
+- Si la palette comporte plusieurs variantes de couleurs, `particles.paint` est importé sous forme de tableau de variantes.
+- Active `particles.blend` avec le mode de fusion de la palette.
+- Maintient votre configuration compacte lors de la réutilisation des jeux de couleurs.
 
-## New palette format (for custom palettes)
+## Nouveau format de palette (pour les palettes personnalisées)
 
 ```ts
 const palette = {
@@ -36,16 +36,16 @@ const palette = {
 };
 ```
 
-`colors` can be either:
+`colors` peut être :
 
-- a single variant object (`{ fill?, stroke? }`)
-- an array of variant objects (each variant can define `fill`, `stroke`, or both)
+- un seul objet variante (`{ fill?, stroke? }`)
+- un tableau d'objets variantes (chaque variante peut définir `fill`, `stroke`, ou les deux)
 
-## Notes
+## Remarques
 
-- Unknown palette ids are ignored.
-- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
+- Les identifiants de palette inconnus sont ignorés.
+- Les valeurs explicites `particles.paint.fill`, `particles.paint.stroke` ou `particles.blend` remplacent les valeurs par défaut importées.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>

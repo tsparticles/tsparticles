@@ -1,35 +1,35 @@
 # Bundle: All
 
-`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
+`@tsparticles/all` tsParticles रिपॉजिटरी से **सब कुछ** लोड करता है: हर शेप, इंटरैक्शन, अपडेटर, इफ़ेक्ट, पथ, ईज़िंग, प्लगइन और एक्सपोर्ट। यह सबसे बड़ा बंडल है, जो प्रोटोटाइप और डेमो के लिए है।
 
-## Included features
+## शामिल सुविधाएँ
 
-Inherits everything from `tsparticles` (full) plus:
+`tsparticles` (full) से सब कुछ इनहेरिट करता है, साथ ही:
 
-**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
+**सभी शेप:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**All external interactions:** cannon, light, particle, pop, particles-repulse
+**सभी बाहरी इंटरैक्शन:** cannon, light, particle, pop, particles-repulse
 
-**All effects:** bubble, filter, particles, shadow, trail
+**सभी इफ़ेक्ट:** bubble, filter, particles, shadow, trail
 
-**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+**सभी पथ जनरेटर:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+**सभी ईज़िंग:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**सभी रंग प्लगइन:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+**सभी प्लगइन:** absorbers, background-mask, canvas-mask, emitters (सभी शेप), easings (सभी), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
 
-**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+**सभी अपडेटर:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## When to use
+## कब उपयोग करें
 
-- Rapid prototyping to explore possibilities
-- Demos and showcases
-- Development environments where size doesn't matter
-- **Not recommended for production** — prefer more targeted bundles
+- संभावनाओं का पता लगाने के लिए त्वरित प्रोटोटाइप
+- डेमो और शोकेस
+- डेवलपमेंट वातावरण जहाँ आकार मायने नहीं रखता
+- **प्रोडक्शन के लिए अनुशंसित नहीं** — अधिक लक्षित बंडल पसंद करें
 
-## Installation
+## इंस्टॉलेशन
 
 ### npm/pnpm/yarn
 
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN (script टैग)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## `tsparticles` और `@tsparticles/all` के बीच अंतर
 
-See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
+विस्तृत तुलना के लिए [bundles-full पेज](/hi/guide/bundles-full) पर तुलना तालिका देखें।
 
-## Common mistakes
+## सामान्य गलतियाँ
 
-- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
-- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
+- प्रोडक्शन में इसका उपयोग करना — छोटे बंडलों के लिए `@tsparticles/slim` या `tsparticles` पसंद करें।
+- `loadAll(tsParticles)` से पहले `tsParticles.load()` कॉल करना।
 
-## See also
+## यह भी देखें
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [बंडल अवलोकन](/hi/guide/bundles)
+- [इंस्टॉलेशन गाइड](/hi/guide/installation)

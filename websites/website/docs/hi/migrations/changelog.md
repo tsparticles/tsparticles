@@ -1,8 +1,8 @@
 # Changelog
 
-The full changelogs in this monorepo are very large.
+इस monorepo के पूरे changelog बहुत बड़े हैं।
 
-For the most up-to-date release notes, use the latest GitHub release page:
+सबसे नई release notes के लिए:
 
 - Latest release: <https://github.com/tsparticles/tsparticles/releases/latest>
 - All releases: <https://github.com/tsparticles/tsparticles/releases>

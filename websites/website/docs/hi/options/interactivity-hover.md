@@ -1,8 +1,8 @@
-# Interactivity Hover
+# इंटरैक्टिविटी होवर
 
-`interactivity.events.onHover` controls pointer-hover reactions.
+`interactivity.events.onHover` पॉइंटर-होवर प्रतिक्रियाओं को नियंत्रित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## व्यावहारिक मार्गदर्शन
 
-- Hover effects are more expensive on dense scenes.
-- On mobile, consider disabling hover-heavy modes.
+- सघन दृश्यों पर होवर प्रभाव अधिक महंगे होते हैं।
+- मोबाइल पर, होवर-हेवी मोड को अक्षम करने पर विचार करें।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>

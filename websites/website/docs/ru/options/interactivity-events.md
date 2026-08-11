@@ -1,8 +1,8 @@
-# Interactivity Events
+# Интерактивные мероприятия
 
-`interactivity.events` controls when interaction modes are triggered.
+`interactivity.events` управляет запуском режимов взаимодействия.
 
-## Example
+## Пример
 
 ```ts
 interactivity: {
@@ -20,11 +20,11 @@ interactivity: {
 }
 ```
 
-- `onHover`: pointer hover behavior.
-- `onClick`: click/tap behavior.
-- `resize`: keeps behavior consistent after viewport changes.
+- `onHover`: поведение при наведении указателя.
+- `onClick`: поведение щелчка/касания.
+- `resize`: сохраняет единообразие поведения после изменения области просмотра.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Events.md>
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>

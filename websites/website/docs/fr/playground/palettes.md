@@ -1,5 +1,5 @@
-# Playground Palettes
+# Palettes de terrain de jeu
 
-Use this page to test palette-only demos loaded from the presets project.
+Utilisez cette page pour tester les démos de palette uniquement chargées à partir du projet de préréglages.
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>

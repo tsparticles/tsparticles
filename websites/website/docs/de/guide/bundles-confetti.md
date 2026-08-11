@@ -1,22 +1,22 @@
 # Bundle: Confetti
 
-`@tsparticles/confetti` provides a simplified API for creating confetti effects with a single function call. No need to interact with `tsParticles` directly.
+`@tsparticles/confetti` bietet eine vereinfachte API zum Erstellen von Konfetti-Effekten mit einem einzigen Funktionsaufruf. Keine direkte Interaktion mit `tsParticles` nötig.
 
-## Included features
+## Enthaltene Funktionen
 
-**Shapes:** circle, heart, cards (French suits: hearts, diamonds, clubs, spades), emoji, images, polygon, square, star
+**Formen:** Kreis, Herz, Karten (französische Farben: Herz, Karo, Kreuz, Pik), Emoji, Bilder, Polygon, Quadrat, Stern
 
-**Internal plugins:** emitters, motion (respects user's reduced motion preference)
+**Interne Plugins:** Emitter, Bewegung (respektiert die Benutzereinstellung zur reduzierten Bewegung)
 
-**Updaters:** life, roll, rotate, tilt, wobble
+**Aktualisierer:** Lebenszyklus, Rollen, Drehen, Neigen, Wackeln
 
-**API:** `confetti(options)` or `confetti(canvasId, options)`
+**API:** `confetti(options)` oder `confetti(canvasId, options)`
 
-## When to use
+## Wann verwenden
 
-- "Congratulations!" or "Happy Birthday!" button
-- Quick celebration effect
-- You don't want to configure the engine manually
+- "Glückwunsch!"- oder "Alles Gute zum Geburtstag!"-Button
+- Schneller Feiereffekt
+- Du möchtest die Engine nicht manuell konfigurieren
 
 ## Installation
 
@@ -29,14 +29,14 @@ pnpm add @tsparticles/confetti
 ```ts
 import { confetti } from "@tsparticles/confetti";
 
-// Basic effect
+// Basiseffekt
 await confetti({
   particleCount: 100,
   spread: 70,
   origin: { x: 0.5, y: 0.5 },
 });
 
-// On a specific canvas
+// Auf einer bestimmten Canvas
 await confetti("my-canvas-id", {
   particleCount: 50,
   angle: 90,
@@ -45,7 +45,7 @@ await confetti("my-canvas-id", {
 });
 ```
 
-### CDN (script tag)
+### CDN (Script-Tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -58,26 +58,26 @@ await confetti("my-canvas-id", {
 </script>
 ```
 
-### Main parameters
+### Hauptparameter
 
-| Parameter       | Type                                                         | Default                                      | Description                                                          |
-| --------------- | ------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------------------------------- |
-| `particleCount` | number                                                       | 50                                           | Number of confetti pieces                                            |
-| `spread`        | number                                                       | 60                                           | Spread angle (degrees)                            |
-| `angle`         | number                                                       | 90                                           | Direction (degrees, 90 = down)                    |
-| `startVelocity` | number                                                       | 30                                           | Initial velocity                                                     |
-| `colors`        | string[] | —                                            | Confetti colors                                                      |
-| `origin`        | { x, y }                                                     | { 0.5, 0.5 } | Origin point (0-1)                                |
-| `drift`         | number                                                       | 0                                            | Horizontal drift                                                     |
-| `shapes`        | string[] | —                                            | Shapes: "circle", "heart", "square", "star", "cards" |
+| Parameter       | Typ      | Standard     | Beschreibung                                         |
+| --------------- | -------- | ------------ | ---------------------------------------------------- |
+| `particleCount` | number   | 50           | Anzahl der Konfettiteilchen                          |
+| `spread`        | number   | 60           | Streuwinkel (Grad)                                   |
+| `angle`         | number   | 90           | Richtung (Grad, 90 = nach unten)                     |
+| `startVelocity` | number   | 30           | Anfangsgeschwindigkeit                               |
+| `colors`        | string[] | —            | Konfettifarben                                       |
+| `origin`        | { x, y } | { 0.5, 0.5 } | Ursprungspunkt (0-1)                                 |
+| `drift`         | number   | 0            | Horizontale Drift                                    |
+| `shapes`        | string[] | —            | Formen: "circle", "heart", "square", "star", "cards" |
 
-## Common mistakes
+## Häufige Fehler
 
-- Thinking `tsParticles` is exported by `@tsparticles/confetti` — it is not.
-- Reusing the same canvas ID unintentionally.
-- Calling `confetti` in a loop without managing performance — use a reasonable interval or stop the animation when done.
+- Denken, dass `tsParticles` von `@tsparticles/confetti` exportiert wird — das ist nicht der Fall.
+- Dieselbe Canvas-ID unbeabsichtigt wiederverwenden.
+- `confetti` in einer Schleife aufrufen, ohne die Leistung zu verwalten — verwende ein angemessenes Intervall oder stoppe die Animation, wenn sie fertig ist.
 
-## See also
+## Siehe auch
 
-- [Bundle overview](/guide/bundles)
-- [Fireworks bundle](/guide/bundles-fireworks)
+- [Bundle-Übersicht](/de/guide/bundles)
+- [Feuerwerk-Bundle](/de/guide/bundles-fireworks)

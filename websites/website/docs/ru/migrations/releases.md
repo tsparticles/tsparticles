@@ -1,26 +1,26 @@
-# Releases and Versioning
+# Релизы и версии
 
-This project now ships from a single repository: `tsparticles/tsparticles`.
+Этот проект теперь поставляется из одного репозитория: `tsparticles/tsparticles`.
 
 <WebsiteVersionInfo />
 
-## Where release work happens
+## Где происходит работа по выпуску
 
-- Monorepo root: <https://github.com/tsparticles/tsparticles>
-- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
-- Engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Presets: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Корень монорепо: <https://github.com/tsparticles/tsparticles>
+- Пакеты: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Движок: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Обертки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Пресеты: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Палитры: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Version alignment rule
+## Правило выравнивания версий
 
-- Keep all `@tsparticles/*` packages aligned to the same release line.
-- Avoid mixing different beta lines or major versions in one app.
+- Сохраняйте все пакеты `@tsparticles/*` в одной строке выпуска.
+- Избегайте смешивания разных бета-линий или основных версий в одном приложении.
 
-## Practical release checklist
+## Контрольный список практического выпуска
 
-1. Verify target package versions in workspace `package.json` files.
-2. Build and test affected projects.
-3. Validate docs links and playground behavior.
-4. Publish from the monorepo release flow.
+1. Проверьте версии целевого пакета в файлах `package.json` рабочей области.
+2. Создайте и протестируйте затронутые проекты.
+3. Проверьте ссылки на документы и поведение игровой площадки.
+4. Публикация из потока выпуска монорепозитория.

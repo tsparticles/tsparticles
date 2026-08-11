@@ -1,5 +1,5 @@
-# Playground Configs
+# 游乐场配置
 
-Use this page for demos with richer option objects (not only `preset` names), based on examples from `tsparticles/utils/configs`.
+使用此页面进行具有更丰富选项对象（不仅是 `preset` 名称）的演示，基于 `tsparticles/utils/configs` 中的示例。
 
 <PlaygroundPanel mode="configs"></PlaygroundPanel>

@@ -1,29 +1,29 @@
-# Wrapper: angular-fireworks
+# 包装器：角度烟花
 
-Official Angular wrapper around `@tsparticles/fireworks`.
+围绕 `@tsparticles/fireworks` 的官方 Angular 包装器。
 
-## Install
+## 安装
 
 ```bash
 pnpm add angular-fireworks @tsparticles/fireworks
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install wrapper + `@tsparticles/fireworks`.
-2. Initialize once in Angular app bootstrap.
-3. Trigger fireworks actions from your UI handlers.
+1. 安装包装器 + `@tsparticles/fireworks`。
+2. 在 Angular 应用引导程序中初始化一次。
+3. 从 UI 处理程序触发烟花操作。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

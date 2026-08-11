@@ -1,8 +1,8 @@
-# Particles Roll
+# Rouleau de particules
 
-`particles.roll` applies rolling behavior and can create depth-like visual motion.
+`particles.roll` applique un comportement de roulement et peut créer un mouvement visuel de type profondeur.
 
-## Example
+## Exemple
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Conseils pratiques
 
-- Use with moderate speed first.
-- Combine carefully with `tilt` and `rotate` for readability.
+- Utilisez d'abord à vitesse modérée.
+- Combinez soigneusement avec `tilt` et `rotate` pour plus de lisibilité.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Roll.md>

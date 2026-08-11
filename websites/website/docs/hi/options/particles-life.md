@@ -1,8 +1,8 @@
-# Particles Life
+# कण जीवन
 
-`particles.life` controls lifecycle count and duration per particle.
+`particles.life` प्रति कण जीवनचक्र गणना और अवधि को नियंत्रित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -18,9 +18,9 @@ particles: {
 }
 ```
 
-- `count`: how many life cycles each particle has.
-- `duration`: how long each cycle lasts.
+- `count`: प्रत्येक कण में कितने जीवन चक्र होते हैं।
+- `duration`: प्रत्येक चक्र कितने समय तक चलता है।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Life.md>

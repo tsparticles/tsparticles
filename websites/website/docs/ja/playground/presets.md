@@ -1,5 +1,5 @@
-# Playground Presets
+# プレイグラウンドプリセット
 
-Use this page for official preset-based demos.
+公式のプリセットベースのデモについては、このページを使用してください。
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

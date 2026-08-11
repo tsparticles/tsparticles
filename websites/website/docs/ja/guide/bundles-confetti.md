@@ -1,24 +1,24 @@
 # Bundle: Confetti
 
-`@tsparticles/confetti` provides a simplified API for creating confetti effects with a single function call. No need to interact with `tsParticles` directly.
+`@tsparticles/confetti` は、1 回の関数呼び出しで紙吹雪エフェクトを作成するための簡略化された API を提供します。`tsParticles` を直接操作する必要はありません。
 
-## Included features
+## 含まれる機能
 
-**Shapes:** circle, heart, cards (French suits: hearts, diamonds, clubs, spades), emoji, images, polygon, square, star
+**形状:** 円、ハート、カード（フランスのスート: ハート、ダイヤ、クラブ、スペード）、絵文字、画像、多角形、四角、星
 
-**Internal plugins:** emitters, motion (respects user's reduced motion preference)
+**内部プラグイン:** エミッター、motion（ユーザーの動作軽減設定を尊重）
 
-**Updaters:** life, roll, rotate, tilt, wobble
+**アップデーター:** life、roll、rotate、tilt、wobble
 
-**API:** `confetti(options)` or `confetti(canvasId, options)`
+**API:** `confetti(options)` または `confetti(canvasId, options)`
 
-## When to use
+## 使用すべきケース
 
-- "Congratulations!" or "Happy Birthday!" button
-- Quick celebration effect
-- You don't want to configure the engine manually
+- 「おめでとう！」や「ハッピーバースデー！」ボタン
+- 簡単な祝賀エフェクト
+- エンジンを手動で設定したくない
 
-## Installation
+## インストール
 
 ### npm/pnpm/yarn
 
@@ -29,14 +29,14 @@ pnpm add @tsparticles/confetti
 ```ts
 import { confetti } from "@tsparticles/confetti";
 
-// Basic effect
+// 基本的なエフェクト
 await confetti({
   particleCount: 100,
   spread: 70,
   origin: { x: 0.5, y: 0.5 },
 });
 
-// On a specific canvas
+// 特定のキャンバス上で
 await confetti("my-canvas-id", {
   particleCount: 50,
   angle: 90,
@@ -45,7 +45,7 @@ await confetti("my-canvas-id", {
 });
 ```
 
-### CDN (script tag)
+### CDN（script タグ）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -58,26 +58,26 @@ await confetti("my-canvas-id", {
 </script>
 ```
 
-### Main parameters
+### 主要パラメーター
 
-| Parameter       | Type                                                         | Default                                      | Description                                                          |
-| --------------- | ------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------------------------------- |
-| `particleCount` | number                                                       | 50                                           | Number of confetti pieces                                            |
-| `spread`        | number                                                       | 60                                           | Spread angle (degrees)                            |
-| `angle`         | number                                                       | 90                                           | Direction (degrees, 90 = down)                    |
-| `startVelocity` | number                                                       | 30                                           | Initial velocity                                                     |
-| `colors`        | string[] | —                                            | Confetti colors                                                      |
-| `origin`        | { x, y }                                                     | { 0.5, 0.5 } | Origin point (0-1)                                |
-| `drift`         | number                                                       | 0                                            | Horizontal drift                                                     |
-| `shapes`        | string[] | —                                            | Shapes: "circle", "heart", "square", "star", "cards" |
+| パラメーター    | 型       | デフォルト   | 説明                                               |
+| --------------- | -------- | ------------ | -------------------------------------------------- |
+| `particleCount` | number   | 50           | 紙吹雪の数                                         |
+| `spread`        | number   | 60           | 拡散角度（度）                                     |
+| `angle`         | number   | 90           | 方向（度、90 = 下向き）                            |
+| `startVelocity` | number   | 30           | 初速度                                             |
+| `colors`        | string[] | —            | 紙吹雪の色                                         |
+| `origin`        | { x, y } | { 0.5, 0.5 } | 発生点（0-1）                                      |
+| `drift`         | number   | 0            | 水平方向のドリフト                                 |
+| `shapes`        | string[] | —            | 形状: "circle"、"heart"、"square"、"star"、"cards" |
 
-## Common mistakes
+## よくある間違い
 
-- Thinking `tsParticles` is exported by `@tsparticles/confetti` — it is not.
-- Reusing the same canvas ID unintentionally.
-- Calling `confetti` in a loop without managing performance — use a reasonable interval or stop the animation when done.
+- `@tsparticles/confetti` が `tsParticles` をエクスポートしていると思う — していません。
+- 同じ canvas ID を意図せず再利用する。
+- パフォーマンスを管理せずにループ内で `confetti` を呼ぶ — 適切な間隔を設定するか、アニメーション完了時に停止してください。
 
-## See also
+## 関連ページ
 
-- [Bundle overview](/guide/bundles)
-- [Fireworks bundle](/guide/bundles-fireworks)
+- [バンドル概要](/ja/guide/bundles)
+- [Fireworks バンドル](/ja/guide/bundles-fireworks)

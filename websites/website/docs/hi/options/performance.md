@@ -1,8 +1,8 @@
-# Performance Guide
+# प्रदर्शन गाइड
 
-Here are the main levers to avoid FPS drops.
+एफपीएस गिरावट से बचने के लिए यहां मुख्य उपाय दिए गए हैं।
 
-## 1. Particle count
+## 1)कण गणना
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Fewer particles = fewer draw calls and fewer collisions.
+कम कण = कम कॉल और कम टकराव।
 
-## 2. Movement and links
+## 2) आंदोलन और लिंक
 
-- Reduce `move.speed` when you do not need an energetic effect.
-- Limit `links.distance` and `links.opacity`.
-- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
+- जब आपको ऊर्जावान प्रभाव की आवश्यकता न हो तो `move.speed` को कम करें।
+- सीमा `links.distance` और `links.opacity`।
+- फ़ुलस्क्रीन में भारी संयोजनों (उदाहरण के लिए `links` + `collisions` + उन्नत प्रभाव) से बचें।
 
-## 3. Interactivity
+## 3) अन्तरक्रियाशीलता
 
-- Keep only a few active modes.
-- On mobile, consider disabling hover mode.
+- केवल कुछ सक्रिय मोड रखें।
+- मोबाइल पर, होवर मोड को अक्षम करने पर विचार करें।
 
-## 4. Retina and resize
+## 4) रेटिना और आकार बदलना
 
 ```ts
 detectRetina: false;
 ```
 
-Useful in performance-first contexts or on weaker devices.
+प्रदर्शन-प्रथम संदर्भों में या कमजोर उपकरणों पर उपयोगी।
 
-## 5. Manual lifecycle control
+## 5) मैनुअल जीवनचक्र नियंत्रण
 
-For expensive sections, use explicit controls:
+महंगे अनुभागों के लिए, स्पष्ट नियंत्रणों का उपयोग करें:
 
-- `start` on user click
-- `stop`/`pause` when the section is not visible
-- `destroy` on page/component teardown
+- उपयोगकर्ता क्लिक पर `start`
+- `stop`/`pause` जब अनुभाग दिखाई न दे
+- `destroy` पेज/घटक टियरडाउन पर

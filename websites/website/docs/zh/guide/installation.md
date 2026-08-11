@@ -1,36 +1,36 @@
-# Installation
+# 安装
 
-## Choose your path
+## 选择你的路径
 
-| Scenario                                     | Command                                           |
-| -------------------------------------------- | ------------------------------------------------- |
-| Quick start (recommended) | `pnpm add @tsparticles/engine @tsparticles/slim`  |
-| Minimal setup                                | `pnpm add @tsparticles/engine @tsparticles/basic` |
-| Full feature set                             | `pnpm add @tsparticles/engine tsparticles`        |
-| Everything in the repo                       | `pnpm add @tsparticles/engine @tsparticles/all`   |
-| Confetti only                                | `pnpm add @tsparticles/confetti`                  |
-| Fireworks only                               | `pnpm add @tsparticles/fireworks`                 |
-| Particle background                          | `pnpm add @tsparticles/particles`                 |
-| Ribbon effect                                | `pnpm add @tsparticles/ribbons`                   |
+| 场景             | 命令                                              |
+| ---------------- | ------------------------------------------------- |
+| 快速开始（推荐） | `pnpm add @tsparticles/engine @tsparticles/slim`  |
+| 最小设置         | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| 完整功能集       | `pnpm add @tsparticles/engine tsparticles`        |
+| 仓库中所有内容   | `pnpm add @tsparticles/engine @tsparticles/all`   |
+| 仅彩纸           | `pnpm add @tsparticles/confetti`                  |
+| 仅烟花           | `pnpm add @tsparticles/fireworks`                 |
+| 粒子背景         | `pnpm add @tsparticles/particles`                 |
+| 丝带效果         | `pnpm add @tsparticles/ribbons`                   |
 
-> **Important**: `@tsparticles/engine` alone draws nothing. You must always add a bundle (to load shapes and animations) or individual plugins. See the [bundle guide](/guide/bundles).
+> **重要**：`@tsparticles/engine` 单独使用不绘制任何内容。你必须始终添加一个捆绑包（以加载形状和动画）或单个插件。请参阅[捆绑包指南](/zh/guide/bundles)。
 
 ## npm
 
 ```bash
-# engine + slim (recommended for most projects)
+# 引擎 + slim（推荐用于大多数项目）
 npm install @tsparticles/engine @tsparticles/slim
 
-# engine + basic (minimal)
+# 引擎 + basic（最小化）
 npm install @tsparticles/engine @tsparticles/basic
 
-# engine + full (tsparticles)
+# 引擎 + full（tsparticles）
 npm install @tsparticles/engine tsparticles
 
-# engine + all
+# 引擎 + all
 npm install @tsparticles/engine @tsparticles/all
 
-# Dedicated API bundles (no explicit engine needed)
+# 专用 API 捆绑包（无需显式安装引擎）
 npm install @tsparticles/confetti
 npm install @tsparticles/fireworks
 npm install @tsparticles/particles
@@ -41,52 +41,52 @@ npm install @tsparticles/ribbons
 
 ```bash
 yarn add @tsparticles/engine @tsparticles/slim
-# ... same pattern for other bundles
+# ... 其他捆绑包同理
 ```
 
 ## pnpm
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
-# ... same pattern for other bundles
+# ... 其他捆绑包同理
 ```
 
-## CDN (script tags)
+## CDN（script 标签）
 
-All packages are available on jsDelivr, unpkg, and cdnjs.
+所有包均可通过 jsDelivr、unpkg 和 cdnjs 获取。
 
 ### jsDelivr
 
-| Bundle                                     | URL                                                                                         |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| Engine                                     | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
-| Basic                                      | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
-| Slim                                       | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
-| Full (`tsparticles`)    | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
-| All                                        | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
-| Confetti                                   | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
-| Fireworks                                  | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
-| Particles                                  | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
-| Ribbons                                    | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
-| particles.js compatibility | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
+| 捆绑包               | URL                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| 引擎                 | `https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js`              |
+| Basic                | `https://cdn.jsdelivr.net/npm/@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
+| Slim                 | `https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
+| Full (`tsparticles`) | `https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.bundle.min.js`                      |
+| All                  | `https://cdn.jsdelivr.net/npm/@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
+| Confetti             | `https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
+| Fireworks            | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| Particles            | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| Ribbons              | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
+| particles.js 兼容    | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
 
 ### unpkg
 
-Same structure: `https://unpkg.com/{package-name}@{version}/{filename}`
+相同结构：`https://unpkg.com/{包名}@{版本}/{文件名}`
 
-Example:
+示例：
 `https://unpkg.com/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`
 
 ### cdnjs
 
 `https://cdnjs.com/libraries/tsparticles`
 
-## Import examples
+## 导入示例
 
-### With bundler (ES module import)
+### 使用打包工具（ES module 导入）
 
 ```ts
-// Engine + bundle loader
+// 引擎 + 捆绑包加载器
 import { tsParticles } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
@@ -94,7 +94,7 @@ await loadSlim(tsParticles);
 await tsParticles.load({ id: "tsparticles", options: { ... } });
 ```
 
-### With CommonJS (require)
+### 使用 CommonJS（require）
 
 ```ts
 const { tsParticles } = require("@tsparticles/engine");
@@ -106,17 +106,17 @@ const { loadSlim } = require("@tsparticles/slim");
 })();
 ```
 
-### With CDN (script tag)
+### 使用 CDN（script 标签）
 
 ```html
-<!-- 1. Engine -->
+<!-- 1. 引擎 -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-<!-- 2. Bundle (exposes loadBasic/loadSlim/loadFull/loadAll globally) -->
+<!-- 2. 捆绑包（全局暴露 loadBasic/loadSlim/loadFull/loadAll） -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
-<!-- 3. Your script -->
+<!-- 3. 你的脚本 -->
 <script>
   (async () => {
-    await loadSlim(tsParticles); // register features
+    await loadSlim(tsParticles); // 注册功能
     await tsParticles.load({
       id: "tsparticles",
       options: {
@@ -130,7 +130,7 @@ const { loadSlim } = require("@tsparticles/slim");
 </script>
 ```
 
-With dedicated API bundles:
+使用专用 API 捆绑包：
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -139,8 +139,8 @@ With dedicated API bundles:
 </script>
 ```
 
-## Related pages
+## 相关页面
 
-- [Getting started](/guide/getting-started)
-- [Bundle guide](/guide/bundles)
-- [Framework wrappers](/guide/wrappers)
+- [开始使用](/zh/guide/getting-started)
+- [捆绑包指南](/zh/guide/bundles)
+- [框架封装器](/zh/guide/wrappers)

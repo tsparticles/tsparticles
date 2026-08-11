@@ -1,29 +1,29 @@
-# Wrapper: angular-fireworks
+# ラッパー: angular-fireworks
 
-Official Angular wrapper around `@tsparticles/fireworks`.
+`@tsparticles/fireworks` の公式 Angular ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add angular-fireworks @tsparticles/fireworks
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + `@tsparticles/fireworks`.
-2. Initialize once in Angular app bootstrap.
-3. Trigger fireworks actions from your UI handlers.
+1. ラッパー + `@tsparticles/fireworks` をインストールします。
+2. Angular アプリのブートストラップで 1 回初期化します。
+3. UI ハンドラーから花火アクションをトリガーします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

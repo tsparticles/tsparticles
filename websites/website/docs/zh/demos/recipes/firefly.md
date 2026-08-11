@@ -1,16 +1,16 @@
-# Firefly Preset
+# 萤火虫预设
 
-Official preset from the `presets/presets/firefly` workspace.
+来自 `presets/presets/firefly` 工作区的官方预设。
 
-Move the mouse inside the canvas to activate the interactive firefly behavior.
+在画布内移动鼠标以激活交互式萤火虫行为。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegant preset for natural hero sections, storytelling, and portfolios.
+适用于自然英雄部分、讲故事和作品集的优雅预设。
 
-Demo: <https://particles.js.org/demos/recipes/firefly>
+演示： <https://particles.js.org/demos/recipes/firefly>

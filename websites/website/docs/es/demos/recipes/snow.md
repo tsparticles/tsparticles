@@ -1,14 +1,14 @@
-# Snow Preset
+# Nieve preestablecida
 
-Official preset from the `presets/presets/snow` workspace.
+Preajuste oficial del espacio de trabajo `presets/presets/snow`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-snow
 ```
 
-## Ready-to-use (manual start/stop)
+## Listo para usar (inicio/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Lightweight seasonal preset for winter promotions.
+Preajuste estacional ligero para promociones de invierno.
 
-Demo: <https://particles.js.org/demos/recipes/snow>
+Demostración: <https://particles.js.org/demos/recipes/snow>

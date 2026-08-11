@@ -1,34 +1,33 @@
-# Wrapper: @tsparticles/wordpress
+# 包装：@tsparticles/wordpress
 
-Official WordPress plugin package for `tsParticles`.
+`tsParticles` 的官方 WordPress 插件包。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/wordpress
 ```
 
-## Notes
+## 注释
 
-- Requires a full WordPress installation.
-- Not mapped to a standalone `demo/*` folder in this monorepo.
+- 需要完整安装 WordPress。
+- 未映射到此 monorepo 中的独立 `demo/*` 文件夹。
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install the package in a WordPress plugin/theme workflow.
-2. Register/enqueue scripts through WordPress hooks.
-3. Pass options JSON from plugin settings or templates.
+1. 在 WordPress 插件/主题工作流程中安装包。2.通过WordPress钩子注册/排队脚本。
+2. 从插件设置或模板传递选项 JSON。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
-- Wrappers index: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- 包装索引：<https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
-## Readme
+## 自述文件
 
-- Wrapper folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- 包装文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

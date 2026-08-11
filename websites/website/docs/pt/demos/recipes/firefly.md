@@ -1,16 +1,16 @@
-# Firefly Preset
+# Predefinição de vaga-lume
 
-Official preset from the `presets/presets/firefly` workspace.
+Predefinição oficial do espaço de trabalho `presets/presets/firefly`.
 
-Move the mouse inside the canvas to activate the interactive firefly behavior.
+Mova o mouse dentro da tela para ativar o comportamento interativo do vaga-lume.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto para uso (partida/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegant preset for natural hero sections, storytelling, and portfolios.
+Predefinição elegante para seções de heróis naturais, narrativas e portfólios.
 
-Demo: <https://particles.js.org/demos/recipes/firefly>
+Demonstração: <https://particles.js.org/demos/recipes/firefly>

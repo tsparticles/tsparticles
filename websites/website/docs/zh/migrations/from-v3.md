@@ -1,18 +1,28 @@
-# Migrate from v3.x
+# 从 v3.x 迁移
 
-From `v3.x`, the biggest migration risk is usually **options compatibility**.
+从 `v3.x` 迁移时，主要风险是**选项兼容性**和**包变更**。
 
-## Priority changes
+## 优先变更
 
-- `particles.color` moved to `particles.paint.fill`.
-- `particles.stroke` moved to `particles.paint.stroke`.
-- New palette-centric flows can populate paint values automatically.
+- `particles.color` -> `particles.paint.fill`
+- `particles.stroke` -> `particles.paint.stroke`
 
-If colors look wrong after upgrade, check those keys first.
+## 包重命名
 
-## Option mapping examples
+部分 `v3.x` 包已重命名或重组：
 
-Before (`v3.x` style):
+| v3 包                               | 当前包                              | 说明                                                   |
+| ----------------------------------- | ----------------------------------- | ------------------------------------------------------ |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`          | 合并为单个插件                                         |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`          | 合并为单个插件                                         |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`        | 被 paint 系统取代                                      |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`        | 被 paint 系统取代                                      |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color`     | 移动到 `plugins/colors/hsv/`，名称不变                 |
+| (v3 中不需要 - 内置)                | `@tsparticles/plugin-interactivity` | 所有交互插件（grab, bubble, repulse 等）正常工作所必需 |
+
+## 选项映射示例
+
+迁移前（`v3.x` 风格）：
 
 ```ts
 const options = {
@@ -28,7 +38,7 @@ const options = {
 };
 ```
 
-After (current):
+迁移后（当前）：
 
 ```ts
 const options = {
@@ -46,26 +56,15 @@ const options = {
 };
 ```
 
-## Load API note
+## Load API 迁移
 
-Current API uses a single params object:
-
-```ts
-await tsParticles.load({
-  id: "tsparticles",
-  options,
-});
-```
-
-If your `v3.x` project still contains legacy positional calls from older snippets, migrate them now.
-
-Before (legacy positional):
+迁移前（旧式位置参数）：
 
 ```ts
 await tsParticles.load("tsparticles", options);
 ```
 
-After (object params):
+迁移后（对象参数）：
 
 ```ts
 await tsParticles.load({
@@ -74,58 +73,32 @@ await tsParticles.load({
 });
 ```
 
-## Package renaming
+## 推荐步骤
 
-Some `v3.x` packages have been renamed or restructured:
+1. 将所有 `@tsparticles/*` 包对齐到最新版本。
+2. 将弃用的选项键（`particles.color`、`particles.stroke`）替换为 `particles.paint.*`。
+3. 在 `package.json` 中更新重命名的包（见上表）。
+4. 如果你使用交互插件（grab, bubble, repulse 等），请安装 `@tsparticles/plugin-interactivity` 并在加载任何交互插件之前使用 `await loadInteractivityPlugin(tsParticles)` 加载它。
+5. 确保自定义插件/形状在 `tsParticles.load(...)` 之前加载。
+6. 重新测试交互和性能敏感场景。
 
-| v3 package                                       | Current package                     | Note                                                                                                          |
-| ------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `@tsparticles/move-base`                         | `@tsparticles/plugin-move`          | Merged into single plugin                                                                                     |
-| `@tsparticles/move-parallax`                     | `@tsparticles/plugin-move`          | Merged into single plugin                                                                                     |
-| `@tsparticles/updater-color`                     | `@tsparticles/updater-paint`        | Replaced by paint system                                                                                      |
-| `@tsparticles/updater-stroke-color`              | `@tsparticles/updater-paint`        | Replaced by paint system                                                                                      |
-| `@tsparticles/plugin-hsv-color`                  | `@tsparticles/plugin-hsv-color`     | Moved to `plugins/colors/hsv/`, still the same package name                                                   |
-| (not needed in v3 - built-in) | `@tsparticles/plugin-interactivity` | Required for all interaction plugins (grab, bubble, repulse, etc.) to work |
+## 粒度加载函数
 
-## Recommended steps
+一些包提供单独的加载函数，以便只加载所需的部分，从而减小打包体积。
 
-1. Align all `@tsparticles/*` packages to the same latest version line.
-2. Replace deprecated option keys (`particles.color`, `particles.stroke`) with `particles.paint.*`.
-3. Update renamed packages in `package.json` (see table above).
-4. If you use interaction plugins (grab, bubble, repulse, etc.), install `@tsparticles/plugin-interactivity` and load it with `await loadInteractivityPlugin(tsParticles)` before loading any interaction plugin.
-5. Verify custom plugins/shapes are loaded before `tsParticles.load(...)`.
-6. Re-test interactions and performance-sensitive scenes.
+### 插件
 
-## Granular loader functions
+- **`@tsparticles/plugin-absorbers`**：`loadAbsorbersPluginSimple`（仅吸收器的生命周期和绘制）、`loadAbsorbersInteraction`（仅点击/悬停交互）或 `loadAbsorbersPlugin`（两者）。
+- **`@tsparticles/plugin-emitters`**：`loadEmittersPluginSimple`（仅发射器的生命周期和绘制）、`loadEmittersInteraction`（仅点击/悬停交互）或 `loadEmittersPlugin`（两者）。
 
-Some packages expose individual loader functions to load only what you need, reducing bundle size.
+### 形状
 
-### Plugins
+- **`@tsparticles/shape-polygon`**：`loadGenericPolygonShape`（多边形）或 `loadTriangleShape`（三角形）单独加载，或使用 `loadPolygonShape` 加载两者。
+- **`@tsparticles/shape-cards`**：`loadClubsSuitShape`、`loadDiamondsSuitShape`、`loadHeartsSuitShape`、`loadSpadesSuitShape`（单个花色）、`loadCardSuitsShape`（所有花色）、`loadFullCardsShape`（卡牌图像）或 `loadCardsShape`（全部）。
 
-- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple` (absorber lifecycle and drawing only), `loadAbsorbersInteraction` (click/hover interaction only), or `loadAbsorbersPlugin` (both).
-- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple` (emitter lifecycle and drawing only), `loadEmittersInteraction` (click/hover interaction only), or `loadEmittersPlugin` (both).
+所有其他形状包（arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text）直接导出单个 `load*Shape` 函数。
 
-### Shapes
+## 参考
 
-- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape` (polygon) or `loadTriangleShape` (triangle) individually, or `loadPolygonShape` for both.
-- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`, `loadDiamondsSuitShape`, `loadHeartsSuitShape`, `loadSpadesSuitShape` (individual suits), `loadCardSuitsShape` (all suits), `loadFullCardsShape` (card images), or `loadCardsShape` (all).
-
-All other shape packages (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) export a single `load*Shape` function directly.
-
-## Checklist
-
-- Keep one version line across engine, bundles, wrappers, presets, and plugins.
-- Replace deprecated imports with package-level imports when needed.
-- Validate SSR wrappers (Next/Nuxt) still initialize only on client side.
-
-## Useful option docs
-
-- Option rename matrix: [`/migrations/option-rename-matrix`](/migrations/option-rename-matrix)
-- `particles.paint`: [`/options/particles-paint`](/options/particles-paint)
-- `particles.color` migration note: [`/options/particles-color`](/options/particles-color)
-- `particles.stroke` migration note: [`/options/particles-stroke`](/options/particles-stroke)
-
-## References
-
-- Versioning notes: [`/migrations/releases`](/migrations/releases)
-- Root repository releases: <https://github.com/tsparticles/tsparticles/releases>
+- 重命名矩阵: [`/migrations/option-rename-matrix`](/zh/migrations/option-rename-matrix)
+- `particles.paint`: [`/options/particles-paint`](/zh/options/particles-paint)

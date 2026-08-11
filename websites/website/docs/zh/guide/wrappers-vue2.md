@@ -1,29 +1,27 @@
-# Wrapper: @tsparticles/vue2
+# 包装：@tsparticles/vue2
 
-Official Vue 2 wrapper for `tsParticles`.
+`tsParticles` 的官方 Vue 2 包装器。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/vue2 @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install wrapper + engine + loader package.
-2. Register plugin once in Vue app bootstrap.
-3. Render Vue component with options object.
+1.安装wrapper+engine+loader包。2. 在Vue应用程序引导程序中注册一次插件。3. 使用选项对象渲染 Vue 组件。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

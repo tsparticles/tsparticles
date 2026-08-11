@@ -1,8 +1,8 @@
-# Particles Shadow
+# パーティクルシャドウ
 
-`particles.shadow` adds a shadow around particles.
+`particles.shadow` はパーティクルの周囲に影を追加します。
 
-## Example
+## 例
 
 ```ts
 particles: {
@@ -20,11 +20,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## 実践的な指導
 
-- Shadows improve depth but can be expensive on dense scenes.
-- Use low blur first and benchmark on mobile.
+- シャドウは奥行きを向上させますが、密度の高いシーンではコストがかかる可能性があります。
+- 最初に低ブラーを使用し、モバイルでベンチマークを実行します。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shadow.md>

@@ -1,21 +1,21 @@
 ---
-title: Svelte Integration
-description: Step-by-step guide for integrating tsParticles into Svelte and SvelteKit applications using @tsparticles/svelte.
+title: Integración con Svelte
+description: Guía paso a paso para integrar tsParticles en aplicaciones Svelte y SvelteKit usando @tsparticles/svelte.
 ---
 
-# Svelte Integration
+# Integración con Svelte
 
-The `@tsparticles/svelte` package provides a native Svelte component for tsParticles. This guide covers Svelte (with Vite) and SvelteKit, including reactive options, event handling, and multiple instances.
+El paquete `@tsparticles/svelte` proporciona un componente Svelte nativo para tsParticles. Esta guía cubre Svelte (con Vite) y SvelteKit, incluyendo opciones reactivas, manejo de eventos y múltiples instancias.
 
 ---
 
-## Installation
+## Instalación
 
 ```bash
 npm install @tsparticles/svelte @tsparticles/engine
 ```
 
-For the full bundle or presets:
+Para el paquete completo o presets:
 
 ```bash
 npm install tsparticles
@@ -27,7 +27,7 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Basic Usage
+## Uso Básico
 
 ```svelte
 <script lang="ts">
@@ -88,9 +88,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## Engine Initialisation
+## Inicialización del Motor
 
-Pass an `on:init` event handler to load the plugins and presets your app needs:
+Pasa un manejador de evento `on:init` para cargar los plugins y presets que tu aplicación necesita:
 
 ```svelte
 <script lang="ts">
@@ -111,7 +111,7 @@ Pass an `on:init` event handler to load the plugins and presets your app needs:
 />
 ```
 
-Alternatively, use the `initParticlesEngine` utility before mounting:
+Alternativamente, usa la utilidad `initParticlesEngine` antes del montaje:
 
 ```svelte
 <script lang="ts">
@@ -136,7 +136,7 @@ Alternatively, use the `initParticlesEngine` utility before mounting:
 
 ---
 
-## Snow Effect
+## Efecto Nieve
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -167,7 +167,7 @@ npm install @tsparticles/preset-snow
 />
 ```
 
-Customise the preset behaviour by merging additional options:
+Personaliza el comportamiento del preset fusionando opciones adicionales:
 
 ```svelte
 <script lang="ts">
@@ -176,10 +176,10 @@ Customise the preset behaviour by merging additional options:
     background: { color: "#0f0f23" },
     particles: {
       move: {
-        speed: 1.5,  // slower snowfall
+        speed: 1.5,  // nevada más lenta
       },
       opacity: {
-        value: 0.8,  // more visible flakes
+        value: 0.8,  // copos más visibles
       },
     },
   };
@@ -188,7 +188,7 @@ Customise the preset behaviour by merging additional options:
 
 ---
 
-## Stars Effect
+## Efecto Estrellas
 
 ```bash
 npm install @tsparticles/preset-stars
@@ -221,9 +221,9 @@ npm install @tsparticles/preset-stars
 
 ---
 
-## Interactive Particles
+## Partículas Interactivas
 
-Add mouse hover and click interactivity:
+Añade interactividad de hover y clic del ratón:
 
 ```svelte
 <script lang="ts">
@@ -290,7 +290,7 @@ Add mouse hover and click interactivity:
 
 ---
 
-## Event Handling
+## Manejo de Eventos
 
 ```svelte
 <script lang="ts">
@@ -306,7 +306,7 @@ Add mouse hover and click interactivity:
 
   const handleLoaded = (event: CustomEvent<Container>) => {
     container = event.detail;
-    console.log("Container loaded", container);
+    console.log("Contenedor cargado", container);
   };
 
   const pause = () => container?.pause();
@@ -315,9 +315,9 @@ Add mouse hover and click interactivity:
 </script>
 
 <div>
-  <button on:click={pause}>Pause</button>
-  <button on:click={resume}>Resume</button>
-  <button on:click={destroy}>Destroy</button>
+  <button on:click={pause}>Pausar</button>
+  <button on:click={resume}>Reanudar</button>
+  <button on:click={destroy}>Destruir</button>
 </div>
 
 <Particles
@@ -328,16 +328,16 @@ Add mouse hover and click interactivity:
 />
 ```
 
-| Event                | Detail                   | Fires                              |
-| -------------------- | ------------------------ | ---------------------------------- |
-| `on:init`            | `Engine`                 | After the engine is initialised    |
-| `on:particlesLoaded` | `Container \| undefined` | After the container is fully ready |
+| Evento               | Detalle     | Se dispara                                            |
+| -------------------- | ----------- | ----------------------------------------------------- |
+| `on:init`            | `Engine`    | Después de que el motor se inicializa                 |
+| `on:particlesLoaded` | `Container` | Después de que el contenedor está completamente listo |
 
 ---
 
-## TypeScript Example
+## Ejemplo TypeScript
 
-Full typed component:
+Componente tipado completo:
 
 ```svelte
 <script lang="ts">
@@ -416,9 +416,9 @@ Full typed component:
 
 ---
 
-## Dynamic Options
+## Opciones Dinámicas
 
-Reactive options update the particles by destroying and reloading with the new configuration:
+Las opciones reactivas actualizan las partículas sin recrear la instancia:
 
 ```svelte
 <script lang="ts">
@@ -461,7 +461,7 @@ Reactive options update the particles by destroying and reloading with the new c
 
 <div>
   <label>
-    Particle Color:
+    Color de Partícula:
     <input type="color" bind:value={color} />
   </label>
 </div>
@@ -473,13 +473,13 @@ Reactive options update the particles by destroying and reloading with the new c
 />
 ```
 
-The `$:` reactive declaration recomputes `options` whenever `color` changes, and the `Particles` component picks up the new configuration automatically.
+La declaración reactiva `$:` recalcula `options` cada vez que `color` cambia, y el componente `Particles` recoge la nueva configuración automáticamente.
 
 ---
 
-## Multiple Instances
+## Múltiples Instancias
 
-Render several independent particle systems on the same page:
+Renderiza varios sistemas de partículas independientes en la misma página:
 
 ```svelte
 <script lang="ts">
@@ -524,13 +524,13 @@ Render several independent particle systems on the same page:
 </div>
 ```
 
-Each `<Particles>` component gets its own `id`, canvas, and engine context.
+Cada componente `<Particles>` obtiene su propio `id`, canvas y contexto de motor.
 
 ---
 
-## SvelteKit Usage
+## Uso con SvelteKit
 
-In SvelteKit, the canvas requires the browser environment. Disable SSR for the component:
+En SvelteKit, el canvas requiere el entorno del navegador. Deshabilita SSR para el componente:
 
 ```svelte
 <script lang="ts">
@@ -552,44 +552,39 @@ In SvelteKit, the canvas requires the browser environment. Disable SSR for the c
 {/if}
 ```
 
-Or wrap the import in a client-only component. For SvelteKit 2+, you can also use the `vite-plugin-svelte` SSR excludes.
+O envuelve la importación en un componente solo de cliente. Para SvelteKit 2+, también puedes usar las exclusiones SSR de `vite-plugin-svelte`.
 
 ---
 
-## API Reference
+## Referencia de API
 
-| Prop      | Type             | Default         | Description                                                                                                  |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                           |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.               |
-| `url`     | `string`         | —               | URL to a remote JSON config. Change triggers destroy+reload.                 |
+| Prop      | Tipo             | Por Defecto     | Descripción                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID del elemento canvas                                                    |
+| `options` | `ISourceOptions` | `{}`            | Objeto de configuración de partículas                                     |
+| `url`     | `string`         | —               | URL a una configuración JSON remota                                       |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
-| Event                | Detail                   | Description                                                                   |
-| -------------------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `on:init`            | `Engine`                 | Fires when the engine is initialised (use to load plugins) |
-| `on:particlesLoaded` | `Container \| undefined` | Fires when the container is fully ready                                       |
-
-### Reactive behavior
-
-All reactive props (`id`, `options`, `url`) trigger a destroy + reload cycle when changed at runtime:
-
-- `id` change → old container destroyed, new one created with the new id
-- `options` change → particles are reloaded with the new config
-- `url` change → config fetched from the new URL and loaded
-
-The `theme` prop is special: changing it calls `loadTheme()` on the existing container without destroying or reloading particles. This requires the optional theme plugin (`@tsparticles/plugin-themes`).
-
-### Cleanup
-
-When the component is removed from the DOM, the particles container is automatically destroyed — no orphan animations remain.
+| Evento               | Detalle     | Descripción                                                          |
+| -------------------- | ----------- | -------------------------------------------------------------------- |
+| `on:init`            | `Engine`    | Se dispara cuando el motor se inicializa (úsalo para cargar plugins) |
+| `on:particlesLoaded` | `Container` | Se dispara cuando el contenedor está completamente listo             |
 
 ---
 
-## Troubleshooting
+## Reactive Behavior
 
-- **Canvas not visible** — Ensure the parent container has explicit dimensions (`height: 100%`, `height: 100vh`, or a fixed pixel value).
-- **`loadFull is not a function`** — Verify `tsparticles` is installed and that you're importing `loadFull` from `tsparticles` (not `@tsparticles/engine`).
-- **Reactivity not working** — Make sure `options` is a reactive variable (`$:` or `let` bound to a reactive source). Plain `const` values will not update.
-- **SvelteKit blank screen** — Import `@tsparticles/svelte` dynamically or use `browser` guard as shown in the SvelteKit section above.
-- **TypeScript errors for `event.detail`** — Use `CustomEvent<Engine>` and `CustomEvent<Container>` types for the event handlers.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Solución de Problemas
+
+- **Canvas no visible** — Asegúrate de que el contenedor padre tenga dimensiones explícitas (`height: 100%`, `height: 100vh`, o un valor fijo en píxeles).
+- **`loadFull is not a function`** — Verifica que `tsparticles` esté instalado y que estés importando `loadFull` desde `tsparticles` (no desde `@tsparticles/engine`).
+- **Reactividad no funciona** — Asegúrate de que `options` sea una variable reactiva (`$:` o `let` vinculada a una fuente reactiva). Los valores `const` simples no se actualizarán.
+- **SvelteKit pantalla en blanco** — Importa `@tsparticles/svelte` dinámicamente o usa la protección `browser` como se muestra en la sección de SvelteKit anterior.
+- **Errores TypeScript para `event.detail`** — Usa los tipos `CustomEvent<Engine>` y `CustomEvent<Container>` para los manejadores de eventos.

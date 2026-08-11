@@ -1,14 +1,14 @@
-# Confetti Falling Preset
+# 五彩纸屑掉落预设
 
-Official preset from the `presets/presets/confettiFalling` workspace.
+来自 `presets/presets/confettiFalling` 工作区的官方预设。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-falling
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-falling>
+源文档：<https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
+演示： <https://particles.js.org/demos/recipes/confetti-falling>

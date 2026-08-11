@@ -1,12 +1,12 @@
-# Dependency Graph
+# 依存関係グラフ
 
-This is a practical map of the package layering exposed in the main `tsParticles` README.
+これは、メインの `tsParticles` README で公開されているパッケージ階層化の実用的なマップです。
 
-For the full, exhaustive graph, see:
+完全かつ網羅的なグラフについては、以下を参照してください。
 
 - <https://github.com/tsparticles/tsparticles/blob/main/README.md#dependency-graph>
 
-## High-level package flow
+## 高レベルのパッケージ フロー
 
 ```text
 tsParticles Engine
@@ -19,15 +19,15 @@ tsParticles Engine
          `- tsParticles All
 ```
 
-## How to use this map
+## このマップの使用方法
 
-- Start from `engine` + `slim` for most production apps.
-- Move to `tsparticles` if you need extra built-in interactions/plugins.
-- Move to `all` only when you need the complete feature set.
-- Use dedicated bundles (`confetti`, `fireworks`, `particles`) for focused effects.
+- ほとんどの実稼働アプリでは、`engine` + `slim` から開始します。
+- 追加の組み込みインタラクション/プラグインが必要な場合は、`tsparticles` に移動してください。
+- 完全な機能セットが必要な場合にのみ、`all` に移動してください。
+- 焦点を絞ったエフェクトには専用のバンドル (`confetti`、`fireworks`、`particles`) を使用します。
 
-## Related pages
+## 関連ページ
 
-- [`/guide/getting-started`](/guide/getting-started)
-- [`/guide/installation`](/guide/installation)
-- [`/options/performance`](/options/performance)
+- [`/guide/getting-started`](/ja/guide/getting-started)
+- [`/guide/installation`](/ja/guide/installation)
+- [`/options/performance`](/ja/options/performance)

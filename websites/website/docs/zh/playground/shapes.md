@@ -1,5 +1,5 @@
-# Playground Shapes
+# 游乐场形状
 
-Use this page to explore particle `shape.type` values in isolation, with one focused config per shape and explicit `shape.options` when the shape supports them.
+使用此页面单独探索 `shape.type` 的各个值。每种形状都有一个更清晰的示例配置；在支持时还会展示对应的 `shape.options`。
 
 <PlaygroundPanel mode="shapes"></PlaygroundPanel>

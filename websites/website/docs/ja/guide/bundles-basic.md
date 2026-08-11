@@ -1,39 +1,39 @@
 # Bundle: Basic
 
-`@tsparticles/basic` is the lightest bundle. Only includes the essentials: circles that move with animatable opacity and size.
+`@tsparticles/basic` は最も軽量なバンドルです。アニメーション可能な不透明度とサイズを持つ円が移動する、必要最小限の機能のみを含みます。
 
-## Included features
+## 含まれる機能
 
-**Shapes:** circle
+**形状:** 円
 
-**Updaters:**
+**アップデーター:**
 
-- paint (color)
-- opacity
-- out-modes (behavior when leaving the screen)
-- size
+- paint（色）
+- 不透明度
+- out-modes（画面外での動作）
+- サイズ
 
-**Plugins:**
+**プラグイン:**
 
 - move
-- blend (color blending)
-- HEX, HSL, RGB color plugins
+- blend（色のブレンド）
+- HEX、HSL、RGB カラープラグイン
 
-**Not included:**
+**含まれないもの:**
 
-- Mouse/touch interactions
-- Particle links
-- Other shapes (squares, stars, images, polygons, etc.)
-- Emitters, absorbers, sounds
-- Rotation, life, roll, tilt, wobble
+- マウス/タッチインタラクション
+- パーティクルリンク
+- その他の形状（四角、星、画像、多角形など）
+- エミッター、アブソーバー、サウンド
+- 回転、life、roll、tilt、wobble
 
-## When to use
+## 使用すべきケース
 
-- Bundle size is your top priority
-- You only need dots moving around
-- No interactions or complex shapes needed
+- バンドルサイズが最優先
+- 動くドットだけが必要
+- インタラクションや複雑な形状は不要
 
-## Installation
+## インストール
 
 ### npm/pnpm/yarn
 
@@ -64,7 +64,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script タグ）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -85,13 +85,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Common mistakes
+## よくある間違い
 
-- Expecting features not included (e.g., `links`, mouse interactions) — these require higher bundles.
-- Calling `tsParticles.load()` before `loadBasic(tsParticles)` — shapes and updaters aren't registered yet.
-- Installing only `@tsparticles/engine` without a bundle — the engine alone draws nothing.
+- 含まれていない機能（例: `links`、マウスインタラクション）を期待する — これらは上位のバンドルが必要です。
+- `loadBasic(tsParticles)` より前に `tsParticles.load()` を呼ぶ — 形状とアップデーターがまだ登録されていません。
+- バンドルなしで `@tsparticles/engine` だけをインストールする — エンジン単体では何も描画しません。
 
-## See also
+## 関連ページ
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [バンドル概要](/ja/guide/bundles)
+- [インストールガイド](/ja/guide/installation)

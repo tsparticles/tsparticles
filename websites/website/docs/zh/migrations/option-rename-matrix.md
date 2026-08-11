@@ -1,35 +1,24 @@
-# Option Rename Matrix
+# 选项重命名矩阵
 
-Use this page as a fast lookup when migrating configs across major versions.
+迁移过程中最常见重命名的快速对照。
 
-## Core tsParticles option mappings
+## tsParticles
 
-| Legacy key         | Current key              | Notes                                                     |
-| ------------------ | ------------------------ | --------------------------------------------------------- |
-| `particles.color`  | `particles.paint.fill`   | Main color path moved under `paint.fill`. |
-| `particles.stroke` | `particles.paint.stroke` | Stroke path moved under `paint.stroke`.   |
+| 旧键               | 当前键                   | 说明                          |
+| ------------------ | ------------------------ | ----------------------------- |
+| `particles.color`  | `particles.paint.fill`   | 主颜色已迁移到 `paint.fill`。 |
+| `particles.stroke` | `particles.paint.stroke` | 描边已迁移到 `paint.stroke`。 |
 
-## Legacy particles.js compatibility mappings
+## particles.js legacy
 
-These mappings are useful if your config still comes from old particles.js JSON.
+| particles.js 键 | 当前键         | 说明                           |
+| --------------- | -------------- | ------------------------------ |
+| `line_linked`   | `links`        | 改为现代命名风格。             |
+| `retina_detect` | `detectRetina` | 从 snake_case 改为 camelCase。 |
 
-| particles.js key | Current key    | Notes                                                      |
-| -------------------------------- | -------------- | ---------------------------------------------------------- |
-| `line_linked`                    | `links`        | Same concept, renamed to modern key style. |
-| `retina_detect`                  | `detectRetina` | Snake case to camel case.                  |
+## Load API
 
-## Load API migration quick map
-
-This is not an option key rename, but it is one of the most common migration breakages.
-
-| Legacy API                        | Current API                               |
+| 旧 API                            | 当前 API                                  |
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
-
-## See also
-
-- [`/migrations/from-v3`](/migrations/from-v3)
-- [`/migrations/from-v2`](/migrations/from-v2)
-- [`/migrations/from-v1`](/migrations/from-v1)
-- [`/migrations/particles-js`](/migrations/particles-js)

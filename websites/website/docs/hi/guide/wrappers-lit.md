@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/lit
+# रैपर: @tsparticles/lit
 
-Official Lit wrapper for `tsParticles`.
+`tsParticles` के लिए आधिकारिक लिट रैपर।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/lit @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install wrapper + engine + loader package.
-2. Register/load features during app startup.
-3. Use Lit component with options passed as props.
+1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
+2. ऐप स्टार्टअप के दौरान सुविधाओं को रजिस्टर/लोड करें।
+3. प्रॉप्स के रूप में पास किए गए विकल्पों के साथ लिट घटक का उपयोग करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper folder docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- रैपर फ़ोल्डर दस्तावेज़: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

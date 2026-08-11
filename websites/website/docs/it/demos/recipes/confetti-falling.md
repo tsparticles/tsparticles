@@ -1,14 +1,14 @@
-# Confetti Falling Preset
+# Preimpostazione caduta coriandoli
 
-Official preset from the `presets/presets/confettiFalling` workspace.
+Preimpostazione ufficiale dall'area di lavoro `presets/presets/confettiFalling`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-falling
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto all'uso (avvio/arresto manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-falling>
+Dimostrazione: <https://particles.js.org/demos/recipes/confetti-falling>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
+Documenti di origine: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>

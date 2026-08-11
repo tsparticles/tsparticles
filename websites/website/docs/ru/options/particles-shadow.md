@@ -1,8 +1,8 @@
-# Particles Shadow
+# Частицы Тень
 
-`particles.shadow` adds a shadow around particles.
+`particles.shadow` добавляет тень вокруг частиц.
 
-## Example
+## Пример
 
 ```ts
 particles: {
@@ -20,11 +20,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Практическое руководство
 
-- Shadows improve depth but can be expensive on dense scenes.
-- Use low blur first and benchmark on mobile.
+- Тени улучшают глубину, но могут оказаться дорогостоящими в плотных сценах.
+  - Сначала используйте низкое размытие и проверьте качество изображения на мобильном устройстве.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shadow.md>

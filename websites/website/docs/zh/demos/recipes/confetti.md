@@ -1,14 +1,14 @@
-# Confetti Preset
+# 五彩纸屑预设
 
-Official preset from the `presets/presets/confetti` workspace.
+来自 `presets/presets/confetti` 工作区的官方预设。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for celebrations, announcements, and festive designs. Combine with different color palettes for variety.
+非常适合庆祝活动、公告和节日设计。结合不同的调色板以实现多样性。
 
-Demo: <https://particles.js.org/demos/recipes/confetti>
+演示： <https://particles.js.org/demos/recipes/confetti>

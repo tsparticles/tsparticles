@@ -1,5 +1,5 @@
-# Playground Presets
+# खेल का मैदान प्रीसेट
 
-Use this page for official preset-based demos.
+आधिकारिक प्रीसेट-आधारित डेमो के लिए इस पृष्ठ का उपयोग करें।
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

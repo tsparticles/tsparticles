@@ -2,27 +2,14 @@ project_id: 919303
 api_token_env: CROWDIN_PERSONAL_TOKEN
 preserve_hierarchy: true
 files:
-  - source: /websites/website/docs/**/*.md
-    ignore:
-      - /websites/website/docs/.vitepress/**
-      - /websites/website/docs/public/**
-      - /websites/website/docs/api/**
-      - /websites/website/docs/cookie-policy.md
-      - /websites/website/docs/demos/**
-      - /websites/website/docs/migrations/**
-      - /websites/website/docs/playground/**
-      - /websites/website/docs/privacy-policy.md
-      - /websites/website/docs/showcase/**
-      - /websites/website/docs/de/**
-      - /websites/website/docs/es/**
-      - /websites/website/docs/fr/**
-      - /websites/website/docs/hi/**
-      - /websites/website/docs/it/**
-      - /websites/website/docs/ja/**
-      - /websites/website/docs/pt/**
-      - /websites/website/docs/ru/**
-      - /websites/website/docs/zh/**
-    translation: /websites/website/docs/%two_letters_code%/**/%original_file_name%
+  - source: /websites/website/docs/index.md
+    translation: /websites/website/docs/%two_letters_code%/index.md
+  - source: /websites/website/docs/guide/**/*.md
+    translation: /websites/website/docs/%two_letters_code%/guide/**/%original_file_name%
+  - source: /websites/website/docs/guides/**/*.md
+    translation: /websites/website/docs/%two_letters_code%/guides/**/%original_file_name%
+  - source: /websites/website/docs/options/**/*.md
+    translation: /websites/website/docs/%two_letters_code%/options/**/%original_file_name%
   - source: /websites/confetti/src/i18n/en.json
     translation: /websites/confetti/src/i18n/%two_letters_code%.json
   - source: /websites/ribbons/src/i18n/en.json

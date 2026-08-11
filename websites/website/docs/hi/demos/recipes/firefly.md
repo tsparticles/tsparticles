@@ -1,16 +1,16 @@
-# Firefly Preset
+# जुगनू प्रीसेट
 
-Official preset from the `presets/presets/firefly` workspace.
+`presets/presets/firefly` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-Move the mouse inside the canvas to activate the interactive firefly behavior.
+इंटरैक्टिव जुगनू व्यवहार को सक्रिय करने के लिए माउस को कैनवास के अंदर ले जाएँ।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegant preset for natural hero sections, storytelling, and portfolios.
+प्राकृतिक नायक अनुभागों, कहानी कहने और पोर्टफ़ोलियो के लिए सुंदर प्रीसेट।
 
-Demo: <https://particles.js.org/demos/recipes/firefly>
+डेमो: <https://particles.js.org/demos/recipes/firefly>

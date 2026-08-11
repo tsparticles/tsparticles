@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/nuxt3
+# 包装：@tsparticles/nuxt3
 
-Official Nuxt 3 module wrapper for `tsParticles`.
+`tsParticles` 的官方 Nuxt 3 模块包装器。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/nuxt3 @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install module + engine + selected loader.
-2. Register module/plugin with client-side rendering.
-3. Configure options in component or composable setup.
+1. 安装模块+引擎+选定的加载器。
+2. 向客户端渲染注册模块/插件。
+3. 在组件或可组合设置中配置选项。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

@@ -1,14 +1,14 @@
-# Confetti Falling Preset
+# Preestablecido de caída de confeti
 
-Official preset from the `presets/presets/confettiFalling` workspace.
+Preajuste oficial del espacio de trabajo `presets/presets/confettiFalling`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-falling
 ```
 
-## Ready-to-use (manual start/stop)
+## Listo para usar (inicio/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-falling>
+Demostración: <https://particles.js.org/demos/recipes/confetti-falling>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
+Documentos fuente: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>

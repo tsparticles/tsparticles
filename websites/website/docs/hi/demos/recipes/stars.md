@@ -1,14 +1,14 @@
-# Stars Preset
+# सितारे प्रीसेट
 
-Official preset from the `presets/presets/stars` workspace.
+`presets/presets/stars` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-stars
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for space/cosmic landing pages and dark themes.
+अंतरिक्ष/ब्रह्मांडीय लैंडिंग पृष्ठों और डार्क थीम के लिए बिल्कुल सही।
 
-Demo: <https://particles.js.org/demos/recipes/stars>
+डेमो: <https://particles.js.org/demos/recipes/stars>

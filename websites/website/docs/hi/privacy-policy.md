@@ -1,51 +1,49 @@
-# Privacy Policy
+# गोपनीयता नीति
 
-This page explains how `particles.js.org` handles personal data related to analytics and advertising services.
+यह पृष्ठ बताता है कि `particles.js.org` एनालिटिक्स और विज्ञापन सेवाओं से संबंधित व्यक्तिगत डेटा को कैसे संभालता है।
 
-## Scope
+## दायरा
 
-This policy covers the docs website and related pages served from `particles.js.org`.
+यह नीति `particles.js.org` से प्रदत्त दस्तावेज़ वेबसाइट और संबंधित पृष्ठों को कवर करती है।
 
-## Data we process
+## डेटा हम संसाधित करते हैं
 
-- Technical browsing data (IP-derived metadata, user agent, referrer, page URLs).
-- Analytics events for documentation usage trends.
-- Advertising-related events required by Google AdSense when consent is granted, or non-personalized ad delivery where legally permitted.
+- तकनीकी ब्राउज़िंग डेटा (आईपी-व्युत्पन्न मेटाडेटा, उपयोगकर्ता एजेंट, रेफरर, पेज यूआरएल)।
+- दस्तावेज़ीकरण के उपयोग के रुझान के लिए एनालिटिक्स इवेंट।
+- सहमति दिए जाने पर Google AdSense द्वारा विज्ञापन-संबंधित घटनाओं की आवश्यकता होती है।
 
-## Services used
+## उपयोग की गई सेवाएँ
 
-- **Google Analytics 4** for traffic and usage analytics.
-- **Google AdSense** for ad delivery and campaign measurement.
+- **ट्रैफ़िक और उपयोग विश्लेषण के लिए Google Analytics 4**।
+- **विज्ञापन वितरण और अभियान माप के लिए Google AdSense**।
 
-## Legal basis and consent
+## कानूनी आधार और सहमति
 
-- Essential technical storage is used for site operation.
-- Analytics cookies are enabled only after explicit consent.
-- When analytics consent is not granted, the site may use cookieless, aggregate analytics measurement (Google Consent Mode) where legally permitted.
-- Advertising can run in non-personalized mode when consent for personalized ads is not granted, where legally permitted and configured.
-- You can reject consent and continue using the docs.
+- साइट संचालन के लिए आवश्यक तकनीकी भंडारण का उपयोग किया जाता है।
+- कुकी बैनर के माध्यम से स्पष्ट सहमति के बाद ही एनालिटिक्स और विज्ञापन प्रौद्योगिकियां सक्षम की जाती हैं।
+- आप सहमति को अस्वीकार कर सकते हैं और दस्तावेज़ों का उपयोग जारी रख सकते हैं।
 
-## Consent storage
+## सहमति भंडारण
 
-- Consent choice is stored locally in browser storage under a site-specific key.
-- Consent choice controls whether analytics/ads storage can be used.
+- सहमति विकल्प को साइट-विशिष्ट कुंजी के तहत ब्राउज़र स्टोरेज में स्थानीय रूप से संग्रहीत किया जाता है।
+- सहमति स्वीकार किए जाने से पहले कोई एनालिटिक्स/विज्ञापन ट्रैकिंग सक्रिय नहीं की जाती है।
 
-## Data sharing
+## डेटा साझा करना
 
-- Data may be processed by Google as a third-party processor/controller according to Google service terms.
-- We do not sell personal data through this website.
+- Google सेवा शर्तों के अनुसार डेटा को Google द्वारा तृतीय-पक्ष प्रोसेसर/नियंत्रक के रूप में संसाधित किया जा सकता है।
+- हम इस वेबसाइट के माध्यम से व्यक्तिगत डेटा नहीं बेचते हैं।
 
-## Your controls
+## आपका नियंत्रण
 
-- Accept or reject via the cookie banner.
-- Clear browser site data (local storage/cookies) to reset your choice.
-- Use browser privacy controls and ad settings for additional restrictions.
+- कुकी बैनर के माध्यम से स्वीकार या अस्वीकार करें।
+- अपनी पसंद को रीसेट करने के लिए ब्राउज़र साइट डेटा (स्थानीय भंडारण/कुकीज़) साफ़ करें।
+- अतिरिक्त प्रतिबंधों के लिए ब्राउज़र गोपनीयता नियंत्रण और विज्ञापन सेटिंग्स का उपयोग करें।
 
-## Policy updates
+## नीति अद्यतन
 
-This policy may be updated when tracking features or legal requirements change.
+ट्रैकिंग सुविधाओं या कानूनी आवश्यकताओं में परिवर्तन होने पर इस नीति को अद्यतन किया जा सकता है।
 
-## Contact
+## संपर्क करें
 
-For privacy requests, use the support and contact channels in the project repository:
+गोपनीयता अनुरोधों के लिए, प्रोजेक्ट रिपॉजिटरी में समर्थन और संपर्क चैनलों का उपयोग करें:
 <https://github.com/tsparticles/tsparticles>

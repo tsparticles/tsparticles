@@ -1,24 +1,24 @@
-# Bundle: Fireworks
+# 捆绑包：Fireworks
 
-`@tsparticles/fireworks` provides a simplified API for creating fireworks effects with a single function call. Supports sounds, custom colors, and instance control (pause/play).
+`@tsparticles/fireworks` 提供了简化的 API，只需一次函数调用即可创建烟花效果。支持声音、自定义颜色和实例控制（暂停/播放）。
 
-## Included features
+## 包含的功能
 
-**Shapes:** line, circle (from basic)
+**形状：** 线条、圆形（来自 basic）
 
-**Internal plugins:** emitters, emitters-shape-square, blend (blending), sounds
+**内部插件：** emitters（发射器）、emitters-shape-square（方形发射器）、blend（混合）、sounds（声音）
 
-**Updaters:** destroy, life, paint, rotate
+**更新器：** destroy（销毁）、life（生命周期）、paint（绘制）、rotate（旋转）
 
-**API:** `fireworks(options)` — returns a controllable instance
+**API：** `fireworks(options)`——返回一个可控制的实例
 
-## When to use
+## 何时使用
 
-- New Year or celebration effect
-- Celebration UI
-- You don't want to configure the engine manually
+- 新年或庆祝效果
+- 庆祝 UI
+- 你不想手动配置引擎
 
-## Installation
+## 安装
 
 ### npm/pnpm/yarn
 
@@ -29,17 +29,17 @@ pnpm add @tsparticles/fireworks
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
-// Basic effect
+// 基本效果
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
   sounds: true,
 });
 
-// Instance control
+// 实例控制
 instance?.pause();
 instance?.play();
 
-// On a specific canvas
+// 在特定 canvas 上
 await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
@@ -47,35 +47,35 @@ await fireworks("my-canvas", {
 });
 ```
 
-### CDN (script tag)
+### CDN（script 标签）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
 <script>
-  // Immediate fireworks
+  // 立即播放烟花
   fireworks();
 </script>
 ```
 
-### Main parameters
+### 主要参数
 
-| Parameter    | Type                                                         | Default | Description                                             |
-| ------------ | ------------------------------------------------------------ | ------- | ------------------------------------------------------- |
-| `colors`     | string[] | —       | Explosion colors                                        |
-| `rate`       | number                                                       | —       | Fireworks per second                                    |
-| `speed`      | { min, max }                                                 | —       | Particle speed                                          |
-| `sounds`     | boolean                                                      | true    | Enable sound effects                                    |
-| `gravity`    | number                                                       | —       | Gravity (default: 0) |
-| `opacity`    | number                                                       | —       | Opacity (0-1)                        |
-| `brightness` | { min, max }                                                 | —       | Explosion brightness                                    |
+| 参数         | 类型         | 默认值 | 描述            |
+| ------------ | ------------ | ------ | --------------- |
+| `colors`     | string[]     | —      | 爆炸颜色        |
+| `rate`       | number       | —      | 每秒烟花数      |
+| `speed`      | { min, max } | —      | 粒子速度        |
+| `sounds`     | boolean      | true   | 启用音效        |
+| `gravity`    | number       | —      | 重力（默认：0） |
+| `opacity`    | number       | —      | 不透明度（0-1） |
+| `brightness` | { min, max } | —      | 爆炸亮度        |
 
-## Common mistakes
+## 常见错误
 
-- Thinking `tsParticles` is exported by `@tsparticles/fireworks` — it is not.
-- Calling `fireworks()` in a loop without managing the instance — the effect is already continuous.
-- Not stopping the instance when leaving the page — call `instance?.pause()` or `instance?.stop()`.
+- 误以为 `@tsparticles/fireworks` 会导出 `tsParticles`——它不会。
+- 在循环中调用 `fireworks()` 而不管理实例——该效果本身就是持续进行的。
+- 离开页面时没有停止实例——调用 `instance?.pause()` 或 `instance?.stop()`。
 
-## See also
+## 参见
 
-- [Bundle overview](/guide/bundles)
-- [Confetti bundle](/guide/bundles-confetti)
+- [捆绑包概览](/zh/guide/bundles)
+- [彩纸捆绑包](/zh/guide/bundles-confetti)

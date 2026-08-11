@@ -1,23 +1,23 @@
 ---
 title: Preact
-description: Integrate tsParticles with Preact using the official @tsparticles/preact wrapper.
+description: 使用官方 @tsparticles/preact 封装将 tsParticles 与 Preact 集成。
 ---
 
-# Preact Integration
+# Preact 集成
 
-The `@tsparticles/preact` package provides a `<Particles>` component that works seamlessly with Preact, including both class and functional component patterns.
+`@tsparticles/preact` 包提供了一个 `<Particles>` 组件，可与 Preact 无缝协作，同时支持类组件和函数式组件模式。
 
-## Installation
+## 安装
 
 ```bash
 npm install @tsparticles/preact tsparticles
 ```
 
-The `@tsparticles/preact` package ships with TypeScript declarations. No additional type packages are needed.
+`@tsparticles/preact` 包附带 TypeScript 声明。无需额外类型包。
 
-## Engine Initialization
+## 引擎初始化
 
-Before you can render particles, you must initialize the engine with the plugins you need. Call `initParticlesEngine` once, before your app renders.
+在渲染粒子之前，你必须使用所需插件初始化引擎。在应用渲染前调用一次 `initParticlesEngine`。
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -28,7 +28,7 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-For smaller bundles, load only the features you need:
+为了更小的打包体积，只加载所需功能：
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/preact";
@@ -41,11 +41,11 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-`initParticlesEngine` returns a promise that resolves once all plugins are registered. The `<Particles>` component will not render until initialization is complete.
+`initParticlesEngine` 返回一个 Promise，在所有插件注册完成后解析。`<Particles>` 组件在初始化完成之前不会渲染。
 
-## Basic Usage
+## 基本使用
 
-Once the engine is initialized, use the `<Particles>` component anywhere in your app:
+引擎初始化后，在应用的任何位置使用 `<Particles>` 组件：
 
 ```jsx
 import Particles from "@tsparticles/preact";
@@ -56,11 +56,11 @@ function App() {
 }
 ```
 
-The `id` attribute sets both the DOM element id and the container identifier used by tsParticles internally. The `options` prop accepts any valid tsParticles configuration object.
+`id` 属性同时设置 DOM 元素 ID 和 tsParticles 内部使用的容器标识符。`options` 属性接受任何有效的 tsParticles 配置对象。
 
-## Preset Switching
+## 预设切换
 
-Switch between presets dynamically by changing the `options` prop:
+通过更改 `options` 属性动态切换预设：
 
 ```jsx
 import { useState } from "preact/hooks";
@@ -80,10 +80,10 @@ function App() {
   return (
     <div>
       <select onChange={(e) => setPreset(e.currentTarget.value)}>
-        <option value="basic">Basic</option>
-        <option value="snow">Snow</option>
-        <option value="stars">Stars</option>
-        <option value="fireworks">Fireworks</option>
+        <option value="basic">基础</option>
+        <option value="snow">雪花</option>
+        <option value="stars">星星</option>
+        <option value="fireworks">烟花</option>
       </select>
       <Particles id="tsparticles" key={preset} options={presets[preset]} />
     </div>
@@ -91,11 +91,11 @@ function App() {
 }
 ```
 
-Using a `key` prop forces Preact to remount the component, fully restarting the particles for each preset.
+使用 `key` 属性强制 Preact 重新挂载组件，为每个预设完全重启粒子。
 
-## Class Component
+## 类组件
 
-For class-based components, initialize the engine in `componentDidMount` and manage state in `componentDidUpdate`:
+对于基于类的组件，在 `componentDidMount` 中初始化引擎，并在 `componentDidUpdate` 中管理状态：
 
 ```jsx
 import { Component } from "preact";
@@ -135,9 +135,9 @@ export default class ParticlesApp extends Component {
     return (
       <div>
         <select onChange={this.handlePresetChange}>
-          <option value="basic">Basic</option>
-          <option value="snow">Snow</option>
-          <option value="stars">Stars</option>
+          <option value="basic">基础</option>
+          <option value="snow">雪花</option>
+          <option value="stars">星星</option>
         </select>
         {engineReady && <Particles id="tsparticles" options={options} />}
       </div>
@@ -146,9 +146,9 @@ export default class ParticlesApp extends Component {
 }
 ```
 
-## Functional Component
+## 函数式组件
 
-With hooks, use `useState` and `useEffect` to initialize the engine and manage configuration:
+使用 Hooks 时，使用 `useState` 和 `useEffect` 初始化引擎并管理配置：
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -169,9 +169,9 @@ export default function App() {
 }
 ```
 
-## Custom Configuration
+## 自定义配置
 
-Define a full configuration object directly instead of using presets:
+直接定义完整的配置对象而不使用预设：
 
 ```jsx
 import { useState, useEffect } from "preact/hooks";
@@ -245,9 +245,18 @@ export default function App() {
 }
 ```
 
-## Event Handling
+## Reactive Behavior
 
-Use the `particlesLoaded` callback to access the tsParticles `Container` instance after particles are fully rendered:
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## 事件处理
+
+使用 `particlesLoaded` 回调在粒子完全渲染后访问 tsParticles `Container` 实例：
 
 ```jsx
 import { useCallback, useState, useEffect } from "preact/hooks";
@@ -265,7 +274,7 @@ export default function App() {
   }, []);
 
   const handleParticlesLoaded = useCallback(async (container) => {
-    console.log("Particles container ready:", container);
+    console.log("粒子容器就绪：", container);
     container?.refresh();
   }, []);
 
@@ -277,12 +286,4 @@ export default function App() {
 }
 ```
 
-The `particlesLoaded` callback receives the `Container` instance, which you can use to call methods like `refresh()`, `pause()`, `play()`, or `destroy()`.
-
-## Reactive Behavior
-
-The `<Particles>` component automatically reloads particles when `id`, `options`, or `url` props change. Changes to the `theme` prop apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package to be loaded (safe no-op otherwise).
-
-## Cleanup
-
-On component unmount, the particles container is automatically destroyed, stopping all animations and freeing resources.
+`particlesLoaded` 回调接收 `Container` 实例，你可以使用它调用 `refresh()`、`pause()`、`play()` 或 `destroy()` 等方法。

@@ -1,8 +1,8 @@
-# Plugin Option: Infection
+# Plugin-Option: Infektion
 
-`infection` is a plugin option for infection-like propagation behavior.
+`infection` ist eine Plugin-Option für infektionsähnliches Ausbreitungsverhalten.
 
-## Example
+## Beispiel
 
 ```ts
 infection: {
@@ -17,11 +17,11 @@ infection: {
 }
 ```
 
-## Notes
+## Notizen
 
-- Use clear stage definitions for predictable behavior.
-- Test visually with small particle counts first.
+- Verwenden Sie klare Phasendefinitionen für vorhersehbares Verhalten.
+- Zuerst visuell mit kleinen Partikelzahlen testen.
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Infection.md>

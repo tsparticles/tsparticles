@@ -1,8 +1,8 @@
-# Particles Tilt
+# Partikelneigung
 
-`particles.tilt` controls tilt angle and tilt animation.
+`particles.tilt` steuert den Neigungswinkel und die Neigungsanimation.
 
-## Example
+## Beispiel
 
 ```ts
 particles: {
@@ -22,6 +22,6 @@ particles: {
 }
 ```
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Tilt.md>

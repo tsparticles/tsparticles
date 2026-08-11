@@ -1,16 +1,16 @@
-# Playground Bundles
+# 游乐场捆绑包
 
-Use this page to test the focused APIs from these packages:
+使用此页面测试这些包中的重点 API：
 
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
 - `@tsparticles/ribbons`
 
-Ribbons website: <https://ribbons.js.org>
+Ribbons 网站：<https://ribbons.js.org>
 
-Each section has its own canvas, JSON editor, and controls.
+每个部分都有自己的画布、JSON 编辑器和控件。
 
-The demos are scoped to their local canvas element (`*.create(...)`) so they do not take over the full page.
+演示的范围仅限于其本地画布元素 (`*.create(...)`)，因此它们不会占据整个页面。
 
 <PlaygroundBundlesPanel></PlaygroundBundlesPanel>

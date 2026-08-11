@@ -1,87 +1,68 @@
-# Options Reference
+# Riferimento Opzioni
 
-`tsParticles` options are deep, so this page is a practical map before you dive into every sub-option.
+Le opzioni di `tsParticles` sono molto estese: questa pagina e una mappa pratica prima di entrare nei singoli sotto-parametri.
 
-## Choose your configuration path
+## Scegli il tuo percorso di configurazione
 
-- **Fast visual result**: start from a preset and override key fields.
-- **Full control**: define `particles`, `interactivity`, and `background` manually.
-- **Config-first workflow**: start from `@tsparticles/configs` and iterate safely.
+- **Risultato visivo rapido**: parti da un preset e sovrascrivi i campi chiave.
+- **Controllo completo**: definisci manualmente `particles`, `interactivity` e `background`.
+- **Approccio config-first**: parti da `@tsparticles/configs` e poi affina passo dopo passo.
 
-## Quick docs (local)
+## Docs rapide (locali)
 
-- [`Background & Canvas`](/options/background)
-- [`Background Mask`](/options/background-mask)
-- [`Full Screen`](/options/fullscreen)
-- [`Motion`](/options/motion)
-- [`Manual Particles`](/options/manual-particles)
-- [`Themes`](/options/themes)
-- [`Particles`](/options/particles)
-- [`Particles Number`](/options/particles-number)
-- [`Particles Move`](/options/particles-move)
-- [`Particles Links`](/options/particles-links)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Shape`](/options/particles-shape)
-- [`Particles Collisions`](/options/particles-collisions)
-- [`Particles Life`](/options/particles-life)
-- [`Particles Orbit`](/options/particles-orbit)
-- [`Particles Roll`](/options/particles-roll)
-- [`Particles Rotate`](/options/particles-rotate)
-- [`Interactivity`](/options/interactivity)
-- [`Interactivity Click`](/options/interactivity-click)
-- [`Interactivity Hover`](/options/interactivity-hover)
-- [`Interactivity Div`](/options/interactivity-div)
-- [`Interactivity Events`](/options/interactivity-events)
-- [`Interactivity Modes`](/options/interactivity-modes)
-- [`Plugin: Absorbers`](/options/plugin-absorbers)
-- [`Plugin: Background Mask`](/options/plugin-background-mask)
-- [`Plugin: Blend`](/options/plugin-blend)
-- [`Plugin: Canvas Mask`](/options/plugin-canvas-mask)
-- [`Plugin: Colors`](/options/plugin-colors)
-- [`Plugin: Easings`](/options/plugin-easings)
-- [`Plugin: Effects`](/options/plugin-effects)
-- [`Plugin: Emitter Shapes`](/options/plugin-emitter-shapes)
-- [`Plugin: Emitters`](/options/plugin-emitters)
-- [`Plugin: Exports`](/options/plugin-exports)
-- [`Plugin: Infection`](/options/plugin-infection)
-- [`Plugin: Interactions`](/options/plugin-interactions)
-- [`Plugin: Motion`](/options/plugin-motion)
-- [`Plugin: Path Generators`](/options/plugin-path-generators)
-- [`Plugin: Poisson`](/options/plugin-poisson)
-- [`Plugin: Polygon Mask`](/options/plugin-polygon-mask)
-- [`Plugin: Responsive`](/options/plugin-responsive)
-- [`Plugin: Shapes`](/options/plugin-shapes)
-- [`Plugin: Sounds`](/options/plugin-sounds)
-- [`Plugin: Themes`](/options/plugin-themes)
-- [`Plugin: Trail`](/options/plugin-trail)
-- [`Plugin: Updaters`](/options/plugin-updaters)
-- [`Plugin: Zoom`](/options/plugin-zoom)
-- [`Performance Guide`](/options/performance)
+- [`Background & Canvas`](/it/options/background)
+- [`Background Mask`](/it/options/background-mask)
+- [`Full Screen`](/it/options/fullscreen)
+- [`Motion`](/it/options/motion)
+- [`Manual Particles`](/it/options/manual-particles)
+- [`Themes`](/it/options/themes)
+- [`Particles`](/it/options/particles)
+- [`Particles Number`](/it/options/particles-number)
+- [`Particles Move`](/it/options/particles-move)
+- [`Particles Links`](/it/options/particles-links)
+- [`Particles Palette`](/it/options/particles-palette)
+- [`Particles Shape`](/it/options/particles-shape)
+- [`Particles Collisions`](/it/options/particles-collisions)
+- [`Particles Life`](/it/options/particles-life)
+- [`Particles Orbit`](/it/options/particles-orbit)
+- [`Particles Roll`](/it/options/particles-roll)
+- [`Particles Rotate`](/it/options/particles-rotate)
+- [`Interactivity`](/it/options/interactivity)
+- [`Interactivity Click`](/it/options/interactivity-click)
+- [`Interactivity Hover`](/it/options/interactivity-hover)
+- [`Interactivity Div`](/it/options/interactivity-div)
+- [`Interactivity Events`](/it/options/interactivity-events)
+- [`Interactivity Modes`](/it/options/interactivity-modes)
+- [`Plugin: Absorbers`](/it/options/plugin-absorbers)
+- [`Plugin: Emitters`](/it/options/plugin-emitters)
+- [`Plugin: Infection`](/it/options/plugin-infection)
+- [`Plugin: Polygon Mask`](/it/options/plugin-polygon-mask)
+- [`Performance Guide`](/it/options/performance)
 
-## Particle deep-dive pages
+## Pagine di approfondimento Particles
 
-- [`Particles Bounce`](/options/particles-bounce)
-- [`Particles Color`](/options/particles-color)
-- [`Particles Destroy`](/options/particles-destroy)
-- [`Particles Group`](/options/particles-group)
-- [`Particles Opacity`](/options/particles-opacity)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Repulse`](/options/particles-repulse)
-- [`Particles Shadow`](/options/particles-shadow)
-- [`Particles Size`](/options/particles-size)
-- [`Particles Stroke`](/options/particles-stroke)
-- [`Particles Tilt`](/options/particles-tilt)
-- [`Particles Twinkle`](/options/particles-twinkle)
-- [`Particles Wobble`](/options/particles-wobble)
-- [`Particles ZIndex`](/options/particles-zindex)
+- [`Particles Bounce`](/it/options/particles-bounce)
+- [`Particles Color`](/it/options/particles-color)
+- [`Particles Destroy`](/it/options/particles-destroy)
+- [`Particles Group`](/it/options/particles-group)
+- [`Particles Opacity`](/it/options/particles-opacity)
+- [`Particles Palette`](/it/options/particles-palette)
+- [`Particles Repulse`](/it/options/particles-repulse)
+- [`Particles Shadow`](/it/options/particles-shadow)
+- [`Particles Size`](/it/options/particles-size)
+- [`Particles Stroke`](/it/options/particles-stroke)
+- [`Particles Tilt`](/it/options/particles-tilt)
+- [`Particles Twinkle`](/it/options/particles-twinkle)
+- [`Particles Wobble`](/it/options/particles-wobble)
+- [`Particles ZIndex`](/it/options/particles-zindex)
 
-## Where the source of truth lives
+## Dove trovare la documentazione di riferimento
 
-- Main options docs: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- Detailed option pages: [`tsparticles/markdown/Options/`](https://github.com/tsparticles/tsparticles/tree/main/markdown/Options)
-- Type interfaces: [`tsparticles/engine/src/Options/Interfaces`](https://github.com/tsparticles/tsparticles/tree/main/engine/src/Options/Interfaces)
+- Documentazione opzioni principali: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- Pagine opzioni dettagliate: [`tsparticles/markdown/Options/`](https://github.com/tsparticles/tsparticles/tree/main/markdown/Options)
+- Interfacce TypeScript: [`tsparticles/engine/src/Options/Interfaces`](https://github.com/tsparticles/tsparticles/tree/main/engine/src/Options/Interfaces)
 
-## Most-used root options
+## Opzioni root piu usate
 
 - `background`
 - `fullScreen`
@@ -91,19 +72,19 @@
 - `preset`
 - `responsive`
 
-## Most-used sections
+## Sezioni piu usate
 
-- `background`: canvas background and masking basics.
-- `particles.number`: quantity and density.
-- `particles.move`: movement speed, direction, and out modes.
-- `particles.shape`: circle, polygon, image, emoji, custom.
-- `particles.palette`: quickly swap coordinated color sets.
-- `interactivity`: hover/click modes and external effects.
-- `detectRetina`: quality/perf tradeoff on high-DPI screens.
+- `background`: sfondo canvas e basi del masking.
+- `particles.number`: quantita e densita.
+- `particles.move`: velocita, direzione e out modes.
+- `particles.shape`: circle, polygon, image, emoji e forme custom.
+- `particles.palette`: cambia rapidamente set di colori coordinati.
+- `interactivity`: modalita hover/click ed effetti esterni.
+- `detectRetina`: compromesso qualita/performance su schermi ad alta densita.
 
-## Particles map (nested view)
+## Mappa particles (vista nidificata)
 
-Use this quick tree as a navigation aid before opening single pages:
+Usa questo albero rapido come guida di navigazione prima di aprire le singole pagine:
 
 ```text
 particles
@@ -131,19 +112,19 @@ particles
 `- palette
 ```
 
-Open root docs first, then deep-dive sections:
+Apri prima i documenti root, poi gli approfondimenti:
 
-- Root: [`Particles`](/options/particles)
-- Deep dives: [`Particles Number`](/options/particles-number), [`Particles Move`](/options/particles-move), [`Particles Links`](/options/particles-links)
+- Base: [`Particles`](/it/options/particles)
+- Approfondimenti: [`Particles Number`](/it/options/particles-number), [`Particles Move`](/it/options/particles-move), [`Particles Links`](/it/options/particles-links)
 
-## Safe options workflow
+## Workflow sicuro per le opzioni
 
-1. Start with a working config from demos or presets.
-2. Change one section at a time.
-3. Validate with TypeScript (`IOptions`) in app code.
-4. Keep production options in dedicated JSON files.
+1. Parti da una configurazione funzionante presa da demo o preset.
+2. Modifica una sezione per volta.
+3. Valida con TypeScript (`IOptions`) nel codice applicativo.
+4. Mantieni le opzioni di produzione in file JSON dedicati.
 
-## Minimal typed example
+## Esempio minimo tipizzato
 
 ```ts
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -157,16 +138,16 @@ export const particlesOptions: ISourceOptions = {
 };
 ```
 
-## Performance guardrails
+## Guardrail performance
 
-- Prefer `@tsparticles/slim` unless you need advanced plugins.
-- Keep particle counts proportional to container area.
-- Profile with real devices before adding heavy interactions.
+- Preferisci `@tsparticles/slim` salvo esigenze di plugin avanzati.
+- Mantieni il numero di particelle proporzionato all'area del contenitore.
+- Profila su dispositivi reali prima di aggiungere interazioni pesanti.
 
-## Related references
+## Riferimenti correlati
 
-- Config package docs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
-- Presets folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- Palettes folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Docs pacchetto config: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
+- Cartella preset: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Cartella palette: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-For full details on every sub-option, also use the source pages in `tsparticles/markdown/Options` linked above.
+Per i dettagli completi su ogni sotto-opzione, consulta anche le pagine sorgente in `tsparticles/markdown/Options` linkate sopra.

@@ -1,5 +1,5 @@
-# Playground Presets
+# Préréglages de terrain de jeu
 
-Use this page for official preset-based demos.
+Utilisez cette page pour les démos officielles basées sur des préréglages.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>

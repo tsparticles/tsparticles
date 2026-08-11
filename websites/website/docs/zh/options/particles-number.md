@@ -1,8 +1,8 @@
-# Particles Number
+# 粒子数
 
-`particles.number` controls how many particles are active.
+`particles.number` 控制有多少粒子处于活动状态。
 
-## Example
+## 示例
 
 ```ts
 particles: {
@@ -16,14 +16,14 @@ particles: {
 }
 ```
 
-- `value`: base amount of particles.
-- `density.enable`: adapts count to canvas size.
-- `density.area`: reference area used for scaling.
+- `value`：粒子的基本数量。
+- `density.enable`：使计数适应画布大小。
+- `density.area`：用于缩放的参考区域。
 
-## Performance tip
+## 性能提示
 
-Lower `value` first when FPS drops.
+当 FPS 下降时，首先降低 `value`。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Number.md>

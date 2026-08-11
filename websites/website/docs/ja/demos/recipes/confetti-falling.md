@@ -1,14 +1,14 @@
-# Confetti Falling Preset
+# 紙吹雪が降るプリセット
 
-Official preset from the `presets/presets/confettiFalling` workspace.
+`presets/presets/confettiFalling` ワークスペースからの公式プリセット。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-falling
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-falling>
+デモ: <https://particles.js.org/demos/recipes/confetti-falling>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>
+ソースドキュメント: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiFalling#readme>

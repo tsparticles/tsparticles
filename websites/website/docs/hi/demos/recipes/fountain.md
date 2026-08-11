@@ -1,14 +1,14 @@
-# Fountain Preset
+# फाउंटेन प्रीसेट
 
-Official preset from the `presets/presets/fountain` workspace.
+`presets/presets/fountain` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fountain
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for elegant, flowing particle animations and water-themed effects.
+सुरुचिपूर्ण, प्रवाहित कण एनिमेशन और जल-थीम वाले प्रभावों के लिए बिल्कुल सही।
 
-Demo: <https://particles.js.org/demos/recipes/fountain>
+डेमो: <https://particles.js.org/demos/recipes/fountain>

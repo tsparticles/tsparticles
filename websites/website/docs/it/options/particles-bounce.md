@@ -1,8 +1,8 @@
-# Particles Bounce
+# Le particelle rimbalzano
 
-`particles.bounce` customizes rebound behavior when collisions or boundaries apply bounce logic.
+`particles.bounce` personalizza il comportamento di rimbalzo quando collisioni o confini applicano la logica di rimbalzo.
 
-## Example
+## Esempio
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Guida pratica
 
-- Values around `1` keep natural rebounds.
-- Higher values can look energetic but less realistic.
+- I valori intorno a `1` mantengono rimbalzi naturali.
+- Valori più alti possono sembrare energici ma meno realistici.
 
-## Source reference
+## Riferimento alla fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Bounce.md>

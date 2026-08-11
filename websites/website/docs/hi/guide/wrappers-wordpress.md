@@ -1,34 +1,34 @@
-# Wrapper: @tsparticles/wordpress
+# रैपर: @tsparticles/wordpress
 
-Official WordPress plugin package for `tsParticles`.
+`tsParticles` के लिए आधिकारिक वर्डप्रेस प्लगइन पैकेज।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/wordpress
 ```
 
-## Notes
+## नोट्स
 
-- Requires a full WordPress installation.
-- Not mapped to a standalone `demo/*` folder in this monorepo.
+- पूर्ण वर्डप्रेस इंस्टॉलेशन की आवश्यकता है।
+- इस मोनोरेपो में स्टैंडअलोन `demo/*` फ़ोल्डर में मैप नहीं किया गया है।
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install the package in a WordPress plugin/theme workflow.
-2. Register/enqueue scripts through WordPress hooks.
-3. Pass options JSON from plugin settings or templates.
+1. पैकेज को वर्डप्रेस प्लगइन/थीम वर्कफ़्लो में इंस्टॉल करें।
+2. वर्डप्रेस हुक के माध्यम से स्क्रिप्ट रजिस्टर/एन्क्यू करें।
+3. प्लगइन सेटिंग्स या टेम्प्लेट से विकल्प JSON पास करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
-- Wrappers index: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- रैपर्स इंडेक्स: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- रैपर फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

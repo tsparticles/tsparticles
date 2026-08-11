@@ -1,16 +1,16 @@
-# Particles Color
+# パーティクルの色
 
-Particle color options are now documented under `particles.paint.fill`.
+パーティクルのカラー オプションが `particles.paint.fill` に記載されるようになりました。
 
-## New page
+## 新しいページ
 
-- [`Particles Paint`](/options/particles-paint)
+- [`Particles Paint`](/ja/options/particles-paint)
 
-## Quick mapping
+## クイックマッピング
 
-- Old: `particles.color`
-- New: `particles.paint.fill`
+- 旧: `particles.color`
+- 新機能: `particles.paint.fill`
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

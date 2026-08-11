@@ -1,25 +1,25 @@
-# Framework Integrations
+# Framework 集成
 
-`tsParticles` supports multiple wrappers, but the runtime flow is always the same:
+`tsParticles` 支持多种 wrappers，但 runtime 流程始终一致：
 
-1. initialize the engine once
-2. load only the features you need (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
-3. render the wrapper component with your options
+1. 只初始化一次 engine
+2. 仅加载需要的功能（`@tsparticles/slim`、`@tsparticles/all` 或自定义 plugins）
+3. 使用 options 渲染 wrapper 组件
 
-## Quick checklist
+## 快速检查清单
 
-- Keep all `@tsparticles/*` package versions aligned.
-- Run the loader once at app startup.
-- Start with a small options object and grow incrementally.
-- For SSR frameworks, mount particles client-side only.
+- 保持所有 `@tsparticles/*` 版本一致。
+- 在应用启动时只执行一次 loader。
+- 从小的 options 对象开始，再逐步扩展。
+- 对于 SSR framework，仅在客户端挂载粒子。
 
-## Start from the wrapper guide
+## 从 wrappers 指南开始
 
-For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid, and others), see:
+完整的 wrappers 矩阵（React、Next.js、Vue/Nuxt、Angular、Svelte、Solid 等）请查看：
 
-- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/wrappers`](/zh/guide/wrappers)
 
-## Core integration examples
+## 核心集成示例
 
 ### React
 
@@ -107,15 +107,15 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## Practical guidance
+## 实用建议
 
-- Prefer `@tsparticles/slim` as baseline for most apps.
-- Keep options in dedicated config files when they grow.
-- For expensive scenes, expose start/stop controls in your UI.
+- 大多数应用可优先使用 `@tsparticles/slim` 作为基线。
+- options 增长后，建议拆分到独立配置文件。
+- 对于高开销场景，在 UI 中提供开始/停止控制。
 
-## Source references
+## 参考来源
 
-- Wrappers source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Framework demos source: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- wrappers 源码: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- framework demos 源码: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>

@@ -1,8 +1,8 @@
-# Particles Tilt
+# Inclinação de partículas
 
-`particles.tilt` controls tilt angle and tilt animation.
+`particles.tilt` controla o ângulo de inclinação e a animação de inclinação.
 
-## Example
+## Exemplo
 
 ```ts
 particles: {
@@ -22,6 +22,6 @@ particles: {
 }
 ```
 
-## Source reference
+## Referência da fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Tilt.md>

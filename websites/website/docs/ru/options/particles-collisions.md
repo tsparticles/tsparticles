@@ -1,8 +1,8 @@
-# Particles Collisions
+# Столкновения частиц
 
-`particles.collisions` controls particle-to-particle collision behavior.
+`particles.collisions` управляет поведением столкновений частиц.
 
-## Example
+## Пример
 
 ```ts
 particles: {
@@ -13,13 +13,13 @@ particles: {
 }
 ```
 
-- `enable`: activates collisions.
-- `mode`: collision behavior (`bounce` is the most common).
+- `enable`: активирует коллизии.
+- `mode`: поведение при коллизиях (`bounce` является наиболее распространенным).
 
-## Performance tip
+## Совет по производительности
 
-Collisions can be costly at high particle counts. Tune with `particles.number` first.
+Столкновения могут быть дорогостоящими при большом количестве частиц. Сначала настройтесь на `particles.number`.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Collisions.md>

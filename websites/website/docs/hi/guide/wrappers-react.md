@@ -1,30 +1,30 @@
-# Wrapper: @tsparticles/react
+# रैपर: @tsparticles/react
 
-Official React wrapper for `tsParticles`.
+`tsParticles` के लिए आधिकारिक रिएक्ट रैपर।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## त्वरित सेटअप प्रवाह
 
-1. Install wrapper + engine + loader package.
-2. Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`) — it must be rendered only once for the entire app lifecycle.
-3. Initialize once with `ParticlesProvider` and `loadSlim`.
-4. Render `Particles` component with typed options.
+1. रैपर + इंजन + लोडर पैकेज स्थापित करें।
+2. `ParticlesProvider` को अपने ऐप रूट (जैसे `main.tsx` या `layout.tsx`) पर रखें — इसे संपूर्ण ऐप जीवनचक्र में केवल एक बार रेंडर किया जाना चाहिए।
+3. `ParticlesProvider` और `loadSlim` से एक बार आरंभ करें।
+4. टाइप किए गए विकल्पों के साथ `Particles` घटक प्रस्तुत करें।
 
-## Monorepo references
+## मोनोरेपो संदर्भ
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
+- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
+- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
 
-## Readme
+## मुझे पढ़ें
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
+- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
 
-## Related docs
+## संबंधित दस्तावेज़
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/hi/guide/wrappers)
+- [`/guide/frameworks`](/hi/guide/frameworks)

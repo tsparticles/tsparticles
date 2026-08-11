@@ -1,30 +1,30 @@
-# Wrapper: @tsparticles/react
+# Обертка: @tsparticles/react
 
-Official React wrapper for `tsParticles`.
+Официальная оболочка React для `tsParticles`.
 
-## Install
+## Установить
 
 ```bash
 pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Быстрая настройка
 
-1. Install wrapper + engine + loader package.
-2. Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`) — it must be rendered only once for the entire app lifecycle.
-3. Initialize once with `ParticlesProvider` and `loadSlim`.
-4. Render `Particles` component with typed options.
+1. Установите пакет обертка + движок + загрузчик.
+2. Разместите `ParticlesProvider` в корне вашего приложения (например, `main.tsx` или `layout.tsx`) — он должен быть отрисован только один раз за весь жизненный цикл приложения.
+3. Выполните инициализацию один раз с помощью `ParticlesProvider` и `loadSlim`.
+4. Отобразите компонент `Particles` с типизированными параметрами.
 
-## Monorepo references
+## Ссылки на монорепо
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
+- Папка пакета: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>.
+  - Демо-приложение: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>.
 
-## Readme
+## Информация
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
+- README оболочки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
 
-## Related docs
+## Связанные документы
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ru/guide/wrappers)
+- [`/guide/frameworks`](/ru/guide/frameworks)

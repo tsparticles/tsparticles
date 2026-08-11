@@ -1,51 +1,49 @@
-# Privacy Policy
+# 隐私政策
 
-This page explains how `particles.js.org` handles personal data related to analytics and advertising services.
+本页说明 `particles.js.org` 如何处理与分析和广告服务相关的个人数据。
 
-## Scope
+## 范围
 
-This policy covers the docs website and related pages served from `particles.js.org`.
+本政策涵盖 `particles.js.org` 提供的文档网站和相关页面。
 
-## Data we process
+## 我们处理的数据
 
-- Technical browsing data (IP-derived metadata, user agent, referrer, page URLs).
-- Analytics events for documentation usage trends.
-- Advertising-related events required by Google AdSense when consent is granted, or non-personalized ad delivery where legally permitted.
+- 技术浏览数据（IP 派生元数据、用户代理、引荐来源网址、页面 URL）。
+- 文档使用趋势的分析事件。
+- 获得同意后 Google AdSense 所需的广告相关事件。
 
-## Services used
+## 使用的服务
 
-- **Google Analytics 4** for traffic and usage analytics.
-- **Google AdSense** for ad delivery and campaign measurement.
+- **Google Analytics 4** 用于流量和使用情况分析。
+- **Google AdSense** 用于广告投放和广告系列衡量。
 
-## Legal basis and consent
+## 法律依据和同意
 
-- Essential technical storage is used for site operation.
-- Analytics cookies are enabled only after explicit consent.
-- When analytics consent is not granted, the site may use cookieless, aggregate analytics measurement (Google Consent Mode) where legally permitted.
-- Advertising can run in non-personalized mode when consent for personalized ads is not granted, where legally permitted and configured.
-- You can reject consent and continue using the docs.
+- 必要的技术存储用于现场操作。
+- 只有在通过 cookie 横幅明确同意后，才会启用分析和广告技术。
+- 您可以拒绝同意并继续使用文档。
 
-## Consent storage
+## 同意存储
 
-- Consent choice is stored locally in browser storage under a site-specific key.
-- Consent choice controls whether analytics/ads storage can be used.
+- 同意选择以站点特定密钥本地存储在浏览器存储中。
+- 在接受同意之前，不会激活任何分析/广告跟踪。
 
-## Data sharing
+## 数据共享
 
-- Data may be processed by Google as a third-party processor/controller according to Google service terms.
-- We do not sell personal data through this website.
+- 数据可能由 Google 作为第三方处理器/控制器根据 Google 服务条款进行处理。
+- 我们不会通过本网站出售个人数据。
 
-## Your controls
+## 你的控制
 
-- Accept or reject via the cookie banner.
-- Clear browser site data (local storage/cookies) to reset your choice.
-- Use browser privacy controls and ad settings for additional restrictions.
+- 通过 cookie 横幅接受或拒绝。
+- 清除浏览器站点数据（本地存储/cookie）以重置您的选择。
+- 使用浏览器隐私控制和广告设置以获得额外的限制。
 
-## Policy updates
+## 政策更新
 
-This policy may be updated when tracking features or legal requirements change.
+当跟踪功能或法律要求发生变化时，本政策可能会更新。
 
-## Contact
+## 联系方式
 
-For privacy requests, use the support and contact channels in the project repository:
+对于隐私请求，请使用项目存储库中的支持和联系渠道：
 <https://github.com/tsparticles/tsparticles>

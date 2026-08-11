@@ -1,8 +1,8 @@
-# Particles Orbit
+# Orbite des particules
 
-`particles.orbit` makes particles revolve around orbit centers.
+`particles.orbit` fait tourner les particules autour des centres orbitaux.
 
-## Example
+## Exemple
 
 ```ts
 particles: {
@@ -16,10 +16,10 @@ particles: {
 }
 ```
 
-- `enable`: activates orbit behavior.
-- `radius`: orbit distance.
-- `rotation`: orbit angle control.
+- `enable` : active le comportement de l'orbite.
+- `radius` : distance orbitale.
+- `rotation` : contrôle de l'angle d'orbite.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Orbit.md>

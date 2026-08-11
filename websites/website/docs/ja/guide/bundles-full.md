@@ -1,41 +1,41 @@
-# Bundle: tsparticles (Full)
+# Bundle: tsparticles（Full）
 
-`tsparticles` (npm: `tsparticles`, loader: `loadFull`) is the official full bundle. Includes everything from Slim plus emitters, absorbers, text shapes, and advanced animations (wobble, roll, tilt, twinkle, destroy).
+`tsparticles`（npm: `tsparticles`、ローダー: `loadFull`）は公式のフルバンドルです。Slim のすべてに加え、エミッター、アブソーバー、テキスト形状、高度なアニメーション（ウィブル、ロール、ティルト、トゥインクル、デストロイ）を含みます。
 
-## Included features
+## 含まれる機能
 
-Inherits everything from `@tsparticles/slim` plus:
+`@tsparticles/slim` のすべてを継承し、さらに:
 
-**Additional shapes:** text (with custom fonts)
+**追加形状:** テキスト（カスタムフォント対応）
 
-**Additional external interactions:**
+**追加外部インタラクション:**
 
-- drag (drag particles with mouse)
-- trail (particle trail behind mouse)
+- drag（マウスでパーティクルをドラッグ）
+- trail（マウス後方のパーティクルトレイル）
 
-**Additional updaters:**
+**追加アップデーター:**
 
-- destroy (particle destruction animation)
-- roll (rolling)
-- tilt (3D tilt)
-- twinkle (intermittent sparkle)
-- wobble (oscillation)
+- destroy（パーティクル破壊アニメーション）
+- roll（回転）
+- tilt（3D 傾き）
+- twinkle（断続的なきらめき）
+- wobble（振動）
 
-**Plugins:**
+**プラグイン:**
 
-- absorbers (black holes that suck in particles)
-- emitters (continuous particle sources)
-- emitters-shape-circle, emitters-shape-square (emitter shapes)
+- アブソーバー（パーティクルを吸い込むブラックホール）
+- エミッター（継続的なパーティクル生成源）
+- emitters-shape-circle、emitters-shape-square（エミッター形状）
 
-## When to use
+## 使用すべきケース
 
-- Need emitters (particles spawning continuously)
-- Need absorbers (particles being sucked in)
-- Need text shapes with custom fonts
-- Need advanced animations (wobble, tilt, roll, twinkle)
-- Good stepping stone before going to individual plugins
+- エミッター（パーティクルの継続的生成）が必要
+- アブソーバー（パーティクルの吸い込み）が必要
+- カスタムフォントを使用したテキスト形状が必要
+- 高度なアニメーション（ウィブル、ティルト、ロール、トゥインクル）が必要
+- 個別プラグインに進む前の良いステップ
 
-## Installation
+## インストール
 
 ### npm/pnpm/yarn
 
@@ -68,7 +68,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script タグ）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -91,26 +91,26 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## `tsparticles` と `@tsparticles/all` の違い
 
-| Aspect        | `tsparticles` (full)                 | `@tsparticles/all`                                                                                                     |
-| ------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Size          | Moderate                                                | Very large                                                                                                             |
-| Shapes        | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.)                   |
-| Interactions  | Slim + drag + trail                                     | All (cannon, light, pop, particle, repulse)                                                         |
-| Paths         | Quad easing only                                        | 14 path generators                                                                                                     |
-| Effects       | None                                                    | 5 effects (bubble, filter, shadow, etc.)                                            |
-| Exports       | None                                                    | Image, JSON, Video                                                                                                     |
-| Extra plugins | absorbers, emitters                                     | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing        | Quad                                                    | 15 easings                                                                                                             |
+| 項目             | `tsparticles`（full）                            | `@tsparticles/all`                                                                     |
+| ---------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| サイズ           | 中程度                                           | 非常に大きい                                                                           |
+| 形状             | 円、四角、星、多角形、線、画像、絵文字、テキスト | すべての形状（ハート、カード、矢印、スパイラル、cog、角丸四角など）                    |
+| インタラクション | Slim + drag + trail                              | すべて（cannon、light、pop、particle、repulse）                                        |
+| パス             | Quad イージングのみ                              | 14 のパスジェネレーター                                                                |
+| エフェクト       | なし                                             | 5 エフェクト（バブル、フィルター、シャドウなど）                                       |
+| エクスポート     | なし                                             | 画像、JSON、動画                                                                       |
+| 追加プラグイン   | アブソーバー、エミッター                         | すべて（sounds、themes、trail、zoom、polygon-mask、canvas-mask、background-mask など） |
+| イージング       | Quad                                             | 15 のイージング                                                                        |
 
-## Common mistakes
+## よくある間違い
 
-- Confusing `tsparticles` with `@tsparticles/all` — they are different packages.
-- Calling `tsParticles.load()` before `loadFull(tsParticles)`.
-- The npm package is `tsparticles` (not `@tsparticles/full`), the loader is `loadFull`.
+- `tsparticles` と `@tsparticles/all` を混同する — これらは異なるパッケージです。
+- `loadFull(tsParticles)` より前に `tsParticles.load()` を呼ぶ。
+- npm パッケージは `tsparticles`（`@tsparticles/full` ではありません）、ローダーは `loadFull` です。
 
-## See also
+## 関連ページ
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [バンドル概要](/ja/guide/bundles)
+- [インストールガイド](/ja/guide/installation)

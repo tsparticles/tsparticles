@@ -1,11 +1,11 @@
 ---
-title: Angular Integration
-description: Step-by-step guide for integrating tsParticles into Angular applications using @tsparticles/angular.
+title: Intégration Angular
+description: Guide étape par étape pour intégrer tsParticles dans des applications Angular à l'aide de @tsparticles/angular.
 ---
 
-# Angular Integration
+# Intégration Angular
 
-The `@tsparticles/angular` package provides Angular components, modules, and services for tsParticles. This guide covers the traditional `NgModule` approach as well as Angular 17+ standalone components.
+Le package `@tsparticles/angular` fournit des composants Angular, des modules et des services pour tsParticles. Ce guide couvre l'approche traditionnelle avec `NgModule` ainsi que les composants autonomes Angular 17+.
 
 ---
 
@@ -15,13 +15,13 @@ The `@tsparticles/angular` package provides Angular components, modules, and ser
 npm install @tsparticles/angular @tsparticles/engine
 ```
 
-For the full feature set, install the complete bundle:
+Pour l'ensemble complet des fonctionnalités, installez le bundle complet :
 
 ```bash
 npm install tsparticles
 ```
 
-Optional preset packages:
+Packages de préréglages optionnels :
 
 ```bash
 npm install @tsparticles/preset-confetti
@@ -32,9 +32,9 @@ npm install @tsparticles/preset-stars
 
 ---
 
-## Basic Usage (NgModule)
+## Utilisation de base (NgModule)
 
-### 1. Import the Module
+### 1. Importer le module
 
 ```typescript
 import { NgModule } from "@angular/core";
@@ -50,7 +50,7 @@ import { AppComponent } from "./app.component";
 export class AppModule {}
 ```
 
-### 2. Initialise the Engine
+### 2. Initialiser le moteur
 
 ```typescript
 import { Component, OnInit } from "@angular/core";
@@ -108,8 +108,8 @@ export class AppComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container?: Container): void {
-    console.log("Particles container loaded", container);
+  particlesLoaded(container: Container): void {
+    console.log("Conteneur de particules chargé", container);
   }
 }
 ```
@@ -126,9 +126,9 @@ export class AppComponent implements OnInit {
 
 ---
 
-## Engine Initialisation Details
+## Détails d'initialisation du moteur
 
-The `NgParticlesService.init()` method must be called exactly once, typically in `AppComponent.ngOnInit()`. It receives a callback where you load the plugins/presets your application needs.
+La méthode `NgParticlesService.init()` doit être appelée exactement une fois, généralement dans `AppComponent.ngOnInit()`. Elle reçoit un callback où vous chargez les plugins/préréglages dont votre application a besoin.
 
 ```typescript
 import { Component, OnInit } from "@angular/core";
@@ -141,26 +141,26 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     void this.ngParticlesService.init(async (engine: Engine) => {
-      // Load only what you need for smaller bundles
-      await loadBasic(engine);       // basic shapes + move
-      await loadEmittersPlugin(engine); // emitter shapes
+      // Chargez seulement ce dont vous avez besoin pour des bundles plus légers
+      await loadBasic(engine);       // formes de base + déplacement
+      await loadEmittersPlugin(engine); // formes d'émetteurs
     });
   }
 }
 ```
 
-Available loader functions from `tsparticles`:
+Fonctions de chargement disponibles depuis `tsparticles` :
 
-| Function            | Description                                                                    |
-| ------------------- | ------------------------------------------------------------------------------ |
-| `loadFull(engine)`  | All features (largest bundle)                               |
-| `loadBasic(engine)` | Core shapes (circle, square, polygon, etc.) |
-| `loadSlim(engine)`  | Most features minus rarely used plugins                                        |
-| `loadAll(engine)`   | Deprecated alias for `loadFull`                                                |
+| Fonction            | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| `loadFull(engine)`  | Toutes les fonctionnalités (plus gros bundle)         |
+| `loadBasic(engine)` | Formes de base (cercle, carré, polygone, etc.)        |
+| `loadSlim(engine)`  | La plupart des fonctionnalités sans les plugins rares |
+| `loadAll(engine)`   | Alias déprécié pour `loadFull`                        |
 
 ---
 
-## Confetti Effect
+## Effet Confetti
 
 ```bash
 npm install @tsparticles/preset-confetti
@@ -169,7 +169,7 @@ npm install @tsparticles/preset-confetti
 ```typescript
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 
-// In NgParticlesService.init callback:
+// Dans le callback NgParticlesService.init :
 await loadConfettiPreset(engine);
 ```
 
@@ -182,7 +182,7 @@ particlesOptions: ISourceOptions = {
 };
 ```
 
-Or use the convenience `<ngx-confetti>` component:
+Ou utilisez le composant pratique `<ngx-confetti>` :
 
 ```typescript
 // app.module.ts
@@ -205,7 +205,7 @@ export class AppModule {}
 
 ---
 
-## Fireworks Effect
+## Effet Feux d'artifice
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -214,7 +214,7 @@ npm install @tsparticles/preset-fireworks
 ```typescript
 import { loadFireworksPreset } from "@tsparticles/preset-fireworks";
 
-// In NgParticlesService.init callback:
+// Dans le callback NgParticlesService.init :
 await loadFireworksPreset(engine);
 ```
 
@@ -227,7 +227,7 @@ particlesOptions: ISourceOptions = {
 };
 ```
 
-Or use the `<ngx-fireworks>` component:
+Ou utilisez le composant `<ngx-fireworks>` :
 
 ```html
 <ngx-fireworks
@@ -240,13 +240,13 @@ Or use the `<ngx-fireworks>` component:
 ></ngx-fireworks>
 ```
 
-> Avoid auto-starting fireworks; bind them to a user action (click, scroll) to prevent unwanted resource usage.
+> Évitez de lancer automatiquement les feux d'artifice ; associez-les à une action utilisateur (clic, défilement) pour éviter une utilisation excessive des ressources.
 
 ---
 
-## Custom Particles Configuration
+## Configuration personnalisée des particules
 
-Full-featured custom particle setup with interactivity:
+Configuration personnalisée complète avec interactivité :
 
 ```typescript
 import { Component, OnInit } from "@angular/core";
@@ -366,8 +366,8 @@ export class ParticlesComponent implements OnInit {
     detectRetina: true,
   };
 
-  particlesLoaded(container?: Container): void {
-    console.log("Container loaded", container);
+  particlesLoaded(container: Container): void {
+    console.log("Conteneur chargé", container);
   }
 }
 ```
@@ -382,17 +382,16 @@ export class ParticlesComponent implements OnInit {
 
 ---
 
-## Events
+## Événements
 
-The `ngx-particles` component emits the `particlesLoaded` event:
+Le composant `ngx-particles` émet l'événement `particlesLoaded` :
 
 ```typescript
 import type { Container } from "@tsparticles/engine";
 
-// Component method
-onParticlesLoaded(container?: Container): void {
-  if (!container) return;
-  // Access the container API
+// Méthode du composant
+onParticlesLoaded(container: Container): void {
+  // Accéder à l'API du conteneur
   container.pause();
   container.play();
   container.destroy();
@@ -408,16 +407,16 @@ onParticlesLoaded(container?: Container): void {
 ></ngx-particles>
 ```
 
-The container reference gives you full programmatic control: pause, resume, destroy, export, and more.
+La référence du conteneur vous donne un contrôle programmatique complet : pause, reprise, destruction, exportation, et plus encore.
 
 ---
 
-## Template Syntax & Conditional Rendering
+## Syntaxe de template et rendu conditionnel
 
-Use Angular structural directives to toggle the component:
+Utilisez les directives structurelles Angular pour activer/désactiver le composant :
 
 ```html
-<button (click)="showParticles = !showParticles">Toggle Particles</button>
+<button (click)="showParticles = !showParticles">Activer/Désactiver les particules</button>
 
 <ngx-particles
   *ngIf="showParticles"
@@ -434,13 +433,13 @@ export class AppComponent {
 }
 ```
 
-When `*ngIf` evaluates to `false`, the component is destroyed (including the canvas and all particle instances). Re-creating it re-initialises everything from scratch.
+Quand `*ngIf` est évalué à `false`, le composant est détruit (y compris le canvas et toutes les instances de particules). Le recréer réinitialise tout depuis zéro.
 
 ---
 
-## Standalone Components (Angular 17+)
+## Composants autonomes (Angular 17+)
 
-In Angular 17+, you can import `NgParticlesModule` directly into a standalone component:
+Dans Angular 17+, vous pouvez importer `NgParticlesModule` directement dans un composant autonome :
 
 ```typescript
 import { Component, OnInit } from "@angular/core";
@@ -479,17 +478,17 @@ export class ParticlesComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container?: Container): void {
-    console.log("Loaded", container);
+  particlesLoaded(container: Container): void {
+    console.log("Chargé", container);
   }
 }
 ```
 
-No `NgModule` wrapper needed — just import `NgParticlesModule` in the component's `imports` array.
+Aucun encapsuleur `NgModule` nécessaire — importez simplement `NgParticlesModule` dans le tableau `imports` du composant.
 
 ---
 
-## Full Component Example
+## Exemple de composant complet
 
 ### app.component.ts
 
@@ -505,7 +504,7 @@ import { NgParticlesService } from "@tsparticles/angular";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  title = "tsParticles Angular Demo";
+  title = "tsParticles Angular Démo";
 
   constructor(private readonly ngParticlesService: NgParticlesService) {}
 
@@ -563,8 +562,8 @@ export class AppComponent implements OnInit {
     },
   };
 
-  particlesLoaded(container?: Container): void {
-    console.log("Particles loaded", container);
+  particlesLoaded(container: Container): void {
+    console.log("Particules chargées", container);
   }
 }
 ```
@@ -583,7 +582,7 @@ export class AppComponent implements OnInit {
     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;"
   >
     <h1>{{ title }}</h1>
-    <p>Particles are running in the background.</p>
+    <p>Les particules s'exécutent en arrière-plan.</p>
   </div>
 </div>
 ```
@@ -600,45 +599,43 @@ export class AppComponent implements OnInit {
 
 ---
 
-## API Reference
+## Référence API
 
-| Component | Selector        | Description                     |
-| --------- | --------------- | ------------------------------- |
-| Particles | `ngx-particles` | Full particle system component  |
-| Confetti  | `ngx-confetti`  | Pre-configured confetti effect  |
-| Fireworks | `ngx-fireworks` | Pre-configured fireworks effect |
+| Composant       | Sélecteur       | Description                             |
+| --------------- | --------------- | --------------------------------------- |
+| Particules      | `ngx-particles` | Composant système de particules complet |
+| Confetti        | `ngx-confetti`  | Effet confetti préconfiguré             |
+| Feux d'artifice | `ngx-fireworks` | Effet feux d'artifice préconfiguré      |
 
-### `ngx-particles` Inputs
+### Entrées `ngx-particles`
 
-| Input     | Type             | Default         | Description                                                                                                  |
-| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `id`      | `string`         | `"tsparticles"` | Canvas element ID. Change triggers destroy+reload.                           |
-| `options` | `ISourceOptions` | `{}`            | Particle configuration. Change triggers destroy+reload.                      |
-| `url`     | `string`         | —               | Remote JSON config URL. Change triggers destroy+reload.                      |
+| Entrée    | Type             | Défaut          | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | ID de l'élément canvas                                                    |
+| `options` | `ISourceOptions` | `{}`            | Configuration des particules                                              |
+| `url`     | `string`         | —               | URL de configuration JSON distante                                        |
 | `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
 
-### `ngx-particles` Outputs
+### Sorties `ngx-particles`
 
-| Output            | Payload                  | Description                                                                             |
-| ----------------- | ------------------------ | --------------------------------------------------------------------------------------- |
-| `particlesLoaded` | `Container \| undefined` | Emitted when the container is initialised; may be undefined on failure. |
-
-### Reactive behavior
-
-The component detects changes to `id`, `options`, `url`, and `theme` inputs via Angular's `OnChanges` lifecycle hook:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the current container. This requires the optional `@tsparticles/plugin-themes` package to be loaded.
-
-### Cleanup
-
-When the component is destroyed, the particles container is automatically destroyed — no orphan animations remain.
+| Sortie            | Payload     | Description                               |
+| ----------------- | ----------- | ----------------------------------------- |
+| `particlesLoaded` | `Container` | Émise lorsque le conteneur est initialisé |
 
 ---
 
-## Troubleshooting
+## Reactive Behavior
 
-- **Blank / invisible canvas** — Ensure the parent element has a defined height (e.g., `height: 100vh`). The canvas takes the container dimensions.
-- **`NgParticlesService.init()` called multiple times** — Call it only once, typically in `AppComponent.ngOnInit()`. Subsequent calls are safe but redundant.
-- **Module not found** — Verify `@tsparticles/angular` is listed in `package.json` dependencies and that you imported `NgParticlesModule`.
-- **`NullInjectorError: No provider for NgParticlesService`** — You must import `NgParticlesModule` (or re-export it) in the module where you provide the component.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Dépannage
+
+- **Canvas blanc / invisible** — Assurez-vous que l'élément parent a une hauteur définie (ex. `height: 100vh`). Le canvas prend les dimensions du conteneur.
+- **`NgParticlesService.init()` appelée plusieurs fois** — Appelez-la une seule fois, généralement dans `AppComponent.ngOnInit()`. Les appels suivants sont sans danger mais redondants.
+- **Module non trouvé** — Vérifiez que `@tsparticles/angular` est listé dans les dépendances de `package.json` et que vous avez importé `NgParticlesModule`.
+- **`NullInjectorError: No provider for NgParticlesService`** — Vous devez importer `NgParticlesModule` (ou le ré-exporter) dans le module où vous fournissez le composant.

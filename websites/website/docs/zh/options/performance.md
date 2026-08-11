@@ -1,8 +1,8 @@
-# Performance Guide
+# 性能指南
 
-Here are the main levers to avoid FPS drops.
+以下是避免 FPS 下降的主要方法。
 
-## 1. Particle count
+## 1) 粒子计数
 
 ```ts
 particles: {
@@ -16,31 +16,31 @@ particles: {
 }
 ```
 
-Fewer particles = fewer draw calls and fewer collisions.
+更少的粒子 = 更少的绘制调用和更少的碰撞。
 
-## 2. Movement and links
+## 2) 移动和链接
 
-- Reduce `move.speed` when you do not need an energetic effect.
-- Limit `links.distance` and `links.opacity`.
-- Avoid heavy combinations (for example `links` + `collisions` + advanced effects) in fullscreen.
+- 当您不需要能量效果时，减少 `move.speed` 。
+- 限制 `links.distance` 和 `links.opacity`。
+- 避免全屏使用大量组合（例如 `links` + `collisions` + 高级效果）。
 
-## 3. Interactivity
+## 3) 互动性
 
-- Keep only a few active modes.
-- On mobile, consider disabling hover mode.
+- 只保留一些活动模式。
+- 在移动设备上，考虑禁用悬停模式。
 
-## 4. Retina and resize
+## 4) 视网膜并调整大小
 
 ```ts
 detectRetina: false;
 ```
 
-Useful in performance-first contexts or on weaker devices.
+在性能优先的环境或较弱的设备上很有用。
 
-## 5. Manual lifecycle control
+## 5) 手动生命周期控制
 
-For expensive sections, use explicit controls:
+对于昂贵的部分，使用显式控制：
 
-- `start` on user click
-- `stop`/`pause` when the section is not visible
-- `destroy` on page/component teardown
+- 用户点击时的 `start`
+- `stop`/`pause` 当该部分不可见时
+- 页面/组件拆卸上的 `destroy`

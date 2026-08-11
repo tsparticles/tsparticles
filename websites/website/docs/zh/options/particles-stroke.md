@@ -1,16 +1,16 @@
-# Particles Stroke
+# 粒子行程
 
-Stroke options are now documented under `particles.paint.stroke`.
+笔画选项现在记录在 `particles.paint.stroke` 下。
 
-## New page
+## 新页面
 
-- [`Particles Paint`](/options/particles-paint)
+- [`Particles Paint`](/zh/options/particles-paint)
 
-## Quick mapping
+## 快速映射
 
-- Old: `particles.stroke`
-- New: `particles.paint.stroke`
+- 旧：`particles.stroke`
+- 新：`particles.paint.stroke`
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

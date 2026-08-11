@@ -54,9 +54,9 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "eslint": "^10.8.0",
+    "eslint": "^10.8.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^63.3.3",
+    "eslint-plugin-jsdoc": "^64.1.0",
     "eslint-plugin-tsdoc": "^0.5.2",
     "prettier": "^3.9.6",
     "prettier-plugin-multiline-arrays": "^4.1.11",
@@ -68,6 +68,6 @@
     "rimraf": "^6.1.3",
     "rollup": "^4.62.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.67.0"
   }
 }

@@ -1,8 +1,8 @@
-# Container Lifecycle
+# Container-Lebenszyklus
 
-A `Container` is the runtime instance returned by `tsParticles.load(...)`.
+Ein `Container` ist die von `tsParticles.load(...)` zurückgegebene Laufzeitinstanz.
 
-## Basic lifecycle
+## Grundlegender Lebenszyklus
 
 ```ts
 import type { Container } from "@tsparticles/engine";
@@ -15,13 +15,13 @@ container.play();
 container.destroy();
 ```
 
-## Recommended pattern
+## Empfohlenes Muster
 
-- `start`: create/recreate container with current options.
-- `stop`: `pause()` when not visible or not needed.
-- `resume`: `play()` when the user wants animation back.
-- `destroy`: free resources on route/component teardown.
+- `start`: Container mit aktuellen Optionen erstellen/neu erstellen.
+- `stop`: `pause()`, wenn nicht sichtbar oder nicht erforderlich.
+- `resume`: `play()`, wenn der Benutzer die Animation zurückhaben möchte.
+- `destroy`: Ressourcen beim Routen-/Komponentenabbau freigeben.
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Container.md>

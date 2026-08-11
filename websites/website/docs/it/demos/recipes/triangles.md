@@ -1,14 +1,14 @@
-# Triangles Preset
+# Preimpostazione triangoli
 
-Official preset from the `presets/presets/triangles` workspace.
+Preimpostazione ufficiale dall'area di lavoro `presets/presets/triangles`.
 
-## Install
+## Installa
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-triangles
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto all'uso (avvio/arresto manuale)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-A solid base for geometric layouts and tech-style design.
+Una base solida per layout geometrici e design in stile tech.
 
-Demo: <https://particles.js.org/demos/recipes/triangles>
+Dimostrazione: <https://particles.js.org/demos/recipes/triangles>

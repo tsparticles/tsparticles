@@ -1,157 +1,157 @@
-# Bundle Guide
+# Bundle-Anleitung
 
-tsParticles is modular. The `@tsparticles/engine` package contains only the core engine; to get visible effects you must register **shapes** (what to draw), **updaters** (how to animate), **interactions** (how to react to mouse/touch), and **plugins** (extra features). All this happens through **bundles**.
+tsParticles ist modular. Das Paket `@tsparticles/engine` enthält nur die Kern-Engine; um sichtbare Effekte zu erzielen, musst du **Formen** (was gezeichnet wird), **Aktualisierer** (wie animiert wird), **Interaktionen** (Reaktion auf Maus/Touch) und **Plugins** (zusätzliche Funktionen) registrieren. All dies geschieht über **Bundles**.
 
-## Bundle categories
+## Bundle-Kategorien
 
-| Category        | Bundle                                                                                              | API                                                         |
-| --------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| Engine + loader | `@tsparticles/basic`, `@tsparticles/slim`, `tsparticles`, `@tsparticles/all`                        | `tsParticles.load({ id, options })`                         |
-| Dedicated API   | `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, `@tsparticles/ribbons` | `confetti({...})`, `fireworks({...})`, etc. |
+| Kategorie       | Bundle                                                                                              | API                                         |
+| --------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Engine + Loader | `@tsparticles/basic`, `@tsparticles/slim`, `tsparticles`, `@tsparticles/all`                        | `tsParticles.load({ id, options })`         |
+| Dedizierte API  | `@tsparticles/confetti`, `@tsparticles/fireworks`, `@tsparticles/particles`, `@tsparticles/ribbons` | `confetti({...})`, `fireworks({...})`, etc. |
 
-## Complete feature comparison
+## Vollständiger Funktionsvergleich
 
-Legend: ● = included, ○ = not included
+Legende: ● = enthalten, ○ = nicht enthalten
 
-| Feature                                                                                             | basic | slim | full (`tsparticles`) | all                                  |
-| --------------------------------------------------------------------------------------------------- | ----- | ---- | --------------------------------------- | ------------------------------------ |
-| **Shapes**                                                                                          |       |      |                                         |                                      |
-| Circle                                                                                              | ●     | ●    | ●                                       | ●                                    |
-| Square                                                                                              | ○     | ●    | ●                                       | ●                                    |
-| Star                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Polygon                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Line                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Image                                                                                               | ○     | ●    | ●                                       | ●                                    |
-| Emoji                                                                                               | ○     | ●    | ●                                       | ●                                    |
-| Text                                                                                                | ○     | ○    | ●                                       | ●                                    |
-| Cards (suits)                                                                    | ○     | ○    | ○                                       | ●                                    |
-| Heart                                                                                               | ○     | ○    | ○                                       | ●                                    |
-| Arrow                                                                                               | ○     | ○    | ○                                       | ●                                    |
-| Rounded rect                                                                                        | ○     | ○    | ○                                       | ●                                    |
-| Rounded polygon                                                                                     | ○     | ○    | ○                                       | ●                                    |
-| Spiral                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| Squircle                                                                                            | ○     | ○    | ○                                       | ●                                    |
-| Cog                                                                                                 | ○     | ○    | ○                                       | ●                                    |
-| Infinity                                                                                            | ○     | ○    | ○                                       | ●                                    |
-| Matrix                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| Path                                                                                                | ○     | ○    | ○                                       | ●                                    |
-| Ribbon                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| **External interactions (mouse/touch)**                                          |       |      |                                         |                                      |
-| Attract                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Bounce                                                                                              | ○     | ●    | ●                                       | ●                                    |
-| Bubble                                                                                              | ○     | ●    | ●                                       | ●                                    |
-| Connect                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Destroy                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Grab                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Parallax                                                                                            | ○     | ●    | ●                                       | ●                                    |
-| Pause                                                                                               | ○     | ●    | ●                                       | ●                                    |
-| Push                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Remove                                                                                              | ○     | ●    | ●                                       | ●                                    |
-| Repulse                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Slow                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Drag                                                                                                | ○     | ○    | ●                                       | ●                                    |
-| Trail                                                                                               | ○     | ○    | ●                                       | ●                                    |
-| Cannon                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| Particle                                                                                            | ○     | ○    | ○                                       | ●                                    |
-| Pop                                                                                                 | ○     | ○    | ○                                       | ●                                    |
-| Light                                                                                               | ○     | ○    | ○                                       | ●                                    |
-| **Particle interactions**                                                                           |       |      |                                         |                                      |
-| Links                                                                                               | ○     | ●    | ●                                       | ●                                    |
-| Collisions                                                                                          | ○     | ●    | ●                                       | ●                                    |
-| Attract                                                                                             | ○     | ●    | ●                                       | ●                                    |
-| Repulse                                                                                             | ○     | ○    | ○                                       | ●                                    |
-| **Updaters (animations)**                                                        |       |      |                                         |                                      |
-| Opacity                                                                                             | ●     | ●    | ●                                       | ●                                    |
-| Size                                                                                                | ●     | ●    | ●                                       | ●                                    |
-| Out modes                                                                                           | ●     | ●    | ●                                       | ●                                    |
-| Paint (color)                                                                    | ●     | ●    | ●                                       | ●                                    |
-| Rotate                                                                                              | ○     | ●    | ●                                       | ●                                    |
-| Life                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Destroy                                                                                             | ○     | ○    | ●                                       | ●                                    |
-| Roll                                                                                                | ○     | ○    | ●                                       | ●                                    |
-| Tilt                                                                                                | ○     | ○    | ●                                       | ●                                    |
-| Twinkle                                                                                             | ○     | ○    | ●                                       | ●                                    |
-| Wobble                                                                                              | ○     | ○    | ●                                       | ●                                    |
-| Gradient                                                                                            | ○     | ○    | ○                                       | ●                                    |
-| Orbit                                                                                               | ○     | ○    | ○                                       | ●                                    |
-| **Plugins**                                                                                         |       |      |                                         |                                      |
-| Move                                                                                                | ●     | ●    | ●                                       | ●                                    |
-| Blend                                                                                               | ●     | ●    | ●                                       | ●                                    |
-| Emitters                                                                                            | ○     | ○    | ●                                       | ●                                    |
-| Absorbers                                                                                           | ○     | ○    | ●                                       | ●                                    |
-| Sounds                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| Motion (user prefs)                                                              | ○     | ○    | ○                                       | ●                                    |
-| Themes                                                                                              | ○     | ○    | ○                                       | ●                                    |
-| Polygon mask                                                                                        | ○     | ○    | ○                                       | ●                                    |
-| Canvas mask                                                                                         | ○     | ○    | ○                                       | ●                                    |
-| Background mask                                                                                     | ○     | ○    | ○                                       | ●                                    |
-| Export (image, json, video)                                                      | ○     | ○    | ○                                       | ●                                    |
-| Manual particles                                                                                    | ○     | ○    | ○                                       | ●                                    |
-| Responsive                                                                                          | ○     | ○    | ○                                       | ●                                    |
-| Trail                                                                                               | ○     | ○    | ○                                       | ●                                    |
-| Zoom                                                                                                | ○     | ○    | ○                                       | ●                                    |
-| Poisson disc                                                                                        | ○     | ○    | ○                                       | ●                                    |
-| **Paths**                                                                                           |       |      |                                         |                                      |
-| Any path                                                                                            | ○     | ○    | ○                                       | ● (14 generators) |
-| **Effects**                                                                                         |       |      |                                         |                                      |
-| Bubble, Filter, Shadow, etc.                                                        | ○     | ○    | ○                                       | ● (5 effects)     |
-| **Easing**                                                                                          |       |      |                                         |                                      |
-| Quad                                                                                                | ○     | ●    | ●                                       | ●                                    |
-| Back, Bounce, Circ, Cubic, Elastic, Expo, Gaussian, Linear, Quart, Quint, Sigmoid, Sine, Smoothstep | ○     | ○    | ○                                       | ●                                    |
-| **Color plugins**                                                                                   |       |      |                                         |                                      |
-| HEX, HSL, RGB                                                                                       | ●     | ●    | ●                                       | ●                                    |
-| HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH                                                             | ○     | ○    | ○                                       | ●                                    |
+| Funktion                                                                                            | basic | slim | full (`tsparticles`) | all                |
+| --------------------------------------------------------------------------------------------------- | ----- | ---- | -------------------- | ------------------ |
+| **Formen**                                                                                          |       |      |                      |                    |
+| Kreis                                                                                               | ●     | ●    | ●                    | ●                  |
+| Quadrat                                                                                             | ○     | ●    | ●                    | ●                  |
+| Stern                                                                                               | ○     | ●    | ●                    | ●                  |
+| Polygon                                                                                             | ○     | ●    | ●                    | ●                  |
+| Linie                                                                                               | ○     | ●    | ●                    | ●                  |
+| Bild                                                                                                | ○     | ●    | ●                    | ●                  |
+| Emoji                                                                                               | ○     | ●    | ●                    | ●                  |
+| Text                                                                                                | ○     | ○    | ●                    | ●                  |
+| Karten (Farben)                                                                                     | ○     | ○    | ○                    | ●                  |
+| Herz                                                                                                | ○     | ○    | ○                    | ●                  |
+| Pfeil                                                                                               | ○     | ○    | ○                    | ●                  |
+| Abgerundetes Rechteck                                                                               | ○     | ○    | ○                    | ●                  |
+| Abgerundetes Polygon                                                                                | ○     | ○    | ○                    | ●                  |
+| Spirale                                                                                             | ○     | ○    | ○                    | ●                  |
+| Squircle                                                                                            | ○     | ○    | ○                    | ●                  |
+| Zahnrad                                                                                             | ○     | ○    | ○                    | ●                  |
+| Unendlichkeit                                                                                       | ○     | ○    | ○                    | ●                  |
+| Matrix                                                                                              | ○     | ○    | ○                    | ●                  |
+| Pfad                                                                                                | ○     | ○    | ○                    | ●                  |
+| Ribbon                                                                                              | ○     | ○    | ○                    | ●                  |
+| **Externe Interaktionen (Maus/Touch)**                                                              |       |      |                      |                    |
+| Anziehen                                                                                            | ○     | ●    | ●                    | ●                  |
+| Abprallen                                                                                           | ○     | ●    | ●                    | ●                  |
+| Blase                                                                                               | ○     | ●    | ●                    | ●                  |
+| Verbinden                                                                                           | ○     | ●    | ●                    | ●                  |
+| Zerstören                                                                                           | ○     | ●    | ●                    | ●                  |
+| Greifen                                                                                             | ○     | ●    | ●                    | ●                  |
+| Parallaxe                                                                                           | ○     | ●    | ●                    | ●                  |
+| Pausieren                                                                                           | ○     | ●    | ●                    | ●                  |
+| Schieben                                                                                            | ○     | ●    | ●                    | ●                  |
+| Entfernen                                                                                           | ○     | ●    | ●                    | ●                  |
+| Abstoßen                                                                                            | ○     | ●    | ●                    | ●                  |
+| Verlangsamen                                                                                        | ○     | ●    | ●                    | ●                  |
+| Ziehen                                                                                              | ○     | ○    | ●                    | ●                  |
+| Spur                                                                                                | ○     | ○    | ●                    | ●                  |
+| Kanone                                                                                              | ○     | ○    | ○                    | ●                  |
+| Partikel                                                                                            | ○     | ○    | ○                    | ●                  |
+| Pop                                                                                                 | ○     | ○    | ○                    | ●                  |
+| Licht                                                                                               | ○     | ○    | ○                    | ●                  |
+| **Partikel-Interaktionen**                                                                          |       |      |                      |                    |
+| Verbindungen                                                                                        | ○     | ●    | ●                    | ●                  |
+| Kollisionen                                                                                         | ○     | ●    | ●                    | ●                  |
+| Anziehen                                                                                            | ○     | ●    | ●                    | ●                  |
+| Abstoßen                                                                                            | ○     | ○    | ○                    | ●                  |
+| **Aktualisierer (Animationen)**                                                                     |       |      |                      |                    |
+| Opazität                                                                                            | ●     | ●    | ●                    | ●                  |
+| Größe                                                                                               | ●     | ●    | ●                    | ●                  |
+| Aus-Modi                                                                                            | ●     | ●    | ●                    | ●                  |
+| Farbe                                                                                               | ●     | ●    | ●                    | ●                  |
+| Drehen                                                                                              | ○     | ●    | ●                    | ●                  |
+| Lebenszyklus                                                                                        | ○     | ●    | ●                    | ●                  |
+| Zerstören                                                                                           | ○     | ○    | ●                    | ●                  |
+| Rollen                                                                                              | ○     | ○    | ●                    | ●                  |
+| Neigen                                                                                              | ○     | ○    | ●                    | ●                  |
+| Funkeln                                                                                             | ○     | ○    | ●                    | ●                  |
+| Wackeln                                                                                             | ○     | ○    | ●                    | ●                  |
+| Farbverlauf                                                                                         | ○     | ○    | ○                    | ●                  |
+| Orbit                                                                                               | ○     | ○    | ○                    | ●                  |
+| **Plugins**                                                                                         |       |      |                      |                    |
+| Bewegung                                                                                            | ●     | ●    | ●                    | ●                  |
+| Mischung                                                                                            | ●     | ●    | ●                    | ●                  |
+| Emitter                                                                                             | ○     | ○    | ●                    | ●                  |
+| Absorber                                                                                            | ○     | ○    | ●                    | ●                  |
+| Töne                                                                                                | ○     | ○    | ○                    | ●                  |
+| Bewegung (Benutzereinst.)                                                                           | ○     | ○    | ○                    | ●                  |
+| Themes                                                                                              | ○     | ○    | ○                    | ●                  |
+| Polygon-Maske                                                                                       | ○     | ○    | ○                    | ●                  |
+| Canvas-Maske                                                                                        | ○     | ○    | ○                    | ●                  |
+| Hintergrundmaske                                                                                    | ○     | ○    | ○                    | ●                  |
+| Export (Bild, JSON, Video)                                                                          | ○     | ○    | ○                    | ●                  |
+| Manuelle Partikel                                                                                   | ○     | ○    | ○                    | ●                  |
+| Responsive                                                                                          | ○     | ○    | ○                    | ●                  |
+| Spur                                                                                                | ○     | ○    | ○                    | ●                  |
+| Zoom                                                                                                | ○     | ○    | ○                    | ●                  |
+| Poisson-Scheibe                                                                                     | ○     | ○    | ○                    | ●                  |
+| **Pfade**                                                                                           |       |      |                      |                    |
+| Beliebiger Pfad                                                                                     | ○     | ○    | ○                    | ● (14 Generatoren) |
+| **Effekte**                                                                                         |       |      |                      |                    |
+| Blase, Filter, Schatten, etc.                                                                       | ○     | ○    | ○                    | ● (5 Effekte)      |
+| **Easings**                                                                                         |       |      |                      |                    |
+| Quad                                                                                                | ○     | ●    | ●                    | ●                  |
+| Back, Bounce, Circ, Cubic, Elastic, Expo, Gaussian, Linear, Quart, Quint, Sigmoid, Sine, Smoothstep | ○     | ○    | ○                    | ●                  |
+| **Farb-Plugins**                                                                                    |       |      |                      |                    |
+| HEX, HSL, RGB                                                                                       | ●     | ●    | ●                    | ●                  |
+| HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH                                                             | ○     | ○    | ○                    | ●                  |
 
-### Dedicated API bundles
+### Bundles mit dedizierter API
 
-| Feature         | confetti                                                  | fireworks               | particles                       | ribbons          |
-| --------------- | --------------------------------------------------------- | ----------------------- | ------------------------------- | ---------------- |
-| Shapes          | circle, heart, cards, emoji, image, polygon, square, star | line                    | (from basic) | ribbon           |
-| Interactions    | —                                                         | —                       | links + collisions              | —                |
-| Special plugins | emitters, motion                                          | emitters, sounds, blend | —                               | emitters, motion |
-| API call        | `confetti(opts)`                                          | `fireworks(opts)`       | `particles(opts)`               | `ribbons(opts)`  |
+| Funktion        | confetti                                                  | fireworks               | particles                  | ribbons           |
+| --------------- | --------------------------------------------------------- | ----------------------- | -------------------------- | ----------------- |
+| Formen          | Kreis, Herz, Karten, Emoji, Bild, Polygon, Quadrat, Stern | Linie                   | (von basic)                | Ribbon            |
+| Interaktionen   | —                                                         | —                       | Verbindungen + Kollisionen | —                 |
+| Spezial-Plugins | Emitter, Bewegung                                         | Emitter, Töne, Mischung | —                          | Emitter, Bewegung |
+| API-Aufruf      | `confetti(opts)`                                          | `fireworks(opts)`       | `particles(opts)`          | `ribbons(opts)`   |
 
-## Selection guide
+## Auswahlhilfe
 
 ```mermaid
 flowchart TD
-    A[Need to start fast?] -->|Yes| B[Use a preset?]
-    A -->|No| C[What bundle size?]
-    B -->|Yes| D["@tsparticles/configs + @tsparticles/slim"]
-    B -->|No| E["Confetti? → @tsparticles/confetti"]
-    B -->|No| F["Fireworks? → @tsparticles/fireworks"]
-    B -->|No| G["Particle BG? → @tsparticles/particles"]
-    B -->|No| H["Ribbons? → @tsparticles/ribbons"]
-    C -->|"Minimal (circles only)"| I["@tsparticles/basic"]
-    C -->|"Medium (shapes + interactions)"| J["@tsparticles/slim"]
-    C -->|"Maximum (all features)"| K["tsparticles (loadFull)"]
-    C -->|"Whole repository"| L["@tsparticles/all"]
+    A[Schnell starten?] -->|Ja| B[Voreinstellung verwenden?]
+    A -->|Nein| C[Welche Bundle-Größe?]
+    B -->|Ja| D["@tsparticles/configs + @tsparticles/slim"]
+    B -->|Nein| E["Konfetti? → @tsparticles/confetti"]
+    B -->|Nein| F["Feuerwerk? → @tsparticles/fireworks"]
+    B -->|Nein| G["Partikel-HG? → @tsparticles/particles"]
+    B -->|Nein| H["Ribbons? → @tsparticles/ribbons"]
+    C -->|"Minimal (nur Kreise)"| I["@tsparticles/basic"]
+    C -->|"Mittel (Formen + Interaktionen)"| J["@tsparticles/slim"]
+    C -->|"Maximal (alle Funktionen)"| K["tsparticles (loadFull)"]
+    C -->|"Ganzes Repository"| L["@tsparticles/all"]
 ```
 
-**Rules of thumb:**
+**Faustregeln:**
 
-1. Most projects start with `@tsparticles/slim`.
-2. If bundle size is critical and you only need circles: `@tsparticles/basic`.
-3. If you need emitters, absorbers, text, wobble/tilt/roll: `tsparticles` with `loadFull`.
-4. For quick prototyping with all features: `@tsparticles/all`.
-5. For targeted effects (confetti, fireworks, particle BG, ribbons) with minimal setup: dedicated API bundles.
+1. Die meisten Projekte beginnen mit `@tsparticles/slim`.
+2. Wenn die Bundle-Größe entscheidend ist und du nur Kreise brauchst: `@tsparticles/basic`.
+3. Wenn du Emitter, Absorber, Text, Wobble/Tilt/Roll brauchst: `tsparticles` mit `loadFull`.
+4. Für schnelles Prototyping mit allen Funktionen: `@tsparticles/all`.
+5. Für gezielte Effekte (Konfetti, Feuerwerk, Partikel-HG, Ribbons) mit minimalem Setup: dedizierte API-Bundles.
 
-## Quick install
+## Schnellinstallation
 
-| Bundle                                  | npm command                                       | Loader function          | CDN URL                                                        |
-| --------------------------------------- | ------------------------------------------------- | ------------------------ | -------------------------------------------------------------- |
-| `@tsparticles/basic`                    | `pnpm add @tsparticles/engine @tsparticles/basic` | `loadBasic(tsParticles)` | `@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
-| `@tsparticles/slim`                     | `pnpm add @tsparticles/engine @tsparticles/slim`  | `loadSlim(tsParticles)`  | `@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
-| `tsparticles` (full) | `pnpm add @tsparticles/engine tsparticles`        | `loadFull(tsParticles)`  | `tsparticles@4/tsparticles.bundle.min.js`                      |
-| `@tsparticles/all`                      | `pnpm add @tsparticles/engine @tsparticles/all`   | `loadAll(tsParticles)`   | `@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
-| `@tsparticles/confetti`                 | `pnpm add @tsparticles/confetti`                  | `confetti(opts)`         | `@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
-| `@tsparticles/fireworks`                | `pnpm add @tsparticles/fireworks`                 | `fireworks(opts)`        | `@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
-| `@tsparticles/particles`                | `pnpm add @tsparticles/particles`                 | `particles(opts)`        | `@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
-| `@tsparticles/ribbons`                  | `pnpm add @tsparticles/ribbons`                   | `ribbons(opts)`          | `@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
+| Bundle                   | npm-Befehl                                        | Loader-Funktion          | CDN-URL                                                        |
+| ------------------------ | ------------------------------------------------- | ------------------------ | -------------------------------------------------------------- |
+| `@tsparticles/basic`     | `pnpm add @tsparticles/engine @tsparticles/basic` | `loadBasic(tsParticles)` | `@tsparticles/basic@4/tsparticles.basic.bundle.min.js`         |
+| `@tsparticles/slim`      | `pnpm add @tsparticles/engine @tsparticles/slim`  | `loadSlim(tsParticles)`  | `@tsparticles/slim@4/tsparticles.slim.bundle.min.js`           |
+| `tsparticles` (full)     | `pnpm add @tsparticles/engine tsparticles`        | `loadFull(tsParticles)`  | `tsparticles@4/tsparticles.bundle.min.js`                      |
+| `@tsparticles/all`       | `pnpm add @tsparticles/engine @tsparticles/all`   | `loadAll(tsParticles)`   | `@tsparticles/all@4/tsparticles.all.bundle.min.js`             |
+| `@tsparticles/confetti`  | `pnpm add @tsparticles/confetti`                  | `confetti(opts)`         | `@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js`   |
+| `@tsparticles/fireworks` | `pnpm add @tsparticles/fireworks`                 | `fireworks(opts)`        | `@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
+| `@tsparticles/particles` | `pnpm add @tsparticles/particles`                 | `particles(opts)`        | `@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
+| `@tsparticles/ribbons`   | `pnpm add @tsparticles/ribbons`                   | `ribbons(opts)`          | `@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
 
-**Note:** for basic/slim/full/all bundles you MUST call `load*` before `tsParticles.load()`. CDN files expose the loader function globally but do NOT auto-call it. The confetti/fireworks/particles/ribbons bundles have self-contained APIs — call `confetti()`, `fireworks()`, etc. directly.
+**Hinweis:** Bei basic/slim/full/all-Bundles musst du `load*` VOR `tsParticles.load()` aufrufen. CDN-Dateien machen die Loader-Funktion global verfügbar, rufen sie aber NICHT automatisch auf. Die Confetti/Fireworks/Particles/Ribbons-Bundles haben eigenständige APIs — rufe `confetti()`, `fireworks()` etc. direkt auf.
 
-CDN example for `@tsparticles/slim`:
+CDN-Beispiel für `@tsparticles/slim`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -164,7 +164,7 @@ CDN example for `@tsparticles/slim`:
 </script>
 ```
 
-CDN example for `@tsparticles/confetti`:
+CDN-Beispiel für `@tsparticles/confetti`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -173,12 +173,12 @@ CDN example for `@tsparticles/confetti`:
 </script>
 ```
 
-See also the [installation guide](/guide/installation) for CDN, npm, yarn, and file details.
+Siehe auch die [Installationsanleitung](/de/guide/installation) für CDN-, npm-, yarn- und Datei-Details.
 
-## Related pages
+## Verwandte Seiten
 
-- [Getting started](/guide/getting-started)
-- [Installation guide](/guide/installation)
-- [Presets catalog](/demos/presets)
-- [Palettes catalog](/demos/palettes)
-- [Shapes catalog](/demos/shapes)
+- [Erste Schritte](/de/guide/getting-started)
+- [Installationsanleitung](/de/guide/installation)
+- [Voreinstellungskatalog](/de/demos/presets)
+- [Palettenkatalog](/de/demos/palettes)
+- [Formenkatalog](/de/demos/shapes)

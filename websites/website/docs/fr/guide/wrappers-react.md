@@ -1,30 +1,30 @@
-# Wrapper: @tsparticles/react
+# Emballage : @tsparticles/react
 
-Official React wrapper for `tsParticles`.
+Wrapper React officiel pour `tsParticles`.
 
-## Install
+## Installer
 
 ```bash
 pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Flux de configuration rapide
 
-1. Install wrapper + engine + loader package.
-2. Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`) — it must be rendered only once for the entire app lifecycle.
-3. Initialize once with `ParticlesProvider` and `loadSlim`.
-4. Render `Particles` component with typed options.
+1. Installez le package wrapper + moteur + chargeur.
+2. Placez `ParticlesProvider` à la racine de votre application (p. ex., `main.tsx` ou `layout.tsx`) — il ne doit être rendu qu'une seule fois pour tout le cycle de vie de l'application.
+3. Initialisez une fois avec `ParticlesProvider` et `loadSlim`.
+4. Rendre le composant `Particles` avec les options saisies.
 
-## Monorepo references
+## Références Monorepo
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
+- Dossier du package : <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
+- Application de démonstration : <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
 
-## Readme
+## Lisez-moi
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
+- README du wrapper : <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
 
-## Related docs
+## Documents associés
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/fr/guide/wrappers)
+- [`/guide/frameworks`](/fr/guide/frameworks)

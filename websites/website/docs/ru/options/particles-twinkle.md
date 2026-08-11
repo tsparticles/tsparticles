@@ -1,8 +1,8 @@
-# Particles Twinkle
+# Частицы мерцают
 
-`particles.twinkle` adds sparkle-like blinking effects.
+`particles.twinkle` добавляет эффект мерцания, напоминающий блестки.
 
-## Example
+## Пример
 
 ```ts
 particles: {
@@ -19,11 +19,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Практическое руководство
 
-- Start with low `frequency` for subtle effects.
-- Combine with dark backgrounds for better visibility.
+- Начните с низкого значения `frequency` для получения тонких эффектов.
+- Комбинируйте с темным фоном для лучшей видимости.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Twinkle.md>

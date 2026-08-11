@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/jquery
+# ラッパー: @tsparticles/jquery
 
-Official jQuery plugin wrapper for `tsParticles`.
+`tsParticles` の公式 jQuery プラグイン ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/jquery @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install package and load it in your jQuery setup.
-2. Initialize features once using slim/all as needed.
-3. Apply plugin on target element with options.
+1. パッケージをインストールし、jQuery セットアップにロードします。
+2. 必要に応じて、slim/all を使用して機能を一度初期化します。
+3. オプションを使用してターゲット要素にプラグインを適用します。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

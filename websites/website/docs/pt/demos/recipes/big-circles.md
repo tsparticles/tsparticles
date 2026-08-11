@@ -1,14 +1,14 @@
-# Big Circles Preset
+# Predefinição de grandes círculos
 
-Official preset from the `presets/presets/bigCircles` workspace.
+Predefinição oficial do espaço de trabalho `presets/presets/bigCircles`.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-big-circles
 ```
 
-## Ready-to-use (manual start/stop)
+## Pronto para uso (partida/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for minimal, modern designs with large animated circles.
+Perfeito para designs minimalistas e modernos com grandes círculos animados.
 
-Demo: <https://particles.js.org/demos/recipes/big-circles>
+Demonstração: <https://particles.js.org/demos/recipes/big-circles>

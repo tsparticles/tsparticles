@@ -1,8 +1,8 @@
-# Particles Paint
+# कण पेंट
 
-`particles.paint` groups particle fill and stroke style options.
+`particles.paint` कण भरण और स्ट्रोक शैली विकल्पों को समूहित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## Fill (`particles.paint.fill`)
+## भरें (`particles.paint.fill`)
 
-- Defines the particle inner color.
-- Supports static values, arrays, and color animation.
+- कण के आंतरिक रंग को परिभाषित करता है।
+- स्थिर मान, सरणियाँ और रंग एनीमेशन का समर्थन करता है।
 
-## Stroke (`particles.paint.stroke`)
+## स्ट्रोक (`particles.paint.stroke`)
 
-- Defines outline width and color.
-- Useful to increase shape contrast.
+- रूपरेखा की चौड़ाई और रंग को परिभाषित करता है।
+- आकार कंट्रास्ट बढ़ाने के लिए उपयोगी।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/vue2
+# ラッパー: @tsparticles/vue2
 
-Official Vue 2 wrapper for `tsParticles`.
+`tsParticles` の公式 Vue 2 ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/vue2 @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Register plugin once in Vue app bootstrap.
-3. Render Vue component with options object.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. Vue アプリのブートストラップでプラグインを一度登録します。
+3. オプション オブジェクトを使用して Vue コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue2>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

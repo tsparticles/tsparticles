@@ -1,16 +1,16 @@
-# Playground Bundles
+# プレイグラウンドバンドル
 
-Use this page to test the focused APIs from these packages:
+このページを使用して、次のパッケージの焦点を当てた API をテストします。
 
 - `@tsparticles/confetti`
 - `@tsparticles/fireworks`
 - `@tsparticles/particles`
 - `@tsparticles/ribbons`
 
-Ribbons website: <https://ribbons.js.org>
+Ribbons サイト: <https://ribbons.js.org>
 
-Each section has its own canvas, JSON editor, and controls.
+各セクションには独自のキャンバス、JSON エディター、およびコントロールがあります。
 
-The demos are scoped to their local canvas element (`*.create(...)`) so they do not take over the full page.
+デモはローカルのキャンバス要素 (`*.create(...)`) にスコープされているため、ページ全体を引き継ぐことはありません。
 
 <PlaygroundBundlesPanel></PlaygroundBundlesPanel>

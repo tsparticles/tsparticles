@@ -1,14 +1,14 @@
-# Bubbles Preset
+# बुलबुले प्रीसेट
 
-Official preset from the `presets/presets/bubbles` workspace.
+`presets/presets/bubbles` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-bubbles
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Useful for interactive sections with more visible motion.
+अधिक दृश्यमान गति वाले इंटरैक्टिव अनुभागों के लिए उपयोगी।
 
-Demo: <https://particles.js.org/demos/recipes/bubbles>
+डेमो: <https://particles.js.org/demos/recipes/bubbles>

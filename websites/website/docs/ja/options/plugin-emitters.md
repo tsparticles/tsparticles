@@ -1,8 +1,8 @@
-# Plugin Option: Emitters
+# プラグイン オプション: エミッター
 
-`emitters` spawns particles dynamically and is plugin-driven.
+`emitters` はパーティクルを動的に生成し、プラグイン駆動です。
 
-## Example
+## 例
 
 ```ts
 emitters: {
@@ -17,11 +17,11 @@ emitters: {
 }
 ```
 
-## Notes
+## 注意事項
 
-- Great for burst effects and dynamic particle generation.
-- Keep emission rates balanced to avoid performance spikes.
+- バーストエフェクトやダイナミックなパーティクル生成に最適です。
+- パフォーマンスのスパイクを避けるために、排出率のバランスを保ちます。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Emitters.md>

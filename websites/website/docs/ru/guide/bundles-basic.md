@@ -1,39 +1,39 @@
 # Bundle: Basic
 
-`@tsparticles/basic` is the lightest bundle. Only includes the essentials: circles that move with animatable opacity and size.
+`@tsparticles/basic` — самый лёгкий bundle. Включает только самое необходимое: круги, которые двигаются с анимируемой прозрачностью и размером.
 
-## Included features
+## Включённые возможности
 
-**Shapes:** circle
+**Формы:** круг
 
-**Updaters:**
+**Обновления:**
 
-- paint (color)
-- opacity
-- out-modes (behavior when leaving the screen)
-- size
+- paint (цвет)
+- прозрачность
+- out-modes (поведение при выходе за экран)
+- размер
 
-**Plugins:**
+**Плагины:**
 
 - move
-- blend (color blending)
-- HEX, HSL, RGB color plugins
+- blend (смешивание цветов)
+- HEX, HSL, RGB цветовые плагины
 
-**Not included:**
+**Не включено:**
 
-- Mouse/touch interactions
-- Particle links
-- Other shapes (squares, stars, images, polygons, etc.)
-- Emitters, absorbers, sounds
-- Rotation, life, roll, tilt, wobble
+- Взаимодействия мыши/тача
+- Связи частиц
+- Другие формы (квадраты, звёзды, изображения, полигоны и т.д.)
+- Эмиттеры, абсорберы, звуки
+- Вращение, жизнь, roll, tilt, wobble
 
-## When to use
+## Когда использовать
 
-- Bundle size is your top priority
-- You only need dots moving around
-- No interactions or complex shapes needed
+- Размер bundle — ваш главный приоритет
+- Вам нужны только движущиеся точки
+- Не нужны взаимодействия или сложные формы
 
-## Installation
+## Установка
 
 ### npm/pnpm/yarn
 
@@ -64,7 +64,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN (теги script)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -85,13 +85,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Common mistakes
+## Частые ошибки
 
-- Expecting features not included (e.g., `links`, mouse interactions) — these require higher bundles.
-- Calling `tsParticles.load()` before `loadBasic(tsParticles)` — shapes and updaters aren't registered yet.
-- Installing only `@tsparticles/engine` without a bundle — the engine alone draws nothing.
+- Ожидание функций, не входящих в basic (например, `links`, взаимодействия мыши) — для них нужны более полные bundle.
+- Вызов `tsParticles.load()` до `loadBasic(tsParticles)` — формы и обновления ещё не зарегистрированы.
+- Установка только `@tsparticles/engine` без bundle — движок сам по себе ничего не рисует.
 
-## See also
+## См. также
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [Обзор bundle](/ru/guide/bundles)
+- [Руководство по установке](/ru/guide/installation)

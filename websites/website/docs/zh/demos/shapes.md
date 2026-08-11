@@ -1,111 +1,29 @@
-# Shapes Catalog
+# 形状目录
 
-This catalog lists the common `particles.shape.type` values and the related `particles.shape.options.<type>` customization keys used in v4.
+本目录列出了最常用的 `particles.shape.type` 值，并说明何时可以通过 `particles.shape.options` 添加形状专属控制。
 
-Source folders:
+源码目录：
 
 - <https://github.com/tsparticles/tsparticles/tree/main/shapes>
-- Shape options reference: [`/options/particles-shape`](/options/particles-shape)
+- 形状选项参考：[`/options/particles-shape`](/zh/options/particles-shape)
 
-## Common shape types and option keys
+## 常见形状类型
 
-- `circle` (`options.circle.close`)
-- `square` / `edge` (`options.square.close`)
-- `triangle` (`options.triangle.close`)
-- `line` (`options.line.cap`, `options.line.close`)
-- `polygon` (`options.polygon.sides`, `options.polygon.close`)
-- `star` (`options.star.sides`, `options.star.inset`, `options.star.close`)
-- `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
-- `emoji` (`options.emoji.value`, `font`, `padding`, `close`)
-- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
-- `arrow` (`options.arrow.heightFactor`, `headWidthFactor`, `bodyHeightFactor`)
-- `cog` (`options.cog.notches`, `innerRadius`, `holeRadius`, `innerTaper`, `outerTaper`)
-- `rounded-rect` (`options.rounded-rect.radius`)
-- `rounded-polygon` (`options.rounded-polygon.sides`, `radius`)
-- `spiral` (`options.spiral.innerRadius`, `lineSpacing`, `widthFactor`, `close`)
-- `squircle` (`options.squircle.exponent`, `steps`)
-- `matrix` (`options.matrix.interval`)
-- `path` (`options.path.half`, `options.path.segments`)
-- `card` (`options.card.suit`, `options.card.value`)
-- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
+- `circle`（默认，无额外形状选项）
+- `square` / `edge`（无额外形状选项）
+- `triangle`（无额外形状选项）
+- `line`（无额外形状选项）
+- `polygon`（`options.polygon.sides`）
+- `star`（`options.star.sides`、`options.star.inset`）
+- `text`（`options.text.value`、`font`、`weight`、`style`、`close`）
+- `emoji`（`options.emoji.value`）
+- `image` / `images`（`options.image.src`、`name`、`width`、`height`、`gif`、`replaceColor`、`close`）
 
-## Notes on aliases and bundles
+## 别名与 bundle 说明
 
-- `square` and `edge` are aliases for the same shape.
-- `text` is the dedicated text shape package in v4.
-- `image` and `images` use the same options object.
-- Most advanced shapes require `@tsparticles/slim` (or `@tsparticles/all`) or dedicated shape packages.
+- `square` 与 `edge` 是同一种形状的别名。
+- `character` 与 `char` 是同一组选项的别名。
+- `image` 与 `images` 使用同一个选项对象。
+- 大多数高级形状需要 `@tsparticles/slim`（或 `@tsparticles/all`）或独立 shape 包。
 
-## Quick usage examples
-
-### Polygon
-
-```ts
-particles: {
-  shape: {
-    type: "polygon",
-    options: {
-      polygon: {
-        sides: 6,
-      },
-    },
-  },
-}
-```
-
-### Emoji
-
-```ts
-particles: {
-  shape: {
-    type: "emoji",
-    options: {
-      emoji: {
-        value: ["😀", "🎉", "✨"],
-        font: "Apple Color Emoji",
-        padding: 0,
-      },
-    },
-  },
-}
-```
-
-### Text
-
-```ts
-particles: {
-  shape: {
-    type: "text",
-    options: {
-      text: {
-        value: ["TS", "DOCS"],
-        font: "Verdana",
-        weight: "700",
-        style: "",
-      },
-    },
-  },
-}
-```
-
-### Image
-
-```ts
-particles: {
-  shape: {
-    type: "image",
-    options: {
-      image: {
-        src: "https://particles.js.org/images/hdr/fruits/strawberry.png",
-        name: "strawberry",
-        width: 64,
-        height: 64,
-        gif: false,
-        replaceColor: false,
-      },
-    },
-  },
-}
-```
-
-To test these quickly with Start/Pause controls and editable JSON, use [`/playground/shapes`](/playground/shapes).
+如需通过 Start/Pause 控件和可编辑 JSON 快速测试，请使用 [`/playground/shapes`](/zh/playground/shapes)。

@@ -1,16 +1,16 @@
-# Particles Stroke
+# कण स्ट्रोक
 
-Stroke options are now documented under `particles.paint.stroke`.
+स्ट्रोक विकल्प अब `particles.paint.stroke` के अंतर्गत प्रलेखित हैं।
 
-## New page
+## नया पेज
 
-- [`Particles Paint`](/options/particles-paint)
+- [`Particles Paint`](/hi/options/particles-paint)
 
-## Quick mapping
+## त्वरित मानचित्रण
 
-- Old: `particles.stroke`
-- New: `particles.paint.stroke`
+- पुराना: `particles.stroke`
+- नया: `particles.paint.stroke`
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

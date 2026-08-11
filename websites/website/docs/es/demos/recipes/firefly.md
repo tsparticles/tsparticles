@@ -1,16 +1,16 @@
-# Firefly Preset
+# Preajuste de luciérnaga
 
-Official preset from the `presets/presets/firefly` workspace.
+Preajuste oficial del espacio de trabajo `presets/presets/firefly`.
 
-Move the mouse inside the canvas to activate the interactive firefly behavior.
+Mueva el mouse dentro del lienzo para activar el comportamiento interactivo de luciérnaga.
 
-## Install
+## Instalar
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Ready-to-use (manual start/stop)
+## Listo para usar (inicio/parada manual)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegant preset for natural hero sections, storytelling, and portfolios.
+Ajuste preestablecido elegante para secciones de héroes naturales, narraciones y portafolios.
 
-Demo: <https://particles.js.org/demos/recipes/firefly>
+Demostración: <https://particles.js.org/demos/recipes/firefly>

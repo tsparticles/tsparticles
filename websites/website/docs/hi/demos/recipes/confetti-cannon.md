@@ -1,16 +1,16 @@
-# Confetti Cannon Preset
+# कंफ़ेद्दी तोप प्रीसेट
 
-Official preset from the `presets/presets/confettiCannon` workspace.
+`presets/presets/confettiCannon` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-To trigger confetti in this preset, drag the mouse over the canvas area.
+इस प्रीसेट में कंफ़ेद्दी को ट्रिगर करने के लिए, माउस को कैनवास क्षेत्र पर खींचें।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
+डेमो: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+स्रोत दस्तावेज़: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>

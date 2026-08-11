@@ -1,41 +1,41 @@
 # Bundle: tsparticles (Full)
 
-`tsparticles` (npm: `tsparticles`, loader: `loadFull`) is the official full bundle. Includes everything from Slim plus emitters, absorbers, text shapes, and advanced animations (wobble, roll, tilt, twinkle, destroy).
+`tsparticles` (npm: `tsparticles`, लोडर: `loadFull`) आधिकारिक फुल बंडल है। इसमें Slim से सब कुछ प्लस एमिटर, एब्ज़ॉर्बर, टेक्स्ट शेप और उन्नत एनिमेशन (वॉबल, रोल, टिल्ट, ट्विंकल, डिस्ट्रॉय) शामिल हैं।
 
-## Included features
+## शामिल सुविधाएँ
 
-Inherits everything from `@tsparticles/slim` plus:
+`@tsparticles/slim` से सब कुछ इनहेरिट करता है, साथ ही:
 
-**Additional shapes:** text (with custom fonts)
+**अतिरिक्त शेप:** text (कस्टम फ़ॉन्ट के साथ)
 
-**Additional external interactions:**
+**अतिरिक्त बाहरी इंटरैक्शन:**
 
-- drag (drag particles with mouse)
-- trail (particle trail behind mouse)
+- drag (कणों को माउस से खींचें)
+- trail (माउस के पीछे कण ट्रेल)
 
-**Additional updaters:**
+**अतिरिक्त अपडेटर:**
 
-- destroy (particle destruction animation)
-- roll (rolling)
-- tilt (3D tilt)
-- twinkle (intermittent sparkle)
-- wobble (oscillation)
+- destroy (कण विनाश एनिमेशन)
+- roll (रोलिंग)
+- tilt (3D झुकाव)
+- twinkle (आंतरायिक चमक)
+- wobble (दोलन)
 
-**Plugins:**
+**प्लगइन:**
 
-- absorbers (black holes that suck in particles)
-- emitters (continuous particle sources)
-- emitters-shape-circle, emitters-shape-square (emitter shapes)
+- absorbers (ब्लैक होल जो कणों को सोख लेते हैं)
+- emitters (निरंतर कण स्रोत)
+- emitters-shape-circle, emitters-shape-square (एमिटर शेप)
 
-## When to use
+## कब उपयोग करें
 
-- Need emitters (particles spawning continuously)
-- Need absorbers (particles being sucked in)
-- Need text shapes with custom fonts
-- Need advanced animations (wobble, tilt, roll, twinkle)
-- Good stepping stone before going to individual plugins
+- एमिटर (लगातार कण उत्पन्न करना) की आवश्यकता
+- एब्ज़ॉर्बर (कणों को सोखना) की आवश्यकता
+- कस्टम फ़ॉन्ट के साथ टेक्स्ट शेप की आवश्यकता
+- उन्नत एनिमेशन (वॉबल, टिल्ट, रोल, ट्विंकल) की आवश्यकता
+- व्यक्तिगत प्लगइन पर जाने से पहले अच्छा कदम
 
-## Installation
+## इंस्टॉलेशन
 
 ### npm/pnpm/yarn
 
@@ -68,7 +68,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN (script टैग)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -91,26 +91,26 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## `tsparticles` और `@tsparticles/all` के बीच अंतर
 
-| Aspect        | `tsparticles` (full)                 | `@tsparticles/all`                                                                                                     |
-| ------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Size          | Moderate                                                | Very large                                                                                                             |
-| Shapes        | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.)                   |
-| Interactions  | Slim + drag + trail                                     | All (cannon, light, pop, particle, repulse)                                                         |
-| Paths         | Quad easing only                                        | 14 path generators                                                                                                     |
-| Effects       | None                                                    | 5 effects (bubble, filter, shadow, etc.)                                            |
-| Exports       | None                                                    | Image, JSON, Video                                                                                                     |
-| Extra plugins | absorbers, emitters                                     | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing        | Quad                                                    | 15 easings                                                                                                             |
+| पहलू            | `tsparticles` (full)                                    | `@tsparticles/all`                                                                 |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| आकार            | मध्यम                                                   | बहुत बड़ा                                                                          |
+| शेप             | circle, square, star, polygon, line, image, emoji, text | सभी शेप (heart, cards, arrow, spiral, cog, rounded-rect, आदि)                      |
+| इंटरैक्शन       | Slim + drag + trail                                     | सभी (cannon, light, pop, particle, repulse)                                        |
+| पथ              | केवल Quad easing                                        | 14 पथ जनरेटर                                                                       |
+| इफ़ेक्ट         | कोई नहीं                                                | 5 इफ़ेक्ट (bubble, filter, shadow, आदि)                                            |
+| एक्सपोर्ट       | कोई नहीं                                                | Image, JSON, Video                                                                 |
+| अतिरिक्त प्लगइन | absorbers, emitters                                     | सभी (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, आदि) |
+| ईज़िंग          | Quad                                                    | 15 ईज़िंग                                                                          |
 
-## Common mistakes
+## सामान्य गलतियाँ
 
-- Confusing `tsparticles` with `@tsparticles/all` — they are different packages.
-- Calling `tsParticles.load()` before `loadFull(tsParticles)`.
-- The npm package is `tsparticles` (not `@tsparticles/full`), the loader is `loadFull`.
+- `tsparticles` को `@tsparticles/all` समझने की भूल — ये अलग पैकेज हैं।
+- `loadFull(tsParticles)` से पहले `tsParticles.load()` कॉल करना।
+- npm पैकेज `tsparticles` है (`@tsparticles/full` नहीं), लोडर `loadFull` है।
 
-## See also
+## यह भी देखें
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [बंडल अवलोकन](/hi/guide/bundles)
+- [इंस्टॉलेशन गाइड](/hi/guide/installation)

@@ -1,14 +1,14 @@
 # Bundle: Slim
 
-`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
+`@tsparticles/slim` はほとんどのプロジェクトに推奨されるバンドルです。マウスインタラクション、複数の形状、パーティクルリンクを備えた、モダンなパーティクルアニメーションに必要なすべてを含みます。
 
-## Included features
+## 含まれる機能
 
-Inherits everything from `@tsparticles/basic` plus:
+`@tsparticles/basic` のすべてを継承し、さらに:
 
-**Shapes:** circle, square, star, polygon, line, image, emoji
+**形状:** 円、四角、星、多角形、線、画像、絵文字
 
-**External interactions (mouse/touch):**
+**外部インタラクション（マウス/タッチ）:**
 
 - attract
 - bounce
@@ -23,32 +23,32 @@ Inherits everything from `@tsparticles/basic` plus:
 - repulse
 - slow
 
-**Particle interactions:**
+**パーティクルインタラクション:**
 
 - attract
-- collisions
-- links (particle connections)
+- 衝突
+- リンク（パーティクル接続）
 
-**Additional updaters:**
+**追加アップデーター:**
 
-- life (lifecycle)
-- rotate
+- life（ライフサイクル）
+- 回転
 
-**Plugins:**
+**プラグイン:**
 
 - interactivity
 - easing-quad
-- HEX, HSL, RGB color plugins
+- HEX、HSL、RGB カラープラグイン
 
-## When to use
+## 使用すべきケース
 
-- Recommended starting point for most projects
-- Need multiple shapes (circles, stars, polygons, images)
-- Need mouse interactions (click, hover, bubble, repulse)
-- Need particle links
-- Good balance between bundle size and features
+- ほとんどのプロジェクトの推奨開始点
+- 複数の形状（円、星、多角形、画像）が必要
+- マウスインタラクション（クリック、ホバー、バブル、リパルス）が必要
+- パーティクルリンクが必要
+- バンドルサイズと機能のバランスが良い
 
-## Installation
+## インストール
 
 ### npm/pnpm/yarn
 
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN（script タグ）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Common mistakes
+## よくある間違い
 
-- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
-- Mixing different versions between engine and bundle — keep them aligned.
-- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
+- `loadSlim(tsParticles)` より前に `tsParticles.load()` を呼ぶ。
+- エンジンとバンドルのバージョンが異なる — バージョンを揃えてください。
+- 上位バンドルの機能（エミッター、アブソーバー、テキスト、ウィブル）を期待する — `tsparticles`（full）または個別プラグインが必要です。
 
-## See also
+## 関連ページ
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [バンドル概要](/ja/guide/bundles)
+- [インストールガイド](/ja/guide/installation)

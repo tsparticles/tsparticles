@@ -1,14 +1,14 @@
-# Squares Preset
+# 正方形プリセット
 
-Official preset from the `presets/presets/squares` workspace.
+`presets/presets/squares` ワークスペースからの公式プリセット。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-squares
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for geometric, structured designs and modern layouts.
+幾何学的で構造的なデザインやモダンなレイアウトに最適です。
 
-Demo: <https://particles.js.org/demos/recipes/squares>
+デモ: <https://particles.js.org/demos/recipes/squares>

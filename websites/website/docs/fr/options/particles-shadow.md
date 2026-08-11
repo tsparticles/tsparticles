@@ -1,8 +1,8 @@
-# Particles Shadow
+# Ombre de particules
 
-`particles.shadow` adds a shadow around particles.
+`particles.shadow` ajoute une ombre autour des particules.
 
-## Example
+## Exemple
 
 ```ts
 particles: {
@@ -20,11 +20,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Conseils pratiques
 
-- Shadows improve depth but can be expensive on dense scenes.
-- Use low blur first and benchmark on mobile.
+- Les ombres améliorent la profondeur mais peuvent être coûteuses sur les scènes denses.
+- Utilisez d'abord un faible flou et effectuez une comparaison sur mobile.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shadow.md>

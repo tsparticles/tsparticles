@@ -1,16 +1,16 @@
-# Interactivity
+# अन्तरक्रियाशीलता
 
-`interactivity` options define how particles react to hover/click.
+`interactivity` विकल्प परिभाषित करते हैं कि कण होवर/क्लिक पर कैसे प्रतिक्रिया करते हैं।
 
-For focused references:
+केंद्रित संदर्भों के लिए:
 
-- [`Interactivity Click`](/options/interactivity-click)
-- [`Interactivity Hover`](/options/interactivity-hover)
-- [`Interactivity Div`](/options/interactivity-div)
-- [`Interactivity Events`](/options/interactivity-events)
-- [`Interactivity Modes`](/options/interactivity-modes)
+- [`Interactivity Click`](/hi/options/interactivity-click)
+- [`Interactivity Hover`](/hi/options/interactivity-hover)
+- [`Interactivity Div`](/hi/options/interactivity-div)
+- [`Interactivity Events`](/hi/options/interactivity-events)
+- [`Interactivity Modes`](/hi/options/interactivity-modes)
 
-## Base structure
+## आधार संरचना
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## Most used events
+## सर्वाधिक उपयोग की जाने वाली घटनाएँ
 
-- `onHover`: immediate feedback for users.
-- `onClick`: bursts or targeted actions.
-- `resize`: keeps canvas behavior consistent on window resize.
-- `onDiv`: target interactions on specific elements.
+- `onHover`: उपयोगकर्ताओं के लिए तत्काल प्रतिक्रिया।
+- `onClick`: विस्फोट या लक्षित कार्रवाई।
+- `resize`: विंडो आकार बदलने पर कैनवास व्यवहार को सुसंगत रखता है।
+- `onDiv`: विशिष्ट तत्वों पर लक्षित इंटरैक्शन।
 
-## Best practice
+## सर्वोत्तम अभ्यास
 
-- Avoid enabling too many modes at once on low-end devices.
-- Keep `distance` moderate to avoid performance spikes.
-- If the effect is heavy, use manual control with `Start/Pause`.
+- लो-एंड डिवाइस पर एक साथ बहुत सारे मोड सक्षम करने से बचें।
+- प्रदर्शन में उछाल से बचने के लिए `distance` को मध्यम रखें।
+- यदि प्रभाव भारी है, तो `Start/Pause` के साथ मैन्युअल नियंत्रण का उपयोग करें।
 
-## Detailed references
+## विस्तृत संदर्भ
 
-- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
-- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- क्लिक करें: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- होवर: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- प्रभाग: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

@@ -1,31 +1,31 @@
 ---
-title: Inferno Guide
-description: Complete guide for integrating tsParticles with Inferno applications.
+title: Inferno ガイド
+description: tsParticles を Inferno アプリケーションに統合するための完全ガイド。
 ---
 
-# Inferno Guide
+# Inferno ガイド
 
-## Table of Contents
+## 目次
 
-1. [Installation](#installation)
-2. [Basic Usage](#basic-usage)
-3. [Engine Initialization](#engine-initialization)
-4. [Custom Configuration](#custom-configuration)
-5. [Preset Usage](#preset-usage)
-6. [Component Pattern](#component-pattern)
-7. [TypeScript Example](#typescript-example)
+1. [インストール](#installation)
+2. [基本的な使い方](#basic-usage)
+3. [エンジンの初期化](#engine-initialization)
+4. [カスタム設定](#custom-configuration)
+5. [プリセットの使用](#preset-usage)
+6. [コンポーネントパターン](#component-pattern)
+7. [TypeScript の例](#typescript-example)
 
 ---
 
-## Installation
+## インストール
 
-Install the Inferno wrapper and the tsParticles engine via npm:
+npm を使用して Inferno ラッパーと tsParticles エンジンをインストールします:
 
 ```bash
 npm install @tsparticles/inferno tsparticles
 ```
 
-Optionally install the slim preset for a smaller bundle:
+オプションで、より小さなバンドルのためにスリムプリセットをインストールします:
 
 ```bash
 npm install @tsparticles/slim
@@ -33,9 +33,9 @@ npm install @tsparticles/slim
 
 ---
 
-## Basic Usage
+## 基本的な使い方
 
-The `@tsparticles/inferno` package exports two items: `ParticlesProvider` and `Particles`. Wrap your particle components with `ParticlesProvider` which accepts an `init` callback for engine setup, then use `<Particles>` to render the particle canvas.
+`@tsparticles/inferno` パッケージは、`ParticlesProvider` と `Particles` の2つのアイテムをエクスポートします。パーティクルコンポーネントを `ParticlesProvider` でラップします。これはエンジン設定用の `init` コールバックを受け入れ、その後 `<Particles>` を使用してパーティクルキャンバスをレンダリングします。
 
 ```tsx
 import { render } from "inferno";
@@ -83,41 +83,41 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-`ParticlesProvider` must be an ancestor of every `<Particles>` component. It initializes the engine once and provides it via context to all children.
+`ParticlesProvider` はすべての `<Particles>` コンポーネントの祖先である必要があります。エンジンを1回初期化し、コンテキストを介してすべての子に提供します。
 
 ---
 
-## Engine Initialization
+## エンジンの初期化
 
-The `ParticlesProvider` accepts an `init` prop that receives the engine instance. This is where you load the features, shapes, presets, or updaters your app needs.
+`ParticlesProvider` は、エンジンインスタンスを受け取る `init` プロップを受け入れます。ここで、アプリが必要とする機能、シェイプ、プリセット、またはアップデーターをロードします。
 
 ```tsx
-// Lightweight — circle particles, basic movement, links
+// 軽量 — 円形パーティクル、基本的な移動、リンク
 <ParticlesProvider init={async engine => {
   const { loadSlim } = await import("@tsparticles/slim");
   await loadSlim(engine);
 }}>
 
-// Full feature set — all shapes, interactions, effects
+// 完全な機能セット — すべてのシェイプ、インタラクション、エフェクト
 <ParticlesProvider init={async engine => {
   const { loadFull } = await import("tsparticles");
   await loadFull(engine);
 }}>
 
-// Preset-specific — confetti, fireworks, snow, stars
+// プリセット固有 — クラッカー、花火、雪、星
 <ParticlesProvider init={async engine => {
   const { loadConfettiPreset } = await import("@tsparticles/preset-confetti");
   await loadConfettiPreset(engine);
 }}>
 ```
 
-Using dynamic `import()` inside the callback enables code splitting: the preset or feature modules are loaded only when the particle component mounts.
+コールバック内で動的な `import()` を使用すると、コード分割が可能になります。プリセットまたは機能モジュールは、パーティクルコンポーネントがマウントされたときにのみロードされます。
 
 ---
 
-## Custom Configuration
+## カスタム設定
 
-Below is a fully featured configuration with interactivity, multiple shape types, and a dark gradient background.
+以下は、インタラクティビティ、複数のシェイプタイプ、およびダークグラデーション背景を備えた完全な機能を備えた設定です。
 
 ```tsx
 import { render } from "inferno";
@@ -190,9 +190,9 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## Preset Usage
+## プリセットの使用
 
-The `@tsparticles/configs` package offers pre-built configurations that you can pass straight to the `options` prop. Combine them with the corresponding preset loader in the `ParticlesProvider` init callback.
+`@tsparticles/configs` パッケージは、`options` プロップにそのまま渡すことができる構築済みの設定を提供します。`ParticlesProvider` の init コールバックで対応するプリセットローダーと組み合わせます。
 
 ```tsx
 import { render } from "inferno";
@@ -215,13 +215,13 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-You can swap `configs.confetti` with any available preset: `configs.basic`, `configs.fireworks`, `configs.snow`, `configs.stars`, etc.
+`configs.confetti` は利用可能な任意のプリセットと交換可能です: `configs.basic`、`configs.fireworks`、`configs.snow`、`configs.stars` など。
 
 ---
 
-## Component Pattern
+## コンポーネントパターン
 
-For larger applications, structure your particle logic into a dedicated component with a `particlesLoaded` callback for accessing the `Container` instance.
+大規模なアプリケーションでは、パーティクルロジックを専用のコンポーネントに構造化し、`Container` インスタンスにアクセスするための `particlesLoaded` コールバックを備えます。
 
 ```tsx
 import { render, Component } from "inferno";
@@ -298,9 +298,18 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## TypeScript Example
+## Reactive Behavior
 
-Here is a complete, typed Inferno application with a responsive particle configuration and full-screen background.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## TypeScript の例
+
+以下は、レスポンシブなパーティクル設定とフルスクリーン背景を備えた、完全な型付けされた Inferno アプリケーションです。
 
 ```tsx
 import { render } from "inferno";
@@ -370,15 +379,4 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## Reactive Behavior
-
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
----
-
-You now have everything needed to integrate tsParticles into an Inferno application. Each example is self-contained and ready to be copied into your project.
+これで、tsParticles を Inferno アプリケーションに統合するために必要なすべてが揃いました。各例は自己完結型で、プロジェクトにコピーしてすぐに使用できます。

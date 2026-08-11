@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/ember
+# ラッパー: @tsparticles/ember
 
-Official Ember wrapper for `tsParticles`.
+`tsParticles` の公式 Ember ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/ember @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine features once in app bootstrap.
-3. Mount the Ember component with your options.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. アプリのブートストラップでエンジン機能を一度初期化します。
+3. オプションを使用して Ember コンポーネントをマウントします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

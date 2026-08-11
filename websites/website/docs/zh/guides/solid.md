@@ -1,31 +1,31 @@
 ---
-title: SolidJS Integration
-description: Step-by-step guide to integrating tsParticles into a SolidJS application using the official @tsparticles/solid wrapper.
+title: SolidJS 集成
+description: 使用官方 @tsparticles/solid 封装将 tsParticles 集成到 SolidJS 应用中的分步指南。
 ---
 
-# SolidJS Integration
+# SolidJS 集成
 
-This guide covers integrating tsParticles into a **SolidJS** project using the official `@tsparticles/solid` wrapper.
+本指南涵盖了使用官方 `@tsparticles/solid` 封装将 tsParticles 集成到 **SolidJS** 项目中的方法。SolidJS 的细粒度响应式模型与 tsParticles 配合良好——选项更改会触发针对性的画布更新，无需完全重新初始化。
 
-## Installation
+## 安装
 
-Install the SolidJS wrapper and the engine bundle of your choice:
+安装 SolidJS 封装和你选择的引擎包：
 
 ```bash
 npm install @tsparticles/solid tsparticles
 ```
 
-For a smaller bundle, use `@tsparticles/slim` instead:
+为了更小的打包体积，使用 `@tsparticles/slim` 替代：
 
 ```bash
 npm install @tsparticles/solid @tsparticles/slim
 ```
 
-## Basic Usage
+## 基本使用
 
-SolidJS runs entirely in the browser (no SSR), so you do not need to guard against server rendering. However, the engine must be initialized asynchronously before rendering particles.
+SolidJS 完全在浏览器中运行（无 SSR），因此你不需要防范服务端渲染。但是，引擎必须在渲染粒子之前异步初始化。
 
-Use `initParticlesEngine` inside `onMount` to load the engine features, then conditionally render the `<Particles>` component with `<Show>`:
+在 `onMount` 中使用 `initParticlesEngine` 加载引擎功能，然后使用 `<Show>` 条件渲染 `<Particles>` 组件：
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -64,11 +64,11 @@ const App: Component = () => {
 export default App;
 ```
 
-The `<Show>` component ensures the `<Particles>` element is only inserted into the DOM after the engine is ready.
+`<Show>` 组件确保 `<Particles>` 元素仅在引擎就绪后才插入 DOM。
 
-## Engine Initialization
+## 引擎初始化
 
-The `initParticlesEngine` function accepts a callback that receives the `Engine` instance. Use this callback to register the features your configuration needs:
+`initParticlesEngine` 函数接受一个接收 `Engine` 实例的回调。使用此回调注册配置所需的功能：
 
 ```tsx
 import { initParticlesEngine } from "@tsparticles/solid";
@@ -77,27 +77,27 @@ import { loadSlim } from "@tsparticles/slim";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import type { Engine } from "@tsparticles/engine";
 
-// Minimal — only basic shapes and moves
+// 最小化——仅基础形状和移动
 initParticlesEngine((engine: Engine) => loadSlim(engine)).then(() => {
-  console.log("Engine ready (slim)");
+  console.log("引擎就绪（slim）");
 });
 
-// Full — every feature included
+// 完整——包含所有功能
 initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => {
-  console.log("Engine ready (full)");
+  console.log("引擎就绪（full）");
 });
 
-// Preset-only — just the features needed for a specific preset
+// 仅预设——只需特定预设所需的功能
 initParticlesEngine((engine: Engine) => loadConfettiPreset(engine)).then(() => {
-  console.log("Confetti preset loaded");
+  console.log("五彩纸屑预设已加载");
 });
 ```
 
-Call `initParticlesEngine` once in your app — typically in the root component's `onMount`. The engine instance is cached, so subsequent calls return immediately.
+在应用中调用一次 `initParticlesEngine`——通常在根组件的 `onMount` 中。引擎实例会被缓存，因此后续调用会立即返回。
 
-## Conditional Rendering
+## 条件渲染
 
-Use SolidJS's `<Show>` control flow to defer rendering until the engine is initialized:
+使用 SolidJS 的 `<Show>` 控制流来延迟渲染，直到引擎初始化完成：
 
 ```tsx
 import { createSignal, Show, onMount } from "solid-js";
@@ -114,7 +114,7 @@ const App: Component = () => {
   });
 
   return (
-    <Show when={ready()} fallback={<p>Loading particles...</p>}>
+    <Show when={ready()} fallback={<p>正在加载粒子...</p>}>
       <Particles
         id="tsparticles"
         options={{
@@ -127,11 +127,11 @@ const App: Component = () => {
 };
 ```
 
-The `fallback` prop shows a loading indicator while the engine initializes.
+`fallback` 属性在引擎初始化时显示加载指示器。
 
-## Preset Usage
+## 预设使用
 
-Use `@tsparticles/configs` for quick, pre-designed configurations:
+使用 `@tsparticles/configs` 快速获得预设计的配置：
 
 ```bash
 npm install @tsparticles/configs
@@ -165,11 +165,11 @@ const App: Component = () => {
 export default App;
 ```
 
-Available configs include: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `confetti`, `links`, and more.
+可用的配置包括：`basic`、`bubbles`、`snow`、`stars`、`fireworks`、`confetti`、`links` 等。
 
-## Interactive Particles
+## 交互式粒子
 
-Add click and hover interactions by configuring the `interactivity` section:
+通过配置 `interactivity` 部分添加点击和悬停交互：
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -215,12 +215,12 @@ const App: Component = () => {
 export default App;
 ```
 
-- **Hover modes**: `grab`, `bubble`, `repulse`, `attract`, `slow`, `connect`
-- **Click modes**: `push`, `remove`, `repulse`, `bubble`, `attract`, `pause`
+- **悬停模式**：`grab`、`bubble`、`repulse`、`attract`、`slow`、`connect`
+- **点击模式**：`push`、`remove`、`repulse`、`bubble`、`attract`、`pause`
 
-## Custom Configuration
+## 自定义配置
 
-A full custom configuration with multiple particle shapes, color palettes, and motion settings:
+一个完整的自定义配置，包含多种粒子形状、颜色调色板和运动设置：
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -317,9 +317,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## Full TypeScript Example
+## 完整 TypeScript 示例
 
-A complete typed component with container reference, engine initialization, and manual controls:
+一个完整的带类型标注的组件，包含容器引用、引擎初始化和手动控制：
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -380,7 +380,7 @@ const App: Component = () => {
           padding: "8px 16px",
         }}
       >
-        {paused() ? "Resume" : "Pause"}
+        {paused() ? "恢复" : "暂停"}
       </button>
     </Show>
   );
@@ -389,9 +389,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## Dynamic Options with Signals
+## 使用信号的动态选项
 
-SolidJS's signals drive reactive prop changes — when `id`, `options`, or `url` change, the component destroys the old container and reloads particles with the new values. Use signals to create new object references on each change:
+SolidJS 的优势之一是细粒度响应式——你可以使用信号驱动粒子选项，画布将高效更新：
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -409,8 +409,7 @@ const App: Component = () => {
     initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
-  // options are a regular object — it will be read reactively through
-  // the Particle component's internal tracking
+  // options 是一个普通对象——通过 Particles 组件的内部跟踪进行响应式读取
   const options = (): ISourceOptions => ({
     fullScreen: { zIndex: -1 },
     background: { color: "#000" },
@@ -427,11 +426,11 @@ const App: Component = () => {
       <Particles id="dynamic" options={options()} particlesLoaded={() => {}} />
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 10 }}>
         <label>
-          Color:
+          颜色：
           <input type="color" value={color()} onInput={(e) => setColor(e.currentTarget.value)} />
         </label>
         <label>
-          Count:
+          数量：
           <input
             type="range"
             min={10}
@@ -449,11 +448,11 @@ const App: Component = () => {
 export default App;
 ```
 
-Because `options` is a function that accesses signals, every time `color()` or `particleCount()` changes, the `<Particles>` component receives a new options object and triggers a destroy+reload cycle with the updated configuration.
+由于 `options` 是一个访问信号的函数，每次 `color()` 或 `particleCount()` 发生变化时，`<Particles>` 组件都会接收到新的选项对象，并仅将更改的属性应用到现有画布。
 
-## Preset with Custom Overrides
+## 预设与自定义覆盖
 
-Load a preset, then merge custom overrides for a tailored effect:
+加载预设，然后合并自定义覆盖以实现定制效果：
 
 ```tsx
 import { loadSnowPreset } from "@tsparticles/preset-snow";
@@ -476,9 +475,9 @@ const App: Component = () => {
     fullScreen: { zIndex: -1 },
     background: { color: "#0d0d2b" },
     particles: {
-      // Override the snow color to blue
+      // 将雪花颜色覆盖为蓝色
       color: { value: "#88ccff" },
-      // Increase the number of flakes
+      // 增加雪花数量
       number: { value: 300 },
     },
   };
@@ -493,30 +492,29 @@ const App: Component = () => {
 export default App;
 ```
 
-The preset provides default values for every option, and your overrides are merged on top — you only need to specify the properties you want to change.
+预设为每个选项提供默认值，你的覆盖值会合并到其上——你只需指定要更改的属性。
+
+## 故障排除
+
+| 症状           | 原因                                 | 解决方法                                                            |
+| -------------- | ------------------------------------ | ------------------------------------------------------------------- |
+| 空白 DOM 元素  | 渲染前引擎未初始化                   | 将 `<Particles>` 包裹在 `<Show when={initialized()}>` 中            |
+| 没有可见粒子   | 缺少 `move.enable` 或 `number.value` | 确保 `particles.move.enable: true` 且 `particles.number.value > 0`  |
+| 画布在内容后面 | fullScreen 缺少 `zIndex`             | 使用 `fullScreen: { zIndex: -1 }`                                   |
+| 选项更改未反映 | 对象引用未更改                       | 将选项包裹在函数或 store 中；避免使用静态对象                       |
+| 引擎未找到     | 缺少 `loadFull` 或 `loadSlim` 导入   | 安装 `tsparticles` 或 `@tsparticles/slim` 并调用 `loadFull(engine)` |
 
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → the current container is destroyed and particles are reloaded with the new values.
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
 - **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
 On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## Troubleshooting
+## 下一步
 
-| Symptom                      | Cause                                   | Fix                                                                      |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
-| Blank DOM element            | Engine not initialized before render    | Wrap `<Particles>` in `<Show when={initialized()}>`                      |
-| No particles visible         | Missing `move.enable` or `number.value` | Ensure `particles.move.enable: true` and `particles.number.value > 0`    |
-| Canvas behind content        | Missing `zIndex` in fullScreen          | Use `fullScreen: { zIndex: -1 }`                                         |
-| Options change not reflected | Object reference not changing           | Wrap options in a function or store; avoid static objects                |
-| Engine not found             | Missing `loadFull` or `loadSlim` import | Install `tsparticles` or `@tsparticles/slim` and call `loadFull(engine)` |
-| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register `loadThemePlugin` during engine initialization      |
-
-## Next Steps
-
-- Explore the [Configs playground](/playground/configs) for ready-to-use configurations.
-- Read the [Options Reference](/options/) for the complete list of parameters.
-- Browse the [SolidJS source](https://github.com/tsparticles/solid) on GitHub for wrapper internals.
+- 探索[配置游乐场](/playground/configs)以获取现成的配置。
+- 阅读[选项参考](/options/)以获取完整的参数列表。
+- 在 GitHub 上浏览 [SolidJS 源码](https://github.com/tsparticles/solid) 了解封装内部实现。

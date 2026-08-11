@@ -1,25 +1,25 @@
-# Framework Integrations
+# Интеграции framework
 
-`tsParticles` supports multiple wrappers, but the runtime flow is always the same:
+`tsParticles` поддерживает несколько wrappers, но runtime-поток всегда одинаковый:
 
-1. initialize the engine once
-2. load only the features you need (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
-3. render the wrapper component with your options
+1. инициализировать engine один раз
+2. загрузить только нужные функции (`@tsparticles/slim`, `@tsparticles/all` или пользовательские plugins)
+3. отрендерить wrapper-компонент с вашими опциями
 
-## Quick checklist
+## Короткий чеклист
 
-- Keep all `@tsparticles/*` package versions aligned.
-- Run the loader once at app startup.
-- Start with a small options object and grow incrementally.
-- For SSR frameworks, mount particles client-side only.
+- Держите все версии `@tsparticles/*` синхронизированными.
+- Запускайте loader один раз при старте приложения.
+- Начинайте с небольшого объекта опций и расширяйте его постепенно.
+- Для SSR-framework монтируйте частицы только на клиенте.
 
-## Start from the wrapper guide
+## Начните с гайда по wrappers
 
-For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid, and others), see:
+Полная матрица wrappers (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid и другие) доступна здесь:
 
-- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/wrappers`](/ru/guide/wrappers)
 
-## Core integration examples
+## Базовые примеры интеграции
 
 ### React
 
@@ -107,15 +107,15 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## Practical guidance
+## Практические рекомендации
 
-- Prefer `@tsparticles/slim` as baseline for most apps.
-- Keep options in dedicated config files when they grow.
-- For expensive scenes, expose start/stop controls in your UI.
+- Используйте `@tsparticles/slim` как базу для большинства приложений.
+- Выносите опции в отдельные конфигурационные файлы по мере роста.
+- Для тяжелых сцен добавляйте в UI элементы управления старт/стоп.
 
-## Source references
+## Источники
 
-- Wrappers source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Framework demos source: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Исходники wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Демо по framework: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Пакет engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
 - Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>

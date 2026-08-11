@@ -1,14 +1,14 @@
-# Squares Preset
+# वर्ग प्रीसेट
 
-Official preset from the `presets/presets/squares` workspace.
+`presets/presets/squares` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-squares
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for geometric, structured designs and modern layouts.
+ज्यामितीय, संरचित डिज़ाइन और आधुनिक लेआउट के लिए बिल्कुल सही।
 
-Demo: <https://particles.js.org/demos/recipes/squares>
+डेमो: <https://particles.js.org/demos/recipes/squares>

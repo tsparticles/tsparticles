@@ -237,7 +237,7 @@
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"typescript": "^6.0.3",
-		"webpack": "~5.108.4",
+		"webpack": "^5.109.2",
 		"webpack-cli": "^5.1.4"
 	}
 }

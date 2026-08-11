@@ -1,8 +1,8 @@
-# Particles Destroy
+# कण नष्ट हो जाते हैं
 
-`particles.destroy` controls what happens when particles are destroyed.
+`particles.destroy` यह नियंत्रित करता है कि जब कण नष्ट हो जाते हैं तो क्या होता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -18,11 +18,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## व्यावहारिक मार्गदर्शन
 
-- Start with simple `mode` setups before complex split chains.
-- Re-check performance when using large split counts.
+- जटिल विभाजन श्रृंखलाओं से पहले सरल `mode` सेटअप से प्रारंभ करें।
+- बड़ी स्प्लिट गणनाओं का उपयोग करते समय प्रदर्शन की पुनः जाँच करें।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Destroy.md>

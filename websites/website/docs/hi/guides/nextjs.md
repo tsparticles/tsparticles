@@ -1,29 +1,29 @@
 ---
-title: Next.js Integration
-description: Step-by-step guide to integrating tsParticles into a Next.js application using the App Router.
+title: Next.js इंटीग्रेशन
+description: App Router का उपयोग करके Next.js एप्लिकेशन में tsParticles को एकीकृत करने के लिए चरण-दर-चरण मार्गदर्शिका।
 ---
 
-# Next.js Integration
+# Next.js इंटीग्रेशन
 
-This guide covers integrating tsParticles into a Next.js project using the **App Router** (Next.js 13+). For the legacy Pages Router, see the [Legacy Pages Router](#legacy-pages-router) section at the bottom.
+यह मार्गदर्शिका **App Router** (Next.js 13+) का उपयोग करके Next.js प्रोजेक्ट में tsParticles को एकीकृत करने को कवर करती है। लीगेसी Pages Router के लिए, नीचे [लीगेसी Pages Router](#legacy-pages-router) अनुभाग देखें।
 
-## Installation
+## इंस्टॉलेशन
 
-Install the `@tsparticles/react` wrapper and the full `tsparticles` engine (or a slim bundle for smaller builds):
+`@tsparticles/react` रैपर और पूर्ण `tsparticles` इंजन (या छोटे बिल्ड के लिए स्लिम बंडल) इंस्टॉल करें:
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-If you prefer the smaller `@tsparticles/slim` bundle:
+यदि आप छोटा `@tsparticles/slim` बंडल पसंद करते हैं:
 
 ```bash
 npm install @tsparticles/react @tsparticles/slim
 ```
 
-## Basic Usage (App Router)
+## मूल उपयोग (App Router)
 
-Next.js App Router components are server-side by default. Since tsParticles requires the browser `canvas` API, you must mark the component with the `"use client"` directive.
+Next.js App Router कम्पोनेंट डिफ़ॉल्ट रूप से सर्वर-साइड होते हैं। चूँकि tsParticles को ब्राउज़र `canvas` API की आवश्यकता है, आपको कम्पोनेंट को `"use client"` निर्देश से चिह्नित करना होगा।
 
 ```tsx
 "use client";
@@ -34,7 +34,7 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export default function ParticlesBackground() {
   const particlesLoaded = useCallback((container?: Container) => {
-    console.log("Particles loaded", container);
+    console.log("पार्टिकल्स लोड हुए", container);
   }, []);
 
   const options: ISourceOptions = useMemo(
@@ -55,11 +55,11 @@ export default function ParticlesBackground() {
 }
 ```
 
-Create this as `components/particles-background.tsx` and import it into any page or layout. Because the file starts with `"use client"`, it will be rendered on the client — exactly where tsParticles needs to be.
+इसे `components/particles-background.tsx` के रूप में बनाएँ और किसी भी पेज या लेआउट में आयात करें। क्योंकि फ़ाइल `"use client"` से शुरू होती है, यह क्लाइंट पर रेंडर होगी — ठीक वहीं जहाँ tsParticles को होना चाहिए।
 
-## Theme Switching
+## थीम स्विचिंग
 
-Combine tsParticles with Next.js theme toggles by deriving the options from the current theme state:
+वर्तमान थीम स्थिति से विकल्प प्राप्त करके tsParticles को Next.js थीम टॉगल के साथ जोड़ें:
 
 ```tsx
 "use client";
@@ -109,18 +109,18 @@ export default function ThemeAwareParticles() {
           padding: "8px 16px",
         }}
       >
-        Switch to {theme === "dark" ? "Light" : "Dark"} Mode
+        {theme === "dark" ? "हल्का" : "गहरा"} मोड पर स्विच करें
       </button>
     </>
   );
 }
 ```
 
-The `options` object is recreated via `useMemo` whenever `theme` changes, so the canvas updates automatically.
+`options` ऑब्जेकट `useMemo` के माध्यम से हर बार `theme` बदलने पर पुनः बनाया जाता है, इसलिए कैनवास स्वचालित रूप से अपडेट होता है।
 
-## Confetti Effect
+## कॉन्फ़ेटी प्रभाव
 
-Use the `@tsparticles/preset-confetti` to trigger celebratory confetti on events like button clicks:
+बटन क्लिक जैसी घटनाओं पर उत्सवपूर्ण कॉन्फ़ेटी ट्रिगर करने के लिए `@tsparticles/preset-confetti` का उपयोग करें:
 
 ```bash
 npm install @tsparticles/preset-confetti
@@ -167,18 +167,18 @@ export default function ConfettiButton() {
     <>
       {active && <Particles id="confetti" init={particlesInit} particlesLoaded={particlesLoaded} options={options} />}
       <button onClick={handleCelebrate} style={{ position: "fixed", top: 16, left: 16, zIndex: 10 }}>
-        Celebrate!
+        जश्न मनाएँ!
       </button>
     </>
   );
 }
 ```
 
-The `init` callback loads the confetti preset into the engine before the particles are created.
+`init` कॉलबैक पार्टिकल्स बनने से पहले कॉन्फ़ेटी प्रीसेट को इंजन में लोड करता है।
 
-## Fireworks Effect
+## आतिशबाज़ी प्रभाव
 
-Similarly, the fireworks preset creates a spectacular firework display:
+इसी तरह, आतिशबाज़ी प्रीसेट एक शानदार आतिशबाजी प्रदर्शन बनाता है:
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -218,9 +218,9 @@ export default function FireworksBackground() {
 }
 ```
 
-## Full TypeScript Example with Container Ref
+## कंटेनर रेफ के साथ पूर्ण टाइपस्क्रिप्ट उदाहरण
 
-Access the `Container` instance to control the animation programmatically (play, pause, destroy, export image):
+एनीमेशन को प्रोग्रामेटिक रूप से नियंत्रित करने के लिए `Container` इंस्टेंस तक पहुँचें (प्ले, पॉज़, नष्ट करें, इमेज निर्यात करें):
 
 ```tsx
 "use client";
@@ -291,23 +291,23 @@ export default function ControllableParticles() {
           gap: 8,
         }}
       >
-        <button onClick={handlePause}>Pause</button>
-        <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePause}>रोकें</button>
+        <button onClick={handlePlay}>चलाएँ</button>
       </div>
     </div>
   );
 }
 ```
 
-Key points:
+मुख्य बिंदु:
 
-- `particlesInit` loads the engine features (only runs once per component mount).
-- `particlesLoaded` fires every time the container is fully initialized.
-- `containerRef` holds the `Container` instance so you can call its methods later.
+- `particlesInit` इंजन सुविधाएँ लोड करता है (प्रति कम्पोनेंट माउंट केवल एक बार चलता है)।
+- `particlesLoaded` हर बार फायर होता है जब कंटेनर पूरी तरह से आरंभ हो जाता है।
+- `containerRef` `Container` इंस्टेंस रखता है ताकि आप बाद में इसकी विधियाँ कॉल कर सकें।
 
-## Performance: useMemo and useCallback
+## प्रदर्शन: useMemo और useCallback
 
-Always wrap static or rarely-changing options in `useMemo` and event handlers in `useCallback` to prevent unnecessary re-renders of the canvas:
+कैनवास के अनावश्यक पुनः रेंडर को रोकने के लिए स्थिर या शायद ही बदलने वाले विकल्पों को हमेशा `useMemo` में और इवेंट हैंडलर को `useCallback` में लपेटें:
 
 ```tsx
 "use client";
@@ -319,12 +319,12 @@ import type { Container, ISourceOptions } from "@tsparticles/engine";
 export default function PerformanceExample() {
   const [particlesCount, setParticlesCount] = useState(80);
 
-  // Stable callback — never recreates unless deps change
+  // स्थिर कॉलबैक — डिप्स बदलने तक पुनः नहीं बनता
   const particlesLoaded = useCallback((container?: Container) => {
-    console.log("Container ready", container?.id);
+    console.log("कंटेनर तैयार", container?.id);
   }, []);
 
-  // Stable options object — prevents canvas re-initialization
+  // स्थिर विकल्प ऑब्जेकट — कैनवास पुनः आरंभीकरण रोकता है
   const options: ISourceOptions = useMemo(
     () => ({
       fullScreen: { zIndex: -1 },
@@ -340,27 +340,27 @@ export default function PerformanceExample() {
   return (
     <div>
       <Particles id="performance-particles" particlesLoaded={particlesLoaded} options={options} />
-      <button onClick={() => setParticlesCount((c) => c + 20)}>Add 20 particles</button>
+      <button onClick={() => setParticlesCount((c) => c + 20)}>20 पार्टिकल्स जोड़ें</button>
     </div>
   );
 }
 ```
 
-Without these optimizations, every parent re-render would create a new `options` object, causing the canvas to be recreated.
+इन अनुकूलनों के बिना, प्रत्येक पैरेंट री-रेंडर एक नया `options` ऑब्जेकट बनाएगा, जिससे कैनवास पुनः बनाया जाएगा।
 
-## Page Integration
+## पेज इंटीग्रेशन
 
-Add a particle background to a page layout without affecting the page content:
+पेज सामग्री को प्रभावित किए बिना पेज लेआउट में पार्टिकल पृष्ठभूमि जोड़ें:
 
 ```tsx
-// app/layout.tsx (server component)
+// app/layout.tsx (सर्वर कम्पोनेंट)
 import dynamic from "next/dynamic";
 
 const ParticlesBackground = dynamic(() => import("@/components/particles-background"), { ssr: false });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="hi">
       <body>
         <ParticlesBackground />
         <main style={{ position: "relative", zIndex: 1 }}>{children}</main>
@@ -370,11 +370,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-Use `dynamic()` with `ssr: false` to ensure the component never runs during server-side rendering. The particle canvas sits behind the main content via CSS `z-index`.
+`ssr: false` के साथ `dynamic()` का उपयोग करें ताकि सुनिश्चित हो सके कि कम्पोनेंट सर्वर-साइड रेंडरिंग के दौरान कभी न चले। पार्टिकल कैनवास CSS `z-index` के माध्यम से मुख्य सामग्री के पीछे बैठता है।
 
-## Multiple Instances
+## एकाधिक इंस्टेंस
 
-You can render several independent `Particles` components on the same page, each with its own configuration:
+आप एक ही पेज पर कई स्वतंत्र `Particles` कम्पोनेंट रेंडर कर सकते हैं, प्रत्येक अपने स्वयं के कॉन्फ़िगरेशन के साथ:
 
 ```tsx
 "use client";
@@ -423,11 +423,11 @@ function ParticlesGallery() {
 }
 ```
 
-Each `Particles` component creates an independent canvas with its own animation loop. Set `fullScreen: false` and give each a fixed height so they coexist in the document flow.
+प्रत्येक `Particles` कम्पोनेंट अपने स्वयं के एनीमेशन लूप के साथ एक स्वतंत्र कैनवास बनाता है। `fullScreen: false` सेट करें और प्रत्येक को एक निश्चित ऊँचाई दें ताकि वे दस्तावेज़ प्रवाह में सह-अस्तित्व में रह सकें।
 
-## Legacy Pages Router
+## लीगेसी Pages Router
 
-If you are using the Next.js **Pages Router** (`pages/` directory), the approach is similar but without the `"use client"` directive. Instead, you can use a dynamic import in the page component:
+यदि आप Next.js के **Pages Router** (`pages/` निर्देशिका) का उपयोग कर रहे हैं, तो दृष्टिकोण समान है लेकिन `"use client"` निर्देश के बिना। इसके बजाय, आप पेज कम्पोनेंट में एक डायनामिक इम्पोर्ट का उपयोग कर सकते हैं:
 
 ```tsx
 // pages/index.tsx
@@ -440,7 +440,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <ParticlesComponent />
-      <h1>Welcome</h1>
+      <h1>स्वागत है</h1>
     </div>
   );
 };
@@ -448,7 +448,7 @@ const Home: NextPage = () => {
 export default Home;
 ```
 
-The component itself (`components/particles-component.tsx`) is a plain React component:
+कम्पोनेंट स्वयं (`components/particles-component.tsx`) एक सादा React कम्पोनेंट है:
 
 ```tsx
 import Particles from "@tsparticles/react";
@@ -474,29 +474,28 @@ export default function ParticlesComponent() {
 }
 ```
 
-Note that the Pages Router does **not** require `"use client"` because page components are already client-rendered by default.
-
-## Troubleshooting
-
-| Symptom                      | Cause                                   | Fix                                                              |
-| ---------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-| Blank white page             | SSR rendering a canvas-dependent module | Use `dynamic(..., { ssr: false })` or wrap in a client component |
-| Canvas not showing           | Container has zero height               | Set `fullScreen: { zIndex: -1 }` or give it explicit dimensions  |
-| Options change not reflected | New object reference not created        | Use `useMemo` with proper dependency array                       |
-| Preset not working           | Preset not loaded before container init | Call `loadXPreset(engine)` inside the `init` callback            |
-| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register the plugin during engine initialization     |
+ध्यान दें कि Pages Router को `"use client"` की **आवश्यकता नहीं** है क्योंकि पेज कम्पोनेंट डिफ़ॉल्ट रूप से पहले से ही क्लाइंट-रेंडर होते हैं।
 
 ## Reactive Behavior
 
-The `<Particles>` component reacts to prop changes:
+The `<Particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → destroy current container and reload with new values.
-- **`theme`** change → `loadTheme` on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
-On component unmount, the particles container is automatically destroyed.
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## Next Steps
+## समस्या निवारण
 
-- Browse the [Interactive Demos](/demos/) for ready-made configurations.
-- Read the full [Options Reference](/options/) for every available parameter.
-- Check the [Presets](/demos/presets) page for more pre-built presets like snow, stars, and firefly.
+| लक्षण                          | कारण                                         | समाधान                                                                       |
+| ------------------------------ | -------------------------------------------- | ---------------------------------------------------------------------------- |
+| खाली सफेद पेज                  | SSR एक कैनवास-निर्भर मॉड्यूल रेंडर कर रहा है | `dynamic(..., { ssr: false })` का उपयोग करें या क्लाइंट कम्पोनेंट में लपेटें |
+| कैनवास नहीं दिख रहा            | कंटेनर की ऊँचाई शून्य है                     | `fullScreen: { zIndex: -1 }` सेट करें या स्पष्ट आयाम दें                     |
+| विकल्प परिवर्तन परिलक्षित नहीं | नया ऑब्जेकट संदर्भ नहीं बनाया गया            | उचित डिपेंडेंसी एरे के साथ `useMemo` का उपयोग करें                           |
+| प्रीसेट काम नहीं कर रहा        | कंटेनर आरंभ से पहले प्रीसेट लोड नहीं हुआ     | `init` कॉलबैक के अंदर `loadXPreset(engine)` कॉल करें                         |
+
+## अगले कदम
+
+- तैयार कॉन्फ़िगरेशन के लिए [इंटरैक्टिव डेमो](/demos/) ब्राउज़ करें।
+- हर उपलब्ध पैरामीटर के लिए पूर्ण [विकल्प संदर्भ](/options/) पढ़ें।
+- बर्फ, तारे और जुगनू जैसे और अधिक पूर्व-निर्मित प्रीसेट के लिए [प्रीसेट](/demos/presets) पेज देखें।

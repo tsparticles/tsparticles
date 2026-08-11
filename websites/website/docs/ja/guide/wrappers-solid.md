@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/solid
+# ラッパー: @tsparticles/solid
 
-Official Solid wrapper for `tsParticles`.
+`tsParticles` の公式ソリッド ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/solid @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Load selected feature set once at startup.
-3. Render Solid component with options props.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. 選択した機能セットを起動時に 1 回ロードします。
+3. オプションの小道具を使用してソリッド コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/solid>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

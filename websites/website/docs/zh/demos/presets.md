@@ -1,10 +1,10 @@
-# Presets Catalog
+# 预设目录
 
-These are the official presets listed in the main `tsParticles` README and available in the presets workspace.
+这些是主 `tsParticles` 自述文件中列出的官方预设，可在预设工作区中找到。
 
-Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+源文件夹：<https://github.com/tsparticles/tsparticles/tree/main/presets>
 
-## Presets
+## 预设
 
 - `ambient` - <https://www.npmjs.com/package/@tsparticles/preset-ambient> - [/demos/recipes/ambient](/demos/recipes/ambient)
 - `big-circles` - <https://www.npmjs.com/package/@tsparticles/preset-big-circles> - [/demos/recipes/big-circles](/demos/recipes/big-circles)
@@ -21,7 +21,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `fountain` - <https://www.npmjs.com/package/@tsparticles/preset-fountain> - [/demos/recipes/fountain](/demos/recipes/fountain)
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - [/demos/recipes/hyperspace](/demos/recipes/hyperspace)
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - [/demos/recipes/links](/demos/recipes/links)
-- `matrix` - local website demo recipe available in [`/demos/recipes/matrix`](/demos/recipes/matrix)
+- `matrix` - 本地网站演示配方可在 [`/demos/recipes/matrix`](/zh/demos/recipes/matrix) 中找到
 - `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - [/demos/recipes/meteors](/demos/recipes/meteors)
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - [/demos/recipes/sea-anemone](/demos/recipes/sea-anemone)
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - [/demos/recipes/snow](/demos/recipes/snow)
@@ -29,11 +29,11 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `stars` - <https://www.npmjs.com/package/@tsparticles/preset-stars> - [/demos/recipes/stars](/demos/recipes/stars)
 - `triangles` - <https://www.npmjs.com/package/@tsparticles/preset-triangles> - [/demos/recipes/triangles](/demos/recipes/triangles)
 
-Each preset folder also contains docs in the monorepo, for example:
+每个预设文件夹还包含 monorepo 中的文档，例如：
 
 - <https://github.com/tsparticles/tsparticles/tree/main/presets/confetti#readme>
 
-## Quick usage
+## 快速使用
 
 ```ts
 await tsParticles.load({
@@ -47,6 +47,6 @@ await tsParticles.load({
 });
 ```
 
-For production setups, use manual start/stop/resume/destroy as shown in the recipes under [`/demos/`](/demos/).
+对于生产设置，请使用手动启动/停止/恢复/销毁，如 [`/demos/`](/zh/demos/) 下的配方中所示。
 
-Use [`/playground/presets`](/playground/presets) to test each preset with explicit Start/Pause controls.
+使用 [`/playground/presets`](/zh/playground/presets) 通过显式开始/暂停控件测试每个预设。

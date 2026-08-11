@@ -1,8 +1,8 @@
-# Particles Destroy
+# Partículas Destruyen
 
-`particles.destroy` controls what happens when particles are destroyed.
+`particles.destroy` controla lo que sucede cuando se destruyen las partículas.
 
-## Example
+## Ejemplo
 
 ```ts
 particles: {
@@ -18,11 +18,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## Orientación práctica
 
-- Start with simple `mode` setups before complex split chains.
-- Re-check performance when using large split counts.
+- Comience con configuraciones `mode` simples antes de cadenas divididas complejas.
+- Vuelva a comprobar el rendimiento cuando utilice recuentos divididos grandes.
 
-## Source reference
+## Referencia fuente
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Destroy.md>

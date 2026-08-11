@@ -1,25 +1,25 @@
-# Framework Integrations
+# Integraciones de frameworks
 
-`tsParticles` supports multiple wrappers, but the runtime flow is always the same:
+`tsParticles` soporta multiples wrappers, pero el flujo de runtime siempre es el mismo:
 
-1. initialize the engine once
-2. load only the features you need (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
-3. render the wrapper component with your options
+1. inicializar el engine una sola vez
+2. cargar solo las features que necesitas (`@tsparticles/slim`, `@tsparticles/all`, o plugins personalizados)
+3. renderizar el componente wrapper con tus opciones
 
-## Quick checklist
+## Checklist rapida
 
-- Keep all `@tsparticles/*` package versions aligned.
-- Run the loader once at app startup.
-- Start with a small options object and grow incrementally.
-- For SSR frameworks, mount particles client-side only.
+- Mantén alineadas todas las versiones de `@tsparticles/*`.
+- Ejecuta el loader una sola vez al arrancar la app.
+- Empieza con un objeto de opciones pequeño y amplialo de forma incremental.
+- Para frameworks SSR, monta particulas solo en cliente.
 
-## Start from the wrapper guide
+## Empezar desde la guia de wrappers
 
-For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid, and others), see:
+Para ver la matriz completa de wrappers (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid y otros), consulta:
 
-- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/wrappers`](/es/guide/wrappers)
 
-## Core integration examples
+## Ejemplos de integracion base
 
 ### React
 
@@ -107,15 +107,15 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## Practical guidance
+## Guia practica
 
-- Prefer `@tsparticles/slim` as baseline for most apps.
-- Keep options in dedicated config files when they grow.
-- For expensive scenes, expose start/stop controls in your UI.
+- Prefiere `@tsparticles/slim` como base para la mayoria de apps.
+- Guarda las opciones en archivos de configuracion dedicados cuando crezcan.
+- En escenas pesadas, expone controles de iniciar/detener en la UI.
 
-## Source references
+## Referencias de origen
 
-- Wrappers source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- Framework demos source: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- Engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Fuente wrappers: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Fuente demos de framework: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Package engine: <https://github.com/tsparticles/tsparticles/tree/main/engine>
 - Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>

@@ -1,8 +1,8 @@
-# Particles Palette
+# Partikelpalette
 
-`particles.palette` imports a named palette and applies particle color defaults.
+`particles.palette` importiert eine benannte Palette und wendet Partikelfarbstandards an.
 
-## Example
+## Beispiel
 
 ```ts
 particles: {
@@ -13,14 +13,15 @@ particles: {
 }
 ```
 
-## What it changes
+## Was es ändert
 
-- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
-- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
-- Enables `particles.blend` with the palette blend mode.
-- Keeps your config compact when reusing color sets.
+- Legt `particles.paint.fill` oder `particles.paint.stroke` basierend auf der Palettenkonfiguration fest.
+- Wenn die Palette mehrere Farbvarianten hat, wird `particles.paint` als Array von Varianten importiert.
+- Aktiviert `particles.blend` mit dem Paletten-Mischmodus.
 
-## New palette format (for custom palettes)
+- Hält Ihre Konfiguration kompakt, wenn Sie Farbsätze wiederverwenden.
+
+## Neues Palettenformat (für benutzerdefinierte Paletten)
 
 ```ts
 const palette = {
@@ -36,16 +37,16 @@ const palette = {
 };
 ```
 
-`colors` can be either:
+`colors` kann entweder sein:
 
-- a single variant object (`{ fill?, stroke? }`)
-- an array of variant objects (each variant can define `fill`, `stroke`, or both)
+- ein einzelnes Variantenobjekt (`{ fill?, stroke? }`)
+  - ein Array von Variantenobjekten (jede Variante kann `fill`, `stroke` oder beide definieren)
 
-## Notes
+## Notizen
 
-- Unknown palette ids are ignored.
-- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
+- Unbekannte Paletten-IDs werden ignoriert.
+  - Explizite `particles.paint.fill`-, `particles.paint.stroke`- oder `particles.blend`-Werte überschreiben importierte Standardwerte.
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>

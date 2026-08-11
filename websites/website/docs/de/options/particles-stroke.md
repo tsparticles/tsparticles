@@ -1,16 +1,16 @@
-# Particles Stroke
+# Partikelstrich
 
-Stroke options are now documented under `particles.paint.stroke`.
+Strichoptionen sind jetzt unter `particles.paint.stroke` dokumentiert.
 
-## New page
+## Neue Seite
 
-- [`Particles Paint`](/options/particles-paint)
+- [`Particles Paint`](/de/options/particles-paint)
 
-## Quick mapping
+## Schnelle Zuordnung
 
-- Old: `particles.stroke`
-- New: `particles.paint.stroke`
+- Alt: `particles.stroke`
+- Neu: `particles.paint.stroke`
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

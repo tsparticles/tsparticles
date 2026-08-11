@@ -1,8 +1,8 @@
-# Particles Paint
+# Particules de peinture
 
-`particles.paint` groups particle fill and stroke style options.
+`particles.paint` regroupe les options de remplissage de particules et de style de trait.
 
-## Example
+## Exemple
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## Fill (`particles.paint.fill`)
+## Remplir (`particles.paint.fill`)
 
-- Defines the particle inner color.
-- Supports static values, arrays, and color animation.
+- Définit la couleur intérieure des particules.
+- Prend en charge les valeurs statiques, les tableaux et l'animation couleur.
 
-## Stroke (`particles.paint.stroke`)
+## AVC (`particles.paint.stroke`)
 
-- Defines outline width and color.
-- Useful to increase shape contrast.
+- Définit la largeur et la couleur du contour.
+- Utile pour augmenter le contraste des formes.
 
-## Source reference
+## Référence source
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

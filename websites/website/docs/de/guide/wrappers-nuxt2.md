@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/nuxt2
 
-Official Nuxt 2 module wrapper for `tsParticles`.
+Offizieller Nuxt 2-Modul-Wrapper für `tsParticles`.
 
-## Install
+## Installieren
 
 ```bash
 pnpm add @tsparticles/nuxt2 @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## Schneller Einrichtungsablauf
 
-1. Install module + engine + loader package.
-2. Register module in Nuxt config with client-only usage.
-3. Provide options through component/module config.
+1. Modul + Engine + Loader-Paket installieren.
+2. Registrieren Sie das Modul in der Nuxt-Konfiguration mit reiner Client-Nutzung.
+3. Stellen Sie Optionen über die Komponenten-/Modulkonfiguration bereit.
 
-## Monorepo references
+## Monorepo-Referenzen
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt2>
+- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2>
+- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt2>
 
 ## Readme
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme>
+- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme>
 
-## Related docs
+## Verwandte Dokumente
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/de/guide/wrappers)
+- [`/guide/frameworks`](/de/guide/frameworks)

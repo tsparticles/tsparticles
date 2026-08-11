@@ -1,8 +1,8 @@
-# Particles Links
+# Partikel-Links
 
-`particles.links` draws connection lines between nearby particles.
+`particles.links` zeichnet Verbindungslinien zwischen benachbarten Partikeln.
 
-## Example
+## Beispiel
 
 ```ts
 particles: {
@@ -16,15 +16,15 @@ particles: {
 }
 ```
 
-- `distance`: max distance for a link.
-- `opacity`: visual strength of the line.
-- `color`: line color.
-- `width`: stroke thickness.
+- `distance`: maximale Entfernung für einen Link.
+- `opacity`: visuelle Stärke der Linie.
+- `color`: Linienfarbe.
+- `width`: Strichstärke.
 
-## Performance tip
+## Leistungstipp
 
-Links can get expensive with high particle counts. Tune `number.value` and `distance` together.
+Verbindungen können bei hohen Partikelzahlen teuer werden. Stimmen Sie `number.value` und `distance` gemeinsam ab.
 
-## Source reference
+## Quellenangabe
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Links.md>

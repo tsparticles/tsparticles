@@ -1,16 +1,16 @@
-# Firefly Preset
+# ホタルプリセット
 
-Official preset from the `presets/presets/firefly` workspace.
+`presets/presets/firefly` ワークスペースからの公式プリセット。
 
-Move the mouse inside the canvas to activate the interactive firefly behavior.
+キャンバス内でマウスを移動すると、インタラクティブなホタルの動作がアクティブになります。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-firefly
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Elegant preset for natural hero sections, storytelling, and portfolios.
+ナチュラルヒーローセクション、ストーリーテリング、ポートフォリオ用のエレガントなプリセット。
 
-Demo: <https://particles.js.org/demos/recipes/firefly>
+デモ: <https://particles.js.org/demos/recipes/firefly>

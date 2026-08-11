@@ -1,24 +1,24 @@
-# Bundle: Particles
+# 捆绑包：Particles
 
-`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
+`@tsparticles/particles` 提供了用于创建交互式粒子背景的简化 API。是 `@tsparticles/basic` 的更好替代方案，具有专用 API 而无需手动配置引擎。
 
-## Included features
+## 包含的功能
 
-**Shapes:** circle (from basic)
+**形状：** 圆形（来自 basic）
 
-**Internal plugins:** interactivity (links, collisions)
+**内部插件：** interactivity（交互，包含 links 和 collisions）
 
-**Interactions:** links (particle connections), collisions
+**交互：** links（粒子连线）、collisions（碰撞）
 
-**API:** `particles(options)` or `particles(canvasId, options)`
+**API：** `particles(options)` 或 `particles(canvasId, options)`
 
-## When to use
+## 何时使用
 
-- Particle background for a website
-- Background with particle links (node-style effect)
-- You don't want to configure the engine manually
+- 网站粒子背景
+- 带有粒子连线（节点式效果）的背景
+- 你不想手动配置引擎
 
-## Installation
+## 安装
 
 ### npm/pnpm/yarn
 
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// Background with links
+// 带连线的背景
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// On a specific canvas
+// 在特定 canvas 上
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// With custom colors
+// 自定义颜色
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -55,7 +55,7 @@ await particles({
 });
 ```
 
-### CDN (script tag)
+### CDN（script 标签）
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### Main parameters
+### 主要参数
 
-| Parameter    | Type                                                                   | Default                                                        | Description                          |
-| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
-| `count`      | number                                                                 | 50                                                             | Number of particles                  |
-| `radius`     | number                                                                 | 3                                                              | Particle radius                      |
-| `speed`      | number                                                                 | 2                                                              | Movement speed                       |
-| `opacity`    | number                                                                 | 0.8                                            | Opacity (0-1)     |
-| `color`      | string \| string[] | "#ffffff"                                                      | Particle color(s) |
-| `links`      | boolean                                                                | false                                                          | Show links                           |
-| `linksColor` | string                                                                 | "#ffffff"                                                      | Link color                           |
-| `linksWidth` | number                                                                 | 1                                                              | Link thickness                       |
-| `shape`      | string[]           | ["circle"] | Particle shapes                      |
+| 参数         | 类型               | 默认值     | 描述            |
+| ------------ | ------------------ | ---------- | --------------- |
+| `count`      | number             | 50         | 粒子数量        |
+| `radius`     | number             | 3          | 粒子半径        |
+| `speed`      | number             | 2          | 移动速度        |
+| `opacity`    | number             | 0.8        | 不透明度（0-1） |
+| `color`      | string \| string[] | "#ffffff"  | 粒子颜色        |
+| `links`      | boolean            | false      | 显示连线        |
+| `linksColor` | string             | "#ffffff"  | 连线颜色        |
+| `linksWidth` | number             | 1          | 连线粗细        |
+| `shape`      | string[]           | ["circle"] | 粒子形状        |
 
-## Common mistakes
+## 常见错误
 
-- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
-- Reusing the same canvas ID unintentionally.
-- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
+- 误以为 `@tsparticles/particles` 会导出 `tsParticles`——它不会。
+- 无意间重复使用同一个 canvas ID。
+- 期望高级形状（星形、多边形）——particles 捆绑包基于 basic，仅使用圆形。
 
-## See also
+## 参见
 
-- [Bundle overview](/guide/bundles)
-- [Getting started](/guide/getting-started)
+- [捆绑包概览](/zh/guide/bundles)
+- [开始使用](/zh/guide/getting-started)

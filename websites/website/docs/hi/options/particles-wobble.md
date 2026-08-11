@@ -1,8 +1,8 @@
-# Particles Wobble
+# कण डगमगाते हैं
 
-`particles.wobble` adds oscillating motion around the move path.
+`particles.wobble` चाल पथ के चारों ओर दोलन गति जोड़ता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -17,6 +17,6 @@ particles: {
 }
 ```
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Wobble.md>

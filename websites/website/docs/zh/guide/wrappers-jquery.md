@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/jquery
+# 包装：@tsparticles/jquery
 
-Official jQuery plugin wrapper for `tsParticles`.
+`tsParticles` 的官方 jQuery 插件包装器。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/jquery @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 快速设置流程
 
-1. Install package and load it in your jQuery setup.
-2. Initialize features once using slim/all as needed.
-3. Apply plugin on target element with options.
+1. 安装包并将其加载到您的 jQuery 设置中。
+2. 根据需要使用 slim/all 初始化一次功能。
+3. 使用选项在目标元素上应用插件。
 
-## Monorepo references
+## Monorepo 参考资料
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
+- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery>
+- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/jquery>
 
-## Readme
+## 自述文件
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
+- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme>
 
-## Related docs
+## 相关文档
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/zh/guide/wrappers)
+- [`/guide/frameworks`](/zh/guide/frameworks)

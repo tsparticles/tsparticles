@@ -1,14 +1,14 @@
-# Fire Preset
+# फायर प्रीसेट
 
-Official preset from the `presets/presets/fire` workspace.
+`presets/presets/fire` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-fire
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for dramatic, high-energy designs and effect demonstrations.
+नाटकीय, उच्च-ऊर्जा डिज़ाइन और प्रभाव प्रदर्शनों के लिए बिल्कुल सही।
 
-Demo: <https://particles.js.org/demos/recipes/fire>
+डेमो: <https://particles.js.org/demos/recipes/fire>

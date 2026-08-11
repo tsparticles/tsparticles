@@ -1,8 +1,8 @@
-# Particles Palette
+# कण पैलेट
 
-`particles.palette` imports a named palette and applies particle color defaults.
+`particles.palette` एक नामित पैलेट आयात करता है और कण रंग डिफ़ॉल्ट लागू करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -13,14 +13,14 @@ particles: {
 }
 ```
 
-## What it changes
+## यह क्या बदलता है
 
-- Sets `particles.paint.fill` or `particles.paint.stroke` based on palette configuration.
-- If the palette has multiple color variants, `particles.paint` is imported as an array of variants.
-- Enables `particles.blend` with the palette blend mode.
-- Keeps your config compact when reusing color sets.
+- पैलेट कॉन्फ़िगरेशन के आधार पर `particles.paint.fill` या `particles.paint.stroke` सेट करता है।
+- यदि पैलेट में कई रंग वेरिएंट हैं, तो `particles.paint` को वेरिएंट की एक श्रृंखला के रूप में आयात किया जाता है।
+- पैलेट ब्लेंड मोड के साथ `particles.blend` सक्षम करता है।
+- रंग सेट का पुन: उपयोग करते समय आपकी कॉन्फ़िगरेशन को कॉम्पैक्ट रखता है।
 
-## New palette format (for custom palettes)
+## नया पैलेट प्रारूप (कस्टम पैलेट के लिए)
 
 ```ts
 const palette = {
@@ -36,16 +36,16 @@ const palette = {
 };
 ```
 
-`colors` can be either:
+`colors` या तो हो सकता है:
 
-- a single variant object (`{ fill?, stroke? }`)
-- an array of variant objects (each variant can define `fill`, `stroke`, or both)
+- एक एकल वैरिएंट ऑब्जेक्ट (`{ fill?, stroke? }`)
+- विभिन्न वस्तुओं की एक सरणी (प्रत्येक संस्करण `fill`, `stroke`, या दोनों को परिभाषित कर सकता है)
 
-## Notes
+## नोट्स
 
-- Unknown palette ids are ignored.
-- Explicit `particles.paint.fill`, `particles.paint.stroke`, or `particles.blend` values override imported defaults.
+- अज्ञात पैलेट आईडी को नजरअंदाज कर दिया जाता है।
+- स्पष्ट `particles.paint.fill`, `particles.paint.stroke`, या `particles.blend` मान आयातित डिफ़ॉल्ट को ओवरराइड करते हैं।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Palette.md>

@@ -1,16 +1,16 @@
-# Particles Stroke
+# Curso de Partículas
 
-Stroke options are now documented under `particles.paint.stroke`.
+As opções de traçado agora estão documentadas em `particles.paint.stroke`.
 
-## New page
+## Nova página
 
-- [`Particles Paint`](/options/particles-paint)
+- [`Particles Paint`](/pt/options/particles-paint)
 
-## Quick mapping
+## Mapeamento rápido
 
-- Old: `particles.stroke`
-- New: `particles.paint.stroke`
+- Antigo: `particles.stroke`
+- Novo: `particles.paint.stroke`
 
-## Source reference
+## Referência da fonte
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

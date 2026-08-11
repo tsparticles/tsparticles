@@ -1,23 +1,23 @@
 ---
 title: Qwik
-description: Integrate tsParticles with Qwik using the official @tsparticles/qwik wrapper.
+description: Integra tsParticles con Qwik usando el wrapper oficial @tsparticles/qwik.
 ---
 
-# Qwik Integration
+# Integración con Qwik
 
-The `@tsparticles/qwik` package provides a `<Particles>` component optimized for Qwik's resumability model. It uses `useVisibleTask$` for lazy initialization and signals for reactive updates.
+El paquete `@tsparticles/qwik` proporciona un componente `<Particles>` optimizado para el modelo de reanudación de Qwik. Usa `useVisibleTask$` para la inicialización perezosa y señales para actualizaciones reactivas.
 
-## Installation
+## Instalación
 
 ```bash
 npm install @tsparticles/qwik tsparticles
 ```
 
-TypeScript declarations are included — no additional type packages required.
+Las declaraciones TypeScript están incluidas — no se requieren paquetes de tipos adicionales.
 
-## Engine Initialization
+## Inicialización del Motor
 
-In Qwik, the engine must be initialized inside a `useVisibleTask$` block to ensure it runs only on the client (never during SSR). Use a signal to track readiness:
+En Qwik, el motor debe inicializarse dentro de un bloque `useVisibleTask$` para asegurar que se ejecute solo en el cliente (nunca durante SSR). Usa una señal para rastrear la disponibilidad:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -39,9 +39,9 @@ export default component$(() => {
 });
 ```
 
-## Basic Usage
+## Uso Básico
 
-Once the engine is ready, render the `<Particles>` component with your configuration:
+Una vez que el motor está listo, renderiza el componente `<Particles>` con tu configuración:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -84,9 +84,9 @@ export default component$(() => {
 });
 ```
 
-## Conditional Rendering
+## Renderizado Condicional
 
-The `engineReady` signal pattern ensures the `<Particles>` component is only mounted after the engine is fully initialized. This prevents hydration mismatches between server and client:
+El patrón de señal `engineReady` asegura que el componente `<Particles>` solo se monte después de que el motor esté completamente inicializado. Esto evita discrepancias de hidratación entre servidor y cliente:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -118,7 +118,7 @@ export default component$(() => {
             color: "#888",
           }}
         >
-          Loading particles...
+          Cargando partículas...
         </div>
       )}
       {engineReady.value && (
@@ -141,9 +141,9 @@ export default component$(() => {
 });
 ```
 
-## Interactive Particles
+## Partículas Interactivas
 
-Enable hover and click interactions by adding the `interactivity` section to your options:
+Habilita interacciones de hover y clic añadiendo la sección `interactivity` a tus opciones:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -189,9 +189,9 @@ export default component$(() => {
 });
 ```
 
-## Custom Configuration
+## Configuración Personalizada
 
-A complete configuration with animations, multiple colors, and rich interactivity:
+Una configuración completa con animaciones, múltiples colores e interactividad enriquecida:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -287,7 +287,7 @@ export default component$(() => {
 
 ## TypeScript
 
-The `@tsparticles/qwik` package exports full types. Use `ISourceOptions` for type-safe configurations and `Engine` for the initialization callback:
+El paquete `@tsparticles/qwik` exporta tipos completos. Usa `ISourceOptions` para configuraciones seguras en cuanto a tipos y `Engine` para el callback de inicialización:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -317,9 +317,18 @@ export default component$(() => {
 });
 ```
 
-## Lazy Loading
+## Reactive Behavior
 
-Qwik's resumability model means the particles code is only loaded and executed when the component becomes visible in the viewport. The `useVisibleTask$` hook triggers engine initialization, and the `<Particles>` component itself is code-split automatically by Qwik when imported:
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Carga Perezosa
+
+El modelo de reanudación de Qwik significa que el código de partículas solo se carga y ejecuta cuando el componente se vuelve visible en el viewport. El hook `useVisibleTask$` activa la inicialización del motor, y el componente `<Particles>` se divide automáticamente en código por Qwik cuando se importa:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
@@ -351,7 +360,7 @@ export default component$(() => {
 });
 ```
 
-Use the `$` suffix convention for Qwik-optimized event handlers when wiring callbacks:
+Usa la convención del sufijo `$` para manejadores de eventos optimizados para Qwik al conectar callbacks:
 
 ```tsx
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
@@ -372,7 +381,7 @@ export default component$(() => {
 
   const handleParticlesLoaded = $((container?: Container) => {
     containerRef.value = container;
-    console.log("Particles loaded:", container?.id);
+    console.log("Partículas cargadas:", container?.id);
   });
 
   return (
@@ -389,13 +398,4 @@ export default component$(() => {
 });
 ```
 
-This approach ensures your particle animations are fully tree-shakeable and only shipped to clients when needed.
-
-## Reactive Behavior
-
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+Este enfoque asegura que tus animaciones de partículas sean completamente separables del árbol y solo se envíen a los clientes cuando sea necesario.

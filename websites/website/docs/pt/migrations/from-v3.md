@@ -1,18 +1,28 @@
-# Migrate from v3.x
+# Migrar de v3.x
 
-From `v3.x`, the biggest migration risk is usually **options compatibility**.
+Em `v3.x`, os maiores riscos de migracao sao a **compatibilidade das opcoes** e as **alteracoes de pacotes**.
 
-## Priority changes
+## Mudancas prioritarias
 
-- `particles.color` moved to `particles.paint.fill`.
-- `particles.stroke` moved to `particles.paint.stroke`.
-- New palette-centric flows can populate paint values automatically.
+- `particles.color` -> `particles.paint.fill`
+- `particles.stroke` -> `particles.paint.stroke`
 
-If colors look wrong after upgrade, check those keys first.
+## Renomeacao de pacotes
 
-## Option mapping examples
+Alguns pacotes `v3.x` foram renomeados ou reestruturados:
 
-Before (`v3.x` style):
+| Pacote v3                           | Pacote atual                        | Nota                                                                                    |
+| ----------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------- |
+| `@tsparticles/move-base`            | `@tsparticles/plugin-move`          | Unificados em um unico plugin                                                           |
+| `@tsparticles/move-parallax`        | `@tsparticles/plugin-move`          | Unificados em um unico plugin                                                           |
+| `@tsparticles/updater-color`        | `@tsparticles/updater-paint`        | Substituido pelo sistema paint                                                          |
+| `@tsparticles/updater-stroke-color` | `@tsparticles/updater-paint`        | Substituido pelo sistema paint                                                          |
+| `@tsparticles/plugin-hsv-color`     | `@tsparticles/plugin-hsv-color`     | Movido para `plugins/colors/hsv/`, mesmo nome                                           |
+| (nao necessario no v3 - integrado)  | `@tsparticles/plugin-interactivity` | Necessario para todos os plugins de interacao (grab, bubble, repulse, etc.) funcionarem |
+
+## Exemplos de mapeamento de opcoes
+
+Antes (estilo `v3.x`):
 
 ```ts
 const options = {
@@ -28,7 +38,7 @@ const options = {
 };
 ```
 
-After (current):
+Depois (atual):
 
 ```ts
 const options = {
@@ -46,26 +56,15 @@ const options = {
 };
 ```
 
-## Load API note
+## Migracao da Load API
 
-Current API uses a single params object:
-
-```ts
-await tsParticles.load({
-  id: "tsparticles",
-  options,
-});
-```
-
-If your `v3.x` project still contains legacy positional calls from older snippets, migrate them now.
-
-Before (legacy positional):
+Antes (chamada posicional legada):
 
 ```ts
 await tsParticles.load("tsparticles", options);
 ```
 
-After (object params):
+Depois (parametro objeto):
 
 ```ts
 await tsParticles.load({
@@ -74,58 +73,32 @@ await tsParticles.load({
 });
 ```
 
-## Package renaming
+## Passos recomendados
 
-Some `v3.x` packages have been renamed or restructured:
+1. Alinhe todos os pacotes `@tsparticles/*` para a versao mais recente.
+2. Substitua as chaves de opcao obsoletas (`particles.color`, `particles.stroke`) por `particles.paint.*`.
+3. Atualize os pacotes renomeados em `package.json` (ver tabela acima).
+4. Se voce usa plugins de interacao (grab, bubble, repulse, etc.), instale `@tsparticles/plugin-interactivity` e carregue-o com `await loadInteractivityPlugin(tsParticles)` antes de carregar qualquer plugin de interacao.
+5. Verifique se plugins/formas personalizados sao carregados antes de `tsParticles.load(...)`.
+6. Reteste interacoes e cenas criticas de desempenho.
 
-| v3 package                                       | Current package                     | Note                                                                                                          |
-| ------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `@tsparticles/move-base`                         | `@tsparticles/plugin-move`          | Merged into single plugin                                                                                     |
-| `@tsparticles/move-parallax`                     | `@tsparticles/plugin-move`          | Merged into single plugin                                                                                     |
-| `@tsparticles/updater-color`                     | `@tsparticles/updater-paint`        | Replaced by paint system                                                                                      |
-| `@tsparticles/updater-stroke-color`              | `@tsparticles/updater-paint`        | Replaced by paint system                                                                                      |
-| `@tsparticles/plugin-hsv-color`                  | `@tsparticles/plugin-hsv-color`     | Moved to `plugins/colors/hsv/`, still the same package name                                                   |
-| (not needed in v3 - built-in) | `@tsparticles/plugin-interactivity` | Required for all interaction plugins (grab, bubble, repulse, etc.) to work |
+## Funcoes de carregamento granulares
 
-## Recommended steps
-
-1. Align all `@tsparticles/*` packages to the same latest version line.
-2. Replace deprecated option keys (`particles.color`, `particles.stroke`) with `particles.paint.*`.
-3. Update renamed packages in `package.json` (see table above).
-4. If you use interaction plugins (grab, bubble, repulse, etc.), install `@tsparticles/plugin-interactivity` and load it with `await loadInteractivityPlugin(tsParticles)` before loading any interaction plugin.
-5. Verify custom plugins/shapes are loaded before `tsParticles.load(...)`.
-6. Re-test interactions and performance-sensitive scenes.
-
-## Granular loader functions
-
-Some packages expose individual loader functions to load only what you need, reducing bundle size.
+Alguns pacotes expoem funcoes de carregamento individuais para carregar apenas o necessario, reduzindo o tamanho do bundle.
 
 ### Plugins
 
-- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple` (absorber lifecycle and drawing only), `loadAbsorbersInteraction` (click/hover interaction only), or `loadAbsorbersPlugin` (both).
-- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple` (emitter lifecycle and drawing only), `loadEmittersInteraction` (click/hover interaction only), or `loadEmittersPlugin` (both).
+- **`@tsparticles/plugin-absorbers`**: `loadAbsorbersPluginSimple` (apenas ciclo de vida e desenho dos absorvedores), `loadAbsorbersInteraction` (apenas interacao clique/hover) ou `loadAbsorbersPlugin` (ambos).
+- **`@tsparticles/plugin-emitters`**: `loadEmittersPluginSimple` (apenas ciclo de vida e desenho dos emissores), `loadEmittersInteraction` (apenas interacao clique/hover) ou `loadEmittersPlugin` (ambos).
 
-### Shapes
+### Formas
 
-- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape` (polygon) or `loadTriangleShape` (triangle) individually, or `loadPolygonShape` for both.
-- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`, `loadDiamondsSuitShape`, `loadHeartsSuitShape`, `loadSpadesSuitShape` (individual suits), `loadCardSuitsShape` (all suits), `loadFullCardsShape` (card images), or `loadCardsShape` (all).
+- **`@tsparticles/shape-polygon`**: `loadGenericPolygonShape` (poligono) ou `loadTriangleShape` (triangulo) individualmente, ou `loadPolygonShape` para ambos.
+- **`@tsparticles/shape-cards`**: `loadClubsSuitShape`, `loadDiamondsSuitShape`, `loadHeartsSuitShape`, `loadSpadesSuitShape` (naipes individuais), `loadCardSuitsShape` (todos os naipes), `loadFullCardsShape` (imagens de cartas) ou `loadCardsShape` (todos).
 
-All other shape packages (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) export a single `load*Shape` function directly.
+Todos os outros pacotes de formas (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) exportam diretamente uma unica funcao `load*Shape`.
 
-## Checklist
+## Recursos
 
-- Keep one version line across engine, bundles, wrappers, presets, and plugins.
-- Replace deprecated imports with package-level imports when needed.
-- Validate SSR wrappers (Next/Nuxt) still initialize only on client side.
-
-## Useful option docs
-
-- Option rename matrix: [`/migrations/option-rename-matrix`](/migrations/option-rename-matrix)
-- `particles.paint`: [`/options/particles-paint`](/options/particles-paint)
-- `particles.color` migration note: [`/options/particles-color`](/options/particles-color)
-- `particles.stroke` migration note: [`/options/particles-stroke`](/options/particles-stroke)
-
-## References
-
-- Versioning notes: [`/migrations/releases`](/migrations/releases)
-- Root repository releases: <https://github.com/tsparticles/tsparticles/releases>
+- Matriz de renomeacao: [`/migrations/option-rename-matrix`](/pt/migrations/option-rename-matrix)
+- `particles.paint`: [`/options/particles-paint`](/pt/options/particles-paint)

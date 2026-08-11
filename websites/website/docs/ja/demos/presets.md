@@ -1,10 +1,10 @@
-# Presets Catalog
+# プリセットカタログ
 
-These are the official presets listed in the main `tsParticles` README and available in the presets workspace.
+これらは、メインの `tsParticles` README にリストされている公式プリセットであり、プリセット ワークスペースで利用できます。
 
-Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+ソースフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 
-## Presets
+## プリセット
 
 - `ambient` - <https://www.npmjs.com/package/@tsparticles/preset-ambient> - [/demos/recipes/ambient](/demos/recipes/ambient)
 - `big-circles` - <https://www.npmjs.com/package/@tsparticles/preset-big-circles> - [/demos/recipes/big-circles](/demos/recipes/big-circles)
@@ -21,7 +21,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `fountain` - <https://www.npmjs.com/package/@tsparticles/preset-fountain> - [/demos/recipes/fountain](/demos/recipes/fountain)
 - `hyperspace` - <https://www.npmjs.com/package/@tsparticles/preset-hyperspace> - [/demos/recipes/hyperspace](/demos/recipes/hyperspace)
 - `links` - <https://www.npmjs.com/package/@tsparticles/preset-links> - [/demos/recipes/links](/demos/recipes/links)
-- `matrix` - local website demo recipe available in [`/demos/recipes/matrix`](/demos/recipes/matrix)
+- `matrix` - ローカル Web サイトのデモ レシピは [`/demos/recipes/matrix`](/ja/demos/recipes/matrix) で利用可能です
 - `meteors` - <https://www.npmjs.com/package/@tsparticles/preset-meteors> - [/demos/recipes/meteors](/demos/recipes/meteors)
 - `seaAnemone` - <https://www.npmjs.com/package/@tsparticles/preset-sea-anemone> - [/demos/recipes/sea-anemone](/demos/recipes/sea-anemone)
 - `snow` - <https://www.npmjs.com/package/@tsparticles/preset-snow> - [/demos/recipes/snow](/demos/recipes/snow)
@@ -29,11 +29,11 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - `stars` - <https://www.npmjs.com/package/@tsparticles/preset-stars> - [/demos/recipes/stars](/demos/recipes/stars)
 - `triangles` - <https://www.npmjs.com/package/@tsparticles/preset-triangles> - [/demos/recipes/triangles](/demos/recipes/triangles)
 
-Each preset folder also contains docs in the monorepo, for example:
+各プリセット フォルダーには、monorepo 内のドキュメントも含まれています。次に例を示します。
 
 - <https://github.com/tsparticles/tsparticles/tree/main/presets/confetti#readme>
 
-## Quick usage
+## 簡単な使い方
 
 ```ts
 await tsParticles.load({
@@ -47,6 +47,6 @@ await tsParticles.load({
 });
 ```
 
-For production setups, use manual start/stop/resume/destroy as shown in the recipes under [`/demos/`](/demos/).
+運用セットアップの場合は、[`/demos/`](/ja/demos/) のレシピに示されているように、手動の開始/停止/再開/破棄を使用します。
 
-Use [`/playground/presets`](/playground/presets) to test each preset with explicit Start/Pause controls.
+[`/playground/presets`](/ja/playground/presets) を使用して、明示的な開始/一時停止コントロールを使用して各プリセットをテストします。

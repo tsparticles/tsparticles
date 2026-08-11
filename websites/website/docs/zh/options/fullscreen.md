@@ -1,8 +1,8 @@
-# Full Screen
+# 全屏
 
-Use `fullScreen` to control whether the canvas takes the full viewport.
+使用 `fullScreen` 控制画布是否占据整个视口。
 
-## Typical setup
+## 典型设置
 
 ```ts
 fullScreen: {
@@ -11,12 +11,12 @@ fullScreen: {
 }
 ```
 
-- `enable`: toggles full-viewport behavior.
-- `zIndex`: useful to keep particles behind app content.
+- `enable`：切换全视口行为。
+- `zIndex`：有助于将粒子保留在应用内容后面。
 
-## Embedded sections
+## 嵌入部分
 
-For docs previews, cards, and playground panels:
+对于文档预览、卡片和游乐场面板：
 
 ```ts
 fullScreen: {
@@ -24,8 +24,8 @@ fullScreen: {
 }
 ```
 
-This avoids overlap with page layout and other canvases.
+这可以避免与页面布局和其他画布重叠。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/FullScreen.md>

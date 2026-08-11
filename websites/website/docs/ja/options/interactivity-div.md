@@ -1,8 +1,8 @@
-# Interactivity Div
+# インタラクティブ部門
 
-`interactivity.events.onDiv` applies interaction modes to specific HTML elements.
+`interactivity.events.onDiv` は、特定の HTML 要素に対話モードを適用します。
 
-## Example
+## 例
 
 ```ts
 interactivity: {
@@ -23,11 +23,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## 実践的な指導
 
-- Use it for targeted UX zones instead of full-canvas reactions.
-- Keep selector lists explicit and easy to maintain.
+- キャンバス全体のリアクションではなく、ターゲットを絞った UX ゾーンに使用します。
+- セレクター リストを明示的に保ち、保守しやすくします。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

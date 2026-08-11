@@ -1,29 +1,29 @@
-# Wrapper: @tsparticles/preact
+# ラッパー: @tsparticles/preact
 
-Official Preact wrapper for `tsParticles`.
+`tsParticles` の公式 Preact ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/preact @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Initialize engine once at app root.
-3. Render Preact component with options object.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. アプリのルートでエンジンを一度初期化します。
+3. オプション オブジェクトを使用して Preact コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/preact>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

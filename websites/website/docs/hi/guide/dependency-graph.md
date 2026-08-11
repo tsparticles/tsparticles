@@ -1,12 +1,12 @@
-# Dependency Graph
+# निर्भरता ग्राफ
 
-This is a practical map of the package layering exposed in the main `tsParticles` README.
+यह मुख्य `tsParticles` README में प्रदर्शित पैकेज लेयरिंग का एक व्यावहारिक मानचित्र है।
 
-For the full, exhaustive graph, see:
+संपूर्ण, विस्तृत ग्राफ़ के लिए देखें:
 
 - <https://github.com/tsparticles/tsparticles/blob/main/README.md#dependency-graph>
 
-## High-level package flow
+## उच्च स्तरीय पैकेज प्रवाह
 
 ```text
 tsParticles Engine
@@ -19,15 +19,15 @@ tsParticles Engine
          `- tsParticles All
 ```
 
-## How to use this map
+## इस मानचित्र का उपयोग कैसे करें
 
-- Start from `engine` + `slim` for most production apps.
-- Move to `tsparticles` if you need extra built-in interactions/plugins.
-- Move to `all` only when you need the complete feature set.
-- Use dedicated bundles (`confetti`, `fireworks`, `particles`) for focused effects.
+- अधिकांश उत्पादन ऐप्स के लिए `engine` + `slim` से प्रारंभ करें।
+- यदि आपको अतिरिक्त अंतर्निर्मित इंटरैक्शन/प्लगइन की आवश्यकता है तो `tsparticles` पर जाएं।
+- `all` पर तभी जाएं जब आपको संपूर्ण सुविधा सेट की आवश्यकता हो।
+- केंद्रित प्रभावों के लिए समर्पित बंडलों (`confetti`, `fireworks`, `particles`) का उपयोग करें।
 
-## Related pages
+## संबंधित पृष्ठ
 
-- [`/guide/getting-started`](/guide/getting-started)
-- [`/guide/installation`](/guide/installation)
-- [`/options/performance`](/options/performance)
+- [`/guide/getting-started`](/hi/guide/getting-started)
+- [`/guide/installation`](/hi/guide/installation)
+- [`/options/performance`](/hi/options/performance)

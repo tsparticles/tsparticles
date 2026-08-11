@@ -1,8 +1,8 @@
-# Particles
+# कण
 
-Options inside `particles` control particle appearance and movement.
+`particles` के अंदर के विकल्प कण की उपस्थिति और गति को नियंत्रित करते हैं।
 
-## Most-used groups
+## सर्वाधिक उपयोग किये जाने वाले समूह
 
 - `particles.number`
 - `particles.move`
@@ -13,14 +13,14 @@ Options inside `particles` control particle appearance and movement.
 - `particles.size`
 - `particles.opacity`
 
-See detailed pages:
+विस्तृत पृष्ठ देखें:
 
-- [`Particles Number`](/options/particles-number)
-- [`Particles Move`](/options/particles-move)
-- [`Particles Links`](/options/particles-links)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Paint`](/options/particles-paint)
-- [`Particles Shape`](/options/particles-shape)
+- [`Particles Number`](/hi/options/particles-number)
+- [`Particles Move`](/hi/options/particles-move)
+- [`Particles Links`](/hi/options/particles-links)
+- [`Particles Palette`](/hi/options/particles-palette)
+- [`Particles Paint`](/hi/options/particles-paint)
+- [`Particles Shape`](/hi/options/particles-shape)
 
 ## `particles.number`
 
@@ -36,8 +36,8 @@ particles: {
 }
 ```
 
-- `value`: base particle count.
-- `density.enable`: adapts count to the container size.
+- `value`: आधार कण गणना।
+- `density.enable`: कंटेनर के आकार के अनुसार गिनती को अनुकूलित करता है।
 
 ## `particles.move`
 
@@ -52,8 +52,8 @@ move: {
 }
 ```
 
-- `speed`: perceived movement speed.
-- `outModes.default`: edge behavior (`out`, `bounce`, ...).
+- `speed`: अनुमानित गति गति।
+- `outModes.default`: किनारे का व्यवहार (`out`, `bounce`, ...)।
 
 ## `particles.links`
 
@@ -66,7 +66,7 @@ links: {
 }
 ```
 
-Enables links between particles, useful for "network" hero sections.
+कणों के बीच लिंक सक्षम करता है, जो "नेटवर्क" हीरो अनुभागों के लिए उपयोगी है।
 
 ## `particles.palette`
 
@@ -74,10 +74,10 @@ Enables links between particles, useful for "network" hero sections.
 palette: "sunset";
 ```
 
-- Imports colors and blend defaults from a registered palette id.
-- Populates `paint.fill` or `paint.stroke` automatically depending on the palette.
-- With multi-variant palettes, `paint` is loaded as an array of variants.
-- Useful with presets and demos when you want to swap color mood quickly.
+- एक पंजीकृत पैलेट आईडी से रंग और मिश्रण डिफ़ॉल्ट आयात करता है।
+- पैलेट के आधार पर `paint.fill` या `paint.stroke` स्वचालित रूप से पॉप्युलेट होता है।
+- मल्टी-वेरिएंट पैलेट के साथ, `paint` को वेरिएंट की एक सरणी के रूप में लोड किया जाता है।
+- जब आप जल्दी से रंग मूड बदलना चाहते हैं तो प्रीसेट और डेमो के साथ उपयोगी।
 
 ## `particles.shape`, `size`, `opacity`
 
@@ -96,11 +96,11 @@ opacity: {
 }
 ```
 
-- `shape.type`: single type or list of types.
-- `size.value`: recommended range for natural variation.
-- `opacity.value`: average transparency.
+- `shape.type`: एकल प्रकार या प्रकारों की सूची।
+- `size.value`: प्राकृतिक भिन्नता के लिए अनुशंसित सीमा।
+- `opacity.value`: औसत पारदर्शिता।
 
-## Advanced groups to check next
+## उन्नत समूह आगे की जाँच करने के लिए
 
 - `particles.collisions`
 - `particles.life`
@@ -111,29 +111,29 @@ opacity: {
 - `particles.twinkle`
 - `particles.wobble`
 
-Detailed pages:
+विस्तृत पृष्ठ:
 
-- [`Particles Bounce`](/options/particles-bounce)
-- [`Particles Paint`](/options/particles-paint)
-- [`Particles Destroy`](/options/particles-destroy)
-- [`Particles Group`](/options/particles-group)
-- [`Particles Collisions`](/options/particles-collisions)
-- [`Particles Life`](/options/particles-life)
-- [`Particles Palette`](/options/particles-palette)
-- [`Particles Opacity`](/options/particles-opacity)
-- [`Particles Orbit`](/options/particles-orbit)
-- [`Particles Repulse`](/options/particles-repulse)
-- [`Particles Roll`](/options/particles-roll)
-- [`Particles Rotate`](/options/particles-rotate)
-- [`Particles Shadow`](/options/particles-shadow)
-- [`Particles Size`](/options/particles-size)
-- [`Particles Tilt`](/options/particles-tilt)
-- [`Particles Twinkle`](/options/particles-twinkle)
-- [`Particles Wobble`](/options/particles-wobble)
-- [`Particles ZIndex`](/options/particles-zindex)
-- [`Particles Move`](/options/particles-move)
-- [`Particles Number`](/options/particles-number)
-- [`Particles Links`](/options/particles-links)
-- [`Particles Shape`](/options/particles-shape)
+- [`Particles Bounce`](/hi/options/particles-bounce)
+- [`Particles Paint`](/hi/options/particles-paint)
+- [`Particles Destroy`](/hi/options/particles-destroy)
+- [`Particles Group`](/hi/options/particles-group)
+- [`Particles Collisions`](/hi/options/particles-collisions)
+- [`Particles Life`](/hi/options/particles-life)
+- [`Particles Palette`](/hi/options/particles-palette)
+- [`Particles Opacity`](/hi/options/particles-opacity)
+- [`Particles Orbit`](/hi/options/particles-orbit)
+- [`Particles Repulse`](/hi/options/particles-repulse)
+- [`Particles Roll`](/hi/options/particles-roll)
+- [`Particles Rotate`](/hi/options/particles-rotate)
+- [`Particles Shadow`](/hi/options/particles-shadow)
+- [`Particles Size`](/hi/options/particles-size)
+- [`Particles Tilt`](/hi/options/particles-tilt)
+- [`Particles Twinkle`](/hi/options/particles-twinkle)
+- [`Particles Wobble`](/hi/options/particles-wobble)
+- [`Particles ZIndex`](/hi/options/particles-zindex)
+- [`Particles Move`](/hi/options/particles-move)
+- [`Particles Number`](/hi/options/particles-number)
+- [`Particles Links`](/hi/options/particles-links)
+- [`Particles Shape`](/hi/options/particles-shape)
 
-Source pages: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
+स्रोत पृष्ठ: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>

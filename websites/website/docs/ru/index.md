@@ -1,71 +1,73 @@
 ---
-layout: MyHome
+layout: home
+
+title: tsParticles
+titleTemplate: Создавайте выразительные фоны из частиц за минуты
 
 hero:
   name: tsParticles
-  text: Powerful particle engine, simple developer workflow
-  tagline: Ship interactive backgrounds, effects, and confetti on any framework.
+  text: Мощный движок частиц и простой процесс разработки
+  tagline: Добавляйте интерактивные фоны, эффекты и конфетти в любом framework.
   image:
-    src: /images/banner3.png
+    src: https://particles.js.org/images/banner3.png
     alt: tsParticles
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/getting-started
+      text: Начать
+      link: /ru/guide/getting-started
     - theme: alt
-      text: Open Playground
-      link: /playground/
+      text: Открыть playground
+      link: /ru/playground/
     - theme: alt
-      text: Ready-to-Use Demos
-      link: /demos/
+      text: Готовые демо
+      link: /ru/demos/
 
 features:
-  - title: Fast onboarding
-    details: Start with a minimal setup, then scale to presets, plugins, and custom shapes.
-  - title: Framework ready
-    details: React, Vue, Angular, Svelte, Solid, Web Components, and vanilla JavaScript.
-  - title: Production focused
-    details: Control bundle size with @tsparticles/basic, @tsparticles/slim, tsparticles, or @tsparticles/all.
-  - title: Focused APIs
-    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks, and @tsparticles/ribbons for one-call setups.
+  - title: Быстрый старт
+    details: Начните с минимальной конфигурации и постепенно переходите к presets, plugins и пользовательским формам.
+  - title: Готово для framework
+    details: React, Vue, Angular, Svelte, Solid, Web Components и Vanilla JavaScript.
+  - title: Фокус на продакшен
+    details: Контролируйте размер bundle с @tsparticles/basic, @tsparticles/slim, tsparticles или @tsparticles/all.
+  - title: Фокусные API
+    details: Используйте @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks и @tsparticles/ribbons для setup в один вызов.
 ---
 
-## Why this docs experience
+## Зачем эта документация
 
-The website has been redesigned around the most common question: **"How do I use tsParticles now?"**
+Сайт был переработан вокруг самого частого вопроса: **"Как использовать tsParticles сейчас?"**
 
-- Start from a working snippet in under 5 minutes.
-- Choose the right package without digging through many repos.
-- Find options, configs, presets, and palettes quickly.
-- Run heavy effects only when you decide with explicit Start/Pause controls.
+- Начните с рабочего примера менее чем за 5 минут.
+- Выберите правильный пакет без долгого поиска по репозиториям.
+- Быстро находите опции, конфигурации, presets и palettes.
+- Включайте тяжелые эффекты только тогда, когда это действительно нужно, с явным управлением старт/пауза.
 
-## What to read first
+## Что читать в первую очередь
 
-1. [`/guide/getting-started`](/guide/getting-started): installation, first render, minimal options.
-2. [`/guide/installation`](/guide/installation): CDN/package-manager install matrix and import styles.
-3. [`/playground/`](/playground/): launch demos only on command and edit JSON live.
-4. [`/demos/`](/demos/): copy ready-to-use recipes for production.
-5. [`/options/`](/options/): map of root options and deep links.
-6. [`/migrations/`](/migrations/): migrate from tsParticles v1/v2/v3 to current.
-7. [`/migrations/particles-js`](/migrations/particles-js): migrate from particles.js with compatibility notes.
-8. [`/guide/wrappers`](/guide/wrappers): official wrapper packages and framework links.
-9. [`/guide/plugins-customization`](/guide/plugins-customization): custom shapes, presets, and plugin extension.
-10. [`/guide/templates-resources`](/guide/templates-resources): starter repos and shareable resources.
-11. [`/guide/video-tutorials`](/guide/video-tutorials): official video demos and references.
-12. [`/guide/dependency-graph`](/guide/dependency-graph): package-level map for engine and bundles.
+1. [`/guide/getting-started`](/ru/guide/getting-started): установка, первый рендер и минимальные опции.
+2. [`/guide/installation`](/ru/guide/installation): матрица установки для CDN/package manager и варианты импорта.
+3. [`/playground/`](/ru/playground/): запускайте демо по команде и редактируйте JSON вживую.
+4. [`/demos/`](/ru/demos/): готовые рецепты для продакшена.
+5. [`/options/`](/ru/options/): карта корневых опций и прямые ссылки.
+6. [`/migrations/particles-js`](/ru/migrations/particles-js): миграция с particles.js с заметками по совместимости.
+7. [`/guide/wrappers`](/ru/guide/wrappers): официальные wrappers и ссылки по framework.
+8. [`/guide/plugins-customization`](/ru/guide/plugins-customization): пользовательские shapes, presets и расширение через plugins.
+9. [`/guide/templates-resources`](/ru/guide/templates-resources): стартовые репозитории и полезные ресурсы.
+10. [`/guide/video-tutorials`](/ru/guide/video-tutorials): официальные видео-демо и материалы.
+11. [`/guide/dependency-graph`](/ru/guide/dependency-graph): карта зависимостей на уровне пакетов.
 
-## Core source and folders
+## Основной источник и ключевые папки
 
-- Main monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
-- Main README: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
-- Wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- Demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- Presets workspace folders: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- Palettes workspace folders: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
-- Root options source: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- Migration source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Основной монорепозиторий: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
+- Основной README (быстрый старт, wrappers, presets): [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
+- Папка wrappers: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- Папка demo-приложений: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- Папка presets: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- Папка palettes: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- Источник root options: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- Источник миграции: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
 
-## Support the project
+## Поддержать проект
 
-- Sponsor Matteo Bruni: [https://github.com/matteobruni](https://github.com/matteobruni)
-- Sponsor tsParticles org: [https://github.com/tsparticles](https://github.com/tsparticles)
+- Спонсируйте Matteo Bruni: <https://github.com/matteobruni>
+- Спонсируйте организацию tsParticles: <https://github.com/tsparticles>

@@ -1,8 +1,8 @@
-# Particles Collisions
+# कणों का टकराव
 
-`particles.collisions` controls particle-to-particle collision behavior.
+`particles.collisions` कण-से-कण टकराव व्यवहार को नियंत्रित करता है।
 
-## Example
+## उदाहरण
 
 ```ts
 particles: {
@@ -13,13 +13,13 @@ particles: {
 }
 ```
 
-- `enable`: activates collisions.
-- `mode`: collision behavior (`bounce` is the most common).
+- `enable`: टकराव सक्रिय करता है।
+- `mode`: टकराव व्यवहार (`bounce` सबसे आम है)।
 
-## Performance tip
+## प्रदर्शन युक्ति
 
-Collisions can be costly at high particle counts. Tune with `particles.number` first.
+उच्च कण गणना पर टकराव महंगा हो सकता है। पहले `particles.number` के साथ ट्यून करें।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Collisions.md>

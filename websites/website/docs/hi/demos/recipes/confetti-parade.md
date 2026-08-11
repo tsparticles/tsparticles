@@ -1,14 +1,14 @@
-# Confetti Parade Preset
+# कंफ़ेद्दी परेड प्रीसेट
 
-Official preset from the `presets/presets/confettiParade` workspace.
+`presets/presets/confettiParade` कार्यक्षेत्र से आधिकारिक प्रीसेट।
 
-## Install
+## स्थापित करें
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-parade
 ```
 
-## Ready-to-use (manual start/stop)
+## उपयोग के लिए तैयार (मैनुअल स्टार्ट/स्टॉप)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-parade>
+डेमो: <https://particles.js.org/demos/recipes/confetti-parade>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>
+स्रोत दस्तावेज़: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiParade#readme>

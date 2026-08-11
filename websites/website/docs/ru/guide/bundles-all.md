@@ -1,35 +1,35 @@
 # Bundle: All
 
-`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
+`@tsparticles/all` загружает **всё** из репозитория tsParticles: каждую форму, взаимодействие, обновление, эффект, путь, easing, плагин и экспорт. Это самый большой bundle, предназначенный для прототипирования и демонстраций.
 
-## Included features
+## Включённые возможности
 
-Inherits everything from `tsparticles` (full) plus:
+Наследует всё из `tsparticles` (full) плюс:
 
-**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
+**Все формы:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**All external interactions:** cannon, light, particle, pop, particles-repulse
+**Все внешние взаимодействия:** cannon, light, particle, pop, particles-repulse
 
-**All effects:** bubble, filter, particles, shadow, trail
+**Все эффекты:** bubble, filter, particles, shadow, trail
 
-**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+**Все генераторы путей:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+**Все easing:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**Все цветовые плагины:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+**Все плагины:** абсорберы, background-mask, canvas-mask, эмиттеры (все формы), easing (все), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, звуки, темы, trail, zoom
 
-**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+**Все обновления:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## When to use
+## Когда использовать
 
-- Rapid prototyping to explore possibilities
-- Demos and showcases
-- Development environments where size doesn't matter
-- **Not recommended for production** — prefer more targeted bundles
+- Быстрое прототипирование для изучения возможностей
+- Демо и показы
+- Среды разработки, где размер не имеет значения
+- **Не рекомендуется для production** — предпочитайте более целевые bundle
 
-## Installation
+## Установка
 
 ### npm/pnpm/yarn
 
@@ -56,7 +56,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### CDN (теги script)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## Разница между `tsparticles` и `@tsparticles/all`
 
-See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
+См. таблицу сравнения на странице [bundles-full](/ru/guide/bundles-full) для детального разбора.
 
-## Common mistakes
+## Частые ошибки
 
-- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
-- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
+- Использование в production — предпочитайте `@tsparticles/slim` или `tsparticles` для меньших bundle.
+- Вызов `tsParticles.load()` до `loadAll(tsParticles)`.
 
-## See also
+## См. также
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [Обзор bundle](/ru/guide/bundles)
+- [Руководство по установке](/ru/guide/installation)

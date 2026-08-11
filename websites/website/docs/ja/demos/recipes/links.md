@@ -1,14 +1,14 @@
-# Links Preset
+# リンクプリセット
 
-Official preset from the `presets/presets/links` workspace.
+`presets/presets/links` ワークスペースからの公式プリセット。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-links
 ```
 
-## Ready-to-use (manual start/stop)
+## すぐに使用可能 (手動開始/停止)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Ideal for SaaS-style hero/network backgrounds.
+SaaS スタイルのヒーロー/ネットワークの背景に最適です。
 
-Demo: <https://particles.js.org/demos/recipes/links>
+デモ: <https://particles.js.org/demos/recipes/links>

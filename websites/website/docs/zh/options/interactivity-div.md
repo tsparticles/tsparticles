@@ -1,8 +1,8 @@
-# Interactivity Div
+# 互动部门
 
-`interactivity.events.onDiv` applies interaction modes to specific HTML elements.
+`interactivity.events.onDiv` 将交互模式应用于特定的 HTML 元素。
 
-## Example
+## 示例
 
 ```ts
 interactivity: {
@@ -23,11 +23,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## 实用指导
 
-- Use it for targeted UX zones instead of full-canvas reactions.
-- Keep selector lists explicit and easy to maintain.
+- 将其用于目标用户体验区域，而不是全画布反应。
+- 保持选择器列表明确且易于维护。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

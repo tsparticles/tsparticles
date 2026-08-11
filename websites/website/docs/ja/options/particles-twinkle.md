@@ -1,8 +1,8 @@
-# Particles Twinkle
+# パーティクルトゥインクル
 
-`particles.twinkle` adds sparkle-like blinking effects.
+`particles.twinkle` は、キラキラしたような点滅効果を追加します。
 
-## Example
+## 例
 
 ```ts
 particles: {
@@ -19,11 +19,11 @@ particles: {
 }
 ```
 
-## Practical guidance
+## 実践的な指導
 
-- Start with low `frequency` for subtle effects.
-- Combine with dark backgrounds for better visibility.
+- 微妙な効果を得るには、低い `frequency` から始めます。
+- 暗い背景と組み合わせると視認性が向上します。
 
-## Source reference
+## ソース参照
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Twinkle.md>

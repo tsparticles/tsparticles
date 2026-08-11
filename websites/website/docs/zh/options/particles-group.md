@@ -1,8 +1,8 @@
-# Particles Group
+# 粒子组
 
-`particles.groups` lets you define named particle variants in the same scene.
+`particles.groups` 允许您在同一场景中定义命名的粒子变体。
 
-## Example
+## 示例
 
 ```ts
 particles: {
@@ -27,6 +27,6 @@ particles: {
 }
 ```
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Group.md>

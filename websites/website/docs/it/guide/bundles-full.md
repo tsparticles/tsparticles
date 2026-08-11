@@ -1,43 +1,43 @@
 # Bundle: tsparticles (Full)
 
-`tsparticles` (npm: `tsparticles`, loader: `loadFull`) is the official full bundle. Includes everything from Slim plus emitters, absorbers, text shapes, and advanced animations (wobble, roll, tilt, twinkle, destroy).
+`tsparticles` (npm: `tsparticles`, loader: `loadFull`) è il bundle ufficiale completo. Include tutte le funzionalità del bundle Slim più emettitori, assorbitori, forme di testo, animazioni avanzate (wobble, roll, tilt, twinkle, destroy).
 
-## Included features
+## Funzionalità incluse
 
-Inherits everything from `@tsparticles/slim` plus:
+Eredita tutto da `@tsparticles/slim` più:
 
-**Additional shapes:** text (with custom fonts)
+**Forme aggiuntive:** text (testo con font personalizzati)
 
-**Additional external interactions:**
+**Interazioni esterne aggiuntive:**
 
-- drag (drag particles with mouse)
-- trail (particle trail behind mouse)
+- drag (trascinamento particelle con mouse)
+- trail (scia dietro il mouse)
 
-**Additional updaters:**
+**Updater aggiuntivi:**
 
-- destroy (particle destruction animation)
-- roll (rolling)
-- tilt (3D tilt)
-- twinkle (intermittent sparkle)
-- wobble (oscillation)
+- destroy (distruzione particelle con animazione)
+- roll (rotolamento)
+- tilt (inclinazione 3D)
+- twinkle (scintillio intermittente)
+- wobble (oscillazione)
 
-**Plugins:**
+**Plugin:**
 
-- absorbers (black holes that suck in particles)
-- emitters (continuous particle sources)
-- emitters-shape-circle, emitters-shape-square (emitter shapes)
+- absorbers (assorbitori — buchi neri che risucchiano particelle)
+- emitters (emettitori — fonti continue di particelle)
+- emitters-shape-circle, emitters-shape-square (forme per emettitori)
 
-## When to use
+## Quando usarlo
 
-- Need emitters (particles spawning continuously)
-- Need absorbers (particles being sucked in)
-- Need text shapes with custom fonts
-- Need advanced animations (wobble, tilt, roll, twinkle)
-- Good stepping stone before going to individual plugins
+- Servono emettitori (particelle che spuntano continuamente)
+- Servono assorbitori (particelle che vengono risucchiate)
+- Servono forme di testo con font personalizzati
+- Servono animazioni avanzate (wobble, tilt, roll, twinkle)
+- Buon punto di arrivo prima di passare a plugin individuali
 
-## Installation
+## Installazione
 
-### npm/pnpm/yarn
+### Con npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine tsparticles
@@ -68,7 +68,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script tags)
+### Con CDN (tag `<script>`)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -91,26 +91,26 @@ await tsParticles.load({
 </script>
 ```
 
-## Difference between `tsparticles` and `@tsparticles/all`
+## Differenza tra `tsparticles` e `@tsparticles/all`
 
-| Aspect        | `tsparticles` (full)                 | `@tsparticles/all`                                                                                                     |
-| ------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Size          | Moderate                                                | Very large                                                                                                             |
-| Shapes        | circle, square, star, polygon, line, image, emoji, text | All shapes (heart, cards, arrow, spiral, cog, rounded-rect, etc.)                   |
-| Interactions  | Slim + drag + trail                                     | All (cannon, light, pop, particle, repulse)                                                         |
-| Paths         | Quad easing only                                        | 14 path generators                                                                                                     |
-| Effects       | None                                                    | 5 effects (bubble, filter, shadow, etc.)                                            |
-| Exports       | None                                                    | Image, JSON, Video                                                                                                     |
-| Extra plugins | absorbers, emitters                                     | All (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, etc.) |
-| Easing        | Quad                                                    | 15 easings                                                                                                             |
+| Aspetto      | `tsparticles` (full)                                    | `@tsparticles/all`                                                                    |
+| ------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Dimensione   | Contenuta                                               | Molto grande                                                                          |
+| Forme        | circle, square, star, polygon, line, image, emoji, text | Tutte le forme (cuore, carte, frecce, spirali, cog, rounded-rect, ecc.)               |
+| Interazioni  | Slim + drag + trail                                     | Tutte (cannon, light, pop, particle, repulse)                                         |
+| Path         | Solo easing quad                                        | 14 generatori di path                                                                 |
+| Effetti      | Nessuno                                                 | 5 effetti (bubble, filter, shadow, ecc.)                                              |
+| Esportazioni | Nessuna                                                 | Image, JSON, Video                                                                    |
+| Plugin extra | absorbers, emitters                                     | Tutti (sounds, themes, trail, zoom, polygon-mask, canvas-mask, background-mask, ecc.) |
+| Easing       | Quad                                                    | 15 easing                                                                             |
 
-## Common mistakes
+## Errori comuni
 
-- Confusing `tsparticles` with `@tsparticles/all` — they are different packages.
-- Calling `tsParticles.load()` before `loadFull(tsParticles)`.
-- The npm package is `tsparticles` (not `@tsparticles/full`), the loader is `loadFull`.
+- Confondere `tsparticles` con `@tsparticles/all` — non sono lo stesso pacchetto.
+- Chiamare `tsParticles.load()` prima di `loadFull(tsParticles)`.
+- Il package npm è `tsparticles` (non `@tsparticles/full`), il loader è `loadFull`.
 
-## See also
+## Vedi anche
 
-- [Bundle overview](/guide/bundles)
-- [Installation guide](/guide/installation)
+- [Panoramica bundle](/it/guide/bundles)
+- [Guida all'installazione](/it/guide/installation)

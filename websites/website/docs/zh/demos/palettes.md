@@ -1,17 +1,17 @@
-# Palettes Catalog
+# 调色板目录
 
-Palettes come from the `palettes` workspace and are preloaded in the playground.
+调色板来自 `palettes` 工作区并预加载在 Playground 中。
 
-Ordering follows the source structure:
+排序遵循源结构：
 
-- first level: category order (based on palettes source folders)
-- second level: palette slug order inside each category (alphabetical)
+- 第一级：类别顺序（基于调色板源文件夹）
+- 第二级：每个类别内的调色板顺序（按字母顺序排列）
 
-Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+源文件夹：<https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-## Available palette groups
+## 可用的调色板组
 
-### Atmosphere (12 palettes)
+## 氛围（12 个调色板）
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fog-morning`
 - `volcanic-ash`
 
-### Atmospheric (10 palettes)
+## 大气（10 个调色板）
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `thermal-map`
 - `thunderstorm`
 
-### Confetti (12 palettes)
+## 五彩纸屑（12 个调色板）
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `confetti-rainbow`
 - `confetti-winter`
 
-### Earth (7 palettes)
+## 地球（7 个调色板）
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-### Fantasy (8 palettes)
+## 幻想（8 个调色板）
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `jellyfish-glow`
 - `poison-and-venom`
 
-### Fire (8 palettes)
+## 火（8 个调色板）
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `metal-sparks`
 - `molten-metal`
 
-### Fireworks (24 palettes)
+## 烟花（24 个调色板）
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,14 +113,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-### Gaming (4 palettes)
-
-- `minecraft`
-- `pacman`
-- `super-mario-bros`
-- `tetris`
-
-### Impact (7 palettes)
+## 影响力（7 个调色板）
 
 - `bullet-hit`
 - `explosion-debris`
@@ -130,9 +123,8 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `shockwave-blast`
 - `splatter-dark`
 
-### Monochromatic (14 palettes)
+## 单色（14 个调色板）- `monochrome-blues`
 
-- `monochrome-blues`
 - `monochrome-brown`
 - `monochrome-cyan`
 - `monochrome-gold`
@@ -147,7 +139,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `monochrome-white`
 - `monochrome-yellows`
 
-### Nature (9 palettes)
+## 自然（9 个调色板）
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -159,7 +151,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `snowfall`
 - `spring-bloom`
 
-### Optics (7 palettes)
+## 光学（7 个调色板）
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -169,7 +161,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `lens-flare-dust`
 - `prism-spectrum`
 
-### Pastel (5 palettes)
+## 粉彩（5 个调色板）
 
 - `pastel-cool`
 - `pastel-dream`
@@ -177,7 +169,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `pastel-sunset`
 - `pastel-warm`
 
-### Space (10 palettes)
+## 空间（10 个调色板）
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -190,7 +182,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `solar-wind`
 - `supernova`
 
-### Spectrum (10 palettes)
+## 光谱（10 个调色板）
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -203,7 +195,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rainbow`
 - `rgb-primaries`
 
-### Tech (9 palettes)
+## 科技（9 个调色板）
 
 - `crt-phosphor`
 - `glitch`
@@ -215,7 +207,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `plasma-arc`
 - `vaporwave`
 
-### Vibrant (5 palettes)
+## 充满活力（5 个调色板）
 
 - `vibrant`
 - `vibrant-electric`
@@ -223,7 +215,7 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `vibrant-retro`
 - `vibrant-tropical`
 
-### Water (8 palettes)
+## 水（8 盘）
 
 - `deep-ocean`
 - `foam-and-bubbles`
@@ -234,11 +226,11 @@ Source folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `water`
 - `water-splash`
 
-All palettes currently published on npm are included in the website playground preload.
+当前在 npm 上发布的所有调色板都包含在网站 Playground 预加载中。
 
-Some palettes can appear in the monorepo before publication; those will be added here as soon as their packages are available.
+有些调色板可以在发布之前出现在 monorepo 中；一旦它们的软件包可用，它们将被添加到此处。
 
-## Quick usage
+## 快速使用
 
 ```ts
 await tsParticles.load({
@@ -253,6 +245,6 @@ await tsParticles.load({
 });
 ```
 
-You can combine the same `palette` with different presets to get visual variants without rewriting the rest of the options.
+您可以将相同的 `palette` 与不同的预设组合起来以获得视觉变体，而无需重写其余选项。
 
-Use [`/playground/palettes`](/playground/palettes) to test them with explicit Start/Pause controls.
+使用 [`/playground/palettes`](/zh/playground/palettes) 通过显式开始/暂停控件来测试它们。

@@ -1,8 +1,8 @@
-# Manual Particles
+# मैनुअल कण
 
-`manualParticles` adds explicit particles at fixed positions.
+`manualParticles` निश्चित स्थानों पर स्पष्ट कण जोड़ता है।
 
-## Example
+## उदाहरण
 
 ```ts
 manualParticles: [
@@ -26,12 +26,12 @@ manualParticles: [
 ];
 ```
 
-## When to use it
+## इसका उपयोग कब करना है
 
-- Anchored visual markers.
-- Hybrid effects mixing fixed and dynamic particles.
-- Controlled initial states in demos or tutorials.
+- एंकर दृश्य मार्कर।
+- स्थिर और गतिशील कणों को मिश्रित करने वाला हाइब्रिड प्रभाव।
+- डेमो या ट्यूटोरियल में प्रारंभिक अवस्थाओं को नियंत्रित किया।
 
-## Source reference
+## स्रोत संदर्भ
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/ManualParticles.md>

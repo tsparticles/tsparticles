@@ -1,14 +1,14 @@
-# Big Circles Preset
+# 大圆圈预设
 
-Official preset from the `presets/presets/bigCircles` workspace.
+来自 `presets/presets/bigCircles` 工作区的官方预设。
 
-## Install
+## 安装
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-big-circles
 ```
 
-## Ready-to-use (manual start/stop)
+## 随时可用（手动启动/停止）
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -39,6 +39,6 @@ export function resume(): void {
 }
 ```
 
-Perfect for minimal, modern designs with large animated circles.
+非常适合带有大型动画圆圈的简约现代设计。
 
-Demo: <https://particles.js.org/demos/recipes/big-circles>
+演示： <https://particles.js.org/demos/recipes/big-circles>

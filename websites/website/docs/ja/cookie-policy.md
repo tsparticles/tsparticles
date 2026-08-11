@@ -1,39 +1,35 @@
-# Cookie Policy
+# クッキーポリシー
 
-This website uses a small set of cookies and third-party technologies to keep the docs useful and sustainable.
+この Web サイトでは、ドキュメントを有用かつ持続可能な状態に保つために、少数の Cookie とサードパーティのテクノロジーを使用しています。
 
-## What we use
+## 私たちが使用するもの
 
-- **Essential cookies**: required for technical behavior and navigation.
-- **Analytics cookies** (Google Analytics): used to understand traffic and documentation usage patterns.
-- **Advertising technologies** (Google AdSense): used to deliver ads. Depending on consent, ads can run in non-personalized mode.
+- **必須 Cookie**: 技術的な動作とナビゲーションに必要です。
+- **分析 Cookie** (Google Analytics): トラフィックとドキュメントの使用パターンを理解するために使用されます。
+- **広告 Cookie** (Google AdSense): 広告キャンペーンのパフォーマンスを測定し、広告を表示するために使用されます。
 
-Environment variables currently configured in this project:
+このプロジェクトで現在構成されている環境変数:
 
 - `VITE_GA_MEASUREMENT_ID`
 - `VITE_GOOGLE_ADSENSE_CLIENT_ID`
-- `VITE_ADSENSE_NON_PERSONALIZED_ON_REJECT` (`true` or `false`)
-- `VITE_ANALYTICS_COOKIELESS_ON_REJECT` (`true` or `false`)
 
-## How consent works
+## 同意の仕組み
 
-- Analytics cookies are disabled until you explicitly provide consent in the privacy banner.
-- You can reject all, accept all, or save granular choices for analytics and advertising.
-- When analytics consent is not granted, the site can still send cookieless, aggregate analytics signals (Consent Mode) if configured.
-- When you reject ads, AdSense can run as non-personalized ads if configured.
-- Your choice is saved locally in your browser.
+- トラッキング Cookie は、Cookie バナーの [**同意する**] を明示的にクリックするまで無効になります。
+- [**拒否**] をクリックすると、分析/広告追跡は無効のままになります。
+- 選択内容はブラウザーにローカルに保存されます。
 
-## How to change your choice
+## 選択を変更する方法
 
-If you want to change your consent after choosing, clear this site's local storage/cookies in your browser settings and reload the page.
+選択後に同意を変更したい場合は、ブラウザの設定でこのサイトのローカル ストレージ/Cookie をクリアし、ページをリロードしてください。
 
-## Related policy
+## 関連ポリシー
 
-- [`/privacy-policy`](/privacy-policy)
+- [`/privacy-policy`](/ja/privacy-policy)
 
-## Data controllers and processors
+## データ管理者と処理者
 
-- Website owner: `@tsparticles/website` maintainers
-- Third-party services: Google Analytics and Google AdSense
+- ウェブサイト所有者: `@tsparticles/website` 管理者
+- サードパーティのサービス: Google Analytics および Google AdSense
 
-For legal/privacy requests, please use the support channels listed in the project repository.
+法的/プライバシーに関するリクエストについては、プロジェクト リポジトリにリストされているサポート チャネルをご利用ください。

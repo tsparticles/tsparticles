@@ -1,6 +1,6 @@
 # Wrapper: @tsparticles/stencil
 
-Official Stencil wrapper for `tsParticles`.
+`tsParticles` の公式 Stencil wrapper です。
 
 ## Install
 
@@ -8,22 +8,22 @@ Official Stencil wrapper for `tsParticles`.
 pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## クイックセットアップ
 
-1. Install wrapper + engine + loader package.
-2. Register Stencil custom elements once using `@tsparticles/stencil/loader`.
-3. Render `<stencil-particles />` and pass `init` + `options` (or `url`).
+1. wrapper + engine + loader package をインストールします。
+2. `@tsparticles/stencil/loader` で Stencil custom elements を一度だけ登録します。
+3. `<stencil-particles />` を描画し、`init` と `options`（または `url`）を渡します。
 
-## Monorepo references
+## Monorepo 参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/stencil>
+- package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil>
+- demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/stencil>
 
 ## Readme
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme>
+- wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

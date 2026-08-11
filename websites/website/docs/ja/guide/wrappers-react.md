@@ -1,30 +1,30 @@
-# Wrapper: @tsparticles/react
+# ラッパー: @tsparticles/react
 
-Official React wrapper for `tsParticles`.
+`tsParticles` の公式 React ラッパー。
 
-## Install
+## インストール
 
 ```bash
 pnpm add @tsparticles/react @tsparticles/engine @tsparticles/slim
 ```
 
-## Quick setup flow
+## 簡単なセットアップの流れ
 
-1. Install wrapper + engine + loader package.
-2. Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`) — it must be rendered only once for the entire app lifecycle.
-3. Initialize once with `ParticlesProvider` and `loadSlim`.
-4. Render `Particles` component with typed options.
+1. ラッパー + エンジン + ローダー パッケージをインストールします。
+2. `ParticlesProvider` をアプリのルート（例：`main.tsx` または `layout.tsx`）に配置します — アプリのライフサイクル全体で 1 回だけレンダリングする必要があります。
+3. `ParticlesProvider` および `loadSlim` を使用して 1 回初期化します。
+4. 型指定されたオプションを使用して `Particles` コンポーネントをレンダリングします。
 
-## Monorepo references
+## モノリポジトリ参照
 
-- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
-- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
+- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react>
+- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/react>
 
-## Readme
+## リードミー
 
-- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
+- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme>
 
-## Related docs
+## 関連ドキュメント
 
-- [`/guide/wrappers`](/guide/wrappers)
-- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/frameworks`](/ja/guide/frameworks)

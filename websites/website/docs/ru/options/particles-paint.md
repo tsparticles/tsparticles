@@ -1,8 +1,8 @@
-# Particles Paint
+# Частицы краски
 
-`particles.paint` groups particle fill and stroke style options.
+`particles.paint` группирует параметры заливки частиц и стиля обводки.
 
-## Example
+## Пример
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## Fill (`particles.paint.fill`)
+## Заполнить (`particles.paint.fill`)
 
-- Defines the particle inner color.
-- Supports static values, arrays, and color animation.
+- Определяет внутренний цвет частицы.
+- Поддерживает статические значения, массивы и цветную анимацию.
 
-## Stroke (`particles.paint.stroke`)
+## Ход (`particles.paint.stroke`)
 
-- Defines outline width and color.
-- Useful to increase shape contrast.
+- Определяет ширину и цвет контура.
+- Полезно для увеличения контраста формы.
 
-## Source reference
+## Ссылка на источник
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

@@ -1,31 +1,31 @@
 ---
-title: Inferno Guide
-description: Complete guide for integrating tsParticles with Inferno applications.
+title: Guide Inferno
+description: Guide complet pour intégrer tsParticles avec des applications Inferno.
 ---
 
-# Inferno Guide
+# Guide Inferno
 
-## Table of Contents
+## Table des matières
 
 1. [Installation](#installation)
-2. [Basic Usage](#basic-usage)
-3. [Engine Initialization](#engine-initialization)
-4. [Custom Configuration](#custom-configuration)
-5. [Preset Usage](#preset-usage)
-6. [Component Pattern](#component-pattern)
-7. [TypeScript Example](#typescript-example)
+2. [Utilisation de base](#utilisation-de-base)
+3. [Initialisation du moteur](#initialisation-du-moteur)
+4. [Configuration personnalisée](#configuration-personnalisée)
+5. [Utilisation des préréglages](#utilisation-des-préréglages)
+6. [Modèle de composant](#modèle-de-composant)
+7. [Exemple TypeScript](#exemple-typescript)
 
 ---
 
 ## Installation
 
-Install the Inferno wrapper and the tsParticles engine via npm:
+Installez l'encapsuleur Inferno et le moteur tsParticles via npm :
 
 ```bash
 npm install @tsparticles/inferno tsparticles
 ```
 
-Optionally install the slim preset for a smaller bundle:
+Installez optionnellement le préréglage slim pour un bundle plus léger :
 
 ```bash
 npm install @tsparticles/slim
@@ -33,9 +33,9 @@ npm install @tsparticles/slim
 
 ---
 
-## Basic Usage
+## Utilisation de base
 
-The `@tsparticles/inferno` package exports two items: `ParticlesProvider` and `Particles`. Wrap your particle components with `ParticlesProvider` which accepts an `init` callback for engine setup, then use `<Particles>` to render the particle canvas.
+Le package `@tsparticles/inferno` exporte deux éléments : `ParticlesProvider` et `Particles`. Encapsulez vos composants de particules avec `ParticlesProvider` qui accepte un callback `init` pour la configuration du moteur, puis utilisez `<Particles>` pour afficher le canvas de particules.
 
 ```tsx
 import { render } from "inferno";
@@ -83,41 +83,41 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-`ParticlesProvider` must be an ancestor of every `<Particles>` component. It initializes the engine once and provides it via context to all children.
+`ParticlesProvider` doit être un ancêtre de chaque composant `<Particles>`. Il initialise le moteur une fois et le fournit via le contexte à tous les enfants.
 
 ---
 
-## Engine Initialization
+## Initialisation du moteur
 
-The `ParticlesProvider` accepts an `init` prop that receives the engine instance. This is where you load the features, shapes, presets, or updaters your app needs.
+`ParticlesProvider` accepte une prop `init` qui reçoit l'instance du moteur. C'est ici que vous chargez les fonctionnalités, formes, préréglages ou mises à jour dont votre application a besoin.
 
 ```tsx
-// Lightweight — circle particles, basic movement, links
+// Léger — particules circulaires, mouvement de base, liaisons
 <ParticlesProvider init={async engine => {
   const { loadSlim } = await import("@tsparticles/slim");
   await loadSlim(engine);
 }}>
 
-// Full feature set — all shapes, interactions, effects
+// Ensemble complet — toutes les formes, interactions, effets
 <ParticlesProvider init={async engine => {
   const { loadFull } = await import("tsparticles");
   await loadFull(engine);
 }}>
 
-// Preset-specific — confetti, fireworks, snow, stars
+// Préréglage spécifique — confetti, feux d'artifice, neige, étoiles
 <ParticlesProvider init={async engine => {
   const { loadConfettiPreset } = await import("@tsparticles/preset-confetti");
   await loadConfettiPreset(engine);
 }}>
 ```
 
-Using dynamic `import()` inside the callback enables code splitting: the preset or feature modules are loaded only when the particle component mounts.
+Utiliser `import()` dynamique dans le callback permet la séparation du code : les modules de préréglages ou de fonctionnalités ne sont chargés que lorsque le composant de particules se monte.
 
 ---
 
-## Custom Configuration
+## Configuration personnalisée
 
-Below is a fully featured configuration with interactivity, multiple shape types, and a dark gradient background.
+Voici une configuration complète avec interactivité, types de formes multiples et un fond dégradé sombre.
 
 ```tsx
 import { render } from "inferno";
@@ -190,9 +190,9 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## Preset Usage
+## Utilisation des préréglages
 
-The `@tsparticles/configs` package offers pre-built configurations that you can pass straight to the `options` prop. Combine them with the corresponding preset loader in the `ParticlesProvider` init callback.
+Le package `@tsparticles/configs` propose des configurations préconstruites que vous pouvez passer directement à la prop `options`. Combinez-les avec le chargeur de préréglage correspondant dans le callback init de `ParticlesProvider`.
 
 ```tsx
 import { render } from "inferno";
@@ -215,13 +215,13 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-You can swap `configs.confetti` with any available preset: `configs.basic`, `configs.fireworks`, `configs.snow`, `configs.stars`, etc.
+Vous pouvez remplacer `configs.confetti` par n'importe quel préréglage disponible : `configs.basic`, `configs.fireworks`, `configs.snow`, `configs.stars`, etc.
 
 ---
 
-## Component Pattern
+## Modèle de composant
 
-For larger applications, structure your particle logic into a dedicated component with a `particlesLoaded` callback for accessing the `Container` instance.
+Pour les applications plus grandes, structurez votre logique de particules dans un composant dédié avec un callback `particlesLoaded` pour accéder à l'instance `Container`.
 
 ```tsx
 import { render, Component } from "inferno";
@@ -267,7 +267,7 @@ class ParticlesBackground extends Component {
 
   handleParticlesLoaded(container?: Container) {
     this.container = container;
-    console.log("Particles loaded:", container?.id);
+    console.log("Particules chargées :", container?.id);
   }
 
   render() {
@@ -298,9 +298,18 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## TypeScript Example
+## Reactive Behavior
 
-Here is a complete, typed Inferno application with a responsive particle configuration and full-screen background.
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+## Exemple TypeScript
+
+Voici une application Inferno complète et typée avec une configuration de particules réactive et un arrière-plan plein écran.
 
 ```tsx
 import { render } from "inferno";
@@ -350,7 +359,7 @@ function handleInit(engine: Engine): Promise<void> {
 }
 
 function handleParticlesLoaded(container?: Container): void {
-  console.log("tsParticles container ready:", container?.id);
+  console.log("Conteneur tsParticles prêt :", container?.id);
 }
 
 function App() {
@@ -358,7 +367,7 @@ function App() {
     <ParticlesProvider init={handleInit}>
       <div style={{ position: "relative", zIndex: 1, color: "#fff", textAlign: "center", paddingTop: "2rem" }}>
         <h1>tsParticles + Inferno</h1>
-        <p>Full TypeScript integration</p>
+        <p>Intégration TypeScript complète</p>
       </div>
       <Particles id="tsparticles" options={particlesOptions} particlesLoaded={handleParticlesLoaded} />
     </ParticlesProvider>
@@ -370,15 +379,4 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## Reactive Behavior
-
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
----
-
-You now have everything needed to integrate tsParticles into an Inferno application. Each example is self-contained and ready to be copied into your project.
+Vous avez maintenant tout ce qu'il faut pour intégrer tsParticles dans une application Inferno. Chaque exemple est autonome et prêt à être copié dans votre projet.

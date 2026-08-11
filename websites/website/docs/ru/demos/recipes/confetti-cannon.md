@@ -1,16 +1,16 @@
-# Confetti Cannon Preset
+# Предварительная настройка пушки конфетти
 
-Official preset from the `presets/presets/confettiCannon` workspace.
+Официальный пресет из рабочей области `presets/presets/confettiCannon`.
 
-To trigger confetti in this preset, drag the mouse over the canvas area.
+Чтобы вызвать конфетти в этом пресете, перетащите указатель мыши на область холста.
 
-## Install
+## Установить
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/preset-confetti-cannon
 ```
 
-## Ready-to-use (manual start/stop)
+## Готов к использованию (ручной запуск/остановка)
 
 ```ts
 import { tsParticles } from "@tsparticles/engine";
@@ -41,6 +41,6 @@ export function resume(): void {
 }
 ```
 
-Demo: <https://particles.js.org/demos/recipes/confetti-cannon>
+Демо: <https://particles.js.org/demos/recipes/confetti-cannon>
 
-Source docs: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>
+Исходные документы: <https://github.com/tsparticles/tsparticles/tree/main/presets/confettiCannon#readme>

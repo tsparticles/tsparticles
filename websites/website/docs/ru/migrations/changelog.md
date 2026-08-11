@@ -1,8 +1,8 @@
 # Changelog
 
-The full changelogs in this monorepo are very large.
+Полные changelog-файлы в этом монорепозитории очень большие.
 
-For the most up-to-date release notes, use the latest GitHub release page:
+Для самых свежих заметок о релизах используйте:
 
-- Latest release: <https://github.com/tsparticles/tsparticles/releases/latest>
-- All releases: <https://github.com/tsparticles/tsparticles/releases>
+- Последний релиз: <https://github.com/tsparticles/tsparticles/releases/latest>
+- Все релизы: <https://github.com/tsparticles/tsparticles/releases>

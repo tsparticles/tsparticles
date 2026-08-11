@@ -1,8 +1,8 @@
-# Interactivity Hover
+# 交互悬停
 
-`interactivity.events.onHover` controls pointer-hover reactions.
+`interactivity.events.onHover` 控制指针悬停反应。
 
-## Example
+## 示例
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## Practical guidance
+## 实用指导
 
-- Hover effects are more expensive on dense scenes.
-- On mobile, consider disabling hover-heavy modes.
+- 悬停效果在密集场景中成本更高。
+- 在移动设备上，考虑禁用悬停重模式。
 
-## Source reference
+## 来源参考
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
