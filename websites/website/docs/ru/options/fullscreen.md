@@ -1,8 +1,8 @@
-# Полный экран
+# Full Screen
 
-Используйте `fullScreen`, чтобы контролировать, занимает ли холст всю область просмотра.
+Use `fullScreen` to control whether the canvas takes the full viewport.
 
-## Типичная установка
+## Typical setup
 
 ```ts
 fullScreen: {
@@ -11,12 +11,12 @@ fullScreen: {
 }
 ```
 
-- `enable`: переключает режим полного окна просмотра.
-- `zIndex`: полезно для сохранения частиц за содержимым приложения.
+- `enable`: toggles full-viewport behavior.
+- `zIndex`: useful to keep particles behind app content.
 
-## Встроенные разделы
+## Embedded sections
 
-Для предварительного просмотра документов, карточек и игровых панелей:
+For docs previews, cards, and playground panels:
 
 ```ts
 fullScreen: {
@@ -24,8 +24,8 @@ fullScreen: {
 }
 ```
 
-Это позволяет избежать дублирования макета страницы и других холстов.
+This avoids overlap with page layout and other canvases.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/FullScreen.md>
