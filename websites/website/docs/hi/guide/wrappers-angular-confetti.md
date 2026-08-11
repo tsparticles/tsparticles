@@ -1,29 +1,29 @@
-# आवरण: कोणीय-कंफ़ेटी
+# Wrapper: angular-confetti
 
-`@tsparticles/confetti` के आसपास आधिकारिक कोणीय आवरण।
+Official Angular wrapper around `@tsparticles/confetti`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add angular-confetti @tsparticles/confetti
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. रैपर + `@tsparticles/confetti` स्थापित करें।
-2. Angular ऐप स्टार्टअप में एक बार इनिशियलाइज़ करें।
-3. घटकों/सेवाओं से कंफ़ेद्दी क्रियाओं को ट्रिगर करें।
+1. Install wrapper + `@tsparticles/confetti`.
+2. Initialize once in Angular app startup.
+3. Trigger confetti actions from components/services.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
