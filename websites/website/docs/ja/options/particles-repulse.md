@@ -1,8 +1,8 @@
-# 粒子の反発
+# Particles Repulse
 
-`particles.repulse` は、粒子間の相互作用における反発動作を制御します。
+`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## 実践的な指導
+## Practical guidance
 
-- 突然の動きのジャンプを避けるために適度な距離を保ちます。
-- `interactivity.modes.repulse` が両方ともアクティブな場合は、一緒に調整します。
+- Use moderate distances to avoid abrupt motion jumps.
+- Tune together with `interactivity.modes.repulse` when both are active.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>
