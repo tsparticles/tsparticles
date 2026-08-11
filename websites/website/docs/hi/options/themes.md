@@ -1,8 +1,8 @@
-# थीम्स
+# Themes
 
-`themes` आपको नामित विकल्प सेट (उदाहरण के लिए प्रकाश और अंधेरा) परिभाषित करने और रनटाइम पर स्विच करने की सुविधा देता है।
+`themes` lets you define named option sets (for example light and dark) and switch at runtime.
 
-## उदाहरण
+## Example
 
 ```ts
 themes: [
@@ -33,12 +33,12 @@ themes: [
 ];
 ```
 
-## व्यावहारिक मार्गदर्शन
+## Practical guidance
 
-- एक स्थिर आधार विकल्प वस्तु रखें।
-- केवल वही ओवरराइड करें जो प्रति थीम भिन्न हो।
-- ऐप-स्तरीय डार्क मोड स्थिति के साथ युग्मित करें।
+- Keep a stable base options object.
+- Override only what differs per theme.
+- Pair with app-level dark mode state.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Themes.md>
