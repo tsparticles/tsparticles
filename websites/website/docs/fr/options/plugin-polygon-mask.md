@@ -1,8 +1,8 @@
-# Option du plugin : Masque de polygone
+# Plugin Option: Polygon Mask
 
-`polygonMask` contraint les particules à des régions SVG ou basées sur des polygones.
+`polygonMask` constrains particles to SVG or polygon-based regions.
 
-## Exemple
+## Example
 
 ```ts
 polygonMask: {
@@ -15,11 +15,11 @@ polygonMask: {
 }
 ```
 
-## Remarques
+## Notes
 
-- Utilisez des chemins SVG optimisés pour de meilleures performances d'exécution.
-- Valider le chargement du chemin et le comportement de repli.
+- Use optimized SVG paths for better runtime performance.
+- Validate path loading and fallback behavior.
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/PolygonMask.md>
