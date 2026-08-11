@@ -1,8 +1,8 @@
-# कणों का आकार
+# Particles Shape
 
-`particles.shape` परिभाषित करता है कि कण कैसे खींचे जाते हैं।
+`particles.shape` defines how particles are drawn.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -12,10 +12,10 @@ particles: {
 }
 ```
 
-- `type`: एक आकृति या आकृतियों की सूची।
-- सामान्य मान: `circle`, `square`, `triangle`, `polygon`, `image`, `emoji`, `text`।
+- `type`: one shape or a list of shapes.
+- common values: `circle`, `square`, `triangle`, `polygon`, `image`, `emoji`, `text`.
 
-## विकल्पों के साथ
+## With options
 
 ```ts
 particles: {
@@ -30,6 +30,6 @@ particles: {
 }
 ```
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shape.md>
