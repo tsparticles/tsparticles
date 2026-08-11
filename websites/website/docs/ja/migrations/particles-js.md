@@ -1,54 +1,54 @@
-# 移行と互換性
+# Migration and compatibility
 
-`particles.js` から移行する場合は、次の順序を使用します。
+If you are migrating from `particles.js`, use this order:
 
-1. 古いスクリプト/パッケージを `@tsparticles/engine` + バンドル (`@tsparticles/slim`) に置き換えます。
-2. 古い構成を移動し、サポートされていないフィールドを段階的にマップします
-3. インタラクション (ホバー/クリック/リンク) を 1 つずつテストします
+1. replace old script/package with `@tsparticles/engine` + bundle (`@tsparticles/slim`)
+2. move your old config and map unsupported fields incrementally
+3. test interactions (hover/click/links) one by one
 
-## 正規移行に関する注意事項
+## Canonical migration notes
 
-- 公式移行ガイドのソース: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
-- 従来の互換性サンプルはデモ フォルダーで入手できます。
+- Official migration guide source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Legacy compatibility examples are available in the demo folders.
 
-## 互換性パッケージ
+## Compatibility package
 
-レガシー構成の移行中にブリッジ層が必要な場合:
+If you need a bridge layer while migrating legacy configs:
 
 - npm: <https://www.npmjs.com/package/@tsparticles/pjs>
 - jsDelivr: <https://www.jsdelivr.com/package/npm/@tsparticles/pjs>
 
-さらに読む:
+Further reading:
 
-- 移行記事: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
-- 切り替える 5 つの理由: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
+- Migration article: <https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m>
+- 5 reasons to switch: <https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe>
 
-## 一般的なマッピングのヒント
+## Common mapping tips
 
-- 古い `particlesJS(...)` init は `tsParticles.load({ id, options })` になります。
-- 多くの従来の値には、`particles`、`interactivity`、および `detectRetina` に直接相当する値がまだあります。
-- 新しいプラグイン駆動のアーキテクチャにより、一部の高度な機能には明示的なパッケージの読み込みが必要になります。
+- Old `particlesJS(...)` init becomes `tsParticles.load({ id, options })`.
+- Many legacy values still have direct equivalents under `particles`, `interactivity`, and `detectRetina`.
+- New plugin-driven architecture means some advanced features require explicit package loading.
 
-## 本番環境向けの移行チェックリスト
+## Migration checklist for production
 
-- デスクトップとモバイルの視覚的な同等性を検証します。
-- ローエンドデバイスに対する CPU/GPU の影響を確認します。
-- オプション キーがサイレントに無視されていないことを確認します。
-- リリース週前に正確なパッケージ バージョンを固定します。
+- Verify visual parity in desktop and mobile.
+- Verify CPU/GPU impact on low-end devices.
+- Verify no option keys are ignored silently.
+- Pin exact package versions before release week.
 
-## Canvas-confetti から `@tsparticles/confetti` への移行
+## Migration from canvas-confetti to `@tsparticles/confetti`
 
-`canvas-confetti` から移行する場合、最も簡単な切り替えは、命令型呼び出しを `@tsparticles/confetti` API 呼び出しに置き換えることです。
+If you are migrating from `canvas-confetti`, the easiest switch is replacing imperative calls with `@tsparticles/confetti` API calls.
 
-## 一般的なマッピング
+### Typical mapping
 
 - `confetti({...})` -> `await confetti({...})`
-- カスタム キャンバス -> `const local = await confetti.create(canvas, defaults)`、次に `await local({...})`
-- 繰り返しのショット -> 既存のタイマー/ループを保持し、それらのコールバックで `await confetti(...)` を呼び出します
+- custom canvas -> `const local = await confetti.create(canvas, defaults)` then `await local({...})`
+- repeated shots -> keep your existing timers/loops, call `await confetti(...)` in those callbacks
 
-## 変換例
+### Example conversion
 
-前 (`canvas-confetti` スタイル):
+Before (`canvas-confetti` style):
 
 ```ts
 import confetti from "canvas-confetti";
@@ -60,7 +60,7 @@ confetti({
 });
 ```
 
-後 (`@tsparticles/confetti`):
+After (`@tsparticles/confetti`):
 
 ```ts
 import { confetti } from "@tsparticles/confetti";
@@ -72,10 +72,10 @@ await confetti({
 });
 ```
 
-## オプション名の注意事項
+### Option name notes
 
 - `particleCount` -> `count`
-- `0..1` の `origin.x`/`origin.y` -> `0..100` の `position.x`/`position.y`
-- `startVelocity`、`spread`、`angle`、および `colors` は同じセマンティクスを維持します
+- `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`
+- `startVelocity`, `spread`, `angle`, and `colors` keep the same semantics
 
-完全な API とヘルパーについては、<https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme> を参照してください。
+For complete API and helpers, see: <https://github.com/tsparticles/tsparticles/tree/main/bundles/confetti#readme>
