@@ -1,5 +1,5 @@
-# Predefinições de playground
+# Playground Presets
 
-Use esta página para demonstrações oficiais baseadas em predefinições.
+Use this page for official preset-based demos.
 
 <PlaygroundPanel mode="presets"></PlaygroundPanel>
