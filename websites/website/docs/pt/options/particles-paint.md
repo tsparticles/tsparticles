@@ -1,8 +1,8 @@
-# Partículas de tinta
+# Particles Paint
 
-`particles.paint` agrupa opções de preenchimento de partículas e estilo de traço.
+`particles.paint` groups particle fill and stroke style options.
 
-## Exemplo
+## Example
 
 ```ts
 particles: {
@@ -23,16 +23,16 @@ particles: {
 }
 ```
 
-## Preencher (`particles.paint.fill`)
+## Fill (`particles.paint.fill`)
 
-- Define a cor interna da partícula.
-- Suporta valores estáticos, matrizes e animação colorida.
+- Defines the particle inner color.
+- Supports static values, arrays, and color animation.
 
-## Acidente Vascular Cerebral (`particles.paint.stroke`)
+## Stroke (`particles.paint.stroke`)
 
-- Define a largura e a cor do contorno.
-- Útil para aumentar o contraste da forma.
+- Defines outline width and color.
+- Useful to increase shape contrast.
 
-## Referência da fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>
