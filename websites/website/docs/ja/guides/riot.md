@@ -1,31 +1,31 @@
 ---
-title: Riot ガイド
-description: tsParticles を Riot.js コンポーネントと統合するための完全ガイド。
+title: Riot Guide
+description: Complete guide for integrating tsParticles with Riot.js components.
 ---
 
-# Riot ガイド
+# Riot Guide
 
-## 目次
+## Table of Contents
 
-1. [インストール](#installation)
-2. [エンジンの初期化](#engine-initialization)
-3. [基本的な使い方](#basic-usage)
-4. [条件付きレンダリング](#conditional-rendering)
-5. [プリセットの使用](#preset-usage)
-6. [カスタム設定](#custom-configuration)
-7. [完全なコンポーネント](#full-component)
+1. [Installation](#installation)
+2. [Engine Initialization](#engine-initialization)
+3. [Basic Usage](#basic-usage)
+4. [Conditional Rendering](#conditional-rendering)
+5. [Preset Usage](#preset-usage)
+6. [Custom Configuration](#custom-configuration)
+7. [Full Component](#full-component)
 
 ---
 
-## インストール
+## Installation
 
-npm を使用して Riot ラッパーと tsParticles エンジンをインストールします:
+Install the Riot wrapper and the tsParticles engine via npm:
 
 ```bash
 npm install @tsparticles/riot tsparticles
 ```
 
-オプションで、クイックセットアップ用のプリセット設定をインストールします:
+Optionally install preset configs for quick setup:
 
 ```bash
 npm install @tsparticles/configs
@@ -34,9 +34,9 @@ npm install @tsparticles/slim
 
 ---
 
-## エンジンの初期化
+## Engine Initialization
 
-Riot ラッパーは `initParticlesEngine` 関数をエクスポートします。パーティクルコンポーネントがレンダリングされる前にエンジンを準備するために、コンポーネントの `onBeforeMount` ライフサイクルフックで呼び出します。
+The Riot wrapper exports an `initParticlesEngine` function. Call it in your component's `onBeforeMount` lifecycle hook to prepare the engine before the particles component renders.
 
 ```html
 <my-component>
@@ -57,13 +57,13 @@ Riot ラッパーは `initParticlesEngine` 関数をエクスポートします�
 </my-component>
 ```
 
-エンジンは1回初期化され、アプリ内のすべての `<riot-particles>` インスタンス間で共有されます。
+The engine initializes once and is shared across all `<riot-particles>` instances in your app.
 
 ---
 
-## 基本的な使い方
+## Basic Usage
 
-エンジンを初期化した後、テンプレートで `<riot-particles>` コンポーネントを使用します。設定は JSON 文字列化された options オブジェクトまたはコンポーネントのプロパティへの参照として渡します。
+After initializing the engine, use the `<riot-particles>` component in your template. Pass the configuration as a JSON-stringified options object or a reference to a property on your component.
 
 ```html
 <my-component>
@@ -113,9 +113,9 @@ Riot ラッパーは `initParticlesEngine` 関数をエクスポートします�
 
 ---
 
-## 条件付きレンダリング
+## Conditional Rendering
 
-Riot の `if={}` ディレクティブを状態プロパティとともに使用して、エンジンの初期化が完了するまでパーティクルコンポーネントのレンダリングを遅延させます。これにより、レイアウトシフトを回避し、コンポーネントが準備完了のエンジンを受け取ることを保証します。
+Use Riot's `if={}` directive with a state property to delay rendering the particles component until the engine has finished initializing. This avoids layout shifts and ensures the component receives a ready engine.
 
 ```html
 <my-component>
@@ -152,13 +152,13 @@ Riot の `if={}` ディレクティブを状態プロパティとともに使用
 </my-component>
 ```
 
-`this.update()` を呼び出すと再レンダリングがトリガーされ、プロミスが解決されると `<riot-particles>` タグが表示されます。
+Calling `this.update()` triggers a re-render so the `<riot-particles>` tag appears once the promise resolves.
 
 ---
 
-## プリセットの使用
+## Preset Usage
 
-`@tsparticles/configs` パッケージは、クラッカー、花火、雪、星などの一般的なエフェクト用の構築済み設定を提供します。これらを options オブジェクトとして直接使用します。
+The `@tsparticles/configs` package provides pre-built configurations for common effects like confetti, fireworks, snow, and stars. Use them directly as your options object.
 
 ```html
 <my-component>
@@ -186,13 +186,13 @@ Riot の `if={}` ディレクティブを状態プロパティとともに使用
 </my-component>
 ```
 
-利用可能なプリセットには、`basic`、`confetti`、`fireworks`、`snow`、`stars` などがあります。各プリセットは、エンジンコールバックに対応するプリセットパッケージをロードする必要があります。たとえば、`configs.fireworks` には `loadFireworksPreset` が必要です。
+Available presets include `basic`, `confetti`, `fireworks`, `snow`, `stars`, and more. Each preset requires its corresponding preset package to be loaded in the engine callback. For example, `configs.fireworks` requires `loadFireworksPreset`.
 
 ---
 
-## カスタム設定
+## Custom Configuration
 
-インタラクティビティ、複数のシェイプタイプ、高度なアニメーションオプションを備えたカスタム設定を構築します。
+Build a custom configuration with interactivity, multiple shapes, and advanced animation options.
 
 ```html
 <my-component>
@@ -267,18 +267,9 @@ Riot の `if={}` ディレクティブを状態プロパティとともに使用
 
 ---
 
-## Reactive Behavior
+## Full Component
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## 完全なコンポーネント
-
-以下は、すべてをまとめた完全な `.riot` ファイルです: `onBeforeMount` でのエンジン初期化、状態による条件付きレンダリング、インタラクティビティを備えたリッチな設定、およびロードされたイベントのサポートを介した `particlesLoaded` コールバック。
+Below is a complete `.riot` file that ties everything together: engine initialization in `onBeforeMount`, conditional rendering with state, a rich configuration with interactivity, and a `particlesLoaded` callback via the component's built-in support for loaded events.
 
 ```html
 <my-component>
@@ -373,4 +364,23 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ---
 
-これで、tsParticles を Riot.js アプリケーションに統合するために必要なすべてが揃いました。各例は自己完結型で、プロジェクトにコピーしてすぐに使用できます。
+## Component API
+
+| Prop      | Type             | Default         | Description                                                                                                  |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
+| `id`      | `string`         | `"tsparticles"` | Canvas element id. Change triggers destroy+reload.                           |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.               |
+| `url`     | `string`         | —               | Remote JSON config URL. Change triggers destroy+reload.                      |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+
+## Reactive Behavior
+
+The `<riot-particles>` tag reloads particles when `id`, `options`, or `url` props change. The `theme` prop applies via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the `<riot-particles>` element is unmounted, the container is automatically destroyed — no orphan animations remain.
+
+---
+
+You now have everything needed to integrate tsParticles into a Riot.js application. Each example is self-contained and ready to be copied into your project.
