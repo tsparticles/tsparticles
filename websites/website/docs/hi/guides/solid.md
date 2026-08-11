@@ -1,31 +1,31 @@
 ---
-title: SolidJS इंटीग्रेशन
-description: आधिकारिक @tsparticles/solid रैपर का उपयोग करके SolidJS एप्लिकेशन में tsParticles को एकीकृत करने के लिए चरण-दर-चरण मार्गदर्शिका।
+title: SolidJS Integration
+description: Step-by-step guide to integrating tsParticles into a SolidJS application using the official @tsparticles/solid wrapper.
 ---
 
-# SolidJS इंटीग्रेशन
+# SolidJS Integration
 
-यह मार्गदर्शिका आधिकारिक `@tsparticles/solid` रैपर का उपयोग करके **SolidJS** प्रोजेक्ट में tsParticles को एकीकृत करने को कवर करती है। SolidJS का बारीक-दाने वाला रिएक्टिविटी मॉडल tsParticles के साथ अच्छी तरह से काम करता है — विकल्प परिवर्तन पूर्ण पुनः आरंभीकरण के बिना लक्षित कैनवास अपडेट ट्रिगर करते हैं।
+This guide covers integrating tsParticles into a **SolidJS** project using the official `@tsparticles/solid` wrapper.
 
-## इंस्टॉलेशन
+## Installation
 
-SolidJS रैपर और अपनी पसंद का इंजन बंडल इंस्टॉल करें:
+Install the SolidJS wrapper and the engine bundle of your choice:
 
 ```bash
 npm install @tsparticles/solid tsparticles
 ```
 
-छोटे बंडल के लिए, इसके बजाय `@tsparticles/slim` का उपयोग करें:
+For a smaller bundle, use `@tsparticles/slim` instead:
 
 ```bash
 npm install @tsparticles/solid @tsparticles/slim
 ```
 
-## मूल उपयोग
+## Basic Usage
 
-SolidJS पूरी तरह से ब्राउज़र में चलता है (कोई SSR नहीं), इसलिए आपको सर्वर रेंडरिंग के खिलाफ गार्ड करने की आवश्यकता नहीं है। हालाँकि, पार्टिकल्स रेंडर करने से पहले इंजन को एसिंक रूप से आरंभ किया जाना चाहिए।
+SolidJS runs entirely in the browser (no SSR), so you do not need to guard against server rendering. However, the engine must be initialized asynchronously before rendering particles.
 
-इंजन सुविधाएँ लोड करने के लिए `onMount` के अंदर `initParticlesEngine` का उपयोग करें, फिर `<Show>` के साथ सशर्त रूप से `<Particles>` कम्पोनेंट रेंडर करें:
+Use `initParticlesEngine` inside `onMount` to load the engine features, then conditionally render the `<Particles>` component with `<Show>`:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -64,11 +64,11 @@ const App: Component = () => {
 export default App;
 ```
 
-`<Show>` कम्पोनेंट सुनिश्चित करता है कि `<Particles>` एलिमेंट इंजन तैयार होने के बाद ही DOM में डाला जाए।
+The `<Show>` component ensures the `<Particles>` element is only inserted into the DOM after the engine is ready.
 
-## इंजन आरंभीकरण
+## Engine Initialization
 
-`initParticlesEngine` फ़ंक्शन एक कॉलबैक स्वीकार करता है जो `Engine` इंस्टेंस प्राप्त करता है। अपने कॉन्फ़िगरेशन को आवश्यक सुविधाओं को पंजीकृत करने के लिए इस कॉलबैक का उपयोग करें:
+The `initParticlesEngine` function accepts a callback that receives the `Engine` instance. Use this callback to register the features your configuration needs:
 
 ```tsx
 import { initParticlesEngine } from "@tsparticles/solid";
@@ -77,27 +77,27 @@ import { loadSlim } from "@tsparticles/slim";
 import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import type { Engine } from "@tsparticles/engine";
 
-// न्यूनतम — केवल मूल आकार और हलचल
+// Minimal — only basic shapes and moves
 initParticlesEngine((engine: Engine) => loadSlim(engine)).then(() => {
-  console.log("इंजन तैयार (स्लिम)");
+  console.log("Engine ready (slim)");
 });
 
-// पूर्ण — हर सुविधा शामिल
+// Full — every feature included
 initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => {
-  console.log("इंजन तैयार (पूर्ण)");
+  console.log("Engine ready (full)");
 });
 
-// केवल प्रीसेट — एक विशिष्ट प्रीसेट के लिए आवश्यक सुविधाएँ
+// Preset-only — just the features needed for a specific preset
 initParticlesEngine((engine: Engine) => loadConfettiPreset(engine)).then(() => {
-  console.log("कॉन्फ़ेटी प्रीसेट लोड हुआ");
+  console.log("Confetti preset loaded");
 });
 ```
 
-`initParticlesEngine` को अपने ऐप में एक बार कॉल करें — आमतौर पर रूट कम्पोनेंट के `onMount` में। इंजन इंस्टेंस कैश हो जाता है, इसलिए बाद के कॉल तुरंत लौट आते हैं।
+Call `initParticlesEngine` once in your app — typically in the root component's `onMount`. The engine instance is cached, so subsequent calls return immediately.
 
-## सशर्त रेंडरिंग
+## Conditional Rendering
 
-इंजन आरंभ होने तक रेंडरिंग स्थगित करने के लिए SolidJS के `<Show>` नियंत्रण प्रवाह का उपयोग करें:
+Use SolidJS's `<Show>` control flow to defer rendering until the engine is initialized:
 
 ```tsx
 import { createSignal, Show, onMount } from "solid-js";
@@ -114,7 +114,7 @@ const App: Component = () => {
   });
 
   return (
-    <Show when={ready()} fallback={<p>पार्टिकल्स लोड हो रहे हैं...</p>}>
+    <Show when={ready()} fallback={<p>Loading particles...</p>}>
       <Particles
         id="tsparticles"
         options={{
@@ -127,11 +127,11 @@ const App: Component = () => {
 };
 ```
 
-`fallback` प्रॉप इंजन आरंभ होने के दौरान एक लोडिंग संकेतक दिखाता है।
+The `fallback` prop shows a loading indicator while the engine initializes.
 
-## प्रीसेट उपयोग
+## Preset Usage
 
-त्वरित, पूर्व-डिज़ाइन किए गए कॉन्फ़िगरेशन के लिए `@tsparticles/configs` का उपयोग करें:
+Use `@tsparticles/configs` for quick, pre-designed configurations:
 
 ```bash
 npm install @tsparticles/configs
@@ -165,11 +165,11 @@ const App: Component = () => {
 export default App;
 ```
 
-उपलब्ध कॉन्फ़िग में शामिल हैं: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `confetti`, `links`, और अधिक।
+Available configs include: `basic`, `bubbles`, `snow`, `stars`, `fireworks`, `confetti`, `links`, and more.
 
-## इंटरैक्टिव पार्टिकल्स
+## Interactive Particles
 
-`interactivity` अनुभाग कॉन्फ़िगर करके क्लिक और होवर इंटरैक्शन जोड़ें:
+Add click and hover interactions by configuring the `interactivity` section:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -215,12 +215,12 @@ const App: Component = () => {
 export default App;
 ```
 
-- **होवर मोड**: `grab`, `bubble`, `repulse`, `attract`, `slow`, `connect`
-- **क्लिक मोड**: `push`, `remove`, `repulse`, `bubble`, `attract`, `pause`
+- **Hover modes**: `grab`, `bubble`, `repulse`, `attract`, `slow`, `connect`
+- **Click modes**: `push`, `remove`, `repulse`, `bubble`, `attract`, `pause`
 
-## कस्टम कॉन्फ़िगरेशन
+## Custom Configuration
 
-एकाधिक पार्टिकल आकार, रंग पैलेट और गति सेटिंग्स के साथ एक पूर्ण कस्टम कॉन्फ़िगरेशन:
+A full custom configuration with multiple particle shapes, color palettes, and motion settings:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -317,9 +317,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## पूर्ण टाइपस्क्रिप्ट उदाहरण
+## Full TypeScript Example
 
-कंटेनर संदर्भ, इंजन आरंभीकरण और मैन्युअल नियंत्रण के साथ एक पूर्ण टाइप किया गया कम्पोनेंट:
+A complete typed component with container reference, engine initialization, and manual controls:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -380,7 +380,7 @@ const App: Component = () => {
           padding: "8px 16px",
         }}
       >
-        {paused() ? "पुनरारंभ" : "रोकें"}
+        {paused() ? "Resume" : "Pause"}
       </button>
     </Show>
   );
@@ -389,9 +389,9 @@ const App: Component = () => {
 export default App;
 ```
 
-## सिग्नल के साथ डायनामिक विकल्प
+## Dynamic Options with Signals
 
-SolidJS की ताकतों में से एक बारीक-दाने वाली रिएक्टिविटी है — आप पार्टिकल विकल्पों को चलाने के लिए सिग्नल का उपयोग कर सकते हैं और कैनवास कुशलतापूर्वक अपडेट होगा:
+SolidJS's signals drive reactive prop changes — when `id`, `options`, or `url` change, the component destroys the old container and reloads particles with the new values. Use signals to create new object references on each change:
 
 ```tsx
 import { loadFull } from "tsparticles";
@@ -409,8 +409,8 @@ const App: Component = () => {
     initParticlesEngine((engine: Engine) => loadFull(engine)).then(() => setReady(true));
   });
 
-  // विकल्प एक नियमित ऑब्जेकट हैं — इसे Particles कम्पोनेंट के
-  // आंतरिक ट्रैकिंग के माध्यम से प्रतिक्रियाशील रूप से पढ़ा जाएगा
+  // options are a regular object — it will be read reactively through
+  // the Particle component's internal tracking
   const options = (): ISourceOptions => ({
     fullScreen: { zIndex: -1 },
     background: { color: "#000" },
@@ -427,11 +427,11 @@ const App: Component = () => {
       <Particles id="dynamic" options={options()} particlesLoaded={() => {}} />
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 10 }}>
         <label>
-          रंग:
+          Color:
           <input type="color" value={color()} onInput={(e) => setColor(e.currentTarget.value)} />
         </label>
         <label>
-          गणना:
+          Count:
           <input
             type="range"
             min={10}
@@ -449,11 +449,11 @@ const App: Component = () => {
 export default App;
 ```
 
-क्योंकि `options` एक फ़ंक्शन है जो सिग्नल तक पहुँचता है, हर बार `color()` या `particleCount()` बदलने पर, `<Particles>` कम्पोनेंट एक नया विकल्प ऑब्जेकट प्राप्त करता है और मौजूदा कैनवास पर केवल बदली हुई प्रॉपर्टी लागू करता है।
+Because `options` is a function that accesses signals, every time `color()` or `particleCount()` changes, the `<Particles>` component receives a new options object and triggers a destroy+reload cycle with the updated configuration.
 
-## कस्टम ओवरराइड के साथ प्रीसेट
+## Preset with Custom Overrides
 
-एक प्रीसेट लोड करें, फिर एक अनुकूलित प्रभाव के लिए कस्टम ओवरराइड मर्ज करें:
+Load a preset, then merge custom overrides for a tailored effect:
 
 ```tsx
 import { loadSnowPreset } from "@tsparticles/preset-snow";
@@ -476,9 +476,9 @@ const App: Component = () => {
     fullScreen: { zIndex: -1 },
     background: { color: "#0d0d2b" },
     particles: {
-      // बर्फ के रंग को नीला करने के लिए ओवरराइड करें
+      // Override the snow color to blue
       color: { value: "#88ccff" },
-      // बर्फ के टुकड़ों की संख्या बढ़ाएँ
+      // Increase the number of flakes
       number: { value: 300 },
     },
   };
@@ -493,29 +493,30 @@ const App: Component = () => {
 export default App;
 ```
 
-प्रीसेट प्रत्येक विकल्प के लिए डिफ़ॉल्ट मान प्रदान करता है, और आपके ओवरराइड शीर्ष पर मर्ज हो जाते हैं — आपको केवल उन प्रॉपर्टी को निर्दिष्ट करने की आवश्यकता है जिन्हें आप बदलना चाहते हैं।
+The preset provides default values for every option, and your overrides are merged on top — you only need to specify the properties you want to change.
 
 ## Reactive Behavior
 
 The `<Particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`id`**, **`options`**, or **`url`** change → the current container is destroyed and particles are reloaded with the new values.
 - **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
 
 On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## समस्या निवारण
+## Troubleshooting
 
-| लक्षण                          | कारण                                    | समाधान                                                                           |
-| ------------------------------ | --------------------------------------- | -------------------------------------------------------------------------------- |
-| खाली DOM एलिमेंट               | रेंडर से पहले इंजन आरंभ नहीं हुआ        | `<Particles>` को `<Show when={initialized()}>` में लपेटें                        |
-| कोई पार्टिकल्स दिखाई नहीं देते | `move.enable` या `number.value` गायब है | सुनिश्चित करें `particles.move.enable: true` और `particles.number.value > 0`     |
-| कैनवास सामग्री के पीछे         | fullScreen में `zIndex` गायब है         | `fullScreen: { zIndex: -1 }` का उपयोग करें                                       |
-| विकल्प परिवर्तन परिलक्षित नहीं | ऑब्जेकट संदर्भ नहीं बदल रहा             | विकल्पों को फ़ंक्शन या स्टोर में लपेटें; स्थिर ऑब्जेकट से बचें                   |
-| इंजन नहीं मिला                 | `loadFull` या `loadSlim` आयात गायब      | `tsparticles` या `@tsparticles/slim` इंस्टॉल करें और `loadFull(engine)` कॉल करें |
+| Symptom                      | Cause                                   | Fix                                                                      |
+| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
+| Blank DOM element            | Engine not initialized before render    | Wrap `<Particles>` in `<Show when={initialized()}>`                      |
+| No particles visible         | Missing `move.enable` or `number.value` | Ensure `particles.move.enable: true` and `particles.number.value > 0`    |
+| Canvas behind content        | Missing `zIndex` in fullScreen          | Use `fullScreen: { zIndex: -1 }`                                         |
+| Options change not reflected | Object reference not changing           | Wrap options in a function or store; avoid static objects                |
+| Engine not found             | Missing `loadFull` or `loadSlim` import | Install `tsparticles` or `@tsparticles/slim` and call `loadFull(engine)` |
+| Theme change ignored         | `@tsparticles/plugin-themes` not loaded | Install and register `loadThemePlugin` during engine initialization      |
 
-## अगले कदम
+## Next Steps
 
-- उपयोग के लिए तैयार कॉन्फ़िगरेशन के लिए [कॉन्फ़िग प्लेग्राउंड](/playground/configs) देखें।
-- पैरामीटर की पूरी सूची के लिए [विकल्प संदर्भ](/options/) पढ़ें।
-- GitHub पर रैपर आंतरिक के लिए [SolidJS स्रोत](https://github.com/tsparticles/solid) देखें।
+- Explore the [Configs playground](/playground/configs) for ready-to-use configurations.
+- Read the [Options Reference](/options/) for the complete list of parameters.
+- Browse the [SolidJS source](https://github.com/tsparticles/solid) on GitHub for wrapper internals.
