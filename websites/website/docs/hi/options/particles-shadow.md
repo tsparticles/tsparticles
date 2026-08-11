@@ -1,8 +1,8 @@
-# कण छाया
+# Particles Shadow
 
-`particles.shadow` कणों के चारों ओर एक छाया जोड़ता है।
+`particles.shadow` adds a shadow around particles.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -20,11 +20,11 @@ particles: {
 }
 ```
 
-## व्यावहारिक मार्गदर्शन
+## Practical guidance
 
-- छायाएं गहराई में सुधार करती हैं लेकिन घने दृश्यों पर महंगी पड़ सकती हैं।
-- मोबाइल पर पहले लो ब्लर और बेंचमार्क का उपयोग करें।
+- Shadows improve depth but can be expensive on dense scenes.
+- Use low blur first and benchmark on mobile.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shadow.md>
