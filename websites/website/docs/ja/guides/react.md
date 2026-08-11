@@ -1,82 +1,94 @@
 ---
-title: React ガイド
-description: "@tsparticles/react を使用して tsParticles を React と統合するための完全ガイド。"
+title: React Guide
+description: Complete guide for integrating tsParticles with React using @tsparticles/react.
 ---
 
-# React ガイド
+# React Guide
 
-## 目次
+## Table of Contents
 
-1. [インストール](#installation)
-2. [基本的な使い方](#basic-usage)
-3. [クラッカーエフェクト](#confetti-effect)
-4. [花火エフェクト](#fireworks-effect)
-5. [雪エフェクト](#snow-effect)
-6. [インタラクティブリンク](#interactive-links)
-7. [テーマ切り替え](#theme-switching)
+1. [Installation](#installation)
+2. [Basic Usage](#basic-usage)
+3. [Confetti Effect](#confetti-effect)
+4. [Fireworks Effect](#fireworks-effect)
+5. [Snow Effect](#snow-effect)
+6. [Interactive Links](#interactive-links)
+7. [Theme Switching](#theme-switching)
 8. [ParticlesProvider](#particlesprovider)
-9. [パフォーマンス最適化](#performance-optimization)
-10. [カスタム設定](#custom-configuration)
+9. [Performance Optimization](#performance-optimization)
+10. [Custom Configuration](#custom-configuration)
 
 ---
 
-## インストール
+## Installation
 
 ```bash
 npm install @tsparticles/react tsparticles
 ```
 
-または Yarn を使用:
+Or with Yarn:
 
 ```bash
 yarn add @tsparticles/react tsparticles
 ```
 
-`@tsparticles/react` は公式の React ラッパーです。`tsparticles` パッケージはコアエンジンです。
+`@tsparticles/react` is the official React wrapper. The `tsparticles` package is the core engine.
 
 ---
 
-## 基本的な使い方
+## Basic Usage
 
-最もシンプルな設定: options オブジェクトを使用して `<Particles />` コンポーネントをレンダリングします。
+The simplest setup: wrap your app with `<ParticlesProvider>` and render the `<Particles />` component with an options object.
 
 ```jsx
-import { useCallback } from "react";
-import Particles from "@tsparticles/react";
+import { useCallback, useMemo } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine) => {
+  await loadSlim(engine);
+};
 
 export default function App() {
   const particlesLoaded = useCallback(async (container) => {
     console.log("Particles container loaded", container);
   }, []);
 
-  const options = {
-    fpsLimit: 120,
-    particles: {
-      number: { value: 80 },
-      color: { value: "#00d4ff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.6 },
-      size: { value: { min: 2, max: 5 } },
-      move: {
-        enable: true,
-        speed: 2,
-        outModes: { default: "bounce" },
+  const options = useMemo(
+    () => ({
+      fpsLimit: 120,
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00d4ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: { min: 2, max: 5 } },
+        move: {
+          enable: true,
+          speed: 2,
+          outModes: { default: "bounce" },
+        },
       },
-    },
-    background: { color: "#0d1117" },
-  };
+      background: { color: "#0d1117" },
+    }),
+    [],
+  );
 
-  return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
+  return (
+    <ParticlesProvider init={particlesInit}>
+      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
+    </ParticlesProvider>
+  );
 }
 ```
 
-**重要**: `<Particles />` コンポーネントは、最初にエンジンを初期化する必要があります。`@tsparticles/react` の `initParticlesEngine` または `<ParticlesProvider>` を使用して、コンポーネントをレンダリングする前にプリセットをロードします。
+**Important**: The `<Particles />` component requires the engine to be initialized first. Use `<ParticlesProvider>` or `initParticlesEngine` from `@tsparticles/react` before rendering.
 
 ---
 
-## クラッカーエフェクト
+## Confetti Effect
 
-クラッカープリセットを使用してクラッカーバーストをレンダリングします。
+Render a confetti burst using the confetti preset.
 
 ```jsx
 import Particles from "@tsparticles/react";
@@ -97,13 +109,13 @@ export default function Confetti() {
 }
 ```
 
-クラッカープリセットがロードされていることを確認してください:
+Make sure you have loaded the confetti preset:
 
 ```bash
 npm install @tsparticles/preset-confetti
 ```
 
-次に、アプリのエントリーポイントで登録します:
+Then register it in your app entry point:
 
 ```jsx
 import { initParticlesEngine } from "@tsparticles/react";
@@ -116,9 +128,9 @@ initParticlesEngine(async (engine) => {
 
 ---
 
-## 花火エフェクト
+## Fireworks Effect
 
-フルスクリーンの花火ディスプレイ。
+A full-screen fireworks display.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -150,7 +162,7 @@ export default function Fireworks() {
 }
 ```
 
-プリセットをインストールします:
+Install the preset:
 
 ```bash
 npm install @tsparticles/preset-fireworks
@@ -158,9 +170,9 @@ npm install @tsparticles/preset-fireworks
 
 ---
 
-## 雪エフェクト
+## Snow Effect
 
-雪プリセットを使用した優しい降雪。
+Gentle falling snowflakes using the snow preset.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -190,7 +202,7 @@ export default function Snow() {
 }
 ```
 
-プリセットをインストールします:
+Install the preset:
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -198,9 +210,9 @@ npm install @tsparticles/preset-snow
 
 ---
 
-## インタラクティブリンク
+## Interactive Links
 
-マウスホバーでのグラブとクリックでのプッシュを備えた接続ノードネットワーク。
+A connected-nodes network with mouse hover grab and click push.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -254,9 +266,9 @@ export default function InteractiveLinks() {
 
 ---
 
-## テーマ切り替え
+## Theme Switching
 
-複数のテーマを定義し、ボタンクリックで切り替えます。
+Define multiple themes and switch between them with a button click.
 
 ```jsx
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -360,7 +372,7 @@ const btnStyle = (active) => ({
 
 ## ParticlesProvider
 
-`ParticlesProvider` を使用して、アプリのルートでエンジンを1回初期化します。これは、複数のパーティクルコンポーネントがある場合やカスタムプリセットを使用する場合に推奨されるアプローチです。
+Use `ParticlesProvider` to initialize the engine once at the app root. This is the recommended approach when you have multiple particle components or use custom presets.
 
 ```jsx
 // App.jsx
@@ -370,7 +382,7 @@ import Home from "./Home";
 
 const engineInit = async (engine) => {
   await loadSlim(engine);
-  // ここで追加のプリセットをロード:
+  // Load additional presets here:
   // await loadConfettiPreset(engine);
   // await loadFireworksPreset(engine);
   // await loadSnowPreset(engine);
@@ -409,13 +421,13 @@ export default function Home() {
 }
 ```
 
-ツリーを `ParticlesProvider` でラップすると、すべての子 `<Particles />` コンポーネントは同じエンジンインスタンスを継承します。これにより、マウントごとにエンジンを再初期化する必要がなくなります。
+When wrapping your tree with `ParticlesProvider`, every child `<Particles />` component inherits the same engine instance. This avoids re-initializing the engine on every mount.
 
 ---
 
-## パフォーマンス最適化
+## Performance Optimization
 
-不要な再レンダリングを防ぐために、コールバックとオプションを常にメモ化します。
+Always memoize callbacks and options to prevent unnecessary re-renders.
 
 ```jsx
 import { useCallback, useMemo, useState } from "react";
@@ -424,13 +436,13 @@ import Particles from "@tsparticles/react";
 export default function PerformanceExample() {
   const [visible, setVisible] = useState(true);
 
-  // コールバックをメモ化 — レンダリング間で安定した参照
+  // Memoize the callback — stable reference across renders
   const particlesLoaded = useCallback(async (container) => {
-    // コンテナマウントごとに1回呼び出される
-    console.log("Container ready", container?.id);
+    // Called once per container mount
+    console.log("Container ready", container.id);
   }, []);
 
-  // オプションオブジェクトをメモ化 — 依存関係が変更されたときのみ再計算
+  // Memoize the options object — only recomputes when dependencies change
   const options = useMemo(
     () => ({
       fpsLimit: 60,
@@ -457,7 +469,7 @@ export default function PerformanceExample() {
     [],
   );
 
-  // 低電力デバイスでキャンバス解像度を下げる
+  // Reduce canvas resolution on low-power devices
   const responsiveOptions = useMemo(
     () => ({
       ...options,
@@ -476,28 +488,19 @@ export default function PerformanceExample() {
 }
 ```
 
-**重要なヒント**:
+**Key tips**:
 
-- 常に `useMemo` を `options` オブジェクトに使用します。
-- 常に `useCallback` を `particlesLoaded` ハンドラーに使用します。
-- モバイルでは `fpsLimit` を下げます。
-- 2倍を超えるピクセル比のデバイスでは `detectRetina: false` を設定してキャンバスサイズを半分にします。
-- 画面外のときは条件付きで `<Particles />` をアンマウントします。
+- Always use `useMemo` for the `options` object.
+- Always use `useCallback` for the `particlesLoaded` handler.
+- Lower `fpsLimit` on mobile.
+- Set `detectRetina: false` on devices with >2x pixel ratio to halve canvas size.
+- Conditionally unmount `<Particles />` when it is off-screen.
 
 ---
 
-## Reactive Behavior
+## Custom Configuration
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## カスタム設定
-
-複数のシェイプ、インタラクティビティ、テーマ、グラデーション背景を組み合わせた完全なカスタム例。
+A full custom example combining multiple shapes, interactivity, themes, and a gradient background.
 
 ```jsx
 import { useCallback, useMemo } from "react";
@@ -575,4 +578,15 @@ export default function CustomConfig() {
 
 ---
 
-これで、React で tsParticles を使用するためのコアパターンをカバーしました。各例は自己完結型で、コンポーネントファイルにすぐに追加できます。
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional [`@tsparticles/plugin-themes`](https://www.npmjs.com/package/@tsparticles/plugin-themes) package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+---
+
+You have now covered the core patterns for using tsParticles in React. Each example is self-contained and ready to drop into a component file.
