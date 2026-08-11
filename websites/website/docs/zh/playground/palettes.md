@@ -1,5 +1,5 @@
-# 游乐场调色板
+# Playground Palettes
 
-使用此页面可以测试从预设项目加载的仅调色板演示。
+Use this page to test palette-only demos loaded from the presets project.
 
 <PlaygroundPanel mode="palettes"></PlaygroundPanel>
