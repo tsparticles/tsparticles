@@ -1,29 +1,29 @@
-# रैपर: @tsparticles/angular
+# Wrapper: @tsparticles/angular
 
-`tsParticles` के लिए आधिकारिक कोणीय आवरण (`<ngx-particles />`)।
+Official Angular wrapper (`<ngx-particles />`) for `tsParticles`.
 
-## स्थापित करें
+## Install
 
 ```bash
 pnpm add @tsparticles/angular @tsparticles/engine @tsparticles/slim
 ```
 
-## त्वरित सेटअप प्रवाह
+## Quick setup flow
 
-1. ऐप स्टार्टअप में एक बार `NgParticlesService` रजिस्टर करें।
-2. `loadSlim(engine)` के साथ सुविधाएँ लोड करें।
-3. टेम्प्लेट में `<ngx-particles [id] [options] />` रेंडर करें।
+1. Register `NgParticlesService` once in app startup.
+2. Load features with `loadSlim(engine)`.
+3. Render `<ngx-particles [id] [options] />` in templates.
 
-## मोनोरेपो संदर्भ
+## Monorepo references
 
-- पैकेज फ़ोल्डर: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
-- डेमो ऐप: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## मुझे पढ़ें
+## Readme
 
-- रैपर रीडमी: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme>
 
-## संबंधित दस्तावेज़
+## Related docs
 
-- [`/guide/wrappers`](/hi/guide/wrappers)
-- [`/guide/frameworks`](/hi/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
