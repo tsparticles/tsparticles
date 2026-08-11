@@ -1,29 +1,29 @@
-# ラッパー: @tsparticles/webcomponents
+# Wrapper: @tsparticles/webcomponents
 
-`tsParticles` の公式 Web コンポーネント ラッパー (`<web-particles />`)。
+Official Web Components wrapper (`<web-particles />`) for `tsParticles`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/webcomponents @tsparticles/engine @tsparticles/slim
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. パッケージ + エンジン + ローダー パッケージをインストールします。
-2. カスタム要素をアプリシェルに登録します。
-3. `<web-particles />` を使用し、オプションを渡します。
+1. Install package + engine + loader package.
+2. Register custom element in your app shell.
+3. Use `<web-particles />` and pass options.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
-- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
