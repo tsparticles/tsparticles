@@ -1,8 +1,8 @@
-# 粒子
+# Particles
 
-`particles` 内的选项控制粒子的外观和运动。
+Options inside `particles` control particle appearance and movement.
 
-## 最常用的组
+## Most-used groups
 
 - `particles.number`
 - `particles.move`
@@ -13,14 +13,14 @@
 - `particles.size`
 - `particles.opacity`
 
-详见详细页面：
+See detailed pages:
 
-- [`Particles Number`](/zh/options/particles-number)
-- [`Particles Move`](/zh/options/particles-move)
-- [`Particles Links`](/zh/options/particles-links)
-- [`Particles Palette`](/zh/options/particles-palette)
-- [`Particles Paint`](/zh/options/particles-paint)
-- [`Particles Shape`](/zh/options/particles-shape)
+- [`Particles Number`](/options/particles-number)
+- [`Particles Move`](/options/particles-move)
+- [`Particles Links`](/options/particles-links)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Paint`](/options/particles-paint)
+- [`Particles Shape`](/options/particles-shape)
 
 ## `particles.number`
 
@@ -36,8 +36,8 @@ particles: {
 }
 ```
 
-- `value`：基本粒子计数。
-- `density.enable`：使计数适应容器大小。
+- `value`: base particle count.
+- `density.enable`: adapts count to the container size.
 
 ## `particles.move`
 
@@ -52,8 +52,8 @@ move: {
 }
 ```
 
-- `speed`：感知的移动速度。
-- `outModes.default`：边缘行为（`out`、`bounce`、...）。
+- `speed`: perceived movement speed.
+- `outModes.default`: edge behavior (`out`, `bounce`, ...).
 
 ## `particles.links`
 
@@ -66,7 +66,7 @@ links: {
 }
 ```
 
-启用粒子之间的链接，对于“网络”英雄部分很有用。
+Enables links between particles, useful for "network" hero sections.
 
 ## `particles.palette`
 
@@ -74,12 +74,12 @@ links: {
 palette: "sunset";
 ```
 
-- 从注册的调色板 ID 导入颜色和混合默认值。
-- 根据调色板自动填充 `paint.fill` 或 `paint.stroke`。
-- 对于多变体调色板，`paint` 作为变体数组加载。
-- 当您想要快速交换颜色情绪时，对于预设和演示非常有用。
+- Imports colors and blend defaults from a registered palette id.
+- Populates `paint.fill` or `paint.stroke` automatically depending on the palette.
+- With multi-variant palettes, `paint` is loaded as an array of variants.
+- Useful with presets and demos when you want to swap color mood quickly.
 
-## `particles.shape`、`size`、`opacity`
+## `particles.shape`, `size`, `opacity`
 
 ```ts
 shape: {
@@ -96,11 +96,11 @@ opacity: {
 }
 ```
 
-- `shape.type`：单一类型或类型列表。
-- `size.value`：自然变化的推荐范围。
-- `opacity.value`：平均透明度。
+- `shape.type`: single type or list of types.
+- `size.value`: recommended range for natural variation.
+- `opacity.value`: average transparency.
 
-## 接下来要检查的高级组
+## Advanced groups to check next
 
 - `particles.collisions`
 - `particles.life`
@@ -111,29 +111,29 @@ opacity: {
 - `particles.twinkle`
 - `particles.wobble`
 
-详细页面：
+Detailed pages:
 
-- [`Particles Bounce`](/zh/options/particles-bounce)
-- [`Particles Paint`](/zh/options/particles-paint)
-- [`Particles Destroy`](/zh/options/particles-destroy)
-- [`Particles Group`](/zh/options/particles-group)
-- [`Particles Collisions`](/zh/options/particles-collisions)
-- [`Particles Life`](/zh/options/particles-life)
-- [`Particles Palette`](/zh/options/particles-palette)
-- [`Particles Opacity`](/zh/options/particles-opacity)
-- [`Particles Orbit`](/zh/options/particles-orbit)
-- [`Particles Repulse`](/zh/options/particles-repulse)
-- [`Particles Roll`](/zh/options/particles-roll)
-- [`Particles Rotate`](/zh/options/particles-rotate)
-- [`Particles Shadow`](/zh/options/particles-shadow)
-- [`Particles Size`](/zh/options/particles-size)
-- [`Particles Tilt`](/zh/options/particles-tilt)
-- [`Particles Twinkle`](/zh/options/particles-twinkle)
-- [`Particles Wobble`](/zh/options/particles-wobble)
-- [`Particles ZIndex`](/zh/options/particles-zindex)
-- [`Particles Move`](/zh/options/particles-move)
-- [`Particles Number`](/zh/options/particles-number)
-- [`Particles Links`](/zh/options/particles-links)
-- [`Particles Shape`](/zh/options/particles-shape)
+- [`Particles Bounce`](/options/particles-bounce)
+- [`Particles Paint`](/options/particles-paint)
+- [`Particles Destroy`](/options/particles-destroy)
+- [`Particles Group`](/options/particles-group)
+- [`Particles Collisions`](/options/particles-collisions)
+- [`Particles Life`](/options/particles-life)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Opacity`](/options/particles-opacity)
+- [`Particles Orbit`](/options/particles-orbit)
+- [`Particles Repulse`](/options/particles-repulse)
+- [`Particles Roll`](/options/particles-roll)
+- [`Particles Rotate`](/options/particles-rotate)
+- [`Particles Shadow`](/options/particles-shadow)
+- [`Particles Size`](/options/particles-size)
+- [`Particles Tilt`](/options/particles-tilt)
+- [`Particles Twinkle`](/options/particles-twinkle)
+- [`Particles Wobble`](/options/particles-wobble)
+- [`Particles ZIndex`](/options/particles-zindex)
+- [`Particles Move`](/options/particles-move)
+- [`Particles Number`](/options/particles-number)
+- [`Particles Links`](/options/particles-links)
+- [`Particles Shape`](/options/particles-shape)
 
-源页面：<https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
+Source pages: <https://github.com/tsparticles/tsparticles/tree/main/markdown/Options/Particles>
