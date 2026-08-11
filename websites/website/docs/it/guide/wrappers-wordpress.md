@@ -1,34 +1,34 @@
-# Involucro: @tsparticles/wordpress
+# Wrapper: @tsparticles/wordpress
 
-Pacchetto plugin ufficiale WordPress per `tsParticles`.
+Official WordPress plugin package for `tsParticles`.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/wordpress
 ```
 
-## Note
+## Notes
 
-- Richiede un'installazione completa di WordPress.
-- Non mappato a una cartella `demo/*` autonoma in questo monorepo.
+- Requires a full WordPress installation.
+- Not mapped to a standalone `demo/*` folder in this monorepo.
 
-## Flusso di configurazione rapido
+## Quick setup flow
 
-1. Installa il pacchetto in un flusso di lavoro plugin/tema WordPress.
-2. Registra/accoda gli script tramite gli hook di WordPress.
-3. Passa le opzioni JSON dalle impostazioni o dai modelli del plug-in.
+1. Install the package in a WordPress plugin/theme workflow.
+2. Register/enqueue scripts through WordPress hooks.
+3. Pass options JSON from plugin settings or templates.
 
-## Riferimenti a Monorepo
+## Monorepo references
 
-- Cartella del pacchetto: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
-- Indice wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- Wrappers index: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
-## Leggimi
+## Readme
 
-- Cartella wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
+- Wrapper folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress>
 
-## Documenti correlati
+## Related docs
 
-- [`/guide/wrappers`](/it/guide/wrappers)
-- [`/guide/frameworks`](/it/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
