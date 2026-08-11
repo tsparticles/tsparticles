@@ -1,8 +1,8 @@
-# 插件选项：多边形遮罩
+# Plugin Option: Polygon Mask
 
-`polygonMask` 将粒子约束到 SVG 或基于多边形的区域。
+`polygonMask` constrains particles to SVG or polygon-based regions.
 
-## 示例
+## Example
 
 ```ts
 polygonMask: {
@@ -15,11 +15,11 @@ polygonMask: {
 }
 ```
 
-## 注释
+## Notes
 
-- 使用优化的 SVG 路径以获得更好的运行时性能。
-- 验证路径加载和回退行为。
+- Use optimized SVG paths for better runtime performance.
+- Validate path loading and fallback behavior.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/PolygonMask.md>
