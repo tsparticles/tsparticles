@@ -1,8 +1,8 @@
-# Ссылки на частицы
+# Particles Links
 
-`particles.links` рисует линии соединения между близлежащими частицами.
+`particles.links` draws connection lines between nearby particles.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -16,15 +16,15 @@ particles: {
 }
 ```
 
-- `distance`: максимальное расстояние для ссылки.
-- `opacity`: визуальная сила линии.
-- `color`: цвет линии.
-- `width`: толщина штриха.
+- `distance`: max distance for a link.
+- `opacity`: visual strength of the line.
+- `color`: line color.
+- `width`: stroke thickness.
 
-## Совет по производительности
+## Performance tip
 
-Ссылки могут стать дорогими из-за большого количества частиц. Настройте `number.value` и `distance` вместе.
+Links can get expensive with high particle counts. Tune `number.value` and `distance` together.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Links.md>
