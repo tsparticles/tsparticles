@@ -1,10 +1,10 @@
-# बैकग्राउंड मास्क
+# Background Mask
 
-`backgroundMask` कणों को एक नकाबपोश पृष्ठभूमि परत के साथ टकराने या मिश्रित होने देता है।
+`backgroundMask` lets particles punch through or blend with a masked background layer.
 
-## उदाहरण
+## Examples
 
-### स्थिर कवर (legacy)
+### Static cover (legacy)
 
 ```ts
 backgroundMask: {
@@ -18,7 +18,7 @@ backgroundMask: {
 }
 ```
 
-### डायनामिक ड्रॉ कॉलबैक _(4.3.0 से)_
+### Dynamic draw callback _(since 4.3.0)_
 
 ```ts
 backgroundMask: {
@@ -33,7 +33,7 @@ backgroundMask: {
 }
 ```
 
-### बाहरी तत्व _(4.3.0 से)_
+### External element _(since 4.3.0)_
 
 ```ts
 backgroundMask: {
@@ -45,38 +45,38 @@ backgroundMask: {
 }
 ```
 
-## गुण
+## Properties
 
-| गुण         | प्रकार                     | विवरण                                                   |
-| ----------- | -------------------------- | ------------------------------------------------------- |
-| `enable`    | `boolean`                  | बैकग्राउंड मास्किंग को सक्रिय करता है                   |
-| `composite` | `GlobalCompositeOperation` | Canvas कम्पोज़िट ऑपरेशन (डिफ़ॉल्ट: `"destination-out"`) |
-| `cover`     | `BackgroundMaskCover`      | कवर कॉन्फ़िगरेशन                                        |
+| Property    | Type                       | Description                                                                                  |
+| ----------- | -------------------------- | -------------------------------------------------------------------------------------------- |
+| `enable`    | `boolean`                  | Activates background masking                                                                 |
+| `composite` | `GlobalCompositeOperation` | Canvas composite operation (default: `"destination-out"`) |
+| `cover`     | `BackgroundMaskCover`      | Cover configuration                                                                          |
 
 ### `cover` (BackgroundMaskCover)
 
-| गुण       | प्रकार                                                                                       | विवरण                                                                      |
-| --------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `color`   | `string` / `OptionsColor`                                                                    | कवर का रंग                                                                 |
-| `image`   | `string`                                                                                     | कवर इमेज URL                                                               |
-| `opacity` | `number`                                                                                     | अल्फ़ा स्तर (0..1, डिफ़ॉल्ट: `1`)                                          |
-| `element` | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | बाहरी तत्व या CSS सेलेक्टर जो प्रत्येक फ्रेम ऑटो-ड्रा होता है _(4.3.0 से)_ |
-| `draw`    | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | मुख्य canvas कॉन्टेक्स्ट पर प्रत्येक फ्रेम कस्टम ड्रॉ कॉलबैक _(4.3.0 से)_  |
+| Property  | Type                                                                                         | Description                                                                                                               |
+| --------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `color`   | `string` / `OptionsColor`                                                                    | Cover color                                                                                                               |
+| `image`   | `string`                                                                                     | Cover image URL                                                                                                           |
+| `opacity` | `number`                                                                                     | Cover alpha level (0..1, default: `1`)                 |
+| `element` | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element or CSS selector auto-drawn each frame _(since 4.3.0)_ |
+| `draw`    | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | Custom draw callback on main canvas context each frame _(since 4.3.0)_ |
 
-### लेयर क्रम _(4.3.0 से)_
+### Layer order _(since 4.3.0)_
 
-1. `clear()` — canvas पिक्सेल साफ़ करें
-2. `cover.element` ऑटो-ड्रा (यदि सेट किया गया हो)
-3. `cover.draw` कॉलबैक (यदि सेट किया गया हो)
-4. स्थिर कवर (रंग/इमेज) — फ़ॉलबैक
-5. वैश्विक कम्पोज़िट ऑपरेशन
+1. `clear()` — canvas pixel clear
+2. `cover.element` auto-draw (if set)
+3. `cover.draw` callback (if set)
+4. Static cover (color/image) — fallback
+5. Global composite operation
 
-## इसका उपयोग कब करना है
+## When to use it
 
-- स्पॉटलाइट जैसे प्रभाव।
-- कंट्रास्ट-भारी नायक अनुभाग।
-- गहरे रंग की पृष्ठभूमि पर स्तरित इंटरैक्शन।
+- Spotlight-like effects.
+- Contrast-heavy hero sections.
+- Layered interactions on dark backgrounds.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/BackgroundMask.md>
