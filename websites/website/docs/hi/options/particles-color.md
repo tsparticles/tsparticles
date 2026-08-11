@@ -1,16 +1,16 @@
-# कणों का रंग
+# Particles Color
 
-कण रंग विकल्प अब `particles.paint.fill` के अंतर्गत प्रलेखित हैं।
+Particle color options are now documented under `particles.paint.fill`.
 
-## नया पेज
+## New page
 
-- [`Particles Paint`](/hi/options/particles-paint)
+- [`Particles Paint`](/options/particles-paint)
 
-## त्वरित मानचित्रण
+## Quick mapping
 
-- पुराना: `particles.color`
-- नया: `particles.paint.fill`
+- Old: `particles.color`
+- New: `particles.paint.fill`
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>
