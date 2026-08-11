@@ -1,8 +1,8 @@
-# कण लिंक
+# Particles Links
 
-`particles.links` पास के कणों के बीच कनेक्शन रेखाएँ खींचता है।
+`particles.links` draws connection lines between nearby particles.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -16,15 +16,15 @@ particles: {
 }
 ```
 
-- `distance`: एक लिंक के लिए अधिकतम दूरी।
-- `opacity`: रेखा की दृश्य शक्ति।
-- `color`: रेखा का रंग।
-- `width`: स्ट्रोक मोटाई।
+- `distance`: max distance for a link.
+- `opacity`: visual strength of the line.
+- `color`: line color.
+- `width`: stroke thickness.
 
-## प्रदर्शन युक्ति
+## Performance tip
 
-उच्च कण गणना के कारण लिंक महंगे हो सकते हैं। `number.value` और `distance` को एक साथ ट्यून करें।
+Links can get expensive with high particle counts. Tune `number.value` and `distance` together.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Links.md>
