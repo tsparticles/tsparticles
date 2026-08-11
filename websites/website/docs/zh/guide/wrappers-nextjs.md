@@ -1,30 +1,30 @@
-# 包装：@tsparticles/nextjs
+# Wrapper: @tsparticles/nextjs
 
-官方 Next.js 包装器构建于 `@tsparticles/react` 之上。
+Official Next.js wrapper built on `@tsparticles/react`.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 ```
 
-## 快速设置流程
+## Quick setup flow
 
-1. 安装 Next.js 包装器和依赖项。
-2. 只为粒子画布保留客户端渲染。
-3. 将 `NextParticlesProvider` 放置在应用根目录（`layout.tsx` 或 `_app.tsx`）——它只需渲染一次。
-4. 初始化引擎一次并渲染包装器组件。
+1. Install Next.js wrapper and dependencies.
+2. Keep rendering client-side only for particle canvas.
+3. Place `NextParticlesProvider` at your app root (`layout.tsx` or `_app.tsx`) — it must be rendered only once.
+4. Initialize engine once and render wrapper component.
 
-## Monorepo 参考资料
+## Monorepo references
 
-- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
-- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>、<https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
+- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>, <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
 
-## 自述文件
+## Readme
 
-- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
 
-## 相关文档
+## Related docs
 
-- [`/guide/wrappers`](/zh/guide/wrappers)
-- [`/guide/frameworks`](/zh/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
