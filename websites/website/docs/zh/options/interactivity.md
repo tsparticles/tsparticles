@@ -1,16 +1,16 @@
-# 互动性
+# Interactivity
 
-`interactivity` 选项定义粒子对悬停/单击的反应方式。
+`interactivity` options define how particles react to hover/click.
 
-重点参考：
+For focused references:
 
-- [`Interactivity Click`](/zh/options/interactivity-click)
-- [`Interactivity Hover`](/zh/options/interactivity-hover)
-- [`Interactivity Div`](/zh/options/interactivity-div)
-- [`Interactivity Events`](/zh/options/interactivity-events)
-- [`Interactivity Modes`](/zh/options/interactivity-modes)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
 
-## 基础结构
+## Base structure
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## 最常用的事件
+## Most used events
 
-- `onHover`：为用户提供即时反馈。
-- `onClick`：爆发或有针对性的行动。
-- `resize`：在窗口调整大小时保持画布行为一致。
-- `onDiv`：特定元素上的目标交互。
+- `onHover`: immediate feedback for users.
+- `onClick`: bursts or targeted actions.
+- `resize`: keeps canvas behavior consistent on window resize.
+- `onDiv`: target interactions on specific elements.
 
-## 最佳实践
+## Best practice
 
-- 避免在低端设备上同时启用太多模式。
-- 保持 `distance` 适度以避免性能峰值。
-- 如果效果很重，请使用 `Start/Pause` 进行手动控制。
+- Avoid enabling too many modes at once on low-end devices.
+- Keep `distance` moderate to avoid performance spikes.
+- If the effect is heavy, use manual control with `Start/Pause`.
 
-## 详细参考资料
+## Detailed references
 
-- 点击：<https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
-- 悬停：<https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- 分区：<https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
