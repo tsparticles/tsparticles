@@ -1,8 +1,8 @@
 # Changelog
 
-このモノレポの完全な changelog は非常に大きいです。
+The full changelogs in this monorepo are very large.
 
-最新のリリースノートは次を参照してください。
+For the most up-to-date release notes, use the latest GitHub release page:
 
-- 最新リリース: <https://github.com/tsparticles/tsparticles/releases/latest>
-- すべてのリリース: <https://github.com/tsparticles/tsparticles/releases>
+- Latest release: <https://github.com/tsparticles/tsparticles/releases/latest>
+- All releases: <https://github.com/tsparticles/tsparticles/releases>
