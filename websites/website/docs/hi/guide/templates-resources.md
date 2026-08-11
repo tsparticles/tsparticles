@@ -1,16 +1,16 @@
-# टेम्पलेट और संसाधन
+# Templates and Resources
 
-tsParticles दो श्रेणियों के टेम्पलेट प्रदान करता है: **स्कैफ़ोल्ड टेम्पलेट** (फ्रेमवर्क स्केलेटन) और **उपयोग-केस टेम्पलेट** (पूर्ण उदाहरण अनुप्रयोग)।
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## CLI के साथ त्वरित आरंभ
+## Quick start with CLI
 
-किसी भी टेम्पलेट का उपयोग करने का सबसे आसान तरीका CLI के माध्यम से है:
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-या सीधे किसी विशिष्ट बंडल का उपयोग करें:
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,16 +18,16 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-गैर-इंटरैक्टिव उपयोग के लिए:
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## स्कैफ़ोल्ड टेम्पलेट
+## Scaffold templates
 
-स्कैफ़ोल्ड टेम्पलेट tsParticles के साथ पूर्व-कॉन्फ़िगर एक न्यूनतम Vite + TypeScript प्रोजेक्ट स्केलेटन प्रदान करते हैं। ये निम्नलिखित फ्रेमवर्क के लिए उपलब्ध हैं:
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
 | Framework | CLI option            | Package                          |
 | --------- | --------------------- | -------------------------------- |
@@ -38,7 +38,7 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-उदाहरण:
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,9 +47,9 @@ npm install
 npm run dev
 ```
 
-## उपयोग-केस टेम्पलेट
+## Use-case templates
 
-उपयोग-केस टेम्पलेट पूर्ण उदाहरण अनुप्रयोग हैं जो वास्तविक दुनिया में tsParticles के उपयोग को प्रदर्शित करते हैं।
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
 | Template    | Description                                     | CLI template name | Package                           |
 | ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
@@ -59,9 +59,9 @@ npm run dev
 | Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
 | Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
 | Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
-| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
+| Particles   | Classic particles.js-style demo | `particles`       | `@tsparticles/template-particles` |
 
-उदाहरण:
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,9 +70,9 @@ npm install
 npm run dev
 ```
 
-## npm create रैपर
+## npm create wrappers
 
-बंडल-विशिष्ट टेम्पलेट के लिए, आप समर्पित npm create रैपर का उपयोग कर सकते हैं:
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
 | Command                         | Template    | Framework   | Installed bundle         |
 | ------------------------------- | ----------- | ----------- | ------------------------ |
@@ -81,7 +81,7 @@ npm run dev
 | `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
 | `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## CLI संदर्भ
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,7 +93,7 @@ Options:
   -h, --help            Display help
 ```
 
-## संबंधित पृष्ठ
+## Related pages
 
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)
