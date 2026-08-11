@@ -1,8 +1,8 @@
-# Partículas Brilham
+# Particles Twinkle
 
-`particles.twinkle` adiciona efeitos piscantes semelhantes a brilhos.
+`particles.twinkle` adds sparkle-like blinking effects.
 
-## Exemplo
+## Example
 
 ```ts
 particles: {
@@ -19,11 +19,11 @@ particles: {
 }
 ```
 
-## Orientação prática
+## Practical guidance
 
-- Comece com `frequency` baixo para efeitos sutis.
-- Combine com fundos escuros para melhor visibilidade.
+- Start with low `frequency` for subtle effects.
+- Combine with dark backgrounds for better visibility.
 
-## Referência da fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Twinkle.md>
