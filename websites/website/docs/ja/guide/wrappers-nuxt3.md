@@ -1,29 +1,29 @@
-# ラッパー: @tsparticles/nuxt3
+# Wrapper: @tsparticles/nuxt3
 
-`tsParticles` の公式 Nuxt 3 モジュール ラッパー。
+Official Nuxt 3 module wrapper for `tsParticles`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/nuxt3 @tsparticles/engine @tsparticles/slim
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. モジュール + エンジン + 選択したローダーをインストールします。
-2. モジュール/プラグインをクライアント側レンダリングに登録します。
-3. コンポーネントまたはコンポーザブルのセットアップでオプションを構成します。
+1. Install module + engine + selected loader.
+2. Register module/plugin with client-side rendering.
+3. Configure options in component or composable setup.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
-- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/nuxt3>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
