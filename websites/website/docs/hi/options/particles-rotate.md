@@ -1,8 +1,8 @@
-# कण घूमते हैं
+# Particles Rotate
 
-`particles.rotate` प्रति-कण घूर्णन व्यवहार को नियंत्रित करता है।
+`particles.rotate` controls per-particle rotation behavior.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -21,10 +21,10 @@ particles: {
 }
 ```
 
-- `direction`: दक्षिणावर्त या वामावर्त।
-- `animation.speed`: कोणीय गति।
-- `animation.sync`: साझा बनाम स्वतंत्र रोटेशन समय।
+- `direction`: clockwise or counter-clockwise.
+- `animation.speed`: angular speed.
+- `animation.sync`: shared vs independent rotation timing.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Rotate.md>
