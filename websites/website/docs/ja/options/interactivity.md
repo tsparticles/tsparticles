@@ -1,16 +1,16 @@
-# インタラクティブ性
+# Interactivity
 
-`interactivity` オプションは、ホバー/クリックに対するパーティクルの反応方法を定義します。
+`interactivity` options define how particles react to hover/click.
 
-焦点を絞った参考資料については、次のとおりです。
+For focused references:
 
-- [`Interactivity Click`](/ja/options/interactivity-click)
-- [`Interactivity Hover`](/ja/options/interactivity-hover)
-- [`Interactivity Div`](/ja/options/interactivity-div)
-- [`Interactivity Events`](/ja/options/interactivity-events)
-- [`Interactivity Modes`](/ja/options/interactivity-modes)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
 
-## 基本構造
+## Base structure
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## 最も使用されるイベント
+## Most used events
 
-- `onHover`: ユーザーへの即時フィードバック。
-- `onClick`: バーストまたは対象を絞ったアクション。
-- `resize`: ウィンドウのサイズ変更時にキャンバスの動作の一貫性を保ちます。
-- `onDiv`: 特定の要素上のインタラクションをターゲットにします。
+- `onHover`: immediate feedback for users.
+- `onClick`: bursts or targeted actions.
+- `resize`: keeps canvas behavior consistent on window resize.
+- `onDiv`: target interactions on specific elements.
 
-## ベストプラクティス
+## Best practice
 
-- ローエンド デバイスで一度に多くのモードを有効にしないでください。
-- パフォーマンスの急上昇を避けるために、`distance` を適度に保ちます。
-- エフェクトが重い場合は、`Start/Pause` による手動制御を使用してください。
+- Avoid enabling too many modes at once on low-end devices.
+- Keep `distance` moderate to avoid performance spikes.
+- If the effect is heavy, use manual control with `Start/Pause`.
 
-## 詳細な参考資料
+## Detailed references
 
-- クリック: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
-- ホバー: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- ディビジョン: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
