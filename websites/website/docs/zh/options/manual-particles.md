@@ -1,8 +1,8 @@
-# 手动粒子
+# Manual Particles
 
-`manualParticles` 在固定位置添加显式粒子。
+`manualParticles` adds explicit particles at fixed positions.
 
-## 示例
+## Example
 
 ```ts
 manualParticles: [
@@ -26,12 +26,12 @@ manualParticles: [
 ];
 ```
 
-## 何时使用
+## When to use it
 
-- 锚定视觉标记。
-- 混合固定和动态粒子的混合效果。
-- 控制演示或教程中的初始状态。
+- Anchored visual markers.
+- Hybrid effects mixing fixed and dynamic particles.
+- Controlled initial states in demos or tutorials.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/ManualParticles.md>
