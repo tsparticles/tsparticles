@@ -1,8 +1,8 @@
-# Le particelle si respingono
+# Particles Repulse
 
-`particles.repulse` controlla il comportamento di repulsione nelle interazioni particella-particella.
+`particles.repulse` controls repulsion behavior in particle-to-particle interactions.
 
-## Esempio
+## Example
 
 ```ts
 particles: {
@@ -15,11 +15,11 @@ particles: {
 }
 ```
 
-## Guida pratica
+## Practical guidance
 
-- Utilizzare distanze moderate per evitare bruschi salti di movimento.
-- Sintonizzarsi con `interactivity.modes.repulse` quando entrambi sono attivi.
+- Use moderate distances to avoid abrupt motion jumps.
+- Tune together with `interactivity.modes.repulse` when both are active.
 
-## Riferimento alla fonte
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Repulse.md>
