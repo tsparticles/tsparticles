@@ -1,16 +1,16 @@
-# テンプレートとリソース
+# Templates and Resources
 
-tsParticles には、**スキャフォールドテンプレート**（フレームワークのスケルトン）と**ユースケーステンプレート**（完全なサンプルアプリケーション）の2種類のテンプレートがあります。
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## CLI を使ったクイックスタート
+## Quick start with CLI
 
-テンプレートを使用する最も簡単な方法は、CLI を使うことです：
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-または、特定のバンドルを直接使用することもできます：
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,16 +18,16 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-非対話的な使用法：
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## スキャフォールドテンプレート
+## Scaffold templates
 
-スキャフォールドテンプレートは、tsParticles があらかじめ設定された最小限の Vite + TypeScript プロジェクトスケルトンを提供します。以下のフレームワークで利用可能です：
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
 | Framework | CLI option            | Package                          |
 | --------- | --------------------- | -------------------------------- |
@@ -38,7 +38,7 @@ npx tsparticles-create app my-project --template confetti --framework vanilla
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-例：
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,9 +47,9 @@ npm install
 npm run dev
 ```
 
-## ユースケーステンプレート
+## Use-case templates
 
-ユースケーステンプレートは、実際の tsParticles の使用例を示す完全なサンプルアプリケーションです。
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
 | Template    | Description                                     | CLI template name | Package                           |
 | ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
@@ -59,9 +59,9 @@ npm run dev
 | Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
 | Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
 | Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
-| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
+| Particles   | Classic particles.js-style demo | `particles`       | `@tsparticles/template-particles` |
 
-例：
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,9 +70,9 @@ npm install
 npm run dev
 ```
 
-## npm create ラッパー
+## npm create wrappers
 
-バンドル固有のテンプレートについては、専用の npm create ラッパーを使用できます：
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
 | Command                         | Template    | Framework   | Installed bundle         |
 | ------------------------------- | ----------- | ----------- | ------------------------ |
@@ -81,7 +81,7 @@ npm run dev
 | `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
 | `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## CLI リファレンス
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,7 +93,7 @@ Options:
   -h, --help            Display help
 ```
 
-## 関連ページ
+## Related pages
 
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)
