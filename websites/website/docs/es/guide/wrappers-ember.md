@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/ember
 
-Wrapper oficial de Ember para `tsParticles`.
+Official Ember wrapper for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/ember @tsparticles/engine @tsparticles/slim
 ```
 
-## Flujo de configuración rápida
+## Quick setup flow
 
-1. Instale el paquete wrapper + engine + loader.
-2. Inicialice las funciones del motor una vez en el arranque de la aplicación.
-3. Monte el componente Ember con sus opciones.
+1. Install wrapper + engine + loader package.
+2. Initialize engine features once in app bootstrap.
+3. Mount the Ember component with your options.
 
-## Referencias de Monorepo
+## Monorepo references
 
-- Carpeta del paquete: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
-- Aplicación de demostración: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
 
-## README
+## Readme
 
-- README del wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/es/guide/wrappers)
-- [`/guide/frameworks`](/es/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)
