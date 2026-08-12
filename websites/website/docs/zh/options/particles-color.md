@@ -1,16 +1,16 @@
-# 粒子颜色
+# Particles Color
 
-粒子颜色选项现在记录在 `particles.paint.fill` 下。
+Particle color options are now documented under `particles.paint.fill`.
 
-## 新页面
+## New page
 
-- [`Particles Paint`](/zh/options/particles-paint)
+- [`Particles Paint`](/options/particles-paint)
 
-## 快速映射
+## Quick mapping
 
-- 旧：`particles.color`
-- 新：`particles.paint.fill`
+- Old: `particles.color`
+- New: `particles.paint.fill`
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

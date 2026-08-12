@@ -1,8 +1,8 @@
-# Отдел интерактивности
+# Interactivity Div
 
-`interactivity.events.onDiv` применяет режимы взаимодействия к определенным элементам HTML.
+`interactivity.events.onDiv` applies interaction modes to specific HTML elements.
 
-## Пример
+## Example
 
 ```ts
 interactivity: {
@@ -23,11 +23,11 @@ interactivity: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Используйте его для целевых UX-зон вместо полноценных реакций.
-- Сохраняйте списки селекторов явными и простыми в обслуживании.
+- Use it for targeted UX zones instead of full-canvas reactions.
+- Keep selector lists explicit and easy to maintain.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

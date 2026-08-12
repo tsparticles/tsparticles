@@ -1,8 +1,8 @@
-# Число частиц
+# Particles Number
 
-`particles.number` контролирует количество активных частиц.
+`particles.number` controls how many particles are active.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -16,14 +16,14 @@ particles: {
 }
 ```
 
-- `value`: базовое количество частиц.
-- `density.enable`: адаптирует количество к размеру холста.
-- `density.area`: эталонная область, используемая для масштабирования.
+- `value`: base amount of particles.
+- `density.enable`: adapts count to canvas size.
+- `density.area`: reference area used for scaling.
 
-## Совет по производительности
+## Performance tip
 
-Сначала уменьшите `value`, когда FPS упадет.
+Lower `value` first when FPS drops.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Number.md>

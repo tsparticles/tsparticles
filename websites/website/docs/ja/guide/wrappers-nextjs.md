@@ -1,30 +1,30 @@
-# ラッパー: @tsparticles/nextjs
+# Wrapper: @tsparticles/nextjs
 
-`@tsparticles/react` に基づいて構築された公式 Next.js ラッパー。
+Official Next.js wrapper built on `@tsparticles/react`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/nextjs @tsparticles/engine @tsparticles/slim
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. Next.js ラッパーと依存関係をインストールします。
-2. パーティクル キャンバスに対してのみクライアント側でレンダリングを続けます。
-3. `NextParticlesProvider` をアプリのルート（`layout.tsx` または `_app.tsx`）に配置します — 1 回だけレンダリングする必要があります。
-4. エンジンを一度初期化し、ラッパー コンポーネントをレンダリングします。
+1. Install Next.js wrapper and dependencies.
+2. Keep rendering client-side only for particle canvas.
+3. Place `NextParticlesProvider` at your app root (`layout.tsx` or `_app.tsx`) — it must be rendered only once.
+4. Initialize engine once and render wrapper component.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
-- デモ アプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>、<https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs>
+- Demo apps: <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs>, <https://github.com/tsparticles/tsparticles/tree/main/demo/nextjs-legacy>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

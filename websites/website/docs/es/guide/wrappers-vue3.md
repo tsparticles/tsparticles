@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/vue3
 
-Wrapper oficial de Vue 3 para `tsParticles`.
+Official Vue 3 wrapper for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/vue3 @tsparticles/engine @tsparticles/slim
 ```
 
-## Flujo de configuración rápida
+## Quick setup flow
 
-1. Instale el paquete wrapper + engine + loader.
-2. Registre el complemento una vez al iniciar la aplicación.
-3. Renderice el componente Vue con opciones y controladores.
+1. Install wrapper + engine + loader package.
+2. Register plugin once in app startup.
+3. Render Vue component with options and handlers.
 
-## Referencias de Monorepo
+## Monorepo references
 
-- Carpeta del paquete: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3>
-- Aplicación de demostración: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue3>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/vue3>
 
-## README
+## Readme
 
-- README del wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/es/guide/wrappers)
-- [`/guide/frameworks`](/es/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

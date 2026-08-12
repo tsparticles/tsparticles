@@ -1,8 +1,8 @@
-# 粒子の軌道
+# Particles Orbit
 
-`particles.orbit` はパーティクルを軌道中心の周りで回転させます。
+`particles.orbit` makes particles revolve around orbit centers.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -16,10 +16,10 @@ particles: {
 }
 ```
 
-- `enable`: 軌道動作をアクティブ化します。
-- `radius`: 軌道距離。
-- `rotation`: 軌道角度制御。
+- `enable`: activates orbit behavior.
+- `radius`: orbit distance.
+- `rotation`: orbit angle control.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Orbit.md>

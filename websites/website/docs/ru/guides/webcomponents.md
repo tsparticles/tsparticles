@@ -1,33 +1,33 @@
 # Web Components
 
-Используйте tsParticles с нативными веб-компонентами через пакет `@tsparticles/webcomponents`. Этот подход не требует фреймворка — только чистый JavaScript и пользовательские элементы.
+Use tsParticles with native Web Components via the `@tsparticles/webcomponents` package. This approach requires no framework — just vanilla JavaScript and custom elements.
 
-## Установка
+## Installation
 
-### Через CDN
+### Via CDN
 
-Подключите ядро tsParticles и сборку веб-компонентов:
+Include the tsParticles core and the Web Components bundle:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@4/tsparticles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/webcomponents@4/tsparticles.webcomponents.min.js"></script>
 ```
 
-### Через npm + сборка
+### Via npm + Build
 
 ```bash
 npm install @tsparticles/webcomponents tsparticles
 ```
 
-Затем импортируйте в ваш JavaScript-бандл:
+Then import into your JavaScript bundle:
 
 ```javascript
 import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
 ```
 
-## Инициализация движка
+## Engine Initialization
 
-Перед тем как элемент `<web-particles>` сможет рендериться, движок должен быть инициализирован с необходимыми функциями. Вызовите `initParticlesEngine` с колбэком, который загружает нужные плагины:
+Before the `<web-particles>` element can render, the engine must be initialized with the features you need. Call `initParticlesEngine` with a callback that loads the desired plugins:
 
 ```javascript
 import { initParticlesEngine } from "@tsparticles/webcomponents";
@@ -39,11 +39,11 @@ await initParticlesEngine(async (engine) => {
 });
 ```
 
-> **Зачем `loadFull`?** Он регистрирует все встроенные формы (круг, квадрат, многоугольник, изображение и т.д.), взаимодействия (наведение, клик) и обновления (прозрачность, размер, цвет и т.д.). Для меньшей сборки используйте `tsparticles-slim` или выбирайте отдельные плагины.
+> **Why `loadFull`?** It registers all built-in shapes (circle, square, polygon, image, etc.), interactions (hover, click), and updaters (opacity, size, color, etc.). For a smaller bundle, use `tsparticles-slim` or cherry-pick individual plugins.
 
-## Определение пользовательского элемента
+## Defining the Custom Element
 
-После инициализации движка зарегистрируйте пользовательский элемент `<web-particles>`:
+After engine initialization, register the `<web-particles>` custom element:
 
 ```javascript
 import { defineParticlesElement } from "@tsparticles/webcomponents";
@@ -51,15 +51,15 @@ import { defineParticlesElement } from "@tsparticles/webcomponents";
 defineParticlesElement();
 ```
 
-Это регистрирует тег `web-particles` в `CustomElementRegistry` браузера. Безопасно вызывать несколько раз — дублирующие регистрации игнорируются.
+This registers the `web-particles` tag with the browser's `CustomElementRegistry`. It is safe to call multiple times — duplicate registrations are ignored.
 
-## Базовое использование
+## Basic Usage
 
-После выполнения `initParticlesEngine` и `defineParticlesElement` используйте элемент напрямую в HTML:
+Once both `initParticlesEngine` and `defineParticlesElement` have run, use the element directly in HTML:
 
 ```html
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,11 +93,11 @@ defineParticlesElement();
 </html>
 ```
 
-## Пользовательская конфигурация
+## Custom Configuration
 
-Элемент `<web-particles>` принимает конфигурацию через свойство `options` (объект JavaScript) или через JSON в атрибуте `options`.
+The `<web-particles>` element accepts configuration via the `options` property (JavaScript object) or via JSON in the `options` attribute.
 
-### Через JavaScript-свойство
+### Via JavaScript Property
 
 ```javascript
 const el = document.querySelector("web-particles");
@@ -135,7 +135,7 @@ el.options = {
 };
 ```
 
-### Через HTML-атрибут (JSON)
+### Via HTML Attribute (JSON)
 
 ```html
 <web-particles
@@ -151,11 +151,11 @@ el.options = {
 ></web-particles>
 ```
 
-> При использовании атрибута `options` значение должно быть валидным JSON. Для сложных конфигураций предпочтительнее присваивание свойства.
+> When using the `options` attribute, the value must be valid JSON. Property assignment is preferred for complex configurations.
 
-## Динамическое создание
+## Dynamic Creation
 
-Вы можете создавать элементы `<web-particles>` полностью в JavaScript и добавлять их в DOM в любое время:
+You can create `<web-particles>` elements entirely in JavaScript and add them to the DOM at any time:
 
 ```javascript
 import { initParticlesEngine, defineParticlesElement } from "@tsparticles/webcomponents";
@@ -181,7 +181,7 @@ function createParticles(container, config) {
   return el;
 }
 
-// Использование
+// Usage
 const particles = createParticles(document.body, {
   background: { color: "#1a1a2e" },
   particles: {
@@ -192,9 +192,9 @@ const particles = createParticles(document.body, {
 });
 ```
 
-## Расширение пользовательского элемента
+## Extending the Custom Element
 
-Вы можете создать подкласс `ParticlesElement` для создания собственного пользовательского элемента со встроенной конфигурацией:
+You can subclass `ParticlesElement` to create your own custom element with built-in configuration:
 
 ```javascript
 import { initParticlesEngine, ParticlesElement } from "@tsparticles/webcomponents";
@@ -232,39 +232,39 @@ class MyParticlesBackground extends ParticlesElement {
 customElements.define("my-particles-bg", MyParticlesBackground);
 ```
 
-Использование:
+Usage:
 
 ```html
 <my-particles-bg></my-particles-bg>
 ```
 
-## Доступ к контейнеру и управление
+## Container Access and Control
 
-Пользовательский элемент предоставляет экземпляр `Container` tsParticles для императивного управления:
+The custom element exposes the tsParticles `Container` instance for imperative control:
 
 ```javascript
 const el = document.querySelector("web-particles");
 
-// Доступ к контейнеру (доступен после connectedCallback)
+// Access the container (available after connectedCallback)
 const container = el.container;
 container?.pause();
 container?.play();
 
-// Уничтожение и очистка
+// Destroy and clean up
 el.dispose();
 ```
 
-## Полный пример
+## Full Example
 
-Полная HTML-страница с использованием модуля веб-компонентов через CDN-скрипты:
+A complete HTML page using the Web Components module with CDN scripts:
 
 ```html
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tsParticles Web Components Демо</title>
+    <title>tsParticles Web Components Demo</title>
     <style>
       body {
         margin: 0;
@@ -290,7 +290,7 @@ el.dispose();
   <body>
     <div class="content">
       <h1>tsParticles + Web Components</h1>
-      <p>Нативные пользовательские элементы, фреймворк не требуется.</p>
+      <p>Native custom elements, no framework required.</p>
     </div>
 
     <web-particles id="tsparticles"></web-particles>
@@ -349,20 +349,22 @@ el.dispose();
 
 ## Reactive Behavior
 
-The `<Particles>` component reacts to prop changes at runtime:
+The `<web-particles>` element reacts to property changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+- **`options`** change → the current container is destroyed and particles are reloaded with the new configuration.
+- **`theme`** attribute change → `loadTheme` is called on the existing container (requires `@tsparticles/plugin-themes`; safe no-op otherwise).
 
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+## Cleanup
 
-## Справочник API
+Call `element.dispose()` to destroy the container and free resources. When the element is removed from the DOM (`disconnectedCallback`), disposal happens automatically.
 
-| Экспорт / Свойство              | Тип                      | Описание                                                  |
-| ------------------------------- | ------------------------ | --------------------------------------------------------- |
-| `initParticlesEngine(callback)` | `function`               | Инициализация движка tsParticles с загрузчиками плагинов  |
-| `defineParticlesElement()`      | `function`               | Регистрация пользовательского элемента `<web-particles>`  |
-| `ParticlesElement`              | `class`                  | Базовый класс для расширения пользовательскими элементами |
-| `element.options`               | `ISourceOptions`         | Получить/установить объект конфигурации частиц            |
-| `element.container`             | `Container \| undefined` | Ссылка только для чтения на базовый `Container`           |
-| `element.dispose()`             | `function`               | Уничтожить экземпляр частиц и очистить ресурсы            |
+## API Reference
+
+| Export / Property               | Type                     | Description                                           |
+| ------------------------------- | ------------------------ | ----------------------------------------------------- |
+| `initParticlesEngine(callback)` | `function`               | Initialize the tsParticles engine with plugin loaders |
+| `defineParticlesElement()`      | `function`               | Register the `<web-particles>` custom element         |
+| `ParticlesElement`              | `class`                  | Base class you can extend for custom elements         |
+| `element.options`               | `ISourceOptions`         | Get/set the particle configuration object             |
+| `element.container`             | `Container \| undefined` | Read-only reference to the underlying `Container`     |
+| `element.dispose()`             | `function`               | Destroy the particle instance and clean up resources  |

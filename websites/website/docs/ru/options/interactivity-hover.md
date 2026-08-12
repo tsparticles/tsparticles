@@ -1,8 +1,8 @@
-# Интерактивность при наведении
+# Interactivity Hover
 
-`interactivity.events.onHover` управляет реакциями наведения указателя.
+`interactivity.events.onHover` controls pointer-hover reactions.
 
-## Пример
+## Example
 
 ```ts
 interactivity: {
@@ -28,11 +28,11 @@ interactivity: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Эффекты при наведении дороже в плотных сценах.
-  - На мобильных устройствах рассмотрите возможность отключения режимов с тяжелым наведением.
+- Hover effects are more expensive on dense scenes.
+- On mobile, consider disabling hover-heavy modes.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>

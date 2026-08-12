@@ -1,157 +1,180 @@
 # Wrappers
 
-Esta pagina es el hub de wrappers. Usala para elegir el paquete correcto y luego abre la pagina dedicada para ver detalles de instalacion y uso.
+This page is the wrappers hub. Use it to choose the right package, then open the dedicated page for installation and usage details.
 
-Carpeta fuente: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
-## Paginas de wrappers
+## Wrapper pages
 
-### Los mas usados
+### Popular first
 
-- [`Angular`](/es/guide/wrappers-angular)
-- [`React`](/es/guide/wrappers-react)
-- [`Svelte`](/es/guide/wrappers-svelte)
-- [`Vue`](/es/guide/wrappers-vue3)
+- [`Angular`](/guide/wrappers-angular)
+- [`React`](/guide/wrappers-react)
+- [`Svelte`](/guide/wrappers-svelte)
+- [`Vue`](/guide/wrappers-vue3)
 
-### Ecosistema React
+### React ecosystem
 
-- [`React`](/es/guide/wrappers-react)
-- [`Next.js`](/es/guide/wrappers-nextjs)
+- [`React`](/guide/wrappers-react)
+- [`Next.js`](/guide/wrappers-nextjs)
 
-### Ecosistema Vue
+### Vue ecosystem
 
-- [`Vue 2`](/es/guide/wrappers-vue2)
-- [`Vue 3`](/es/guide/wrappers-vue3)
-- [`Nuxt 2`](/es/guide/wrappers-nuxt2)
-- [`Nuxt 3`](/es/guide/wrappers-nuxt3)
-- [`Nuxt 4`](/es/guide/wrappers-nuxt4)
+- [`Vue 2`](/guide/wrappers-vue2)
+- [`Vue 3`](/guide/wrappers-vue3)
+- [`Nuxt 2`](/guide/wrappers-nuxt2)
+- [`Nuxt 3`](/guide/wrappers-nuxt3)
+- [`Nuxt 4`](/guide/wrappers-nuxt4)
 
-### Otros (orden alfabetico)
+### Others (alphabetical)
 
-- [`Angular Confetti`](/es/guide/wrappers-angular-confetti)
-- [`Angular Fireworks`](/es/guide/wrappers-angular-fireworks)
-- [`Astro`](/es/guide/wrappers-astro)
-- [`Ember`](/es/guide/wrappers-ember)
-- [`Inferno`](/es/guide/wrappers-inferno)
-- [`jQuery`](/es/guide/wrappers-jquery)
-- [`Lit`](/es/guide/wrappers-lit)
-- [`Preact`](/es/guide/wrappers-preact)
-- [`Qwik`](/es/guide/wrappers-qwik)
-- [`Riot`](/es/guide/wrappers-riot)
-- [`Solid`](/es/guide/wrappers-solid)
-- [`Stencil`](/es/guide/wrappers-stencil)
-- [`Web Components`](/es/guide/wrappers-webcomponents)
-- [`WordPress`](/es/guide/wrappers-wordpress)
+- [`Angular Confetti`](/guide/wrappers-angular-confetti)
+- [`Angular Fireworks`](/guide/wrappers-angular-fireworks)
+- [`Astro`](/guide/wrappers-astro)
+- [`Ember`](/guide/wrappers-ember)
+- [`Inferno`](/guide/wrappers-inferno)
+- [`jQuery`](/guide/wrappers-jquery)
+- [`Lit`](/guide/wrappers-lit)
+- [`Preact`](/guide/wrappers-preact)
+- [`Qwik`](/guide/wrappers-qwik)
+- [`Riot`](/guide/wrappers-riot)
+- [`Solid`](/guide/wrappers-solid)
+- [`Stencil`](/guide/wrappers-stencil)
+- [`Web Components`](/guide/wrappers-webcomponents)
+- [`WordPress`](/guide/wrappers-wordpress)
 
-## Flujo comun de integracion
+## Common integration flow
 
-Sin importar el framework:
+No matter the framework:
 
-1. instala el wrapper + `@tsparticles/engine`
-2. carga las features una vez (`@tsparticles/slim`, `@tsparticles/all`, o plugins personalizados)
-3. renderiza el componente wrapper con opciones
+1. install wrapper + `@tsparticles/engine`
+2. load features once (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
+3. render the wrapper component with options
 
-## Wrappers oficiales (orden alfabetico)
+## Official wrappers (alphabetical)
 
-Regla de orden para esta seccion:
+Ordering rule for this section:
 
-- orden alfabetico por nombre de paquete
-- las excepciones se indican en notas de mapping (por ejemplo WordPress requiere una instalacion completa)
+- alphabetical by package name
 
-- `@tsparticles/angular`: wrapper de componente Angular (`<ngx-particles />`)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme> - guia local: [`/guide/wrappers-angular`](/es/guide/wrappers-angular)
-- `@tsparticles/astro`: wrapper de componente Astro  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme> - guia local: [`/guide/wrappers-astro`](/es/guide/wrappers-astro)
-- `@tsparticles/ember`: wrapper de Ember  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme> - guia local: [`/guide/wrappers-ember`](/es/guide/wrappers-ember)
-- `@tsparticles/inferno`: wrapper de componente Inferno  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme> - guia local: [`/guide/wrappers-inferno`](/es/guide/wrappers-inferno)
-- `@tsparticles/jquery`: wrapper plugin de jQuery  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme> - guia local: [`/guide/wrappers-jquery`](/es/guide/wrappers-jquery)
-- `@tsparticles/lit`: paquete de componente Lit  
-  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - guia local: [`/guide/wrappers-lit`](/es/guide/wrappers-lit)
-- `@tsparticles/nextjs`: wrapper de Next.js sobre `@tsparticles/react`  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - guia local: [`/guide/wrappers-nextjs`](/es/guide/wrappers-nextjs)
-- `@tsparticles/nuxt2`: modulo Nuxt 2 (registro client-side)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - guia local: [`/guide/wrappers-nuxt2`](/es/guide/wrappers-nuxt2)
-- `@tsparticles/nuxt3`: modulo Nuxt 3 (registro client-side)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - guia local: [`/guide/wrappers-nuxt3`](/es/guide/wrappers-nuxt3)
-- `@tsparticles/nuxt4`: modulo Nuxt 4 (registro client-side)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - guia local: [`/guide/wrappers-nuxt4`](/es/guide/wrappers-nuxt4)
-- `@tsparticles/preact`: wrapper de componente Preact  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme> - guia local: [`/guide/wrappers-preact`](/es/guide/wrappers-preact)
-- `@tsparticles/qwik`: wrapper de componente Qwik  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme> - guia local: [`/guide/wrappers-qwik`](/es/guide/wrappers-qwik)
-- `@tsparticles/react`: wrapper de componente React  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme> - guia local: [`/guide/wrappers-react`](/es/guide/wrappers-react)
-- `@tsparticles/riot`: wrapper de Riot  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - guia local: [`/guide/wrappers-riot`](/es/guide/wrappers-riot)
-- `@tsparticles/solid`: wrapper de componente Solid  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - guia local: [`/guide/wrappers-solid`](/es/guide/wrappers-solid)
-- `@tsparticles/stencil`: wrapper de componente Stencil (`<stencil-particles />`)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - guia local: [`/guide/wrappers-stencil`](/es/guide/wrappers-stencil)
-- `@tsparticles/svelte`: wrapper de componente Svelte  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - guia local: [`/guide/wrappers-svelte`](/es/guide/wrappers-svelte)
-- `@tsparticles/vue2`: wrapper de componente Vue 2  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - guia local: [`/guide/wrappers-vue2`](/es/guide/wrappers-vue2)
-- `@tsparticles/vue3`: wrapper de componente Vue 3  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - guia local: [`/guide/wrappers-vue3`](/es/guide/wrappers-vue3)
-- `@tsparticles/webcomponents`: wrapper de Web Components (`<web-particles />`)  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme> - guia local: [`/guide/wrappers-webcomponents`](/es/guide/wrappers-webcomponents)
-- `@tsparticles/wordpress`: paquete oficial del plugin de WordPress  
-  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress> - guia local: [`/guide/wrappers-wordpress`](/es/guide/wrappers-wordpress)
-- `angular-confetti`: wrapper Angular para `@tsparticles/confetti`  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme> - guia local: [`/guide/wrappers-angular-confetti`](/es/guide/wrappers-angular-confetti)
-- `angular-fireworks`: wrapper Angular para `@tsparticles/fireworks`  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme> - guia local: [`/guide/wrappers-angular-fireworks`](/es/guide/wrappers-angular-fireworks)
+- exceptions are explicitly called out in mapping notes (for example WordPress requires a full WordPress installation)
 
-## Notas sobre WordPress y Elementor
+- `@tsparticles/angular`: Angular component wrapper (`<ngx-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme> - local guide: [`/guide/wrappers-angular`](/guide/wrappers-angular)
 
-- `@tsparticles/wordpress` es el paquete oficial del plugin y requiere un setup completo de WordPress.
-- Elementor no tiene un plugin `tsParticles` oficial e independiente.
-- El README referencia la integracion mediante Premium Addons for Elementor:
+- `@tsparticles/astro`: Astro component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme> - local guide: [`/guide/wrappers-astro`](/guide/wrappers-astro)
+
+- `@tsparticles/ember`: Ember wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme> - local guide: [`/guide/wrappers-ember`](/guide/wrappers-ember)
+
+- `@tsparticles/inferno`: Inferno component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme> - local guide: [`/guide/wrappers-inferno`](/guide/wrappers-inferno)
+
+- `@tsparticles/jquery`: jQuery plugin wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme> - local guide: [`/guide/wrappers-jquery`](/guide/wrappers-jquery)
+
+- `@tsparticles/lit`: Lit component package  
+  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - local guide: [`/guide/wrappers-lit`](/guide/wrappers-lit)
+
+- `@tsparticles/nextjs`: Next.js wrapper around `@tsparticles/react`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - local guide: [`/guide/wrappers-nextjs`](/guide/wrappers-nextjs)
+
+- `@tsparticles/nuxt2`: Nuxt 2 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - local guide: [`/guide/wrappers-nuxt2`](/guide/wrappers-nuxt2)
+
+- `@tsparticles/nuxt3`: Nuxt 3 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - local guide: [`/guide/wrappers-nuxt3`](/guide/wrappers-nuxt3)
+
+- `@tsparticles/nuxt4`: Nuxt 4 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - local guide: [`/guide/wrappers-nuxt4`](/guide/wrappers-nuxt4)
+
+- `@tsparticles/preact`: Preact component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme> - local guide: [`/guide/wrappers-preact`](/guide/wrappers-preact)
+
+- `@tsparticles/qwik`: Qwik component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme> - local guide: [`/guide/wrappers-qwik`](/guide/wrappers-qwik)
+
+- `@tsparticles/react`: React component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme> - local guide: [`/guide/wrappers-react`](/guide/wrappers-react)
+
+- `@tsparticles/riot`: Riot wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - local guide: [`/guide/wrappers-riot`](/guide/wrappers-riot)
+
+- `@tsparticles/solid`: Solid component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - local guide: [`/guide/wrappers-solid`](/guide/wrappers-solid)
+
+- `@tsparticles/stencil`: Stencil component wrapper (`<stencil-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - local guide: [`/guide/wrappers-stencil`](/guide/wrappers-stencil)
+
+- `@tsparticles/svelte`: Svelte component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - local guide: [`/guide/wrappers-svelte`](/guide/wrappers-svelte)
+
+- `@tsparticles/vue2`: Vue 2 component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - local guide: [`/guide/wrappers-vue2`](/guide/wrappers-vue2)
+
+- `@tsparticles/vue3`: Vue 3 component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - local guide: [`/guide/wrappers-vue3`](/guide/wrappers-vue3)
+
+- `@tsparticles/webcomponents`: Web Components wrapper (`<web-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme> - local guide: [`/guide/wrappers-webcomponents`](/guide/wrappers-webcomponents)
+
+- `@tsparticles/wordpress`: official WordPress plugin package  
+  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress> - local guide: [`/guide/wrappers-wordpress`](/guide/wrappers-wordpress)
+
+- `angular-confetti`: Angular wrapper for `@tsparticles/confetti`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme> - local guide: [`/guide/wrappers-angular-confetti`](/guide/wrappers-angular-confetti)
+
+- `angular-fireworks`: Angular wrapper for `@tsparticles/fireworks`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme> - local guide: [`/guide/wrappers-angular-fireworks`](/guide/wrappers-angular-fireworks)
+
+## WordPress and Elementor notes
+
+- `@tsparticles/wordpress` is the official plugin package and requires a full WordPress setup.
+- Elementor does not have an official standalone `tsParticles` plugin package.
+- The README references integration through Premium Addons for Elementor:
   <https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/>
 
-## Mapping wrapper a demo
+## Wrapper to demo mapping
 
-Usa esta matriz rapida para saltar de un package wrapper a una demo ejecutable del monorepo.
+Use this quick matrix to jump from a wrapper package to a runnable monorepo demo.
 
-Regla de orden para esta tabla:
+Ordering rule for this table:
 
-- orden alfabetico por nombre de package wrapper
-- excepcion explicita para wrappers no aplicables en demo (`@tsparticles/wordpress`)
+- alphabetical by wrapper package name
+- explicit exception for wrappers that are not demo-applicable (`@tsparticles/wordpress`)
 
-Carpeta fuente de demos: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+Source demos folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
 
-| Package wrapper              | Proyecto demo                                          |
-| ---------------------------- | ------------------------------------------------------ |
-| `@tsparticles/angular`       | `demo/angular`                                         |
-| `@tsparticles/astro`         | `demo/astro`                                           |
-| `@tsparticles/ember`         | `demo/ember`                                           |
-| `@tsparticles/inferno`       | `demo/inferno`                                         |
-| `@tsparticles/jquery`        | `demo/jquery`                                          |
-| `@tsparticles/lit`           | `demo/lit`                                             |
-| `@tsparticles/nextjs`        | `demo/nextjs`, `demo/nextjs-legacy`                    |
-| `@tsparticles/nuxt2`         | `demo/nuxt2`                                           |
-| `@tsparticles/nuxt3`         | `demo/nuxt3`                                           |
-| `@tsparticles/nuxt4`         | `demo/nuxt4`                                           |
-| `@tsparticles/preact`        | `demo/preact`                                          |
-| `@tsparticles/qwik`          | `demo/qwik`                                            |
-| `@tsparticles/react`         | `demo/react`                                           |
-| `@tsparticles/riot`          | `demo/riot`                                            |
-| `@tsparticles/solid`         | `demo/solid`                                           |
-| `@tsparticles/stencil`       | `demo/stencil`                                         |
-| `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                       |
-| `@tsparticles/vue2`          | `demo/vue2`                                            |
-| `@tsparticles/vue3`          | `demo/vue3`                                            |
-| `@tsparticles/webcomponents` | `demo/webcomponents`                                   |
-| `@tsparticles/wordpress`     | no aplica (requiere instalacion completa de WordPress) |
-| `angular-confetti`           | `demo/angular`                                         |
-| `angular-fireworks`          | `demo/angular`                                         |
+| Wrapper package              | Demo project                                                             |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| `@tsparticles/angular`       | `demo/angular`                                                           |
+| `@tsparticles/astro`         | `demo/astro`                                                             |
+| `@tsparticles/ember`         | `demo/ember`                                                             |
+| `@tsparticles/inferno`       | `demo/inferno`                                                           |
+| `@tsparticles/jquery`        | `demo/jquery`                                                            |
+| `@tsparticles/lit`           | `demo/lit`                                                               |
+| `@tsparticles/nextjs`        | `demo/nextjs`, `demo/nextjs-legacy`                                      |
+| `@tsparticles/nuxt2`         | `demo/nuxt2`                                                             |
+| `@tsparticles/nuxt3`         | `demo/nuxt3`                                                             |
+| `@tsparticles/nuxt4`         | `demo/nuxt4`                                                             |
+| `@tsparticles/preact`        | `demo/preact`                                                            |
+| `@tsparticles/qwik`          | `demo/qwik`                                                              |
+| `@tsparticles/react`         | `demo/react`                                                             |
+| `@tsparticles/riot`          | `demo/riot`                                                              |
+| `@tsparticles/solid`         | `demo/solid`                                                             |
+| `@tsparticles/stencil`       | `demo/stencil`                                                           |
+| `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                                         |
+| `@tsparticles/vue2`          | `demo/vue2`                                                              |
+| `@tsparticles/vue3`          | `demo/vue3`                                                              |
+| `@tsparticles/webcomponents` | `demo/webcomponents`                                                     |
+| `@tsparticles/wordpress`     | not applicable (requires full WordPress installation) |
+| `angular-confetti`           | `demo/angular`                                                           |
+| `angular-fireworks`          | `demo/angular`                                                           |
 
-## Patrones minimos
+## Minimal patterns
 
-### Provider estilo React / Next.js
+### React / Next.js-style provider
 
 > [!IMPORTANT]
 > Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`), not inside a component that may unmount.
@@ -175,7 +198,7 @@ export function Background() {
 }
 ```
 
-### Funcion de registro estilo Vue / Nuxt
+### Vue / Nuxt-style register function
 
 ```ts
 import type { Engine } from "@tsparticles/engine";
@@ -187,7 +210,7 @@ export async function registerParticles(engine: Engine): Promise<void> {
 }
 ```
 
-### Inicializacion unica en Angular
+### Angular one-time initialization
 
 ```ts
 import { NgParticlesService } from "@tsparticles/angular";
@@ -202,8 +225,8 @@ ngOnInit(): void {
 }
 ```
 
-## Paginas relacionadas
+## Related pages
 
-- [`/guide/frameworks`](/es/guide/frameworks)
-- [`/guide/getting-started`](/es/guide/getting-started)
-- [`/demos/`](/es/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/getting-started`](/guide/getting-started)
+- [`/demos/`](/demos/)

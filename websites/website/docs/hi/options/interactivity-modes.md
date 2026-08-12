@@ -1,8 +1,8 @@
-# इंटरैक्टिविटी मोड
+# Interactivity Modes
 
-`interactivity.modes` ईवेंट द्वारा उपयोग की जाने वाली मोड-विशिष्ट सेटिंग्स को परिभाषित करता है।
+`interactivity.modes` defines mode-specific settings used by events.
 
-## उदाहरण
+## Example
 
 ```ts
 interactivity: {
@@ -29,18 +29,18 @@ interactivity: {
 }
 ```
 
-## व्यावहारिक मार्गदर्शन
+## Practical guidance
 
-- केवल वही मोड सक्षम करें जिनका आप वास्तव में उपयोग करते हैं।
-- स्थिर प्रदर्शन के लिए दूरियां मध्यम रखें।
-- महंगे मोड संयोजनों के लिए प्रारंभ/रोकें नियंत्रण का उपयोग करें।
+- Enable only the modes you really use.
+- Keep distances moderate for stable performance.
+- Use Start/Pause controls for expensive mode combinations.
 
-संबंधित पृष्ठ:
+Related pages:
 
-- [`Interactivity Click`](/hi/options/interactivity-click)
-- [`Interactivity Hover`](/hi/options/interactivity-hover)
-- [`Interactivity Div`](/hi/options/interactivity-div)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Modes.md>

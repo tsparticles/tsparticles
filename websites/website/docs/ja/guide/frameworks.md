@@ -1,25 +1,25 @@
-# Framework 統合
+# Framework Integrations
 
-`tsParticles` は複数の wrappers に対応していますが、runtime フローは常に同じです。
+`tsParticles` supports multiple wrappers, but the runtime flow is always the same:
 
-1. engine を一度だけ初期化する
-2. 必要な機能だけを読み込む（`@tsparticles/slim`、`@tsparticles/all`、またはカスタム plugins）
-3. options を指定して wrapper コンポーネントを描画する
+1. initialize the engine once
+2. load only the features you need (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
+3. render the wrapper component with your options
 
-## クイックチェックリスト
+## Quick checklist
 
-- すべての `@tsparticles/*` のバージョンを揃える。
-- loader はアプリ起動時に一度だけ実行する。
-- 小さな options オブジェクトから始めて段階的に拡張する。
-- SSR framework ではクライアント側だけでマウントする。
+- Keep all `@tsparticles/*` package versions aligned.
+- Run the loader once at app startup.
+- Start with a small options object and grow incrementally.
+- For SSR frameworks, mount particles client-side only.
 
-## wrappers ガイドから始める
+## Start from the wrapper guide
 
-wrappers の全体マトリクス（React、Next.js、Vue/Nuxt、Angular、Svelte、Solid など）は次を参照してください。
+For the complete wrappers matrix (React, Next.js, Vue/Nuxt, Angular, Svelte, Solid, and others), see:
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
+- [`/guide/wrappers`](/guide/wrappers)
 
-## コア統合の例
+## Core integration examples
 
 ### React
 
@@ -107,15 +107,15 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## 実践ガイド
+## Practical guidance
 
-- 多くのアプリでは `@tsparticles/slim` を基本構成として使う。
-- options が増えてきたら専用の設定ファイルに分離する。
-- 重いシーンでは開始/停止コントロールを UI に用意する。
+- Prefer `@tsparticles/slim` as baseline for most apps.
+- Keep options in dedicated config files when they grow.
+- For expensive scenes, expose start/stop controls in your UI.
 
-## 参照ソース
+## Source references
 
-- wrappers ソース: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
-- framework デモ ソース: <https://github.com/tsparticles/tsparticles/tree/main/demo>
-- engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
-- bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>
+- Wrappers source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+- Framework demos source: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+- Engine package: <https://github.com/tsparticles/tsparticles/tree/main/engine>
+- Bundles: <https://github.com/tsparticles/tsparticles/tree/main/bundles>

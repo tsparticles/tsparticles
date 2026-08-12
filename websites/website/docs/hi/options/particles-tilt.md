@@ -1,8 +1,8 @@
-# कण झुकाव
+# Particles Tilt
 
-`particles.tilt` झुकाव कोण और झुकाव एनीमेशन को नियंत्रित करता है।
+`particles.tilt` controls tilt angle and tilt animation.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -22,6 +22,6 @@ particles: {
 }
 ```
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Tilt.md>

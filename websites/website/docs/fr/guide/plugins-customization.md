@@ -1,515 +1,69 @@
-# Plugins et personnalisation
+# Plugins & Customization
 
-tsParticles peut etre etendu a l'execution avec des formes personnalisees, des presets et des plugins.
+tsParticles can be extended at runtime with custom shapes, presets, plugins, and more. You can either create extensions inline (app-local) or build full npm packages using the CLI scaffolding tool.
 
-Ce guide se concentre sur la voie rapide : ajouter un comportement personnalise directement dans une application, sans creer d'abord un package standalone complet.
+## Quick decision map
 
-## Carte de decision rapide
+- Use a **custom shape** when you only need a new drawing primitive.
+- Use a **custom preset** when you want to reuse one full options object.
+- Use a **plugin** when you need runtime logic (container lifecycle, custom behavior, option parsing).
 
-- Utilisez une **shape personnalisee** quand vous avez seulement besoin d'une nouvelle primitive de dessin.
-- Utilisez un **preset personnalise** quand vous voulez reutiliser un objet d'options complet.
-- Utilisez un **plugin** quand vous avez besoin de logique d'execution (cycle de vie du conteneur, comportement personnalise, analyse des options).
+## All extension types at a glance
 
-## Tous les types d'extension en un coup d'oeil
+| Type                                                    | What it does                                                                                | How to use                                                            |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Plugin](/guide/plugins-customization-plugin)           | Container/runtime feature module (emitters, absorbers, polygon mask)     | Enable with your plugin options and lifecycle hooks                   |
+| [Shape](/guide/plugins-customization-shape)             | Particle drawing primitive (`particles.shape.type`)                      | Set `particles.shape.type` to your shape id                           |
+| [Preset](/guide/plugins-customization-preset)           | Reusable full options profile (`preset`)                                 | Set root `preset`                                                     |
+| [Updater](/guide/plugins-customization-updater)         | Per-frame particle property updater (tilt, roll, opacity, size)          | Runs automatically where `isEnabled` returns `true`                   |
+| [Effect](/guide/plugins-customization-effect)           | Particle rendering effect (`particles.effect`)                           | Set `particles.effect.type` to your effect id                         |
+| [Interaction](/guide/plugins-customization-interaction) | Behavior between particles and events (mouse/touch or particle-particle) | Enable in `interactivity.events` / optional custom mode checks        |
+| [Path](/guide/plugins-customization-path)               | Motion path generator for particle movement (`particles.move.path`)      | Set `particles.move.path.generator` to your path id                   |
+| [Palette](/guide/plugins-customization-palette)         | Reusable style/colors profile (`particles.palette`)                      | Set `particles.palette` to your palette id                            |
+| [Custom Bundle](/guide/plugins-customization-bundle)    | Grouped loader that registers many features at once                                         | Call `await loadMyBundle(tsParticles)` before `tsParticles.load(...)` |
 
-La personnalisation de tsParticles est plus large que les seuls plugins personnalises.
+## Composition strategy
 
-- **Bundle** : chargeur groupe qui enregistre de nombreuses fonctionnalites d'un coup (`slim`, `basic`, `all`).
-- **Effect** : effet de rendu des particules (`particles.effect`).
-- **Interaction** : comportement entre particules et evenements ; separe en `external` (souris/touch) et `particles` (particule-particule).
-- **Palette** : profil reutilisable de style/couleurs (`particles.palette`).
-- **Path** : generateur de trajectoire pour le mouvement des particules (`particles.move.path`).
-- **Plugin** : module de fonctionnalite du conteneur/runtime (par exemple emitters, absorbers, polygon mask).
-- **Preset** : profil complet d'options reutilisable (`preset`).
-- **Shape** : primitive de dessin de particules (`particles.shape.type`).
-- **Updater** : mise a jour par frame des proprietes des particules (tilt, roll, twinkle, opacity, size, etc.).
+- Start from one **bundle** (`slim` is usually enough).
+- Add missing capabilities as small focused modules (interaction/updater/path/effect/shape).
+- Use **preset** for behavior reuse and **palette** for visual identity reuse.
+- Keep app-local custom extensions first, publish only when reused across projects.
 
-Si vous expliquez ces categories aux utilisateurs, ils comprennent immediatement jusqu'ou la personnalisation peut aller.
+## Practical rules
 
-## Tableau recapitulatif
+- Keep extension names unique (for example `app-*` or company prefix).
+- Start app-local, extract to a package only when reused in multiple projects.
+- Keep a tiny config fixture while developing (faster regressions checks).
+- If a feature is missing, verify the required package is loaded (shape, interaction, updater, plugin).
 
-| Type        | Creation rapide (locale a l'app)                                                                      | Utilisation                                                                               |
-| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Bundle      | Composez votre `loadAppBundle(engine)` et appelez les chargeurs internes                              | Appelez `await loadAppBundle(tsParticles)` avant `tsParticles.load(...)`                  |
-| Effect      | Enregistrez avec `pluginManager.addEffect("app-*", drawer)`                                           | Definissez `particles.effect.type` avec l'id de votre effect                              |
-| Interaction | Enregistrez avec `pluginManager.addInteractor("app-*", interactor)`                                   | Activez dans `interactivity.events` / verifications optionnelles de mode personnalise     |
-| Palette     | Enregistrez avec `pluginManager.addPalette("app-*", palette)`                                         | Definissez `particles.palette` avec l'id de votre palette                                 |
-| Path        | Enregistrez avec `pluginManager.addPathGenerator("app-*", generator)`                                 | Definissez `particles.move.path.generator` avec l'id de votre path                        |
-| Plugin      | Creez `IPlugin` + `IContainerPlugin` et appelez `engine.addPlugin(...)`                               | Activez via les options du plugin et les hooks du cycle de vie                            |
-| Preset      | Enregistrez avec `tsParticles.addPreset("app-*", options)`                                            | Definissez le `preset` racine                                                             |
-| Shape       | Enregistrez avec `tsParticles.addShape("app-*", drawer)` ou chargez tous les packages shape officiels | Definissez `particles.shape.type` et les options par shape dans `particles.shape.options` |
-| Updater     | Enregistrez avec `pluginManager.addParticleUpdater("app-*", updater)`                                 | S'execute automatiquement sur les particules ou `isEnabled(...)` renvoie `true`           |
+## Global runtime configuration
 
-## Creation locale rapide + utilisation par type d'extension
+tsParticles exposes a few utilities on the global `tsParticles` object for advanced runtime customization.
 
-Tous les extraits supposent cet ordre de configuration :
+### Custom random number generator
 
-```ts
-await loadSlim(tsParticles);
-// register custom pieces
-await tsParticles.load({ id: "tsparticles", options });
-```
-
-### Bundle
-
-Creez un petit bundle d'application qui connecte exactement les elements souhaites.
-
-```ts
-import type { Engine } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-
-export async function loadAppBundle(engine: Engine): Promise<void> {
-  await loadSlim(engine);
-
-  await Promise.all([
-    loadAppShape(engine),
-    loadAppPreset(),
-    loadAppPalette(engine),
-    loadAppEffect(engine),
-    loadAppPath(engine),
-    loadAppUpdater(engine),
-    loadAppInteraction(engine),
-    loadAppPlugin(engine),
-  ]);
-}
-
-await loadAppBundle(tsParticles);
-```
-
-### Effect
-
-```ts
-import type { Engine } from "@tsparticles/engine";
-
-export async function loadAppEffect(engine: Engine): Promise<void> {
-  await engine.pluginManager.register((e) => {
-    e.pluginManager.addEffect("app-fade", () =>
-      Promise.resolve({
-        drawBefore: ({ context }) => {
-          context.save();
-          context.globalAlpha *= 0.85;
-        },
-        drawAfter: ({ context }) => {
-          context.restore();
-        },
-      }),
-    );
-  });
-}
-
-await loadAppEffect(tsParticles);
-
-const options = {
-  particles: {
-    effect: {
-      type: "app-fade",
-    },
-  },
-};
-```
-
-### Interactions (external et particles)
-
-```ts
-import {
-  ExternalInteractorBase,
-  loadInteractivityPlugin,
-  type IInteractivityData,
-} from "@tsparticles/plugin-interactivity";
-import type { Engine, IDelta } from "@tsparticles/engine";
-
-class AppHoverPauseInteractor extends ExternalInteractorBase {
-  readonly maxDistance = 0;
-
-  clear(): void {}
-
-  init(): void {}
-
-  interact(interactivityData: IInteractivityData, _delta: IDelta): void {
-    if (interactivityData.pointer?.position) {
-      this.container.pause();
-    }
-  }
-
-  isEnabled(interactivityData: IInteractivityData): boolean {
-    return !!interactivityData.pointer?.position;
-  }
-
-  reset(): void {
-    this.container.play();
-  }
-}
-
-export async function loadAppInteraction(engine: Engine): Promise<void> {
-  await loadInteractivityPlugin(engine);
-
-  await engine.pluginManager.register((e) => {
-    e.pluginManager.addInteractor?.("app-hover-pause", (container) => {
-      return Promise.resolve(new AppHoverPauseInteractor(container));
-    });
-  });
-}
-
-await loadAppInteraction(tsParticles);
-
-const options = {
-  interactivity: {
-    events: {
-      onHover: {
-        enable: true,
-      },
-    },
-  },
-};
-```
-
-### Palette
-
-```ts
-import type { Engine, IPalette } from "@tsparticles/engine";
-
-const appPalette: IPalette = {
-  name: "App Sunset",
-  blendMode: "multiply",
-  colors: {
-    fill: {
-      enable: true,
-      value: ["#ff6b6b", "#ffd166", "#4ecdc4"],
-    },
-  },
-};
-
-export async function loadAppPalette(engine: Engine): Promise<void> {
-  await engine.pluginManager.register((e) => {
-    e.pluginManager.addPalette("app-sunset", appPalette);
-  });
-}
-
-await loadAppPalette(tsParticles);
-
-const options = {
-  particles: {
-    palette: "app-sunset",
-  },
-};
-```
-
-### Path
-
-```ts
-import { loadMovePlugin } from "@tsparticles/plugin-move";
-import { Vector, type Engine } from "@tsparticles/engine";
-
-export async function loadAppPath(engine: Engine): Promise<void> {
-  await loadMovePlugin(engine);
-
-  await engine.pluginManager.register((e) => {
-    e.pluginManager.addPathGenerator?.("app-sway", () =>
-      Promise.resolve({
-        generate: (particle) => {
-          const wave = Math.sin(particle.position.y * 0.02);
-
-          return Vector.create(wave, 0);
-        },
-        init: () => {},
-        reset: () => {},
-        update: () => {},
-      }),
-    );
-  });
-}
-
-await loadAppPath(tsParticles);
-
-const options = {
-  particles: {
-    move: {
-      enable: true,
-      path: {
-        enable: true,
-        generator: "app-sway",
-      },
-    },
-  },
-};
-```
-
-### Plugin
-
-```ts
-import type { Container, Engine, IContainerPlugin, IPlugin, ISourceOptions, Options } from "@tsparticles/engine";
-
-class AppPluginInstance implements IContainerPlugin {
-  private readonly container: Container;
-
-  constructor(container: Container) {
-    this.container = container;
-  }
-
-  async init(): Promise<void> {
-    this.container.retina.pixelRatio = Math.max(this.container.retina.pixelRatio, 1);
-  }
-}
-
-class AppPlugin implements IPlugin {
-  readonly id = "app-plugin";
-
-  async getPlugin(container: Container): Promise<IContainerPlugin> {
-    return new AppPluginInstance(container);
-  }
-
-  loadOptions(_options: Options, source?: ISourceOptions): void {
-    if (source?.appPlugin === false) {
-      return;
-    }
-  }
-
-  needsPlugin(source?: ISourceOptions): boolean {
-    return source?.appPlugin !== false;
-  }
-}
-
-export async function loadAppPlugin(engine: Engine): Promise<void> {
-  await engine.addPlugin(new AppPlugin());
-}
-
-await loadAppPlugin(tsParticles);
-
-const options = {
-  appPlugin: true,
-};
-```
-
-### Preset
-
-```ts
-import { tsParticles } from "@tsparticles/engine";
-
-export async function loadAppPreset(): Promise<void> {
-  tsParticles.addPreset("app-hero", {
-    fpsLimit: 60,
-    particles: {
-      number: { value: 80 },
-      move: { enable: true, speed: 2 },
-      links: { enable: true, distance: 140 },
-    },
-  });
-}
-
-await loadAppPreset();
-
-const options = {
-  preset: "app-hero",
-};
-```
-
-### Shape
-
-```ts
-import type { Engine } from "@tsparticles/engine";
-import { loadArrowShape } from "@tsparticles/shape-arrow";
-import { loadCardsShape } from "@tsparticles/shape-cards";
-import { loadCircleShape } from "@tsparticles/shape-circle";
-import { loadCogShape } from "@tsparticles/shape-cog";
-import { loadEmojiShape } from "@tsparticles/shape-emoji";
-import { loadHeartShape } from "@tsparticles/shape-heart";
-import { loadImageShape, type ImageEngine } from "@tsparticles/shape-image";
-import { loadInfinityShape } from "@tsparticles/shape-infinity";
-import { loadLineShape } from "@tsparticles/shape-line";
-import { loadMatrixShape } from "@tsparticles/shape-matrix";
-import { loadPathShape } from "@tsparticles/shape-path";
-import { loadPolygonShape } from "@tsparticles/shape-polygon";
-import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
-import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
-import { loadSpiralShape } from "@tsparticles/shape-spiral";
-import { loadSquareShape } from "@tsparticles/shape-square";
-import { loadSquircleShape } from "@tsparticles/shape-squircle";
-import { loadStarShape } from "@tsparticles/shape-star";
-import { loadTextShape } from "@tsparticles/shape-text";
-
-export async function loadAppShape(engine: Engine): Promise<void> {
-  await Promise.all([
-    loadArrowShape(engine),
-    loadCardsShape(engine),
-    loadCircleShape(engine),
-    loadCogShape(engine),
-    loadEmojiShape(engine),
-    loadHeartShape(engine),
-    loadImageShape(engine as ImageEngine),
-    loadInfinityShape(engine),
-    loadLineShape(engine),
-    loadMatrixShape(engine),
-    loadPathShape(engine),
-    loadPolygonShape(engine),
-    loadRoundedPolygonShape(engine),
-    loadRoundedRectShape(engine),
-    loadSpiralShape(engine),
-    loadSquareShape(engine),
-    loadSquircleShape(engine),
-    loadStarShape(engine),
-    loadTextShape(engine),
-  ]);
-}
-
-await loadAppShape(tsParticles);
-
-/* Pour un chargement granulaire, importez uniquement les formes nécessaires :
- * - @tsparticles/shape-cards/clubs, /diamonds, /hearts, /spades, /suits, /cards
- * - @tsparticles/shape-polygon : loadGenericPolygonShape ou loadTriangleShape
- */
-
-const options = {
-  particles: {
-    paint: {
-      stroke: {
-        width: 2,
-      },
-    },
-    shape: {
-      type: [
-        "arrow",
-        "card",
-        "circle",
-        "club",
-        "cog",
-        "diamond",
-        "emoji",
-        "heart",
-        "hearts",
-        "image",
-        "images",
-        "infinity",
-        "line",
-        "matrix",
-        "path",
-        "polygon",
-        "rounded-polygon",
-        "rounded-rect",
-        "spade",
-        "spades",
-        "spiral",
-        "edge",
-        "square",
-        "squircle",
-        "star",
-        "text",
-        "character",
-        "char",
-        "multiline-text",
-        "triangle",
-        "clubs",
-        "diamonds",
-      ],
-      options: {
-        image: {
-          src: "https://particles.js.org/images/hdr/fruits/cherry.png",
-          width: 32,
-          height: 32,
-          replaceColor: false,
-        },
-        line: {
-          close: false,
-          fill: false,
-        },
-        path: {
-          close: true,
-          d: "M 0,-14 L 10,14 L -10,14 Z",
-        },
-        polygon: {
-          sides: 6,
-        },
-        "rounded-polygon": {
-          sides: 6,
-          radius: 0.25,
-        },
-        "rounded-rect": {
-          width: 20,
-          height: 14,
-          radius: 3,
-        },
-        spiral: {
-          innerRadius: 1,
-          lineSpacing: 1,
-        },
-        star: {
-          sides: 5,
-          inset: 2,
-        },
-        text: {
-          value: ["TS", "Particles"],
-          font: "Verdana",
-        },
-      },
-    },
-  },
-};
-```
-
-La shape `line` est pilotee par le stroke, donc gardez `fill: false` et configurez `particles.paint.stroke`.
-
-L'URL `image.src` ci-dessus est reutilisee depuis les configurations existantes du projet (`utils/configs`).
-
-### Updater
-
-```ts
-import type { Engine, IDelta, Particle } from "@tsparticles/engine";
-
-export async function loadAppUpdater(engine: Engine): Promise<void> {
-  await engine.pluginManager.register((e) => {
-    e.pluginManager.addParticleUpdater("app-drift", () =>
-      Promise.resolve({
-        init: (): void => {},
-        isEnabled: (): boolean => true,
-        update: (particle: Particle, delta: IDelta): void => {
-          particle.position.x += 0.02 * delta.factor;
-        },
-      }),
-    );
-  });
-}
-
-await loadAppUpdater(tsParticles);
-
-// no extra options required: updater runs when isEnabled(...) is true
-```
-
-Cela suffit pour prototyper localement chaque type d'extension, puis extraire ensuite vers des packages dedies.
-
-## Strategie de composition
-
-- Commencez avec un seul **bundle** (`slim` est generalement suffisant).
-- Ajoutez les capacites manquantes sous forme de petits modules cibles (interaction/updater/path/effect/shape).
-- Utilisez **preset** pour reutiliser le comportement et **palette** pour reutiliser l'identite visuelle.
-- Gardez d'abord les extensions personnalisees en local dans l'app, puis publiez seulement en cas de reutilisation entre projets.
-
-## Configuration globale runtime
-
-tsParticles expose quelques utilitaires sur l'objet global `tsParticles` pour une personnalisation avancée à l'exécution.
-
-### Générateur de nombres aléatoires personnalisé
-
-Remplacez la fonction aléatoire interne par la vôtre (utile pour les randomisations contrôlées dans les plugins personnalisés) :
+Replace the internal random function with your own (useful for seeded/controlled randomness in custom plugins):
 
 ```js
-// Définir une fonction aléatoire personnalisée
+// Set a custom random function
 tsParticles.setParticlesRandom(() => {
-  // votre logique aléatoire personnalisée
+  // your custom random logic
   return Math.random();
 });
 
-// Obtenir un nombre aléatoire avec la fonction actuelle
+// Get a random number using the current random function
 const value = tsParticles.getParticlesRandom();
 
-// Obtenir la référence de la fonction aléatoire actuelle
+// Get the current random function reference
 const randomFn = tsParticles.getParticlesRandomFn();
 ```
 
-### Journalisation personnalisée
+### Custom logger
 
-Remplacez le journaliseur interne par le vôtre (utile pour les modes silencieux ou la gestion personnalisée des logs) :
+Replace the internal logger with your own (useful for silent modes or custom log handling):
 
 ```js
-// Définir un journaliseur personnalisé
+// Set a custom logger
 tsParticles.setParticlesLogger({
   debug: (msg) => {},
   error: (msg) => console.error("[myApp]", msg),
@@ -520,11 +74,11 @@ tsParticles.setParticlesLogger({
   warning: (msg) => {},
 });
 
-// Obtenir le journaliseur actuel
+// Get the current logger
 const logger = tsParticles.getParticlesLogger();
 ```
 
-En utilisant la bibliothèque via une balise script UMD, ces fonctions sont également disponibles directement sur `globalThis` :
+When using the library via a UMD script tag, these are also available directly on `globalThis`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4"></script>
@@ -534,14 +88,6 @@ En utilisant la bibliothèque via une balise script UMD, ces fonctions sont éga
 </script>
 ```
 
-## Regles pratiques
+## Next steps
 
-- Gardez des noms d'extension uniques (par exemple `app-*` ou un prefixe d'entreprise).
-- Commencez en local dans l'app, puis extrayez vers un package uniquement en cas de reutilisation dans plusieurs projets.
-- Conservez une petite fixture de configuration pendant le developpement (verifications de regression plus rapides).
-- Si une fonctionnalite manque, verifiez que le package requis est bien charge (shape, interaction, updater, plugin).
-
-## References
-
-- Documentation de l'interface plugin : <https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html>
-- Guide markdown etendu : <https://github.com/tsparticles/tsparticles/blob/main/markdown/Plugins.md>
+Choose an extension type above for step-by-step guides with inline code and package creation instructions.

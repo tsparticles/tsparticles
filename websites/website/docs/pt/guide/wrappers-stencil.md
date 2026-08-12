@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/stencil
 
-Wrapper oficial de Stencil para `tsParticles`.
+Official Stencil wrapper for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/stencil @tsparticles/engine @tsparticles/slim
 ```
 
-## Fluxo de configuracao rapida
+## Quick setup flow
 
-1. Instale wrapper + engine + pacote loader.
-2. Registre os custom elements do Stencil uma vez usando `@tsparticles/stencil/loader`.
-3. Renderize `<stencil-particles />` passando `init` + `options` (ou `url`).
+1. Install wrapper + engine + loader package.
+2. Register Stencil custom elements once using `@tsparticles/stencil/loader`.
+3. Render `<stencil-particles />` and pass `init` + `options` (or `url`).
 
-## Referências do Monorepo
+## Monorepo references
 
-- Pasta do pacote: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil>
-- App de demonstracao: <https://github.com/tsparticles/tsparticles/tree/main/demo/stencil>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/stencil>
 
-## README
+## Readme
 
-- README do wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/pt/guide/wrappers)
-- [`/guide/frameworks`](/pt/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

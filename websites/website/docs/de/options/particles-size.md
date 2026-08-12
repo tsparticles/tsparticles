@@ -1,8 +1,8 @@
-# Partikelgröße
+# Particles Size
 
-`particles.size` steuert den Partikelgrößenbereich und die Größenanimation.
+`particles.size` controls particle size range and size animation.
 
-## Beispiel
+## Example
 
 ```ts
 particles: {
@@ -20,6 +20,6 @@ particles: {
 }
 ```
 
-## Quellenangabe
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Size.md>

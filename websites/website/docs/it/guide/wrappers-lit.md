@@ -1,29 +1,29 @@
-# Involucro: @tsparticles/lit
+# Wrapper: @tsparticles/lit
 
-Involucro ufficiale di Lit per `tsParticles`.
+Official Lit wrapper for `tsParticles`.
 
-## Installa
+## Install
 
 ```bash
 pnpm add @tsparticles/lit @tsparticles/engine @tsparticles/slim
 ```
 
-## Flusso di configurazione rapido
+## Quick setup flow
 
-1. Installare il pacchetto wrapper + motore + caricatore.
-2. Registra/carica funzionalità durante l'avvio dell'app.
-3. Utilizza il componente Lit con le opzioni passate come oggetti di scena.
+1. Install wrapper + engine + loader package.
+2. Register/load features during app startup.
+3. Use Lit component with options passed as props.
 
-## Riferimenti a Monorepo
+## Monorepo references
 
-- Cartella del pacchetto: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
-- Applicazione dimostrativa: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
 
-## Leggimi
+## Readme
 
-- Documenti della cartella wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- Wrapper folder docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
 
-## Documenti correlati
+## Related docs
 
-- [`/guide/wrappers`](/it/guide/wrappers)
-- [`/guide/frameworks`](/it/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

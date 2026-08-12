@@ -1,25 +1,25 @@
-# Видеоуроки
+# Video Tutorials
 
-Официальные видео-референсы и визуальные демо с основных ресурсов проекта.
+Official video references and visual demos from the main project resources.
 
-Раздел исходного кода README: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
+README source section: <https://github.com/tsparticles/tsparticles/blob/main/README.md#_video-tutorials_>
 
-## Видеохаб
+## Video hub
 
-- Основная страница видео: <https://particles.js.org/video.html>
+- Main video page: <https://particles.js.org/video.html>
 
-## Рекомендуемые демо
+## Featured demos
 
-- Символы как частицы: <https://particles.js.org/samples/#chars>
-- Маска полигона: <https://particles.js.org/samples/#polygonMask>
-- Анимированные звезды: <https://particles.js.org/samples/#nasa>
-- Ньян-кот, летающий по вращающимся звездам: <https://particles.js.org/samples/#nyancat2>
-- Частицы снега: <https://particles.js.org/samples/#snow>
-- Частицы фоновой маски: <https://particles.js.org/samples/#background>
+- Characters as particles: <https://particles.js.org/samples/#chars>
+- Polygon mask: <https://particles.js.org/samples/#polygonMask>
+- Animated stars: <https://particles.js.org/samples/#nasa>
+- Nyan cat flying on scrolling stars: <https://particles.js.org/samples/#nyancat2>
+- Snow particles: <https://particles.js.org/samples/#snow>
+- Background mask particles: <https://particles.js.org/samples/#background>
 
-## Рекомендуемый порядок обучения
+## Recommended learning order
 
-1. Начните с [`/guide/getting-started`](/ru/guide/getting-started).
-2. Воспроизведите один избранный образец из своей подборки.
-3. Перейдите к [`/options/`](/ru/options/), чтобы настроить поведение.
-4. Используйте [`/guide/plugins-customization`](/ru/guide/plugins-customization) для пользовательских функций.
+1. Start from [`/guide/getting-started`](/guide/getting-started).
+2. Reproduce one featured sample in your stack.
+3. Move to [`/options/`](/options/) to customize behavior.
+4. Use [`/guide/plugins-customization`](/guide/plugins-customization) for custom features.

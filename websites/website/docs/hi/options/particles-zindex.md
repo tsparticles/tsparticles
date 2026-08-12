@@ -1,8 +1,8 @@
-# कण ZIndex
+# Particles ZIndex
 
-`particles.zIndex` ड्रॉ लेयरिंग और वैकल्पिक z-इंडेक्स एनीमेशन को नियंत्रित करता है।
+`particles.zIndex` controls draw layering and optional z-index animation.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -18,11 +18,11 @@ particles: {
 }
 ```
 
-## व्यावहारिक मार्गदर्शन
+## Practical guidance
 
-- गहराई की धारणा बनाने के लिए z-सूचकांक भिन्नता का उपयोग करें।
-- दृश्य स्थिरता बनाए रखने के लिए सीमाएं मध्यम रखें।
+- Use z-index variation to create depth perception.
+- Keep ranges moderate to preserve visual consistency.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/ZIndex.md>
