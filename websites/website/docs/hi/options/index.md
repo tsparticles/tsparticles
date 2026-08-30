@@ -85,6 +85,7 @@
 
 - `background`
 - `fullScreen`
+- `hdr`
 - `interactivity`
 - `particles`
 - `detectRetina`
@@ -94,6 +95,7 @@
 ## Most-used sections
 
 - `background`: canvas background and masking basics.
+- `hdr`: high dynamic range rendering, including tone mapping modes and `peakNits`.
 - `particles.number`: quantity and density.
 - `particles.move`: movement speed, direction, and out modes.
 - `particles.shape`: circle, polygon, image, emoji, custom.
