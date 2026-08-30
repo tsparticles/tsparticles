@@ -11,7 +11,8 @@ const __filename = fileURLToPath(import.meta.url),
   pnpmStorePath = path.join(workspaceRoot, "node_modules", ".pnpm");
 
 /**
- *
+ * Finds the built depcruise-config entrypoint from the workspace package or pnpm store.
+ * @returns The resolved entrypoint path, if found.
  */
 function findPublishedDist() {
   if (!fs.existsSync(pnpmStorePath)) {

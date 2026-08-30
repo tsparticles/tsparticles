@@ -1,10 +1,10 @@
-# Astro-Integration
+# Astro Integration
 
-Verwenden Sie tsParticles auf Ihrer Astro-Seite mit dem offiziellen `@tsparticles/astro`-Integrationspaket.
+Use tsParticles in your Astro site with the official `@tsparticles/astro` integration package.
 
 ## Installation
 
-Installieren Sie die Astro-Integration und den tsParticles-Kern über Ihren Paketmanager:
+Install the Astro integration and tsParticles core via your package manager:
 
 ```bash
 npm install @tsparticles/astro tsparticles
@@ -18,9 +18,9 @@ pnpm add @tsparticles/astro tsparticles
 yarn add @tsparticles/astro tsparticles
 ```
 
-## Engine-Initialisierung
+## Engine Initialization
 
-tsParticles verwendet eine modulare Architektur. Bevor Partikel gerendert werden, müssen Sie die Engine mit den benötigten Funktionen initialisieren. Erstellen Sie ein Client-Script (z. B. `src/scripts/particles-init.ts`) oder verwenden Sie ein Inline-`<script>` in Ihrer Astro-Komponente:
+tsParticles uses a modular architecture. Before rendering particles, you must initialize the engine with the features you need. Create a client script (e.g., `src/scripts/particles-init.ts`) or use an inline `<script>` in your Astro component:
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/astro";
@@ -31,11 +31,11 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-> `initParticlesEngine` ist ein Wrapper um `tsParticles.init()`, der sicherstellt, dass die Engine bereit ist, bevor die `<Particles>`-Komponente montiert wird. Sie gibt ein `Promise` zurück, das nach Abschluss der Initialisierung aufgelöst wird.
+> `initParticlesEngine` is a wrapper around `tsParticles.init()` that ensures the engine is ready before the `<Particles>` component mounts. It returns a `Promise` that resolves once initialization is complete.
 
-## Grundlegende Verwendung
+## Basic Usage
 
-Platzieren Sie die `<Particles />`-Komponente in einer beliebigen `.astro`-Vorlage. Übergeben Sie Ihre Konfiguration über die `options`-Eigenschaft:
+Place the `<Particles />` component in any `.astro` template. Pass your configuration via the `options` prop:
 
 ```astro
 ---
@@ -66,11 +66,11 @@ const options: ISourceOptions = {
 </script>
 ```
 
-> Die `id`-Eigenschaft wird an den zugrunde liegenden Canvas-Container `<div>` weitergegeben. Verwenden Sie sie für Styling oder den imperativen Zugriff via `document.getElementById()`.
+> The `id` prop is passed to the underlying canvas container `<div>`. Use it for styling or imperative access via `document.getElementById()`.
 
-## TypeScript-Unterstützung
+## TypeScript Support
 
-Die Integration enthält vollständige TypeScript-Deklarationen. Verwenden Sie `ISourceOptions` von `@tsparticles/engine`, um Ihre Konfiguration zu typisieren:
+The integration ships full TypeScript declarations. Use `ISourceOptions` from `@tsparticles/engine` to type your configuration:
 
 ```typescript
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -106,9 +106,9 @@ const options: ISourceOptions = {
 };
 ```
 
-## Benutzerdefinierte Konfiguration
+## Custom Configuration
 
-Nachfolgend eine umfangreichere Konfiguration, die Sie in jede Astro-Seite einfügen können:
+Below is a more elaborate configuration that you can drop into any Astro page:
 
 ```astro
 ---
@@ -220,9 +220,9 @@ const options: ISourceOptions = {
 </script>
 ```
 
-## Presets verwenden
+## Using Presets
 
-Statt eine Konfiguration manuell zu erstellen, laden Sie ein Preset während der Engine-Initialisierung und referenzieren Sie es in den Optionen:
+Instead of building a configuration manually, load a preset during engine initialization and reference it in the options:
 
 ```astro
 ---
@@ -247,9 +247,9 @@ const options: ISourceOptions = {
 </script>
 ```
 
-## Integration mit anderen Frameworks
+## Integration with Other Frameworks
 
-Da Astro UI-Frameworks wie React, Vue, Svelte und Solid unterstützt, können Sie die frameworkspezifische tsParticles-Komponente in `.astro`-Dateien verwenden:
+Because Astro supports UI frameworks like React, Vue, Svelte, and Solid, you can use the framework-specific tsParticles component within `.astro` files:
 
 ### React in Astro
 
@@ -291,11 +291,11 @@ const options: ISourceOptions = {
 <Particles client:load id="tsparticles" :options="options" />
 ```
 
-> Die Direktive `client:load` teilt Astro mit, die Komponente sofort beim Seitenladen zu hydrieren. Verwenden Sie `client:visible` für verzögertes Laden.
+> The `client:load` directive tells Astro to hydrate the component immediately on page load. Use `client:visible` for deferred loading.
 
-## Vollständiges Seiten-Beispiel
+## Full Page Example
 
-Eine vollständige Astro-Seite mit Partikeln als animiertem Hintergrund:
+A complete Astro page with particles serving as an animated background:
 
 ```astro
 ---
@@ -337,10 +337,10 @@ const options: ISourceOptions = {
 };
 ---
 
-<Layout title="Partikel-Hintergrund">
+<Layout title="Particles Background">
   <main>
-    <h1>Willkommen</h1>
-    <p>Diese Seite hat einen Partikel-Hintergrund, betrieben von tsParticles.</p>
+    <h1>Welcome</h1>
+    <p>This page has a particle background powered by tsParticles.</p>
   </main>
   <Particles id="bg-particles" options={options} />
 </Layout>
@@ -373,22 +373,25 @@ const options: ISourceOptions = {
 </script>
 ```
 
-## Reactive Behavior
+## Component Props
 
-The `<Particles>` component reacts to prop changes at runtime:
+| Prop                 | Type             | Default                   | Description                                                                |
+| -------------------- | ---------------- | ------------------------- | -------------------------------------------------------------------------- |
+| `id`                 | `string`         | `"tsparticles"`           | DOM element id for the container. Change triggers destroy+reload.          |
+| `options`            | `ISourceOptions` | `{}`                      | Full tsParticles configuration object. Change triggers destroy+reload.     |
+| `url`                | `string`         | —                         | Load configuration from a remote JSON URL. Change triggers destroy+reload. |
+| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise).  |
+| `loaded`             | `string`         | —                         | Name of a global callback function called when particles are loaded.       |
+| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS class for the canvas element                                           |
+| `container`          | `object`         | —                         | Pre-existing `Container` instance (advanced)                               |
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+### Reactive updates
 
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+The component uses a `connectedCallback` / `attributeChangedCallback` pattern to react to attribute changes:
 
-## Komponenten-Eigenschaften
+- **`id` change** → destroys the current container and reloads particles with the new id.
+- **`options` change** → destroys the current container and reloads particles with the new options.
+- **`url` change** → destroys the current container and reloads particles from the new url.
+- **`theme` change** → applies the theme via `loadTheme` without a full reload (requires `@tsparticles/plugin-themes`; safe no-op when the plugin is missing).
 
-| Eigenschaft          | Typ              | Standard                  | Beschreibung                                                              |
-| -------------------- | ---------------- | ------------------------- | ------------------------------------------------------------------------- |
-| `id`                 | `string`         | `"tsparticles"`           | DOM-Element-ID für den Container                                          |
-| `options`            | `ISourceOptions` | `{}`                      | Vollständiges tsParticles-Konfigurationsobjekt                            |
-| `url`                | `string`         | —                         | Konfiguration von einer Remote-JSON-URL laden                             |
-| `particlesClassName` | `string`         | `"tsparticles-canvas-el"` | CSS-Klasse für das Canvas-Element                                         |
-| `container`          | `object`         | —                         | Vorhandene `Container`-Instanz (fortgeschritten)                          |
-| `theme`              | `string`         | —                         | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+On component teardown (`disconnectedCallback`) the container is destroyed, preventing orphan animations.

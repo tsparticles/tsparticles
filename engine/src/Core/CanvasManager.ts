@@ -2,6 +2,7 @@ import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } 
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
 import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
+import type { HdrMode } from "../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
@@ -119,6 +120,7 @@ export class CanvasManager {
 
   readonly #container;
   #generated;
+  #hdrMediaListeners?: { handler: () => void; mql: MediaQueryList }[];
   #mutationObserver?: MutationObserver;
   #originalStyle?: CSSStyleDeclaration;
   readonly #pluginManager;
@@ -219,7 +221,6 @@ export class CanvasManager {
 
     this.resize();
     this.#initStyle();
-    this.initBackground();
     this.#safeMutationObserver(obs => {
       const element = this.domElement;
 
@@ -232,6 +233,8 @@ export class CanvasManager {
 
     this.initPlugins();
     this.#initContext();
+    this.initBackground();
+    this.#initHdrListeners();
     this.render.init();
   }
 
@@ -252,7 +255,15 @@ export class CanvasManager {
       color = rangeColorToRgb(this.#pluginManager, background.color);
 
     if (color) {
-      elementStyle.backgroundColor = getStyleFromRgb(color, container.actualOptions.hdr, background.opacity);
+      const hdrOptions = container.actualOptions.hdr;
+
+      elementStyle.backgroundColor = getStyleFromRgb(
+        color,
+        container.hdr,
+        background.opacity,
+        hdrOptions.peakNits,
+        hdrOptions.mode as HdrMode,
+      );
     } else {
       elementStyle.backgroundColor = "";
     }
@@ -407,6 +418,7 @@ export class CanvasManager {
     });
 
     this.#mutationObserver = undefined;
+    this.#removeHdrListeners();
 
     this.render.stop();
   }
@@ -441,9 +453,19 @@ export class CanvasManager {
   #initContext(): void {
     const container = this.#container,
       canSupportHdr =
-        container.actualOptions.hdr &&
+        container.actualOptions.hdr.enable &&
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
+
+    container.hdr = canSupportHdr ?? false;
+    container.hdrMode = container.actualOptions.hdr.mode as HdrMode;
+    container.peakNits = container.actualOptions.hdr.peakNits;
+
+    const renderCanvas = this.renderCanvas;
+
+    if (!renderCanvas) {
+      return;
+    }
 
     this.render.setContextSettings({
       alpha: true,
@@ -454,13 +476,59 @@ export class CanvasManager {
         : { colorSpace: "srgb" as const }),
     });
 
-    const renderCanvas = this.renderCanvas;
+    let context: OffscreenCanvasRenderingContext2D | null;
 
-    if (!renderCanvas) {
-      return;
+    try {
+      context = renderCanvas.getContext("2d", this.render.settings);
+    } catch {
+      context = null;
     }
 
-    this.render.setContext(renderCanvas.getContext("2d", this.render.settings));
+    if (canSupportHdr && !context) {
+      container.hdr = false;
+
+      const sdrSettings: CanvasRenderingContext2DSettings = {
+        alpha: true,
+        desynchronized: true,
+        willReadFrequently: false,
+        colorSpace: "srgb" as const,
+      };
+
+      this.render.setContextSettings(sdrSettings);
+
+      try {
+        context = renderCanvas.getContext("2d", sdrSettings);
+      } catch {
+        context = null;
+      }
+    }
+
+    this.render.setContext(context);
+  }
+
+  #initHdrListeners(): void {
+    this.#removeHdrListeners();
+
+    const p3Query = safeMatchMedia("(color-gamut: p3)"),
+      hdrQuery = safeMatchMedia("(dynamic-range: high)"),
+      handleChange = (): void => {
+        this.#recreateRenderCanvas();
+        this.#initContext();
+        this.initBackground();
+      },
+      listeners: { handler: () => void; mql: MediaQueryList }[] = [];
+
+    if (p3Query) {
+      p3Query.addEventListener("change", handleChange);
+      listeners.push({ handler: handleChange, mql: p3Query });
+    }
+
+    if (hdrQuery) {
+      hdrQuery.addEventListener("change", handleChange);
+      listeners.push({ handler: handleChange, mql: hdrQuery });
+    }
+
+    this.#hdrMediaListeners = listeners;
   }
 
   #initStyle(): void {
@@ -490,6 +558,43 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
+  }
+
+  /**
+   * Recreates the render canvas so the next context creation applies the current
+   * color space and pixel format settings, since an existing 2D context cannot
+   * change them.
+   */
+  #recreateRenderCanvas(): void {
+    const renderCanvas = this.renderCanvas;
+
+    if (!renderCanvas) {
+      return;
+    }
+
+    if (this.domElement) {
+      /* A DOM-backed render canvas is transfer-backed by loadCanvas and controls
+       * the placeholder element's bitmap; replacing it with a detached
+       * OffscreenCanvas would render to a surface that is never displayed. A
+       * transferred canvas cannot be re-created in place, so keep it to continue
+       * drawing to the represented DOM surface. */
+      return;
+    }
+
+    /* Caller-provided detached OffscreenCanvas: recreate it with the same size. */
+    this.renderCanvas = new OffscreenCanvas(renderCanvas.width, renderCanvas.height);
+  }
+
+  #removeHdrListeners(): void {
+    if (!this.#hdrMediaListeners) {
+      return;
+    }
+
+    for (const { handler, mql } of this.#hdrMediaListeners) {
+      mql.removeEventListener("change", handler);
+    }
+
+    this.#hdrMediaListeners = undefined;
   }
 
   #repairStyle(): void {

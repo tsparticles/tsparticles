@@ -1,29 +1,29 @@
-# Обертка: angular-фейерверк
+# Wrapper: angular-fireworks
 
-Официальная оболочка Angular вокруг `@tsparticles/fireworks`.
+Official Angular wrapper around `@tsparticles/fireworks`.
 
-## Установить
+## Install
 
 ```bash
 pnpm add angular-fireworks @tsparticles/fireworks
 ```
 
-## Быстрая настройка
+## Quick setup flow
 
-1. Установите обертку + `@tsparticles/fireworks`.
-2. Выполните инициализацию один раз в начальной загрузке приложения Angular.
-3. Запускайте действия фейерверков из обработчиков пользовательского интерфейса.
+1. Install wrapper + `@tsparticles/fireworks`.
+2. Initialize once in Angular app bootstrap.
+3. Trigger fireworks actions from your UI handlers.
 
-## Ссылки на монорепо
+## Monorepo references
 
-- Папка пакета: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>.
-  - Демо-приложение: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>.
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
-## Информация
+## Readme
 
-- README оболочки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
 
-## Связанные документы
+## Related docs
 
-- [`/guide/wrappers`](/ru/guide/wrappers)
-- [`/guide/frameworks`](/ru/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

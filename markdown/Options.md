@@ -46,24 +46,25 @@ Use it to choose where to start, then jump to the detailed guides for each optio
 
 ## Most-used root options
 
-| Property                 | Type                 | Example                             | Notes                                  |
-| ------------------------ | -------------------- | ----------------------------------- | -------------------------------------- |
-| `autoPlay`               | `boolean`            | `true` / `false`                    | Starts animation automatically         |
-| `background`             | `object`             | `{ color: "#111" }`                 | See {@link IBackground}                |
-| `backgroundMask`         | `object`             |                                     | See {@link IBackgroundMask}            |
-| `detectRetina`           | `boolean`            | `true` / `false`                    | Replaces `retina_detect`               |
-| `duration`               | `number` / `range`   | `60` / `{ min: 30, max: 90 }`       | Effect duration in seconds             |
-| `fpsLimit`               | `number`             | `60`                                | Default: `60`; replaces `fps_limit`    |
-| `fullScreen`             | `object` / `boolean` | `true` / `false`                    | See {@link IFullScreen}                |
-| `interactivity`          | `object`             |                                     | See {@link IInteractivity}             |
-| `manualParticles`        | `array`              |                                     | See {@link IManualParticle}            |
-| `motion`                 | `object`             |                                     | See {@link IMotion}                    |
-| `particles`              | `object`             |                                     | See {@link IParticlesOptions}          |
-| `pauseOnBlur`            | `boolean`            | `true` / `false`                    | Pauses when the tab loses focus        |
-| `pauseOnOutsideViewport` | `boolean`            | `true` / `false`                    | Pauses when canvas is outside viewport |
-| `preset`                 | `string` / `array`   | `"links"` / `["links", "confetti"]` | Loads official or custom presets       |
-| `responsive`             | `array`              |                                     | See {@link IResponsive}                |
-| `themes`                 | `array`              |                                     | See {@link ITheme}                     |
+| Property                 | Type                 | Example                              | Notes                                  |
+| ------------------------ | -------------------- | ------------------------------------ | -------------------------------------- |
+| `autoPlay`               | `boolean`            | `true` / `false`                     | Starts animation automatically         |
+| `background`             | `object`             | `{ color: "#111" }`                  | See {@link IBackground}                |
+| `backgroundMask`         | `object`             |                                      | See {@link IBackgroundMask}            |
+| `detectRetina`           | `boolean`            | `true` / `false`                     | Replaces `retina_detect`               |
+| `duration`               | `number` / `range`   | `60` / `{ min: 30, max: 90 }`        | Effect duration in seconds             |
+| `fpsLimit`               | `number`             | `60`                                 | Default: `60`; replaces `fps_limit`    |
+| `fullScreen`             | `object` / `boolean` | `true` / `false`                     | See {@link IFullScreen}                |
+| `hdr`                    | `object` / `boolean` | `{ mode: "natural", peakNits: 400 }` | See [HDR](./Options/HDR.md)            |
+| `interactivity`          | `object`             |                                      | See {@link IInteractivity}             |
+| `manualParticles`        | `array`              |                                      | See {@link IManualParticle}            |
+| `motion`                 | `object`             |                                      | See {@link IMotion}                    |
+| `particles`              | `object`             |                                      | See {@link IParticlesOptions}          |
+| `pauseOnBlur`            | `boolean`            | `true` / `false`                     | Pauses when the tab loses focus        |
+| `pauseOnOutsideViewport` | `boolean`            | `true` / `false`                     | Pauses when canvas is outside viewport |
+| `preset`                 | `string` / `array`   | `"links"` / `["links", "confetti"]`  | Loads official or custom presets       |
+| `responsive`             | `array`              |                                      | See {@link IResponsive}                |
+| `themes`                 | `array`              |                                      | See {@link ITheme}                     |
 
 ## Plugin options (not included in slim)
 

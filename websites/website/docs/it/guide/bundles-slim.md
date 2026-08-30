@@ -1,14 +1,14 @@
 # Bundle: Slim
 
-`@tsparticles/slim` è il bundle consigliato per la maggior parte dei progetti. Include tutto il necessario per creare animazioni di particelle moderne con interazioni mouse, forme multiple e collegamenti.
+`@tsparticles/slim` is the recommended bundle for most projects. Includes everything needed for modern particle animations with mouse interactions, multiple shapes, and particle links.
 
-## Funzionalità incluse
+## Included features
 
-Eredita tutto da `@tsparticles/basic` più:
+Inherits everything from `@tsparticles/basic` plus:
 
-**Forme:** cerchio, quadrato, stella, poligono, linea, immagine, emoji
+**Shapes:** circle, square, star, polygon, line, image, emoji
 
-**Interazioni esterne (mouse/touch):**
+**External interactions (mouse/touch):**
 
 - attract
 - bounce
@@ -23,34 +23,34 @@ Eredita tutto da `@tsparticles/basic` più:
 - repulse
 - slow
 
-**Interazioni tra particelle:**
+**Particle interactions:**
 
 - attract
-- collisions (collisioni)
-- links (collegamenti tra particelle)
+- collisions
+- links (particle connections)
 
-**Updater aggiuntivi:**
+**Additional updaters:**
 
-- life (vita/ciclo)
-- rotate (rotazione)
+- life (lifecycle)
+- rotate
 
-**Plugin:**
+**Plugins:**
 
-- interactivity (plugin per abilitare le interazioni)
-- easing-quad (easing quadratico per animazioni)
-- Colori HEX, HSL, RGB
+- interactivity
+- easing-quad
+- HEX, HSL, RGB color plugins
 
-## Quando usarlo
+## When to use
 
-- Punto di partenza consigliato per la maggior parte dei progetti
-- Servono forme multiple (cerchi, stelle, poligoni, immagini)
-- Servono interazioni mouse (click, hover, bubble, repulse)
-- Servono collegamenti tra particelle (links)
-- Buon equilibrio tra dimensione del bundle e funzionalità
+- Recommended starting point for most projects
+- Need multiple shapes (circles, stars, polygons, images)
+- Need mouse interactions (click, hover, bubble, repulse)
+- Need particle links
+- Good balance between bundle size and features
 
-## Installazione
+## Installation
 
-### Con npm/pnpm/yarn
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
@@ -76,7 +76,7 @@ await tsParticles.load({
 });
 ```
 
-### Con CDN (tag `<script>`)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -99,13 +99,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Errori comuni
+## Common mistakes
 
-- Chiamare `tsParticles.load()` prima di `loadSlim(tsParticles)`.
-- Mescolare versioni diverse tra engine e bundle — mantienili allineati.
-- Aspettarsi funzionalità che sono solo in bundle superiori (emettitori, assorbitori, testo, wobble): servono `tsparticles` (full) o plugin individuali.
+- Calling `tsParticles.load()` before `loadSlim(tsParticles)`.
+- Mixing different versions between engine and bundle — keep them aligned.
+- Expecting features from higher bundles (emitters, absorbers, text, wobble) — need `tsparticles` (full) or individual plugins.
 
-## Vedi anche
+## See also
 
-- [Panoramica bundle](/it/guide/bundles)
-- [Guida all'installazione](/it/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

@@ -1,16 +1,16 @@
-# Modelli e risorse
+# Templates and Resources
 
-tsParticles fornisce due categorie di modelli: **modelli scaffold** (scheletri di framework) e **modelli per casi d'uso** (applicazioni di esempio complete).
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## Avvio rapido con la CLI
+## Quick start with CLI
 
-Il modo più semplice per utilizzare qualsiasi modello è tramite la CLI:
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-Oppure utilizza direttamente un bundle specifico:
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,18 +18,18 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-Per un utilizzo non interattivo:
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## Modelli scaffold
+## Scaffold templates
 
-I modelli scaffold forniscono uno scheletro di progetto minimo Vite + TypeScript con tsParticles preconfigurato. Sono disponibili per i seguenti framework:
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
-| Framework | Opzione CLI           | Pacchetto                        |
+| Framework | CLI option            | Package                          |
 | --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
@@ -38,7 +38,7 @@ I modelli scaffold forniscono uno scheletro di progetto minimo Vite + TypeScript
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-Esempio:
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,21 +47,21 @@ npm install
 npm run dev
 ```
 
-## Modelli per casi d'uso
+## Use-case templates
 
-I modelli per casi d'uso sono applicazioni di esempio complete che dimostrano l'utilizzo reale di tsParticles.
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
-| Modello     | Descrizione                                              | Nome CLI modello | Pacchetto                         |
-| ----------- | -------------------------------------------------------- | ---------------- | --------------------------------- |
-| Login       | Pagina di login/registrazione con sfondo a particelle    | `login`          | `@tsparticles/template-login`     |
-| Portfolio   | Portfolio personale con hero animato                     | `portfolio`      | `@tsparticles/template-portfolio` |
-| Landing     | Pagina di atterraggio marketing con particelle d'impatto | `landing`        | `@tsparticles/template-landing`   |
-| Tic Tac Toe | Gioco del tris con festa di coriandoli                   | `tictactoe`      | `@tsparticles/template-tictactoe` |
-| Confetti    | Demo del cannone di coriandoli                           | `confetti`       | `@tsparticles/template-confetti`  |
-| Ribbons     | Demo di animazione a nastri                              | `ribbons`        | `@tsparticles/template-ribbons`   |
-| Particles   | Demo classica in stile particles.js                      | `particles`      | `@tsparticles/template-particles` |
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
 
-Esempio:
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,18 +70,18 @@ npm install
 npm run dev
 ```
 
-## Wrapper npm create
+## npm create wrappers
 
-Per i modelli specifici di un bundle, puoi utilizzare wrapper npm create dedicati:
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
-| Comando                         | Modello     | Framework   | Bundle installato        |
+| Command                         | Template    | Framework   | Installed bundle         |
 | ------------------------------- | ----------- | ----------- | ------------------------ |
-| `npm create tsparticles@latest` | Interattivo | Interattivo | Scelta dell'utente       |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
 | `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
 | `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
 | `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## Riferimento CLI
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,7 +93,7 @@ Options:
   -h, --help            Display help
 ```
 
-## Pagine correlate
+## Related pages
 
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)

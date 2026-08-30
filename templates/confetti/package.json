@@ -14,6 +14,14 @@
     "prebuild": "node scripts/prebuild.js",
     "build": "pnpm run prebuild",
     "build:ci": "pnpm run prebuild",
-    "version": "pnpm run build && git add template.json"
+    "version": "pnpm run build && git add template.json",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/confetti": "workspace:*"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.3.4"
   }
 }

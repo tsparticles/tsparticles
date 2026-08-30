@@ -348,7 +348,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       const pColor = particle.getFillColor();
 
       if (pColor) {
-        const mixedColor = rgbToHsl(colorMix(pColor, mod.finalColor, ratioOffset - ratio, ratio));
+        const mixedColor = rgbToHsl(colorMix(pColor, mod.finalColor, ratioOffset - ratio, ratio, this.container.hdr));
 
         mod.fillColor = mixedColor;
         mod.strokeColor = mixedColor;

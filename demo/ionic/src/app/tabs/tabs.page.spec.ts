@@ -1,15 +1,17 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { provideIonicAngular } from "@ionic/angular/standalone";
 
-import { TabsPage } from './tabs.page';
+import { TabsPage } from "./tabs.page";
 
-describe('TabsPage', () => {
+describe("TabsPage", () => {
   let component: TabsPage;
   let fixture: ComponentFixture<TabsPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TabsPage],
+      imports: [TabsPage],
+      providers: [provideIonicAngular()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
@@ -20,7 +22,7 @@ describe('TabsPage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

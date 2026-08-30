@@ -46,8 +46,14 @@ export function drawLight(
     return;
   }
 
-  gradientAmbientLight.addColorStop(gradientPos.min, getStyleFromRgb(gradientRgb.start, container.hdr));
-  gradientAmbientLight.addColorStop(gradientPos.max, getStyleFromRgb(gradientRgb.stop, container.hdr));
+  gradientAmbientLight.addColorStop(
+    gradientPos.min,
+    getStyleFromRgb(gradientRgb.start, container.hdr, undefined, container.peakNits, container.hdrMode),
+  );
+  gradientAmbientLight.addColorStop(
+    gradientPos.max,
+    getStyleFromRgb(gradientRgb.stop, container.hdr, undefined, container.peakNits, container.hdrMode),
+  );
 
   context.fillStyle = gradientAmbientLight;
   context.fill();
@@ -109,7 +115,7 @@ export function drawParticleShadow(
     });
   }
 
-  const shadowColor = getStyleFromRgb(shadowRgb, container.hdr),
+  const shadowColor = getStyleFromRgb(shadowRgb, container.hdr, undefined, container.peakNits, container.hdrMode),
     lastOffset = 1,
     firstPos = 0,
     last = points.length - lastOffset;

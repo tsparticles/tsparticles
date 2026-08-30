@@ -1,16 +1,16 @@
-# 模板和资源
+# Templates and Resources
 
-tsParticles 提供两类模板：**脚手架模板**（框架骨架）和**用例模板**（完整示例应用）。
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## 通过 CLI 快速开始
+## Quick start with CLI
 
-使用模板最简单的方式是通过 CLI：
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-或者直接使用特定的包：
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,27 +18,27 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-非交互式用法：
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## 脚手架模板
+## Scaffold templates
 
-脚手架模板提供了一个最小的 Vite + TypeScript 项目骨架，并预配置了 tsParticles。以下框架可用：
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
-| 框架    | CLI 选项              | 包                               |
-| ------- | --------------------- | -------------------------------- |
-| Vanilla | `--framework vanilla` | `@tsparticles/template-scaffold` |
-| React   | `--framework react`   | `@tsparticles/template-scaffold` |
-| Vue 3   | `--framework vue3`    | `@tsparticles/template-scaffold` |
-| Angular | `--framework angular` | `@tsparticles/template-scaffold` |
-| Svelte  | `--framework svelte`  | `@tsparticles/template-scaffold` |
-| Solid   | `--framework solid`   | `@tsparticles/template-scaffold` |
+| Framework | CLI option            | Package                          |
+| --------- | --------------------- | -------------------------------- |
+| Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
+| React     | `--framework react`   | `@tsparticles/template-scaffold` |
+| Vue 3     | `--framework vue3`    | `@tsparticles/template-scaffold` |
+| Angular   | `--framework angular` | `@tsparticles/template-scaffold` |
+| Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
+| Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-示例：
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,21 +47,21 @@ npm install
 npm run dev
 ```
 
-## 用例模板
+## Use-case templates
 
-用例模板是完整的示例应用，展示了 tsParticles 的实际应用场景。
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
-| 模板        | 描述                         | CLI 模板名称 | 包                                |
-| ----------- | ---------------------------- | ------------ | --------------------------------- |
-| Login       | 带粒子背景的登录/注册页面    | `login`      | `@tsparticles/template-login`     |
-| Portfolio   | 带动画英雄区的个人作品集     | `portfolio`  | `@tsparticles/template-portfolio` |
-| Landing     | 带冲击力粒子的营销着陆页     | `landing`    | `@tsparticles/template-landing`   |
-| Tic Tac Toe | 带五彩纸屑庆祝的井字游戏     | `tictactoe`  | `@tsparticles/template-tictactoe` |
-| Confetti    | 五彩纸屑大炮演示             | `confetti`   | `@tsparticles/template-confetti`  |
-| Ribbons     | 丝带动画演示                 | `ribbons`    | `@tsparticles/template-ribbons`   |
-| Particles   | 经典的 particles.js 风格演示 | `particles`  | `@tsparticles/template-particles` |
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
 
-示例：
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,18 +70,18 @@ npm install
 npm run dev
 ```
 
-## npm create 包装器
+## npm create wrappers
 
-对于特定包的模板，您可以使用专用的 npm create 包装器：
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
-| 命令                            | 模板        | 框架    | 安装的包                 |
-| ------------------------------- | ----------- | ------- | ------------------------ |
-| `npm create tsparticles@latest` | 交互式      | 交互式  | 用户选择                 |
-| `npm create particles@latest`   | `particles` | Vanilla | `@tsparticles/particles` |
-| `npm create confetti@latest`    | `confetti`  | Vanilla | `@tsparticles/confetti`  |
-| `npm create ribbons@latest`     | `ribbons`   | Vanilla | `@tsparticles/ribbons`   |
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## CLI 参考
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,7 +93,7 @@ Options:
   -h, --help            Display help
 ```
 
-## 相关页面
+## Related pages
 
 - [`/guide/frameworks`](/guide/frameworks)
 - [`/guide/wrappers`](/guide/wrappers)

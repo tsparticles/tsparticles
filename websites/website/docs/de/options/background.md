@@ -1,16 +1,16 @@
-# Hintergrund und Leinwand
+# Background & Canvas
 
-Dieser Abschnitt steuert die Leinwandebene und das Vollbildverhalten.
+This section controls the canvas layer and full-screen behavior.
 
-## Ebenenreihenfolge (hinten nach vorne)
+## Layer order (back to front)
 
-1. **CSS-Hintergrund** (`color`, `image`, `position`, `repeat`, `size`) — als DOM-Canvas-Stil angewendet
-2. **`clear()`** — Canvas-Pixel pro Frame löschen
-3. **`background.element` Auto-Zeichnung** — wenn gesetzt, `ctx.drawImage(element, ...)` zeichnet das externe Element ein
-4. **`background.draw` Callback** — wenn gesetzt, mit dem Haupt-Rendering-Kontext + Delta aufgerufen
-5. **Partikel** — darüber gezeichnet
+1. **CSS background** (`color`, `image`, `position`, `repeat`, `size`) — applied as DOM canvas style
+2. **`clear()`** — canvas pixel clear each frame
+3. **`background.element` auto-draw** — if set, `ctx.drawImage(element, ...)` composites the external element as-is
+4. **`background.draw` callback** — if set, called with the main rendering context + delta
+5. **Particles** — drawn on top
 
-`element` und `draw` sind **unabhängige Ebenen**. Beide sind optional und können zusammen oder separat verwendet werden.
+`element` and `draw` are **independent layers**. Both are optional and can be used together or separately.
 
 ## `background`
 
@@ -24,27 +24,27 @@ background: {
 }
 ```
 
-| Schlüssel  | Typ                                                                                          | Beschreibung                                                                                                 |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `color`    | `string` / `object`                                                                          | Hintergrundfarbe der Leinwand.                                                                               |
-| `opacity`  | `number`                                                                                     | Alphakanal für die Hintergrundfarbe, von `0` bis `1`.                                                        |
-| `image`    | `string`                                                                                     | CSS `background-image` Wert (z.B. `url('...')`).                                                             |
-| `position` | `string`                                                                                     | CSS `background-position` Wert.                                                                              |
-| `repeat`   | `string`                                                                                     | CSS `background-repeat` Wert.                                                                                |
-| `size`     | `string`                                                                                     | CSS `background-size` Wert.                                                                                  |
-| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | Externes Element, das pro Frame via `drawImage` automatisch gezeichnet wird. Nicht von der Engine verwaltet. |
-| `draw`     | `(context, delta) => void`                                                                   | Pro-Frame Callback für benutzerdefinierte Hintergrundzeichnung auf dem Haupt-Canvas-Kontext.                 |
+| Key        | Type                                                                                         | Description                                                                        |
+| ---------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `color`    | `string` / `object`                                                                          | Canvas background color. Supports {@link IColor}.                                  |
+| `opacity`  | `number`                                                                                     | Alpha channel for the background color, from `0` to `1`.                           |
+| `image`    | `string`                                                                                     | CSS `background-image` value (e.g. `url('...')`).                                  |
+| `position` | `string`                                                                                     | CSS `background-position` value.                                                   |
+| `repeat`   | `string`                                                                                     | CSS `background-repeat` value.                                                     |
+| `size`     | `string`                                                                                     | CSS `background-size` value.                                                       |
+| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element auto-drawn each frame via `drawImage`. Not managed by the engine. |
+| `draw`     | `(context, delta) => void`                                                                   | Per-frame custom background callback on the main canvas context.                   |
 
 ### `element`
 
-Wenn `element` gesetzt ist, wird der aktuelle visuelle Inhalt des Elements jedes Frame via `ctx.drawImage()` auf die Hauptleinwand gezeichnet. Das Element wird **nicht von der Engine verwaltet** — externer Code kümmert sich um seine Darstellung.
+When `element` is set, the element's current visual content is drawn onto the main canvas each frame via `ctx.drawImage()`. The element is **not managed** by the engine — external code handles its rendering.
 
-Unterstützte Elementtypen:
+Supported element types:
 
 - `HTMLCanvasElement` / `OffscreenCanvas`
-- `HTMLVideoElement` (zeichnet den aktuellen Frame)
+- `HTMLVideoElement` (draws the current frame)
 - `HTMLImageElement`
-- CSS-Selektor-String, der eines der oben genannten im DOM findet
+- CSS selector string matching any of the above in the DOM
 
 ```json
 {
@@ -55,7 +55,7 @@ Unterstützte Elementtypen:
 ```
 
 ```ts
-// Ein externes <video>-Element als Hintergrund automatisch zeichnen
+// Auto-draw an external <video> element as background
 tsParticles.load({
   id: "tsparticles",
   options: {
@@ -68,7 +68,7 @@ tsParticles.load({
 
 ### `draw`
 
-Ein Pro-Frame Callback für benutzerdefinierte Hintergrunddarstellung. Erhält immer den **Haupt-Canvas-Kontext** (`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`), niemals den Kontext des Elements.
+A per-frame callback for custom background rendering. Always receives the **main canvas context** (`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`), never the element's context.
 
 ```json
 {
@@ -78,7 +78,7 @@ Ein Pro-Frame Callback für benutzerdefinierte Hintergrunddarstellung. Erhält i
 }
 ```
 
-(TypeScript verwendet eine Funktionsreferenz, keinen String.)
+(TypeScript uses a function reference, not a string.)
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -89,9 +89,9 @@ const drawBackground = (ctx: BackgroundDrawContext, delta: IDelta): void => {
 };
 ```
 
-### Kombiniertes Element + Draw
+### Combined element + draw
 
-Beide Ebenen laufen unabhängig voneinander in jedem Frame. Das Element wird zuerst gezeichnet, dann der Draw-Callback:
+Both layers run independently every frame. Element is drawn first, then the draw callback:
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -119,10 +119,10 @@ fullScreen: {
 }
 ```
 
-- `enable`: Macht die Leinwand zum vollständigen Ansichtsfenster.
-- `zIndex`: nützlich, um Partikel hinter Ihrem Inhalt zu platzieren.
+- `enable`: makes the canvas full viewport.
+- `zIndex`: useful to place particles behind your content.
 
-Legen Sie für eingebettete Playgrounds und Inline-Dokumentvorschauen Folgendes fest:
+For embedded playgrounds and inline docs previews, set:
 
 ```ts
 fullScreen: {
@@ -136,10 +136,10 @@ fullScreen: {
 detectRetina: true;
 ```
 
-Verbessert das Rendering auf HiDPI-Bildschirmen, erhöht aber die GPU-/CPU-Last.
+Improves rendering on HiDPI screens, but increases GPU/CPU load.
 
-## Praktische Hinweise
+## Practical notes
 
-- Für Landingpages verwenden Sie `fullScreen.enable: true` mit `zIndex: -1`.
-- Wenn Sie auf Mobilgeräten eine Verlangsamung feststellen, versuchen Sie es mit `detectRetina: false`.
-- Wenn eine Konfiguration für den Vollbildmodus konzipiert ist, deaktivieren Sie `fullScreen`, bevor Sie sie in einen begrenzten Abschnitt einbetten.
+- For landing pages, use `fullScreen.enable: true` with `zIndex: -1`.
+- If you see slowdowns on mobile, try `detectRetina: false`.
+- If a config is designed for fullscreen, disable `fullScreen` before embedding it in a bounded section.

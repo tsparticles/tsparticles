@@ -1,24 +1,24 @@
 # Bundle: Fireworks
 
-`@tsparticles/fireworks` предоставляет упрощённое API для создания эффектов фейерверков одним вызовом функции. Поддерживает звуки, пользовательские цвета и управление экземпляром (пауза/воспроизведение).
+`@tsparticles/fireworks` provides a simplified API for creating fireworks effects with a single function call. Supports sounds, custom colors, and instance control (pause/play).
 
-## Включённые возможности
+## Included features
 
-**Формы:** линия, круг (из basic)
+**Shapes:** line, circle (from basic)
 
-**Внутренние плагины:** эмиттеры, emitters-shape-square, blend (смешивание), звуки
+**Internal plugins:** emitters, emitters-shape-square, blend (blending), sounds
 
-**Обновления:** destroy, жизнь, paint, вращение
+**Updaters:** destroy, life, paint, rotate
 
-**API:** `fireworks(options)` — возвращает управляемый экземпляр
+**API:** `fireworks(options)` — returns a controllable instance
 
-## Когда использовать
+## When to use
 
-- Эффект для Нового года или праздника
-- Праздничный интерфейс
-- Вы не хотите настраивать движок вручную
+- New Year or celebration effect
+- Celebration UI
+- You don't want to configure the engine manually
 
-## Установка
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,17 +29,17 @@ pnpm add @tsparticles/fireworks
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
-// Базовый эффект
+// Basic effect
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
   sounds: true,
 });
 
-// Управление экземпляром
+// Instance control
 instance?.pause();
 instance?.play();
 
-// На конкретном canvas
+// On a specific canvas
 await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
@@ -47,35 +47,35 @@ await fireworks("my-canvas", {
 });
 ```
 
-### CDN (тег script)
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
 <script>
-  // Немедленный запуск фейерверков
+  // Immediate fireworks
   fireworks();
 </script>
 ```
 
-### Основные параметры
+### Main parameters
 
-| Параметр     | Тип          | По умолчанию | Описание                     |
-| ------------ | ------------ | ------------ | ---------------------------- |
-| `colors`     | string[]     | —            | Цвета взрывов                |
-| `rate`       | number       | —            | Фейерверков в секунду        |
-| `speed`      | { min, max } | —            | Скорость частиц              |
-| `sounds`     | boolean      | true         | Включить звуковые эффекты    |
-| `gravity`    | number       | —            | Гравитация (по умолчанию: 0) |
-| `opacity`    | number       | —            | Прозрачность (0-1)           |
-| `brightness` | { min, max } | —            | Яркость взрыва               |
+| Parameter    | Type         | Default | Description          |
+| ------------ | ------------ | ------- | -------------------- |
+| `colors`     | string[]     | —       | Explosion colors     |
+| `rate`       | number       | —       | Fireworks per second |
+| `speed`      | { min, max } | —       | Particle speed       |
+| `sounds`     | boolean      | true    | Enable sound effects |
+| `gravity`    | number       | —       | Gravity (default: 0) |
+| `opacity`    | number       | —       | Opacity (0-1)        |
+| `brightness` | { min, max } | —       | Explosion brightness |
 
-## Частые ошибки
+## Common mistakes
 
-- Думать, что `tsParticles` экспортируется из `@tsparticles/fireworks` — это не так.
-- Вызов `fireworks()` в цикле без управления экземпляром — эффект уже непрерывный.
-- Остановка экземпляра при уходе со страницы не производится — вызывайте `instance?.pause()` или `instance?.stop()`.
+- Thinking `tsParticles` is exported by `@tsparticles/fireworks` — it is not.
+- Calling `fireworks()` in a loop without managing the instance — the effect is already continuous.
+- Not stopping the instance when leaving the page — call `instance?.pause()` or `instance?.stop()`.
 
-## См. также
+## See also
 
-- [Обзор bundle](/ru/guide/bundles)
-- [Bundle конфетти](/ru/guide/bundles-confetti)
+- [Bundle overview](/guide/bundles)
+- [Confetti bundle](/guide/bundles-confetti)

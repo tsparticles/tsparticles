@@ -277,9 +277,9 @@ The options generator is intentionally simple. Complex descriptions may produce 
 |-----------|---------|-----------|-------------|
 | `vanilla` | (none) | DOM element | `tsParticles.load()` |
 | `react` | `@tsparticles/react` | `<Particles>` | `initParticlesEngine` + `<Particles>` |
-| `vue3` | `@tsparticles/vue3` | `<vue-particles>` | `onMounted` + `<vue-particles>` |
-| `svelte` | `@tsparticles/svelte` | `<svelte-particles>` | `<svelte-particles>` |
-| `angular` | `@tsparticles/angular` | `<tsparticles>` | Service + template |
+| `vue3` | `@tsparticles/vue3` | `<vue-particles>` | Vue app plugin + `<vue-particles>` |
+| `svelte` | `@tsparticles/svelte` | `<Particles>` | `initParticlesEngine` + `<Particles>` |
+| `angular` | `@tsparticles/angular` | `<ngx-particles>` | `NgParticlesService.init(...)` + `<ngx-particles>` |
 
 ### 5.2 Code templates per framework
 
@@ -334,49 +334,69 @@ export function ParticlesBackground() {
 
 #### Vue 3
 
-```vue
-<script setup>
-import { onMounted } from "vue";
-import { vueParticles } from "@tsparticles/vue3";
+```typescript
+// main.ts
+import { createApp } from "vue";
+import type { Engine } from "@tsparticles/engine";
+import Particles from "@tsparticles/vue3";
 import { loadSlim } from "@tsparticles/slim";
 
-// OR for specialized bundles:
-// import { confetti } from "@tsparticles/confetti";
+import App from "./App.vue";
 
-onMounted(async () => {
-  await loadSlim(tsParticles);
+async function registerParticles(engine: Engine): Promise<void> {
+  await loadSlim(engine);
+}
+
+const app = createApp(App);
+
+app.use(Particles, {
+  init: registerParticles,
 });
-</script>
 
+app.mount("#app");
+```
+
+```vue
 <template>
   <vue-particles
     id="tsparticles"
-    :options="/* generated options */"
+    :options="options"
+    @particles-loaded="particlesLoaded"
   />
 </template>
+
+<script setup lang="ts">
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+
+const options: ISourceOptions = { /* generated options */ };
+
+function particlesLoaded(container?: Container): void {
+  console.log(container);
+}
+</script>
 ```
 
 #### Svelte
 
 ```svelte
 <script>
-  import SvelteParticles from "@tsparticles/svelte";
+  import Particles, { initParticlesEngine } from "@tsparticles/svelte";
   import { loadSlim } from "@tsparticles/slim";
 
-  // OR for specialized bundles:
-  // import { confetti } from "@tsparticles/confetti";
-
   const options = { /* generated options */ };
+  const onParticlesLoaded = (event) => {
+    console.log(event.detail.particles);
+  };
 
-  async function init(engine) {
+  void initParticlesEngine(async (engine) => {
     await loadSlim(engine);
-  }
+  });
 </script>
 
-<SvelteParticles
+<Particles
   id="tsparticles"
-  {options}
-  {init}
+  options={options}
+  on:particlesLoaded={onParticlesLoaded}
 />
 ```
 
@@ -385,19 +405,28 @@ onMounted(async () => {
 ```typescript
 // component.ts
 import { Component, OnInit } from "@angular/core";
-import { tsParticles } from "@tsparticles/engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
+import { NgParticlesService } from "@tsparticles/angular";
 import { loadSlim } from "@tsparticles/slim";
 
 @Component({
   selector: "app-particles",
-  template: `<tsparticles id="tsparticles" [options]="particlesOptions"></tsparticles>`,
+  template: `<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>`,
 })
 export class ParticlesComponent implements OnInit {
-  particlesOptions = { /* generated options */ };
+  id = "tsparticles";
+  particlesOptions: ISourceOptions = { /* generated options */ };
 
-  async ngOnInit() {
-    await loadSlim(tsParticles);
-    await tsParticles.load({ id: "tsparticles", options: this.particlesOptions });
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
+
+  public ngOnInit(): void {
+    void this.ngParticlesService.init(async engine => {
+      await loadSlim(engine);
+    });
+  }
+
+  public particlesLoaded(container?: Container): void {
+    console.log(container);
   }
 }
 ```
@@ -407,19 +436,29 @@ When `typescript: false`, emit a plain JavaScript component without `OnInit`, ty
 ```javascript
 // component.js
 import { Component } from "@angular/core";
-import { tsParticles } from "@tsparticles/engine";
+import { NgParticlesService } from "@tsparticles/angular";
 import { loadSlim } from "@tsparticles/slim";
 
 @Component({
   selector: "app-particles",
-  template: `<tsparticles id="tsparticles" [options]="particlesOptions"></tsparticles>`,
+  template: `<ngx-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>`,
 })
 export class ParticlesComponent {
+  id = "tsparticles";
   particlesOptions = { /* generated options */ };
 
-  async ngOnInit() {
-    await loadSlim(tsParticles);
-    await tsParticles.load({ id: "tsparticles", options: this.particlesOptions });
+  constructor(ngParticlesService) {
+    this.ngParticlesService = ngParticlesService;
+  }
+
+  ngOnInit() {
+    void this.ngParticlesService.init(async engine => {
+      await loadSlim(engine);
+    });
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
   }
 }
 ```
@@ -480,7 +519,7 @@ interface GenerateCodeOutput {
   /** Shell command to install all packages */
   installCommand: string;
   /** Target framework used for code generation */
-  framework: string;
+  framework: "vanilla" | "react" | "vue3" | "svelte" | "angular";
   /** HTML container element (if needed) */
   html: string;
   /** Complete, ready-to-use code for the target framework */

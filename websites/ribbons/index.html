@@ -6,6 +6,7 @@
     <meta
       name="description"
       content="Create stunning ribbon animations with tsParticles. Lightweight, customizable ribbon effects for any website. Supports React, Vue, Angular, Svelte. Free and open-source."
+      data-i18n="description"
     />
     <meta name="author" content="Matteo Bruni" />
     <meta
@@ -19,10 +20,12 @@
     <meta
       property="og:title"
       content="tsParticles Ribbons | JavaScript Ribbon animations for your website"
+      data-i18n="ogTitle"
     />
     <meta
       property="og:description"
       content="Create stunning ribbon animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more."
+      data-i18n="ogDescription"
     />
     <meta property="og:url" content="https://ribbons.js.org" />
     <meta property="og:site_name" content="tsParticles Ribbons" />
@@ -33,10 +36,12 @@
     <meta
       name="twitter:title"
       content="tsParticles Ribbons | JavaScript Ribbon animations for your website"
+      data-i18n="twitterTitle"
     />
     <meta
       name="twitter:description"
       content="Create stunning ribbon animations with tsParticles. Interactive playground with live code editor."
+      data-i18n="twitterDescription"
     />
     <meta name="twitter:image" content="https://particles.js.org/images/banner3.png" />
 
@@ -66,7 +71,9 @@
       }
     </script>
 
-    <title>tsParticles Ribbons | JavaScript Ribbon animations for your website</title>
+    <title data-i18n="title">
+      tsParticles Ribbons | JavaScript Ribbon animations for your website
+    </title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
   </head>
@@ -111,18 +118,28 @@
 
     <header>
       <div class="header-left">
-        <a class="header-link" href="/about.html">About</a>
-        <a class="header-link" href="/blog/index.html">Blog</a>
-        <a class="header-link" href="/cookie-policy.html">Cookie</a>
-        <a class="header-link" href="/privacy-policy.html">Privacy</a>
+        <a class="header-link" href="/about.html" data-i18n="header.about">About</a>
+        <a class="header-link" href="/blog/index.html" data-i18n="header.blog">Blog</a>
+        <a class="header-link" href="/cookie-policy.html" data-i18n="header.cookie">Cookie</a>
+        <a class="header-link" href="/privacy-policy.html" data-i18n="header.privacy">Privacy</a>
       </div>
       <div class="header-right">
-        <button id="themeToggle" title="Switch Theme" class="theme"></button>
+        <button
+          id="themeToggle"
+          title="Switch Theme"
+          class="theme"
+          data-i18n-title="header.switchTheme"
+        ></button>
+        <select id="languageSelect" class="language-select" aria-label="Language">
+          <option value="en">English</option>
+        </select>
         <a
           class="github-icon"
           title="Visit on GitHub"
           href="https://github.com/matteobruni/tsparticles"
           aria-label="View source on Github"
+          data-i18n-title="header.visitGitHub"
+          data-i18n-aria-label="header.viewSource"
         >
           <svg class="icon">
             <use xlink:href="#octo"></use>
@@ -135,6 +152,8 @@
           aria-label="Join tsParticles Discord"
           target="_blank"
           rel="noopener noreferrer"
+          data-i18n-title="header.joinDiscord"
+          data-i18n-aria-label="header.joinDiscordAria"
         >
           <svg class="icon" viewBox="0 0 24 24">
             <use xlink:href="#discord"></use>
@@ -147,6 +166,8 @@
           aria-label="Visit tsParticles on Reddit"
           target="_blank"
           rel="noopener noreferrer"
+          data-i18n-title="header.visitReddit"
+          data-i18n-aria-label="header.visitRedditAria"
         >
           <svg class="icon" viewBox="0 0 24 24">
             <use xlink:href="#reddit"></use>
@@ -159,6 +180,8 @@
           aria-label="Visit tsParticles website"
           target="_blank"
           rel="noopener noreferrer"
+          data-i18n-title="header.visitWebsite"
+          data-i18n-aria-label="header.visitWebsiteAria"
         >
           <svg class="icon" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
             <path
@@ -203,6 +226,8 @@
           aria-label="Visit tsParticles confetti website"
           target="_blank"
           rel="noopener noreferrer"
+          data-i18n-title="header.visitConfetti"
+          data-i18n-aria-label="header.visitConfettiAria"
         >
           <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path
@@ -249,12 +274,12 @@
     <h1>tsParticles Ribbons</h1>
 
     <div class="intro-section">
-      <p class="intro-lead">
+      <p class="intro-lead" data-i18n="intro.lead">
         Create stunning, flowing ribbon animations for your website with just a few lines of
         JavaScript. tsParticles Ribbons adds beautiful, physics-driven ribbon effects that enhance
         your site's visual appeal without slowing it down.
       </p>
-      <p class="intro-sub">
+      <p class="intro-sub" data-i18n="intro.sub">
         Whether you're building a celebration effect, an interactive background, or a subtle ambient
         animation, ribbons provide an elegant solution that works everywhere — no plugins, no flash,
         just pure HTML5 Canvas.
@@ -262,47 +287,47 @@
     </div>
 
     <div class="features-section">
-      <h2>Why Choose tsParticles Ribbons?</h2>
+      <h2 data-i18n="features.title">Why Choose tsParticles Ribbons?</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <h3>Lightweight &amp; Fast</h3>
-          <p>
+          <h3 data-i18n="features.lightweight.title">Lightweight &amp; Fast</h3>
+          <p data-i18n="features.lightweight.text">
             The entire ribbons bundle weighs just a few kilobytes gzipped. Animations run at 60fps
             using hardware-accelerated Canvas rendering, ensuring smooth performance even on mobile
             devices.
           </p>
         </div>
         <div class="feature-card">
-          <h3>Zero Dependencies</h3>
-          <p>
+          <h3 data-i18n="features.zeroDependencies.title">Zero Dependencies</h3>
+          <p data-i18n="features.zeroDependencies.text">
             Use it with a simple script tag or install via npm. No jQuery, no React, no build tools
             required — though it integrates seamlessly with all major frameworks.
           </p>
         </div>
         <div class="feature-card">
-          <h3>Fully Customizable</h3>
-          <p>
+          <h3 data-i18n="features.customizable.title">Fully Customizable</h3>
+          <p data-i18n="features.customizable.text">
             Control colors, physics, positioning, and timing. Create anything from subtle background
             effects to dramatic celebration bursts with just a few configuration options.
           </p>
         </div>
         <div class="feature-card">
-          <h3>Cross-Browser Compatible</h3>
-          <p>
+          <h3 data-i18n="features.crossBrowser.title">Cross-Browser Compatible</h3>
+          <p data-i18n="features.crossBrowser.text">
             Works in all modern browsers including Chrome, Firefox, Safari, and Edge. Graceful
             fallback for older browsers — your site stays functional everywhere.
           </p>
         </div>
         <div class="feature-card">
-          <h3>Framework Support</h3>
-          <p>
+          <h3 data-i18n="features.frameworkSupport.title">Framework Support</h3>
+          <p data-i18n="features.frameworkSupport.text">
             Official packages available for React, Vue.js, Angular, and Svelte. One-line integration
             with dedicated components that handle canvas lifecycle automatically.
           </p>
         </div>
         <div class="feature-card">
-          <h3>Open Source</h3>
-          <p>
+          <h3 data-i18n="features.openSource.title">Open Source</h3>
+          <p data-i18n="features.openSource.text">
             MIT licensed and backed by the tsParticles community. Full source code available on
             GitHub with comprehensive documentation and examples.
           </p>
@@ -311,29 +336,29 @@
     </div>
 
     <div class="usecases-section">
-      <h2>Perfect For</h2>
+      <h2 data-i18n="usecases.title">Perfect For</h2>
       <ul class="usecases-list">
-        <li>
+        <li data-i18n="usecases.launches">
           <strong>Product launches &amp; announcements:</strong> Celebrate new releases with
           eye-catching ribbon bursts that draw attention to your message.
         </li>
-        <li>
+        <li data-i18n="usecases.holidays">
           <strong>Holiday &amp; seasonal themes:</strong> Add festive ribbon animations for
           holidays, sales events, or special occasions.
         </li>
-        <li>
+        <li data-i18n="usecases.backgrounds">
           <strong>Interactive backgrounds:</strong> Create engaging ambient effects that respond to
           user interactions without distracting from your content.
         </li>
-        <li>
+        <li data-i18n="usecases.gamification">
           <strong>Gamification &amp; rewards:</strong> Trigger ribbon animations when users complete
           actions, earn achievements, or reach milestones.
         </li>
-        <li>
+        <li data-i18n="usecases.portfolio">
           <strong>Portfolio &amp; creative sites:</strong> Add a unique visual element that makes
           your portfolio stand out from the crowd.
         </li>
-        <li>
+        <li data-i18n="usecases.ecommerce">
           <strong>E-commerce &amp; conversions:</strong> Highlight special offers, discount reveals,
           or successful purchases with celebratory effects.
         </li>
@@ -341,13 +366,15 @@
     </div>
 
     <div class="quickstart-section">
-      <h2>Quick Start</h2>
-      <p>Add ribbons to any website in under a minute. Include the script and call one function:</p>
+      <h2 data-i18n="quickstart.title">Quick Start</h2>
+      <p data-i18n="quickstart.intro">
+        Add ribbons to any website in under a minute. Include the script and call one function:
+      </p>
       <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@latest/tsparticles.ribbons.bundle.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   ribbons();
 &lt;/script&gt;</code></pre>
-      <p>
+      <p data-i18n-html="quickstart.outroHtml">
         That's it! Ribbons will fall from random positions across the top of your page. Want to
         customize? Check out the interactive examples below, or read the
         <a href="/blog/customization-guide.html">customization guide</a>.
@@ -356,16 +383,24 @@
 
     <div class="share-menu-wrapper">
       <details class="share-menu">
-        <summary class="share-menu-trigger" aria-label="Share this page">
+        <summary
+          class="share-menu-trigger"
+          aria-label="Share this page"
+          data-i18n-aria-label="share.shareThisPage"
+        >
           <svg class="share-menu-trigger-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M18 16a3 3 0 0 0-2.39 1.18l-6.82-3.4a3.08 3.08 0 0 0 0-1.56l6.82-3.4A3 3 0 1 0 15 7a2.96 2.96 0 0 0 .07.63l-6.86 3.43a3 3 0 1 0 0 1.88l6.86 3.43A2.96 2.96 0 0 0 15 17a3 3 0 1 0 3-1z"
               fill="currentColor"
             />
           </svg>
-          <span>Share</span>
+          <span data-i18n="share.share">Share</span>
         </summary>
-        <div class="social-share" aria-label="Share this page">
+        <div
+          class="social-share"
+          aria-label="Share this page"
+          data-i18n-aria-label="share.shareThisPage"
+        >
           <a
             class="social-share-button"
             data-share-link="facebook"
@@ -381,7 +416,7 @@
                 />
               </svg>
             </span>
-            Facebook
+            <span data-i18n="share.facebook">Facebook</span>
           </a>
           <a
             class="social-share-button"
@@ -398,7 +433,7 @@
                 />
               </svg>
             </span>
-            X</a
+            <span data-i18n="share.x">X</span></a
           >
           <a
             class="social-share-button"
@@ -415,7 +450,7 @@
                 />
               </svg>
             </span>
-            LinkedIn
+            <span data-i18n="share.linkedin">LinkedIn</span>
           </a>
           <a
             class="social-share-button"
@@ -432,7 +467,7 @@
                 />
               </svg>
             </span>
-            Reddit
+            <span data-i18n="share.reddit">Reddit</span>
           </a>
           <a
             class="social-share-button"
@@ -449,7 +484,7 @@
                 />
               </svg>
             </span>
-            Telegram
+            <span data-i18n="share.telegram">Telegram</span>
           </a>
           <a
             class="social-share-button"
@@ -466,7 +501,7 @@
                 />
               </svg>
             </span>
-            WhatsApp
+            <span data-i18n="share.whatsapp">WhatsApp</span>
           </a>
           <a class="social-share-button" data-share-link="email" href="#" rel="noopener noreferrer">
             <span class="social-share-button-icon" aria-hidden="true">
@@ -475,7 +510,7 @@
                 <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" />
               </svg>
             </span>
-            Email</a
+            <span data-i18n="share.email">Email</span></a
           >
           <button id="shareCopyLinkButton" class="social-share-button" type="button">
             <span class="social-share-button-icon" aria-hidden="true">
@@ -489,7 +524,7 @@
                 />
               </svg>
             </span>
-            Copy link
+            <span data-i18n="share.copyLink">Copy link</span>
           </button>
         </div>
       </details>
@@ -502,19 +537,28 @@
         <span class="icon">
           <svg class="icon"><use xlink:href="#code"></use></svg>
         </span>
-        <span> with </span>
+        <span data-i18n="footer.with"> with </span>
         <span class="icon">
           <svg class="icon"><use xlink:href="#heart"></use></svg>
         </span>
-        <span> by <b>tsParticles</b></span>
+        <span data-i18n-html="footer.by"> by <b>tsParticles</b></span>
       </a>
       <div class="footer-links">
-        <a href="/about.html" class="cookie-policy-link">About</a>
-        <a href="/blog/index.html" class="cookie-policy-link">Blog</a>
-        <a href="/cookie-policy.html" class="cookie-policy-link">Cookie Policy</a>
-        <a href="/privacy-policy.html" class="cookie-policy-link">Privacy Policy</a>
+        <a href="/about.html" class="cookie-policy-link" data-i18n="footer.about">About</a>
+        <a href="/blog/index.html" class="cookie-policy-link" data-i18n="footer.blog">Blog</a>
+        <a href="/cookie-policy.html" class="cookie-policy-link" data-i18n="footer.cookiePolicy"
+          >Cookie Policy</a
+        >
+        <a href="/privacy-policy.html" class="cookie-policy-link" data-i18n="footer.privacyPolicy"
+          >Privacy Policy</a
+        >
       </div>
-      <button id="cookiePreferencesButton" class="cookie-preferences-button" type="button">
+      <button
+        id="cookiePreferencesButton"
+        class="cookie-preferences-button"
+        type="button"
+        data-i18n="footer.cookiePreferences"
+      >
         Cookie preferences
       </button>
     </footer>

@@ -11,6 +11,14 @@ import 'ace-builds/src-noconflict/theme-xcode';
 import javascriptWorkerUrl from 'ace-builds/src-noconflict/worker-javascript.js?url';
 import htmlWorkerUrl from 'ace-builds/src-noconflict/worker-html.js?url';
 import cssWorkerUrl from 'ace-builds/src-noconflict/worker-css.js?url';
+import {
+  applyTranslations,
+  currentLocale,
+  getLanguageName,
+  setLocale,
+  supportedLocales,
+  t,
+} from './i18n';
 
 ace.config.setModuleUrl('ace/mode/javascript_worker', javascriptWorkerUrl);
 ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
@@ -157,7 +165,7 @@ const setupShareActions = function () {
 
         const originalLabel = copyButton.textContent;
 
-        copyButton.textContent = 'Copied';
+        copyButton.textContent = t('copied');
 
         trackCopyLink();
 
@@ -227,11 +235,11 @@ document.getElementById('themeToggle').addEventListener('click', function () {
 const modes = [
   {
     id: 'basic',
-    name: 'Basic Ribbons',
+    nameKey: 'modes.basic.name',
     description: [
       {
         cssClass: '',
-        text: 'The default mode... ribbons fall from random positions across the top of the page with default colors and physics.',
+        key: 'modes.basic.description.0',
       },
     ],
     fn: function () {
@@ -241,15 +249,15 @@ const modes = [
 
   {
     id: 'colors',
-    name: 'Custom Colors',
+    nameKey: 'modes.colors.name',
     description: [
       {
         cssClass: '',
-        text: 'You can customize the ribbon colors to match your brand or theme. Use any hex, rgb, or named color.',
+        key: 'modes.colors.description.0',
       },
       {
         cssClass: 'center',
-        text: '🔥 Ocean to flame color transition! 🔥',
+        key: 'modes.colors.description.1',
       },
     ],
     fn: function () {
@@ -267,11 +275,11 @@ const modes = [
 
   {
     id: 'multiple',
-    name: 'Multiple Bursts',
+    nameKey: 'modes.multiple.name',
     description: [
       {
         cssClass: '',
-        text: 'Spawn multiple ribbon bursts with staggered timing for a layered cascading effect.',
+        key: 'modes.multiple.description.0',
       },
     ],
     fn: function () {
@@ -289,11 +297,11 @@ const modes = [
 
   {
     id: 'continuous',
-    name: 'Continuous Fall',
+    nameKey: 'modes.continuous.name',
     description: [
       {
         cssClass: '',
-        text: 'Why click a button repeatedly when you can have code do it for you? Spawn ribbons continuously for 8 seconds from random positions.',
+        key: 'modes.continuous.description.0',
       },
     ],
     fn: function () {
@@ -318,11 +326,11 @@ const modes = [
 
   {
     id: 'fixed-position',
-    name: 'Fixed Position',
+    nameKey: 'modes.fixedPosition.name',
     description: [
       {
         cssClass: '',
-        text: 'A single burst of ribbons from a fixed point (x: 50, y: 0) — useful for triggering from a button or specific element.',
+        key: 'modes.fixedPosition.description.0',
       },
     ],
     fn: function () {
@@ -335,11 +343,11 @@ const modes = [
 
   {
     id: 'custom-canvas',
-    name: 'Custom Canvas',
+    nameKey: 'modes.customCanvas.name',
     description: [
       {
         cssClass: '',
-        text: 'You can limit where the ribbons appear by providing your own canvas element. Great for keeping ribbons within a specific section of your page.',
+        key: 'modes.customCanvas.description.0',
       },
     ],
     fn: function () {
@@ -372,15 +380,15 @@ const modes = [
 
   {
     id: 'ribbons-confetti',
-    name: 'Ribbons + Confetti',
+    nameKey: 'modes.ribbonsConfetti.name',
     description: [
       {
         cssClass: '',
-        text: 'Combine ribbons with confetti for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.',
+        key: 'modes.ribbonsConfetti.description.0',
       },
       {
         cssClass: 'center',
-        text: '🎉 Double the celebration! 🎉',
+        key: 'modes.ribbonsConfetti.description.1',
       },
     ],
     fn: function () {
@@ -439,11 +447,11 @@ function renderModes(modes) {
           <div class="left">
             <h2>
               <a href="#${mode.id}" id="${mode.id}" class="anchor">
-                ${mode.name}
+                ${t(mode.nameKey)}
               </a>
             </h2>
             <button class="run">
-              Run
+              ${t('run')}
               <span class="icon">
                 <svg class="icon">
                   <use xlink:href="#run"></use>
@@ -452,7 +460,7 @@ function renderModes(modes) {
             </button>
           </div>
           <div class="description">
-            ${mode.description.map((d) => `<p class="${d.cssClass}">${d.text}</p>`).join('')}
+            ${mode.description.map((d) => `<p class="${d.cssClass}">${t(d.key)}</p>`).join('')}
           </div>
         </div>
         <div class="editor"></div>
@@ -500,7 +508,31 @@ function getCode(name) {
   return pretty(code);
 }
 
+function initLanguageSelect() {
+  const select = document.getElementById('languageSelect');
+
+  if (!select) {
+    return;
+  }
+
+  select.innerHTML = supportedLocales
+    .map((locale) => {
+      const selected = locale === currentLocale ? ' selected' : '';
+
+      return `<option value="${locale}"${selected}>${getLanguageName(locale)}</option>`;
+    })
+    .join('');
+
+  select.addEventListener('change', () => {
+    setLocale(select.value);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+  applyTranslations();
+
+  initLanguageSelect();
+
   // IMPORTANT: All tsParticles plugins (ribbons, confetti, etc.) must be registered
   // BEFORE the engine is initialized via engine.load(). Once engine.load() runs
   // (triggered by any ribbons() or confetti() call), PluginManager.init() is called

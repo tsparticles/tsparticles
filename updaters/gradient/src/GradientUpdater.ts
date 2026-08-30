@@ -87,7 +87,10 @@ export class GradientUpdater implements IParticleUpdater {
         l: value.l.value,
       };
 
-      fillGradient.addColorStop(stop, getStyleFromHsl(hsl, container.hdr, cOpacity?.value ?? opacity));
+      fillGradient.addColorStop(
+        stop,
+        getStyleFromHsl(hsl, container.hdr, cOpacity?.value ?? opacity, container.peakNits, container.hdrMode),
+      );
     }
 
     return { fill: fillGradient };

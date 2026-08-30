@@ -4,6 +4,20 @@ import { loadEnv } from "vite";
 const base = process.env.VITEPRESS_BASE ?? "/";
 const hostname = "https://particles.js.org";
 
+const buildLocalesOnly = process.env.VITEPRESS_LOCALES_ONLY === "true";
+
+const srcExclude = process.env.VITEPRESS_EXCLUDE
+  ? process.env.VITEPRESS_EXCLUDE.split(",").map((p) => p.trim()).filter(Boolean)
+  : [];
+
+const ignoreDeadLinks: Array<RegExp | string> = [/^\/docs\//];
+
+if (buildLocalesOnly) {
+  ignoreDeadLinks.push(
+    /^\/(?:api|demos|guide|guides|migrations|options|playground|showcase)(?:\/|$)/,
+  );
+}
+
 const loadedEnv = loadEnv("", process.cwd(), "VITE_");
 const gaMeasurementId = loadedEnv.VITE_GA_MEASUREMENT_ID ?? "";
 
@@ -393,7 +407,8 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
   base,
-  ignoreDeadLinks: [/^\/docs\//],
+  ignoreDeadLinks,
+  srcExclude,
   transformHead: ({ pageData }) => {
     let path = pageData.relativePath.replace(/\.md$/, "").replace(/\/?index$/, "");
     const localePrefixesMap: Record<string, string> = {

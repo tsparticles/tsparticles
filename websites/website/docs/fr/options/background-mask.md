@@ -1,10 +1,10 @@
-# Masque de fond
+# Background Mask
 
-`backgroundMask` permet aux particules de traverser ou de se mélanger à un calque d'arrière-plan masqué.
+`backgroundMask` lets particles punch through or blend with a masked background layer.
 
-## Exemples
+## Examples
 
-### Couverture statique (legacy)
+### Static cover (legacy)
 
 ```ts
 backgroundMask: {
@@ -18,7 +18,7 @@ backgroundMask: {
 }
 ```
 
-### Draw callback dynamique _(depuis 4.3.0)_
+### Dynamic draw callback _(since 4.3.0)_
 
 ```ts
 backgroundMask: {
@@ -33,7 +33,7 @@ backgroundMask: {
 }
 ```
 
-### Élément externe _(depuis 4.3.0)_
+### External element _(since 4.3.0)_
 
 ```ts
 backgroundMask: {
@@ -45,38 +45,38 @@ backgroundMask: {
 }
 ```
 
-## Propriétés
+## Properties
 
-| Propriété   | Type                       | Description                                                        |
-| ----------- | -------------------------- | ------------------------------------------------------------------ |
-| `enable`    | `boolean`                  | Active le masquage du fond                                         |
-| `composite` | `GlobalCompositeOperation` | Opération de composition canvas (par défaut : `"destination-out"`) |
-| `cover`     | `BackgroundMaskCover`      | Configuration du couvercle                                         |
+| Property    | Type                       | Description                                               |
+| ----------- | -------------------------- | --------------------------------------------------------- |
+| `enable`    | `boolean`                  | Activates background masking                              |
+| `composite` | `GlobalCompositeOperation` | Canvas composite operation (default: `"destination-out"`) |
+| `cover`     | `BackgroundMaskCover`      | Cover configuration                                       |
 
 ### `cover` (BackgroundMaskCover)
 
-| Propriété | Type                                                                                         | Description                                                                                      |
-| --------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `color`   | `string` / `OptionsColor`                                                                    | Couleur de couverture                                                                            |
-| `image`   | `string`                                                                                     | URL de l'image de couverture                                                                     |
-| `opacity` | `number`                                                                                     | Niveau alpha de couverture (0..1, par défaut : `1`)                                              |
-| `element` | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | Élément externe ou sélecteur CSS dessiné automatiquement à chaque frame _(depuis 4.3.0)_         |
-| `draw`    | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | Callback de dessin personnalisé sur le contexte canvas principal à chaque frame _(depuis 4.3.0)_ |
+| Property  | Type                                                                                         | Description                                                            |
+| --------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `color`   | `string` / `OptionsColor`                                                                    | Cover color                                                            |
+| `image`   | `string`                                                                                     | Cover image URL                                                        |
+| `opacity` | `number`                                                                                     | Cover alpha level (0..1, default: `1`)                                 |
+| `element` | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element or CSS selector auto-drawn each frame _(since 4.3.0)_ |
+| `draw`    | `(context: BackgroundDrawContext, delta: IDelta) => void`                                    | Custom draw callback on main canvas context each frame _(since 4.3.0)_ |
 
-### Ordre des calques _(depuis 4.3.0)_
+### Layer order _(since 4.3.0)_
 
-1. `clear()` — effacement des pixels du canvas
-2. `cover.element` dessin automatique (si défini)
-3. `cover.draw` callback (si défini)
-4. Couverture statique (couleur/image) — solution de repli
-5. Opération de composition globale
+1. `clear()` — canvas pixel clear
+2. `cover.element` auto-draw (if set)
+3. `cover.draw` callback (if set)
+4. Static cover (color/image) — fallback
+5. Global composite operation
 
-## Quand l'utiliser
+## When to use it
 
-- Effets de type projecteur.
-- Sections de héros riches en contraste.
-- Interactions superposées sur fond sombre.
+- Spotlight-like effects.
+- Contrast-heavy hero sections.
+- Layered interactions on dark backgrounds.
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/BackgroundMask.md>

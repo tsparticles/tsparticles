@@ -1,31 +1,31 @@
 ---
-title: Inferno 指南
-description: 将 tsParticles 与 Inferno 应用集成的完整指南。
+title: Inferno Guide
+description: Complete guide for integrating tsParticles with Inferno applications.
 ---
 
-# Inferno 指南
+# Inferno Guide
 
-## 目录
+## Table of Contents
 
-1. [安装](#installation)
-2. [基本使用](#basic-usage)
-3. [引擎初始化](#engine-initialization)
-4. [自定义配置](#custom-configuration)
-5. [预设使用](#preset-usage)
-6. [组件模式](#component-pattern)
-7. [TypeScript 示例](#typescript-example)
+1. [Installation](#installation)
+2. [Basic Usage](#basic-usage)
+3. [Engine Initialization](#engine-initialization)
+4. [Custom Configuration](#custom-configuration)
+5. [Preset Usage](#preset-usage)
+6. [Component Pattern](#component-pattern)
+7. [TypeScript Example](#typescript-example)
 
 ---
 
-## 安装
+## Installation
 
-通过 npm 安装 Inferno 封装和 tsParticles 引擎：
+Install the Inferno wrapper and the tsParticles engine via npm:
 
 ```bash
 npm install @tsparticles/inferno tsparticles
 ```
 
-可选安装 slim 预设以获得更小的打包体积：
+Optionally install the slim preset for a smaller bundle:
 
 ```bash
 npm install @tsparticles/slim
@@ -33,9 +33,9 @@ npm install @tsparticles/slim
 
 ---
 
-## 基本使用
+## Basic Usage
 
-`@tsparticles/inferno` 包导出两个项目：`ParticlesProvider` 和 `Particles`。用 `ParticlesProvider` 包裹粒子组件，它接受一个用于引擎设置的 `init` 回调，然后使用 `<Particles>` 渲染粒子画布。
+The `@tsparticles/inferno` package exports two items: `ParticlesProvider` and `Particles`. Wrap your particle components with `ParticlesProvider` which accepts an `init` callback for engine setup, then use `<Particles>` to render the particle canvas.
 
 ```tsx
 import { render } from "inferno";
@@ -83,41 +83,41 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-`ParticlesProvider` 必须是每个 `<Particles>` 组件的祖先。它初始化引擎一次，并通过上下文将其提供给所有子组件。
+`ParticlesProvider` must be an ancestor of every `<Particles>` component. It initializes the engine once and provides it via context to all children.
 
 ---
 
-## 引擎初始化
+## Engine Initialization
 
-`ParticlesProvider` 接受一个 `init` 属性，该属性接收引擎实例。在这里加载应用所需的功能、形状、预设或更新器。
+The `ParticlesProvider` accepts an `init` prop that receives the engine instance. This is where you load the features, shapes, presets, or updaters your app needs.
 
 ```tsx
-// 轻量级 — 圆形粒子、基本移动、连线
+// Lightweight — circle particles, basic movement, links
 <ParticlesProvider init={async engine => {
   const { loadSlim } = await import("@tsparticles/slim");
   await loadSlim(engine);
 }}>
 
-// 完整功能集 — 所有形状、交互、效果
+// Full feature set — all shapes, interactions, effects
 <ParticlesProvider init={async engine => {
   const { loadFull } = await import("tsparticles");
   await loadFull(engine);
 }}>
 
-// 特定预设 — 五彩纸屑、烟花、雪花、星星
+// Preset-specific — confetti, fireworks, snow, stars
 <ParticlesProvider init={async engine => {
   const { loadConfettiPreset } = await import("@tsparticles/preset-confetti");
   await loadConfettiPreset(engine);
 }}>
 ```
 
-在回调中使用动态 `import()` 可以实现代码分割：预设或功能模块仅在粒子组件挂载时加载。
+Using dynamic `import()` inside the callback enables code splitting: the preset or feature modules are loaded only when the particle component mounts.
 
 ---
 
-## 自定义配置
+## Custom Configuration
 
-以下是一个包含交互功能、多种形状类型和深色渐变背景的完整配置。
+Below is a fully featured configuration with interactivity, multiple shape types, and a dark gradient background.
 
 ```tsx
 import { render } from "inferno";
@@ -190,9 +190,9 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## 预设使用
+## Preset Usage
 
-`@tsparticles/configs` 包提供预构建的配置，你可以直接传递给 `options` 属性。在 `ParticlesProvider` 的 init 回调中使用相应的预设加载器。
+The `@tsparticles/configs` package offers pre-built configurations that you can pass straight to the `options` prop. Combine them with the corresponding preset loader in the `ParticlesProvider` init callback.
 
 ```tsx
 import { render } from "inferno";
@@ -215,13 +215,13 @@ function App() {
 render(<App />, document.getElementById("app"));
 ```
 
-你可以将 `configs.confetti` 替换为任何可用的预设：`configs.basic`、`configs.fireworks`、`configs.snow`、`configs.stars` 等。
+You can swap `configs.confetti` with any available preset: `configs.basic`, `configs.fireworks`, `configs.snow`, `configs.stars`, etc.
 
 ---
 
-## 组件模式
+## Component Pattern
 
-对于较大的应用，将粒子逻辑组织到专用组件中，并使用 `particlesLoaded` 回调来访问 `Container` 实例。
+For larger applications, structure your particle logic into a dedicated component with a `particlesLoaded` callback for accessing the `Container` instance.
 
 ```tsx
 import { render, Component } from "inferno";
@@ -267,7 +267,7 @@ class ParticlesBackground extends Component {
 
   handleParticlesLoaded(container?: Container) {
     this.container = container;
-    console.log("粒子已加载：", container?.id);
+    console.log("Particles loaded:", container?.id);
   }
 
   render() {
@@ -298,18 +298,9 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-## Reactive Behavior
+## TypeScript Example
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## TypeScript 示例
-
-以下是一个完整的、带类型标注的 Inferno 应用，包含响应式粒子配置和全屏背景。
+Here is a complete, typed Inferno application with a responsive particle configuration and full-screen background.
 
 ```tsx
 import { render } from "inferno";
@@ -359,7 +350,7 @@ function handleInit(engine: Engine): Promise<void> {
 }
 
 function handleParticlesLoaded(container?: Container): void {
-  console.log("tsParticles 容器就绪：", container?.id);
+  console.log("tsParticles container ready:", container?.id);
 }
 
 function App() {
@@ -367,7 +358,7 @@ function App() {
     <ParticlesProvider init={handleInit}>
       <div style={{ position: "relative", zIndex: 1, color: "#fff", textAlign: "center", paddingTop: "2rem" }}>
         <h1>tsParticles + Inferno</h1>
-        <p>完整 TypeScript 集成</p>
+        <p>Full TypeScript integration</p>
       </div>
       <Particles id="tsparticles" options={particlesOptions} particlesLoaded={handleParticlesLoaded} />
     </ParticlesProvider>
@@ -379,4 +370,15 @@ render(<App />, document.getElementById("app"));
 
 ---
 
-你现在已拥有将 tsParticles 集成到 Inferno 应用所需的全部内容。每个示例都是独立的，可直接复制到你的项目中。
+## Reactive Behavior
+
+The `<Particles>` component reacts to prop changes at runtime:
+
+- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+
+On component unmount, the particles container is automatically destroyed — no orphan animations remain.
+
+---
+
+You now have everything needed to integrate tsParticles into an Inferno application. Each example is self-contained and ready to be copied into your project.

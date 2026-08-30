@@ -1,8 +1,8 @@
-# प्लगइन विकल्प: एमिटर
+# Plugin Option: Emitters
 
-`emitters` कणों को गतिशील रूप से उत्पन्न करता है और प्लगइन-संचालित होता है।
+`emitters` spawns particles dynamically and is plugin-driven.
 
-## उदाहरण
+## Example
 
 ```ts
 emitters: {
@@ -17,11 +17,11 @@ emitters: {
 }
 ```
 
-## नोट्स
+## Notes
 
-- विस्फोट प्रभाव और गतिशील कण निर्माण के लिए बढ़िया।
-- प्रदर्शन में बढ़ोतरी से बचने के लिए उत्सर्जन दरें संतुलित रखें।
+- Great for burst effects and dynamic particle generation.
+- Keep emission rates balanced to avoid performance spikes.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Emitters.md>

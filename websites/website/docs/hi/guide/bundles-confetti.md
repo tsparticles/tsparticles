@@ -1,24 +1,24 @@
 # Bundle: Confetti
 
-`@tsparticles/confetti` एक सरलीकृत API प्रदान करता है जो एक फ़ंक्शन कॉल के साथ कॉनफ़ेटी प्रभाव बनाता है। सीधे `tsParticles` से बातचीत करने की आवश्यकता नहीं है।
+`@tsparticles/confetti` provides a simplified API for creating confetti effects with a single function call. No need to interact with `tsParticles` directly.
 
-## शामिल सुविधाएँ
+## Included features
 
-**शेप:** circle, heart, cards (फ़्रेंच सूट: hearts, diamonds, clubs, spades), emoji, images, polygon, square, star
+**Shapes:** circle, heart, cards (French suits: hearts, diamonds, clubs, spades), emoji, images, polygon, square, star
 
-**आंतरिक प्लगइन:** emitters, motion (उपयोगकर्ता की reduced motion प्राथमिकता का सम्मान करता है)
+**Internal plugins:** emitters, motion (respects user's reduced motion preference)
 
-**अपडेटर:** life, roll, rotate, tilt, wobble
+**Updaters:** life, roll, rotate, tilt, wobble
 
-**API:** `confetti(options)` या `confetti(canvasId, options)`
+**API:** `confetti(options)` or `confetti(canvasId, options)`
 
-## कब उपयोग करें
+## When to use
 
-- "बधाई हो!" या "जन्मदिन मुबारक!" बटन
-- त्वरित उत्सव प्रभाव
-- आप मैन्युअल रूप से इंजन कॉन्फ़िगर नहीं करना चाहते
+- "Congratulations!" or "Happy Birthday!" button
+- Quick celebration effect
+- You don't want to configure the engine manually
 
-## इंस्टॉलेशन
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,14 +29,14 @@ pnpm add @tsparticles/confetti
 ```ts
 import { confetti } from "@tsparticles/confetti";
 
-// मूल प्रभाव
+// Basic effect
 await confetti({
   particleCount: 100,
   spread: 70,
   origin: { x: 0.5, y: 0.5 },
 });
 
-// किसी विशिष्ट कैनवास पर
+// On a specific canvas
 await confetti("my-canvas-id", {
   particleCount: 50,
   angle: 90,
@@ -45,7 +45,7 @@ await confetti("my-canvas-id", {
 });
 ```
 
-### CDN (script टैग)
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -58,26 +58,26 @@ await confetti("my-canvas-id", {
 </script>
 ```
 
-### मुख्य पैरामीटर
+### Main parameters
 
-| पैरामीटर        | टाइप     | डिफ़ॉल्ट     | विवरण                                             |
-| --------------- | -------- | ------------ | ------------------------------------------------- |
-| `particleCount` | number   | 50           | कॉनफ़ेटी टुकड़ों की संख्या                        |
-| `spread`        | number   | 60           | फैलाव कोण (डिग्री)                                |
-| `angle`         | number   | 90           | दिशा (डिग्री, 90 = नीचे)                          |
-| `startVelocity` | number   | 30           | प्रारंभिक वेग                                     |
-| `colors`        | string[] | —            | कॉनफ़ेटी रंग                                      |
-| `origin`        | { x, y } | { 0.5, 0.5 } | मूल बिंदु (0-1)                                   |
-| `drift`         | number   | 0            | क्षैतिज बहाव                                      |
-| `shapes`        | string[] | —            | शेप: "circle", "heart", "square", "star", "cards" |
+| Parameter       | Type     | Default      | Description                                          |
+| --------------- | -------- | ------------ | ---------------------------------------------------- |
+| `particleCount` | number   | 50           | Number of confetti pieces                            |
+| `spread`        | number   | 60           | Spread angle (degrees)                               |
+| `angle`         | number   | 90           | Direction (degrees, 90 = down)                       |
+| `startVelocity` | number   | 30           | Initial velocity                                     |
+| `colors`        | string[] | —            | Confetti colors                                      |
+| `origin`        | { x, y } | { 0.5, 0.5 } | Origin point (0-1)                                   |
+| `drift`         | number   | 0            | Horizontal drift                                     |
+| `shapes`        | string[] | —            | Shapes: "circle", "heart", "square", "star", "cards" |
 
-## सामान्य गलतियाँ
+## Common mistakes
 
-- यह सोचना कि `@tsparticles/confetti` से `tsParticles` एक्सपोर्ट होता है — ऐसा नहीं है।
-- अनजाने में उसी कैनवास ID का पुन: उपयोग करना।
-- प्रदर्शन का प्रबंधन किए बिना लूप में `confetti` कॉल करना — उचित अंतराल का उपयोग करें या एनिमेशन समाप्त होने पर रोकें।
+- Thinking `tsParticles` is exported by `@tsparticles/confetti` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Calling `confetti` in a loop without managing performance — use a reasonable interval or stop the animation when done.
 
-## यह भी देखें
+## See also
 
-- [बंडल अवलोकन](/hi/guide/bundles)
-- [आतिशबाज़ी बंडल](/hi/guide/bundles-fireworks)
+- [Bundle overview](/guide/bundles)
+- [Fireworks bundle](/guide/bundles-fireworks)

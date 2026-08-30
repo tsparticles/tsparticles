@@ -19,11 +19,11 @@
   "dependencies": {
     "@tsparticles/astro": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "astro": "^6.4.7",
+    "astro": "^7.2.0",
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "typescript": "^6.0.3"
   }
 }

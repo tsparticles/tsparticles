@@ -21,21 +21,21 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "devDependencies": {
-    "@riotjs/compiler": "^10.0.2",
+    "@riotjs/compiler": "^10.0.4",
     "@riotjs/register": "^10.0.0",
     "@riotjs/webpack-loader": "^10.0.0",
-    "chai": "^4.5.0",
-    "css-loader": "^6.11.0",
+    "chai": "^6.2.2",
+    "css-loader": "^7.1.4",
     "esm": "^3.2.25",
-    "html-webpack-plugin": "^5.6.7",
-    "jsdom": "^29.1.1",
+    "html-webpack-plugin": "^5.6.8",
+    "jsdom": "^30.0.1",
     "jsdom-global": "^3.0.2",
     "mini-css-extract-plugin": "^2.10.2",
-    "mocha": "^11.7.6",
+    "mocha": "^11.8.0",
     "nyc": "^18.0.0",
-    "webpack": "^5.108.4",
-    "webpack-cli": "^7.2.1",
-    "webpack-dev-server": "^5.2.5"
+    "webpack": "^5.110.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
   },
   "dependencies": {
     "@riotjs/hot-reload": "^10.0.0",
@@ -45,7 +45,7 @@
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/riot": "workspace:*",
     "path": "^0.12.7",
-    "riot": "^10.1.4",
+    "riot": "^10.1.6",
     "tsparticles": "workspace:*"
   }
 }

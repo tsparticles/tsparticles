@@ -39,12 +39,21 @@ export function gradient(
 
   const sourcePos = p1.getPosition(),
     destPos = p2.getPosition(),
-    midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
+    midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius(), container.hdr),
     grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-  grad.addColorStop(gradientMin, getStyleFromHsl(color1, container.hdr, opacity));
-  grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, container.hdr, opacity));
-  grad.addColorStop(gradientMax, getStyleFromHsl(color2, container.hdr, opacity));
+  grad.addColorStop(
+    gradientMin,
+    getStyleFromHsl(color1, container.hdr, opacity, container.peakNits, container.hdrMode),
+  );
+  grad.addColorStop(
+    clamp(gradStop, gradientMin, gradientMax),
+    getStyleFromRgb(midRgb, container.hdr, opacity, container.peakNits, container.hdrMode),
+  );
+  grad.addColorStop(
+    gradientMax,
+    getStyleFromHsl(color2, container.hdr, opacity, container.peakNits, container.hdrMode),
+  );
 
   return grad;
 }

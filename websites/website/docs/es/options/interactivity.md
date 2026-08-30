@@ -1,16 +1,16 @@
-# Interactividad
+# Interactivity
 
-Las opciones `interactivity` definen cómo reaccionan las partículas al pasar el cursor o hacer clic.
+`interactivity` options define how particles react to hover/click.
 
-Para referencias enfocadas:
+For focused references:
 
-- [`Interactivity Click`](/es/options/interactivity-click)
-- [`Interactivity Hover`](/es/options/interactivity-hover)
-- [`Interactivity Div`](/es/options/interactivity-div)
-- [`Interactivity Events`](/es/options/interactivity-events)
-- [`Interactivity Modes`](/es/options/interactivity-modes)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
 
-## Estructura básica
+## Base structure
 
 ```ts
 interactivity: {
@@ -47,21 +47,21 @@ interactivity: {
 }
 ```
 
-## Eventos más utilizados
+## Most used events
 
-- `onHover`: retroalimentación inmediata para los usuarios.
-- `onClick`: ráfagas o acciones dirigidas.
-- `resize`: mantiene el comportamiento del lienzo consistente al cambiar el tamaño de la ventana.
-- `onDiv`: apuntar a interacciones sobre elementos específicos.
+- `onHover`: immediate feedback for users.
+- `onClick`: bursts or targeted actions.
+- `resize`: keeps canvas behavior consistent on window resize.
+- `onDiv`: target interactions on specific elements.
 
-## Mejores prácticas
+## Best practice
 
-- Evite habilitar demasiados modos a la vez en dispositivos de gama baja.
-- Mantenga `distance` moderado para evitar picos de rendimiento.
-- Si el efecto es intenso, utilice el control manual con `Start/Pause`.
+- Avoid enabling too many modes at once on low-end devices.
+- Keep `distance` moderate to avoid performance spikes.
+- If the effect is heavy, use manual control with `Start/Pause`.
 
-## Referencias detalladas
+## Detailed references
 
-- Haga clic en: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
-- Colocar el cursor sobre: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
-- División: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>
+- Click: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Click.md>
+- Hover: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Hover.md>
+- Div: <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Interactivity/Div.md>

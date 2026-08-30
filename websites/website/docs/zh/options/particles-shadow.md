@@ -1,8 +1,8 @@
-# 粒子阴影
+# Particles Shadow
 
-`particles.shadow` 在粒子周围添加阴影。
+`particles.shadow` adds a shadow around particles.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -20,11 +20,11 @@ particles: {
 }
 ```
 
-## 实用指导
+## Practical guidance
 
-- 阴影可以提高深度，但在密集场景中可能会很昂贵。
-- 首先使用低模糊并在移动设备上进行基准测试。
+- Shadows improve depth but can be expensive on dense scenes.
+- Use low blur first and benchmark on mobile.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Shadow.md>

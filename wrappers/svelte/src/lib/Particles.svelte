@@ -23,10 +23,9 @@
 		particlesLoadedEvent = 'particlesLoaded';
 
 	let currentContainer: Container | undefined;
+	let loadGeneration = 0;
 
-	$: loadKey = `${id}|${url}|${JSON.stringify(options)}`;
-
-	$: if (mounted && loadKey) {
+	$: if (mounted && (id || url || options)) {
 		void loadParticles();
 	}
 
@@ -42,6 +41,7 @@
 	}
 
 	onDestroy(() => {
+		loadGeneration++;
 		destroyOldContainer();
 	});
 
@@ -50,6 +50,8 @@
 	});
 
 	async function loadParticles(): Promise<void> {
+		const generation = ++loadGeneration;
+
 		destroyOldContainer();
 
 		if (!mounted) {
@@ -64,12 +66,17 @@
 			);
 		}
 
-		if (!mounted) {
+		if (!mounted || generation !== loadGeneration) {
 			return;
 		}
 
 		if (id) {
 			const cb = (container?: Container) => {
+				if (generation !== loadGeneration) {
+					container?.destroy();
+					return;
+				}
+
 				dispatch(particlesLoadedEvent, {
 					particles: container
 				});
@@ -80,6 +87,11 @@
 				options,
 				url
 			});
+
+			if (generation !== loadGeneration) {
+				container?.destroy();
+				return;
+			}
 
 			currentContainer = container;
 

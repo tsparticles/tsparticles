@@ -1,4 +1,5 @@
 import {
+  type HdrMode,
   type ICoordinates,
   type PluginManager,
   Vector,
@@ -30,6 +31,8 @@ const inSegmentRange = {
  * @param rawData - The rawData
  * @param stroke - The stroke flag
  * @param hdr - The hdr
+ * @param peakNits - The peak nits value
+ * @param mode - The HDR mode
  */
 export function drawPolygonMask(
   pluginManager: PluginManager,
@@ -37,6 +40,8 @@ export function drawPolygonMask(
   rawData: ICoordinates[],
   stroke: IPolygonMaskDrawStroke,
   hdr = false,
+  peakNits?: number,
+  mode?: HdrMode,
 ): void {
   const color = rangeColorToRgb(pluginManager, stroke.color);
 
@@ -59,7 +64,7 @@ export function drawPolygonMask(
   }
 
   context.closePath();
-  context.strokeStyle = getStyleFromRgb(color, hdr);
+  context.strokeStyle = getStyleFromRgb(color, hdr, undefined, peakNits, mode);
   context.lineWidth = stroke.width;
   context.stroke();
 }
@@ -71,6 +76,8 @@ export function drawPolygonMask(
  * @param stroke - The stroke flag
  * @param position - The position
  * @param hdr - The hdr
+ * @param peakNits - The peak nits value
+ * @param mode - The HDR mode
  */
 export function drawPolygonMaskPath(
   pluginManager: PluginManager,
@@ -79,6 +86,8 @@ export function drawPolygonMaskPath(
   stroke: IPolygonMaskDrawStroke,
   position: ICoordinates,
   hdr = false,
+  peakNits?: number,
+  mode?: HdrMode,
 ): void {
   const defaultTransform = {
     a: 1,
@@ -102,7 +111,7 @@ export function drawPolygonMaskPath(
     return;
   }
 
-  context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity);
+  context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity, peakNits, mode);
   context.lineWidth = stroke.width;
   context.stroke(path);
   context.resetTransform();

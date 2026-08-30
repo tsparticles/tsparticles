@@ -57,7 +57,9 @@ export class TrailPluginInstance implements IContainerPlugin {
     const canvas = container.canvas;
 
     if (trailFill.color) {
-      canvas.render.paintBase(getStyleFromRgb(trailFill.color, container.hdr, trailFill.opacity));
+      canvas.render.paintBase(
+        getStyleFromRgb(trailFill.color, container.hdr, trailFill.opacity, container.peakNits, container.hdrMode),
+      );
 
       handled = true;
     } else if (trailFill.image) {

@@ -1,11 +1,11 @@
 ---
 title: Lit
-description: Integrieren Sie tsParticles mit Lit über den offiziellen @tsparticles/lit-Webkomponenten-Wrapper.
+description: Integrate tsParticles with Lit using the official @tsparticles/lit web component wrapper.
 ---
 
-# Lit-Integration
+# Lit Integration
 
-Das Paket `@tsparticles/lit` bietet ein mit Lit erstelltes benutzerdefiniertes `<lit-particles>`-Element, das es Ihnen ermöglicht, tsParticles deklarativ in jedem Lit-Projekt oder in einer einfachen HTML-Seite zu verwenden.
+The `@tsparticles/lit` package provides a `<lit-particles>` custom element built with Lit, allowing you to use tsParticles declaratively in any Lit project or plain HTML page.
 
 ## Installation
 
@@ -13,11 +13,11 @@ Das Paket `@tsparticles/lit` bietet ein mit Lit erstelltes benutzerdefiniertes `
 npm install @tsparticles/lit tsparticles
 ```
 
-Das Paket ist vollständig typisiert und enthält Lits reaktive Controller-Muster für reaktive Aktualisierungen der Partikel-Optionen.
+The package is fully typed and includes Lit's reactive controller patterns for reactively updating particle options.
 
-## Engine-Initialisierung
+## Engine Initialization
 
-Rufen Sie `initParticlesEngine` auf, bevor Sie die `<lit-particles>`-Komponente registrieren oder in Ihre Anwendung importieren. Dies muss genau einmal geschehen.
+Call `initParticlesEngine` before registering the `<lit-particles>` component or importing it in your application. This must happen exactly once.
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/lit";
@@ -28,7 +28,7 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-Für optimierte Bundle-Größen importieren Sie nur die Funktionen, die Ihr Projekt benötigt:
+For optimized bundle sizes, import only the features your project needs:
 
 ```typescript
 import { initParticlesEngine } from "@tsparticles/lit";
@@ -41,9 +41,9 @@ void initParticlesEngine(async (engine) => {
 });
 ```
 
-## Grundlegende Verwendung
+## Basic Usage
 
-Nach der Initialisierung der Engine verwenden Sie das `<lit-particles>`-Element in jeder Lit-Vorlage oder HTML-Datei:
+After the engine is initialized, use the `<lit-particles>` element in any Lit template or HTML file:
 
 ```typescript
 import { LitElement, html } from "lit";
@@ -73,11 +73,11 @@ class MyApp extends LitElement {
 }
 ```
 
-Die `.options`-Syntax (mit führendem Punkt) ist Lits Eigenschaftsbindung und stellt sicher, dass das Objekt als Referenz übergeben und nicht als Attribut serialisiert wird.
+The `.options` syntax (with leading dot) is Lit's property binding, ensuring the object is passed by reference rather than serialized as an attribute.
 
-## Einfache HTML-Verwendung
+## Plain HTML Usage
 
-Sobald `@tsparticles/lit` gebündelt oder geladen ist, funktioniert das Element auch in einfachem HTML:
+Once `@tsparticles/lit` is bundled or loaded, the element works in plain HTML too:
 
 ```html
 <!DOCTYPE html>
@@ -91,7 +91,7 @@ Sobald `@tsparticles/lit` gebündelt oder geladen ist, funktioniert das Element 
 </html>
 ```
 
-Sie können ein minimales Optionsobjekt als JSON-Attribut übergeben:
+You can pass a minimal options object as a JSON attribute:
 
 ```html
 <lit-particles
@@ -100,9 +100,9 @@ Sie können ein minimales Optionsobjekt als JSON-Attribut übergeben:
 ></lit-particles>
 ```
 
-## Benutzerdefinierte Konfiguration
+## Custom Configuration
 
-Übergeben Sie eine vollständige tsParticles-Konfiguration als Lit-Eigenschaft:
+Pass a full tsParticles configuration as a Lit property:
 
 ```typescript
 import { LitElement, html } from "lit";
@@ -192,9 +192,9 @@ class MyParticles extends LitElement {
 }
 ```
 
-## Ereignisbehandlung
+## Event Handling
 
-Hören Sie auf das benutzerdefinierte `particles-loaded`-Ereignis, das vom `<lit-particles>`-Element ausgelöst wird:
+Listen for the `particles-loaded` custom event dispatched by the `<lit-particles>` element:
 
 ```typescript
 import { LitElement, html } from "lit";
@@ -206,7 +206,7 @@ import "@tsparticles/lit";
 class MyApp extends LitElement {
   private handleParticlesLoaded(e: CustomEvent<Container>) {
     const container = e.detail;
-    console.log("Partikel geladen:", container);
+    console.log("Particles loaded:", container);
     container?.refresh();
   }
 
@@ -216,9 +216,9 @@ class MyApp extends LitElement {
 }
 ```
 
-## TypeScript-Beispiel
+## TypeScript Example
 
-Ein vollständig typisiertes Lit-Element mit `initParticlesEngine`, reaktiven Optionen und Ereignisbehandlung:
+A fully typed Lit element with `initParticlesEngine`, reactive options, and event handling:
 
 ```typescript
 import { LitElement, html } from "lit";
@@ -241,7 +241,7 @@ class ParticlesBackground extends LitElement {
   fullscreen = true;
 
   protected onParticlesLoaded(e: CustomEvent<Container>) {
-    console.log("Container bereit:", e.detail.id);
+    console.log("Container ready:", e.detail.id);
   }
 
   render() {
@@ -258,18 +258,9 @@ class ParticlesBackground extends LitElement {
 }
 ```
 
-## Reactive Behavior
+## Dynamic Updates
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## Dynamische Aktualisierungen
-
-Da `<lit-particles>` Lits reaktive Eigenschaften verwendet, führt eine Änderung der `options`-Eigenschaft automatisch zu einer Aktualisierung der Partikel:
+Because `<lit-particles>` uses Lit's reactive properties, changing the `options` property automatically updates the particles:
 
 ```typescript
 import { LitElement, html } from "lit";
@@ -300,11 +291,19 @@ class DynamicParticles extends LitElement {
 
   render() {
     return html`
-      <button @click="${this.toggleTheme}">Wechsel zu ${this.theme === "dark" ? "Hell" : "Dunkel"}</button>
+      <button @click="${this.toggleTheme}">Switch to ${this.theme === "dark" ? "Light" : "Dark"}</button>
       <lit-particles id="tsparticles" .options="${this.options}"> </lit-particles>
     `;
   }
 }
 ```
 
-Die Komponente überwacht die `options`-Eigenschaft und ruft intern `refresh()` auf, sobald sie sich ändert, wodurch die Partikel-Konfiguration zur Laufzeit nahtlos aktualisiert wird.
+The component watches the `options` property and reloads the container whenever it changes, seamlessly updating the particle configuration at runtime.
+
+## Reactive Behavior
+
+The `<lit-particles>` component reloads particles when the `options` property changes. Changes to the `theme` property apply the theme via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the element is removed from the DOM, the `disconnectedCallback` automatically destroys the container, stopping all animations.

@@ -1,29 +1,29 @@
-# Wrapper: Winkelfeuerwerk
+# Wrapper: angular-fireworks
 
-Offizieller Angular-Wrapper um `@tsparticles/fireworks`.
+Official Angular wrapper around `@tsparticles/fireworks`.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add angular-fireworks @tsparticles/fireworks
 ```
 
-## Schneller Einrichtungsablauf
+## Quick setup flow
 
-1. Wrapper + `@tsparticles/fireworks` installieren.
-2. Einmal im Angular-App-Bootstrap initialisieren.
-3. Lösen Sie Feuerwerksaktionen von Ihren UI-Handlern aus.
+1. Install wrapper + `@tsparticles/fireworks`.
+2. Initialize once in Angular app bootstrap.
+3. Trigger fireworks actions from your UI handlers.
 
-## Monorepo-Referenzen
+## Monorepo references
 
-- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
-- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/angular>
 
 ## Readme
 
-- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme>
 
-## Verwandte Dokumente
+## Related docs
 
-- [`/guide/wrappers`](/de/guide/wrappers)
-- [`/guide/frameworks`](/de/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

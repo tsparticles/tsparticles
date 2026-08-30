@@ -1,8 +1,8 @@
-# パーティクルリンク
+# Particles Links
 
-`particles.links` は、近くのパーティクル間に接続線を描画します。
+`particles.links` draws connection lines between nearby particles.
 
-## 例
+## Example
 
 ```ts
 particles: {
@@ -16,15 +16,15 @@ particles: {
 }
 ```
 
-- `distance`: リンクの最大距離。
-- `opacity`: 線の視覚的な強さ。
-- `color`: 線の色。
-- `width`: ストロークの太さ。
+- `distance`: max distance for a link.
+- `opacity`: visual strength of the line.
+- `color`: line color.
+- `width`: stroke thickness.
 
-## パフォーマンスのヒント
+## Performance tip
 
-パーティクル数が多いと、リンクのコストが高くなる可能性があります。 `number.value` と `distance` を一緒に調整します。
+Links can get expensive with high particle counts. Tune `number.value` and `distance` together.
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Links.md>

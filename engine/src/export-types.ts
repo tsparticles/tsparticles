@@ -33,6 +33,8 @@ export type * from "./Options/Interfaces/Background/IBackground.js";
 
 export type * from "./Options/Interfaces/FullScreen/IFullScreen.js";
 
+export type * from "./Options/Interfaces/IHDROptions.js";
+
 export type * from "./Options/Interfaces/IAnimatable.js";
 export type * from "./Options/Interfaces/IAnimatableColor.js";
 export type * from "./Options/Interfaces/IAnimation.js";

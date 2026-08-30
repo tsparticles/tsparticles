@@ -11,6 +11,14 @@ import 'ace-builds/src-noconflict/theme-xcode';
 import javascriptWorkerUrl from 'ace-builds/src-noconflict/worker-javascript.js?url';
 import htmlWorkerUrl from 'ace-builds/src-noconflict/worker-html.js?url';
 import cssWorkerUrl from 'ace-builds/src-noconflict/worker-css.js?url';
+import {
+  applyTranslations,
+  currentLocale,
+  getLanguageName,
+  setLocale,
+  supportedLocales,
+  t,
+} from './i18n';
 
 ace.config.setModuleUrl('ace/mode/javascript_worker', javascriptWorkerUrl);
 ace.config.setModuleUrl('ace/mode/html_worker', htmlWorkerUrl);
@@ -158,7 +166,7 @@ const setupShareActions = function () {
 
         const originalLabel = copyButton.textContent;
 
-        copyButton.textContent = 'Copied';
+        copyButton.textContent = t('copied');
 
         trackCopyLink();
 
@@ -228,11 +236,11 @@ document.getElementById('themeToggle').addEventListener('click', function () {
 const modes = [
   {
     id: 'cannon',
-    name: 'Basic Cannon',
+    nameKey: 'modes.cannon.name',
     description: [
       {
         cssClass: '',
-        text: "The default mode... just your regular basic average blast of confetti. But it's still a little cool, right?",
+        key: 'modes.cannon.description.0',
       },
     ],
     fn: function () {
@@ -246,11 +254,11 @@ const modes = [
 
   {
     id: 'random',
-    name: 'Random Direction',
+    nameKey: 'modes.random.name',
     description: [
       {
         cssClass: '',
-        text: 'Go crazy with some randomness. Shoot a random amount of confetti in random directions. (Go ahead... you know you want to click that button more than once.)',
+        key: 'modes.random.description.0',
       },
     ],
     fn: function () {
@@ -269,11 +277,11 @@ const modes = [
 
   {
     id: 'realistic',
-    name: 'Realistic Look',
+    nameKey: 'modes.realistic.name',
     description: [
       {
         cssClass: '',
-        text: 'If you happened to get curious and changed the particle count to 400 or so, you saw something disappointing. An even "flattened cone" look to the confetti, making it look way too perfect and ruining the illusion. We can fix that by mixing a few effects together.',
+        key: 'modes.realistic.description.0',
       },
     ],
     fn: function () {
@@ -321,15 +329,15 @@ const modes = [
 
   {
     id: 'hearts',
-    name: "Valentine's Day",
+    nameKey: 'modes.hearts.name',
     description: [
       {
         cssClass: '',
-        text: "You can create beautiful Valentine's Day effects with the heart shape. Spread the love with some heart shaped confetti.",
+        key: 'modes.hearts.description.0',
       },
       {
         cssClass: 'center',
-        text: "❤️ Happy Valentine's Day! ❤️",
+        key: 'modes.hearts.description.1',
       },
     ],
     fn: function () {
@@ -365,15 +373,15 @@ const modes = [
 
   {
     id: 'stars',
-    name: 'Stars',
+    nameKey: 'modes.stars.name',
     description: [
       {
         cssClass: '',
-        text: 'You can combine multiple calls to confetti with any settings in order to create a more complex effect. Go ahead, combine different shapes, sizes, etc. Stagger them for an extra boost of excitement.',
+        key: 'modes.stars.description.0',
       },
       {
         cssClass: 'center',
-        text: '✨ Celebrate with a burst of stars! ✨',
+        key: 'modes.stars.description.1',
       },
     ],
     fn: function () {
@@ -411,15 +419,15 @@ const modes = [
 
   {
     id: 'emoji',
-    name: 'Emoji and Unicorns',
+    nameKey: 'modes.emoji.name',
     description: [
       {
         cssClass: '',
-        text: 'You can create a beautiful rainbow effect combined with some emoji unicorns. Unicorns already love this. 🦄 ',
+        key: 'modes.emoji.description.0',
       },
       {
         cssClass: 'center',
-        text: '🦄 Unicorns loves rainbows! 🦄',
+        key: 'modes.emoji.description.1',
       },
     ],
     fn: function () {
@@ -461,15 +469,15 @@ const modes = [
 
   {
     id: 'images',
-    name: 'Images',
+    nameKey: 'modes.images.name',
     description: [
       {
         cssClass: '',
-        text: "You can create beautiful effects using all your favorite images. Just make sure they're the right size for being used as a confetti shape.",
+        key: 'modes.images.description.0',
       },
       {
         cssClass: 'center',
-        text: "🍎🥑🍌🍉🍍🍓 Aren't these fruits just the cutest? 🍒🍑🍈🍇🍊🍋",
+        key: 'modes.images.description.1',
       },
     ],
     fn: function () {
@@ -572,11 +580,11 @@ const modes = [
 
   {
     id: 'fireworks',
-    name: 'Fireworks',
+    nameKey: 'modes.fireworks.name',
     description: [
       {
         cssClass: '',
-        text: 'Why click a button repeatedly when you can have code do it for you? Shoot some firework of confetti from the sides of page so you can still read the content in the center.',
+        key: 'modes.fireworks.description.0',
       },
     ],
     fn: function () {
@@ -619,11 +627,11 @@ const modes = [
 
   {
     id: 'snow',
-    name: 'Snow',
+    nameKey: 'modes.snow.name',
     description: [
       {
         cssClass: '',
-        text: 'The effect is not limited to crazy rapid fire of confetti though. You can create a wintery mood with gently falling particles across the entire page.',
+        key: 'modes.snow.description.0',
       },
     ],
     fn: function () {
@@ -666,15 +674,15 @@ const modes = [
 
   {
     id: 'continuous',
-    name: 'School Pride',
+    nameKey: 'modes.continuous.name',
     description: [
       {
         cssClass: '',
-        text: 'But if you are into crazy rapid fire of confetti, what could be a better use than to show everyone what you are all about? Tell people where you are from with two confetti cannons from either side of the page.',
+        key: 'modes.continuous.description.0',
       },
       {
         cssClass: 'center',
-        text: '🌰 Go Buckeyes! 🌰',
+        key: 'modes.continuous.description.1',
       },
     ],
     fn: function () {
@@ -708,15 +716,15 @@ const modes = [
 
   {
     id: 'customShapes',
-    name: 'Custom Shapes',
+    nameKey: 'modes.customShapes.name',
     description: [
       {
         cssClass: '',
-        text: 'Celebrate some holidays with holiday-appropriate shapes! You can use any SVG path to make a confetti out of it. Go wild!',
+        key: 'modes.customShapes.description.0',
       },
       {
         cssClass: 'center',
-        text: '🎃🎄💜',
+        key: 'modes.customShapes.description.1',
       },
     ],
     fn: function () {
@@ -764,11 +772,11 @@ const modes = [
 
   {
     id: 'custom',
-    name: 'Custom Canvas',
+    nameKey: 'modes.custom.name',
     description: [
       {
         cssClass: '',
-        text: "But if you just hate confetti all over the place, there's something here for you as well. You can limit where the confetti appear by providing your own canvas element.",
+        key: 'modes.custom.description.0',
       },
     ],
     fn: function () {
@@ -787,15 +795,15 @@ const modes = [
 
   {
     id: 'confetti-ribbons',
-    name: 'Confetti + Ribbons',
+    nameKey: 'modes.confettiRibbons.name',
     description: [
       {
         cssClass: '',
-        text: 'Combine confetti with ribbons for a double celebration effect. Confetti rains from above while ribbons flow across the screen — perfect for product launches, milestones, and holiday greetings.',
+        key: 'modes.confettiRibbons.description.0',
       },
       {
         cssClass: 'center',
-        text: 'Double the celebration!',
+        key: 'modes.confettiRibbons.description.1',
       },
     ],
     fn: function () {
@@ -854,11 +862,11 @@ function renderModes(modes) {
           <div class="left">
             <h2>
               <a href="#${mode.id}" id="${mode.id}" class="anchor">
-                ${mode.name}
+                ${t(mode.nameKey)}
               </a>
             </h2>
             <button class="run">
-              Run
+              ${t('run')}
               <span class="icon">
                 <svg class="icon">
                   <use xlink:href="#run"></use>
@@ -867,7 +875,7 @@ function renderModes(modes) {
             </button>
           </div>
           <div class="description">
-            ${mode.description.map((d) => `<p class="${d.cssClass}">${d.text}</p>`).join('')}
+            ${mode.description.map((d) => `<p class="${d.cssClass}">${t(d.key)}</p>`).join('')}
           </div>
         </div>
         <div class="editor"></div>
@@ -915,7 +923,31 @@ function getCode(name) {
   return pretty(code);
 }
 
+function initLanguageSelect() {
+  const select = document.getElementById('languageSelect');
+
+  if (!select) {
+    return;
+  }
+
+  select.innerHTML = supportedLocales
+    .map((locale) => {
+      const selected = locale === currentLocale ? ' selected' : '';
+
+      return `<option value="${locale}"${selected}>${getLanguageName(locale)}</option>`;
+    })
+    .join('');
+
+  select.addEventListener('change', () => {
+    setLocale(select.value);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+  applyTranslations();
+
+  initLanguageSelect();
+
   // IMPORTANT: All tsParticles plugins (confetti, ribbons, etc.) must be registered
   // BEFORE the engine is initialized via engine.load(). Once engine.load() runs
   // (triggered by any confetti() or ribbons() call), PluginManager.init() is called

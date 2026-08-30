@@ -108,7 +108,15 @@
 
         const transform = obj => {
             return _.transform(omit(obj), function (result, value, key) {
-                result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
+                if (_.isArray(value)) {
+                    result[key] = value.map(item => {
+                        return _.isArray(item) ? transform(item) : _.isObject(item) ? transform(omit(item)) : item;
+                    });
+                } else if (_.isObject(value)) {
+                    result[key] = transform(omit(value));
+                } else {
+                    result[key] = value;
+                }
             });
         };
 

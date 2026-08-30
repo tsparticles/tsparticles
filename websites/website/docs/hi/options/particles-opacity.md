@@ -1,8 +1,8 @@
-# कण अपारदर्शिता
+# Particles Opacity
 
-`particles.opacity` पारदर्शिता और अपारदर्शिता एनीमेशन को नियंत्रित करता है।
+`particles.opacity` controls transparency and opacity animation.
 
-## उदाहरण
+## Example
 
 ```ts
 particles: {
@@ -20,6 +20,6 @@ particles: {
 }
 ```
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Opacity.md>

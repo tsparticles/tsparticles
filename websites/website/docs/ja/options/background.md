@@ -1,16 +1,16 @@
-# 背景とキャンバス
+# Background & Canvas
 
-このセクションは、キャンバス レイヤと全画面動作を制御します。
+This section controls the canvas layer and full-screen behavior.
 
-## レイヤー順序（後ろから前へ）
+## Layer order (back to front)
 
-1. **CSS背景** (`color`, `image`, `position`, `repeat`, `size`) — DOMキャンバススタイルとして適用
-2. **`clear()`** — 毎フレームのキャンバスピクセルクリア
-3. **`background.element` 自動描画** — 設定されている場合、`ctx.drawImage(element, ...)` で外部要素を合成
-4. **`background.draw` コールバック** — 設定されている場合、メイン描画コンテキスト + delta で呼び出し
-5. **パーティクル** — 上に描画
+1. **CSS background** (`color`, `image`, `position`, `repeat`, `size`) — applied as DOM canvas style
+2. **`clear()`** — canvas pixel clear each frame
+3. **`background.element` auto-draw** — if set, `ctx.drawImage(element, ...)` composites the external element as-is
+4. **`background.draw` callback** — if set, called with the main rendering context + delta
+5. **Particles** — drawn on top
 
-`element` と `draw` は **独立したレイヤー** です。両方ともオプションで、一緒にも別々にも使用できます。
+`element` and `draw` are **independent layers**. Both are optional and can be used together or separately.
 
 ## `background`
 
@@ -24,27 +24,27 @@ background: {
 }
 ```
 
-| キー       | 型                                                                                           | 説明                                                                                 |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `color`    | `string` / `object`                                                                          | キャンバスの背景色。                                                                 |
-| `opacity`  | `number`                                                                                     | 背景色のアルファチャネル、`0` から `1`。                                             |
-| `image`    | `string`                                                                                     | CSS `background-image` 値（例 `url('...')`）。                                       |
-| `position` | `string`                                                                                     | CSS `background-position` 値。                                                       |
-| `repeat`   | `string`                                                                                     | CSS `background-repeat` 値。                                                         |
-| `size`     | `string`                                                                                     | CSS `background-size` 値。                                                           |
-| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | 毎フレーム `drawImage` で自動描画される外部要素。エンジン管理外。                    |
-| `draw`     | `(context, delta) => void`                                                                   | メインキャンバスコンテキストでのカスタム背景描画のためのフレームごとのコールバック。 |
+| Key        | Type                                                                                         | Description                                                                        |
+| ---------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `color`    | `string` / `object`                                                                          | Canvas background color. Supports {@link IColor}.                                  |
+| `opacity`  | `number`                                                                                     | Alpha channel for the background color, from `0` to `1`.                           |
+| `image`    | `string`                                                                                     | CSS `background-image` value (e.g. `url('...')`).                                  |
+| `position` | `string`                                                                                     | CSS `background-position` value.                                                   |
+| `repeat`   | `string`                                                                                     | CSS `background-repeat` value.                                                     |
+| `size`     | `string`                                                                                     | CSS `background-size` value.                                                       |
+| `element`  | `string` / `HTMLCanvasElement` / `OffscreenCanvas` / `HTMLVideoElement` / `HTMLImageElement` | External element auto-drawn each frame via `drawImage`. Not managed by the engine. |
+| `draw`     | `(context, delta) => void`                                                                   | Per-frame custom background callback on the main canvas context.                   |
 
 ### `element`
 
-`element` が設定されている場合、要素の現在のビジュアルコンテンツが毎フレーム `ctx.drawImage()` でメインキャンバスに描画されます。要素は **エンジンによって管理されません** — 外部コードがそのレンダリングを処理します。
+When `element` is set, the element's current visual content is drawn onto the main canvas each frame via `ctx.drawImage()`. The element is **not managed** by the engine — external code handles its rendering.
 
-サポートされている要素タイプ：
+Supported element types:
 
 - `HTMLCanvasElement` / `OffscreenCanvas`
-- `HTMLVideoElement`（現在のフレームを描画）
+- `HTMLVideoElement` (draws the current frame)
 - `HTMLImageElement`
-- DOM内で上記のいずれかにマッチするCSSセレクター文字列
+- CSS selector string matching any of the above in the DOM
 
 ```json
 {
@@ -55,7 +55,7 @@ background: {
 ```
 
 ```ts
-// 外部<video>要素を背景として自動描画
+// Auto-draw an external <video> element as background
 tsParticles.load({
   id: "tsparticles",
   options: {
@@ -68,7 +68,7 @@ tsParticles.load({
 
 ### `draw`
 
-カスタム背景レンダリングのためのフレームごとのコールバック。常に**メインキャンバスコンテキスト**（`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`）を受け取り、要素のコンテキストは受け取りません。
+A per-frame callback for custom background rendering. Always receives the **main canvas context** (`OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D`), never the element's context.
 
 ```json
 {
@@ -78,7 +78,7 @@ tsParticles.load({
 }
 ```
 
-（TypeScriptは関数参照を使用し、文字列は使用しません。）
+(TypeScript uses a function reference, not a string.)
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -89,9 +89,9 @@ const drawBackground = (ctx: BackgroundDrawContext, delta: IDelta): void => {
 };
 ```
 
-### 要素 + Draw の組み合わせ
+### Combined element + draw
 
-両方のレイヤーが毎フレーム独立して実行されます。要素が最初に描画され、次にdrawコールバックが実行されます：
+Both layers run independently every frame. Element is drawn first, then the draw callback:
 
 ```ts
 import { type BackgroundDrawContext, type IDelta } from "@tsparticles/engine";
@@ -119,10 +119,10 @@ fullScreen: {
 }
 ```
 
-- `enable`: キャンバスをフル ビューポートにします。
-- `zIndex`: コンテンツの後ろにパーティクルを配置するのに便利です。
+- `enable`: makes the canvas full viewport.
+- `zIndex`: useful to place particles behind your content.
 
-埋め込みプレイグラウンドとインライン ドキュメント プレビューの場合は、次のように設定します：
+For embedded playgrounds and inline docs previews, set:
 
 ```ts
 fullScreen: {
@@ -136,10 +136,10 @@ fullScreen: {
 detectRetina: true;
 ```
 
-HiDPI 画面でのレンダリングが向上しますが、GPU/CPU の負荷が増加します。
+Improves rendering on HiDPI screens, but increases GPU/CPU load.
 
-## 実践的なメモ
+## Practical notes
 
-- ランディング ページの場合は、`fullScreen.enable: true` と `zIndex: -1` を使用します。
-- モバイルで速度の低下が見られる場合は、`detectRetina: false` をお試しください。
-- 構成が全画面用に設計されている場合は、境界付きセクションに埋め込む前に `fullScreen` を無効にします。
+- For landing pages, use `fullScreen.enable: true` with `zIndex: -1`.
+- If you see slowdowns on mobile, try `detectRetina: false`.
+- If a config is designed for fullscreen, disable `fullScreen` before embedding it in a bounded section.

@@ -1,8 +1,8 @@
-# 粒子链接
+# Particles Links
 
-`particles.links` 在附近粒子之间绘制连接线。
+`particles.links` draws connection lines between nearby particles.
 
-## 示例
+## Example
 
 ```ts
 particles: {
@@ -16,15 +16,15 @@ particles: {
 }
 ```
 
-- `distance`：链接的最大距离。
-- `opacity`：线条的视觉强度。
-- `color`：线条颜色。
-- `width`：笔画粗细。
+- `distance`: max distance for a link.
+- `opacity`: visual strength of the line.
+- `color`: line color.
+- `width`: stroke thickness.
 
-## 性能提示
+## Performance tip
 
-由于粒子数较多，链接可能会变得昂贵。一起调整 `number.value` 和 `distance`。
+Links can get expensive with high particle counts. Tune `number.value` and `distance` together.
 
-## 来源参考
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Links.md>

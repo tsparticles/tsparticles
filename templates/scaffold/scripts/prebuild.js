@@ -1,5 +1,6 @@
 const fs = require("fs-extra");
 
+const mainPackage = require("../package.json");
 const libPackage = "./template.json";
 
 const workspaceVersions = {
@@ -9,14 +10,7 @@ const workspaceVersions = {
 };
 
 function resolveWorkspaceDependency(name) {
-  const libObj = JSON.parse(fs.readFileSync(libPackage, "utf-8"));
-
-  const allDeps = {
-    ...libObj.package.dependencies,
-    ...libObj.package.devDependencies,
-  };
-
-  const spec = allDeps[name];
+  const spec = mainPackage.dependencies[name];
 
   if (!spec?.startsWith("workspace:")) {
     return spec;
@@ -42,8 +36,7 @@ fs.readFile(libPackage, function (error, data) {
     throw error;
   }
 
-  const text = data.toString();
-  const libObj = JSON.parse(text);
+  const libObj = JSON.parse(data.toString());
 
   for (const dep of Object.keys(libObj.package.dependencies)) {
     const resolved = resolveWorkspaceDependency(dep);
