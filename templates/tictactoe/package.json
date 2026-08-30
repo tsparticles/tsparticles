@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/template-tictactoe",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -18,9 +18,9 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
+    "@tsparticles/confetti": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "@tsparticles/slim": "workspace:*",
-    "@tsparticles/confetti": "workspace:*"
+    "@tsparticles/slim": "workspace:*"
   },
   "devDependencies": {
     "fs-extra": "^11.3.4"

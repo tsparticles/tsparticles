@@ -3,8 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
+# [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
+### Bug Fixes
+
+* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+
+## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 ### Bug Fixes
 
@@ -15,12 +20,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
 * fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
 
-
-
-
-
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
-
 
 ### Bug Fixes
 
@@ -32,29 +32,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
 * fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
 
-
-
-
-
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
-
 
 ### Bug Fixes
 
 * fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
 * fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
 
-
-
-
-
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
 
 **Note:** Version bump only for package @tsparticles/mcp-server
-
-
-
-
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-18)
 

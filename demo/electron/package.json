@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/electron-demo",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "description": "",
   "main": "app/index.cjs",
   "private": true,
@@ -76,8 +76,8 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "electron": "^42.8.1",
-    "@electron/packager": "^20.2.0"
+    "@electron/packager": "^20.2.0",
+    "electron": "^42.8.1"
   },
   "type": "module"
 }

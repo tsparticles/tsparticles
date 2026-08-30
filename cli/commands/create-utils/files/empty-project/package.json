@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/empty-template",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "private": true,
   "type": "module",
   "description": "tsParticles empty template",
@@ -102,6 +102,6 @@
     "typescript-eslint": "^8.68.0"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "^4.3.3"
+    "@tsparticles/engine": "^4.4.0"
   }
 }

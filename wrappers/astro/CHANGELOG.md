@@ -3,40 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
+
+### Bug Fixes
+
+* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 **Note:** Version bump only for package @tsparticles/astro
 
-
-
-
-
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
-
 
 ### Bug Fixes
 
 * fixed some broken pages in websites, closes [#5882](https://github.com/tsparticles/tsparticles/issues/5882) ([061e623](https://github.com/tsparticles/tsparticles/commit/061e6234acf8c2a9de1ff35cfdc07b91bc7c0178))
 
-
-
-
-
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 **Note:** Version bump only for package @tsparticles/astro
 
-
-
-
-
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
 
 **Note:** Version bump only for package @tsparticles/astro
-
-
-
-
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 
