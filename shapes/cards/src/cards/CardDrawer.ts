@@ -39,6 +39,8 @@ export class CardDrawer implements IShapeDrawer<CardParticle> {
       container.hdr,
       particle.isShowingBack(),
       container.canvas.render.settings,
+      container.peakNits,
+      container.hdrMode,
     );
 
     context.globalAlpha = defaultOpacity;

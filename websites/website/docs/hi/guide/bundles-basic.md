@@ -1,39 +1,39 @@
 # Bundle: Basic
 
-`@tsparticles/basic` सबसे हल्का बंडल है। केवल आवश्यक चीज़ें शामिल करता है: सर्कल जो एनिमेटेबल ओपेसिटी और साइज़ के साथ चलते हैं।
+`@tsparticles/basic` is the lightest bundle. Only includes the essentials: circles that move with animatable opacity and size.
 
-## शामिल सुविधाएँ
+## Included features
 
-**शेप:** circle
+**Shapes:** circle
 
-**अपडेटर:**
+**Updaters:**
 
-- paint (रंग)
+- paint (color)
 - opacity
-- out-modes (स्क्रीन छोड़ने पर व्यवहार)
+- out-modes (behavior when leaving the screen)
 - size
 
-**प्लगइन:**
+**Plugins:**
 
 - move
-- blend (रंग मिश्रण)
-- HEX, HSL, RGB रंग प्लगइन
+- blend (color blending)
+- HEX, HSL, RGB color plugins
 
-**शामिल नहीं:**
+**Not included:**
 
-- माउस/टच इंटरैक्शन
-- कण लिंक
-- अन्य शेप (स्क्वेयर, स्टार, इमेज, पॉलीगॉन, आदि)
-- एमिटर, एब्ज़ॉर्बर, साउंड
-- रोटेशन, लाइफ, रोल, टिल्ट, वॉबल
+- Mouse/touch interactions
+- Particle links
+- Other shapes (squares, stars, images, polygons, etc.)
+- Emitters, absorbers, sounds
+- Rotation, life, roll, tilt, wobble
 
-## कब उपयोग करें
+## When to use
 
-- बंडल आकार आपकी सर्वोच्च प्राथमिकता है
-- आपको केवल घूमते हुए डॉट्स चाहिए
-- किसी इंटरैक्शन या जटिल शेप की आवश्यकता नहीं
+- Bundle size is your top priority
+- You only need dots moving around
+- No interactions or complex shapes needed
 
-## इंस्टॉलेशन
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -64,7 +64,7 @@ await tsParticles.load({
 });
 ```
 
-### CDN (script टैग)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -85,13 +85,13 @@ await tsParticles.load({
 </script>
 ```
 
-## सामान्य गलतियाँ
+## Common mistakes
 
-- शामिल नहीं की गई सुविधाओं की अपेक्षा (जैसे `links`, माउस इंटरैक्शन) — इनके लिए उच्च बंडलों की आवश्यकता है।
-- `loadBasic(tsParticles)` से पहले `tsParticles.load()` कॉल करना — शेप और अपडेटर अभी पंजीकृत नहीं हुए हैं।
-- बंडल के बिना केवल `@tsparticles/engine` इंस्टॉल करना — इंजन अकेला कुछ नहीं बनाता।
+- Expecting features not included (e.g., `links`, mouse interactions) — these require higher bundles.
+- Calling `tsParticles.load()` before `loadBasic(tsParticles)` — shapes and updaters aren't registered yet.
+- Installing only `@tsparticles/engine` without a bundle — the engine alone draws nothing.
 
-## यह भी देखें
+## See also
 
-- [बंडल अवलोकन](/hi/guide/bundles)
-- [इंस्टॉलेशन गाइड](/hi/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

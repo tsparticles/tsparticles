@@ -1,42 +1,47 @@
 ---
-title: Integración con Nuxt
-description: Guía paso a paso para integrar tsParticles en una aplicación Nuxt 3 / Nuxt 4.
+title: Nuxt Integration
+description: Step-by-step guide to integrating tsParticles into a Nuxt 3 / Nuxt 4 application.
 ---
 
-# Integración con Nuxt
+# Nuxt Integration
 
-Esta guía cubre la integración de tsParticles en un proyecto **Nuxt 3** (y Nuxt 4) usando el wrapper oficial `@tsparticles/vue3`. Nuxt se ejecuta tanto del lado del servidor como del cliente, por lo que debes proteger los componentes de partículas contra SSR.
+This guide covers integrating tsParticles into a **Nuxt 3** (and Nuxt 4) project using the official `@tsparticles/vue3` wrapper. Nuxt runs both server-side and client-side, so you must guard particle components against SSR.
 
-## Instalación
+## Installation
 
-Instala el wrapper de Vue 3 y el paquete del motor de tu elección:
+Install the Vue 3 wrapper and the engine bundle of your choice:
 
 ```bash
 npm install @tsparticles/vue3 tsparticles
 ```
 
-Para un paquete más pequeño, instala `@tsparticles/slim` en lugar de `tsparticles`:
+For a smaller bundle, install `@tsparticles/slim` instead of `tsparticles`:
 
 ```bash
 npm install @tsparticles/vue3 @tsparticles/slim
 ```
 
-## Uso Básico
+## Basic Usage
 
-Nuxt renderiza componentes en el servidor por defecto. Dado que tsParticles necesita la API `canvas` del navegador, debes envolver el componente `<vue-particles>` en una etiqueta `<client-only>`:
+Nuxt renders components on the server by default. Since tsParticles needs the browser `canvas` API, you must wrap the `<vue-particles>` component in a `<client-only>` tag:
 
 ```vue
 <template>
   <div class="page">
     <client-only>
-      <vue-particles id="tsparticles" :options="options" @particles-loaded="particlesLoaded" />
+      <vue-particles id="tsparticles" :options="options" :init="particlesInit" @particles-loaded="particlesLoaded" />
     </client-only>
-    <h1>Mi App Nuxt</h1>
+    <h1>My Nuxt App</h1>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ISourceOptions, Container } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
+};
 
 const options: ISourceOptions = {
   fullScreen: {
@@ -54,7 +59,7 @@ const options: ISourceOptions = {
 };
 
 const particlesLoaded = (container?: Container) => {
-  console.log("Contenedor de partículas listo", container?.id);
+  console.log("Particles container ready", container?.id);
 };
 </script>
 
@@ -65,11 +70,11 @@ const particlesLoaded = (container?: Container) => {
 </style>
 ```
 
-El envoltorio `<client-only>` asegura que el componente `<vue-particles>` solo se monte en el navegador, evitando discrepancias de hidratación.
+The `<client-only>` wrapper ensures the `<vue-particles>` component is only mounted in the browser, preventing hydration mismatches.
 
-## Configuración
+## Configuration
 
-Usa el tipo `ISourceOptions` completo para una configuración segura en cuanto a tipos. Puedes definir tus opciones en línea o importarlas desde un archivo de configuración separado:
+Use the full `ISourceOptions` type for type-safe configuration. You can define your options inline or import them from a separate config file:
 
 ```vue
 <script setup lang="ts">
@@ -131,9 +136,9 @@ const options: ISourceOptions = {
 </script>
 ```
 
-## Efecto Nieve
+## Snow Effect
 
-Crea un efecto de nevada invernal usando el preset de nieve:
+Create a wintery snowfall effect using the snow preset:
 
 ```bash
 npm install @tsparticles/preset-snow
@@ -151,7 +156,7 @@ import { loadSnowPreset } from "@tsparticles/preset-snow";
 import { tsParticles } from "@tsparticles/engine";
 import type { Container } from "@tsparticles/engine";
 
-// Carga el preset antes de que el componente se monte
+// Load the preset before the component mounts
 await loadSnowPreset(tsParticles);
 
 const options = {
@@ -163,16 +168,16 @@ const options = {
 };
 
 const onLoad = (container?: Container) => {
-  console.log("Efecto de nieve listo", container?.id);
+  console.log("Snow effect ready", container?.id);
 };
 </script>
 ```
 
-Debido a que el preset se carga con `await` de nivel superior en el `<script setup>`, se garantiza que esté listo antes de que el componente se renderice.
+Because the preset is loaded with top-level `await` in the `<script setup>`, it is guaranteed to be ready before the component renders.
 
-## Partículas Interactivas
+## Interactive Particles
 
-Habilita interacciones de clic y hover añadiendo modos de interactividad:
+Enable click and hover interactions by adding interactivity modes:
 
 ```vue
 <template>
@@ -204,11 +209,11 @@ const options: ISourceOptions = {
     events: {
       onHover: {
         enable: true,
-        mode: "grab", // las partículas se conectan al cursor
+        mode: "grab", // particles connect to the cursor
       },
       onClick: {
         enable: true,
-        mode: "push", // añade partículas al hacer clic
+        mode: "push", // add particles on click
       },
     },
     modes: {
@@ -227,11 +232,11 @@ const options: ISourceOptions = {
 </script>
 ```
 
-Los modos de interacción disponibles incluyen: `grab`, `bubble`, `connect`, `repulse`, `push`, `remove`, `attract` y `slow`.
+Available interaction modes include: `grab`, `bubble`, `connect`, `repulse`, `push`, `remove`, `attract`, and `slow`.
 
-## Manejo de Eventos
+## Event Handling
 
-El componente `<vue-particles>` emite varios eventos del ciclo de vida:
+The `<vue-particles>` component emits several lifecycle events:
 
 ```vue
 <template>
@@ -241,7 +246,7 @@ El componente `<vue-particles>` emite varios eventos del ciclo de vida:
 </template>
 
 <script setup lang="ts">
-import type { Container, Engine } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 
 const options = {
   fullScreen: { zIndex: -1 },
@@ -253,35 +258,39 @@ const options = {
 };
 
 const onLoaded = (container?: Container) => {
-  console.log("Contenedor cargado", container?.id);
+  console.log("Container loaded", container?.id);
 };
 </script>
 ```
 
-| Evento              | Carga                    | Descripción                                                            |
-| ------------------- | ------------------------ | ---------------------------------------------------------------------- |
-| `@particles-loaded` | `Container \| undefined` | Se dispara cada vez que el contenedor termina de cargarse o recargarse |
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
 
-## Ejemplo TypeScript Completo
+## Full TypeScript Example
 
-Un componente tipado completo con importaciones explícitas y conocimiento del ciclo de vida:
+A complete, typed component with explicit imports and lifecycle awareness:
 
 ```vue
 <template>
   <div class="particles-wrapper">
     <client-only>
-      <vue-particles id="full-example" :options="options" @particles-loaded="onParticlesLoaded" />
+      <vue-particles id="full-example" :init="particlesInit" :options="options" @particles-loaded="onParticlesLoaded" />
     </client-only>
     <div class="controls">
-      <button @click="togglePause">{{ paused ? "Reanudar" : "Pausar" }}</button>
+      <button @click="togglePause">{{ paused ? "Resume" : "Pause" }}</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { loadFull } from "tsparticles";
 import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+const particlesInit = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
+};
 
 const containerRef = ref<Container | undefined>(undefined);
 const paused = ref(false);
@@ -336,9 +345,9 @@ const togglePause = () => {
 </style>
 ```
 
-## Integración en Páginas
+## Page Integration
 
-Añade un fondo de partículas a una página específica de Nuxt colocando el componente en la plantilla de la página:
+Add a particle background to a specific Nuxt page by placing the component in the page's template:
 
 ```vue
 <template>
@@ -348,8 +357,8 @@ Añade un fondo de partículas a una página específica de Nuxt colocando el co
     </client-only>
 
     <div class="content">
-      <h1>Página Acerca de</h1>
-      <p>Este contenido está sobre el canvas de partículas.</p>
+      <h1>About Page</h1>
+      <p>This content sits above the particle canvas.</p>
     </div>
   </div>
 </template>
@@ -379,33 +388,33 @@ const options: ISourceOptions = {
 </style>
 ```
 
-Si quieres partículas en **todas** las páginas, añade el componente a `layouts/default.vue` en lugar de a páginas individuales.
+If you want particles on **every** page, add the component to `layouts/default.vue` instead of individual pages.
 
-## Notas sobre Nuxt 4
+## Nuxt 4 Notes
 
-Nuxt 4 mantiene compatibilidad hacia atrás con los patrones `<client-only>` y `<script setup>` de Nuxt 3. Todos los ejemplos anteriores funcionan sin cambios en Nuxt 4.
+Nuxt 4 maintains backward compatibility with Nuxt 3's `<client-only>` and `<script setup>` patterns. All of the examples above work without changes in Nuxt 4.
 
-Consideraciones clave para Nuxt 4:
+Key considerations for Nuxt 4:
 
-- **Nitropack 2**: El motor del servidor está actualizado, pero no afecta a componentes solo de cliente como `<vue-particles>`.
-- **Vue 3.5+**: Nuxt 4 incluye una versión más nueva de Vue — `@tsparticles/vue3` es compatible con Vue 3.3+ sin problemas.
-- **Comprobaciones SSR más estrictas**: Si ves advertencias de hidratación, asegúrate de que `<vue-particles>` esté siempre dentro de `<client-only>` y nunca se renderice en el servidor.
-- **Renderizado híbrido**: Si usas reglas de ruta con `ssr: false` para ciertas páginas, puedes omitir `<client-only>` en esas páginas, pero es más seguro incluirlo siempre.
+- **Nitropack 2**: The server engine is upgraded, but it does not affect client-only components like `<vue-particles>`.
+- **Vue 3.5+**: Nuxt 4 ships with a newer Vue version — `@tsparticles/vue3` is compatible with Vue 3.3+ without issues.
+- **Stricter SSR checks**: If you see hydration warnings, ensure `<vue-particles>` is always inside `<client-only>` and never rendered on the server.
+- **Hybrid rendering**: If using route rules with `ssr: false` for certain pages, you can omit `<client-only>` on those pages, but it is safer to always include it.
 
-Si actualizas desde Nuxt 2 con el paquete `@tsparticles/vue` (vue 2), debes migrar a `@tsparticles/vue3` para Nuxt 3 / 4 — las APIs no son compatibles.
+If you upgrade from Nuxt 2 with the `@tsparticles/vue` package (vue 2), you must migrate to `@tsparticles/vue3` for Nuxt 3 / 4 — the APIs are not compatible.
 
-## Galería de Presets
+## Preset Gallery
 
-Combina el patrón anterior con cualquiera de estos presets oficiales:
+Combine the pattern above with any of these official presets:
 
-| Preset    | Paquete                         | Efecto                             |
-| --------- | ------------------------------- | ---------------------------------- |
-| Confetti  | `@tsparticles/preset-confetti`  | Explosión de confeti colorido      |
-| Fireworks | `@tsparticles/preset-fireworks` | Explosiones de fuegos artificiales |
-| Snow      | `@tsparticles/preset-snow`      | Copos de nieve cayendo             |
-| Stars     | `@tsparticles/preset-stars`     | Cielo nocturno titilante           |
-| Links     | `@tsparticles/preset-links`     | Red de nodos conectados            |
-| Bubbles   | `@tsparticles/preset-bubbles`   | Burbujas flotantes                 |
+| Preset    | Package                         | Effect                  |
+| --------- | ------------------------------- | ----------------------- |
+| Confetti  | `@tsparticles/preset-confetti`  | Colorful confetti burst |
+| Fireworks | `@tsparticles/preset-fireworks` | Firework explosions     |
+| Snow      | `@tsparticles/preset-snow`      | Falling snowflakes      |
+| Stars     | `@tsparticles/preset-stars`     | Twinkling night sky     |
+| Links     | `@tsparticles/preset-links`     | Connected node network  |
+| Bubbles   | `@tsparticles/preset-bubbles`   | Floating bubbles        |
 
 ```vue
 <template>
@@ -424,24 +433,39 @@ await loadStarsPreset(tsParticles);
 
 ## Reactive Behavior
 
-The `<Particles>` component reacts to prop changes at runtime:
+The `<vue-particles>` component reacts to prop changes at runtime:
 
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
+- **`:options`**, **`:url`**, or **`id`** change → the existing container is destroyed and particles are reloaded with the new values.
+- **`theme`** attribute change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
 
 On component unmount, the particles container is automatically destroyed — no orphan animations remain.
 
-## Solución de Problemas
+## Component API
 
-| Síntoma                                   | Causa                                                  | Solución                                                                |
-| ----------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------- |
-| Pantalla en blanco / error de hidratación | `<vue-particles>` renderizado en el servidor           | Envuélvelo en `<client-only>`                                           |
-| El preset no tiene efecto                 | El preset no se cargó antes del montaje del componente | Llama a `loadXPreset()` con await de nivel superior en `<script setup>` |
-| El canvas no llena el viewport            | `fullScreen` no está habilitado                        | Añade `fullScreen: { zIndex: -1 }` a las opciones                       |
-| Los controles no pausan/reanudan          | La referencia al contenedor no está establecida        | Asigna el contenedor en el manejador `@particles-loaded`                |
+| Prop       | Type                        | Description                                                               |
+| ---------- | --------------------------- | ------------------------------------------------------------------------- |
+| `id`       | `string`                    | Canvas element id. Change triggers destroy+reload.                        |
+| `:options` | `ISourceOptions`            | Particle configuration object. Change triggers destroy+reload.            |
+| `:url`     | `string`                    | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`    | `string`                    | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+| `:init`    | `(Engine) => Promise<void>` | Async callback to load engine plugins during initialization.              |
 
-## Próximos Pasos
+| Event               | Payload                  | Description                                                  |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| `@particles-loaded` | `Container \| undefined` | Fires every time the container finishes loading or reloading |
 
-- Explora las [Demostraciones Interactivas](/demos/) para configuraciones Vue listas para usar.
-- Lee la [Referencia de Opciones](/options/) para una lista completa de parámetros de partículas.
-- Visita la [página de Presets](/demos/presets) para más efectos preconstruidos.
+## Troubleshooting
+
+| Symptom                           | Cause                                    | Fix                                                           |
+| --------------------------------- | ---------------------------------------- | ------------------------------------------------------------- |
+| Blank screen / hydration error    | `<vue-particles>` rendered on the server | Wrap in `<client-only>`                                       |
+| Preset has no effect              | Preset not loaded before component mount | Call `loadXPreset()` with top-level await in `<script setup>` |
+| Canvas does not fill the viewport | `fullScreen` not enabled                 | Add `fullScreen: { zIndex: -1 }` to the options               |
+| Controls do not pause/resume      | Container ref not set                    | Assign the container in the `@particles-loaded` handler       |
+| Theme change ignored              | `@tsparticles/plugin-themes` not loaded  | Install plugin and load it during engine initialization       |
+
+## Next Steps
+
+- Explore the [Interactive Demos](/demos/) for ready-made Vue configurations.
+- Read the [Options Reference](/options/) for a complete list of particle parameters.
+- Visit the [Presets page](/demos/presets) for more pre-built effects.

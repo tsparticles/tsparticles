@@ -1,35 +1,35 @@
 ---
-title: Vanilla JS 指南
-description: 使用纯 JavaScript 集成 tsParticles 的完整指南。
+title: Vanilla JS Guide
+description: Complete guide for integrating tsParticles with plain JavaScript.
 ---
 
-# Vanilla JS 指南
+# Vanilla JS Guide
 
-## 目录
+## Table of Contents
 
-1. [快速入门](#getting-started)
-2. [基础粒子效果](#basic-particles)
-3. [五彩纸屑效果](#confetti-effect)
-4. [烟花效果](#fireworks-effect)
-5. [彩带效果](#ribbons-effect)
-6. [雪花效果](#snow-effect)
-7. [网络/连线效果](#network-links-effect)
-8. [星空效果](#stars-effect)
-9. [自定义配置](#custom-configuration)
-10. [多个容器](#multiple-containers)
-11. [动态控制](#dynamic-controls)
+1. [Getting Started](#getting-started)
+2. [Basic Particles](#basic-particles)
+3. [Confetti Effect](#confetti-effect)
+4. [Fireworks Effect](#fireworks-effect)
+5. [Ribbons Effect](#ribbons-effect)
+6. [Snow Effect](#snow-effect)
+7. [Network / Links Effect](#network-links-effect)
+8. [Stars Effect](#stars-effect)
+9. [Custom Configuration](#custom-configuration)
+10. [Multiple Containers](#multiple-containers)
+11. [Dynamic Controls](#dynamic-controls)
 
 ---
 
-## 快速入门
+## Getting Started
 
-### CDN（快速开始）
+### CDN (quick start)
 
-在 HTML 中添加一个 `<div>` 占位符和 script 标签。你至少需要引擎 + 一个包，并且在 `tsParticles.load()` 之前调用加载器。
+Add a `<div>` placeholder and script tags in your HTML. You need at least the engine + a bundle, and you must call the loader before `tsParticles.load()`.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,7 +67,7 @@ description: 使用纯 JavaScript 集成 tsParticles 的完整指南。
 npm install @tsparticles/engine @tsparticles/slim
 ```
 
-然后导入并使用：
+Then import and use it:
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
@@ -83,17 +83,17 @@ import { loadSlim } from "@tsparticles/slim";
 })();
 ```
 
-> **注意：** 仅 `@tsparticles/engine` 不会绘制任何内容。你必须安装一个包（推荐 `@tsparticles/slim`）或单独的插件才能显示可见的形状。
+> **Note:** `@tsparticles/engine` alone draws nothing. You must install a bundle (`@tsparticles/slim` recommended) or individual plugins to get visible shapes.
 
 ---
 
-## 基础粒子效果
+## Basic Particles
 
-一个最小配置，渲染 100 个圆形粒子，随机颜色和温和的运动。在 v4 中，粒子颜色通过 `paint` 而非旧的 `color` 属性设置。
+A minimal configuration that renders 100 particles with a circular shape, random colours, and gentle movement. In v4, particle colors are set via `paint` instead of the old `color` property.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -168,13 +168,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 五彩纸屑效果
+## Confetti Effect
 
-使用专用的 `@tsparticles/confetti` 包，通过单个函数调用实现庆祝性的爆发效果。
+Use the dedicated `@tsparticles/confetti` bundle for a celebratory burst with a single function call.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -203,13 +203,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 烟花效果
+## Fireworks Effect
 
-使用专用的 `@tsparticles/fireworks` 包带音效的烟花展示。
+A fireworks show using the dedicated `@tsparticles/fireworks` bundle with sound effects.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -235,13 +235,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 彩带效果
+## Ribbons Effect
 
-使用专用的 `@tsparticles/ribbons` 包实现随鼠标位置流动的彩带动画。
+Use the dedicated `@tsparticles/ribbons` bundle for flowing ribbon animations that react to mouse position.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -273,13 +273,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 雪花效果
+## Snow Effect
 
-使用 `@tsparticles/configs` 预设目录实现的柔和飘落雪花效果。
+Gentle falling snowflakes using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -318,7 +318,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-或者，使用独立的预设包：
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -339,13 +339,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 网络/连线效果
+## Network / Links Effect
 
-带有鼠标交互的经典连接节点视觉效果。`@tsparticles/slim` 包包含连线交互和鼠标抓取模式。
+A classic connected-nodes visual with mouse interactivity. The `@tsparticles/slim` bundle includes the links interaction and mouse grab mode.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -418,13 +418,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 星空效果
+## Stars Effect
 
-使用 `@tsparticles/configs` 预设目录实现的星空夜景。
+A starry-night sky using the `@tsparticles/configs` preset catalog.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -463,7 +463,7 @@ import { loadSlim } from "@tsparticles/slim";
 </html>
 ```
 
-或者，使用独立的预设包：
+Alternatively, using the standalone preset package:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -484,13 +484,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 自定义配置
+## Custom Configuration
 
-使用 slim 包从零构建一个带有渐变背景、交互式悬停效果和多种形状类型的配置。
+Build a configuration from scratch with a gradient background, interactive hover effects, and multiple shape types using the slim bundle.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -624,13 +624,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 多个容器
+## Multiple Containers
 
-在同一页面上运行多个独立的粒子实例，每个实例具有各自的配置。
+Run multiple independent particle instances on the same page, each with its own configuration.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -668,7 +668,7 @@ import { loadSlim } from "@tsparticles/slim";
       (async () => {
         await loadSlim(tsParticles);
 
-        // 容器 1 – 慢速移动的圆形
+        // Container 1 – circles with slow movement
         await tsParticles.load({
           id: "box1",
           options: {
@@ -686,7 +686,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // 容器 2 – 带连线的三角形
+        // Container 2 – triangles with links
         await tsParticles.load({
           id: "box2",
           options: {
@@ -705,7 +705,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // 容器 3 – 五彩纸屑式爆发
+        // Container 3 – confetti-like burst
         await tsParticles.load({
           id: "box3",
           options: {
@@ -739,7 +739,7 @@ import { loadSlim } from "@tsparticles/slim";
           },
         });
 
-        // 容器 4 – 缓慢漂浮的星星
+        // Container 4 – slow floating stars
         await tsParticles.load({
           id: "box4",
           options: {
@@ -764,13 +764,13 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-## 动态控制
+## Dynamic Controls
 
-在运行时以编程方式启动、停止、暂停和切换主题。
+Programmatically start, stop, pause, and switch themes at runtime.
 
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -813,12 +813,12 @@ import { loadSlim } from "@tsparticles/slim";
   <body>
     <div id="tsparticles"></div>
     <div class="controls">
-      <button id="play-btn">▶ 播放</button>
-      <button id="pause-btn">⏸ 暂停</button>
-      <button id="stop-btn">⏹ 停止</button>
-      <button id="theme-dark-btn">🌙 深色主题</button>
-      <button id="theme-light-btn">☀️ 浅色主题</button>
-      <button id="restart-btn">🔄 重新启动</button>
+      <button id="play-btn">▶ Play</button>
+      <button id="pause-btn">⏸ Pause</button>
+      <button id="stop-btn">⏹ Stop</button>
+      <button id="theme-dark-btn">🌙 Dark Theme</button>
+      <button id="theme-light-btn">☀️ Light Theme</button>
+      <button id="restart-btn">🔄 Restart</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -882,4 +882,4 @@ import { loadSlim } from "@tsparticles/slim";
 
 ---
 
-你现在已经涵盖了 tsParticles v4 的每一个主要 Vanilla JS 集成模式。每个示例都是一个独立的 HTML 文件，你可以在浏览器中打开它以查看 tsParticles 的实际效果。
+You have now covered every major Vanilla JS integration pattern for tsParticles v4. Each example is a standalone HTML file you can open in your browser to see tsParticles in action.

@@ -1,24 +1,24 @@
 # Bundle: Fireworks
 
-`@tsparticles/fireworks` एक सरलीकृत API प्रदान करता है जो एक फ़ंक्शन कॉल के साथ आतिशबाज़ी प्रभाव बनाता है। ध्वनि, कस्टम रंग और इंस्टेंस नियंत्रण (पॉज़/प्ले) का समर्थन करता है।
+`@tsparticles/fireworks` provides a simplified API for creating fireworks effects with a single function call. Supports sounds, custom colors, and instance control (pause/play).
 
-## शामिल सुविधाएँ
+## Included features
 
-**शेप:** line, circle (basic से)
+**Shapes:** line, circle (from basic)
 
-**आंतरिक प्लगइन:** emitters, emitters-shape-square, blend (मिश्रण), sounds
+**Internal plugins:** emitters, emitters-shape-square, blend (blending), sounds
 
-**अपडेटर:** destroy, life, paint, rotate
+**Updaters:** destroy, life, paint, rotate
 
-**API:** `fireworks(options)` — एक नियंत्रणीय इंस्टेंस लौटाता है
+**API:** `fireworks(options)` — returns a controllable instance
 
-## कब उपयोग करें
+## When to use
 
-- नए साल या उत्सव प्रभाव
-- उत्सव UI
-- आप मैन्युअल रूप से इंजन कॉन्फ़िगर नहीं करना चाहते
+- New Year or celebration effect
+- Celebration UI
+- You don't want to configure the engine manually
 
-## इंस्टॉलेशन
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,17 +29,17 @@ pnpm add @tsparticles/fireworks
 ```ts
 import { fireworks } from "@tsparticles/fireworks";
 
-// मूल प्रभाव
+// Basic effect
 const instance = await fireworks({
   colors: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
   sounds: true,
 });
 
-// इंस्टेंस नियंत्रण
+// Instance control
 instance?.pause();
 instance?.play();
 
-// किसी विशिष्ट कैनवास पर
+// On a specific canvas
 await fireworks("my-canvas", {
   rate: 3,
   speed: { min: 10, max: 25 },
@@ -47,35 +47,35 @@ await fireworks("my-canvas", {
 });
 ```
 
-### CDN (script टैग)
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js"></script>
 <script>
-  // तत्काल आतिशबाज़ी
+  // Immediate fireworks
   fireworks();
 </script>
 ```
 
-### मुख्य पैरामीटर
+### Main parameters
 
-| पैरामीटर     | टाइप         | डिफ़ॉल्ट | विवरण                       |
-| ------------ | ------------ | -------- | --------------------------- |
-| `colors`     | string[]     | —        | विस्फोट के रंग              |
-| `rate`       | number       | —        | प्रति सेकंड आतिशबाज़ी       |
-| `speed`      | { min, max } | —        | कण गति                      |
-| `sounds`     | boolean      | true     | ध्वनि प्रभाव सक्षम करें     |
-| `gravity`    | number       | —        | गुरुत्वाकर्षण (डिफ़ॉल्ट: 0) |
-| `opacity`    | number       | —        | अपारदर्शिता (0-1)           |
-| `brightness` | { min, max } | —        | विस्फोट चमक                 |
+| Parameter    | Type         | Default | Description          |
+| ------------ | ------------ | ------- | -------------------- |
+| `colors`     | string[]     | —       | Explosion colors     |
+| `rate`       | number       | —       | Fireworks per second |
+| `speed`      | { min, max } | —       | Particle speed       |
+| `sounds`     | boolean      | true    | Enable sound effects |
+| `gravity`    | number       | —       | Gravity (default: 0) |
+| `opacity`    | number       | —       | Opacity (0-1)        |
+| `brightness` | { min, max } | —       | Explosion brightness |
 
-## सामान्य गलतियाँ
+## Common mistakes
 
-- यह सोचना कि `@tsparticles/fireworks` से `tsParticles` एक्सपोर्ट होता है — ऐसा नहीं है।
-- इंस्टेंस का प्रबंधन किए बिना `fireworks()` को लूप में कॉल करना — प्रभाव पहले से ही निरंतर है।
-- पेज छोड़ते समय इंस्टेंस को न रोकना — `instance?.pause()` या `instance?.stop()` कॉल करें।
+- Thinking `tsParticles` is exported by `@tsparticles/fireworks` — it is not.
+- Calling `fireworks()` in a loop without managing the instance — the effect is already continuous.
+- Not stopping the instance when leaving the page — call `instance?.pause()` or `instance?.stop()`.
 
-## यह भी देखें
+## See also
 
-- [बंडल अवलोकन](/hi/guide/bundles)
-- [कॉनफ़ेटी बंडल](/hi/guide/bundles-confetti)
+- [Bundle overview](/guide/bundles)
+- [Confetti bundle](/guide/bundles-confetti)

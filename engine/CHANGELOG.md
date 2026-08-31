@@ -3,45 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
+# [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
+### Bug Fixes
+
+* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+
+## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 ### Bug Fixes
 
 * fixed common instance usage in engine initialization ([77d6718](https://github.com/tsparticles/tsparticles/commit/77d67187216afb9591c4fa92700176f64771a3a9))
 * fixed double opacity calc, fixes [#5903](https://github.com/tsparticles/tsparticles/issues/5903) ([3e128d2](https://github.com/tsparticles/tsparticles/commit/3e128d2a8f2c346a3cfc96c13569b72f8523a32e))
 
-
-
-
-
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
-
 
 ### Bug Fixes
 
 * fixed some issues in deepExtend ([4ba3518](https://github.com/tsparticles/tsparticles/commit/4ba351881184f155a0d72894e36bc64a267418df))
 
-
-
-
-
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 **Note:** Version bump only for package @tsparticles/engine
 
-
-
-
-
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
-
 
 ### Bug Fixes
 
 * fixed some issues in deepExtend ([9d9fc9f](https://github.com/tsparticles/tsparticles/commit/9d9fc9f39fadf8d9df96f6e7b7cc8cde98e3ae21))
 * improved deepExtend ([af9d1d9](https://github.com/tsparticles/tsparticles/commit/af9d1d9f146cdc994945abf5dbc32cffbeea7b08))
-
 
 ### Features
 
@@ -50,10 +40,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
 * added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
 * improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
-
-
-
-
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-18)
 

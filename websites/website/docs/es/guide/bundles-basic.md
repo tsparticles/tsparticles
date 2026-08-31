@@ -1,41 +1,41 @@
 # Bundle: Basic
 
-`@tsparticles/basic` es el bundle más ligero. Incluye solo lo esencial: círculos que se mueven con opacidad y tamaño animables.
+`@tsparticles/basic` is the lightest bundle. Only includes the essentials: circles that move with animatable opacity and size.
 
-## Funcionalidades incluidas
+## Included features
 
-**Formas:** círculo
+**Shapes:** circle
 
-**Updaters (animaciones):**
+**Updaters:**
 
 - paint (color)
-- opacity (opacidad)
-- out-modes (comportamiento al salir de la pantalla)
-- size (tamaño)
+- opacity
+- out-modes (behavior when leaving the screen)
+- size
 
 **Plugins:**
 
-- move (movimiento)
-- blend (mezcla de color)
-- Colores HEX, HSL, RGB
+- move
+- blend (color blending)
+- HEX, HSL, RGB color plugins
 
-**No incluye:**
+**Not included:**
 
-- Interacciones mouse/touch (click, hover, etc.)
-- Enlaces entre partículas (links)
-- Otras formas (cuadrados, estrellas, imágenes, polígonos, etc.)
-- Emisores, absorbedores, sonidos
-- Rotación, vida, roll, tilt, wobble
+- Mouse/touch interactions
+- Particle links
+- Other shapes (squares, stars, images, polygons, etc.)
+- Emitters, absorbers, sounds
+- Rotation, life, roll, tilt, wobble
 
-## Cuándo usarlo
+## When to use
 
-- El tamaño del bundle es la prioridad absoluta
-- Solo se necesitan puntos que se muevan
-- No se necesitan interacciones ni formas complejas
+- Bundle size is your top priority
+- You only need dots moving around
+- No interactions or complex shapes needed
 
-## Instalación
+## Installation
 
-### Con npm/pnpm/yarn
+### npm/pnpm/yarn
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/basic
@@ -64,7 +64,7 @@ await tsParticles.load({
 });
 ```
 
-### Con CDN (etiqueta `<script>`)
+### CDN (script tags)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
@@ -85,13 +85,13 @@ await tsParticles.load({
 </script>
 ```
 
-## Errores comunes
+## Common mistakes
 
-- Esperar funcionalidades que no están incluidas (ej. `links`, interacciones mouse), que requieren bundles superiores.
-- Llamar `tsParticles.load()` antes de `loadBasic(tsParticles)`: las formas y updaters aún no están registrados.
-- Instalar solo `@tsparticles/engine` sin un bundle: el engine por sí solo no dibuja nada.
+- Expecting features not included (e.g., `links`, mouse interactions) — these require higher bundles.
+- Calling `tsParticles.load()` before `loadBasic(tsParticles)` — shapes and updaters aren't registered yet.
+- Installing only `@tsparticles/engine` without a bundle — the engine alone draws nothing.
 
-## Ver también
+## See also
 
-- [Panorámica de bundles](/es/guide/bundles)
-- [Guía de instalación](/es/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

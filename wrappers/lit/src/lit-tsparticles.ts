@@ -108,9 +108,7 @@ export class LitParticles extends LitElement {
     }
 
     if (changedProperties.has("theme") && this.container) {
-      const newTheme = changedProperties.get("theme") as string | undefined;
-
-      (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(newTheme);
+      (this.container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(this.theme);
     }
   }
 

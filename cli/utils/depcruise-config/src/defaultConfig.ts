@@ -26,6 +26,7 @@ export const defaultConfig: IConfiguration = {
         orphan: true,
         pathNot: [
           "(^|/)[.][^/]+[.](?:js|cjs|mjs|ts|cts|mts|json)$", // dot files
+          "(^|/)src/(?:build|diststats)[.]ts$", // command entrypoints
           "[.]d[.]ts$", // TypeScript declaration files
           "(^|/)tsconfig[.]json$", // TypeScript config
           "(^|/)(?:babel|webpack)[.]config[.](?:js|cjs|mjs|ts|cts|mts|json)$", // other configs

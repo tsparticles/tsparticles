@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember-demo",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "private": true,
   "description": "Ember demo for @tsparticles/ember",
   "repository": {
@@ -34,34 +34,34 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
+    "@babel/core": "^7.29.7",
     "@ember/optional-features": "^3.0.0",
     "@ember/test-helpers": "^5.4.3",
     "@types/ember": "^4.0.11",
     "@types/ember__application": "^4.0.11",
     "@types/ember__controller": "^4.0.12",
     "@types/ember__routing": "^4.0.23",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.4.0",
     "@types/qunit": "^2.19.14",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-cli": "~7.0.1",
+    "ember-cli": "~7.1.0",
     "ember-cli-dependency-checker": "^3.4.0",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-qunit": "^9.1.0",
     "ember-template-lint": "^7.9.3",
-    "eslint": "^10.7.0",
+    "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-ember": "^13.4.0",
-    "eslint-plugin-n": "^18.2.1",
+    "eslint-plugin-ember": "^13.5.0",
+    "eslint-plugin-n": "^18.3.0",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-qunit": "^8.2.6",
     "loader.js": "^4.7.0",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.6",
     "qunit": "^2.26.0",
-    "qunit-dom": "^3.5.1",
+    "qunit-dom": "^3.6.0",
     "typescript": "^6.0.3",
-    "webpack": "^5.108.0"
+    "webpack": "^5.110.1"
   }
 }

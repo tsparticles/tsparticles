@@ -1,29 +1,29 @@
-# Обертка: @tsparticles/lit
+# Wrapper: @tsparticles/lit
 
-Официальная оболочка Lit для `tsParticles`.
+Official Lit wrapper for `tsParticles`.
 
-## Установить
+## Install
 
 ```bash
 pnpm add @tsparticles/lit @tsparticles/engine @tsparticles/slim
 ```
 
-## Быстрая настройка
+## Quick setup flow
 
-1. Установите пакет обертка + движок + загрузчик.
-2. Зарегистрируйте/загрузите функции во время запуска приложения.
-3. Используйте компонент Lit с параметрами, передаваемыми как реквизиты.
+1. Install wrapper + engine + loader package.
+2. Register/load features during app startup.
+3. Use Lit component with options passed as props.
 
-## Ссылки на монорепо
+## Monorepo references
 
-- Папка пакета: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>.
-  - Демо-приложение: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>.
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/lit>
 
-## Информация
+## Readme
 
-- Документы папки-обертки: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>.
+- Wrapper folder docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit>
 
-## Связанные документы
+## Related docs
 
-- [`/guide/wrappers`](/ru/guide/wrappers)
-- [`/guide/frameworks`](/ru/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

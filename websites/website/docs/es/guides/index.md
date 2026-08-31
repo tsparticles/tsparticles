@@ -1,41 +1,41 @@
 ---
-title: Guías Paso a Paso
-description: Explora guías específicas para frameworks para integrar tsParticles en tu proyecto.
+title: Step-by-Step Guides
+description: Explore framework-specific guides for integrating tsParticles into your project.
 ---
 
-# Guías Paso a Paso
+# Step-by-Step Guides
 
-Bienvenido a la sección de guías de tsParticles. Ya sea que estés construyendo un sitio estático con Vanilla JS, una aplicación de una sola página en React o Vue, o una aplicación full-stack con Next.js o Nuxt, estos tutoriales paso a paso te guiarán en la instalación, el uso básico, las configuraciones avanzadas y los efectos interactivos.
+Welcome to the tsParticles guides section. Whether you are building a static Vanilla JS site, a single-page app in React or Vue, or a full-stack application with Next.js or Nuxt, these step-by-step tutorials will walk you through installation, basic usage, advanced configurations, and interactive effects.
 
-Cada guía es autónoma e incluye ejemplos de código listos para copiar y pegar para que puedas empezar rápidamente.
+Each guide is self-contained and includes copy-pasteable code examples so you can get started quickly.
 
-## Guías Disponibles
+## Available Guides
 
-| Framework / Wrapper               | Paquete                                    | Descripción                                                 |
-| --------------------------------- | ------------------------------------------ | ----------------------------------------------------------- |
-| [Vanilla JS](./vanilla)           | `tsparticles` (CDN o npm)                  | Integración directa con DOM usando `tsParticles.load()`     |
-| [React](./react)                  | `@tsparticles/react`                       | Wrapper oficial de React con hooks y API de componentes     |
-| [Vue 3](./vue3)                   | `@tsparticles/vue3`                        | Plugin oficial de Vue 3 con composables                     |
-| [Angular](./angular)              | `@tsparticles/angular`                     | Componente y módulo oficial de Angular                      |
-| [Svelte](./svelte)                | `@tsparticles/svelte`                      | Componente oficial de Svelte                                |
-| [Next.js](./nextjs)               | `@tsparticles/react` (con Next.js)         | Renderizado del lado del servidor e importaciones dinámicas |
-| [Nuxt](./nuxt)                    | `@tsparticles/vue3` (con Nuxt)             | Integración segura para SSR como plugin de Nuxt             |
-| [Solid](./solid)                  | `@tsparticles/solid`                       | Wrapper oficial de SolidJS                                  |
-| [Preact](./preact)                | `@tsparticles/preact`                      | Componente compatible con Preact                            |
-| [Lit](./lit)                      | `@tsparticles/lit`                         | Wrapper de componente web Lit                               |
-| [Qwik](./qwik)                    | `@tsparticles/qwik`                        | Integración optimizada para Qwik                            |
-| [jQuery](./jquery)                | `@tsparticles/jquery`                      | Plugin de jQuery para proyectos heredados                   |
-| [Astro](./astro)                  | `@tsparticles/react` (o cualquier wrapper) | Arquitectura de islas con directivas de cliente             |
-| [Web Components](./webcomponents) | `@tsparticles/webcomponents`               | Integración con API de Custom Elements                      |
-| [Stencil](./stencil)              | `@tsparticles/stencil`                     | Wrapper de componente Stencil                               |
-| [Ember](./ember)                  | `@tsparticles/ember`                       | Integración como addon de Ember                             |
-| [Riot](./riot)                    | `@tsparticles/riot`                        | Wrapper de Riot.js                                          |
-| [Inferno](./inferno)              | `@tsparticles/inferno`                     | Componente compatible con Inferno                           |
-| [WordPress](./wordpress)          | Plugin + `tsparticles`                     | Integración con editor de bloques / shortcode               |
+| Framework / Wrapper               | Package                               | Description                                         |
+| --------------------------------- | ------------------------------------- | --------------------------------------------------- |
+| [Vanilla JS](./vanilla)           | `tsparticles` (CDN or npm)            | Direct DOM integration with `tsParticles.load()`    |
+| [React](./react)                  | `@tsparticles/react`                  | Official React wrapper with hooks and component API |
+| [Vue 3](./vue3)                   | `@tsparticles/vue3`                   | Official Vue 3 plugin with composables              |
+| [Angular](./angular)              | `@tsparticles/angular`                | Official Angular component and module               |
+| [Svelte](./svelte)                | `@tsparticles/svelte`                 | Official Svelte component                           |
+| [Next.js](./nextjs)               | `@tsparticles/react` (with Next.js)   | Server-side rendering and dynamic imports           |
+| [Nuxt](./nuxt)                    | `@tsparticles/vue3` (with Nuxt)       | SSR-safe integration as a Nuxt plugin               |
+| [Solid](./solid)                  | `@tsparticles/solid`                  | Official SolidJS wrapper                            |
+| [Preact](./preact)                | `@tsparticles/preact`                 | Preact-compatible component                         |
+| [Lit](./lit)                      | `@tsparticles/lit`                    | Lit web component wrapper                           |
+| [Qwik](./qwik)                    | `@tsparticles/qwik`                   | Qwik-optimized integration                          |
+| [jQuery](./jquery)                | `@tsparticles/jquery`                 | jQuery plugin for legacy projects                   |
+| [Astro](./astro)                  | `@tsparticles/react` (or any wrapper) | Island architecture with client directives          |
+| [Web Components](./webcomponents) | `@tsparticles/webcomponents`          | Custom Elements API integration                     |
+| [Stencil](./stencil)              | `@tsparticles/stencil`                | Stencil component wrapper                           |
+| [Ember](./ember)                  | `@tsparticles/ember`                  | Ember addon integration                             |
+| [Riot](./riot)                    | `@tsparticles/riot`                   | Riot.js wrapper                                     |
+| [Inferno](./inferno)              | `@tsparticles/inferno`                | Inferno-compatible component                        |
+| [WordPress](./wordpress)          | Plugin + `tsparticles`                | Block editor / shortcode integration                |
 
-## Elige tu Guía
+## Choose Your Guide
 
-- [Vanilla JS (JavaScript plano)](./vanilla)
+- [Vanilla JS (plain JavaScript)](./vanilla)
 - [React](./react)
 - [Vue 3](./vue3)
 - [Angular](./angular)
@@ -55,4 +55,4 @@ Cada guía es autónoma e incluye ejemplos de código listos para copiar y pegar
 - [Inferno](./inferno)
 - [WordPress](./wordpress)
 
-¡Feliz construcción!
+Happy building!

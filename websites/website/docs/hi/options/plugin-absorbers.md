@@ -1,8 +1,8 @@
-# प्लगइन विकल्प: अवशोषक
+# Plugin Option: Absorbers
 
-`absorbers` एक प्लगइन विकल्प है और आपके बंडल/सेटअप में अवशोषक सुविधाओं का उपलब्ध होना आवश्यक है।
+`absorbers` is a plugin option and requires absorber features to be available in your bundle/setup.
 
-## उदाहरण
+## Example
 
 ```ts
 absorbers: {
@@ -16,11 +16,11 @@ absorbers: {
 }
 ```
 
-## नोट्स
+## Notes
 
-- अवशोषक विकल्पों का उपयोग करने से पहले प्लगइन उपलब्धता सत्यापित करें।
-- एक अवशोषक उदाहरण से शुरू करें, फिर धीरे-धीरे स्केल करें।
+- Validate plugin availability before using absorber options.
+- Start with one absorber instance, then scale gradually.
 
-## स्रोत संदर्भ
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Plugins/Absorbers.md>

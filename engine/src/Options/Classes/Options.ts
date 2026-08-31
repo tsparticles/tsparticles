@@ -3,6 +3,8 @@ import { loadProperty, loadRangeProperty } from "../../Utils/OptionsUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
+import { HDROptions } from "./HDROptions.js";
+import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { OptionLoader } from "../../Utils/OptionLoader.js";
@@ -46,8 +48,8 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
   fpsLimit = 120;
   /** The full screen options */
   readonly fullScreen: FullScreen;
-  /** The HDR flag */
-  hdr = true;
+  /** The HDR options */
+  readonly hdr: HDROptions;
   /** The key value */
   key?: string;
   /** The name value */
@@ -80,6 +82,7 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
     this.#container = container;
     this.background = new Background();
     this.fullScreen = new FullScreen();
+    this.hdr = new HDROptions();
     this.particles = loadParticlesOptions(this.#pluginManager, this.#container);
     this.resize = new ResizeEvent();
   }
@@ -111,7 +114,17 @@ export class Options extends OptionLoader<IOptions> implements IOptions {
     loadProperty(this, "detectRetina", data.detectRetina);
     loadRangeProperty(this, "duration", data.duration);
     loadProperty(this, "fpsLimit", data.fpsLimit);
-    loadProperty(this, "hdr", data.hdr);
+
+    const hdrData = data.hdr;
+
+    if (isBoolean(hdrData)) {
+      this.hdr.enable = hdrData;
+      this.hdr.mode = HdrMode.standard;
+      this.hdr.peakNits = 400;
+    } else {
+      this.hdr.load(hdrData);
+    }
+
     loadProperty(this, "pauseOnBlur", data.pauseOnBlur);
     loadProperty(this, "pauseOnOutsideViewport", data.pauseOnOutsideViewport);
     loadProperty(this, "zLayers", data.zLayers);

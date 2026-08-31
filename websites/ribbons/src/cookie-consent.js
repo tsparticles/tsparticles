@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 const CONSENT_KEY = 'tsparticles-ribbons/cookie-consent-v1';
 const GA_MEASUREMENT_ID = 'G-CQTMTXX07T';
 const ADSENSE_CLIENT_ID = 'ca-pub-1784552607103901';
@@ -185,10 +187,9 @@ function createBanner() {
 
   banner.innerHTML = `
     <div class="cookie-consent-content">
-      <p class="cookie-consent-title">Privacy settings</p>
+      <p class="cookie-consent-title">${t('cookie.title')}</p>
       <p class="cookie-consent-text">
-        Choose how this site can use analytics and advertising technologies.
-        If analytics cookies are disabled, anonymous cookieless measurement remains enabled.
+        ${t('cookie.text')}
         Read the
         <a
           class="cookie-consent-link"
@@ -196,7 +197,7 @@ function createBanner() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          cookie policy
+          ${t('cookie.cookiePolicy')}
         </a>.
       </p>
       <label class="cookie-consent-option">
@@ -205,7 +206,7 @@ function createBanner() {
           type="checkbox"
           ${consentState.analytics ? 'checked' : ''}
         />
-        <span>Analytics cookies</span>
+        <span>${t('cookie.analytics')}</span>
       </label>
       <label class="cookie-consent-option">
         <input
@@ -213,21 +214,21 @@ function createBanner() {
           type="checkbox"
           ${consentState.adsense ? 'checked' : ''}
         />
-        <span>Google AdSense</span>
+        <span>${t('cookie.adsense')}</span>
       </label>
       <div class="cookie-consent-actions">
         <button id="cookieConsentReject" type="button">
-          Reject all
+          ${t('cookie.rejectAll')}
         </button>
         <button id="cookieConsentSave" type="button">
-          Save choices
+          ${t('cookie.saveChoices')}
         </button>
         <button
           id="cookieConsentAccept"
           type="button"
           class="cookie-consent-primary"
         >
-          Accept all
+          ${t('cookie.acceptAll')}
         </button>
       </div>
     </div>

@@ -1,27 +1,29 @@
-# 包装：@tsparticles/ember
+# Wrapper: @tsparticles/ember
 
-`tsParticles` 的官方 Ember 包装器。
+Official Ember wrapper for `tsParticles`.
 
-## 安装
+## Install
 
 ```bash
 pnpm add @tsparticles/ember @tsparticles/engine @tsparticles/slim
 ```
 
-## 快速设置流程
+## Quick setup flow
 
-1.安装wrapper+engine+loader包。2. 在应用程序引导程序中初始化引擎功能。3. 使用您的选项安装 Ember 组件。
+1. Install wrapper + engine + loader package.
+2. Initialize engine features once in app bootstrap.
+3. Mount the Ember component with your options.
 
-## Monorepo 参考资料
+## Monorepo references
 
-- 包文件夹：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
-- 演示应用程序：<https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/ember>
 
-## 自述文件
+## Readme
 
-- 包装自述文件：<https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme>
 
-## 相关文档
+## Related docs
 
-- [`/guide/wrappers`](/zh/guide/wrappers)
-- [`/guide/frameworks`](/zh/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

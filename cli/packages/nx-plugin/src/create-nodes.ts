@@ -1,4 +1,4 @@
-import { type CreateNodesV2, createNodesFromFiles, readJsonFile } from "@nx/devkit";
+import { type CreateNodes, createNodesFromFiles, readJsonFile } from "@nx/devkit";
 import { createCanonicalAliasTargets, isTsParticlesWorkspacePackage } from "./canonical-targets.ts";
 import { dirname, join } from "node:path";
 
@@ -89,7 +89,7 @@ function createProjectAugmentation(packageJsonPath: string, workspaceRoot: strin
   };
 }
 
-export const createNodesV2: CreateNodesV2 = [
+export const createNodes: CreateNodes = [
   "**/package.json",
   (configFiles, options, context): ReturnType<typeof createNodesFromFiles> =>
     createNodesFromFiles(

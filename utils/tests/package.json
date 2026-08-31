@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/tests",
   "private": true,
-  "version": "4.3.3",
+  "version": "4.4.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
@@ -28,13 +28,13 @@
     "@tsparticles/plugin-rgb-color": "workspace:*"
   },
   "devDependencies": {
-    "@types/jsdom": "^28.0.3",
-    "@vitest/coverage-v8": "^4.1.9",
-    "@vitest/ui": "^4.1.9",
+    "@types/jsdom": "^30.0.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/ui": "^4.1.10",
     "canvas": "^3.2.3",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.1",
     "jsdom-global": "^3.0.2",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "type": "module"
 }

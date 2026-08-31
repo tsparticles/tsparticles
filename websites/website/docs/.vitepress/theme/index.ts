@@ -1,14 +1,15 @@
+import { defineAsyncComponent } from "vue";
 import DefaultTheme from "vitepress/theme";
 import type { Theme } from "vitepress";
 
 import "./custom.css";
 import AppLayout from "./components/AppLayout.vue";
-import MyHome from "./components/MyHome.vue";
-import PlaygroundBundlesPanel from "./components/PlaygroundBundlesPanel.vue";
-import PlaygroundPanel from "./components/PlaygroundPanel.vue";
-import RandomDemo from "./components/RandomDemo.vue";
 import WebsiteVersionInfo from "./components/WebsiteVersionInfo.vue";
-import { initPlaygroundFeaturesOnce } from "./components/playgroundLoaders";
+
+const MyHome = defineAsyncComponent(() => import("./components/MyHome.vue"));
+const PlaygroundBundlesPanel = defineAsyncComponent(() => import("./components/PlaygroundBundlesPanel.vue"));
+const PlaygroundPanel = defineAsyncComponent(() => import("./components/PlaygroundPanel.vue"));
+const RandomDemo = defineAsyncComponent(() => import("./components/RandomDemo.vue"));
 
 const theme: Theme = {
   extends: DefaultTheme,
@@ -19,12 +20,6 @@ const theme: Theme = {
     app.component("PlaygroundPanel", PlaygroundPanel);
     app.component("RandomDemo", RandomDemo);
     app.component("WebsiteVersionInfo", WebsiteVersionInfo);
-
-    if (typeof globalThis.window !== "undefined") {
-      void initPlaygroundFeaturesOnce().catch((error) => {
-        console.error("[playground] Feature preload failed.", error);
-      });
-    }
   },
 };
 

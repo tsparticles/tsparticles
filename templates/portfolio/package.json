@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/template-portfolio",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -14,6 +14,15 @@
     "prebuild": "node scripts/prebuild.js",
     "build": "pnpm run prebuild",
     "build:ci": "pnpm run prebuild",
-    "version": "pnpm run build && git add template.json"
+    "version": "pnpm run build && git add template.json",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@tsparticles/configs": "workspace:*",
+    "@tsparticles/engine": "workspace:*",
+    "@tsparticles/slim": "workspace:*"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.3.4"
   }
 }

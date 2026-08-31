@@ -4,7 +4,7 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 2 — 4.4.0 Fluid Interaction
+**Current focus:** Phase 2 — 4.4.0 HDR Color Fix & Rendering Modes (release prep)
 
 ## Session Status — 2026-06-29
 
@@ -20,17 +20,22 @@ All 6 features implemented and gate checks passed:
 
 Build: 461 projects ✅ | Tests: 152/152 ✅ | No blocking issues.
 
-### 4.4.0 — Fluid Interaction (v4 planning)
+### 4.4.0 — HDR Color Fix & Rendering Modes ✅
 
-v3 implementation completed and reverted. Code did not produce fluid behavior.
-See `.planning/handovers/FLUID_INTERACTION_PLAN.md` for full retrospective and v4 plan.
+4.4.0 scope re-assigned: HDR color fidelity fixes (tone mapping, linear-space mixing, `peakNits`, `hdrMode` presets) + code review fixes. See `.planning/handovers/4.4.0_PLAN.md`.
 
-**v4 plan completed** (2026-06-29). Key changes from v3:
+**Status: implemented.** Engine HDR pipeline (ACES tone mapping, linear-space `colorMix`, `HdrMode` presets, display listeners) fully threaded through all consumer packages. FIX-PROMPT fixes verified applied, including the remaining `ribbons.lazy.ts` fallback bug. Full suite green (168/168 tests). Remaining FIX-PROMPT Verification step re-run clean.
+
+Fluid-in-collisions work moved to 4.5.0.
+
+**v5 fluid plan drafted** (fluid as collision mode). Key changes from v3:
 - Velocity reconstruction added (critical fix)
 - Correct `q` factor in DDR displacement formula
 - Explicit boundary handling (soft spring + hard clamp) instead of outModes
 - Per-particle `prevPos` state for velocity reconstruction
 - Confirmed ParticlesInteractorBase is the correct integration point with these fixes
+
+**MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection. See `MCP_GENERATE_CODE_PLAN.md`.
 
 ### Outcome
 **S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.

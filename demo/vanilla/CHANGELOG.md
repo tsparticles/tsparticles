@@ -3,46 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
+
+### Bug Fixes
+
+* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 **Note:** Version bump only for package @tsparticles/vanilla-demo
-
-
-
-
 
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 **Note:** Version bump only for package @tsparticles/vanilla-demo
 
-
-
-
-
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 **Note:** Version bump only for package @tsparticles/vanilla-demo
 
-
-
-
-
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
-
 
 ### Bug Fixes
 
 * fixed angular confetti ([6f25a4a](https://github.com/tsparticles/tsparticles/commit/6f25a4a1eaa69c47f2668316e7b396fe55195f84))
 
-
 ### Features
 
 * added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
 * improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
-
-
-
-
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

@@ -88,7 +88,7 @@ export class ShadowDrawer implements IEffectDrawer {
     context.save();
 
     context.shadowBlur = shadowParticle.shadowBlur ?? defaultShadowBlur;
-    context.shadowColor = getStyleFromRgb(shadowColor, container.hdr);
+    context.shadowColor = getStyleFromRgb(shadowColor, container.hdr, undefined, container.peakNits, container.hdrMode);
     context.shadowOffsetX = shadowOffset?.x ?? defaultShadowOffsetValue;
     context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
   }

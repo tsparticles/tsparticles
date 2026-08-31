@@ -1,29 +1,29 @@
-# ラッパー: @tsparticles/inferno
+# Wrapper: @tsparticles/inferno
 
-`tsParticles` の公式 Inferno ラッパー。
+Official Inferno wrapper for `tsParticles`.
 
-## インストール
+## Install
 
 ```bash
 pnpm add @tsparticles/inferno @tsparticles/engine @tsparticles/slim
 ```
 
-## 簡単なセットアップの流れ
+## Quick setup flow
 
-1. ラッパー + `@tsparticles/engine` + ローダー パッケージをインストールします。
-2. アプリの初期化で機能を一度ロードします。
-3. 入力されたオプションを使用して Inferno コンポーネントをレンダリングします。
+1. Install wrapper + `@tsparticles/engine` + loader package.
+2. Load features once in app init.
+3. Render the Inferno component with typed options.
 
-## モノリポジトリ参照
+## Monorepo references
 
-- パッケージフォルダー: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno>
-- デモアプリ: <https://github.com/tsparticles/tsparticles/tree/main/demo/inferno>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/inferno>
 
-## リードミー
+## Readme
 
-- ラッパー README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme>
 
-## 関連ドキュメント
+## Related docs
 
-- [`/guide/wrappers`](/ja/guide/wrappers)
-- [`/guide/frameworks`](/ja/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

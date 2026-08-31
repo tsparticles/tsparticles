@@ -1,8 +1,8 @@
-# Formatos de color
+# Color Formats
 
-tsParticles acepta múltiples formatos de color en opciones como `background`, `particles.paint` y configuraciones de complementos.
+tsParticles accepts multiple color formats across options such as `background`, `particles.paint`, and plugin settings.
 
-## Formatos comunes
+## Common formats
 
 ```ts
 color: "#60a5fa";
@@ -24,13 +24,13 @@ color: {
 }
 ```
 
-## Orientación práctica
+## Practical guidance
 
-- Prefiera hexadecimal para facilitar la lectura en documentos y ejemplos.
-- Utilice matrices de colores para escenas aleatorias más ricas.
-- Mantenga el contraste alto cuando se utilicen efectos detrás del texto.
+- Prefer hex for readability in docs and examples.
+- Use arrays of colors for richer randomized scenes.
+- Keep contrast high when effects are used behind text.
 
-## Referencia fuente
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Color.md>
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Color.md>

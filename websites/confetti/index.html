@@ -6,6 +6,7 @@
     <meta
       name="description"
       content="tsParticles - Easily create highly customizable confetti, particles and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+      data-i18n="description"
     />
     <meta name="author" content="Matteo Bruni" />
     <meta
@@ -19,10 +20,12 @@
     <meta
       property="og:title"
       content="tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your website"
+      data-i18n="ogTitle"
     />
     <meta
       property="og:description"
       content="Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor. Supports React, Vue, Angular, Svelte, and more."
+      data-i18n="ogDescription"
     />
     <meta property="og:url" content="https://confetti.js.org" />
     <meta property="og:site_name" content="tsParticles Confetti" />
@@ -33,10 +36,12 @@
     <meta
       name="twitter:title"
       content="tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations"
+      data-i18n="twitterTitle"
     />
     <meta
       name="twitter:description"
       content="Create stunning confetti, particles and fireworks animations with tsParticles. Interactive playground with live code editor."
+      data-i18n="twitterDescription"
     />
     <meta name="twitter:image" content="https://particles.js.org/images/banner3.png" />
 
@@ -66,7 +71,7 @@
       }
     </script>
 
-    <title>
+    <title data-i18n="title">
       tsParticles Confetti | JavaScript Confetti, Particles and Fireworks animations for your
       website
     </title>
@@ -113,12 +118,22 @@
     </svg>
 
     <header>
-      <button id="themeToggle" title="Switch Theme" class="theme"></button>
+      <button
+        id="themeToggle"
+        title="Switch Theme"
+        class="theme"
+        data-i18n-title="header.switchTheme"
+      ></button>
+      <select id="languageSelect" class="language-select" aria-label="Language">
+        <option value="en">English</option>
+      </select>
       <a
         class="github-icon"
         title="Visit on GitHub"
         href="https://github.com/matteobruni/tsparticles"
         aria-label="View source on Github"
+        data-i18n-title="header.visitGitHub"
+        data-i18n-aria-label="header.viewSource"
       >
         <svg class="icon">
           <use xlink:href="#octo"></use>
@@ -131,6 +146,8 @@
         aria-label="Join tsParticles Discord"
         target="_blank"
         rel="noopener noreferrer"
+        data-i18n-title="header.joinDiscord"
+        data-i18n-aria-label="header.joinDiscordAria"
       >
         <svg class="icon" viewBox="0 0 24 24">
           <use xlink:href="#discord"></use>
@@ -143,6 +160,8 @@
         aria-label="Visit tsParticles on Reddit"
         target="_blank"
         rel="noopener noreferrer"
+        data-i18n-title="header.visitReddit"
+        data-i18n-aria-label="header.visitRedditAria"
       >
         <svg class="icon" viewBox="0 0 24 24">
           <use xlink:href="#reddit"></use>
@@ -155,6 +174,8 @@
         aria-label="Visit tsParticles website"
         target="_blank"
         rel="noopener noreferrer"
+        data-i18n-title="header.visitWebsite"
+        data-i18n-aria-label="header.visitWebsiteAria"
       >
         <svg class="icon" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
           <path
@@ -199,6 +220,8 @@
         aria-label="Visit tsParticles ribbons website"
         target="_blank"
         rel="noopener noreferrer"
+        data-i18n-title="header.visitRibbons"
+        data-i18n-aria-label="header.visitRibbonsAria"
       >
         <svg class="icon" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
           <path
@@ -248,16 +271,24 @@
 
     <div class="share-menu-wrapper">
       <details class="share-menu">
-        <summary class="share-menu-trigger" aria-label="Share this page">
+        <summary
+          class="share-menu-trigger"
+          aria-label="Share this page"
+          data-i18n-aria-label="share.shareThisPage"
+        >
           <svg class="share-menu-trigger-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M18 16a3 3 0 0 0-2.39 1.18l-6.82-3.4a3.08 3.08 0 0 0 0-1.56l6.82-3.4A3 3 0 1 0 15 7a2.96 2.96 0 0 0 .07.63l-6.86 3.43a3 3 0 1 0 0 1.88l6.86 3.43A2.96 2.96 0 0 0 15 17a3 3 0 1 0 3-1z"
               fill="currentColor"
             />
           </svg>
-          <span>Share</span>
+          <span data-i18n="share.share">Share</span>
         </summary>
-        <div class="social-share" aria-label="Share this page">
+        <div
+          class="social-share"
+          aria-label="Share this page"
+          data-i18n-aria-label="share.shareThisPage"
+        >
           <a
             class="social-share-button"
             data-share-link="facebook"
@@ -273,7 +304,7 @@
                 />
               </svg>
             </span>
-            Facebook
+            <span data-i18n="share.facebook">Facebook</span>
           </a>
           <a
             class="social-share-button"
@@ -290,7 +321,7 @@
                 />
               </svg>
             </span>
-            X</a
+            <span data-i18n="share.x">X</span></a
           >
           <a
             class="social-share-button"
@@ -307,7 +338,7 @@
                 />
               </svg>
             </span>
-            LinkedIn
+            <span data-i18n="share.linkedin">LinkedIn</span>
           </a>
           <a
             class="social-share-button"
@@ -324,7 +355,7 @@
                 />
               </svg>
             </span>
-            Reddit
+            <span data-i18n="share.reddit">Reddit</span>
           </a>
           <a
             class="social-share-button"
@@ -341,7 +372,7 @@
                 />
               </svg>
             </span>
-            Telegram
+            <span data-i18n="share.telegram">Telegram</span>
           </a>
           <a
             class="social-share-button"
@@ -358,7 +389,7 @@
                 />
               </svg>
             </span>
-            WhatsApp
+            <span data-i18n="share.whatsapp">WhatsApp</span>
           </a>
           <a class="social-share-button" data-share-link="email" href="#" rel="noopener noreferrer">
             <span class="social-share-button-icon" aria-hidden="true">
@@ -367,7 +398,7 @@
                 <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" />
               </svg>
             </span>
-            Email</a
+            <span data-i18n="share.email">Email</span></a
           >
           <button id="shareCopyLinkButton" class="social-share-button" type="button">
             <span class="social-share-button-icon" aria-hidden="true">
@@ -381,7 +412,7 @@
                 />
               </svg>
             </span>
-            Copy link
+            <span data-i18n="share.copyLink">Copy link</span>
           </button>
         </div>
       </details>
@@ -392,10 +423,10 @@
         <div class="html-group">
           <div class="flex-rows">
             <div class="left">
-              <h2><a href="#usage" id="usage" class="anchor">Usage</a></h2>
+              <h2><a href="#usage" id="usage" class="anchor" data-i18n="usage.title">Usage</a></h2>
             </div>
             <div class="description">
-              <p>
+              <p data-i18n="usage.description">
                 First of all include the script in your page, only if using in plain HTML/JS pages:
               </p>
             </div>
@@ -415,13 +446,18 @@
         <span class="icon">
           <svg class="icon"><use xlink:href="#code"></use></svg>
         </span>
-        <span> with </span>
+        <span data-i18n="footer.with"> with </span>
         <span class="icon">
           <svg class="icon"><use xlink:href="#heart"></use></svg>
         </span>
-        <span> by <b>tsParticles</b></span>
+        <span data-i18n-html="footer.by"> by <b>tsParticles</b></span>
       </a>
-      <button id="cookiePreferencesButton" class="cookie-preferences-button" type="button">
+      <button
+        id="cookiePreferencesButton"
+        class="cookie-preferences-button"
+        type="button"
+        data-i18n="footer.cookiePreferences"
+      >
         Cookie preferences
       </button>
     </footer>

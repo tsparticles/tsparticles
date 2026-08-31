@@ -1,35 +1,35 @@
 # Bundle: All
 
-`@tsparticles/all` carrega **tudo** do repositório tsParticles: todas as formas, interações, atualizadores, efeitos, caminhos, easings, plugins e exportações. É o maior bundle, destinado à prototipagem e demonstrações.
+`@tsparticles/all` loads **everything** from the tsParticles repository: every shape, interaction, updater, effect, path, easing, plugin, and export. It's the largest bundle, meant for prototyping and demos.
 
-## Funcionalidades incluídas
+## Included features
 
-Herda tudo de `tsparticles` (full) mais:
+Inherits everything from `tsparticles` (full) plus:
 
-**Todas as formas:** seta, cartas, engrenagem, coração, infinito, matrix, caminho, ribbon, polígono arredondado, retângulo arredondado, espiral, squircle
+**All shapes:** arrow, cards, cog, heart, infinity, matrix, path, ribbon, rounded-polygon, rounded-rect, spiral, squircle
 
-**Todas as interações externas:** cannon, light, particle, pop, particles-repulse
+**All external interactions:** cannon, light, particle, pop, particles-repulse
 
-**Todos os efeitos:** bolha, filtro, partículas, sombra, trail
+**All effects:** bubble, filter, particles, shadow, trail
 
-**Todos os geradores de caminho:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
+**All path generators:** branches, brownian, curl-noise, curves, fractal-noise, grid, levy, perlin-noise, polygon, random, simplex-noise, spiral, svg, zig-zag
 
-**Todos os easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
+**All easings:** back, bounce, circ, cubic, elastic, expo, gaussian, linear, quad, quart, quint, sigmoid, sine, smoothstep
 
-**Todos os plugins de cor:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
+**All color plugins:** HEX, HSL, RGB, HSV, HWB, LAB, LCH, Named, OKLAB, OKLCH
 
-**Todos os plugins:** absorvedores, background-mask, canvas-mask, emissores (todas as formas), easings (todos), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
+**All plugins:** absorbers, background-mask, canvas-mask, emitters (all shapes), easings (all), export-image, export-json, export-video, infection, manual-particles, motion, poisson-disc, polygon-mask, responsive, sounds, themes, trail, zoom
 
-**Todos os atualizadores:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
+**All updaters:** destroy, gradient, life, opacity, orbit, out-modes, paint, roll, rotate, size, tilt, twinkle, wobble
 
-## Quando usar
+## When to use
 
-- Prototipagem rápida para explorar possibilidades
-- Demonstrações e showcases
-- Ambientes de desenvolvimento onde o tamanho não importa
-- **Não recomendado para produção** — prefira bundles mais específicos
+- Rapid prototyping to explore possibilities
+- Demos and showcases
+- Development environments where size doesn't matter
+- **Not recommended for production** — prefer more targeted bundles
 
-## Instalação
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -78,16 +78,16 @@ await tsParticles.load({
 </script>
 ```
 
-## Diferença entre `tsparticles` e `@tsparticles/all`
+## Difference between `tsparticles` and `@tsparticles/all`
 
-Consulte a tabela de comparação na [página bundles-full](/pt/guide/bundles-full) para a análise detalhada.
+See the comparison table on the [bundles-full page](/guide/bundles-full) for the detailed breakdown.
 
-## Erros comuns
+## Common mistakes
 
-- Usar em produção — prefira `@tsparticles/slim` ou `tsparticles` para bundles menores.
-- Chamar `tsParticles.load()` antes de `loadAll(tsParticles)`.
+- Using it in production — prefer `@tsparticles/slim` or `tsparticles` for smaller bundles.
+- Calling `tsParticles.load()` before `loadAll(tsParticles)`.
 
-## Veja também
+## See also
 
-- [Visão geral de bundles](/pt/guide/bundles)
-- [Guia de instalação](/pt/guide/installation)
+- [Bundle overview](/guide/bundles)
+- [Installation guide](/guide/installation)

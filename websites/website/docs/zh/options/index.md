@@ -1,68 +1,87 @@
-# 选项参考
+# Options Reference
 
-`tsParticles` 的 options 体系较深，这一页可作为总览地图，帮助你在进入各子选项前先建立整体认知。
+`tsParticles` options are deep, so this page is a practical map before you dive into every sub-option.
 
-## 选择你的配置路径
+## Choose your configuration path
 
-- **快速视觉结果**: 从 preset 开始并覆盖关键字段。
-- **完全控制**: 手动定义 `particles`、`interactivity`、`background`。
-- **config-first 路径**: 从 `@tsparticles/configs` 起步，再逐步细化配置。
+- **Fast visual result**: start from a preset and override key fields.
+- **Full control**: define `particles`, `interactivity`, and `background` manually.
+- **Config-first workflow**: start from `@tsparticles/configs` and iterate safely.
 
-## 快速导航（本地）
+## Quick docs (local)
 
-- [`Background & Canvas`](/zh/options/background)
-- [`Background Mask`](/zh/options/background-mask)
-- [`Full Screen`](/zh/options/fullscreen)
-- [`Motion`](/zh/options/motion)
-- [`Manual Particles`](/zh/options/manual-particles)
-- [`Themes`](/zh/options/themes)
-- [`Particles`](/zh/options/particles)
-- [`Particles Number`](/zh/options/particles-number)
-- [`Particles Move`](/zh/options/particles-move)
-- [`Particles Links`](/zh/options/particles-links)
-- [`Particles Palette`](/zh/options/particles-palette)
-- [`Particles Shape`](/zh/options/particles-shape)
-- [`Particles Collisions`](/zh/options/particles-collisions)
-- [`Particles Life`](/zh/options/particles-life)
-- [`Particles Orbit`](/zh/options/particles-orbit)
-- [`Particles Roll`](/zh/options/particles-roll)
-- [`Particles Rotate`](/zh/options/particles-rotate)
-- [`Interactivity`](/zh/options/interactivity)
-- [`Interactivity Click`](/zh/options/interactivity-click)
-- [`Interactivity Hover`](/zh/options/interactivity-hover)
-- [`Interactivity Div`](/zh/options/interactivity-div)
-- [`Interactivity Events`](/zh/options/interactivity-events)
-- [`Interactivity Modes`](/zh/options/interactivity-modes)
-- [`Plugin: Absorbers`](/zh/options/plugin-absorbers)
-- [`Plugin: Emitters`](/zh/options/plugin-emitters)
-- [`Plugin: Infection`](/zh/options/plugin-infection)
-- [`Plugin: Polygon Mask`](/zh/options/plugin-polygon-mask)
-- [`Performance Guide`](/zh/options/performance)
+- [`Background & Canvas`](/options/background)
+- [`Background Mask`](/options/background-mask)
+- [`Full Screen`](/options/fullscreen)
+- [`Motion`](/options/motion)
+- [`Manual Particles`](/options/manual-particles)
+- [`Themes`](/options/themes)
+- [`Particles`](/options/particles)
+- [`Particles Number`](/options/particles-number)
+- [`Particles Move`](/options/particles-move)
+- [`Particles Links`](/options/particles-links)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Shape`](/options/particles-shape)
+- [`Particles Collisions`](/options/particles-collisions)
+- [`Particles Life`](/options/particles-life)
+- [`Particles Orbit`](/options/particles-orbit)
+- [`Particles Roll`](/options/particles-roll)
+- [`Particles Rotate`](/options/particles-rotate)
+- [`Interactivity`](/options/interactivity)
+- [`Interactivity Click`](/options/interactivity-click)
+- [`Interactivity Hover`](/options/interactivity-hover)
+- [`Interactivity Div`](/options/interactivity-div)
+- [`Interactivity Events`](/options/interactivity-events)
+- [`Interactivity Modes`](/options/interactivity-modes)
+- [`Plugin: Absorbers`](/options/plugin-absorbers)
+- [`Plugin: Background Mask`](/options/plugin-background-mask)
+- [`Plugin: Blend`](/options/plugin-blend)
+- [`Plugin: Canvas Mask`](/options/plugin-canvas-mask)
+- [`Plugin: Colors`](/options/plugin-colors)
+- [`Plugin: Easings`](/options/plugin-easings)
+- [`Plugin: Effects`](/options/plugin-effects)
+- [`Plugin: Emitter Shapes`](/options/plugin-emitter-shapes)
+- [`Plugin: Emitters`](/options/plugin-emitters)
+- [`Plugin: Exports`](/options/plugin-exports)
+- [`Plugin: Infection`](/options/plugin-infection)
+- [`Plugin: Interactions`](/options/plugin-interactions)
+- [`Plugin: Motion`](/options/plugin-motion)
+- [`Plugin: Path Generators`](/options/plugin-path-generators)
+- [`Plugin: Poisson`](/options/plugin-poisson)
+- [`Plugin: Polygon Mask`](/options/plugin-polygon-mask)
+- [`Plugin: Responsive`](/options/plugin-responsive)
+- [`Plugin: Shapes`](/options/plugin-shapes)
+- [`Plugin: Sounds`](/options/plugin-sounds)
+- [`Plugin: Themes`](/options/plugin-themes)
+- [`Plugin: Trail`](/options/plugin-trail)
+- [`Plugin: Updaters`](/options/plugin-updaters)
+- [`Plugin: Zoom`](/options/plugin-zoom)
+- [`Performance Guide`](/options/performance)
 
-## 粒子深度页面
+## Particle deep-dive pages
 
-- [`Particles Bounce`](/zh/options/particles-bounce)
-- [`Particles Color`](/zh/options/particles-color)
-- [`Particles Destroy`](/zh/options/particles-destroy)
-- [`Particles Group`](/zh/options/particles-group)
-- [`Particles Opacity`](/zh/options/particles-opacity)
-- [`Particles Palette`](/zh/options/particles-palette)
-- [`Particles Repulse`](/zh/options/particles-repulse)
-- [`Particles Shadow`](/zh/options/particles-shadow)
-- [`Particles Size`](/zh/options/particles-size)
-- [`Particles Stroke`](/zh/options/particles-stroke)
-- [`Particles Tilt`](/zh/options/particles-tilt)
-- [`Particles Twinkle`](/zh/options/particles-twinkle)
-- [`Particles Wobble`](/zh/options/particles-wobble)
-- [`Particles ZIndex`](/zh/options/particles-zindex)
+- [`Particles Bounce`](/options/particles-bounce)
+- [`Particles Color`](/options/particles-color)
+- [`Particles Destroy`](/options/particles-destroy)
+- [`Particles Group`](/options/particles-group)
+- [`Particles Opacity`](/options/particles-opacity)
+- [`Particles Palette`](/options/particles-palette)
+- [`Particles Repulse`](/options/particles-repulse)
+- [`Particles Shadow`](/options/particles-shadow)
+- [`Particles Size`](/options/particles-size)
+- [`Particles Stroke`](/options/particles-stroke)
+- [`Particles Tilt`](/options/particles-tilt)
+- [`Particles Twinkle`](/options/particles-twinkle)
+- [`Particles Wobble`](/options/particles-wobble)
+- [`Particles ZIndex`](/options/particles-zindex)
 
-## 参考文档在哪里
+## Where the source of truth lives
 
-- 主 options 文档: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- 详细 options 页面: [`tsparticles/markdown/Options/`](https://github.com/tsparticles/tsparticles/tree/main/markdown/Options)
-- TypeScript 接口: [`tsparticles/engine/src/Options/Interfaces`](https://github.com/tsparticles/tsparticles/tree/main/engine/src/Options/Interfaces)
+- Main options docs: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- Detailed option pages: [`tsparticles/markdown/Options/`](https://github.com/tsparticles/tsparticles/tree/main/markdown/Options)
+- Type interfaces: [`tsparticles/engine/src/Options/Interfaces`](https://github.com/tsparticles/tsparticles/tree/main/engine/src/Options/Interfaces)
 
-## 最常用的 root options
+## Most-used root options
 
 - `background`
 - `fullScreen`
@@ -72,19 +91,19 @@
 - `preset`
 - `responsive`
 
-## 最常用的区块
+## Most-used sections
 
-- `background`: canvas 背景与遮罩的基础设置。
-- `particles.number`: 粒子数量与密度。
-- `particles.move`: 速度、方向与 out modes。
-- `particles.shape`: 圆形、多边形、图片、表情或自定义。
-- `particles.palette`: 快速切换协调色组。
-- `interactivity`: hover/click 模式与外部效果。
-- `detectRetina`: 高 DPI 屏幕下的画质与性能平衡。
+- `background`: canvas background and masking basics.
+- `particles.number`: quantity and density.
+- `particles.move`: movement speed, direction, and out modes.
+- `particles.shape`: circle, polygon, image, emoji, custom.
+- `particles.palette`: quickly swap coordinated color sets.
+- `interactivity`: hover/click modes and external effects.
+- `detectRetina`: quality/perf tradeoff on high-DPI screens.
 
-## 粒子地图（嵌套视图）
+## Particles map (nested view)
 
-在进入单页详情前，可先参考下列导航树：
+Use this quick tree as a navigation aid before opening single pages:
 
 ```text
 particles
@@ -112,19 +131,19 @@ particles
 `- palette
 ```
 
-建议先读 root 文档，再进入深度页面：
+Open root docs first, then deep-dive sections:
 
-- 基础: [`Particles`](/zh/options/particles)
-- 深入阅读: [`Particles Number`](/zh/options/particles-number), [`Particles Move`](/zh/options/particles-move), [`Particles Links`](/zh/options/particles-links)
+- Root: [`Particles`](/options/particles)
+- Deep dives: [`Particles Number`](/options/particles-number), [`Particles Move`](/options/particles-move), [`Particles Links`](/options/particles-links)
 
-## 稳妥的 options 配置流程
+## Safe options workflow
 
-1. 从 demos 或 presets 中可运行的配置开始。
-2. 每次只修改一个区块。
-3. 在应用代码中使用 TypeScript（`IOptions`）校验。
-4. 将生产配置放到专用 JSON 文件中。
+1. Start with a working config from demos or presets.
+2. Change one section at a time.
+3. Validate with TypeScript (`IOptions`) in app code.
+4. Keep production options in dedicated JSON files.
 
-## 最小类型示例
+## Minimal typed example
 
 ```ts
 import type { ISourceOptions } from "@tsparticles/engine";
@@ -138,16 +157,16 @@ export const particlesOptions: ISourceOptions = {
 };
 ```
 
-## 性能护栏
+## Performance guardrails
 
-- 非必要情况下优先使用 `@tsparticles/slim`。
-- 粒子数量应与容器面积成比例。
-- 在真实设备上做 profile 后再添加重交互。
+- Prefer `@tsparticles/slim` unless you need advanced plugins.
+- Keep particle counts proportional to container area.
+- Profile with real devices before adding heavy interactions.
 
-## 相关参考
+## Related references
 
-- configs package 文档: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
-- presets 目录: <https://github.com/tsparticles/tsparticles/tree/main/presets>
-- palettes 目录: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
+- Config package docs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
+- Presets folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
+- Palettes folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
-每个子选项的完整细节，可继续查阅上方链接的 `tsparticles/markdown/Options` 源页面。
+For full details on every sub-option, also use the source pages in `tsparticles/markdown/Options` linked above.

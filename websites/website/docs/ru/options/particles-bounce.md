@@ -1,8 +1,8 @@
-# Частицы отскакивают
+# Particles Bounce
 
-`particles.bounce` настраивает поведение отскока, когда столкновения или границы применяют логику отскока.
+`particles.bounce` customizes rebound behavior when collisions or boundaries apply bounce logic.
 
-## Пример
+## Example
 
 ```ts
 particles: {
@@ -17,11 +17,11 @@ particles: {
 }
 ```
 
-## Практическое руководство
+## Practical guidance
 
-- Значения около `1` сохраняют естественные отскоки.
-- Более высокие значения могут выглядеть энергично, но менее реалистично.
+- Values around `1` keep natural rebounds.
+- Higher values can look energetic but less realistic.
 
-## Ссылка на источник
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Bounce.md>

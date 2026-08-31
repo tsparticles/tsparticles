@@ -134,7 +134,13 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
           a: cover.opacity,
         };
 
-        this.#coverColorStyle = getStyleFromRgb(coverColor, this.#container.hdr, coverColor.a);
+        this.#coverColorStyle = getStyleFromRgb(
+          coverColor,
+          this.#container.hdr,
+          coverColor.a,
+          this.#container.peakNits,
+          this.#container.hdrMode,
+        );
       }
     } else if (cover?.image) {
       const coverImage = cover.image;

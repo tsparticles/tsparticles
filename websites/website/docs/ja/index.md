@@ -1,73 +1,71 @@
 ---
-layout: home
-
-title: tsParticles
-titleTemplate: 表現力のあるパーティクル背景を数分で作成
+layout: MyHome
 
 hero:
   name: tsParticles
-  text: 高性能なパーティクルエンジンと、使いやすい開発ワークフロー
-  tagline: あらゆる framework で、インタラクティブな背景・エフェクト・紙吹雪をすばやく導入できます。
+  text: Powerful particle engine, simple developer workflow
+  tagline: Ship interactive backgrounds, effects, and confetti on any framework.
   image:
-    src: https://particles.js.org/images/banner3.png
+    src: /images/banner3.png
     alt: tsParticles
   actions:
     - theme: brand
-      text: はじめる
-      link: /ja/guide/getting-started
+      text: Get Started
+      link: /guide/getting-started
     - theme: alt
-      text: Playground を開く
-      link: /ja/playground/
+      text: Open Playground
+      link: /playground/
     - theme: alt
-      text: すぐ使えるデモ
-      link: /ja/demos/
+      text: Ready-to-Use Demos
+      link: /demos/
 
 features:
-  - title: すばやい立ち上げ
-    details: 最小構成から始めて、presets・plugins・カスタム shape へ段階的に拡張できます。
-  - title: framework 対応
-    details: React、Vue、Angular、Svelte、Solid、Web Components、Vanilla JavaScript をサポート。
-  - title: 本番運用を重視
-    details: "@tsparticles/basic、@tsparticles/slim、tsparticles、@tsparticles/all で bundle サイズを調整できます。"
-  - title: 用途別 API
-    details: "@tsparticles/particles、@tsparticles/confetti、@tsparticles/fireworks、@tsparticles/ribbons を 1 回の呼び出しで導入できます。"
+  - title: Fast onboarding
+    details: Start with a minimal setup, then scale to presets, plugins, and custom shapes.
+  - title: Framework ready
+    details: React, Vue, Angular, Svelte, Solid, Web Components, and vanilla JavaScript.
+  - title: Production focused
+    details: Control bundle size with @tsparticles/basic, @tsparticles/slim, tsparticles, or @tsparticles/all.
+  - title: Focused APIs
+    details: Use @tsparticles/particles, @tsparticles/confetti, @tsparticles/fireworks, and @tsparticles/ribbons for one-call setups.
 ---
 
-## このドキュメントの狙い
+## Why this docs experience
 
-このサイトは、最も多い質問 **「いま tsParticles をどう使うのか？」** に最短で答えられるように再設計されています。
+The website has been redesigned around the most common question: **"How do I use tsParticles now?"**
 
-- 5 分以内に動くスニペットから開始できます。
-- 多数のリポジトリを横断せずに適切な package を選べます。
-- options、config、presets、palettes をすばやく見つけられます。
-- 重いエフェクトは、明示的な開始/一時停止コントロールで必要なときだけ有効化できます。
+- Start from a working snippet in under 5 minutes.
+- Choose the right package without digging through many repos.
+- Find options, configs, presets, and palettes quickly.
+- Run heavy effects only when you decide with explicit Start/Pause controls.
 
-## 最初に読むべきページ
+## What to read first
 
-1. [`/guide/getting-started`](/ja/guide/getting-started): インストール、初回レンダリング、最小オプション。
-2. [`/guide/installation`](/ja/guide/installation): CDN/package manager の導入マトリクスと import パターン。
-3. [`/playground/`](/ja/playground/): コマンドでデモを起動し、JSON をライブ編集。
-4. [`/demos/`](/ja/demos/): 本番向けレシピをそのまま利用。
-5. [`/options/`](/ja/options/): ルート options の地図と詳細ページへの導線。
-6. [`/migrations/particles-js`](/ja/migrations/particles-js): particles.js からの移行手順と互換性メモ。
-7. [`/guide/wrappers`](/ja/guide/wrappers): 公式 wrappers と framework 別リンク。
-8. [`/guide/plugins-customization`](/ja/guide/plugins-customization): カスタム shape、presets、plugin 拡張。
-9. [`/guide/templates-resources`](/ja/guide/templates-resources): スターターリポジトリと共有リソース。
-10. [`/guide/video-tutorials`](/ja/guide/video-tutorials): 公式動画デモと参考資料。
-11. [`/guide/dependency-graph`](/ja/guide/dependency-graph): engine と bundles の依存関係マップ。
+1. [`/guide/getting-started`](/guide/getting-started): installation, first render, minimal options.
+2. [`/guide/installation`](/guide/installation): CDN/package-manager install matrix and import styles.
+3. [`/playground/`](/playground/): launch demos only on command and edit JSON live.
+4. [`/demos/`](/demos/): copy ready-to-use recipes for production.
+5. [`/options/`](/options/): map of root options and deep links.
+6. [`/migrations/`](/migrations/): migrate from tsParticles v1/v2/v3 to current.
+7. [`/migrations/particles-js`](/migrations/particles-js): migrate from particles.js with compatibility notes.
+8. [`/guide/wrappers`](/guide/wrappers): official wrapper packages and framework links.
+9. [`/guide/plugins-customization`](/guide/plugins-customization): custom shapes, presets, and plugin extension.
+10. [`/guide/templates-resources`](/guide/templates-resources): starter repos and shareable resources.
+11. [`/guide/video-tutorials`](/guide/video-tutorials): official video demos and references.
+12. [`/guide/dependency-graph`](/guide/dependency-graph): package-level map for engine and bundles.
 
-## 主要ソースと重要フォルダー
+## Core source and folders
 
-- メイン monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
-- メイン README（クイックスタート、wrappers、presets）: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
-- wrappers フォルダー: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- demo アプリ フォルダー: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- presets フォルダー: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- palettes フォルダー: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
-- root options ソース: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
-- migration ソース: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
+- Main monorepo: [github.com/tsparticles/tsparticles](https://github.com/tsparticles/tsparticles)
+- Main README: [README.md](https://github.com/tsparticles/tsparticles/blob/main/README.md)
+- Wrappers folder: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- Demo apps folder: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- Presets workspace folders: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- Palettes workspace folders: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- Root options source: [`tsparticles/markdown/Options.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/Options.md)
+- Migration source: [`tsparticles/markdown/pjsMigration.md`](https://github.com/tsparticles/tsparticles/blob/main/markdown/pjsMigration.md)
 
-## プロジェクトを支援する
+## Support the project
 
-- Matteo Bruni をスポンサー: <https://github.com/matteobruni>
-- tsParticles organization をスポンサー: <https://github.com/tsparticles>
+- Sponsor Matteo Bruni: [https://github.com/matteobruni](https://github.com/matteobruni)
+- Sponsor tsParticles org: [https://github.com/tsparticles](https://github.com/tsparticles)

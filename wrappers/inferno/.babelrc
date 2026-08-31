@@ -14,12 +14,9 @@
         }
       }
     ],
-    ["@babel/typescript", {"isTSX": true, "allExtensions": true}]
+    ["@babel/typescript"]
   ],
   "plugins": [
-    ["babel-plugin-inferno", { "imports": true }],
-    ["@babel/plugin-proposal-class-properties"],
-    ["@babel/plugin-transform-private-methods"],
-    ["@babel/plugin-transform-private-property-in-object"]
+    ["babel-plugin-inferno", { "imports": true }]
   ]
 }

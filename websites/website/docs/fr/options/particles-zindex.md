@@ -1,8 +1,8 @@
-# Particules ZIndex
+# Particles ZIndex
 
-`particles.zIndex` contrôle la superposition de dessin et l'animation facultative d'index z.
+`particles.zIndex` controls draw layering and optional z-index animation.
 
-## Exemple
+## Example
 
 ```ts
 particles: {
@@ -18,11 +18,11 @@ particles: {
 }
 ```
 
-## Conseils pratiques
+## Practical guidance
 
-- Utilisez la variation de l'indice z pour créer une perception de la profondeur.
-- Gardez les plages modérées pour préserver la cohérence visuelle.
+- Use z-index variation to create depth perception.
+- Keep ranges moderate to preserve visual consistency.
 
-## Référence source
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/ZIndex.md>

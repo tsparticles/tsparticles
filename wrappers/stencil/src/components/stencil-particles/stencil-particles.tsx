@@ -72,7 +72,8 @@ export class StencilParticles {
       const loadParams: Record<string, unknown> = {
         element: this.containerElement,
         ...(this.containerId ? { id: this.containerId } : {}),
-        ...(this.options ? { options: this.options } : { url: this.url! }),
+        ...(this.options ? { options: this.options } : {}),
+        ...(this.url ? { url: this.url } : {}),
       };
 
       container = await tsParticles.load(loadParams);

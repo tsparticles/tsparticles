@@ -1,31 +1,31 @@
 ---
 title: Riot Guide
-description: Полное руководство по интеграции tsParticles с компонентами Riot.js.
+description: Complete guide for integrating tsParticles with Riot.js components.
 ---
 
 # Riot Guide
 
-## Содержание
+## Table of Contents
 
-1. [Установка](#установка)
-2. [Инициализация движка](#инициализация-движка)
-3. [Базовое использование](#базовое-использование)
-4. [Условный рендеринг](#условный-рендеринг)
-5. [Использование пресетов](#использование-пресетов)
-6. [Пользовательская конфигурация](#пользовательская-конфигурация)
-7. [Полный компонент](#полный-компонент)
+1. [Installation](#installation)
+2. [Engine Initialization](#engine-initialization)
+3. [Basic Usage](#basic-usage)
+4. [Conditional Rendering](#conditional-rendering)
+5. [Preset Usage](#preset-usage)
+6. [Custom Configuration](#custom-configuration)
+7. [Full Component](#full-component)
 
 ---
 
-## Установка
+## Installation
 
-Установите обёртку Riot и движок tsParticles через npm:
+Install the Riot wrapper and the tsParticles engine via npm:
 
 ```bash
 npm install @tsparticles/riot tsparticles
 ```
 
-Опционально установите конфиги пресетов для быстрой настройки:
+Optionally install preset configs for quick setup:
 
 ```bash
 npm install @tsparticles/configs
@@ -34,9 +34,9 @@ npm install @tsparticles/slim
 
 ---
 
-## Инициализация движка
+## Engine Initialization
 
-Обёртка Riot экспортирует функцию `initParticlesEngine`. Вызовите её в хуке жизненного цикла `onBeforeMount` компонента, чтобы подготовить движок до рендеринга компонента частиц.
+The Riot wrapper exports an `initParticlesEngine` function. Call it in your component's `onBeforeMount` lifecycle hook to prepare the engine before the particles component renders.
 
 ```html
 <my-component>
@@ -57,13 +57,13 @@ npm install @tsparticles/slim
 </my-component>
 ```
 
-Движок инициализируется один раз и используется всеми экземплярами `<riot-particles>` в вашем приложении.
+The engine initializes once and is shared across all `<riot-particles>` instances in your app.
 
 ---
 
-## Базовое использование
+## Basic Usage
 
-После инициализации движка используйте компонент `<riot-particles>` в вашем шаблоне. Передайте конфигурацию в виде JSON-строки объекта опций или ссылки на свойство вашего компонента.
+After initializing the engine, use the `<riot-particles>` component in your template. Pass the configuration as a JSON-stringified options object or a reference to a property on your component.
 
 ```html
 <my-component>
@@ -113,9 +113,9 @@ npm install @tsparticles/slim
 
 ---
 
-## Условный рендеринг
+## Conditional Rendering
 
-Используйте директиву `if={}` Riot со свойством состояния, чтобы отложить рендеринг компонента частиц до завершения инициализации движка. Это предотвращает смещение макета и гарантирует, что компонент получит готовый движок.
+Use Riot's `if={}` directive with a state property to delay rendering the particles component until the engine has finished initializing. This avoids layout shifts and ensures the component receives a ready engine.
 
 ```html
 <my-component>
@@ -152,13 +152,13 @@ npm install @tsparticles/slim
 </my-component>
 ```
 
-Вызов `this.update()` запускает повторный рендер, и тег `<riot-particles>` появляется после разрешения промиса.
+Calling `this.update()` triggers a re-render so the `<riot-particles>` tag appears once the promise resolves.
 
 ---
 
-## Использование пресетов
+## Preset Usage
 
-Пакет `@tsparticles/configs` предоставляет готовые конфигурации для распространённых эффектов, таких как конфетти, фейерверк, снег и звёзды. Используйте их напрямую как объект опций.
+The `@tsparticles/configs` package provides pre-built configurations for common effects like confetti, fireworks, snow, and stars. Use them directly as your options object.
 
 ```html
 <my-component>
@@ -186,13 +186,13 @@ npm install @tsparticles/slim
 </my-component>
 ```
 
-Доступные пресеты: `basic`, `confetti`, `fireworks`, `snow`, `stars` и другие. Каждый пресет требует соответствующий пакет пресета, загруженный в колбэке движка. Например, `configs.fireworks` требует `loadFireworksPreset`.
+Available presets include `basic`, `confetti`, `fireworks`, `snow`, `stars`, and more. Each preset requires its corresponding preset package to be loaded in the engine callback. For example, `configs.fireworks` requires `loadFireworksPreset`.
 
 ---
 
-## Пользовательская конфигурация
+## Custom Configuration
 
-Создайте пользовательскую конфигурацию с интерактивностью, множеством форм и расширенными опциями анимации.
+Build a custom configuration with interactivity, multiple shapes, and advanced animation options.
 
 ```html
 <my-component>
@@ -267,18 +267,9 @@ npm install @tsparticles/slim
 
 ---
 
-## Reactive Behavior
+## Full Component
 
-The `<Particles>` component reacts to prop changes at runtime:
-
-- **`id`**, **`options`**, or **`url`** change → the existing container is destroyed and particles are reloaded with the new values.
-- **`theme`** change → `loadTheme` is called on the existing container. This requires the optional `@tsparticles/plugin-themes` package to be loaded (otherwise it is a safe no-op).
-
-On component unmount, the particles container is automatically destroyed — no orphan animations remain.
-
-## Полный компонент
-
-Ниже представлен полный файл `.riot`, объединяющий всё вместе: инициализацию движка в `onBeforeMount`, условный рендеринг с состоянием, богатую конфигурацию с интерактивностью и колбэк `particlesLoaded` через встроенную поддержку событий загрузки.
+Below is a complete `.riot` file that ties everything together: engine initialization in `onBeforeMount`, conditional rendering with state, a rich configuration with interactivity, and a `particlesLoaded` callback via the component's built-in support for loaded events.
 
 ```html
 <my-component>
@@ -288,7 +279,7 @@ On component unmount, the particles container is automatically destroyed — no 
     {#if state.particlesInitialized}
     <riot-particles id="tsparticles" options="{particlesConfig}" />
     {:else}
-    <p>Загрузка движка частиц...</p>
+    <p>Loading particle engine...</p>
     {/if}
   </div>
 
@@ -373,4 +364,23 @@ On component unmount, the particles container is automatically destroyed — no 
 
 ---
 
-Теперь у вас есть всё необходимое для интеграции tsParticles в приложение Riot.js. Каждый пример самодостаточен и готов к копированию в ваш проект.
+## Component API
+
+| Prop      | Type             | Default         | Description                                                               |
+| --------- | ---------------- | --------------- | ------------------------------------------------------------------------- |
+| `id`      | `string`         | `"tsparticles"` | Canvas element id. Change triggers destroy+reload.                        |
+| `options` | `ISourceOptions` | `{}`            | Particle configuration object. Change triggers destroy+reload.            |
+| `url`     | `string`         | —               | Remote JSON config URL. Change triggers destroy+reload.                   |
+| `theme`   | `string`         | —               | Theme name (requires `@tsparticles/plugin-themes`; safe no-op otherwise). |
+
+## Reactive Behavior
+
+The `<riot-particles>` tag reloads particles when `id`, `options`, or `url` props change. The `theme` prop applies via `loadTheme` without a full reload — this requires the optional `@tsparticles/plugin-themes` package (safe no-op otherwise).
+
+## Cleanup
+
+When the `<riot-particles>` element is unmounted, the container is automatically destroyed — no orphan animations remain.
+
+---
+
+You now have everything needed to integrate tsParticles into a Riot.js application. Each example is self-contained and ready to be copied into your project.

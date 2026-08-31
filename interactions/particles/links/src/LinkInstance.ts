@@ -246,11 +246,11 @@ export class LinkInstance implements IContainerPlugin {
   }
 
   #getCachedStyle(rgb: IRgb): string {
-    const key = `${rgb.r},${rgb.g},${rgb.b}`;
+    const key = `${rgb.r},${rgb.g},${rgb.b}-${this.#container.hdr}-${this.#container.peakNits}-${this.#container.hdrMode}`;
     let style = this.#colorCache.get(key);
 
     if (!style) {
-      style = getStyleFromRgb(rgb, this.#container.hdr);
+      style = getStyleFromRgb(rgb, this.#container.hdr, undefined, this.#container.peakNits, this.#container.hdrMode);
       this.#colorCache.set(key, style);
     }
 

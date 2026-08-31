@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/riot
 
-Offizieller Riot-Wrapper für `tsParticles`.
+Official Riot wrapper for `tsParticles`.
 
-## Installieren
+## Install
 
 ```bash
 pnpm add @tsparticles/riot @tsparticles/engine @tsparticles/slim
 ```
 
-## Schneller Einrichtungsablauf
+## Quick setup flow
 
-1. Wrapper-, Engine- und Loader-Paket installieren.
-2. Registrieren/laden Sie Funktionen einmal im Riot-App-Setup.
-3. Rendern Sie den Riot-Wrapper mit Optionen.
+1. Install wrapper + engine + loader package.
+2. Register/load features once in Riot app setup.
+3. Render Riot wrapper with options.
 
-## Monorepo-Referenzen
+## Monorepo references
 
-- Paketordner: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
-- Demo-App: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/riot>
 
 ## Readme
 
-- Wrapper-README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme>
 
-## Verwandte Dokumente
+## Related docs
 
-- [`/guide/wrappers`](/de/guide/wrappers)
-- [`/guide/frameworks`](/de/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

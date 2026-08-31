@@ -222,7 +222,7 @@ Add `matchMedia` listeners for `color-gamut: p3` and `dynamic-range: high`:
 }
 ```
 
-Call in constructor after initial context setup.
+Call in constructor after initial context setup, and remove the listeners when the canvas is reinitialized or destroyed so repeated HDR toggles do not stack handlers.
 
 ---
 
@@ -548,6 +548,7 @@ Update all files that call `getStyleFromRgb()` or `getStyleFromHsl()` to pass `h
 ### Step 4 — Display listener
 
 - [ ] Add `matchMedia` change listeners in `CanvasManager`
+- [ ] Dispose HDR listeners on canvas teardown/reinit
 - [ ] Test with HDR display connect/disconnect
 
 ### Step 5 — HdrMode enum and options

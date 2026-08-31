@@ -1,59 +1,59 @@
-# Installazione
+# Installation
 
-## Scegli il tuo percorso
+## Choose your path
 
-| Scenario                    | Comando                                           |
-| --------------------------- | ------------------------------------------------- |
-| Inizio rapido (consigliato) | `pnpm add @tsparticles/engine @tsparticles/slim`  |
-| Minimo indispensabile       | `pnpm add @tsparticles/engine @tsparticles/basic` |
-| Set completo funzionalità   | `pnpm add @tsparticles/engine tsparticles`        |
-| Tutto l'ecosistema          | `pnpm add @tsparticles/engine @tsparticles/all`   |
-| Solo coriandoli             | `pnpm add @tsparticles/confetti`                  |
-| Solo fuochi d'artificio     | `pnpm add @tsparticles/fireworks`                 |
-| Sfondo particellare         | `pnpm add @tsparticles/particles`                 |
-| Effetto ribbon              | `pnpm add @tsparticles/ribbons`                   |
+| Scenario                  | Command                                           |
+| ------------------------- | ------------------------------------------------- |
+| Quick start (recommended) | `pnpm add @tsparticles/engine @tsparticles/slim`  |
+| Minimal setup             | `pnpm add @tsparticles/engine @tsparticles/basic` |
+| Full feature set          | `pnpm add @tsparticles/engine tsparticles`        |
+| Everything in the repo    | `pnpm add @tsparticles/engine @tsparticles/all`   |
+| Confetti only             | `pnpm add @tsparticles/confetti`                  |
+| Fireworks only            | `pnpm add @tsparticles/fireworks`                 |
+| Particle background       | `pnpm add @tsparticles/particles`                 |
+| Ribbon effect             | `pnpm add @tsparticles/ribbons`                   |
 
-> **Importante**: `@tsparticles/engine` da solo non disegna nulla. Devi sempre aggiungere un bundle (per caricare forme e animazioni) o dei plugin individuali. Vedi la [guida ai bundle](/it/guide/bundles).
+> **Important**: `@tsparticles/engine` alone draws nothing. You must always add a bundle (to load shapes and animations) or individual plugins. See the [bundle guide](/guide/bundles).
 
-## Con npm
+## npm
 
 ```bash
-# engine + slim (consigliato per la maggior parte dei progetti)
+# engine + slim (recommended for most projects)
 npm install @tsparticles/engine @tsparticles/slim
 
-# engine + basic (minimo)
+# engine + basic (minimal)
 npm install @tsparticles/engine @tsparticles/basic
 
 # engine + full (tsparticles)
 npm install @tsparticles/engine tsparticles
 
-# engine + all (tutto)
+# engine + all
 npm install @tsparticles/engine @tsparticles/all
 
-# Bundle ad API dedicata (non serve engine esplicito)
+# Dedicated API bundles (no explicit engine needed)
 npm install @tsparticles/confetti
 npm install @tsparticles/fireworks
 npm install @tsparticles/particles
 npm install @tsparticles/ribbons
 ```
 
-## Con yarn
+## yarn
 
 ```bash
 yarn add @tsparticles/engine @tsparticles/slim
-# ... stesso schema degli altri bundle
+# ... same pattern for other bundles
 ```
 
-## Con pnpm
+## pnpm
 
 ```bash
 pnpm add @tsparticles/engine @tsparticles/slim
-# ... stesso schema degli altri bundle
+# ... same pattern for other bundles
 ```
 
-## Con CDN (tag `<script>`)
+## CDN (script tags)
 
-Tutti i pacchetti sono disponibili su jsDelivr, unpkg e cdnjs.
+All packages are available on jsDelivr, unpkg, and cdnjs.
 
 ### jsDelivr
 
@@ -68,22 +68,22 @@ Tutti i pacchetti sono disponibili su jsDelivr, unpkg e cdnjs.
 | Fireworks                  | `https://cdn.jsdelivr.net/npm/@tsparticles/fireworks@4/tsparticles.fireworks.bundle.min.js` |
 | Particles                  | `https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js` |
 | Ribbons                    | `https://cdn.jsdelivr.net/npm/@tsparticles/ribbons@4/tsparticles.ribbons.bundle.min.js`     |
-| Compatibility particles.js | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
+| particles.js compatibility | `https://cdn.jsdelivr.net/npm/@tsparticles/pjs@4/tsparticles.pjs.min.js`                    |
 
 ### unpkg
 
-Stessa struttura: `https://unpkg.com/{package-name}@{version}/{filename}`
+Same structure: `https://unpkg.com/{package-name}@{version}/{filename}`
 
-Esempio:
+Example:
 `https://unpkg.com/@tsparticles/slim@4/tsparticles.slim.bundle.min.js`
 
 ### cdnjs
 
 `https://cdnjs.com/libraries/tsparticles`
 
-## Esempi di import
+## Import examples
 
-### Con bundler (import ES module)
+### With bundler (ES module import)
 
 ```ts
 // Engine + bundle loader
@@ -94,7 +94,7 @@ await loadSlim(tsParticles);
 await tsParticles.load({ id: "tsparticles", options: { ... } });
 ```
 
-### Con CommonJS (require)
+### With CommonJS (require)
 
 ```ts
 const { tsParticles } = require("@tsparticles/engine");
@@ -106,17 +106,17 @@ const { loadSlim } = require("@tsparticles/slim");
 })();
 ```
 
-### Con CDN (script tag)
+### With CDN (script tag)
 
 ```html
 <!-- 1. Engine -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js"></script>
-<!-- 2. Bundle (espone loadBasic/loadSlim/loadFull/loadAll globalmente) -->
+<!-- 2. Bundle (exposes loadBasic/loadSlim/loadFull/loadAll globally) -->
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js"></script>
-<!-- 3. Tuo script -->
+<!-- 3. Your script -->
 <script>
   (async () => {
-    await loadSlim(tsParticles); // registra le funzionalità
+    await loadSlim(tsParticles); // register features
     await tsParticles.load({
       id: "tsparticles",
       options: {
@@ -130,7 +130,7 @@ const { loadSlim } = require("@tsparticles/slim");
 </script>
 ```
 
-Con i bundle ad API dedicata:
+With dedicated API bundles:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@4/tsparticles.confetti.bundle.min.js"></script>
@@ -139,9 +139,8 @@ Con i bundle ad API dedicata:
 </script>
 ```
 
-## Pagine correlate
+## Related pages
 
-- [Per iniziare](/it/guide/getting-started)
-- [Guida ai bundle](/it/guide/bundles)
-- [Catalogo preset](/demos/presets)
-- [Wrapper framework](/it/guide/wrappers)
+- [Getting started](/guide/getting-started)
+- [Bundle guide](/guide/bundles)
+- [Framework wrappers](/guide/wrappers)

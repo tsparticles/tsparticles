@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/inferno-demo",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "private": true,
   "description": "> TODO: description",
   "main": "index.js",
@@ -25,20 +25,20 @@
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.0",
-    "@babel/preset-typescript": "^8.0.0",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-typescript": "^8.0.1",
     "babel-loader": "^10.1.1",
-    "babel-plugin-inferno": "^6.8.5",
+    "babel-plugin-inferno": "^6.9.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.4",
-    "html-webpack-plugin": "^5.6.7",
-    "sass": "^1.101.0",
+    "html-webpack-plugin": "^5.6.8",
+    "sass": "^1.102.0",
     "sass-loader": "^17.0.0",
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "typescript": "^6.0.3",
-    "webpack": "^5.108.4",
-    "webpack-cli": "^7.2.1",
-    "webpack-dev-server": "^5.2.5"
+    "webpack": "^5.110.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0"
   }
 }

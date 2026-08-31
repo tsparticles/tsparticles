@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import { type HdrMode, type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape.js";
 
 /** Image shape types */
@@ -54,17 +54,26 @@ const currentColorRegex =
  * @param imageShape - the image used for replacing SVG data
  * @param color - the replace color value
  * @param opacity - the color opacity
- * @param hdr - The hdr
+ * @param hdr - The HDR flag
+ * @param peakNits - The peak brightness in nits
+ * @param mode - The HDR mode
  * @returns the new SVG data
  */
-function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr = false): string {
+function replaceColorSvg(
+  imageShape: IImage,
+  color: IHsl,
+  opacity: number,
+  hdr = false,
+  peakNits?: number,
+  mode?: HdrMode,
+): string {
   const { svgData } = imageShape;
 
   if (!svgData) {
     return "";
   }
 
-  const colorStyle = getStyleFromHsl(color, hdr, opacity);
+  const colorStyle = getStyleFromHsl(color, hdr, opacity, peakNits, mode);
 
   /* set color to svg element */
   if (svgData.includes("fill")) {
@@ -140,7 +149,9 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
  * @param imageData - the image shape data
  * @param color - the replacement color
  * @param particle - the particle where the replaced data is going to be used
- * @param hdr - The hdr
+ * @param hdr - The HDR flag
+ * @param peakNits - The peak brightness in nits
+ * @param mode - The HDR mode
  * @returns the image with the color replaced
  */
 export function replaceImageColor(
@@ -149,8 +160,10 @@ export function replaceImageColor(
   color: IHsl,
   particle: Particle,
   hdr = false,
+  peakNits?: number,
+  mode?: HdrMode,
 ): Promise<IParticleImage> {
-  const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr),
+  const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr, peakNits, mode),
     imageRes: IParticleImage = {
       color,
       data: {

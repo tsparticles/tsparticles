@@ -56,8 +56,5 @@ export async function waitForParticlesEngineInitialization(): Promise<void> {
     await initPromise;
     return;
   }
-  await new Promise<void>(resolve => {
-    waitResolve = resolve;
-  });
-  await (initPromise ?? Promise.resolve());
+  throw new Error("initParticlesEngine(...) must be called once before rendering particles.");
 }

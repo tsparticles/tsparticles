@@ -1,24 +1,24 @@
 # Bundle: Particles
 
-`@tsparticles/particles` предоставляет упрощённое API для создания интерактивных фонов из частиц. Более богатая альтернатива `@tsparticles/basic` с выделенным API вместо ручной настройки движка.
+`@tsparticles/particles` provides a simplified API for creating interactive particle backgrounds. A richer alternative to `@tsparticles/basic` with a dedicated API instead of manual engine configuration.
 
-## Включённые возможности
+## Included features
 
-**Формы:** круг (из basic)
+**Shapes:** circle (from basic)
 
-**Внутренние плагины:** interactivity (связи, коллизии)
+**Internal plugins:** interactivity (links, collisions)
 
-**Взаимодействия:** связи (links) — соединения частиц, коллизии
+**Interactions:** links (particle connections), collisions
 
-**API:** `particles(options)` или `particles(идентификаторCanvas, options)`
+**API:** `particles(options)` or `particles(canvasId, options)`
 
-## Когда использовать
+## When to use
 
-- Фон из частиц для веб-сайта
-- Фон со связями частиц (эффект в стиле узлов)
-- Вы не хотите настраивать движок вручную
+- Particle background for a website
+- Background with particle links (node-style effect)
+- You don't want to configure the engine manually
 
-## Установка
+## Installation
 
 ### npm/pnpm/yarn
 
@@ -29,7 +29,7 @@ pnpm add @tsparticles/particles
 ```ts
 import { particles } from "@tsparticles/particles";
 
-// Фон со связями
+// Background with links
 await particles({
   count: 120,
   links: true,
@@ -40,14 +40,14 @@ await particles({
   opacity: 0.8,
 });
 
-// На конкретном canvas
+// On a specific canvas
 await particles("my-canvas", {
   count: 80,
   shape: ["circle", "square"],
   links: true,
 });
 
-// С пользовательскими цветами
+// With custom colors
 await particles({
   count: 100,
   color: ["#ff6b6b", "#4ecdc4", "#45b7d1"],
@@ -55,7 +55,7 @@ await particles({
 });
 ```
 
-### CDN (тег script)
+### CDN (script tag)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/particles@4/tsparticles.particles.bundle.min.js"></script>
@@ -72,27 +72,27 @@ await particles({
 </script>
 ```
 
-### Основные параметры
+### Main parameters
 
-| Параметр     | Тип                | По умолчанию | Описание           |
-| ------------ | ------------------ | ------------ | ------------------ |
-| `count`      | number             | 50           | Количество частиц  |
-| `radius`     | number             | 3            | Радиус частицы     |
-| `speed`      | number             | 2            | Скорость движения  |
-| `opacity`    | number             | 0.8          | Прозрачность (0-1) |
-| `color`      | string \| string[] | "#ffffff"    | Цвет(а) частиц     |
-| `links`      | boolean            | false        | Показывать связи   |
-| `linksColor` | string             | "#ffffff"    | Цвет связей        |
-| `linksWidth` | number             | 1            | Толщина связей     |
-| `shape`      | string[]           | ["circle"]   | Формы частиц       |
+| Parameter    | Type               | Default    | Description         |
+| ------------ | ------------------ | ---------- | ------------------- |
+| `count`      | number             | 50         | Number of particles |
+| `radius`     | number             | 3          | Particle radius     |
+| `speed`      | number             | 2          | Movement speed      |
+| `opacity`    | number             | 0.8        | Opacity (0-1)       |
+| `color`      | string \| string[] | "#ffffff"  | Particle color(s)   |
+| `links`      | boolean            | false      | Show links          |
+| `linksColor` | string             | "#ffffff"  | Link color          |
+| `linksWidth` | number             | 1          | Link thickness      |
+| `shape`      | string[]           | ["circle"] | Particle shapes     |
 
-## Частые ошибки
+## Common mistakes
 
-- Думать, что `tsParticles` экспортируется из `@tsparticles/particles` — это не так.
-- Непреднамеренное повторное использование одного и того же ID canvas.
-- Ожидание продвинутых форм (звёзды, полигоны) — bundle частиц основан на basic и использует только круги.
+- Thinking `tsParticles` is exported by `@tsparticles/particles` — it is not.
+- Reusing the same canvas ID unintentionally.
+- Expecting advanced shapes (stars, polygons) — the particles bundle is based on basic and only uses circles.
 
-## См. также
+## See also
 
-- [Обзор bundle](/ru/guide/bundles)
-- [Начало работы](/ru/guide/getting-started)
+- [Bundle overview](/guide/bundles)
+- [Getting started](/guide/getting-started)

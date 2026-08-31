@@ -1,157 +1,180 @@
 # Wrappers
 
-本页是 wrappers 总览。你可以先选择合适的 package，再进入对应页面查看安装与使用细节。
+This page is the wrappers hub. Use it to choose the right package, then open the dedicated page for installation and usage details.
 
-源码目录: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
+Source folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers>
 
-## wrappers 页面
+## Wrapper pages
 
-### 先看常用
+### Popular first
 
-- [`Angular`](/zh/guide/wrappers-angular)
-- [`React`](/zh/guide/wrappers-react)
-- [`Svelte`](/zh/guide/wrappers-svelte)
-- [`Vue`](/zh/guide/wrappers-vue3)
+- [`Angular`](/guide/wrappers-angular)
+- [`React`](/guide/wrappers-react)
+- [`Svelte`](/guide/wrappers-svelte)
+- [`Vue`](/guide/wrappers-vue3)
 
-### React 生态
+### React ecosystem
 
-- [`React`](/zh/guide/wrappers-react)
-- [`Next.js`](/zh/guide/wrappers-nextjs)
+- [`React`](/guide/wrappers-react)
+- [`Next.js`](/guide/wrappers-nextjs)
 
-### Vue 生态
+### Vue ecosystem
 
-- [`Vue 2`](/zh/guide/wrappers-vue2)
-- [`Vue 3`](/zh/guide/wrappers-vue3)
-- [`Nuxt 2`](/zh/guide/wrappers-nuxt2)
-- [`Nuxt 3`](/zh/guide/wrappers-nuxt3)
-- [`Nuxt 4`](/zh/guide/wrappers-nuxt4)
+- [`Vue 2`](/guide/wrappers-vue2)
+- [`Vue 3`](/guide/wrappers-vue3)
+- [`Nuxt 2`](/guide/wrappers-nuxt2)
+- [`Nuxt 3`](/guide/wrappers-nuxt3)
+- [`Nuxt 4`](/guide/wrappers-nuxt4)
 
-### 其他（按字母顺序）
+### Others (alphabetical)
 
-- [`Angular Confetti`](/zh/guide/wrappers-angular-confetti)
-- [`Angular Fireworks`](/zh/guide/wrappers-angular-fireworks)
-- [`Astro`](/zh/guide/wrappers-astro)
-- [`Ember`](/zh/guide/wrappers-ember)
-- [`Inferno`](/zh/guide/wrappers-inferno)
-- [`jQuery`](/zh/guide/wrappers-jquery)
-- [`Lit`](/zh/guide/wrappers-lit)
-- [`Preact`](/zh/guide/wrappers-preact)
-- [`Qwik`](/zh/guide/wrappers-qwik)
-- [`Riot`](/zh/guide/wrappers-riot)
-- [`Solid`](/zh/guide/wrappers-solid)
-- [`Stencil`](/zh/guide/wrappers-stencil)
-- [`Web Components`](/zh/guide/wrappers-webcomponents)
-- [`WordPress`](/zh/guide/wrappers-wordpress)
+- [`Angular Confetti`](/guide/wrappers-angular-confetti)
+- [`Angular Fireworks`](/guide/wrappers-angular-fireworks)
+- [`Astro`](/guide/wrappers-astro)
+- [`Ember`](/guide/wrappers-ember)
+- [`Inferno`](/guide/wrappers-inferno)
+- [`jQuery`](/guide/wrappers-jquery)
+- [`Lit`](/guide/wrappers-lit)
+- [`Preact`](/guide/wrappers-preact)
+- [`Qwik`](/guide/wrappers-qwik)
+- [`Riot`](/guide/wrappers-riot)
+- [`Solid`](/guide/wrappers-solid)
+- [`Stencil`](/guide/wrappers-stencil)
+- [`Web Components`](/guide/wrappers-webcomponents)
+- [`WordPress`](/guide/wrappers-wordpress)
 
-## 通用集成流程
+## Common integration flow
 
-不管使用哪个 framework，流程都一致：
+No matter the framework:
 
-1. 安装 wrapper + `@tsparticles/engine`
-2. 功能只加载一次（`@tsparticles/slim`、`@tsparticles/all` 或自定义 plugins）
-3. 传入 options 并渲染 wrapper 组件
+1. install wrapper + `@tsparticles/engine`
+2. load features once (`@tsparticles/slim`, `@tsparticles/all`, or custom plugins)
+3. render the wrapper component with options
 
-## 官方 wrappers（按字母顺序）
+## Official wrappers (alphabetical)
 
-本节排序规则：
+Ordering rule for this section:
 
-- 按 package 名字母排序
-- 例外会在 mapping 说明里明确标注（例如 WordPress 需要完整环境）
+- alphabetical by package name
 
-- `@tsparticles/angular`: Angular 组件 wrapper（`<ngx-particles />`）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme> - 本地指南: [`/guide/wrappers-angular`](/zh/guide/wrappers-angular)
-- `@tsparticles/astro`: Astro 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme> - 本地指南: [`/guide/wrappers-astro`](/zh/guide/wrappers-astro)
+- exceptions are explicitly called out in mapping notes (for example WordPress requires a full WordPress installation)
+
+- `@tsparticles/angular`: Angular component wrapper (`<ngx-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme> - local guide: [`/guide/wrappers-angular`](/guide/wrappers-angular)
+
+- `@tsparticles/astro`: Astro component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme> - local guide: [`/guide/wrappers-astro`](/guide/wrappers-astro)
+
 - `@tsparticles/ember`: Ember wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme> - 本地指南: [`/guide/wrappers-ember`](/zh/guide/wrappers-ember)
-- `@tsparticles/inferno`: Inferno 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme> - 本地指南: [`/guide/wrappers-inferno`](/zh/guide/wrappers-inferno)
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme> - local guide: [`/guide/wrappers-ember`](/guide/wrappers-ember)
+
+- `@tsparticles/inferno`: Inferno component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme> - local guide: [`/guide/wrappers-inferno`](/guide/wrappers-inferno)
+
 - `@tsparticles/jquery`: jQuery plugin wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme> - 本地指南: [`/guide/wrappers-jquery`](/zh/guide/wrappers-jquery)
-- `@tsparticles/lit`: Lit 组件 package  
-  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - 本地指南: [`/guide/wrappers-lit`](/zh/guide/wrappers-lit)
-- `@tsparticles/nextjs`: 基于 `@tsparticles/react` 的 Next.js wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - 本地指南: [`/guide/wrappers-nextjs`](/zh/guide/wrappers-nextjs)
-- `@tsparticles/nuxt2`: Nuxt 2 模块（客户端注册）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - 本地指南: [`/guide/wrappers-nuxt2`](/zh/guide/wrappers-nuxt2)
-- `@tsparticles/nuxt3`: Nuxt 3 模块（客户端注册）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - 本地指南: [`/guide/wrappers-nuxt3`](/zh/guide/wrappers-nuxt3)
-- `@tsparticles/nuxt4`: Nuxt 4 模块（客户端注册）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - 本地指南: [`/guide/wrappers-nuxt4`](/zh/guide/wrappers-nuxt4)
-- `@tsparticles/preact`: Preact 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme> - 本地指南: [`/guide/wrappers-preact`](/zh/guide/wrappers-preact)
-- `@tsparticles/qwik`: Qwik 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme> - 本地指南: [`/guide/wrappers-qwik`](/zh/guide/wrappers-qwik)
-- `@tsparticles/react`: React 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme> - 本地指南: [`/guide/wrappers-react`](/zh/guide/wrappers-react)
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme> - local guide: [`/guide/wrappers-jquery`](/guide/wrappers-jquery)
+
+- `@tsparticles/lit`: Lit component package  
+  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - local guide: [`/guide/wrappers-lit`](/guide/wrappers-lit)
+
+- `@tsparticles/nextjs`: Next.js wrapper around `@tsparticles/react`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - local guide: [`/guide/wrappers-nextjs`](/guide/wrappers-nextjs)
+
+- `@tsparticles/nuxt2`: Nuxt 2 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - local guide: [`/guide/wrappers-nuxt2`](/guide/wrappers-nuxt2)
+
+- `@tsparticles/nuxt3`: Nuxt 3 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - local guide: [`/guide/wrappers-nuxt3`](/guide/wrappers-nuxt3)
+
+- `@tsparticles/nuxt4`: Nuxt 4 module (client-side registration)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - local guide: [`/guide/wrappers-nuxt4`](/guide/wrappers-nuxt4)
+
+- `@tsparticles/preact`: Preact component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme> - local guide: [`/guide/wrappers-preact`](/guide/wrappers-preact)
+
+- `@tsparticles/qwik`: Qwik component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme> - local guide: [`/guide/wrappers-qwik`](/guide/wrappers-qwik)
+
+- `@tsparticles/react`: React component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme> - local guide: [`/guide/wrappers-react`](/guide/wrappers-react)
+
 - `@tsparticles/riot`: Riot wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - 本地指南: [`/guide/wrappers-riot`](/zh/guide/wrappers-riot)
-- `@tsparticles/solid`: Solid 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - 本地指南: [`/guide/wrappers-solid`](/zh/guide/wrappers-solid)
-- `@tsparticles/stencil`: Stencil 组件 wrapper（`<stencil-particles />`）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - 本地指南: [`/guide/wrappers-stencil`](/zh/guide/wrappers-stencil)
-- `@tsparticles/svelte`: Svelte 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - 本地指南: [`/guide/wrappers-svelte`](/zh/guide/wrappers-svelte)
-- `@tsparticles/vue2`: Vue 2 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - 本地指南: [`/guide/wrappers-vue2`](/zh/guide/wrappers-vue2)
-- `@tsparticles/vue3`: Vue 3 组件 wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - 本地指南: [`/guide/wrappers-vue3`](/zh/guide/wrappers-vue3)
-- `@tsparticles/webcomponents`: Web Components wrapper（`<web-particles />`）  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme> - 本地指南: [`/guide/wrappers-webcomponents`](/zh/guide/wrappers-webcomponents)
-- `@tsparticles/wordpress`: 官方 WordPress plugin package  
-  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress> - 本地指南: [`/guide/wrappers-wordpress`](/zh/guide/wrappers-wordpress)
-- `angular-confetti`: 面向 `@tsparticles/confetti` 的 Angular wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme> - 本地指南: [`/guide/wrappers-angular-confetti`](/zh/guide/wrappers-angular-confetti)
-- `angular-fireworks`: 面向 `@tsparticles/fireworks` 的 Angular wrapper  
-  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme> - 本地指南: [`/guide/wrappers-angular-fireworks`](/zh/guide/wrappers-angular-fireworks)
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - local guide: [`/guide/wrappers-riot`](/guide/wrappers-riot)
 
-## WordPress 与 Elementor 说明
+- `@tsparticles/solid`: Solid component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - local guide: [`/guide/wrappers-solid`](/guide/wrappers-solid)
 
-- `@tsparticles/wordpress` 是官方 plugin package，需完整的 WordPress 环境。
-- Elementor 没有官方独立的 `tsParticles` plugin package。
-- README 中提到可通过 Premium Addons for Elementor 集成：
+- `@tsparticles/stencil`: Stencil component wrapper (`<stencil-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - local guide: [`/guide/wrappers-stencil`](/guide/wrappers-stencil)
+
+- `@tsparticles/svelte`: Svelte component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - local guide: [`/guide/wrappers-svelte`](/guide/wrappers-svelte)
+
+- `@tsparticles/vue2`: Vue 2 component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - local guide: [`/guide/wrappers-vue2`](/guide/wrappers-vue2)
+
+- `@tsparticles/vue3`: Vue 3 component wrapper  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - local guide: [`/guide/wrappers-vue3`](/guide/wrappers-vue3)
+
+- `@tsparticles/webcomponents`: Web Components wrapper (`<web-particles />`)  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme> - local guide: [`/guide/wrappers-webcomponents`](/guide/wrappers-webcomponents)
+
+- `@tsparticles/wordpress`: official WordPress plugin package  
+  Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress> - local guide: [`/guide/wrappers-wordpress`](/guide/wrappers-wordpress)
+
+- `angular-confetti`: Angular wrapper for `@tsparticles/confetti`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme> - local guide: [`/guide/wrappers-angular-confetti`](/guide/wrappers-angular-confetti)
+
+- `angular-fireworks`: Angular wrapper for `@tsparticles/fireworks`  
+  Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme> - local guide: [`/guide/wrappers-angular-fireworks`](/guide/wrappers-angular-fireworks)
+
+## WordPress and Elementor notes
+
+- `@tsparticles/wordpress` is the official plugin package and requires a full WordPress setup.
+- Elementor does not have an official standalone `tsParticles` plugin package.
+- The README references integration through Premium Addons for Elementor:
   <https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/>
 
-## wrapper 到 demo 的映射
+## Wrapper to demo mapping
 
-使用下表可快速从 wrapper package 跳转到可运行的 monorepo demo。
+Use this quick matrix to jump from a wrapper package to a runnable monorepo demo.
 
-表格排序规则：
+Ordering rule for this table:
 
-- 按 wrapper package 名字母排序
-- 对 demo 不适用的 wrapper 作显式例外（`@tsparticles/wordpress`）
+- alphabetical by wrapper package name
+- explicit exception for wrappers that are not demo-applicable (`@tsparticles/wordpress`)
 
-demo 源目录: <https://github.com/tsparticles/tsparticles/tree/main/demo>
+Source demos folder: <https://github.com/tsparticles/tsparticles/tree/main/demo>
 
-| Wrapper package              | Demo project                        |
-| ---------------------------- | ----------------------------------- |
-| `@tsparticles/angular`       | `demo/angular`                      |
-| `@tsparticles/astro`         | `demo/astro`                        |
-| `@tsparticles/ember`         | `demo/ember`                        |
-| `@tsparticles/inferno`       | `demo/inferno`                      |
-| `@tsparticles/jquery`        | `demo/jquery`                       |
-| `@tsparticles/lit`           | `demo/lit`                          |
-| `@tsparticles/nextjs`        | `demo/nextjs`, `demo/nextjs-legacy` |
-| `@tsparticles/nuxt2`         | `demo/nuxt2`                        |
-| `@tsparticles/nuxt3`         | `demo/nuxt3`                        |
-| `@tsparticles/nuxt4`         | `demo/nuxt4`                        |
-| `@tsparticles/preact`        | `demo/preact`                       |
-| `@tsparticles/qwik`          | `demo/qwik`                         |
-| `@tsparticles/react`         | `demo/react`                        |
-| `@tsparticles/riot`          | `demo/riot`                         |
-| `@tsparticles/solid`         | `demo/solid`                        |
-| `@tsparticles/stencil`       | `demo/stencil`                      |
-| `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`    |
-| `@tsparticles/vue2`          | `demo/vue2`                         |
-| `@tsparticles/vue3`          | `demo/vue3`                         |
-| `@tsparticles/webcomponents` | `demo/webcomponents`                |
-| `@tsparticles/wordpress`     | 不适用（需要完整 WordPress 安装）   |
-| `angular-confetti`           | `demo/angular`                      |
-| `angular-fireworks`          | `demo/angular`                      |
+| Wrapper package              | Demo project                                          |
+| ---------------------------- | ----------------------------------------------------- |
+| `@tsparticles/angular`       | `demo/angular`                                        |
+| `@tsparticles/astro`         | `demo/astro`                                          |
+| `@tsparticles/ember`         | `demo/ember`                                          |
+| `@tsparticles/inferno`       | `demo/inferno`                                        |
+| `@tsparticles/jquery`        | `demo/jquery`                                         |
+| `@tsparticles/lit`           | `demo/lit`                                            |
+| `@tsparticles/nextjs`        | `demo/nextjs`, `demo/nextjs-legacy`                   |
+| `@tsparticles/nuxt2`         | `demo/nuxt2`                                          |
+| `@tsparticles/nuxt3`         | `demo/nuxt3`                                          |
+| `@tsparticles/nuxt4`         | `demo/nuxt4`                                          |
+| `@tsparticles/preact`        | `demo/preact`                                         |
+| `@tsparticles/qwik`          | `demo/qwik`                                           |
+| `@tsparticles/react`         | `demo/react`                                          |
+| `@tsparticles/riot`          | `demo/riot`                                           |
+| `@tsparticles/solid`         | `demo/solid`                                          |
+| `@tsparticles/stencil`       | `demo/stencil`                                        |
+| `@tsparticles/svelte`        | `demo/svelte`, `demo/svelte-kit`                      |
+| `@tsparticles/vue2`          | `demo/vue2`                                           |
+| `@tsparticles/vue3`          | `demo/vue3`                                           |
+| `@tsparticles/webcomponents` | `demo/webcomponents`                                  |
+| `@tsparticles/wordpress`     | not applicable (requires full WordPress installation) |
+| `angular-confetti`           | `demo/angular`                                        |
+| `angular-fireworks`          | `demo/angular`                                        |
 
-## 最小模式
+## Minimal patterns
 
-### React / Next.js 风格 Provider
+### React / Next.js-style provider
 
 > [!IMPORTANT]
 > Place `ParticlesProvider` at your app root (e.g., `main.tsx` or `layout.tsx`), not inside a component that may unmount.
@@ -175,7 +198,7 @@ export function Background() {
 }
 ```
 
-### Vue / Nuxt 风格注册函数
+### Vue / Nuxt-style register function
 
 ```ts
 import type { Engine } from "@tsparticles/engine";
@@ -187,7 +210,7 @@ export async function registerParticles(engine: Engine): Promise<void> {
 }
 ```
 
-### Angular 单次初始化
+### Angular one-time initialization
 
 ```ts
 import { NgParticlesService } from "@tsparticles/angular";
@@ -202,8 +225,8 @@ ngOnInit(): void {
 }
 ```
 
-## 相关页面
+## Related pages
 
-- [`/guide/frameworks`](/zh/guide/frameworks)
-- [`/guide/getting-started`](/zh/guide/getting-started)
-- [`/demos/`](/zh/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/getting-started`](/guide/getting-started)
+- [`/demos/`](/demos/)

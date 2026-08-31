@@ -1,29 +1,29 @@
 # Wrapper: @tsparticles/webcomponents
 
-Wrapper oficial de componentes web (`<web-particles />`) para `tsParticles`.
+Official Web Components wrapper (`<web-particles />`) for `tsParticles`.
 
-## Instalar
+## Install
 
 ```bash
 pnpm add @tsparticles/webcomponents @tsparticles/engine @tsparticles/slim
 ```
 
-## Flujo de configuración rápida
+## Quick setup flow
 
-1. Instale el paquete + engine + loader.
-2. Registre un elemento personalizado en el shell de su aplicación.
-3. Utilice `<web-particles />` y pase las opciones.
+1. Install package + engine + loader package.
+2. Register custom element in your app shell.
+3. Use `<web-particles />` and pass options.
 
-## Referencias de Monorepo
+## Monorepo references
 
-- Carpeta del paquete: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
-- Aplicación de demostración: <https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
+- Package folder: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents>
+- Demo app: <https://github.com/tsparticles/tsparticles/tree/main/demo/webcomponents>
 
-## README
+## Readme
 
-- README del wrapper: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
+- Wrapper README: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme>
 
-## Documentos relacionados
+## Related docs
 
-- [`/guide/wrappers`](/es/guide/wrappers)
-- [`/guide/frameworks`](/es/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/guide/frameworks`](/guide/frameworks)

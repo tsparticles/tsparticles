@@ -79,7 +79,7 @@ const EMPTY_SIZE = 0,
   /**
    * Build the namespace initialization expression to use as the UMD factory's first argument.
    * Example: scope = "__tsParticlesInternals.engine"
-   * Result: "(global.__tsParticlesInternals = global.__tsParticlesInternals || {}, global.__tsParticlesInternals.engine = global.__tsParticlesInternals.engine || {})"
+   * Result: an expression that initializes `global.__tsParticlesInternals` and `global.__tsParticlesInternals.engine`.
    *
    * This is used to REPLACE `global.window = global.tsparticlesInternalExports || {}` in the UMD wrapper,
    * so that rollup writes all exports directly into the correct namespace object.

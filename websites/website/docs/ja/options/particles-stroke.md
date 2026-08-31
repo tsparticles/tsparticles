@@ -1,16 +1,16 @@
-パーティクルのストローク数
+# Particles Stroke
 
-ストロークのオプションは `particles.paint.stroke` に記載されるようになりました。
+Stroke options are now documented under `particles.paint.stroke`.
 
-## 新しいページ
+## New page
 
-- [`Particles Paint`](/ja/options/particles-paint)
+- [`Particles Paint`](/options/particles-paint)
 
-## クイックマッピング
+## Quick mapping
 
-- 旧: `particles.stroke`
-- 新機能: `particles.paint.stroke`
+- Old: `particles.stroke`
+- New: `particles.paint.stroke`
 
-## ソース参照
+## Source reference
 
 - <https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md>

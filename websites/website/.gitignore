@@ -367,6 +367,10 @@ docs/.vitepress/dist/
 docs/.vitepress/temp/
 docs/.vitepress/.temp/
 
+# Split per-language build intermediate outputs
+.vitepress-build/
+.vitepress/
+
 # TypeDoc generated API docs (HTML output)
 typedoc-dist/
 docs/public/docs/

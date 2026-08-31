@@ -16,8 +16,9 @@ import { percentDenominator } from "../Core/Utils/Constants.js";
 const minRadius = 0;
 
 /**
- *
- * @param key
+ * Checks whether a key should be rejected during object traversal.
+ * @param key - The key to validate.
+ * @returns `true` if the key is forbidden.
  */
 function isForbiddenKey(key: string): boolean {
   return key === "__proto__" || key === "constructor" || key === "prototype";

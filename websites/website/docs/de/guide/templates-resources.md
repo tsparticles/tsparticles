@@ -1,16 +1,16 @@
-# Vorlagen und Ressourcen
+# Templates and Resources
 
-tsParticles bietet zwei Kategorien von Vorlagen: **Scaffold-Vorlagen** (Framework-Gerüste) und **Anwendungsfall-Vorlagen** (vollständige Beispielanwendungen).
+tsParticles provides two categories of templates: **scaffold templates** (framework skeletons) and **use-case templates** (complete example applications).
 
-## Schnellstart mit der CLI
+## Quick start with CLI
 
-Der einfachste Weg, eine Vorlage zu verwenden, ist über die CLI:
+The easiest way to use any template is through the CLI:
 
 ```bash
 npm create tsparticles@latest
 ```
 
-Oder verwenden Sie direkt ein bestimmtes Bundle:
+Or use a specific bundle directly:
 
 ```bash
 npm create particles@latest
@@ -18,18 +18,18 @@ npm create confetti@latest
 npm create ribbons@latest
 ```
 
-Für die nicht-interaktive Nutzung:
+For non-interactive usage:
 
 ```bash
 npx tsparticles-create app my-project --template scaffold --framework react
 npx tsparticles-create app my-project --template confetti --framework vanilla
 ```
 
-## Scaffold-Vorlagen
+## Scaffold templates
 
-Scaffold-Vorlagen bieten ein minimales Vite + TypeScript-Projektgerüst mit vorinstalliertem tsParticles. Sie sind für die folgenden Frameworks verfügbar:
+Scaffold templates provide a minimal Vite + TypeScript project skeleton with tsParticles pre-configured. They are available for the following frameworks:
 
-| Framework | CLI-Option            | Paket                            |
+| Framework | CLI option            | Package                          |
 | --------- | --------------------- | -------------------------------- |
 | Vanilla   | `--framework vanilla` | `@tsparticles/template-scaffold` |
 | React     | `--framework react`   | `@tsparticles/template-scaffold` |
@@ -38,7 +38,7 @@ Scaffold-Vorlagen bieten ein minimales Vite + TypeScript-Projektgerüst mit vori
 | Svelte    | `--framework svelte`  | `@tsparticles/template-scaffold` |
 | Solid     | `--framework solid`   | `@tsparticles/template-scaffold` |
 
-Beispiel:
+Example:
 
 ```bash
 npx tsparticles-create app my-react-app --template scaffold --framework react
@@ -47,21 +47,21 @@ npm install
 npm run dev
 ```
 
-## Anwendungsfall-Vorlagen
+## Use-case templates
 
-Anwendungsfall-Vorlagen sind vollständige Beispielanwendungen, die die praktische Verwendung von tsParticles demonstrieren.
+Use-case templates are complete example applications that demonstrate real-world tsParticles usage.
 
-| Vorlage     | Beschreibung                                       | CLI-Vorlagenname | Paket                             |
-| ----------- | -------------------------------------------------- | ---------------- | --------------------------------- |
-| Login       | Login-/Registrierungsseite mit Partikelhintergrund | `login`          | `@tsparticles/template-login`     |
-| Portfolio   | Persönliches Portfolio mit animiertem Hero-Bereich | `portfolio`      | `@tsparticles/template-portfolio` |
-| Landing     | Marketing-Landingpage mit wirkungsvollen Partikeln | `landing`        | `@tsparticles/template-landing`   |
-| Tic Tac Toe | Tic-Tac-Toe-Spiel mit Konfetti-Feier               | `tictactoe`      | `@tsparticles/template-tictactoe` |
-| Confetti    | Konfetti-Kanonen-Demo                              | `confetti`       | `@tsparticles/template-confetti`  |
-| Ribbons     | Bandanimations-Demo                                | `ribbons`        | `@tsparticles/template-ribbons`   |
-| Particles   | Klassisches particles.js-ähnliches Demo            | `particles`      | `@tsparticles/template-particles` |
+| Template    | Description                                     | CLI template name | Package                           |
+| ----------- | ----------------------------------------------- | ----------------- | --------------------------------- |
+| Login       | Login/register page with particle background    | `login`           | `@tsparticles/template-login`     |
+| Portfolio   | Personal portfolio with animated hero           | `portfolio`       | `@tsparticles/template-portfolio` |
+| Landing     | Marketing landing page with impactful particles | `landing`         | `@tsparticles/template-landing`   |
+| Tic Tac Toe | Tic-tac-toe game with confetti celebration      | `tictactoe`       | `@tsparticles/template-tictactoe` |
+| Confetti    | Confetti cannon demo                            | `confetti`        | `@tsparticles/template-confetti`  |
+| Ribbons     | Ribbon animation demo                           | `ribbons`         | `@tsparticles/template-ribbons`   |
+| Particles   | Classic particles.js-style demo                 | `particles`       | `@tsparticles/template-particles` |
 
-Beispiel:
+Example:
 
 ```bash
 npx tsparticles-create app my-portfolio --template portfolio --framework vanilla
@@ -70,18 +70,18 @@ npm install
 npm run dev
 ```
 
-## npm create-Wrapper
+## npm create wrappers
 
-Für bundlespezifische Vorlagen können Sie dedizierte npm create-Wrapper verwenden:
+For bundle-specific templates, you can use dedicated npm create wrappers:
 
-| Befehl                          | Vorlage     | Framework  | Installiertes Bundle     |
-| ------------------------------- | ----------- | ---------- | ------------------------ |
-| `npm create tsparticles@latest` | Interaktiv  | Interaktiv | Benutzerwahl             |
-| `npm create particles@latest`   | `particles` | Vanilla    | `@tsparticles/particles` |
-| `npm create confetti@latest`    | `confetti`  | Vanilla    | `@tsparticles/confetti`  |
-| `npm create ribbons@latest`     | `ribbons`   | Vanilla    | `@tsparticles/ribbons`   |
+| Command                         | Template    | Framework   | Installed bundle         |
+| ------------------------------- | ----------- | ----------- | ------------------------ |
+| `npm create tsparticles@latest` | Interactive | Interactive | User choice              |
+| `npm create particles@latest`   | `particles` | Vanilla     | `@tsparticles/particles` |
+| `npm create confetti@latest`    | `confetti`  | Vanilla     | `@tsparticles/confetti`  |
+| `npm create ribbons@latest`     | `ribbons`   | Vanilla     | `@tsparticles/ribbons`   |
 
-## CLI-Referenz
+## CLI reference
 
 ```bash
 tsparticles-create app [destination] [options]
@@ -93,8 +93,8 @@ Options:
   -h, --help            Display help
 ```
 
-## Verwandte Seiten
+## Related pages
 
-- [`/guide/frameworks`](/de/guide/frameworks)
-- [`/guide/wrappers`](/de/guide/wrappers)
-- [`/demos/`](/de/demos/)
+- [`/guide/frameworks`](/guide/frameworks)
+- [`/guide/wrappers`](/guide/wrappers)
+- [`/demos/`](/demos/)

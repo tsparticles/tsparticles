@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "4.3.3",
+    "version": "4.4.0",
     "private": true,
     "description": "tsParticles Website (VitePress)",
     "main": "docs/index.md",
@@ -10,8 +10,8 @@
         "docs:typedoc": "node ./scripts/sync-typedoc.mjs",
         "docs:assets": "node ./scripts/sync-public-assets.mjs",
         "dev": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run docs:assets && vitepress dev docs --host",
-        "docs:build": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint:fix && pnpm run docs:assets && NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs && node ./scripts/merge-sitemaps.mjs",
-        "docs:build:ci": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint && pnpm run docs:assets && NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs && node ./scripts/merge-sitemaps.mjs",
+        "docs:build": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint:fix && pnpm run docs:assets && node ./scripts/build-website-groups.mjs && node ./scripts/merge-sitemaps.mjs",
+        "docs:build:ci": "pnpm run typedoc:api && pnpm run docs:typedoc && pnpm run lint && pnpm run docs:assets && node ./scripts/build-website-groups.mjs && node ./scripts/merge-sitemaps.mjs",
         "docs:preview": "vitepress preview docs --host",
         "build": "pnpm run docs:build",
         "lint": "prettier --check \"docs/**/*.{md,ts,css}\"",
@@ -257,16 +257,16 @@
         "tsparticles": "workspace:*"
     },
     "devDependencies": {
-        "prettier": "^3.9.5",
-        "typedoc": "^0.28.19",
+        "prettier": "^3.9.6",
+        "typedoc": "^0.28.20",
         "typedoc-plugin-clarity": "^1.6.0",
         "typedoc-plugin-coverage": "^4.0.3",
         "typedoc-plugin-google-ads": "^1.6.0",
         "typedoc-plugin-keywords": "^1.6.0",
-        "typedoc-plugin-markdown": "^4.12.0",
+        "typedoc-plugin-markdown": "^4.13.0",
         "typedoc-plugin-mdn-links": "^5.1.1",
-        "typedoc-plugin-missing-exports": "^4.1.3",
-        "vite": "^8.1.0",
+        "typedoc-plugin-missing-exports": "^4.1.4",
+        "vite": "^8.2.2",
         "vitepress": "^1.6.4"
     },
     "nx": {
