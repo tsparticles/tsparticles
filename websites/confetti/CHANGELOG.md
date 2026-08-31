@@ -7,8 +7,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* post version fixes ([789bef7](https://github.com/tsparticles/tsparticles/commit/789bef7a31eeb1ce9dfc92ba3d457b98b43b4818))
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- post version fixes ([789bef7](https://github.com/tsparticles/tsparticles/commit/789bef7a31eeb1ce9dfc92ba3d457b98b43b4818))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
