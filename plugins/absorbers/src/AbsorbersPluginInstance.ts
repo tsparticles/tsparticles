@@ -44,6 +44,11 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     for (const absorber of this.#instancesManager.getArray(this.#container)) {
       absorber.attract(particle, delta);
 
+      if (absorber.shouldSplit()) {
+        void this.#instancesManager.splitAbsorber(this.#container, absorber);
+        break;
+      }
+
       if (particle.destroyed) {
         break;
       }

@@ -256,6 +256,21 @@ export class AbsorberInstance {
   }
 
   /**
+   * Checks if the absorber reached a configured size limit and should split
+   * @returns true if the absorber should split
+   */
+  shouldSplit(): boolean {
+    if (!this.options.split.enable) {
+      return false;
+    }
+
+    const radiusLimitReached = this.limit.radius > minRadius && this.size >= this.limit.radius,
+      massLimitReached = this.limit.mass > minMass && this.mass >= this.limit.mass;
+
+    return radiusLimitReached || massLimitReached;
+  }
+
+  /**
    * Updates the absorber state, including life management
    * @param delta - the delta time of the frame
    */
