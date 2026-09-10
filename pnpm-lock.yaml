@@ -4400,8 +4400,8 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))
       '@babel/plugin-transform-nullish-coalescing-operator':
-        specifier: ^7.29.7
-        version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))
+        specifier: ^8.0.1
+        version: 8.0.1(@babel/core@7.29.7(supports-color@10.2.2))
       '@babel/plugin-transform-optional-chaining':
         specifier: ^7.29.7
         version: 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
@@ -45133,6 +45133,10 @@ snapshots:
 
   '@babel/helper-plugin-utils@7.29.7': {}
 
+  '@babel/helper-plugin-utils@8.0.1(@babel/core@7.29.7(supports-color@10.2.2))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@10.2.2)
+
   '@babel/helper-plugin-utils@8.0.1(@babel/core@7.29.7(supports-color@7.2.0))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@7.2.0)
@@ -46834,6 +46838,11 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/helper-plugin-utils': 7.29.7
+
+  '@babel/plugin-transform-nullish-coalescing-operator@8.0.1(@babel/core@7.29.7(supports-color@10.2.2))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@10.2.2)
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@7.29.7(supports-color@10.2.2))
 
   '@babel/plugin-transform-nullish-coalescing-operator@8.0.1(@babel/core@8.0.1)':
     dependencies:
@@ -73915,7 +73924,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular/compiler-cli': 22.1.1(@angular/compiler@22.1.1)(typescript@6.0.3)
-      '@rollup/plugin-json': 6.1.0(rollup@4.63.1)
+      '@rollup/plugin-json': 6.1.0(rollup@4.62.4)
       '@rollup/wasm-node': 4.62.2
       ajv: 8.20.0
       browserslist: 4.28.8
@@ -73930,14 +73939,14 @@ snapshots:
       ora: 9.4.1
       piscina: 5.2.0
       postcss: 8.5.26
-      rollup-plugin-dts: 6.4.1(rollup@4.63.1)(typescript@6.0.3)
+      rollup-plugin-dts: 6.4.1(rollup@4.62.4)(typescript@6.0.3)
       rxjs: 7.8.2
       sass: 1.102.0
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 6.0.3
     optionalDependencies:
-      rollup: 4.63.1
+      rollup: 4.62.4
 
   nice-try@1.0.5: {}
 
@@ -79944,13 +79953,13 @@ snapshots:
       '@rollup/pluginutils': 5.4.0(rollup@4.63.1)
       rollup: 4.63.1
 
-  rollup-plugin-dts@6.4.1(rollup@4.63.1)(typescript@6.0.3):
+  rollup-plugin-dts@6.4.1(rollup@4.62.4)(typescript@6.0.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: 4.63.1
+      rollup: 4.62.4
       typescript: 6.0.3
     optionalDependencies:
       '@babel/code-frame': 7.29.7
