@@ -34,16 +34,16 @@
     "commander": "^15"
   },
   "dependencies": {
-    "@swc/core": "^1.16.1",
+    "@swc/core": "^1.16.2",
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@tsparticles/rollup-plugin": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "dependency-cruiser": "^18.2.0",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^64.3.1",
+    "eslint-plugin-jsdoc": "^64.3.8",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.2",
     "klaw": "^4.1.0",
@@ -56,19 +56,19 @@
     "rollup": "^4.63.1",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.68.0"
+    "typescript-eslint": "^8.70.0"
   },
   "devDependencies": {
     "@types/estree": "^1.0.9",
     "@types/klaw": "^3.0.7",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.5.1",
     "@types/prompts": "^2.4.9",
-    "browserslist": "^4.28.8",
+    "browserslist": "^4.28.9",
     "commander": "^15.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "ts-node": "^10.9.2",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "description": "tsParticles CLI",
   "main": "dist/bundle-rollup.js",

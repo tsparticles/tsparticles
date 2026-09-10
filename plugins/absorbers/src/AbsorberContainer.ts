@@ -6,6 +6,12 @@ import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
 
 export interface AbsorberContainer extends InteractivityContainer {
   actualOptions: AbsorberOptions;
-  addAbsorber?: (options: RecursivePartial<IAbsorber>, position?: ICoordinates) => Promise<AbsorberInstance>;
+  addAbsorber?: (
+    options: RecursivePartial<IAbsorber>,
+    position?: ICoordinates,
+  ) => Promise<AbsorberInstance | undefined>;
+  addAbsorbers?: (
+    absorbers: { options: RecursivePartial<IAbsorber>; position?: ICoordinates }[],
+  ) => Promise<AbsorberInstance[]>;
   getAbsorber?: (idxOrName?: number | string) => AbsorberInstance | undefined;
 }
