@@ -12,13 +12,13 @@ import {
   getDistance,
   isInArray,
   loadOptionProperty,
+  minRadius,
 } from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
 import { SlowModifier } from "./SlowModifier.js";
 
-const slowMode = "slow",
-  minRadius = 0;
+const slowMode = "slow";
 
 /**
  * Particle slow manager

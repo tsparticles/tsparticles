@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   identity,
   none,
@@ -83,14 +84,13 @@ export class OklchColorManager implements IColorManager {
         c: 3, // Chroma
         h: 4, // Hue
         a: 6, // Optional alpha for OKLCH
-      },
-      defaultAlpha = 1;
+      };
 
     if (!result) {
       return undefined;
     }
 
-    const rawL = parseFloat(result[indexes.l] ?? "0");
+    const rawL = Number.parseFloat(result[indexes.l] ?? "0");
 
     // Validate lightness range BEFORE scaling
     if (result[indexes.lPercent]) {
@@ -107,8 +107,8 @@ export class OklchColorManager implements IColorManager {
 
     return oklchaToRgba({
       a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-      c: parseFloat(result[indexes.c] ?? "0"),
-      h: parseFloat(result[indexes.h] ?? "0"),
+      c: Number.parseFloat(result[indexes.c] ?? "0"),
+      h: Number.parseFloat(result[indexes.h] ?? "0"),
       l: rawL * (result[indexes.lPercent] ? identity : percentDenominator),
     });
   }

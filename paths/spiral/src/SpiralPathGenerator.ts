@@ -7,14 +7,14 @@ import {
   doublePI,
   getRandom,
   getRangeValue,
+  minRadius,
 } from "@tsparticles/engine";
 import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { ISpiralOptions } from "./ISpiralOptions.js";
 import { SpiralDirection } from "./SpiralDirection.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 
-const minRadius = 0,
-  speedFactor = 0.01,
+const speedFactor = 0.01,
   defaultOptions: ISpiralOptions = {
     maxRadius: { min: 10, max: 50 },
     angularSpeed: { min: 0.01, max: 0.04 },
