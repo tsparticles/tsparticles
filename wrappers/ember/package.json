@@ -101,7 +101,7 @@
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^7.9.3",
     "ember-try": "^4.0.0",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ember": "^13.5.0",
     "eslint-plugin-n": "^18.3.0",
@@ -114,7 +114,7 @@
     "qunit-dom": "^3.6.0",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "webpack": "^5.110.1"
+    "webpack": "^5.110.3"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

@@ -17,7 +17,7 @@ import { ParticlesManager } from "./ParticlesManager.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadOptions } from "../Utils/OptionsUtils.js";
+import { loadOptions } from "../Utils/OptionLoader.js";
 
 /** Container constructor parameters */
 export interface ContainerParams {

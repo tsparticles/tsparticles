@@ -115,7 +115,7 @@
   },
   "devDependencies": {
     "@tsparticles/prettier-config": "workspace:*",
-    "astro": "^7.2.0",
+    "astro": "^7.3.2",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
