@@ -2,6 +2,8 @@
 
 ## Status
 
+**Status: ✅ Implemented.** All phases completed. Full test suite green (168/168). See `4.4.0_PLAN.md` for release details.
+
 HDR color implementation has reported fidelity issues from users.
 
 The current approach multiplies RGB values by a headroom factor without tone mapping, causing color clipping and distortion on saturated/bright colors.
@@ -523,58 +525,58 @@ Update all files that call `getStyleFromRgb()` or `getStyleFromHsl()` to pass `h
 
 ### Step 0 — Baseline
 
-- [ ] Verify current HDR behavior and test baseline
-- [ ] Document existing color utility tests
+- [x] Verify current HDR behavior and test baseline
+- [x] Document existing color utility tests
 
 ### Step 1 — Tone mapping fix
 
-- [ ] Add `acesFilmic()` function to `ColorUtils.ts`
-- [ ] Update `getHdrStyleFromRgb()` to apply tone mapping
-- [ ] Add unit tests for tone mapping
+- [x] Add `acesFilmic()` function to `ColorUtils.ts`
+- [x] Update `getHdrStyleFromRgb()` to apply tone mapping
+- [x] Add unit tests for tone mapping
 
 ### Step 2 — Linear color mixing
 
-- [ ] Add `srgbToLinear()` and `linearToSrgb()` functions
-- [ ] Update `colorMix()` with `hdr` parameter
-- [ ] Update all `colorMix()` call sites to pass `hdr` flag
-- [ ] Add unit tests for linear mixing
+- [x] Add `srgbToLinear()` and `linearToSrgb()` functions
+- [x] Update `colorMix()` with `hdr` parameter
+- [x] Update all `colorMix()` call sites to pass `hdr` flag
+- [x] Add unit tests for linear mixing
 
 ### Step 3 — Configurable peakNits
 
-- [ ] Add `peakNits` to `IOptions` and `Options`
-- [ ] Update `getHdrStyleFromRgb()` to accept peakNits parameter
-- [ ] Thread `peakNits` through canvas initialization
+- [x] Add `peakNits` to `IOptions` and `Options`
+- [x] Update `getHdrStyleFromRgb()` to accept peakNits parameter
+- [x] Thread `peakNits` through canvas initialization
 
 ### Step 4 — Display listener
 
-- [ ] Add `matchMedia` change listeners in `CanvasManager`
-- [ ] Dispose HDR listeners on canvas teardown/reinit
-- [ ] Test with HDR display connect/disconnect
+- [x] Add `matchMedia` change listeners in `CanvasManager`
+- [x] Dispose HDR listeners on canvas teardown/reinit
+- [x] Test with HDR display connect/disconnect
 
 ### Step 5 — HdrMode enum and options
 
-- [ ] Create `HdrMode.ts` enum
-- [ ] Add `hdrMode` to `IOptions` and `Options`
-- [ ] Export from `exports.ts`
-- [ ] Add `hdrMode` to `Container`
+- [x] Create `HdrMode.ts` enum
+- [x] Add `hdrMode` to `IOptions` and `Options`
+- [x] Export from `exports.ts`
+- [x] Add `hdrMode` to `Container`
 
 ### Step 6 — Mode adjustments
 
-- [ ] Implement `applyHdrModeAdjustments()` function
-- [ ] Integrate into `getHdrStyleFromRgb()`
-- [ ] Add unit tests for each mode
+- [x] Implement `applyHdrModeAdjustments()` function
+- [x] Integrate into `getHdrStyleFromRgb()`
+- [x] Add unit tests for each mode
 
 ### Step 7 — Consumer updates
 
-- [ ] Update `RenderManager.ts`
-- [ ] Update all 15+ consumer files to pass `hdrMode`
-- [ ] Verify each consumer compiles and renders correctly
+- [x] Update `RenderManager.ts`
+- [x] Update all 15+ consumer files to pass `hdrMode`
+- [x] Verify each consumer compiles and renders correctly
 
 ### Step 8 — Validation
 
-- [ ] Run full test suite
-- [ ] Visual validation with test configs
-- [ ] Performance profiling
+- [x] Run full test suite
+- [x] Visual validation with test configs
+- [x] Performance profiling
 
 ---
 

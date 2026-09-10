@@ -4,7 +4,7 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 2 — 4.4.0 HDR Color Fix & Rendering Modes (release prep)
+**Current focus:** Phase 3 — 4.5.0 Fluid Particle Interaction & MCP generate_code
 
 ## Session Status — 2026-06-29
 

@@ -35,14 +35,13 @@ export class ParticlesManager {
   /** Check particle position plugins */
   checkParticlePositionPlugins: IContainerPlugin[];
 
-  /** The spatial hash grid */
-  grid;
-
   /**
    * All the particles used in canvas
    */
   #array: Particle[];
   readonly #container: Container;
+  /** The spatial hash grid */
+  #grid;
   readonly #groupLimits: Map<string, number>;
   #limit;
   #nextId;
@@ -72,7 +71,7 @@ export class ParticlesManager {
     this.#groupLimits = new Map<string, number>();
     this.#particleBuckets = new Map<number, number>();
     this.#zBuckets = this.#createBuckets(this.#container.zLayers);
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize);
+    this.#grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.checkParticlePositionPlugins = [];
     this.#particleResetPlugins = [];
     this.#particleUpdatePlugins = [];
@@ -87,6 +86,10 @@ export class ParticlesManager {
    */
   get count(): number {
     return this.#array.length;
+  }
+
+  get grid(): SpatialHashGrid {
+    return this.#grid;
   }
 
   /**
@@ -237,8 +240,7 @@ export class ParticlesManager {
    * @returns the promise for the init
    */
   async init(): Promise<void> {
-    const container = this.#container,
-      options = container.actualOptions;
+    const container = this.#container;
 
     this.checkParticlePositionPlugins = [];
     this.#updatePlugins = [];
@@ -249,78 +251,9 @@ export class ParticlesManager {
     this.#particleBuckets.clear();
     this.#resetBuckets(container.zLayers);
 
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
+    this.#grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
-    for (const plugin of container.plugins) {
-      if (plugin.redrawInit) {
-        await plugin.redrawInit();
-      }
-
-      if (plugin.checkParticlePosition) {
-        this.checkParticlePositionPlugins.push(plugin);
-      }
-
-      if (plugin.update) {
-        this.#updatePlugins.push(plugin);
-      }
-
-      if (plugin.particleUpdate) {
-        this.#particleUpdatePlugins.push(plugin);
-      }
-
-      if (plugin.postUpdate) {
-        this.#postUpdatePlugins.push(plugin);
-      }
-
-      if (plugin.particleReset) {
-        this.#particleResetPlugins.push(plugin);
-      }
-
-      if (plugin.postParticleUpdate) {
-        this.#postParticleUpdatePlugins.push(plugin);
-      }
-    }
-
-    await this.#container.initDrawersAndUpdaters();
-
-    for (const drawer of this.#container.effectDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
-    for (const drawer of this.#container.shapeDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
-    let handled = false;
-
-    for (const plugin of container.plugins) {
-      handled = plugin.particlesInitialization?.() ?? handled;
-
-      if (handled) {
-        break;
-      }
-    }
-
-    if (!handled) {
-      const particlesOptions = options.particles,
-        groups = particlesOptions.groups;
-
-      for (const group in groups) {
-        const groupOptions = groups[group];
-
-        if (!groupOptions) {
-          continue;
-        }
-
-        for (let i = this.count, j = 0; j < groupOptions.number.value && i < particlesOptions.number.value; i++, j++) {
-          this.addParticle(undefined, groupOptions, group);
-        }
-      }
-
-      for (let i = this.count; i < particlesOptions.number.value; i++) {
-        this.addParticle();
-      }
-    }
+    await this.#initPlugins();
   }
 
   /**
@@ -431,7 +364,7 @@ export class ParticlesManager {
    * @param delta - The delta time
    */
   update(delta: IDelta): void {
-    this.grid.clear();
+    this.#grid.clear();
 
     for (const plugin of this.#updatePlugins) {
       plugin.update?.(delta);
@@ -531,6 +464,94 @@ export class ParticlesManager {
     return (
       (canvasSize.width * canvasSize.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp)
     );
+  }
+
+  async #initDrawersAndUpdaters(): Promise<void> {
+    const container = this.#container;
+
+    await container.initDrawersAndUpdaters();
+
+    for (const drawer of container.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of container.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
+  }
+
+  async #initPlugins(): Promise<void> {
+    await this.#initPluginsArrays();
+    await this.#initDrawersAndUpdaters();
+
+    let handled = false;
+
+    const container = this.#container;
+
+    for (const plugin of container.plugins) {
+      handled = plugin.particlesInitialization?.() ?? handled;
+
+      if (handled) {
+        break;
+      }
+    }
+
+    if (handled) {
+      return;
+    }
+
+    const particlesOptions = container.actualOptions.particles,
+      groups = particlesOptions.groups;
+
+    for (const group in groups) {
+      const groupOptions = groups[group];
+
+      if (!groupOptions) {
+        continue;
+      }
+
+      for (let i = this.count, j = 0; j < groupOptions.number.value && i < particlesOptions.number.value; i++, j++) {
+        this.addParticle(undefined, groupOptions, group);
+      }
+    }
+
+    for (let i = this.count; i < particlesOptions.number.value; i++) {
+      this.addParticle();
+    }
+  }
+
+  async #initPluginsArrays(): Promise<void> {
+    const container = this.#container;
+
+    for (const plugin of container.plugins) {
+      if (plugin.redrawInit) {
+        await plugin.redrawInit();
+      }
+
+      if (plugin.checkParticlePosition) {
+        this.checkParticlePositionPlugins.push(plugin);
+      }
+
+      if (plugin.update) {
+        this.#updatePlugins.push(plugin);
+      }
+
+      if (plugin.particleUpdate) {
+        this.#particleUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.postUpdate) {
+        this.#postUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.particleReset) {
+        this.#particleResetPlugins.push(plugin);
+      }
+
+      if (plugin.postParticleUpdate) {
+        this.#postParticleUpdatePlugins.push(plugin);
+      }
+    }
   }
 
   #insertParticleIntoBucket(particle: Particle): void {
@@ -680,7 +701,7 @@ export class ParticlesManager {
         continue;
       }
 
-      this.grid.insert(particle);
+      this.#grid.insert(particle);
     }
 
     return particlesToDelete;

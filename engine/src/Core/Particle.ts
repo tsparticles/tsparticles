@@ -695,13 +695,11 @@ export class Particle {
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
       baseOpacity = getRangeValue(this.opacity?.value ?? defaultOpacity),
       modifierOpacity = this.#applyModifiers<number | undefined>(undefined, m => m.opacity),
-      opacity = modifierOpacity ?? baseOpacity,
-      fillOpacity = this.fillOpacity ?? defaultOpacity,
-      strokeOpacity = this.strokeOpacity ?? defaultOpacity;
+      opacity = modifierOpacity ?? baseOpacity;
 
-    this.#cachedOpacityData.fillOpacity = fillOpacity;
+    this.#cachedOpacityData.fillOpacity = this.fillOpacity ?? defaultOpacity;
     this.#cachedOpacityData.opacity = opacity * zOpacityFactor;
-    this.#cachedOpacityData.strokeOpacity = strokeOpacity;
+    this.#cachedOpacityData.strokeOpacity = this.strokeOpacity ?? defaultOpacity;
 
     return this.#cachedOpacityData;
   }
