@@ -11,6 +11,7 @@ const globalObject = globalThis as typeof globalThis & {
   setParticlesRandom?: typeof setRandom;
   tsParticles?: typeof tsParticles;
 };
+
 globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 globalObject.tsParticles = tsParticles;
 globalObject.getParticlesLogger = getLogger;

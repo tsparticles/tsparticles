@@ -6,6 +6,7 @@ import {
   OutMode,
   OutModeDirection,
   getRangeValue,
+  minRadius,
 } from "@tsparticles/engine";
 import { createRibbonState, drawRibbon, setRibbonBounds, updateRibbon } from "./Utils.js";
 import type { RibbonParticle } from "./RibbonParticle.js";
@@ -14,7 +15,6 @@ const defaultSides = 12,
   defaultRibbonCount = 30,
   minRibbonCount = 4,
   sidesMultiplier = 2,
-  minRadius = 0,
   insideMargin = 0;
 
 /**

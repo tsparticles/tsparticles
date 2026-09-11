@@ -10,6 +10,7 @@ import {
   type Particle,
   type RangeValue,
   defaultAlpha,
+  defaultTransform,
   double,
   getRangeValue,
   half,
@@ -73,13 +74,6 @@ export type TrailParticle = Particle & {
   trailMinWidth?: number;
   /** Whether to apply transform data */
   trailTransform?: boolean;
-};
-
-const defaultTransform = {
-  a: 1,
-  b: 0,
-  c: 0,
-  d: 1,
 };
 
 /** Trail effect drawer plugin */

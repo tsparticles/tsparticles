@@ -7,6 +7,7 @@ import {
   generatedAttribute,
   generatedFalse,
   generatedTrue,
+  minRadius,
   percentDenominator,
 } from "../Core/Utils/Constants.js";
 import { collisionVelocity, getDistances, getRandom, getRangeValue } from "./MathUtils.js";
@@ -23,8 +24,6 @@ import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 import { getLogger } from "./LogUtils.js";
-
-const minRadius = 0;
 
 /**
  * Checks whether a key should be rejected during object traversal.

@@ -7,6 +7,7 @@ import {
   Rectangle,
   type RecursivePartial,
   colorMix,
+  defaultRatio,
   double,
   getDistance,
   half,
@@ -45,8 +46,7 @@ const bubbleMode = "bubble",
   defaultOpacity = 1,
   ratioOffset = 1,
   defaultBubbleValue = 0,
-  minRatio = 0,
-  defaultRatio = 1;
+  minRatio = 0;
 
 /**
  * Particle bubble manager
