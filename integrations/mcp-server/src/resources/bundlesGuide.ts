@@ -12,33 +12,17 @@ export function getBundlesGuideResource(): string {
 
   lines.push("## Bundle Selection Guide");
   lines.push("");
-  lines.push(
-    "- **@tsparticles/basic**: Minimal setup. Use for simple animations with circles only.",
-  );
+  lines.push("- **@tsparticles/basic**: Minimal setup. Use for simple animations with circles only.");
   lines.push(
     "- **@tsparticles/slim**: Standard setup. Use for most projects with interactivity, links, multiple shapes.",
   );
-  lines.push(
-    "- **tsparticles**: Full setup. Use when you need absorbers, emitters, drag, extra effects.",
-  );
-  lines.push(
-    "- **@tsparticles/all**: Maximum setup. Use when you want everything available.",
-  );
-  lines.push(
-    "- **@tsparticles/confetti**: Confetti effects. Use for celebration/party animations.",
-  );
-  lines.push(
-    "- **@tsparticles/fireworks**: Fireworks effects. Use for pyrotechnic animations.",
-  );
-  lines.push(
-    "- **@tsparticles/particles**: General particles. Lightweight with links and collisions.",
-  );
-  lines.push(
-    "- **@tsparticles/ribbons**: Ribbon/trail effects. Use for flowing ribbon animations.",
-  );
-  lines.push(
-    "- **@tsparticles/pjs**: particles.js compatibility layer. Migrate existing particles.js projects.",
-  );
+  lines.push("- **tsparticles**: Full setup. Use when you need absorbers, emitters, drag, extra effects.");
+  lines.push("- **@tsparticles/all**: Maximum setup. Use when you want everything available.");
+  lines.push("- **@tsparticles/confetti**: Confetti effects. Use for celebration/party animations.");
+  lines.push("- **@tsparticles/fireworks**: Fireworks effects. Use for pyrotechnic animations.");
+  lines.push("- **@tsparticles/particles**: General particles. Lightweight with links and collisions.");
+  lines.push("- **@tsparticles/ribbons**: Ribbon/trail effects. Use for flowing ribbon animations.");
+  lines.push("- **@tsparticles/pjs**: particles.js compatibility layer. Migrate existing particles.js projects.");
   lines.push("");
 
   lines.push("## Bundle Hierarchy");
@@ -81,9 +65,7 @@ export function getBundlesGuideResource(): string {
 
     const importLines: string[] = [];
     if (bundle.loadFunction) {
-      importLines.push(
-        `import { ${bundle.loadFunction} } from "${bundle.name}";`,
-      );
+      importLines.push(`import { ${bundle.loadFunction} } from "${bundle.name}";`);
     } else {
       importLines.push(`import "${bundle.name}";`);
     }

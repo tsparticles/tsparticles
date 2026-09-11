@@ -60,7 +60,7 @@ describe("diagnoseIssues", () => {
       },
     });
 
-    expect(issues.some(i => i.title.includes("Interaction mode 'push'"))).toBe(true);
+    expect(issues.some(i => i.title.includes("Interaction mode") && i.title.includes("push"))).toBe(true);
   });
 
   it("should detect shape plugin needed", () => {

@@ -9,9 +9,7 @@ import { z } from "zod";
 // `args?.options as Record<string, unknown>` cast happily "accepted"
 // any of those and let malformed input reach the tool implementations.
 
-const optionsObjectSchema = z
-  .record(z.string(), z.unknown())
-  .describe("A tsParticles options object (ISourceOptions)");
+const optionsObjectSchema = z.record(z.string(), z.unknown()).describe("A tsParticles options object (ISourceOptions)");
 
 export const suggestPluginsArgsSchema = z.object({
   options: optionsObjectSchema,
@@ -46,10 +44,17 @@ export const listPackagesArgsSchema = z.object({
   query: z.string().optional(),
 });
 
+export const generateCodeArgsSchema = z.object({
+  description: z.string().trim().min(1, "description must be a non-empty string"),
+  framework: z.enum(["vanilla", "react", "vue3", "svelte", "angular"]).optional(),
+  typescript: z.boolean().optional(),
+});
+
 export type SuggestPluginsArgs = z.infer<typeof suggestPluginsArgsSchema>;
 export type DiagnoseIssuesArgs = z.infer<typeof diagnoseIssuesArgsSchema>;
 export type GetPackageInfoArgs = z.infer<typeof getPackageInfoArgsSchema>;
 export type ListPackagesArgs = z.infer<typeof listPackagesArgsSchema>;
+export type GenerateCodeArgs = z.infer<typeof generateCodeArgsSchema>;
 
 /**
  * Formats a ZodError into a single human-readable string suitable for
