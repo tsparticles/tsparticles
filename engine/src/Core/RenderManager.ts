@@ -140,13 +140,14 @@ export class RenderManager {
    *
    * The first plugin that returns `true` short-circuits the clear. If no plugin handles it,
    * falls back to {@link canvasClear} which respects `actualOptions.clear`.
+   * @returns the plugin that handled the clear, or `undefined` when the plain clear ran
    * @see IContainerPlugin.canvasClear
    */
-  clear(): void {
+  clear(): IContainerPlugin | undefined {
     /* check dedicated canvasClear plugins first (e.g. trail, which has no layer hooks) */
     for (const plugin of this.#canvasClearPlugins) {
       if (plugin.canvasClear?.() ?? false) {
-        return;
+        return plugin;
       }
     }
 
@@ -155,13 +156,15 @@ export class RenderManager {
       if (typeof layer === "number") {
         for (const plugin of this.#getLayerPlugins(layer)) {
           if (plugin.canvasClear?.() ?? false) {
-            return;
+            return plugin;
           }
         }
       }
     }
 
     this.canvasClear();
+
+    return undefined;
   }
 
   /**
@@ -302,9 +305,8 @@ export class RenderManager {
    * @see DrawLayer
    */
   drawParticles(delta: IDelta): void {
-    const { particles, actualOptions } = this.#container;
-
-    this.clear();
+    const { particles, actualOptions } = this.#container,
+      clearedPlugin = this.clear();
 
     /* update each particle before drawing */
     particles.update(delta);
@@ -333,9 +335,12 @@ export class RenderManager {
         }
       }
 
-      /* Layer 2 — BackgroundMask: plugin canvasPaint */
+      /* Layer 2 — BackgroundMask: plugin canvasPaint (already painted during the
+       * clear phase when the plugin handled clearing, so skip it to avoid double work) */
       for (const plugin of this.#getLayerPlugins(DrawLayer.BackgroundMask)) {
-        plugin.canvasPaint?.();
+        if (plugin !== clearedPlugin) {
+          plugin.canvasPaint?.();
+        }
       }
 
       /* Layer 3 — CanvasSetup: plugin drawSettingsSetup */

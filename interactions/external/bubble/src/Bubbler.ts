@@ -100,7 +100,11 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       mod = new BubbleModifier();
 
       this.#modifiers.set(particle, mod);
+    }
 
+    if (particle.getModifier(mod.id) !== mod) {
+      /* A pooled particle is recycled after destroy() clears its modifiers, so the
+       * cached modifier must be re-attached to keep applying bubble overrides. */
       particle.addModifier(mod);
     }
 
@@ -494,7 +498,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
           continue;
         }
 
-        const mod = this.getOrCreateModifier(particle);
+        let mod = this.getOrCreateModifier(particle);
 
         mod.enabled = true;
         mod.inRange = true;
@@ -505,6 +509,11 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         if (!mod.div || mod.div !== elem) {
           this.clear(particle, delta, true);
 
+          /* clearing detached the modifier: re-acquire and re-enable it for the new div */
+          mod = this.getOrCreateModifier(particle);
+
+          mod.enabled = true;
+          mod.inRange = true;
           mod.div = elem;
         }
 
