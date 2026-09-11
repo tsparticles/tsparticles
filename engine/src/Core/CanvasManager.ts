@@ -512,7 +512,14 @@ export class CanvasManager {
     const p3Query = safeMatchMedia("(color-gamut: p3)"),
       hdrQuery = safeMatchMedia("(dynamic-range: high)"),
       handleChange = (): void => {
-        this.#recreateRenderCanvas();
+        /* The supplied canvas is always retained: a DOM-backed render canvas is
+         * transfer-backed by loadCanvas and controls the placeholder element's
+         * bitmap, and a caller-provided OffscreenCanvas is the exact surface the
+         * caller still holds and presents, so replacing either on an HDR change
+         * would stop the visible output from updating. Keep drawing to the same
+         * surface and only re-run the context creation, which applies the current
+         * settings when the context does not exist yet (an existing 2D context
+         * cannot change its color space). */
         this.#initContext();
         this.initBackground();
       },
@@ -558,31 +565,6 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
-  }
-
-  /**
-   * Recreates the render canvas so the next context creation applies the current
-   * color space and pixel format settings, since an existing 2D context cannot
-   * change them.
-   */
-  #recreateRenderCanvas(): void {
-    const renderCanvas = this.renderCanvas;
-
-    if (!renderCanvas) {
-      return;
-    }
-
-    if (this.domElement) {
-      /* A DOM-backed render canvas is transfer-backed by loadCanvas and controls
-       * the placeholder element's bitmap; replacing it with a detached
-       * OffscreenCanvas would render to a surface that is never displayed. A
-       * transferred canvas cannot be re-created in place, so keep it to continue
-       * drawing to the represented DOM surface. */
-      return;
-    }
-
-    /* Caller-provided detached OffscreenCanvas: recreate it with the same size. */
-    this.renderCanvas = new OffscreenCanvas(renderCanvas.width, renderCanvas.height);
   }
 
   #removeHdrListeners(): void {
