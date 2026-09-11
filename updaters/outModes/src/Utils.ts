@@ -1,100 +1,84 @@
-import { OutMode, OutModeDirection, getRangeValue, minVelocity } from "@tsparticles/engine";
+import { type IBounds, OutMode, OutModeDirection, getRangeValue, minVelocity } from "@tsparticles/engine";
 import type { IBounceData } from "./IBounceData.js";
 
 const boundsMin = 0;
 
-/**
- * @param data - The data to handle
- */
-export function bounceHorizontal(data: IBounceData): void {
-  if (
-    (data.outMode !== OutMode.bounce && data.outMode !== OutMode.split) ||
-    (data.direction !== OutModeDirection.left && data.direction !== OutModeDirection.right)
-  ) {
-    return;
-  }
-
-  if (data.bounds.right < boundsMin && data.direction === OutModeDirection.left) {
-    data.particle.position.x = data.size + data.offset.x;
-  } else if (data.bounds.left > data.canvasSize.width && data.direction === OutModeDirection.right) {
-    data.particle.position.x = data.canvasSize.width - data.size - data.offset.x;
-  }
-
-  const velocity = data.particle.velocity.x;
-  let bounced = false;
-
-  if (
-    data.outOfCanvas &&
-    ((data.direction === OutModeDirection.right && velocity > minVelocity) ||
-      (data.direction === OutModeDirection.left && velocity < minVelocity))
-  ) {
-    const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
-
-    data.particle.velocity.x *= -newVelocity;
-
-    bounced = true;
-  }
-
-  if (!bounced) {
-    return;
-  }
-
-  const minPos = data.offset.x + data.size;
-
-  if (data.outOfCanvas && data.direction === OutModeDirection.right) {
-    data.particle.position.x = data.canvasSize.width - minPos;
-  } else if (data.outOfCanvas && data.direction === OutModeDirection.left) {
-    data.particle.position.x = minPos;
-  }
-
-  if (data.outMode === OutMode.split) {
-    data.particle.destroy();
-  }
+interface BounceAxisConfig {
+  axis: "x" | "y";
+  bounce: "horizontal" | "vertical";
+  canvas: "width" | "height";
+  negative: boolean;
+  negativeEdge: keyof IBounds;
+  positiveEdge: keyof IBounds;
 }
 
+const bounceAxisConfigs: Record<OutModeDirection, BounceAxisConfig> = {
+  [OutModeDirection.left]: {
+    axis: "x" as const,
+    canvas: "width" as const,
+    bounce: "horizontal" as const,
+    negativeEdge: "right",
+    positiveEdge: "left",
+    negative: true,
+  },
+  [OutModeDirection.right]: {
+    axis: "x" as const,
+    canvas: "width" as const,
+    bounce: "horizontal" as const,
+    negativeEdge: "right",
+    positiveEdge: "left",
+    negative: false,
+  },
+  [OutModeDirection.top]: {
+    axis: "y" as const,
+    canvas: "height" as const,
+    bounce: "vertical" as const,
+    negativeEdge: "bottom",
+    positiveEdge: "top",
+    negative: true,
+  },
+  [OutModeDirection.bottom]: {
+    axis: "y" as const,
+    canvas: "height" as const,
+    bounce: "vertical" as const,
+    negativeEdge: "bottom",
+    positiveEdge: "top",
+    negative: false,
+  },
+};
+
 /**
  * @param data - The data to handle
  */
-export function bounceVertical(data: IBounceData): void {
-  if (
-    (data.outMode !== OutMode.bounce && data.outMode !== OutMode.split) ||
-    (data.direction !== OutModeDirection.bottom && data.direction !== OutModeDirection.top)
-  ) {
+export function bounce(data: IBounceData): void {
+  if ((data.outMode !== OutMode.bounce && data.outMode !== OutMode.split) || !(data.direction in bounceAxisConfigs)) {
     return;
   }
 
-  if (data.bounds.bottom < boundsMin && data.direction === OutModeDirection.top) {
-    data.particle.position.y = data.size + data.offset.y;
-  } else if (data.bounds.top > data.canvasSize.height && data.direction === OutModeDirection.bottom) {
-    data.particle.position.y = data.canvasSize.height - data.size - data.offset.y;
-  }
+  const config = bounceAxisConfigs[data.direction],
+    bounds = data.bounds,
+    canvasDim = data.canvasSize[config.canvas],
+    position = data.particle.position,
+    velocity = data.particle.velocity[config.axis];
 
-  const velocity = data.particle.velocity.y;
-  let bounced = false;
+  if (config.negative && bounds[config.negativeEdge] < boundsMin) {
+    position[config.axis] = data.size + data.offset[config.axis];
+  } else if (!config.negative && bounds[config.positiveEdge] > canvasDim) {
+    position[config.axis] = canvasDim - data.size - data.offset[config.axis];
+  }
 
   if (
     data.outOfCanvas &&
-    ((data.direction === OutModeDirection.bottom && velocity > minVelocity) ||
-      (data.direction === OutModeDirection.top && velocity < minVelocity))
+    ((config.negative && velocity < minVelocity) || (!config.negative && velocity > minVelocity))
   ) {
-    const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
-
-    data.particle.velocity.y *= -newVelocity;
-
-    bounced = true;
-  }
-
-  if (!bounced) {
+    data.particle.velocity[config.axis] *= -getRangeValue(data.particle.options.bounce[config.bounce].value);
+  } else {
     return;
   }
 
-  const minPos = data.offset.y + data.size;
+  const minPos = data.offset[config.axis] + data.size;
 
-  if (data.outOfCanvas && data.direction === OutModeDirection.bottom) {
-    data.particle.position.y = data.canvasSize.height - minPos;
-  } else if (data.outOfCanvas && data.direction === OutModeDirection.top) {
-    data.particle.position.y = minPos;
-  }
+  position[config.axis] = config.negative ? minPos : canvasDim - minPos;
 
   if (data.outMode === OutMode.split) {
     data.particle.destroy();

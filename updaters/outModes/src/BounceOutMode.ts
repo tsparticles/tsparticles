@@ -7,8 +7,8 @@ import {
   type Particle,
   calculateBounds,
 } from "@tsparticles/engine";
-import { bounceHorizontal, bounceVertical } from "./Utils.js";
 import type { IOutModeManager } from "./IOutModeManager.js";
+import { bounce } from "./Utils.js";
 
 /** Bounce out mode manager */
 export class BounceOutMode implements IOutModeManager {
@@ -62,7 +62,6 @@ export class BounceOutMode implements IOutModeManager {
       canvasSize = this.#container.canvas.size,
       outOfCanvas = !particle.isInsideCanvasForOutMode(outMode, direction);
 
-    bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
-    bounceVertical({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
+    bounce({ particle, outMode, direction, bounds, canvasSize, offset, outOfCanvas, size });
   }
 }
