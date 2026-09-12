@@ -546,6 +546,7 @@ export async function getDataFromUrl(
 /**
  *
  * @param domContainer -
+ * @returns the canvas
  */
 export function getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasElement {
   let canvasEl: HTMLCanvasElement;
@@ -596,6 +597,7 @@ export function getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasEle
  *
  * @param id -
  * @param source -
+ * @returns the dom container
  */
 export function getDomContainer(id: string, source?: HTMLElement): HTMLElement {
   const documentSafe = safeDocument();

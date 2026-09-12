@@ -32,16 +32,18 @@ Add this to your `claude_desktop_config.json`:
 
 ### Tools
 
-| Tool               | Description                                                                     |
-|--------------------|---------------------------------------------------------------------------------|
-| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed |
-| `list_packages`    | Lists available packages, optionally filtered by category or search query       |
-| `get_package_info` | Returns detailed info about a specific package                                  |
+| Tool               | Description                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed        |
+| `list_packages`    | Lists available packages, optionally filtered by category or search query              |
+| `get_package_info` | Returns detailed info about a specific package                                         |
+| `diagnose_issues`  | Analyzes options for configuration problems and performance issues                     |
+| `generate_code`    | Generate complete code from a natural language description with smart bundle selection |
 
 ### Resources
 
 | URI                           | Description                 |
-|-------------------------------|-----------------------------|
+| ----------------------------- | --------------------------- |
 | `tsparticles://packages`      | Complete package catalog    |
 | `tsparticles://options/guide` | Options structure reference |
 | `tsparticles://bundles`       | Bundle selection guide      |
@@ -49,7 +51,7 @@ Add this to your `claude_desktop_config.json`:
 ### Prompt
 
 | Name               | Description                                                       |
-|--------------------|-------------------------------------------------------------------|
+| ------------------ | ----------------------------------------------------------------- |
 | `generate-options` | Generates tsParticles options from a natural language description |
 
 ## Deploy (remote HTTP)
@@ -143,7 +145,7 @@ docker compose up -d
 2. On DSM, go to **Control Panel > Application Portal > Reverse Proxy** and add:
 
 | Field                | Value                       |
-|----------------------|-----------------------------|
+| -------------------- | --------------------------- |
 | Source protocol      | HTTPS                       |
 | Source hostname      | your-nas-domain.example.com |
 | Source port          | 8443                        |

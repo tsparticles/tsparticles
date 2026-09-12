@@ -23,9 +23,7 @@ export function getPackageCatalogResource(): string {
 
   lines.push("# tsParticles Package Catalog");
   lines.push("");
-  lines.push(
-    "Complete catalog of all tsParticles packages organized by category.",
-  );
+  lines.push("Complete catalog of all tsParticles packages organized by category.");
   lines.push("");
 
   for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
@@ -37,23 +35,13 @@ export function getPackageCatalogResource(): string {
     lines.push("");
 
     for (const pkg of packages) {
-      const loadFunc = pkg.loadFunction
-        ? `\n  - Load function: \`${pkg.loadFunction}\``
-        : "";
-      const b = pkg.includedInBundles.length > 0
-        ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}`
-        : "";
-      const opts = pkg.optionKeys.length > 0
-        ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\``
-        : "";
-      const check = pkg.needsPluginCheck
-        ? `\n  - Activation: ${pkg.needsPluginCheck}`
-        : "";
+      const loadFunc = pkg.loadFunction ? `\n  - Load function: \`${pkg.loadFunction}\`` : "";
+      const b = pkg.includedInBundles.length > 0 ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}` : "";
+      const opts = pkg.optionKeys.length > 0 ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\`` : "";
+      const check = pkg.needsPluginCheck ? `\n  - Activation: ${pkg.needsPluginCheck}` : "";
 
       lines.push(`- \`${pkg.name}\``);
-      lines.push(
-        `  ${pkg.description}${loadFunc}${b}${opts}${check}`,
-      );
+      lines.push(`  ${pkg.description}${loadFunc}${b}${opts}${check}`);
     }
     lines.push("");
   }
