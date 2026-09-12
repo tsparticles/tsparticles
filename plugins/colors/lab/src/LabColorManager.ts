@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   parseAlpha,
 } from "@tsparticles/engine";
@@ -78,15 +79,14 @@ export class LabColorManager implements IColorManager {
         aAxis: 3, // Chroma
         bAxis: 5, // Hue
         a: 7, // Optional alpha for LAB
-      },
-      defaultAlpha = 1;
+      };
 
     return result
       ? labaToRgba({
           a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          aAxis: parseFloat(result[indexes.aAxis] ?? "0"),
-          bAxis: parseFloat(result[indexes.bAxis] ?? "0"),
-          l: parseFloat(result[indexes.l] ?? "0"),
+          aAxis: Number.parseFloat(result[indexes.aAxis] ?? "0"),
+          bAxis: Number.parseFloat(result[indexes.bAxis] ?? "0"),
+          l: Number.parseFloat(result[indexes.l] ?? "0"),
         })
       : undefined; // LAB parsing without alpha
   }

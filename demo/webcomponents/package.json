@@ -33,7 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "express": "^5.2.1",
     "helmet": "^8.3.0",

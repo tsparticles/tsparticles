@@ -5,14 +5,14 @@
 | # | Phase | Version | Goal |
 |---|-------|---------|------|
 | 1 | GIF Shape, Background Canvas, BgMask Dynamic, Draw Layer System, Particle Modifier, HDR Precision | 4.3.0 | ✅ Released |
-| 2 | HDR Color Fix & Rendering Modes, Code Review Fixes | 4.4.0 | 🚧 In progress |
+| 2 | HDR Color Fix & Rendering Modes, Code Review Fixes | 4.4.0 | ✅ Released |
 | 3 | Fluid Particle Interaction, MCP `generate_code` tool | 4.5.0 | 📋 Planned |
 
 ## Phase Details
 
 ### Phase 2: HDR Color Fix & Rendering Modes (4.4.0)
 
-**Status:** 🚧 In progress. See `.planning/handovers/4.4.0_PLAN.md`.
+**Status:** ✅ Released. See `.planning/handovers/4.4.0_PLAN.md`.
 
 - HDR color fidelity fixes: tone mapping, linear-space mixing, configurable `peakNits`, display listeners, `hdrMode` presets (`natural`/`vivid`/`cinematic`/`dynamic`). See `HDR_COLOR_FIX_PLAN.md`.
 - Code review fixes from the wrapper audit (implemented). See `FIX-PROMPT.md`.

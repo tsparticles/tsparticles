@@ -42,6 +42,25 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
   },
   isHtmlCanvasElement = (canvas: HTMLCanvasElement | OffscreenCanvas): canvas is HTMLCanvasElement => {
     return typeof HTMLCanvasElement !== "undefined" && canvas instanceof HTMLCanvasElement;
+  },
+  /**
+   * Reads the effective color space a 2D context actually runs with.
+   * The context's own attributes (when the engine exposes them) report the color
+   * space the context was created with, which can differ from the requested one
+   * because an existing 2D context is reused as-is and cannot change its settings.
+   * @param context - the 2D context to inspect, or `null` when none was obtained
+   * @returns the effective color space, or `undefined` when the engine does not expose it
+   */
+  getEffectiveColorSpace = (context: OffscreenCanvasRenderingContext2D | null): PredefinedColorSpace | undefined => {
+    if (!context) {
+      return undefined;
+    }
+
+    const colorInfo = context as OffscreenCanvasRenderingContext2D & {
+      getContextAttributes?(): CanvasRenderingContext2DSettings;
+    };
+
+    return colorInfo.getContextAttributes?.().colorSpace ?? undefined;
   };
 
 /**
@@ -457,13 +476,14 @@ export class CanvasManager {
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
 
-    container.hdr = canSupportHdr ?? false;
     container.hdrMode = container.actualOptions.hdr.mode as HdrMode;
     container.peakNits = container.actualOptions.hdr.peakNits;
 
     const renderCanvas = this.renderCanvas;
 
     if (!renderCanvas) {
+      container.hdr = canSupportHdr ?? false;
+
       return;
     }
 
@@ -485,8 +505,6 @@ export class CanvasManager {
     }
 
     if (canSupportHdr && !context) {
-      container.hdr = false;
-
       const sdrSettings: CanvasRenderingContext2DSettings = {
         alpha: true,
         desynchronized: true,
@@ -504,6 +522,17 @@ export class CanvasManager {
     }
 
     this.render.setContext(context);
+
+    /* Report the color space the returned context actually runs with instead of
+     * assuming the requested settings were applied: an existing 2D context is
+     * returned as-is and keeps its original color space, so on an HDR change the
+     * request is ignored. Read the effective space back from the context
+     * attributes when the engine exposes them, keeping the solid-color and
+     * particle color conversions in sync with the real context. */
+    const requestedSpace: PredefinedColorSpace = canSupportHdr ? "display-p3" : "srgb",
+      effectiveColorSpace = getEffectiveColorSpace(context) ?? (context ? requestedSpace : "srgb");
+
+    container.hdr = effectiveColorSpace === "display-p3";
   }
 
   #initHdrListeners(): void {
@@ -512,7 +541,12 @@ export class CanvasManager {
     const p3Query = safeMatchMedia("(color-gamut: p3)"),
       hdrQuery = safeMatchMedia("(dynamic-range: high)"),
       handleChange = (): void => {
-        this.#recreateRenderCanvas();
+        /* The supplied canvas is always retained: a DOM-backed render canvas controls
+         * the placeholder element's bitmap through its transfer, and a caller-provided
+         * OffscreenCanvas is the exact surface the caller presents, so replacing either
+         * would stop the visible output from updating. An existing 2D context is reused
+         * as-is and keeps its original color space, so #initContext reports the
+         * effective color space instead of the requested one. */
         this.#initContext();
         this.initBackground();
       },
@@ -558,31 +592,6 @@ export class CanvasManager {
 
       element.style.setProperty(key, value, "important");
     }
-  }
-
-  /**
-   * Recreates the render canvas so the next context creation applies the current
-   * color space and pixel format settings, since an existing 2D context cannot
-   * change them.
-   */
-  #recreateRenderCanvas(): void {
-    const renderCanvas = this.renderCanvas;
-
-    if (!renderCanvas) {
-      return;
-    }
-
-    if (this.domElement) {
-      /* A DOM-backed render canvas is transfer-backed by loadCanvas and controls
-       * the placeholder element's bitmap; replacing it with a detached
-       * OffscreenCanvas would render to a surface that is never displayed. A
-       * transferred canvas cannot be re-created in place, so keep it to continue
-       * drawing to the represented DOM surface. */
-      return;
-    }
-
-    /* Caller-provided detached OffscreenCanvas: recreate it with the same size. */
-    this.renderCanvas = new OffscreenCanvas(renderCanvas.width, renderCanvas.height);
   }
 
   #removeHdrListeners(): void {

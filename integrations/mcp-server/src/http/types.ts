@@ -31,6 +31,5 @@ export interface StartHttpServerParams {
    * correctly.
    */
   trustedProxies?: string[];
-  packageVersion: string;
   createMcpServer: () => McpServer;
 }

@@ -1,8 +1,9 @@
-import { OptionLoader, loadProperty } from "../../Utils/OptionsUtils.js";
 import { isBoolean, isNumber } from "../../Utils/TypeUtils.js";
 import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IHDROptions } from "../Interfaces/IHDROptions.js";
+import { OptionLoader } from "../../Utils/OptionLoader.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { loadProperty } from "../../Utils/OptionsUtils.js";
 
 const defaultPeakNits = 400,
   minPeakNits = 0,

@@ -33,7 +33,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
-    "webpack": "^5.110.1",
+    "webpack": "^5.110.3",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^6.0.0"
   },

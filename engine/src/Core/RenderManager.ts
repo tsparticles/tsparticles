@@ -72,7 +72,7 @@ export class RenderManager {
    * layers 0-7 in ordinal order.
    * @see DrawLayer
    */
-  #layers: Record<DrawLayer, IContainerPlugin[]>;
+  readonly #layers: Record<DrawLayer, IContainerPlugin[]>;
   readonly #pluginManager;
   #postDrawUpdaters: IParticleUpdater[];
   #preDrawUpdaters: IParticleUpdater[];
@@ -140,13 +140,14 @@ export class RenderManager {
    *
    * The first plugin that returns `true` short-circuits the clear. If no plugin handles it,
    * falls back to {@link canvasClear} which respects `actualOptions.clear`.
+   * @returns the plugin that handled the clear, or `undefined` when the plain clear ran
    * @see IContainerPlugin.canvasClear
    */
-  clear(): void {
+  clear(): IContainerPlugin | undefined {
     /* check dedicated canvasClear plugins first (e.g. trail, which has no layer hooks) */
     for (const plugin of this.#canvasClearPlugins) {
       if (plugin.canvasClear?.() ?? false) {
-        return;
+        return plugin;
       }
     }
 
@@ -155,13 +156,15 @@ export class RenderManager {
       if (typeof layer === "number") {
         for (const plugin of this.#getLayerPlugins(layer)) {
           if (plugin.canvasClear?.() ?? false) {
-            return;
+            return plugin;
           }
         }
       }
     }
 
     this.canvasClear();
+
+    return undefined;
   }
 
   /**
@@ -302,9 +305,8 @@ export class RenderManager {
    * @see DrawLayer
    */
   drawParticles(delta: IDelta): void {
-    const { particles, actualOptions } = this.#container;
-
-    this.clear();
+    const { particles, actualOptions } = this.#container,
+      clearedPlugin = this.clear();
 
     /* update each particle before drawing */
     particles.update(delta);
@@ -333,9 +335,12 @@ export class RenderManager {
         }
       }
 
-      /* Layer 2 — BackgroundMask: plugin canvasPaint */
+      /* Layer 2 — BackgroundMask: plugin canvasPaint (already painted during the
+       * clear phase when the plugin handled clearing, so skip it to avoid double work) */
       for (const plugin of this.#getLayerPlugins(DrawLayer.BackgroundMask)) {
-        plugin.canvasPaint?.();
+        if (plugin !== clearedPlugin) {
+          plugin.canvasPaint?.();
+        }
       }
 
       /* Layer 3 — CanvasSetup: plugin drawSettingsSetup */
@@ -375,7 +380,7 @@ export class RenderManager {
    * Initializes the plugins needed by canvas.
    *
    * Assigns each plugin to ALL layers where it has relevant hooks, not just one primary layer.
-   * This enables plugins like {@link BackgroundMaskPluginInstance} that implement multiple hooks
+   * This enables plugins that implement multiple hooks
    * (`canvasPaint`→BackgroundMask, `drawSettingsSetup`→CanvasSetup, `drawSettingsCleanup`→CanvasCleanup)
    * to participate in all the layers they need.
    *
@@ -398,44 +403,7 @@ export class RenderManager {
       }
     }
 
-    for (const plugin of this.#container.plugins) {
-      if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
-        this.#colorPlugins.push(plugin);
-      }
-
-      if (plugin.drawParticle) {
-        this.#drawParticlePlugins.push(plugin);
-      }
-
-      if (plugin.drawParticleSetup) {
-        this.#drawParticlesSetupPlugins.push(plugin);
-      }
-
-      if (plugin.drawParticleCleanup) {
-        this.#drawParticlesCleanupPlugins.push(plugin);
-      }
-
-      if (plugin.canvasClear) {
-        this.#canvasClearPlugins.push(plugin);
-      }
-
-      /* assign plugin to all layers where it has relevant hooks */
-      if (plugin.canvasPaint) {
-        this.#getLayerPlugins(DrawLayer.BackgroundMask).push(plugin);
-      }
-
-      if (plugin.drawSettingsSetup) {
-        this.#getLayerPlugins(DrawLayer.CanvasSetup).push(plugin);
-      }
-
-      if (plugin.draw) {
-        this.#getLayerPlugins(DrawLayer.PluginContent).push(plugin);
-      }
-
-      if (plugin.clearDraw ?? plugin.drawSettingsCleanup) {
-        this.#getLayerPlugins(DrawLayer.CanvasCleanup).push(plugin);
-      }
-    }
+    this.#initPluginsArray();
   }
 
   /**
@@ -763,6 +731,57 @@ export class RenderManager {
     return this.#reusablePluginColors;
   }
 
+  #initLayerPlugin(plugin: IContainerPlugin): void {
+    /* assign plugin to all layers where it has relevant hooks */
+    const layerMap: [DrawLayer, boolean][] = [
+      [DrawLayer.BackgroundMask, !!plugin.canvasPaint],
+      [DrawLayer.CanvasSetup, !!plugin.drawSettingsSetup],
+      [DrawLayer.PluginContent, !!plugin.draw],
+      [DrawLayer.CanvasCleanup, !!(plugin.clearDraw ?? plugin.drawSettingsCleanup)],
+    ];
+
+    for (const [layer, active] of layerMap) {
+      if (active) {
+        this.#layers[layer].push(plugin);
+      }
+    }
+  }
+
+  #initPluginsArray(): void {
+    for (const plugin of this.#container.plugins) {
+      if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
+        this.#colorPlugins.push(plugin);
+      }
+
+      if (plugin.drawParticle) {
+        this.#drawParticlePlugins.push(plugin);
+      }
+
+      if (plugin.drawParticleSetup) {
+        this.#drawParticlesSetupPlugins.push(plugin);
+      }
+
+      if (plugin.drawParticleCleanup) {
+        this.#drawParticlesCleanupPlugins.push(plugin);
+      }
+
+      if (plugin.canvasClear) {
+        this.#canvasClearPlugins.push(plugin);
+      }
+
+      this.#initLayerPlugin(plugin);
+    }
+  }
+
+  #isSupportedElement(element: unknown): boolean {
+    return (
+      (typeof HTMLCanvasElement !== "undefined" && element instanceof HTMLCanvasElement) ||
+      (typeof OffscreenCanvas !== "undefined" && element instanceof OffscreenCanvas) ||
+      (typeof HTMLVideoElement !== "undefined" && element instanceof HTMLVideoElement) ||
+      (typeof HTMLImageElement !== "undefined" && element instanceof HTMLImageElement)
+    );
+  }
+
   #resolveBackgroundElement(): void {
     const background = this.#container.actualOptions.background;
 
@@ -776,12 +795,8 @@ export class RenderManager {
       if (typeof document !== "undefined") {
         const node = document.querySelector(background.element);
 
-        if (
-          (typeof HTMLCanvasElement !== "undefined" && node instanceof HTMLCanvasElement) ||
-          (typeof HTMLVideoElement !== "undefined" && node instanceof HTMLVideoElement) ||
-          (typeof HTMLImageElement !== "undefined" && node instanceof HTMLImageElement)
-        ) {
-          this.#backgroundElement = node;
+        if (node && this.#isSupportedElement(node)) {
+          this.#backgroundElement = node as CanvasImageSource;
         } else if (node) {
           this.#warnOnce(
             "background-element-not-supported",
@@ -794,12 +809,7 @@ export class RenderManager {
           );
         }
       }
-    } else if (
-      (typeof HTMLCanvasElement !== "undefined" && background.element instanceof HTMLCanvasElement) ||
-      (typeof OffscreenCanvas !== "undefined" && background.element instanceof OffscreenCanvas) ||
-      (typeof HTMLVideoElement !== "undefined" && background.element instanceof HTMLVideoElement) ||
-      (typeof HTMLImageElement !== "undefined" && background.element instanceof HTMLImageElement)
-    ) {
+    } else if (this.#isSupportedElement(background.element)) {
       this.#backgroundElement = background.element;
     }
   }
