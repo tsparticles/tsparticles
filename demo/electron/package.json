@@ -79,5 +79,16 @@
     "@electron/packager": "^20.2.0",
     "electron": "^42.8.1"
   },
+  "nx": {
+    "targets": {
+      "build": {
+        "configurations": {
+          "ci": {
+            "args": []
+          }
+        }
+      }
+    }
+  },
   "type": "module"
 }
