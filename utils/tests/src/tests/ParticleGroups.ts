@@ -295,7 +295,7 @@ describe("ParticleGroups", async () => {
         number: {
           density: {
             enable: true,
-            height: height / 4,
+            height: height,
             width,
           },
           limit: {
