@@ -16,7 +16,8 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
-import { isArray } from "../../../Utils/TypeUtils.js";
+import { isArray, isString } from "../../../Utils/TypeUtils.js";
+import { getLogger } from "../../../Utils/LogUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
@@ -63,10 +64,14 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
           continue;
         }
 
-        const item = data.groups[group];
+        const item = data.groups[group] as RecursivePartial<IParticlesOptions> | string | undefined;
 
         if (item !== undefined) {
-          this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
+          const groupData = this.#parseGroupData(group, item);
+
+          if (groupData) {
+            this.groups[group] = deepExtend(this.groups[group] ?? {}, groupData) as IParticlesOptions;
+          }
         }
       }
     }
@@ -118,6 +123,20 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
           }
         }
       }
+    }
+  }
+
+  #parseGroupData(group: string, data: RecursivePartial<IParticlesOptions> | string): RecursivePartial<IParticlesOptions> | undefined {
+    if (!isString(data)) {
+      return data;
+    }
+
+    try {
+      return JSON.parse(data) as RecursivePartial<IParticlesOptions>;
+    } catch {
+      getLogger().warning(`error parsing particle group "${group}" options`);
+
+      return undefined;
     }
   }
 

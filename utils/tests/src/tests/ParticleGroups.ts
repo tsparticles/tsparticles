@@ -120,6 +120,40 @@ describe("ParticleGroups", async () => {
     expect(particle?.shapeClose).to.be.false;
   });
 
+  it("should load group options from a JSON string entry", async () => {
+    await container.reset({
+      particles: {
+        groups: {
+          g1: JSON.stringify({
+            number: {
+              value: 1,
+            },
+            shape: {
+              type: "square",
+              options: {
+                square: {
+                  close: false,
+                },
+              },
+            },
+          }),
+        } as any,
+        number: {
+          value: 1,
+        },
+        shape: {
+          type: "circle",
+        },
+      },
+    });
+
+    const particle = container.particles.find(current => current.group === "g1");
+
+    expect(particle).to.be.not.undefined;
+    expect(particle?.shape).to.equal("square");
+    expect(particle?.shapeClose).to.be.false;
+  });
+
   it("should keep ungrouped additions independent from group limits", async () => {
     await container.reset({
       particles: {

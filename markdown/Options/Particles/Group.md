@@ -10,6 +10,7 @@ Defines named particle option groups that can be referenced by emitters, manual 
 - value: full particle options override for that group
 
 Each group value supports the same structure as {@link IParticlesOptions}.
+When needed, a group value can also be provided as a JSON string containing the same object shape.
 
 ## Quick example
 
