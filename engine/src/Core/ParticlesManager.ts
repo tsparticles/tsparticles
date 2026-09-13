@@ -113,10 +113,11 @@ export class ParticlesManager {
     if (limit > minLimit) {
       switch (limitMode) {
         case LimitMode.delete: {
-          const countToRemove = currentCount + countOffset - limit;
+          const groupCount = group === undefined ? currentCount : this.filter(t => t.group === group).length,
+            countToRemove = groupCount + countOffset - limit;
 
           if (countToRemove > minCount) {
-            this.removeQuantity(countToRemove);
+            this.removeQuantity(countToRemove, group);
           }
 
           break;
@@ -252,6 +253,19 @@ export class ParticlesManager {
     this.#resetBuckets(container.zLayers);
 
     this.#grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
+
+    this.#applyLimits(container.actualOptions.particles);
+
+    const particlesOptions = container.actualOptions.particles,
+      groups = particlesOptions.groups;
+
+    for (const group in groups) {
+      const groupData = groups[group];
+
+      if (groupData) {
+        this.#applyLimits(loadParticlesOptions(this.#pluginManager, this.#container, groupData), group, groupData);
+      }
+    }
 
     await this.#initPlugins();
   }
@@ -400,11 +414,7 @@ export class ParticlesManager {
     const numberOptions = options.number;
 
     if (!numberOptions.density.enable) {
-      if (group === undefined) {
-        this.#limit = numberOptions.limit.value;
-      } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
-        this.#groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
-      }
+      this.#applyLimits(options, group, groupOptions);
 
       return;
     }
@@ -425,6 +435,35 @@ export class ParticlesManager {
       this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
     } else if (particlesCount > particlesNumber) {
       this.removeQuantity(particlesCount - particlesNumber, group);
+    }
+  }
+
+  /**
+   * Records the particle limits (unscaled) for the given options, so additions
+   * are bounded even on the initial load before the density is applied.
+   * @param options - The options to apply
+   * @param group - The group
+   * @param groupOptions - The raw group options
+   */
+  #applyLimits(options: ParticlesOptions, group?: string, groupOptions?: RecursivePartial<IParticlesOptions>): void {
+    if (group === undefined) {
+      this.#limit = options.number.limit.value;
+
+      const groups = this.#container.actualOptions.particles.groups;
+
+      for (const existingGroup of this.#groupLimits.keys()) {
+        if (!(existingGroup in groups)) {
+          this.#groupLimits.delete(existingGroup);
+        }
+      }
+    } else {
+      const limitValue = groupOptions?.number?.limit?.value ?? options.number.limit.value;
+
+      if (limitValue > minLimit) {
+        this.#groupLimits.set(group, limitValue);
+      } else {
+        this.#groupLimits.delete(group);
+      }
     }
   }
 
