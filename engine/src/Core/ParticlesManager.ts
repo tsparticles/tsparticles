@@ -33,6 +33,7 @@ import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
  */
 export class ParticlesManager {
   /** Check particle position plugins */
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   checkParticlePositionPlugins: IContainerPlugin[];
 
   /**
@@ -47,13 +48,18 @@ export class ParticlesManager {
   #limit;
   #nextId;
   readonly #particleBuckets: Map<number, number>;
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   #particleResetPlugins: IContainerPlugin[];
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   #particleUpdatePlugins: IContainerPlugin[];
   readonly #pluginManager;
   readonly #pool: Particle[];
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   #postParticleUpdatePlugins: IContainerPlugin[];
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   #postUpdatePlugins: IContainerPlugin[];
   #resizeFactor?: IDimension;
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
   #updatePlugins: IContainerPlugin[];
   #zBuckets: Particle[][];
 
