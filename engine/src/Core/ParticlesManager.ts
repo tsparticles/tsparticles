@@ -380,7 +380,7 @@ export class ParticlesManager {
 
     if (particlesToDelete.size) {
       for (const particle of particlesToDelete) {
-        this.remove(particle);
+        this.remove(particle, particle.group);
       }
     }
 
