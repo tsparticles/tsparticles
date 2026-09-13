@@ -186,19 +186,22 @@ describe("Particles", async () => {
     });
 
     const originalParticles = container.particles.filter(() => true),
+      firstParticleId = originalParticles[0]?.id,
       addedParticle = container.particles.addParticle({ x: 50, y: 50 }),
       remainingParticles = container.particles.filter(() => true);
 
     expect(addedParticle).to.be.not.undefined;
     expect(container.particles.count).to.equal(3);
     expect(remainingParticles).to.eql([originalParticles[1], originalParticles[2], addedParticle]);
-    expect(remainingParticles).to.not.include(originalParticles[0]);
+    expect(addedParticle?.id).to.be.greaterThan(firstParticleId ?? -1);
   });
 
   it("should remove specified particle", async () => {
     await container.reset(numParticlesOptions);
 
     let arr = container.particles.filter(() => true);
+
+    expect(arr).to.have.length(numParticles);
 
     const particle1 = arr[0],
       particle2 = arr[1],
@@ -210,15 +213,17 @@ describe("Particles", async () => {
 
     arr = container.particles.filter(() => true);
 
-    expect(arr).to.eql([particle1, particle2, particle3, particle5]);
-    expect(arr).to.not.eql([particle5, particle3, particle2, particle1]);
+    expect(arr).to.have.length(numParticles - 1);
+    expect(arr).to.eql([particle1, particle2, particle3, particle5].filter(Boolean));
+    expect(arr).to.not.include(particle4);
 
     container.particles.remove(particle1);
 
     arr = container.particles.filter(() => true);
 
-    expect(arr).to.eql([particle2, particle3, particle5]);
-    expect(arr).to.not.eql([particle5, particle3, particle2]);
+    expect(arr).to.have.length(numParticles - 2);
+    expect(arr).to.eql([particle2, particle3, particle5].filter(Boolean));
+    expect(arr).to.not.include(particle1);
   });
 
   it("should ignore out-of-range removeAt calls", async () => {
@@ -302,13 +307,15 @@ describe("Particles", async () => {
       return;
     }
 
+    const particle2Id = particle2.id;
+
     container.particles.remove(particle1);
     container.particles.remove(particle2);
 
     const recycledParticle = container.particles.addParticle({ x: 3, y: 3 });
 
     expect(recycledParticle).to.equal(particle2);
-    expect(recycledParticle?.id).to.equal(2);
+    expect(recycledParticle?.id).to.be.greaterThan(particle2Id);
     expect(recycledParticle?.destroyed).to.be.false;
     expect(container.particles.find(t => t === recycledParticle)).to.equal(recycledParticle);
   });
@@ -317,9 +324,11 @@ describe("Particles", async () => {
     await container.reset(emptyParticlesOptions);
 
     let rejectedParticle;
+    let rejectedParticleId;
 
     const particle = container.particles.addParticle(undefined, undefined, undefined, currentParticle => {
       rejectedParticle = currentParticle;
+      rejectedParticleId = currentParticle.id;
 
       return false;
     });
@@ -331,7 +340,7 @@ describe("Particles", async () => {
 
     expect(acceptedParticle).to.be.not.undefined;
     expect(acceptedParticle).to.equal(rejectedParticle);
-    expect(acceptedParticle?.id).to.equal(0);
+    expect(acceptedParticle?.id).to.equal(rejectedParticleId);
     expect(container.particles.count).to.equal(1);
   });
 

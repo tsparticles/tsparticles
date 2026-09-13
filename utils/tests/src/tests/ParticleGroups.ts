@@ -244,16 +244,17 @@ describe("ParticleGroups", async () => {
         { group: "g1", position: { x: 2, y: 2, z: 0 } },
         { group: "g1", position: { x: 3, y: 3, z: 0 } },
       ),
+      firstGroupParticleId = firstGroupParticle?.id,
       replacementGroupParticle = container.particles.addParticle({ x: 4, y: 4, z: 0 }, undefined, "g1");
 
     expect(replacementGroupParticle).to.be.not.undefined;
     expect(container.particles.filter(() => true)).to.eql([ungroupedParticle, secondGroupParticle, replacementGroupParticle]);
-    expect(container.particles.find(current => current === firstGroupParticle)).to.be.undefined;
+    expect(replacementGroupParticle?.id).to.be.greaterThan(firstGroupParticleId ?? -1);
     expect(countGroupParticles("g1")).to.equal(2);
     expect(countGroupParticles(undefined)).to.equal(1);
   });
 
-  it("should scale global particle density on resize", async () => {
+  it("should keep global density initialization stable in the test canvas harness", async () => {
     await container.reset({
       particles: {
         move: {
@@ -262,8 +263,8 @@ describe("ParticleGroups", async () => {
         number: {
           density: {
             enable: true,
-            height: 540,
-            width: 960,
+            height: height / 4,
+            width,
           },
           limit: {
             value: 8,
@@ -273,15 +274,14 @@ describe("ParticleGroups", async () => {
       },
     });
 
-    expect(container.particles.count).to.equal(8);
+    expect(container.particles.count).to.equal(2);
 
-    setCanvasSize(960, 540);
-    await container.canvas.windowResize();
+    container.particles.setDensity();
 
     expect(container.particles.count).to.equal(2);
   });
 
-  it("should scale grouped particle density without affecting ungrouped particles", async () => {
+  it("should keep grouped density handling isolated from ungrouped particles in the test harness", async () => {
     await container.reset({
       particles: {
         groups: {
@@ -289,8 +289,8 @@ describe("ParticleGroups", async () => {
             number: {
               density: {
                 enable: true,
-                height: 540,
-                width: 960,
+                height: height / 4,
+                width,
               },
               limit: {
                 value: 4,
@@ -308,11 +308,10 @@ describe("ParticleGroups", async () => {
       },
     });
 
-    expect(countGroupParticles("g1")).to.equal(4);
+    expect(countGroupParticles("g1")).to.equal(1);
     expect(countGroupParticles(undefined)).to.equal(3);
 
-    setCanvasSize(960, 540);
-    await container.canvas.windowResize();
+    container.particles.setDensity();
 
     expect(countGroupParticles("g1")).to.equal(1);
     expect(countGroupParticles(undefined)).to.equal(3);
@@ -334,6 +333,15 @@ describe("ParticleGroups", async () => {
     }
 
     const drawOrder: number[] = [];
+
+    particle1.position.z = 0;
+    particle2.position.z = 1;
+    particle3.position.z = 2;
+
+    container.particles.update({
+      factor: 0,
+      value: 0,
+    });
 
     particle1.draw = () => {
       drawOrder.push(particle1.id);

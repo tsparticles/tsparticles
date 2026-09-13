@@ -249,6 +249,8 @@ export class ParticlesManager {
     this.#particleResetPlugins = [];
     this.#postParticleUpdatePlugins = [];
     this.#particleBuckets.clear();
+    this.#groupLimits.clear();
+    this.#limit = 0;
     this.#resetBuckets(container.zLayers);
 
     this.#grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
@@ -289,6 +291,10 @@ export class ParticlesManager {
    * @param override - The override
    */
   remove(particle: Particle, group?: string, override?: boolean): void {
+    if (group !== undefined && particle.group !== group) {
+      return;
+    }
+
     this.removeAt(this.#array.indexOf(particle), undefined, group, override);
   }
 
@@ -329,6 +335,8 @@ export class ParticlesManager {
       groups = options.particles.groups;
 
     let pluginsCount = 0;
+
+    this.#groupLimits.clear();
 
     for (const plugin of this.#container.plugins) {
       if (plugin.particlesDensityCount) {
