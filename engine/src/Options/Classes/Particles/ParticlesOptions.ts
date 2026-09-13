@@ -1,4 +1,5 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
+import { isArray, isObject } from "../../../Utils/TypeUtils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
@@ -16,7 +17,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
-import { isArray, isObject } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
