@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type ICoordinates3d, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
+import { LimitMode, type ICoordinates3d, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -45,6 +45,13 @@ describe("Particles", async () => {
       number: { value: 0 },
       move: {
         enable: true,
+      },
+    },
+  },
+  emptyParticlesOptions = {
+    particles: {
+      number: {
+        value: 0,
       },
     },
   };
@@ -146,6 +153,48 @@ describe("Particles", async () => {
     expect(container.particles.count).to.equal(numParticles - 5);
   });
 
+  it("should wait when the particle limit is reached", async () => {
+    await container.reset({
+      particles: {
+        number: {
+          value: numParticles,
+          limit: {
+            mode: LimitMode.wait,
+            value: numParticles,
+          },
+        },
+      },
+    });
+
+    const particle = container.particles.addParticle({ x: 10, y: 10 });
+
+    expect(particle).to.be.undefined;
+    expect(container.particles.count).to.equal(numParticles);
+  });
+
+  it("should delete the oldest particle when adding past a delete limit", async () => {
+    await container.reset({
+      particles: {
+        number: {
+          value: 3,
+          limit: {
+            mode: LimitMode.delete,
+            value: 3,
+          },
+        },
+      },
+    });
+
+    const originalParticles = container.particles.filter(() => true),
+      addedParticle = container.particles.addParticle({ x: 50, y: 50 }),
+      remainingParticles = container.particles.filter(() => true);
+
+    expect(addedParticle).to.be.not.undefined;
+    expect(container.particles.count).to.equal(3);
+    expect(remainingParticles).to.eql([originalParticles[1], originalParticles[2], addedParticle]);
+    expect(remainingParticles).to.not.include(originalParticles[0]);
+  });
+
   it("should remove specified particle", async () => {
     await container.reset(numParticlesOptions);
 
@@ -172,6 +221,24 @@ describe("Particles", async () => {
     expect(arr).to.not.eql([particle5, particle3, particle2]);
   });
 
+  it("should ignore out-of-range removeAt calls", async () => {
+    await container.reset(numParticlesOptions);
+
+    container.particles.removeAt(-1);
+    container.particles.removeAt(container.particles.count);
+    container.particles.removeAt(container.particles.count + 1);
+
+    expect(container.particles.count).to.equal(numParticles);
+  });
+
+  it("should remove all particles when removeQuantity exceeds the count", async () => {
+    await container.reset(enableParticleMoveOptions);
+
+    container.particles.removeQuantity(numParticles + 2);
+
+    expect(container.particles.count).to.equal(0);
+  });
+
   it("should remove all particles when calling clear", async () => {
     await container.reset(numParticlesOptions);
 
@@ -180,6 +247,29 @@ describe("Particles", async () => {
     container.particles.clear();
 
     expect(container.particles.count).to.equal(0);
+  });
+
+  it("should keep pooled particles reusable after clear", async () => {
+    await container.reset(emptyParticlesOptions);
+
+    const particle1 = container.particles.addParticle({ x: 1, y: 1 }),
+      particle2 = container.particles.addParticle({ x: 2, y: 2 });
+
+    expect(particle1).to.be.not.undefined;
+    expect(particle2).to.be.not.undefined;
+
+    if (!particle1) {
+      return;
+    }
+
+    container.particles.remove(particle1);
+    container.particles.clear();
+
+    const recycledParticle = container.particles.addParticle({ x: 3, y: 3 });
+
+    expect(container.particles.count).to.equal(1);
+    expect(recycledParticle).to.equal(particle1);
+    expect(recycledParticle?.destroyed).to.be.false;
   });
 
   it("should push multiple particles at the specified position", async () => {
@@ -197,6 +287,52 @@ describe("Particles", async () => {
       expect(particle.position.x).to.be.equal(position.x);
       expect(particle.position.y).to.be.equal(position.y);
     }
+  });
+
+  it("should reuse pooled particles after removals", async () => {
+    await container.reset(emptyParticlesOptions);
+
+    const particle1 = container.particles.addParticle({ x: 1, y: 1 }),
+      particle2 = container.particles.addParticle({ x: 2, y: 2 });
+
+    expect(particle1).to.be.not.undefined;
+    expect(particle2).to.be.not.undefined;
+
+    if (!particle1 || !particle2) {
+      return;
+    }
+
+    container.particles.remove(particle1);
+    container.particles.remove(particle2);
+
+    const recycledParticle = container.particles.addParticle({ x: 3, y: 3 });
+
+    expect(recycledParticle).to.equal(particle2);
+    expect(recycledParticle?.id).to.equal(2);
+    expect(recycledParticle?.destroyed).to.be.false;
+    expect(container.particles.find(t => t === recycledParticle)).to.equal(recycledParticle);
+  });
+
+  it("should return rejected initialized particles to the pool", async () => {
+    await container.reset(emptyParticlesOptions);
+
+    let rejectedParticle;
+
+    const particle = container.particles.addParticle(undefined, undefined, undefined, currentParticle => {
+      rejectedParticle = currentParticle;
+
+      return false;
+    });
+
+    expect(particle).to.be.undefined;
+    expect(container.particles.count).to.equal(0);
+
+    const acceptedParticle = container.particles.addParticle(undefined, undefined, undefined, () => true);
+
+    expect(acceptedParticle).to.be.not.undefined;
+    expect(acceptedParticle).to.equal(rejectedParticle);
+    expect(acceptedParticle?.id).to.equal(0);
+    expect(container.particles.count).to.equal(1);
   });
 
   it("should move particles", async () => {

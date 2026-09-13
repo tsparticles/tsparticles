@@ -108,7 +108,7 @@ export class ParticlesManager {
   ): Particle | undefined {
     const limitMode = this.#container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
-      currentCount = this.count;
+      currentCount = group === undefined ? this.count : this.filter(t => t.group === group).length;
 
     if (limit > minLimit) {
       switch (limitMode) {
@@ -116,7 +116,7 @@ export class ParticlesManager {
           const countToRemove = currentCount + countOffset - limit;
 
           if (countToRemove > minCount) {
-            this.removeQuantity(countToRemove);
+            this.removeQuantity(countToRemove, group);
           }
 
           break;
