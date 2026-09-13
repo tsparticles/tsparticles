@@ -8,6 +8,8 @@ import {
   getRandom,
   getRangeValue,
   getStyleFromHsl,
+  half,
+  millisecondsToSeconds,
 } from "@tsparticles/engine";
 import type { RibbonParticle } from "./RibbonParticle.js";
 
@@ -37,11 +39,9 @@ const defaultParticleDist = 8,
   degrees = 180,
   fixedDurationFrames = 50,
   fixedDuration = firstPoint / fixedDurationFrames,
-  millisecondsToSeconds = 1000,
   minDelta = 1e-6,
   maxVelocityInherit = 800,
-  noDistance = 0,
-  half = 0.5;
+  noDistance = 0;
 
 /**
  *

@@ -22,11 +22,14 @@ import { getOptionsGuideResource } from "./resources/optionsGuide.js";
 import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
 import { generateOptionsPrompt, generateOptionsSystemText } from "./prompts/generateOptions.js";
 import { diagnoseIssues } from "./tools/diagnoseIssues.js";
+import { generateCode } from "./tools/generateCode.js";
 import { startHttpServer } from "./http/server.js";
 import { normalizeOrigin } from "./http/security.js";
+import { sanitizeReflection } from "./utils/sanitize.js";
 import {
   diagnoseIssuesArgsSchema,
   formatZodError,
+  generateCodeArgsSchema,
   getPackageInfoArgsSchema,
   listPackagesArgsSchema,
   suggestPluginsArgsSchema,
@@ -94,17 +97,15 @@ function parseArgs(): ParsedArgs {
   if (result.mode === "http") {
     const port = rawPort !== undefined ? Number(rawPort) : NaN;
     if (!Number.isInteger(port) || port <= 0 || port > 65535) {
-      console.error(
-        `Invalid --port value: ${rawPort ?? "(missing)"}. Expected an integer between 1 and 65535.`,
-      );
+      console.error(`Invalid --port value: ${rawPort ?? "(missing)"}. Expected an integer between 1 and 65535.`);
       process.exit(1);
     }
     result.port = port;
 
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
-      const normalized = result.allowedOrigins.map((origin) => normalizeOrigin(origin));
+      const normalized = result.allowedOrigins.map(origin => normalizeOrigin(origin));
 
-      if (normalized.some((origin) => !origin)) {
+      if (normalized.some(origin => !origin)) {
         console.error("Invalid --allowed-origin value. Use full origin like http://localhost:3000");
         process.exit(1);
       }
@@ -139,16 +140,14 @@ const RESOURCES = [
   {
     uri: "tsparticles://options/guide",
     name: "tsParticles Options Guide",
-    description:
-      "Complete structural guide to tsParticles options with tables, defaults, and examples",
+    description: "Complete structural guide to tsParticles options with tables, defaults, and examples",
     mimeType: "text/markdown",
     getText: getOptionsGuideResource,
   },
   {
     uri: "tsparticles://bundles",
     name: "tsParticles Bundle Guide",
-    description:
-      "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
+    description: "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
     mimeType: "text/markdown",
     getText: getBundlesGuideResource,
   },
@@ -243,8 +242,7 @@ function createMcpServer(): Server {
             properties: {
               package: {
                 type: "string",
-                description:
-                  "Package name (e.g., @tsparticles/plugin-absorbers, @tsparticles/slim)",
+                description: "Package name (e.g., @tsparticles/plugin-absorbers, @tsparticles/slim)",
               },
             },
             required: ["package"],
@@ -265,11 +263,36 @@ function createMcpServer(): Server {
             required: ["options"],
           },
         },
+        {
+          name: "generate_code",
+          description:
+            "Generate complete, ready-to-use tsParticles code from a natural language description. Automatically selects the best bundle (preferring specialized bundles like @tsparticles/confetti over generic ones) and generates framework-specific code with install commands.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              description: {
+                type: "string",
+                description:
+                  "Natural language description of the desired particle effect (e.g., 'confetti falling from the top', 'interactive stars in the background')",
+              },
+              framework: {
+                type: "string",
+                description: "Target framework for code generation (default: vanilla JavaScript)",
+                enum: ["vanilla", "react", "vue3", "svelte", "angular"],
+              },
+              typescript: {
+                type: "boolean",
+                description: "Generate TypeScript code instead of JavaScript (default: false)",
+              },
+            },
+            required: ["description"],
+          },
+        },
       ],
     };
   });
 
-  server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  server.setRequestHandler(CallToolRequestSchema, async request => {
     const { name, arguments: args } = request.params;
 
     try {
@@ -312,7 +335,7 @@ function createMcpServer(): Server {
               content: [
                 {
                   type: "text",
-                  text: `Package "${parsed.data.package}" not found. Use list_packages to see all available packages.`,
+                  text: `Package ${sanitizeReflection(parsed.data.package)} not found. Use list_packages to see all available packages.`,
                 },
               ],
               isError: true,
@@ -333,6 +356,18 @@ function createMcpServer(): Server {
           return {
             content: [{ type: "text", text: JSON.stringify({ issues, total: issues.length }, null, 2) }],
           };
+        }
+
+        case "generate_code": {
+          const parsed = generateCodeArgsSchema.safeParse(args);
+          if (!parsed.success) {
+            return {
+              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
+              isError: true,
+            };
+          }
+          const result = generateCode(parsed.data);
+          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
         }
 
         default:
@@ -362,7 +397,7 @@ function createMcpServer(): Server {
 
   server.setRequestHandler(ListResourcesRequestSchema, async () => {
     return {
-      resources: RESOURCES.map((r) => ({
+      resources: RESOURCES.map(r => ({
         uri: r.uri,
         name: r.name,
         description: r.description,
@@ -371,9 +406,9 @@ function createMcpServer(): Server {
     };
   });
 
-  server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  server.setRequestHandler(ReadResourceRequestSchema, async request => {
     const uri = request.params.uri;
-    const resource = RESOURCES.find((r) => r.uri === uri);
+    const resource = RESOURCES.find(r => r.uri === uri);
 
     if (!resource) {
       // The `resources/read` response schema expects a `contents` array,
@@ -400,7 +435,7 @@ function createMcpServer(): Server {
     return { prompts: [generateOptionsPrompt] };
   });
 
-  server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+  server.setRequestHandler(GetPromptRequestSchema, async request => {
     const promptName = request.params.name;
 
     if (promptName !== "generate-options") {
@@ -451,7 +486,6 @@ async function main() {
       port: args.port,
       allowedOrigins: args.allowedOrigins,
       authToken: args.authToken,
-      packageVersion: PACKAGE_VERSION,
       createMcpServer,
     });
   } else {
@@ -459,7 +493,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error("Fatal error:", error);
   process.exit(1);
 });

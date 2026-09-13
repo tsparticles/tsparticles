@@ -9,7 +9,7 @@ module.exports = [
     ignores: ["dist/**", "node_modules/**"],
   },
   js.configs.recommended,
-  ...vuePlugin.configs["flat/recommended"],
+  ...vuePlugin.configs["flat/vue2-recommended"],
   {
     files: ["**/*.{js,mjs,cjs,ts,tsx,vue}"],
     languageOptions: {

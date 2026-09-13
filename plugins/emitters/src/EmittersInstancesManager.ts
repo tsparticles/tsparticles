@@ -20,13 +20,23 @@ export class EmittersInstancesManager {
     container: EmitterContainer,
     options: RecursivePartial<IEmitter>,
     position?: ICoordinates,
-  ): Promise<EmitterInstance> {
-    const emitterOptions = new Emitter();
+  ): Promise<EmitterInstance | undefined> {
+    return this.addEmitters(container, [{ options, position }]).then(t => t[defaultIndex]);
+  }
 
-    emitterOptions.load(options);
-
+  async addEmitters(
+    container: EmitterContainer,
+    emitters: { options: RecursivePartial<IEmitter>; position?: ICoordinates }[],
+  ): Promise<EmitterInstance[]> {
     const { EmitterInstance } = await import("./EmitterInstance.js"),
-      emitter = new EmitterInstance(
+      res = [];
+
+    for (const { options, position } of emitters) {
+      const emitterOptions = new Emitter();
+
+      emitterOptions.load(options);
+
+      const emitter = new EmitterInstance(
         this.#pluginManager,
         container,
         (emitter: EmitterInstance) => {
@@ -36,11 +46,14 @@ export class EmittersInstancesManager {
         position,
       );
 
-    await emitter.init();
+      await emitter.init();
 
-    this.getArray(container).push(emitter);
+      this.getArray(container).push(emitter);
 
-    return emitter;
+      res.push(emitter);
+    }
+
+    return res;
   }
 
   clear(container: EmitterContainer): void {
@@ -81,7 +94,11 @@ export class EmittersInstancesManager {
     container.addEmitter = async (
       options: RecursivePartial<IEmitter>,
       position?: ICoordinates,
-    ): Promise<EmitterInstance> => this.addEmitter(container, options, position);
+    ): Promise<EmitterInstance | undefined> => this.addEmitter(container, options, position);
+
+    container.addEmitters = async (
+      emitters: { options: RecursivePartial<IEmitter>; position?: ICoordinates }[],
+    ): Promise<EmitterInstance[]> => this.addEmitters(container, emitters);
 
     container.removeEmitter = (idxOrName?: number | string): void => {
       const emitter = container.getEmitter?.(idxOrName);

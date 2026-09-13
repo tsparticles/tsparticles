@@ -117,7 +117,7 @@ export default Vue.extend({
       void particlesInit(this);
     });
   },
-  beforeUnmount(this: ParticlesInstance): void {
+  beforeDestroy(this: ParticlesInstance): void {
     this.loadGeneration++;
     this.container?.destroy();
   },
