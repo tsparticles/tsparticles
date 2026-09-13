@@ -16,7 +16,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
-import { isArray } from "../../../Utils/TypeUtils.js";
+import { isArray, isObject } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
@@ -65,7 +65,7 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
 
         const item = data.groups[group] as RecursivePartial<IParticlesOptions> | string | undefined;
 
-        if (item !== undefined) {
+        if (item !== undefined && !isArray(item) && isObject(item)) {
           this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
         }
       }
