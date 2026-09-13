@@ -109,10 +109,8 @@ export class ParticlesManager {
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
     const groupOptions = group === undefined ? undefined : this.#container.actualOptions.particles.groups[group],
-      groupLimitOptions = groupOptions?.number.limit,
-      limitMode = groupLimitOptions
-        ? groupLimitOptions.mode
-        : this.#container.actualOptions.particles.number.limit.mode,
+      groupLimitOptions = groupOptions?.number?.limit,
+      limitMode = groupLimitOptions?.mode ?? this.#container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
       currentCount = group === undefined ? this.count : (this.#groupCounts.get(group) ?? minCount);
 
