@@ -362,9 +362,10 @@ export class ParticlesManager {
         continue;
       }
 
-      const groupDataOptions = loadParticlesOptions(this.#pluginManager, this.#container, groupData);
+      const groupDataOptions = loadParticlesOptions(this.#pluginManager, this.#container, groupData),
+        hasExplicitLimitValue = this.#hasExplicitLimitValue(groupData);
 
-      this.#applyDensity(groupDataOptions, pluginsCount, group);
+      this.#applyDensity(groupDataOptions, pluginsCount, group, hasExplicitLimitValue);
     }
 
     this.#applyDensity(options.particles, pluginsCount);
@@ -414,15 +415,15 @@ export class ParticlesManager {
     options: ParticlesOptions,
     pluginsCount: number,
     group?: string,
-    groupOptions?: ParticlesOptions,
+    hasExplicitLimitValue = false,
   ): void {
     const numberOptions = options.number;
 
     if (!numberOptions.density.enable) {
       if (group === undefined) {
         this.#limit = numberOptions.limit.value;
-      } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
-        this.#groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
+      } else if (hasExplicitLimitValue) {
+        this.#groupLimits.set(group, numberOptions.limit.value);
       }
 
       return;
@@ -436,7 +437,7 @@ export class ParticlesManager {
 
     if (group === undefined) {
       this.#limit = numberOptions.limit.value * densityFactor;
-    } else {
+    } else if (hasExplicitLimitValue) {
       this.#groupLimits.set(group, numberOptions.limit.value * densityFactor);
     }
 
@@ -451,6 +452,18 @@ export class ParticlesManager {
     const bucketCount = Math.max(Math.floor(zLayers), one);
 
     return Array.from({ length: bucketCount }, () => []);
+  }
+
+  #hasExplicitLimitValue(data: RecursivePartial<IParticlesOptions>): boolean {
+    const numberData = data.number;
+
+    if (!numberData || typeof numberData !== "object" || !Object.hasOwn(numberData, "limit")) {
+      return false;
+    }
+
+    const limitData = numberData.limit;
+
+    return !!limitData && typeof limitData === "object" && Object.hasOwn(limitData, "value");
   }
 
   #getBucketIndex(zIndex: number): number {
