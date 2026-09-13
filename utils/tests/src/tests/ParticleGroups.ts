@@ -193,6 +193,38 @@ describe("ParticleGroups", async () => {
     expect(container.particles.find(current => current === g2Particle1 || current === g2Particle2)).to.be.undefined;
   });
 
+  it("should update group limits after removing grouped particles without a group filter", async () => {
+    await container.reset({
+      particles: {
+        groups: {
+          g1: {
+            number: {
+              limit: {
+                mode: LimitMode.wait,
+                value: 1,
+              },
+              value: 0,
+            },
+          },
+        },
+        number: {
+          value: 0,
+        },
+      },
+    });
+
+    const firstParticle = container.particles.addParticle({ x: 1, y: 1 }, undefined, "g1");
+
+    expect(firstParticle).to.be.not.undefined;
+    expect(countGroupParticles("g1")).to.equal(1);
+
+    container.particles.removeAt(0);
+
+    expect(countGroupParticles("g1")).to.equal(0);
+    expect(container.particles.addParticle({ x: 2, y: 2 }, undefined, "g1")).to.be.not.undefined;
+    expect(countGroupParticles("g1")).to.equal(1);
+  });
+
   it("should ignore remove calls when the group does not match", () => {
     const [groupParticle, otherParticle] = addParticles(
       { group: "g1", position: { x: 1, y: 1, z: 0 } },

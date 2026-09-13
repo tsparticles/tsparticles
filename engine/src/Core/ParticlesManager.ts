@@ -594,21 +594,21 @@ export class ParticlesManager {
       return false;
     }
 
-    if (particle.group !== group) {
+    if (group !== undefined && particle.group !== group) {
       return false;
     }
 
     this.#array.splice(index, deleteCount);
     this.#removeParticleFromBucket(particle);
 
-    if (group !== undefined) {
-      const currentGroupCount = this.#groupCounts.get(group);
+    if (particle.group !== undefined) {
+      const currentGroupCount = this.#groupCounts.get(particle.group);
 
       if (currentGroupCount !== undefined) {
         if (currentGroupCount > one) {
-          this.#groupCounts.set(group, currentGroupCount - one);
+          this.#groupCounts.set(particle.group, currentGroupCount - one);
         } else {
-          this.#groupCounts.delete(group);
+          this.#groupCounts.delete(particle.group);
         }
       }
     }
