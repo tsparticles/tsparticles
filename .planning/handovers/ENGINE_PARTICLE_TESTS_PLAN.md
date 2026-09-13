@@ -307,7 +307,9 @@ Exit criteria: `Particles.ts` fully green with new cases; no engine changes requ
 ### Phase 2 — Group option loading + assignment (new `ParticleGroups.ts`)
 
 - [ ] T8, T10: `particle.group` assignment + per-group option override.
-- [ ] Assert `ParticlesOptions.groups` deep-extend loads from config (object + JSON string form).
+- [ ] Assert `ParticlesOptions.groups` deep-extend loads from config — object form only. Config may
+      already arrive parsed from a JSON file, so JSON string input is NOT a supported group-input path;
+      no recursive JSON support.
 
 Exit criteria: grouped `addParticle` contract locked.
 
