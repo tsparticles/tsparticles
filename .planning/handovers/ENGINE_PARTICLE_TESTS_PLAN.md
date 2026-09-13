@@ -39,15 +39,20 @@ Primary technical source for executed behavior: `engine/src/Core/ParticlesManage
 - `ParticlesManager.addParticle / push / remove / removeAt / removeQuantity / clear / setDensity`
 - Particle group assignment, group-based initialization, group limits, group filtering on removal.
 - Global and per-group `particles.number.limit` behavior (`LimitMode.delete` / `LimitMode.wait`).
+- **Limit invariant**: `count` must never exceed the configured limit on ANY addition path — initial
+  load, `reset()`, `addParticle`, `push`, group init, density-driven push. Efficient invariant:
+  `limit = 100` ⇒ never `count === 101`.
 - Pooling (`#pool` reuse), bucket/z-layer bookkeeping, `particleAdded` / `particleRemoved` events,
   `initializer` callback, density handling, out-of-range edge cases.
 
 ### 0.2 Out of scope
 
-- No changes to `engine/` source code — this plan is test-only unless a test uncovers a real bug.
 - No new test framework, no visual/E2E tests.
 - No testing of plugins/updaters/interactions beyond what they contribute to `ParticlesManager`
   lifecycle events.
+- Note: `engine/` source is NOT frozen. If a test proves the limit invariant is violated (e.g.
+  initial load with `value > limit` yields `count > limit`), the engine bug MUST be fixed — see
+  constraint 5.
 
 ### 0.3 Constraints
 
@@ -57,6 +62,11 @@ Primary technical source for executed behavior: `engine/src/Core/ParticlesManage
    deltas as the existing `Particles.ts` update smoke test does.
 3. Every test phase must run green before proceeding (phases are independently shippable).
 4. Use the existing `describe(... async () => ...)` + `beforeEach(reset)` isolation pattern.
+5. **Limit invariant is non-negotiable.** On every addition path (initial load, reset, `addParticle`,
+   `push`, group init, density) the post-state must satisfy `count <= number.limit.value` for the
+   global pool and `countPerGroup <= groupLimit` for each group, in BOTH `LimitMode.wait` and
+   `LimitMode.delete`. A test that fails on this invariant is a bug report against the engine, NOT a
+   test to weaken: fix the engine in a bug PR with a changelog entry, then re-run the test green.
 
 ---
 
@@ -106,14 +116,24 @@ All executed behavior referenced from `engine/src/Core/ParticlesManager.ts`:
 - Remaining slots filled with ungrouped particles (`addParticle()`).
 - Group particle count counts toward the global `particles.number.value` total.
 
-### 1.6 Limits — `#applyDensity` lines 394-429
+### 1.6 Limits & density — `#applyDensity` lines 394-429
 
-- Density disabled, no group: `#limit = numberOptions.limit.value`.
+- Density **is an add/remove engine**: when enabled, it either `push(...)` to reach the
+  density-computed count or `removeQuantity(...)` when over (lines 424-428). Tests must exercise
+  density through the same add/remove lens as every other path.
+- Density disabled, no group: `#limit = numberOptions.limit.value` (only recorded — NO trimming of
+  existing particles).
 - Density disabled, group: `#groupLimits.set(group, groupOptions.number.limit.value ?? numberOptions.limit.value)`.
 - Density enabled: limit scales by density factor; pushes or removes to match density-computed
   count (group-filtered count via `this.filter(t => t.group === group).length`, line 416).
-- `setDensity()` iterates `options.particles.groups` first, then global particles (lines 327-352)
-  and is invoked from `Container.reset`/init (Container.ts:431) and resize (CanvasManager.ts:457).
+- **Init-order risk (the reason the limit invariant must be pinned down):** `setDensity()` runs
+  AFTER `particles.init()` in `Container.init()` (Container.ts:427 → 431) and on resize
+  (CanvasManager.ts:457). On first load `#limit`/`#groupLimits` are still `0`/empty while
+  `particles.init()` creates particles — so `value > limit` may overshoot on first load, and with
+  density disabled no re-trim happens. Tests T23-T25 must lock this behavior (or expose it as a bug
+  to fix per constraint 5).
+- `setDensity()` iterates `options.particles.groups` first (group tops-up/trim per group), then
+  global particles (lines 327-352).
 
 ### 1.7 Buckets
 
@@ -158,6 +178,11 @@ All executed behavior referenced from `engine/src/Core/ParticlesManager.ts`:
 8. **Out-of-range removals** — `removeAt` with index `< 0` / `> count` and quantity extending past end.
 9. **`setDensity()`** — density enabled (count scaled by canvas area), group + global density paths.
 10. **`clear()` semantics** — pool untouched, buckets reset (documents current behavior).
+11. **Limit invariant on every addition path** — initial load / `reset()` with `value > limit`
+    (both modes), `push(n)` exceeding the limit, group init under a global limit, and density-driven
+    add/remove (incl. resize). Density-disabled trimming and the init-order behavior of
+    `setDensity()` vs `particles.init()` are untested — this is where an overshoot (`count > limit`)
+    can hide.
 
 ---
 
@@ -249,17 +274,30 @@ the vitest `include: ["src/tests/*.ts"]` glob picks the files up).
 
 ### 4.3 Density (add to `ParticleGroups.ts` / `Particles.ts`)
 
+Density works through add/remove (`push` / `removeQuantity` in `#applyDensity`, lines 424-428), so
+these tests assert both the resulting count and that the limit invariant is preserved.
+
 **T17 — Global density**
 - `particles.number.density.enable = true` with known canvas size (1920×1080) and
   `density.width/height` chosen to yield `Math.min(value, limit) * factor + pluginsCount === N`
   (compute expected N from `#initDensityFactor` formula: `(w*h) / (densityW * densityH * pxRatio^2)`).
 - After reset assert exact count N; after `container.resize` with a known new size, assert count
-  re-scaled.
+  re-scaled (resize calls `setDensity()` again → new add/remove cycle).
+- Assert the density-driven `push` path (undershoot: count raised to N) and the density-driven
+  `removeQuantity` path (overshoot: count lowered to N) both fire the expected
+  `particleAdded`/`particleRemoved` events.
 
 **T18 — Group density**
 - Group with density enabled: assert group count scaled by factor and `#groupLimits` scaled, other
   groups untouched. Push/remove imbalance: assert group undershoot topped up and overshoot trimmed
   (lines 424-428).
+- Assert group density add/remove never moves particles of other groups and never exceeds the
+  group's effective (scaled) limit.
+
+**T18b — Density disabled, `value > limit` (no trimming)**
+- `density.enable = false`, `value = 200`, `limit = { value: 100, mode: "wait" }`.
+- This documents current behavior: on first load `setDensity()` only records `#limit` and does NOT
+  trim existing particles (T23/T24 govern whether overshoot is acceptable or a bug to fix).
 
 ### 4.4 Events (new `ParticlesEvents.ts`)
 
@@ -286,6 +324,62 @@ the vitest `include: ["src/tests/*.ts"]` glob picks the files up).
 - Move a particle z (via `update` with a z-shifting updater or direct `position.z` change +
   `container.particles.update(delta)`) and assert bucket re-assignment does not break ordering/count.
 
+### 4.6 Limit invariant — every addition path (global + group + density)
+
+These tests are the core of this plan: the limit is a hard post-condition on EVERY way particles are
+added. For `limit = 100` the assertion is always `container.particles.count <= 100` (never `101` in
+any mode, any path). Any failure is an engine bug to fix (constraint 5), not a test to adjust.
+
+**T23 — Initial load with `value > limit` (`LimitMode.wait`)**
+- `tsParticles.load` with `number.value = 200`, `limit = { value: 100, mode: "wait" }`.
+- After load + a `particles.update(delta)` frame: assert `count <= 100`.
+- Sub-case: same but `value = limit` (100) → assert `count === 100`.
+
+**T24 — Initial load with `value > limit` (`LimitMode.delete`)**
+- Same as T23 with `mode: "delete"`: after load + update frame, assert `count === 100` and that only
+  oldest particles were trimmed to make room.
+
+**T25 — `reset()` never grows past the limit**
+- Run `container.reset(options)` twice in a row with `value = limit`.
+- Assert `count === limit` after EACH reset (limit persists across resets — do not reset to 0 and
+  re-grow). Same for group-only resets: `count(group) === groupLimit`.
+
+**T26 — `push(n)` with `n >> limit`**
+- `particles.number.value = 0`, `limit = { value: 100, mode: "wait" }`; `push(500)`.
+- Assert `count === 100` and all post-push `addParticle()` return `undefined`.
+
+**T27 — Repeated single `addParticle()` beyond limit**
+- `value = 0`, `limit = { value: 100, mode: "wait" }`; loop `addParticle()` 100 + 5 times.
+- Assert first 100 return particles, next 5 return `undefined`, `count === 100`.
+- Repeat with `mode: "delete"`: 105 adds → `count === 100`, never `101`.
+
+**T28 — Group init under a global limit**
+- `number.value = 200`, `limit = { value: 100 }`, groups `{ g1: { number: { value: 150 } } }`,
+  `g2: { number: { value: 150 } }`.
+- After reset: total `count <= 100` (group init must not blow through the global limit), while each
+  group's own count never exceeds its own limit when set.
+- Mixed with density disabled (T18b): this is the init-order risk area — assert the invariant, and
+  if `count > limit` on first load, file the engine bug (see T23/T24 sub-case note).
+
+**T29 — Per-group limit + add beyond it (`wait`/`delete`)**
+- Global limit high (won't bite), `g1` with `number.limit.value = 2`.
+- Add 5 `g1` particles: `wait` → only 2 admitted (`count(g1) === 2`, rest `undefined`);
+  `delete` → `count(g1) === 2` with oldest `g1` trimmed; ungrouped adds unaffected.
+
+**T30 — Density push/remove preserves the limit**
+- Density enabled with a density factor < 1 (target below limit): count lands at
+  `min(value, limit) * factor`, never above the effective limit, whether the target is reached by
+  `push` (undershoot) or `removeQuantity` (overshoot).
+- After `container.resize` to a larger canvas that raises the target: count scales up but still
+  `<= limit`.
+
+**T31 — Invariant across `update(delta)` frames**
+- Mixed scene (grouped + ungrouped, limit set, density on): run 10 `update()` frames with explicit
+  deltas; after every frame assert `count <= limit` globally and `count(group) <= groupLimit` per
+  group. Guards against removal-then-re-add cycles (e.g. out-modes, destroy) inflating the count.
+
+Every test above asserts the invariant as a post-condition; failures are engine bugs by definition.
+
 ---
 
 ## 5. Phases and checklist
@@ -297,12 +391,17 @@ the vitest `include: ["src/tests/*.ts"]` glob picks the files up).
 
 Exit criteria: baseline green, package scripts (`test`, `test:particle`) confirmed.
 
-### Phase 1 — Non-group robustness (extend `Particles.ts`)
+### Phase 1 — Non-group robustness + limit additions (extend `Particles.ts`)
 
 - [ ] T1-T7 implemented (limit wait/delete, out-of-range, quantity past end, pooling, initializer, clear).
+- [ ] T23-T27 implemented: initial load & reset with `value > limit` (both modes), `push(n) >> limit`,
+      repeated `addParticle()` beyond limit — invariant `count <= limit` asserted after every step.
 - [ ] Run `pnpm --filter @tsparticles/tests test:particle` (executes `Particles.ts`).
+- [ ] If any invariant test fails (e.g. first-load overshoot): fix the engine bug, add a changelog
+      entry, re-run green — do NOT weaken the test.
 
-Exit criteria: `Particles.ts` fully green with new cases; no engine changes required.
+Exit criteria: `Particles.ts` fully green with new cases, limit invariant holds on all non-group
+addition paths.
 
 ### Phase 2 — Group option loading + assignment (new `ParticleGroups.ts`)
 
@@ -326,36 +425,50 @@ Exit criteria: `#initPlugins` group path exercised on reset/init.
 
 Exit criteria: `#removeParticle` group guard (ParticlesManager.ts:576) covered.
 
-### Phase 5 — Limits (global + group)
+### Phase 5 — Limits (global + group, all addition paths)
 
 - [ ] T11, T15, T16: group limit fallback (`?? #limit`), group `wait`/`delete`.
-- [ ] Re-run full suite to ensure global limit cases (T1-T2) still green.
+- [ ] T28-T29: group init under a global limit, per-group limit enforcement with global limit present.
+- [ ] Re-run full suite to ensure global limit cases (T1-T2, T23-T27) still green.
+- [ ] If group init overshoots the global limit on first load (init-order risk): fix engine, add
+      changelog entry, re-run green.
 
-Exit criteria: `#limit` / `#groupLimits` resolution fully covered.
+Exit criteria: `#limit` / `#groupLimits` resolution fully covered; no path produces
+`count > limit`.
 
-### Phase 6 — Density
+### Phase 6 — Density (add/remove engine)
 
-- [ ] T17-T18: global + group density counts and limits, including resize re-scaling.
+- [ ] T17, T18, T18b, T30: global + group density counts, limits and effective-limit cap; density
+      under/overshoot via `push`/`removeQuantity`; resize re-scaling; events fired per add/remove.
+- [ ] Assert the density-driven add/remove never violates `count <= limit` (global) nor the group
+      cap, on reset and after resize.
 
-Exit criteria: `#applyDensity` + `setDensity()` paths covered.
+Exit criteria: `#applyDensity` + `setDensity()` paths covered and limit-safe on the density paths.
 
 ### Phase 7 — Events, pooling, buckets
 
-- [ ] T19-T21 in new `ParticlesEvents.ts`.
+- [ ] T19-T21 in new `ParticlesEvents.ts` (incl. events from density-driven add/remove, T17 side-check).
 - [ ] T5-T6 pooling / initializer regression re-run.
 - [ ] T22 bucket placement + re-bucket smoke.
+- [ ] T31: invariant across consecutive `update(delta)` frames.
 
 Exit criteria: `particleAdded`/`particleRemoved` and pool/bucket behavior locked.
 
-### Phase 8 — Verification & coverage
+### Phase 8 — Verification, bug-fix cycle & coverage
 
 - [ ] `pnpm exec vitest` full suite green.
 - [ ] `pnpm nx run @tsparticles/tests:lint` (or package lint script) — new files conform to
       `sort-imports` rules and repo style.
+- [ ] Run every limit-invariant test from scratch (fresh `tsParticles.load`, not warmed container)
+      to make sure init-order behavior is what the tests assert.
 - [ ] Coverage report: confirm new cases cover `ParticlesManager.addParticle/remove*/setDensity`
       group + limit branches (v8 provider in `utils/tests/vitest.config.ts`).
+- [ ] Bug-fix cycle: every failing invariant test is either (a) engine fix + changelog entry, or
+      (b) rejected only if the reviewer proves the asserted behavior is intended — with the
+      expectation documented in the test name + a code comment.
 
-Exit criteria: suite + lint green, coverage delta on `ParticlesManager` documented.
+Exit criteria: suite + lint green, invariant proven on all addition paths, coverage delta on
+`ParticlesManager` documented.
 
 ---
 
@@ -374,6 +487,11 @@ Behavioral assertions (manual sanity):
 2. Group-filtered removal only ever removes particles of the requested group.
 3. Limit `wait` refuses extra particles; `delete` trims oldest from the same group/global pool.
 4. `addParticle` with a group never leaks into the ungrouped count when limits/density race.
+5. **Limit invariant sweep** — with `limit = 100`, every scenario (load, reset, push, group init,
+   density, resize, update frames) ends with `count <= 100`; greppable one-line assert
+   `expect(container.particles.count).to.be.at.most(100)` used throughout the new tests.
+6. Density add/remove is observable as events (`particleAdded`/`particleRemoved` fire exactly once
+   per particle created/removed by `#applyDensity`).
 
 ---
 
@@ -381,10 +499,17 @@ Behavioral assertions (manual sanity):
 
 1. Groups are tested end-to-end: assignment, option override, init on reset, limits, filter removal,
    and density — previously 0% group coverage.
-2. Global limit modes (`wait`/`delete`) are tested even without groups.
-3. Pooling reuse, `initializer` rejection, `particleAdded`/`particleRemoved` events, bucket
-   bookkeeping, out-of-range removals, and density (global + group) are covered by new tests.
-4. No changes to `engine/` source are required for the tests to pass (any required engine change must
-   be flagged as a bug with its own PR + changelog entry).
-5. Full suite green, lint clean, new helpers added to `Fixture/Utils.ts` (if needed) reused by tests.
-6. Coverage on `ParticlesManager` add/remove paths measurably increased vs the 4.5.0 baseline.
+2. Global limit modes (`wait`/`delete`) are tested even without groups, with `value > limit` on
+   initial load and `reset()`.
+3. **Limit invariant proven on every addition path**: initial load, `reset()`, `addParticle`,
+   `push`, group init, and density-driven add/remove (incl. resize) — with `limit = 100` the test
+   suite never allows `count === 101` in either limit mode.
+4. Density is tested as an add/remove engine: undershoot topped up via `push`, overshoot trimmed via
+   `removeQuantity`, group + global, resize re-scaling, and matching `particleAdded`/`particleRemoved`
+   events.
+5. Pooling reuse, `initializer` rejection, `particleAdded`/`particleRemoved` events, bucket
+   bookkeeping, out-of-range removals are covered by new tests.
+6. Engine fixes are permitted (and expected) when a test proves a limit-invariant violation; such
+   fixes ship as a bug PR with a changelog entry and the failing test goes green unchanged.
+7. Full suite green, lint clean, new helpers added to `Fixture/Utils.ts` (if needed) reused by tests.
+8. Coverage on `ParticlesManager` add/remove paths measurably increased vs the 4.5.0 baseline.
