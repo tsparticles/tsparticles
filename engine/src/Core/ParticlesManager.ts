@@ -42,6 +42,7 @@ export class ParticlesManager {
   readonly #container: Container;
   /** The spatial hash grid */
   #grid;
+  readonly #groupCounts: Map<string, number>;
   readonly #groupLimits: Map<string, number>;
   #limit;
   #nextId;
@@ -68,6 +69,7 @@ export class ParticlesManager {
     this.#array = [];
     this.#pool = [];
     this.#limit = 0;
+    this.#groupCounts = new Map<string, number>();
     this.#groupLimits = new Map<string, number>();
     this.#particleBuckets = new Map<number, number>();
     this.#zBuckets = this.#createBuckets(this.#container.zLayers);
@@ -112,7 +114,7 @@ export class ParticlesManager {
         ? groupLimitOptions.mode
         : this.#container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
-      currentCount = group === undefined ? this.count : this.filter(t => t.group === group).length;
+      currentCount = group === undefined ? this.count : (this.#groupCounts.get(group) ?? minCount);
 
     if (limit > minLimit) {
       switch (limitMode) {
@@ -157,6 +159,10 @@ export class ParticlesManager {
       this.#array.push(particle);
       this.#insertParticleIntoBucket(particle);
 
+      if (group !== undefined) {
+        this.#groupCounts.set(group, currentCount + countOffset);
+      }
+
       this.#nextId++;
 
       this.#container.dispatchEvent(EventType.particleAdded, {
@@ -176,6 +182,7 @@ export class ParticlesManager {
    */
   clear(): void {
     this.#array = [];
+    this.#groupCounts.clear();
     this.#particleBuckets.clear();
     this.#resetBuckets(this.#container.zLayers);
   }
@@ -183,6 +190,7 @@ export class ParticlesManager {
   /** Destroys the particles manager */
   destroy(): void {
     this.#array = [];
+    this.#groupCounts.clear();
     this.#pool.length = 0;
     this.#particleBuckets.clear();
     this.#zBuckets = [];
@@ -252,6 +260,7 @@ export class ParticlesManager {
     this.#postUpdatePlugins = [];
     this.#particleResetPlugins = [];
     this.#postParticleUpdatePlugins = [];
+    this.#groupCounts.clear();
     this.#particleBuckets.clear();
     this.#groupLimits.clear();
     this.#limit = 0;
@@ -591,6 +600,18 @@ export class ParticlesManager {
 
     this.#array.splice(index, deleteCount);
     this.#removeParticleFromBucket(particle);
+
+    if (group !== undefined) {
+      const currentGroupCount = this.#groupCounts.get(group);
+
+      if (currentGroupCount !== undefined) {
+        if (currentGroupCount > one) {
+          this.#groupCounts.set(group, currentGroupCount - one);
+        } else {
+          this.#groupCounts.delete(group);
+        }
+      }
+    }
 
     particle.destroy(override);
 
