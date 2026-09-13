@@ -158,7 +158,7 @@ export class ParticlesManager {
       this.#insertParticleIntoBucket(particle);
 
       if (group !== undefined) {
-        this.#groupCounts.set(group, currentCount + countOffset);
+        this.#groupCounts.set(group, (this.#groupCounts.get(group) ?? minCount) + countOffset);
       }
 
       this.#nextId++;
