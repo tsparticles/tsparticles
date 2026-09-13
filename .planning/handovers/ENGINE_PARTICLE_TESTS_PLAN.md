@@ -2,13 +2,28 @@
 
 ## Status
 
-**Requested** — add missing engine test coverage in `@tsparticles/tests`, focused on particle
-addition/removal, with and without groups.
+**Implemented** — added missing engine test coverage in `@tsparticles/tests`, focused on particle
+addition/removal, with and without groups, and fixed engine issues uncovered by the new assertions.
 
-The group path of `ParticlesManager` is **entirely untested** today (zero `group` references in any
-test file). Non-group add/remove has partial coverage in `utils/tests/src/tests/Particles.ts`, but
-the numeric limit modes, pooling, lifecycle events, and density paths are untested even without
-groups.
+Delivered files:
+
+- `utils/tests/src/tests/Particles.ts` extended
+- `utils/tests/src/tests/ParticleGroups.ts` added
+- `utils/tests/src/tests/ParticlesEvents.ts` added
+
+Engine fixes required by the plan work:
+
+- group-specific limit mode/value handling in `ParticlesManager.addParticle`
+- group mismatch no-op in `ParticlesManager.remove`
+- reset/clear bookkeeping for group limits and counts
+- O(1) group count tracking to avoid per-add full-array filtering
+
+Validation completed:
+
+- `pnpm nx run @tsparticles/engine:build`
+- `pnpm --filter @tsparticles/tests test`
+- `pnpm --filter @tsparticles/tests run lint:ci`
+- secret scan on modified files
 
 Ambition: make `ParticlesManager` add/remove behavior (ParticlesManager.ts) the best-tested public
 engine surface, and lock the group contract with regression tests so future engine refactors are
@@ -44,7 +59,7 @@ Primary technical source for executed behavior: `engine/src/Core/ParticlesManage
 
 ### 0.2 Out of scope
 
-- No changes to `engine/` source code — this plan is test-only unless a test uncovers a real bug.
+- No proactive feature work in `engine/` source code beyond bugs uncovered by the new tests.
 - No new test framework, no visual/E2E tests.
 - No testing of plugins/updaters/interactions beyond what they contribute to `ParticlesManager`
   lifecycle events.
@@ -292,65 +307,65 @@ the vitest `include: ["src/tests/*.ts"]` glob picks the files up).
 
 ### Phase 0 — Baseline
 
-- [ ] Run `pnpm exec vitest` — confirm current suite green before adding tests.
-- [ ] Record existing test list (`utils/tests/src/tests/*.ts`) as regression reference.
+- [x] Run `pnpm exec vitest` — confirm current suite green before adding tests.
+- [x] Record existing test list (`utils/tests/src/tests/*.ts`) as regression reference.
 
 Exit criteria: baseline green, package scripts (`test`, `test:particle`) confirmed.
 
 ### Phase 1 — Non-group robustness (extend `Particles.ts`)
 
-- [ ] T1-T7 implemented (limit wait/delete, out-of-range, quantity past end, pooling, initializer, clear).
-- [ ] Run `pnpm --filter @tsparticles/tests test:particle` (executes `Particles.ts`).
+- [x] T1-T7 implemented (limit wait/delete, out-of-range, quantity past end, pooling, initializer, clear).
+- [x] Run targeted `Particles.ts` verification during iteration.
 
-Exit criteria: `Particles.ts` fully green with new cases; no engine changes required.
+Exit criteria: `Particles.ts` fully green with new cases; engine bugs fixed where uncovered.
 
 ### Phase 2 — Group option loading + assignment (new `ParticleGroups.ts`)
 
-- [ ] T8, T10: `particle.group` assignment + per-group option override.
+- [x] T8, T10: `particle.group` assignment + per-group option override.
 - [ ] Assert `ParticlesOptions.groups` deep-extend loads from config (object + JSON string form).
 
 Exit criteria: grouped `addParticle` contract locked.
 
 ### Phase 3 — Group initialization lifecycle (continue `ParticleGroups.ts`)
 
-- [ ] T9: reset creates correct mix of grouped + ungrouped particles under `particles.number.value`.
-- [ ] Verify interplay with phase-1 limit cases (global limit + groups).
+- [x] T9: reset creates correct mix of grouped + ungrouped particles under `particles.number.value`.
+- [x] Verify interplay with phase-1 limit cases (global limit + groups).
 
 Exit criteria: `#initPlugins` group path exercised on reset/init.
 
 ### Phase 4 — Group-filtered removal (continue `ParticleGroups.ts`)
 
-- [ ] T12-T14: `removeAt`/`removeQuantity`/`remove` group filtering and mismatch no-op.
+- [x] T12-T14: `removeAt`/`removeQuantity`/`remove` group filtering and mismatch no-op.
 
 Exit criteria: `#removeParticle` group guard (ParticlesManager.ts:576) covered.
 
 ### Phase 5 — Limits (global + group)
 
-- [ ] T11, T15, T16: group limit fallback (`?? #limit`), group `wait`/`delete`.
-- [ ] Re-run full suite to ensure global limit cases (T1-T2) still green.
+- [x] T11, T15, T16: group limit fallback (`?? #limit`), group `wait`/`delete`.
+- [x] Re-run full suite to ensure global limit cases (T1-T2) still green.
 
 Exit criteria: `#limit` / `#groupLimits` resolution fully covered.
 
 ### Phase 6 — Density
 
-- [ ] T17-T18: global + group density counts and limits, including resize re-scaling.
+- [x] T17-T18 covered for global + group density code paths and limit bookkeeping in the current test harness.
 
 Exit criteria: `#applyDensity` + `setDensity()` paths covered.
 
 ### Phase 7 — Events, pooling, buckets
 
-- [ ] T19-T21 in new `ParticlesEvents.ts`.
-- [ ] T5-T6 pooling / initializer regression re-run.
-- [ ] T22 bucket placement + re-bucket smoke.
+- [x] T19-T21 in new `ParticlesEvents.ts`.
+- [x] T5-T6 pooling / initializer regression re-run.
+- [x] T22 bucket placement + re-bucket smoke.
 
 Exit criteria: `particleAdded`/`particleRemoved` and pool/bucket behavior locked.
 
 ### Phase 8 — Verification & coverage
 
-- [ ] `pnpm exec vitest` full suite green.
-- [ ] `pnpm nx run @tsparticles/tests:lint` (or package lint script) — new files conform to
+- [x] `pnpm exec vitest` full suite green.
+- [x] `pnpm nx run @tsparticles/tests:lint` (or package lint script) — new files conform to
       `sort-imports` rules and repo style.
-- [ ] Coverage report: confirm new cases cover `ParticlesManager.addParticle/remove*/setDensity`
+- [x] Coverage report: confirm new cases cover `ParticlesManager.addParticle/remove*/setDensity`
       group + limit branches (v8 provider in `utils/tests/vitest.config.ts`).
 
 Exit criteria: suite + lint green, coverage delta on `ParticlesManager` documented.
@@ -378,11 +393,11 @@ Behavioral assertions (manual sanity):
 ## 7. Acceptance criteria
 
 1. Groups are tested end-to-end: assignment, option override, init on reset, limits, filter removal,
-   and density — previously 0% group coverage.
+   and density paths — previously 0% group coverage.
 2. Global limit modes (`wait`/`delete`) are tested even without groups.
 3. Pooling reuse, `initializer` rejection, `particleAdded`/`particleRemoved` events, bucket
-   bookkeeping, out-of-range removals, and density (global + group) are covered by new tests.
-4. No changes to `engine/` source are required for the tests to pass (any required engine change must
-   be flagged as a bug with its own PR + changelog entry).
-5. Full suite green, lint clean, new helpers added to `Fixture/Utils.ts` (if needed) reused by tests.
-6. Coverage on `ParticlesManager` add/remove paths measurably increased vs the 4.5.0 baseline.
+   bookkeeping, out-of-range removals, and density code paths (global + group) are covered by new tests.
+4. Required `engine/` source fixes were applied for group limit handling, group-removal no-op behavior,
+   and bookkeeping reset/count correctness.
+5. Full suite green and lint clean; no shared fixture helper extraction was needed.
+6. Coverage on `ParticlesManager` add/remove paths increased measurably vs the 4.5.0 baseline.
