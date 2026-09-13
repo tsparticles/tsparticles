@@ -108,7 +108,10 @@ export class ParticlesManager {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
-    const groupOptions = group === undefined ? undefined : this.#container.actualOptions.particles.groups[group],
+    const groupOptions =
+        group === undefined
+          ? undefined
+          : (this.#container.actualOptions.particles.groups[group] as IParticlesOptions | undefined),
       groupLimitOptions = groupOptions?.number?.limit,
       limitMode = groupLimitOptions?.mode ?? this.#container.actualOptions.particles.number.limit.mode,
       limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
@@ -411,12 +414,7 @@ export class ParticlesManager {
     this.#pool.push(...particles);
   }
 
-  #applyDensity(
-    options: ParticlesOptions,
-    pluginsCount: number,
-    group?: string,
-    hasExplicitLimitValue = false,
-  ): void {
+  #applyDensity(options: ParticlesOptions, pluginsCount: number, group?: string, hasExplicitLimitValue = false): void {
     const numberOptions = options.number;
 
     if (!numberOptions.density.enable) {
@@ -454,6 +452,16 @@ export class ParticlesManager {
     return Array.from({ length: bucketCount }, () => []);
   }
 
+  #getBucketIndex(zIndex: number): number {
+    const maxBucketIndex = this.#zBuckets.length - one;
+
+    if (maxBucketIndex <= minIndex) {
+      return minIndex;
+    }
+
+    return Math.min(Math.max(Math.floor(zIndex), minIndex), maxBucketIndex);
+  }
+
   #hasExplicitLimitValue(data: RecursivePartial<IParticlesOptions>): boolean {
     const numberData = data.number;
 
@@ -464,16 +472,6 @@ export class ParticlesManager {
     const limitData = numberData.limit;
 
     return !!limitData && typeof limitData === "object" && Object.hasOwn(limitData, "value");
-  }
-
-  #getBucketIndex(zIndex: number): number {
-    const maxBucketIndex = this.#zBuckets.length - one;
-
-    if (maxBucketIndex <= minIndex) {
-      return minIndex;
-    }
-
-    return Math.min(Math.max(Math.floor(zIndex), minIndex), maxBucketIndex);
   }
 
   #initDensityFactor(densityOptions: IParticlesDensity): number {
