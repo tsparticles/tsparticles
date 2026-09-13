@@ -13,7 +13,6 @@ import {
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import { EventType } from "../Enums/Types/EventType.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
@@ -28,13 +27,24 @@ import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
 
+type ParticlesManagerPlugin = {
+  checkParticlePosition?: (particle: Particle, position: ICoordinates, tryCount: number) => boolean;
+  particleReset?: (particle: Particle) => void;
+  particleUpdate?: (particle: Particle, delta: IDelta) => void;
+  particlesDensityCount?: () => number;
+  particlesInitialization?: () => boolean;
+  postParticleUpdate?: (particle: Particle, delta: IDelta) => void;
+  postUpdate?: (delta: IDelta) => void;
+  redrawInit?: () => Promise<void>;
+  update?: (delta: IDelta) => void;
+};
+
 /**
  * Particles manager object
  */
 export class ParticlesManager {
   /** Check particle position plugins */
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  checkParticlePositionPlugins: IContainerPlugin[];
+  checkParticlePositionPlugins: ParticlesManagerPlugin[];
 
   /**
    * All the particles used in canvas
@@ -48,19 +58,14 @@ export class ParticlesManager {
   #limit;
   #nextId;
   readonly #particleBuckets: Map<number, number>;
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  #particleResetPlugins: IContainerPlugin[];
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  #particleUpdatePlugins: IContainerPlugin[];
+  #particleResetPlugins: ParticlesManagerPlugin[];
+  #particleUpdatePlugins: ParticlesManagerPlugin[];
   readonly #pluginManager;
   readonly #pool: Particle[];
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  #postParticleUpdatePlugins: IContainerPlugin[];
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  #postUpdatePlugins: IContainerPlugin[];
+  #postParticleUpdatePlugins: ParticlesManagerPlugin[];
+  #postUpdatePlugins: ParticlesManagerPlugin[];
   #resizeFactor?: IDimension;
-  // eslint-disable-next-line @typescript-eslint/no-deprecated -- lint rule crashes on this stable interface type
-  #updatePlugins: IContainerPlugin[];
+  #updatePlugins: ParticlesManagerPlugin[];
   #zBuckets: Particle[][];
 
   /**
