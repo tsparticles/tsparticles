@@ -534,8 +534,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     const scale = this.#scale;
 
-    this.dimension.width = parseFloat(svg.getAttribute("width") ?? "0") * scale;
-    this.dimension.height = parseFloat(svg.getAttribute("height") ?? "0") * scale;
+    this.dimension.width = Number.parseFloat(svg.getAttribute("width") ?? "0") * scale;
+    this.dimension.height = Number.parseFloat(svg.getAttribute("height") ?? "0") * scale;
 
     const position = options.position ?? {
         x: 50,

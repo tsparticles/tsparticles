@@ -81,9 +81,7 @@ export class EventListeners {
     }
 
     const handleResize = async (): Promise<void> => {
-      const canvas = this.#container.canvas;
-
-      await canvas.windowResize();
+      await this.#container.canvas.windowResize();
     };
 
     this.#resizeTimeout = setTimeout(
@@ -131,9 +129,9 @@ export class EventListeners {
       this.#resizeObserver = undefined;
     } else if (!this.#resizeObserver && add && canvasEl) {
       this.#resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
-        const entry = entries.find(e => e.target === canvasEl);
+        const res = entries.some(e => e.target === canvasEl);
 
-        if (!entry) {
+        if (!res) {
           return;
         }
 

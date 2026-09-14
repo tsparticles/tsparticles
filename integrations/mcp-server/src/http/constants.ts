@@ -16,3 +16,11 @@ export const SESSION_ID_PATTERN = /^[A-Za-z0-9._:-]+$/;
 // monopolizing the server when no such proxy is in front of it.
 export const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
 export const RATE_LIMIT_MAX_REQUESTS_PER_WINDOW = 120;
+
+// Additional per-process ceiling across ALL client IPs. The per-IP limit
+// is trivially bypassed by spreading requests across many source IPs
+// (botnets, NAT, proxy rotation), so this bounds the total request rate
+// the process will handle per window regardless of how many distinct
+// "clients" are hitting it. Generous enough to not affect legitimate
+// use: roughly one request per 30ms sustained.
+export const RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW = 2000;

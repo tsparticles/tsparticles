@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import type { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
+import { minCount } from "@tsparticles/engine";
 
 export class ByteStream {
   /**
@@ -61,8 +61,7 @@ export class ByteStream {
     let blockString = "",
       size: number;
 
-    const minCount = 0,
-      emptySize = 0;
+    const emptySize = 0;
 
     do {
       size = this.data[this.pos++]!;

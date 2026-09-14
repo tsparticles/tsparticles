@@ -19,7 +19,7 @@
     "@tsparticles/nextjs": "workspace:*",
     "@tsparticles/plugin-themes": "workspace:*",
     "@tsparticles/slim": "workspace:*",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.5.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "next": "^16.3.0",
@@ -31,7 +31,7 @@
     "@next/eslint-plugin-next": "^16.3.0",
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-next": "^16.3.0"
   }
 }

@@ -46,7 +46,7 @@
     "@web/dev-server": "^1.0.0",
     "chai": "^6.2.2",
     "deepmerge": "^4.3.1",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "karma": "^6.4.4",
     "karma-chai": "^0.1.0",
     "karma-mocha": "^2.0.1",

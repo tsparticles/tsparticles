@@ -2,6 +2,7 @@ import { packageCatalog } from "../registry/packages.js";
 import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
 import { getOptionValue, asArray } from "../utils/optionPath.js";
 import { collectInteractivityModes, parseModeNames } from "../utils/interactivityModes.js";
+import { sanitizeReflection } from "../utils/sanitize.js";
 
 export interface DiagnosticIssue {
   severity: "error" | "warning" | "info";
@@ -176,9 +177,9 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
       if (packageCatalog.byName[fullName]) {
         issues.push({
           severity: "warning",
-          title: `Shape '${cleanName}' needs its plugin`,
-          description: `Shape type '${name}' requires ${fullName}. Without it, particles with this shape won't render.`,
-          fix: `Install and load ${fullName}.`,
+          title: `Shape ${sanitizeReflection(cleanName)} needs its plugin`,
+          description: `Shape type ${sanitizeReflection(name)} requires ${sanitizeReflection(fullName)}. Without it, particles with this shape won't render.`,
+          fix: `Install and load ${sanitizeReflection(fullName)}.`,
           relatedPackages: [fullName],
         });
       } else if (!BUILT_IN_SHAPES.has(cleanName.toLowerCase())) {
@@ -187,8 +188,8 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
         // instead of saying nothing.
         issues.push({
           severity: "warning",
-          title: `Unrecognized shape '${cleanName}'`,
-          description: `Shape type '${name}' doesn't match a built-in shape or a known @tsparticles/shape-* package. Check for typos, or confirm this is a custom shape registered manually.`,
+          title: `Unrecognized shape ${sanitizeReflection(cleanName)}`,
+          description: `Shape type ${sanitizeReflection(name)} doesn't match a built-in shape or a known @tsparticles/shape-* package. Check for typos, or confirm this is a custom shape registered manually.`,
           fix: "Use list_packages with category 'shape' to see all known shape packages.",
         });
       }
@@ -215,8 +216,8 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
     if (pkg) {
       issues.push({
         severity: "info",
-        title: `Interaction mode '${mode}' needs package`,
-        description: `Interactivity mode '${mode}' is configured. Make sure ${pkg} is loaded, otherwise the mode won't produce any effect.`,
+        title: `Interaction mode ${sanitizeReflection(mode)} needs package`,
+        description: `Interactivity mode ${sanitizeReflection(mode)} is configured. Make sure ${pkg} is loaded, otherwise the mode won't produce any effect.`,
         fix: `Install and load ${pkg}.`,
         relatedPackages: [pkg],
       });
@@ -279,7 +280,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
       issues.push({
         severity: "info",
         title: "Unusual particles structure",
-        description: `The particles object doesn't contain any recognized keys (found: ${keys.join(", ") || "none"}). Your options may be nested incorrectly.`,
+        description: `The particles object doesn't contain any recognized keys (found: ${keys.map(k => sanitizeReflection(k)).join(", ") || "none"}). Your options may be nested incorrectly.`,
         fix: "Ensure your options follow the correct structure: { background, particles: { number, color, shape, size, opacity, move, links, ... }, interactivity: { ... } }",
       });
     }
@@ -315,7 +316,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
     issues.push({
       severity: "info",
       title: "Using a preset",
-      description: `You're using the '${preset}' preset. Make sure the corresponding preset package is installed and loaded before initializing tsParticles.`,
+      description: `You're using the ${sanitizeReflection(preset)} preset. Make sure the corresponding preset package is installed and loaded before initializing tsParticles.`,
     });
   }
 
@@ -337,8 +338,8 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
       if (pkg) {
         issues.push({
           severity: "info",
-          title: `Emitter shape '${name}' needs package`,
-          description: `Emitter shape type '${name}' requires ${pkg}. Without it, the default circle shape will be used.`,
+          title: `Emitter shape ${sanitizeReflection(name)} needs package`,
+          description: `Emitter shape type ${sanitizeReflection(name)} requires ${pkg}. Without it, the default circle shape will be used.`,
           fix: `Install and load ${pkg}.`,
           relatedPackages: [pkg],
         });

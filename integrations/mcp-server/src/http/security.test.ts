@@ -180,4 +180,36 @@ describe("RateLimiter", () => {
     limiter.sweep();
     expect(limiter.size).toBe(0);
   });
+
+  it("enforces a global cap across distinct clients", () => {
+    const limiter = new RateLimiter(60_000, 3, 4);
+    expect(limiter.allow("client-a")).toBe(true);
+    expect(limiter.allow("client-b")).toBe(true);
+    expect(limiter.allow("client-c")).toBe(true);
+    expect(limiter.allow("client-d")).toBe(true);
+    expect(limiter.allow("client-e")).toBe(false);
+  });
+
+  it("does not count per-key-rejected requests against the global cap", () => {
+    const limiter = new RateLimiter(60_000, 2, 5);
+    expect(limiter.allow("client-a")).toBe(true);
+    expect(limiter.allow("client-a")).toBe(true);
+    // Blocked by the per-key limit, must not consume the global budget.
+    expect(limiter.allow("client-a")).toBe(false);
+    expect(limiter.allow("client-b")).toBe(true);
+    expect(limiter.allow("client-c")).toBe(true);
+    expect(limiter.allow("client-d")).toBe(true);
+    expect(limiter.allow("client-e")).toBe(false);
+  });
+
+  it("resets the global cap after the window elapses", () => {
+    vi.useFakeTimers();
+    const limiter = new RateLimiter(10, 5, 2);
+    expect(limiter.allow("client-a")).toBe(true);
+    expect(limiter.allow("client-b")).toBe(true);
+    expect(limiter.allow("client-c")).toBe(false);
+    vi.advanceTimersByTime(15);
+    expect(limiter.allow("client-d")).toBe(true);
+    expect(limiter.allow("client-e")).toBe(true);
+  });
 });

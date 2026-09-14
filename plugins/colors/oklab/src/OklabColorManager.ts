@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   identity,
   none,
@@ -83,14 +84,13 @@ export class OklabColorManager implements IColorManager {
         aAxis: 3,
         bAxis: 4,
         a: 5,
-      },
-      defaultAlpha = 1;
+      };
 
     if (!result) {
       return undefined;
     }
 
-    const rawL = parseFloat(result[indexes.l] ?? "0");
+    const rawL = Number.parseFloat(result[indexes.l] ?? "0");
 
     // Validate lightness range BEFORE scaling
     if (result[indexes.lPercent]) {
@@ -108,8 +108,8 @@ export class OklabColorManager implements IColorManager {
     return oklabaToRgba({
       a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
       l: rawL * (result[indexes.lPercent] ? identity : percentDenominator),
-      aAxis: parseFloat(result[indexes.aAxis] ?? "0"),
-      bAxis: parseFloat(result[indexes.bAxis] ?? "0"),
+      aAxis: Number.parseFloat(result[indexes.aAxis] ?? "0"),
+      bAxis: Number.parseFloat(result[indexes.bAxis] ?? "0"),
     });
   }
 }

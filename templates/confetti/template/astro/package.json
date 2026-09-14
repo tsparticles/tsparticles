@@ -9,11 +9,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "astro": "^5.7.10",
-    "@tsparticles/astro": "^4.1.3",
-    "@tsparticles/confetti": "^4.1.3",
-    "@tsparticles/engine": "^4.1.3"
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.3.2",
+    "@tsparticles/astro": "^4.4.0",
+    "@tsparticles/confetti": "^4.4.0",
+    "@tsparticles/engine": "^4.4.0"
   },
   "devDependencies": {
     "typescript": "^6.0.3"

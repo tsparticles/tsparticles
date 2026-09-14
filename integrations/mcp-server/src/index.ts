@@ -13,6 +13,7 @@ import {
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { z } from "zod";
 
 import { suggestPlugins } from "./tools/suggestPlugins.js";
 import { listPackages } from "./tools/listPackages.js";
@@ -22,11 +23,14 @@ import { getOptionsGuideResource } from "./resources/optionsGuide.js";
 import { getBundlesGuideResource } from "./resources/bundlesGuide.js";
 import { generateOptionsPrompt, generateOptionsSystemText } from "./prompts/generateOptions.js";
 import { diagnoseIssues } from "./tools/diagnoseIssues.js";
+import { generateCode } from "./tools/generateCode.js";
 import { startHttpServer } from "./http/server.js";
 import { normalizeOrigin } from "./http/security.js";
+import { sanitizeReflection } from "./utils/sanitize.js";
 import {
   diagnoseIssuesArgsSchema,
   formatZodError,
+  generateCodeArgsSchema,
   getPackageInfoArgsSchema,
   listPackagesArgsSchema,
   suggestPluginsArgsSchema,
@@ -94,17 +98,15 @@ function parseArgs(): ParsedArgs {
   if (result.mode === "http") {
     const port = rawPort !== undefined ? Number(rawPort) : NaN;
     if (!Number.isInteger(port) || port <= 0 || port > 65535) {
-      console.error(
-        `Invalid --port value: ${rawPort ?? "(missing)"}. Expected an integer between 1 and 65535.`,
-      );
+      console.error(`Invalid --port value: ${rawPort ?? "(missing)"}. Expected an integer between 1 and 65535.`);
       process.exit(1);
     }
     result.port = port;
 
     if (result.allowedOrigins && result.allowedOrigins.length > 0) {
-      const normalized = result.allowedOrigins.map((origin) => normalizeOrigin(origin));
+      const normalized = result.allowedOrigins.map(origin => normalizeOrigin(origin));
 
-      if (normalized.some((origin) => !origin)) {
+      if (normalized.some(origin => !origin)) {
         console.error("Invalid --allowed-origin value. Use full origin like http://localhost:3000");
         process.exit(1);
       }
@@ -139,20 +141,76 @@ const RESOURCES = [
   {
     uri: "tsparticles://options/guide",
     name: "tsParticles Options Guide",
-    description:
-      "Complete structural guide to tsParticles options with tables, defaults, and examples",
+    description: "Complete structural guide to tsParticles options with tables, defaults, and examples",
     mimeType: "text/markdown",
     getText: getOptionsGuideResource,
   },
   {
     uri: "tsparticles://bundles",
     name: "tsParticles Bundle Guide",
-    description:
-      "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
+    description: "Guide to all tsParticles bundles with hierarchy, selection advice, and usage examples",
     mimeType: "text/markdown",
     getText: getBundlesGuideResource,
   },
 ];
+
+// ── Tool dispatch ─────────────────────────────────────────────────
+
+/** The subset of the MCP tool result shape this server emits. */
+type ToolResult = { content: Array<{ type: "text"; text: string }>; isError?: boolean };
+
+function toolResult(text: string, isError = false): ToolResult {
+  return { content: [{ type: "text", text }], isError };
+}
+
+/**
+ * Runs a single tool by validating the raw (untyped) request arguments
+ * against its zod schema and then delegating to the tool implementation.
+ * Centralizes the "invalid arguments" error path that every handler used
+ * to duplicate.
+ * @param schema - The zod schema for the tool arguments
+ * @param args - The raw arguments received on the wire
+ * @param run - The tool implementation, invoked with validated arguments
+ * @returns an MCP tool result
+ */
+function runTool<TArgs>(schema: z.ZodType<TArgs>, args: unknown, run: (data: TArgs) => ToolResult): ToolResult {
+  const parsed = schema.safeParse(args);
+
+  if (!parsed.success) {
+    return toolResult(`Invalid arguments: ${formatZodError(parsed.error)}`, true);
+  }
+
+  return run(parsed.data);
+}
+
+/** Maps tool names to their validated implementations. */
+const toolHandlers: Record<string, (args: unknown) => ToolResult> = {
+  suggest_plugins: args =>
+    runTool(suggestPluginsArgsSchema, args, data => toolResult(JSON.stringify(suggestPlugins(data.options), null, 2))),
+  list_packages: args =>
+    runTool(listPackagesArgsSchema, args ?? {}, data => toolResult(JSON.stringify(listPackages(data), null, 2))),
+  get_package_info: args =>
+    runTool(getPackageInfoArgsSchema, args, data => {
+      const result = getPackageInfo(data.package);
+
+      if (!result) {
+        return toolResult(
+          `Package ${sanitizeReflection(data.package)} not found. Use list_packages to see all available packages.`,
+          true,
+        );
+      }
+
+      return toolResult(JSON.stringify(result, null, 2));
+    }),
+  diagnose_issues: args =>
+    runTool(diagnoseIssuesArgsSchema, args, data => {
+      const issues = diagnoseIssues(data.options);
+
+      return toolResult(JSON.stringify({ issues, total: issues.length }, null, 2));
+    }),
+  generate_code: args =>
+    runTool(generateCodeArgsSchema, args, data => toolResult(JSON.stringify(generateCode(data), null, 2))),
+};
 
 // ── Server factory ─────────────────────────────────────────────────
 //
@@ -243,8 +301,7 @@ function createMcpServer(): Server {
             properties: {
               package: {
                 type: "string",
-                description:
-                  "Package name (e.g., @tsparticles/plugin-absorbers, @tsparticles/slim)",
+                description: "Package name (e.g., @tsparticles/plugin-absorbers, @tsparticles/slim)",
               },
             },
             required: ["package"],
@@ -265,82 +322,45 @@ function createMcpServer(): Server {
             required: ["options"],
           },
         },
+        {
+          name: "generate_code",
+          description:
+            "Generate complete, ready-to-use tsParticles code from a natural language description. Automatically selects the best bundle (preferring specialized bundles like @tsparticles/confetti over generic ones) and generates framework-specific code with install commands.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              description: {
+                type: "string",
+                description:
+                  "Natural language description of the desired particle effect (e.g., 'confetti falling from the top', 'interactive stars in the background')",
+              },
+              framework: {
+                type: "string",
+                description: "Target framework for code generation (default: vanilla JavaScript)",
+                enum: ["vanilla", "react", "vue3", "svelte", "angular"],
+              },
+              typescript: {
+                type: "boolean",
+                description: "Generate TypeScript code instead of JavaScript (default: false)",
+              },
+            },
+            required: ["description"],
+          },
+        },
       ],
     };
   });
 
-  server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  server.setRequestHandler(CallToolRequestSchema, async request => {
     const { name, arguments: args } = request.params;
+    const handler = toolHandlers[name];
 
     try {
-      switch (name) {
-        case "suggest_plugins": {
-          const parsed = suggestPluginsArgsSchema.safeParse(args);
-          if (!parsed.success) {
-            return {
-              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
-              isError: true,
-            };
-          }
-          const result = suggestPlugins(parsed.data.options);
-          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
-        }
-
-        case "list_packages": {
-          const parsed = listPackagesArgsSchema.safeParse(args ?? {});
-          if (!parsed.success) {
-            return {
-              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
-              isError: true,
-            };
-          }
-          const result = listPackages(parsed.data);
-          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
-        }
-
-        case "get_package_info": {
-          const parsed = getPackageInfoArgsSchema.safeParse(args);
-          if (!parsed.success) {
-            return {
-              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
-              isError: true,
-            };
-          }
-          const result = getPackageInfo(parsed.data.package);
-          if (!result) {
-            return {
-              content: [
-                {
-                  type: "text",
-                  text: `Package "${parsed.data.package}" not found. Use list_packages to see all available packages.`,
-                },
-              ],
-              isError: true,
-            };
-          }
-          return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
-        }
-
-        case "diagnose_issues": {
-          const parsed = diagnoseIssuesArgsSchema.safeParse(args);
-          if (!parsed.success) {
-            return {
-              content: [{ type: "text", text: `Invalid arguments: ${formatZodError(parsed.error)}` }],
-              isError: true,
-            };
-          }
-          const issues = diagnoseIssues(parsed.data.options);
-          return {
-            content: [{ type: "text", text: JSON.stringify({ issues, total: issues.length }, null, 2) }],
-          };
-        }
-
-        default:
-          return {
-            content: [{ type: "text", text: `Unknown tool: ${name}` }],
-            isError: true,
-          };
+      if (!handler) {
+        return toolResult(`Unknown tool: ${sanitizeReflection(name)}`, true);
       }
+
+      return handler(args);
     } catch (error) {
       // Tool implementations are expected to be pure/synchronous and
       // shouldn't normally throw, but a malformed-yet-schema-valid
@@ -351,10 +371,7 @@ function createMcpServer(): Server {
       // `isError: true` tool result.
       console.error(`Error running tool "${name}":`, error);
       const message = error instanceof Error ? error.message : String(error);
-      return {
-        content: [{ type: "text", text: `Internal error running tool "${name}": ${message}` }],
-        isError: true,
-      };
+      return toolResult(`Internal error running tool "${name}": ${message}`, true);
     }
   });
 
@@ -362,7 +379,7 @@ function createMcpServer(): Server {
 
   server.setRequestHandler(ListResourcesRequestSchema, async () => {
     return {
-      resources: RESOURCES.map((r) => ({
+      resources: RESOURCES.map(r => ({
         uri: r.uri,
         name: r.name,
         description: r.description,
@@ -371,9 +388,9 @@ function createMcpServer(): Server {
     };
   });
 
-  server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  server.setRequestHandler(ReadResourceRequestSchema, async request => {
     const uri = request.params.uri;
-    const resource = RESOURCES.find((r) => r.uri === uri);
+    const resource = RESOURCES.find(r => r.uri === uri);
 
     if (!resource) {
       // The `resources/read` response schema expects a `contents` array,
@@ -400,7 +417,7 @@ function createMcpServer(): Server {
     return { prompts: [generateOptionsPrompt] };
   });
 
-  server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+  server.setRequestHandler(GetPromptRequestSchema, async request => {
     const promptName = request.params.name;
 
     if (promptName !== "generate-options") {
@@ -451,7 +468,6 @@ async function main() {
       port: args.port,
       allowedOrigins: args.allowedOrigins,
       authToken: args.authToken,
-      packageVersion: PACKAGE_VERSION,
       createMcpServer,
     });
   } else {
@@ -459,7 +475,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error("Fatal error:", error);
   process.exit(1);
 });

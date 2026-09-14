@@ -1,8 +1,9 @@
 import type { BackgroundDrawContext, IBackground } from "../../Interfaces/Background/IBackground.js";
-import { OptionLoader, loadProperty } from "../../../Utils/OptionsUtils.js";
 import type { IDelta } from "../../../Core/Interfaces/IDelta.js";
+import { OptionLoader } from "../../../Utils/OptionLoader.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { loadProperty } from "../../../Utils/OptionsUtils.js";
 
 /**
  * [[include:Options/Background.md]]

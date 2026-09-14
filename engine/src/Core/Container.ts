@@ -17,7 +17,7 @@ import { ParticlesManager } from "./ParticlesManager.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { loadOptions } from "../Utils/OptionsUtils.js";
+import { loadOptions } from "../Utils/OptionLoader.js";
 
 /** Container constructor parameters */
 export interface ContainerParams {
@@ -397,28 +397,7 @@ export class Container {
     this.#options = loadContainerOptions(this.#pluginManager, this, this.#initialSourceOptions, this.sourceOptions);
     this.actualOptions = loadContainerOptions(this.#pluginManager, this, this.#options);
 
-    this.plugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particleCreatedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
-
-    for (const [plugin, containerPlugin] of allContainerPlugins) {
-      if (plugin.needsPlugin(this.actualOptions)) {
-        this.plugins.push(containerPlugin);
-
-        if (containerPlugin.particleCreated) {
-          this.particleCreatedPlugins.push(containerPlugin);
-        }
-
-        if (containerPlugin.particleDestroyed) {
-          this.particleDestroyedPlugins.push(containerPlugin);
-        }
-
-        if (containerPlugin.particlePosition) {
-          this.particlePositionPlugins.push(containerPlugin);
-        }
-      }
-    }
+    this.#initPlugins(allContainerPlugins);
 
     /* init canvas + particles */
     this.retina.init();
@@ -642,6 +621,33 @@ export class Container {
     }
 
     return refresh;
+  }
+
+  #initPlugins(allContainerPlugins: Map<IPlugin, IContainerPlugin>): void {
+    this.plugins.length = 0;
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
+
+    for (const [plugin, containerPlugin] of allContainerPlugins) {
+      if (!plugin.needsPlugin(this.actualOptions)) {
+        continue;
+      }
+
+      this.plugins.push(containerPlugin);
+
+      if (containerPlugin.particleCreated) {
+        this.particleCreatedPlugins.push(containerPlugin);
+      }
+
+      if (containerPlugin.particleDestroyed) {
+        this.particleDestroyedPlugins.push(containerPlugin);
+      }
+
+      if (containerPlugin.particlePosition) {
+        this.particlePositionPlugins.push(containerPlugin);
+      }
+    }
   }
 
   #nextFrame(timestamp: DOMHighResTimeStamp): void {

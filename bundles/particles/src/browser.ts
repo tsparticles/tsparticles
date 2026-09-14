@@ -6,7 +6,6 @@ const globalObject = globalThis as typeof globalThis & {
 };
 
 globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
-
 globalObject.particles = particles;
 
 export * from "./index.js";

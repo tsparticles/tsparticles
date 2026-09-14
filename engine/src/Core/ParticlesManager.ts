@@ -35,14 +35,13 @@ export class ParticlesManager {
   /** Check particle position plugins */
   checkParticlePositionPlugins: IContainerPlugin[];
 
-  /** The spatial hash grid */
-  grid;
-
   /**
    * All the particles used in canvas
    */
   #array: Particle[];
   readonly #container: Container;
+  /** The spatial hash grid */
+  #grid;
   readonly #groupLimits: Map<string, number>;
   #limit;
   #nextId;
@@ -72,7 +71,7 @@ export class ParticlesManager {
     this.#groupLimits = new Map<string, number>();
     this.#particleBuckets = new Map<number, number>();
     this.#zBuckets = this.#createBuckets(this.#container.zLayers);
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize);
+    this.#grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.checkParticlePositionPlugins = [];
     this.#particleResetPlugins = [];
     this.#particleUpdatePlugins = [];
@@ -87,6 +86,10 @@ export class ParticlesManager {
    */
   get count(): number {
     return this.#array.length;
+  }
+
+  get grid(): SpatialHashGrid {
+    return this.#grid;
   }
 
   /**
@@ -110,20 +113,43 @@ export class ParticlesManager {
     if (limit > minLimit) {
       switch (limitMode) {
         case LimitMode.delete: {
-          const countToRemove = currentCount + countOffset - limit;
+          const globalCountToRemove = this.#limit > minLimit ? currentCount + countOffset - this.#limit : minCount;
+
+          let countToRemove = globalCountToRemove;
+
+          if (group !== undefined) {
+            const groupLimit = this.#groupLimits.get(group) ?? this.#limit;
+
+            if (groupLimit > minLimit) {
+              const groupCount = this.filter(t => t.group === group).length,
+                groupCountToRemove = groupCount + countOffset - groupLimit;
+
+              if (groupCountToRemove > minCount) {
+                this.removeQuantity(groupCountToRemove, group);
+                countToRemove = Math.max(globalCountToRemove - groupCountToRemove, minCount);
+              }
+            }
+          }
 
           if (countToRemove > minCount) {
-            this.removeQuantity(countToRemove);
+            this.#removeAny(countToRemove);
           }
 
           break;
         }
-        case LimitMode.wait:
-          if (currentCount >= limit) {
+        case LimitMode.wait: {
+          const globalLimitReached = this.#limit > minLimit && currentCount >= this.#limit;
+
+          if (globalLimitReached) {
+            return;
+          }
+
+          if (group !== undefined && limit > minLimit && this.filter(t => t.group === group).length >= limit) {
             return;
           }
 
           break;
+        }
         default:
           // no-op
           break;
@@ -237,8 +263,7 @@ export class ParticlesManager {
    * @returns the promise for the init
    */
   async init(): Promise<void> {
-    const container = this.#container,
-      options = container.actualOptions;
+    const container = this.#container;
 
     this.checkParticlePositionPlugins = [];
     this.#updatePlugins = [];
@@ -249,78 +274,22 @@ export class ParticlesManager {
     this.#particleBuckets.clear();
     this.#resetBuckets(container.zLayers);
 
-    this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
+    this.#grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
-    for (const plugin of container.plugins) {
-      if (plugin.redrawInit) {
-        await plugin.redrawInit();
-      }
+    this.#applyLimits(container.actualOptions.particles);
 
-      if (plugin.checkParticlePosition) {
-        this.checkParticlePositionPlugins.push(plugin);
-      }
+    const particlesOptions = container.actualOptions.particles,
+      groups = particlesOptions.groups;
 
-      if (plugin.update) {
-        this.#updatePlugins.push(plugin);
-      }
+    for (const group in groups) {
+      const groupData = groups[group];
 
-      if (plugin.particleUpdate) {
-        this.#particleUpdatePlugins.push(plugin);
-      }
-
-      if (plugin.postUpdate) {
-        this.#postUpdatePlugins.push(plugin);
-      }
-
-      if (plugin.particleReset) {
-        this.#particleResetPlugins.push(plugin);
-      }
-
-      if (plugin.postParticleUpdate) {
-        this.#postParticleUpdatePlugins.push(plugin);
+      if (groupData) {
+        this.#applyLimits(loadParticlesOptions(this.#pluginManager, this.#container, groupData), group, groupData);
       }
     }
 
-    await this.#container.initDrawersAndUpdaters();
-
-    for (const drawer of this.#container.effectDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
-    for (const drawer of this.#container.shapeDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
-    let handled = false;
-
-    for (const plugin of container.plugins) {
-      handled = plugin.particlesInitialization?.() ?? handled;
-
-      if (handled) {
-        break;
-      }
-    }
-
-    if (!handled) {
-      const particlesOptions = options.particles,
-        groups = particlesOptions.groups;
-
-      for (const group in groups) {
-        const groupOptions = groups[group];
-
-        if (!groupOptions) {
-          continue;
-        }
-
-        for (let i = this.count, j = 0; j < groupOptions.number.value && i < particlesOptions.number.value; i++, j++) {
-          this.addParticle(undefined, groupOptions, group);
-        }
-      }
-
-      for (let i = this.count; i < particlesOptions.number.value; i++) {
-        this.addParticle();
-      }
-    }
+    await this.#initPlugins();
   }
 
   /**
@@ -365,8 +334,15 @@ export class ParticlesManager {
    * @param quantity - The quantity
    * @param group - The group
    * @param override - The override
+   * @param matchGroup - Whether to filter the removal by the group (defaults to true)
    */
-  removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
+  removeAt(
+    index: number,
+    quantity = defaultRemoveQuantity,
+    group?: string,
+    override?: boolean,
+    matchGroup = true,
+  ): void {
     if (index < minIndex || index > this.count) {
       return;
     }
@@ -374,7 +350,7 @@ export class ParticlesManager {
     let deleted = 0;
 
     for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this.#removeParticle(i, group, override)) {
+      if (this.#removeParticle(i, group, override, matchGroup)) {
         i--;
         deleted++;
       }
@@ -431,7 +407,7 @@ export class ParticlesManager {
    * @param delta - The delta time
    */
   update(delta: IDelta): void {
-    this.grid.clear();
+    this.#grid.clear();
 
     for (const plugin of this.#updatePlugins) {
       plugin.update?.(delta);
@@ -447,7 +423,7 @@ export class ParticlesManager {
 
     if (particlesToDelete.size) {
       for (const particle of particlesToDelete) {
-        this.remove(particle);
+        this.remove(particle, particle.group);
       }
     }
 
@@ -467,11 +443,7 @@ export class ParticlesManager {
     const numberOptions = options.number;
 
     if (!numberOptions.density.enable) {
-      if (group === undefined) {
-        this.#limit = numberOptions.limit.value;
-      } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
-        this.#groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
-      }
+      this.#applyLimits(options, group, groupOptions);
 
       return;
     }
@@ -492,6 +464,35 @@ export class ParticlesManager {
       this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
     } else if (particlesCount > particlesNumber) {
       this.removeQuantity(particlesCount - particlesNumber, group);
+    }
+  }
+
+  /**
+   * Records the particle limits (unscaled) for the given options, so additions
+   * are bounded even on the initial load before the density is applied.
+   * @param options - The options to apply
+   * @param group - The group
+   * @param groupOptions - The raw group options
+   */
+  #applyLimits(options: ParticlesOptions, group?: string, groupOptions?: RecursivePartial<IParticlesOptions>): void {
+    if (group === undefined) {
+      this.#limit = options.number.limit.value;
+
+      const groups = this.#container.actualOptions.particles.groups;
+
+      for (const existingGroup of this.#groupLimits.keys()) {
+        if (!(existingGroup in groups)) {
+          this.#groupLimits.delete(existingGroup);
+        }
+      }
+    } else {
+      const limitValue = groupOptions?.number?.limit?.value ?? options.number.limit.value;
+
+      if (limitValue > minLimit) {
+        this.#groupLimits.set(group, limitValue);
+      } else {
+        this.#groupLimits.delete(group);
+      }
     }
   }
 
@@ -533,6 +534,94 @@ export class ParticlesManager {
     );
   }
 
+  async #initDrawersAndUpdaters(): Promise<void> {
+    const container = this.#container;
+
+    await container.initDrawersAndUpdaters();
+
+    for (const drawer of container.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of container.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
+  }
+
+  async #initPlugins(): Promise<void> {
+    await this.#initPluginsArrays();
+    await this.#initDrawersAndUpdaters();
+
+    let handled = false;
+
+    const container = this.#container;
+
+    for (const plugin of container.plugins) {
+      handled = plugin.particlesInitialization?.() ?? handled;
+
+      if (handled) {
+        break;
+      }
+    }
+
+    if (handled) {
+      return;
+    }
+
+    const particlesOptions = container.actualOptions.particles,
+      groups = particlesOptions.groups;
+
+    for (const group in groups) {
+      const groupOptions = groups[group];
+
+      if (!groupOptions) {
+        continue;
+      }
+
+      for (let i = this.count, j = 0; j < groupOptions.number.value && i < particlesOptions.number.value; i++, j++) {
+        this.addParticle(undefined, groupOptions, group);
+      }
+    }
+
+    for (let i = this.count; i < particlesOptions.number.value; i++) {
+      this.addParticle();
+    }
+  }
+
+  async #initPluginsArrays(): Promise<void> {
+    const container = this.#container;
+
+    for (const plugin of container.plugins) {
+      if (plugin.redrawInit) {
+        await plugin.redrawInit();
+      }
+
+      if (plugin.checkParticlePosition) {
+        this.checkParticlePositionPlugins.push(plugin);
+      }
+
+      if (plugin.update) {
+        this.#updatePlugins.push(plugin);
+      }
+
+      if (plugin.particleUpdate) {
+        this.#particleUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.postUpdate) {
+        this.#postUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.particleReset) {
+        this.#particleResetPlugins.push(plugin);
+      }
+
+      if (plugin.postParticleUpdate) {
+        this.#postParticleUpdatePlugins.push(plugin);
+      }
+    }
+  }
+
   #insertParticleIntoBucket(particle: Particle): void {
     const bucketIndex = this.#getBucketIndex(particle.position.z),
       bucket = this.#zBuckets[bucketIndex];
@@ -545,14 +634,22 @@ export class ParticlesManager {
     this.#particleBuckets.set(particle.id, bucketIndex);
   }
 
-  #removeParticle(index: number, group?: string, override?: boolean): boolean {
+  /**
+   * Removes a quantity of particles regardless of their group, starting from the oldest
+   * @param quantity - The quantity
+   */
+  #removeAny(quantity: number): void {
+    this.removeAt(minIndex, quantity, undefined, undefined, false);
+  }
+
+  #removeParticle(index: number, group?: string, override?: boolean, matchGroup = true): boolean {
     const particle = this.#array[index];
 
     if (!particle) {
       return false;
     }
 
-    if (particle.group !== group) {
+    if (matchGroup && particle.group !== group) {
       return false;
     }
 
@@ -680,7 +777,7 @@ export class ParticlesManager {
         continue;
       }
 
-      this.grid.insert(particle);
+      this.#grid.insert(particle);
     }
 
     return particlesToDelete;

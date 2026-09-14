@@ -1,4 +1,4 @@
-import { getDestinationDir, getRepositoryUrl } from "@tsparticles/cli-create-utils";
+import { getDestinationDir } from "@tsparticles/cli-create-utils";
 import path from "node:path";
 import prompts from "prompts";
 
@@ -89,12 +89,8 @@ export async function promptAppData(
   prefill?: { framework?: Framework; projectName?: string; useCase?: UseCase },
 ): Promise<IAppPromptResult> {
   const destinationPath = await getDestinationDir(destination),
-    repositoryUrl = await getRepositoryUrl(),
-    initialName = destinationPath.split(path.sep).pop() ?? "tsparticles-app";
-
-  void repositoryUrl;
-
-  const questions: prompts.PromptObject[] = [];
+    initialName = destinationPath.split(path.sep).pop() ?? "tsparticles-app",
+    questions: prompts.PromptObject[] = [];
 
   if (!prefill?.projectName) {
     questions.push({

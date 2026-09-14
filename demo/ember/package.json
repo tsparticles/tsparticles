@@ -41,7 +41,7 @@
     "@types/ember__application": "^4.0.11",
     "@types/ember__controller": "^4.0.12",
     "@types/ember__routing": "^4.0.23",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.5.1",
     "@types/qunit": "^2.19.14",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~7.1.0",
@@ -51,7 +51,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-qunit": "^9.1.0",
     "ember-template-lint": "^7.9.3",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ember": "^13.5.0",
     "eslint-plugin-n": "^18.3.0",
@@ -62,6 +62,6 @@
     "qunit": "^2.26.0",
     "qunit-dom": "^3.6.0",
     "typescript": "^6.0.3",
-    "webpack": "^5.110.1"
+    "webpack": "^5.110.3"
   }
 }

@@ -2,131 +2,17 @@
  * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances
  */
-import {
-  canvasFirstIndex,
-  canvasTag,
-  generatedAttribute,
-  generatedFalse,
-  generatedTrue,
-  loadMinIndex,
-  loadRandomFactor,
-  none,
-  one,
-  removeDeleteCount,
-  removeMinIndex,
-} from "./Utils/Constants.js";
-import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import { getCanvasFromContainer, getDataFromUrl, getDomContainer, itemFromSingleOrMultiple } from "../Utils/Utils.js";
+import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
-import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { PluginManager } from "./Utils/PluginManager.js";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
-import { getLogger } from "../Utils/LogUtils.js";
 import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
-
-declare global {
-  var tsParticles: Engine;
-}
-
-const fullPercent = "100%";
-
-interface DataFromUrlParams {
-  fallback?: SingleOrMultiple<ISourceOptions>;
-  index?: number;
-  url: SingleOrMultiple<string>;
-}
-
-/**
- * @param data - The data to handle
- * @returns the options object from the jsonUrl
- */
-async function getDataFromUrl(
-  data: DataFromUrlParams,
-): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
-  const url = itemFromSingleOrMultiple(data.url, data.index);
-
-  if (!url) {
-    return data.fallback;
-  }
-
-  const response = await fetch(url);
-
-  if (response.ok) {
-    return (await response.json()) as SingleOrMultiple<Readonly<ISourceOptions>>;
-  }
-
-  getLogger().error(`${response.status.toString()} while retrieving config file`);
-
-  return data.fallback;
-}
-
-const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
-    const documentSafe = safeDocument();
-
-    let canvasEl: HTMLCanvasElement;
-    const isCanvas = domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag;
-
-    if (isCanvas) {
-      canvasEl = domContainer as HTMLCanvasElement;
-
-      canvasEl.dataset[generatedAttribute] ??= generatedFalse;
-
-      if (canvasEl.dataset[generatedAttribute] === generatedTrue) {
-        canvasEl.style.width ||= fullPercent;
-        canvasEl.style.height ||= fullPercent;
-        canvasEl.style.pointerEvents = "none";
-        canvasEl.style.setProperty("pointer-events", "none");
-      }
-    } else {
-      const existingCanvases = domContainer.getElementsByTagName(canvasTag),
-        foundCanvas = existingCanvases.item(canvasFirstIndex);
-
-      /* get existing canvas if present, otherwise a new one will be created */
-      if (foundCanvas) {
-        canvasEl = foundCanvas;
-
-        canvasEl.dataset[generatedAttribute] = generatedFalse;
-      } else {
-        /* create canvas element */
-        canvasEl = documentSafe.createElement(canvasTag);
-
-        canvasEl.dataset[generatedAttribute] = generatedTrue;
-
-        /* append canvas */
-        domContainer.appendChild(canvasEl);
-      }
-
-      canvasEl.style.width ||= fullPercent;
-      canvasEl.style.height ||= fullPercent;
-      canvasEl.style.pointerEvents = "none";
-      canvasEl.style.setProperty("pointer-events", "none");
-    }
-
-    return canvasEl;
-  },
-  getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-    const documentSafe = safeDocument();
-
-    let domContainer = source ?? documentSafe.getElementById(id);
-
-    if (domContainer) {
-      return domContainer;
-    }
-
-    domContainer = documentSafe.createElement("canvas");
-
-    domContainer.id = id;
-    domContainer.dataset[generatedAttribute] = generatedTrue;
-
-    documentSafe.body.append(domContainer);
-
-    return domContainer;
-  };
 
 /**
  * Engine class for creating the singleton on globalThis.

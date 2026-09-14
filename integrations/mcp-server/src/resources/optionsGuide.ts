@@ -66,7 +66,9 @@ export function getOptionsGuideResource(): string {
   lines.push("### `particles.shape` — Particle Shape");
   lines.push("| Option | Type | Default | Description |");
   lines.push("|--------|------|---------|-------------|");
-  lines.push("| `shape.type` | `string | string[]` | `circle` | Shape type(s): circle, square, star, heart, emoji, image, text, polygon, etc. |");
+  lines.push(
+    "| `shape.type` | `string | string[]` | `circle` | Shape type(s): circle, square, star, heart, emoji, image, text, polygon, etc. |",
+  );
   lines.push("| `shape.options` | `object` | `{}` | Shape-specific options (per shape type) |");
   lines.push("| `shape.options.image.src` | `string` | — | Image URL (for 'image' shape) |");
   lines.push("| `shape.options.image.width` | `number` | — | Image width (for 'image' shape) |");
@@ -116,7 +118,9 @@ export function getOptionsGuideResource(): string {
   lines.push("|--------|------|---------|-------------|");
   lines.push("| `move.enable` | `boolean` | `true` | Enable particle movement |");
   lines.push("| `move.speed` | `number | { min, max }` | `2` | Movement speed |");
-  lines.push("| `move.direction` | `string` | `none` | Direction: none, top, top-right, right, bottom-right, bottom, bottom-left, left, top-left |");
+  lines.push(
+    "| `move.direction` | `string` | `none` | Direction: none, top, top-right, right, bottom-right, bottom, bottom-left, left, top-left |",
+  );
   lines.push("| `move.random` | `boolean` | `false` | Random direction |");
   lines.push("| `move.straight` | `boolean` | `false` | Move in straight line |");
   lines.push("| `move.outModes.default` | `string` | `out` | Out-of-bounds mode: bounce, destroy, none, out |");
@@ -357,7 +361,7 @@ export function getOptionsGuideResource(): string {
   lines.push("");
   lines.push("### Starry Night");
   lines.push("```json");
-  lines.push('{');
+  lines.push("{");
   lines.push('  "background": { "color": "#000" },');
   lines.push('  "particles": {');
   lines.push('    "number": { "value": 100 },');
@@ -366,20 +370,20 @@ export function getOptionsGuideResource(): string {
   lines.push('    "opacity": { "value": { "min": 0.1, "max": 1 } },');
   lines.push('    "size": { "value": { "min": 1, "max": 3 } },');
   lines.push('    "move": { "enable": false }');
-  lines.push('  }');
+  lines.push("  }");
   lines.push("}");
   lines.push("```");
   lines.push("");
   lines.push("### Connected Particles (Network)");
   lines.push("```json");
-  lines.push('{');
+  lines.push("{");
   lines.push('  "background": { "color": "#0d1117" },');
   lines.push('  "particles": {');
   lines.push('    "number": { "value": 80 },');
   lines.push('    "color": { "value": "#58a6ff" },');
   lines.push('    "links": { "enable": true, "distance": 150, "color": "#8b949e", "opacity": 0.4 },');
   lines.push('    "move": { "speed": 1 }');
-  lines.push('  }');
+  lines.push("  }");
   lines.push("}");
   lines.push("```");
   lines.push("");

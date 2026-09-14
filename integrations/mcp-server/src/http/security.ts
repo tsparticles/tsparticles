@@ -1,6 +1,12 @@
 import { timingSafeEqual } from "node:crypto";
 
-import { MAX_SESSION_ID_LENGTH, RATE_LIMIT_MAX_REQUESTS_PER_WINDOW, RATE_LIMIT_WINDOW_MS, SESSION_ID_PATTERN } from "./constants.js";
+import {
+  MAX_SESSION_ID_LENGTH,
+  RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
+  RATE_LIMIT_MAX_REQUESTS_PER_WINDOW,
+  RATE_LIMIT_WINDOW_MS,
+  SESSION_ID_PATTERN,
+} from "./constants.js";
 
 export function normalizeOrigin(origin: string): string | undefined {
   try {
@@ -114,35 +120,51 @@ export function extractBearerToken(header: string | string[] | undefined): strin
 }
 
 /**
- * Minimal in-memory fixed-window rate limiter keyed by client IP. Not a
- * substitute for a proper edge rate limiter (it resets per-process and
- * doesn't account for proxies unless `trust proxy`-style forwarding is
- * handled by the caller), but it bounds the request rate a single
- * client can sustain against this process.
+ * Minimal in-memory fixed-window rate limiter keyed by client IP, plus a
+ * per-process global ceiling that bounds total throughput regardless of
+ * how many distinct source IPs the requests come from. Not a substitute
+ * for a proper edge rate limiter (it resets per-process and doesn't
+ * account for proxies unless `trust proxy`-style forwarding is handled
+ * by the caller), but it bounds the request rate a single client — or a
+ * distributed set of clients — can sustain against this process.
  */
 export class RateLimiter {
   private readonly hits = new Map<string, { count: number; windowStart: number }>();
+  private globalCount = 0;
+  private globalWindowStart = Date.now();
 
   constructor(
     private readonly windowMs: number = RATE_LIMIT_WINDOW_MS,
     private readonly maxRequests: number = RATE_LIMIT_MAX_REQUESTS_PER_WINDOW,
+    private readonly maxGlobalRequests: number = RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
   ) {}
 
   /** Returns true if the request should be allowed, false if rate-limited. */
   allow(key: string): boolean {
     const now = Date.now();
+
+    // The global budget is reset/checked first so requests rejected by the
+    // per-client window — or by the global cap itself — never add or bump
+    // per-client entries and never consume the shared window.
+    if (now - this.globalWindowStart >= this.windowMs) {
+      this.globalCount = 0;
+      this.globalWindowStart = now;
+    }
+    if (this.globalCount >= this.maxGlobalRequests) {
+      return false;
+    }
+
     const entry = this.hits.get(key);
 
     if (!entry || now - entry.windowStart >= this.windowMs) {
       this.hits.set(key, { count: 1, windowStart: now });
-      return true;
-    }
-
-    if (entry.count >= this.maxRequests) {
+    } else if (entry.count >= this.maxRequests) {
       return false;
+    } else {
+      entry.count++;
     }
 
-    entry.count++;
+    this.globalCount++;
     return true;
   }
 

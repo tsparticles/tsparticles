@@ -368,7 +368,7 @@ export class InteractionManager {
 
     const container = this.#container;
 
-    container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
+    container.particles.grid.cellSize = maxTotalDistance * container.retina.pixelRatio;
   }
 
   #intersectionManager(entries: IntersectionObserverEntry[]): void {

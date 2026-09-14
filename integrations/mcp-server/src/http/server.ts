@@ -22,12 +22,18 @@ import {
 } from "./security.js";
 import type { SessionEntry, StartHttpServerParams } from "./types.js";
 
+class RequestBodyTooLargeError extends Error {
+  constructor() {
+    super("Request body too large");
+    this.name = "RequestBodyTooLargeError";
+  }
+}
+
 export async function startHttpServer({
   port,
   allowedOrigins,
   authToken,
   trustedProxies,
-  packageVersion,
   createMcpServer,
 }: StartHttpServerParams): Promise<void> {
   const sessions = new Map<string, SessionEntry>();
@@ -75,7 +81,9 @@ export async function startHttpServer({
       // Health check endpoint
       if (req.method === "GET" && req.url === "/health") {
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ status: "ok", version: packageVersion }));
+        // Deliberately no version/build info here — an exact version string
+        // aids fingerprinting of known-vulnerable releases.
+        res.end(JSON.stringify({ status: "ok" }));
         return;
       }
 
@@ -185,20 +193,35 @@ export async function startHttpServer({
         body = await new Promise<string>((resolve, reject) => {
           const chunks: Buffer[] = [];
           let receivedBytes = 0;
+          let tooLarge = false;
           req.on("data", (chunk: Buffer) => {
             receivedBytes += chunk.length;
             if (receivedBytes > MAX_REQUEST_BODY_BYTES) {
-              req.destroy(new Error("Request body too large"));
+              // Keep draining the request (so the connection can be reused
+              // or closed cleanly) but stop buffering. The response is only
+              // written once the body has been fully read, so the client
+              // gets a proper 413 instead of a reset connection.
+              tooLarge = true;
               return;
             }
             chunks.push(chunk);
           });
-          req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+          req.on("end", () => {
+            if (tooLarge) {
+              reject(new RequestBodyTooLargeError());
+              return;
+            }
+            resolve(Buffer.concat(chunks).toString("utf8"));
+          });
           req.on("error", reject);
         });
-      } catch {
-        res.writeHead(413, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Request body too large" }));
+      } catch (error) {
+        if (error instanceof RequestBodyTooLargeError) {
+          res.writeHead(413, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Request body too large" }));
+        }
+        // Any other error means the client/connection is gone — there is
+        // nobody left to send a response to.
         return;
       }
 

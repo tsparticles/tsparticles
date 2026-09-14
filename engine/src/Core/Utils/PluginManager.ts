@@ -295,7 +295,6 @@ export class PluginManager {
     }
 
     this.#isRunningLoaders = true;
-
     this.#executedSet = new Set<LoadPluginFunction>();
     this.#allLoadersSet = new Set(this.#loadPromises);
 
@@ -353,7 +352,9 @@ export class PluginManager {
     executed: Set<LoadPluginFunction>,
     allLoaders: Set<LoadPluginFunction>,
   ): Promise<void> {
-    if (executed.has(loader)) return;
+    if (executed.has(loader)) {
+      return;
+    }
 
     executed.add(loader);
     allLoaders.add(loader);

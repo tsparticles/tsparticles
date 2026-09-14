@@ -34,7 +34,7 @@
     "@vue/runtime-dom": "^3.5.41",
     "@vue/shared": "^3.5.41",
     "consola": "^3.4.2",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.10.0",
     "globals": "^17.11.0",
