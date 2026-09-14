@@ -528,11 +528,15 @@ export class CanvasManager {
      * returned as-is and keeps its original color space, so on an HDR change the
      * request is ignored. Read the effective space back from the context
      * attributes when the engine exposes them, keeping the solid-color and
-     * particle color conversions in sync with the real context. */
-    const requestedSpace: PredefinedColorSpace = canSupportHdr ? "display-p3" : "srgb",
-      effectiveColorSpace = getEffectiveColorSpace(context) ?? (context ? requestedSpace : "srgb");
+     * particle color conversions in sync with the real context. When the surface
+     * cannot create a context with the requested settings, the previous mode is
+     * preserved. */
+    if (context) {
+      const requestedSpace: PredefinedColorSpace = canSupportHdr ? "display-p3" : "srgb",
+        effectiveColorSpace = getEffectiveColorSpace(context) ?? requestedSpace;
 
-    container.hdr = effectiveColorSpace === "display-p3";
+      container.hdr = effectiveColorSpace === "display-p3";
+    }
   }
 
   #initHdrListeners(): void {
