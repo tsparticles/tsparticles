@@ -61,12 +61,12 @@ An `options.draw` toggle (default `true`, so new behavior matches absorbers; set
 
 ### 1.3 Per-shape `draw` implementation
 
-Shapes draw their own geometry centered on `position` with `size` (they already know it):
+Shapes trace their own geometry centered on `position` with `size` (they already know it) into the canvas current path. They do not call `beginPath`/`fill`/`stroke` themselves — `EmitterInstance.draw()` owns that shared round-trip (§1.4), so every shape is filled/stroked identically:
 
 - **square** (`plugins/emittersShapes/square/src/EmittersSquareShape.ts`): `context.rect(position.x - width/2, position.y - height/2, width, height)`.
 - **circle** (`plugins/emittersShapes/circle/src/EmittersCircleShape.ts`): `context.ellipse(position.x, position.y, width/2, height/2, 0, 0, doublePI)` (ellipse handles width ≠ height; fall back to `arc` for square sizes).
-- **polygon** (`plugins/emittersShapes/polygon/src/EmittersPolygonShape.ts`): `beginPath → moveTo/lineTo` over `this.polygon` points → `closePath`.
-- **path** (`plugins/emittersShapes/path/src/EmittersPathShape.ts`): `context.fill(this.path)` / `context.stroke(this.path)`.
+- **polygon** (`plugins/emittersShapes/polygon/src/EmittersPolygonShape.ts`): `moveTo/lineTo` over `this.polygon` points → `closePath`.
+- **path** (`plugins/emittersShapes/path/src/EmittersPathShape.ts`): exception — `context.fill(this.path)` / `context.stroke(this.path)`. A `Path2D` is not part of the canvas current path, so this shape performs its own fill/stroke instead of relying on the shared fill/stroke in §1.4.
 - **canvas** (`plugins/emittersShapes/canvas/src/EmittersCanvasShape.ts`): optional in first iteration. The shape is pixel-data based; drawing would require keeping a reference to the source image/element in `init()`. If skipped, `draw()` is a no-op (fall back to documented behavior). Can be added later without breaking API.
 
 ### 1.4 `EmitterInstance.draw(context)`
@@ -79,16 +79,19 @@ Shapes draw their own geometry centered on `position` with `size` (they already 
       return;
     }
     context.save();
+    context.beginPath();
     // fill: use spawnFillColor (IHsl → getStyleFromHsl), default black like absorbers
     context.fillStyle = this.spawnFillColor
       ? getStyleFromHsl(this.spawnFillColor, container.hdr, fillOpacity, container.peakNits, container.hdrMode)
       : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, this.spawnFillOpacity ?? 1, ...);
     if (this.spawnStrokeColor) context.strokeStyle = ...;  // strokeLineWidth from spawnStrokeWidth
     this.#shape.draw(context);
+    context.fill();
+    if (this.spawnStrokeColor) context.stroke();
     context.restore();
   }
   ```
-  (Reorder: set styles, call `#shape.draw`, always wrap in save/restore.) Collect per-instance `fillOpacity` / `strokeWidth` values already computed in `#emitParticles` so draw matches particle appearance.
+  (Centralized `beginPath`/`fill`/`stroke`: per-shape `draw` implementations only trace geometry (§1.3) and rely on this method for the fill/stroke round-trip. The path shape is the exception — it fills/strokes its `Path2D` itself. Collect per-instance `fillOpacity` / `strokeWidth` values already computed in `#emitParticles` so draw matches particle appearance.)
 - New imports (all from `@tsparticles/engine`): `getStyleFromHsl`, `getStyleFromRgb`, `doublePI`.
 
 ### 1.5 `EmittersPluginInstance.draw`

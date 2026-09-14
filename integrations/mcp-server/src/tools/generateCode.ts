@@ -326,8 +326,8 @@ const SHAPE_WORDS: Array<[string, string]> = [
   ["heart", "heart"],
   ["squares", "square"],
   ["square", "square"],
-  ["triangles", "triangle"],
-  ["triangle", "triangle"],
+  ["triangles", "polygon"],
+  ["triangle", "polygon"],
   ["polygons", "polygon"],
   ["polygon", "polygon"],
   ["lines", "line"],
@@ -734,7 +734,7 @@ function reactCode(bundle: BundleMatch, options: Record<string, unknown>, typesc
   const engineTypeImport = typescript ? 'import type { Engine } from "@tsparticles/engine";\n' : "";
   const initParam = typescript ? "(engine: Engine)" : "(engine)";
   return `import { useCallback } from "react";
-${engineTypeImport}import Particles from "@tsparticles/react";
+${engineTypeImport}import Particles, { ParticlesProvider } from "@tsparticles/react";
 ${buildLoadImports(bundle).join("\n")}
 
 export function ParticlesBackground() {
@@ -743,11 +743,12 @@ ${buildLoadCalls(bundle, "    ", "engine")}
   }, []);
 
   return (
-    <Particles
-      id="tsparticles"
-      init={init}
-      options={${serializeOptions(options)}}
-    />
+    <ParticlesProvider init={init}>
+      <Particles
+        id="tsparticles"
+        options={${serializeOptions(options)}}
+      />
+    </ParticlesProvider>
   );
 }
 `;

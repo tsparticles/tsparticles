@@ -113,21 +113,43 @@ export class ParticlesManager {
     if (limit > minLimit) {
       switch (limitMode) {
         case LimitMode.delete: {
-          const groupCount = group === undefined ? currentCount : this.filter(t => t.group === group).length,
-            countToRemove = groupCount + countOffset - limit;
+          const globalCountToRemove = this.#limit > minLimit ? currentCount + countOffset - this.#limit : minCount;
+
+          let countToRemove = globalCountToRemove;
+
+          if (group !== undefined) {
+            const groupLimit = this.#groupLimits.get(group) ?? this.#limit;
+
+            if (groupLimit > minLimit) {
+              const groupCount = this.filter(t => t.group === group).length,
+                groupCountToRemove = groupCount + countOffset - groupLimit;
+
+              if (groupCountToRemove > minCount) {
+                this.removeQuantity(groupCountToRemove, group);
+                countToRemove = Math.max(globalCountToRemove - groupCountToRemove, minCount);
+              }
+            }
+          }
 
           if (countToRemove > minCount) {
-            this.removeQuantity(countToRemove, group);
+            this.#removeAny(countToRemove);
           }
 
           break;
         }
-        case LimitMode.wait:
-          if (currentCount >= limit) {
+        case LimitMode.wait: {
+          const globalLimitReached = this.#limit > minLimit && currentCount >= this.#limit;
+
+          if (globalLimitReached) {
+            return;
+          }
+
+          if (group !== undefined && limit > minLimit && this.filter(t => t.group === group).length >= limit) {
             return;
           }
 
           break;
+        }
         default:
           // no-op
           break;
@@ -312,8 +334,15 @@ export class ParticlesManager {
    * @param quantity - The quantity
    * @param group - The group
    * @param override - The override
+   * @param matchGroup - Whether to filter the removal by the group (defaults to true)
    */
-  removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
+  removeAt(
+    index: number,
+    quantity = defaultRemoveQuantity,
+    group?: string,
+    override?: boolean,
+    matchGroup = true,
+  ): void {
     if (index < minIndex || index > this.count) {
       return;
     }
@@ -321,7 +350,7 @@ export class ParticlesManager {
     let deleted = 0;
 
     for (let i = index; deleted < quantity && i < this.count; i++) {
-      if (this.#removeParticle(i, group, override)) {
+      if (this.#removeParticle(i, group, override, matchGroup)) {
         i--;
         deleted++;
       }
@@ -605,14 +634,22 @@ export class ParticlesManager {
     this.#particleBuckets.set(particle.id, bucketIndex);
   }
 
-  #removeParticle(index: number, group?: string, override?: boolean): boolean {
+  /**
+   * Removes a quantity of particles regardless of their group, starting from the oldest
+   * @param quantity - The quantity
+   */
+  #removeAny(quantity: number): void {
+    this.removeAt(minIndex, quantity, undefined, undefined, false);
+  }
+
+  #removeParticle(index: number, group?: string, override?: boolean, matchGroup = true): boolean {
     const particle = this.#array[index];
 
     if (!particle) {
       return false;
     }
 
-    if (particle.group !== group) {
+    if (matchGroup && particle.group !== group) {
       return false;
     }
 

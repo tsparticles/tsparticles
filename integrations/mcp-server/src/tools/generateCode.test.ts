@@ -120,6 +120,13 @@ describe("generateOptions", () => {
     expect(((result.options.particles as Record<string, unknown>).move as Record<string, unknown>).speed).toBe(1);
   });
 
+  it("maps triangle descriptions to the polygon shape", () => {
+    const plural = generateCode({ description: "triangles floating" });
+    const singular = generateCode({ description: "a floating triangle" });
+    expect((plural.options.particles as Record<string, unknown>).shape).toEqual({ type: "polygon" });
+    expect((singular.options.particles as Record<string, unknown>).shape).toEqual({ type: "polygon" });
+  });
+
   it("adds links and interactivity for interactive link descriptions", () => {
     const result = generateCode({
       description: "interactive stars in the background with links on hover",
@@ -150,7 +157,8 @@ describe("framework codegen", () => {
 
   it("generates React code with the React wrapper", () => {
     const result = generateCode({ description: "particle animation", framework: "react" });
-    expect(result.code).toContain('import Particles from "@tsparticles/react"');
+    expect(result.code).toContain('import Particles, { ParticlesProvider } from "@tsparticles/react"');
+    expect(result.code).toContain("<ParticlesProvider init={init}>");
     expect(result.code).toContain("export function ParticlesBackground()");
     expect(result.installPackages).toContain("@tsparticles/react");
   });

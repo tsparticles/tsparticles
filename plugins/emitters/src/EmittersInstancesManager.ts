@@ -1,4 +1,4 @@
-import { type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type RecursivePartial, isNumber, minIndex } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
@@ -127,7 +127,6 @@ export class EmittersInstancesManager {
 
   removeEmitter(container: EmitterContainer, emitter: EmitterInstance): void {
     const index = this.getArray(container).indexOf(emitter),
-      minIndex = 0,
       deleteCount = 1;
 
     if (index >= minIndex) {

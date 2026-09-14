@@ -1,12 +1,5 @@
-/* eslint-disable */
-import {
-  type ICoordinates3d,
-  type Container,
-  type ISourceOptions,
-  type Particle,
-  LimitMode,
-  tsParticles,
-} from "@tsparticles/engine";
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
+import { type Container, type ICoordinates3d, type ISourceOptions, LimitMode, tsParticles } from "@tsparticles/engine";
 import { beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -26,7 +19,7 @@ async function loadContainer(id: string, options: ISourceOptions): Promise<Conta
   const container = await tsParticles.load({
     id,
     options,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment
     element: createCustomCanvas(width, height) as any,
   });
 
@@ -46,6 +39,7 @@ describe("ParticleGroups", async () => {
       autoPlay: false,
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment
     element: createCustomCanvas(width, height) as any,
   });
 
@@ -273,6 +267,10 @@ describe("ParticleGroups", async () => {
         },
       });
 
+      const ungrouped = container.particles.addParticle();
+
+      expect(ungrouped).to.be.not.undefined;
+
       const first = container.particles.addParticle(undefined, undefined, "g1"),
         second = container.particles.addParticle(undefined, undefined, "g1"),
         third = container.particles.addParticle(undefined, undefined, "g1");
@@ -281,10 +279,7 @@ describe("ParticleGroups", async () => {
       expect(second).to.be.not.undefined;
       expect(third).to.be.undefined;
       expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
-
-      const ungrouped = container.particles.addParticle();
-
-      expect(ungrouped).to.be.not.undefined;
+      expect(container.particles.filter(t => t.group === undefined)).to.have.length(1);
       expect(container.particles.count).to.equal(3);
     });
 
@@ -332,6 +327,40 @@ describe("ParticleGroups", async () => {
       expect(container.particles.filter(t => t.group === "g2")).to.have.length(2);
       expect(container.particles.filter(t => t.group === undefined)).to.have.length(2);
       expect(container.particles.count).to.equal(6);
+    });
+
+    it("T16b - should cap the global total in delete mode even when a group's own limit is higher", async () => {
+      await container.reset({
+        particles: {
+          number: {
+            value: 6,
+            limit: {
+              value: 3,
+              mode: LimitMode.delete,
+            },
+          },
+          groups: {
+            g1: {
+              number: {
+                value: 5,
+                limit: {
+                  value: 5,
+                  mode: LimitMode.delete,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      expect(container.particles.count).to.be.at.most(3);
+
+      for (let i = 0; i < 6; i++) {
+        container.particles.addParticle(undefined, undefined, "g1");
+      }
+
+      expect(container.particles.count).to.be.at.most(3);
+      expect(container.particles.filter(t => t.group === "g1")).to.have.length.at.most(5);
     });
 
     it("T28 - should not blow through the global limit during group initialization", async () => {

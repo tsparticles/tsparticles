@@ -142,26 +142,10 @@ export class RateLimiter {
   /** Returns true if the request should be allowed, false if rate-limited. */
   allow(key: string): boolean {
     const now = Date.now();
-    const entry = this.hits.get(key);
 
-    let allowedForKey: boolean;
-    if (!entry || now - entry.windowStart >= this.windowMs) {
-      this.hits.set(key, { count: 1, windowStart: now });
-      allowedForKey = true;
-    } else if (entry.count >= this.maxRequests) {
-      allowedForKey = false;
-    } else {
-      entry.count++;
-      allowedForKey = true;
-    }
-
-    if (!allowedForKey) {
-      return false;
-    }
-
-    // The global budget only counts requests that cleared the per-key
-    // check, so a single abusive client can't burn other clients' share
-    // of the global window.
+    // The global budget is reset/checked first so requests rejected by the
+    // per-client window — or by the global cap itself — never add or bump
+    // per-client entries and never consume the shared window.
     if (now - this.globalWindowStart >= this.windowMs) {
       this.globalCount = 0;
       this.globalWindowStart = now;
@@ -169,6 +153,17 @@ export class RateLimiter {
     if (this.globalCount >= this.maxGlobalRequests) {
       return false;
     }
+
+    const entry = this.hits.get(key);
+
+    if (!entry || now - entry.windowStart >= this.windowMs) {
+      this.hits.set(key, { count: 1, windowStart: now });
+    } else if (entry.count >= this.maxRequests) {
+      return false;
+    } else {
+      entry.count++;
+    }
+
     this.globalCount++;
     return true;
   }

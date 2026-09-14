@@ -15,7 +15,7 @@ listed only to be ruled out.
 
 Baseline (audit, current session): **461 nx projects**. Excluding demos (27), templates (11),
 websites (3) and the `palettes/` catalog (193 projects of generated data), the testable surface is
-**227 packages**. Today only **41 real test files carry ~305 `it()` blocks** (11 engine tests in
+**227 packages**. Today only **41 real test files carry ~426 `it()` blocks** (11 engine tests in
 `@tsparticles/tests`, 9 in `@tsparticles/mcp-server`, 10 color conversion specs, 2 background-mask,
 6 CLI, 2 solid, 1 ember). The engine has **no test target of its own** (150 source files), and
 every shapes/updaters/interactions/effects/paths/presets/bundles/easings/exports/emittersShapes
@@ -105,7 +105,7 @@ package; false-green = a `test` target that runs zero files.
 
 | Area                         | Projects | Test files today | Notes                                                                                    |
 | ---------------------------- | -------- | ---------------- | ---------------------------------------------------------------------------------------- |
-| Engine (`@tsparticles/tests`) | 1 (150 src) | 11 files / ~210 `it()` | Only indirect engine coverage; options/`Retina`/`CanvasManager`/`RenderManager`/updaters untested |
+| Engine (`@tsparticles/tests`) | 1 (150 src) | 11 files / ~203 `it()` | Only indirect engine coverage; options/`Retina`/`CanvasManager`/`RenderManager`/updaters untested |
 | Shapes                       | 21       | 0                | vertex math, gif frames, image metrics — all untested                                     |
 | Updaters                     | 13       | 0                | roll/tilt/orbit/wobble/twinkle/gradient/destroy/life/rotate/size/opacity/paint/outModes   |
 | Interactions external        | 17       | 0                | attract, bounce, bubble, cannon, connect, destroy, drag, grab, parallax, particle, pause, pop, push, remove, repulse, slow, trail |
@@ -116,12 +116,13 @@ package; false-green = a `test` target that runs zero files.
 | Bundles                      | 8        | 0                | basic/slim/all/pjs/particles/confetti/fireworks/ribbons registration smoke               |
 | Easings                      | 14       | 0                | deterministic curves, ideal unit-test candidates                                         |
 | Exports                      | 3        | 0                | image/video/json generation                                                              |
-| Colors                       | 10       | 10 (`conversion.spec.ts`, ~1–2 `it()` each) | thin but present |
+| Colors                       | 10       | 10 (`conversion.spec.ts`, 12 `it()` total) | thin but present |
+| Background-mask              | 1        | 2 files / 15 `it()` | `BackgroundMaskPluginInstance` + `BackgroundMaskCover` specs (already landed with the plugin) |
 | Configs                      | 1 (226 src) | 0                | 226 presets, easiest high-value sweep                                                    |
 | Util libs                    | 9        | 0                | simplex/fractal/perlin/smooth-value/noise-field/animation-utils/canvas-utils/path-utils   |
 | CLI                          | 25       | 6 files in 3 pkgs | only `create` (3), `create-utils` (2), `nx-plugin` (1); `build` has empty glob (false-green); 21 others no test script |
 | Wrappers                     | 23       | 3 (solid 2, ember 1) | 21 wrappers zero tests; `angular`, `angular-confetti`, `angular-fireworks` have `ng test` scripts but 0 specs (false-green) |
-| MCP server                   | 1        | 9 files / ~147 `it()` | the most thoroughly tested package; baseline only, no further work needed |
+| MCP server                   | 1        | 9 files / ~148 `it()` | the most thoroughly tested package; baseline only, no further work needed |
 | **Demos / templates / websites / palettes** | **234**    | —    | **excluded by design**                             |
 
 ### 1.1 Highest-risk uncovered surfaces (why)

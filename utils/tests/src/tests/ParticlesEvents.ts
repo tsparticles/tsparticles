@@ -1,11 +1,11 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,@typescript-eslint/require-await,one-var */
 import {
   type Container,
   type CustomEventArgs,
-  type ISourceOptions,
-  type Particle,
   EventType,
+  type ISourceOptions,
   LimitMode,
+  type Particle,
   tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
@@ -27,7 +27,7 @@ async function loadContainer(id: string, options: ISourceOptions): Promise<Conta
   const container = await tsParticles.load({
     id,
     options,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment
     element: createCustomCanvas(width, height) as any,
   });
 

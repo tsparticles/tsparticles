@@ -15,6 +15,7 @@ import {
   isArray,
   isInArray,
   itemFromArray,
+  minIndex,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
@@ -209,7 +210,6 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    */
   removeEmitter(emitter: EmitterInstance): void {
     const index = this.#instancesManager.getArray(this.container).indexOf(emitter),
-      minIndex = 0,
       deleteCount = 1;
 
     if (index >= minIndex) {
