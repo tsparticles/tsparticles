@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { diagnoseIssues } from "./diagnoseIssues.js";
+
+const MIN_EXPECTED_ISSUES = 5;
 
 describe("diagnoseIssues", () => {
   it("should return no issues for empty options", () => {
@@ -176,6 +178,6 @@ describe("diagnoseIssues", () => {
         number: { value: 5 },
       },
     });
-    expect(issues.length).toBeGreaterThanOrEqual(5);
+    expect(issues.length).toBeGreaterThanOrEqual(MIN_EXPECTED_ISSUES);
   });
 });

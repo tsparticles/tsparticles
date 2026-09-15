@@ -1,6 +1,6 @@
 import type { PackageCategory } from "../types.js";
-import { packageCatalog } from "../registry/packages.js";
 import { bundles } from "../registry/bundles.js";
+import { packageCatalog } from "../registry/packages.js";
 
 const CATEGORY_LABELS: Record<string, string> = {
   bundle: "Bundles (pre-composed feature sets)",
@@ -18,41 +18,39 @@ const CATEGORY_LABELS: Record<string, string> = {
   preset: "Presets (pre-configured effects)",
 };
 
+/**
+ *
+ */
 export function getPackageCatalogResource(): string {
-  const lines: string[] = [];
-
-  lines.push("# tsParticles Package Catalog");
-  lines.push("");
-  lines.push("Complete catalog of all tsParticles packages organized by category.");
-  lines.push("");
+  const lines: string[] = [
+    "# tsParticles Package Catalog",
+    "",
+    "Complete catalog of all tsParticles packages organized by category.",
+    "",
+  ];
 
   for (const [cat, label] of Object.entries(CATEGORY_LABELS)) {
-    const category = cat as PackageCategory;
-    const packages = packageCatalog.byCategory[category];
-    if (!packages || packages.length === 0) continue;
+    const category = cat as PackageCategory,
+      packages = packageCatalog.byCategory[category];
+    if (!packages || packages.length === 0) continue; // eslint-disable-line @typescript-eslint/no-magic-numbers, @typescript-eslint/no-unnecessary-condition
 
-    lines.push(`## ${label}`);
-    lines.push("");
+    lines.push(`## ${label}`, "");
 
     for (const pkg of packages) {
-      const loadFunc = pkg.loadFunction ? `\n  - Load function: \`${pkg.loadFunction}\`` : "";
-      const b = pkg.includedInBundles.length > 0 ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}` : "";
-      const opts = pkg.optionKeys.length > 0 ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\`` : "";
-      const check = pkg.needsPluginCheck ? `\n  - Activation: ${pkg.needsPluginCheck}` : "";
+      const loadFunc = pkg.loadFunction ? `\n  - Load function: \`${pkg.loadFunction}\`` : "",
+        b = pkg.includedInBundles.length > 0 ? `\n  - Included in: ${pkg.includedInBundles.join(", ")}` : "", // eslint-disable-line @typescript-eslint/no-magic-numbers
+        opts = pkg.optionKeys.length > 0 ? `\n  - Options: \`${pkg.optionKeys.join("`, `")}\`` : "", // eslint-disable-line @typescript-eslint/no-magic-numbers
+        check = pkg.needsPluginCheck ? `\n  - Activation: ${pkg.needsPluginCheck}` : "";
 
-      lines.push(`- \`${pkg.name}\``);
-      lines.push(`  ${pkg.description}${loadFunc}${b}${opts}${check}`);
+      lines.push(`- \`${pkg.name}\``, `  ${pkg.description}${loadFunc}${b}${opts}${check}`);
     }
     lines.push("");
   }
 
-  lines.push("## Bundle Compositions");
-  lines.push("");
+  lines.push("## Bundle Compositions", "");
 
   for (const bundle of bundles) {
-    lines.push(`### ${bundle.name}`);
-    lines.push("");
-    lines.push(`${bundle.description}`);
+    lines.push(`### ${bundle.name}`, "", bundle.description);
     if (bundle.extends) {
       lines.push(`- Extends: \`${bundle.extends}\``);
     }

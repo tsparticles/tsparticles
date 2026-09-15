@@ -532,15 +532,39 @@ export async function getDataFromUrl(
     return data.fallback;
   }
 
-  const response = await fetch(url);
+  try {
+    const response = await fetch(url);
 
-  if (response.ok) {
-    return (await response.json()) as SingleOrMultiple<Readonly<ISourceOptions>>;
+    if (response.ok) {
+      const current = (await response.json()) as unknown;
+
+      if (isSourceOptionsValue(current)) {
+        return current;
+      }
+
+      getLogger().error("invalid configuration data while retrieving config file");
+    } else {
+      getLogger().error(`${response.status.toString()} while retrieving config file`);
+    }
+  } catch (error) {
+    getLogger().error(`error while retrieving config file: ${error as string}`);
   }
 
-  getLogger().error(`${response.status.toString()} while retrieving config file`);
-
   return data.fallback;
+}
+
+/**
+ * Checks whether a parsed JSON value is a valid single source options object,
+ * i.e. a plain object that is not an array.
+ * @param value - the parsed JSON value to check
+ * @returns true when the value is a source options object
+ */
+function isSourceOptionsValue(value: unknown): value is SingleOrMultiple<Readonly<ISourceOptions>> {
+  if (isArray(value)) {
+    return value.every((entry: unknown) => isObject(entry) && !isArray(entry));
+  }
+
+  return isObject(value) && !isArray(value);
 }
 
 /**

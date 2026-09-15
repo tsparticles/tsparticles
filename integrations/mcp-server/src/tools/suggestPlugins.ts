@@ -1,36 +1,43 @@
-import type { SuggestPluginsResult, PackageImport } from "../types.js";
-import { packageCatalog } from "../registry/packages.js";
-import { optionToPlugin } from "../registry/pluginOptions.js";
-import { bundles } from "../registry/bundles.js";
-import { getOptionValue, isOptionEnabled, asArray } from "../utils/optionPath.js";
 import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
+import type { PackageImport, SuggestPluginsResult } from "../types.js";
+import { asArray, getOptionValue, isOptionEnabled } from "../utils/optionPath.js";
 import { collectInteractivityModes, parseModeNames } from "../utils/interactivityModes.js";
+import { bundles } from "../registry/bundles.js";
+import { optionToPlugin } from "../registry/pluginOptions.js";
+import { packageCatalog } from "../registry/packages.js";
 
+/**
+ *
+ * @param packages
+ */
 function findBundle(packages: string[]): string | undefined {
-  const allNames = new Set(packages);
-
-  const bundlePriority: Array<{ name: string; pkgs: string[] }> = [
-    {
-      name: "@tsparticles/all",
-      pkgs: ["@tsparticles/plugin-background-mask", "@tsparticles/plugin-canvas-mask", "@tsparticles/plugin-sounds"],
-    },
-    {
-      name: "tsparticles",
-      pkgs: ["@tsparticles/plugin-absorbers", "@tsparticles/plugin-emitters", "@tsparticles/interaction-external-drag"],
-    },
-    {
-      name: "@tsparticles/slim",
-      pkgs: [
-        "@tsparticles/plugin-interactivity",
-        "@tsparticles/interaction-particles-links",
-        "@tsparticles/shape-image",
-      ],
-    },
-    {
-      name: "@tsparticles/basic",
-      pkgs: ["@tsparticles/plugin-move", "@tsparticles/updater-opacity", "@tsparticles/updater-size"],
-    },
-  ];
+  const allNames = new Set(packages),
+    bundlePriority: { name: string; pkgs: string[] }[] = [
+      {
+        name: "@tsparticles/all",
+        pkgs: ["@tsparticles/plugin-background-mask", "@tsparticles/plugin-canvas-mask", "@tsparticles/plugin-sounds"],
+      },
+      {
+        name: "tsparticles",
+        pkgs: [
+          "@tsparticles/plugin-absorbers",
+          "@tsparticles/plugin-emitters",
+          "@tsparticles/interaction-external-drag",
+        ],
+      },
+      {
+        name: "@tsparticles/slim",
+        pkgs: [
+          "@tsparticles/plugin-interactivity",
+          "@tsparticles/interaction-particles-links",
+          "@tsparticles/shape-image",
+        ],
+      },
+      {
+        name: "@tsparticles/basic",
+        pkgs: ["@tsparticles/plugin-move", "@tsparticles/updater-opacity", "@tsparticles/updater-size"],
+      },
+    ];
 
   // Return the first (most feature-complete) bundle whose signature
   // packages are all present in the matched set. Previously this branch
@@ -48,9 +55,13 @@ function findBundle(packages: string[]): string | undefined {
   return undefined;
 }
 
+/**
+ *
+ * @param options
+ */
 export function suggestPlugins(options: Record<string, unknown>): SuggestPluginsResult {
-  const matched: Set<string> = new Set();
-  const imports: PackageImport[] = [];
+  const matched = new Set<string>(),
+    imports: PackageImport[] = [];
 
   for (const mapping of optionToPlugin) {
     if (isOptionEnabled(options, mapping.optionPath)) {
@@ -58,23 +69,30 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     }
   }
 
-  const hasInteractivity = options.interactivity !== undefined;
-  const hasEmitter = options.emitters !== undefined;
-  const hasAbsorber = options.absorbers !== undefined;
+  const hasInteractivity = options.interactivity !== undefined,
+    hasEmitter = options.emitters !== undefined,
+    hasAbsorber = options.absorbers !== undefined,
+    // -- Shape Detection --
+    shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as
+      Record<string, unknown> | undefined,
+    shapeType = shapeSection?.type,
+    shapeOptions = shapeSection?.options as Record<string, unknown> | undefined;
 
-  // -- Shape Detection --
-  const shapeSection = (options.particles as Record<string, unknown> | undefined)?.shape as
-    Record<string, unknown> | undefined;
-  const shapeType = shapeSection?.type;
-  const shapeOptions = shapeSection?.options as Record<string, unknown> | undefined;
-
-  function addShapeByName(name: string) {
+  /**
+   *
+   * @param name
+   */
+  function addShapeByName(name: string): void {
     const fullName = name.startsWith("@tsparticles/") ? name : `@tsparticles/shape-${name}`;
-    if (packageCatalog.byName[fullName]) {
+    if (fullName in packageCatalog.byName) {
       matched.add(fullName);
     }
   }
 
+  /**
+   *
+   * @param value
+   */
   function getShapeNames(value: unknown): string[] {
     return parseModeNames(value);
   }
@@ -108,22 +126,22 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     Record<string, unknown> | undefined;
   if (effectType?.type) {
     const effectMap: Record<string, string> = {
-      bubble: "@tsparticles/effect-bubble",
-      filter: "@tsparticles/effect-filter",
-      particles: "@tsparticles/effect-particles",
-      shadow: "@tsparticles/effect-shadow",
-      trail: "@tsparticles/effect-trail",
-    };
-    const typeStr = String(effectType.type);
-    const pkg = effectMap[typeStr];
+        bubble: "@tsparticles/effect-bubble",
+        filter: "@tsparticles/effect-filter",
+        particles: "@tsparticles/effect-particles",
+        shadow: "@tsparticles/effect-shadow",
+        trail: "@tsparticles/effect-trail",
+      },
+      typeStr = effectType.type as string,
+      pkg = effectMap[typeStr];
     if (pkg) matched.add(pkg);
   }
 
   // -- Emitter Shape Detection --
   // `emitters` may be a single config object or an array of them — walk
   // every entry so array-form configs aren't silently skipped.
-  const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
-  const matchedEmitterShapePackages = new Set<string>();
+  const emitterEntries = asArray<Record<string, unknown>>(options.emitters),
+    matchedEmitterShapePackages = new Set<string>();
   for (const emitter of emitterEntries) {
     const esTypeRaw = getOptionValue(emitter, "shape.type");
     for (const name of getShapeNames(esTypeRaw)) {
@@ -168,6 +186,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     // configured emitters resolved to ANY known emitter-shape package
     // (previously this only checked circle/square, so an emitter using
     // e.g. "polygon" would incorrectly also get "circle" added).
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (matchedEmitterShapePackages.size === 0) {
       matched.add("@tsparticles/plugin-emitters-shape-circle");
     }
@@ -181,7 +200,7 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
 
   for (const pkgName of matchedArr) {
     const pkgInfo = packageCatalog.byName[pkgName];
-    if (pkgInfo?.loadFunction) {
+    if (pkgInfo.loadFunction) {
       imports.push({
         function: pkgInfo.loadFunction,
         from: pkgName,

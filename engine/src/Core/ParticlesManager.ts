@@ -42,7 +42,7 @@ export class ParticlesManager {
   readonly #container: Container;
   /** The spatial hash grid */
   #grid;
-  readonly #groupLimits: Map<string, number>;
+  readonly #groupLimits: Map<string, { limit: number; mode: LimitMode }>;
   #limit;
   #nextId;
   readonly #particleBuckets: Map<number, number>;
@@ -68,7 +68,7 @@ export class ParticlesManager {
     this.#array = [];
     this.#pool = [];
     this.#limit = 0;
-    this.#groupLimits = new Map<string, number>();
+    this.#groupLimits = new Map<string, { limit: number; mode: LimitMode }>();
     this.#particleBuckets = new Map<number, number>();
     this.#zBuckets = this.#createBuckets(this.#container.zLayers);
     this.#grid = new SpatialHashGrid(spatialHashGridCellSize);
@@ -106,54 +106,8 @@ export class ParticlesManager {
     group?: string,
     initializer?: (particle: Particle) => boolean,
   ): Particle | undefined {
-    const limitMode = this.#container.actualOptions.particles.number.limit.mode,
-      limit = group === undefined ? this.#limit : (this.#groupLimits.get(group) ?? this.#limit),
-      currentCount = this.count;
-
-    if (limit > minLimit) {
-      switch (limitMode) {
-        case LimitMode.delete: {
-          const globalCountToRemove = this.#limit > minLimit ? currentCount + countOffset - this.#limit : minCount;
-
-          let countToRemove = globalCountToRemove;
-
-          if (group !== undefined) {
-            const groupLimit = this.#groupLimits.get(group) ?? this.#limit;
-
-            if (groupLimit > minLimit) {
-              const groupCount = this.filter(t => t.group === group).length,
-                groupCountToRemove = groupCount + countOffset - groupLimit;
-
-              if (groupCountToRemove > minCount) {
-                this.removeQuantity(groupCountToRemove, group);
-                countToRemove = Math.max(globalCountToRemove - groupCountToRemove, minCount);
-              }
-            }
-          }
-
-          if (countToRemove > minCount) {
-            this.#removeAny(countToRemove);
-          }
-
-          break;
-        }
-        case LimitMode.wait: {
-          const globalLimitReached = this.#limit > minLimit && currentCount >= this.#limit;
-
-          if (globalLimitReached) {
-            return;
-          }
-
-          if (group !== undefined && limit > minLimit && this.filter(t => t.group === group).length >= limit) {
-            return;
-          }
-
-          break;
-        }
-        default:
-          // no-op
-          break;
-      }
+    if (this.#checkAndApplyLimits(group, this.count)) {
+      return;
     }
 
     try {
@@ -457,7 +411,10 @@ export class ParticlesManager {
     if (group === undefined) {
       this.#limit = numberOptions.limit.value * densityFactor;
     } else {
-      this.#groupLimits.set(group, numberOptions.limit.value * densityFactor);
+      this.#groupLimits.set(group, {
+        limit: numberOptions.limit.value * densityFactor,
+        mode: numberOptions.limit.mode as LimitMode,
+      });
     }
 
     if (particlesCount < particlesNumber) {
@@ -489,11 +446,60 @@ export class ParticlesManager {
       const limitValue = groupOptions?.number?.limit?.value ?? options.number.limit.value;
 
       if (limitValue > minLimit) {
-        this.#groupLimits.set(group, limitValue);
+        this.#groupLimits.set(group, {
+          limit: limitValue,
+          mode: (groupOptions?.number?.limit?.mode ?? options.number.limit.mode) as LimitMode,
+        });
       } else {
         this.#groupLimits.delete(group);
       }
     }
+  }
+
+  /**
+   * Applies the global and the group-specific particle limits before an addition.
+   * Each wait limit short-circuits (the addition is rejected) before any removal
+   * runs, then each applicable delete limit trims its own scope. Group limits keep
+   * their own mode instead of inheriting the global mode.
+   * @param group - The group the particle is added to
+   * @param currentCount - The current total particle count
+   * @returns true when the addition must be rejected
+   */
+  #checkAndApplyLimits(group: string | undefined, currentCount: number): boolean {
+    const globalLimit = this.#limit,
+      globalMode = this.#container.actualOptions.particles.number.limit.mode;
+
+    if (globalLimit > minLimit && globalMode === LimitMode.wait && currentCount >= globalLimit) {
+      return true;
+    }
+
+    const groupLimitEntry = group === undefined ? undefined : this.#groupLimits.get(group);
+
+    if (groupLimitEntry && groupLimitEntry.limit > minLimit && groupLimitEntry.mode === LimitMode.wait) {
+      const groupCount = this.filter(t => t.group === group).length;
+
+      if (groupCount >= groupLimitEntry.limit) {
+        return true;
+      }
+    }
+
+    if (groupLimitEntry && groupLimitEntry.limit > minLimit && groupLimitEntry.mode === LimitMode.delete) {
+      const groupCountToRemove = this.filter(t => t.group === group).length + countOffset - groupLimitEntry.limit;
+
+      if (groupCountToRemove > minCount) {
+        this.removeQuantity(groupCountToRemove, group);
+      }
+    }
+
+    if (globalLimit > minLimit && globalMode === LimitMode.delete) {
+      const globalCountToRemove = this.count + countOffset - globalLimit;
+
+      if (globalCountToRemove > minCount) {
+        this.#removeAny(globalCountToRemove);
+      }
+    }
+
+    return false;
   }
 
   #createBuckets(zLayers: number): Particle[][] {

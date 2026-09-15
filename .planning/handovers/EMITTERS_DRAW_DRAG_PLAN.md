@@ -17,19 +17,19 @@ The two features have no coupling: drawing is purely visual, dragging is an inte
 
 ### Absorbers (reference, already implemented)
 
-| Feature | Where | How |
-| --- | --- | --- |
-| Draw | `AbsorberInstance.draw(context)` (`plugins/absorbers/src/AbsorberInstance.ts:231`) | Fill a circle using `color` + `opacity`; always on (no toggle). Invoked by `AbsorbersPluginInstance.draw(context)` (`AbsorbersPluginInstance.ts:24`) via the engine's `IContainerPlugin.draw`. |
-| Drag | `Absorber.draggable` option (`Options/Classes/Absorber.ts:29`, default `false`, loaded via `loadProperty`) | `AbsorbersInteractor.interact()` (`AbsorbersInteractor.ts:95-125`): when `mouse.clicking && mouse.downPosition` within `absorber.size`, start dragging, then set `absorber.position` to `mouse.position`. |
+| Feature | Where                                                                                                      | How                                                                                                                                                                                                       |
+| ------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Draw    | `AbsorberInstance.draw(context)` (`plugins/absorbers/src/AbsorberInstance.ts:231`)                         | Fill a circle using `color` + `opacity`; always on (no toggle). Invoked by `AbsorbersPluginInstance.draw(context)` (`AbsorbersPluginInstance.ts:24`) via the engine's `IContainerPlugin.draw`.            |
+| Drag    | `Absorber.draggable` option (`Options/Classes/Absorber.ts:29`, default `false`, loaded via `loadProperty`) | `AbsorbersInteractor.interact()` (`AbsorbersInteractor.ts:95-125`): when `mouse.clicking && mouse.downPosition` within `absorber.size`, start dragging, then set `absorber.position` to `mouse.position`. |
 
 Both features are fully present in absorbers – nothing missing to plan for them.
 
 ### Emitters (to be built)
 
-| Feature | Current state |
-| --- | --- |
-| Draw | Missing. `EmitterInstance` has no `draw`; `EmittersPluginInstance` doesn't implement `IContainerPlugin.draw`; the shape interface (`IEmitterShape`) has no `draw`. |
-| Drag | Missing. No `draggable` option. `EmittersInteractor.interact()` only calls `emitter.update(delta)` (`EmittersInteractor.ts:123-127`). |
+| Feature | Current state                                                                                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Draw    | Missing. `EmitterInstance` has no `draw`; `EmittersPluginInstance` doesn't implement `IContainerPlugin.draw`; the shape interface (`IEmitterShape`) has no `draw`. |
+| Drag    | Missing. No `draggable` option. `EmittersInteractor.interact()` only calls `emitter.update(delta)` (`EmittersInteractor.ts:123-127`).                              |
 
 ### Key emitter details to account for
 
@@ -45,18 +45,22 @@ An `options.draw` toggle (default `true`, so new behavior matches absorbers; set
 ### 1.1 Options
 
 **`plugins/emitters/src/Options/Interfaces/IEmitter.ts`**
+
 - Add `draw: boolean`.
 
 **`plugins/emitters/src/Options/Classes/Emitter.ts`**
+
 - Add field `draw = true`.
 - Load in `load()`: `loadProperty(this, "draw", data.draw)`.
 
 ### 1.2 Shape interface — add `draw`
 
 **`plugins/emitters/src/IEmitterShape.ts`**
+
 - Add `draw(context: OffscreenCanvasRenderingContext2D): void;`.
 
 **`plugins/emitters/src/EmitterShapeBase.ts`**
+
 - Add `abstract draw(context: OffscreenCanvasRenderingContext2D): void;`.
 
 ### 1.3 Per-shape `draw` implementation
@@ -66,13 +70,15 @@ Shapes trace their own geometry centered on `position` with `size` (they already
 - **square** (`plugins/emittersShapes/square/src/EmittersSquareShape.ts`): `context.rect(position.x - width/2, position.y - height/2, width, height)`.
 - **circle** (`plugins/emittersShapes/circle/src/EmittersCircleShape.ts`): `context.ellipse(position.x, position.y, width/2, height/2, 0, 0, doublePI)` (ellipse handles width ≠ height; fall back to `arc` for square sizes).
 - **polygon** (`plugins/emittersShapes/polygon/src/EmittersPolygonShape.ts`): `moveTo/lineTo` over `this.polygon` points → `closePath`.
-- **path** (`plugins/emittersShapes/path/src/EmittersPathShape.ts`): exception — `context.fill(this.path)` / `context.stroke(this.path)`. A `Path2D` is not part of the canvas current path, so this shape performs its own fill/stroke instead of relying on the shared fill/stroke in §1.4.
+- **path** (`plugins/emittersShapes/path/src/EmittersPathShape.ts`): exception — `context.fill(this.path)` / `context.stroke(this.path)` (stroke only when spawn stroke color is configured). A `Path2D` is not part of the canvas current path, so this shape performs its own fill/stroke instead of relying on the shared fill/stroke in §1.4.
 - **canvas** (`plugins/emittersShapes/canvas/src/EmittersCanvasShape.ts`): optional in first iteration. The shape is pixel-data based; drawing would require keeping a reference to the source image/element in `init()`. If skipped, `draw()` is a no-op (fall back to documented behavior). Can be added later without breaking API.
 
 ### 1.4 `EmitterInstance.draw(context)`
 
 **`plugins/emitters/src/EmitterInstance.ts`**
+
 - Add:
+
   ```ts
   draw(context: OffscreenCanvasRenderingContext2D): void {
     if (!this.options.draw || !this.#shape) {
@@ -91,12 +97,15 @@ Shapes trace their own geometry centered on `position` with `size` (they already
     context.restore();
   }
   ```
+
   (Centralized `beginPath`/`fill`/`stroke`: per-shape `draw` implementations only trace geometry (§1.3) and rely on this method for the fill/stroke round-trip. The path shape is the exception — it fills/strokes its `Path2D` itself. Collect per-instance `fillOpacity` / `strokeWidth` values already computed in `#emitParticles` so draw matches particle appearance.)
+
 - New imports (all from `@tsparticles/engine`): `getStyleFromHsl`, `getStyleFromRgb`, `doublePI`.
 
 ### 1.5 `EmittersPluginInstance.draw`
 
 **`plugins/emitters/src/EmittersPluginInstance.ts`**
+
 - Implement `draw(context: OffscreenCanvasRenderingContext2D, _delta: IDelta): void`:
   ```ts
   for (const emitter of this.#instancesManager.getArray(this.#container)) {
@@ -112,15 +121,18 @@ Option + mouse handling copied from the absorber pattern.
 ### 2.1 Options
 
 **`plugins/emitters/src/Options/Interfaces/IEmitter.ts`**
+
 - Add `draggable: boolean`.
 
 **`plugins/emitters/src/Options/Classes/Emitter.ts`**
+
 - Add field `draggable = false` (absorber default).
 - Load in `load()`: `loadProperty(this, "draggable", data.draggable)`.
 
 ### 2.2 `EmitterInstance.setPosition(position)`
 
 **`plugins/emitters/src/EmitterInstance.ts`**
+
 - Add public method to keep position + shape in sync without triggering `resize()` (which recomputes position/size from options):
   ```ts
   setPosition(position: ICoordinates): void {
@@ -132,13 +144,15 @@ Option + mouse handling copied from the absorber pattern.
 ### 2.3 `EmittersInteractor` dragging
 
 **`plugins/emitters/src/EmittersInteractor.ts`**
+
 - Add fields `#dragging = false` and `#draggingEmitter: EmitterInstance | undefined`.
 - In `interact(interactivityData, delta)`, per emitter, before `emitter.update(delta)`:
   ```ts
   if (emitter.options.draggable && !emitter.options.domId) {
     const mouse = interactivityData.mouse;
     if (mouse.clicking && mouse.downPosition) {
-      const inside = Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width / 2 &&
+      const inside =
+        Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width / 2 &&
         Math.abs(mouse.downPosition.y - emitter.position.y) <= emitter.size.height / 2;
       if (inside) {
         this.#dragging = true;

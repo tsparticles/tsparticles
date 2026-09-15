@@ -9,12 +9,13 @@
  * data rather than instructions. Backticks inside the value are removed
  * so the fencing can't be terminated early. The caller also therefore
  * gets a value that is safe to embed inside a quoted title.
+ * @param value
  */
 export function sanitizeReflection(value: unknown): string {
-  const str = typeof value === "string" ? value : String(value);
-  const cleaned = str
-    .replace(/[\u0000-\u001F\u007F]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  const str = typeof value === "string" ? value : String(value),
+    cleaned = str
+      .replace(/[\u0000-\u001F\u007F]/g, "") // eslint-disable-line no-control-regex
+      .replace(/\s+/g, " ")
+      .trim();
   return `\`${cleaned.replace(/`/g, "")}\``;
 }

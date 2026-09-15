@@ -1,65 +1,81 @@
-import { packageCatalog } from "../registry/packages.js";
 import { EMITTER_SHAPE_PACKAGES, INTERACTION_MODE_PACKAGES } from "../registry/packageMaps.js";
-import { getOptionValue, asArray } from "../utils/optionPath.js";
+import { asArray, getOptionValue } from "../utils/optionPath.js";
 import { collectInteractivityModes, parseModeNames } from "../utils/interactivityModes.js";
+import { packageCatalog } from "../registry/packages.js";
 import { sanitizeReflection } from "../utils/sanitize.js";
 
 export interface DiagnosticIssue {
-  severity: "error" | "warning" | "info";
-  title: string;
   description: string;
   fix?: string;
   relatedPackages?: string[];
+  severity: "error" | "warning" | "info";
+  title: string;
 }
 
 // Shape names built into @tsparticles/engine itself, which never need an
 // extra @tsparticles/shape-* package. Anything else is either a known
 // shape package (checked against the catalog) or unrecognized.
-const BUILT_IN_SHAPES = new Set(["circle", "square", "edge"]);
+const BUILT_IN_SHAPES = new Set(["circle", "square", "edge"]),
+  HIGH_PARTICLE_COUNT = 1000,
+  INVISIBLE_VALUE = 0,
+  LOW_PARTICLE_COUNT = 30,
+  // Keys that legitimately belong under `particles` in a valid tsParticles
+  // config. This list intentionally errs on the side of completeness —
+  // missing an entry here causes a false-positive "unusual structure"
+  // warning on perfectly valid configs, which is worse than under-warning.
+  KNOWN_PARTICLES_KEYS = new Set([
+    "number",
+    "color",
+    "shape",
+    "size",
+    "opacity",
+    "move",
+    "links",
+    "collisions",
+    "stroke",
+    "groups",
+    "zIndex",
+    "reduceDuplicates",
+    "life",
+    "rotate",
+    "tilt",
+    "roll",
+    "wobble",
+    "twinkle",
+    "shadow",
+    "destroy",
+    "orbit",
+    "effect",
+    "bounce",
+    "interactivity",
+  ]);
 
-// Keys that legitimately belong under `particles` in a valid tsParticles
-// config. This list intentionally errs on the side of completeness —
-// missing an entry here causes a false-positive "unusual structure"
-// warning on perfectly valid configs, which is worse than under-warning.
-const KNOWN_PARTICLES_KEYS = new Set([
-  "number",
-  "color",
-  "shape",
-  "size",
-  "opacity",
-  "move",
-  "links",
-  "collisions",
-  "stroke",
-  "groups",
-  "zIndex",
-  "reduceDuplicates",
-  "life",
-  "rotate",
-  "tilt",
-  "roll",
-  "wobble",
-  "twinkle",
-  "shadow",
-  "destroy",
-  "orbit",
-  "effect",
-  "bounce",
-  "interactivity",
-]);
+/**
+ * Renders a diagnostic value as text, keeping the same output a plain
+ * template interpolation would have produced.
+ *
+ * @param value - the value to render
+ * @returns the value rendered as text
+ */
+function toText(value: unknown): string {
+  return String(value);
+}
 
+/**
+ *
+ * @param options
+ */
 export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssue[] {
-  const issues: DiagnosticIssue[] = [];
-
-  // ── No Plugins Loaded (most common issue) ───────────────────────
-  const hasParticleOptions =
-    getOptionValue(options, "particles.number") !== undefined ||
-    getOptionValue(options, "particles.color") !== undefined ||
-    getOptionValue(options, "particles.shape") !== undefined ||
-    getOptionValue(options, "particles.size") !== undefined ||
-    getOptionValue(options, "particles.opacity") !== undefined ||
-    getOptionValue(options, "particles.move") !== undefined ||
-    getOptionValue(options, "particles.links") !== undefined;
+  const issues: DiagnosticIssue[] = [],
+    // ── No Plugins Loaded (most common issue) ───────────────────────
+    hasParticleOptions =
+      getOptionValue(options, "particles.number") !== undefined ||
+      getOptionValue(options, "particles.color") !== undefined ||
+      getOptionValue(options, "particles.shape") !== undefined ||
+      getOptionValue(options, "particles.size") !== undefined ||
+      getOptionValue(options, "particles.opacity") !== undefined ||
+      getOptionValue(options, "particles.move") !== undefined ||
+      getOptionValue(options, "particles.links") !== undefined;
 
   if (hasParticleOptions) {
     issues.push({
@@ -88,7 +104,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
 
   // ── Particle Visibility ─────────────────────────────────────────
   const opacityVal = getOptionValue(options, "particles.opacity.value");
-  if (opacityVal !== undefined && Number(opacityVal) === 0) {
+  if (opacityVal !== undefined && Number(opacityVal) === INVISIBLE_VALUE) {
     const opacityAnim = getOptionValue(options, "particles.opacity.animation.enable");
     if (!opacityAnim) {
       issues.push({
@@ -102,7 +118,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   }
 
   const sizeVal = getOptionValue(options, "particles.size.value");
-  if (sizeVal !== undefined && Number(sizeVal) === 0) {
+  if (sizeVal !== undefined && Number(sizeVal) === INVISIBLE_VALUE) {
     const sizeAnim = getOptionValue(options, "particles.size.animation.enable");
     if (!sizeAnim) {
       issues.push({
@@ -130,7 +146,7 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // ── Missing Color Plugin ────────────────────────────────────────
   const colorValue = getOptionValue(options, "particles.color.value");
   if (colorValue !== undefined && colorValue !== null) {
-    const colorStr = String(colorValue);
+    const colorStr = toText(colorValue);
     if (colorStr.startsWith("#")) {
       issues.push({
         severity: "warning",
@@ -164,17 +180,20 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // ── Missing Shape Plugin ────────────────────────────────────────
   const shapeType = getOptionValue(options, "particles.shape.type");
   if (shapeType) {
-    const names =
-      typeof shapeType === "string"
-        ? shapeType.split(/[,\s]+/).filter(Boolean)
-        : Array.isArray(shapeType)
-          ? shapeType.filter((v): v is string => typeof v === "string" && v.length > 0)
-          : [];
+    let names: string[];
+    if (typeof shapeType === "string") {
+      names = shapeType.split(/[,\s]+/).filter(Boolean);
+    } else if (Array.isArray(shapeType)) {
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      names = shapeType.filter((v): v is string => typeof v === "string" && v.length > 0);
+    } else {
+      names = [];
+    }
     for (const name of names) {
-      const cleanName = name.replace("@tsparticles/", "");
-      const fullName = cleanName.startsWith("shape-") ? `@tsparticles/${cleanName}` : `@tsparticles/shape-${cleanName}`;
+      const cleanName = name.replace("@tsparticles/", ""),
+        fullName = cleanName.startsWith("shape-") ? `@tsparticles/${cleanName}` : `@tsparticles/shape-${cleanName}`;
 
-      if (packageCatalog.byName[fullName]) {
+      if (fullName in packageCatalog.byName) {
         issues.push({
           severity: "warning",
           title: `Shape ${sanitizeReflection(cleanName)} needs its plugin`,
@@ -272,10 +291,11 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // ── Options Structure Issues ────────────────────────────────────
   const particlesVal = getOptionValue(options, "particles") as Record<string, unknown> | undefined;
   if (particlesVal && typeof particlesVal === "object") {
-    const keys = Object.keys(particlesVal);
-    const hasAnyKnownKey = keys.some(k => KNOWN_PARTICLES_KEYS.has(k));
-    const childObjectKeys = keys.filter(k => typeof particlesVal[k] === "object");
+    const keys = Object.keys(particlesVal),
+      hasAnyKnownKey = keys.some(k => KNOWN_PARTICLES_KEYS.has(k)),
+      childObjectKeys = keys.filter(k => typeof particlesVal[k] === "object");
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (!hasAnyKnownKey && childObjectKeys.length > 0) {
       issues.push({
         severity: "info",
@@ -287,13 +307,13 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   }
 
   // ── Low particle count ──────────────────────────────────────────
-  const numParticles = getOptionValue(options, "particles.number.value");
-  const densityArea = getOptionValue(options, "particles.number.density.area");
-  if (numParticles !== undefined && Number(numParticles) < 30 && !densityArea) {
+  const numParticles = getOptionValue(options, "particles.number.value"),
+    densityArea = getOptionValue(options, "particles.number.density.area");
+  if (numParticles !== undefined && Number(numParticles) < LOW_PARTICLE_COUNT && !densityArea) {
     issues.push({
       severity: "info",
       title: "Low particle count",
-      description: `Only ${numParticles} particles configured. In a full-screen canvas this may look sparse.`,
+      description: `Only ${toText(numParticles)} particles configured. In a full-screen canvas this may look sparse.`,
       fix: "Increase particles.number.value to 50-100, or configure particles.number.density.area to auto-scale based on canvas size.",
     });
   }
@@ -324,8 +344,8 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   // `emitters` may be a single object or an array of emitter configs —
   // normalize before reading `.shape.type` so array configs aren't
   // silently skipped.
-  const emitterEntries = asArray<Record<string, unknown>>(options.emitters);
-  const reportedEmitterShapes = new Set<string>();
+  const emitterEntries = asArray<Record<string, unknown>>(options.emitters),
+    reportedEmitterShapes = new Set<string>();
   for (const emitter of emitterEntries) {
     const shapeType = getOptionValue(emitter, "shape.type");
     if (!shapeType) continue;
@@ -348,11 +368,11 @@ export function diagnoseIssues(options: Record<string, unknown>): DiagnosticIssu
   }
 
   // ── Performance Warnings ────────────────────────────────────────
-  if (numParticles !== undefined && Number(numParticles) > 1000) {
+  if (numParticles !== undefined && Number(numParticles) > HIGH_PARTICLE_COUNT) {
     issues.push({
       severity: "warning",
       title: "High particle count may affect performance",
-      description: `${numParticles} particles is a lot. Consider reducing the count or enabling performance options.`,
+      description: `${toText(numParticles)} particles is a lot. Consider reducing the count or enabling performance options.`,
       fix: "Set particles.number.value to a lower value (100-500), or enable particles.reduceDuplicates.",
     });
   }

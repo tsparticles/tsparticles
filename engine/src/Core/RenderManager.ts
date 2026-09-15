@@ -29,6 +29,25 @@ const fColorIndex = 0,
   sColorIndex = 1;
 
 /**
+ * Checks whether a plugin implements any rendering layer hook. Such plugins are
+ * registered on a {@link DrawLayer} (see {@link RenderManager.#initLayerPlugin})
+ * and are therefore visited during layer traversal in {@link RenderManager.clear},
+ * so they must not also be registered in the dedicated canvas-clear array.
+ * @param plugin - the plugin to check
+ * @returns true when the plugin will run on at least one rendering layer
+ * @see RenderManager.#initLayerPlugin
+ */
+function isLayerPlugin(plugin: IContainerPlugin): boolean {
+  return !!(
+    plugin.canvasPaint ??
+    plugin.drawSettingsSetup ??
+    plugin.draw ??
+    plugin.clearDraw ??
+    plugin.drawSettingsCleanup
+  );
+}
+
+/**
  * @param factor - The factor
  * @param newFactor - The newFactor
  * @param key - The key
@@ -765,7 +784,7 @@ export class RenderManager {
         this.#drawParticlesCleanupPlugins.push(plugin);
       }
 
-      if (plugin.canvasClear) {
+      if (plugin.canvasClear && !isLayerPlugin(plugin)) {
         this.#canvasClearPlugins.push(plugin);
       }
 

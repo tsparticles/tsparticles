@@ -26,7 +26,7 @@ async function loadContainer(id: string, options: ISourceOptions): Promise<Conta
   const container = await tsParticles.load({
     id,
     options,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     element: createCustomCanvas(1920, 1080) as any,
   });
 
@@ -460,16 +460,18 @@ describe("Particles", async () => {
         },
       });
 
-      expect(fresh.particles.count).to.be.at.most(100);
+      try {
+        expect(fresh.particles.count).to.be.at.most(100);
 
-      fresh.particles.update({
-        value: 16.66667,
-        factor: (60 * 16.66667) / 1000,
-      });
+        fresh.particles.update({
+          value: 16.66667,
+          factor: (60 * 16.66667) / 1000,
+        });
 
-      expect(fresh.particles.count).to.be.at.most(100);
-
-      fresh.destroy(false);
+        expect(fresh.particles.count).to.be.at.most(100);
+      } finally {
+        fresh.destroy(false);
+      }
     });
 
     it("T23b - should create exactly the limit when value equals the limit", async () => {
@@ -486,9 +488,11 @@ describe("Particles", async () => {
         },
       });
 
-      expect(fresh.particles.count).to.equal(100);
-
-      fresh.destroy(false);
+      try {
+        expect(fresh.particles.count).to.equal(100);
+      } finally {
+        fresh.destroy(false);
+      }
     });
 
     it("T24 - should trim the oldest particles on initial load with value > limit (delete mode)", async () => {
@@ -505,14 +509,16 @@ describe("Particles", async () => {
         },
       });
 
-      expect(fresh.particles.count).to.equal(100);
+      try {
+        expect(fresh.particles.count).to.equal(100);
 
-      const ids = fresh.particles.filter(() => true).map(t => t.id);
+        const ids = fresh.particles.filter(() => true).map(t => t.id);
 
-      expect(ids).to.have.length(100);
-      expect(Math.min(...ids)).to.be.at.least(100);
-
-      fresh.destroy(false);
+        expect(ids).to.have.length(100);
+        expect(Math.min(...ids)).to.be.at.least(100);
+      } finally {
+        fresh.destroy(false);
+      }
     });
 
     it("T25 - should never grow past the limit across consecutive resets", async () => {

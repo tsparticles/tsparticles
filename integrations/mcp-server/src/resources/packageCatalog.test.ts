@@ -1,11 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { getPackageCatalogResource } from "./packageCatalog.js";
 
 describe("getPackageCatalogResource", () => {
   it("should generate markdown with all categories", () => {
     const result = getPackageCatalogResource();
     expect(typeof result).toBe("string");
-    expect(result.length).toBeGreaterThan(1000);
+    expect(result.length).toBeGreaterThan(1000); // eslint-disable-line @typescript-eslint/no-magic-numbers
     expect(result).toContain("## Bundles");
     expect(result).toContain("## Plugins");
     expect(result).toContain("## Shapes");

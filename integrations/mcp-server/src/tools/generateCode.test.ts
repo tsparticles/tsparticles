@@ -1,11 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
-  generateCode,
   extractKeywords,
-  matchBundle,
-  generateOptions,
+  generateCode,
   generateHtml,
   generateInstallCommand,
+  generateOptions,
+  matchBundle,
 } from "./generateCode.js";
 
 describe("extractKeywords", () => {
@@ -23,7 +23,7 @@ describe("extractKeywords", () => {
 });
 
 describe("matchBundle", () => {
-  const cases: Array<[string, string, string?]> = [
+  const cases: [string, string, string?][] = [
     ["confetti falling", "@tsparticles/confetti"],
     ["coriandoli colorati", "@tsparticles/confetti"],
     ["fireworks display", "@tsparticles/fireworks"],
@@ -72,8 +72,8 @@ describe("matchBundle", () => {
 
 describe("generateOptions", () => {
   it("produces the confetti template", () => {
-    const match = matchBundle(extractKeywords("confetti"), "confetti");
-    const options = generateOptions(match, extractKeywords("confetti"), "confetti");
+    const match = matchBundle(extractKeywords("confetti"), "confetti"),
+      options = generateOptions(match, extractKeywords("confetti"), "confetti");
     expect(options).toMatchObject({
       particleCount: 120,
       spread: 100,
@@ -85,21 +85,21 @@ describe("generateOptions", () => {
   });
 
   it("produces the fireworks template", () => {
-    const match = matchBundle(extractKeywords("fireworks"), "fireworks");
-    const options = generateOptions(match, extractKeywords("fireworks"), "fireworks");
+    const match = matchBundle(extractKeywords("fireworks"), "fireworks"),
+      options = generateOptions(match, extractKeywords("fireworks"), "fireworks");
     expect(options).toMatchObject({ particleCount: 50, spread: 360, startVelocity: 30 });
   });
 
   it("produces a generic template with core sections", () => {
-    const match = matchBundle(extractKeywords("particle animation"), "particle animation");
-    const options = generateOptions(match, extractKeywords("particle animation"), "particle animation");
+    const match = matchBundle(extractKeywords("particle animation"), "particle animation"),
+      options = generateOptions(match, extractKeywords("particle animation"), "particle animation");
     expect(options.particles).toMatchObject({
-      number: expect.any(Object),
+      number: expect.any(Object) as Record<string, unknown>,
       color: { value: "#ffffff" },
       shape: { type: "circle" },
-      opacity: expect.any(Object),
-      size: expect.any(Object),
-      move: expect.any(Object),
+      opacity: expect.any(Object) as Record<string, unknown>,
+      size: expect.any(Object) as Record<string, unknown>,
+      move: expect.any(Object) as Record<string, unknown>,
     });
     expect(options.background).toEqual({ color: "#000000" });
   });
@@ -117,23 +117,24 @@ describe("generateOptions", () => {
       value: 200,
       density: { enable: true },
     });
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(((result.options.particles as Record<string, unknown>).move as Record<string, unknown>).speed).toBe(1);
   });
 
   it("maps triangle descriptions to the polygon shape", () => {
-    const plural = generateCode({ description: "triangles floating" });
-    const singular = generateCode({ description: "a floating triangle" });
+    const plural = generateCode({ description: "triangles floating" }),
+      singular = generateCode({ description: "a floating triangle" });
     expect((plural.options.particles as Record<string, unknown>).shape).toEqual({ type: "polygon" });
     expect((singular.options.particles as Record<string, unknown>).shape).toEqual({ type: "polygon" });
   });
 
   it("adds links and interactivity for interactive link descriptions", () => {
     const result = generateCode({
-      description: "interactive stars in the background with links on hover",
-      framework: "react",
-      typescript: true,
-    });
-    const particles = result.options.particles as Record<string, unknown>;
+        description: "interactive stars in the background with links on hover",
+        framework: "react",
+        typescript: true,
+      }),
+      particles = result.options.particles as Record<string, unknown>;
     expect(particles.shape).toEqual({ type: "star" });
     expect(particles.links).toMatchObject({ enable: true, distance: 150 });
     const interactivity = result.options.interactivity as Record<string, unknown>;
@@ -152,6 +153,7 @@ describe("framework codegen", () => {
     expect(result.code).toContain('import { confetti } from "@tsparticles/confetti"');
     expect(result.code).toContain("await confetti(");
     expect(result.installPackages).toEqual(["@tsparticles/confetti"]);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(result.notes[0]).toContain("auto-initializes");
   });
 
@@ -240,6 +242,29 @@ describe("framework codegen", () => {
     expect(result.code).toContain("loadSnowPreset");
     expect(result.code).toContain('from "@tsparticles/preset-snow"');
   });
+
+  it("emits loader imports and calls for suggested packages outside the selected bundle", () => {
+    const result = generateCode({ description: "triangles floating", typescript: true });
+
+    expect(result.bundle).toBe("@tsparticles/basic");
+    expect(result.installPackages).toContain("@tsparticles/shape-polygon");
+    expect(result.code).toContain('import { loadPolygonShape } from "@tsparticles/shape-polygon";');
+    expect(result.code).toContain("await loadPolygonShape(tsParticles);");
+    expect(result.code).toContain('import { loadBasic } from "@tsparticles/basic";');
+    expect(result.code).toContain("await loadBasic(tsParticles);");
+  });
+
+  it("emits extra loader imports and calls for every framework", () => {
+    const engineVar = (framework: string): string => (framework === "vanilla" ? "tsParticles" : "engine");
+
+    for (const framework of ["vanilla", "react", "vue3", "svelte", "angular"] as const) {
+      const result = generateCode({ description: "triangles floating", framework });
+
+      expect(result.installPackages).toContain("@tsparticles/shape-polygon");
+      expect(result.code).toContain('import { loadPolygonShape } from "@tsparticles/shape-polygon"');
+      expect(result.code).toContain(`loadPolygonShape(${engineVar(framework)})`);
+    }
+  });
 });
 
 describe("generateHtml and generateInstallCommand", () => {
@@ -301,6 +326,7 @@ describe("generateCode integration", () => {
   it("does not crash on a whitespace-only description and falls back to slim", () => {
     const result = generateCode({ description: "   " });
     expect(result.bundle).toBe("@tsparticles/slim");
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(result.code.length).toBeGreaterThan(0);
     expect(result.notes.some(n => n.includes("try being more specific"))).toBe(true);
   });
@@ -321,7 +347,9 @@ describe("generateCode integration", () => {
       for (const typescript of [true, false]) {
         const result = generateCode({ description: "white particles floating", framework, typescript });
         expect(result.framework).toBe(framework);
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         expect(result.code.length).toBeGreaterThan(0);
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         expect(result.installPackages.length).toBeGreaterThan(0);
       }
     }

@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { sanitizeReflection } from "./sanitize.js";
 
 describe("sanitizeReflection", () => {
@@ -23,7 +23,7 @@ describe("sanitizeReflection", () => {
   });
 
   it("handles non-string values", () => {
-    expect(sanitizeReflection(42)).toBe("`42`");
+    expect(sanitizeReflection(42)).toBe("`42`"); // eslint-disable-line @typescript-eslint/no-magic-numbers
     expect(sanitizeReflection(null)).toBe("`null`");
   });
 });

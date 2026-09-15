@@ -114,7 +114,7 @@
     "qunit-dom": "^3.6.0",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "webpack": "^5.110.3"
+    "webpack": "^5.111.0"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

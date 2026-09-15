@@ -470,6 +470,88 @@ describe("ParticleGroups", async () => {
       expect(container.particles.filter(t => t.group === undefined)).to.have.length(3);
       expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
     });
+
+    it("T31 - should apply a group delete limit even when the global limit waits", async () => {
+      await container.reset({
+        particles: {
+          number: {
+            value: 0,
+            limit: {
+              value: 3,
+              mode: LimitMode.wait,
+            },
+          },
+          groups: {
+            g1: {
+              number: {
+                value: 0,
+                limit: {
+                  value: 2,
+                  mode: LimitMode.delete,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      for (let i = 0; i < 5; i++) {
+        container.particles.addParticle(undefined, undefined, "g1");
+      }
+
+      // the group keeps its own delete mode and trims g1 to its own limit
+      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+      expect(container.particles.count).to.equal(2);
+
+      // the global wait mode still caps the total count
+      const ungrouped1 = container.particles.addParticle(),
+        ungrouped2 = container.particles.addParticle();
+
+      expect(ungrouped1).to.be.not.undefined;
+      expect(ungrouped2).to.be.undefined;
+      expect(container.particles.count).to.equal(3);
+    });
+
+    it("T32 - should apply a group wait limit even when the global limit deletes", async () => {
+      await container.reset({
+        particles: {
+          number: {
+            value: 0,
+            limit: {
+              value: 3,
+              mode: LimitMode.delete,
+            },
+          },
+          groups: {
+            g1: {
+              number: {
+                value: 0,
+                limit: {
+                  value: 2,
+                  mode: LimitMode.wait,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const first = container.particles.addParticle(undefined, undefined, "g1"),
+        second = container.particles.addParticle(undefined, undefined, "g1"),
+        third = container.particles.addParticle(undefined, undefined, "g1");
+
+      expect(first).to.be.not.undefined;
+      expect(second).to.be.not.undefined;
+      expect(third).to.be.undefined;
+      expect(container.particles.filter(t => t.group === "g1")).to.have.length(2);
+
+      // the global delete mode still trims the total when it would be exceeded
+      for (let i = 0; i < 3; i++) {
+        container.particles.addParticle();
+      }
+
+      expect(container.particles.count).to.equal(3);
+    });
   });
 
   describe("density", () => {
@@ -490,25 +572,27 @@ describe("ParticleGroups", async () => {
       });
 
       // density factor = (1920 * 1080) / (1920 * 540) = 2
-      fresh.canvas.size = { width, height };
-      fresh.particles.setDensity();
+      try {
+        fresh.canvas.size = { width, height };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.count).to.equal(100);
+        expect(fresh.particles.count).to.equal(100);
 
-      // resize to half the height -> density factor = 1 -> density must trim
-      fresh.canvas.size = { width, height: height / 2 };
-      fresh.particles.setDensity();
+        // resize to half the height -> density factor = 1 -> density must trim
+        fresh.canvas.size = { width, height: height / 2 };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.count).to.equal(50);
+        expect(fresh.particles.count).to.equal(50);
 
-      fresh.particles.update({
-        value: 16.66667,
-        factor: 1,
-      });
+        fresh.particles.update({
+          value: 16.66667,
+          factor: 1,
+        });
 
-      expect(fresh.particles.count).to.equal(50);
-
-      fresh.destroy(false);
+        expect(fresh.particles.count).to.equal(50);
+      } finally {
+        fresh.destroy(false);
+      }
     });
 
     it("T18 - should scale the group particle count by the density factor and trim only that group on resize", async () => {
@@ -539,20 +623,22 @@ describe("ParticleGroups", async () => {
       });
 
       // group count = min(20, 15) * 2 = 30, other groups untouched
-      fresh.canvas.size = { width, height };
-      fresh.particles.setDensity();
+      try {
+        fresh.canvas.size = { width, height };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(30);
-      expect(fresh.particles.count).to.equal(30);
+        expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(30);
+        expect(fresh.particles.count).to.equal(30);
 
-      // resize to half the height -> group count = min(20, 15) * 1 = 15 -> only g1 trimmed
-      fresh.canvas.size = { width, height: height / 2 };
-      fresh.particles.setDensity();
+        // resize to half the height -> group count = min(20, 15) * 1 = 15 -> only g1 trimmed
+        fresh.canvas.size = { width, height: height / 2 };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(15);
-      expect(fresh.particles.count).to.equal(15);
-
-      fresh.destroy(false);
+        expect(fresh.particles.filter(t => t.group === "g1")).to.have.length(15);
+        expect(fresh.particles.count).to.equal(15);
+      } finally {
+        fresh.destroy(false);
+      }
     });
 
     it("T18b - should bound the initial particle count at the limit when density is disabled (value > limit)", async () => {
@@ -576,9 +662,11 @@ describe("ParticleGroups", async () => {
           },
         });
 
-        expect(fresh.particles.count).to.equal(100);
-
-        fresh.destroy(false);
+        try {
+          expect(fresh.particles.count).to.equal(100);
+        } finally {
+          fresh.destroy(false);
+        }
       }
     });
 
@@ -605,21 +693,23 @@ describe("ParticleGroups", async () => {
 
       // density factor = (1920 * 1080) / (1920 * 2160) = 0.5
       // target = min(200, 100) * 0.5 = 50 -> density trims (removeQuantity path)
-      fresh.canvas.size = { width, height };
-      fresh.particles.setDensity();
+      try {
+        fresh.canvas.size = { width, height };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.count).to.equal(50);
-      expect(fresh.particles.count).to.be.at.most(limit);
+        expect(fresh.particles.count).to.equal(50);
+        expect(fresh.particles.count).to.be.at.most(limit);
 
-      // resize to double the height -> density factor = 1
-      // target = min(200, 100) * 1 = 100 -> density pushes (push path)
-      fresh.canvas.size = { width, height: height * 2 };
-      fresh.particles.setDensity();
+        // resize to double the height -> density factor = 1
+        // target = min(200, 100) * 1 = 100 -> density pushes (push path)
+        fresh.canvas.size = { width, height: height * 2 };
+        fresh.particles.setDensity();
 
-      expect(fresh.particles.count).to.equal(100);
-      expect(fresh.particles.count).to.be.at.most(limit);
-
-      fresh.destroy(false);
+        expect(fresh.particles.count).to.equal(100);
+        expect(fresh.particles.count).to.be.at.most(limit);
+      } finally {
+        fresh.destroy(false);
+      }
     });
   });
 

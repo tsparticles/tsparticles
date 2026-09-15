@@ -1,13 +1,18 @@
-import { afterEach, describe, it, expect, vi } from "vitest";
 import {
+  RateLimiter,
   extractBearerToken,
   isInitializeRequest,
   isOriginAllowed,
   isValidAuthToken,
   normalizeOrigin,
   parseSessionIdHeader,
-  RateLimiter,
 } from "./security.js";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+const WINDOW_MS = 60_000,
+  SHORT_WINDOW_MS = 10,
+  WINDOW_ELAPSED_MS = 15,
+  OVER_MAX_SESSION_ID_LENGTH = 129;
 
 describe("normalizeOrigin", () => {
   it("lowercases and strips path/query from a valid origin", () => {
@@ -45,7 +50,7 @@ describe("parseSessionIdHeader", () => {
   });
 
   it("rejects a session id over the max length", () => {
-    expect(parseSessionIdHeader("a".repeat(129)).error).toBeDefined();
+    expect(parseSessionIdHeader("a".repeat(OVER_MAX_SESSION_ID_LENGTH)).error).toBeDefined();
   });
 
   it("rejects multiple header values", () => {
@@ -142,21 +147,24 @@ describe("RateLimiter", () => {
   });
 
   it("allows requests under the limit", () => {
-    const limiter = new RateLimiter(60_000, 3);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(WINDOW_MS, 3);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
   });
 
   it("blocks requests over the limit within the window", () => {
-    const limiter = new RateLimiter(60_000, 2);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(WINDOW_MS, 2);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-b")).toBe(false);
   });
 
   it("tracks separate clients independently", () => {
-    const limiter = new RateLimiter(60_000, 1);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(WINDOW_MS, 1);
     expect(limiter.allow("client-c")).toBe(true);
     expect(limiter.allow("client-d")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);
@@ -164,25 +172,30 @@ describe("RateLimiter", () => {
 
   it("resets the window after it elapses", () => {
     vi.useFakeTimers();
-    const limiter = new RateLimiter(10, 1);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
     expect(limiter.allow("client-e")).toBe(true);
     expect(limiter.allow("client-e")).toBe(false);
-    vi.advanceTimersByTime(15);
+    vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
     expect(limiter.allow("client-e")).toBe(true);
   });
 
   it("sweep() removes stale entries", () => {
     vi.useFakeTimers();
-    const limiter = new RateLimiter(10, 1);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(SHORT_WINDOW_MS, 1);
     limiter.allow("client-f");
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(limiter.size).toBe(1);
-    vi.advanceTimersByTime(15);
+    vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
     limiter.sweep();
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(limiter.size).toBe(0);
   });
 
   it("enforces a global cap across distinct clients", () => {
-    const limiter = new RateLimiter(60_000, 3, 4);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(WINDOW_MS, 3, 4);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(true);
@@ -191,7 +204,8 @@ describe("RateLimiter", () => {
   });
 
   it("does not count per-key-rejected requests against the global cap", () => {
-    const limiter = new RateLimiter(60_000, 2, 5);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(WINDOW_MS, 2, 5);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-a")).toBe(true);
     // Blocked by the per-key limit, must not consume the global budget.
@@ -204,11 +218,12 @@ describe("RateLimiter", () => {
 
   it("resets the global cap after the window elapses", () => {
     vi.useFakeTimers();
-    const limiter = new RateLimiter(10, 5, 2);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const limiter = new RateLimiter(SHORT_WINDOW_MS, 5, 2);
     expect(limiter.allow("client-a")).toBe(true);
     expect(limiter.allow("client-b")).toBe(true);
     expect(limiter.allow("client-c")).toBe(false);
-    vi.advanceTimersByTime(15);
+    vi.advanceTimersByTime(WINDOW_ELAPSED_MS);
     expect(limiter.allow("client-d")).toBe(true);
     expect(limiter.allow("client-e")).toBe(true);
   });

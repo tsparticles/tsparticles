@@ -41,7 +41,7 @@
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.0",
     "@typescript-eslint/parser": "^8.66.0",
     "babel-loader": "^8.4.1",
     "css-loader": "^5.2.7",

@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const MAX_REQUEST_BODY_BYTES = 1024 * 1024; // 1 MB
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SESSION_IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SESSION_SWEEP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 export const MAX_CONCURRENT_HTTP_SESSIONS = 500;
 

@@ -1,5 +1,3 @@
-import { timingSafeEqual } from "node:crypto";
-
 import {
   MAX_SESSION_ID_LENGTH,
   RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
@@ -7,7 +5,14 @@ import {
   RATE_LIMIT_WINDOW_MS,
   SESSION_ID_PATTERN,
 } from "./constants.js";
+import { timingSafeEqual } from "node:crypto";
 
+const SINGLE_HEADER_VALUE_COUNT = 1;
+
+/**
+ *
+ * @param origin
+ */
 export function normalizeOrigin(origin: string): string | undefined {
   try {
     const parsed = new URL(origin);
@@ -26,13 +31,19 @@ export function normalizeOrigin(origin: string): string | undefined {
   }
 }
 
-export function parseSessionIdHeader(header: string | string[] | undefined): { value?: string; error?: string } {
+/**
+ *
+ * @param header
+ */
+export function parseSessionIdHeader(header: string | string[] | undefined): { error?: string; value?: string } {
   if (Array.isArray(header)) {
-    if (header.length !== 1) {
+    if (header.length !== SINGLE_HEADER_VALUE_COUNT) {
       return { error: "Invalid mcp-session-id header" };
     }
 
-    return parseSessionIdHeader(header[0]);
+    const [value] = header;
+
+    return parseSessionIdHeader(value);
   }
 
   if (header === undefined) {
@@ -41,7 +52,7 @@ export function parseSessionIdHeader(header: string | string[] | undefined): { v
 
   const sessionId = header.trim();
 
-  if (sessionId.length === 0) {
+  if (!sessionId.length) {
     return { error: "Invalid mcp-session-id header" };
   }
 
@@ -52,6 +63,10 @@ export function parseSessionIdHeader(header: string | string[] | undefined): { v
   return { value: sessionId };
 }
 
+/**
+ *
+ * @param payload
+ */
 export function isInitializeRequest(payload: unknown): boolean {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     return false;
@@ -62,6 +77,11 @@ export function isInitializeRequest(payload: unknown): boolean {
   return method === "initialize";
 }
 
+/**
+ *
+ * @param origin
+ * @param allowedOrigins
+ */
 export function isOriginAllowed(origin: string | undefined, allowedOrigins?: string[]): boolean {
   // No Origin header at all (e.g. non-browser clients, curl) is allowed —
   // the Origin check exists to defend against DNS-rebinding attacks from
@@ -73,7 +93,7 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
     return false;
   }
 
-  if (allowedOrigins && allowedOrigins.length > 0) {
+  if (allowedOrigins?.length) {
     return allowedOrigins.includes(normalizedOrigin);
   }
 
@@ -95,10 +115,12 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
  * the token byte-by-byte; `timingSafeEqual` avoids that class of
  * side-channel. Returns `false` (rather than throwing) whenever the
  * lengths differ, since `timingSafeEqual` requires equal-length buffers.
+ * @param provided
+ * @param expected
  */
 export function isValidAuthToken(provided: string, expected: string): boolean {
-  const providedBuf = Buffer.from(provided, "utf8");
-  const expectedBuf = Buffer.from(expected, "utf8");
+  const providedBuf = Buffer.from(provided, "utf8"),
+    expectedBuf = Buffer.from(expected, "utf8");
 
   if (providedBuf.length !== expectedBuf.length) {
     return false;
@@ -110,12 +132,15 @@ export function isValidAuthToken(provided: string, expected: string): boolean {
 /**
  * Extracts the bearer token from an `Authorization` header value, or
  * `undefined` if the header is missing/malformed.
+ * @param header
  */
 export function extractBearerToken(header: string | string[] | undefined): string | undefined {
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const value = Array.isArray(header) ? header[0] : header;
   if (!value) return undefined;
 
   const match = /^Bearer\s+(\S+)$/i.exec(value.trim());
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   return match ? match[1] : undefined;
 }
 
@@ -129,9 +154,9 @@ export function extractBearerToken(header: string | string[] | undefined): strin
  * distributed set of clients — can sustain against this process.
  */
 export class RateLimiter {
-  private readonly hits = new Map<string, { count: number; windowStart: number }>();
   private globalCount = 0;
   private globalWindowStart = Date.now();
+  private readonly hits = new Map<string, { count: number; windowStart: number }>();
 
   constructor(
     private readonly windowMs: number = RATE_LIMIT_WINDOW_MS,
@@ -139,7 +164,14 @@ export class RateLimiter {
     private readonly maxGlobalRequests: number = RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
   ) {}
 
-  /** Returns true if the request should be allowed, false if rate-limited. */
+  get size(): number {
+    return this.hits.size;
+  }
+
+  /**
+   * Returns true if the request should be allowed, false if rate-limited.
+   * @param key
+   */
   allow(key: string): boolean {
     const now = Date.now();
 
@@ -176,9 +208,5 @@ export class RateLimiter {
         this.hits.delete(key);
       }
     }
-  }
-
-  get size(): number {
-    return this.hits.size;
   }
 }

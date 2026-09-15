@@ -136,7 +136,7 @@
     "@eslint/js": "^10.0.1",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.0",
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
     "concurrently": "^10.0.4",
