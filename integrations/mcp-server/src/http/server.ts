@@ -372,8 +372,10 @@ export async function startHttpServer({
   httpServer.headersTimeout = HTTP_HEADERS_TIMEOUT_MS;
   httpServer.keepAliveTimeout = HTTP_KEEP_ALIVE_TIMEOUT_MS;
 
-  await new Promise<void>(resolve => {
+  await new Promise<void>((resolve, reject) => {
+    httpServer.once("error", reject);
     httpServer.listen(port, HTTP_BIND_HOST, () => {
+      httpServer.off("error", reject);
       console.error(`tsParticles MCP server running on http://${HTTP_BIND_HOST}:${port}/mcp`);
       console.error(`Health check: http://${HTTP_BIND_HOST}:${port}/health`);
       resolve();

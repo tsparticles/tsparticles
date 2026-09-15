@@ -62,7 +62,7 @@ Return a JSON object with:
       { "function": "loadSlim", "from": "@tsparticles/slim" }
     ],
     "additionalPackages": [ /* any extra packages not in bundles */ ],
-    "html": "<div id="tsparticles"></div>",
+    "html": "<div id=\\"tsparticles\\"></div>",
     "code": "// Full code example"
   }
 }

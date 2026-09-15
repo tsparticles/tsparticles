@@ -29,25 +29,6 @@ const fColorIndex = 0,
   sColorIndex = 1;
 
 /**
- * Checks whether a plugin implements any rendering layer hook. Such plugins are
- * registered on a {@link DrawLayer} (see {@link RenderManager.#initLayerPlugin})
- * and are therefore visited during layer traversal in {@link RenderManager.clear},
- * so they must not also be registered in the dedicated canvas-clear array.
- * @param plugin - the plugin to check
- * @returns true when the plugin will run on at least one rendering layer
- * @see RenderManager.#initLayerPlugin
- */
-function isLayerPlugin(plugin: IContainerPlugin): boolean {
-  return !!(
-    plugin.canvasPaint ??
-    plugin.drawSettingsSetup ??
-    plugin.draw ??
-    plugin.clearDraw ??
-    plugin.drawSettingsCleanup
-  );
-}
-
-/**
  * @param factor - The factor
  * @param newFactor - The newFactor
  * @param key - The key
@@ -153,9 +134,9 @@ export class RenderManager {
   /**
    * Clears the canvas content through the layer system.
    *
-   * First checks plugins registered in the dedicated `#canvasClearPlugins` array (plugins that
-   * implement `canvasClear` as their only rendering hook, e.g. trail), then iterates all layers
-   * in ordinal order (0–7) for any additional `canvasClear` implementations.
+   * First checks plugins registered in the dedicated `#canvasClearPlugins` array, then iterates
+   * all layers in ordinal order (0–7) for any additional `canvasClear` implementations. Plugins
+   * registered on multiple layers are only visited once (deduplicated via a visited set).
    *
    * The first plugin that returns `true` short-circuits the clear. If no plugin handles it,
    * falls back to {@link canvasClear} which respects `actualOptions.clear`.
@@ -163,17 +144,24 @@ export class RenderManager {
    * @see IContainerPlugin.canvasClear
    */
   clear(): IContainerPlugin | undefined {
+    const visited = new Set<IContainerPlugin>();
+
     /* check dedicated canvasClear plugins first (e.g. trail, which has no layer hooks) */
     for (const plugin of this.#canvasClearPlugins) {
+      visited.add(plugin);
       if (plugin.canvasClear?.() ?? false) {
         return plugin;
       }
     }
 
-    /* then check all layer plugins */
+    /* then check all layer plugins, skipping plugins that already handled canvasClear */
     for (const layer of Object.values(DrawLayer)) {
       if (typeof layer === "number") {
         for (const plugin of this.#getLayerPlugins(layer)) {
+          if (visited.has(plugin)) {
+            continue;
+          }
+          visited.add(plugin);
           if (plugin.canvasClear?.() ?? false) {
             return plugin;
           }
@@ -784,7 +772,7 @@ export class RenderManager {
         this.#drawParticlesCleanupPlugins.push(plugin);
       }
 
-      if (plugin.canvasClear && !isLayerPlugin(plugin)) {
+      if (plugin.canvasClear) {
         this.#canvasClearPlugins.push(plugin);
       }
 

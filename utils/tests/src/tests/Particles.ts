@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-  type ICoordinates3d,
   type Container,
+  type ICoordinates3d,
   type ISourceOptions,
   type Particle,
   LimitMode,

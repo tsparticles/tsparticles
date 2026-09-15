@@ -496,8 +496,7 @@ export class CanvasManager {
         : { colorSpace: "srgb" as const }),
     });
 
-    let context: OffscreenCanvasRenderingContext2D | null,
-      requestedSpace: PredefinedColorSpace = canSupportHdr ? "display-p3" : "srgb";
+    let context: OffscreenCanvasRenderingContext2D | null;
 
     try {
       context = renderCanvas.getContext("2d", this.render.settings);
@@ -514,7 +513,6 @@ export class CanvasManager {
       };
 
       this.render.setContextSettings(sdrSettings);
-      requestedSpace = "srgb";
 
       try {
         context = renderCanvas.getContext("2d", sdrSettings);
@@ -534,9 +532,11 @@ export class CanvasManager {
      * cannot create a context with the requested settings, the previous mode is
      * preserved. */
     if (context) {
-      const effectiveColorSpace = getEffectiveColorSpace(context) ?? requestedSpace;
+      const effectiveColorSpace = getEffectiveColorSpace(context);
 
-      container.hdr = effectiveColorSpace === "display-p3";
+      if (effectiveColorSpace !== undefined) {
+        container.hdr = effectiveColorSpace === "display-p3";
+      }
     }
   }
 

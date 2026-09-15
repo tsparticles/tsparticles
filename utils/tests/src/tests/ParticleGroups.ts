@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
 import { type Container, type ICoordinates3d, type ISourceOptions, LimitMode, tsParticles } from "@tsparticles/engine";
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
@@ -46,6 +46,10 @@ describe("ParticleGroups", async () => {
   if (!container) {
     throw new Error(`Error test container not initialized`);
   }
+
+  afterAll(() => {
+    container.destroy();
+  });
 
   const groupMixOptions = {
     particles: {

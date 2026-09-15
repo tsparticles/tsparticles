@@ -1074,7 +1074,7 @@ ${calls}
 `;
   }
 
-  return `import { Component } from "@angular/core";
+  return `import { Component, inject } from "@angular/core";
 import { NgParticlesService } from "@tsparticles/angular";
 ${imports.join("\n")}
 
@@ -1086,9 +1086,7 @@ export class ParticlesComponent {
   id = "tsparticles";
   particlesOptions = ${serializeOptions(options)};
 
-  constructor(ngParticlesService) {
-    this.ngParticlesService = ngParticlesService;
-  }
+  ngParticlesService = inject(NgParticlesService);
 
   ngOnInit() {
     void this.ngParticlesService.init(async engine => {
