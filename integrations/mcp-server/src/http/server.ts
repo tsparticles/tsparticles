@@ -115,232 +115,351 @@ export async function startHttpServer({
   sweepInterval.unref();
 
   /**
-   *
-   * @param req
-   * @param res
+   * Resolves the client IP honoring a trusted reverse proxy.
+   * @param req - the incoming request
+   * @returns the client IP
+   */
+  function resolveClientIp(req: IncomingMessage): string {
+    const remoteAddress = req.socket.remoteAddress;
+
+    if (trustedProxies?.length && remoteAddress && trustedProxies.includes(remoteAddress)) {
+      const forwardedFor = req.headers["x-forwarded-for"];
+
+      return typeof forwardedFor === "string"
+        ? forwardedFor.split(",")[FIRST_HEADER_VALUE_INDEX]?.trim() || remoteAddress
+        : remoteAddress;
+    }
+
+    return remoteAddress ?? "unknown";
+  }
+
+  /**
+   * Admits an incoming request, or sends a rejection response.
+   * @param req - the incoming request
+   * @param res - the server response
+   * @returns true when the request may proceed, false once a response was sent
+   */
+  function admitRequest(req: IncomingMessage, res: ServerResponse): boolean {
+    // Basic per-IP rate limiting, ahead of auth/origin checks so a
+    // flood of requests can't be used to brute-force the auth token
+    // or exhaust the session table.  When the request arrives through
+    // a trusted reverse proxy the real client IP is read from the
+    // first value in the X-Forwarded-For header. The limiter also
+    // bounds the /health endpoint, which otherwise would be open to
+    // unlimited unauthenticated remote requests.
+    if (!rateLimiter.allow(resolveClientIp(req))) {
+      res.writeHead(HttpStatusCode.TooManyRequests, {
+        "Content-Type": "application/json",
+        "Retry-After": RATE_LIMIT_RETRY_AFTER_SECONDS,
+      });
+      res.end(JSON.stringify({ error: "Too many requests" }));
+      return false;
+    }
+
+    // Health check endpoint
+    if (req.method === "GET" && req.url === "/health") {
+      res.writeHead(HttpStatusCode.OK, { "Content-Type": "application/json" });
+      // Deliberately no version/build info here — an exact version string
+      // aids fingerprinting of known-vulnerable releases.
+      res.end(JSON.stringify({ status: "ok" }));
+      return false;
+    }
+
+    if (req.url !== "/mcp") {
+      res.writeHead(HttpStatusCode.NotFound);
+      res.end("Not found");
+      return false;
+    }
+
+    // Optional bearer token auth. When configured, this is the primary
+    // access control for the endpoint — the Origin check below only
+    // meaningfully applies to browser-originated requests.
+    if (authToken) {
+      const provided = extractBearerToken(req.headers.authorization);
+
+      if (!provided || !isValidAuthToken(provided, authToken)) {
+        res.writeHead(HttpStatusCode.Unauthorized, {
+          "Content-Type": "application/json",
+          "WWW-Authenticate": "Bearer",
+        });
+        res.end(JSON.stringify({ error: "Unauthorized" }));
+        return false;
+      }
+    }
+
+    // Defend against DNS rebinding: reject browser-originated requests
+    // from origins we don't recognize.
+    if (!isOriginAllowed(req.headers.origin, allowedOrigins)) {
+      res.writeHead(HttpStatusCode.Forbidden, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Origin not allowed" }));
+      return false;
+    }
+
+    const { error: sessionIdError } = parseSessionIdHeader(req.headers["mcp-session-id"]);
+
+    if (sessionIdError) {
+      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: sessionIdError }));
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Reads and JSON-parses the request body.
+   * @param req - the incoming request
+   * @param res - the server response
+   * @returns the parsed body, or an indicator that the request was already rejected
+   */
+  async function readRequestBody(
+    req: IncomingMessage,
+    res: ServerResponse,
+  ): Promise<{ parsedBody?: unknown; rejected: boolean }> {
+    const contentTypeHeader = req.headers["content-type"],
+      contentType = contentTypeHeader?.split(";")[FIRST_HEADER_VALUE_INDEX]?.trim().toLowerCase();
+
+    if (contentType !== "application/json") {
+      res.writeHead(HttpStatusCode.UnsupportedMediaType, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Unsupported media type, expected application/json" }));
+      return { rejected: true };
+    }
+
+    // POST: either an existing session's message, or a new session's
+    // initialize request.
+    let body: string;
+
+    try {
+      body = await new Promise<string>((resolve, reject) => {
+        const chunks: Buffer[] = [];
+        let receivedBytes = 0,
+          tooLarge = false;
+
+        req.on("data", (chunk: Buffer) => {
+          receivedBytes += chunk.length;
+
+          if (receivedBytes > MAX_REQUEST_BODY_BYTES) {
+            // Keep draining the request (so the connection can be reused
+            // or closed cleanly) but stop buffering. The response is only
+            // written once the body has been fully read, so the client
+            // gets a proper 413 instead of a reset connection.
+            tooLarge = true;
+            return;
+          }
+
+          chunks.push(chunk);
+        });
+        req.on("end", () => {
+          if (tooLarge) {
+            reject(new RequestBodyTooLargeError());
+            return;
+          }
+
+          resolve(Buffer.concat(chunks).toString("utf8"));
+        });
+        req.on("error", reject);
+      });
+    } catch (error) {
+      if (error instanceof RequestBodyTooLargeError) {
+        res.writeHead(HttpStatusCode.PayloadTooLarge, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Request body too large" }));
+      }
+      // Any other error means the client/connection is gone — there is
+      // nobody left to send a response to.
+
+      return { rejected: true };
+    }
+
+    try {
+      return { rejected: false, parsedBody: body ? JSON.parse(body) : undefined };
+    } catch {
+      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Invalid JSON" }));
+      return { rejected: true };
+    }
+  }
+
+  /**
+   * Serves the server->client SSE stream for an existing session (GET).
+   * @param req - the incoming request
+   * @param res - the server response
+   * @param sessionId - the session id
+   */
+  async function handleSessionStream(
+    req: IncomingMessage,
+    res: ServerResponse,
+    sessionId: string | undefined,
+  ): Promise<void> {
+    if (!sessionId || !sessions.has(sessionId)) {
+      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Session not found" }));
+      return;
+    }
+
+    touchSession(sessionId);
+
+    const entry = sessions.get(sessionId);
+
+    if (!entry) return;
+
+    await entry.transport.handleRequest(req, res);
+  }
+
+  /**
+   * Terminates an existing session (DELETE).
+   * @param req - the incoming request
+   * @param res - the server response
+   * @param sessionId - the session id
+   */
+  async function handleSessionTerminate(
+    req: IncomingMessage,
+    res: ServerResponse,
+    sessionId: string | undefined,
+  ): Promise<void> {
+    if (!sessionId || !sessions.has(sessionId)) {
+      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Session not found" }));
+      return;
+    }
+
+    await closeSession(sessionId);
+    res.writeHead(HttpStatusCode.NoContent);
+    res.end();
+  }
+
+  /**
+   * Forwards a POST message to an existing session.
+   * @param req - the incoming request
+   * @param res - the server response
+   * @param sessionId - the session id
+   * @param parsedBody - the parsed request body
+   */
+  async function handleSessionPost(
+    req: IncomingMessage,
+    res: ServerResponse,
+    sessionId: string,
+    parsedBody: unknown,
+  ): Promise<void> {
+    const entry = sessions.get(sessionId);
+
+    if (!entry) {
+      res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Session not found" }));
+      return;
+    }
+
+    touchSession(sessionId);
+    await entry.transport.handleRequest(req, res, parsedBody);
+  }
+
+  /**
+   * Handles an initialize request by spinning up a brand new Server +
+   * Transport pair dedicated to the session so that response routing can
+   * never cross sessions.
+   * @param req - the incoming request
+   * @param res - the server response
+   * @param parsedBody - the parsed request body
+   */
+  async function handleSessionInitialize(
+    req: IncomingMessage,
+    res: ServerResponse,
+    parsedBody: unknown,
+  ): Promise<void> {
+    if (!isInitializeRequest(parsedBody)) {
+      res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Missing session, expected initialize request" }));
+      return;
+    }
+
+    if (sessions.size >= MAX_CONCURRENT_HTTP_SESSIONS) {
+      res.writeHead(HttpStatusCode.ServiceUnavailable, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Server busy, try again later" }));
+      return;
+    }
+
+    // No session id: this must be an initialize request. Spin up a
+    // brand new Server + Transport pair dedicated to this session so
+    // that response routing can never cross sessions.  If setup or
+    // request processing fails before onsessioninitialized fires the
+    // pair is cleaned up explicitly since it was never registered in
+    // the sessions map and would otherwise leak.
+    const newServer = createMcpServer(),
+      sessionRegistered = { value: false },
+      transport = new StreamableHTTPServerTransport({
+        sessionIdGenerator: (): string => randomUUID(),
+        onsessioninitialized: (newSessionId: string): void => {
+          sessionRegistered.value = true;
+          sessions.set(newSessionId, { server: newServer, transport, lastActivity: Date.now() });
+        },
+        onsessionclosed: (closedSessionId: string): void => {
+          sessions.delete(closedSessionId);
+        },
+      });
+
+    try {
+      await newServer.connect(transport);
+      await transport.handleRequest(req, res, parsedBody);
+    } catch (error) {
+      if (!sessionRegistered.value) {
+        void transport.close().catch(() => undefined);
+      }
+
+      throw error;
+    }
+  }
+
+  /**
+   * Routes an admitted request to the matching session handler.
+   * @param req - the incoming request
+   * @param res - the server response
+   */
+  async function dispatchRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    const { value: sessionId } = parseSessionIdHeader(req.headers["mcp-session-id"]);
+
+    // GET is used by clients to open the server->client SSE stream on an
+    // existing session.
+    if (req.method === "GET") {
+      await handleSessionStream(req, res, sessionId);
+      return;
+    }
+
+    // DELETE is used by clients to explicitly terminate a session.
+    if (req.method === "DELETE") {
+      await handleSessionTerminate(req, res, sessionId);
+      return;
+    }
+
+    if (req.method !== "POST") {
+      res.writeHead(HttpStatusCode.MethodNotAllowed, {
+        "Content-Type": "application/json",
+        Allow: "GET, POST, DELETE",
+      });
+      res.end(JSON.stringify({ error: "Method not allowed" }));
+      return;
+    }
+
+    const { parsedBody, rejected } = await readRequestBody(req, res);
+
+    if (rejected) return;
+
+    if (sessionId) {
+      await handleSessionPost(req, res, sessionId, parsedBody);
+      return;
+    }
+
+    await handleSessionInitialize(req, res, parsedBody);
+  }
+
+  /**
+   * Main request handler: admission, dispatch and shared error handling.
+   * @param req - the incoming request
+   * @param res - the server response
    */
   async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
     try {
-      // Basic per-IP rate limiting, ahead of auth/origin checks so a
-      // flood of requests can't be used to brute-force the auth token
-      // or exhaust the session table.  When the request arrives through
-      // a trusted reverse proxy the real client IP is read from the
-      // first value in the X-Forwarded-For header. The limiter also
-      // bounds the /health endpoint, which otherwise would be open to
-      // unlimited unauthenticated remote requests.
-      let clientIp: string;
-      const remoteAddress = req.socket.remoteAddress;
-      if (trustedProxies?.length && remoteAddress && trustedProxies.includes(remoteAddress)) {
-        const forwardedFor = req.headers["x-forwarded-for"];
-        clientIp =
-          typeof forwardedFor === "string"
-            ? forwardedFor.split(",")[FIRST_HEADER_VALUE_INDEX]?.trim() || remoteAddress
-            : remoteAddress;
-      } else {
-        clientIp = remoteAddress ?? "unknown";
-      }
-      if (!rateLimiter.allow(clientIp)) {
-        res.writeHead(HttpStatusCode.TooManyRequests, {
-          "Content-Type": "application/json",
-          "Retry-After": RATE_LIMIT_RETRY_AFTER_SECONDS,
-        });
-        res.end(JSON.stringify({ error: "Too many requests" }));
-        return;
-      }
+      if (!admitRequest(req, res)) return;
 
-      // Health check endpoint
-      if (req.method === "GET" && req.url === "/health") {
-        res.writeHead(HttpStatusCode.OK, { "Content-Type": "application/json" });
-        // Deliberately no version/build info here — an exact version string
-        // aids fingerprinting of known-vulnerable releases.
-        res.end(JSON.stringify({ status: "ok" }));
-        return;
-      }
-
-      if (req.url !== "/mcp") {
-        res.writeHead(HttpStatusCode.NotFound);
-        res.end("Not found");
-        return;
-      }
-
-      // Optional bearer token auth. When configured, this is the primary
-      // access control for the endpoint — the Origin check below only
-      // meaningfully applies to browser-originated requests.
-      if (authToken) {
-        const provided = extractBearerToken(req.headers.authorization);
-        if (!provided || !isValidAuthToken(provided, authToken)) {
-          res.writeHead(HttpStatusCode.Unauthorized, {
-            "Content-Type": "application/json",
-            "WWW-Authenticate": "Bearer",
-          });
-          res.end(JSON.stringify({ error: "Unauthorized" }));
-          return;
-        }
-      }
-
-      // Defend against DNS rebinding: reject browser-originated requests
-      // from origins we don't recognize.
-      const originHeader = req.headers.origin;
-      if (!isOriginAllowed(originHeader, allowedOrigins)) {
-        res.writeHead(HttpStatusCode.Forbidden, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Origin not allowed" }));
-        return;
-      }
-
-      const sessionIdHeader = req.headers["mcp-session-id"],
-        { value: sessionId, error: sessionIdError } = parseSessionIdHeader(sessionIdHeader);
-      if (sessionIdError) {
-        res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: sessionIdError }));
-        return;
-      }
-
-      // GET is used by clients to open the server->client SSE stream on an
-      // existing session.
-      if (req.method === "GET") {
-        if (!sessionId || !sessions.has(sessionId)) {
-          res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Session not found" }));
-          return;
-        }
-        touchSession(sessionId);
-        const entry = sessions.get(sessionId);
-        if (!entry) return;
-        await entry.transport.handleRequest(req, res);
-        return;
-      }
-
-      // DELETE is used by clients to explicitly terminate a session.
-      if (req.method === "DELETE") {
-        if (!sessionId || !sessions.has(sessionId)) {
-          res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Session not found" }));
-          return;
-        }
-        await closeSession(sessionId);
-        res.writeHead(HttpStatusCode.NoContent);
-        res.end();
-        return;
-      }
-
-      if (req.method !== "POST") {
-        res.writeHead(HttpStatusCode.MethodNotAllowed, {
-          "Content-Type": "application/json",
-          Allow: "GET, POST, DELETE",
-        });
-        res.end(JSON.stringify({ error: "Method not allowed" }));
-        return;
-      }
-
-      const contentTypeHeader = req.headers["content-type"],
-        contentType = contentTypeHeader?.split(";")[FIRST_HEADER_VALUE_INDEX]?.trim().toLowerCase();
-
-      if (contentType !== "application/json") {
-        res.writeHead(HttpStatusCode.UnsupportedMediaType, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Unsupported media type, expected application/json" }));
-        return;
-      }
-
-      // POST: either an existing session's message, or a new session's
-      // initialize request.
-      let body: string;
-      try {
-        body = await new Promise<string>((resolve, reject) => {
-          const chunks: Buffer[] = [];
-          let receivedBytes = 0,
-            tooLarge = false;
-          req.on("data", (chunk: Buffer) => {
-            receivedBytes += chunk.length;
-            if (receivedBytes > MAX_REQUEST_BODY_BYTES) {
-              // Keep draining the request (so the connection can be reused
-              // or closed cleanly) but stop buffering. The response is only
-              // written once the body has been fully read, so the client
-              // gets a proper 413 instead of a reset connection.
-              tooLarge = true;
-              return;
-            }
-            chunks.push(chunk);
-          });
-          req.on("end", () => {
-            if (tooLarge) {
-              reject(new RequestBodyTooLargeError());
-              return;
-            }
-            resolve(Buffer.concat(chunks).toString("utf8"));
-          });
-          req.on("error", reject);
-        });
-      } catch (error) {
-        if (error instanceof RequestBodyTooLargeError) {
-          res.writeHead(HttpStatusCode.PayloadTooLarge, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Request body too large" }));
-        }
-        // Any other error means the client/connection is gone — there is
-        // nobody left to send a response to.
-        return;
-      }
-
-      let parsedBody: unknown;
-      try {
-        parsedBody = body ? JSON.parse(body) : undefined;
-      } catch {
-        res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Invalid JSON" }));
-        return;
-      }
-
-      if (sessionId) {
-        const entry = sessions.get(sessionId);
-        if (!entry) {
-          res.writeHead(HttpStatusCode.NotFound, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Session not found" }));
-          return;
-        }
-        touchSession(sessionId);
-        await entry.transport.handleRequest(req, res, parsedBody);
-        return;
-      }
-
-      if (!isInitializeRequest(parsedBody)) {
-        res.writeHead(HttpStatusCode.BadRequest, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Missing session, expected initialize request" }));
-        return;
-      }
-
-      if (sessions.size >= MAX_CONCURRENT_HTTP_SESSIONS) {
-        res.writeHead(HttpStatusCode.ServiceUnavailable, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Server busy, try again later" }));
-        return;
-      }
-
-      // No session id: this must be an initialize request. Spin up a
-      // brand new Server + Transport pair dedicated to this session so
-      // that response routing can never cross sessions.  If setup or
-      // request processing fails before onsessioninitialized fires the
-      // pair is cleaned up explicitly since it was never registered in
-      // the sessions map and would otherwise leak.
-      const newServer = createMcpServer(),
-        sessionRegistered = { value: false },
-        transport = new StreamableHTTPServerTransport({
-          sessionIdGenerator: (): string => randomUUID(),
-          onsessioninitialized: (newSessionId: string): void => {
-            sessionRegistered.value = true;
-            sessions.set(newSessionId, { server: newServer, transport, lastActivity: Date.now() });
-          },
-          onsessionclosed: (closedSessionId: string): void => {
-            sessions.delete(closedSessionId);
-          },
-        });
-
-      try {
-        await newServer.connect(transport);
-        await transport.handleRequest(req, res, parsedBody);
-      } catch (error) {
-        if (!sessionRegistered.value) {
-          void transport.close().catch(() => undefined);
-        }
-        throw error;
-      }
+      await dispatchRequest(req, res);
     } catch (error) {
       console.error("Unhandled HTTP request error:", error);
 

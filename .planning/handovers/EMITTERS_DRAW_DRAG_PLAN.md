@@ -53,15 +53,21 @@ An `options.draw` toggle (default `true`, so new behavior matches absorbers; set
 - Add field `draw = true`.
 - Load in `load()`: `loadProperty(this, "draw", data.draw)`.
 
-### 1.2 Shape interface — add `draw`
+### 1.2 Shape interface — add optional `draw`
 
 **`plugins/emitters/src/IEmitterShape.ts`**
 
-- Add `draw(context: OffscreenCanvasRenderingContext2D): void;`.
+- Add `draw?(context: OffscreenCanvasRenderingContext2D): void;` as **optional** so the public interface stays backward compatible — existing `IEmitterShape` implementations (including third-party ones) keep compiling unchanged and simply skip drawing.
 
 **`plugins/emitters/src/EmitterShapeBase.ts`**
 
-- Add `abstract draw(context: OffscreenCanvasRenderingContext2D): void;`.
+- Add a non-abstract no-op `draw` implementation (do **not** make it `abstract`) so existing subclasses are not forced to implement it:
+
+  ```ts
+  draw(_context: OffscreenCanvasRenderingContext2D): void {
+    /* No-op: keeps legacy EmitterShapeBase subclasses source-compatible. */
+  }
+  ```
 
 ### 1.3 Per-shape `draw` implementation
 
@@ -91,7 +97,7 @@ Shapes trace their own geometry centered on `position` with `size` (they already
       ? getStyleFromHsl(this.spawnFillColor, container.hdr, fillOpacity, container.peakNits, container.hdrMode)
       : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, this.spawnFillOpacity ?? 1, ...);
     if (this.spawnStrokeColor) context.strokeStyle = ...;  // strokeLineWidth from spawnStrokeWidth
-    this.#shape.draw(context);
+    this.#shape.draw?.(context);
     context.fill();
     if (this.spawnStrokeColor) context.stroke();
     context.restore();
