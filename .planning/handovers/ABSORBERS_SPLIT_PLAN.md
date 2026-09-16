@@ -153,15 +153,16 @@ export class AbsorberSplit implements IAbsorberSplit, IOptionLoader<IAbsorberSpl
 
     loadProperty(this, "enable", data.enable);
 
-    if (isNumber(data.quantity)) {
+    if (isNumber(data.quantity) && Number.isFinite(data.quantity)) {
       this.quantity = Math.min(Math.max(Math.trunc(data.quantity), 0), maxSplitQuantity);
     }
   }
 }
 ```
 
-(`isNumber` must be imported from `@tsparticles/engine`; `Math.trunc(NaN/Infinity)` guards the
-hang/loop case from R5.)
+(`isNumber` must be imported from `@tsparticles/engine`; the `Number.isFinite` guard keeps the
+current/default value for `NaN`/`Infinity` instead of clamping them, so the hang/loop case from R5
+cannot occur.)
 
 **Modify `plugins/absorbers/src/Options/Interfaces/IAbsorber.ts`**
 

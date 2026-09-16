@@ -30,46 +30,48 @@ async function loadContainer(id: string, options: ISourceOptions): Promise<Conta
   return container;
 }
 
-describe("ParticleGroups", async () => {
-  globalThis.window = TestWindow;
-
-  const container = await tsParticles.load({
-    id: "test-particle-groups",
-    options: {
-      autoPlay: false,
-    },
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment
-    element: createCustomCanvas(width, height) as any,
-  });
-
-  if (!container) {
-    throw new Error(`Error test container not initialized`);
-  }
+/**
+ * Creates the container shared by the ParticleGroups suite and registers its teardown.
+ * The container is destroyed after all tests, whether they pass or fail.
+ * @param id - The container id
+ * @param options - The options to load
+ * @returns the loaded container
+ */
+async function loadSharedContainer(id: string, options: ISourceOptions): Promise<Container> {
+  const container = await loadContainer(id, options);
 
   afterAll(() => {
     container.destroy();
   });
 
-  const groupMixOptions = {
-    particles: {
-      number: {
-        value: 6,
-      },
-      groups: {
-        g1: {
-          number: {
-            value: 3,
+  return container;
+}
+
+describe("ParticleGroups", async () => {
+  globalThis.window = TestWindow;
+
+  const container = await loadSharedContainer("test-particle-groups", {
+      autoPlay: false,
+    }),
+    groupMixOptions = {
+      particles: {
+        number: {
+          value: 6,
+        },
+        groups: {
+          g1: {
+            number: {
+              value: 3,
+            },
+          },
+          g2: {
+            number: {
+              value: 3,
+            },
           },
         },
-        g2: {
-          number: {
-            value: 3,
-          },
-        },
       },
-    },
-  };
+    };
 
   describe("group assignment and initialization", () => {
     beforeEach(async () => {
