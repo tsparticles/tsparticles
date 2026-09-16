@@ -3,6 +3,7 @@ import {
   type IContainerPlugin,
   type IDelta,
   decayOffset,
+  getItemMapFromInitializer,
   getRangeValue,
   half,
   millisecondsToSeconds,
@@ -135,13 +136,17 @@ export class MovePluginInstance implements IContainerPlugin {
   }
 
   async #init(): Promise<void> {
-    const availablePathGenerators = await this.#pluginManager.getPathGenerators?.(this.#container, true);
+    const pluginManager = this.#pluginManager;
 
-    if (!availablePathGenerators) {
+    if (!pluginManager.initializers.pathGenerators) {
       return;
     }
 
-    this.availablePathGenerators = availablePathGenerators;
+    this.availablePathGenerators = await getItemMapFromInitializer(
+      this.#container,
+      pluginManager.initializers.pathGenerators,
+    );
+
     this.pathGenerators = new Map();
 
     for (const pathGenerator of this.pathGenerators.values()) {

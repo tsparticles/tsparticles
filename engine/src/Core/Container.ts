@@ -1,20 +1,22 @@
+import type { EffectInitializer, ShapeInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
 import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import { defaultFps, defaultFpsLimit, millisecondsToSeconds, minFpsLimit } from "./Utils/Constants.js";
+import { getItemMapFromInitializer, getItemsFromInitializer } from "../Utils/Utils.js";
 import { CanvasManager } from "./CanvasManager.js";
-import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
+import { type CustomEventArgs } from "../Types/CustomEventArgs.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import { HdrMode } from "../Enums/Modes/HdrMode.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { IDelta } from "./Interfaces/IDelta.js";
+import { type IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import { type IDelta } from "./Interfaces/IDelta.js";
 import { type IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import { type IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
-import type { IPlugin } from "./Interfaces/IPlugin.js";
+import { type IPlugin } from "./Interfaces/IPlugin.js";
 import { type IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
-import type { ISourceOptions } from "../Types/ISourceOptions.js";
+import { type ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { ParticlesManager } from "./ParticlesManager.js";
-import type { PluginManager } from "./Utils/PluginManager.js";
+import { type PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionLoader.js";
@@ -301,8 +303,6 @@ export class Container {
     this.particleUpdaters = [];
     this.plugins.length = 0;
 
-    this.#pluginManager.clearPlugins(this);
-
     this.destroyed = true;
 
     this.#onDestroy(remove);
@@ -441,9 +441,18 @@ export class Container {
   async initDrawersAndUpdaters(): Promise<void> {
     const pluginManager = this.#pluginManager;
 
-    this.effectDrawers = await pluginManager.getEffectDrawers(this, true);
-    this.shapeDrawers = await pluginManager.getShapeDrawers(this, true);
-    this.particleUpdaters = await pluginManager.getUpdaters(this, true);
+    this.effectDrawers = await getItemMapFromInitializer<IEffectDrawer, EffectInitializer>(
+      this,
+      pluginManager.initializers.effects,
+    );
+    this.shapeDrawers = await getItemMapFromInitializer<IShapeDrawer, ShapeInitializer>(
+      this,
+      pluginManager.initializers.shapes,
+    );
+    this.particleUpdaters = await getItemsFromInitializer<IParticleUpdater, UpdaterInitializer>(
+      this,
+      pluginManager.initializers.updaters,
+    );
   }
 
   /**

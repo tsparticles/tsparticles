@@ -109,13 +109,11 @@ export class ParticlesOptions extends OptionLoader<IParticlesOptions> implements
         }
       }
 
-      const updaters = this.#pluginManager.updaters.get(this.#container);
+      const updaters = this.#container.particleUpdaters;
 
-      if (updaters) {
-        for (const updater of updaters) {
-          if (updater.loadOptions) {
-            updater.loadOptions(this, data);
-          }
+      for (const updater of updaters) {
+        if (updater.loadOptions) {
+          updater.loadOptions(this, data);
         }
       }
     }

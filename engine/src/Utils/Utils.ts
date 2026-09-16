@@ -475,19 +475,9 @@ export function manageListener(
  */
 export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, TItem[]>,
   initializers: Map<string, TInitializer>,
-  force = false,
 ): Promise<TItem[]> {
-  let res = map.get(container);
-
-  if (!res || force) {
-    res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-    map.set(container, res);
-  }
-
-  return res;
+  return await Promise.all([...initializers.values()].map(t => t(container)));
 }
 
 /**
@@ -499,24 +489,13 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
  */
 export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, Map<string, TItem>>,
   initializers: Map<string, TInitializer>,
-  force = false,
 ): Promise<Map<string, TItem>> {
-  let res = map.get(container);
+  const entries = await Promise.all(
+    [...initializers.entries()].map(([key, initializer]) => initializer(container).then(item => [key, item] as const)),
+  );
 
-  if (!res || force) {
-    const entries = await Promise.all(
-      [...initializers.entries()].map(([key, initializer]) =>
-        initializer(container).then(item => [key, item] as const),
-      ),
-    );
-
-    res = new Map(entries);
-    map.set(container, res);
-  }
-
-  return res;
+  return new Map(entries);
 }
 
 /**

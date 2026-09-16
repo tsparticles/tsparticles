@@ -4,21 +4,13 @@ import type {
   ShapeInitializer,
   UpdaterInitializer,
 } from "../../Types/EngineInitializers.js";
-import { getItemMapFromInitializer, getItemsFromInitializer } from "../../Utils/Utils.js";
-import type { Container } from "../Container.js";
 import type { EasingFunction } from "../../Types/EasingFunction.js";
 import type { Engine } from "../Engine.js";
 import { EventType } from "../../Enums/Types/EventType.js";
 import type { IColorManager } from "../Interfaces/IColorManager.js";
-import type { IEffectDrawer } from "../Interfaces/IEffectDrawer.js";
 import type { IPalette } from "../Interfaces/IPalette.js";
-import type { IParticleUpdater } from "../Interfaces/IParticleUpdater.js";
-import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IPlugin } from "../Interfaces/IPlugin.js";
-import type { IShapeDrawer } from "../Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
-import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /** Async plugin loader with engine parameter */
 export type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
@@ -42,11 +34,6 @@ export class PluginManager {
   /** The easing functions map */
   readonly easingFunctions = new Map<string, EasingFunction>();
 
-  /**
-   * The drawers (additional effects) array
-   */
-  readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
-
   /** The initializers map */
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
@@ -67,16 +54,6 @@ export class PluginManager {
    */
   /** The presets map */
   readonly presets = new Map<string, ISourceOptions>();
-
-  /**
-   * The drawers (additional shapes) array
-   */
-  readonly shapeDrawers = new Map<Container, Map<string, IShapeDrawer>>();
-
-  /**
-   * The updaters array
-   */
-  readonly updaters = new Map<Container, IParticleUpdater[]>();
 
   #allLoadersSet = new Set<LoadPluginFunction>();
 
@@ -113,12 +90,20 @@ export class PluginManager {
     return res;
   }
 
+  get initialized(): boolean {
+    return this.#initialized;
+  }
+
   /**
    * Registers a color manager.
    * @param name - Color manager identifier.
    * @param manager - Color manager implementation.
    */
   addColorManager(name: string, manager: IColorManager): void {
+    if (this.#initialized) {
+      return;
+    }
+
     this.colorManagers.set(name, manager);
   }
 
@@ -127,6 +112,10 @@ export class PluginManager {
    * @param config - the configuration to add
    */
   addConfig(config: ISourceOptions): void {
+    if (this.#initialized) {
+      return;
+    }
+
     const key = config.key ?? config.name ?? "default";
 
     this.#configs.set(key, config);
@@ -139,6 +128,10 @@ export class PluginManager {
    * @param easing - Easing function implementation.
    */
   addEasing(name: string, easing: EasingFunction): void {
+    if (this.#initialized) {
+      return;
+    }
+
     if (this.easingFunctions.get(name)) {
       return;
     }
@@ -152,6 +145,10 @@ export class PluginManager {
    * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
    */
   addEffect(effect: string, drawer: EffectInitializer): void {
+    if (this.#initialized) {
+      return;
+    }
+
     this.initializers.effects.set(effect, drawer);
   }
 
@@ -161,6 +158,10 @@ export class PluginManager {
    * @param palette - the palette to add
    */
   addPalette(name: string, palette: IPalette): void {
+    if (this.#initialized) {
+      return;
+    }
+
     this.palettes.set(name, palette);
   }
 
@@ -170,6 +171,10 @@ export class PluginManager {
    * @param updaterInitializer - the particle updater initializer
    */
   addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
+    if (this.#initialized) {
+      return;
+    }
+
     this.initializers.updaters.set(name, updaterInitializer);
   }
 
@@ -178,6 +183,10 @@ export class PluginManager {
    * @param plugin - the plugin implementation of {@link IPlugin}
    */
   addPlugin(plugin: IPlugin): void {
+    if (this.#initialized) {
+      return;
+    }
+
     if (this.getPlugin(plugin.id)) {
       return;
     }
@@ -192,6 +201,10 @@ export class PluginManager {
    * @param override - if true, the preset will override any existing with the same name
    */
   addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
+    if (this.#initialized) {
+      return;
+    }
+
     if (!(override || !this.getPreset(preset))) {
       return;
     }
@@ -205,19 +218,13 @@ export class PluginManager {
    * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
    */
   addShape(shapes: string[], drawer: ShapeInitializer): void {
+    if (this.#initialized) {
+      return;
+    }
+
     for (const shape of shapes) {
       this.initializers.shapes.set(shape, drawer);
     }
-  }
-
-  /**
-   * Clears plugins for a container
-   * @param container - the container to clear plugins for
-   */
-  clearPlugins(container: Container): void {
-    this.effectDrawers.delete(container);
-    this.shapeDrawers.delete(container);
-    this.updaters.delete(container);
   }
 
   /**
@@ -227,16 +234,6 @@ export class PluginManager {
    */
   getEasing(name: string): EasingFunction {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
-  }
-
-  /**
-   * Gets the effect drawers for a container
-   * @param container - the container to get effect drawers for
-   * @param force - if true, reloads the effect drawers
-   * @returns the effect drawers map
-   */
-  getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
-    return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
   /**
@@ -267,26 +264,6 @@ export class PluginManager {
   }
 
   /**
-   * Gets the shape drawers for a container
-   * @param container - the container to get shape drawers for
-   * @param force - if true, reloads the shape drawers
-   * @returns the shape drawers map
-   */
-  async getShapeDrawers(container: Container, force = false): Promise<Map<string, IShapeDrawer>> {
-    return getItemMapFromInitializer(container, this.shapeDrawers, this.initializers.shapes, force);
-  }
-
-  /**
-   * Returns all the container particle updaters
-   * @param container - the container used to check which particle updaters are enabled
-   * @param force - if true reloads the updater collection for the given container
-   * @returns the array of updaters for the given container
-   */
-  async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-    return getItemsFromInitializer(container, this.updaters, this.initializers.updaters, force);
-  }
-
-  /**
    * init method, used by imports
    */
   async init(): Promise<void> {
@@ -307,26 +284,6 @@ export class PluginManager {
       this.#isRunningLoaders = false;
       this.#initialized = true;
     }
-  }
-
-  /**
-   * Loads particles options for all updaters.
-   * @param container - the container of the updaters
-   * @param options - the actual options to set
-   * @param sourceOptions - the source options to read
-   */
-  loadParticlesOptions(
-    container: Container,
-    options: ParticlesOptions,
-    ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
-  ): void {
-    const updaters = this.updaters.get(container);
-
-    if (!updaters) {
-      return;
-    }
-
-    updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
   }
 
   /**
