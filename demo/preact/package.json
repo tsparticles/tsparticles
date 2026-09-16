@@ -40,7 +40,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "identity-obj-proxy": "^3.0.0",
     "preact-cli": "^3.5.1",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.7",
     "sirv-cli": "^3.0.1",
     "typescript": "^6.0.3"
   },

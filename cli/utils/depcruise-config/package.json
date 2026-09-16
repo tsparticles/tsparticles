@@ -51,7 +51,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^64.5.0",
     "eslint-plugin-tsdoc": "^0.5.2",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.7",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "tsdown": "^0.23.0",
     "typescript": "^6.0.3",

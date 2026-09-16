@@ -110,7 +110,7 @@
 		"eslint": "^10.10.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.22.0",
-		"prettier": "^3.9.6",
+		"prettier": "^3.9.7",
 		"prettier-plugin-svelte": "^4.1.1",
 		"publint": "^0.3.23",
 		"svelte": "^5.56.8",

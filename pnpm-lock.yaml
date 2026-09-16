@@ -251,7 +251,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
@@ -274,11 +274,11 @@ importers:
         specifier: ^19.1.3
         version: 19.1.3(debug@4.4.3(supports-color@8.1.1))
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       puppeteer:
         specifier: ^25.11.0
         version: 25.11.0(yauzl@3.4.0)
@@ -1001,7 +1001,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1015,11 +1015,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1116,7 +1116,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1130,11 +1130,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1219,7 +1219,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1233,11 +1233,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1331,7 +1331,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1345,11 +1345,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1425,7 +1425,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1439,11 +1439,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1519,7 +1519,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1533,11 +1533,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1613,7 +1613,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1627,11 +1627,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -1695,7 +1695,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1709,11 +1709,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1792,7 +1792,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1806,11 +1806,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -1886,7 +1886,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -1900,11 +1900,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -2010,13 +2010,13 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -2116,16 +2116,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -2192,16 +2192,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2262,16 +2262,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2332,16 +2332,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2402,16 +2402,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2472,16 +2472,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2542,16 +2542,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2612,16 +2612,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2682,16 +2682,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2752,16 +2752,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       '@types/estree':
         specifier: ^1.0.9
@@ -2825,7 +2825,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -2839,11 +2839,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -2986,16 +2986,16 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -3022,8 +3022,8 @@ importers:
         specifier: ^4.29.0
         version: 4.29.0
       cpx2:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: ^9.0.3
+        version: 9.0.3
 
   cli/utils/depcruise-config:
     devDependencies:
@@ -3055,11 +3055,11 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       tsdown:
         specifier: ^0.23.0
         version: 0.23.0(@volar/typescript@2.4.28(typescript@6.0.3))(oxc-resolver@11.20.0)(publint@0.3.23)(typescript@6.0.3)(vue-tsc@3.3.9(typescript@6.0.3))
@@ -3089,7 +3089,7 @@ importers:
         version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-tsdoc:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -3097,11 +3097,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -3120,14 +3120,14 @@ importers:
     dependencies:
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
     devDependencies:
       cpx2:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: ^9.0.3
+        version: 9.0.3
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
 
   cli/utils/rollup-plugin:
     dependencies:
@@ -3162,11 +3162,11 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       rollup-plugin-visualizer:
         specifier: ^7.1.1
         version: 7.1.1(rolldown@1.2.3)(rollup@4.63.1)
@@ -3193,8 +3193,8 @@ importers:
   cli/utils/tsconfig:
     devDependencies:
       cpx2:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: ^9.0.3
+        version: 9.0.3
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -3229,11 +3229,11 @@ importers:
         specifier: ^0.5.2
         version: 0.5.2(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-multiline-arrays:
         specifier: ^4.1.11
-        version: 4.1.11(prettier@3.9.6)
+        version: 4.1.11(prettier@3.9.7)
       swc-loader:
         specifier: ^0.2.7
         version: 0.2.7(@swc/core@1.16.2(@swc/helpers@0.5.23))(webpack@5.111.0)
@@ -3557,7 +3557,7 @@ importers:
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.10
-        version: 0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)
+        version: 0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.7)(typescript@6.0.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -3844,7 +3844,7 @@ importers:
         version: 18.3.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-qunit:
         specifier: ^8.2.6
         version: 8.2.6(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
@@ -3852,8 +3852,8 @@ importers:
         specifier: ^4.7.0
         version: 4.7.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       qunit:
         specifier: ^2.26.0
         version: 2.26.0
@@ -4227,7 +4227,7 @@ importers:
         version: 2.32.0(@typescript-eslint/parser@8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-import-resolver-typescript@4.4.5)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       eslint-plugin-jsdoc:
         specifier: ^64.0.2
-        version: 64.3.9(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
+        version: 64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-prefer-arrow:
         specifier: ^1.2.3
         version: 1.2.3(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
@@ -4317,8 +4317,8 @@ importers:
         specifier: ^4.18.1
         version: 4.18.1
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       pug:
         specifier: ^3.0.4
         version: 3.0.4
@@ -4408,8 +4408,8 @@ importers:
         specifier: ^1.3.4
         version: 1.3.4
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -4534,7 +4534,7 @@ importers:
         version: 3.50.0
       nuxt:
         specifier: ^2.18.1
-        version: 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
+        version: 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
       tsparticles:
         specifier: workspace:*
         version: link:../../bundles/full/dist
@@ -4612,8 +4612,8 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(postcss@8.5.26)(webpack@4.47.0)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       ts-loader:
         specifier: ^8.4.0
         version: 8.4.0(typescript@6.0.3)(webpack@4.47.0)
@@ -4622,7 +4622,7 @@ importers:
         version: 10.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
+        version: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
       vue-template-babel-compiler:
         specifier: ^2.0.0
         version: 2.0.0(supports-color@10.2.2)(vue-template-compiler@2.7.16)
@@ -4684,8 +4684,8 @@ importers:
         specifier: ^3.21.11
         version: 3.21.11(@oxc-project/types@0.147.0)(@parcel/watcher@2.5.6)(@types/node@26.6.0)(@vue/compiler-sfc@3.5.41)(cac@6.7.14)(commander@15.0.0)(db0@0.3.4)(encoding@0.1.13)(esbuild@0.28.2)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(ioredis@5.11.1(supports-color@10.2.2))(less@4.6.6)(lightningcss@1.33.0)(magicast@0.5.4)(meow@14.1.0)(optionator@0.9.4)(rolldown@1.2.6)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.6)(rollup@4.62.4))(rollup@4.62.4)(sass@1.102.0)(srvx@0.11.22)(stylelint@16.26.1(supports-color@10.2.2)(typescript@6.0.3))(stylus@0.64.0(supports-color@10.2.2))(supports-color@10.2.2)(terser@5.51.2)(typescript@6.0.3)(vite@8.2.2(@types/node@26.6.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))(vue-tsc@3.3.9(typescript@6.0.3))(webpack@5.111.0)(xml2js@0.6.2)(yaml@2.9.0)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       tsparticles:
         specifier: workspace:*
         version: link:../../bundles/full/dist
@@ -4753,8 +4753,8 @@ importers:
         specifier: ^4.5.2
         version: 4.5.2(d193ccec0b911d69af6a21075ebcbfbb)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       tsparticles:
         specifier: workspace:*
         version: link:../../bundles/full/dist
@@ -4826,8 +4826,8 @@ importers:
         specifier: ^3.5.1
         version: 3.5.1(@types/babel__core@7.20.5)(bluebird@3.7.2)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(preact-render-to-string@6.7.0)(preact@10.29.8)(supports-color@10.2.2)(ts-node@10.9.2(@swc/core@1.16.2(@swc/helpers@0.5.23))(@types/node@26.6.0)(typescript@6.0.3))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack-cli@7.2.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       sirv-cli:
         specifier: ^3.0.1
         version: 3.0.1
@@ -5126,11 +5126,11 @@ importers:
         specifier: ^3.22.0
         version: 3.22.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(svelte@5.56.8(@typescript-eslint/types@8.68.0))(ts-node@10.9.2(@swc/core@1.16.2(@swc/helpers@0.5.23))(@types/node@26.6.0)(typescript@6.0.3))
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-svelte:
         specifier: ^4.1.1
-        version: 4.1.1(prettier@3.9.6)(svelte@5.56.8(@typescript-eslint/types@8.68.0))
+        version: 4.1.1(prettier@3.9.7)(svelte@5.56.8(@typescript-eslint/types@8.68.0))
       svelte:
         specifier: ^5.56.8
         version: 5.56.8(@typescript-eslint/types@8.68.0)
@@ -6406,13 +6406,13 @@ importers:
         version: 8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       '@vue/cli-plugin-babel':
         specifier: ^5.0.9
-        version: 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(clean-css@5.3.3)(core-js@3.50.0)(cssnano@5.1.15(postcss@8.5.26))(csso@5.0.5)(encoding@0.1.13)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(supports-color@10.2.2)(uglify-js@3.19.3)(vue@2.7.16)(webpack-cli@7.2.3)
+        version: 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(clean-css@5.3.3)(core-js@3.50.0)(cssnano@5.1.15(postcss@8.5.26))(csso@5.0.5)(encoding@0.1.13)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(supports-color@10.2.2)(uglify-js@3.19.3)(vue@2.7.16)(webpack-cli@7.2.3)
       '@vue/cli-plugin-typescript':
         specifier: ^5.0.9
-        version: 5.0.9(ce5baf7da0f3497a2b792a30e61a2238)
+        version: 5.0.9(b9506800164edb6ab7726552ba80f303)
       '@vue/cli-service':
         specifier: ^5.0.9
-        version: 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
+        version: 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
       babel-loader:
         specifier: ^10.1.1
         version: 10.1.1(@babel/core@8.0.1)(webpack@4.47.0)
@@ -6435,8 +6435,8 @@ importers:
         specifier: ^8.5.26
         version: 8.5.26
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rollup:
         specifier: ^4.63.1
         version: 4.63.1
@@ -6463,7 +6463,7 @@ importers:
         version: 10.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@7.1.4(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
+        version: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@7.1.4(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
       vue-template-compiler:
         specifier: ^2.7.16
         version: 2.7.16
@@ -6515,7 +6515,7 @@ importers:
         version: 5.1.6(supports-color@10.2.2)(vite@8.2.2(@types/node@26.6.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))(vue@3.5.38(typescript@6.0.3))
       '@vue/eslint-config-prettier':
         specifier: ^10.2.0
-        version: 10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       '@vue/eslint-config-typescript':
         specifier: ^14.9.0
         version: 14.9.0(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(@typescript-eslint/parser@8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(vue-eslint-parser@10.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -6538,8 +6538,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -6589,8 +6589,8 @@ importers:
         specifier: ^8.3.0
         version: 8.3.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       pug:
         specifier: ^3.0.4
         version: 3.0.4
@@ -11860,7 +11860,7 @@ importers:
         version: 10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       gh-pages:
         specifier: ^6.3.0
         version: 6.3.0
@@ -11868,8 +11868,8 @@ importers:
         specifier: ^17.11.0
         version: 17.11.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       vite:
         specifier: ^8.2.2
         version: 8.2.2(@types/node@26.6.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
@@ -11906,7 +11906,7 @@ importers:
         version: 10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       gh-pages:
         specifier: ^6.3.0
         version: 6.3.0
@@ -11914,8 +11914,8 @@ importers:
         specifier: ^17.11.0
         version: 17.11.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       vite:
         specifier: ^8.2.2
         version: 8.2.2(@types/node@26.6.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
@@ -12599,8 +12599,8 @@ importers:
         version: link:../../bundles/full/dist
     devDependencies:
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typedoc:
         specifier: ^0.28.20
         version: 0.28.20(typescript@6.0.3)
@@ -12705,8 +12705,8 @@ importers:
         specifier: ~22.1.1
         version: 22.1.1(@angular/compiler-cli@22.1.1(@angular/compiler@22.1.1)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -12788,8 +12788,8 @@ importers:
         specifier: ~22.1.1
         version: 22.1.1(@angular/compiler-cli@22.1.1(@angular/compiler@22.1.1)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -12871,8 +12871,8 @@ importers:
         specifier: ~22.1.1
         version: 22.1.1(@angular/compiler-cli@22.1.1(@angular/compiler@22.1.1)(typescript@6.0.3))(tslib@2.8.1)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -12891,8 +12891,8 @@ importers:
         specifier: ^7.3.2
         version: 7.3.2(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(@types/node@26.6.0)(db0@0.3.4)(ioredis@5.11.1(supports-color@10.2.2))(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-astro:
         specifier: ^0.14.1
         version: 0.14.1
@@ -13073,7 +13073,7 @@ importers:
         version: 18.3.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.6
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       eslint-plugin-qunit:
         specifier: ^8.2.6
         version: 8.2.6(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
@@ -13084,8 +13084,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       qunit:
         specifier: ^2.26.0
         version: 2.26.0
@@ -13159,8 +13159,8 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       sass:
         specifier: ^1.102.0
         version: 1.102.0
@@ -13232,8 +13232,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rollup:
         specifier: ^4.63.1
         version: 4.63.1
@@ -13327,7 +13327,7 @@ importers:
         version: link:../vue2/dist
       nuxt:
         specifier: '>=2.0.0 <3.0.0'
-        version: 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
+        version: 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -13476,8 +13476,8 @@ importers:
         specifier: ^10.29.8
         version: 10.29.8(preact-render-to-string@6.7.0)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       ts-loader:
         specifier: ^9.6.2
         version: 9.6.2(loader-utils@3.3.1)(typescript@6.0.3)(webpack@5.111.0)
@@ -13530,8 +13530,8 @@ importers:
         specifier: ^12.0.1
         version: 12.0.1(@types/node@26.6.0)(typescript@6.0.3)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       tsparticles:
         specifier: workspace:*
         version: link:../../bundles/full/dist
@@ -13643,8 +13643,8 @@ importers:
         specifier: ^18.0.0
         version: 18.0.0(supports-color@10.2.2)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       riot:
         specifier: ^10.1.6
         version: 10.1.6
@@ -13768,11 +13768,11 @@ importers:
         specifier: ^3.22.0
         version: 3.22.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(svelte@5.56.8(@typescript-eslint/types@8.68.0))(ts-node@10.9.2(@swc/core@1.16.2(@swc/helpers@0.5.23))(@types/node@26.6.0)(typescript@6.0.3))
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       prettier-plugin-svelte:
         specifier: ^4.1.1
-        version: 4.1.1(prettier@3.9.6)(svelte@5.56.8(@typescript-eslint/types@8.68.0))
+        version: 4.1.1(prettier@3.9.7)(svelte@5.56.8(@typescript-eslint/types@8.68.0))
       publint:
         specifier: ^0.3.23
         version: 0.3.23
@@ -13824,8 +13824,8 @@ importers:
         specifier: ^17.11.0
         version: 17.11.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -13886,7 +13886,7 @@ importers:
         version: 5.1.6(supports-color@10.2.2)(vite@8.2.2(@types/node@26.6.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))(vue@3.5.38(typescript@6.0.3))
       '@vue/eslint-config-prettier':
         specifier: ^10.2.0
-        version: 10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
+        version: 10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
       '@vue/eslint-config-typescript':
         specifier: ^14.9.0
         version: 14.9.0(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(@typescript-eslint/parser@8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(vue-eslint-parser@10.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
@@ -13906,8 +13906,8 @@ importers:
         specifier: ^17.11.0
         version: 17.11.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -13946,8 +13946,8 @@ importers:
         specifier: ^26.6.0
         version: 26.6.0
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rollup:
         specifier: ^4.63.1
         version: 4.63.1
@@ -26750,11 +26750,6 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  baseline-browser-mapping@2.11.21:
-    resolution: {integrity: sha512-uh8vpY/1/YyFkunIDFH/12p7/7VdPKA1hejMVEbdkEaWnUz0Hesvx5EbiU6XxjyHZIOju+ZMbQJkRh+es3/spQ==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
   baseline-browser-mapping@2.11.24:
     resolution: {integrity: sha512-hYrgxie335U08WqICoGqKRzV1HFXv6zdxwJE4ekCb80CM9a0SVVsN4QPwT67RraRo+9h8IATk6uxHJw7QSkdOg==}
     engines: {node: '>=6.0.0'}
@@ -27106,11 +27101,6 @@ packages:
 
   browserslist@4.28.8:
     resolution: {integrity: sha512-V2NpofLblG64mfOtSgDhOJESZEGogzDMBv/q+W6oc4LXWP/q75eOXoOaaOu1EOadB9U4Bwx/e0yzbvwKH8zalA==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
-  browserslist@4.28.9:
-    resolution: {integrity: sha512-EWazOblFYUvlGZcfGhPUPmYh3nikUxBVb+y9MJun5f3hBi812X+8MSQTujLBtgK3cf51fJWbWfOjyeO954d+Eg==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -28525,8 +28515,8 @@ packages:
       typescript:
         optional: true
 
-  cpx2@9.0.0:
-    resolution: {integrity: sha512-KRZGQCmHrM10xfLjrCBTQHpEIJgKtZyOOO5fygu9KE00IjQOL76FHjeON62R5PWS/W2J5ofgRJKF8rpUlEuLPQ==}
+  cpx2@9.0.3:
+    resolution: {integrity: sha512-SHeJspK34eVoLWuCrBW6YdcflnZwJifgADJNRkitsuZN2bi4+iby4slavs1qANeNiiZnIWRFG4vNcHp8UHrE5g==}
     engines: {node: ^22.0.0 || >=24.0.0, npm: '>=10'}
     hasBin: true
 
@@ -29536,9 +29526,6 @@ packages:
   electron-to-chromium@1.5.404:
     resolution: {integrity: sha512-3WJtd7/lVq2Jnuz6wed1l9+1ZD2u2Tet1/1NBc4Iedkmgbu+I7YuAqdAQ8T+VZtnwysMsAf3IqSq9D1gyZjA2g==}
 
-  electron-to-chromium@1.5.426:
-    resolution: {integrity: sha512-2Gcq6inCQs/AqfHP3f5ftCzk+pqeW2VlA1LgmPqEj2hfBO8HiZRspNYkD4HzFBe4u6lGqca4BspFr6Ix4Q400g==}
-
   electron-to-chromium@1.5.429:
     resolution: {integrity: sha512-/1ENIE3cx4HTIx4IfPZFaOunJmsrSVTnj6coXoRVbiJUbkeTyFkJvBeWGkdgh08OhFbxYLMT1kbkwFVSarq6Ow==}
 
@@ -30261,12 +30248,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-
-  eslint-plugin-jsdoc@64.3.9:
-    resolution: {integrity: sha512-iwA1uN5/3X3GH9zdiJq8XvUNuMeLPWriGCLNBt2d/oACwYq41LrAJE2cLvMLc2gcYFutd/XvINp99JGTlxEirA==}
-    engines: {node: ^22.22.2 || >=24.15.0}
-    peerDependencies:
-      eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
 
   eslint-plugin-jsdoc@64.5.0:
     resolution: {integrity: sha512-At1L7de/11zGlecxnoXw81hy/xfcnzzXCJX71HTpXt7FPa8bK+nAYRB73pvTfoR3DkTToToQsI6iyX4EbVfGcg==}
@@ -37633,6 +37614,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prettier@3.9.7:
+    resolution: {integrity: sha512-T3mF5P7HFzZVLDQuCUNtJj6WK1pcpLMweMNUVwGb01bLNkH9AkKxtZvmInw8K6bnn2O3d6/5RHl6zSHiBAD0Og==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-bytes@4.0.2:
     resolution: {integrity: sha512-yJAF+AjbHKlxQ8eezMd/34Mnj/YTQ3i6kLzvVsH4l/BfIFtp444n0wVbnsn66JimZ9uBofv815aRp1zCppxlWw==}
     engines: {node: '>=4'}
@@ -41534,12 +41520,6 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  update-browserslist-db@1.3.2:
-    resolution: {integrity: sha512-UQ+MSxlhRm1bzjhU+DcuXfjFO1FzNtqhK5+9Yvlp90ItDLk5vT932A0rFu619nf7RVS+Y/VeaUW1jaRDqZ8VJw==}
-    hasBin: true
-    peerDependencies:
-      browserslist: '>= 4.21.0'
-
   update-browserslist-db@1.3.3:
     resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
     hasBin: true
@@ -43988,9 +43968,9 @@ snapshots:
       '@ast-grep/napi-win32-ia32-msvc': 0.36.3
       '@ast-grep/napi-win32-x64-msvc': 0.36.3
 
-  '@astrojs/check@0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)':
+  '@astrojs/check@0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.7)(typescript@6.0.3)':
     dependencies:
-      '@astrojs/language-server': 2.16.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)
+      '@astrojs/language-server': 2.16.10(prettier-plugin-astro@0.14.1)(prettier@3.9.7)(typescript@6.0.3)
       chokidar: 4.0.3
       kleur: 4.1.5
       typescript: 6.0.3
@@ -44066,7 +44046,7 @@ snapshots:
       smol-toml: 1.6.1
       unified: 11.0.5
 
-  '@astrojs/language-server@2.16.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)':
+  '@astrojs/language-server@2.16.10(prettier-plugin-astro@0.14.1)(prettier@3.9.7)(typescript@6.0.3)':
     dependencies:
       '@astrojs/compiler': 2.13.1
       '@astrojs/yaml2ts': 0.2.4
@@ -44080,14 +44060,14 @@ snapshots:
       volar-service-css: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))
       volar-service-emmet: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))
       volar-service-html: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))
-      volar-service-prettier: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(prettier@3.9.6)
+      volar-service-prettier: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(prettier@3.9.7)
       volar-service-typescript: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(typescript@6.0.3)
       volar-service-typescript-twoslash-queries: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(typescript@6.0.3)
       volar-service-yaml: 0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))
       vscode-html-languageservice: 5.6.2
       vscode-uri: 3.1.0
     optionalDependencies:
-      prettier: 3.9.6
+      prettier: 3.9.7
       prettier-plugin-astro: 0.14.1
     transitivePeerDependencies:
       - typescript
@@ -50378,12 +50358,12 @@ snapshots:
       - supports-color
       - vue
 
-  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)':
+  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
@@ -50460,12 +50440,12 @@ snapshots:
       - webpack-command
       - whiskers
 
-  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)':
+  '@nuxt/builder@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
@@ -51929,7 +51909,7 @@ snapshots:
       vue-meta: 2.4.0
       vue-server-renderer: 2.7.16(patch_hash=7374e4bf5b7956d7097feec494aaea43bf8f6a02e2b64e8a3cc57e19c2f65132)
 
-  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)':
+  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@nuxt/babel-preset-app': 2.18.1(supports-color@10.2.2)(vue@2.7.16)
@@ -51969,7 +51949,7 @@ snapshots:
       ufo: 1.6.4
       upath: 2.0.1
       url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0))(webpack@4.47.0)
-      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
+      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
       vue-style-loader: 4.1.3
       vue-template-compiler: 2.7.16
       watchpack: 2.5.2
@@ -52044,7 +52024,7 @@ snapshots:
       - webpack-command
       - whiskers
 
-  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)':
+  '@nuxt/webpack@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@nuxt/babel-preset-app': 2.18.1(supports-color@10.2.2)
@@ -52084,7 +52064,7 @@ snapshots:
       ufo: 1.6.4
       upath: 2.0.1
       url-loader: 4.1.1(file-loader@6.2.0(webpack@4.47.0))(webpack@4.47.0)
-      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
+      vue-loader: 15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0)
       vue-style-loader: 4.1.3
       vue-template-compiler: 2.7.16
       watchpack: 2.5.2
@@ -57329,11 +57309,11 @@ snapshots:
 
   '@vue/cli-overlay@5.0.9': {}
 
-  '@vue/cli-plugin-babel@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(clean-css@5.3.3)(core-js@3.50.0)(cssnano@5.1.15(postcss@8.5.26))(csso@5.0.5)(encoding@0.1.13)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(supports-color@10.2.2)(uglify-js@3.19.3)(vue@2.7.16)(webpack-cli@7.2.3)':
+  '@vue/cli-plugin-babel@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(clean-css@5.3.3)(core-js@3.50.0)(cssnano@5.1.15(postcss@8.5.26))(csso@5.0.5)(encoding@0.1.13)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(supports-color@10.2.2)(uglify-js@3.19.3)(vue@2.7.16)(webpack-cli@7.2.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@vue/babel-preset-app': 5.0.9(@babel/core@7.29.7(supports-color@10.2.2))(core-js@3.50.0)(supports-color@10.2.2)(vue@2.7.16)
-      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
+      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       babel-loader: 8.4.1(@babel/core@7.29.7(supports-color@10.2.2))(webpack@5.109.2)
       thread-loader: 3.0.4(webpack@5.109.2)
@@ -57357,18 +57337,18 @@ snapshots:
       - vue
       - webpack-cli
 
-  '@vue/cli-plugin-router@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(encoding@0.1.13)':
+  '@vue/cli-plugin-router@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(encoding@0.1.13)':
     dependencies:
-      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
+      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
-  '@vue/cli-plugin-typescript@5.0.9(ce5baf7da0f3497a2b792a30e61a2238)':
+  '@vue/cli-plugin-typescript@5.0.9(b9506800164edb6ab7726552ba80f303)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@types/webpack-env': 1.18.8
-      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
+      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       babel-loader: 8.4.1(@babel/core@7.29.7(supports-color@10.2.2))(webpack@5.109.2)
       fork-ts-checker-webpack-plugin: 6.5.3(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(typescript@6.0.3)(vue-template-compiler@2.7.16)(webpack@5.109.2)
@@ -57400,22 +57380,22 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@vue/cli-plugin-vuex@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))':
+  '@vue/cli-plugin-vuex@5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))':
     dependencies:
-      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
+      '@vue/cli-service': 5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)
 
-  '@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)':
+  '@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1)':
     dependencies:
       '@babel/helper-compilation-targets': 7.29.7
       '@soda/friendly-errors-webpack-plugin': 1.8.1(webpack@5.109.2)
       '@soda/get-current-script': 1.0.2
       '@types/minimist': 1.2.5
       '@vue/cli-overlay': 5.0.9
-      '@vue/cli-plugin-router': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(encoding@0.1.13)
-      '@vue/cli-plugin-vuex': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))
+      '@vue/cli-plugin-router': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))(encoding@0.1.13)
+      '@vue/cli-plugin-vuex': 5.0.9(@vue/cli-service@5.0.9(@swc/core@1.16.2(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(clean-css@5.3.3)(csso@5.0.5)(ejs@3.1.10)(encoding@0.1.13)(esbuild@0.28.2)(hamljs@0.6.2)(handlebars@4.7.9)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(raw-loader@4.0.2(webpack@4.47.0))(sass-loader@17.0.0(sass@1.102.0)(webpack@4.47.0))(supports-color@10.2.2)(uglify-js@3.19.3)(underscore@1.13.8)(vue-template-compiler@2.7.16)(vue@2.7.16)(webpack-cli@7.2.3)(webpack-sources@3.5.1))
       '@vue/cli-shared-utils': 5.0.9(encoding@0.1.13)
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(pug@3.0.4)(underscore@1.13.8)
-      '@vue/vue-loader-v15': vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@6.11.0(webpack@5.109.2))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.109.2)
+      '@vue/vue-loader-v15': vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@6.11.0(webpack@5.109.2))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.109.2)
       '@vue/web-component-wrapper': 1.3.0
       acorn: 8.17.0
       acorn-walk: 8.3.5
@@ -57733,12 +57713,12 @@ snapshots:
 
   '@vue/devtools-shared@8.2.1': {}
 
-  '@vue/eslint-config-prettier@10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)':
+  '@vue/eslint-config-prettier@10.2.0(@types/eslint@9.6.1)(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)':
     dependencies:
       eslint: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
       eslint-config-prettier: 10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
-      eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
-      prettier: 3.9.6
+      eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7)
+      prettier: 3.9.7
     transitivePeerDependencies:
       - '@types/eslint'
 
@@ -60523,7 +60503,7 @@ snapshots:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@babel/plugin-syntax-decorators': 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))
       '@babel/plugin-transform-typescript': 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
-      prettier: 3.9.6
+      prettier: 3.9.7
     transitivePeerDependencies:
       - supports-color
 
@@ -60645,8 +60625,6 @@ snapshots:
       pascalcase: 0.1.1
 
   baseline-browser-mapping@2.11.13: {}
-
-  baseline-browser-mapping@2.11.21: {}
 
   baseline-browser-mapping@2.11.24: {}
 
@@ -61365,14 +61343,6 @@ snapshots:
       electron-to-chromium: 1.5.404
       node-releases: 2.0.53
       update-browserslist-db: 1.3.1(browserslist@4.28.8)
-
-  browserslist@4.28.9:
-    dependencies:
-      baseline-browser-mapping: 2.11.21
-      caniuse-lite: 1.0.30001810
-      electron-to-chromium: 1.5.426
-      node-releases: 2.0.55
-      update-browserslist-db: 1.3.2(browserslist@4.28.9)
 
   browserslist@4.29.0:
     dependencies:
@@ -62687,15 +62657,15 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  cpx2@9.0.0:
+  cpx2@9.0.3:
     dependencies:
       debounce: 3.0.0
       glob: 13.0.6
       glob2base: 0.0.12
-      ignore: 7.0.5
-      minimatch: 10.2.5
+      ignore: 7.0.6
+      minimatch: 10.2.6
       p-map: 7.0.4
-      shell-quote: 1.8.4
+      shell-quote: 1.9.0
       subarg: 1.0.0
 
   crc-32@1.2.2: {}
@@ -63950,8 +63920,6 @@ snapshots:
   electron-to-chromium@1.5.388: {}
 
   electron-to-chromium@1.5.404: {}
-
-  electron-to-chromium@1.5.426: {}
 
   electron-to-chromium@1.5.429: {}
 
@@ -65597,28 +65565,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jsdoc@64.3.9(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3):
-    dependencies:
-      '@es-joy/jsdoccomment': 0.97.0
-      '@es-joy/resolve.exports': 1.2.0
-      '@typescript-eslint/utils': 8.70.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
-      are-docs-informative: 0.1.1
-      comment-parser: 1.4.8
-      debug: 4.4.3(supports-color@10.2.2)
-      escape-string-regexp: 5.0.0
-      eslint: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
-      espree: 11.2.0
-      esquery: 1.7.0
-      html-entities: 2.6.0
-      object-deep-merge: 2.0.1
-      parse-imports-exports: 0.2.4
-      semver: 7.8.5
-      spdx-expression-parse: 5.0.0
-      to-valid-identifier: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
   eslint-plugin-jsdoc@64.5.0(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3):
     dependencies:
       '@es-joy/jsdoccomment': 0.97.0
@@ -65757,20 +65703,20 @@ snapshots:
     dependencies:
       eslint: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
 
-  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6):
+  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.7):
     dependencies:
       eslint: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
-      prettier: 3.9.6
+      prettier: 3.9.7
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
       '@types/eslint': 9.6.1
       eslint-config-prettier: 10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@10.2.2))
 
-  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(prettier@3.9.6):
+  eslint-plugin-prettier@5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))(prettier@3.9.7):
     dependencies:
       eslint: 10.10.0(jiti@2.7.0)(supports-color@8.1.1)
-      prettier: 3.9.6
+      prettier: 3.9.7
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
@@ -72969,10 +72915,10 @@ snapshots:
     optionalDependencies:
       chokidar: 3.6.0
 
-  nuxt@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3):
+  nuxt@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3):
     dependencies:
       '@nuxt/babel-preset-app': 2.18.1(supports-color@10.2.2)(vue@2.7.16)
-      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
+      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
       '@nuxt/cli': 2.18.1(buffer@6.0.3)(supports-color@10.2.2)
       '@nuxt/components': 2.2.1(consola@3.4.2)
       '@nuxt/config': 2.18.1
@@ -72985,7 +72931,7 @@ snapshots:
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
       '@nuxt/vue-renderer': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(vue@2.7.16)(webpack-cli@7.2.3)
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - arc-templates
@@ -73054,10 +73000,10 @@ snapshots:
       - webpack-command
       - whiskers
 
-  nuxt@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3):
+  nuxt@2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(buffer@6.0.3)(consola@3.4.2)(ejs@3.1.10)(encoding@0.1.13)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3):
     dependencies:
       '@nuxt/babel-preset-app': 2.18.1(supports-color@10.2.2)
-      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
+      '@nuxt/builder': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
       '@nuxt/cli': 2.18.1(buffer@6.0.3)(supports-color@10.2.2)
       '@nuxt/components': 2.2.1(consola@3.4.2)
       '@nuxt/config': 2.18.1
@@ -73070,7 +73016,7 @@ snapshots:
       '@nuxt/utils': 2.18.1
       '@nuxt/vue-app': 2.18.1
       '@nuxt/vue-renderer': 2.18.1
-      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
+      '@nuxt/webpack': 2.18.1(@vue/compiler-sfc@3.5.41)(bluebird@3.7.2)(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(supports-color@10.2.2)(tslib@2.8.1)(typescript@6.0.3)(underscore@1.13.8)(webpack-cli@7.2.3)
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - arc-templates
@@ -76827,19 +76773,19 @@ snapshots:
   prettier-plugin-astro@0.14.1:
     dependencies:
       '@astrojs/compiler': 2.13.1
-      prettier: 3.9.6
+      prettier: 3.9.7
       sass-formatter: 0.7.9
 
-  prettier-plugin-multiline-arrays@4.1.11(prettier@3.9.6):
+  prettier-plugin-multiline-arrays@4.1.11(prettier@3.9.7):
     dependencies:
       '@augment-vir/assert': 32.2.1
       '@augment-vir/common': 32.2.1
-      prettier: 3.9.6
+      prettier: 3.9.7
       proxy-vir: 2.0.3
 
-  prettier-plugin-svelte@4.1.1(prettier@3.9.6)(svelte@5.56.8(@typescript-eslint/types@8.68.0)):
+  prettier-plugin-svelte@4.1.1(prettier@3.9.7)(svelte@5.56.8(@typescript-eslint/types@8.68.0)):
     dependencies:
-      prettier: 3.9.6
+      prettier: 3.9.7
       svelte: 5.56.8(@typescript-eslint/types@8.68.0)
 
   prettier@2.8.8: {}
@@ -76847,6 +76793,8 @@ snapshots:
   prettier@3.8.2: {}
 
   prettier@3.9.6: {}
+
+  prettier@3.9.7: {}
 
   pretty-bytes@4.0.2: {}
 
@@ -81959,12 +81907,6 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  update-browserslist-db@1.3.2(browserslist@4.28.9):
-    dependencies:
-      browserslist: 4.28.9
-      escalade: 3.2.0
-      picocolors: 1.1.1
-
   update-browserslist-db@1.3.3(browserslist@4.29.0):
     dependencies:
       browserslist: 4.29.0
@@ -82756,12 +82698,12 @@ snapshots:
     optionalDependencies:
       '@volar/language-service': 2.4.28(typescript@6.0.3)
 
-  volar-service-prettier@0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(prettier@3.9.6):
+  volar-service-prettier@0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(prettier@3.9.7):
     dependencies:
       vscode-uri: 3.1.0
     optionalDependencies:
       '@volar/language-service': 2.4.28(typescript@6.0.3)
-      prettier: 3.9.6
+      prettier: 3.9.7
 
   volar-service-typescript-twoslash-queries@0.0.70(@volar/language-service@2.4.28(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
@@ -82900,7 +82842,7 @@ snapshots:
 
   vue-hot-reload-api@2.3.4: {}
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@5.2.7(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(pug@3.0.4)(underscore@1.13.8)
       css-loader: 5.2.7(webpack@4.47.0)
@@ -82912,7 +82854,7 @@ snapshots:
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.41
       cache-loader: 4.1.0(webpack@4.47.0)
-      prettier: 3.9.6
+      prettier: 3.9.7
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - arc-templates
@@ -82969,7 +82911,7 @@ snapshots:
       - walrus
       - whiskers
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@6.11.0(webpack@5.109.2))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.109.2):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@6.11.0(webpack@5.109.2))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@5.109.2):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(pug@3.0.4)(underscore@1.13.8)
       css-loader: 6.11.0(webpack@5.109.2)
@@ -82981,7 +82923,7 @@ snapshots:
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.41
       cache-loader: 4.1.0(webpack@4.47.0)
-      prettier: 3.9.6
+      prettier: 3.9.7
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - arc-templates
@@ -83038,7 +82980,7 @@ snapshots:
       - walrus
       - whiskers
 
-  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@7.1.4(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.6)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0):
+  vue-loader@15.11.1(@vue/compiler-sfc@3.5.41)(cache-loader@4.1.0(webpack@4.47.0))(css-loader@7.1.4(webpack@4.47.0))(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4(chokidar@3.6.0))(prettier@3.9.7)(pug@3.0.4)(underscore@1.13.8)(vue-template-compiler@2.7.16)(webpack@4.47.0):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(ejs@3.1.10)(hamljs@0.6.2)(handlebars@4.7.9)(lodash@4.18.1)(nunjucks@3.2.4)(pug@3.0.4)(underscore@1.13.8)
       css-loader: 7.1.4(webpack@4.47.0)
@@ -83050,7 +82992,7 @@ snapshots:
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.41
       cache-loader: 4.1.0(webpack@4.47.0)
-      prettier: 3.9.6
+      prettier: 3.9.7
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - arc-templates
@@ -83906,7 +83848,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      browserslist: 4.28.9
+      browserslist: 4.29.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.25.1
       es-module-lexer: 2.3.2
@@ -83941,7 +83883,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      browserslist: 4.28.9
+      browserslist: 4.29.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.25.1
       es-module-lexer: 2.3.2
@@ -83976,7 +83918,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      browserslist: 4.28.9
+      browserslist: 4.29.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.25.1
       es-module-lexer: 2.3.2
@@ -84012,7 +83954,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      browserslist: 4.28.9
+      browserslist: 4.29.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.25.1
       es-module-lexer: 2.3.2

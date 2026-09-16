@@ -58,7 +58,7 @@
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-qunit": "^8.2.6",
     "loader.js": "^4.7.0",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.7",
     "qunit": "^2.26.0",
     "qunit-dom": "^3.6.0",
     "typescript": "^6.0.3",

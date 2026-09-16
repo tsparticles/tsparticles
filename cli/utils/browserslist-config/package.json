@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "browserslist": "^4.29.0",
-    "cpx2": "^9.0.0"
+    "cpx2": "^9.0.3"
   },
   "peerDependencies": {
     "browserslist": "^4"
