@@ -16,11 +16,14 @@ export class EmittersCircleShape extends EmitterShapeBase {
     super(position, size, fill, options);
   }
 
-  draw(context: OffscreenCanvasRenderingContext2D): void {
+  override draw(context: OffscreenCanvasRenderingContext2D): void {
     const position = this.position,
-      size = this.size;
+      size = this.size,
+      rotation = 0,
+      startAngle = 0,
+      endAngle = doublePI;
 
-    context.ellipse(position.x, position.y, size.width * half, size.height * half, 0, 0, doublePI);
+    context.ellipse(position.x, position.y, size.width * half, size.height * half, rotation, startAngle, endAngle);
   }
 
   async init(): Promise<void> {

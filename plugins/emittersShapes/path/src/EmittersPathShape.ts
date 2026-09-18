@@ -71,7 +71,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     this.path = path;
   }
 
-  draw(context: OffscreenCanvasRenderingContext2D): void {
+  override draw(context: OffscreenCanvasRenderingContext2D): void {
     const position = this.position,
       size = this.size,
       pathData = this.points,

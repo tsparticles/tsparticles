@@ -11796,6 +11796,12 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      '@tsparticles/plugin-emitters':
+        specifier: workspace:*
+        version: link:../../plugins/emitters/dist
+      '@tsparticles/plugin-emitters-shape-square':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/square/dist
       '@tsparticles/plugin-hex-color':
         specifier: workspace:*
         version: link:../../plugins/colors/hex/dist
@@ -11805,6 +11811,9 @@ importers:
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:*
         version: link:../../plugins/colors/hsv/dist
+      '@tsparticles/plugin-interactivity':
+        specifier: workspace:*
+        version: link:../../plugins/interactivity/dist
       '@tsparticles/plugin-rgb-color':
         specifier: workspace:*
         version: link:../../plugins/colors/rgb/dist

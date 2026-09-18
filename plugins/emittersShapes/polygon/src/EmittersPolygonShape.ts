@@ -20,18 +20,15 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
     this.polygon = generateRandomPolygon(position, this.sides, size.width * half, this.angle);
   }
 
-  draw(context: OffscreenCanvasRenderingContext2D): void {
-    const polygon = this.polygon,
-      firstPolygonPoint = polygon[0];
+  override draw(context: OffscreenCanvasRenderingContext2D): void {
+    const polygon = this.polygon;
 
-    if (!firstPolygonPoint) {
-      return;
-    }
-
-    context.moveTo(firstPolygonPoint.x, firstPolygonPoint.y);
-
-    for (const point of polygon.slice(1)) {
-      context.lineTo(point.x, point.y);
+    for (const [index, point] of polygon.entries()) {
+      if (index) {
+        context.lineTo(point.x, point.y);
+      } else {
+        context.moveTo(point.x, point.y);
+      }
     }
 
     context.closePath();

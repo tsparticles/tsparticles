@@ -22,9 +22,12 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-emitters": "workspace:*",
+    "@tsparticles/plugin-emitters-shape-square": "workspace:*",
     "@tsparticles/plugin-hex-color": "workspace:*",
     "@tsparticles/plugin-hsl-color": "workspace:*",
     "@tsparticles/plugin-hsv-color": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*",
     "@tsparticles/plugin-rgb-color": "workspace:*"
   },
   "devDependencies": {

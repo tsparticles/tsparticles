@@ -33,7 +33,7 @@ export class EmittersSquareShape extends EmitterShapeBase {
     super(position, size, fill, options);
   }
 
-  draw(context: OffscreenCanvasRenderingContext2D): void {
+  override draw(context: OffscreenCanvasRenderingContext2D): void {
     const position = this.position,
       size = this.size,
       halfW = size.width * half,
