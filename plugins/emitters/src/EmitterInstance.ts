@@ -18,6 +18,8 @@ import {
   deepExtend,
   defaultOpacity,
   getRangeValue,
+  getStyleFromHsl,
+  getStyleFromRgb,
   hMax,
   half,
   isPointInside,
@@ -253,6 +255,52 @@ export class EmitterInstance {
     });
 
     this.play();
+  }
+
+  /**
+   * Draws the emitter shape on the canvas behind particles, filled and stroked with the
+   * emitter spawn colors
+   * @param context - the canvas 2d context used for drawing
+   */
+  draw(context: OffscreenCanvasRenderingContext2D): void {
+    if (!this.options.draw || !this.#shape) {
+      return;
+    }
+
+    const container = this.#container;
+
+    context.save();
+    context.beginPath();
+    context.fillStyle = this.spawnFillColor
+      ? getStyleFromHsl(
+          this.spawnFillColor,
+          container.hdr,
+          this.spawnFillOpacity ?? defaultOpacity,
+          container.peakNits,
+          container.hdrMode,
+        )
+      : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+
+    if (this.spawnStrokeColor) {
+      context.strokeStyle = getStyleFromHsl(
+        this.spawnStrokeColor,
+        container.hdr,
+        this.spawnStrokeOpacity ?? defaultOpacity,
+        container.peakNits,
+        container.hdrMode,
+      );
+      context.lineWidth = this.spawnStrokeWidth ?? defaultStrokeWidth;
+    }
+
+    this.#shape.draw?.(context);
+
+    context.fill();
+
+    if (this.spawnStrokeColor) {
+      context.stroke();
+    }
+
+    context.restore();
   }
 
   /**
