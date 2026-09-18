@@ -394,6 +394,16 @@ export class EmitterInstance {
   }
 
   /**
+   * Sets the emitter position, keeping the shape in sync without recalculating it
+   * @param position - the new position
+   */
+  setPosition(position: ICoordinates): void {
+    this.position = { ...position };
+
+    this.#shape?.resize(this.position, this.size);
+  }
+
+  /**
    * Updates the emitter state, handling spawning delays, life cycle, and particle emission
    * @param delta - the delta time of the frame
    */

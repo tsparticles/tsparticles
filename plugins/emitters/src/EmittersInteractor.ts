@@ -12,6 +12,7 @@ import {
   type SingleOrMultiple,
   executeOnSingleOrMultiple,
   getRandom,
+  half,
   isArray,
   isInArray,
   itemFromArray,
@@ -39,6 +40,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * The maximum distance for the interactor
    */
   readonly maxDistance;
+
+  #dragging = false;
+  #draggingEmitter: EmitterInstance | undefined;
 
   readonly #instancesManager;
 
@@ -118,11 +122,33 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
   /**
    * Processes the interaction for each frame, updating all emitter instances
-   * @param _interactivityData - the interactivity data
+   * @param interactivityData - the interactivity data
    * @param delta - the delta time
    */
-  interact(_interactivityData: IInteractivityData, delta: IDelta): void {
+  interact(interactivityData: IInteractivityData, delta: IDelta): void {
     for (const emitter of this.#instancesManager.getArray(this.container)) {
+      if (emitter.options.draggable && !emitter.options.domId) {
+        const mouse = interactivityData.mouse;
+
+        if (mouse.clicking && mouse.downPosition) {
+          const inside =
+            Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width * half &&
+            Math.abs(mouse.downPosition.y - emitter.position.y) <= emitter.size.height * half;
+
+          if (inside) {
+            this.#dragging = true;
+            this.#draggingEmitter = emitter;
+          }
+        } else {
+          this.#dragging = false;
+          this.#draggingEmitter = undefined;
+        }
+
+        if (this.#dragging && this.#draggingEmitter === emitter && mouse.position) {
+          emitter.setPosition(mouse.position);
+        }
+      }
+
       emitter.update(delta);
     }
   }
