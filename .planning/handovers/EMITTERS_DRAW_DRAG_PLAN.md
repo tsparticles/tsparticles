@@ -1,8 +1,19 @@
 # Plan: Draw & Drag for Emitters
 
-Status: Planned for v4.5.0
+Status: Complete (shipped in v4.5.0)
 Scope: `@tsparticles/plugin-emitters` (+ emitter shape packages)
-Current base: v4.4.0
+Current base: v4.5.0
+
+## Completion report
+
+All phases complete. Implemented and committed across:
+
+- `54d0b37da8` `feat: implemented step 1 of emitters draw/drag feature` — `draw` option, `IEmitterShape.draw()` / `EmitterShapeBase.draw()`, per-shape drawing (square, circle, polygon, path), `EmitterInstance.draw()`, `EmittersPluginInstance.draw()`.
+- `fdabe047bb` `feat: implemented step 2 of emitters draw/drag feature` — `draggable` option, `EmitterInstance.setPosition()`, rectangular hit-test drag in `EmittersInteractor`.
+- `56bd274976` `test(emitters): implemented step 3 of emitters draw/drag feature` — docs (`markdown/Options/Plugins/Emitters.md`) plus emitter draw/drag tests.
+- `3b70d3f6a0` `feat: implemented emitters draw/drag feature` — drag made additive/independent from the click mode (absorber `attract` restored, event listeners always tracked), configs fixed with explicit `size` so drawn emitters are visible and grabbable.
+
+Result: full `@tsparticles/tests` suite green (219 tests across 13 files; `Emitters.ts` 10 tests, `Absorbers.ts` 3 tests). Plugin + emittersShapes packages build/lint clean. Demo configs `emittersDraw`, `emittersDrag`, `emittersDrawDrag` validated.
 
 ## Goal
 
