@@ -26,6 +26,14 @@ const options: ISourceOptions = {
   background: {
     color: "#0d0d0d",
   },
+  interactivity: {
+    events: {
+      onClick: {
+        enable: true,
+        mode: "emitters",
+      },
+    },
+  },
   emitters: [
     {
       draw: true,

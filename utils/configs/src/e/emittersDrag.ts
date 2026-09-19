@@ -6,7 +6,10 @@ const options: ISourceOptions = {
   particles: {
     paint: {
       fill: {
-        enable: false,
+        color: {
+          value: "#ff6b6b",
+        },
+        enable: true,
       },
     },
     shape: {
@@ -28,6 +31,14 @@ const options: ISourceOptions = {
   },
   background: {
     color: "#0d0d0d",
+  },
+  interactivity: {
+    events: {
+      onClick: {
+        enable: true,
+        mode: "emitters",
+      },
+    },
   },
   emitters: [
     {
