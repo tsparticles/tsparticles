@@ -18,14 +18,26 @@ export class AbsorbersInstancesManager {
     container: AbsorberContainer,
     options: RecursivePartial<IAbsorber>,
     position?: ICoordinates,
-  ): Promise<AbsorberInstance> {
+  ): Promise<AbsorberInstance | undefined> {
+    return this.addAbsorbers(container, [{ options, position }]).then(res => res[defaultIndex]);
+  }
+
+  async addAbsorbers(
+    container: AbsorberContainer,
+    absorbers: { options: RecursivePartial<IAbsorber>; position?: ICoordinates }[],
+  ): Promise<AbsorberInstance[]> {
     const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-      absorber = new AbsorberInstance(this.#pluginManager, container, options, position),
-      array = this.getArray(container);
+      res = [];
 
-    array.push(absorber);
+    for (const { options, position } of absorbers) {
+      const absorber = new AbsorberInstance(this.#pluginManager, container, options, position),
+        array = this.getArray(container);
 
-    return absorber;
+      array.push(absorber);
+      res.push(absorber);
+    }
+
+    return res;
   }
 
   clear(container: AbsorberContainer): void {
@@ -66,8 +78,14 @@ export class AbsorbersInstancesManager {
     container.addAbsorber ??= (
       options: RecursivePartial<IAbsorber>,
       position?: ICoordinates,
-    ): Promise<AbsorberInstance> => {
+    ): Promise<AbsorberInstance | undefined> => {
       return this.addAbsorber(container, options, position);
+    };
+
+    container.addAbsorbers ??= (
+      absorbers: { options: RecursivePartial<IAbsorber>; position?: ICoordinates }[],
+    ): Promise<AbsorberInstance[]> => {
+      return this.addAbsorbers(container, absorbers);
     };
   }
 

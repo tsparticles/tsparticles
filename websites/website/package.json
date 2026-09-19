@@ -257,7 +257,7 @@
         "tsparticles": "workspace:*"
     },
     "devDependencies": {
-        "prettier": "^3.9.6",
+        "prettier": "^3.9.7",
         "typedoc": "^0.28.20",
         "typedoc-plugin-clarity": "^1.6.0",
         "typedoc-plugin-coverage": "^4.0.3",

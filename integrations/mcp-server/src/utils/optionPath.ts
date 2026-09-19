@@ -10,6 +10,8 @@
  * be either a single object or an array of objects) should normalize
  * with `asArray()` below and walk each entry individually instead of
  * relying on a dotted path through it.
+ * @param obj
+ * @param path
  */
 export function getOptionValue(obj: Record<string, unknown>, path: string): unknown {
   const parts = path.split(".");
@@ -29,6 +31,7 @@ export function getOptionValue(obj: Record<string, unknown>, path: string): unkn
  * tsParticles allows several option sections (emitters, absorbers) to be
  * either a single config object or an array of config objects. This
  * normalizes either shape into an array so callers can iterate uniformly.
+ * @param value
  */
 export function asArray<T = Record<string, unknown>>(value: unknown): T[] {
   if (value === undefined || value === null) return [];
@@ -42,16 +45,18 @@ export function asArray<T = Record<string, unknown>>(value: unknown): T[] {
  * - non-empty arrays count as enabled
  * - objects are enabled unless they have an explicit `enable: false`
  * - any other defined value counts as enabled
+ * @param obj
+ * @param path
  */
 export function isOptionEnabled(obj: Record<string, unknown>, path: string): boolean {
   const value = getOptionValue(obj, path);
 
   if (value === undefined) return false;
   if (typeof value === "boolean") return value;
-  if (Array.isArray(value)) return value.length > 0;
+  if (Array.isArray(value)) return value.length > 0; // eslint-disable-line @typescript-eslint/no-magic-numbers
 
   if (typeof value === "object" && value !== null) {
-    const enableVal = (value as Record<string, unknown>)["enable"];
+    const enableVal = (value as Record<string, unknown>).enable;
     if (typeof enableVal === "boolean") return enableVal;
     return true;
   }

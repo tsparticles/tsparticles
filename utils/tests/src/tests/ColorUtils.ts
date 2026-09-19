@@ -363,9 +363,9 @@ describe("ColorUtils", async () => {
         expect(match).not.be.null;
 
         return {
-          b: parseFloat(match?.[3] ?? ""),
-          g: parseFloat(match?.[2] ?? ""),
-          r: parseFloat(match?.[1] ?? ""),
+          b: Number.parseFloat(match?.[3] ?? ""),
+          g: Number.parseFloat(match?.[2] ?? ""),
+          r: Number.parseFloat(match?.[1] ?? ""),
         };
       };
 

@@ -12,7 +12,6 @@
     "@tsparticles/astro": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/ribbons": "workspace:*",
-
-    "astro": "^5.0.0"
+    "astro": "^7.3.2"
   }
 }

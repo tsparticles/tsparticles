@@ -20,6 +20,7 @@ import {
   identity,
   isPointInside,
   millisecondsToSeconds,
+  minRadius,
   minVelocity,
   originPoint,
   rangeColorToRgb,
@@ -31,7 +32,6 @@ import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit
 
 const absorbFactor = 0.033,
   minOrbitLength = 0,
-  minRadius = 0,
   minMass = 0,
   minAngle = 0,
   maxAngle = doublePI,

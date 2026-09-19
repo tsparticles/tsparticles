@@ -1,19 +1,29 @@
 import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
 import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
+import {
+  canvasFirstIndex,
+  canvasTag,
+  fullPercent,
+  generatedAttribute,
+  generatedFalse,
+  generatedTrue,
+  minRadius,
+  percentDenominator,
+} from "../Core/Utils/Constants.js";
 import { collisionVelocity, getDistances, getRandom, getRangeValue } from "./MathUtils.js";
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import type { Container } from "../Core/Container.js";
+import type { DataFromUrlParams } from "../Core/Interfaces/DataFromUrlParams.js";
 import type { GenericInitializer } from "../Types/EngineInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
+import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { Vector } from "../Core/Utils/Vectors.js";
-import { percentDenominator } from "../Core/Utils/Constants.js";
-
-const minRadius = 0;
+import { getLogger } from "./LogUtils.js";
 
 /**
  * Checks whether a key should be rejected during object traversal.
@@ -465,19 +475,9 @@ export function manageListener(
  */
 export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, TItem[]>,
   initializers: Map<string, TInitializer>,
-  force = false,
 ): Promise<TItem[]> {
-  let res = map.get(container);
-
-  if (!res || force) {
-    res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-    map.set(container, res);
-  }
-
-  return res;
+  return await Promise.all([...initializers.values()].map(t => t(container)));
 }
 
 /**
@@ -489,22 +489,134 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
  */
 export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
   container: Container,
-  map: Map<Container, Map<string, TItem>>,
   initializers: Map<string, TInitializer>,
-  force = false,
 ): Promise<Map<string, TItem>> {
-  let res = map.get(container);
+  const entries = await Promise.all(
+    [...initializers.entries()].map(([key, initializer]) => initializer(container).then(item => [key, item] as const)),
+  );
 
-  if (!res || force) {
-    const entries = await Promise.all(
-      [...initializers.entries()].map(([key, initializer]) =>
-        initializer(container).then(item => [key, item] as const),
-      ),
-    );
+  return new Map(entries);
+}
 
-    res = new Map(entries);
-    map.set(container, res);
+/**
+ * @param data - The data to handle
+ * @returns the options object from the jsonUrl
+ */
+export async function getDataFromUrl(
+  data: DataFromUrlParams,
+): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
+  const url = itemFromSingleOrMultiple(data.url, data.index);
+
+  if (!url) {
+    return data.fallback;
   }
 
-  return res;
+  try {
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const current = (await response.json()) as unknown;
+
+      if (isSourceOptionsValue(current)) {
+        return current;
+      }
+
+      getLogger().error("invalid configuration data while retrieving config file");
+    } else {
+      getLogger().error(`${response.status.toString()} while retrieving config file`);
+    }
+  } catch (error) {
+    getLogger().error(`error while retrieving config file: ${error as string}`);
+  }
+
+  return data.fallback;
+}
+
+/**
+ * Checks whether a parsed JSON value is a valid single source options object,
+ * i.e. a plain object that is not an array.
+ * @param value - the parsed JSON value to check
+ * @returns true when the value is a source options object
+ */
+function isSourceOptionsValue(value: unknown): value is SingleOrMultiple<Readonly<ISourceOptions>> {
+  if (isArray(value)) {
+    return value.every((entry: unknown) => isObject(entry) && !isArray(entry));
+  }
+
+  return isObject(value) && !isArray(value);
+}
+
+/**
+ *
+ * @param domContainer -
+ * @returns the canvas
+ */
+export function getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasElement {
+  let canvasEl: HTMLCanvasElement;
+
+  const documentSafe = safeDocument(),
+    isCanvas = domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag;
+
+  if (isCanvas) {
+    canvasEl = domContainer as HTMLCanvasElement;
+
+    canvasEl.dataset[generatedAttribute] ??= generatedFalse;
+
+    if (canvasEl.dataset[generatedAttribute] === generatedTrue) {
+      canvasEl.style.width ||= fullPercent;
+      canvasEl.style.height ||= fullPercent;
+      canvasEl.style.pointerEvents = "none";
+      canvasEl.style.setProperty("pointer-events", "none");
+    }
+  } else {
+    const existingCanvases = domContainer.getElementsByTagName(canvasTag),
+      foundCanvas = existingCanvases.item(canvasFirstIndex);
+
+    /* get existing canvas if present, otherwise a new one will be created */
+    if (foundCanvas) {
+      canvasEl = foundCanvas;
+
+      canvasEl.dataset[generatedAttribute] = generatedFalse;
+    } else {
+      /* create canvas element */
+      canvasEl = documentSafe.createElement(canvasTag);
+
+      canvasEl.dataset[generatedAttribute] = generatedTrue;
+
+      /* append canvas */
+      domContainer.appendChild(canvasEl);
+    }
+
+    canvasEl.style.width ||= fullPercent;
+    canvasEl.style.height ||= fullPercent;
+    canvasEl.style.pointerEvents = "none";
+    canvasEl.style.setProperty("pointer-events", "none");
+  }
+
+  return canvasEl;
+}
+
+/**
+ *
+ * @param id -
+ * @param source -
+ * @returns the dom container
+ */
+export function getDomContainer(id: string, source?: HTMLElement): HTMLElement {
+  const documentSafe = safeDocument();
+
+  let domContainer = source ?? documentSafe.getElementById(id);
+
+  if (domContainer) {
+    return domContainer;
+  }
+
+  domContainer = documentSafe.createElement("canvas");
+
+  domContainer.id = id;
+  domContainer.dataset[generatedAttribute] = generatedTrue;
+
+  documentSafe.body.append(domContainer);
+
+  return domContainer;
 }

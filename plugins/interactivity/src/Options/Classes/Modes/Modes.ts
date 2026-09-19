@@ -1,7 +1,7 @@
-import { type Container, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IExternalInteractor } from "../../../Interfaces/IExternalInteractor.js";
 import type { IModes } from "../../Interfaces/Modes/IModes.js";
-import type { InteractivityPluginManager } from "../../../InteractivityPluginManagerTypes.js";
+import type { InteractivityContainer } from "../../../types.js";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -10,10 +10,8 @@ export class Modes implements IModes, IOptionLoader<IModes> {
   [name: string]: unknown;
 
   readonly #container;
-  readonly #pluginManager;
 
-  constructor(pluginManager: InteractivityPluginManager, container?: Container) {
-    this.#pluginManager = pluginManager;
+  constructor(container?: InteractivityContainer) {
     this.#container = container;
   }
 
@@ -26,11 +24,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
       return;
     }
 
-    const interactors = this.#pluginManager.interactors?.get(this.#container) as IExternalInteractor[] | undefined;
-
-    if (!interactors) {
-      return;
-    }
+    const interactors = (this.#container.interactionManager?.interactors as IExternalInteractor[] | undefined) ?? [];
 
     for (const interactor of interactors) {
       if (!interactor.loadModeOptions) {

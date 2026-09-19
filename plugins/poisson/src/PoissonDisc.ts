@@ -1,4 +1,12 @@
-import { type ICoordinates, type IDimension, double, doublePI, getDistance, getRandom } from "@tsparticles/engine";
+import {
+  type ICoordinates,
+  type IDimension,
+  double,
+  doublePI,
+  getDistance,
+  getRandom,
+  minCount,
+} from "@tsparticles/engine";
 import type { IPoissonPoint } from "./Interfaces/IPoissonPoint.js";
 
 /**
@@ -163,8 +171,7 @@ export class PoissonDisc {
   async run(): Promise<void> {
     this.reset();
 
-    const minCount = 0,
-      step = 1,
+    const step = 1,
       yieldEvery = 100,
       yieldStepModule = 0;
 
@@ -184,8 +191,6 @@ export class PoissonDisc {
    * @param steps - Number of steps to take
    */
   steps(steps: number): void {
-    const minCount = 0;
-
     /* Take one or 'n' steps */
     for (let i = 0; i < steps; i++) {
       /* While there are still active points */
@@ -284,8 +289,7 @@ export class PoissonDisc {
   }
 
   #step(): void {
-    const minCount = 0,
-      randomActive = this.getRandom(minCount, this.active.length);
+    const randomActive = this.getRandom(minCount, this.active.length);
 
     let foundNewPoint = false;
 
