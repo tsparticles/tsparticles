@@ -88,34 +88,40 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   }
 
   /**
-   * Processes the interaction for each frame, attracting particles to absorbers and handling dragging
+   * Processes the interaction for each frame, dragging draggable absorbers and attracting particles
    * @param interactivityData - the interactivity data
    * @param delta - the delta time
    */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
-    for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
-      for (const absorber of this.#instancesManager.getArray(this.container)) {
-        if (absorber.options.draggable) {
-          const mouse = interactivityData.mouse;
+    const container = this.container,
+      absorbers = this.#instancesManager.getArray(container),
+      mouse = interactivityData.mouse;
 
-          if (mouse.clicking && mouse.downPosition) {
-            const mouseDist = getDistance(absorber.position, mouse.downPosition);
+    for (const absorber of absorbers) {
+      if (!absorber.options.draggable) {
+        continue;
+      }
 
-            if (mouseDist <= absorber.size) {
-              this.#dragging = true;
-              this.#draggingAbsorber = absorber;
-            }
-          } else {
-            this.#dragging = false;
-            this.#draggingAbsorber = undefined;
-          }
+      if (mouse.clicking && mouse.downPosition) {
+        const mouseDist = getDistance(absorber.position, mouse.downPosition);
 
-          if (this.#dragging && this.#draggingAbsorber == absorber && mouse.position) {
-            absorber.position.x = mouse.position.x;
-            absorber.position.y = mouse.position.y;
-          }
+        if (mouseDist <= absorber.size) {
+          this.#dragging = true;
+          this.#draggingAbsorber = absorber;
         }
+      } else {
+        this.#dragging = false;
+        this.#draggingAbsorber = undefined;
+      }
 
+      if (this.#dragging && this.#draggingAbsorber === absorber && mouse.position) {
+        absorber.position.x = mouse.position.x;
+        absorber.position.y = mouse.position.y;
+      }
+    }
+
+    for (const particle of container.particles.filter(p => this.isEnabled(interactivityData, p))) {
+      for (const absorber of absorbers) {
         absorber.attract(particle, delta);
 
         if (particle.destroyed) {
@@ -136,6 +142,14 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
+
+    if (
+      !particle &&
+      mouse.clicking &&
+      this.#instancesManager.getArray(container).some(absorber => absorber.options.draggable)
+    ) {
+      return true;
+    }
 
     if (!mouse.clickPosition || !events.onClick.enable) {
       return false;

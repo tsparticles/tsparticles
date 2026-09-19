@@ -41,6 +41,11 @@ const options: ISourceOptions = {
       shape: {
         type: "square",
       },
+      size: {
+        width: 15,
+        height: 15,
+        mode: "percent",
+      },
       spawn: {
         fill: {
           color: {
@@ -68,6 +73,11 @@ const options: ISourceOptions = {
       },
       shape: {
         type: "circle",
+      },
+      size: {
+        width: 15,
+        height: 15,
+        mode: "percent",
       },
       spawn: {
         fill: {

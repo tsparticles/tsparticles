@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-absorbers": "workspace:*",
     "@tsparticles/plugin-emitters": "workspace:*",
     "@tsparticles/plugin-emitters-shape-square": "workspace:*",
     "@tsparticles/plugin-hex-color": "workspace:*",

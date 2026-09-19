@@ -11796,6 +11796,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      '@tsparticles/plugin-absorbers':
+        specifier: workspace:*
+        version: link:../../plugins/absorbers/dist
       '@tsparticles/plugin-emitters':
         specifier: workspace:*
         version: link:../../plugins/emitters/dist

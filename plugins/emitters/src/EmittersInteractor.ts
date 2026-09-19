@@ -22,6 +22,7 @@ import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
 import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
+import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import { defaultRandomOptions } from "./constants.js";
 
@@ -126,7 +127,11 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
    * @param delta - the delta time
    */
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
-    for (const emitter of this.#instancesManager.getArray(this.container)) {
+    const container = this.container,
+      emitters = this.#instancesManager.getArray(container),
+      updateEmitters = !container.plugins.some(plugin => plugin instanceof EmittersPluginInstance);
+
+    for (const emitter of emitters) {
       if (emitter.options.draggable && !emitter.options.domId) {
         const mouse = interactivityData.mouse;
 
@@ -149,7 +154,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         }
       }
 
-      emitter.update(delta);
+      if (updateEmitters) {
+        emitter.update(delta);
+      }
     }
   }
 
@@ -164,6 +171,13 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
+
+    if (
+      mouse.clicking &&
+      this.#instancesManager.getArray(container).some(emitter => emitter.options.draggable && !emitter.options.domId)
+    ) {
+      return true;
+    }
 
     if (!mouse.clickPosition || !events.onClick.enable) {
       return false;

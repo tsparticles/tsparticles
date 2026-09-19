@@ -42,6 +42,7 @@ interface EmittersDragTestContainer extends EmitterContainer {
       mouse: IMouseData;
     };
     externalInteract(delta: IDelta): void;
+    handleClickMode(mode: string): void;
   };
 }
 
@@ -191,9 +192,7 @@ describe("Emitters tests", () => {
   it("should drag the emitter when a mouse down happens inside its bounds", async () => {
     const container = (await loadEmitterContainer("emitters-drag-inside", {
       autoPlay: false,
-      interactivity: {
-        events: { onClick: { enable: true, mode: "emitters" } },
-      },
+
       emitters: {
         ...defaultEmitterOptions,
         draggable: true,
@@ -230,9 +229,7 @@ describe("Emitters tests", () => {
   it("should not drag the emitter when the mouse down happens outside its bounds", async () => {
     const container = (await loadEmitterContainer("emitters-drag-outside", {
       autoPlay: false,
-      interactivity: {
-        events: { onClick: { enable: true, mode: "emitters" } },
-      },
+
       emitters: {
         ...defaultEmitterOptions,
         draggable: true,
@@ -261,9 +258,7 @@ describe("Emitters tests", () => {
   it("should not drag the emitter when the draggable option is false", async () => {
     const container = (await loadEmitterContainer("emitters-drag-disabled", {
       autoPlay: false,
-      interactivity: {
-        events: { onClick: { enable: true, mode: "emitters" } },
-      },
+
       emitters: {
         ...defaultEmitterOptions,
         position: { x: 200, y: 200 },
@@ -286,6 +281,39 @@ describe("Emitters tests", () => {
     container.interactionManager!.externalInteract({ value: 1, factor: 1 });
 
     expect(emitter?.position).to.deep.equal({ x: emitterPosition.x, y: emitterPosition.y });
+  });
+
+  it("should still add an emitter on an empty space click when the click mode is enabled", async () => {
+    const container = (await loadEmitterContainer("emitters-click-mode", {
+      autoPlay: false,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: true,
+            mode: "emitters",
+          },
+        },
+        modes: {
+          emitters: {
+            value: {
+              position: { x: 100, y: 100 },
+              size: { width: 50, height: 50, mode: "pixel" },
+            },
+          },
+        },
+      },
+    })) as EmittersDragTestContainer;
+
+    const manager = container.interactionManager!;
+
+    expect(container.getEmitter?.(0)).to.be.undefined;
+
+    manager.interactivityData.mouse.clickPosition = { x: 100, y: 100 };
+    manager.handleClickMode("emitters");
+
+    await new Promise(resolve => setTimeout(resolve, 20));
+
+    expect(container.getEmitter?.(0)).to.be.not.undefined;
   });
 
   it("should keep the base shape draw method as a no-op", () => {
