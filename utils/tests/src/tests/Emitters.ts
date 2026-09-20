@@ -105,11 +105,15 @@ describe("Emitters tests", () => {
       emitters: defaultEmitterOptions,
     });
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
-    expect(emitter?.options.draw).to.be.true;
-    expect(emitter?.options.draggable).to.be.false;
+      expect(emitter).to.be.not.undefined;
+      expect(emitter?.options.draw).to.be.true;
+      expect(emitter?.options.draggable).to.be.false;
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should load the emitter draw and draggable options from the config", async () => {
@@ -122,11 +126,15 @@ describe("Emitters tests", () => {
       },
     });
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
-    expect(emitter?.options.draw).to.be.false;
-    expect(emitter?.options.draggable).to.be.true;
+      expect(emitter).to.be.not.undefined;
+      expect(emitter?.options.draw).to.be.false;
+      expect(emitter?.options.draggable).to.be.true;
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should not draw the emitter when the draw option is false", async () => {
@@ -138,17 +146,21 @@ describe("Emitters tests", () => {
       },
     });
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
 
-    const context = createMockContext();
+      const context = createMockContext();
 
-    emitter?.draw(context as unknown as OffscreenCanvasRenderingContext2D);
+      emitter?.draw(context as unknown as OffscreenCanvasRenderingContext2D);
 
-    expect(context.save).not.toHaveBeenCalled();
-    expect(context.beginPath).not.toHaveBeenCalled();
-    expect(context.fill).not.toHaveBeenCalled();
+      expect(context.save).not.toHaveBeenCalled();
+      expect(context.beginPath).not.toHaveBeenCalled();
+      expect(context.fill).not.toHaveBeenCalled();
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should draw the emitter shape when the draw option is enabled", async () => {
@@ -157,19 +169,56 @@ describe("Emitters tests", () => {
       emitters: defaultEmitterOptions,
     });
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
 
-    const context = createMockContext();
+      const context = createMockContext();
 
-    emitter?.draw(context as unknown as OffscreenCanvasRenderingContext2D);
+      emitter?.draw(context as unknown as OffscreenCanvasRenderingContext2D);
 
-    expect(context.save).toHaveBeenCalled();
-    expect(context.beginPath).toHaveBeenCalled();
-    expect(context.rect).toHaveBeenCalled();
-    expect(context.fill).toHaveBeenCalled();
-    expect(context.restore).toHaveBeenCalled();
+      expect(context.save).toHaveBeenCalled();
+      expect(context.beginPath).toHaveBeenCalled();
+      expect(context.rect).toHaveBeenCalled();
+      expect(context.fill).toHaveBeenCalled();
+      expect(context.restore).toHaveBeenCalled();
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should not fill the emitter shape when the spawn fill is disabled", async () => {
+    const container = await loadEmitterContainer("emitters-draw-no-fill", {
+      autoPlay: false,
+      emitters: {
+        ...defaultEmitterOptions,
+        spawn: {
+          fill: {
+            enable: false,
+            color: "#ff0000",
+          },
+        },
+      },
+    });
+
+    try {
+      const emitter = container.getEmitter?.();
+
+      expect(emitter).to.be.not.undefined;
+
+      const context = createMockContext();
+
+      emitter?.draw(context as unknown as OffscreenCanvasRenderingContext2D);
+
+      expect(context.save).toHaveBeenCalled();
+      expect(context.beginPath).toHaveBeenCalled();
+      expect(context.rect).toHaveBeenCalled();
+      expect(context.fill).not.toHaveBeenCalled();
+      expect(context.restore).toHaveBeenCalled();
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should set the emitter position keeping the size", async () => {
@@ -178,15 +227,43 @@ describe("Emitters tests", () => {
       emitters: defaultEmitterOptions,
     });
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
 
-    emitter?.setPosition({ x: 250, y: 300 });
+      emitter?.setPosition({ x: 250, y: 300 });
 
-    expect(emitter?.position).to.deep.equal({ x: 250, y: 300 });
-    expect(emitter?.size.width).to.equal(50);
-    expect(emitter?.size.height).to.equal(50);
+      expect(emitter?.position).to.deep.equal({ x: 250, y: 300 });
+      expect(emitter?.size.width).to.equal(50);
+      expect(emitter?.size.height).to.equal(50);
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should keep the dragged position after a canvas resize", async () => {
+    const container = await loadEmitterContainer("emitters-resize-drag", {
+      autoPlay: false,
+      emitters: {
+        ...defaultEmitterOptions,
+        position: { x: 150, y: 150 },
+      },
+    });
+
+    try {
+      const emitter = container.getEmitter?.();
+
+      expect(emitter).to.be.not.undefined;
+
+      emitter?.setPosition({ x: 250, y: 300 });
+
+      emitter?.resize();
+
+      expect(emitter?.position).to.deep.equal({ x: 250, y: 300 });
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should drag the emitter when a mouse down happens inside its bounds", async () => {
@@ -200,30 +277,34 @@ describe("Emitters tests", () => {
       },
     })) as EmittersDragTestContainer;
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
-    expect(container.interactionManager).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
+      expect(container.interactionManager).to.be.not.undefined;
 
-    const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
-      downPosition = { x: emitterPosition.x + 5, y: emitterPosition.y + 5 },
-      mouse = container.interactionManager!.interactivityData.mouse;
+      const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
+        downPosition = { x: emitterPosition.x + 5, y: emitterPosition.y + 5 },
+        mouse = container.interactionManager!.interactivityData.mouse;
 
-    mouse.clicking = true;
-    mouse.clickPosition = { ...downPosition };
-    mouse.downPosition = { ...downPosition };
-    mouse.position = { x: 300, y: 320 };
+      mouse.clicking = true;
+      mouse.clickPosition = { ...downPosition };
+      mouse.downPosition = { ...downPosition };
+      mouse.position = { x: 300, y: 320 };
 
-    container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
 
-    expect(emitter?.position).to.deep.equal({ x: 300, y: 320 });
+      expect(emitter?.position).to.deep.equal({ x: 300, y: 320 });
 
-    mouse.clicking = false;
-    mouse.position = { x: 400, y: 400 };
+      mouse.clicking = false;
+      mouse.position = { x: 400, y: 400 };
 
-    container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
 
-    expect(emitter?.position).to.deep.equal({ x: 300, y: 320 });
+      expect(emitter?.position).to.deep.equal({ x: 300, y: 320 });
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should not drag the emitter when the mouse down happens outside its bounds", async () => {
@@ -237,22 +318,26 @@ describe("Emitters tests", () => {
       },
     })) as EmittersDragTestContainer;
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
-    expect(container.interactionManager).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
+      expect(container.interactionManager).to.be.not.undefined;
 
-    const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
-      mouse = container.interactionManager!.interactivityData.mouse;
+      const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
+        mouse = container.interactionManager!.interactivityData.mouse;
 
-    mouse.clicking = true;
-    mouse.clickPosition = { x: emitterPosition.x + 1000, y: emitterPosition.y + 1000 };
-    mouse.downPosition = { ...mouse.clickPosition };
-    mouse.position = { x: 300, y: 320 };
+      mouse.clicking = true;
+      mouse.clickPosition = { x: emitterPosition.x + 1000, y: emitterPosition.y + 1000 };
+      mouse.downPosition = { ...mouse.clickPosition };
+      mouse.position = { x: 300, y: 320 };
 
-    container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
 
-    expect(emitter?.position).to.deep.equal({ x: emitterPosition.x, y: emitterPosition.y });
+      expect(emitter?.position).to.deep.equal({ x: emitterPosition.x, y: emitterPosition.y });
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should not drag the emitter when the draggable option is false", async () => {
@@ -265,22 +350,69 @@ describe("Emitters tests", () => {
       },
     })) as EmittersDragTestContainer;
 
-    const emitter = container.getEmitter?.();
+    try {
+      const emitter = container.getEmitter?.();
 
-    expect(emitter).to.be.not.undefined;
-    expect(container.interactionManager).to.be.not.undefined;
+      expect(emitter).to.be.not.undefined;
+      expect(container.interactionManager).to.be.not.undefined;
 
-    const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
-      mouse = container.interactionManager!.interactivityData.mouse;
+      const emitterPosition = emitter?.position ?? { x: 0, y: 0 },
+        mouse = container.interactionManager!.interactivityData.mouse;
 
-    mouse.clicking = true;
-    mouse.clickPosition = { x: emitterPosition.x + 5, y: emitterPosition.y + 5 };
-    mouse.downPosition = { ...mouse.clickPosition };
-    mouse.position = { x: 300, y: 320 };
+      mouse.clicking = true;
+      mouse.clickPosition = { x: emitterPosition.x + 5, y: emitterPosition.y + 5 };
+      mouse.downPosition = { ...mouse.clickPosition };
+      mouse.position = { x: 300, y: 320 };
 
-    container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
 
-    expect(emitter?.position).to.deep.equal({ x: emitterPosition.x, y: emitterPosition.y });
+      expect(emitter?.position).to.deep.equal({ x: emitterPosition.x, y: emitterPosition.y });
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should keep dragging the selected emitter when two draggable emitters overlap", async () => {
+    const container = (await loadEmitterContainer("emitters-drag-overlap", {
+      autoPlay: false,
+
+      emitters: [
+        {
+          ...defaultEmitterOptions,
+          draggable: true,
+          position: { x: 200, y: 200 },
+        },
+        {
+          ...defaultEmitterOptions,
+          draggable: true,
+          position: { x: 200, y: 200 },
+        },
+      ],
+    })) as EmittersDragTestContainer;
+
+    try {
+      const firstEmitter = container.getEmitter?.(0),
+        secondEmitter = container.getEmitter?.(1),
+        mouse = container.interactionManager!.interactivityData.mouse;
+
+      expect(firstEmitter).to.be.not.undefined;
+      expect(secondEmitter).to.be.not.undefined;
+      expect(container.interactionManager).to.be.not.undefined;
+
+      firstEmitter?.setPosition({ x: 200, y: 200 });
+      secondEmitter?.setPosition({ x: 200, y: 200 });
+
+      mouse.clicking = true;
+      mouse.downPosition = { x: 200, y: 200 };
+      mouse.position = { x: 300, y: 320 };
+
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+
+      expect(firstEmitter?.position).to.deep.equal({ x: 300, y: 320 });
+      expect(secondEmitter?.position).to.deep.equal({ x: 200, y: 200 });
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should still add an emitter on an empty space click when the click mode is enabled", async () => {
@@ -290,7 +422,7 @@ describe("Emitters tests", () => {
         events: {
           onClick: {
             enable: true,
-            mode: "emitters",
+            mode: "emitter",
           },
         },
         modes: {
@@ -306,14 +438,18 @@ describe("Emitters tests", () => {
 
     const manager = container.interactionManager!;
 
-    expect(container.getEmitter?.(0)).to.be.undefined;
+    try {
+      expect(container.getEmitter?.(0)).to.be.undefined;
 
-    manager.interactivityData.mouse.clickPosition = { x: 100, y: 100 };
-    manager.handleClickMode("emitters");
+      manager.interactivityData.mouse.clickPosition = { x: 100, y: 100 };
+      manager.handleClickMode("emitter");
 
-    await new Promise(resolve => setTimeout(resolve, 20));
-
-    expect(container.getEmitter?.(0)).to.be.not.undefined;
+      await vi.waitFor(() => {
+        expect(container.getEmitter?.(0)).to.be.not.undefined;
+      });
+    } finally {
+      container.destroy();
+    }
   });
 
   it("should keep the base shape draw method as a no-op", () => {

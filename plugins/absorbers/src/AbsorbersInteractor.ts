@@ -103,11 +103,13 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       }
 
       if (mouse.clicking && mouse.downPosition) {
-        const mouseDist = getDistance(absorber.position, mouse.downPosition);
+        if (!this.#dragging) {
+          const mouseDist = getDistance(absorber.position, mouse.downPosition);
 
-        if (mouseDist <= absorber.size) {
-          this.#dragging = true;
-          this.#draggingAbsorber = absorber;
+          if (mouseDist <= absorber.size) {
+            this.#dragging = true;
+            this.#draggingAbsorber = absorber;
+          }
         }
       } else {
         this.#dragging = false;

@@ -156,6 +156,7 @@ export class EmitterInstance {
   readonly #particlesOptions: RecursivePartial<IParticlesOptions>;
   #paused;
   readonly #pluginManager;
+  #positionOverride = false;
   readonly #removeCallback;
   #resizeObserver?: ResizeObserver;
   readonly #shape?: IEmitterShape;
@@ -267,19 +268,23 @@ export class EmitterInstance {
       return;
     }
 
-    const container = this.#container;
+    const container = this.#container,
+      fillEnabled = this.options.spawn.fill?.enable ?? true;
 
     context.save();
     context.beginPath();
-    context.fillStyle = this.spawnFillColor
-      ? getStyleFromHsl(
-          this.spawnFillColor,
-          container.hdr,
-          this.spawnFillOpacity ?? defaultOpacity,
-          container.peakNits,
-          container.hdrMode,
-        )
-      : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+
+    if (fillEnabled) {
+      context.fillStyle = this.spawnFillColor
+        ? getStyleFromHsl(
+            this.spawnFillColor,
+            container.hdr,
+            this.spawnFillOpacity ?? defaultOpacity,
+            container.peakNits,
+            container.hdrMode,
+          )
+        : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+    }
 
     if (this.spawnStrokeColor) {
       context.strokeStyle = getStyleFromHsl(
@@ -294,7 +299,9 @@ export class EmitterInstance {
 
     this.#shape.draw?.(context);
 
-    context.fill();
+    if (fillEnabled) {
+      context.fill();
+    }
 
     if (this.spawnStrokeColor) {
       context.stroke();
@@ -373,13 +380,16 @@ export class EmitterInstance {
    * Resizes the emitter, recalculating position and size, and notifying the shape
    */
   resize(): void {
-    const initialPosition = this.#initialPosition,
-      container = this.#container;
+    const container = this.#container;
 
-    this.position =
-      initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
-        ? initialPosition
-        : this.#calcPosition();
+    if (!this.#positionOverride) {
+      const initialPosition = this.#initialPosition;
+
+      this.position =
+        initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
+          ? initialPosition
+          : this.#calcPosition();
+    }
 
     this.#size = this.#calcSize();
     this.size =
@@ -398,6 +408,7 @@ export class EmitterInstance {
    * @param position - the new position
    */
   setPosition(position: ICoordinates): void {
+    this.#positionOverride = true;
     this.position = { ...position };
 
     this.#shape?.resize(this.position, this.size);

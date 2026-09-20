@@ -19,6 +19,7 @@ import {
   minIndex,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
 import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
@@ -26,7 +27,7 @@ import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import { defaultRandomOptions } from "./constants.js";
 
-const emittersMode = "emitters";
+const emittersMode: string = EmitterClickMode.emitter;
 
 /**
  * The EmittersInteractor class handles the interaction between the user and the emitters,
@@ -136,13 +137,15 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         const mouse = interactivityData.mouse;
 
         if (mouse.clicking && mouse.downPosition) {
-          const inside =
-            Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width * half &&
-            Math.abs(mouse.downPosition.y - emitter.position.y) <= emitter.size.height * half;
+          if (!this.#dragging) {
+            const inside =
+              Math.abs(mouse.downPosition.x - emitter.position.x) <= emitter.size.width * half &&
+              Math.abs(mouse.downPosition.y - emitter.position.y) <= emitter.size.height * half;
 
-          if (inside) {
-            this.#dragging = true;
-            this.#draggingEmitter = emitter;
+            if (inside) {
+              this.#dragging = true;
+              this.#draggingEmitter = emitter;
+            }
           }
         } else {
           this.#dragging = false;
