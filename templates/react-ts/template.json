@@ -5,7 +5,7 @@
       "@testing-library/dom": "^10.4.1",
       "@testing-library/react": "^16.3.2",
       "@testing-library/user-event": "^14.6.1",
-      "@types/node": "^26.6.0",
+      "@types/node": "^26.6.2",
       "@types/react": "^19.2.14",
       "@types/react-dom": "^19.2.3",
       "@types/jest": "^30.0.0",

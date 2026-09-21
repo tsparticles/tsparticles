@@ -38,12 +38,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.10.0",
+    "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
     "gh-pages": "^6.3.0",
     "globals": "^17.11.0",
-    "prettier": "^3.9.7",
+    "prettier": "^3.9.8",
     "vite": "^8.2.2"
   },
   "nx": {
