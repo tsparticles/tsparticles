@@ -263,10 +263,10 @@
         "typedoc-plugin-coverage": "^4.0.3",
         "typedoc-plugin-google-ads": "^1.6.0",
         "typedoc-plugin-keywords": "^1.6.0",
-        "typedoc-plugin-markdown": "^4.13.0",
+        "typedoc-plugin-markdown": "^4.13.1",
         "typedoc-plugin-mdn-links": "^5.1.1",
         "typedoc-plugin-missing-exports": "^4.1.4",
-        "vite": "^8.2.2",
+        "vite": "^8.3.0",
         "vitepress": "^1.6.4"
     },
     "nx": {
