@@ -4,6 +4,7 @@ import type {
   ShapeInitializer,
   UpdaterInitializer,
 } from "../../Types/EngineInitializers.js";
+import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
 import type { EasingFunction } from "../../Types/EasingFunction.js";
 import type { Engine } from "../Engine.js";
 import { EventType } from "../../Enums/Types/EventType.js";
@@ -292,7 +293,7 @@ export class PluginManager {
    */
   async register(...loaders: LoadPluginFunction[]): Promise<void> {
     if (this.#initialized) {
-      throw new Error("Register plugins can only be done before calling tsParticles.load()");
+      throw new Error(getErrorMessage(ErrorCodes.pluginRegisterAfterLoad));
     }
 
     for (const loader of loaders) {

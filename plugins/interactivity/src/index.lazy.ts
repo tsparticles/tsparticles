@@ -1,13 +1,26 @@
-import { type Engine, type Particle } from "@tsparticles/engine/lazy";
+import { type Engine, type Particle, addErrorMessages, getErrorMessage } from "@tsparticles/engine/lazy";
 import { type InteractivityContainer, type InteractivityEngine, type InteractorInitializer } from "./types.js";
+import { ErrorCodes } from "./ErrorCodes.js";
+import { ErrorMessages } from "./ErrorMessages.js";
 
-declare const __VERSION__: string;
+declare const __VERSION__: string,
+  process:
+    | {
+        env: {
+          NODE_ENV?: string;
+        };
+      }
+    | undefined;
 
 /**
  * @param engine - The engine instance
  */
 export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
+
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    addErrorMessages(ErrorMessages);
+  }
 
   await engine.pluginManager.register(async e => {
     const interactivityEngine = e as InteractivityEngine,
@@ -41,7 +54,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
       const { items } = interactivityEngine;
 
       if (!items.length) {
-        throw new Error("Click handlers can only be set after calling tsParticles.load()");
+        throw new Error(getErrorMessage(ErrorCodes.interactivityClickHandlerNotSet));
       }
 
       items.forEach(item => {
@@ -58,7 +71,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
  */
 export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
   if (!e.pluginManager.addInteractor) {
-    throw new Error("tsParticles Interactivity Plugin is not loaded");
+    throw new Error(getErrorMessage(ErrorCodes.interactivityPluginNotLoaded));
   }
 }
 

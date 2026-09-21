@@ -10,6 +10,8 @@ import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import { visualizer } from "rollup-plugin-visualizer";
 
+type ReplaceOptions = NonNullable<Parameters<typeof replace>[number]>;
+
 const EMPTY_SIZE = 0,
   FIRST_INDEX = 0,
   EXPECTED_COUNT = 1,
@@ -316,7 +318,28 @@ export { ${namedExports} };
         };
       },
     };
-  };
+  },
+  /**
+   * Builds the replacement map for the `replace` rollup plugin.
+   *
+   * In min builds the dev-only error catalog is a dead branch after `process.env.NODE_ENV` and the
+   * `typeof process` guard are folded to constants, so Terser strips it along with the readable
+   * messages (see `ErrorUtils`). The guard is folded too so bundler-less browsers never throw on the
+   * missing `process` global in non-min outputs.
+   * @param min - whether this is a minified/production build
+   * @param version - the package version
+   * @returns the replacement map
+   */
+  getReplacements = (min: boolean, version: string): ReplaceOptions => ({
+    preventAssignment: true,
+    __VERSION__: JSON.stringify(version),
+    ...(min
+      ? {
+          "process.env.NODE_ENV": JSON.stringify("production"),
+          'typeof process !== "undefined"': JSON.stringify(true),
+        }
+      : {}),
+  });
 
 export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RollupOptions => {
   const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
@@ -332,10 +355,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         nodeResolve({
           browser: true,
         }),
-        replace({
-          preventAssignment: true,
-          __VERSION__: JSON.stringify(version),
-        }),
+        replace(getReplacements(min, version)),
         exposeEntryExports(true, params.umdPolicy),
         min && terser(),
       ].filter(Boolean),
@@ -360,10 +380,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
       nodeResolve({
         browser: true,
       }),
-      replace({
-        preventAssignment: true,
-        __VERSION__: JSON.stringify(version),
-      }),
+      replace(getReplacements(min, version)),
       exposeEntryExports(true, params.umdPolicy),
       !min &&
         visualizer({
@@ -393,10 +410,7 @@ export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): Rol
       nodeResolve({
         browser: true,
       }),
-      replace({
-        preventAssignment: true,
-        __VERSION__: JSON.stringify(version),
-      }),
+      replace(getReplacements(min, version)),
       min && terser(),
     ].filter(Boolean),
     output: {

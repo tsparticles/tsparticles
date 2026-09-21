@@ -2,24 +2,51 @@
 
 ## Status
 
-**Planned** — linked from `4.5.0_PLAN.md` as Feature G. Replaces the current practice of
+**Executed (v1)** — linked from `4.5.0_PLAN.md` as Feature G. Replaces the current practice of
 embedding full, human-readable error strings inside every delivered bundle with a code-based
 error-management system:
 
+**Implemented variant (requested by owner):** the catalog is *extensible*, not monolithic. The
+engine ships only its own codes (`TSP-1001..1203`); every feature package defines a local
+`ErrorCodes.ts` + `ErrorMessages.ts` and registers them at load time with
+`addErrorMessages(ErrorMessages)` (called from `index.ts`/`index.lazy.ts` right after
+`engine.checkVersion()`). `ErrorUtils.ts` keeps a lazily-initialized runtime `Map` seeded with the
+engine messages; `addErrorMessages()` is a no-op in production (`typeof process !== "undefined" &&
+process.env.NODE_ENV === "production"`) so the catalog is never read in prod and bundlers drop it
+entirely. The `typeof process` guard (never optional chaining, which throws on an undeclared global)
+keeps non-min ESM/CDN output safe in browsers; min builds fold it away via rollup `replace`.
+
 - **non-minified / development builds** keep the full, formatted error message (as today)
-- **minified builds** (`*.min.js` UMD via webpack/rollup) ship only an error code plus a stable
+- **minified builds** (`*.min.js` UMD via rollup) ship only an error code plus a stable
   link to a website page that explains the error (`https://particles.js.org/errors/#TSP-xxxx`)
-- the **website errors page** becomes the single external source of truth for codes → messages
-  and is updated every release
+- the **website errors page** (`websites/website/docs/errors/index.md`) is committed static
+  markdown — the single external source of truth for codes → messages, updated every release
 
 Constraint from the request: **this must not slow down or bloat the site/build pipeline.** The
-design therefore relies exclusively on constant-folding + dead-code elimination that the existing
-bundlers already perform (webpack `mode` + Terser, rollup `replace` + terser): **no extra
-transpile step, no additional loader, no runtime lookup table in prod**.
+design relies exclusively on constant-folding + dead-code elimination that the existing bundlers
+already perform (rollup `replace` + terser): **no extra transpile step, no additional loader, no
+runtime lookup table in prod**.
+
+**Diststats delta (after-only; a clean "before" is unavailable because the tree was broken at the
+start of this pass).** The deltas below are measured across the build runs of this pass:
+
+| Bundle | Before (this pass, bytes) | After (bytes) | Delta |
+| --- | --- | --- | --- |
+| `engine/dist/tsparticles.engine.min.js` | 76964 | 75937 | **-1027 B** |
+| `shapes/image/dist/tsparticles.shape.image.min.js` | 8139 | 7997 | **-142 B** |
+| `interactions/particles/collisions/…collisions.min.js` | 7298 | 7222 | **-76 B** |
+| gif / move / path / interactivity / polygon-mask / emitters | n/a | n/a | min sentences removed |
+
+`.min.js` files no longer contain any full message sentence; the non-min dev bundles keep them
+(verified for the engine + all 8 shippable packages, see §8). The `bundles/*` webpack `*.min.js`
+path could not be rebuilt for verification because `@tsparticles/all` currently fails on a
+pre-existing, unrelated missing build of `@tsparticles/plugin-easing-circ`/`-quint` types.
 
 The runtime surface that ends up in user bundles is small (≈ 8 throw sites in the engine, ≈ 28 in
 the feature packages that ship browser bundles) — the full audit is in
 [0.2 Survey of today's messages](#02-survey-of-todays-messages).
+
+Commits are intentionally left to the owner; nothing in this state is committed.
 
 ---
 
@@ -154,27 +181,37 @@ const messages: Record<ErrorCode, string> = {
 };
 ```
 
-This module is **imported only from inside the dev branch** of `getErrorMessage()` so that, once the
-prod branch is folded, the whole module is unreferenced and dropped by tree-shaking.
+This module is **referenced only from inside dev branches** (via the lazy `ensureRegisteredMessages()`
+in `getErrorMessage()` / `addErrorMessages()`), so once the prod branches fold it is unreferenced and
+dropped by dead-code elimination.
 
 ### 1.3 `getErrorMessage()` selector
 
 ```ts
 export function getErrorMessage(code: ErrorCode, ...args: unknown[]): string {
-  if (process.env.NODE_ENV === "production") {
+  // eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- optional chaining would throw on a missing global
+  if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
     return `[tsParticles Error ${code}] https://particles.js.org/errors/#${code}`;
   }
-  const template = messages[code] ?? `Unknown error code ${code}`;
+  const template = ensureRegisteredMessages().get(code) ?? `Unknown error code ${code}`;
   return format(template, args);
 }
 ```
 
 Notes:
 
-- the `typeof process !== "undefined" &&` guard is **not** needed in webpack/rollup builds (both
-  replace the token; webpack also leaves no reference after folding). For the **published ESM/CJS**
-  (consumed by downstream bundlers), keep a guard so a module-inline `process` reference in a
-  bundler-less browser never throws `ReferenceError`; guard resolves to the dev branch there.
+- the guard is `typeof process !== "undefined" && process.env.NODE_ENV === "production"` — **not**
+  optional chaining. `process?.env` throws `ReferenceError` when the `process` identifier is
+  undeclared (browsers); `?.` only guards `null`/`undefined` members. `typeof process` is always
+  safe. The `prefer-optional-chain` lint rule is disabled per line because optional chaining is
+  exactly what must be avoided here.
+- in min builds the rollup `replace` folds **both** tokens: `process.env.NODE_ENV` → `"production"`
+  and `typeof process !== "undefined"` → `true`, so the guard collapses and Terser removes the dead
+  branch. Non-min outputs keep the guard, which is inert in browsers.
+- `addErrorMessages()` uses the same guard for the same fold.
+- `ensureRegisteredMessages()` lazily creates the runtime `Map`; the catalog must never be
+  initialized at module scope because terser treats `new Map(...)` as potentially side-effectful and
+  would keep a module-level expression even when unused.
 - `format()` is a tiny positional `{0}`, `{1}`-style formatter — use the existing pattern already
   used in the codebase (avoid `JSON.stringify` hot paths; this is throw-path only, not a hot loop).
 - The `"production"` message is kept short and version-agnostic; the **website link is the
@@ -184,11 +221,9 @@ Notes:
 
 | Output | Format | `NODE_ENV` at build | Result |
 | --- | --- | --- | --- |
-| `dist/*.js` (webpack, dev) | non-minified UMD | `development` | full messages |
-| `dist/*.min.js` (webpack, prod) | minified UMD | `production` | code + link only; strings removed |
-| rollup UMD `*.js` / `*.min.js` (bundles) | non-min/min UMD | dev/prod via `replace` | same split |
+| `dist/*.js` (rollup, dev) | non-minified UMD | `development` | full messages |
+| `dist/*.min.js` (rollup, prod) | minified UMD | `production` via `replace` | code + link only; strings removed |
 | `dist/esm` + `dist/cjs` (tsc publish) | source dist | kept as runtime guard | full messages; downstream bundler may fold |
-| engine schema (`schema/options.schema.json`) | generated | n/a | untouched |
 
 ---
 
@@ -224,27 +259,56 @@ is generated from the catalog (see [4. Website errors page](#4-website-errors-pa
 `"sideEffects": false` so the dropped `ErrorMessages` module does not survive. Verify with a
 post-build assertion (see [8. Bundle-size measurement](#8-bundle-size-measurement-diststats)).
 
-### 3.2 rollup (bundles: all/slim/…)
+### 3.2 rollup (engine + feature packages)
 
-`cli/utils/rollup-plugin/src/config/createSingleConfig.ts` — add the production env token to the
-existing `replace({ preventAssignment: true, ... })` calls **only when `min` is true** (two call
-sites + lazy-runtime config):
+`cli/utils/rollup-plugin/src/config/createSingleConfig.ts` — a shared `getReplacements(min, version)`
+helper adds the production env token to the existing `replace({ preventAssignment: true, ... })`
+calls **only when `min` is true** (three call sites: base, lazy, lazy-runtime):
 
 ```ts
 replace({
   preventAssignment: true,
   __VERSION__: JSON.stringify(version),
-  ...(min ? { "process.env.NODE_ENV": JSON.stringify("production") } : {}),
+  ...(min
+    ? {
+        "process.env.NODE_ENV": JSON.stringify("production"),
+        'typeof process !== "undefined"': JSON.stringify(true),
+      }
+    : {}),
 }),
 ```
 
-This is the entire bundler change: ~3 one-line additions, zero new tooling, negligible build-time
-cost (a single replace).
+The engine and every feature package that ships a browser bundle guard their error-catalog
+registration behind the same foldable guard:
+
+```ts
+// eslint-disable-next-line @typescript-eslint/prefer-optional-chain -- optional chaining would throw on a missing global
+if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+  addErrorMessages(ErrorMessages);
+}
+```
+
+and `addErrorMessages()` in the engine returns early in production. After the rollup `replace`
+folds both tokens (`true && "production" !== "production"`), terser dead-code-eliminates the
+registration call, the now-unused per-package `ErrorMessages` constant, and (for the engine) the
+whole message table:
+
+- the engine wraps catalog initialization in `ensureRegisteredMessages()` (a lazy function only
+  reached from dev branches); a module-level `new Map(...)` survives terser because `new` is treated
+  as potentially side-effectful, but an inside-a-dropped-function `new Map` is removed
+- feature packages drop their own top-level `const ErrorMessages = {...}` because the only
+  reference (the registration call) is inside the folded-dead branch
+
+This is the entire bundler change: `getReplacements` in `createSingleConfig.ts` (3 call sites) +
+call-site guards, zero new tooling, negligible build-time cost (a single replace).
 
 ### 3.3 Published ESM/CJS (tsc)
 
 No change to the tsc pipeline. `getErrorMessage()` keeps its runtime guard so module builds work
-in any environment; end users' own bundlers fold `NODE_ENV` per their own mode.
+in any environment: downstream bundlers fold the plain `process.env.NODE_ENV` token, while the
+`typeof process` guard stays runtime-safe. In a browser without a `process` global the guard is
+`false`, so the full development message is used instead of throwing — verbose but never a
+`ReferenceError`; the engine's own minified outputs always get the compact code + link.
 
 ---
 
@@ -303,7 +367,7 @@ engine import, no on-build generation. The page is a plain committed markdown fi
 | `plugins/interactivity/src/{index,index.lazy}.ts` | → `TSP-320x` |
 | `plugins/move/src/{index,index.lazy}.ts` | → `TSP-320x` |
 | `interactions/particles/collisions/src/OverlapPluginInstance.ts` | → `TSP-400x` |
-| `cli/utils/rollup-plugin/src/config/createSingleConfig.ts` | add `process.env.NODE_ENV` replace when `min` (3 spots) |
+| `cli/utils/rollup-plugin/src/config/createSingleConfig.ts` | `getReplacements(min, version)` adds `process.env.NODE_ENV` → `"production"` **and** `typeof process !== "undefined"` → `true` replaces when `min` (3 spots) |
 | `websites/website/docs/errors/index.md` | **new** — committed static error-reference page (generated offline, never wired into the site build) |
 | `utils/tests/src/tests/ErrorMessages.ts` | **new** — catalog + format + prod-format tests |
 | `cli/commands/build-diststats` (ext) | add a `no-error-strings-in-min` check as part of the size guard (optional) |
@@ -406,15 +470,26 @@ final gate if not needed for the engine gate.
 
 ### Risk 12.1 — Terser/rollup do not tree-shake the message module
 
-Mitigation: import `ErrorMessages` only inside the dev branch; confirm with the M4 absence check on
-real outputs; if a module-level import survives, add a `deleteMessages`-style no-op guard or scope
-the import so dead-code elimination defeats it (webpack tree-shakes unused ESM; `sideEffects: false`
-is already set).
+Mitigation (resolved): `ErrorMessages` is referenced only from dev branches. The engine seeds the
+catalog inside `ensureRegisteredMessages()` (lazy, callable only from dev branches), never at module
+scope — module-level `new Map(...)` survives terser because `new` is treated as potentially
+side-effectful; inside a dead function it is removed. Feature packages guard their registration call
+behind `typeof process !== "undefined" && process.env.NODE_ENV !== "production"`, and
+`addErrorMessages()` no-ops in production, so their top-level message constants become unreferenced
+and are dropped. In min builds rollup folds both tokens (`process.env.NODE_ENV` → `"production"`,
+`typeof process !== "undefined"` → `true`) so the guard collapses to a constant. Confirmed on real
+outputs (see §8) — all `.min.js` clean, dev bundles intact.
 
-### Risk 12.2 — `process.env.NODE_ENV` yields `ReferenceError` in bundler-less ESM/CDN
+### Risk 12.2 — `process` undefined in bundler-less ESM/CDN
 
-Mitigation: `typeof process !== "undefined" && process.env.NODE_ENV === "production"` guard;
-non-bundler environments fall back to dev (full messages). No bundler output is affected.
+Mitigation: the guard is `typeof process !== "undefined" && process.env.NODE_ENV === "production"`,
+never optional chaining. `process?.env` throws `ReferenceError` when the `process` identifier is
+undeclared (browsers), because `?.` only guards `null`/`undefined` members. `typeof process` is
+always safe, so a missing global falls to the dev branch (full messages) instead of throwing.
+Minified outputs fold the guard away entirely; downstream bundlers fold the plain
+`process.env.NODE_ENV` token and leave the harmless `typeof process` check at runtime. The
+`prefer-optional-chain` lint rule is disabled per guard line because optional chaining is exactly
+what must be avoided.
 
 ### Risk 12.3 — Codes drift from the website page after release
 
@@ -469,46 +544,49 @@ engine gate (M2 is P0 but independently revertible).
 
 ### M1 — Engine catalog + selector + conversion (P0)
 
-- [ ] `engine/src/Utils/ErrorCodes.ts` (codes + type)
-- [ ] `engine/src/Utils/ErrorMessages.ts` (dev-only message table)
-- [ ] `engine/src/Utils/ErrorUtils.ts` (`getErrorMessage()` + `format()`)
-- [ ] Convert `Engine.ts` (`TSP-1001`), `Particle.ts` (`TSP-1002`), `PluginManager.ts` (`TSP-1003`),
+- [x] `engine/src/Utils/ErrorCodes.ts` (codes + type)
+- [x] `engine/src/Utils/ErrorMessages.ts` (dev-only message table)
+- [x] `engine/src/Utils/ErrorUtils.ts` (`getErrorMessage()` + `format()` + `addErrorMessages()`)
+- [x] Convert `Engine.ts` (`TSP-1001`), `Particle.ts` (`TSP-1002`), `PluginManager.ts` (`TSP-1003`),
       `CanvasManager.ts` (`TSP-1101/1102`), `HDROptions.ts` (`TSP-1201..1203`)
-- [ ] Preserve original error classes (`Error` vs `TypeError`) at each site
-- [ ] Export `getErrorMessage`/`ErrorCode`/`ErrorCodes` from `exports.ts` + `export-types.ts`
-- [ ] Engine dev/min build compiles
+- [x] Preserve original error classes (`Error` vs `TypeError`) at each site
+- [x] Export `getErrorMessage`/`ErrorCode`/`ErrorCodes` from `exports.ts` + `export-types.ts`
+- [x] Engine build compiles (lint + tsc + bundle)
 
 ### M2 — Feature packages + rollup (P0)
 
-- [ ] shapes/image (`TSP-200x`) incl. lazy variants
-- [ ] shapes/gif (`TSP-210x`, keep `cause`)
-- [ ] plugins/polygon-mask (`TSP-300x`)
-- [ ] plugins/emitters + emittersShapes/path (`TSP-310x`)
-- [ ] plugins/interactivity + move (`TSP-320x`, incl. lazy variants)
-- [ ] interactions/particles/collisions (`TSP-400x`)
-- [ ] rollup `replace` `process.env.NODE_ENV` when min (3 call sites)
+- [x] shapes/image (`TSP-2001..2004` incl. lazy variants)
+- [x] shapes/gif (`TSP-2101..2104`, keep `cause`)
+- [x] plugins/polygon-mask (`TSP-3001..3003`)
+- [x] plugins/emitters (`TSP-3101`) + emittersShapes/path (`TSP-3102..3103`)
+- [x] plugins/interactivity (`TSP-3201..3202`) + move (`TSP-3203`, incl. lazy variants)
+- [x] interactions/particles/collisions (`TSP-4001`)
+- [x] rollup `replace` folds `process.env.NODE_ENV` → `"production"` + `typeof process !== "undefined"` → `true` when min (3 call sites) + call-site registration guards
 
 ### M3 — Logger + tests (P1)
 
-- [ ] `LogUtils` error prefix aligned to codes
-- [ ] `utils/tests/src/tests/ErrorMessages.ts` (catalog integrity, dev/prod format, params, sweep)
-- [ ] Full suite green, engine lint clean
+- [x] `LogUtils` error prefix aligned to codes
+- [x] `utils/tests/src/tests/ErrorMessages.ts` (catalog integrity, dev/prod format, params, registration)
+- [x] Full suite green (233 tests), engine + feature packages lint clean
 
 ### M4 — Bundle-size guard (P1)
 
-- [ ] Record diststats before/after for `engine` + one bundle
-- [ ] `.min.js` contains no catalog sentence; `.js` still contains it
+- [x] Record diststats before/after for `engine` + bundles (see Status; engine -1027 B, image -142 B,
+      collisions -76 B; clean "before" unavailable — tree was broken at start)
+- [x] `.min.js` contains no catalog sentence; `.js` still contains it (verified engine + 8 packages)
+- [ ] `bundles/*` webpack `*.min.js` spot-check — **blocked on pre-existing missing
+      `@tsparticles/plugin-easing-circ`/`-quint` builds** (unrelated to this feature)
 
 ### M5 — Website errors page (P2)
 
-- [ ] `websites/website/docs/errors/index.md` — **committed static markdown**, generated offline
-      (script run manually at release) or hand-maintained fallback
-- [ ] Page is **not wired into the Vitepress build / any `websites/*` script** — renders like any
+- [x] `websites/website/docs/errors/index.md` — **committed static markdown**, generated offline
+      (hand-maintained this pass) 
+- [x] Page is **not wired into the Vitepress build / any `websites/*` script** — renders like any
       other docs page; no engine import, no plugin, no on-build generation (0.4)
-- [ ] Nav/sidebar link under Reference / Errors
+- [x] Nav/sidebar link under Reference / Errors (`docs/.vitepress/config.ts` → `/errors/`)
 
 ### M6 — Docs + release (P2)
 
-- [ ] `markdown/` note on error codes (or engine README snippet)
-- [ ] Changelog entry wired into `4.5.0_PLAN.md` release notes
-- [ ] Status block updated to Executed; diststats delta reported
+- [x] `markdown/Errors.md` note on error codes (linked from `markdown/Pages/index.md`)
+- [x] Changelog entry wired into `4.5.0_PLAN.md` release notes
+- [x] Status block updated to Executed; diststats delta reported

@@ -2,6 +2,7 @@
  * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances
  */
+import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
 import { getCanvasFromContainer, getDataFromUrl, getDomContainer, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { loadMinIndex, loadRandomFactor, none, one, removeDeleteCount, removeMinIndex } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
@@ -71,9 +72,7 @@ export class Engine {
       return;
     }
 
-    throw new Error(
-      `The tsParticles version is different from the loaded plugins version. Engine version: ${this.version}. Plugin version: ${pluginVersion}`,
-    );
+    throw new Error(getErrorMessage(ErrorCodes.engineVersionMismatch, this.version, pluginVersion));
   }
 
   /**

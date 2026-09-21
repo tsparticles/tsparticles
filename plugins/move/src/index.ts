@@ -1,14 +1,27 @@
+import { type Engine, addErrorMessages, getErrorMessage } from "@tsparticles/engine";
 import type { MoveEngine, PathGeneratorInitializer } from "./Types.js";
-import { type Engine } from "@tsparticles/engine";
+import { ErrorCodes } from "./ErrorCodes.js";
+import { ErrorMessages } from "./ErrorMessages.js";
 import { MovePlugin } from "./MovePlugin.js";
 
-declare const __VERSION__: string;
+declare const __VERSION__: string,
+  process:
+    | {
+        env: {
+          NODE_ENV?: string;
+        };
+      }
+    | undefined;
 
 /**
  * @param engine - The engine to load the shape in
  */
 export async function loadMovePlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
+
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    addErrorMessages(ErrorMessages);
+  }
 
   await engine.pluginManager.register(e => {
     const moveEngine = e as MoveEngine,
@@ -40,7 +53,7 @@ export async function loadMovePlugin(engine: Engine): Promise<void> {
  */
 export function ensureBaseMoverLoaded(e: MoveEngine): void {
   if (!e.pluginManager.addPathGenerator) {
-    throw new Error("tsParticles Base Mover is not loaded");
+    throw new Error(getErrorMessage(ErrorCodes.baseMoverNotLoaded));
   }
 }
 

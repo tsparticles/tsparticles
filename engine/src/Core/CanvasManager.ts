@@ -1,3 +1,4 @@
+import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
 import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
@@ -27,7 +28,7 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
     }
 
     if (typeof canvas.transferControlToOffscreen !== "function") {
-      throw new TypeError("OffscreenCanvas is required but not supported by this browser");
+      throw new TypeError(getErrorMessage(ErrorCodes.offscreenCanvasUnsupported));
     }
 
     try {
@@ -37,7 +38,7 @@ const transferredCanvases = new WeakMap<HTMLCanvasElement, OffscreenCanvas>(),
 
       return offscreenCanvas;
     } catch {
-      throw new TypeError("OffscreenCanvas transfer failed");
+      throw new TypeError(getErrorMessage(ErrorCodes.offscreenCanvasTransferFailed));
     }
   },
   isHtmlCanvasElement = (canvas: HTMLCanvasElement | OffscreenCanvas): canvas is HTMLCanvasElement => {

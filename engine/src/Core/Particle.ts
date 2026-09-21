@@ -1,3 +1,4 @@
+import { ErrorCodes, getErrorMessage } from "../Utils/ErrorUtils.js";
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import type { IParticleCanvasBoundsData, IParticleCanvasBoundsResult } from "./Interfaces/IParticleCanvasBounds.js";
 import { Vector, Vector3d } from "./Utils/Vectors.js";
@@ -1125,7 +1126,7 @@ export class Particle {
       initialPosition = this.#calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
     if (!initialPosition) {
-      throw new Error("a valid position cannot be found for particle");
+      throw new Error(getErrorMessage(ErrorCodes.particlePositionNotFound));
     }
 
     this.position = initialPosition;
