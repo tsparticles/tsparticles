@@ -56,7 +56,7 @@
     "rollup": "^4.63.1",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.0"
+    "typescript-eslint": "^8.70.1"
   },
   "devDependencies": {
     "@types/estree": "^1.0.9",

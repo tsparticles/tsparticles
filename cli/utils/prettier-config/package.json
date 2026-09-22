@@ -8,8 +8,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist/index.cjs",
-    "dist/prettier-config.json"
+    "dist/index.cjs"
   ],
   "repository": {
     "type": "git",
@@ -20,8 +19,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "cpx \"./src/**.*\" ./dist/",
-    "build:ci": "cpx \"./src/**.*\" ./dist/"
+    "build": "tsc",
+    "build:ci": "tsc"
   },
   "peerDependencies": {
     "prettier": "^3"
@@ -30,7 +29,7 @@
     "prettier-plugin-multiline-arrays": "^4.1.11"
   },
   "devDependencies": {
-    "cpx2": "^9.0.3",
-    "prettier": "^3.9.8"
+    "prettier": "^3.9.8",
+    "typescript": "^6.0.3"
   }
 }

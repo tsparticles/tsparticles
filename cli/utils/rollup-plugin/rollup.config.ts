@@ -11,11 +11,11 @@ export default {
     "@rollup/plugin-node-resolve",
     "@rollup/plugin-replace",
     "@rollup/plugin-terser",
-    "rollup-plugin-visualizer"
+    "rollup-plugin-visualizer",
   ],
   output: [
     { file: "dist/index.js", format: "esm" },
-    { file: "dist/index.cjs", format: "cjs" }
+    { file: "dist/index.cjs", format: "cjs" },
   ],
-  plugins: [typescript()]
+  plugins: [typescript()],
 };
