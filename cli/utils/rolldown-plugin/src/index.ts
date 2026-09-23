@@ -1,4 +1,4 @@
-import type { ParticlesBuildParams, ParticlesBuildType, RolldownConfig } from "./types.js";
+import type { ParticlesBuildParams, RolldownConfig } from "./types.js";
 import { createParticlesRolldown } from "./createParticlesRolldown.js";
 
 export { createParticlesRolldown } from "./createParticlesRolldown.js";

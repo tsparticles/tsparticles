@@ -1,7 +1,7 @@
 import type {
   InputOptions as RolldownInputOptions,
-  OutputOptions as RolldownOutputOptions,
   RolldownOptions,
+  OutputOptions as RolldownOutputOptions,
 } from "rolldown";
 
 export type { RolldownOptions, RolldownInputOptions, RolldownOutputOptions };

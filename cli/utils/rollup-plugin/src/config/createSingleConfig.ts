@@ -1,5 +1,5 @@
 import type { ConfigParams, IifeBuildKind, IifePolicyData } from "../types";
-import type { Plugin, RenderedChunk, RollupOptions } from "rollup";
+import type { GlobalsOption, Plugin, RenderedChunk, RollupOptions } from "rollup";
 import { getExternal, getGlobals } from "./externals";
 import fs from "node:fs";
 import { getEntry } from "./entry";

@@ -21,9 +21,9 @@ export interface ConfigParams {
     format: string;
     name?: string;
   };
+  iifePolicy: IifePolicyData;
   includeLazy?: boolean;
   minBanner: string;
-  iifePolicy: IifePolicyData;
   version: string;
 }
 

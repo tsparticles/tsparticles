@@ -1,6 +1,5 @@
+import type { ConfigParams, RolldownConfig } from "../types";
 import { createLazyRuntimeConfig, createSingleConfig } from "./createSingleConfig";
-import type { ConfigParams } from "../types";
-import type { RolldownConfig } from "../types";
 
 export const createConfig = (params: ConfigParams): RolldownConfig[] => {
   const configs = [createSingleConfig(params, false, false), createSingleConfig(params, true, false)];

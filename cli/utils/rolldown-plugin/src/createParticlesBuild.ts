@@ -1,5 +1,5 @@
-import { type ParticlesBuildType, buildMap } from "./buildMap";
 import type { ParticlesBuildParams, RolldownConfig } from "./types";
+import { type ParticlesBuildType, buildMap } from "./buildMap";
 import { createConfig } from "./config/createConfig";
 import { getIifePolicyData } from "./config/iifePolicy";
 

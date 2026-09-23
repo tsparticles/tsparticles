@@ -34,7 +34,7 @@ export const getExternal = ({ bundle, additionalExternals = [] }: Params): Exter
 export const getGlobals = (
   additionalExternals: ExternalData[] = [],
   bundle?: boolean,
-): (id: string) => string | undefined => {
+): ((id: string) => string | undefined) => {
   const globalsAdditional = bundle ? additionalExternals.filter(e => !e.bundle) : additionalExternals,
     additionalMap = new Map(globalsAdditional.map(e => [e.name, getRootGlobal(e)]));
 
