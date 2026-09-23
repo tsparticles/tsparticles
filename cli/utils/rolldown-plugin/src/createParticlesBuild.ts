@@ -1,10 +1,9 @@
 import { type ParticlesBuildType, buildMap } from "./buildMap";
-import type { ParticlesBuildParams } from "./types";
-import type { RollupOptions } from "rollup";
+import type { ParticlesBuildParams, RolldownConfig } from "./types";
 import { createConfig } from "./config/createConfig";
 import { getIifePolicyData } from "./config/iifePolicy";
 
-export const createParticlesBuild = (type: ParticlesBuildType, params: ParticlesBuildParams): RollupOptions[] => {
+export const createParticlesBuild = (type: ParticlesBuildType, params: ParticlesBuildParams): RolldownConfig[] => {
   const def = buildMap[type],
     dir = params.dir,
     version = params.version,

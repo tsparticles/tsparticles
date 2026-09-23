@@ -4,10 +4,10 @@ export interface ExternalData {
   name: string;
 }
 
-export type UmdBuildKind = "bundle" | "confetti" | "engine" | "fireworks" | "package" | "pjs";
+export type IifeBuildKind = "bundle" | "confetti" | "engine" | "fireworks" | "package" | "pjs";
 
-export interface UmdPolicyData {
-  kind: UmdBuildKind;
+export interface IifePolicyData {
+  kind: IifeBuildKind;
   scope: string;
 }
 
@@ -23,7 +23,7 @@ export interface ConfigParams {
   };
   includeLazy?: boolean;
   minBanner: string;
-  umdPolicy: UmdPolicyData;
+  iifePolicy: IifePolicyData;
   version: string;
 }
 

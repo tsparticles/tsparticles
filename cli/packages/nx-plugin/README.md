@@ -20,6 +20,7 @@ It is enabled in the workspace `nx.json` via the `@tsparticles/cli-nx-plugin` en
 | `tsc`            | `compile`, `build:ts`, or `typecheck` |
 | `bundle:webpack` | `build:bundle:webpack`                |
 | `bundle:rollup`  | `build:bundle:rollup`                 |
+| `bundle:rolldown`| `build:bundle:rolldown`               |
 | `distfiles`      | `build:distfiles`                     |
 
 This allows Nx-friendly commands such as:

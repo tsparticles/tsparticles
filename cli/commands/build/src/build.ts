@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import { bundleWebpack, bundleWebpackCommand } from "@tsparticles/cli-command-build-bundle-webpack";
 import { bundleRollup, bundleRollupCommand } from "@tsparticles/cli-command-build-bundle-rollup";
+import { bundleRolldown, bundleRolldownCommand } from "@tsparticles/cli-command-build-bundle-rolldown";
 import { circularDeps as checkCircularDeps, circularDepsCommand } from "@tsparticles/cli-command-build-circular-deps";
 import { clearCommand, clearDist } from "@tsparticles/cli-command-build-clear";
 import { buildDistFiles, distFilesCommand } from "@tsparticles/cli-command-build-distfiles";
@@ -53,6 +54,7 @@ buildCommand.description("Build the tsParticles library using TypeScript");
 
 buildCommand.addCommand(bundleWebpackCommand);
 buildCommand.addCommand(bundleRollupCommand);
+buildCommand.addCommand(bundleRolldownCommand);
 buildCommand.addCommand(circularDepsCommand);
 buildCommand.addCommand(clearCommand);
 buildCommand.addCommand(distFilesCommand);
@@ -66,6 +68,7 @@ buildCommand.option(
   false,
 );
 buildCommand.option("-b, --bundle-rollup", "Bundle the library using Rollup", false);
+buildCommand.option("--bundle-rolldown", "Bundle the library using Rolldown (opt-in, not part of --all)", false);
 buildCommand.option("--bundle-webpack", "Bundle the library using Webpack", false);
 buildCommand.option("-c, --clean", "Clean the dist folder", false);
 buildCommand.option(
@@ -106,6 +109,7 @@ buildCommand.action(async (argPath: string) => {
       circularDeps: all || !!opts["circularDeps"],
       clean: all || !!opts["clean"],
       distfiles: all || !!opts["dist"],
+      doBundleRolldown: !!opts["bundleRolldown"],
       doBundleRollup: all || !!opts["bundleRollup"],
       doBundleWebpack: !!opts["bundleWebpack"],
       doLint: all || !!opts["lint"],
@@ -141,6 +145,10 @@ buildCommand.action(async (argPath: string) => {
 
   if (options.doBundleRollup && !(await bundleRollup(basePath, options.silent))) {
     throw new Error("Rollup bundling failed");
+  }
+
+  if (options.doBundleRolldown && !(await bundleRolldown(basePath, options.silent))) {
+    throw new Error("Rolldown bundling failed");
   }
 
   if (

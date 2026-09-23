@@ -1,5 +1,6 @@
 import type { ConfigParams, IifeBuildKind, IifePolicyData } from "../types";
-import type { Plugin, RenderedChunk, RollupOptions } from "rollup";
+import type { ExternalOption, GlobalsFunction, Plugin, RenderedChunk } from "rolldown";
+import type { RolldownConfig } from "../types";
 import { getExternal, getGlobals } from "./externals";
 import fs from "node:fs";
 import { getEntry } from "./entry";
@@ -313,86 +314,99 @@ export { ${namedExports} };
       : {}),
   });
 
-export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RollupOptions => {
+export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RolldownConfig => {
   const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
     { name, input } = getEntry({ ...entry, dir, min, lazy }),
-    wrapperEntryPlugin = lazy ? createLazyWrapperEntryPlugin(params, min) : undefined;
+    wrapperEntryPlugin = lazy ? createLazyWrapperEntryPlugin(params, min) : undefined,
+    bannerText = toJsBanner(min ? minBanner : banner);
 
   if (lazy) {
     return {
-      input: `${lazyWrapperVirtualPrefix}${name}`,
+      input: {
+        input: `${lazyWrapperVirtualPrefix}${name}`,
+        external: getExternal({ bundle, additionalExternals }),
+        plugins: [
+          wrapperEntryPlugin,
+          nodeResolve({
+            browser: true,
+          }),
+          replace(getReplacements(min, version)),
+          exposeEntryExports(true, params.iifePolicy),
+          min && terser(),
+        ].filter(Boolean),
+      },
+      outputs: [
+        {
+          file: path.resolve(dir, "dist", `${name}.js`),
+          format: "iife",
+          name: params.iifePolicy.scope,
+          extend: true,
+          globals: getGlobals(additionalExternals, bundle) as GlobalsFunction,
+          banner: bannerText,
+          // inlineDynamicImports must be true for IIFE (Rolldown doesn't support code-splitting in IIFE format).
+          // The actual lazy loading is handled at runtime via `new Function("path", "return import(path)")`
+          // which Rolldown cannot see/inline — so setting this to true has no effect on lazy behaviour.
+          inlineDynamicImports: true,
+        },
+      ],
+    };
+  }
+
+  return {
+    input: {
+      input,
       external: getExternal({ bundle, additionalExternals }),
       plugins: [
-        wrapperEntryPlugin,
         nodeResolve({
           browser: true,
         }),
         replace(getReplacements(min, version)),
         exposeEntryExports(true, params.iifePolicy),
+        !min &&
+          visualizer({
+            filename: path.resolve(dir, "dist/report.html"),
+          }),
         min && terser(),
       ].filter(Boolean),
-      output: {
+    },
+    outputs: [
+      {
         file: path.resolve(dir, "dist", `${name}.js`),
         format: "iife",
         name: params.iifePolicy.scope,
         extend: true,
-        globals: getGlobals(additionalExternals, bundle) as GlobalsOption,
-        banner: toJsBanner(min ? minBanner : banner),
-        // inlineDynamicImports must be true for IIFE (Rollup doesn't support code-splitting in IIFE format).
-        // The actual lazy loading is handled at runtime via `new Function("path", "return import(path)")`
-        // which Rollup cannot see/inline — so setting this to true has no effect on lazy behaviour.
+        globals: getGlobals(additionalExternals, bundle) as GlobalsFunction,
+        banner: bannerText,
         inlineDynamicImports: true,
       },
-    };
-  }
-
-  return {
-    input,
-    external: getExternal({ bundle, additionalExternals }),
-    plugins: [
-      nodeResolve({
-        browser: true,
-      }),
-      replace(getReplacements(min, version)),
-      exposeEntryExports(true, params.iifePolicy),
-      !min &&
-        visualizer({
-          filename: path.resolve(dir, "dist/report.html"),
-        }),
-      min && terser(),
-    ].filter(Boolean),
-    output: {
-      file: path.resolve(dir, "dist", `${name}.js`),
-      format: "iife",
-      name: params.iifePolicy.scope,
-      extend: true,
-      globals: getGlobals(additionalExternals, bundle) as GlobalsOption,
-      banner: toJsBanner(min ? minBanner : banner),
-      inlineDynamicImports: true,
-    },
+    ],
   };
 };
 
-export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): RollupOptions => {
+export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): RolldownConfig => {
   const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
     { name } = getEntry({ ...entry, dir, min, lazy: true });
 
   return {
-    input: getLazyRuntimeInputPath(dir),
-    external: getExternal({ bundle, additionalExternals }),
-    plugins: [
-      nodeResolve({
-        browser: true,
-      }),
-      replace(getReplacements(min, version)),
-      min && terser(),
-    ].filter(Boolean),
-    output: {
-      dir: path.resolve(dir, "dist"),
-      format: "es",
-      entryFileNames: buildLazyRuntimePath(name),
-      chunkFileNames: min ? "chunks/[name]-[hash].min.js" : "chunks/[name]-[hash].js",
-      banner: toJsBanner(min ? minBanner : banner),
+    input: {
+      input: getLazyRuntimeInputPath(dir),
+      external: getExternal({ bundle, additionalExternals }),
+      plugins: [
+        nodeResolve({
+          browser: true,
+        }),
+        replace(getReplacements(min, version)),
+        min && terser(),
+      ].filter(Boolean),
     },
+    outputs: [
+      {
+        dir: path.resolve(dir, "dist"),
+        format: "es",
+        entryFileNames: buildLazyRuntimePath(name),
+        chunkFileNames: min ? "chunks/[name]-[hash].min.js" : "chunks/[name]-[hash].js",
+        banner: toJsBanner(min ? minBanner : banner),
+      },
+    ],
   };
 };

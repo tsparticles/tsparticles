@@ -1,4 +1,4 @@
-import type { UmdBuildKind, UmdPolicyData } from "../types";
+import type { IifeBuildKind, IifePolicyData } from "../types";
 import type { ParticlesBuildType } from "../buildMap";
 
 const FIRST_INDEX = 0,
@@ -25,7 +25,7 @@ const FIRST_INDEX = 0,
 
     return toScopeSegment(moduleName);
   },
-  resolveKind = (scope: string): UmdBuildKind => {
+  resolveKind = (scope: string): IifeBuildKind => {
     if (scope === "pjs") {
       return "pjs";
     }
@@ -58,7 +58,7 @@ const FIRST_INDEX = 0,
   },
   /**
    * Qualifies a raw module-name leaf with a type-specific prefix so that
-   * `getUmdPolicyData` produces the same namespace as `getUmdGlobalForExternal`.
+   * `getIifePolicyData` produces the same namespace as `getIifeGlobalForExternal`.
    * Without this, `interactionExternal "parallax"` would land on
    * `interactions.parallax` while the non-bundled consumer expects
    * `interactions.externalParallax`, causing a UMD global mismatch.
@@ -74,7 +74,7 @@ const FIRST_INDEX = 0,
     return prefix ? `${prefix}${rawLeaf}` : rawLeaf;
   };
 
-export const getUmdPolicyData = (type: ParticlesBuildType, moduleName?: string): UmdPolicyData => {
+export const getIifePolicyData = (type: ParticlesBuildType, moduleName?: string): IifePolicyData => {
   if (type === "engine") {
     return {
       kind: "engine",
@@ -93,7 +93,7 @@ export const getUmdPolicyData = (type: ParticlesBuildType, moduleName?: string):
 
   if (type === "util") {
     // Util packages use the moduleName as-is (dots as separators), e.g. "canvas.utils" -> "__tsParticlesInternals.canvas.utils"
-    // This must match the getUmdGlobalForExternal fallback for deps that reference these packages.
+    // This must match the getIifeGlobalForExternal fallback for deps that reference these packages.
     return {
       kind: "package",
       scope: `${internalRoot}.${moduleName ?? "util"}`,
@@ -216,7 +216,7 @@ const buildScopedPath = (prefix: string, rawLeaf: string): string => {
     return `${internalRoot}.${leaf.split("-").map(toScopeSegment).join(".")}`;
   };
 
-export const getUmdGlobalForExternal = (id: string): string | undefined => {
+export const getIifeGlobalForExternal = (id: string): string | undefined => {
   if (id === "tsparticles") {
     return `${internalRoot}.bundles.full`;
   }
@@ -232,9 +232,8 @@ export const getUmdGlobalForExternal = (id: string): string | undefined => {
   return getScopedGlobalForLeaf(id.slice("@tsparticles/".length));
 };
 
-export const getUmdGlobalsBootstrap = (temporaryGlobalName?: string): string => {
-  const temporaryBootstrap = temporaryGlobalName ? `g.${temporaryGlobalName}=g.${temporaryGlobalName}||{};` : "",
-    // Pre-create namespaces (including nested ones) to avoid eager UMD external lookups
+export const getIifeGlobalsBootstrap = (): string => {
+  const // Pre-create namespaces (including nested ones) to avoid eager IIFE external lookups
     // crashing on missing branches like plugins.emittersShapes.circle.
     namespaces = [
       "bundles",
@@ -285,6 +284,6 @@ export const getUmdGlobalsBootstrap = (temporaryGlobalName?: string): string => 
     `g.__tsParticlesInternals.utils=__tsProxyFactory(g.__tsParticlesInternals.utils);` +
     `g.__tsParticlesInternals.canvas=__tsProxyFactory(g.__tsParticlesInternals.canvas);` +
     `g.__tsParticlesInternals.path=__tsProxyFactory(g.__tsParticlesInternals.path);` +
-    `${temporaryBootstrap}})(typeof globalThis!=="undefined"?globalThis:typeof window!=="undefined"?window:this);\n`
+    `})(typeof globalThis!=="undefined"?globalThis:typeof window!=="undefined"?window:this);\n`
   );
 };

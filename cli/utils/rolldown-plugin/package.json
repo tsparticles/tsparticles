@@ -1,0 +1,75 @@
+{
+  "name": "@tsparticles/rolldown-plugin",
+  "version": "4.4.0",
+  "description": "Rolldown build utilities for tsParticles",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "cli/utils/rolldown-plugin"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prettify:ci:src": "prettier --check ./src/*",
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:src": "prettier --write ./src/*",
+    "prettify:readme": "prettier --write ./README.md",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "compile": "rolldown -c rolldown.config.ts",
+    "compile:ci": "rolldown -c rolldown.config.ts",
+    "clean": "rimraf ./dist",
+    "build": "pnpm run clean && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run prettify:readme",
+    "build:ci": "pnpm run clean && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run prettify:ci:readme",
+    "watch": "rolldown -c rolldown.config.ts -w",
+    "prepack": "pnpm run build",
+    "compile:rollup": "rolldown -c rolldown.config.ts"
+  },
+  "prettier": "@tsparticles/prettier-config",
+  "peerDependencies": {
+    "rolldown": ">=1.2.8"
+  },
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@tsparticles/eslint-config": "workspace:*",
+    "@tsparticles/prettier-config": "workspace:*",
+    "@tsparticles/rollup-plugin": "workspace:*",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^64.5.4",
+    "eslint-plugin-tsdoc": "^0.5.3",
+    "prettier": "^3.9.8",
+    "prettier-plugin-multiline-arrays": "^4.1.11",
+    "rolldown": "1.2.8",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup-plugin-visualizer": "^5.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "rimraf": "^6.1.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "rolldown": "^1.2.8",
+    "@rollup/plugin-typescript": "^12.3.0"
+  }
+}
