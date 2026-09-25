@@ -19,7 +19,8 @@ import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
-const absorbersMode = "absorbers";
+const absorbersMode = "absorbers",
+  splitMode = "split";
 
 /**
  * Handles the interaction between particles and absorbers, including click-to-add and dragging
@@ -29,6 +30,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
    * Handles the click mode for adding absorbers
    */
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+
   /**
    * The maximum distance for the interactor
    */
@@ -51,7 +53,29 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         options = container.actualOptions,
         absorbers = options.interactivity.modes.absorbers;
 
-      if (!absorbers || mode !== absorbersMode) {
+      if (mode === splitMode) {
+        const { clickPosition } = interactivityData.mouse;
+
+        if (!clickPosition) {
+          return;
+        }
+
+        const existingAbsorber = instancesManager
+          .getArray(this.container)
+          .find(t => getDistance(t.position, clickPosition) < t.size);
+
+        if (existingAbsorber?.options.split.enable) {
+          void instancesManager.splitAbsorber(this.container, existingAbsorber);
+        }
+
+        return;
+      }
+
+      if (mode !== absorbersMode) {
+        return;
+      }
+
+      if (!absorbers) {
         return;
       }
 
@@ -60,7 +84,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       if (clickPosition) {
         const existingAbsorber = instancesManager
           .getArray(this.container)
-          .some(t => getDistance(t.position, clickPosition) < t.size);
+          .find(t => getDistance(t.position, clickPosition) < t.size);
 
         if (existingAbsorber) {
           return;
@@ -125,10 +149,6 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     for (const particle of container.particles.filter(p => this.isEnabled(interactivityData, p))) {
       for (const absorber of absorbers) {
         absorber.attract(particle, delta);
-
-        if (particle.destroyed) {
-          break;
-        }
       }
     }
   }
@@ -157,7 +177,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       return false;
     }
 
-    return isInArray(absorbersMode, events.onClick.mode);
+    return isInArray(absorbersMode, events.onClick.mode) || isInArray(splitMode, events.onClick.mode);
   }
 
   /**

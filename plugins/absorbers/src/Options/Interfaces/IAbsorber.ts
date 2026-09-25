@@ -1,6 +1,7 @@
 import type { IOptionsColor, IRangedCoordinates, RecursivePartial } from "@tsparticles/engine";
 import type { IAbsorberLife } from "./IAbsorberLife.js";
 import type { IAbsorberSize } from "./IAbsorberSize.js";
+import type { IAbsorberSplit } from "./IAbsorberSplit.js";
 
 /**
  * Absorber options
@@ -51,4 +52,9 @@ export interface IAbsorber {
    * Absorber size, these values will be used as pixels
    */
   size: IAbsorberSize;
+
+  /**
+   * Absorber split options
+   */
+  split: IAbsorberSplit;
 }
