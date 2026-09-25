@@ -7,9 +7,6 @@ import { loadParticlesBundle, type RolldownConfig } from "@tsparticles/rolldown-
 import { type OutputOptions, rolldown } from "rolldown";
 
 const rolldownConfigCandidates = ["rolldown.config.mjs", "rolldown.config.js", "rolldown.config.cjs"] as const,
-  // Existing rollup.config files are bundler-agnostic (same input/output option names) and can be
-  // consumed by Rolldown as-is, so they are used as an intermediate fallback.
-  rollupConfigCandidates = ["rollup.config.mjs", "rollup.config.js", "rollup.config.cjs"] as const,
   emptyCount = 0;
 
 /**
@@ -25,7 +22,7 @@ function normalizeRolldownConfigs(configData: RolldownConfig | RolldownConfig[])
  * @returns -
  */
 async function loadRolldownConfig(basePath: string): Promise<RolldownConfig[]> {
-  for (const configName of [...rolldownConfigCandidates, ...rollupConfigCandidates]) {
+  for (const configName of rolldownConfigCandidates) {
     const configPath = path.join(basePath, configName);
 
     if (!existsSync(configPath)) {

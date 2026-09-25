@@ -4,7 +4,6 @@ import { getExternal, getGlobals } from "./externals";
 import fs from "node:fs";
 import { getEntry } from "./entry";
 import { getIifeGlobalsBootstrap } from "./iifePolicy";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import path from "node:path";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
@@ -326,9 +325,6 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         external: getExternal({ bundle, additionalExternals }),
         plugins: [
           wrapperEntryPlugin,
-          nodeResolve({
-            browser: true,
-          }),
           replace(getReplacements(min, version)),
           exposeEntryExports(true, params.iifePolicy),
           min && terser(),
@@ -342,10 +338,10 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
           extend: true,
           globals: getGlobals(additionalExternals, bundle) as GlobalsFunction,
           banner: bannerText,
-          // inlineDynamicImports must be true for IIFE (Rolldown doesn't support code-splitting in IIFE format).
+          // codeSplitting must be disabled for IIFE (Rolldown doesn't support code-splitting in IIFE format).
           // The actual lazy loading is handled at runtime via `new Function("path", "return import(path)")`
-          // which Rolldown cannot see/inline — so setting this to true has no effect on lazy behaviour.
-          inlineDynamicImports: true,
+          // which Rolldown cannot see/inline — so disabling it has no effect on lazy behaviour.
+          codeSplitting: false,
         },
       ],
     };
@@ -356,9 +352,6 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
       input,
       external: getExternal({ bundle, additionalExternals }),
       plugins: [
-        nodeResolve({
-          browser: true,
-        }),
         replace(getReplacements(min, version)),
         exposeEntryExports(true, params.iifePolicy),
         !min &&
@@ -376,7 +369,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         extend: true,
         globals: getGlobals(additionalExternals, bundle) as GlobalsFunction,
         banner: bannerText,
-        inlineDynamicImports: true,
+        codeSplitting: false,
       },
     ],
   };
@@ -391,9 +384,6 @@ export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): Rol
       input: getLazyRuntimeInputPath(dir),
       external: getExternal({ bundle, additionalExternals }),
       plugins: [
-        nodeResolve({
-          browser: true,
-        }),
         replace(getReplacements(min, version)),
         min && terser(),
       ].filter(Boolean),

@@ -93,7 +93,8 @@ buildCommand.action(async (argPath: string) => {
   const opts = buildCommand.opts(),
     all =
       !!opts["all"] ||
-      (!opts["bundleWebpack"] &&
+      (!opts["bundleRolldown"] &&
+        !opts["bundleWebpack"] &&
         !opts["bundleRollup"] &&
         !opts["clean"] &&
         !opts["circularDeps"] &&

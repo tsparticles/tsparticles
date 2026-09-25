@@ -123,6 +123,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@tsparticles/cli-build": "workspace:*"
+    "@tsparticles/cli-build": "workspace:*",
+    "@tsparticles/rolldown-plugin": "workspace:*"
   }
 }

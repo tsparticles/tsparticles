@@ -47,6 +47,7 @@
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
+    "@tsparticles/rolldown-plugin": "workspace:*",
     "@tsparticles/rollup-plugin": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "@tsparticles/webpack-plugin": "workspace:*",

@@ -468,9 +468,7 @@ export function manageListener(
 
 /**
  * @param container - The container to handle
- * @param map - The map
  * @param initializers - The initializers
- * @param force - The force
  * @returns the items from the given initializer
  */
 export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
@@ -482,9 +480,7 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
 
 /**
  * @param container - The container to handle
- * @param map - The map
  * @param initializers - The initializers
- * @param force - The force
  * @returns the items from the given initializer
  */
 export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(

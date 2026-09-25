@@ -216,6 +216,9 @@ importers:
       '@tsparticles/prettier-config':
         specifier: workspace:*
         version: link:cli/utils/prettier-config
+      '@tsparticles/rolldown-plugin':
+        specifier: workspace:*
+        version: link:cli/utils/rolldown-plugin
       '@tsparticles/rollup-plugin':
         specifier: workspace:*
         version: link:cli/utils/rollup-plugin
@@ -6829,6 +6832,9 @@ importers:
       '@tsparticles/cli-build':
         specifier: workspace:*
         version: link:../cli/packages/cli-build
+      '@tsparticles/rolldown-plugin':
+        specifier: workspace:*
+        version: link:../cli/utils/rolldown-plugin
     publishDirectory: dist
 
   integrations/mcp-server:
