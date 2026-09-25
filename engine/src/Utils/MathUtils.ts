@@ -3,7 +3,16 @@ import type {
   IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
 import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
-import { double, doublePI, empty, half, percentDenominator, quarter, threeQuarter } from "../Core/Utils/Constants.js";
+import {
+  defaultAlpha,
+  double,
+  doublePI,
+  empty,
+  half,
+  percentDenominator,
+  quarter,
+  threeQuarter,
+} from "../Core/Utils/Constants.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Utils/Vectors.js";
@@ -363,11 +372,9 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
  * @returns the parsed color
  */
 export function parseAlpha(input?: string): number {
-  const defaultAlpha = 1;
-
   if (!input) {
     return defaultAlpha;
   }
 
-  return input.endsWith("%") ? parseFloat(input) / percentDenominator : parseFloat(input);
+  return input.endsWith("%") ? Number.parseFloat(input) / percentDenominator : Number.parseFloat(input);
 }

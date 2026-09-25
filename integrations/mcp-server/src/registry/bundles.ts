@@ -3,7 +3,8 @@ import type { BundleInfo } from "../types.js";
 export const bundles: BundleInfo[] = [
   {
     name: "@tsparticles/basic",
-    description: "Minimal bundle. Includes: circle shape, move plugin, blend plugin, opacity/size/out-modes/paint updaters, hex/hsl/rgb color support.",
+    description:
+      "Minimal bundle. Includes: circle shape, move plugin, blend plugin, opacity/size/out-modes/paint updaters, hex/hsl/rgb color support.",
     loadFunction: "loadBasic",
     packages: [
       "@tsparticles/plugin-blend",
@@ -20,7 +21,8 @@ export const bundles: BundleInfo[] = [
   },
   {
     name: "@tsparticles/slim",
-    description: "Standard bundle. Extends basic with interactivity, all external interactions (except cannon/drag/particle/pop/trail), particle interactions (attract, collisions, links), emoji/image/line/polygon/square/star shapes, life/rotate updaters.",
+    description:
+      "Standard bundle. Extends basic with interactivity, all external interactions (except cannon/drag/particle/pop/trail), particle interactions (attract, collisions, links), emoji/image/line/polygon/square/star shapes, life/rotate updaters.",
     loadFunction: "loadSlim",
     extends: "@tsparticles/basic",
     packages: [
@@ -54,7 +56,8 @@ export const bundles: BundleInfo[] = [
   },
   {
     name: "tsparticles",
-    description: "Full bundle. Extends slim with absorbers, emitters, drag/trail interactions, extra updaters (destroy, roll, tilt, twinkle, wobble), text shape.",
+    description:
+      "Full bundle. Extends slim with absorbers, emitters, drag/trail interactions, extra updaters (destroy, roll, tilt, twinkle, wobble), text shape.",
     loadFunction: "loadFull",
     extends: "@tsparticles/slim",
     packages: [
@@ -75,7 +78,8 @@ export const bundles: BundleInfo[] = [
   },
   {
     name: "@tsparticles/all",
-    description: "Everything bundle. Extends full with all plugins (export, infection, background-mask, canvas-mask, manual-particles, motion, poisson, polygon-mask, responsive, sounds, themes, trail, zoom), all easing, all colors, all shapes, all effects, all paths, extra interactions, extra emitter shapes.",
+    description:
+      "Everything bundle. Extends full with all plugins (export, infection, background-mask, canvas-mask, manual-particles, motion, poisson, polygon-mask, responsive, sounds, themes, trail, zoom), all easing, all colors, all shapes, all effects, all paths, extra interactions, extra emitter shapes.",
     loadFunction: "loadAll",
     extends: "tsparticles",
     packages: [
@@ -104,25 +108,64 @@ export const bundles: BundleInfo[] = [
       "@tsparticles/plugin-emitters-shape-path",
       "@tsparticles/plugin-emitters-shape-polygon",
       ...["hex", "hsl", "rgb", "hsv", "hwb", "lab", "lch", "oklab", "oklch", "named"].map(
-        (c) => `@tsparticles/plugin-${c}-color`,
+        c => `@tsparticles/plugin-${c}-color`,
       ),
-      ...["back", "bounce", "circ", "cubic", "elastic", "expo", "gaussian", "linear", "quad", "quart", "quint", "sigmoid", "sine", "smoothstep"].map(
-        (e) => `@tsparticles/plugin-easing-${e}`,
-      ),
-      ...["bubble", "filter", "particles", "shadow", "trail"].map((e) => `@tsparticles/effect-${e}`),
-      ...["arrow", "cards", "cog", "gif", "heart", "infinity", "matrix", "path", "ribbon", "rounded-polygon", "rounded-rect", "spiral", "squircle"].map(
-        (s) => `@tsparticles/shape-${s}`,
-      ),
+      ...[
+        "back",
+        "bounce",
+        "circ",
+        "cubic",
+        "elastic",
+        "expo",
+        "gaussian",
+        "linear",
+        "quad",
+        "quart",
+        "quint",
+        "sigmoid",
+        "sine",
+        "smoothstep",
+      ].map(e => `@tsparticles/plugin-easing-${e}`),
+      ...["bubble", "filter", "particles", "shadow", "trail"].map(e => `@tsparticles/effect-${e}`),
+      ...[
+        "arrow",
+        "cards",
+        "cog",
+        "gif",
+        "heart",
+        "infinity",
+        "matrix",
+        "path",
+        "ribbon",
+        "rounded-polygon",
+        "rounded-rect",
+        "spiral",
+        "squircle",
+      ].map(s => `@tsparticles/shape-${s}`),
       "@tsparticles/updater-gradient",
       "@tsparticles/updater-orbit",
-      ...["branches", "brownian", "curl-noise", "curves", "fractal-noise", "grid", "levy", "perlin-noise", "polygon", "random", "simplex-noise", "spiral", "svg", "zig-zag"].map(
-        (p) => `@tsparticles/path-${p}`,
-      ),
+      ...[
+        "branches",
+        "brownian",
+        "curl-noise",
+        "curves",
+        "fractal-noise",
+        "grid",
+        "levy",
+        "perlin-noise",
+        "polygon",
+        "random",
+        "simplex-noise",
+        "spiral",
+        "svg",
+        "zig-zag",
+      ].map(p => `@tsparticles/path-${p}`),
     ],
   },
   {
     name: "@tsparticles/confetti",
-    description: "Confetti-focused bundle. Extends basic with emitters, motion plugin, decorative shapes, and celebration updaters.",
+    description:
+      "Confetti-focused bundle. Extends basic with emitters, motion plugin, decorative shapes, and celebration updaters.",
     loadFunction: "doInitPlugins",
     extends: "@tsparticles/basic",
     packages: [
@@ -145,7 +188,8 @@ export const bundles: BundleInfo[] = [
   },
   {
     name: "@tsparticles/fireworks",
-    description: "Fireworks-focused bundle. Extends basic with line shape, emitters, sounds, and firework-related updaters.",
+    description:
+      "Fireworks-focused bundle. Extends basic with line shape, emitters, sounds, and firework-related updaters.",
     loadFunction: "doInitPlugins",
     extends: "@tsparticles/basic",
     packages: [
@@ -189,7 +233,8 @@ export const bundles: BundleInfo[] = [
   },
   {
     name: "@tsparticles/pjs",
-    description: "particles.js compatibility layer. Drop-in replacement for particles.js with full API compatibility. Wraps the full tsparticles bundle.",
+    description:
+      "particles.js compatibility layer. Drop-in replacement for particles.js with full API compatibility. Wraps the full tsparticles bundle.",
     loadFunction: "doInitPlugins",
     extends: "tsparticles",
     packages: [

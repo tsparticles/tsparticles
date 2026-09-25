@@ -4,9 +4,20 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 2 — 4.4.0 HDR Color Fix & Rendering Modes (release prep)
+**Current focus:** Phase 3 — 4.5.0 Fluid Particle Interaction & MCP generate_code
 
 ## Session Status — 2026-06-29
+
+### 4.5.0 — In progress (Feature B implemented)
+
+**MCP `generate_code` tool — implemented.** Deterministic codegen for `@tsparticles/mcp-server`:
+- `src/tools/generateCode.ts` (keyword extraction, priority-ordered bundle matching, template+override options, 5-framework codegen, HTML + install command)
+- Types/validation added (`src/types.ts`, `src/validation.ts`); tool registered in `src/index.ts`
+- 44 new tests in `src/tools/generateCode.test.ts` — full mcp-server suite green (146 tests, 8 files); build passes
+- README tools table updated (`generate_code` + `diagnose_issues`)
+- Checklists marked in `MCP_GENERATE_CODE_PLAN.md`; Feature B phases marked in `4.5.0_PLAN.md`
+
+Remaining for 4.5.0: Feature A (fluid-as-collision-mode) runtime work in the collisions package.
 
 ### 4.3.0 — Released ✅
 

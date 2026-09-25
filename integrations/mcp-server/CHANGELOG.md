@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [Unreleased]
+
+### Security
+
+* removed exact package version from the `/health` endpoint to avoid exposing fingerprintable release info
+* sanitize user-supplied values echoed in tool messages (strip control characters, code-fence reflections) to reduce prompt-injection surface
+* added a per-process global rate limit in addition to the per-IP limit
+* deliver a clean HTTP 413 instead of resetting the connection when a request body exceeds the size limit
+* generate_code: fixed invalid JavaScript emitted for the non-TypeScript Vue 3 output and made the `typescript` option effective for vanilla and Svelte
+
+### Breaking Changes
+
+* removed `packageVersion` from `StartHttpServerParams` (the `/health` response no longer reports the version)
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes

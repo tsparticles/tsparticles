@@ -4,13 +4,8 @@ import { InteractionManager } from "./InteractionManager.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";
 
 export class InteractivityPluginInstance implements IContainerPlugin {
-  /** The interaction manager for this container */
-  readonly interactionManager: InteractionManager;
-
   /** The particles container */
   readonly #container;
-  /** The plugin manager */
-  readonly #pluginManager;
 
   /**
    * Creates a new InteractivityPluginInstance
@@ -18,13 +13,13 @@ export class InteractivityPluginInstance implements IContainerPlugin {
    * @param container - the particles container
    */
   constructor(pluginManager: InteractivityPluginManager, container: InteractivityContainer) {
-    this.#container = container;
-    this.#pluginManager = pluginManager;
-    this.interactionManager = new InteractionManager(pluginManager, container);
-
-    this.#container.addClickHandler = (callback: (evt: Event, particles?: Particle[]) => void): void => {
-      this.interactionManager.addClickHandler(callback);
+    container.addClickHandler = (callback: (evt: Event, particles?: Particle[]) => void): void => {
+      container.interactionManager?.addClickHandler(callback);
     };
+
+    container.interactionManager = new InteractionManager(pluginManager, container);
+
+    this.#container = container;
   }
 
   /**
@@ -32,62 +27,69 @@ export class InteractivityPluginInstance implements IContainerPlugin {
    * @param callback - the callback to be called when the click event occurs
    */
   addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-    this.interactionManager.addClickHandler(callback);
+    this.#container.interactionManager?.addClickHandler(callback);
   }
 
   /** Clears all click handlers */
   clearClickHandlers(): void {
-    this.interactionManager.clearClickHandlers();
+    this.#container.interactionManager?.clearClickHandlers();
   }
 
   destroy(): void {
     this.clearClickHandlers();
-
-    this.#pluginManager.interactors?.delete(this.#container);
   }
 
   particleCreated(particle: Particle): void {
     const interactivityParticle = particle as InteractivityParticle,
-      interactivity = new Interactivity(this.#pluginManager, this.#container);
+      container = this.#container,
+      interactivity = new Interactivity(container);
 
-    interactivity.load(this.#container.actualOptions.interactivity);
+    interactivity.load(container.actualOptions.interactivity);
     interactivity.load(interactivityParticle.options.interactivity);
 
     interactivityParticle.interactivity = interactivity;
   }
 
   particleReset(particle: Particle): void {
-    this.interactionManager.reset(particle);
+    this.#container.interactionManager?.reset(particle);
   }
 
   postParticleUpdate(particle: Particle, delta: IDelta): void {
-    this.interactionManager.particlesInteract(particle, delta);
+    this.#container.interactionManager?.particlesInteract(particle, delta);
   }
 
   postUpdate(delta: IDelta): void {
-    this.interactionManager.externalInteract(delta);
-    this.interactionManager.updateMaxDistance();
+    const container = this.#container;
+
+    container.interactionManager?.externalInteract(delta);
+    container.interactionManager?.updateMaxDistance();
   }
 
   async preInit(): Promise<void> {
-    await this.interactionManager.initInteractors();
-    this.interactionManager.init();
+    const container = this.#container;
+
+    await container.interactionManager?.initInteractors();
+    container.interactionManager?.init();
   }
 
   async redrawInit(): Promise<void> {
-    await this.interactionManager.initInteractors();
-    this.interactionManager.init();
+    const container = this.#container;
+
+    await container.interactionManager?.initInteractors();
+    container.interactionManager?.init();
   }
 
   start(): Promise<void> {
-    this.interactionManager.addListeners();
-    this.interactionManager.startObserving();
+    const container = this.#container;
+
+    container.interactionManager?.addListeners();
+    container.interactionManager?.startObserving();
 
     return Promise.resolve();
   }
 
   stop(): void {
-    this.interactionManager.removeListeners();
-    this.interactionManager.stopObserving();
+    this.#container.interactionManager?.removeListeners();
+    this.#container.interactionManager?.stopObserving();
   }
 }

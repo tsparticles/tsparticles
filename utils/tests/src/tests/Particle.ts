@@ -18,6 +18,75 @@ const width = 1920,
 describe("Particle", async () => {
   globalThis.window = TestWindow;
 
+  const pluginManager = tsParticles.pluginManager,
+    defaultOptions = {
+      particles: {
+        effect: {
+          type: "none",
+        },
+        move: {
+          enable: false,
+        },
+        number: {
+          value: 0,
+        },
+        shape: {
+          type: "bounds-default-shape",
+        },
+        size: {
+          value: 8,
+        },
+      },
+    },
+    outsidePosition = {
+      x: -100,
+      y: height * 0.5,
+    },
+    shapeDrawerDefault: IShapeDrawer = {
+      draw: () => {
+        // no-op
+      },
+    },
+    shapeDrawerInside: IShapeDrawer = {
+      draw: () => {
+        // no-op
+      },
+      isInsideCanvas: () => true,
+    },
+    shapeDrawerOutside: IShapeDrawer = {
+      draw: () => {
+        // no-op
+      },
+      isInsideCanvas: () => false,
+    },
+    effectDrawerInside: IEffectDrawer = {
+      isInsideCanvas: () => true,
+    },
+    effectDrawerOutside: IEffectDrawer = {
+      isInsideCanvas: () => false,
+    },
+    effectDrawerOutModeAware: IEffectDrawer = {
+      isInsideCanvas: data => {
+        return data.outMode !== OutMode.destroy;
+      },
+    },
+    shapeDrawerOutModeAware: IShapeDrawer = {
+      draw: () => {
+        // no-op
+      },
+      isInsideCanvas: data => {
+        return data.outMode !== OutMode.destroy;
+      },
+    };
+
+  pluginManager.addShape(["bounds-default-shape"], () => Promise.resolve(shapeDrawerDefault));
+  pluginManager.addShape(["bounds-shape-inside"], () => Promise.resolve(shapeDrawerInside));
+  pluginManager.addShape(["bounds-shape-outside"], () => Promise.resolve(shapeDrawerOutside));
+  pluginManager.addShape(["bounds-shape-out-mode-aware"], () => Promise.resolve(shapeDrawerOutModeAware));
+  pluginManager.addEffect("bounds-effect-inside", () => Promise.resolve(effectDrawerInside));
+  pluginManager.addEffect("bounds-effect-outside", () => Promise.resolve(effectDrawerOutside));
+  pluginManager.addEffect("bounds-effect-out-mode-aware", () => Promise.resolve(effectDrawerOutModeAware));
+
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
   const canvas = createCustomCanvas(width, height) as any,
     container = await tsParticles.load({
@@ -182,75 +251,6 @@ describe("Particle", async () => {
   });
 
   describe("canvas bounds ownership", () => {
-    const pluginManager = tsParticles.pluginManager,
-      defaultOptions = {
-        particles: {
-          effect: {
-            type: "none",
-          },
-          move: {
-            enable: false,
-          },
-          number: {
-            value: 0,
-          },
-          shape: {
-            type: "bounds-default-shape",
-          },
-          size: {
-            value: 8,
-          },
-        },
-      },
-      outsidePosition = {
-        x: -100,
-        y: height * 0.5,
-      },
-      shapeDrawerDefault: IShapeDrawer = {
-        draw: () => {
-          // no-op
-        },
-      },
-      shapeDrawerInside: IShapeDrawer = {
-        draw: () => {
-          // no-op
-        },
-        isInsideCanvas: () => true,
-      },
-      shapeDrawerOutside: IShapeDrawer = {
-        draw: () => {
-          // no-op
-        },
-        isInsideCanvas: () => false,
-      },
-      effectDrawerInside: IEffectDrawer = {
-        isInsideCanvas: () => true,
-      },
-      effectDrawerOutside: IEffectDrawer = {
-        isInsideCanvas: () => false,
-      },
-      effectDrawerOutModeAware: IEffectDrawer = {
-        isInsideCanvas: data => {
-          return data.outMode !== OutMode.destroy;
-        },
-      },
-      shapeDrawerOutModeAware: IShapeDrawer = {
-        draw: () => {
-          // no-op
-        },
-        isInsideCanvas: data => {
-          return data.outMode !== OutMode.destroy;
-        },
-      };
-
-    pluginManager.addShape(["bounds-default-shape"], () => Promise.resolve(shapeDrawerDefault));
-    pluginManager.addShape(["bounds-shape-inside"], () => Promise.resolve(shapeDrawerInside));
-    pluginManager.addShape(["bounds-shape-outside"], () => Promise.resolve(shapeDrawerOutside));
-    pluginManager.addShape(["bounds-shape-out-mode-aware"], () => Promise.resolve(shapeDrawerOutModeAware));
-    pluginManager.addEffect("bounds-effect-inside", () => Promise.resolve(effectDrawerInside));
-    pluginManager.addEffect("bounds-effect-outside", () => Promise.resolve(effectDrawerOutside));
-    pluginManager.addEffect("bounds-effect-out-mode-aware", () => Promise.resolve(effectDrawerOutModeAware));
-
     it("should use default radius-based bounds when no callbacks are defined", async () => {
       await container.reset(defaultOptions);
 

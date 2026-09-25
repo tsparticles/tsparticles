@@ -9,6 +9,8 @@ The `emitters` plugin provides particle emitters: objects that generate particle
 | `autoPlay` | `boolean` | `true` | Auto-starts the emitter |
 | `direction` | `MoveDirection                                         | keyof typeof MoveDirection          | MoveDirectionAlt                                              | number                                                 | undefined` | `undefined` | Emission direction (enum or number) |
 | `domId` | `string                                                | undefined` | `undefined` | ID of the connected DOM element |
+| `draggable` | `boolean` | `false` | When `true`, the emitter can be moved by dragging it inside the shape area |
+| `draw` | `boolean` | `true` | When `true`, the emitter shape is drawn on the canvas |
 | `fill` | `boolean` | `true` | When `true` particles spawn inside the area |
 | `life` | `EmitterLife` | `wait: false` | Life options (count, delay, duration, wait) |
 | `name` | `string                                                | undefined` | `undefined` | Emitter name |
@@ -43,6 +45,28 @@ The `emitters` plugin provides particle emitters: objects that generate particle
   }
 }
 ```
+
+## Drawing and dragging
+
+Emitters are drawn behind particles when `draw` is enabled (default) and can be made interactive with `draggable`:
+
+```json
+{
+  "emitters": {
+    "draw": true,
+    "draggable": true,
+    "position": { "x": 50, "y": 50 },
+    "size": { "width": 20, "height": 20, "mode": "percent" },
+    "spawn": {
+      "fill": { "color": "#ff0000" },
+      "stroke": { "color": "#000000", "width": 2 }
+    }
+  }
+}
+```
+
+- `draw` (default `true`): renders the emitter shape, filled with `spawn.fill.color` (default black) and stroked with `spawn.stroke.color` when provided.
+- `draggable` (default `false`): when `true`, the emitter can be grabbed and dragged inside its shape bounds; emitters linked to a `domId` are never draggable.
 
 ## Notes
 

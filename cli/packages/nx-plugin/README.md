@@ -12,15 +12,16 @@ It is enabled in the workspace `nx.json` via the `@tsparticles/cli-nx-plugin` en
 
 ### Canonical aliases inferred by the plugin
 
-| Canonical target | Script fallback                       |
-| ---------------- | ------------------------------------- |
-| `clean`          | `clear:dist`                          |
-| `prettify`       | `prettify:src` or `format`            |
-| `prettify:ci`    | `prettify:ci:src`                     |
-| `tsc`            | `compile`, `build:ts`, or `typecheck` |
-| `bundle:webpack` | `build:bundle:webpack`                |
-| `bundle:rollup`  | `build:bundle:rollup`                 |
-| `distfiles`      | `build:distfiles`                     |
+| Canonical target  | Script fallback                       |
+| ----------------- | ------------------------------------- |
+| `clean`           | `clear:dist`                          |
+| `prettify`        | `prettify:src` or `format`            |
+| `prettify:ci`     | `prettify:ci:src`                     |
+| `tsc`             | `compile`, `build:ts`, or `typecheck` |
+| `bundle:webpack`  | `build:bundle:webpack`                |
+| `bundle:rollup`   | `build:bundle:rollup`                 |
+| `bundle:rolldown` | `build:bundle:rolldown`               |
+| `distfiles`       | `build:distfiles`                     |
 
 This allows Nx-friendly commands such as:
 

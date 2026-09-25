@@ -1,7 +1,15 @@
-import { type Engine } from "@tsparticles/engine";
+import { type Engine, addErrorMessages } from "@tsparticles/engine";
+import { ErrorMessages } from "./ErrorMessages.js";
 import { GifDrawer } from "./GifDrawer.js";
 
-declare const __VERSION__: string;
+declare const __VERSION__: string,
+  process:
+    | {
+        env: {
+          NODE_ENV?: string;
+        };
+      }
+    | undefined;
 
 /**
  * Loads the GIF shape in the given engine
@@ -9,6 +17,10 @@ declare const __VERSION__: string;
  */
 export async function loadGifShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
+
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    addErrorMessages(ErrorMessages);
+  }
 
   await engine.pluginManager.register(e => {
     e.pluginManager.addShape(["gif", "gifs"], container => Promise.resolve(new GifDrawer(container)));

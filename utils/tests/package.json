@@ -22,19 +22,23 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:*",
+    "@tsparticles/plugin-absorbers": "workspace:*",
+    "@tsparticles/plugin-emitters": "workspace:*",
+    "@tsparticles/plugin-emitters-shape-square": "workspace:*",
     "@tsparticles/plugin-hex-color": "workspace:*",
     "@tsparticles/plugin-hsl-color": "workspace:*",
     "@tsparticles/plugin-hsv-color": "workspace:*",
+    "@tsparticles/plugin-interactivity": "workspace:*",
     "@tsparticles/plugin-rgb-color": "workspace:*"
   },
   "devDependencies": {
     "@types/jsdom": "^30.0.0",
-    "@vitest/coverage-v8": "^4.1.10",
-    "@vitest/ui": "^4.1.10",
+    "@vitest/coverage-v8": "^5.0.0",
+    "@vitest/ui": "^5.0.0",
     "canvas": "^3.2.3",
     "jsdom": "^30.0.1",
     "jsdom-global": "^3.0.2",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "type": "module"
 }

@@ -1,14 +1,26 @@
-import { type Container, type Engine, type Particle, getItemsFromInitializer } from "@tsparticles/engine/lazy";
+import { type Engine, type Particle, addErrorMessages, getErrorMessage } from "@tsparticles/engine/lazy";
 import { type InteractivityContainer, type InteractivityEngine, type InteractorInitializer } from "./types.js";
-import { type IInteractor } from "./Interfaces/IInteractor.js";
+import { ErrorCodes } from "./ErrorCodes.js";
+import { ErrorMessages } from "./ErrorMessages.js";
 
-declare const __VERSION__: string;
+declare const __VERSION__: string,
+  process:
+    | {
+        env: {
+          NODE_ENV?: string;
+        };
+      }
+    | undefined;
 
 /**
  * @param engine - The engine instance
  */
 export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
+
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    addErrorMessages(ErrorMessages);
+  }
 
   await engine.pluginManager.register(async e => {
     const interactivityEngine = e as InteractivityEngine,
@@ -18,7 +30,6 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
     interactivityPluginManager.addPlugin(new InteractivityPlugin(interactivityPluginManager));
 
     interactivityPluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
-    interactivityPluginManager.interactors ??= new Map<Container, IInteractor[]>();
 
     /**
      * Adds an interaction manager to the current collection
@@ -26,27 +37,13 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
      * @param interactorInitializer - the interaction manager initializer
      */
     interactivityPluginManager.addInteractor = (name: string, interactorInitializer: InteractorInitializer): void => {
+      if (interactivityPluginManager.initialized) {
+        return;
+      }
+
       interactivityPluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
 
       interactivityPluginManager.initializers.interactors.set(name, interactorInitializer);
-    };
-
-    /**
-     * Returns all the container interaction managers
-     * @param container - the container used to check which interaction managers are compatible
-     * @param force - if true reloads the interaction managers collection for the given container
-     * @returns the array of interaction managers for the given container
-     */
-    interactivityPluginManager.getInteractors = async (container: Container, force = false): Promise<IInteractor[]> => {
-      interactivityPluginManager.interactors ??= new Map<Container, IInteractor[]>();
-      interactivityPluginManager.initializers.interactors ??= new Map<string, InteractorInitializer>();
-
-      return getItemsFromInitializer(
-        container,
-        interactivityPluginManager.interactors,
-        interactivityPluginManager.initializers.interactors,
-        force,
-      );
     };
 
     /**
@@ -57,7 +54,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
       const { items } = interactivityEngine;
 
       if (!items.length) {
-        throw new Error("Click handlers can only be set after calling tsParticles.load()");
+        throw new Error(getErrorMessage(ErrorCodes.interactivityClickHandlerNotSet));
       }
 
       items.forEach(item => {
@@ -74,7 +71,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
  */
 export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
   if (!e.pluginManager.addInteractor) {
-    throw new Error("tsParticles Interactivity Plugin is not loaded");
+    throw new Error(getErrorMessage(ErrorCodes.interactivityPluginNotLoaded));
   }
 }
 

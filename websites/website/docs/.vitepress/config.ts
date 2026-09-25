@@ -339,6 +339,12 @@ const baseSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
+  "/errors/": [
+    {
+      text: "Reference",
+      items: [{ text: "Errors", link: "/errors/" }],
+    },
+  ],
   "/guides/": [
     {
       text: "Guides",

@@ -68,6 +68,8 @@ export * from "./Options/Classes/ResizeEvent.js";
 export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/ColorUtils.js";
+export * from "./Utils/ErrorCodes.js";
+export * from "./Utils/ErrorUtils.js";
 export * from "./Utils/LogUtils.js";
 export * from "./Utils/MathUtils.js";
 export * from "./Utils/OptionLoader.js";

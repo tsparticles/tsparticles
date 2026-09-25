@@ -1,7 +1,18 @@
+import {
+  MAX_SESSION_ID_LENGTH,
+  RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
+  RATE_LIMIT_MAX_REQUESTS_PER_WINDOW,
+  RATE_LIMIT_WINDOW_MS,
+  SESSION_ID_PATTERN,
+} from "./constants.js";
 import { timingSafeEqual } from "node:crypto";
 
-import { MAX_SESSION_ID_LENGTH, RATE_LIMIT_MAX_REQUESTS_PER_WINDOW, RATE_LIMIT_WINDOW_MS, SESSION_ID_PATTERN } from "./constants.js";
+const SINGLE_HEADER_VALUE_COUNT = 1;
 
+/**
+ *
+ * @param origin
+ */
 export function normalizeOrigin(origin: string): string | undefined {
   try {
     const parsed = new URL(origin);
@@ -20,13 +31,19 @@ export function normalizeOrigin(origin: string): string | undefined {
   }
 }
 
-export function parseSessionIdHeader(header: string | string[] | undefined): { value?: string; error?: string } {
+/**
+ *
+ * @param header
+ */
+export function parseSessionIdHeader(header: string | string[] | undefined): { error?: string; value?: string } {
   if (Array.isArray(header)) {
-    if (header.length !== 1) {
+    if (header.length !== SINGLE_HEADER_VALUE_COUNT) {
       return { error: "Invalid mcp-session-id header" };
     }
 
-    return parseSessionIdHeader(header[0]);
+    const [value] = header;
+
+    return parseSessionIdHeader(value);
   }
 
   if (header === undefined) {
@@ -35,7 +52,7 @@ export function parseSessionIdHeader(header: string | string[] | undefined): { v
 
   const sessionId = header.trim();
 
-  if (sessionId.length === 0) {
+  if (!sessionId.length) {
     return { error: "Invalid mcp-session-id header" };
   }
 
@@ -46,6 +63,10 @@ export function parseSessionIdHeader(header: string | string[] | undefined): { v
   return { value: sessionId };
 }
 
+/**
+ *
+ * @param payload
+ */
 export function isInitializeRequest(payload: unknown): boolean {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     return false;
@@ -56,6 +77,11 @@ export function isInitializeRequest(payload: unknown): boolean {
   return method === "initialize";
 }
 
+/**
+ *
+ * @param origin
+ * @param allowedOrigins
+ */
 export function isOriginAllowed(origin: string | undefined, allowedOrigins?: string[]): boolean {
   // No Origin header at all (e.g. non-browser clients, curl) is allowed —
   // the Origin check exists to defend against DNS-rebinding attacks from
@@ -67,7 +93,7 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
     return false;
   }
 
-  if (allowedOrigins && allowedOrigins.length > 0) {
+  if (allowedOrigins?.length) {
     return allowedOrigins.includes(normalizedOrigin);
   }
 
@@ -89,10 +115,12 @@ export function isOriginAllowed(origin: string | undefined, allowedOrigins?: str
  * the token byte-by-byte; `timingSafeEqual` avoids that class of
  * side-channel. Returns `false` (rather than throwing) whenever the
  * lengths differ, since `timingSafeEqual` requires equal-length buffers.
+ * @param provided
+ * @param expected
  */
 export function isValidAuthToken(provided: string, expected: string): boolean {
-  const providedBuf = Buffer.from(provided, "utf8");
-  const expectedBuf = Buffer.from(expected, "utf8");
+  const providedBuf = Buffer.from(provided, "utf8"),
+    expectedBuf = Buffer.from(expected, "utf8");
 
   if (providedBuf.length !== expectedBuf.length) {
     return false;
@@ -104,45 +132,71 @@ export function isValidAuthToken(provided: string, expected: string): boolean {
 /**
  * Extracts the bearer token from an `Authorization` header value, or
  * `undefined` if the header is missing/malformed.
+ * @param header
  */
 export function extractBearerToken(header: string | string[] | undefined): string | undefined {
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const value = Array.isArray(header) ? header[0] : header;
   if (!value) return undefined;
 
   const match = /^Bearer\s+(\S+)$/i.exec(value.trim());
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   return match ? match[1] : undefined;
 }
 
 /**
- * Minimal in-memory fixed-window rate limiter keyed by client IP. Not a
- * substitute for a proper edge rate limiter (it resets per-process and
- * doesn't account for proxies unless `trust proxy`-style forwarding is
- * handled by the caller), but it bounds the request rate a single
- * client can sustain against this process.
+ * Minimal in-memory fixed-window rate limiter keyed by client IP, plus a
+ * per-process global ceiling that bounds total throughput regardless of
+ * how many distinct source IPs the requests come from. Not a substitute
+ * for a proper edge rate limiter (it resets per-process and doesn't
+ * account for proxies unless `trust proxy`-style forwarding is handled
+ * by the caller), but it bounds the request rate a single client — or a
+ * distributed set of clients — can sustain against this process.
  */
 export class RateLimiter {
+  private globalCount = 0;
+  private globalWindowStart = Date.now();
   private readonly hits = new Map<string, { count: number; windowStart: number }>();
 
   constructor(
     private readonly windowMs: number = RATE_LIMIT_WINDOW_MS,
     private readonly maxRequests: number = RATE_LIMIT_MAX_REQUESTS_PER_WINDOW,
+    private readonly maxGlobalRequests: number = RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW,
   ) {}
 
-  /** Returns true if the request should be allowed, false if rate-limited. */
+  get size(): number {
+    return this.hits.size;
+  }
+
+  /**
+   * Returns true if the request should be allowed, false if rate-limited.
+   * @param key
+   */
   allow(key: string): boolean {
     const now = Date.now();
+
+    // The global budget is reset/checked first so requests rejected by the
+    // per-client window — or by the global cap itself — never add or bump
+    // per-client entries and never consume the shared window.
+    if (now - this.globalWindowStart >= this.windowMs) {
+      this.globalCount = 0;
+      this.globalWindowStart = now;
+    }
+    if (this.globalCount >= this.maxGlobalRequests) {
+      return false;
+    }
+
     const entry = this.hits.get(key);
 
     if (!entry || now - entry.windowStart >= this.windowMs) {
       this.hits.set(key, { count: 1, windowStart: now });
-      return true;
-    }
-
-    if (entry.count >= this.maxRequests) {
+    } else if (entry.count >= this.maxRequests) {
       return false;
+    } else {
+      entry.count++;
     }
 
-    entry.count++;
+    this.globalCount++;
     return true;
   }
 
@@ -154,9 +208,5 @@ export class RateLimiter {
         this.hits.delete(key);
       }
     }
-  }
-
-  get size(): number {
-    return this.hits.size;
   }
 }

@@ -11,6 +11,7 @@ import {
   double,
   getDistance,
   getDistances,
+  getErrorMessage,
   getRandom,
   half,
   isArray,
@@ -21,13 +22,11 @@ import {
   safeDocument,
 } from "@tsparticles/engine";
 import { calcClosestPointOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
+import { ErrorCodes } from "./ErrorCodes.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 import type { PolygonMaskContainer } from "./types.js";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
-
-const noPolygonDataLoaded = `No polygon data loaded.`,
-  noPolygonFound = `No polygon found, you need to specify SVG url in config.`;
 
 /**
  * Polygon Mask manager
@@ -222,7 +221,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
     if (!this.raw) {
-      throw new Error(noPolygonFound);
+      throw new Error(getErrorMessage(ErrorCodes.polygonNotFound));
     }
 
     const canvasSize = container.canvas.size,
@@ -336,7 +335,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     const req = await fetch(url);
 
     if (!req.ok) {
-      throw new Error(`Error occurred during polygon mask download`);
+      throw new Error(getErrorMessage(ErrorCodes.polygonDownloadError));
     }
 
     return this.#parseSvgPath(await req.text(), force);
@@ -365,7 +364,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     if (!this.raw?.length || !this.paths?.length) {
-      throw new Error(noPolygonDataLoaded);
+      throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
     let offset = 0,
@@ -397,7 +396,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
   #getPointByIndex(index: number): ICoordinates | undefined {
     if (!this.raw?.length) {
-      throw new Error(noPolygonDataLoaded);
+      throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
     const coords = this.raw[index % this.raw.length];
@@ -414,7 +413,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
   #getRandomPoint(): ICoordinates | undefined {
     if (!this.raw?.length) {
-      throw new Error(noPolygonDataLoaded);
+      throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
     const coords = itemFromArray(this.raw);
@@ -438,7 +437,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     if (!this.raw?.length || !this.paths?.length) {
-      throw new Error(noPolygonDataLoaded);
+      throw new Error(getErrorMessage(ErrorCodes.polygonDataNotLoaded));
     }
 
     const path = itemFromArray(this.paths);
@@ -534,8 +533,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     const scale = this.#scale;
 
-    this.dimension.width = parseFloat(svg.getAttribute("width") ?? "0") * scale;
-    this.dimension.height = parseFloat(svg.getAttribute("height") ?? "0") * scale;
+    this.dimension.width = Number.parseFloat(svg.getAttribute("width") ?? "0") * scale;
+    this.dimension.height = Number.parseFloat(svg.getAttribute("height") ?? "0") * scale;
 
     const position = options.position ?? {
         x: 50,

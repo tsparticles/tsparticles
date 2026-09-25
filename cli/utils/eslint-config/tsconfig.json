@@ -14,5 +14,6 @@
     "rootDir": "./src",
     "sourceMap": true,
     "types": ["node"]
-  }
+  },
+  "include": ["src"]
 }

@@ -18,6 +18,8 @@ import {
   deepExtend,
   defaultOpacity,
   getRangeValue,
+  getStyleFromHsl,
+  getStyleFromRgb,
   hMax,
   half,
   isPointInside,
@@ -154,6 +156,7 @@ export class EmitterInstance {
   readonly #particlesOptions: RecursivePartial<IParticlesOptions>;
   #paused;
   readonly #pluginManager;
+  #positionOverride = false;
   readonly #removeCallback;
   #resizeObserver?: ResizeObserver;
   readonly #shape?: IEmitterShape;
@@ -256,6 +259,58 @@ export class EmitterInstance {
   }
 
   /**
+   * Draws the emitter shape on the canvas behind particles, filled and stroked with the
+   * emitter spawn colors
+   * @param context - the canvas 2d context used for drawing
+   */
+  draw(context: OffscreenCanvasRenderingContext2D): void {
+    if (!this.options.draw || !this.#shape) {
+      return;
+    }
+
+    const container = this.#container,
+      fillEnabled = this.options.spawn.fill?.enable ?? true;
+
+    context.save();
+    context.beginPath();
+
+    if (fillEnabled) {
+      context.fillStyle = this.spawnFillColor
+        ? getStyleFromHsl(
+            this.spawnFillColor,
+            container.hdr,
+            this.spawnFillOpacity ?? defaultOpacity,
+            container.peakNits,
+            container.hdrMode,
+          )
+        : getStyleFromRgb({ r: 0, g: 0, b: 0 }, container.hdr, defaultOpacity, container.peakNits, container.hdrMode);
+    }
+
+    if (this.spawnStrokeColor) {
+      context.strokeStyle = getStyleFromHsl(
+        this.spawnStrokeColor,
+        container.hdr,
+        this.spawnStrokeOpacity ?? defaultOpacity,
+        container.peakNits,
+        container.hdrMode,
+      );
+      context.lineWidth = this.spawnStrokeWidth ?? defaultStrokeWidth;
+    }
+
+    this.#shape.draw?.(context);
+
+    if (fillEnabled) {
+      context.fill();
+    }
+
+    if (this.spawnStrokeColor) {
+      context.stroke();
+    }
+
+    context.restore();
+  }
+
+  /**
    * Pauses the emitter from external calls
    */
   externalPause(): void {
@@ -325,13 +380,16 @@ export class EmitterInstance {
    * Resizes the emitter, recalculating position and size, and notifying the shape
    */
   resize(): void {
-    const initialPosition = this.#initialPosition,
-      container = this.#container;
+    const container = this.#container;
 
-    this.position =
-      initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
-        ? initialPosition
-        : this.#calcPosition();
+    if (!this.#positionOverride) {
+      const initialPosition = this.#initialPosition;
+
+      this.position =
+        initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
+          ? initialPosition
+          : this.#calcPosition();
+    }
 
     this.#size = this.#calcSize();
     this.size =
@@ -341,6 +399,17 @@ export class EmitterInstance {
             height: (this.#size.height / percentDenominator) * container.canvas.size.height,
           }
         : { width: this.#size.width, height: this.#size.height };
+
+    this.#shape?.resize(this.position, this.size);
+  }
+
+  /**
+   * Sets the emitter position, keeping the shape in sync without recalculating it
+   * @param position - the new position
+   */
+  setPosition(position: ICoordinates): void {
+    this.#positionOverride = true;
+    this.position = { ...position };
 
     this.#shape?.resize(this.position, this.size);
   }

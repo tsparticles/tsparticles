@@ -16,12 +16,12 @@
     "dist/"
   ],
   "scripts": {
-    "build": "cpx \"./src/**.*\" ./dist/",
-    "build:ci": "cpx \"./src/**.*\" ./dist/"
+    "build": "tsc",
+    "build:ci": "tsc"
   },
   "devDependencies": {
-    "browserslist": "^4.28.8",
-    "cpx2": "^9.0.0"
+    "browserslist": "^4.29.0",
+    "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "browserslist": "^4"

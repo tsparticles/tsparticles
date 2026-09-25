@@ -1,11 +1,8 @@
-import { OptionLoader, loadOptions } from "./OptionLoader.js";
 import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { deepExtend } from "./Utils.js";
 import { setRangeValue } from "./MathUtils.js";
-
-export { OptionLoader, loadOptions };
 
 /**
  *
@@ -37,9 +34,9 @@ export function loadRangeProperty<T extends object>(obj: T, key: keyof T, value:
  * @param key - The key
  * @param value - The value
  */
-export function loadNestedProperty(obj: object, key: string, value: RecursivePartial<unknown> | undefined): void {
+export function loadNestedProperty(obj: object, key: string, value: unknown): void {
   if (value !== undefined) {
-    ((obj as Record<string, unknown>)[key] as IOptionLoader<unknown>).load(value);
+    ((obj as Record<string, unknown>)[key] as IOptionLoader<unknown>).load(value as Record<string, unknown>);
   }
 }
 
@@ -53,14 +50,14 @@ export function loadNestedProperty(obj: object, key: string, value: RecursivePar
 export function loadLazyProperty(
   obj: object,
   key: string,
-  value: RecursivePartial<unknown> | undefined,
+  value: unknown,
   factory: () => IOptionLoader<unknown>,
 ): void {
   if (value !== undefined) {
     const objRecord = obj as Record<string, unknown>;
 
     objRecord[key] ??= factory() as unknown;
-    (objRecord[key] as IOptionLoader<unknown>).load(value);
+    (objRecord[key] as IOptionLoader<unknown>).load(value as Record<string, unknown>);
   }
 }
 
@@ -79,7 +76,7 @@ export function loadExtendProperty<T extends object, K extends keyof T>(obj: T, 
     }
 
     const objRecord = obj as Record<string, unknown>,
-      currentValue = Object.prototype.hasOwnProperty.call(objRecord, keyStr) ? objRecord[keyStr] : {};
+      currentValue = Object.hasOwn(objRecord, keyStr) ? objRecord[keyStr] : {};
 
     objRecord[keyStr] = deepExtend(currentValue, value);
   }

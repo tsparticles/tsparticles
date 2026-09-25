@@ -1,6 +1,6 @@
 import type { ExternalData } from "../types";
 import type { ExternalOption } from "rollup";
-import { getUmdGlobalForExternal } from "./umdPolicy";
+import { getIifeGlobalForExternal } from "./iifePolicy";
 
 interface Params {
   additionalExternals?: ExternalData[];
@@ -31,7 +31,10 @@ export const getExternal = ({ bundle, additionalExternals = [] }: Params): Exter
   ];
 };
 
-export const getGlobals = (additionalExternals: ExternalData[] = [], bundle?: boolean): ((id: string) => string) => {
+export const getGlobals = (
+  additionalExternals: ExternalData[] = [],
+  bundle?: boolean,
+): ((id: string) => string | undefined) => {
   const globalsAdditional = bundle ? additionalExternals.filter(e => !e.bundle) : additionalExternals,
     additionalMap = new Map(globalsAdditional.map(e => [e.name, getRootGlobal(e)]));
 
@@ -40,12 +43,20 @@ export const getGlobals = (additionalExternals: ExternalData[] = [], bundle?: bo
       return additionalMap.get(id) ?? defaultGlobal;
     }
 
-    const tsparticlesGlobal = getUmdGlobalForExternal(id);
+    const tsparticlesGlobal = getIifeGlobalForExternal(id);
 
     if (tsparticlesGlobal) {
-      return tsparticlesGlobal;
+      // Root the shared namespace through `this` so `exposeEntryExports` can retarget the IIFE
+      // wrapper from `this` to `globalThis` (keeping classic and module `<script>` tags working).
+      return `this.${tsparticlesGlobal}`;
     }
 
-    return defaultGlobal;
+    // Fall back to `window` only for genuine external module ids. Rollup also invokes the globals
+    // function with the first segment of `output.name` (e.g. "__tsParticlesInternals") to build the
+    // IIFE namespace setup; returning undefined there keeps the namespace root untouched instead of
+    // rewriting it to `window` (which would break under `<script type="module">` where `this` is undefined).
+    const looksLikeModuleId = id.includes("/") || id.includes("@") || id.includes(":") || id.startsWith("tsparticles");
+
+    return looksLikeModuleId ? defaultGlobal : undefined;
   };
 };
