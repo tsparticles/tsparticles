@@ -108,9 +108,16 @@ export class AbsorbersInstancesManager {
    * @returns the newly created absorber, or `undefined` if the absorber can't be split
    */
   async splitAbsorber(container: AbsorberContainer, absorber: AbsorberInstance): Promise<AbsorberInstance | undefined> {
-    if (!absorber.options.split.enable) {
+    if (!absorber.options.split.enable || absorber.isSplitting()) {
       return undefined;
     }
+
+    // held until the split settles, so a second split can't be started on the same absorber while
+    // this one is still creating its replacement and its particles
+    absorber.markSplitting();
+
+    // held until the split settles, so a second split can't be started on the same absorber while
+    // this one is still creating its replacement and its particles
 
     const position = {
         x: absorber.position.x,
@@ -120,6 +127,8 @@ export class AbsorbersInstancesManager {
       replacement = await this.addAbsorber(container, absorber.options, position);
 
     if (!replacement) {
+      absorber.unmarkSplitting();
+
       return undefined;
     }
 
@@ -128,6 +137,8 @@ export class AbsorbersInstancesManager {
     if (quantity > defaultIndex) {
       container.particles.push(quantity, position);
     }
+
+    absorber.unmarkSplitting();
 
     return replacement;
   }

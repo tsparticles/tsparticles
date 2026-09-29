@@ -592,6 +592,56 @@ describe("AbsorbersPluginInstance.update tests", () => {
     }
   });
 
+  it("should not start a second split on the same absorber while the first one is in flight", async () => {
+    const container = await loadAbsorberContainer("absorbers-update-single-flight", {
+      ...noParticles,
+      absorbers: [
+        {
+          ...defaultAbsorberOptions,
+          size: { value: 50, density: 1, limit: { radius: 60 } },
+          split: { enable: true, quantity: 2 },
+        },
+      ],
+    });
+
+    try {
+      const manager = await getInstancesManager(),
+        splitSpy = vi.spyOn(manager, "splitAbsorber"),
+        pushSpy = vi.spyOn(container.particles, "push"),
+        absorber = container.getAbsorber?.(0);
+
+      expect(absorber).to.be.not.undefined;
+
+      if (!absorber) {
+        return;
+      }
+
+      absorber.size = absorber.limit.radius + 1;
+
+      // the split is asynchronous and the frames are not awaited: the absorber is only removed once
+      // the replacement is created, so without a reentrancy guard it stays over its limit and every
+      // frame starts another split, each one pushing its own particles
+      runFrame(container);
+      runFrame(container);
+      runFrame(container);
+
+      expect(splitSpy).toHaveBeenCalledOnce();
+      expect(pushSpy).not.toHaveBeenCalled();
+
+      // once the split settles the absorber is replaced by a fresh one, below the limit
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      expect(pushSpy).toHaveBeenCalledOnce();
+
+      const replacement = container.getAbsorber?.(0);
+
+      expect(replacement).to.be.not.undefined;
+      expect(replacement?.shouldSplit()).to.equal(false);
+    } finally {
+      container.destroy();
+    }
+  });
+
   it("should split the absorber that reached the limit and keep the others untouched", async () => {
     const container = await loadAbsorberContainer("absorbers-update-auto", {
       ...noParticles,

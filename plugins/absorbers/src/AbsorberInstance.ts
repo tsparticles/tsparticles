@@ -120,6 +120,7 @@ export class AbsorberInstance {
   #lifeCount;
   readonly #pluginManager;
   #spawnDelay?: number;
+  #splitting = false;
 
   /**
    * The absorber constructor, initializes the absorber based on the given options and position
@@ -276,6 +277,21 @@ export class AbsorberInstance {
   }
 
   /**
+   * Tells whether this absorber is already being split
+   * @returns `true` while a split started on this absorber has not settled yet
+   */
+  isSplitting(): boolean {
+    return this.#splitting;
+  }
+
+  /**
+   * Marks the absorber as being split, so `shouldSplit` returns `false` until the split settles
+   */
+  markSplitting(): void {
+    this.#splitting = true;
+  }
+
+  /**
    * The resize method, for fixing the Absorber position
    */
   resize(): void {
@@ -292,7 +308,10 @@ export class AbsorberInstance {
    * @returns true if the absorber should split
    */
   shouldSplit(): boolean {
-    if (!this.options.split.enable) {
+    // a split is asynchronous and the caller doesn't await it: without this guard the same
+    // absorber could be split again on the next frames, while the first split is still in
+    // flight, spawning a whole set of particles every time
+    if (this.#splitting || !this.options.split.enable) {
       return false;
     }
 
@@ -301,6 +320,13 @@ export class AbsorberInstance {
       massLimitReached = this.limit.mass > minMass && this.mass >= this.limit.mass;
 
     return grown && (radiusLimitReached || massLimitReached);
+  }
+
+  /**
+   * Releases the splitting mark set by {@link markSplitting}
+   */
+  unmarkSplitting(): void {
+    this.#splitting = false;
   }
 
   /**
