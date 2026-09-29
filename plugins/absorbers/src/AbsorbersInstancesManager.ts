@@ -97,4 +97,38 @@ export class AbsorbersInstancesManager {
       this.getArray(container).splice(index, deleteCount);
     }
   }
+
+  /**
+   * Splits an absorber in particles, replacing it with a brand new absorber with the same options
+   *
+   * The replacement is created before removing the original absorber, a failed creation keeps the
+   * original absorber untouched
+   * @param container - the absorber container
+   * @param absorber - the absorber to split
+   * @returns the newly created absorber, or `undefined` if the absorber can't be split
+   */
+  async splitAbsorber(container: AbsorberContainer, absorber: AbsorberInstance): Promise<AbsorberInstance | undefined> {
+    if (!absorber.options.split.enable) {
+      return undefined;
+    }
+
+    const position = {
+        x: absorber.position.x,
+        y: absorber.position.y,
+      },
+      quantity = absorber.options.split.quantity,
+      replacement = await this.addAbsorber(container, absorber.options, position);
+
+    if (!replacement) {
+      return undefined;
+    }
+
+    this.removeAbsorber(container, absorber);
+
+    if (quantity > defaultIndex) {
+      container.particles.push(quantity, position);
+    }
+
+    return replacement;
+  }
 }

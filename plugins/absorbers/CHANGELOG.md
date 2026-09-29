@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (unreleased)
+
+### Features
+
+- added the `absorbers.split` options block (`enable`, `quantity`), when enabled an absorber reaching
+  its `size.limit.radius` / `size.limit.mass` is replaced by a fresh one and `quantity` particles are
+  created at its position
+- added the `absorber-split` click interactivity mode, it splits the absorber under the cursor, the
+  absorber must have `split.enable` set, no size limit is required
+- the absorbers options classes and the `getAbsorbersInstancesManager` function are now exported from
+  the package entry points
+
+Credits: requested in [#5320](https://github.com/tsparticles/tsparticles/issues/5320) by **RegiByte**,
+prototype in [#5923](https://github.com/tsparticles/tsparticles/pull/5923) by **ascweb**.
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes

@@ -6,22 +6,16 @@ import {
   type Particle,
   type PluginManager,
   type RecursivePartial,
-  RotateDirection,
+  type RotateDirection,
   Vector,
-  calcPositionOrRandomFromSize,
   calcPositionOrRandomFromSizeRanged,
   doublePI,
   getDistance,
-  getDistances,
-  getRandom,
   getRangeValue,
   getStyleFromRgb,
-  half,
-  identity,
   isPointInside,
   millisecondsToSeconds,
   minRadius,
-  minVelocity,
   originPoint,
   rangeColorToRgb,
   squareExp,
@@ -35,12 +29,13 @@ const absorbFactor = 0.033,
   minMass = 0,
   minAngle = 0,
   maxAngle = doublePI,
-  maxDegreeAngle = 360,
-  angleIncrementFactor = identity / maxDegreeAngle,
   defaultLifeDelay = 0,
   minLifeCount = 0,
   defaultSpawnDelay = 0,
-  defaultLifeCount = -1;
+  defaultLifeCount = -1,
+  // upper bound of the single frame attraction, keeps the particle controllable when it gets very
+  // close to the absorber and the inverse square law would otherwise explode
+  maxAttractForce = 100;
 
 /**
  * Particle extension type for Absorber orbit options
@@ -99,6 +94,11 @@ export class AbsorberInstance {
   readonly options;
 
   /**
+   * Whether the absorbed particles orbit around the absorber instead of being pulled towards it
+   */
+  readonly orbits;
+
+  /**
    * The absorber position
    */
   position: Vector;
@@ -114,7 +114,9 @@ export class AbsorberInstance {
   #duration?: number;
   #firstSpawn;
   readonly #immortal;
+  readonly #initialMass;
   readonly #initialPosition?: Vector;
+  readonly #initialSize;
   #lifeCount;
   readonly #pluginManager;
   #spawnDelay?: number;
@@ -149,8 +151,12 @@ export class AbsorberInstance {
 
     this.name = this.options.name;
     this.opacity = this.options.opacity;
+    this.orbits = this.options.orbits;
     this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
     this.mass = this.size * this.options.size.density * container.retina.reduceFactor;
+
+    this.#initialSize = this.size;
+    this.#initialMass = this.mass;
 
     const limit = this.options.size.limit;
 
@@ -177,18 +183,18 @@ export class AbsorberInstance {
   }
 
   /**
-   * Absorber attraction interaction, attract the particle to the absorber
-   * @param particle - the particle to attract to the absorber
-   * @param delta - the delta time of the frame, used for calculating the force between the particles and the absorber
+   * The contact part of the attraction, the absorber absorbs and grows when the particle reaches
+   * it. The force itself is reported by {@link getForce} and composed by the caller, so this
+   * absorber never writes the particle velocity nor its position and can never overwrite what
+   * another absorber of the same frame contributed
+   * @param particle - the particle reaching the absorber
+   * @param delta - the delta time of the frame, used for calculating the growth of the absorber
    */
   attract(particle: OrbitingParticle, delta: IDelta): void {
     const container = this.#container,
       options = this.options,
       pos = particle.getPosition(),
-      { dx, dy, distance } = getDistances(this.position, pos),
-      v = Vector.create(dx, dy);
-
-    v.length = (this.mass / Math.pow(distance, squareExp)) * container.retina.reduceFactor;
+      distance = getDistance(this.position, pos);
 
     if (distance < this.size + particle.getRadius()) {
       const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio * delta.factor;
@@ -201,15 +207,9 @@ export class AbsorberInstance {
           particle.destroy();
         } else {
           particle.needsNewPosition = true;
-
-          this.#updateParticlePosition(particle, delta, v);
         }
-      } else {
-        if (options.destroy) {
-          particle.size.value -= sizeFactor;
-        }
-
-        this.#updateParticlePosition(particle, delta, v);
+      } else if (options.destroy) {
+        particle.size.value -= sizeFactor;
       }
 
       if (this.limit.radius <= minRadius || this.size < this.limit.radius) {
@@ -219,8 +219,6 @@ export class AbsorberInstance {
       if (this.limit.mass <= minMass || this.mass < this.limit.mass) {
         this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
       }
-    } else {
-      this.#updateParticlePosition(particle, delta, v);
     }
   }
 
@@ -244,6 +242,40 @@ export class AbsorberInstance {
   }
 
   /**
+   * The attraction this absorber exerts on a point, the same value is used as the force applied to
+   * the particle velocity and as the weight of this absorber inside the orbit field
+   * @param point - the point to pull towards the absorber
+   * @returns the attraction magnitude, capped so a point sitting on the absorber centre can't
+   * produce an infinite force
+   */
+  getAttraction(point: ICoordinates): number {
+    // the absorber is a body with a radius, not a point mass: clamping the effective distance to
+    // its own size keeps the inverse square force finite when the particle reaches the centre
+    const effectiveDistance = Math.max(getDistance(this.position, point), this.size, minRadius);
+
+    return Math.min(
+      (this.mass / effectiveDistance ** squareExp) * this.#container.retina.reduceFactor,
+      maxAttractForce,
+    );
+  }
+
+  /**
+   * The force this absorber exerts on a point, as a vector pointing from the point towards the
+   * absorber. Forces of this kind are meant to be summed as vectors: an absorber on the opposite
+   * side of the particle cancels the previous one, instead of overwriting or adding up its
+   * magnitude
+   * @param point - the point pulled towards the absorber
+   * @returns the force vector, with the capped magnitude of {@link getAttraction}
+   */
+  getForce(point: ICoordinates): Vector {
+    const force = Vector.create(this.position.x - point.x, this.position.y - point.y);
+
+    force.length = this.getAttraction(point);
+
+    return force;
+  }
+
+  /**
    * The resize method, for fixing the Absorber position
    */
   resize(): void {
@@ -253,6 +285,22 @@ export class AbsorberInstance {
       initialPosition && isPointInside(initialPosition, this.#container.canvas.size, Vector.origin)
         ? initialPosition
         : this.#calcPosition();
+  }
+
+  /**
+   * Checks if the absorber reached one of its configured size limits and should split
+   * @returns true if the absorber should split
+   */
+  shouldSplit(): boolean {
+    if (!this.options.split.enable) {
+      return false;
+    }
+
+    const grown = this.size > this.#initialSize || this.mass > this.#initialMass,
+      radiusLimitReached = this.limit.radius > minRadius && this.size >= this.limit.radius,
+      massLimitReached = this.limit.mass > minMass && this.mass >= this.limit.mass;
+
+    return grown && (radiusLimitReached || massLimitReached);
   }
 
   /**
@@ -342,73 +390,6 @@ export class AbsorberInstance {
 
     if ((this.#lifeCount > minLifeCount || this.#immortal) && duration !== undefined && duration > minDuration) {
       this.#duration = duration * millisecondsToSeconds;
-    }
-  }
-
-  /**
-   * Updates the particle position, if the particle needs a new position
-   * @param particle - the particle to update
-   * @param delta - the delta
-   * @param v - the vector used for calculating the distance between the Absorber and the particle
-   * @internal
-   */
-  #updateParticlePosition(particle: OrbitingParticle, delta: IDelta, v: Vector): void {
-    if (particle.destroyed) {
-      return;
-    }
-
-    const container = this.#container,
-      canvasSize = container.canvas.size;
-
-    if (particle.needsNewPosition) {
-      const newPosition = calcPositionOrRandomFromSize({ size: canvasSize });
-
-      particle.position.setTo(newPosition);
-      particle.velocity.setTo(particle.initialVelocity);
-      particle.absorberOrbit = undefined;
-      particle.needsNewPosition = false;
-    }
-
-    if (this.options.orbits) {
-      if (particle.absorberOrbit === undefined) {
-        particle.absorberOrbit = Vector.origin;
-        particle.absorberOrbit.length = getDistance(particle.getPosition(), this.position);
-        particle.absorberOrbit.angle = getRandom() * maxAngle;
-      }
-
-      if (particle.absorberOrbit.length <= this.size && !this.options.destroy) {
-        const minSize = Math.min(canvasSize.width, canvasSize.height),
-          offset = 1,
-          randomOffset = 0.1,
-          randomFactor = 0.2;
-
-        particle.absorberOrbit.length = minSize * (offset + (getRandom() * randomFactor - randomOffset));
-      }
-
-      particle.absorberOrbitDirection ??=
-        particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;
-
-      const orbitRadius = particle.absorberOrbit.length,
-        orbitAngle = particle.absorberOrbit.angle,
-        orbitDirection = particle.absorberOrbitDirection;
-
-      particle.velocity.setTo(Vector.origin);
-
-      const maxSize = particle.size.max,
-        sizeFactor = particle.options.move.size ? particle.getRadius() / maxSize : identity,
-        deltaFactor = delta.factor || identity,
-        baseSpeed = particle.retina.moveSpeed,
-        moveSpeed = baseSpeed * sizeFactor * deltaFactor * half;
-
-      particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
-      particle.position.y =
-        this.position.y +
-        orbitRadius * (orbitDirection === RotateDirection.clockwise ? identity : -identity) * Math.sin(orbitAngle);
-
-      particle.absorberOrbit.length = Math.max(minOrbitLength, particle.absorberOrbit.length - v.length);
-      particle.absorberOrbit.angle += moveSpeed * angleIncrementFactor * container.retina.reduceFactor;
-    } else {
-      particle.velocity.addTo(v);
     }
   }
 }
