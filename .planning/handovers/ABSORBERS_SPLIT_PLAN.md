@@ -601,7 +601,9 @@ Manual demo check (absorption.ts demo or a scratch config under `demo/vanilla`):
   - `docs: document absorber splitting`
   - `fix(absorbers): call AbsorberInstance.update to restore absorber life options`
   - `fix(absorbers): bound absorber attraction force`
-  - `fix(absorbers): give orbit control to the nearest absorber only`
+  - `fix(absorbers): drive the orbit from an attraction weighted field instead of a single absorber`
+  - `fix(absorbers): compose the absorbers forces as vectors so they cancel instead of summing`
+  - `fix(absorbers): apply the absorber attraction once per frame, the interactor only drags`
   - `fix(absorbers): keep recycled particles inside the canvas`
   - `test(absorbers): add multi-absorber coverage`
 

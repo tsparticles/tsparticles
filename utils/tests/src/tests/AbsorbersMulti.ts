@@ -570,6 +570,113 @@ describe("Absorbers multi-instance tests", () => {
     });
   });
 
+  describe("R12 tangential force on the orbit", () => {
+    /**
+     * Measures the mean angular advance of the orbit over a few frames, with the given positions
+     * for the field absorber and the sideways one
+     * @param container - the container owning the absorbers
+     * @param field - the position of the `orbits` absorber
+     * @param sideways - the position of the non orbiting absorber, or `null` to leave it away
+     * @returns the mean angle added per frame, in radians
+     */
+    function meanOrbitStep(
+      container: AbsorberContainer,
+      field: { x: number; y: number },
+      sideways: { x: number; y: number } | null,
+    ): number {
+      const [orbit, side] = placeAbsorbers(container, [field, { x: 0, y: 0 }]);
+
+      orbit.position.setTo(field);
+      // parked far outside of the canvas, so it can't influence anything
+      side.position.setTo(sideways ?? { x: -5000, y: -5000 });
+
+      const particle = singleParticle(container);
+
+      particle.position.setTo({ x: 700, y: 500 });
+      particle.velocity.setTo({ x: 0, y: 0 });
+      particle.absorberOrbit = undefined;
+      particle.absorberOrbitDirection = undefined;
+
+      container.particles.update(frameDelta);
+
+      const first = particle.absorberOrbit!.angle;
+
+      for (let i = 0; i < 5; i++) {
+        container.particles.update(frameDelta);
+      }
+
+      return (particle.absorberOrbit!.angle - first) / 5;
+    }
+
+    it("should let a sideways absorber speed up or slow down the orbit", async () => {
+      const container = await loadMultiContainer("multi-tangential", [
+        { orbits: true, destroy: false, size: { value: 20, density: 600 } },
+        { orbits: false, destroy: false, size: { value: 20, density: 600 } },
+      ]);
+
+      try {
+        // the particle orbits the field clockwise, the sideways absorber sits perpendicular to the
+        // radius, so its force has almost no radial component: what it changes is the rotation
+        const plain = meanOrbitStep(container, { x: 500, y: 500 }, null),
+          below = meanOrbitStep(container, { x: 500, y: 500 }, { x: 500, y: 900 }),
+          above = meanOrbitStep(container, { x: 500, y: 500 }, { x: 500, y: 100 });
+
+        expect(below).to.be.above(plain);
+        expect(above).to.be.below(plain);
+
+        // same force magnitude, the two possible directions: the steps are symmetric, the small
+        // tolerance covers the absorbers growth between the two sequential measurements
+        const speedUp = below - plain,
+          slowDown = plain - above;
+
+        expect(speedUp).to.be.closeTo(slowDown, speedUp * 0.2);
+      } finally {
+        container.destroy();
+      }
+    });
+
+    it("should keep the orbital angular advance finite and bounded", async () => {
+      const container = await loadMultiContainer("multi-tangential-bound", [
+        { orbits: true, destroy: false, size: { value: 20, density: 600 } },
+        { orbits: false, destroy: false, size: { value: 20, density: 600 } },
+      ]);
+
+      try {
+        const [, side] = placeAbsorbers(container, [
+            { x: 500, y: 500 },
+            { x: 500, y: 900 },
+          ]),
+          particle = singleParticle(container);
+
+        // an absurd mass saturates the attraction cap, the rotation must stay a finite number of
+        // radians per frame instead of exploding
+        side.mass = 1e9;
+
+        particle.position.setTo({ x: 700, y: 500 });
+        particle.velocity.setTo({ x: 0, y: 0 });
+
+        container.particles.update(frameDelta);
+
+        const first = particle.absorberOrbit!.angle;
+
+        for (let i = 0; i < 5; i++) {
+          container.particles.update(frameDelta);
+        }
+
+        const step = (particle.absorberOrbit!.angle - first) / 5;
+
+        expect(Number.isFinite(step)).to.equal(true);
+
+        // the cap is 100 and the angle is in degrees, so a frame can add at most that much on top
+        // of the particle move speed
+        expect(step).to.be.above(0);
+        expect(step).to.be.below((100 + 10) / 360);
+      } finally {
+        container.destroy();
+      }
+    });
+  });
+
   describe("R13/R14 in canvas recycle", () => {
     it("should keep the particle inside the canvas when the orbit collapses", async () => {
       const container = await loadMultiContainer("multi-recycle-canvas", [

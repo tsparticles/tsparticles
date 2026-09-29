@@ -15,6 +15,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - the absorbers options classes and the `getAbsorbersInstancesManager` function are now exported from
   the package entry points
 
+### Bug Fixes
+
+- the `life` options (`count`, `duration`, `delay`) are working again, the absorbers are updated once
+  per frame by the plugin
+- an absorber attraction is now composed as a **vector** across all the absorbers of the frame, so
+  two absorbers pulling in opposite directions cancel each other out instead of adding up their
+  magnitudes, and no absorber can overwrite the force of another one
+- with 2 or more `orbits` absorbers the particle no longer thrashes between them, the orbit is driven
+  by a single attraction weighted field built out of all of them
+- entering an orbit no longer teleports the particle to a random point of the circle
+- the absorber attraction is applied once per frame: a click used to make the interactor attract on
+  top of the plugin, doubling both the force and the absorbers growth
+- a particle reaching the exact centre of an absorber no longer gets a `NaN` / `Infinity` velocity:
+  the absorber is treated as a body with a radius, so the effective distance never drops below its
+  own `size`, and the force magnitude is capped
+- a particle whose orbit collapses is recycled inside the canvas instead of being pushed outside of
+  the visible area
+- in orbit mode the absorber forces are no longer discarded: the radial component changes the orbit
+  radius and the tangential one changes how fast the particle turns
+
 Credits: requested in [#5320](https://github.com/tsparticles/tsparticles/issues/5320) by **RegiByte**,
 prototype in [#5923](https://github.com/tsparticles/tsparticles/pull/5923) by **ascweb**.
 
@@ -22,7 +42,7 @@ prototype in [#5923](https://github.com/tsparticles/tsparticles/pull/5923) by **
 
 ### Bug Fixes
 
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 

@@ -34,6 +34,35 @@ split again. This prevents an infinite splitting loop on configurations that sta
 Absorbers can also be split manually, using the [`absorber-split`](../Interactivity/Modes.md) click
 interactivity mode.
 
+## Multiple absorbers
+
+A canvas can hold more than one absorber, and every one of them influences the same particle. The
+forces are composed as **vectors**, once per frame, before the absorbers grow: two absorbers pulling
+in opposite directions cancel each other out, exactly as they would on a particle of equal mass. An
+absorber is never picked over the others, and no absorber overwrites the contribution of another one.
+
+The force of a single absorber falls off with the square of the distance and is weighted by the
+absorber `mass`, which grows as it absorbs particles. It is treated as a body with a radius rather than
+a point mass, so a particle sitting exactly on the absorber centre gets a finite force instead of an
+infinite one.
+
+### Orbiting absorbers
+
+An absorber with `orbits: true` binds the particles it captures to a circle instead of letting them
+drift. When several absorbers orbit at the same time they don't compete for the particle: they build
+a single **attraction weighted field**, and the particle orbits that field. Each `orbits` absorber
+weighs in proportionally to the force it exerts, so the orbit follows the heaviest and closest ones
+and it moves continuously as the absorbers grow, without jumping between them. Absorbers that don't
+orbit don't move the geometry, but they still push the particle through their force.
+
+In orbit mode the composed force is not discarded, it is resolved on the orbit axes:
+
+- the **radial** component changes the orbit radius, pulling the particle in or pushing it out
+- the **tangential** component changes how fast the particle turns around the field
+
+So an absorber placed beside the orbit speeds the particle up or slows it down, rather than only
+affecting how tight the circle is.
+
 ## Quick example
 
 ```json
