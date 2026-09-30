@@ -27,6 +27,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/ParticlesOptionsLoader.js";
+import { toEnumValue } from "../Utils/TypeUtils.js";
 
 /**
  * Particles manager object
@@ -413,7 +414,7 @@ export class ParticlesManager {
     } else {
       this.#groupLimits.set(group, {
         limit: numberOptions.limit.value * densityFactor,
-        mode: numberOptions.limit.mode as LimitMode,
+        mode: toEnumValue(LimitMode, numberOptions.limit.mode, LimitMode.delete),
       });
     }
 
@@ -448,7 +449,11 @@ export class ParticlesManager {
       if (limitValue > minLimit) {
         this.#groupLimits.set(group, {
           limit: limitValue,
-          mode: (groupOptions?.number?.limit?.mode ?? options.number.limit.mode) as LimitMode,
+          mode: toEnumValue(
+            LimitMode,
+            groupOptions?.number?.limit?.mode ?? options.number.limit.mode,
+            LimitMode.delete,
+          ),
         });
       } else {
         this.#groupLimits.delete(group);

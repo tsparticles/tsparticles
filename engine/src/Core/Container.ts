@@ -20,6 +20,7 @@ import { type PluginManager } from "./Utils/PluginManager.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionLoader.js";
+import { toEnumValue } from "../Utils/TypeUtils.js";
 
 /** Container constructor parameters */
 export interface ContainerParams {
@@ -411,7 +412,7 @@ export class Container {
     const { delay, duration, fpsLimit, smooth, zLayers } = this.actualOptions,
       hdrOptions = this.actualOptions.hdr;
 
-    this.hdrMode = hdrOptions.mode as HdrMode;
+    this.hdrMode = toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard);
     this.peakNits = hdrOptions.peakNits;
     this.zLayers = zLayers;
     this.#duration = getRangeValue(duration) * millisecondsToSeconds;

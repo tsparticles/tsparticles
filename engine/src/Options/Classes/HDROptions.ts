@@ -1,5 +1,5 @@
 import { ErrorCodes, getErrorMessage } from "../../Utils/ErrorUtils.js";
-import { isBoolean, isNumber } from "../../Utils/TypeUtils.js";
+import { isBoolean, isEnumValue, isNumber } from "../../Utils/TypeUtils.js";
 import { HdrMode } from "../../Enums/Modes/HdrMode.js";
 import type { IHDROptions } from "../Interfaces/IHDROptions.js";
 import { OptionLoader } from "../../Utils/OptionLoader.js";
@@ -31,10 +31,7 @@ export class HDROptions extends OptionLoader<IHDROptions> implements IHDROptions
       throw new Error(getErrorMessage(ErrorCodes.hdrEnableInvalid, String(data.enable)));
     }
 
-    if (
-      data.mode !== undefined &&
-      (typeof data.mode !== "string" || !Object.values(HdrMode).includes(data.mode as HdrMode))
-    ) {
+    if (data.mode !== undefined && !isEnumValue(HdrMode, data.mode)) {
       throw new Error(
         getErrorMessage(ErrorCodes.hdrModeInvalid, Object.values(HdrMode).join(", "), toStringValue(data.mode)),
       );

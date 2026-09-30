@@ -1,6 +1,15 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type IRgb, type IRgba, type IShapeDrawData, getErrorMessage, half, originPoint } from "@tsparticles/engine";
+import {
+  type IRgb,
+  type IRgba,
+  type IShapeDrawData,
+  getErrorMessage,
+  half,
+  isEnumValue,
+  originPoint,
+  toEnumValue,
+} from "@tsparticles/engine";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
 import { ByteStream } from "./ByteStream.js";
@@ -15,6 +24,15 @@ const defaultFrame = 0,
   initialTime = 0,
   firstIndex = 0,
   defaultLoopCount = 0;
+
+/**
+ * Converts a raw byte read from the stream to a GIF block header
+ * @param byte - the byte to convert
+ * @returns the matching block header, or `undefined` when the byte is not a known header
+ */
+function getGifDataHeader(byte: number): GIFDataHeaders | undefined {
+  return isEnumValue(GIFDataHeaders, byte) ? byte : undefined;
+}
 
 /**
  * __get a color table of length `count`__
@@ -51,7 +69,7 @@ function parseExtensionBlock(
   getFrameIndex: (increment: boolean) => number,
   getTransparencyIndex: (newValue?: number | null) => number,
 ): void {
-  switch (byteStream.nextByte()) {
+  switch (getGifDataHeader(byteStream.nextByte())) {
     case GIFDataHeaders.GraphicsControlExtension: {
       // ~ parse graphics control extension data - applies to the next frame in the byte stream
       const frame = gif.frames[getFrameIndex(false)]!;
@@ -65,7 +83,7 @@ function parseExtensionBlock(
       // ~ > reserved (3b) - reserved for future use
       frame.GCreserved = (packedByte & 0xe0) >>> 5;
       // ~ > disposal method (3b) - [0-7] - 0: unspecified (no action) 1: combine (no dispose) 2: restore background 3: restore previous 4-7: undefined
-      frame.disposalMethod = (packedByte & 0x1c) >>> 2;
+      frame.disposalMethod = toEnumValue(DisposalMethod, (packedByte & 0x1c) >>> 2, DisposalMethod.Replace);
       // ~ > user input flag (1b) - if 1 then continues (rendering) after user input (or delay-time, if given)
       frame.userInputDelayFlag = (packedByte & 2) === 2;
 
@@ -403,7 +421,7 @@ async function parseBlock(
   canvasSettings: CanvasRenderingContext2DSettings,
   progressCallback?: GIFProgressCallbackFunction,
 ): Promise<boolean> {
-  switch (byteStream.nextByte()) {
+  switch (getGifDataHeader(byteStream.nextByte())) {
     case GIFDataHeaders.EndOfFile:
       return true;
     case GIFDataHeaders.Image:

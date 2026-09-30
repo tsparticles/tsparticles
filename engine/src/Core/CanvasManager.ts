@@ -3,12 +3,13 @@ import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } 
 import { defaultZoom, generatedAttribute, half } from "./Utils/Constants.js";
 import { getStyleFromRgb, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
-import type { HdrMode } from "../Enums/Modes/HdrMode.js";
+import { HdrMode } from "../Enums/Modes/HdrMode.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import { RenderManager } from "./RenderManager.js";
+import { toEnumValue } from "../Utils/TypeUtils.js";
 
 /**
  * Returns the canvas to use for rendering.
@@ -282,7 +283,7 @@ export class CanvasManager {
         container.hdr,
         background.opacity,
         hdrOptions.peakNits,
-        hdrOptions.mode as HdrMode,
+        toEnumValue(HdrMode, hdrOptions.mode, HdrMode.standard),
       );
     } else {
       elementStyle.backgroundColor = "";
@@ -477,7 +478,7 @@ export class CanvasManager {
         safeMatchMedia("(color-gamut: p3)")?.matches &&
         safeMatchMedia("(dynamic-range: high)")?.matches;
 
-    container.hdrMode = container.actualOptions.hdr.mode as HdrMode;
+    container.hdrMode = toEnumValue(HdrMode, container.actualOptions.hdr.mode, HdrMode.standard);
     container.peakNits = container.actualOptions.hdr.peakNits;
 
     const renderCanvas = this.renderCanvas;

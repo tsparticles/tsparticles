@@ -118,7 +118,7 @@
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@types/jquery": "^4.0.1",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "@types/webpack-env": "^1.18.8",
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
@@ -126,7 +126,7 @@
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "jquery": "^4.0.0",
-    "prettier": "^3.9.8",
+    "prettier": "^3.9.9",
     "rollup": "^4.63.1",
     "typescript": "^6.0.3",
     "uglify-js": "^3.19.3"

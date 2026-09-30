@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
 import { minCount } from "@tsparticles/engine";
 
 export class ByteStream {
@@ -35,7 +34,7 @@ export class ByteStream {
    * get the next byte and increase cursors position by one
    * @returns the next byte
    */
-  nextByte(): GIFDataHeaders {
+  nextByte(): number {
     return this.data[this.pos++]!;
   }
 

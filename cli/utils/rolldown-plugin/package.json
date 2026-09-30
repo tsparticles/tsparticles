@@ -54,9 +54,9 @@
     "@tsparticles/rollup-plugin": "workspace:*",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^64.5.4",
-    "eslint-plugin-tsdoc": "^0.5.3",
-    "prettier": "^3.9.8",
+    "eslint-plugin-jsdoc": "^65.0.1",
+    "eslint-plugin-tsdoc": "^0.5.4",
+    "prettier": "^3.9.9",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "rolldown": "1.2.8",
     "@rollup/plugin-node-resolve": "^16.0.1",
@@ -65,10 +65,10 @@
     "rollup-plugin-visualizer": "^5.14.0"
   },
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "rimraf": "^6.1.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.1",
+    "typescript-eslint": "^8.71.0",
     "rolldown": "^1.2.8",
     "@rollup/plugin-typescript": "^12.3.0"
   }
