@@ -66,9 +66,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
           target = candidates[defaultIndex];
 
         if (target?.options.split.enable) {
-          void this.#instancesManager.splitAbsorber(container, target).catch(() => {
-            // the absorber is kept as is when the split fails
-          });
+          this.#instancesManager.splitAbsorber(container, target);
         }
 
         return;

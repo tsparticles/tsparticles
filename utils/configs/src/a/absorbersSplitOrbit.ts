@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-  key: "absorbersSplit",
-  name: "Absorbers Split",
+  key: "absorbersSplitOrbit",
+  name: "Absorbers Split Orbit",
   particles: {
     number: {
       value: 300,
@@ -51,10 +51,9 @@ const options: ISourceOptions = {
         value: "#1b1b3a",
       },
       draggable: true,
-      // without orbits the attraction is summed straight into the particle velocity, and the
-      // absorber mass grows with the density: a high density would kick the particles away with a
-      // huge speed on every single frame, so it has to stay low for this demo to be readable
-      orbits: false,
+      // the orbit field bounds the motion: the attraction is applied to the orbit radius and angle
+      // instead of being summed into the particle velocity, so a high density stays stable here
+      orbits: true,
       destroy: false,
       position: {
         x: 30,
@@ -62,11 +61,11 @@ const options: ISourceOptions = {
       },
       size: {
         value: 6,
-        density: 100,
+        density: 600,
         // the radius must always be bounded: with no `limit.radius` an absorber keeps growing
         // forever, swallowing the whole canvas, and `split.quantity` keeps adding particles on top
         limit: {
-          radius: 40,
+          radius: 45,
         },
       },
       split: {
@@ -79,7 +78,7 @@ const options: ISourceOptions = {
         value: "#3a1b2b",
       },
       draggable: true,
-      orbits: false,
+      orbits: true,
       destroy: false,
       position: {
         x: 70,
@@ -87,13 +86,10 @@ const options: ISourceOptions = {
       },
       size: {
         value: 6,
-        density: 100,
-        // the mass grows with the size, so this one splits on the mass limit first: it needs to
-        // absorb five times its initial mass before it splits, instead of the double it took with
-        // the values this config used to have
+        density: 600,
         limit: {
-          radius: 55,
-          mass: 3000,
+          radius: 45,
+          mass: 7200,
         },
       },
       split: {

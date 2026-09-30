@@ -21,12 +21,14 @@ Defines absorber entities that pull nearby particles and can consume them.
 An absorber grows while it absorbs particles, and it stops growing when it reaches `size.limit`. With
 `split.enable` enabled, reaching the limit **splits** the absorber instead of only stopping its growth:
 
-1. `split.quantity` particles are created at the absorber position
-2. the original absorber is removed
-3. a brand new absorber, with the same options and the original `size.value`, is created in its place
+1. the absorber is consumed, it is not replaced by a new one
+2. `split.quantity` particles are released on its rim, shared out of the mass it had accumulated
 
-The replacement starts growing again from scratch, so it must absorb particles once more before it can
-split again. This prevents an infinite splitting loop on configurations that start above the limit.
+The released particles are worth slightly less mass than the absorber was holding, so every split
+drains a slice out of the system instead of manufacturing particles out of nothing. That drained
+slice is what makes a split terminate: since the absorbers do not consume the particles they absorb,
+releasing exactly the accumulated mass would let the very same particles grow a new absorber back to
+its limit and split it again, forever.
 
 `split.quantity` is truncated to an integer and clamped between `0` and `1000`, invalid values such as
 `NaN` or `Infinity` are ignored and the default value is kept.

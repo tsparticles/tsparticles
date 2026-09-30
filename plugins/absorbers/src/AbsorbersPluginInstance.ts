@@ -97,6 +97,17 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
       }
     }
 
+    // an absorbed particle is recycled to a random position instead of being left inside the
+    // absorber, where it would keep feeding its mass and size, growing it up to the limit and
+    // splitting it over and over. The flag is honoured here and not only in the orbit branch below,
+    // because a non orbiting absorber sets it too: recycling only the orbiting particles left every
+    // particle caught by a non orbiting absorber stuck inside it
+    if (orbiting.needsNewPosition) {
+      this.#recycleParticle(orbiting);
+
+      return;
+    }
+
     if (field) {
       this.#updateOrbit(orbiting, delta, field, force);
     } else {
@@ -126,9 +137,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
         continue;
       }
 
-      void this.#instancesManager.splitAbsorber(this.#container, absorber).catch(() => {
-        // the absorber is kept as is when the split fails, the next frame will try again
-      });
+      this.#instancesManager.splitAbsorber(this.#container, absorber);
 
       break;
     }
@@ -205,14 +214,6 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
   #updateOrbit(particle: OrbitingParticle, delta: IDelta, field: IOrbitField, force: Vector): void {
     const container = this.#container,
       { width, height } = container.canvas.size;
-
-    if (particle.needsNewPosition) {
-      // the orbit is rebuilt from scratch on the next frame, snapping the particle to a brand new
-      // orbit right away would move it out of the canvas it was just recycled into
-      this.#recycleParticle(particle);
-
-      return;
-    }
 
     particle.absorberOrbitDirection ??=
       particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;

@@ -4,6 +4,8 @@ import {
   type IMouseData,
   type ISourceOptions,
   type RecursivePartial,
+  doublePI,
+  getDistance,
   tsParticles,
 } from "@tsparticles/engine";
 import {
@@ -409,22 +411,26 @@ describe("AbsorbersInstancesManager.splitAbsorber tests", () => {
     try {
       const manager = await getInstancesManager(),
         absorber = container.getAbsorber?.(),
-        splitSpy = vi.spyOn(manager, "splitAbsorber");
+        addSpy = vi.spyOn(container.particles, "addParticle");
 
       expect(absorber).to.be.not.undefined;
 
-      const result = absorber ? await manager.splitAbsorber(container, absorber) : undefined;
+      if (!absorber) {
+        return;
+      }
 
-      expect(result).to.be.undefined;
+      manager.splitAbsorber(container, absorber);
+
+      // a disabled split must leave the absorber alive, it is the only thing keeping it there
       expect(container.getAbsorber?.()).to.equal(absorber);
+      expect(addSpy).not.toHaveBeenCalled();
       expect(container.particles.count).to.equal(0);
-      expect(splitSpy).toHaveBeenCalledOnce();
     } finally {
       container.destroy();
     }
   });
 
-  it("should replace the absorber without generating particles when the quantity is 0", async () => {
+  it("should remove the absorber without generating particles when the quantity is 0", async () => {
     const container = await loadAbsorberContainer("absorbers-split-zero-quantity", {
       ...noParticles,
       absorbers: [{ ...defaultAbsorberOptions, split: { enable: true, quantity: 0 } }],
@@ -433,24 +439,26 @@ describe("AbsorbersInstancesManager.splitAbsorber tests", () => {
     try {
       const manager = await getInstancesManager(),
         absorber = container.getAbsorber?.(),
-        pushSpy = vi.spyOn(container.particles, "push");
+        addSpy = vi.spyOn(container.particles, "addParticle");
 
       expect(absorber).to.be.not.undefined;
 
-      const replacement = absorber ? await manager.splitAbsorber(container, absorber) : undefined;
+      if (!absorber) {
+        return;
+      }
 
-      expect(replacement).to.be.not.undefined;
-      expect(replacement).to.not.equal(absorber);
-      expect(pushSpy).not.toHaveBeenCalled();
-      expect(container.getAbsorber?.()).to.equal(replacement);
+      manager.splitAbsorber(container, absorber);
+
+      expect(addSpy).not.toHaveBeenCalled();
+      expect(container.getAbsorber?.()).to.be.undefined;
       expect(container.particles.count).to.equal(0);
     } finally {
       container.destroy();
     }
   });
 
-  it("should replace the absorber with the same options and push the particles at the old position", async () => {
-    const container = await loadAbsorberContainer("absorbers-split-replace", {
+  it("should consume the absorber and release the particles on its rim", async () => {
+    const container = await loadAbsorberContainer("absorbers-split-consume", {
       ...noParticles,
       absorbers: [{ ...defaultAbsorberOptions, split: { enable: true, quantity: 3 } }],
     });
@@ -458,7 +466,7 @@ describe("AbsorbersInstancesManager.splitAbsorber tests", () => {
     try {
       const manager = await getInstancesManager(),
         absorber = container.getAbsorber?.(),
-        pushSpy = vi.spyOn(container.particles, "push");
+        addSpy = vi.spyOn(container.particles, "addParticle");
 
       expect(absorber).to.be.not.undefined;
 
@@ -470,43 +478,60 @@ describe("AbsorbersInstancesManager.splitAbsorber tests", () => {
 
       absorber.size += 100;
 
-      const replacement = await manager.splitAbsorber(container, absorber);
+      const releasedSize = absorber.size;
 
-      expect(replacement).to.be.not.undefined;
-      expect(replacement?.options).to.equal(absorber.options);
-      expect(replacement?.options.split.enable).to.equal(true);
-      expect(replacement?.options.split.quantity).to.equal(3);
-      expect(replacement?.position.x).to.equal(oldPosition.x);
-      expect(replacement?.position.y).to.equal(oldPosition.y);
-      expect(replacement?.size).to.equal(absorber.options.size.value);
-      expect(pushSpy).toHaveBeenCalledWith(3, oldPosition);
-      expect(container.getAbsorber?.()).to.equal(replacement);
+      manager.splitAbsorber(container, absorber);
+
+      // the split consumes the absorber: nothing is left behind to absorb the very particles it
+      // has just released
+      expect(container.getAbsorber?.()).to.be.undefined;
+      expect(addSpy).toHaveBeenCalledTimes(3);
+
+      for (const [spawned] of addSpy.mock.calls) {
+        // the particles are released on the rim the absorber was covering, never on its centre
+        expect(getDistance(spawned, oldPosition)).to.be.closeTo(releasedSize, 1e-6);
+      }
     } finally {
       container.destroy();
     }
   });
 
-  it("should keep the original absorber when the replacement creation fails", async () => {
-    const container = await loadAbsorberContainer("absorbers-split-failure", {
+  it("should release less mass than the absorber was holding", async () => {
+    const container = await loadAbsorberContainer("absorbers-split-mass", {
       ...noParticles,
-      absorbers: [{ ...defaultAbsorberOptions, split: { enable: true, quantity: 3 } }],
+      absorbers: [{ ...defaultAbsorberOptions, split: { enable: true, quantity: 4 } }],
     });
 
     try {
       const manager = await getInstancesManager(),
         absorber = container.getAbsorber?.(),
-        pushSpy = vi.spyOn(container.particles, "push");
+        addSpy = vi.spyOn(container.particles, "addParticle");
 
       expect(absorber).to.be.not.undefined;
 
-      const addSpy = vi.spyOn(manager, "addAbsorber").mockRejectedValue(new Error("split failed")),
-        result = absorber ? await manager.splitAbsorber(container, absorber).catch(() => undefined) : undefined;
+      if (!absorber) {
+        return;
+      }
 
-      expect(addSpy).toHaveBeenCalledOnce();
-      expect(result).to.be.undefined;
-      expect(container.getAbsorber?.()).to.equal(absorber);
-      expect(pushSpy).not.toHaveBeenCalled();
-      expect(container.particles.count).to.equal(0);
+      absorber.size += 100;
+
+      const absorbedSize = absorber.size,
+        quantity = 4;
+
+      manager.splitAbsorber(container, absorber);
+
+      let releasedSize = 0;
+
+      for (const [, options] of addSpy.mock.calls) {
+        releasedSize += options?.size?.value ?? 0;
+      }
+
+      // the causal invariant of a non endless split: the released particles are worth strictly
+      // less than the mass the absorber had accumulated, so every split drains a slice out of the
+      // system instead of manufacturing particles out of nothing
+      expect(releasedSize).to.be.lessThan(absorbedSize);
+      expect(releasedSize).to.be.greaterThan(0);
+      expect(addSpy).toHaveBeenCalledTimes(quantity);
     } finally {
       container.destroy();
     }
@@ -592,7 +617,142 @@ describe("AbsorbersPluginInstance.update tests", () => {
     }
   });
 
-  it("should not start a second split on the same absorber while the first one is in flight", async () => {
+  it("should not multiply the particles out of control when an absorber splits", async () => {
+    const W = 1920,
+      H = 1080;
+    const container = (await tsParticles.load({
+      id: "probe-split-mult",
+      options: {
+        autoPlay: false,
+        particles: { number: { value: 0 }, move: { enable: false }, size: { value: 2 } },
+        absorbers: [
+          {
+            ...defaultAbsorberOptions,
+            destroy: false,
+            orbits: true,
+            size: { value: 6, density: 600, limit: { radius: 45, mass: 7200 } },
+            split: { enable: true, quantity: 12 },
+          },
+          {
+            ...defaultAbsorberOptions,
+            destroy: false,
+            orbits: true,
+            size: { value: 6, density: 600, limit: { radius: 45, mass: 7200 } },
+            split: { enable: true, quantity: 12 },
+          },
+        ],
+      } as RecursivePartial<ISourceOptions>,
+      element: createCustomCanvas(W, H) as unknown as HTMLCanvasElement,
+    })) as AbsorberContainer | null;
+
+    if (!container) throw new Error("no container");
+
+    (container.canvas.size as { width: number }).width = W;
+    (container.canvas.size as { height: number }).height = H;
+    container.canvas.resize();
+
+    try {
+      const manager = await getInstancesManager(),
+        absorbers = manager.getArray(container);
+
+      for (const a of absorbers) a.position.setTo({ x: W / 2, y: H / 2 });
+      for (let i = 0; i < 300; i++) {
+        container.particles.addParticle({ x: 100 + (i % 30) * 60, y: 100 + Math.floor(i / 30) * 100 });
+      }
+
+      const startCount = container.particles.count,
+        // one split per absorber, 12 particles each, and nothing more
+        maxCount = startCount + 24;
+
+      for (const a of absorbers) a.size = a.limit.radius;
+
+      // both absorbers are already over their limit and the frames are not awaited, exactly like
+      // the animation loop: each absorber can be split only once because the split consumes it, so
+      // the particle count stays bounded instead of growing on every frame
+      for (let f = 0; f < 60; f++) {
+        runFrame(container);
+      }
+
+      await flush();
+
+      expect(container.particles.count).to.be.at.most(maxCount);
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should recycle the particles absorbed by a non orbiting absorber", async () => {
+    const W = 1920,
+      H = 1080,
+      container = (await tsParticles.load({
+        id: "absorbers-split-non-orbit-recycle",
+        options: {
+          autoPlay: false,
+          particles: {
+            number: { value: 0 },
+            move: { enable: true, speed: 0.6, random: true },
+            size: { value: { min: 1, max: 3 } },
+          },
+          absorbers: [
+            {
+              ...defaultAbsorberOptions,
+              destroy: false,
+              orbits: false,
+              size: { value: 6, density: 100, limit: { radius: 40 } },
+              split: { enable: true, quantity: 12 },
+            },
+          ],
+        } as RecursivePartial<ISourceOptions>,
+        element: createCustomCanvas(W, H) as unknown as HTMLCanvasElement,
+      })) as AbsorberContainer | null;
+
+    if (!container) {
+      throw new Error("Error test container not initialized");
+    }
+
+    (container.canvas.size as { width: number }).width = W;
+    (container.canvas.size as { height: number }).height = H;
+    container.canvas.resize();
+
+    try {
+      const manager = await getInstancesManager(),
+        absorbers = manager.getArray(container);
+
+      expect(absorbers).to.have.length(1);
+
+      absorbers[0]?.position.setTo({ x: W / 2, y: H / 2 });
+
+      // every particle starts inside the absorber, so all of them are absorbed on the first frame
+      for (let i = 0; i < 200; i++) {
+        const angle = (i / 200) * doublePI;
+
+        container.particles.addParticle({ x: W / 2 + Math.cos(angle) * 2, y: H / 2 + Math.sin(angle) * 2 });
+      }
+
+      const startCount = container.particles.count;
+
+      for (let f = 0; f < 40; f++) {
+        runFrame(container);
+
+        await flush();
+      }
+
+      // a non orbiting absorber sets `needsNewPosition` on the particles it absorbs, and it has to
+      // recycle them just like the orbit branch does: left inside, they keep feeding the absorber
+      // mass, it grows to its limit, splits, and the particles keep multiplying
+      const stuck = container.particles.filter(
+        particle => (particle as unknown as { needsNewPosition?: boolean }).needsNewPosition,
+      );
+
+      expect(stuck).to.have.length(0);
+      expect(absorbers[0]?.size).to.be.lessThan(absorbers[0]?.limit.radius ?? 0);
+      expect(container.particles.count).to.be.at.most(startCount);
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should split an absorber only once, the split consumes it", async () => {
     const container = await loadAbsorberContainer("absorbers-update-single-flight", {
       ...noParticles,
       absorbers: [
@@ -607,7 +767,7 @@ describe("AbsorbersPluginInstance.update tests", () => {
     try {
       const manager = await getInstancesManager(),
         splitSpy = vi.spyOn(manager, "splitAbsorber"),
-        pushSpy = vi.spyOn(container.particles, "push"),
+        addSpy = vi.spyOn(container.particles, "addParticle"),
         absorber = container.getAbsorber?.(0);
 
       expect(absorber).to.be.not.undefined;
@@ -618,25 +778,16 @@ describe("AbsorbersPluginInstance.update tests", () => {
 
       absorber.size = absorber.limit.radius + 1;
 
-      // the split is asynchronous and the frames are not awaited: the absorber is only removed once
-      // the replacement is created, so without a reentrancy guard it stays over its limit and every
-      // frame starts another split, each one pushing its own particles
+      // the split is synchronous: the absorber is consumed by the very first frame, so the frames
+      // that follow find nothing left to split. This is what keeps a split from repeating itself
+      // forever, no in flight guard needed
       runFrame(container);
       runFrame(container);
       runFrame(container);
 
       expect(splitSpy).toHaveBeenCalledOnce();
-      expect(pushSpy).not.toHaveBeenCalled();
-
-      // once the split settles the absorber is replaced by a fresh one, below the limit
-      await new Promise(resolve => setTimeout(resolve, 0));
-
-      expect(pushSpy).toHaveBeenCalledOnce();
-
-      const replacement = container.getAbsorber?.(0);
-
-      expect(replacement).to.be.not.undefined;
-      expect(replacement?.shouldSplit()).to.equal(false);
+      expect(addSpy).toHaveBeenCalledTimes(2);
+      expect(container.getAbsorber?.(0)).to.be.undefined;
     } finally {
       container.destroy();
     }
@@ -671,8 +822,6 @@ describe("AbsorbersPluginInstance.update tests", () => {
         return;
       }
 
-      const initialSize = first.options.size.value;
-
       placeAbsorber(first, 100, 100);
       placeAbsorber(second, 300, 300);
 
@@ -684,17 +833,9 @@ describe("AbsorbersPluginInstance.update tests", () => {
         expect(container.particles.count).to.equal(2);
       });
 
-      // the replacement is appended to the absorbers array, the split one is removed from it
-      const replacement = container.getAbsorber?.(1);
-
+      // the split one is consumed, the untouched one is the only absorber left
       expect(container.getAbsorber?.(0)).to.equal(second);
-      expect(replacement).to.be.not.undefined;
-      expect(replacement).to.not.equal(first);
-      expect(replacement?.options.split.enable).to.equal(true);
-      expect(replacement?.size).to.equal(initialSize);
-      expect(replacement?.position.x).to.equal(100);
-      expect(replacement?.position.y).to.equal(100);
-      expect(container.getAbsorber?.(2)).to.be.undefined;
+      expect(container.getAbsorber?.(1)).to.be.undefined;
     } finally {
       container.destroy();
     }
@@ -825,12 +966,8 @@ describe("AbsorbersInteractor split mode tests", () => {
       container.interactionManager!.interactivityData.mouse.clickPosition = { x: 100, y: 100 };
       container.interactionManager!.handleClickMode("absorber-split");
 
-      await vi.waitFor(() => {
-        expect(container.getAbsorber?.()).to.not.equal(original);
-      });
-
-      expect(container.getAbsorber?.()?.options.split.enable).to.equal(true);
-      expect(container.getAbsorber?.()?.position.x).to.equal(100);
+      // the click consumed the absorber it landed on, leaving only the released particles
+      expect(container.getAbsorber?.()).to.be.undefined;
       expect(container.particles.count).to.equal(2);
     } finally {
       container.destroy();
@@ -870,17 +1007,9 @@ describe("AbsorbersInteractor split mode tests", () => {
       container.interactionManager!.interactivityData.mouse.clickPosition = { x: 110, y: 100 };
       container.interactionManager!.handleClickMode("absorber-split");
 
-      // the split one is removed, the untouched one shifts to the first slot
-      await vi.waitFor(() => {
-        expect(container.getAbsorber?.(0)).to.not.equal(first);
-      });
-
-      const replacement = container.getAbsorber?.(1);
-
+      // the split one is consumed, the untouched one is the only absorber left
       expect(container.getAbsorber?.(0)).to.equal(second);
-      expect(replacement).to.be.not.undefined;
-      expect(replacement).to.not.equal(first);
-      expect(replacement?.options.split.enable).to.equal(true);
+      expect(container.getAbsorber?.(1)).to.be.undefined;
       expect(container.particles.count).to.equal(0);
     } finally {
       container.destroy();

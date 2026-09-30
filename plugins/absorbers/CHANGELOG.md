@@ -8,8 +8,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - added the `absorbers.split` options block (`enable`, `quantity`), when enabled an absorber reaching
-  its `size.limit.radius` / `size.limit.mass` is replaced by a fresh one and `quantity` particles are
-  created at its position
+  its `size.limit.radius` / `size.limit.mass` is consumed and `quantity` particles are released on its
+  rim, shared out of the mass it had accumulated
 - added the `absorber-split` click interactivity mode, it splits the absorber under the cursor, the
   absorber must have `split.enable` set, no size limit is required
 - the absorbers options classes and the `getAbsorbersInstancesManager` function are now exported from
@@ -32,6 +32,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   own `size`, and the force magnitude is capped
 - a particle whose orbit collapses is recycled inside the canvas instead of being pushed outside of
   the visible area
+- a particle absorbed by a non orbiting absorber is recycled inside the canvas too: the recycling
+  was bound to the orbit handling, so without `orbits` the particles piled up against the absorber
+  instead
+- a split absorber is no longer replaced by a clone of itself, which turned a split into an endless
+  particle factory: the split is now synchronous and the absorber is consumed by it
 - in orbit mode the absorber forces are no longer discarded: the radial component changes the orbit
   radius and the tangential one changes how fast the particle turns
 
