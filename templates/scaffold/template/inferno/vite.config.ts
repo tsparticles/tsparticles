@@ -1,11 +1,13 @@
 import { defineConfig } from "vite";
-import inferno from "vite-plugin-inferno";
 
 export default defineConfig({
-  plugins: [inferno()],
   base: "./",
-  esbuild: {
-    jsxFactory: "createElement",
-    jsxFragment: "Fragment",
+  oxc: {
+    jsx: {
+      runtime: "classic",
+      pragma: "createElement",
+      pragmaFrag: "Fragment",
+    },
+    jsxInject: "import { createElement } from 'inferno-create-element';\nimport { Fragment } from 'inferno';",
   },
 });

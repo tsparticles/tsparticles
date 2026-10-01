@@ -1,6 +1,6 @@
 "use client";
 
-import Particles from "@tsparticles/nextjs";
+import { NextParticles } from "@tsparticles/nextjs";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { ParticlesProvider } from "./providers";
@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <ParticlesProvider>
-      <Particles id="tsparticles" options={options} />
+      <NextParticles id="tsparticles" options={options} />
       <nav id="navbar">
         {navItems.map((item) => (
           <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">{item}</a>

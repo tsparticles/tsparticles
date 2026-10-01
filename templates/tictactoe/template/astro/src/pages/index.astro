@@ -63,7 +63,13 @@ import Particles from "@tsparticles/astro";
     </div>
 
     <script>
+      import { initParticlesEngine } from "@tsparticles/astro";
+      import { loadSlim } from "@tsparticles/slim";
       import { confetti } from "@tsparticles/confetti";
+
+      await initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      });
 
       const WIN_PATTERNS = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],

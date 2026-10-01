@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "vue": "^3.5.32",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/vue3": "workspace:*"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/vue3": "^4.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",

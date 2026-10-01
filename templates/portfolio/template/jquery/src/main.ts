@@ -1,6 +1,6 @@
 import "./style.css";
 import $ from "jquery";
-import "jquery-particles";
+import "@tsparticles/jquery";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import { tsParticles } from "@tsparticles/engine";
@@ -11,7 +11,7 @@ import { tsParticles } from "@tsparticles/engine";
   const keys = Object.keys(configs);
   const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
 
-  $("#tsparticles").particles().ajax({
+  $("#tsparticles").particles().load({
     ...configs[randomKey],
     fullScreen: { enable: true, zIndex: -1 },
   });

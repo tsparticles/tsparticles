@@ -126,5 +126,6 @@
   },
   "peerDependencies": {
     "@tsparticles/engine": "workspace:*"
-  }
+  },
+  "types": "dist/web-particles.d.ts"
 }

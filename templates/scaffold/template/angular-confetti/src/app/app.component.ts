@@ -1,27 +1,42 @@
-import { Component } from "@angular/core";
-import type { ConfettiOptions } from "@tsparticles/confetti";
+import { Component, OnInit } from "@angular/core";
+import { NgParticlesService } from "@tsparticles/angular";
+import { loadSlim } from "@tsparticles/slim";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
-  options: ConfettiOptions = {
-    angle: 90,
-    count: 50,
-    spread: 45,
-    startVelocity: 45,
-    decay: 0.9,
-    gravity: 1,
-    drift: 0,
-    ticks: 200,
-    position: { x: 50, y: 50 },
-    colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
-    shapes: ["square", "circle"],
-    scalar: 1,
-    zIndex: 100,
-    disableForReducedMotion: true,
-    flat: false,
+export class AppComponent implements OnInit {
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
+
+  options: ISourceOptions = {
+    fullScreen: { enable: true, zIndex: -1 },
+    background: { color: { value: "#1a1a2e" } },
+    fpsLimit: 60,
+    particles: {
+      number: { value: 80, density: { enable: true } },
+      color: { value: ["#6c5ce7", "#a29bfe", "#fd79a8"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.5, random: true },
+      size: { value: { min: 1, max: 4 }, random: true },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: { default: "out" },
+      },
+    },
+    detectRetina: true,
   };
+
+  ngOnInit(): void {
+    void this.ngParticlesService.init(async (engine) => {
+      await loadSlim(engine);
+    });
+  }
 }

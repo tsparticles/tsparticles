@@ -1,5 +1,5 @@
 import { Component } from "inferno";
-import Particles from "@tsparticles/inferno";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
 import { confetti } from "@tsparticles/confetti";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
@@ -114,14 +114,14 @@ export default class App extends Component<any, GameState> {
   }
 
   render() {
-    const state = this.state;
+    const state = this.state as GameState;
     const status = state.winner
       ? state.winner === "draw" ? "It's a draw!" : `${state.winner} wins!`
       : `${state.currentPlayer}'s turn`;
 
     return (
-      <div>
-        <Particles id="tsparticles" init={init} options={particlesOptions} />
+      <ParticlesProvider init={init}>
+        <Particles id="tsparticles" options={particlesOptions} />
         <div id="app">
           <h1>Tic-Tac-Toe</h1>
           <div className="scoreboard">
@@ -143,7 +143,7 @@ export default class App extends Component<any, GameState> {
           </div>
           <button className="reset-btn" onClick={this.handleReset}>New Game</button>
         </div>
-      </div>
+      </ParticlesProvider>
     );
   }
 }

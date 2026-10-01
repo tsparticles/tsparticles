@@ -43,7 +43,7 @@ fs.readFile(libPackage, function (error, data) {
   libObj.package.dependencies.tsparticles = resolveWorkspaceDependency("tsparticles");
   libObj.package.dependencies["@tsparticles/engine"] = resolveWorkspaceDependency("@tsparticles/engine");
 
-  fs.writeFile(libPackage, JSON.stringify(libObj, undefined, 2), "utf-8", function () {
+  fs.writeFile(libPackage, `${JSON.stringify(libObj, undefined, 2)}\n`, "utf-8", function () {
     console.log("template.json dependencies updated successfully");
   });
 });

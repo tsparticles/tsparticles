@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "solid-js": "^1.8.11",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/solid": "workspace:*"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/solid": "^4.4.0"
   },
   "devDependencies": {
-    "vite-plugin-solid": "^2.8.2"
+    "vite-plugin-solid": "^2.11.14"
   }
 }

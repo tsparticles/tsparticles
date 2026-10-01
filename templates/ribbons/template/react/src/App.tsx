@@ -1,9 +1,9 @@
-import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { ParticlesProvider } from "@tsparticles/react";
 import { ribbons } from "@tsparticles/ribbons";
-import type { Engine } from "@tsparticles/engine";
 import "./App.css";
 
-async function init(engine: Engine): Promise<void> {}
+async function init(): Promise<void> {
+}
 
 export default function App() {
   function fireRibbons() {

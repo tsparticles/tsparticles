@@ -10,9 +10,8 @@
   },
   "dependencies": {
     "@stencil/core": "^4.20.0",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-
-    "@tsparticles/stencil": "workspace:*"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/stencil": "^4.4.0"
   }
 }

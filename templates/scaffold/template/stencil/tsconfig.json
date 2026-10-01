@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2020"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2020",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h"
+  },
+  "include": ["src"]
+}

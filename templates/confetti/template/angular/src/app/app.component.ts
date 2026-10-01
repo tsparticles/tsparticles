@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { confetti } from "@tsparticles/confetti";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],

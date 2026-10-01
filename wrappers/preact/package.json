@@ -6,6 +6,12 @@
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
+  "files": [
+    "cjs",
+    "umd",
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
     "prettify:ci:src": "prettier --check ./src/*",
     "prettify:ci:readme": "prettier --check ./README.md",
