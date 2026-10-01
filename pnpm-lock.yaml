@@ -12022,6 +12022,12 @@ importers:
         specifier: workspace:*
         version: link:../../plugins/colors/rgb/dist
     devDependencies:
+      '@tsparticles/shape-emoji':
+        specifier: workspace:*
+        version: link:../../shapes/emoji/dist
+      '@tsparticles/slim':
+        specifier: workspace:*
+        version: link:../../bundles/slim/dist
       '@types/jsdom':
         specifier: ^30.0.0
         version: 30.0.0

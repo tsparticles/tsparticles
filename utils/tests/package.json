@@ -32,6 +32,8 @@
     "@tsparticles/plugin-rgb-color": "workspace:*"
   },
   "devDependencies": {
+    "@tsparticles/shape-emoji": "workspace:*",
+    "@tsparticles/slim": "workspace:*",
     "@types/jsdom": "^30.0.0",
     "@vitest/coverage-v8": "^5.0.0",
     "@vitest/ui": "^5.0.0",
