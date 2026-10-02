@@ -9,6 +9,7 @@ import {
 } from "@tsparticles/engine";
 import { CollisionMode } from "../../CollisionMode.js";
 import { CollisionsAbsorb } from "./CollisionsAbsorb.js";
+import { CollisionsFluid } from "./CollisionsFluid.js";
 import { CollisionsOverlap } from "./CollisionsOverlap.js";
 import type { ICollisions } from "../Interfaces/ICollisions.js";
 
@@ -22,6 +23,8 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
   readonly bounce = new ParticlesBounce();
   /** Enables collisions */
   enable = false;
+  /** The collisions fluid options, used by the `fluid` collision mode */
+  readonly fluid = new CollisionsFluid();
   /** The maximum collision speed */
   maxSpeed: RangeValue = 50;
   /** The collision mode */
@@ -38,6 +41,9 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     this.bounce.load(data.bounce);
 
     loadProperty(this, "enable", data.enable);
+
+    this.fluid.load(data.fluid);
+
     loadRangeProperty(this, "maxSpeed", data.maxSpeed);
     loadProperty(this, "mode", data.mode);
 
