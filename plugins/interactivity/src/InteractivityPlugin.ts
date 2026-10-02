@@ -8,6 +8,7 @@ import {
 import type {
   IInteractivityOptions,
   IInteractivityParticlesOptions,
+  InteractivityContainer,
   InteractivityOptions,
   InteractivityParticlesOptions,
   InteractivityPluginManager,
@@ -33,7 +34,7 @@ export class InteractivityPlugin implements IPlugin {
   }
 
   loadOptions(
-    container: Container,
+    container: InteractivityContainer,
     options: InteractivityOptions,
     source?: RecursivePartial<IInteractivityOptions>,
   ): void {
@@ -44,12 +45,12 @@ export class InteractivityPlugin implements IPlugin {
     let interactivityOptions = options.interactivity;
 
     if (!interactivityOptions?.load) {
-      options.interactivity = interactivityOptions = new Interactivity(this.#pluginManager, container);
+      options.interactivity = interactivityOptions = new Interactivity(container);
     }
 
     interactivityOptions.load(source?.interactivity);
 
-    const interactors = this.#pluginManager.interactors?.get(container);
+    const interactors = container.interactionManager?.interactors;
 
     if (!interactors) {
       return;
@@ -63,7 +64,7 @@ export class InteractivityPlugin implements IPlugin {
   }
 
   loadParticlesOptions(
-    container: Container,
+    container: InteractivityContainer,
     options: InteractivityParticlesOptions,
     source?: RecursivePartial<IInteractivityParticlesOptions>,
   ): void {
@@ -71,7 +72,7 @@ export class InteractivityPlugin implements IPlugin {
       options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    const interactors = this.#pluginManager.interactors?.get(container) as IParticleInteractorBase[] | undefined;
+    const interactors = container.interactionManager?.interactors as IParticleInteractorBase[] | undefined;
 
     if (!interactors) {
       return;

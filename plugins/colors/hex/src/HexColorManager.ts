@@ -1,4 +1,11 @@
-import type { IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
+import {
+  type IColor,
+  type IColorManager,
+  type IRangeColor,
+  type IRgb,
+  type IRgba,
+  defaultAlpha,
+} from "@tsparticles/engine";
 
 /**
  * Indexes for accessing color components from regex capture groups.
@@ -19,7 +26,6 @@ enum RgbIndexes {
 const shorthandHexRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
   hexRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i,
   hexRadix = 16,
-  defaultAlpha = 1,
   alphaFactor = 0xff;
 
 /**

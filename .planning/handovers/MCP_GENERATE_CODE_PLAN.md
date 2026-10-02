@@ -2,9 +2,25 @@
 
 ## Status
 
-Draft — ready for review.
+Implemented — see implementation notes at the end of this section.
 
 The MCP server (`@tsparticles/mcp-server`) currently provides 4 tools for inspection/diagnostics and 1 prompt template for option generation. The missing piece is a **deterministic tool** that takes a natural language description and produces complete, ready-to-use code — with smart bundle selection favoring specialized bundles (`@tsparticles/confetti`, `@tsparticles/fireworks`, etc.) over generic ones.
+
+## Implementation notes (2026)
+
+Feature B of the 4.5.0 plan has been implemented:
+
+- `generate_code` tool added under `src/tools/generateCode.ts`, registered in `src/index.ts`.
+- Types (`GenerateCodeInput`/`GenerateCodeOutput`/`BundleMatch`) in `src/types.ts`, Zod schema in `src/validation.ts`.
+- 44 new tests in `src/tools/generateCode.test.ts` — full suite green (146 tests, 8 files).
+- README tools table now lists `generate_code` and `diagnose_issues`.
+- Build passes (`pnpm nx run @tsparticles/mcp-server:build`). No `lint` target is configured for this package.
+
+Deviations from this document (intentional):
+
+- **Presets skip rule**: preset keywords (snow/fire/matrix/stars) only win when the description does not request advanced features (interactivity/links/emitters/absorbers). This keeps "interactive stars with links on hover" → `@tsparticles/slim` (plan example 13.2) consistent with "stars in the sky" → preset `stars` (test table 10.1).
+- **Bundle coverage follows `extends`**: `suggestPlugins()`-detected packages are checked across the whole `extends` chain (e.g. slim inherits `updater-opacity`/`updater-size` from basic), so only truly-missing packages get appended to `installPackages`.
+- **`isAutoInitialized`**: added as an optional output field (used in examples but missing from the output schema).
 
 ---
 
@@ -840,43 +856,43 @@ Add `generate_code` to the tools table:
 
 ### Step 1 — Types and validation
 
-- [ ] Add `GenerateCodeInput`, `GenerateCodeOutput`, `BundleMatch` to `src/types.ts`
-- [ ] Add `generateCodeArgsSchema` to `src/validation.ts`
+- [x] Add `GenerateCodeInput`, `GenerateCodeOutput`, `BundleMatch` to `src/types.ts`
+- [x] Add `generateCodeArgsSchema` to `src/validation.ts`
 
 ### Step 2 — Core logic
 
-- [ ] Create `src/tools/generateCode.ts` with keyword extraction
-- [ ] Implement `matchBundle()` with priority-ordered keyword table
-- [ ] Implement `generateOptions()` with templates + overrides
-- [ ] Implement framework codegen for all 5 frameworks
-- [ ] Implement HTML generation
-- [ ] Implement install command generation
-- [ ] Wire `suggestPlugins()` for validation
+- [x] Create `src/tools/generateCode.ts` with keyword extraction
+- [x] Implement `matchBundle()` with priority-ordered keyword table
+- [x] Implement `generateOptions()` with templates + overrides
+- [x] Implement framework codegen for all 5 frameworks
+- [x] Implement HTML generation
+- [x] Implement install command generation
+- [x] Wire `suggestPlugins()` for validation
 
 ### Step 3 — MCP integration
 
-- [ ] Import and register in `src/index.ts` (ListTools + CallTool)
-- [ ] Verify tool appears in MCP tool listing
+- [x] Import and register in `src/index.ts` (ListTools + CallTool)
+- [x] Verify tool appears in MCP tool listing
 
 ### Step 4 — Tests
 
-- [ ] Create `src/tools/generateCode.test.ts`
-- [ ] Bundle selection tests (13+ cases)
-- [ ] Options generation tests (5+ cases)
-- [ ] Framework codegen tests (5 frameworks × 2 TS/JS)
-- [ ] Integration tests (3+ cases)
-- [ ] Run `pnpm exec vitest` — all pass
+- [x] Create `src/tools/generateCode.test.ts`
+- [x] Bundle selection tests (13+ cases)
+- [x] Options generation tests (5+ cases)
+- [x] Framework codegen tests (5 frameworks × 2 TS/JS)
+- [x] Integration tests (3+ cases)
+- [x] Run `pnpm exec vitest` — all pass
 
 ### Step 5 — Documentation
 
-- [ ] Update `README.md` tools table
-- [ ] Add `diagnose_issues` to README tools table (currently missing)
+- [x] Update `README.md` tools table
+- [x] Add `diagnose_issues` to README tools table (currently missing)
 
 ### Step 6 — Validation
 
 - [ ] Run lint: `pnpm nx run @tsparticles/mcp-server:lint`
-- [ ] Run build: `pnpm nx run @tsparticles/mcp-server:build`
-- [ ] Run tests: `pnpm --filter @tsparticles/mcp-server test`
+- [x] Run build: `pnpm nx run @tsparticles/mcp-server:build`
+- [x] Run tests: `pnpm --filter @tsparticles/mcp-server test`
 - [ ] Manual test via MCP client (if available)
 
 ---

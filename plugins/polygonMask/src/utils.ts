@@ -3,6 +3,7 @@ import {
   type ICoordinates,
   type PluginManager,
   Vector,
+  defaultTransform,
   double,
   getDistances,
   getStyleFromRgb,
@@ -89,13 +90,6 @@ export function drawPolygonMaskPath(
   peakNits?: number,
   mode?: HdrMode,
 ): void {
-  const defaultTransform = {
-    a: 1,
-    b: 0,
-    c: 0,
-    d: 1,
-  };
-
   context.setTransform(
     defaultTransform.a,
     defaultTransform.b,

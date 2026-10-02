@@ -1,8 +1,8 @@
-import { useState, useCallback } from "preact/hooks";
-import Particles, { ParticlesProvider } from "@tsparticles/preact";
+import { useEffect, useState, useCallback } from "preact/hooks";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadSlim } from "@tsparticles/slim";
 import { confetti } from "@tsparticles/confetti";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
 
 type Player = "X" | "O";
@@ -57,10 +57,6 @@ function fireConfettiEffect() {
   fire(0.1, { spread: 120, startVelocity: 45 });
 }
 
-async function init(engine: Engine): Promise<void> {
-  await loadSlim(engine);
-}
-
 const particlesOptions: ISourceOptions = {
   fullScreen: { enable: true, zIndex: -1 },
   background: { color: { value: "#0a0a1a" } },
@@ -78,6 +74,12 @@ const particlesOptions: ISourceOptions = {
 
 export default function App() {
   const [state, setState] = useState<GameState>(createInitialState);
+
+  useEffect(() => {
+    void initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    });
+  }, []);
 
   const handleMove = useCallback((index: number) => {
     setState((prev) => {
@@ -113,7 +115,7 @@ export default function App() {
     : `${state.currentPlayer}'s turn`;
 
   return (
-    <ParticlesProvider init={init}>
+    <>
       <Particles id="tsparticles" options={particlesOptions} />
       <div id="app">
         <h1>Tic-Tac-Toe</h1>
@@ -136,6 +138,6 @@ export default function App() {
         </div>
         <button class="reset-btn" onClick={handleReset}>New Game</button>
       </div>
-    </ParticlesProvider>
+    </>
   );
 }

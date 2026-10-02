@@ -1,5 +1,6 @@
 import type { IPathData } from "./IPathData.js";
 import { SegmentType } from "./SegmentType.js";
+import { lengthOffset } from "@tsparticles/engine";
 
 const firstIndex = 0,
   index2 = 1,
@@ -110,8 +111,7 @@ export function drawPath(ctx: OffscreenCanvasRenderingContext2D, radius: number,
     return;
   }
 
-  const lengthOffset = 1,
-    minLength = 0;
+  const minLength = 0;
 
   for (let i = path.segments.length - lengthOffset; i >= minLength; i--) {
     const segment = path.segments[i];

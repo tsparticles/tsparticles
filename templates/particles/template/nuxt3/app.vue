@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
@@ -24,7 +23,7 @@ const options: ISourceOptions = {
 };
 
 onMounted(() => {
-  void loadParticles(tsParticles);
+  void particles.init();
 });
 </script>
 

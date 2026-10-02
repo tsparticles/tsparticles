@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   parseAlpha,
 } from "@tsparticles/engine";
@@ -78,15 +79,14 @@ export class LchColorManager implements IColorManager {
         c: 3, // Chroma
         h: 5, // Hue
         a: 7, // Optional alpha for LCH
-      },
-      defaultAlpha = 1;
+      };
 
     return result
       ? lchaToRgba({
           a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-          c: parseFloat(result[indexes.c] ?? "0"),
-          h: parseFloat(result[indexes.h] ?? "0"),
-          l: parseFloat(result[indexes.l] ?? "0"),
+          c: Number.parseFloat(result[indexes.c] ?? "0"),
+          h: Number.parseFloat(result[indexes.h] ?? "0"),
+          l: Number.parseFloat(result[indexes.l] ?? "0"),
         })
       : undefined; // LCH parsing without alpha
   }

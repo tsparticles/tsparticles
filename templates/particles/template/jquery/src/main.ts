@@ -1,14 +1,16 @@
 import "./style.css";
 import $ from "jquery";
-import { loadParticles } from "@tsparticles/particles";
+import "@tsparticles/jquery";
 import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
 
 (async () => {
-  await loadParticles(tsParticles);
+  await loadSlim(tsParticles);
 
   $(() => {
     $("#app").after('<div id="tsparticles"></div>');
-    $("#tsparticles").particles({
+
+    $("#tsparticles").particles().load({
       background: { color: { value: "#0d0d2b" } },
       fpsLimit: 120,
       particles: {

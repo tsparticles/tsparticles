@@ -1,19 +1,14 @@
-import Particles from "@tsparticles/preact";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
 import { loadSlim } from "@tsparticles/slim";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-import { useEffect, useState } from "preact/hooks";
+import type { ISourceOptions } from "@tsparticles/engine";
+import { useEffect } from "preact/hooks";
 import "./App.css";
 
 export default function App() {
-  const [init, setInit] = useState(false);
-
   useEffect(() => {
-    async function initEngine() {
-      const engine = {} as Engine;
+    void initParticlesEngine(async (engine) => {
       await loadSlim(engine);
-      setInit(true);
-    }
-    initEngine();
+    });
   }, []);
 
   const options: ISourceOptions = {

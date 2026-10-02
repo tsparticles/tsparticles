@@ -107,7 +107,7 @@ export default component$(() => {
             <h1>{isLogin.value ? "Login" : "Register"}</h1>
             <button class="theme-btn" onClick$={toggleTheme} aria-label="Toggle theme">{theme.value === "dark" ? "🌙" : "☀️"}</button>
           </div>
-          <form onSubmit$={handleSubmit} novalidate>
+          <form onSubmit$={handleSubmit} preventdefault:submit noValidate>
             <div class="form-group">
               <label for="email">Email</label>
               <input id="email" type="email" placeholder="you@example.com" value={email.value} onInput$={(e: InputEvent) => { email.value = (e.target as HTMLInputElement).value; }} required />

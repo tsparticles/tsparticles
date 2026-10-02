@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a1a;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+#app {
+  text-align: center;
+  z-index: 10;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #6c5ce7, #fd79a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

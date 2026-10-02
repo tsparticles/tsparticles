@@ -1,14 +1,15 @@
-import Particles, { initParticlesEngine } from "@tsparticles/inferno";
+import { Particles, initParticlesEngine } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { Component } from "inferno";
 import "./App.css";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { init: false };
-  }
+interface AppState {
+  init: boolean;
+}
+
+export default class App extends Component<{}, AppState> {
+  state = { init: false };
 
   componentDidMount() {
     initParticlesEngine(async (engine) => {

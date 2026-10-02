@@ -1,14 +1,13 @@
-import type { Server as McpServer } from "@modelcontextprotocol/sdk/server/index.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 
 export interface SessionEntry {
+  lastActivity: number;
   server: McpServer;
   transport: StreamableHTTPServerTransport;
-  lastActivity: number;
 }
 
 export interface StartHttpServerParams {
-  port: number;
   allowedOrigins?: string[];
   /**
    * Optional bearer token. When set, every request to `/mcp` must carry
@@ -19,6 +18,8 @@ export interface StartHttpServerParams {
    * an Origin header at all).
    */
   authToken?: string;
+  createMcpServer: () => McpServer;
+  port: number;
   /**
    * Optional list of trusted reverse proxy IP addresses (e.g. the IP of
    * your nginx/Cloudflare/ALB).  When the direct peer matches one of
@@ -31,6 +32,4 @@ export interface StartHttpServerParams {
    * correctly.
    */
   trustedProxies?: string[];
-  packageVersion: string;
-  createMcpServer: () => McpServer;
 }

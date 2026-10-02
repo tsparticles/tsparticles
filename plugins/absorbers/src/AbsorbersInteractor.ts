@@ -19,7 +19,9 @@ import type { AbsorberContainer } from "./AbsorberContainer.js";
 import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
-const absorbersMode = "absorbers";
+const absorbersMode = "absorbers",
+  absorberSplitMode = "absorber-split",
+  defaultIndex = 0;
 
 /**
  * Handles the interaction between particles and absorbers, including click-to-add and dragging
@@ -49,17 +51,34 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     this.handleClickMode = (mode, interactivityData): void => {
       const container = this.container,
         options = container.actualOptions,
-        absorbers = options.interactivity.modes.absorbers;
+        absorbers = options.interactivity.modes.absorbers,
+        { clickPosition } = interactivityData.mouse;
 
-      if (!absorbers || mode !== absorbersMode) {
+      if (mode === absorberSplitMode) {
+        if (!clickPosition) {
+          return;
+        }
+
+        const candidates = instancesManager
+            .getArray(container)
+            .filter(t => getDistance(t.position, clickPosition) < t.size)
+            .sort((a, b) => getDistance(a.position, clickPosition) - getDistance(b.position, clickPosition)),
+          target = candidates[defaultIndex];
+
+        if (target?.options.split.enable) {
+          this.#instancesManager.splitAbsorber(container, target);
+        }
+
         return;
       }
 
-      const { clickPosition } = interactivityData.mouse;
+      if (mode !== absorbersMode || !absorbers) {
+        return;
+      }
 
       if (clickPosition) {
         const existingAbsorber = instancesManager
-          .getArray(this.container)
+          .getArray(container)
           .some(t => getDistance(t.position, clickPosition) < t.size);
 
         if (existingAbsorber) {
@@ -88,39 +107,38 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
   }
 
   /**
-   * Processes the interaction for each frame, attracting particles to absorbers and handling dragging
+   * Processes the interaction for each frame, dragging draggable absorbers. The attraction itself
+   * is not applied here: `AbsorbersPluginInstance.particleUpdate` already applies it once per frame
+   * for every particle, doing it again would double both the force and the absorbers growth.
    * @param interactivityData - the interactivity data
-   * @param delta - the delta time
+   * @param _delta - the delta time
    */
-  interact(interactivityData: IInteractivityData, delta: IDelta): void {
-    for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
-      for (const absorber of this.#instancesManager.getArray(this.container)) {
-        if (absorber.options.draggable) {
-          const mouse = interactivityData.mouse;
+  interact(interactivityData: IInteractivityData, _delta: IDelta): void {
+    const absorbers = this.#instancesManager.getArray(this.container),
+      mouse = interactivityData.mouse;
 
-          if (mouse.clicking && mouse.downPosition) {
-            const mouseDist = getDistance(absorber.position, mouse.downPosition);
+    for (const absorber of absorbers) {
+      if (!absorber.options.draggable) {
+        continue;
+      }
 
-            if (mouseDist <= absorber.size) {
-              this.#dragging = true;
-              this.#draggingAbsorber = absorber;
-            }
-          } else {
-            this.#dragging = false;
-            this.#draggingAbsorber = undefined;
-          }
+      if (mouse.clicking && mouse.downPosition) {
+        if (!this.#dragging) {
+          const mouseDist = getDistance(absorber.position, mouse.downPosition);
 
-          if (this.#dragging && this.#draggingAbsorber == absorber && mouse.position) {
-            absorber.position.x = mouse.position.x;
-            absorber.position.y = mouse.position.y;
+          if (mouseDist <= absorber.size) {
+            this.#dragging = true;
+            this.#draggingAbsorber = absorber;
           }
         }
+      } else {
+        this.#dragging = false;
+        this.#draggingAbsorber = undefined;
+      }
 
-        absorber.attract(particle, delta);
-
-        if (particle.destroyed) {
-          break;
-        }
+      if (this.#dragging && this.#draggingAbsorber === absorber && mouse.position) {
+        absorber.position.x = mouse.position.x;
+        absorber.position.y = mouse.position.y;
       }
     }
   }
@@ -137,11 +155,19 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
 
+    if (
+      !particle &&
+      mouse.clicking &&
+      this.#instancesManager.getArray(container).some(absorber => absorber.options.draggable)
+    ) {
+      return true;
+    }
+
     if (!mouse.clickPosition || !events.onClick.enable) {
       return false;
     }
 
-    return isInArray(absorbersMode, events.onClick.mode);
+    return isInArray(absorbersMode, events.onClick.mode) || isInArray(absorberSplitMode, events.onClick.mode);
   }
 
   /**

@@ -1,6 +1,5 @@
 ---
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import Particles from "@tsparticles/astro";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
@@ -45,9 +44,12 @@ const options: ISourceOptions = {
     </div>
     <Particles id="tsparticles" options={options} client:load />
     <script>
-      import { loadParticles } from "@tsparticles/particles";
-      import { tsParticles } from "@tsparticles/engine";
-      void loadParticles(tsParticles);
+      import { initParticlesEngine } from "@tsparticles/astro";
+      import { particles } from "@tsparticles/particles";
+
+      void initParticlesEngine(async () => {
+        await particles.init();
+      });
     </script>
   </body>
 </html>

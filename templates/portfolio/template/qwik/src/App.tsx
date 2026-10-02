@@ -1,5 +1,5 @@
 import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
-import Particles, { initParticlesEngine } from "@tsparticles/qwik";
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";

@@ -182,30 +182,17 @@ export class InteractivityEventListeners {
 
     canvas.setPointerEvents(html === canvas.domElement ? "initial" : "none");
 
-    if (add && !(options.interactivity?.events.onHover.enable || options.interactivity?.events.onClick.enable)) {
-      return;
-    }
-
     manageListener(interactivityEl, mouseMoveEvent, handlers.mouseMove, add);
     manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
     manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
-
-    if (add) {
-      if (options.interactivity?.events.onClick.enable) {
-        manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
-        manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
-        manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
-      } else {
-        /* el on touchend */
-        manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
-      }
-    } else {
-      manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
-      manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
-      manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
-      manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
-    }
-
+    manageListener(
+      interactivityEl,
+      touchEndEvent,
+      options.interactivity?.events.onClick.enable ? handlers.touchEndClick : handlers.touchEnd,
+      add,
+    );
+    manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
+    manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
     manageListener(interactivityEl, mouseLeaveEvent, handlers.mouseLeave, add);
     manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
   }
@@ -260,24 +247,22 @@ export class InteractivityEventListeners {
 
     mouse.inside = true;
 
-    let handled = false;
-
     const mousePosition = mouse.position;
 
-    if (!mousePosition || !options.interactivity?.events.onClick.enable) {
-      return;
-    }
+    if (mousePosition && options.interactivity?.events.onClick.enable) {
+      let handled = false;
 
-    for (const plugin of this.#clickPositionPlugins) {
-      handled = plugin.clickPositionValid?.(mousePosition) ?? false;
+      for (const plugin of this.#clickPositionPlugins) {
+        handled = plugin.clickPositionValid?.(mousePosition) ?? false;
 
-      if (handled) {
-        break;
+        if (handled) {
+          break;
+        }
       }
-    }
 
-    if (!handled) {
-      this.#doMouseTouchClick(e);
+      if (!handled) {
+        this.#doMouseTouchClick(e);
+      }
     }
 
     mouse.clicking = false;
@@ -419,5 +404,10 @@ export class InteractivityEventListeners {
     }
 
     this.#mouseTouchMove(e);
+
+    const { mouse } = this.#interactionManager.interactivityData;
+
+    mouse.clicking = true;
+    mouse.downPosition = mouse.position;
   }
 }

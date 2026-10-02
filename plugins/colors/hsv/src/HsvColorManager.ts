@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   parseAlpha,
 } from "@tsparticles/engine";
@@ -80,7 +81,6 @@ export class HsvColorManager implements IColorManager {
         v: 3,
         a: 5,
       },
-      defaultAlpha = 1,
       radix = 10;
 
     return result

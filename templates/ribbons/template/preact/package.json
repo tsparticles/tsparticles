@@ -9,10 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/preact": "workspace:*",
-
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/preact": "^4.4.0",
     "preact": "^10.25.0"
   },
   "devDependencies": {

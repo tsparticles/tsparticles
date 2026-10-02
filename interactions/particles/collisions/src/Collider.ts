@@ -5,10 +5,13 @@ import {
   type RecursivePartial,
   double,
   getDistance,
+  getRangeValue,
   loadOptionProperty,
 } from "@tsparticles/engine";
 import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
+import { CollisionMode } from "./CollisionMode.js";
 import { Collisions } from "./Options/Classes/Collisions.js";
+import { FluidSolver } from "./Fluid.js";
 import { resolveCollision } from "./ResolveCollision.js";
 
 /**
@@ -16,12 +19,18 @@ import { resolveCollision } from "./ResolveCollision.js";
  * Handles collision detection and resolution between particles
  */
 export class Collider extends ParticlesInteractorBase<Container, CollisionParticle> {
-  readonly maxDistance;
+  readonly #fluidSolver: FluidSolver;
+  #maxDistance;
 
   constructor(container: Container) {
     super(container);
 
-    this.maxDistance = 0;
+    this.#fluidSolver = new FluidSolver();
+    this.#maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this.#maxDistance;
   }
 
   clear(): void {
@@ -37,6 +46,25 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
       return;
     }
 
+    const collisions = p1.options.collisions;
+
+    if (!collisions?.enable) {
+      return;
+    }
+
+    /* the fluid mode is a neighborhood solver, it's mutually exclusive with the pair modes */
+    if (collisions.mode === CollisionMode.fluid) {
+      const fluidRadius = getRangeValue(collisions.fluid.radius);
+
+      if (fluidRadius > this.#maxDistance) {
+        this.#maxDistance = fluidRadius;
+      }
+
+      this.#fluidSolver.solve(this.container, p1);
+
+      return;
+    }
+
     const container = this.container,
       pos1 = p1.getPosition(),
       radius1 = p1.getRadius(),
@@ -46,9 +74,8 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
       if (
         p1 === p2 ||
         p1.id >= p2.id ||
-        !p1.options.collisions?.enable ||
         !p2.options.collisions?.enable ||
-        p1.options.collisions.mode !== p2.options.collisions.mode ||
+        collisions.mode !== p2.options.collisions.mode ||
         p2.destroyed ||
         p2.spawning
       ) {
@@ -84,7 +111,7 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     loadOptionProperty(options, "collisions", Collisions, ...sources);
   }
 
-  reset(): void {
-    // do nothing
+  reset(_interactivityData: IInteractivityData, _particle: CollisionParticle): void {
+    /* nothing to reset: the fluid solver is stateless, it reads the current positions only */
   }
 }

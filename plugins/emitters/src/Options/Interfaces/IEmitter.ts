@@ -34,6 +34,16 @@ export interface IEmitter {
   domId?: string;
 
   /**
+   * Sets if the emitter can be dragged with the mouse
+   */
+  draggable: boolean;
+
+  /**
+   * Sets if the emitter shape will be drawn on the canvas
+   */
+  draw: boolean;
+
+  /**
    * Sets if the particles will spawn at the emitter perimeter or inside the area
    */
   fill: boolean;

@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { initParticlesEngine } from "@tsparticles/lit";
-import { loadParticles } from "@tsparticles/particles";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
@@ -30,8 +30,8 @@ export class MyApp extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    void initParticlesEngine(async (engine) => {
-      await loadParticles(engine);
+    void initParticlesEngine(async () => {
+      await particles.init();
       this.initialized = true;
     });
   }

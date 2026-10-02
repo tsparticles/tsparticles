@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@stencil/core": "^4.20.0",
-    "@tsparticles/stencil": "^4.1.3"
+    "@tsparticles/stencil": "^4.4.0"
   }
 }

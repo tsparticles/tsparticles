@@ -29,6 +29,18 @@ export class SpatialHashGrid {
     this.#rectanglePoolIdx = 0;
   }
 
+  get cellSize(): number {
+    return this.#cellSize;
+  }
+
+  /**
+   * Sets the cell size (applied on next clear)
+   * @param value - the new cell size
+   */
+  set cellSize(value: number) {
+    this.#pendingCellSize = value;
+  }
+
   /**
    * Clears the grid for the next frame
    */
@@ -80,22 +92,7 @@ export class SpatialHashGrid {
 
     for (let cx = minCellX; cx <= maxCellX; cx++) {
       for (let cy = minCellY; cy <= maxCellY; cy++) {
-        const key = `${cx}_${cy}`,
-          cellParticles = this.#cells.get(key);
-
-        if (!cellParticles) {
-          continue;
-        }
-
-        for (const p of cellParticles) {
-          if (check && !check(p)) {
-            continue;
-          }
-
-          if (range.contains(p.getPosition())) {
-            out.push(p);
-          }
-        }
+        this.#queryCell(cx, cy, range, check, out);
       }
     }
 
@@ -146,20 +143,32 @@ export class SpatialHashGrid {
     return result;
   }
 
-  /**
-   * Sets the cell size (applied on next clear)
-   * @param cellSize - the new cell size
-   */
-  setCellSize(cellSize: number): void {
-    this.#pendingCellSize = cellSize;
-  }
-
   #acquireCircle(x: number, y: number, r: number): Circle {
-    return (this.#circlePool[this.#circlePoolIdx++] ??= new Circle(x, y, r)).reset(x, y, r);
+    const idx = this.#circlePoolIdx++;
+
+    let circle = this.#circlePool[idx];
+
+    if (!circle) {
+      circle = new Circle(x, y, r);
+
+      this.#circlePool[idx] = circle;
+    }
+
+    return circle.reset(x, y, r);
   }
 
   #acquireRectangle(x: number, y: number, w: number, h: number): Rectangle {
-    return (this.#rectanglePool[this.#rectanglePoolIdx++] ??= new Rectangle(x, y, w, h)).reset(x, y, w, h);
+    const idx = this.#rectanglePoolIdx++;
+
+    let rectangle = this.#rectanglePool[idx];
+
+    if (!rectangle) {
+      rectangle = new Rectangle(x, y, w, h);
+
+      this.#rectanglePool[idx] = rectangle;
+    }
+
+    return rectangle.reset(x, y, w, h);
   }
 
   /**
@@ -206,6 +215,30 @@ export class SpatialHashGrid {
     }
 
     return null;
+  }
+
+  #queryCell(
+    cx: number,
+    cy: number,
+    range: BaseRange,
+    check: ((particle: Particle) => boolean) | undefined,
+    out: Particle[],
+  ): void {
+    const cellParticles = this.#cells.get(`${cx}_${cy}`);
+
+    if (!cellParticles) {
+      return;
+    }
+
+    for (const p of cellParticles) {
+      if (check && !check(p)) {
+        continue;
+      }
+
+      if (range.contains(p.getPosition())) {
+        out.push(p);
+      }
+    }
   }
 
   #releaseShapes(): void {

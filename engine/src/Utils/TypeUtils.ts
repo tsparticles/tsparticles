@@ -36,6 +36,31 @@ export function isFunction(arg: unknown): arg is (...args: unknown[]) => unknown
 
 /**
  *
+ * @param enumObject - the enum object holding the allowed values
+ * @param arg - the value to check
+ * @returns true if the argument is a member of the given enum
+ */
+export function isEnumValue<T extends Record<string, string | number>>(enumObject: T, arg: unknown): arg is T[keyof T] {
+  return Object.values(enumObject).some(enumValue => enumValue === arg);
+}
+
+/**
+ * Converts a value to a valid enum member, falling back to the given default when the value is not a member.
+ * @param enumObject - the enum object holding the allowed values
+ * @param arg - the value to convert
+ * @param defaultValue - the value returned when the argument is not a member of the enum
+ * @returns the matching enum member or the given default
+ */
+export function toEnumValue<T extends Record<string, string | number>>(
+  enumObject: T,
+  arg: unknown,
+  defaultValue: T[keyof T],
+): T[keyof T] {
+  return isEnumValue(enumObject, arg) ? arg : defaultValue;
+}
+
+/**
+ *
  * @param arg - the object to check
  * @returns true if the argument is an object
  */

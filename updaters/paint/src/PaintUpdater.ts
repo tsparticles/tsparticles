@@ -3,6 +3,7 @@ import {
   type Container,
   type IDelta,
   type IParticleUpdater,
+  type Paint,
   type Particle,
   type PluginManager,
   getHslAnimationFromHsl,
@@ -39,63 +40,10 @@ export class PaintUpdater implements IParticleUpdater {
   init(particle: PaintParticle): void {
     const container = this.#container,
       options = particle.options,
-      paint = itemFromSingleOrMultiple(options.paint, particle.id, options.reduceDuplicates),
-      color = (paint as { color?: unknown } | undefined)?.color,
-      paintColor = color ?? undefined,
-      fill = paint?.fill,
-      stroke = paint?.stroke;
+      paint = itemFromSingleOrMultiple(options.paint, particle.id, options.reduceDuplicates);
 
-    if (fill) {
-      const fillColor = AnimatableColor.create(
-        paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
-        fill.color,
-      );
-
-      particle.fillEnabled = fill.enable;
-      particle.fillOpacity = getRangeValue(fill.opacity);
-      particle.fillAnimation = fillColor.animation;
-
-      const fillHslColor = rangeColorToHsl(this.#pluginManager, fillColor);
-
-      if (fillHslColor) {
-        particle.fillColor = getHslAnimationFromHsl(
-          fillHslColor,
-          particle.fillAnimation,
-          container.retina.reduceFactor,
-        );
-      }
-    } else {
-      particle.fillEnabled = false;
-      particle.fillAnimation = undefined;
-      particle.fillColor = undefined;
-      particle.fillOpacity = defaultOpacity;
-    }
-
-    if (stroke) {
-      const strokeColor = AnimatableColor.create(
-        paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
-        stroke.color,
-      );
-
-      particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
-      particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
-      particle.strokeAnimation = strokeColor.animation;
-
-      const strokeHslColor = rangeColorToHsl(this.#pluginManager, strokeColor) ?? particle.getFillColor();
-
-      if (strokeHslColor) {
-        particle.strokeColor = getHslAnimationFromHsl(
-          strokeHslColor,
-          particle.strokeAnimation,
-          container.retina.reduceFactor,
-        );
-      }
-    } else {
-      particle.strokeAnimation = undefined;
-      particle.strokeColor = undefined;
-      particle.strokeOpacity = defaultOpacity;
-      particle.strokeWidth = 0;
-    }
+    this.#initFill(paint, particle, container);
+    this.#initStroke(paint, particle, container);
   }
 
   /**
@@ -131,5 +79,73 @@ export class PaintUpdater implements IParticleUpdater {
 
     updateColor(particle.fillColor, delta, this.#container.hdr);
     updateColor(particle.strokeColor, delta, this.#container.hdr);
+  }
+
+  #initFill(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
+    const fill = paint?.fill,
+      color = (paint as { color?: unknown } | undefined)?.color,
+      paintColor = color ?? undefined;
+
+    if (!fill) {
+      particle.fillEnabled = false;
+      particle.fillAnimation = undefined;
+      particle.fillColor = undefined;
+      particle.fillOpacity = defaultOpacity;
+
+      return;
+    }
+
+    const fillColor = AnimatableColor.create(
+      paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
+      fill.color,
+    );
+
+    particle.fillEnabled = fill.enable;
+    particle.fillOpacity = getRangeValue(fill.opacity);
+    particle.fillAnimation = fillColor.animation;
+
+    const fillHslColor = rangeColorToHsl(this.#pluginManager, fillColor);
+
+    if (!fillHslColor) {
+      return;
+    }
+
+    particle.fillColor = getHslAnimationFromHsl(fillHslColor, particle.fillAnimation, container.retina.reduceFactor);
+  }
+
+  #initStroke(paint: Paint | undefined, particle: PaintParticle, container: Container): void {
+    const stroke = paint?.stroke,
+      color = (paint as { color?: unknown } | undefined)?.color,
+      paintColor = color ?? undefined;
+
+    if (!stroke) {
+      particle.strokeAnimation = undefined;
+      particle.strokeColor = undefined;
+      particle.strokeOpacity = defaultOpacity;
+      particle.strokeWidth = 0;
+
+      return;
+    }
+
+    const strokeColor = AnimatableColor.create(
+      paintColor === undefined ? undefined : AnimatableColor.create(undefined, paintColor),
+      stroke.color,
+    );
+
+    particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
+    particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
+    particle.strokeAnimation = strokeColor.animation;
+
+    const strokeHslColor = rangeColorToHsl(this.#pluginManager, strokeColor) ?? particle.getFillColor();
+
+    if (!strokeHslColor) {
+      return;
+    }
+
+    particle.strokeColor = getHslAnimationFromHsl(
+      strokeHslColor,
+      particle.strokeAnimation,
+      container.retina.reduceFactor,
+    );
   }
 }

@@ -2,7 +2,6 @@ import {
   AnimationStatus,
   type Container,
   GradientType,
-  type ICoordinates,
   type IDelta,
   type IParticleColorStyle,
   type IParticleUpdater,
@@ -21,6 +20,8 @@ import {
   half,
   itemFromSingleOrMultiple,
   millisecondsToSeconds,
+  minRadius,
+  originPoint,
   percentDenominator,
   randomInRangeValue,
   rangeColorToHsl,
@@ -68,11 +69,9 @@ export class GradientUpdater implements IParticleUpdater {
 
     const container = this.#container,
       gradientAngle = gradient.angle.value,
-      origin: ICoordinates = { x: 0, y: 0 },
-      minRadius = 0,
       fillGradient =
         gradient.type === GradientType.radial
-          ? context.createRadialGradient(origin.x, origin.y, minRadius, origin.x, origin.y, radius)
+          ? context.createRadialGradient(originPoint.x, originPoint.y, minRadius, originPoint.x, originPoint.y, radius)
           : context.createLinearGradient(
               Math.cos(gradientAngle) * -radius,
               Math.sin(gradientAngle) * -radius,
