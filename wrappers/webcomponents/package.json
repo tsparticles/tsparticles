@@ -112,7 +112,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "prettier": "^3.9.9",
     "rollup": "^4.63.1",
     "ts-node": "^10.9.2",

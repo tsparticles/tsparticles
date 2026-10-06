@@ -51,14 +51,14 @@
     "@tsparticles/rollup-plugin": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
     "@tsparticles/webpack-plugin": "workspace:*",
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "@types/webpack-env": "^1.18.8",
     "browserslist": "^4.29.3",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^65.0.1",
+    "eslint-plugin-jsdoc": "^65.1.0",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-tsdoc": "^0.5.4",
     "fs-extra": "^11.4.1",
@@ -77,11 +77,11 @@
     "ts-json-schema-generator": "^2.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.0",
+    "typescript-eslint": "^8.71.1",
     "webpack": "^5.111.1",
     "webpack-bundle-analyzer": "^5.4.0",
     "webpack-cli": "^7.2.3",
     "yargs": "^18.2.0"
   },
-  "packageManager": "pnpm@12.9.1"
+  "packageManager": "pnpm@12.10.1"
 }

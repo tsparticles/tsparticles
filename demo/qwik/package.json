@@ -20,7 +20,7 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "typescript": "^6.0.3",
     "vite": "^7.3.6",
     "vite-tsconfig-paths": "^6.1.1"

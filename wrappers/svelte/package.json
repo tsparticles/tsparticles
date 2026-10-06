@@ -108,7 +108,7 @@
 		"@tsparticles/engine": "workspace:*",
 		"@typescript-eslint/eslint-plugin": "^8.66.0",
 		"@typescript-eslint/parser": "^8.66.0",
-		"eslint": "^10.11.0",
+		"eslint": "^10.12.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.22.0",
 		"prettier": "^3.9.9",
