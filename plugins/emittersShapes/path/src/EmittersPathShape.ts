@@ -2,6 +2,7 @@ import {
   type Container,
   type ICoordinates,
   type IDimension,
+  getErrorMessage,
   half,
   percentDenominator,
   safeDocument,
@@ -9,6 +10,7 @@ import {
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
+import { ErrorCodes } from "./ErrorCodes.js";
 
 export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
   checkContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
@@ -27,7 +29,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.render.settings);
 
     if (!ctx) {
-      throw new Error(`No 2d context available`);
+      throw new Error(getErrorMessage(ErrorCodes.emittersPathNo2dContext));
     }
 
     this.checkContext = ctx;
@@ -55,10 +57,10 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     }
 
     const firstIndex = 0,
-      firstPathData = pathData[firstIndex];
+      firstPathData = pathData.length ? pathData[firstIndex] : null;
 
     if (!firstPathData) {
-      throw new Error(`No path data available`);
+      throw new Error(getErrorMessage(ErrorCodes.emittersPathNoPathData));
     }
 
     const coords = {
@@ -69,6 +71,31 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     path.lineTo(coords.x, coords.y);
 
     this.path = path;
+  }
+
+  override draw(context: OffscreenCanvasRenderingContext2D): void {
+    const position = this.position,
+      size = this.size,
+      pathData = this.points,
+      offset = {
+        x: position.x - size.width * half,
+        y: position.y - size.height * half,
+      };
+
+    for (const [index, point] of pathData.entries()) {
+      const coords = {
+        x: offset.x + (point.x * size.width) / percentDenominator,
+        y: offset.y + (point.y * size.height) / percentDenominator,
+      };
+
+      if (!index) {
+        context.moveTo(coords.x, coords.y);
+      } else {
+        context.lineTo(coords.x, coords.y);
+      }
+    }
+
+    context.closePath();
   }
 
   async init(): Promise<void> {
@@ -112,10 +139,10 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     }
 
     const firstIndex = 0,
-      firstPathData = pathData[firstIndex];
+      firstPathData = pathData.length ? pathData[firstIndex] : null;
 
     if (!firstPathData) {
-      throw new Error(`No path data available`);
+      throw new Error(getErrorMessage(ErrorCodes.emittersPathNoPathData));
     }
 
     const coords = {

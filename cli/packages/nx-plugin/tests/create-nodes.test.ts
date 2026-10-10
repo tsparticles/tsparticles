@@ -7,6 +7,7 @@ describe("createCanonicalAliasTargets", () => {
     const targets = createCanonicalAliasTargets({
       "build:bundle:webpack": "webpack --config webpack.config.js",
       "build:bundle:rollup": "rollup -c rollup.config.mjs",
+      "build:bundle:rolldown": "rolldown -c rolldown.config.mjs",
       compile: "pnpm run build:ts",
       "prettify:ci:src": "prettier --check ./src/*",
       "prettify:src": "prettier --write ./src/*",
@@ -14,6 +15,7 @@ describe("createCanonicalAliasTargets", () => {
     });
 
     expect(Object.keys(targets).sort()).toEqual([
+      "bundle:rolldown",
       "bundle:rollup",
       "bundle:webpack",
       "clean",

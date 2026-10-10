@@ -9,13 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-
-    "@tsparticles/vue2": "workspace:*",
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/vue2": "^4.4.0",
     "vue": "^2.7.16"
   },
   "devDependencies": {
-    "vite-plugin-vue2": "^2.0.3"
+    "@vitejs/plugin-vue2": "^2.3.4",
+    "vue-template-compiler": "^2.7.16",
+    "vite": "^7.3.6"
   }
 }

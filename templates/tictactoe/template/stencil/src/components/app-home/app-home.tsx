@@ -1,6 +1,7 @@
 import { Component, State, h } from "@stencil/core";
 import { confetti } from "@tsparticles/confetti";
-import type { ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import type { Engine, ISourceOptions } from "@tsparticles/engine";
 
 type Player = "X" | "O";
 
@@ -61,6 +62,10 @@ export class AppHome {
   @State() winLine: number[] | null = null;
   @State() scores = { X: 0, O: 0, draw: 0 };
 
+  private async particlesInit(engine: Engine): Promise<void> {
+    await loadSlim(engine);
+  }
+
   get status(): string {
     if (!this.winner) return `${this.currentPlayer}'s turn`;
     if (this.winner === "draw") return "It's a draw!";
@@ -95,7 +100,11 @@ export class AppHome {
   render() {
     return (
       <div>
-        <stencil-particles id="tsparticles" options={particlesOptions} />
+        <stencil-particles
+          container-id="tsparticles"
+          init={this.particlesInit.bind(this)}
+          options={particlesOptions}
+        />
         <div id="app">
           <h1>Tic-Tac-Toe</h1>
           <div class="scoreboard">

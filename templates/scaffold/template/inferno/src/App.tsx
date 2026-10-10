@@ -1,4 +1,4 @@
-import Particles, { ParticlesProvider } from "@tsparticles/inferno";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
 

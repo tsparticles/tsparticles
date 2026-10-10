@@ -2,7 +2,7 @@ import { type ParticlesBuildType, buildMap } from "./buildMap";
 import type { ParticlesBuildParams } from "./types";
 import type { RollupOptions } from "rollup";
 import { createConfig } from "./config/createConfig";
-import { getUmdPolicyData } from "./config/umdPolicy";
+import { getIifePolicyData } from "./config/iifePolicy";
 
 export const createParticlesBuild = (type: ParticlesBuildType, params: ParticlesBuildParams): RollupOptions[] => {
   const def = buildMap[type],
@@ -11,7 +11,7 @@ export const createParticlesBuild = (type: ParticlesBuildType, params: Particles
     additionalExternals = params.additionalExternals,
     moduleName = params.moduleName,
     bundle = params.bundle,
-    umdPolicy = getUmdPolicyData(type, moduleName),
+    iifePolicy = getIifePolicyData(type, moduleName),
     banner = def.banner(params),
     minBanner = def.minBanner(params),
     base = createConfig({
@@ -26,7 +26,7 @@ export const createParticlesBuild = (type: ParticlesBuildType, params: Particles
       dir,
       bundle: false,
       includeLazy: false,
-      umdPolicy,
+      iifePolicy,
       additionalExternals,
     });
 
@@ -45,7 +45,7 @@ export const createParticlesBuild = (type: ParticlesBuildType, params: Particles
         dir,
         bundle: true,
         includeLazy: false,
-        umdPolicy,
+        iifePolicy,
         additionalExternals,
       }),
     ];

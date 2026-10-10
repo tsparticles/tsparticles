@@ -8,12 +8,12 @@ import {
   clamp,
   getDistances,
   identity,
+  minRadius,
 } from "@tsparticles/engine";
 import type { AttractContainer } from "./Types.js";
 import type { IInteractivityData } from "@tsparticles/plugin-interactivity";
 
 const minFactor = 1,
-  minRadius = 0,
   updateVector = Vector.origin;
 
 /**

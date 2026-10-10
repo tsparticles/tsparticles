@@ -5,6 +5,7 @@ import {
   doublePI,
   getStyleFromRgb,
   half,
+  minRadius,
   originPoint,
   triple,
 } from "@tsparticles/engine";
@@ -22,7 +23,6 @@ const cardWidthRatio = (double * double) / triple,
   cornerPaddingRatio = 0.2,
   // Adjusted for a tighter fit between suit and text
   textHorizontalOffsetRatio = 0.25,
-  minRadius = 0,
   minAngle = 0,
   suitEdgeBufferFactor = 0.1,
   fixedCacheKey = 2,

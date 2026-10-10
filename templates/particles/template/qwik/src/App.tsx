@@ -1,7 +1,6 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
-import { Particles } from "@tsparticles/qwik";
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
@@ -25,7 +24,9 @@ const options: ISourceOptions = {
 
 export default component$(() => {
   useVisibleTask$(() => {
-    void loadParticles(tsParticles);
+    void initParticlesEngine(async () => {
+      await particles.init();
+    });
   });
 
   return (

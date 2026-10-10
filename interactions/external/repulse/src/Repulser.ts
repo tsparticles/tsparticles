@@ -12,6 +12,7 @@ import {
   isInArray,
   loadOptionProperty,
   millisecondsToSeconds,
+  minRadius,
   safeDocument,
 } from "@tsparticles/engine";
 import {
@@ -36,7 +37,6 @@ const repulseMode = "repulse",
   repulseRadiusFactor = 6,
   repulseRadiusPower = 3,
   squarePower = 2,
-  minRadius = 0,
   minSpeed = 0,
   easingOffset = 1,
   minRestoreSpeed = 0.001,

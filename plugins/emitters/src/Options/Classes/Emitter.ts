@@ -37,6 +37,14 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
    */
   domId?: string;
   /**
+   * Sets if the emitter can be dragged with the mouse
+   */
+  draggable = false;
+  /**
+   * Sets if the emitter shape will be drawn on the canvas
+   */
+  draw = true;
+  /**
    * Sets if the particles will spawn at the emitter perimeter or inside the area
    */
   fill = true;
@@ -103,6 +111,10 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     loadProperty(this, "direction", data.direction);
 
     loadProperty(this, "domId", data.domId);
+
+    loadProperty(this, "draggable", data.draggable);
+
+    loadProperty(this, "draw", data.draw);
 
     loadProperty(this, "fill", data.fill);
 

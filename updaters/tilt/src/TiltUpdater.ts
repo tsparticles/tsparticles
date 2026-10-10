@@ -14,6 +14,7 @@ import {
   half,
   identity,
   loadOptionProperty,
+  minIndex,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
@@ -72,8 +73,7 @@ export class TiltUpdater implements IParticleUpdater {
     let tiltDirection = tiltOptions.direction;
 
     if (tiltDirection === TiltDirection.random) {
-      const index = Math.floor(getRandom() * double),
-        minIndex = 0;
+      const index = Math.floor(getRandom() * double);
 
       tiltDirection = index > minIndex ? TiltDirection.counterClockwise : TiltDirection.clockwise;
     }

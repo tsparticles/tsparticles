@@ -8,9 +8,7 @@ $(() => {
     await loadSlim(engine);
   });
 
-  $.particles().load({
-    id: "tsparticles",
-    options: {
+  $("#tsparticles").particles().load({
       fullScreen: { enable: true, zIndex: -1 },
       background: { color: { value: "#080818" } },
       fpsLimit: 60,
@@ -45,7 +43,6 @@ $(() => {
         },
       },
       detectRetina: true,
-    },
   });
 });
 

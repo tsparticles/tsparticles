@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
-
 export default {
   name: "App",
   data() {
@@ -51,9 +48,6 @@ export default {
         detectRetina: true,
       },
     };
-  },
-  mounted() {
-    void loadParticles(tsParticles);
   },
 };
 </script>

@@ -231,13 +231,13 @@
 		"@wordpress/browserslist-config": "^6.52.0",
 		"@wordpress/i18n": "^6.25.0",
 		"@wordpress/scripts": "^34.0.0",
-		"fs-extra": "^11.4.0",
+		"fs-extra": "^11.4.1",
 		"gulp": "^5.0.1",
 		"postcss": "^8.5.26",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"typescript": "^6.0.3",
-		"webpack": "^5.110.1",
+		"webpack": "^5.111.1",
 		"webpack-cli": "^5.1.4"
 	}
 }

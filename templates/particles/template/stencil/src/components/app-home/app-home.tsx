@@ -1,6 +1,5 @@
 import { Component, h } from "@stencil/core";
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 @Component({
@@ -48,7 +47,7 @@ export class AppHome {
   };
 
   componentDidLoad() {
-    void loadParticles(tsParticles);
+    void particles.init();
   }
 
   render() {

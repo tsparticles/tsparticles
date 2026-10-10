@@ -60,6 +60,7 @@ await tsParticles.load({
 - Color formats and values: [Color](../Color.md)
 - Runtime container management: [Container](../Container.md)
 - Plugins, custom shapes, custom presets: [Plugins](../Plugins.md)
+- Errors and error codes: [Errors](../Errors.md)
 - Migration from particles.js: [pjsMigration](../pjsMigration.md)
 
 ## Detailed option guides

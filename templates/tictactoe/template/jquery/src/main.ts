@@ -2,6 +2,7 @@ import "./style.css";
 import $ from "jquery";
 import "@tsparticles/jquery";
 import { loadSlim } from "@tsparticles/slim";
+import { tsParticles } from "@tsparticles/engine";
 import { confetti } from "@tsparticles/confetti";
 
 type Player = "X" | "O";
@@ -61,7 +62,7 @@ function render(): void {
     $el.toggleClass("win", state.winLine?.includes(i) ?? false);
   });
 
-  const $turn = $("#turn");
+  const $turn = $("#turnIndicator");
   if (!state.winner) $turn.text(`${state.currentPlayer}'s turn`);
   else if (state.winner === "draw") $turn.text("It's a draw!");
   else $turn.text(`${state.winner} wins!`);
@@ -108,8 +109,9 @@ $(document).ready(async () => {
 
   render();
 
-  await loadSlim($("#tsparticles").particles() as any);
-  $("#tsparticles").particles({
+  await loadSlim(tsParticles);
+
+  $("#tsparticles").particles().load({
     fullScreen: { enable: true, zIndex: -1 },
     background: { color: { value: "#0a0a1a" } },
     fpsLimit: 60,

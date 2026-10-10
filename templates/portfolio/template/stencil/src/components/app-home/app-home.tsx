@@ -1,8 +1,7 @@
 import { Component, State, h } from "@stencil/core";
-import { ParticlesBase } from "@tsparticles/stencil";
 import { loadSlim } from "@tsparticles/slim";
+import { tsParticles, type ISourceOptions } from "@tsparticles/engine";
 import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
 
 const keys = Object.keys(configs);
 const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
@@ -35,10 +34,8 @@ export class AppHome {
     { name: "CSS", pct: 88 },
   ];
 
-  connectedCallback(): void {
-    void ParticlesBase.init(async (engine) => {
-      await loadSlim(engine);
-    });
+  async componentDidLoad(): Promise<void> {
+    await loadSlim(tsParticles);
   }
 
   private handleSubmit(e: Event): void {
@@ -50,7 +47,7 @@ export class AppHome {
   render() {
     return (
       <div>
-        <ts-particles id="tsparticles" options={options}></ts-particles>
+        <stencil-particles id="tsparticles" options={options}></stencil-particles>
         <nav id="navbar">
           {this.navItems.map((item) => (
             <a href={`#${item.toLowerCase()}`} class="nav-link">{item}</a>

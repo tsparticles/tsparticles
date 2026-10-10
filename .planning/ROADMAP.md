@@ -5,20 +5,20 @@
 | # | Phase | Version | Goal |
 |---|-------|---------|------|
 | 1 | GIF Shape, Background Canvas, BgMask Dynamic, Draw Layer System, Particle Modifier, HDR Precision | 4.3.0 | ✅ Released |
-| 2 | HDR Color Fix & Rendering Modes, Code Review Fixes | 4.4.0 | 🚧 In progress |
-| 3 | Fluid Particle Interaction, MCP `generate_code` tool | 4.5.0 | 📋 Planned |
+| 2 | HDR Color Fix & Rendering Modes, Code Review Fixes | 4.4.0 | ✅ Released |
+| 3 | Fluid Particle Interaction, MCP `generate_code` tool, Emitter Draw/Drag, Workspace Test Coverage | 4.5.0 | 📋 Planned |
 
 ## Phase Details
 
 ### Phase 2: HDR Color Fix & Rendering Modes (4.4.0)
 
-**Status:** 🚧 In progress. See `.planning/handovers/4.4.0_PLAN.md`.
+**Status:** ✅ Released. See `.planning/handovers/4.4.0_PLAN.md`.
 
 - HDR color fidelity fixes: tone mapping, linear-space mixing, configurable `peakNits`, display listeners, `hdrMode` presets (`natural`/`vivid`/`cinematic`/`dynamic`). See `HDR_COLOR_FIX_PLAN.md`.
 - Code review fixes from the wrapper audit (implemented). See `FIX-PROMPT.md`.
 
-### Phase 3: Fluid Particle Interaction & MCP `generate_code` (4.5.0)
+### Phase 3: Fluid Particle Interaction, MCP `generate_code`, Emitter Draw/Drag & Workspace Test Coverage (4.5.0)
 
 **Status:** 📋 Planned. See `.planning/handovers/4.5.0_PLAN.md`.
 
-The previous 4.4.0 v3 fluid implementation was completed and reverted — code did not produce fluid behavior. Moved to 4.5.0 with the v5 redesign (fluid as collision mode). See `FLUID_INTERACTION_PLAN.md` for retrospective and design. MCP server gains the deterministic `generate_code` tool. See `MCP_GENERATE_CODE_PLAN.md`.
+The previous 4.4.0 v3 fluid implementation was completed and reverted — code did not produce fluid behavior. Moved to 4.5.0 with the v5 redesign (fluid as collision mode). See `FLUID_INTERACTION_PLAN.md` for retrospective and design. MCP server gains the deterministic `generate_code` tool. See `MCP_GENERATE_CODE_PLAN.md`. Emitters gain canvas drawing and mouse dragging. See `EMITTERS_DRAW_DRAG_PLAN.md`. Workspace unit-test coverage is expanded beyond the engine particle tests (engine option `load()` classes, utils/updater math, configs presets, noise libs, false-green targets). See `WORKSPACE_TEST_COVERAGE_PLAN.md`.

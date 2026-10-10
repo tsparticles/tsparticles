@@ -1,14 +1,16 @@
-import type { ConfigParams, UmdBuildKind, UmdPolicyData } from "../types";
-import type { Plugin, RenderedChunk, RollupOptions } from "rollup";
+import type { ConfigParams, IifeBuildKind, IifePolicyData } from "../types";
+import type { GlobalsOption, Plugin, RenderedChunk, RollupOptions } from "rollup";
 import { getExternal, getGlobals } from "./externals";
 import fs from "node:fs";
 import { getEntry } from "./entry";
-import { getUmdGlobalsBootstrap } from "./umdPolicy";
+import { getIifeGlobalsBootstrap } from "./iifePolicy";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import path from "node:path";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import { visualizer } from "rollup-plugin-visualizer";
+
+type ReplaceOptions = NonNullable<Parameters<typeof replace>[number]>;
 
 const EMPTY_SIZE = 0,
   FIRST_INDEX = 0,
@@ -17,11 +19,10 @@ const EMPTY_SIZE = 0,
   toJsBanner = (text: string): string => {
     return `/* ${text} */`;
   },
-  temporaryUmdGlobal = "tsparticlesInternalExports",
   lazyWrapperVirtualPrefix = "\0tsparticles-lazy-wrapper:",
   // Public export predicate per kind
-  getPublicExports = (exports: string[], kind: UmdBuildKind): string[] => {
-    const fixedPublicMap: Record<Exclude<UmdBuildKind, "bundle" | "package">, string> = {
+  getPublicExports = (exports: string[], kind: IifeBuildKind): string[] => {
+    const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
       confetti: "confetti",
       engine: "tsParticles",
       fireworks: "fireworks",
@@ -45,8 +46,8 @@ const EMPTY_SIZE = 0,
 
     return [requiredExport];
   },
-  validatePublicExports = (publicExports: string[], allExports: string[], kind: UmdBuildKind): void => {
-    const fixedPublicMap: Record<Exclude<UmdBuildKind, "bundle" | "package">, string> = {
+  validatePublicExports = (publicExports: string[], allExports: string[], kind: IifeBuildKind): void => {
+    const fixedPublicMap: Record<Exclude<IifeBuildKind, "bundle" | "package">, string> = {
       confetti: "confetti",
       engine: "tsParticles",
       fireworks: "fireworks",
@@ -76,47 +77,24 @@ const EMPTY_SIZE = 0,
       );
     }
   },
+  globalScopeExpression = `typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : self`,
   /**
-   * Build the namespace initialization expression to use as the UMD factory's first argument.
-   * Example: scope = "__tsParticlesInternals.engine"
-   * Result: an expression that initializes `global.__tsParticlesInternals` and `global.__tsParticlesInternals.engine`.
+   * Retarget the Rollup IIFE wrapper from the `this` keyword to the global scope.
    *
-   * This is used to REPLACE `global.window = global.tsparticlesInternalExports || {}` in the UMD wrapper,
-   * so that rollup writes all exports directly into the correct namespace object.
-   * @param scope - The scope
-   * @returns The string value
-   */
-  buildGlobalNamespaceInit = (scope: string): string => {
-    const segments = scope.split("."),
-      inits: string[] = [];
-    let currentPath = "global";
-
-    for (const segment of segments) {
-      currentPath += `.${segment}`;
-      inits.push(`${currentPath} = ${currentPath} || {}`);
-    }
-
-    return `(${inits.join(", ")})`;
-  },
-  /**
-   * Replace the UMD factory's exports target (global.window = ...) with the correct namespace path.
-   * This makes rollup write all `exports.X = X` directly into __tsParticlesInternals.<scope>.
+   * Rollup roots namespaced IIFE output on `this` (e.g. `this.__tsParticlesInternals = ...`) and reads
+   * dotted external globals as implicit globals (see `getGlobals`, externals are prefixed with `this.`).
+   * Both break when the bundle is loaded through a `<script type="module">` tag, where `this` is
+   * `undefined`. To keep the previous UMD-era behaviour (bundles usable from classic and module scripts
+   * alike) the chunk is wrapped in a function whose `g` argument resolves to globalThis/window/self and
+   * every `this.__tsParticlesInternals` reference (namespace setup, exports target and external deps)
+   * is retargeted to `g.__tsParticlesInternals`.
    * @param code - The code
-   * @param scope - The scope
    * @returns The string value
    */
-  redirectUmdExportsToNamespace = (code: string, scope: string): string => {
-    const namespaceInit = buildGlobalNamespaceInit(scope);
+  redirectIifeToGlobalScope = (code: string): string => {
+    const body = code.replaceAll("this.__tsParticlesInternals", "g.__tsParticlesInternals");
 
-    return (
-      code
-        // multi-dependency case: factory(global.window = ..., globalDep1, ...)
-        .replaceAll(`factory(global.window = global.${temporaryUmdGlobal} || {}, `, `factory(${namespaceInit}, `)
-        .replaceAll(`factory(global.window = {}, `, `factory(${namespaceInit}, `)
-        // single case: factory(global.window = ...)
-        .replaceAll(`factory(global.window = global.${temporaryUmdGlobal} || {})`, `factory(${namespaceInit})`)
-        .replaceAll(`factory(global.window = {})`, `factory(${namespaceInit})`)
-    );
+    return `(function (g) {\n${body}\n})(${globalScopeExpression});\n`;
   },
   /**
    * Build the code that copies public exports from the namespace to window.
@@ -134,8 +112,8 @@ const EMPTY_SIZE = 0,
 
     return `Object.assign(globalThis.window || globalThis, { ${assignments} });\n`;
   },
-  buildBundleEngineAliasCode = (umdPolicy: UmdPolicyData): string => {
-    if (umdPolicy.kind !== "bundle") {
+  buildBundleEngineAliasCode = (iifePolicy: IifePolicyData): string => {
+    if (iifePolicy.kind !== "bundle") {
       return "";
     }
 
@@ -143,7 +121,7 @@ const EMPTY_SIZE = 0,
     return (
       `globalThis.__tsParticlesInternals = globalThis.__tsParticlesInternals || {};\n` +
       `if (!globalThis.__tsParticlesInternals.engine || !globalThis.__tsParticlesInternals.engine.tsParticles) {\n` +
-      `  globalThis.__tsParticlesInternals.engine = globalThis.${umdPolicy.scope} || {};\n` +
+      `  globalThis.__tsParticlesInternals.engine = globalThis.${iifePolicy.scope} || {};\n` +
       `}\n`
     );
   },
@@ -209,16 +187,16 @@ const EMPTY_SIZE = 0,
     return [...exports];
   },
   createLazyWrapperEntryPlugin = (params: ConfigParams, min: boolean): Plugin => {
-    const { dir, umdPolicy } = params,
+    const { dir, iifePolicy } = params,
       { name } = getEntry({ ...params.entry, dir, min, lazy: true }),
       runtimePath = buildLazyRuntimePath(name),
       runtimeInputPath = getLazyRuntimeInputPath(dir),
       lazyExports = resolveLazyEntryExports(runtimeInputPath),
       publicExports = getPublicExports(
-        [...new Set(umdPolicy.kind === "bundle" ? [...lazyExports, "tsParticles"] : lazyExports)],
-        umdPolicy.kind,
+        [...new Set(iifePolicy.kind === "bundle" ? [...lazyExports, "tsParticles"] : lazyExports)],
+        iifePolicy.kind,
       ),
-      needsEngineExports = publicExports.includes("tsParticles") || umdPolicy.kind === "bundle",
+      needsEngineExports = publicExports.includes("tsParticles") || iifePolicy.kind === "bundle",
       exportedDeclarations = publicExports
         .filter(exp => exp !== "tsParticles")
         .map(
@@ -261,7 +239,7 @@ export { ${namedExports} };
       },
     };
   },
-  exposeEntryExports = (enabled: boolean, umdPolicy?: UmdPolicyData): Plugin => {
+  exposeEntryExports = (enabled: boolean, iifePolicy?: IifePolicyData): Plugin => {
     return {
       name: "expose-entry-exports",
       renderChunk(code: string, chunk: RenderedChunk): { code: string; map: null } | null {
@@ -271,22 +249,20 @@ export { ${namedExports} };
 
         const exports = chunk.exports.filter(t => t !== "default");
 
-        // No exports at all - just bootstrap namespace and clean up
+        // No exports at all - keep the (possibly side-effecting) IIFE body but only bootstrap namespaces
         if (exports.length === EMPTY_SIZE) {
-          if (!umdPolicy) {
+          if (!iifePolicy) {
             return null;
           }
 
-          const umdCode = redirectUmdExportsToNamespace(code, umdPolicy.scope);
-
           return {
-            code: `${getUmdGlobalsBootstrap(temporaryUmdGlobal)}${umdCode}\ndelete (globalThis.window || globalThis).${temporaryUmdGlobal};\n`,
+            code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}`,
             map: null,
           };
         }
 
-        // No UMD policy (e.g. ESM lazy split bundles) - expose all to window (old behavior)
-        if (!umdPolicy) {
+        // No namespace policy (e.g. ESM lazy split bundles) - expose all to window (old behavior)
+        if (!iifePolicy) {
           const assignments = exports.map(t => `${t}: ${t}`).join(", ");
 
           return {
@@ -295,28 +271,47 @@ export { ${namedExports} };
           };
         }
 
-        // With UMD policy:
-        // 1) Redirect factory's exports target to the internal namespace
-        // 2) After factory runs, copy public exports from namespace to window
-        const publicExports = getPublicExports(exports, umdPolicy.kind);
+        // With namespace policy (IIFE):
+        // 1) Rollup writes the exports directly into __tsParticlesInternals.<scope> thanks to
+        //    output.name (the scope) + output.extend.
+        // 2) The wrapper root is retargeted from `this` to globalThis so the bundle keeps working
+        //    from classic and module `<script>` tags alike.
+        // 3) After the IIFE runs, copy the public exports from the namespace to window.
+        const publicExports = getPublicExports(exports, iifePolicy.kind);
 
-        validatePublicExports(publicExports, exports, umdPolicy.kind);
+        validatePublicExports(publicExports, exports, iifePolicy.kind);
 
-        // The key step: replace factory's first arg so rollup writes all exports to __tsParticlesInternals.<scope>
-        const umdCode = redirectUmdExportsToNamespace(code, umdPolicy.scope),
-          // Read public exports from the namespace and expose on window
-          windowCode = buildWindowExposureCode(umdPolicy.scope, publicExports),
-          engineAliasCode = buildBundleEngineAliasCode(umdPolicy);
+        const windowCode = buildWindowExposureCode(iifePolicy.scope, publicExports),
+          engineAliasCode = buildBundleEngineAliasCode(iifePolicy);
 
         return {
-          code:
-            `${getUmdGlobalsBootstrap(temporaryUmdGlobal)}${umdCode}\n${windowCode}${engineAliasCode}` +
-            `delete (globalThis.window || globalThis).${temporaryUmdGlobal};\n`,
+          code: `${getIifeGlobalsBootstrap()}${redirectIifeToGlobalScope(code)}\n${windowCode}${engineAliasCode}`,
           map: null,
         };
       },
     };
-  };
+  },
+  /**
+   * Builds the replacement map for the `replace` rollup plugin.
+   *
+   * In min builds the dev-only error catalog is a dead branch after `process.env.NODE_ENV` and the
+   * `typeof process` guard are folded to constants, so Terser strips it along with the readable
+   * messages (see `ErrorUtils`). The guard is folded too so bundler-less browsers never throw on the
+   * missing `process` global in non-min outputs.
+   * @param min - whether this is a minified/production build
+   * @param version - the package version
+   * @returns the replacement map
+   */
+  getReplacements = (min: boolean, version: string): ReplaceOptions => ({
+    preventAssignment: true,
+    __VERSION__: JSON.stringify(version),
+    ...(min
+      ? {
+          "process.env.NODE_ENV": JSON.stringify("production"),
+          'typeof process !== "undefined"': JSON.stringify(true),
+        }
+      : {}),
+  });
 
 export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RollupOptions => {
   const { additionalExternals, banner, bundle, dir, entry, minBanner, version } = params,
@@ -332,20 +327,18 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
         nodeResolve({
           browser: true,
         }),
-        replace({
-          preventAssignment: true,
-          __VERSION__: JSON.stringify(version),
-        }),
-        exposeEntryExports(true, params.umdPolicy),
+        replace(getReplacements(min, version)),
+        exposeEntryExports(true, params.iifePolicy),
         min && terser(),
       ].filter(Boolean),
       output: {
         file: path.resolve(dir, "dist", `${name}.js`),
-        format: "umd",
-        name: temporaryUmdGlobal,
-        globals: getGlobals(additionalExternals, bundle),
+        format: "iife",
+        name: params.iifePolicy.scope,
+        extend: true,
+        globals: getGlobals(additionalExternals, bundle) as GlobalsOption,
         banner: toJsBanner(min ? minBanner : banner),
-        // inlineDynamicImports must be true for UMD (Rollup doesn't support code-splitting in UMD format).
+        // inlineDynamicImports must be true for IIFE (Rollup doesn't support code-splitting in IIFE format).
         // The actual lazy loading is handled at runtime via `new Function("path", "return import(path)")`
         // which Rollup cannot see/inline — so setting this to true has no effect on lazy behaviour.
         inlineDynamicImports: true,
@@ -360,11 +353,8 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
       nodeResolve({
         browser: true,
       }),
-      replace({
-        preventAssignment: true,
-        __VERSION__: JSON.stringify(version),
-      }),
-      exposeEntryExports(true, params.umdPolicy),
+      replace(getReplacements(min, version)),
+      exposeEntryExports(true, params.iifePolicy),
       !min &&
         visualizer({
           filename: path.resolve(dir, "dist/report.html"),
@@ -373,9 +363,10 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
     ].filter(Boolean),
     output: {
       file: path.resolve(dir, "dist", `${name}.js`),
-      format: "umd",
-      name: temporaryUmdGlobal,
-      globals: getGlobals(additionalExternals, bundle),
+      format: "iife",
+      name: params.iifePolicy.scope,
+      extend: true,
+      globals: getGlobals(additionalExternals, bundle) as GlobalsOption,
       banner: toJsBanner(min ? minBanner : banner),
       inlineDynamicImports: true,
     },
@@ -393,10 +384,7 @@ export const createLazyRuntimeConfig = (params: ConfigParams, min: boolean): Rol
       nodeResolve({
         browser: true,
       }),
-      replace({
-        preventAssignment: true,
-        __VERSION__: JSON.stringify(version),
-      }),
+      replace(getReplacements(min, version)),
       min && terser(),
     ].filter(Boolean),
     output: {

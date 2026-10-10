@@ -29,6 +29,13 @@ jobs:
       - name: Derive SHAs for nx affected
         uses: nrwl/nx-set-shas@v5
 
+      - name: Ensure NX_BASE is available
+        if: github.event_name == 'pull_request' && env.NX_BASE == ''
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
+          echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
+
       - uses: pnpm/action-setup@v6
         with:
           cache: true

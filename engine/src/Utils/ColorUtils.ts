@@ -453,15 +453,15 @@ export function hslToRgb(hsl: IHsl): IRgb {
     return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
   }
 
-  const temp1 =
+  const temp2 =
       lNormalized < half
         ? lNormalized * (sNormalizedOffset + sNormalized)
         : lNormalized + sNormalized - lNormalized * sNormalized,
-    temp2 = double * lNormalized - temp1,
+    temp1 = double * lNormalized - temp2,
     phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized + phaseThird)),
-    green = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized - phaseThird));
+    red = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird)),
+    green = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized)),
+    blue = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird));
 
   return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -485,15 +485,15 @@ export function hslToRgbFloat(hsl: IHsl): IRgb {
     return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
   }
 
-  const temp1 =
+  const temp2 =
       lNormalized < half
         ? lNormalized * (sNormalizedOffset + sNormalized)
         : lNormalized + sNormalized - lNormalized * sNormalized,
-    temp2 = double * lNormalized - temp1,
+    temp1 = double * lNormalized - temp2,
     phaseThird = phaseNumerator / triple,
-    red = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized + phaseThird)),
-    green = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized)),
-    blue = Math.min(rgbMax, rgbMax * hslChannel(temp2, temp1, hNormalized - phaseThird));
+    red = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized + phaseThird)),
+    green = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized)),
+    blue = Math.min(rgbMax, rgbMax * hslChannel(temp1, temp2, hNormalized - phaseThird));
 
   return { r: red, g: green, b: blue };
 }

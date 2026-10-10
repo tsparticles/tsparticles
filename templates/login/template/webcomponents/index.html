@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{projectName}}</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h1 id="authTitle">Login</h1>
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+          </div>
+          <form id="authForm" novalidate>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="you@example.com" required />
+              <span class="error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter password" required />
+              <span class="error" id="passwordError"></span>
+            </div>
+            <div class="form-group" id="confirmGroup" style="display: none">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" placeholder="Confirm password" />
+              <span class="error" id="confirmError"></span>
+            </div>
+            <button type="submit" id="submitBtn">Sign In</button>
+          </form>
+          <p class="toggle-text">
+            <span id="toggleLabel">Don't have an account?</span>
+            <a href="#" id="toggleAuth">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

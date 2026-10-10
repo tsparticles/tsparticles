@@ -1,6 +1,4 @@
-import $ from "jquery";
 import "@tsparticles/jquery";
-import { tsParticles } from "@tsparticles/engine";
 import { confetti } from "@tsparticles/confetti";
 import "./style.css";
 
@@ -9,8 +7,6 @@ function randomInRange(min: number, max: number): number {
 }
 
 (async () => {
-  $("#tsparticles").particles().load({});
-
   const fireBtn = document.getElementById("fireBtn") as HTMLButtonElement;
   const modeSelect = document.getElementById("modeSelect") as HTMLSelectElement;
 

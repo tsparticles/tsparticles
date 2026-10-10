@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{projectName}}</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Tic-Tac-Toe</h1>
+      <div class="scoreboard">
+        <span>X: <strong id="scoreX">0</strong></span>
+        <span>Draws: <strong id="scoreDraw">0</strong></span>
+        <span>O: <strong id="scoreO">0</strong></span>
+      </div>
+      <div id="turnIndicator" class="turn">X's turn</div>
+      <div id="board" class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <button id="resetBtn" class="reset-btn">New Game</button>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

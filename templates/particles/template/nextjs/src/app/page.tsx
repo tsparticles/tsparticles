@@ -1,11 +1,11 @@
 "use client";
 
-import Particles from "@tsparticles/nextjs";
-import { loadParticles } from "@tsparticles/particles";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { NextParticles, NextParticlesProvider } from "@tsparticles/nextjs";
+import { particles } from "@tsparticles/particles";
+import type { ISourceOptions } from "@tsparticles/engine";
 
-async function init(engine: Engine): Promise<void> {
-  await loadParticles(engine);
+async function init(): Promise<void> {
+  await particles.init();
 }
 
 const options: ISourceOptions = {
@@ -29,11 +29,11 @@ const options: ISourceOptions = {
 
 export default function Home() {
   return (
-    <>
+    <NextParticlesProvider init={init}>
       <div id="app">
         <h1>tsParticles</h1>
       </div>
-      <Particles id="tsparticles" init={init} options={options} />
-    </>
+      <NextParticles id="tsparticles" options={options} />
+    </NextParticlesProvider>
   );
 }

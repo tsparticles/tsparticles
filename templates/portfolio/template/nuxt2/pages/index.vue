@@ -50,15 +50,14 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 import configs from "@tsparticles/configs";
-import type { ISourceOptions } from "@tsparticles/engine";
 
 const keys = Object.keys(configs);
-const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
-const options: ISourceOptions = {
-  ...(configs[randomKey] as ISourceOptions),
+const randomKey = keys[Math.floor(Math.random() * keys.length)];
+const options = {
+  ...configs[randomKey],
   fullScreen: { enable: true, zIndex: -1 },
 };
 
@@ -82,10 +81,10 @@ export default Vue.extend({
     };
   },
   methods: {
-    handleSubmit(e: Event) {
+    handleSubmit(e) {
       e.preventDefault();
       alert("Message sent! (demo)");
-      (e.target as HTMLFormElement).reset();
+      e.target.reset();
     },
   },
 });
