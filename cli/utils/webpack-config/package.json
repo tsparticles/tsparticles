@@ -48,9 +48,9 @@
     "browserslist": "^4.29.3",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^65.1.0",
+    "eslint-plugin-jsdoc": "^65.2.4",
     "eslint-plugin-tsdoc": "^0.5.4",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "swc-loader": "^0.2.7",
     "terser-webpack-plugin": "^5.6.1",
@@ -60,7 +60,7 @@
     "webpack-cli": "^7.2.3"
   },
   "devDependencies": {
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-env": "^1.18.8",
     "rimraf": "^6.1.3",

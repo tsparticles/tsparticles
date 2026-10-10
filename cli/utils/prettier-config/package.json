@@ -29,7 +29,7 @@
     "prettier-plugin-multiline-arrays": "^4.1.11"
   },
   "devDependencies": {
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "typescript": "^6.0.3"
   }
 }
