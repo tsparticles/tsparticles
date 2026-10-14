@@ -28,7 +28,9 @@
     "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run circular-deps && pnpm run prettify:readme",
     "build:ci": "pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile:ci && pnpm run prettify:ci:readme",
     "clear:dist": "rimraf ./dist",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "test": "vitest run --config vitest.config.ts",
+    "test:ci": "vitest run --config vitest.config.ts"
   },
   "peerDependencies": {
     "commander": "^15",
@@ -66,7 +68,8 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.12.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "vitest": "^5.0.0"
   },
   "description": "tsParticles CLI",
   "main": "dist/eslint.js",

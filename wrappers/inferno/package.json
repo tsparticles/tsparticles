@@ -16,7 +16,9 @@
     "prettify:readme": "prettier --write ./README.md",
     "prepack": "pnpm run build",
     "build:types": "tsc -p tsconfig.types.json",
-    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json"
+    "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
+    "test": "vitest run --config vitest.config.ts",
+    "test:ci": "vitest run --config vitest.config.ts"
   },
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
@@ -126,6 +128,7 @@
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "typescript": "^6.0.3",
+    "vitest": "^5.0.0",
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^6.0.0"

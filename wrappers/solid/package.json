@@ -134,6 +134,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@testing-library/jest-dom": "^6.9.1",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@types/node": "^26.6.5",

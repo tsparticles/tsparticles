@@ -71,8 +71,10 @@
     "prettify:src": "prettier --write ./projects/ng-fireworks/src/*",
     "prettify:readme": "prettier --write ./README.md",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "prepack": "pnpm run build"
+    "test": "pnpm run test:vitest",
+    "prepack": "pnpm run build",
+    "test:vitest": "vitest run --config vitest.config.ts",
+    "test:ci": "pnpm run test:vitest"
   },
   "publishConfig": {
     "directory": "dist/ng-fireworks",
@@ -104,6 +106,7 @@
     "@types/jasmine": "~7.0.0",
     "@types/node": "^26.6.5",
     "jasmine-core": "~7.0.2",
+    "jsdom": "^30.0.1",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
@@ -111,7 +114,8 @@
     "karma-jasmine-html-reporter": "~2.3.0",
     "ng-packagr": "~22.2.4",
     "prettier": "^3.9.10",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.0"
   },
   "nx": {
     "targets": {

@@ -49,8 +49,3 @@ describe("isTsParticlesWorkspacePackage", () => {
     expect(isTsParticlesWorkspacePackage("package.json")).toBe(false);
   });
 });
-
-
-
-
-

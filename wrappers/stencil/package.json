@@ -37,12 +37,15 @@
     "build": "stencil build",
     "build:ci": "stencil build",
     "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "test": "vitest run --config vitest.config.ts",
+    "test:ci": "vitest run --config vitest.config.ts"
   },
   "devDependencies": {
     "@stencil/core": "^4.43.5",
     "@tsparticles/engine": "workspace:*",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

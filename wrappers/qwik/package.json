@@ -73,7 +73,9 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "release": "np",
     "start": "vite --open --mode ssr",
-    "qwik": "qwik"
+    "qwik": "qwik",
+    "test": "vitest run --config vitest.config.ts",
+    "test:ci": "vitest run --config vitest.config.ts"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.20.0",
@@ -90,7 +92,8 @@
     "typescript": "^6.0.3",
     "undici": "^8.10.0",
     "vite": "^7.3.6",
-    "vite-tsconfig-paths": "^6.1.1"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

@@ -59,7 +59,9 @@
     "prettify:ci": "prettier --check \"src/**/*.{ts,tsx}\" && prettier --check \"lib/**/*.{ts,tsx}\"",
     "prepublishOnly": "pnpm run build",
     "version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "test": "vitest run --config vitest.config.ts",
+    "test:ci": "vitest run --config vitest.config.ts"
   },
   "files": [
     "dist"
@@ -81,12 +83,14 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "glob": "^13.0.6",
+    "jsdom": "^30.0.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "typescript": "^6.0.3",
     "vite": "^8.3.1",
     "vite-plugin-dts": "^5.0.3",
-    "vite-plugin-lib-inject-css": "^2.2.2"
+    "vite-plugin-lib-inject-css": "^2.2.2",
+    "vitest": "^5.0.0"
   },
   "nx": {
     "targets": {

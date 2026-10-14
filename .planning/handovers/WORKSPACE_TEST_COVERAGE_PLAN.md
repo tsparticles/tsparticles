@@ -2,7 +2,7 @@
 
 ## Status
 
-**Waves 1–4 implemented — 4.5.0 coverage gate met. Waves 5–6 (CLI + wrappers) deferred to 4.6.0.**
+**Waves 1–6 implemented — 4.5.0 coverage gate met. Waves 5–6 (CLI + wrappers) completed in 4.5.0.**
 This plan is linked from `4.5.0_PLAN.md` as Feature E. Extends the coverage work started in
 Feature D (`ENGINE_PARTICLE_TESTS_PLAN.md`, done) from `ParticlesManager` add/remove to the
 workspace-wide, currently-untested surface: the engine internals, every shape/updater/interaction
@@ -26,8 +26,28 @@ framework wrappers.
   `container.actualOptions` because their option classes are not package-exported), and
   `EmitterShapes.ts` (16) covering all 5 emitter shape generators' `draw()`/`randomPosition()`/
   `resize()` contracts via `pluginManager.emitterShapeManager.getShapeGenerator(name)`.
-- **Wave 5 (P3) / Wave 6 (P3) — DEFERRED to 4.6.0** per `4.5.0_PLAN.md` (CLI command tree, framework
-  wrappers). File plan carried over unchanged; no false-green target may remain when they land.
+- **Wave 5 (P3) — DONE:** CLI command tree. `cli/commands/build` false-green fixed
+  (`tests/build.test.ts` asserts the `build` command + its 9 subcommands). Tests + `vitest.config.ts`
+  + `test`/`test:ci` scripts + `vitest` devDep added to the 9 `build-*` command packages
+  (`build-diststats` tests the exported `getDistStats` against a temp `dist` fixture) and to the 10
+  `create-*` command packages (`create-app` covers `appCreateCommand`, `resolveTemplateRoot`,
+  `listAvailableTemplates`, `listAvailableFrameworks`, `resolveEngineVersion`). Rewrote the broken
+  `cli/commands/create/tests/*` (create-plugin/preset/shape). Added bin smoke tests
+  (`--version`/`--help`) to `cli/packages/cli-build` and `cli/packages/cli-create`. All 26 CLI test
+  packages green (~92 tests).
+- **Wave 6 (P3) — DONE:** all 23 framework wrappers execute ≥1 real test. Wave 6 target wrappers
+  (shared `initParticlesEngine` contract unless noted, engine mocked at `@tsparticles/engine`):
+  `react` (4), `vue3` (6), `angular` / `angular-confetti` / `angular-fireworks` (6/5/5, `ng test`
+  replaced by vitest), `svelte` (4, `utils.ts` contract only), `preact` / `inferno` / `stencil` /
+  `astro` (4 each; `inferno` asserts the await-existing-init variant instead of the throw variant),
+  `qwik` (3), `lit` (4), `webcomponents` (4), `jquery` (4), `vue2` (4), `riot` (4, compiles the
+  `.riot` SFC with `@riotjs/compiler`), `wordpress` (5, `utils.js`), `nextjs` (2), `nuxt2/3/4`
+  (4/3/3), `ember` (4, vitest over the addon `init-particles-engine`). `solid` (5 + 2 SSR): the
+  upstream target was red (`vite-plugin-solid` auto-injected the unlinked `@testing-library/jest-dom`
+  and the async effect threw an unhandled rejection while `test/server.test.tsx` was permanently
+  excluded), fixed by adding the `@testing-library/jest-dom` devDep, a `test/setup.ts` that
+  initializes the engine against a mocked loader, a mode-aware `vitest.config.ts` (`dom` / `ssr`
+  generate per `--mode ssr`) and a new `test/contract.test.tsx`. No false-green target remains.
 - **Coverage gate:** `@tsparticles/tests` authoritative full suite **39 files / 556 tests green**;
   `build:ci` (lint:ci + prettify:ci + test:ci) green. The v8 coverage summary only instruments
   `utils/tests/src/Fixture/*` (workspace packages resolve to built `dist`), so the delta is tracked
@@ -478,9 +498,11 @@ registration-only test + a documented limitation.
 
 ## 8. Wave 6 — Framework wrappers (P3)
 
-**Current state:** 23 wrapper projects. Solid (2 specs) and ember (6 qunit tests) are the only ones
-with real tests. `angular`, `angular-confetti`, `angular-fireworks` run `ng test` with **0 specs**
-(false-green); the remaining 18 have no test script.
+**Current state (completed):** all 23 wrapper projects run at least one real vitest test (engine
+mocked at `@tsparticles/engine`); the `angular*` `ng test` false-green replaced with vitest specs;
+`solid` reworked (it was red: unlinked `@testing-library/jest-dom` auto-injection + unhandled
+rejection, `test/server.test.tsx` never ran) into passing client + SSR + contract suites. See the
+session status update above for per-wrapper counts.
 
 The wrapper contract worth protecting (regressed multiple times per the S1–S23 audit):
 
@@ -556,7 +578,7 @@ at minimum init+cleanup.
 | **M1 (P0)** | Waves 1–2: engine internals, configs sweep, noise/value libs, easings | 4.5.0 core gate |
 | **M2 (P1)** | Wave 3: shapes, updaters, interactions, effects, paths, exports (deterministic subset) | 4.5.0 core gate |
 | **M3 (P2)** | Wave 4: plugin option loaders + emittersShapes — **DONE** (`PluginOptions.ts` 19 + `EmitterShapes.ts` 16) | 4.5.0 gate (last coverage wave) |
-| **M4 (P3)** | Waves 5–6: CLI + wrappers; **no false-green target may remain** | 4.5.0 if feasible, else promoted to 4.6.0 with this file plan carried over |
+| **M4 (P3)** | Waves 5–6: CLI + wrappers; **no false-green target may remain** — **DONE** (26 CLI packages ~92 tests; 23 wrappers ≥1 real test each) | 4.5.0 gate (completed) |
 
 Each milestone is independently shippable; a milestone that fails its gate does not block the ones
 before it.
