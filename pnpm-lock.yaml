@@ -10253,6 +10253,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/bounce:
@@ -10263,6 +10266,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/circ:
@@ -10273,6 +10279,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/cubic:
@@ -10283,6 +10292,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/elastic:
@@ -10293,6 +10305,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/expo:
@@ -10303,6 +10318,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/gaussian:
@@ -10317,6 +10335,9 @@ importers:
       '@tsparticles/cli-command-build':
         specifier: workspace:*
         version: link:../../../cli/commands/build
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/linear:
@@ -10331,6 +10352,9 @@ importers:
       '@tsparticles/cli-command-build':
         specifier: workspace:*
         version: link:../../../cli/commands/build
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/quad:
@@ -10345,6 +10369,9 @@ importers:
       '@tsparticles/cli-command-build':
         specifier: workspace:*
         version: link:../../../cli/commands/build
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/quart:
@@ -10355,6 +10382,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/quint:
@@ -10365,6 +10395,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/sigmoid:
@@ -10375,6 +10408,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/sine:
@@ -10385,6 +10421,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/smoothstep:
@@ -10395,6 +10434,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/emitters:
@@ -11878,6 +11920,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/canvasUtils:
@@ -11888,6 +11933,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/configs:
@@ -11912,6 +11960,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/noiseField:
@@ -11925,6 +11976,9 @@ importers:
       '@tsparticles/plugin-move':
         specifier: workspace:*
         version: link:../../plugins/move/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/pathUtils:
@@ -11935,6 +11989,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/perlinNoise:
@@ -11945,6 +12002,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/simplexNoise:
@@ -11955,6 +12015,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/smoothValueNoise:
@@ -11965,10 +12028,16 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.0.1(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.1)(sass@1.102.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   utils/tests:
     dependencies:
+      '@tsparticles/configs':
+        specifier: workspace:*
+        version: link:../configs/dist
       '@tsparticles/engine':
         specifier: workspace:*
         version: link:../../engine/dist
@@ -12009,12 +12078,435 @@ importers:
         specifier: workspace:*
         version: link:../../updaters/size/dist
     devDependencies:
+      '@tsparticles/all':
+        specifier: workspace:*
+        version: link:../../bundles/all/dist
+      '@tsparticles/animation-utils':
+        specifier: workspace:*
+        version: link:../animationUtils/dist
+      '@tsparticles/basic':
+        specifier: workspace:*
+        version: link:../../bundles/basic/dist
+      '@tsparticles/canvas-utils':
+        specifier: workspace:*
+        version: link:../canvasUtils/dist
+      '@tsparticles/confetti':
+        specifier: workspace:*
+        version: link:../../bundles/confetti/dist
+      '@tsparticles/effect-bubble':
+        specifier: workspace:*
+        version: link:../../effects/bubble/dist
+      '@tsparticles/effect-filter':
+        specifier: workspace:*
+        version: link:../../effects/filter/dist
+      '@tsparticles/effect-particles':
+        specifier: workspace:*
+        version: link:../../effects/particles/dist
+      '@tsparticles/effect-shadow':
+        specifier: workspace:*
+        version: link:../../effects/shadow/dist
+      '@tsparticles/effect-trail':
+        specifier: workspace:*
+        version: link:../../effects/trail/dist
+      '@tsparticles/fireworks':
+        specifier: workspace:*
+        version: link:../../bundles/fireworks/dist
+      '@tsparticles/fractal-noise':
+        specifier: workspace:*
+        version: link:../fractalNoise/dist
+      '@tsparticles/interaction-external-attract':
+        specifier: workspace:*
+        version: link:../../interactions/external/attract/dist
+      '@tsparticles/interaction-external-bounce':
+        specifier: workspace:*
+        version: link:../../interactions/external/bounce/dist
+      '@tsparticles/interaction-external-bubble':
+        specifier: workspace:*
+        version: link:../../interactions/external/bubble/dist
+      '@tsparticles/interaction-external-cannon':
+        specifier: workspace:*
+        version: link:../../interactions/external/cannon/dist
+      '@tsparticles/interaction-external-connect':
+        specifier: workspace:*
+        version: link:../../interactions/external/connect/dist
+      '@tsparticles/interaction-external-destroy':
+        specifier: workspace:*
+        version: link:../../interactions/external/destroy/dist
+      '@tsparticles/interaction-external-drag':
+        specifier: workspace:*
+        version: link:../../interactions/external/drag/dist
+      '@tsparticles/interaction-external-grab':
+        specifier: workspace:*
+        version: link:../../interactions/external/grab/dist
+      '@tsparticles/interaction-external-parallax':
+        specifier: workspace:*
+        version: link:../../interactions/external/parallax/dist
+      '@tsparticles/interaction-external-particle':
+        specifier: workspace:*
+        version: link:../../interactions/external/particle/dist
+      '@tsparticles/interaction-external-pause':
+        specifier: workspace:*
+        version: link:../../interactions/external/pause/dist
+      '@tsparticles/interaction-external-pop':
+        specifier: workspace:*
+        version: link:../../interactions/external/pop/dist
+      '@tsparticles/interaction-external-push':
+        specifier: workspace:*
+        version: link:../../interactions/external/push/dist
+      '@tsparticles/interaction-external-remove':
+        specifier: workspace:*
+        version: link:../../interactions/external/remove/dist
+      '@tsparticles/interaction-external-repulse':
+        specifier: workspace:*
+        version: link:../../interactions/external/repulse/dist
+      '@tsparticles/interaction-external-slow':
+        specifier: workspace:*
+        version: link:../../interactions/external/slow/dist
+      '@tsparticles/interaction-external-trail':
+        specifier: workspace:*
+        version: link:../../interactions/external/trail/dist
+      '@tsparticles/interaction-light':
+        specifier: workspace:*
+        version: link:../../interactions/light/dist
+      '@tsparticles/interaction-particles-attract':
+        specifier: workspace:*
+        version: link:../../interactions/particles/attract/dist
+      '@tsparticles/interaction-particles-links':
+        specifier: workspace:*
+        version: link:../../interactions/particles/links/dist
+      '@tsparticles/interaction-particles-repulse':
+        specifier: workspace:*
+        version: link:../../interactions/particles/repulse/dist
+      '@tsparticles/noise-field':
+        specifier: workspace:*
+        version: link:../noiseField/dist
+      '@tsparticles/particles':
+        specifier: workspace:*
+        version: link:../../bundles/particles/dist
+      '@tsparticles/path-branches':
+        specifier: workspace:*
+        version: link:../../paths/branches/dist
+      '@tsparticles/path-brownian':
+        specifier: workspace:*
+        version: link:../../paths/brownian/dist
+      '@tsparticles/path-curl-noise':
+        specifier: workspace:*
+        version: link:../../paths/curlNoise/dist
+      '@tsparticles/path-curves':
+        specifier: workspace:*
+        version: link:../../paths/curves/dist
+      '@tsparticles/path-fractal-noise':
+        specifier: workspace:*
+        version: link:../../paths/fractalNoise/dist
+      '@tsparticles/path-grid':
+        specifier: workspace:*
+        version: link:../../paths/grid/dist
+      '@tsparticles/path-levy':
+        specifier: workspace:*
+        version: link:../../paths/levy/dist
+      '@tsparticles/path-perlin-noise':
+        specifier: workspace:*
+        version: link:../../paths/perlinNoise/dist
+      '@tsparticles/path-polygon':
+        specifier: workspace:*
+        version: link:../../paths/polygon/dist
+      '@tsparticles/path-random':
+        specifier: workspace:*
+        version: link:../../paths/random/dist
+      '@tsparticles/path-simplex-noise':
+        specifier: workspace:*
+        version: link:../../paths/simplexNoise/dist
+      '@tsparticles/path-spiral':
+        specifier: workspace:*
+        version: link:../../paths/spiral/dist
+      '@tsparticles/path-svg':
+        specifier: workspace:*
+        version: link:../../paths/svg/dist
+      '@tsparticles/path-utils':
+        specifier: workspace:*
+        version: link:../pathUtils/dist
+      '@tsparticles/path-zig-zag':
+        specifier: workspace:*
+        version: link:../../paths/zigzag/dist
+      '@tsparticles/perlin-noise':
+        specifier: workspace:*
+        version: link:../perlinNoise/dist
+      '@tsparticles/pjs':
+        specifier: workspace:*
+        version: link:../../bundles/pjs/dist
+      '@tsparticles/plugin-blend':
+        specifier: workspace:*
+        version: link:../../plugins/blend/dist
+      '@tsparticles/plugin-canvas-mask':
+        specifier: workspace:*
+        version: link:../../plugins/canvasMask/dist
+      '@tsparticles/plugin-easing-back':
+        specifier: workspace:*
+        version: link:../../plugins/easings/back/dist
+      '@tsparticles/plugin-easing-bounce':
+        specifier: workspace:*
+        version: link:../../plugins/easings/bounce/dist
+      '@tsparticles/plugin-easing-circ':
+        specifier: workspace:*
+        version: link:../../plugins/easings/circ/dist
+      '@tsparticles/plugin-easing-cubic':
+        specifier: workspace:*
+        version: link:../../plugins/easings/cubic/dist
+      '@tsparticles/plugin-easing-elastic':
+        specifier: workspace:*
+        version: link:../../plugins/easings/elastic/dist
+      '@tsparticles/plugin-easing-expo':
+        specifier: workspace:*
+        version: link:../../plugins/easings/expo/dist
+      '@tsparticles/plugin-easing-gaussian':
+        specifier: workspace:*
+        version: link:../../plugins/easings/gaussian/dist
+      '@tsparticles/plugin-easing-linear':
+        specifier: workspace:*
+        version: link:../../plugins/easings/linear/dist
+      '@tsparticles/plugin-easing-quad':
+        specifier: workspace:*
+        version: link:../../plugins/easings/quad/dist
+      '@tsparticles/plugin-easing-quart':
+        specifier: workspace:*
+        version: link:../../plugins/easings/quart/dist
+      '@tsparticles/plugin-easing-quint':
+        specifier: workspace:*
+        version: link:../../plugins/easings/quint/dist
+      '@tsparticles/plugin-easing-sigmoid':
+        specifier: workspace:*
+        version: link:../../plugins/easings/sigmoid/dist
+      '@tsparticles/plugin-easing-sine':
+        specifier: workspace:*
+        version: link:../../plugins/easings/sine/dist
+      '@tsparticles/plugin-easing-smoothstep':
+        specifier: workspace:*
+        version: link:../../plugins/easings/smoothstep/dist
+      '@tsparticles/plugin-emitters-shape-canvas':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/canvas/dist
+      '@tsparticles/plugin-emitters-shape-circle':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/circle/dist
+      '@tsparticles/plugin-emitters-shape-path':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/path/dist
+      '@tsparticles/plugin-emitters-shape-polygon':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/polygon/dist
+      '@tsparticles/plugin-export-image':
+        specifier: workspace:*
+        version: link:../../plugins/exports/image/dist
+      '@tsparticles/plugin-export-json':
+        specifier: workspace:*
+        version: link:../../plugins/exports/json/dist
+      '@tsparticles/plugin-export-video':
+        specifier: workspace:*
+        version: link:../../plugins/exports/video/dist
+      '@tsparticles/plugin-infection':
+        specifier: workspace:*
+        version: link:../../plugins/infection/dist
+      '@tsparticles/plugin-manual-particles':
+        specifier: workspace:*
+        version: link:../../plugins/manualParticles/dist
+      '@tsparticles/plugin-motion':
+        specifier: workspace:*
+        version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-poisson-disc':
+        specifier: workspace:*
+        version: link:../../plugins/poisson/dist
+      '@tsparticles/plugin-polygon-mask':
+        specifier: workspace:*
+        version: link:../../plugins/polygonMask/dist
+      '@tsparticles/plugin-responsive':
+        specifier: workspace:*
+        version: link:../../plugins/responsive/dist
+      '@tsparticles/plugin-sounds':
+        specifier: workspace:*
+        version: link:../../plugins/sounds/dist
+      '@tsparticles/plugin-themes':
+        specifier: workspace:*
+        version: link:../../plugins/themes/dist
+      '@tsparticles/plugin-trail':
+        specifier: workspace:*
+        version: link:../../plugins/trail/dist
+      '@tsparticles/plugin-zoom':
+        specifier: workspace:*
+        version: link:../../plugins/zoom/dist
+      '@tsparticles/preset-ambient':
+        specifier: workspace:*
+        version: link:../../presets/ambient/dist
+      '@tsparticles/preset-big-circles':
+        specifier: workspace:*
+        version: link:../../presets/bigCircles/dist
+      '@tsparticles/preset-bubbles':
+        specifier: workspace:*
+        version: link:../../presets/bubbles/dist
+      '@tsparticles/preset-confetti':
+        specifier: workspace:*
+        version: link:../../presets/confetti/dist
+      '@tsparticles/preset-confetti-cannon':
+        specifier: workspace:*
+        version: link:../../presets/confettiCannon/dist
+      '@tsparticles/preset-confetti-explosions':
+        specifier: workspace:*
+        version: link:../../presets/confettiExplosions/dist
+      '@tsparticles/preset-confetti-falling':
+        specifier: workspace:*
+        version: link:../../presets/confettiFalling/dist
+      '@tsparticles/preset-confetti-parade':
+        specifier: workspace:*
+        version: link:../../presets/confettiParade/dist
+      '@tsparticles/preset-fire':
+        specifier: workspace:*
+        version: link:../../presets/fire/dist
+      '@tsparticles/preset-firefly':
+        specifier: workspace:*
+        version: link:../../presets/firefly/dist
+      '@tsparticles/preset-fireworks':
+        specifier: workspace:*
+        version: link:../../presets/fireworks/dist
+      '@tsparticles/preset-fountain':
+        specifier: workspace:*
+        version: link:../../presets/fountain/dist
+      '@tsparticles/preset-hyperspace':
+        specifier: workspace:*
+        version: link:../../presets/hyperspace/dist
+      '@tsparticles/preset-links':
+        specifier: workspace:*
+        version: link:../../presets/links/dist
+      '@tsparticles/preset-matrix':
+        specifier: workspace:*
+        version: link:../../presets/matrix/dist
+      '@tsparticles/preset-meteors':
+        specifier: workspace:*
+        version: link:../../presets/meteors/dist
+      '@tsparticles/preset-party':
+        specifier: workspace:*
+        version: link:../../presets/party/dist
+      '@tsparticles/preset-sea-anemone':
+        specifier: workspace:*
+        version: link:../../presets/seaAnemone/dist
+      '@tsparticles/preset-snow':
+        specifier: workspace:*
+        version: link:../../presets/snow/dist
+      '@tsparticles/preset-squares':
+        specifier: workspace:*
+        version: link:../../presets/squares/dist
+      '@tsparticles/preset-stars':
+        specifier: workspace:*
+        version: link:../../presets/stars/dist
+      '@tsparticles/preset-triangles':
+        specifier: workspace:*
+        version: link:../../presets/triangles/dist
+      '@tsparticles/ribbons':
+        specifier: workspace:*
+        version: link:../../bundles/ribbons/dist
+      '@tsparticles/shape-arrow':
+        specifier: workspace:*
+        version: link:../../shapes/arrow/dist
+      '@tsparticles/shape-cards':
+        specifier: workspace:*
+        version: link:../../shapes/cards/dist
+      '@tsparticles/shape-cog':
+        specifier: workspace:*
+        version: link:../../shapes/cog/dist
       '@tsparticles/shape-emoji':
         specifier: workspace:*
         version: link:../../shapes/emoji/dist
+      '@tsparticles/shape-gif':
+        specifier: workspace:*
+        version: link:../../shapes/gif/dist
+      '@tsparticles/shape-heart':
+        specifier: workspace:*
+        version: link:../../shapes/heart/dist
+      '@tsparticles/shape-image':
+        specifier: workspace:*
+        version: link:../../shapes/image/dist
+      '@tsparticles/shape-infinity':
+        specifier: workspace:*
+        version: link:../../shapes/infinity/dist
+      '@tsparticles/shape-line':
+        specifier: workspace:*
+        version: link:../../shapes/line/dist
+      '@tsparticles/shape-matrix':
+        specifier: workspace:*
+        version: link:../../shapes/matrix/dist
+      '@tsparticles/shape-path':
+        specifier: workspace:*
+        version: link:../../shapes/path/dist
+      '@tsparticles/shape-polygon':
+        specifier: workspace:*
+        version: link:../../shapes/polygon/dist
+      '@tsparticles/shape-ribbon':
+        specifier: workspace:*
+        version: link:../../shapes/ribbon/dist
+      '@tsparticles/shape-rounded-polygon':
+        specifier: workspace:*
+        version: link:../../shapes/rounded-polygon/dist
+      '@tsparticles/shape-rounded-rect':
+        specifier: workspace:*
+        version: link:../../shapes/rounded-rect/dist
+      '@tsparticles/shape-spiral':
+        specifier: workspace:*
+        version: link:../../shapes/spiral/dist
+      '@tsparticles/shape-square':
+        specifier: workspace:*
+        version: link:../../shapes/square/dist
+      '@tsparticles/shape-squircle':
+        specifier: workspace:*
+        version: link:../../shapes/squircle/dist
+      '@tsparticles/shape-star':
+        specifier: workspace:*
+        version: link:../../shapes/star/dist
+      '@tsparticles/shape-text':
+        specifier: workspace:*
+        version: link:../../shapes/text/dist
+      '@tsparticles/simplex-noise':
+        specifier: workspace:*
+        version: link:../simplexNoise/dist
       '@tsparticles/slim':
         specifier: workspace:*
         version: link:../../bundles/slim/dist
+      '@tsparticles/smooth-value-noise':
+        specifier: workspace:*
+        version: link:../smoothValueNoise/dist
+      '@tsparticles/updater-destroy':
+        specifier: workspace:*
+        version: link:../../updaters/destroy/dist
+      '@tsparticles/updater-gradient':
+        specifier: workspace:*
+        version: link:../../updaters/gradient/dist
+      '@tsparticles/updater-life':
+        specifier: workspace:*
+        version: link:../../updaters/life/dist
+      '@tsparticles/updater-opacity':
+        specifier: workspace:*
+        version: link:../../updaters/opacity/dist
+      '@tsparticles/updater-orbit':
+        specifier: workspace:*
+        version: link:../../updaters/orbit/dist
+      '@tsparticles/updater-out-modes':
+        specifier: workspace:*
+        version: link:../../updaters/outModes/dist
+      '@tsparticles/updater-paint':
+        specifier: workspace:*
+        version: link:../../updaters/paint/dist
+      '@tsparticles/updater-roll':
+        specifier: workspace:*
+        version: link:../../updaters/roll/dist
+      '@tsparticles/updater-rotate':
+        specifier: workspace:*
+        version: link:../../updaters/rotate/dist
+      '@tsparticles/updater-tilt':
+        specifier: workspace:*
+        version: link:../../updaters/tilt/dist
+      '@tsparticles/updater-twinkle':
+        specifier: workspace:*
+        version: link:../../updaters/twinkle/dist
+      '@tsparticles/updater-wobble':
+        specifier: workspace:*
+        version: link:../../updaters/wobble/dist
       '@types/jsdom':
         specifier: ^30.0.0
         version: 30.0.0

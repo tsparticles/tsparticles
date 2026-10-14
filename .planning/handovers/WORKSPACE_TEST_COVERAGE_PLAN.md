@@ -2,11 +2,39 @@
 
 ## Status
 
-**Planned** — linked from `4.5.0_PLAN.md` as Feature E. Extends the coverage work started in
+**Waves 1–4 implemented — 4.5.0 coverage gate met. Waves 5–6 (CLI + wrappers) deferred to 4.6.0.**
+This plan is linked from `4.5.0_PLAN.md` as Feature E. Extends the coverage work started in
 Feature D (`ENGINE_PARTICLE_TESTS_PLAN.md`, done) from `ParticlesManager` add/remove to the
 workspace-wide, currently-untested surface: the engine internals, every shape/updater/interaction
 package, deterministic math libraries, the configs/presets catalogs, the CLI command tree and the
 framework wrappers.
+
+### Status update — coverage waves (current session)
+
+- **Wave 1 (P0) — DONE:** `OptionsLoad.ts` (37), `EngineUtils.ts` (41), `ContainerLifecycle.ts` (5),
+  `UpdaterMath.ts` (10) in `@tsparticles/tests`.
+- **Wave 2 (P0/P1) — DONE:** `Configs.ts` (3, 201 configs), `Presets.ts` (22 presets), bundles in 5
+  files (`Bundles.ts`, `BundlesParticles.ts`, `BundlesConfetti.ts`, `BundlesFireworks.ts`,
+  `BundlesRibbons.ts`); plus **22 package-local** noise/value/easing suites (own `vitest.config.ts`,
+  `src/index.test.ts`, `test` script, `vitest` devDep) — all green standalone and type-clean under
+  `build`.
+- **Wave 3 (P1/P2) — DONE:** `GifFrames.ts` (2), `Updaters.ts` (14), `Effects.ts` (12),
+  `Exports.ts` (5), `ShapeGeometry.ts` (46, 20 shapes), `InteractionGeometry.ts` (21, 21
+  interactions), `CollisionResolve.ts` (8), `PathGenerators.ts` (17, 14 generators).
+- **Wave 4 (P2) — DONE:** `PluginOptions.ts` (19) under `@tsparticles/tests` (consolidated: exported
+  option classes asserted directly for `absorbers`/`zoom`; the rest asserted through
+  `container.actualOptions` because their option classes are not package-exported), and
+  `EmitterShapes.ts` (16) covering all 5 emitter shape generators' `draw()`/`randomPosition()`/
+  `resize()` contracts via `pluginManager.emitterShapeManager.getShapeGenerator(name)`.
+- **Wave 5 (P3) / Wave 6 (P3) — DEFERRED to 4.6.0** per `4.5.0_PLAN.md` (CLI command tree, framework
+  wrappers). File plan carried over unchanged; no false-green target may remain when they land.
+- **Coverage gate:** `@tsparticles/tests` authoritative full suite **39 files / 556 tests green**;
+  `build:ci` (lint:ci + prettify:ci + test:ci) green. The v8 coverage summary only instruments
+  `utils/tests/src/Fixture/*` (workspace packages resolve to built `dist`), so the delta is tracked
+  by file/test counts and the package-local runs, not the `@tsparticles/tests` coverage percentage.
+- **Assertion audit (post-review):** the 14 easing suites and `UpdaterMath.ts` originally used
+  over-loose `closeTo(expected, 5|9)` deltas (effectively non-assertions); values were measured and
+  the deltas tightened to `1e-9`. No test was skipped or weakened.
 
 Design goal: additive, deterministic, workspace-aware. No visual/E2E tests, no timing-based
 assertions, no mocking of engine internals that are already reachable through the public API.
@@ -379,6 +407,15 @@ needs its own seed fixture.
 
 ## 6. Wave 4 — Plugins option loaders + emittersShapes (P2)
 
+> **Status: DONE.** Shipped as the consolidated `PluginOptions.ts` (19 tests) + `EmitterShapes.ts`
+> (16 tests) in `@tsparticles/tests`. Most plugin option classes are **not** exported from their
+> package index (only `absorbers` and `zoom` export their classes), so the loader surface is pinned
+> through `container.actualOptions` for the thin plugins, with direct class defaults/merge for
+> `absorbers`/`zoom`. Emitter shape generators are reached via
+> `tsParticles.pluginManager.emitterShapeManager.getShapeGenerator(name)` (the `ShapeManager` itself
+> is not exported), and each shape's `draw()`/`randomPosition()`/`resize()` contract is asserted
+> against a recording 2D-context stub.
+
 Mirror the engine option-`load()` discipline for the plugin option classes:
 
 | Plugin | Test focus |
@@ -497,7 +534,8 @@ at minimum init+cleanup.
 | `Effects.ts` | **New** | 5 effect packages options/application math |
 | `PathGenerators.ts` | **New** | 15 path generator determinism snapshots |
 | `Exports.ts` | **New** | image/video/json export structural smoke |
-| `PluginOptions.ts` | **New** | thin plugin option `load()` coverage (consolidated) |
+| `PluginOptions.ts` | **New** | plugin option `load()` coverage (consolidated; `absorbers`/`zoom` classes direct, rest via `container.actualOptions`) |
+| `EmitterShapes.ts` | **New** | 5 emitter shape generators: `draw()`/`randomPosition()`/`resize()` contract via `emitterShapeManager` |
 
 ### 9.2 Package-local (in owning projects, "where needed elsewhere")
 
@@ -517,7 +555,7 @@ at minimum init+cleanup.
 | --------- | -------- | ---------- |
 | **M1 (P0)** | Waves 1–2: engine internals, configs sweep, noise/value libs, easings | 4.5.0 core gate |
 | **M2 (P1)** | Wave 3: shapes, updaters, interactions, effects, paths, exports (deterministic subset) | 4.5.0 core gate |
-| **M3 (P2)** | Wave 4: plugin option loaders + emittersShapes | 4.5.0 gate (last coverage wave) |
+| **M3 (P2)** | Wave 4: plugin option loaders + emittersShapes — **DONE** (`PluginOptions.ts` 19 + `EmitterShapes.ts` 16) | 4.5.0 gate (last coverage wave) |
 | **M4 (P3)** | Waves 5–6: CLI + wrappers; **no false-green target may remain** | 4.5.0 if feasible, else promoted to 4.6.0 with this file plan carried over |
 
 Each milestone is independently shippable; a milestone that fails its gate does not block the ones
@@ -539,6 +577,10 @@ before it.
 - Coverage: `pnpm exec vitest --coverage` on `@tsparticles/tests` — report per-area delta vs the
   Phase-0 baseline; targets: `engine/src/Options/Classes/*` > 80% branch; global `@tsparticles/tests`
   file+function coverage above baseline; feature-package coverage reported per package touched.
+  **Note:** with the current v8 config, the emitted coverage summary only lists
+  `utils/tests/src/Fixture/*` because workspace packages resolve to their built `dist` (not `src`),
+  so the workspace delta is measured by file/test counts here and by the package-local `test`
+  scripts (Waves 1–2) rather than the `@tsparticles/tests` coverage percentage.
 
 Behavioral sanity (manual):
 
@@ -566,8 +608,10 @@ Behavioral sanity (manual):
 5. All 22 presets and 8 bundles have registration + load smoke tests.
 6. Shapes (21, incl. gif frames), updaters (13), interactions (21), effects (5), paths (15) and
    exports (3) have deterministic spot coverage with exact values on the pure-math hotspots.
-7. Plugin option loaders (Wave 4) have `load()` coverage matching the engine pattern; emittersShapes
-   shapes' `draw()` contract covered.
+7. Plugin option loaders (Wave 4) have `load()` coverage matching the engine pattern (direct class
+   defaults/merge where exported — `absorbers`, `zoom`; `container.actualOptions` resolution
+   otherwise); emittersShapes' 5 shapes' `draw()`/`randomPosition()`/`resize()` contracts covered.
+   **Met** by `PluginOptions.ts` + `EmitterShapes.ts`.
 8. CLI: no false-green; every one of the 25 projects runs ≥1 real test; `clear`/`distfiles`/
    `prettier`/`tsc` pipeline commands tested against a temp-dir fixture.
 9. Wrappers: ≥1 runnable test per wrapper (23), with the shared contract (init args, cleanup
