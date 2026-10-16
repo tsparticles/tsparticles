@@ -6,6 +6,8 @@ import {
   type RecursivePartial,
   getRandom,
   half,
+  lengthOffset,
+  minIndex,
   percentDenominator,
 } from "@tsparticles/engine";
 import type { CanvasPixelData } from "@tsparticles/canvas-utils";
@@ -99,9 +101,6 @@ export function addParticlesFromCanvasPixels(
  * @returns the shuffled array
  */
 function shuffle<T>(array: T[]): T[] {
-  const lengthOffset = 1,
-    minIndex = 0;
-
   for (let currentIndex = array.length - lengthOffset; currentIndex >= minIndex; currentIndex--) {
     const randomIndex = Math.floor(getRandom() * currentIndex),
       currentItem = array[currentIndex],

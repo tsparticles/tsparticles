@@ -1,4 +1,4 @@
-import { type GameState, makeMove } from "./game-state";
+import type { GameState } from "./game-state";
 import { fireConfetti } from "./confetti-effect";
 
 const boardEl = document.getElementById("board") as HTMLDivElement;

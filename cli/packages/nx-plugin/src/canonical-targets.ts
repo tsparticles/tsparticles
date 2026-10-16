@@ -42,6 +42,11 @@ export const tsParticlesAliasDefinitions: readonly TsParticlesAliasDefinition[] 
     description: "Canonical tsParticles Rollup bundle target.",
   },
   {
+    alias: "bundle:rolldown",
+    candidates: ["build:bundle:rolldown"],
+    description: "Canonical tsParticles Rolldown bundle target.",
+  },
+  {
     alias: "distfiles",
     candidates: ["build:distfiles"],
     description: "Canonical tsParticles dist files target.",

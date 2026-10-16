@@ -1,6 +1,6 @@
 "use client";
 
-import NextParticles from "@tsparticles/nextjs";
+import { NextParticles } from "@tsparticles/nextjs";
 import type { ISourceOptions } from "@tsparticles/engine";
 import { ParticlesProvider } from "./providers";
 

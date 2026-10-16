@@ -9,6 +9,7 @@ import {
 } from "@tsparticles/engine";
 import { AbsorberLife } from "./AbsorberLife.js";
 import { AbsorberSize } from "./AbsorberSize.js";
+import { AbsorberSplit } from "./AbsorberSplit.js";
 import type { IAbsorber } from "../Interfaces/IAbsorber.js";
 
 /**
@@ -51,6 +52,10 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
    * The absorber size options
    */
   size;
+  /**
+   * The absorber split options
+   */
+  split;
 
   constructor() {
     this.color = new OptionsColor();
@@ -61,6 +66,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     this.orbits = false;
     this.life = new AbsorberLife();
     this.size = new AbsorberSize();
+    this.split = new AbsorberSplit();
   }
 
   /**
@@ -100,6 +106,10 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
 
     if (data.size !== undefined) {
       this.size.load(data.size);
+    }
+
+    if (data.split !== undefined) {
+      this.split.load(data.split);
     }
 
     loadProperty(this, "destroy", data.destroy);

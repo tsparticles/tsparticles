@@ -1,5 +1,12 @@
 /* eslint-disable no-console */
-const errorPrefix = "tsParticles - Error";
+const errorPrefix = "tsParticles - Error",
+  /**
+   * Matches the production error format produced by {@link getErrorMessage},
+   * e.g. `[tsParticles Error TSP-1001] https://particles.js.org/errors/#TSP-1001`.
+   */
+  codedErrorPattern = /^\[tsParticles Error (TSP-\d+)\]\s*/,
+  fullMatchIndex = 0,
+  codeIndex = 1;
 
 /** Logger interface for tsParticles */
 export interface ILogger {
@@ -42,6 +49,19 @@ const wrap =
     debug: wrap(console.debug),
 
     error: (message?: unknown, ...optionalParams: unknown[]) => {
+      if (typeof message === "string") {
+        const match = codedErrorPattern.exec(message);
+
+        if (match?.[codeIndex]) {
+          console.error(
+            `tsParticles - ${match[codeIndex]} - ${message.slice(match[fullMatchIndex].length)}`,
+            ...optionalParams,
+          );
+
+          return;
+        }
+      }
+
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       console.error(`${errorPrefix} - ${message}`, ...optionalParams);
     },

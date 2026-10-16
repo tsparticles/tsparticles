@@ -83,14 +83,14 @@
   ],
   "jsdelivr": "tsparticles.preset.confettiFalling.min.js",
   "unpkg": "tsparticles.preset.confettiFalling.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "umd": "./umd/index.js",
@@ -98,7 +98,7 @@
     },
     "./lazy": {
       "types": "./types/index.lazy.d.ts",
-      "browser": "./browser/index.lazy.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.lazy.js",
       "require": "./cjs/index.lazy.js",
       "default": "./cjs/index.lazy.js"

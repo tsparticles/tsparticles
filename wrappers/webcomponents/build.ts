@@ -5,7 +5,7 @@ import { InputOptions, OutputOptions, rollup, RollupOutput } from "rollup";
 const typescript = require("@rollup/plugin-typescript");
 const resolve = require("@rollup/plugin-node-resolve");
 
-const ENTRY_FILE = `src/Particles.ts`;
+const ENTRY_FILE = `src/web-particles.ts`;
 
 const rollupConfig = {
   inputOptions: {
@@ -15,7 +15,12 @@ const rollupConfig = {
       "tsparticles",
     ],
     plugins: [
-      typescript(),
+      typescript({
+        declaration: true,
+        declarationDir: "dist",
+        declarationMap: false,
+        rootDir: "src",
+      }),
       resolve({ preferBuiltins: false }),
     ],
     onwarn(warning: { code: string; message: string }) {

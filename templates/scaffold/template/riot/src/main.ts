@@ -1,5 +1,9 @@
-import { mount } from "riot";
+import { component } from "riot";
 import App from "./app.riot";
 import "./style.css";
 
-mount(App, "#app");
+const appElement = document.getElementById("app");
+
+if (appElement) {
+  component(App)(appElement);
+}

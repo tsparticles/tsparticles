@@ -12,13 +12,13 @@ import {
   getDistance,
   isInArray,
   loadOptionProperty,
+  minRadius,
 } from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
 import { SlowModifier } from "./SlowModifier.js";
 
-const slowMode = "slow",
-  minRadius = 0;
+const slowMode = "slow";
 
 /**
  * Particle slow manager
@@ -56,7 +56,11 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
       mod = new SlowModifier();
 
       this.#modifiers.set(particle, mod);
+    }
 
+    if (particle.getModifier(mod.id) !== mod) {
+      /* A pooled particle is recycled after destroy() clears its modifiers, so the
+       * cached modifier must be re-attached to keep applying the slow speed factor. */
       particle.addModifier(mod);
     }
 

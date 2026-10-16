@@ -1,6 +1,5 @@
 import { Component, State, h, type JSX } from "@stencil/core";
 import { confetti } from "@tsparticles/confetti";
-import type { Engine } from "@tsparticles/engine";
 
 function randomInRange(min: number, max: number): number {
   return Math.random() * (max - min) + min;
@@ -14,8 +13,6 @@ function randomInRange(min: number, max: number): number {
 export class AppHome {
   @State()
   private mode = "cannon";
-
-  private async particlesInit(engine: Engine): Promise<void> {}
 
   private fireConfetti(): void {
     switch (this.mode) {
@@ -56,17 +53,18 @@ export class AppHome {
         <h1>Confetti!</h1>
         <div class="controls">
           <button onClick={this.fireConfetti.bind(this)}>Fire Confetti</button>
-          <select value={this.mode} onChange={this.handleModeChange.bind(this)}>
-            <option value="cannon">Cannon</option>
-            <option value="waterfall">Waterfall</option>
-            <option value="random">Random</option>
+          <select onChange={this.handleModeChange.bind(this)}>
+            <option value="cannon" selected={this.mode === "cannon"}>
+              Cannon
+            </option>
+            <option value="waterfall" selected={this.mode === "waterfall"}>
+              Waterfall
+            </option>
+            <option value="random" selected={this.mode === "random"}>
+              Random
+            </option>
           </select>
         </div>
-        <stencil-particles
-          container-id="tsparticles"
-          init={this.particlesInit.bind(this)}
-          options={{}}
-        />
       </div>
     );
   }

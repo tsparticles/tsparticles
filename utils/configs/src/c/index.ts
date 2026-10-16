@@ -6,6 +6,7 @@ import clickPause from "./clickPause.js";
 import collisionsAbsorb from "./collisionsAbsorb.js";
 import collisionsBounce from "./collisionsBounce.js";
 import collisionsDestroy from "./collisionsDestroy.js";
+import collisionsFluid from "./collisionsFluid.js";
 import colorAnimation from "./colorAnimation.js";
 import colors from "./colors.js";
 import confettiExplosions from "./confettiExplosions.js";
@@ -21,6 +22,7 @@ export default {
   collisionsAbsorb,
   collisionsBounce,
   collisionsDestroy,
+  collisionsFluid,
   colorAnimation,
   colors,
   confettiExplosions,

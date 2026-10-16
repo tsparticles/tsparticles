@@ -55,6 +55,7 @@ tsparticles-build
 tsparticles-build --clean --lint --tsc
 tsparticles-build --bundle-webpack
 tsparticles-build --bundle-rollup
+tsparticles-build --bundle-rolldown
 ```
 
 ### Verify in this workspace

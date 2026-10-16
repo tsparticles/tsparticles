@@ -62,10 +62,7 @@ module('Integration | Component | particles', function (hooks) {
     this.url = 'https://example.com/config.json';
     await render(hbs`<Particles @url={{this.url}}/>`);
 
-    assert.true(
-      loadSpy.calledOnce,
-      'tsparticles engine load has been called',
-    );
+    assert.true(loadSpy.calledOnce, 'tsparticles engine load has been called');
   });
 
   test('calls the loaded callback', async function (this: Context, assert) {

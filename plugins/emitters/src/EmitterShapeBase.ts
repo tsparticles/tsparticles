@@ -40,6 +40,14 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
   }
 
   /**
+   * Draws the shape geometry into the canvas current path
+   * @param _context - the canvas 2d context used for drawing
+   */
+  draw(_context: OffscreenCanvasRenderingContext2D): void {
+    /* No-op: keeps legacy EmitterShapeBase subclasses source-compatible. */
+  }
+
+  /**
    * Updates the shape position and size
    * @param position - the new position
    * @param size - the new size

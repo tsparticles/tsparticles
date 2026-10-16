@@ -78,7 +78,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"version": "node ../../scripts/resolve-dist-package.cjs && git add package.dist.json",
-		"prepack": "pnpm run build"
+		"prepack": "pnpm run build",
+		"test": "vitest run --config vitest.config.ts",
+		"test:ci": "vitest run --config vitest.config.ts"
 	},
 	"exports": {
 		".": {
@@ -100,6 +102,7 @@
 		"svelte": "^4 || ^5"
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.70.2",
 		"@sveltejs/package": "^2.5.8",
@@ -107,17 +110,19 @@
 		"@tsparticles/engine": "workspace:*",
 		"@typescript-eslint/eslint-plugin": "^8.66.0",
 		"@typescript-eslint/parser": "^8.66.0",
-		"eslint": "^10.9.1",
+		"eslint": "^10.12.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.22.0",
-		"prettier": "^3.9.6",
+		"jsdom": "^30.0.1",
+		"prettier": "^3.9.10",
 		"prettier-plugin-svelte": "^4.1.1",
 		"publint": "^0.3.23",
 		"svelte": "^5.56.8",
 		"svelte-check": "^4.7.5",
 		"tslib": "^2.8.1",
 		"typescript": "^6.0.3",
-		"vite": "^8.2.2"
+		"vite": "^8.2.2",
+		"vitest": "^5.0.0"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

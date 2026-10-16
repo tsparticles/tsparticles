@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { NgParticlesService } from "@tsparticles/angular";
-import { loadParticles } from "@tsparticles/particles";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
@@ -31,8 +32,8 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    void this.ngParticlesService.init(async (engine) => {
-      await loadParticles(engine);
+    void this.ngParticlesService.init(async () => {
+      await particles.init();
     });
   }
 }

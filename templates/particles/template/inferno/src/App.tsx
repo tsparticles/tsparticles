@@ -1,9 +1,12 @@
 import { Component } from "inferno";
-import Particles from "@tsparticles/inferno";
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
+
+async function init(): Promise<void> {
+  await particles.init();
+}
 
 const options: ISourceOptions = {
   background: { color: { value: "#0d0d2b" } },
@@ -25,18 +28,14 @@ const options: ISourceOptions = {
 };
 
 export default class App extends Component {
-  componentDidMount() {
-    void loadParticles(tsParticles);
-  }
-
   render() {
     return (
-      <>
+      <ParticlesProvider init={init}>
         <div id="app">
           <h1>tsParticles</h1>
         </div>
         <Particles id="tsparticles" options={options} />
-      </>
+      </ParticlesProvider>
     );
   }
 }

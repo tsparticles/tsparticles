@@ -9,10 +9,10 @@
     </div>
     <div class="turn">{ statusText }</div>
     <div class="board">
-      <div each="{ cell, i in state.board }"
-        class="cell{ cell ? ' taken' : '' }{ state.winLine && state.winLine.includes(i) ? ' win' : '' }"
-        onclick="{ () => handleMove(i) }">
-        { cell }
+      <div each="{ square in state.squares }"
+        class="cell{ square.value ? ' taken' : '' }{ state.winLine && state.winLine.includes(square.index) ? ' win' : '' }"
+        onclick="{ () => handleMove(square.index) }">
+        { square.value }
       </div>
     </div>
     <button class="reset-btn" onclick="{ handleReset }">New Game</button>
@@ -36,6 +36,9 @@
         winner: null,
         winLine: null,
         scores: { X: 0, O: 0, draw: 0 },
+        get squares() {
+          return this.board.map((value, index) => ({ value, index }));
+        },
       },
       get statusText() {
         const w = this.state.winner;

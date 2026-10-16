@@ -1,5 +1,5 @@
 import { Component } from "inferno";
-import Particles, { initParticlesEngine } from "@tsparticles/inferno";
+import { Particles, initParticlesEngine } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";

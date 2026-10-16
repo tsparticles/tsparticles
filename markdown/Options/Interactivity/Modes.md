@@ -82,10 +82,11 @@ Slows down particles near the cursor.
 
 These modes are available when the corresponding plugin package is loaded.
 
-| Key        | Type               | Notes                                                                                          |
-| ---------- | ------------------ | ---------------------------------------------------------------------------------------------- |
-| `emitter`  | `object` / `array` | See [Emitters plugin](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)   |
-| `absorber` | `object` / `array` | See [Absorbers plugin](https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers) |
+| Key              | Type               | Notes                                                                                          |
+| ---------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
+| `emitter`        | `object` / `array` | See [Emitters plugin](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)   |
+| `absorber`       | `object` / `array` | See [Absorbers plugin](https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers) |
+| `absorber-split` | -                  | Splits the absorber under the cursor, see [Absorbers plugin](../Plugins/Absorbers.md)          |
 
 ## Quick example
 

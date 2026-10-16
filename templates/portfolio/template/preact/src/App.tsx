@@ -31,7 +31,7 @@ const skills = [
   { name: "CSS", pct: 88 },
 ];
 
-export function App() {
+export default function App() {
   function handleSubmit(e: h.JSX.TargetedEvent<HTMLFormElement>) {
     e.preventDefault();
     alert("Message sent! (demo)");

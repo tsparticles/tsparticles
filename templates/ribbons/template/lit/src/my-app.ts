@@ -1,8 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { initParticlesEngine } from "@tsparticles/lit";
 import { ribbons } from "@tsparticles/ribbons";
-import { confetti } from "@tsparticles/confetti";
 
 @customElement("my-app")
 export class MyApp extends LitElement {

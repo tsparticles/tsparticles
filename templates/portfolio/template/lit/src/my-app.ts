@@ -1,10 +1,10 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { ParticlesBase } from "@tsparticles/lit";
+import { initParticlesEngine } from "@tsparticles/lit";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
-import style from "./style.css" with { type: "css" };
+import style from "./style.css?inline";
 
 const keys = Object.keys(configs);
 const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
@@ -15,7 +15,7 @@ const options: ISourceOptions = {
 
 @customElement("my-app")
 export class MyApp extends LitElement {
-  static styles = [style];
+  static styles = [unsafeCSS(style)];
 
   @state()
   private projects = [
@@ -36,7 +36,7 @@ export class MyApp extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    void ParticlesBase.init(async (engine) => {
+    void initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     });
   }

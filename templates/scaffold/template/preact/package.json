@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "preact": "^10.19.3",
-    "@tsparticles/preact": "^4.1.3"
+    "@tsparticles/preact": "^4.4.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.8.1",
     "typescript": "^5.7.2",
-    "vite": "^6.0.0"
+    "vite": "^8.3.1"
   }
 }

@@ -1,5 +1,5 @@
-import { packageCatalog } from "../registry/packages.js";
 import type { PackageCategory, PackageInfo } from "../types.js";
+import { packageCatalog } from "../registry/packages.js";
 
 const categories: PackageCategory[] = [
   "bundle",
@@ -17,15 +17,21 @@ const categories: PackageCategory[] = [
   "preset",
 ];
 
+/**
+ *
+ * @param filters
+ * @param filters.category
+ * @param filters.query
+ */
 export function listPackages(filters?: { category?: string; query?: string }): {
-  packages: Array<{
-    name: string;
-    description: string;
-    category: string;
-    loadFunction?: string;
-  }>;
-  total: number;
   categories: string[];
+  packages: {
+    category: string;
+    description: string;
+    loadFunction?: string;
+    name: string;
+  }[];
+  total: number;
 } {
   let results: PackageInfo[];
 
@@ -44,7 +50,7 @@ export function listPackages(filters?: { category?: string; query?: string }): {
   } else {
     results = [];
     for (const cat of categories) {
-      results.push(...(packageCatalog.byCategory[cat] || []));
+      results.push(...packageCatalog.byCategory[cat]);
     }
   }
 
@@ -56,13 +62,13 @@ export function listPackages(filters?: { category?: string; query?: string }): {
   results.sort((a, b) => a.name.localeCompare(b.name));
 
   return {
+    categories,
     packages: results.map(p => ({
-      name: p.name,
-      description: p.description,
       category: p.category,
+      description: p.description,
       loadFunction: p.loadFunction,
+      name: p.name,
     })),
     total: results.length,
-    categories,
   };
 }

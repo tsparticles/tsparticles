@@ -31,7 +31,7 @@ Initialize tsParticles once in your app entry, then render one or more `<Particl
 
 ```tsx
 import { Component } from "inferno";
-import Particles, { initParticlesEngine } from "@tsparticles/inferno";
+import { Particles, initParticlesEngine } from "@tsparticles/inferno";
 import type { Container, Engine } from "@tsparticles/engine";
 
 void initParticlesEngine(async (engine: Engine) => {

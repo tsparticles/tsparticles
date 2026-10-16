@@ -1,7 +1,6 @@
 import { useEffect } from "preact/hooks";
-import Particles from "@tsparticles/preact";
-import { loadParticles } from "@tsparticles/particles";
-import { tsParticles } from "@tsparticles/engine";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
+import { particles } from "@tsparticles/particles";
 import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
 
@@ -26,7 +25,9 @@ const options: ISourceOptions = {
 
 export default function App() {
   useEffect(() => {
-    void loadParticles(tsParticles);
+    void initParticlesEngine(async () => {
+      await particles.init();
+    });
   }, []);
 
   return (

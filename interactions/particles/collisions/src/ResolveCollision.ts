@@ -34,6 +34,10 @@ export function resolveCollision(
       destroy(p1, p2);
       break;
     }
+    case CollisionMode.fluid: {
+      /* the fluid mode is solved by the collider, as a neighborhood solver */
+      break;
+    }
     default:
       // no-op
       break;

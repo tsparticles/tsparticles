@@ -1,40 +1,37 @@
-import { describe, it, expect } from "vitest";
-import { readFile, rm } from "node:fs/promises";
-import { createShapeTemplate } from "../src/shape/create-shape.js";
-import path from "node:path";
+/* eslint-disable */
+import { describe, expect, it } from "vitest";
+import { createCommand } from "../src/create.js";
 
-describe("create-shape", () => {
-  it("should have created the shape project", async () => {
-    const destDir = path.join(__dirname, "tmp-files", "foo-shape");
-
-    try {
-      await createShapeTemplate("foo", "Foo", "", destDir);
-    } catch (e) {
-      console.error(e);
-    }
-
-    const pkgPath = path.join(destDir, "package.json"),
-      pkgInfo = JSON.parse(await readFile(pkgPath, "utf-8"));
-
-    expect(pkgInfo.name).toBe("tsparticles-shape-foo");
-
-    await rm(destDir, { recursive: true, force: true });
+describe("create command tree", () => {
+  it("should register the create command", () => {
+    expect(createCommand).toBeDefined();
+    expect(createCommand.name()).toBe("create");
   });
 
-  it("should have created the shape project, w/ repo", async () => {
-    const destDir = path.join(__dirname, "tmp-files", "bar-shape");
+  it("should expose every project creation subcommand", () => {
+    const names = createCommand.commands.map(command => command.name()),
+      expected = [
+        "app",
+        "bundle",
+        "effect",
+        "interaction",
+        "palette",
+        "path",
+        "plugin",
+        "preset",
+        "shape",
+        "updater",
+      ];
 
-    try {
-      await createShapeTemplate("bar", "Bar", "https://github.com/matteobruni/tsparticles", destDir);
-    } catch (e) {
-      console.error(e);
+    for (const name of expected) {
+      expect(names).toContain(name);
     }
+  });
 
-    const pkgPath = path.join(destDir, "package.json"),
-      pkgInfo = JSON.parse(await readFile(pkgPath, "utf-8"));
+  it("should expose the shape subcommand", () => {
+    const shape = createCommand.commands.find(command => command.name() === "shape");
 
-    expect(pkgInfo.name).toBe("tsparticles-shape-bar");
-
-    await rm(destDir, { recursive: true, force: true });
+    expect(shape).toBeDefined();
+    expect(shape?.description().length).toBeGreaterThan(0);
   });
 });

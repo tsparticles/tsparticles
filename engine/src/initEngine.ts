@@ -1,5 +1,9 @@
 import { Engine } from "./Core/Engine.js";
 
+declare global {
+  var tsParticles: Engine;
+}
+
 /**
  * @returns the initialized engine object
  */

@@ -3,8 +3,10 @@ import { NgParticlesService } from "@tsparticles/angular";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
+import type { FormGroup } from "@angular/forms";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
@@ -40,7 +42,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onSubmit(form: HTMLFormElement): void {
+  onSubmit(form: FormGroup): void {
     alert("Message sent! (demo)");
     form.reset();
   }
