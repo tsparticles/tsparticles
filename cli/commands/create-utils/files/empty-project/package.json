@@ -99,7 +99,7 @@
     "rimraf": "^6.1.3",
     "rollup": "^4.61.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.1"
+    "typescript-eslint": "^8.71.2"
   },
   "peerDependencies": {
     "@tsparticles/engine": "^4.4.0"

@@ -54,7 +54,7 @@
     "@tsparticles/rollup-plugin": "workspace:*",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^65.2.4",
+    "eslint-plugin-jsdoc": "^65.3.6",
     "eslint-plugin-tsdoc": "^0.5.4",
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
@@ -68,7 +68,7 @@
     "@types/node": "^26.6.5",
     "rimraf": "^6.1.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.1",
+    "typescript-eslint": "^8.71.2",
     "rolldown": "^1.2.8",
     "@rollup/plugin-typescript": "^12.3.0"
   }
