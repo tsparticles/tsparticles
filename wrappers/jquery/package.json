@@ -126,7 +126,7 @@
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "jquery": "^4.0.0",
     "jsdom": "^30.0.1",
