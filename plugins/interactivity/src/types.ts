@@ -8,6 +8,7 @@ import type {
   RecursivePartial,
 } from "@tsparticles/engine";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
+import type { InteractionManager } from "./InteractionManager.js";
 import type { Interactivity } from "./Options/Classes/Interactivity.js";
 
 /** Interactivity plugin options interface */
@@ -28,6 +29,8 @@ export type InteractivityContainer = Container & {
 
   /** Adds a click handler for interactivity */
   addClickHandler?: (callback: (evt: Event, particles?: Particle[]) => void) => void;
+
+  interactionManager?: InteractionManager;
 };
 
 /** Particle with interactivity data */

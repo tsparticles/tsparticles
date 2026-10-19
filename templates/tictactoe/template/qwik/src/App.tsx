@@ -1,8 +1,8 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
-import Particles from "@tsparticles/qwik";
+import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
+import { Particles, initParticlesEngine } from "@tsparticles/qwik";
 import { loadSlim } from "@tsparticles/slim";
 import { confetti } from "@tsparticles/confetti";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 type Player = "X" | "O";
 
@@ -36,10 +36,6 @@ function fireConfettiEffect() {
   fire(0.1, { spread: 120, startVelocity: 45 });
 }
 
-async function init(engine: Engine): Promise<void> {
-  await loadSlim(engine);
-}
-
 const particlesOptions: ISourceOptions = {
   fullScreen: { enable: true, zIndex: -1 },
   background: { color: { value: "#0a0a1a" } },
@@ -64,6 +60,12 @@ interface GameState {
 }
 
 export default component$(() => {
+  useVisibleTask$(() => {
+    void initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    });
+  });
+
   const state = useSignal<GameState>({
     board: Array(9).fill(null),
     currentPlayer: "X",
@@ -105,7 +107,7 @@ export default component$(() => {
 
   return (
     <>
-      <Particles init={init} id="tsparticles" options={particlesOptions} />
+      <Particles id="tsparticles" options={particlesOptions} />
       <div id="app">
         <h1>Tic-Tac-Toe</h1>
         <div class="scoreboard">

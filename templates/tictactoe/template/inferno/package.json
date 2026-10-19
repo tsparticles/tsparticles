@@ -9,12 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "inferno": "^9.0.0",
-    "inferno-hydrate": "^9.0.0",
-    "@tsparticles/inferno": "^4.1.3"
+    "inferno": "^9.1.0",
+    "inferno-create-element": "^9.1.0",
+    "inferno-hydrate": "^9.1.0",
+    "@tsparticles/inferno": "^4.4.0"
   },
   "devDependencies": {
     "typescript": "~5.7.0",
-    "vite": "^6.0.0"
+    "vite": "^8.3.1"
   }
 }

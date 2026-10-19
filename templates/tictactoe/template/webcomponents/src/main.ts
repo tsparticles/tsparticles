@@ -53,7 +53,7 @@ function fireConfettiEffect(): void {
 
 function render(): void {
   const boardEl = document.getElementById("board") as HTMLDivElement;
-  const turnEl = document.getElementById("turn") as HTMLDivElement;
+  const turnEl = document.querySelector(".turn") as HTMLDivElement;
   const scoreX = document.getElementById("scoreX") as HTMLSpanElement;
   const scoreO = document.getElementById("scoreO") as HTMLSpanElement;
   const scoreDraw = document.getElementById("scoreDraw") as HTMLSpanElement;

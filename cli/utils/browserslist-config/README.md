@@ -10,13 +10,12 @@ pnpm add -D @tsparticles/browserslist-config browserslist
 
 ## Included Query
 
-Current configuration (`src/index.js` export):
+Current configuration (`src/index.ts` export):
 
-```js
-module.exports = [
-  "since 2021",
-  "not dead",
-];
+```ts
+const browserslistConfig = ["since 2021", "not dead"] as const;
+
+export default browserslistConfig;
 ```
 
 ## Usage

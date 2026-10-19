@@ -2,6 +2,12 @@
 
 ## Status
 
+**Implemented.** All the items in the implementation checklist (section 10) are done: the `fluid` mode
+is shipped as a `particles.collisions.mode` value inside `@tsparticles/interaction-particles-collisions`,
+with no dedicated fluid interactor package. Validation: collisions build green, 8 new tests in
+`utils/tests/src/tests/Collisions.ts` green, full tests package 301/301 green, `@tsparticles/all` and
+`@tsparticles/slim` bundles green.
+
 The previous fluid direction (standalone interactor/package) is superseded.
 
 The new architectural requirement is explicit:
@@ -494,39 +500,39 @@ Must include:
 
 ### Step 0 — Alignment
 
-- [ ] Verify current collisions package architecture and test baseline
-- [ ] Confirm no standalone fluid package remains in active release plan
+- [x] Verify current collisions package architecture and test baseline
+- [x] Confirm no standalone fluid package remains in active release plan
 
 ### Step 1 — Contract
 
-- [ ] Add `fluid` to `CollisionMode`
-- [ ] Add `ICollisionsFluid`
-- [ ] Add `CollisionsFluid` class with defaults/load
-- [ ] Wire `fluid` into `ICollisions` and `Collisions.load()`
+- [x] Add `fluid` to `CollisionMode`
+- [x] Add `ICollisionsFluid`
+- [x] Add `CollisionsFluid` class with defaults/load
+- [x] Wire `fluid` into `ICollisions` and `Collisions.load()`
 
 ### Step 2 — Runtime
 
-- [ ] Extend collision particle runtime type with fluid transient state
-- [ ] Implement `Collider.reset()` pre-advection snapshot for fluid mode
-- [ ] Implement fluid DDR path in `Collider.interact()`
-- [ ] Keep classic resolver path intact
+- [x] Extend collision particle runtime type with fluid transient state
+- [x] Implement `Collider.reset()` pre-advection snapshot for fluid mode
+- [x] Implement fluid DDR path in `Collider.interact()`
+- [x] Keep classic resolver path intact
 
 ### Step 3 — Stabilization
 
-- [ ] Add guards/clamps/neighbor caps
-- [ ] Validate boundary behavior with gravity
-- [ ] Verify no allocations regressions in hot path
+- [x] Add guards/clamps/neighbor caps
+- [x] Validate boundary behavior with gravity
+- [x] Verify no allocations regressions in hot path
 
 ### Step 4 — Docs
 
-- [ ] Update collisions markdown with fluid mode and options
-- [ ] Remove references to standalone fluid package/loader in planning docs
+- [x] Update collisions markdown with fluid mode and options
+- [x] Remove references to standalone fluid package/loader in planning docs
 
 ### Step 5 — Validation
 
-- [ ] Run collisions build and tests
-- [ ] Validate visual behavior with recommended config
-- [ ] Confirm classic modes regression-free
+- [x] Run collisions build and tests
+- [x] Validate visual behavior with recommended config
+- [x] Confirm classic modes regression-free
 
 ---
 

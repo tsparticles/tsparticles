@@ -10,12 +10,18 @@
     "preview": "next start"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-
-    "@tsparticles/react": "workspace:*",
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/nextjs": "^4.4.0",
+    "@tsparticles/react": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
     "next": "^15.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
   }
 }

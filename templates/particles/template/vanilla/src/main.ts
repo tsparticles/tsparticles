@@ -1,9 +1,9 @@
 import "./style.css";
 import { tsParticles } from "@tsparticles/engine";
-import { loadParticles } from "@tsparticles/particles";
+import { particles } from "@tsparticles/particles";
 
 (async () => {
-  await loadParticles(tsParticles);
+  await particles.init();
 
   await tsParticles.load({
     id: "tsparticles",

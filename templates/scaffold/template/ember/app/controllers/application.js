@@ -1,6 +1,5 @@
 import Controller from "@ember/controller";
-import { action } from "@ember/object";
-import { initParticlesEngine } from "@tsparticles/ember";
+import { initParticlesEngine } from "@tsparticles/ember/utils/init-particles-engine";
 import { loadSlim } from "@tsparticles/slim";
 
 export default class ApplicationController extends Controller {
@@ -26,9 +25,10 @@ export default class ApplicationController extends Controller {
     detectRetina: true,
   };
 
-  @action
-  async initParticles() {
-    await initParticlesEngine(async (engine) => {
+  constructor() {
+    super();
+
+    void initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     });
   }

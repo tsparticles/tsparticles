@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { NgxFireworksService } from "angular-fireworks";
+import { NgParticlesService } from "@tsparticles/angular";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   passErr = "";
   confirmErr = "";
 
-  constructor(private readonly fireworksService: NgxFireworksService) {}
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
 
   options: ISourceOptions = {
     background: { color: { value: "transparent" } },
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     document.documentElement.setAttribute("data-theme", this.theme);
-    void this.fireworksService.init(async (engine) => {
+    void this.ngParticlesService.init(async (engine) => {
       await loadSlim(engine);
     });
   }

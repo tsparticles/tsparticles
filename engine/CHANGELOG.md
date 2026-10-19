@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-09-14)
+
+### Bug Fixes
+
+- enforced the particle limit on the initial load before the density is applied, so `value > limit` configurations can no longer overshoot the limit in any mode
+- trimmed only the particles of the requesting group when enforcing a per-group limit in `LimitMode.delete`
+- refreshed the stored group limits on reset, so a stale group limit no longer survives into a reset that removes it
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes

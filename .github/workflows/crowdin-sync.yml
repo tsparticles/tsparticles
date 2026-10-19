@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 0
 
       - name: Crowdin push
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v3
         with:
           config: crowdin.yml
           upload_sources: true
@@ -42,7 +42,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Crowdin pull
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v3
         with:
           config: crowdin.yml
           upload_sources: false

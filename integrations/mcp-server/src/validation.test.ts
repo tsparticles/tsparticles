@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   diagnoseIssuesArgsSchema,
   formatZodError,
@@ -22,7 +22,7 @@ describe("suggestPluginsArgsSchema", () => {
   });
 
   it("rejects options provided as an array", () => {
-    expect(suggestPluginsArgsSchema.safeParse({ options: [1, 2, 3] }).success).toBe(false);
+    expect(suggestPluginsArgsSchema.safeParse({ options: [1, 2, 3] }).success).toBe(false); // eslint-disable-line @typescript-eslint/no-magic-numbers
   });
 
   it("rejects options provided as null", () => {

@@ -9,11 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-
-    "@tsparticles/riot": "workspace:*",
-    "riot": "^9.0.0"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/riot": "^4.4.0",
+    "riot": "^10.1.6"
   },
   "devDependencies": {
     "@riotjs/compiler": "^9.0.0",

@@ -1,12 +1,17 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { NgParticlesService } from "@tsparticles/angular";
+import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
 
 @Component({
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private readonly ngParticlesService: NgParticlesService) {}
+
   title = "{{projectName}}";
 
   options: ISourceOptions = {
@@ -46,4 +51,10 @@ export class AppComponent {
     { text: "This platform transformed how our team ships features. Absolutely love it.", author: "Sarah K., CTO" },
     { text: "The best investment we made this year. The performance gains are incredible.", author: "Michael R., Developer" },
   ];
+
+  ngOnInit(): void {
+    void this.ngParticlesService.init(async (engine) => {
+      await loadSlim(engine);
+    });
+  }
 }

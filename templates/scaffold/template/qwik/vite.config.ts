@@ -1,7 +1,7 @@
-import { qwikVite } from "@builder.io/qwik/plugin.vite";
+import { qwikVite } from "@builder.io/qwik/optimizer";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [qwikVite()],
+  plugins: [qwikVite({ csr: true })],
   base: "./",
 });

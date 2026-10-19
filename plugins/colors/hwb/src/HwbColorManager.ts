@@ -7,6 +7,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   parseAlpha,
 } from "@tsparticles/engine";
@@ -151,8 +152,7 @@ export class HwbColorManager implements IColorManager {
     }
 
     const result = hwbRegex.exec(input),
-      minLength = 4,
-      defaultAlpha = 1;
+      minLength = 4;
 
     if (!result) {
       return;
@@ -164,9 +164,9 @@ export class HwbColorManager implements IColorManager {
 
     return hwbaToRgba({
       a: result.length > minLength ? parseAlpha(result[HwbIndexes.a]) : defaultAlpha,
-      h: h !== undefined ? parseFloat(h) : defaultFallbackValue,
-      w: w !== undefined ? parseFloat(w) : defaultFallbackValue,
-      b: b !== undefined ? parseFloat(b) : defaultFallbackValue,
+      h: h !== undefined ? Number.parseFloat(h) : defaultFallbackValue,
+      w: w !== undefined ? Number.parseFloat(w) : defaultFallbackValue,
+      b: b !== undefined ? Number.parseFloat(b) : defaultFallbackValue,
     });
   }
 }

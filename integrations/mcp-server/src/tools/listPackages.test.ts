@@ -1,11 +1,15 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { listPackages } from "./listPackages.js";
+
+const MIN_CATALOG_PACKAGES = 50,
+  MIN_CATALOG_CATEGORIES = 5,
+  MIN_QUERY_RESULTS = 1;
 
 describe("listPackages", () => {
   it("should return all packages when no filter", () => {
     const result = listPackages({});
-    expect(result.packages.length).toBeGreaterThan(50);
-    expect(result.categories.length).toBeGreaterThan(5);
+    expect(result.packages.length).toBeGreaterThan(MIN_CATALOG_PACKAGES);
+    expect(result.categories.length).toBeGreaterThan(MIN_CATALOG_CATEGORIES);
   });
 
   it("should filter by category", () => {
@@ -17,13 +21,13 @@ describe("listPackages", () => {
 
   it("should filter by text query", () => {
     const result = listPackages({ query: "absorbers" });
-    expect(result.packages.length).toBeGreaterThanOrEqual(1);
+    expect(result.packages.length).toBeGreaterThanOrEqual(MIN_QUERY_RESULTS);
     expect(result.packages.some(p => p.name.includes("absorbers"))).toBe(true);
   });
 
   it("should return all packages for unknown category", () => {
     const result = listPackages({ category: "nonexistent" });
-    expect(result.packages.length).toBeGreaterThan(50);
+    expect(result.packages.length).toBeGreaterThan(MIN_CATALOG_PACKAGES);
   });
 
   it("should include categories listing", () => {

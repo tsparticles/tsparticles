@@ -1,6 +1,9 @@
 import "./style.css";
+import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
 import { confetti } from "@tsparticles/confetti";
+
+globalThis.tsParticles = tsParticles;
 
 void initParticlesEngine(() => Promise.resolve());
 

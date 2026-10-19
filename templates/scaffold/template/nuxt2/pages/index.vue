@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Hello, tsParticles!</h1>
-    <Particles id="tsparticles" :options="options" />
+    <vue-particles id="tsparticles" :options="options" />
   </div>
 </template>
 

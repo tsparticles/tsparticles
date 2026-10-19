@@ -13,6 +13,10 @@ import emitterShapes from "./emitterShapes.js";
 import emitterSpawnColor from "./emitterSpawnColor.js";
 import emitterTextShape from "./emitterTextShape.js";
 import emitterTextStrokeShape from "./emitterTextStrokeShape.js";
+import emitters from "./emitters.js";
+import emittersDrag from "./emittersDrag.js";
+import emittersDraw from "./emittersDraw.js";
+import emittersDrawDrag from "./emittersDrawDrag.js";
 
 export default {
   effectBubble,
@@ -30,4 +34,8 @@ export default {
   emitterSpawnColor,
   emitterTextShape,
   emitterTextStrokeShape,
+  emitters,
+  emittersDrag,
+  emittersDraw,
+  emittersDrawDrag,
 };

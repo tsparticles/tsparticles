@@ -1,4 +1,4 @@
-import Particles, { ParticlesProvider } from "@tsparticles/inferno";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { confetti } from "@tsparticles/confetti";
 import type { Engine } from "@tsparticles/engine";
 import { Component } from "inferno";

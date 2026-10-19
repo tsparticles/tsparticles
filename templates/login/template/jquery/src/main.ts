@@ -84,7 +84,7 @@ $("#authForm").on("submit", (e) => {
     toggleMode();
   }
 
-  $("#authForm")[0].reset();
+  ($("#authForm")[0] as HTMLFormElement).reset();
 });
 
 (async () => {

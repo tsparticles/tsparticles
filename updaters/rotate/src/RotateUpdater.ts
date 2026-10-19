@@ -17,6 +17,7 @@ import {
   getRangeValue,
   identity,
   loadOptionProperty,
+  minIndex,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
@@ -85,8 +86,7 @@ export class RotateUpdater implements IParticleUpdater {
     let rotateDirection = rotateOptions.direction;
 
     if (rotateDirection === RotateDirection.random) {
-      const index = Math.floor(getRandom() * double),
-        minIndex = 0;
+      const index = Math.floor(getRandom() * double);
 
       rotateDirection = index > minIndex ? RotateDirection.counterClockwise : RotateDirection.clockwise;
     }

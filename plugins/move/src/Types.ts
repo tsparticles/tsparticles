@@ -1,4 +1,4 @@
-import type { Container, Engine, GenericInitializer, Particle, PluginManager } from "@tsparticles/engine";
+import type { Engine, GenericInitializer, Particle, PluginManager } from "@tsparticles/engine";
 import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 import type { IParticleGravity } from "./IParticleGravity.js";
 import type { IParticleSpin } from "./IParticleSpin.js";
@@ -11,17 +11,11 @@ export type MovePluginManager = PluginManager & {
   /** Adds a path generator by name */
   addPathGenerator?: (name: string, generator: PathGeneratorInitializer) => void;
 
-  /** Gets all path generators for the container */
-  getPathGenerators?: (container: Container, force?: boolean) => Promise<Map<string, IMovePathGenerator>>;
-
   /** The path generator initializers */
   initializers: {
     /** Map of path generator initializers */
     pathGenerators?: Map<string, PathGeneratorInitializer>;
   };
-
-  /** Map of containers to their path generators */
-  pathGenerators?: Map<Container, Map<string, IMovePathGenerator>>;
 };
 
 /** Engine with move plugin manager */

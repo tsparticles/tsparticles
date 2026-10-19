@@ -1,13 +1,18 @@
 import "./style.css";
-import { ParticlesBase } from "@tsparticles/webcomponents";
+import { tsParticles } from "@tsparticles/engine";
+import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 import configs from "@tsparticles/configs";
 import type { ISourceOptions } from "@tsparticles/engine";
 
+globalThis.tsParticles = tsParticles;
+
 (async () => {
-  await ParticlesBase.init(async (engine) => {
+  await initParticlesEngine(async (engine) => {
     await loadSlim(engine);
   });
+
+  defineParticlesElement();
 
   const keys = Object.keys(configs);
   const randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;

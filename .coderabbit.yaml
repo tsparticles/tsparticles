@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://www.coderabbit.ai/integrations/schema.v2.json
+# CodeRabbit review configuration for the tsParticles monorepo.
+language: en-US
+
+reviews:
+  profile: chill
+
+  auto_review:
+    enabled: true
+    # Also review PRs whose base branch is the actively developed v4 branch,
+    # in addition to the default branch (main).
+    base_branches:
+      - "v4"
+
+  # Skip generated/build artifacts and the lockfile — they add noise.
+  path_filters:
+    - "!**/dist/**"
+    - "!**/node_modules/**"
+    - "!**/coverage/**"
+    - "!**/*.map"
+    - "!**/pnpm-lock.yaml"
+
+  # Path-specific review guidance mirroring the conventions in AGENTS.md.
+  path_instructions:
+    - path: "**/*.{ts,tsx}"
+      instructions: |
+        Follow the TypeScript conventions in AGENTS.md:
+        - Use named exports; avoid default imports when upstream uses named exports.
+        - Avoid `any` in public APIs; use `unknown` and narrow with type guards.
+        - Add defensive checks for external inputs (URLs, user-provided options)
+          and surface clear error messages.
+        - Import groups: external packages, then workspace packages, then relative
+          imports. Keep named specifiers sorted alphabetically (ESLint sort-imports).
+        - Throw `Error` only for unrecoverable issues; prefer returning `undefined`
+          for optional/absent results.
+    - path: "utils/tests/**"
+      instructions: |
+        Vitest + jsdom test suite. Keep tests deterministic (no timing-based
+        assertions; use mocked timers). Always destroy test containers in a
+        try/finally so the global tsParticles registry is not polluted.
+
+  # Extra static-analysis tools relevant to this repository.
+  tools:
+    actionlint:
+      enabled: true
+    hadolint:
+      enabled: true
+    shellcheck:
+      enabled: true
+    gitleaks:
+      enabled: true
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - AGENTS.md

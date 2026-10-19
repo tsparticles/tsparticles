@@ -6,12 +6,12 @@ import type { PluginInstance } from "./PluginInstance.js";
 export class Plugin implements IPlugin {
     readonly id;
 
-    //private readonly _engine;
+    //readonly #engine;
 
     constructor(/*engine: Engine*/) {
         this.id = "#template#";
 
-        //this._engine = engine;
+        //this.#engine = engine;
     }
 
     async getPlugin(/*container: Container*/): Promise<PluginInstance> {

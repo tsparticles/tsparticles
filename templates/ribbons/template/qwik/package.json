@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@builder.io/qwik": "^1.12.0",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/qwik": "workspace:*"
- },
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/qwik": "^4.4.0"
+  },
   "devDependencies": {
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2",
+    "vite": "^7.3.6"
   }
 }

@@ -134,10 +134,12 @@ const options: ISourceOptions = {
       </div>
     </footer>
     <script>
+      import { initParticlesEngine } from "@tsparticles/astro";
       import { loadSlim } from "@tsparticles/slim";
-      import { tsParticles } from "@tsparticles/engine";
 
-      await loadSlim(tsParticles);
+      await initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      });
     </script>
   </body>
 </html>

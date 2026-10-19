@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { NgxConfettiModule } from "angular-confetti";
+import { NgxParticlesModule } from "@tsparticles/angular";
 import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, NgxConfettiModule],
+  imports: [BrowserModule, FormsModule, NgxParticlesModule],
   providers: [],
   bootstrap: [AppComponent],
 })

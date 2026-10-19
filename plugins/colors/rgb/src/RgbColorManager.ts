@@ -6,6 +6,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   parseAlpha,
 } from "@tsparticles/engine";
@@ -84,8 +85,7 @@ export class RgbColorManager implements IColorManager {
 
     const result = rgbRegex.exec(input),
       radix = 10,
-      minLength = 4,
-      defaultAlpha = 1;
+      minLength = 4;
 
     return result
       ? {
