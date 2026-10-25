@@ -2,6 +2,7 @@
 import { type ICoordinates, tsParticles } from "@tsparticles/engine";
 import type { LinkContainer, LinkParticle } from "../../../../interactions/particles/links/src/Types.js";
 import { describe, expect, it } from "vitest";
+import { CircleWarp } from "../../../../interactions/particles/links/src/CircleWarp.js";
 import { Linker } from "../../../../interactions/particles/links/src/Linker.js";
 import { Links } from "../../../../interactions/particles/links/src/Options/Classes/Links.js";
 import { TestWindow } from "../Fixture/Window.js";
@@ -59,6 +60,13 @@ async function checkLinks(
     container.particles.linksColor = { r: 255, g: 255, b: 255 };
     container.particles.grid.insert(p1);
     container.particles.grid.insert(p2);
+    if (warp) {
+      const query = new CircleWarp(p1Position.x, p1Position.y, distance, { width, height }).query(
+        container.particles.grid,
+      );
+      expect(query).toHaveLength(expected ? 2 : 1);
+      expect(new Set(query).size).toBe(query.length);
+    }
     linker.interact(p1);
     expect(p1.links).toHaveLength(expected ? 1 : 0);
     if (expected) {
