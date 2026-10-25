@@ -66,20 +66,34 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           BASE_CMD="pnpm lerna publish from-package --ignore-scripts"
 
+          # sigstore may reject provenance with a transient 409 (TLOG_CREATE_ENTRY_ERROR);
+          # "from-package" skips versions already on the registry, so retrying is safe
+          publish() {
+            local attempt
+            for attempt in 1 2 3; do
+              if $BASE_CMD "$@"; then
+                return 0
+              fi
+              echo "Publish attempt $attempt failed"
+              sleep $((attempt * 15))
+            done
+            return 1
+          }
+
           echo "Publishing tag: $TAG via OIDC"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
-            $BASE_CMD --dist-tag alpha
+            publish --dist-tag alpha
           elif [[ "$TAG" == *"-beta."* ]]; then
-            $BASE_CMD --dist-tag beta
+            publish --dist-tag beta
           elif [[ "$TAG" == v1* ]]; then
-            $BASE_CMD --dist-tag v1
+            publish --dist-tag v1
           elif [[ "$TAG" == v2* ]]; then
-            $BASE_CMD --dist-tag v2
+            publish --dist-tag v2
           elif [[ "$TAG" == v3* ]]; then
-            $BASE_CMD --dist-tag v3
+            publish --dist-tag v3
           else
-            $BASE_CMD
+            publish
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
