@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- refactor for better separation for container plugins ([ca0c9be](https://github.com/tsparticles/tsparticles/commit/ca0c9be8f9506210aa382b9fcb6534a08f6407aa))
+
+### Features
+
+- added error code/message management ([56d0a8f](https://github.com/tsparticles/tsparticles/commit/56d0a8f4312530c08b3415c421d0f7e635b002c9))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/plugin-interactivity

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- coderabbit alerts fixed ([4bfb84c](https://github.com/tsparticles/tsparticles/commit/4bfb84c52fdd5f4fe331037d76e69a0b9da3945f))
+- fixed some issues found by coderabbit, added more docs ([b54a5a7](https://github.com/tsparticles/tsparticles/commit/b54a5a79921a62fd1e0652d6e3c146e7bf358552))
+
+### Features
+
+- added error code/message management ([56d0a8f](https://github.com/tsparticles/tsparticles/commit/56d0a8f4312530c08b3415c421d0f7e635b002c9))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+- implemented step 1 of emitters draw/drag feature ([54d0b37](https://github.com/tsparticles/tsparticles/commit/54d0b37da85cc7712e4c6a743f343ea9959b8ce5))
+- implemented step 2 of emitters draw/drag feature ([fdabe04](https://github.com/tsparticles/tsparticles/commit/fdabe047bb345d23828da5ad31585c7519f637ef))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/plugin-emitters

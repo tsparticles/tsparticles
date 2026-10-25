@@ -3,11 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- coderabbit alerts fixed ([4bfb84c](https://github.com/tsparticles/tsparticles/commit/4bfb84c52fdd5f4fe331037d76e69a0b9da3945f))
+- fixed some coderabbit findings ([d5bac26](https://github.com/tsparticles/tsparticles/commit/d5bac26aa1e573939963ae2d6253c14942111e9a))
+- fixed some issues found by coderabbit, added more docs ([b54a5a7](https://github.com/tsparticles/tsparticles/commit/b54a5a79921a62fd1e0652d6e3c146e7bf358552))
+- fixed some issues in mcp server and some coderabbit reports ([4700d3e](https://github.com/tsparticles/tsparticles/commit/4700d3e953f3a3a1930db064a6b6b21d61233cdf))
+- more fixes for mcp and engine ([46bc117](https://github.com/tsparticles/tsparticles/commit/46bc11792bf3c06fb54b8036a21cfdf2913ceb3f))
+
+### Features
+
+- added absorbers split feature (improved pr [#5923](https://github.com/tsparticles/tsparticles/issues/5923)) and improved absorbers attraction ([35ac7ca](https://github.com/tsparticles/tsparticles/commit/35ac7caa754801a427a285aeeb160e2796af827e))
+- added error code/message management ([56d0a8f](https://github.com/tsparticles/tsparticles/commit/56d0a8f4312530c08b3415c421d0f7e635b002c9))
+- completed absorbers improvements ([3acbce9](https://github.com/tsparticles/tsparticles/commit/3acbce97625f30a1b5679741d76d048fdcda74c4))
+- first good iteration of fluid collision ([96bf3cc](https://github.com/tsparticles/tsparticles/commit/96bf3cce5d53d50472eacb42842380498a0da076))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+- improved absorbers split ([0039243](https://github.com/tsparticles/tsparticles/commit/0039243e64b5d349c8c56c8702a0757788331400))
+- improved absorbers split ([378f843](https://github.com/tsparticles/tsparticles/commit/378f8437802c3831f9dd2d338069962c07fd9c8a))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes
 
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
@@ -25,8 +45,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
-* improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
+- added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
+- improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

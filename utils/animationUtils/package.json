@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/animation-utils",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles animation utils path",
   "homepage": "https://particles.js.org",
   "scripts": {

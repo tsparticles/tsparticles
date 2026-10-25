@@ -3,65 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- **ci:** ensure nx base exists for affected builds ([15106b2](https://github.com/tsparticles/tsparticles/commit/15106b2b2d5ddbdf14d268d3b978ae1b49495290))
+- coderabbit alerts fixed ([4bfb84c](https://github.com/tsparticles/tsparticles/commit/4bfb84c52fdd5f4fe331037d76e69a0b9da3945f))
+- **configs:** enable emitters drag and make dragged particle visible ([a0feeba](https://github.com/tsparticles/tsparticles/commit/a0feeba39335b73f45ca4603dc59fd3bfb054ded))
+- **electron-demo:** disable inherited Nx ci args for build target ([3adc3cb](https://github.com/tsparticles/tsparticles/commit/3adc3cb1440812e19b5aeb35ca3caaeb3fd4564f))
+- fixed color space ([ff0c0d6](https://github.com/tsparticles/tsparticles/commit/ff0c0d6fd4c4bc1107b90b5f36ea74d07d9c077d))
+- fixed issues after coderabbit review ([30eda28](https://github.com/tsparticles/tsparticles/commit/30eda280509acc07674ac1707b53dc38aea86acc))
+- fixed some coderabbit findings ([d5bac26](https://github.com/tsparticles/tsparticles/commit/d5bac26aa1e573939963ae2d6253c14942111e9a))
+- fixed some issues found by coderabbit, added more docs ([b54a5a7](https://github.com/tsparticles/tsparticles/commit/b54a5a79921a62fd1e0652d6e3c146e7bf358552))
+- fixed some issues in mcp server and some coderabbit reports ([4700d3e](https://github.com/tsparticles/tsparticles/commit/4700d3e953f3a3a1930db064a6b6b21d61233cdf))
+- fixed some issues reported by Codex ([ab7d946](https://github.com/tsparticles/tsparticles/commit/ab7d946e7010239b799374a705260b64192ca501))
+- fixed some reports by coderabbit ([9516004](https://github.com/tsparticles/tsparticles/commit/9516004386d5f9ec29249874ef441e9b31c9740a))
+- keep particle group when removing destroyed particles ([1c10981](https://github.com/tsparticles/tsparticles/commit/1c109816fb4d921464a2f468054d645aae3d5a03))
+- more fixes for mcp and engine ([46bc117](https://github.com/tsparticles/tsparticles/commit/46bc11792bf3c06fb54b8036a21cfdf2913ceb3f))
+- refactor for better separation for container plugins ([ca0c9be](https://github.com/tsparticles/tsparticles/commit/ca0c9be8f9506210aa382b9fcb6534a08f6407aa))
+
+### Features
+
+- added absorbers split feature (improved pr [#5923](https://github.com/tsparticles/tsparticles/issues/5923)) and improved absorbers attraction ([35ac7ca](https://github.com/tsparticles/tsparticles/commit/35ac7caa754801a427a285aeeb160e2796af827e))
+- added error code/message management ([56d0a8f](https://github.com/tsparticles/tsparticles/commit/56d0a8f4312530c08b3415c421d0f7e635b002c9))
+- completed absorbers improvements ([3acbce9](https://github.com/tsparticles/tsparticles/commit/3acbce97625f30a1b5679741d76d048fdcda74c4))
+- **configs:** add emitters, draw, drag and draw-drag configs ([0d0fe2b](https://github.com/tsparticles/tsparticles/commit/0d0fe2b867805b154c6a58541ae4d38f5f0075fc))
+- first good iteration of fluid collision ([96bf3cc](https://github.com/tsparticles/tsparticles/commit/96bf3cce5d53d50472eacb42842380498a0da076))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+- implemented step 1 of emitters draw/drag feature ([54d0b37](https://github.com/tsparticles/tsparticles/commit/54d0b37da85cc7712e4c6a743f343ea9959b8ce5))
+- implemented step 2 of emitters draw/drag feature ([fdabe04](https://github.com/tsparticles/tsparticles/commit/fdabe047bb345d23828da5ad31585c7519f637ef))
+- improved absorbers split ([0039243](https://github.com/tsparticles/tsparticles/commit/0039243e64b5d349c8c56c8702a0757788331400))
+- improved absorbers split ([378f843](https://github.com/tsparticles/tsparticles/commit/378f8437802c3831f9dd2d338069962c07fd9c8a))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes
 
-* post version fixes ([789bef7](https://github.com/tsparticles/tsparticles/commit/789bef7a31eeb1ce9dfc92ba3d457b98b43b4818))
-* post version fixes ([7049cc8](https://github.com/tsparticles/tsparticles/commit/7049cc8c766aab15446201d09a3b328a5eebcccd))
-* post version fixes ([a2439b7](https://github.com/tsparticles/tsparticles/commit/a2439b75e2634c7e3be467dfc46607c9c4744775))
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- post version fixes ([789bef7](https://github.com/tsparticles/tsparticles/commit/789bef7a31eeb1ce9dfc92ba3d457b98b43b4818))
+- post version fixes ([7049cc8](https://github.com/tsparticles/tsparticles/commit/7049cc8c766aab15446201d09a3b328a5eebcccd))
+- post version fixes ([a2439b7](https://github.com/tsparticles/tsparticles/commit/a2439b75e2634c7e3be467dfc46607c9c4744775))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 ### Bug Fixes
 
-* fixed common instance usage in engine initialization ([77d6718](https://github.com/tsparticles/tsparticles/commit/77d67187216afb9591c4fa92700176f64771a3a9))
-* fixed dockerfile for mcp server ([addc3a0](https://github.com/tsparticles/tsparticles/commit/addc3a0be98f1f5954dd6260abca15e084bd14c4))
-* fixed dockerfile for mcp server ([bcced5a](https://github.com/tsparticles/tsparticles/commit/bcced5a638cebca57eb0bc5b9bdaf34fe268761c))
-* fixed dockerfile for mcp server ([f3a82a4](https://github.com/tsparticles/tsparticles/commit/f3a82a499854c1b94b27c85b676b22a8c65ed0b8))
-* fixed dockerfile for mcp server ([7ba7e76](https://github.com/tsparticles/tsparticles/commit/7ba7e76b841441a4448645312e7d330fb1a342af))
-* fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
-* fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
-* fixed double opacity calc, fixes [#5903](https://github.com/tsparticles/tsparticles/issues/5903) ([3e128d2](https://github.com/tsparticles/tsparticles/commit/3e128d2a8f2c346a3cfc96c13569b72f8523a32e))
+- fixed common instance usage in engine initialization ([77d6718](https://github.com/tsparticles/tsparticles/commit/77d67187216afb9591c4fa92700176f64771a3a9))
+- fixed dockerfile for mcp server ([addc3a0](https://github.com/tsparticles/tsparticles/commit/addc3a0be98f1f5954dd6260abca15e084bd14c4))
+- fixed dockerfile for mcp server ([bcced5a](https://github.com/tsparticles/tsparticles/commit/bcced5a638cebca57eb0bc5b9bdaf34fe268761c))
+- fixed dockerfile for mcp server ([f3a82a4](https://github.com/tsparticles/tsparticles/commit/f3a82a499854c1b94b27c85b676b22a8c65ed0b8))
+- fixed dockerfile for mcp server ([7ba7e76](https://github.com/tsparticles/tsparticles/commit/7ba7e76b841441a4448645312e7d330fb1a342af))
+- fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
+- fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
+- fixed double opacity calc, fixes [#5903](https://github.com/tsparticles/tsparticles/issues/5903) ([3e128d2](https://github.com/tsparticles/tsparticles/commit/3e128d2a8f2c346a3cfc96c13569b72f8523a32e))
 
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 ### Bug Fixes
 
-* fixed issue in publish workflow and in mcp server ([d3b5672](https://github.com/tsparticles/tsparticles/commit/d3b5672bd61bb847abfa21193c34eabf7aba6896))
-* fixed other issues in mcp server ([18aa336](https://github.com/tsparticles/tsparticles/commit/18aa3367608d070ffacd28e9d1d238ad9ebd6911))
-* fixed other issues in mcp server ([90b52f8](https://github.com/tsparticles/tsparticles/commit/90b52f844fd950638a5f188c40b804d69cc22355))
-* fixed other issues in mcp server ([2063a19](https://github.com/tsparticles/tsparticles/commit/2063a191b59d700bbfab83540c028903717be142))
-* fixed other issues in mcp server ([41f5d3d](https://github.com/tsparticles/tsparticles/commit/41f5d3d54dd9bf57bf6f1e01a09e65d6b9a24a5c))
-* fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
-* fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
-* fixed some broken pages in websites, closes [#5882](https://github.com/tsparticles/tsparticles/issues/5882) ([061e623](https://github.com/tsparticles/tsparticles/commit/061e6234acf8c2a9de1ff35cfdc07b91bc7c0178))
-* fixed some issues in deepExtend ([4ba3518](https://github.com/tsparticles/tsparticles/commit/4ba351881184f155a0d72894e36bc64a267418df))
+- fixed issue in publish workflow and in mcp server ([d3b5672](https://github.com/tsparticles/tsparticles/commit/d3b5672bd61bb847abfa21193c34eabf7aba6896))
+- fixed other issues in mcp server ([18aa336](https://github.com/tsparticles/tsparticles/commit/18aa3367608d070ffacd28e9d1d238ad9ebd6911))
+- fixed other issues in mcp server ([90b52f8](https://github.com/tsparticles/tsparticles/commit/90b52f844fd950638a5f188c40b804d69cc22355))
+- fixed other issues in mcp server ([2063a19](https://github.com/tsparticles/tsparticles/commit/2063a191b59d700bbfab83540c028903717be142))
+- fixed other issues in mcp server ([41f5d3d](https://github.com/tsparticles/tsparticles/commit/41f5d3d54dd9bf57bf6f1e01a09e65d6b9a24a5c))
+- fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
+- fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
+- fixed some broken pages in websites, closes [#5882](https://github.com/tsparticles/tsparticles/issues/5882) ([061e623](https://github.com/tsparticles/tsparticles/commit/061e6234acf8c2a9de1ff35cfdc07b91bc7c0178))
+- fixed some issues in deepExtend ([4ba3518](https://github.com/tsparticles/tsparticles/commit/4ba351881184f155a0d72894e36bc64a267418df))
 
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 ### Bug Fixes
 
-* fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
-* fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
+- fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
+- fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
 
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
 
 ### Bug Fixes
 
-* fixed angular confetti ([6f25a4a](https://github.com/tsparticles/tsparticles/commit/6f25a4a1eaa69c47f2668316e7b396fe55195f84))
-* fixed some issues in deepExtend ([9d9fc9f](https://github.com/tsparticles/tsparticles/commit/9d9fc9f39fadf8d9df96f6e7b7cc8cde98e3ae21))
-* improved deepExtend ([af9d1d9](https://github.com/tsparticles/tsparticles/commit/af9d1d9f146cdc994945abf5dbc32cffbeea7b08))
+- fixed angular confetti ([6f25a4a](https://github.com/tsparticles/tsparticles/commit/6f25a4a1eaa69c47f2668316e7b396fe55195f84))
+- fixed some issues in deepExtend ([9d9fc9f](https://github.com/tsparticles/tsparticles/commit/9d9fc9f39fadf8d9df96f6e7b7cc8cde98e3ae21))
+- improved deepExtend ([af9d1d9](https://github.com/tsparticles/tsparticles/commit/af9d1d9f146cdc994945abf5dbc32cffbeea7b08))
 
 ### Features
 
-* added new draw layer system ([5442bbb](https://github.com/tsparticles/tsparticles/commit/5442bbb848fde8aa7d622c5c751c7c32570d78a9))
-* added new hdr precision system ([627ec92](https://github.com/tsparticles/tsparticles/commit/627ec92fbd68cd4e776f1d912ff2ca0166603dec))
-* added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
-* added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
-* added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
-* improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
+- added new draw layer system ([5442bbb](https://github.com/tsparticles/tsparticles/commit/5442bbb848fde8aa7d622c5c751c7c32570d78a9))
+- added new hdr precision system ([627ec92](https://github.com/tsparticles/tsparticles/commit/627ec92fbd68cd4e776f1d912ff2ca0166603dec))
+- added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
+- added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
+- added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
+- improved support for canvas background and custom draw callbacks ([a88798c](https://github.com/tsparticles/tsparticles/commit/a88798c72ff3c981fa8828bb9b51cd6f29245463))
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

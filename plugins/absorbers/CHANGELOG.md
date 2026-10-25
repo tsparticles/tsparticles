@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- fixed some issues found by coderabbit, added more docs ([b54a5a7](https://github.com/tsparticles/tsparticles/commit/b54a5a79921a62fd1e0652d6e3c146e7bf358552))
+
+### Features
+
+- added absorbers split feature (improved pr [#5923](https://github.com/tsparticles/tsparticles/issues/5923)) and improved absorbers attraction ([35ac7ca](https://github.com/tsparticles/tsparticles/commit/35ac7caa754801a427a285aeeb160e2796af827e))
+- completed absorbers improvements ([3acbce9](https://github.com/tsparticles/tsparticles/commit/3acbce97625f30a1b5679741d76d048fdcda74c4))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+- improved absorbers split ([0039243](https://github.com/tsparticles/tsparticles/commit/0039243e64b5d349c8c56c8702a0757788331400))
+- improved absorbers split ([378f843](https://github.com/tsparticles/tsparticles/commit/378f8437802c3831f9dd2d338069962c07fd9c8a))
+
 # [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (unreleased)
 
 ### Features

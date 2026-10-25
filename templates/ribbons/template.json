@@ -1,8 +1,8 @@
 {
   "package": {
     "dependencies": {
-      "@tsparticles/engine": "^4.4.0",
-      "@tsparticles/ribbons": "^4.4.0"
+      "@tsparticles/engine": "^4.5.0",
+      "@tsparticles/ribbons": "^4.5.0"
     },
     "devDependencies": {
       "typescript": "^6.0.3",

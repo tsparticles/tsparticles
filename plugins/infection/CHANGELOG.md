@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- refactor for better separation for container plugins ([ca0c9be](https://github.com/tsparticles/tsparticles/commit/ca0c9be8f9506210aa382b9fcb6534a08f6407aa))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/plugin-infection

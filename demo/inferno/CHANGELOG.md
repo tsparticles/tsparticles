@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- fixed some issues in mcp server and some coderabbit reports ([4700d3e](https://github.com/tsparticles/tsparticles/commit/4700d3e953f3a3a1930db064a6b6b21d61233cdf))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes
 
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
