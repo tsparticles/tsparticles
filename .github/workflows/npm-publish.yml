@@ -69,25 +69,17 @@ jobs:
           echo "Publishing tag: $TAG via OIDC"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
-            BASE_CMD="$BASE_CMD --dist-tag alpha"
+            $BASE_CMD --dist-tag alpha
           elif [[ "$TAG" == *"-beta."* ]]; then
-            BASE_CMD="$BASE_CMD --dist-tag beta"
+            $BASE_CMD --dist-tag beta
           elif [[ "$TAG" == v1* ]]; then
-            BASE_CMD="$BASE_CMD --dist-tag v1"
+            $BASE_CMD --dist-tag v1
           elif [[ "$TAG" == v2* ]]; then
-            BASE_CMD="$BASE_CMD --dist-tag v2"
+            $BASE_CMD --dist-tag v2
           elif [[ "$TAG" == v3* ]]; then
-            BASE_CMD="$BASE_CMD --dist-tag v3"
-          fi
-
-          # A previous attempt may have already logged the provenance entry for the same
-          # tarball in the sigstore transparency log without the package reaching the
-          # registry: every retry then fails with TLOG_CREATE_ENTRY_ERROR (409).
-          # "from-package" only publishes versions missing from the registry, so on failure
-          # publish the remaining ones without provenance.
-          if ! $BASE_CMD; then
-            echo "Publish failed, retrying remaining packages without provenance"
-            NPM_CONFIG_PROVENANCE=false $BASE_CMD
+            $BASE_CMD --dist-tag v3
+          else
+            $BASE_CMD
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
