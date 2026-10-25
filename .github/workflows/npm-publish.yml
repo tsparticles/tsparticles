@@ -80,16 +80,15 @@ jobs:
             BASE_CMD="$BASE_CMD --dist-tag v3"
           fi
 
-          # sigstore may reject provenance with a transient 409 (TLOG_CREATE_ENTRY_ERROR);
-          # "from-package" skips versions already on the registry, so retrying is safe
-          for attempt in 1 2 3; do
-            if $BASE_CMD; then
-              exit 0
-            fi
-            echo "Publish attempt $attempt failed"
-            sleep $((attempt * 15))
-          done
-          exit 1
+          # A previous attempt may have already logged the provenance entry for the same
+          # tarball in the sigstore transparency log without the package reaching the
+          # registry: every retry then fails with TLOG_CREATE_ENTRY_ERROR (409).
+          # "from-package" only publishes versions missing from the registry, so on failure
+          # publish the remaining ones without provenance.
+          if ! $BASE_CMD; then
+            echo "Publish failed, retrying remaining packages without provenance"
+            NPM_CONFIG_PROVENANCE=false $BASE_CMD
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
