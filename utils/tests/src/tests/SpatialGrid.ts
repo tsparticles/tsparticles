@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { Circle, Rectangle } from "@tsparticles/engine";
+import { Circle, type Particle, Rectangle, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 describe("SpatialGrid tests", () => {
   describe("Rectangle (0, 0, 50, 50) tests", () => {
@@ -56,4 +58,64 @@ describe("SpatialGrid tests", () => {
       expect(rect2.intersects(circle1)).to.be.true;
     });
   });
+});
+
+describe("SpatialGrid nested queries", () => {
+  globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+  for (const shape of ["circle", "rectangle"] as const) {
+    it(`preserves the outer ${shape} through repeated nested queries`, async () => {
+      const container = await tsParticles.load({
+        id: `nested-grid-${shape}`,
+        element: createCustomCanvas(100, 100) as unknown as HTMLCanvasElement,
+        options: { autoPlay: false, particles: { number: { value: 0 } } },
+      });
+
+      if (!container) {
+        throw new Error("Test container was not initialized");
+      }
+
+      try {
+        const grid = container.particles.grid,
+          particles = [0, 1, 2].map(x => ({ getPosition: () => ({ x, y: 0 }) }) as Particle);
+
+        for (const particle of particles) {
+          grid.insert(particle);
+        }
+
+        const nested = (): boolean => {
+            grid.queryCircle({ x: 0, y: 0 }, 10, () => {
+              grid.queryCircle({ x: 1000, y: 1000 }, 1);
+
+              return true;
+            });
+            grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, () => {
+              grid.queryRectangle({ x: 1000, y: 1000 }, { width: 1, height: 1 });
+
+              return true;
+            });
+
+            return true;
+          },
+          failure = new Error("filter failed"),
+          throwFromFilter = (): boolean => {
+            throw failure;
+          };
+
+        for (let repeat = 0; repeat < 2; repeat++) {
+          const result =
+            shape === "circle"
+              ? grid.queryCircle({ x: 0, y: 0 }, 10, nested)
+              : grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, nested);
+
+          expect(result).to.eql(particles);
+        }
+        expect(() => grid.queryCircle({ x: 0, y: 0 }, 10, throwFromFilter)).to.throw(failure);
+        expect(() => grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 }, throwFromFilter)).to.throw(failure);
+        expect(grid.queryCircle({ x: 0, y: 0 }, 10)).to.eql(particles);
+        expect(grid.queryRectangle({ x: 0, y: 0 }, { width: 10, height: 10 })).to.eql(particles);
+      } finally {
+        container.destroy(false);
+      }
+    });
+  }
 });
