@@ -160,6 +160,7 @@ export class Container {
   zLayers;
 
   #delay: number;
+  #delayResolve?: () => void;
   #delayTimeout?: number;
   readonly #delta: IDelta = { value: 0, factor: 0 };
   readonly #dispatchCallback;
@@ -565,7 +566,11 @@ export class Container {
     this.started = true;
 
     await new Promise<void>(resolve => {
+      this.#delayResolve = resolve;
+
       const start = async (): Promise<void> => {
+        this.#delayTimeout = undefined;
+        this.#delayResolve = undefined;
         this.#eventListeners.addListeners();
 
         for (const plugin of this.plugins) {
@@ -591,10 +596,12 @@ export class Container {
       return;
     }
 
-    if (this.#delayTimeout) {
+    if (this.#delayTimeout !== undefined) {
       clearTimeout(this.#delayTimeout);
 
       this.#delayTimeout = undefined;
+      this.#delayResolve?.();
+      this.#delayResolve = undefined;
     }
 
     this.#firstStart = true;
