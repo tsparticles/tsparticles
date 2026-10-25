@@ -18,15 +18,9 @@ export class EventDispatcher {
   addEventListener(type: string, listener: CustomEventListener): void {
     this.removeEventListener(type, listener);
 
-    let arr = this.#listeners.get(type);
+    const arr = this.#listeners.get(type);
 
-    if (!arr) {
-      arr = [];
-
-      this.#listeners.set(type, arr);
-    }
-
-    arr.push(listener);
+    this.#listeners.set(type, arr ? [...arr, listener] : [listener]);
   }
 
   /**
@@ -85,7 +79,7 @@ export class EventDispatcher {
     if (length === deleteCount) {
       this.#listeners.delete(type);
     } else {
-      arr.splice(idx, deleteCount);
+      this.#listeners.set(type, [...arr.slice(minIndex, idx), ...arr.slice(idx + deleteCount)]);
     }
   }
 }
