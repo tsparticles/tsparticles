@@ -12,8 +12,10 @@ let id = 0;
  */
 async function loadStoppedContainer(): Promise<Container> {
   globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+  id += 1;
+
   const container = await tsParticles.load({
-    id: `cancel-delayed-start-${(id += 1).toString()}`,
+    id: `cancel-delayed-start-${id.toString()}`,
     element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
     options: { delay: 0.02, autoPlay: false, particles: { number: { value: 0 } } },
   });
