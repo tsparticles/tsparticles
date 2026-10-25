@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- fixed some issues reported by Codex ([ab7d946](https://github.com/tsparticles/tsparticles/commit/ab7d946e7010239b799374a705260b64192ca501))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes
 
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
@@ -25,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
+- added new particle modifier system ([da3038e](https://github.com/tsparticles/tsparticles/commit/da3038e49b41a1025f945342603abc64a6a9bb45))
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

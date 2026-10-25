@@ -1,20 +1,15 @@
 "use client";
 
-import { initParticlesEngine } from "@tsparticles/nextjs";
+import { NextParticlesProvider } from "@tsparticles/nextjs";
 import { loadSlim } from "@tsparticles/slim";
-import { useEffect, useRef } from "react";
+import type { Engine } from "@tsparticles/engine";
 
 export function ParticlesProvider({ children }: { children: React.ReactNode }) {
-  const initialized = useRef(false);
-
-  useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      void initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
-      });
-    }
-  }, []);
-
-  return <>{children}</>;
+  return (
+    <NextParticlesProvider init={async (engine: Engine): Promise<void> => { await loadSlim(engine); }}>
+      {children}
+    </NextParticlesProvider>
+  );
 }
+
+export default ParticlesProvider;

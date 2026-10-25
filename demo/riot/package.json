@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/riot-demo",
   "private": true,
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "",
   "main": "index.js",
   "repository": {
@@ -33,7 +33,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "mocha": "^11.8.0",
     "nyc": "^18.0.0",
-    "webpack": "^5.110.1",
+    "webpack": "^5.112.2",
     "webpack-cli": "^7.2.3",
     "webpack-dev-server": "^6.0.0"
   },

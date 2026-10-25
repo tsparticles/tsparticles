@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/basic",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "Basic tsParticles bundle — minimal core engine with only the essential features for fast, lightweight particle animations. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,21 +83,21 @@
   "sideEffects": false,
   "jsdelivr": "tsparticles.basic.bundle.min.js",
   "unpkg": "tsparticles.basic.bundle.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "default": "./esm/index.js"
     },
     "./lazy": {
       "types": "./types/index.lazy.d.ts",
-      "browser": "./browser/index.lazy.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.lazy.js",
       "require": "./cjs/index.lazy.js",
       "default": "./esm/index.lazy.js"
@@ -105,17 +105,17 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.4.0",
-    "@tsparticles/plugin-blend": "4.4.0",
-    "@tsparticles/plugin-hex-color": "4.4.0",
-    "@tsparticles/plugin-hsl-color": "4.4.0",
-    "@tsparticles/plugin-move": "4.4.0",
-    "@tsparticles/plugin-rgb-color": "4.4.0",
-    "@tsparticles/shape-circle": "4.4.0",
-    "@tsparticles/updater-opacity": "4.4.0",
-    "@tsparticles/updater-out-modes": "4.4.0",
-    "@tsparticles/updater-paint": "4.4.0",
-    "@tsparticles/updater-size": "4.4.0"
+    "@tsparticles/engine": "4.5.0",
+    "@tsparticles/plugin-blend": "4.5.0",
+    "@tsparticles/plugin-hex-color": "4.5.0",
+    "@tsparticles/plugin-hsl-color": "4.5.0",
+    "@tsparticles/plugin-move": "4.5.0",
+    "@tsparticles/plugin-rgb-color": "4.5.0",
+    "@tsparticles/shape-circle": "4.5.0",
+    "@tsparticles/updater-opacity": "4.5.0",
+    "@tsparticles/updater-out-modes": "4.5.0",
+    "@tsparticles/updater-paint": "4.5.0",
+    "@tsparticles/updater-size": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

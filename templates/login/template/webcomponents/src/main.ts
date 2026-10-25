@@ -1,7 +1,10 @@
+import { tsParticles } from "@tsparticles/engine";
 import { defineParticlesElement, initParticlesEngine } from "@tsparticles/webcomponents";
 import { loadSlim } from "@tsparticles/slim";
 import type { ISourceOptions } from "@tsparticles/engine";
 import "./style.css";
+
+globalThis.tsParticles = tsParticles;
 
 void initParticlesEngine(async (engine) => {
   await loadSlim(engine);
@@ -26,6 +29,11 @@ const options: ISourceOptions = {
   },
   detectRetina: true,
 };
+
+const particlesEl = document.createElement("web-particles");
+particlesEl.id = "tsparticles";
+(particlesEl as unknown as Record<string, unknown>).options = options;
+document.body.appendChild(particlesEl);
 
 let isLogin = true;
 

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/particles",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "Minimal tsParticles particles bundle — lightweight particle engine without confetti or fireworks extras. Perfect for pure particle backgrounds. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -59,21 +59,21 @@
   "sideEffects": false,
   "jsdelivr": "tsparticles.particles.bundle.min.js",
   "unpkg": "tsparticles.particles.bundle.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "default": "./esm/index.js"
     },
     "./lazy": {
       "types": "./types/index.lazy.d.ts",
-      "browser": "./browser/index.lazy.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.lazy.js",
       "require": "./cjs/index.lazy.js",
       "default": "./esm/index.lazy.js"
@@ -81,11 +81,11 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.4.0",
-    "@tsparticles/engine": "4.4.0",
-    "@tsparticles/interaction-particles-collisions": "4.4.0",
-    "@tsparticles/interaction-particles-links": "4.4.0",
-    "@tsparticles/plugin-interactivity": "4.4.0"
+    "@tsparticles/basic": "4.5.0",
+    "@tsparticles/engine": "4.5.0",
+    "@tsparticles/interaction-particles-collisions": "4.5.0",
+    "@tsparticles/interaction-particles-links": "4.5.0",
+    "@tsparticles/plugin-interactivity": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

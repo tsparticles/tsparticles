@@ -84,6 +84,8 @@ export type * from "./Types/RecursivePartial.js";
 export type * from "./Types/ShapeData.js";
 export type * from "./Types/SingleOrMultiple.js";
 
+export type { ErrorCode } from "./Utils/ErrorCodes.js";
+
 export type { EventListeners } from "./Core/Utils/EventListeners.js";
 export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
 export type { CanvasManager } from "./Core/CanvasManager.js";

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Features
+
+- added error code/message management ([56d0a8f](https://github.com/tsparticles/tsparticles/commit/56d0a8f4312530c08b3415c421d0f7e635b002c9))
+- first good iteration of fluid collision ([96bf3cc](https://github.com/tsparticles/tsparticles/commit/96bf3cce5d53d50472eacb42842380498a0da076))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/interaction-particles-collisions

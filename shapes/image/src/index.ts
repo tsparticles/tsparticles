@@ -1,5 +1,8 @@
 import { type IImage, downloadSvgImage, loadImage, shapeTypes } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
+import { addErrorMessages, getErrorMessage } from "@tsparticles/engine";
+import { ErrorCodes } from "./ErrorCodes.js";
+import { ErrorMessages } from "./ErrorMessages.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import { ImageDrawer } from "./ImageDrawer.js";
 import { ImagePreloaderPlugin } from "./ImagePreloader.js";
@@ -27,11 +30,11 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
   engine.loadImage ??= async (container: ImageContainer, data: IPreload): Promise<void> => {
     if (!engine.getImages) {
-      throw new Error("No images collection found");
+      throw new Error(getErrorMessage(ErrorCodes.imageCollectionNotFound));
     }
 
     if (!data.name && !data.src) {
-      throw new Error("No image source provided");
+      throw new Error(getErrorMessage(ErrorCodes.imageSourceNotFound));
     }
 
     engine.images ??= new Map();
@@ -67,12 +70,19 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
       await imageFunc(image);
     } catch {
-      throw new Error(`${data.name ?? data.src} not found`);
+      throw new Error(getErrorMessage(ErrorCodes.imageNotFound, data.name ?? data.src));
     }
   };
 }
 
-declare const __VERSION__: string;
+declare const __VERSION__: string,
+  process:
+    | {
+        env: {
+          NODE_ENV?: string;
+        };
+      }
+    | undefined;
 
 /**
  * Loads the image shape in the given engine
@@ -80,6 +90,10 @@ declare const __VERSION__: string;
  */
 export async function loadImageShape(engine: ImageEngine): Promise<void> {
   engine.checkVersion(__VERSION__);
+
+  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
+    addErrorMessages(ErrorMessages);
+  }
 
   await engine.pluginManager.register(e => {
     addLoadImageToEngine(e);

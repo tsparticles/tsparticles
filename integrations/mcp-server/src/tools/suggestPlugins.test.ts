@@ -1,5 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { suggestPlugins } from "./suggestPlugins.js";
+
+const MIN_ABSORBER_IMPORTS = 1,
+  MIN_RICH_MATCHES = 3;
 
 describe("suggestPlugins", () => {
   it("should return empty result for empty options", () => {
@@ -171,10 +174,10 @@ describe("suggestPlugins", () => {
 
   it("should return imports with function names", () => {
     const result = suggestPlugins({
-      absorbers: [{ position: { x: 50, y: 50 } }],
-    });
-    const absImports = result.imports.filter(i => i.from === "@tsparticles/plugin-absorbers");
-    expect(absImports.length).toBeGreaterThanOrEqual(1);
+        absorbers: [{ position: { x: 50, y: 50 } }],
+      }),
+      absImports = result.imports.filter(i => i.from === "@tsparticles/plugin-absorbers");
+    expect(absImports.length).toBeGreaterThanOrEqual(MIN_ABSORBER_IMPORTS);
   });
 
   it("should blend plugin detection work (either root or particles.blend)", () => {
@@ -197,8 +200,8 @@ describe("suggestPlugins", () => {
         },
       },
     });
-    expect(result.npmPackages.length).toBeGreaterThan(3);
-    expect(result.imports.length).toBeGreaterThan(3);
+    expect(result.npmPackages.length).toBeGreaterThan(MIN_RICH_MATCHES);
+    expect(result.imports.length).toBeGreaterThan(MIN_RICH_MATCHES);
   });
 
   it("should return matched packages for single-plugin options", () => {
@@ -206,6 +209,7 @@ describe("suggestPlugins", () => {
       backgroundMask: { enable: true },
     });
     expect(result.npmPackages).toContain("@tsparticles/plugin-background-mask");
-    expect(typeof result.suggestedBundle === "string" || result.suggestedBundle === undefined).toBe(true);
+    const suggestedBundle: unknown = result.suggestedBundle;
+    expect(typeof suggestedBundle === "string" || suggestedBundle === undefined).toBe(true);
   });
 });

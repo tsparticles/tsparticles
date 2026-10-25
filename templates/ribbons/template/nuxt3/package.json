@@ -10,10 +10,9 @@
     "preview": "nuxt start"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/nuxt3": "workspace:*",
-
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/nuxt3": "^4.4.0",
     "nuxt": "^3.15.0"
   }
 }

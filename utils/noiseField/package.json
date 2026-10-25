@@ -1,10 +1,11 @@
 {
   "name": "@tsparticles/noise-field",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build",
+    "test": "vitest run",
     "version": "tsparticles-build -d && git add package.dist.json && tsparticles-build -p -l && git add .",
     "prepack": "pnpm run build"
   },
@@ -91,21 +92,21 @@
     "dist"
   ],
   "sideEffects": false,
-  "browser": "dist/browser/index.js",
+  "browser": "dist/browser/browser.js",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "browser": "./dist/browser/index.js",
+      "browser": "./dist/browser/browser.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
       "default": "./dist/esm/index.js"
     },
     "./lazy": {
       "types": "./dist/index.lazy.d.ts",
-      "browser": "./dist/browser/index.lazy.js",
+      "browser": "./dist/browser/browser.js",
       "import": "./dist/esm/index.lazy.js",
       "require": "./dist/cjs/index.lazy.js",
       "default": "./dist/esm/index.lazy.js"
@@ -119,7 +120,8 @@
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "@tsparticles/plugin-move": "workspace:*"
+    "@tsparticles/plugin-move": "workspace:*",
+    "vitest": "^5.0.0"
   },
   "publishConfig": {
     "access": "public",

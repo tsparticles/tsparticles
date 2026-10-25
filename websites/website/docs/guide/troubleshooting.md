@@ -32,6 +32,19 @@ Check the following:
 
 5. **Errors in browser console** — Open DevTools and look for error messages. Most issues log a clear description.
 
+## Error codes (TSP-xxxx)
+
+Starting from 4.5.0, tsParticles reports failures through stable error codes. Depending on the build,
+an error is surfaced in one of two ways:
+
+- **Development / non-minified builds** throw the full, formatted message.
+- **Minified / production builds** throw a compact code plus a link to the reference page, e.g.
+  `[tsParticles Error TSP-1203] https://particles.js.org/errors/#TSP-1203`.
+
+Look up every code in the [Errors reference](/errors/): the catalog is stable and a code is never
+reused after a release. The first digits identify the area (`TSP-100x` engine core, `TSP-200x` image
+shape, `TSP-300x` polygon mask, and so on).
+
 ## SSR (Server-Side Rendering) errors
 
 **Next.js, Nuxt, or other SSR frameworks throw `window is not defined` or `document is not defined`.**

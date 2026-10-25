@@ -9,14 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/inferno": "workspace:*",
-
-    "inferno": "^8.2.0"
-  },
-  "devDependencies": {
-    "babel-plugin-inferno": "^6.5.0",
-    "vite-plugin-inferno": "^1.0.0"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/inferno": "^4.4.0",
+    "inferno": "^9.1.0",
+    "inferno-create-element": "^9.1.0"
   }
 }

@@ -8,6 +8,7 @@ import {
   type IRgb,
   type IRgba,
   type IValueColor,
+  defaultAlpha,
   getRangeValue,
   hslToRgb,
   hslaToRgba,
@@ -87,7 +88,6 @@ export class HslColorManager implements IColorManager {
 
     const result = hslRegex.exec(input),
       minLength = 4,
-      defaultAlpha = 1,
       radix = 10;
 
     return result

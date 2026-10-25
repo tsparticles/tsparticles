@@ -5,9 +5,11 @@ import {
   defaultAlpha,
   defaultRatio,
   double,
+  getErrorMessage,
 } from "@tsparticles/engine";
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
+import { ErrorCodes } from "./ErrorCodes.js";
 import type { IImageShape } from "./IImageShape.js";
 
 const sides = 12;
@@ -191,7 +193,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    */
   readonly #loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
     if (!this.#engine.loadImage) {
-      throw new Error(`Image shape not initialized`);
+      throw new Error(getErrorMessage(ErrorCodes.imageShapeNotInitialized));
     }
 
     await this.#engine.loadImage(container, {

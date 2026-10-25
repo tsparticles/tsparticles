@@ -24,3 +24,9 @@ export async function loadAbsorbersPluginSimple(engine: Engine): Promise<void> {
 }
 
 export type * from "./AbsorberContainer.js";
+export type * from "./Options/Interfaces/IAbsorber.js";
+export type * from "./Options/Interfaces/IAbsorberLife.js";
+export type * from "./Options/Interfaces/IAbsorberSize.js";
+export type * from "./Options/Interfaces/IAbsorberSizeLimit.js";
+export type * from "./Options/Interfaces/IAbsorberSplit.js";
+export type * from "./types.js";

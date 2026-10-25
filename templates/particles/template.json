@@ -1,12 +1,12 @@
 {
   "package": {
     "dependencies": {
-      "@tsparticles/engine": "^4.4.0",
-      "@tsparticles/particles": "^4.4.0"
+      "@tsparticles/engine": "^4.5.0",
+      "@tsparticles/particles": "^4.5.0"
     },
     "devDependencies": {
       "typescript": "^6.0.3",
-      "vite": "^8.1.0"
+      "vite": "^8.3.1"
     }
   }
 }

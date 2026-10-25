@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-hsv-color",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles HSV color plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -84,21 +84,21 @@
   "sideEffects": false,
   "jsdelivr": "tsparticles.plugin.hsvColor.min.js",
   "unpkg": "tsparticles.plugin.hsvColor.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "default": "./esm/index.js"
     },
     "./lazy": {
       "types": "./types/index.lazy.d.ts",
-      "browser": "./browser/index.lazy.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.lazy.js",
       "require": "./cjs/index.lazy.js",
       "default": "./esm/index.lazy.js"
@@ -106,7 +106,7 @@
     "./package.json": "./package.json"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "4.4.0"
+    "@tsparticles/engine": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

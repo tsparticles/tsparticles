@@ -1,5 +1,5 @@
-import { Component, type ComponentType } from "inferno";
-import Particles, { ParticlesProvider } from "@tsparticles/inferno";
+import { Component } from "inferno";
+import { Particles, ParticlesProvider } from "@tsparticles/inferno";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
@@ -37,20 +37,17 @@ interface AppState {
   confirmErr: string;
 }
 
-const App: ComponentType<Record<string, unknown>> = class App extends Component<Record<string, unknown>, AppState> {
-  constructor(props: Record<string, unknown>) {
-    super(props);
-    this.state = {
-      isLogin: true,
-      theme: localStorage.getItem("theme") || "dark",
-      email: "",
-      password: "",
-      confirm: "",
-      emailErr: "",
-      passErr: "",
-      confirmErr: "",
-    };
-  }
+class App extends Component<Record<string, unknown>, AppState> {
+  state: AppState = {
+    isLogin: true,
+    theme: localStorage.getItem("theme") || "dark",
+    email: "",
+    password: "",
+    confirm: "",
+    emailErr: "",
+    passErr: "",
+    confirmErr: "",
+  };
 
   componentDidMount(): void {
     document.documentElement.setAttribute("data-theme", this.state.theme);
@@ -153,6 +150,6 @@ const App: ComponentType<Record<string, unknown>> = class App extends Component<
       </ParticlesProvider>
     );
   }
-};
+}
 
 export default App;

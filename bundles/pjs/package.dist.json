@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/pjs",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles particles.js compatibility layer — drop-in replacement for particles.js with full API compatibility and enhanced features. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,14 +83,14 @@
   "sideEffects": false,
   "jsdelivr": "tsparticles.pjs.min.js",
   "unpkg": "tsparticles.pjs.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "default": "./esm/index.js"
@@ -98,9 +98,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.4.0",
-    "@tsparticles/plugin-responsive": "4.4.0",
-    "tsparticles": "4.4.0"
+    "@tsparticles/engine": "4.5.0",
+    "@tsparticles/plugin-responsive": "4.5.0",
+    "tsparticles": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

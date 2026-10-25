@@ -11,6 +11,7 @@ import {
   getPosition,
   getRandom,
   half,
+  minIndex,
   randomInRangeValue,
 } from "@tsparticles/engine";
 import { type IMovePathGenerator } from "@tsparticles/plugin-move";
@@ -25,7 +26,6 @@ export enum SVGPathDirection {
 }
 
 const minStep = 0,
-  minIndex = 0,
   minWidth = 0,
   minScale = 1;
 

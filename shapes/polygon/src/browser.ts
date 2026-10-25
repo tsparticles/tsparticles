@@ -6,6 +6,7 @@ const globalObject = globalThis as typeof globalThis & {
   loadPolygonShape?: typeof loadPolygonShape;
   loadTriangleShape?: typeof loadTriangleShape;
 };
+
 globalObject.__tsParticlesInternals = globalObject.__tsParticlesInternals ?? {};
 globalObject.loadGenericPolygonShape = loadGenericPolygonShape;
 globalObject.loadPolygonShape = loadPolygonShape;

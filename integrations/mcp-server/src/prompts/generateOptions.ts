@@ -1,24 +1,16 @@
-import type { Prompt } from "@modelcontextprotocol/sdk/types.js";
+import { z } from "zod";
 
-// ── Prompt metadata ──────────────────────────────────────────────────
+// ── Prompt arguments ─────────────────────────────────────────────────
 //
-// This is the object returned by `prompts/list`. Per the MCP spec it
-// should only carry metadata (name, description, arguments) — not the
-// actual message content. Typing it explicitly against the SDK's
-// `Prompt` type means the compiler will flag it (excess-property /
-// missing-property errors) if extra fields like `messages` sneak back
-// in here, instead of only being caught by manual review.
+// Raw zod shape consumed by `McpServer.registerPrompt`. It drives both the
+// `arguments` metadata advertised by `prompts/list` (the SDK derives the
+// argument list from it) and the runtime validation of `prompts/get`
+// before the callback runs. `description` is optional on purpose: the
+// `prompts/get` handler falls back to a generic description instead of
+// rejecting the request when a client omits it.
 
-export const generateOptionsPrompt: Prompt = {
-  name: "generate-options",
-  description: "Generate tsParticles configuration from a natural language description",
-  arguments: [
-    {
-      name: "description",
-      description: "Natural language description of the desired particle effect",
-      required: true,
-    },
-  ],
+export const generateOptionsArgsShape = {
+  description: z.string().optional(),
 };
 
 // ── Prompt system text ───────────────────────────────────────────────
@@ -70,7 +62,7 @@ Return a JSON object with:
       { "function": "loadSlim", "from": "@tsparticles/slim" }
     ],
     "additionalPackages": [ /* any extra packages not in bundles */ ],
-    "html": "<div id=\"tsparticles\"></div>",
+    "html": "<div id=\\"tsparticles\\"></div>",
     "code": "// Full code example"
   }
 }

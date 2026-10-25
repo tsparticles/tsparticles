@@ -1,4 +1,10 @@
-import { type Container, type ICoordinates, type IDelta, type Particle } from "@tsparticles/engine";
+import {
+  type Container,
+  type ICoordinates,
+  type IDelta,
+  type Particle,
+  getItemsFromInitializer,
+} from "@tsparticles/engine";
 import {
   clickEvent,
   touchCancelEvent,
@@ -40,6 +46,12 @@ export class InteractionManager {
   /** The current interactivity state data */
   interactivityData: IInteractivityData;
 
+  /**
+   * The interactors that are used for initialization
+   * @internal
+   */
+  interactors: IInteractor[];
+
   /** Map of event names to click handlers */
   readonly #clickHandlers;
 
@@ -57,12 +69,6 @@ export class InteractionManager {
    * @internal
    */
   #externalInteractors: IExternalInteractor[];
-
-  /**
-   * The interactors that are used for initialization
-   * @internal
-   */
-  #interactors: IInteractor[];
 
   /** The intersection observer for viewport detection */
   readonly #intersectionObserver;
@@ -82,7 +88,7 @@ export class InteractionManager {
   constructor(pluginManager: InteractivityPluginManager, container: Container) {
     this.#container = container;
     this.#pluginManager = pluginManager;
-    this.#interactors = [];
+    this.interactors = [];
     this.#externalInteractors = [];
     this.#particleInteractors = [];
     this.#clickHandlers = new Map<string, ContainerClickHandler>();
@@ -264,7 +270,7 @@ export class InteractionManager {
   init(): void {
     this.#eventListeners.init();
 
-    for (const interactor of this.#interactors) {
+    for (const interactor of this.interactors) {
       switch (interactor.type) {
         case InteractorType.external:
           this.#externalInteractors.push(interactor as IExternalInteractor);
@@ -282,13 +288,13 @@ export class InteractionManager {
 
   /** Initializes all interactors from the plugin manager */
   async initInteractors(): Promise<void> {
-    const interactors = await this.#pluginManager.getInteractors?.(this.#container, true);
+    const pluginManager = this.#pluginManager;
 
-    if (!interactors) {
+    if (!pluginManager.initializers.interactors) {
       return;
     }
 
-    this.#interactors = interactors;
+    this.interactors = await getItemsFromInitializer(this.#container, pluginManager.initializers.interactors);
     this.#externalInteractors = [];
     this.#particleInteractors = [];
   }
@@ -360,7 +366,7 @@ export class InteractionManager {
   updateMaxDistance(): void {
     let maxTotalDistance = 0;
 
-    for (const interactor of this.#interactors) {
+    for (const interactor of this.interactors) {
       if (interactor.maxDistance > maxTotalDistance) {
         maxTotalDistance = interactor.maxDistance;
       }
@@ -368,7 +374,7 @@ export class InteractionManager {
 
     const container = this.#container;
 
-    container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
+    container.particles.grid.cellSize = maxTotalDistance * container.retina.pixelRatio;
   }
 
   #intersectionManager(entries: IntersectionObserverEntry[]): void {

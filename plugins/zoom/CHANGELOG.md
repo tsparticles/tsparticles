@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+**Note:** Version bump only for package @tsparticles/plugin-zoom
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/plugin-zoom
@@ -23,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* added new draw layer system ([5442bbb](https://github.com/tsparticles/tsparticles/commit/5442bbb848fde8aa7d622c5c751c7c32570d78a9))
+- added new draw layer system ([5442bbb](https://github.com/tsparticles/tsparticles/commit/5442bbb848fde8aa7d622c5c751c7c32570d78a9))
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

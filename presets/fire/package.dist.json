@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fire",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,14 +83,14 @@
   ],
   "jsdelivr": "tsparticles.preset.fire.min.js",
   "unpkg": "tsparticles.preset.fire.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "umd": "./umd/index.js",
@@ -99,10 +99,10 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.4.0",
-    "@tsparticles/engine": "4.4.0",
-    "@tsparticles/interaction-external-push": "4.4.0",
-    "@tsparticles/plugin-interactivity": "4.4.0"
+    "@tsparticles/basic": "4.5.0",
+    "@tsparticles/engine": "4.5.0",
+    "@tsparticles/interaction-external-push": "4.5.0",
+    "@tsparticles/plugin-interactivity": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

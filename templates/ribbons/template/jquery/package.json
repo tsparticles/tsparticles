@@ -9,10 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/jquery": "workspace:*",
-
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/jquery": "^4.4.0",
     "jquery": "^3.7.1"
   },
   "devDependencies": {

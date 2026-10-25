@@ -19,6 +19,7 @@ import {
   identity,
   loadOptionProperty,
   none,
+  quarter,
 } from "@tsparticles/engine";
 import { Cannon } from "./Options/Classes/Cannon.js";
 
@@ -35,7 +36,6 @@ const cannonMode = "cannon",
   powerRadiusMaxFactor = identity / powerRadiusMaxDenominator,
   minTapsLength = 2,
   piDeg = 180,
-  quarter = 0.25,
   minDistance = 0;
 
 /**

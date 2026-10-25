@@ -1,10 +1,5 @@
 import { afterAll, describe, it, expect } from "vitest";
-import {
-  getDestinationDir,
-  getRepositoryUrl,
-  replaceTokensInFile,
-  replaceTokensInFiles,
-} from "../src";
+import { getDestinationDir, getRepositoryUrl, replaceTokensInFile, replaceTokensInFiles } from "../src";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 

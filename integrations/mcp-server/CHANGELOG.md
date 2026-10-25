@@ -3,41 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- coderabbit alerts fixed ([4bfb84c](https://github.com/tsparticles/tsparticles/commit/4bfb84c52fdd5f4fe331037d76e69a0b9da3945f))
+- fixed some issues in mcp server and some coderabbit reports ([4700d3e](https://github.com/tsparticles/tsparticles/commit/4700d3e953f3a3a1930db064a6b6b21d61233cdf))
+- fixed some reports by coderabbit ([9516004](https://github.com/tsparticles/tsparticles/commit/9516004386d5f9ec29249874ef441e9b31c9740a))
+- more fixes for mcp and engine ([46bc117](https://github.com/tsparticles/tsparticles/commit/46bc11792bf3c06fb54b8036a21cfdf2913ceb3f))
+
+## [Unreleased]
+
+### Security
+
+- removed exact package version from the `/health` endpoint to avoid exposing fingerprintable release info
+- sanitize user-supplied values echoed in tool messages (strip control characters, code-fence reflections) to reduce prompt-injection surface
+- added a per-process global rate limit in addition to the per-IP limit
+- deliver a clean HTTP 413 instead of resetting the connection when a request body exceeds the size limit
+- generate_code: fixed invalid JavaScript emitted for the non-TypeScript Vue 3 output and made the `typescript` option effective for vanilla and Svelte
+
+### Breaking Changes
+
+- removed `packageVersion` from `StartHttpServerParams` (the `/health` response no longer reports the version)
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 ### Bug Fixes
 
-* various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
+- various fixes for 4.4.0 ([475d06d](https://github.com/tsparticles/tsparticles/commit/475d06da27e1497bb097c0822fcfcb72d7142456))
 
 ## [4.3.3](https://github.com/tsparticles/tsparticles/compare/v4.3.2...v4.3.3) (2026-07-23)
 
 ### Bug Fixes
 
-* fixed dockerfile for mcp server ([addc3a0](https://github.com/tsparticles/tsparticles/commit/addc3a0be98f1f5954dd6260abca15e084bd14c4))
-* fixed dockerfile for mcp server ([bcced5a](https://github.com/tsparticles/tsparticles/commit/bcced5a638cebca57eb0bc5b9bdaf34fe268761c))
-* fixed dockerfile for mcp server ([f3a82a4](https://github.com/tsparticles/tsparticles/commit/f3a82a499854c1b94b27c85b676b22a8c65ed0b8))
-* fixed dockerfile for mcp server ([7ba7e76](https://github.com/tsparticles/tsparticles/commit/7ba7e76b841441a4448645312e7d330fb1a342af))
-* fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
-* fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
+- fixed dockerfile for mcp server ([addc3a0](https://github.com/tsparticles/tsparticles/commit/addc3a0be98f1f5954dd6260abca15e084bd14c4))
+- fixed dockerfile for mcp server ([bcced5a](https://github.com/tsparticles/tsparticles/commit/bcced5a638cebca57eb0bc5b9bdaf34fe268761c))
+- fixed dockerfile for mcp server ([f3a82a4](https://github.com/tsparticles/tsparticles/commit/f3a82a499854c1b94b27c85b676b22a8c65ed0b8))
+- fixed dockerfile for mcp server ([7ba7e76](https://github.com/tsparticles/tsparticles/commit/7ba7e76b841441a4448645312e7d330fb1a342af))
+- fixed dockerfile for mcp server ([3351973](https://github.com/tsparticles/tsparticles/commit/33519730fef0a914bce8f9007216ce94f0a3ed8e))
+- fixed dockerfile for mcp server ([e19b812](https://github.com/tsparticles/tsparticles/commit/e19b8122ec31021498ba4c04de66230fa8188684))
 
 ## [4.3.2](https://github.com/tsparticles/tsparticles/compare/v4.3.1...v4.3.2) (2026-07-10)
 
 ### Bug Fixes
 
-* fixed issue in publish workflow and in mcp server ([d3b5672](https://github.com/tsparticles/tsparticles/commit/d3b5672bd61bb847abfa21193c34eabf7aba6896))
-* fixed other issues in mcp server ([18aa336](https://github.com/tsparticles/tsparticles/commit/18aa3367608d070ffacd28e9d1d238ad9ebd6911))
-* fixed other issues in mcp server ([90b52f8](https://github.com/tsparticles/tsparticles/commit/90b52f844fd950638a5f188c40b804d69cc22355))
-* fixed other issues in mcp server ([2063a19](https://github.com/tsparticles/tsparticles/commit/2063a191b59d700bbfab83540c028903717be142))
-* fixed other issues in mcp server ([41f5d3d](https://github.com/tsparticles/tsparticles/commit/41f5d3d54dd9bf57bf6f1e01a09e65d6b9a24a5c))
-* fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
-* fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
+- fixed issue in publish workflow and in mcp server ([d3b5672](https://github.com/tsparticles/tsparticles/commit/d3b5672bd61bb847abfa21193c34eabf7aba6896))
+- fixed other issues in mcp server ([18aa336](https://github.com/tsparticles/tsparticles/commit/18aa3367608d070ffacd28e9d1d238ad9ebd6911))
+- fixed other issues in mcp server ([90b52f8](https://github.com/tsparticles/tsparticles/commit/90b52f844fd950638a5f188c40b804d69cc22355))
+- fixed other issues in mcp server ([2063a19](https://github.com/tsparticles/tsparticles/commit/2063a191b59d700bbfab83540c028903717be142))
+- fixed other issues in mcp server ([41f5d3d](https://github.com/tsparticles/tsparticles/commit/41f5d3d54dd9bf57bf6f1e01a09e65d6b9a24a5c))
+- fixed other issues in mcp server ([fb31f51](https://github.com/tsparticles/tsparticles/commit/fb31f51f793a272b42ed3c3faa8e9f4142132eac))
+- fixed other issues in mcp server ([b0c7ef5](https://github.com/tsparticles/tsparticles/commit/b0c7ef5ef98b5bcb87078f65f6f356d94cf27349))
 
 ## [4.3.1](https://github.com/tsparticles/tsparticles/compare/v4.3.0...v4.3.1) (2026-07-01)
 
 ### Bug Fixes
 
-* fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
-* fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
+- fix request body size limit to 1 MB in mcp-server integration ([7b3a948](https://github.com/tsparticles/tsparticles/commit/7b3a9488d4201fe9ddd5fec05f4a2ae65d3627ea))
+- fixed mcp server issue ([25fb70e](https://github.com/tsparticles/tsparticles/commit/25fb70e7f527a91568adaef576570289083f243b))
 
 # [4.3.0](https://github.com/tsparticles/tsparticles/compare/v4.2.1...v4.3.0) (2026-06-27)
 

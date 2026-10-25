@@ -21,11 +21,10 @@
   </style>
 
   <script>
-    import { loadParticles } from "@tsparticles/particles";
-    import { tsParticles } from "@tsparticles/engine";
+    import { particles } from "@tsparticles/particles";
 
     this.on("mount", () => {
-      loadParticles(tsParticles);
+      void particles.init();
     });
   </script>
 </app>

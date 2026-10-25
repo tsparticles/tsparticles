@@ -1,8 +1,8 @@
-import { type Container, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { Events } from "./Events/Events.js";
 import type { IInteractivity } from "../Interfaces/IInteractivity.js";
+import type { InteractivityContainer } from "../../types.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
-import type { InteractivityPluginManager } from "../../InteractivityPluginManagerTypes.js";
 import { Modes } from "./Modes/Modes.js";
 
 /**
@@ -16,8 +16,8 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
   readonly events = new Events();
   readonly modes;
 
-  constructor(pluginManager: InteractivityPluginManager, container?: Container) {
-    this.modes = new Modes(pluginManager, container);
+  constructor(container?: InteractivityContainer) {
+    this.modes = new Modes(container);
   }
 
   load(data?: RecursivePartial<IInteractivity>): void {

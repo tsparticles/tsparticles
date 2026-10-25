@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/electron-demo",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "",
   "main": "app/index.cjs",
   "private": true,

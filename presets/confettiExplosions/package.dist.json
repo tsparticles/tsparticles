@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti-explosions",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "tsParticles confetti explosions preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,14 +83,14 @@
   ],
   "jsdelivr": "tsparticles.preset.confettiExplosions.min.js",
   "unpkg": "tsparticles.preset.confettiExplosions.min.js",
-  "browser": "browser/index.js",
+  "browser": "browser/browser.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "umd": "./umd/index.js",
@@ -98,7 +98,7 @@
     },
     "./lazy": {
       "types": "./types/index.lazy.d.ts",
-      "browser": "./browser/index.lazy.js",
+      "browser": "./browser/browser.js",
       "import": "./esm/index.lazy.js",
       "require": "./cjs/index.lazy.js",
       "default": "./cjs/index.lazy.js"
@@ -106,16 +106,16 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.4.0",
-    "@tsparticles/engine": "4.4.0",
-    "@tsparticles/palette-confetti": "4.4.0",
-    "@tsparticles/plugin-emitters": "4.4.0",
-    "@tsparticles/plugin-motion": "4.4.0",
-    "@tsparticles/shape-square": "4.4.0",
-    "@tsparticles/updater-roll": "4.4.0",
-    "@tsparticles/updater-rotate": "4.4.0",
-    "@tsparticles/updater-tilt": "4.4.0",
-    "@tsparticles/updater-wobble": "4.4.0"
+    "@tsparticles/basic": "4.5.0",
+    "@tsparticles/engine": "4.5.0",
+    "@tsparticles/palette-confetti": "4.5.0",
+    "@tsparticles/plugin-emitters": "4.5.0",
+    "@tsparticles/plugin-motion": "4.5.0",
+    "@tsparticles/shape-square": "4.5.0",
+    "@tsparticles/updater-roll": "4.5.0",
+    "@tsparticles/updater-rotate": "4.5.0",
+    "@tsparticles/updater-tilt": "4.5.0",
+    "@tsparticles/updater-wobble": "4.5.0"
   },
   "publishConfig": {
     "access": "public"

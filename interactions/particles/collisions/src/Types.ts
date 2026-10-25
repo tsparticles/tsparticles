@@ -5,7 +5,6 @@ import type {
 } from "@tsparticles/plugin-interactivity";
 import type { Collisions } from "./Options/Classes/Collisions.js";
 import type { ICollisions } from "./Options/Interfaces/ICollisions.js";
-
 export type CollisionParticle = InteractivityParticle & {
   options: ParticlesCollisionOptions;
 };

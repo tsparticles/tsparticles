@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/svelte": "workspace:*"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/svelte": "^4.4.0"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",

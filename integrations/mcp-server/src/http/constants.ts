@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const MAX_REQUEST_BODY_BYTES = 1024 * 1024; // 1 MB
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SESSION_IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SESSION_SWEEP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 export const MAX_CONCURRENT_HTTP_SESSIONS = 500;
 
@@ -16,3 +19,11 @@ export const SESSION_ID_PATTERN = /^[A-Za-z0-9._:-]+$/;
 // monopolizing the server when no such proxy is in front of it.
 export const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
 export const RATE_LIMIT_MAX_REQUESTS_PER_WINDOW = 120;
+
+// Additional per-process ceiling across ALL client IPs. The per-IP limit
+// is trivially bypassed by spreading requests across many source IPs
+// (botnets, NAT, proxy rotation), so this bounds the total request rate
+// the process will handle per window regardless of how many distinct
+// "clients" are hitting it. Generous enough to not affect legitimate
+// use: roughly one request per 30ms sustained.
+export const RATE_LIMIT_MAX_GLOBAL_REQUESTS_PER_WINDOW = 2000;

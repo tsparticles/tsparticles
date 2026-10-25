@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
+
+### Bug Fixes
+
+- **configs:** enable emitters drag and make dragged particle visible ([a0feeba](https://github.com/tsparticles/tsparticles/commit/a0feeba39335b73f45ca4603dc59fd3bfb054ded))
+- fixed some issues found by coderabbit, added more docs ([b54a5a7](https://github.com/tsparticles/tsparticles/commit/b54a5a79921a62fd1e0652d6e3c146e7bf358552))
+
+### Features
+
+- added absorbers split feature (improved pr [#5923](https://github.com/tsparticles/tsparticles/issues/5923)) and improved absorbers attraction ([35ac7ca](https://github.com/tsparticles/tsparticles/commit/35ac7caa754801a427a285aeeb160e2796af827e))
+- **configs:** add emitters, draw, drag and draw-drag configs ([0d0fe2b](https://github.com/tsparticles/tsparticles/commit/0d0fe2b867805b154c6a58541ae4d38f5f0075fc))
+- first good iteration of fluid collision ([96bf3cc](https://github.com/tsparticles/tsparticles/commit/96bf3cce5d53d50472eacb42842380498a0da076))
+- implemented emitters draw/drag feature ([3b70d3f](https://github.com/tsparticles/tsparticles/commit/3b70d3f6a01eb911c66ccaa1ab8826ae2de9b54f))
+- improved absorbers split ([0039243](https://github.com/tsparticles/tsparticles/commit/0039243e64b5d349c8c56c8702a0757788331400))
+
 # [4.4.0](https://github.com/tsparticles/tsparticles/compare/v4.3.3...v4.4.0) (2026-08-30)
 
 **Note:** Version bump only for package @tsparticles/configs
@@ -23,8 +38,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
-* added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
+- added support for canvas background and custom draw callbacks ([fb71bd9](https://github.com/tsparticles/tsparticles/commit/fb71bd974412666b0207b3823a81f078090357a9))
+- added support for canvas background mask and custom draw callbacks ([74582bc](https://github.com/tsparticles/tsparticles/commit/74582bc064f174523fa8b22697b83523cccb9a19))
 
 ## [4.2.1](https://github.com/tsparticles/tsparticles/compare/v4.2.0...v4.2.1) (2026-06-19)
 

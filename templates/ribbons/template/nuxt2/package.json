@@ -10,10 +10,18 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/ribbons": "workspace:*",
-    "@tsparticles/nuxt2": "workspace:*",
-
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/ribbons": "^4.4.0",
+    "@tsparticles/nuxt2": "^4.4.0",
     "nuxt": "^2.18.0"
+  },
+  "browserslist": [
+    "chrome 58",
+    "edge 16",
+    "firefox 57",
+    "safari 11"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.29.0"
   }
 }

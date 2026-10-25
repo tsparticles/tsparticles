@@ -1,10 +1,10 @@
 import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadParticles } from "@tsparticles/particles";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { particles } from "@tsparticles/particles";
+import type { ISourceOptions } from "@tsparticles/engine";
 import "./App.css";
 
-async function init(engine: Engine): Promise<void> {
-  await loadParticles(engine);
+async function init(): Promise<void> {
+  await particles.init();
 }
 
 const options: ISourceOptions = {
