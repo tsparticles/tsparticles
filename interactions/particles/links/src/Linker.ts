@@ -87,7 +87,9 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       optDistance = p1.retina.linksDistance ?? minDistance,
       warp = linkOpt1.warp,
       range = warp ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) : new Circle(pos1.x, pos1.y, optDistance),
-      query = container.particles.grid.query(range) as LinkParticle[];
+      query = (
+        range instanceof CircleWarp ? range.query(container.particles.grid) : container.particles.grid.query(range)
+      ) as LinkParticle[];
 
     for (const p2 of query) {
       const linkOpt2 = p2.options.links;
