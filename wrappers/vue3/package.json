@@ -139,7 +139,7 @@
     "jsdom": "^30.0.1",
     "prettier": "^3.9.10",
     "typescript": "^6.0.3",
-    "vite": "^8.3.1",
+    "vite": "^7.3.7",
     "vite-plugin-dts": "^5.0.3",
     "vitest": "^5.0.0",
     "vue": "3.5.38",
