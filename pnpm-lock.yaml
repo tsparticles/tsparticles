@@ -13595,10 +13595,10 @@ importers:
         specifier: ~22.2.2
         version: 22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.3(@angular/common@22.2.3(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.3(@angular/compiler@22.2.3)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tsparticles/engine':
-        specifier: 4.5.0
+        specifier: workspace:*
         version: link:../../engine/dist
       '@tsparticles/fireworks':
-        specifier: 4.5.0
+        specifier: workspace:*
         version: link:../../bundles/fireworks/dist
       rxjs:
         specifier: ~7.8.2
@@ -13620,7 +13620,7 @@ importers:
         specifier: ~22.2.2
         version: 22.2.3(@angular/compiler@22.2.3)(typescript@6.0.3)
       '@tsparticles/prettier-config':
-        specifier: 4.5.0
+        specifier: workspace:*
         version: link:../../cli/utils/prettier-config
       '@types/jasmine':
         specifier: ~7.0.0
