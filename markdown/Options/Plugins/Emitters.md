@@ -10,7 +10,7 @@ The `emitters` plugin provides particle emitters: objects that generate particle
 | `direction`        | `MoveDirection` / `number`                  | `undefined`                           | Emission direction (enum, key or number)                                   |
 | `domId`            | `string`                                    | `undefined`                           | ID of the connected DOM element                                            |
 | `draggable`        | `boolean`                                   | `false`                               | When `true`, the emitter can be moved by dragging it inside the shape area |
-| `draw`             | `boolean`                                   | `true`                                | When `true`, the emitter shape is drawn on the canvas                      |
+| `draw`             | `boolean`                                   | `false`                               | When `true`, the emitter shape is drawn on the canvas                      |
 | `fill`             | `boolean`                                   | `true`                                | When `true` particles spawn inside the area                                |
 | `life`             | `EmitterLife`                               | `{ "wait": false }`                   | Life options (count, delay, duration, wait)                                |
 | `name`             | `string`                                    | `undefined`                           | Emitter name                                                               |
@@ -48,7 +48,7 @@ The `emitters` plugin provides particle emitters: objects that generate particle
 
 ## Drawing and dragging
 
-Emitters are drawn behind particles when `draw` is enabled (default) and can be made interactive with `draggable`:
+Emitters are drawn behind particles when `draw` is enabled and can be made interactive with `draggable`:
 
 ```json
 {
@@ -65,7 +65,7 @@ Emitters are drawn behind particles when `draw` is enabled (default) and can be 
 }
 ```
 
-- `draw` (default `true`): renders the emitter shape, filled with `spawn.fill.color` (default black) and stroked with `spawn.stroke.color` when provided.
+- `draw` (default `false`): renders the emitter shape, filled with `spawn.fill.color` (default black) and stroked with `spawn.stroke.color` when provided.
 - `draggable` (default `false`): when `true`, the emitter can be grabbed and dragged inside its shape bounds; emitters linked to a `domId` are never draggable.
 
 ## Notes

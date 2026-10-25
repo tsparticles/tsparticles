@@ -185,12 +185,10 @@ export class InteractivityEventListeners {
     manageListener(interactivityEl, mouseMoveEvent, handlers.mouseMove, add);
     manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
     manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
-    manageListener(
-      interactivityEl,
-      touchEndEvent,
-      options.interactivity?.events.onClick.enable ? handlers.touchEndClick : handlers.touchEnd,
-      add,
-    );
+    const onClickEnabled = !!options.interactivity?.events.onClick.enable;
+
+    manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add && onClickEnabled);
+    manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add && !onClickEnabled);
     manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
     manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
     manageListener(interactivityEl, mouseLeaveEvent, handlers.mouseLeave, add);

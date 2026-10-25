@@ -224,7 +224,7 @@ describe("Plugin options tests", async () => {
       expect(options.emitters.length).to.equal(1);
       expect(options.emitters[0].autoPlay).to.be.false;
       expect(options.emitters[0].draggable).to.be.true;
-      expect(options.emitters[0].draw).to.be.true;
+      expect(options.emitters[0].draw).to.be.false;
       expect(options.emitters[0].fill).to.be.true;
     } finally {
       container.destroy(false);

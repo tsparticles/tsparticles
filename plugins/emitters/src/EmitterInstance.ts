@@ -453,9 +453,11 @@ export class EmitterInstance {
         }
 
         if (this.#lifeCount > minLifeCount || this.#immortal) {
-          this.position = this.#calcPosition();
+          if (!this.#positionOverride) {
+            this.position = this.#calcPosition();
 
-          this.#shape?.resize(this.position, this.size);
+            this.#shape?.resize(this.position, this.size);
+          }
 
           this.#spawnDelay = container.retina.reduceFactor
             ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
