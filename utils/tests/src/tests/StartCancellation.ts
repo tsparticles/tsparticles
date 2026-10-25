@@ -11,21 +11,35 @@ let id = 0;
  * @returns The stopped container.
  */
 async function loadStoppedContainer(): Promise<Container> {
-  globalThis.window = TestWindow as unknown as Window & typeof globalThis;
-  id += 1;
+  vi.useFakeTimers();
+  try {
+    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    id += 1;
 
-  const container = await tsParticles.load({
-    id: `cancel-delayed-start-${id.toString()}`,
-    element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
-    options: { delay: 0.02, autoPlay: false, particles: { number: { value: 0 } } },
-  });
+    const loading = tsParticles.load({
+      id: `cancel-delayed-start-${id.toString()}`,
+      element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
+      options: { delay: 0.02, autoPlay: false, particles: { number: { value: 0 } } },
+    });
 
-  if (!container) {
-    throw new Error("Container not initialized");
+    let loaded = false;
+    void loading.then(() => {
+      loaded = true;
+    });
+    await vi.waitFor(() => {
+      expect(loaded).toBe(true);
+    });
+    const container = await loading;
+
+    if (!container) {
+      throw new Error("Container not initialized");
+    }
+    container.stop();
+
+    return container;
+  } finally {
+    vi.useRealTimers();
   }
-  container.stop();
-
-  return container;
 }
 
 describe("delayed container start cancellation", () => {
