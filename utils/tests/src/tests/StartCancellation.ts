@@ -34,9 +34,14 @@ async function loadStoppedContainer(): Promise<Container> {
     if (!container) {
       throw new Error("Container not initialized");
     }
-    container.stop();
+    try {
+      container.stop();
 
-    return container;
+      return container;
+    } catch (error) {
+      container.destroy();
+      throw error;
+    }
   } finally {
     vi.useRealTimers();
   }
