@@ -45,7 +45,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Initialize Nx Cloud
         run: pnpm exec nx-cloud start-ci-run --distribute-on="10 linux-medium-js"
