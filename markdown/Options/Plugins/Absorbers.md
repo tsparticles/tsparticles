@@ -13,6 +13,7 @@ Defines absorber entities that pull nearby particles and can consume them.
 | `size.density`    | `number`           | `5`                           | Attraction intensity                                                                    |
 | `size.limit`      | `number`           | `100`                         | Maximum absorber radius                                                                 |
 | `size.limit.mass` | `number`           | `100`                         | Maximum absorber mass, a `0` value means no limit                                       |
+| `orbits`          | `boolean`          | `false`                       | Binds captured particles to an orbit around the absorber attraction field               |
 | `split.enable`    | `boolean`          | `false`                       | Splits the absorber when it reaches one of its `size.limit` values, disabled by default |
 | `split.quantity`  | `number`           | `4`                           | Particles generated at the absorber position when it splits, `0` generates no particles |
 

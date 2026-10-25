@@ -41,7 +41,7 @@
     "dependency-cruiser": "^18.2.0",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^65.3.12",
+    "eslint-plugin-jsdoc": "^65.4.2",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
     "prettier": "^3.9.10",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@types/estree": "^1.0.9",
     "@types/node": "^26.6.5",
-    "browserslist": "^4.29.3",
+    "browserslist": "^4.29.4",
     "commander": "^15.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",

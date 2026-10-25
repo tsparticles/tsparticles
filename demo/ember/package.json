@@ -62,6 +62,6 @@
     "qunit": "^2.26.0",
     "qunit-dom": "^3.6.0",
     "typescript": "^6.0.3",
-    "webpack": "^5.112.0"
+    "webpack": "^5.112.2"
   }
 }

@@ -167,6 +167,7 @@ export const particlesOptions: ISourceOptions = {
 
 ## Related references
 
+- [Errors reference](/errors/): error codes thrown by the engine and feature packages
 - Config package docs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
 - Presets folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - Palettes folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
