@@ -6898,7 +6898,7 @@ importers:
     dependencies:
       '@modelcontextprotocol/sdk':
         specifier: ^1.29.0
-        version: 1.31.0(supports-color@10.2.2)(zod@4.4.3)
+        version: 1.32.0(supports-color@10.2.2)(zod@4.4.3)
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -19976,8 +19976,8 @@ packages:
     resolution: {integrity: sha512-laVmIhPGpWi7rG9q+0UigblRN0Hws/Yjlb6qLFtVqryXVLkc4h+yN8z731POD2LnAGQlFe7/tXhUm7Bi0YB91g==}
     engines: {node: '>=20'}
 
-  '@modelcontextprotocol/sdk@1.31.0':
-    resolution: {integrity: sha512-UvTMgnNlnIBO/22ob2RcVGDlcvOslQs8T59+FTGdA0L27a39fdGF/EDETNtDVK4DZGpwomlsYpRdA8UXcVL/pw==}
+  '@modelcontextprotocol/sdk@1.32.0':
+    resolution: {integrity: sha512-8BviX/hK4Gd2eL1KdTwm0gfl4d3wdoErW0Jd00h6nomUAtk6IJk5vwQJc6kfWtJTzN5OEV/lgIiJKI8fiDGAlA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -26454,6 +26454,11 @@ packages:
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
 
   ajv-keywords@3.5.2:
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
@@ -51392,7 +51397,7 @@ snapshots:
     dependencies:
       zod: 4.4.3
 
-  '@modelcontextprotocol/sdk@1.31.0(supports-color@10.2.2)(zod@4.4.3)':
+  '@modelcontextprotocol/sdk@1.32.0(supports-color@10.2.2)(zod@4.4.3)':
     dependencies:
       '@hono/node-server': 1.19.14(hono@4.13.13)
       ajv: 8.20.0
@@ -60774,7 +60779,9 @@ snapshots:
     dependencies:
       ajv: 8.20.0
 
-  ajv-formats@3.0.1: {}
+  ajv-formats@3.0.1:
+    dependencies:
+      ajv: 8.20.0
 
   ajv-keywords@3.5.2(ajv@6.15.0):
     dependencies:
