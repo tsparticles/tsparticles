@@ -36,32 +36,37 @@ async function fixture(
     throw new Error("Test container was not initialized");
   }
 
-  const container = base as RepulseContainer,
-    interactivity = container.actualOptions.interactivity,
-    repulse = new Repulse();
+  try {
+    const container = base as RepulseContainer,
+      interactivity = container.actualOptions.interactivity,
+      repulse = new Repulse();
 
-  if (!interactivity) {
-    throw new Error("Interactivity options were not loaded");
+    if (!interactivity) {
+      throw new Error("Interactivity options were not loaded");
+    }
+    interactivity.events.onClick.enable = enabled;
+    interactivity.events.onClick.mode = "repulse";
+    repulse.speed = speed;
+    interactivity.modes.repulse = repulse;
+    container.actualOptions.interactivity = interactivity;
+    container.repulse = { clicking: true, particles: [] };
+    container.retina.repulseModeDistance = 60;
+    const particle = base.particles.addParticle({ x: 100 + distance, y: 100 });
+
+    if (!particle) {
+      throw new Error("Test particle was not initialized");
+    }
+    particle.velocity.setTo(Vector.create(1, 2));
+    particle.initialVelocity.setTo(particle.velocity);
+    container.particles.grid.insert(particle);
+
+    const interactor = new Repulser(tsParticles.pluginManager, container);
+
+    return { container, interactor, particle };
+  } catch (error) {
+    base.destroy();
+    throw error;
   }
-  interactivity.events.onClick.enable = enabled;
-  interactivity.events.onClick.mode = "repulse";
-  repulse.speed = speed;
-  interactivity.modes.repulse = repulse;
-  container.actualOptions.interactivity = interactivity;
-  container.repulse = { clicking: true, particles: [] };
-  container.retina.repulseModeDistance = 60;
-  const particle = base.particles.addParticle({ x: 100 + distance, y: 100 });
-
-  if (!particle) {
-    throw new Error("Test particle was not initialized");
-  }
-  particle.velocity.setTo(Vector.create(1, 2));
-  particle.initialVelocity.setTo(particle.velocity);
-  container.particles.grid.insert(particle);
-
-  const interactor = new Repulser(tsParticles.pluginManager, container);
-
-  return { container, interactor, particle };
 }
 
 describe("click repulse", () => {
@@ -95,7 +100,7 @@ describe("click repulse", () => {
       expect(particle.velocity.y).toBe(2);
       expect(container.repulse?.particles).toEqual([]);
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   });
 
@@ -106,7 +111,7 @@ describe("click repulse", () => {
       interactor.interact(clickData);
       expect(particle.velocity.length).toBe(0);
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   });
 
@@ -123,7 +128,7 @@ describe("click repulse", () => {
       expect(particle.velocity.y).toBe(2);
       expect(container.repulse?.particles).toEqual([]);
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   });
 });
