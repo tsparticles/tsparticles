@@ -251,7 +251,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
           d = distance ** squarePower,
           velocity = repulseOptions.speed,
-          force = (-repulseRadius * velocity) / d;
+          force = d > minDistance ? (-repulseRadius * velocity) / d : minSpeed;
 
         if (d <= repulseRadius) {
           this.#trackInteractedParticle(particle);
