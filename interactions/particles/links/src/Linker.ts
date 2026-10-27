@@ -1,5 +1,4 @@
 import {
-  Circle,
   type ICoordinates,
   type IDimension,
   type IRgb,
@@ -86,8 +85,11 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       optOpacity = linkOpt1.opacity,
       optDistance = p1.retina.linksDistance ?? minDistance,
       warp = linkOpt1.warp,
-      range = warp ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) : new Circle(pos1.x, pos1.y, optDistance),
-      query = container.particles.grid.query(range) as LinkParticle[];
+      query = (
+        warp
+          ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize).query(container.particles.grid)
+          : container.particles.grid.queryCircle(pos1, optDistance)
+      ) as LinkParticle[];
 
     for (const p2 of query) {
       const linkOpt2 = p2.options.links;

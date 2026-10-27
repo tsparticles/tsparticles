@@ -43,6 +43,12 @@ export class EventListeners {
    * Removing all listeners
    */
   removeListeners(): void {
+    if (this.#resizeTimeout !== undefined) {
+      clearTimeout(this.#resizeTimeout);
+
+      this.#resizeTimeout = undefined;
+    }
+
     this.#manageListeners(false);
   }
 
