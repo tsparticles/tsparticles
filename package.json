@@ -37,8 +37,8 @@
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@crowdin/cli": "^5.5.0",
-    "@nx/devkit": "^24.0.1",
-    "@nx/js": "^24.0.1",
+    "@nx/devkit": "^24.0.2",
+    "@nx/js": "^24.0.2",
     "@swc-node/register": "^1.12.1",
     "@swc/core": "^1.16.20",
     "@tsparticles/browserslist-config": "workspace:*",
@@ -53,7 +53,7 @@
     "@tsparticles/webpack-plugin": "workspace:*",
     "@types/node": "^26.6.5",
     "@types/webpack-env": "^1.18.8",
-    "browserslist": "^4.29.4",
+    "browserslist": "^4.29.5",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.13.0",
@@ -65,7 +65,7 @@
     "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "lerna": "^10.1.1",
-    "nx": "^24.0.1",
+    "nx": "^24.0.2",
     "nx-cloud": "^19.1.5",
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
@@ -77,11 +77,11 @@
     "ts-json-schema-generator": "^2.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.0",
+    "typescript-eslint": "^8.72.1",
     "webpack": "^5.112.2",
     "webpack-bundle-analyzer": "^5.4.0",
     "webpack-cli": "^7.2.3",
     "yargs": "^18.2.0"
   },
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.16.1"
 }
