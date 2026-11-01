@@ -117,7 +117,7 @@
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/smooth-value-noise": "workspace:*",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   },
   "publishConfig": {
     "access": "public",

@@ -121,7 +121,7 @@
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/plugin-move": "workspace:*",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   },
   "publishConfig": {
     "access": "public",

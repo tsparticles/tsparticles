@@ -181,12 +181,12 @@
     "@tsparticles/updater-twinkle": "workspace:*",
     "@tsparticles/updater-wobble": "workspace:*",
     "@types/jsdom": "^30.0.0",
-    "@vitest/coverage-v8": "^5.0.0",
-    "@vitest/ui": "^5.0.0",
+    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/ui": "^5.0.5",
     "canvas": "^3.2.3",
-    "jsdom": "^30.0.1",
+    "jsdom": "^30.1.3",
     "jsdom-global": "^3.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   },
   "type": "module"
 }

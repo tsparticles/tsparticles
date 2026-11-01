@@ -20,13 +20,13 @@
     "@tsparticles/plugin-themes": "workspace:*",
     "@tsparticles/slim": "workspace:*",
     "next": "^16.3.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^16.3.0",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-config-next": "^16.3.0"
   }
 }

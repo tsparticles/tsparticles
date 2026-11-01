@@ -3,6 +3,8 @@ import { execFileSync, execSync } from "node:child_process";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { syncRootVersion } from "./sync-root-version.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = resolve(__dirname, "..");
@@ -11,16 +13,12 @@ const modifiedFiles = [];
 
 // ── 1. Sync root package.json version with engine ──
 const enginePkg = JSON.parse(readFileSync(join(root, "engine", "package.json"), "utf-8"));
-const rootPkgPath = join(root, "package.json");
-const rootPkg = JSON.parse(readFileSync(rootPkgPath, "utf-8"));
 const engineVersion = enginePkg.version;
+const rootVersionSync = syncRootVersion();
 
-if (rootPkg.version !== engineVersion) {
-  const oldVersion = rootPkg.version;
-  rootPkg.version = engineVersion;
-  writeFileSync(rootPkgPath, `${JSON.stringify(rootPkg, null, 2)}\n`, "utf-8");
-  console.log(`  📝 Root package.json: ${oldVersion} → ${engineVersion}`);
-  modifiedFiles.push(rootPkgPath);
+if (rootVersionSync) {
+  console.log(`  📝 Root package.json: ${rootVersionSync.oldVersion} → ${rootVersionSync.newVersion}`);
+  modifiedFiles.push(rootVersionSync.path);
 }
 
 // ── 2. Restore workspace:* deps that lerna may have hardcoded ──
