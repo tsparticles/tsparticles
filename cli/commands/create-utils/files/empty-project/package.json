@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/empty-template",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "private": true,
   "type": "module",
   "description": "tsParticles empty template",
@@ -83,14 +83,14 @@
   "types": "dist/types/index.d.ts",
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@tsparticles/cli-build": "^4.5.0",
-    "@tsparticles/browserslist-config": "^4.5.0",
-    "@tsparticles/depcruise-config": "^4.5.0",
-    "@tsparticles/engine": "^4.5.0",
-    "@tsparticles/eslint-config": "^4.5.0",
-    "@tsparticles/prettier-config": "^4.5.0",
-    "@tsparticles/rollup-plugin": "^4.5.0",
-    "@tsparticles/tsconfig": "^4.5.0",
+    "@tsparticles/cli-build": "^4.5.1",
+    "@tsparticles/browserslist-config": "^4.5.1",
+    "@tsparticles/depcruise-config": "^4.5.1",
+    "@tsparticles/engine": "^4.5.1",
+    "@tsparticles/eslint-config": "^4.5.1",
+    "@tsparticles/prettier-config": "^4.5.1",
+    "@tsparticles/rollup-plugin": "^4.5.1",
+    "@tsparticles/tsconfig": "^4.5.1",
     "browserslist": "^4.29.5",
     "copyfiles": "^2.4.1",
     "eslint": "^10.14.0",
@@ -102,6 +102,6 @@
     "typescript-eslint": "^8.72.1"
   },
   "peerDependencies": {
-    "@tsparticles/engine": "^4.5.0"
+    "@tsparticles/engine": "^4.5.1"
   }
 }

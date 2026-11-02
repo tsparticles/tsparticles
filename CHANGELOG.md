@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
+
+### Bug Fixes
+
+* **engine:** cancel pending resize callbacks when listeners stop ([c25cbb8](https://github.com/tsparticles/tsparticles/commit/c25cbb87b71c1f8e7a0b88b7bc86e209f5b2c138))
+* **engine:** preserve active event listeners during subscription changes ([07284b5](https://github.com/tsparticles/tsparticles/commit/07284b56b3ef75f89e1d72ec201b2d7b66df9e22))
+* **engine:** preserve pooled ranges during nested spatial queries ([7833a14](https://github.com/tsparticles/tsparticles/commit/7833a1465ed4bfc2e54b3deed92b09bce04409a2))
+* **engine:** settle delayed starts cancelled by stop ([841456b](https://github.com/tsparticles/tsparticles/commit/841456bca33a11c37af74393fcd466d84b120cc3))
+* **life:** use canvas height for respawn positions ([c20d501](https://github.com/tsparticles/tsparticles/commit/c20d501c08e66ca860d72bc4c4179cbbff2ec511))
+* **repulse:** keep click-center particle velocity finite ([cbf286b](https://github.com/tsparticles/tsparticles/commit/cbf286bc6b82ace7dd217774a90d04b52d17f817))
+
 # [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
 
 ### Bug Fixes
