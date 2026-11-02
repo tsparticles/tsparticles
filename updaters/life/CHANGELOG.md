@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
+
+### Bug Fixes
+
+* **life:** use canvas height for respawn positions ([c20d501](https://github.com/tsparticles/tsparticles/commit/c20d501c08e66ca860d72bc4c4179cbbff2ec511))
+
 # [4.5.0](https://github.com/tsparticles/tsparticles/compare/v4.4.0...v4.5.0) (2026-10-25)
 
 **Note:** Version bump only for package @tsparticles/updater-life

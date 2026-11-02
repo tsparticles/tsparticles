@@ -67,7 +67,7 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
   }
 
   const widthRange = setRangeValue(minCanvasSize, canvasSize.width),
-    heightRange = setRangeValue(minCanvasSize, canvasSize.width);
+    heightRange = setRangeValue(minCanvasSize, canvasSize.height);
 
   particle.position.x = randomInRangeValue(widthRange);
   particle.position.y = randomInRangeValue(heightRange);

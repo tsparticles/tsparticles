@@ -8,7 +8,6 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import path from "node:path";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
-import { visualizer } from "rollup-plugin-visualizer";
 
 type ReplaceOptions = NonNullable<Parameters<typeof replace>[number]>;
 
@@ -311,6 +310,23 @@ export { ${namedExports} };
           'typeof process !== "undefined"': JSON.stringify(true),
         }
       : {}),
+  }),
+  /**
+   * Creates the visualizer plugin, deferring the `rollup-plugin-visualizer` load to build time.
+   *
+   * The dependency is ESM-only (no CommonJS export), so importing it statically would make the CJS
+   * output of this package throw `ERR_PACKAGE_PATH_NOT_EXPORTED` when loaded with `require()`.
+   * Loading it inside `generateBundle` keeps both entry points working and report generation intact.
+   * @param filename - the report file to generate
+   * @returns the lazily-loaded visualizer plugin
+   */
+  createLazyVisualizer = (filename: string): Plugin => ({
+    name: "tsparticles-lazy-visualizer",
+    async generateBundle(outputOptions, outputBundle): Promise<void> {
+      const { visualizer } = await import("rollup-plugin-visualizer");
+
+      return visualizer({ filename }).generateBundle.call(this, outputOptions, outputBundle);
+    },
   });
 
 export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boolean): RollupOptions => {
@@ -355,10 +371,7 @@ export const createSingleConfig = (params: ConfigParams, min: boolean, lazy: boo
       }),
       replace(getReplacements(min, version)),
       exposeEntryExports(true, params.iifePolicy),
-      !min &&
-        visualizer({
-          filename: path.resolve(dir, "dist/report.html"),
-        }),
+      !min && createLazyVisualizer(path.resolve(dir, "dist/report.html")),
       min && terser(),
     ].filter(Boolean),
     output: {

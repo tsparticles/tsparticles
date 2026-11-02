@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/browserslist-config",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "tsParticles default Browserslist configuration",
   "main": "dist/index.js",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "build:ci": "tsc"
   },
   "devDependencies": {
-    "browserslist": "^4.29.4",
+    "browserslist": "^4.29.5",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {

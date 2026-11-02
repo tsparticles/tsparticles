@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/eslint-config",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "tsParticles default ESLint Configuration (ESLint 10 + Flat Config)",
   "type": "module",
   "main": "dist/eslint.config.js",
@@ -47,10 +47,10 @@
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.0"
+    "typescript-eslint": "^8.72.1"
   },
   "devDependencies": {
-    "@types/node": "^26.6.5",
-    "eslint": "^10.13.0"
+    "@types/node": "^26.6.6",
+    "eslint": "^10.14.0"
   }
 }

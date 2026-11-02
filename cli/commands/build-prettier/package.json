@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-command-build-prettier",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -37,40 +37,40 @@
     "prettier": "^3"
   },
   "dependencies": {
-    "@swc/core": "^1.16.20",
+    "@swc/core": "^1.16.21",
     "@tsparticles/depcruise-config": "workspace:*",
     "@tsparticles/eslint-config": "workspace:*",
     "@tsparticles/prettier-config": "workspace:*",
     "@tsparticles/tsconfig": "workspace:*",
-    "dependency-cruiser": "^18.2.0",
-    "eslint": "^10.13.0",
+    "dependency-cruiser": "^18.7.0",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^65.4.2",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
     "klaw": "^4.1.0",
     "lookpath": "^1.2.3",
-    "path-scurry": "^2.0.2",
+    "path-scurry": "^3.0.0",
     "prettier": "^3.9.10",
     "prettier-plugin-multiline-arrays": "^4.1.11",
     "prompts": "^2.4.2",
     "rimraf": "^6.1.3",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.0"
+    "typescript-eslint": "^8.72.1"
   },
   "devDependencies": {
-    "@types/estree": "^1.0.9",
-    "@types/klaw": "^3.0.7",
-    "@types/node": "^26.6.5",
+    "@types/estree": "^1.0.10",
+    "@types/klaw": "^3.0.8",
+    "@types/node": "^26.6.6",
     "@types/prompts": "^2.4.9",
-    "browserslist": "^4.29.4",
+    "browserslist": "^4.29.5",
     "commander": "^15.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^10.1.0",
     "prettier": "^3.9.10",
     "ts-node": "^10.9.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   },
   "description": "tsParticles CLI",
   "main": "dist/prettier.js",

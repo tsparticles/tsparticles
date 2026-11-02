@@ -109,7 +109,7 @@ describe("Emitters tests", () => {
       const emitter = container.getEmitter?.();
 
       expect(emitter).to.be.not.undefined;
-      expect(emitter?.options.draw).to.be.true;
+      expect(emitter?.options.draw).to.be.false;
       expect(emitter?.options.draggable).to.be.false;
     } finally {
       container.destroy();
@@ -166,7 +166,10 @@ describe("Emitters tests", () => {
   it("should draw the emitter shape when the draw option is enabled", async () => {
     const container = await loadEmitterContainer("emitters-draw-on", {
       autoPlay: false,
-      emitters: defaultEmitterOptions,
+      emitters: {
+        ...defaultEmitterOptions,
+        draw: true,
+      },
     });
 
     try {
@@ -193,6 +196,7 @@ describe("Emitters tests", () => {
       autoPlay: false,
       emitters: {
         ...defaultEmitterOptions,
+        draw: true,
         spawn: {
           fill: {
             enable: false,
@@ -259,6 +263,35 @@ describe("Emitters tests", () => {
       emitter?.setPosition({ x: 250, y: 300 });
 
       emitter?.resize();
+
+      expect(emitter?.position).to.deep.equal({ x: 250, y: 300 });
+    } finally {
+      container.destroy();
+    }
+  });
+
+  it("should keep the dragged position across emitter life cycles", async () => {
+    const container = await loadEmitterContainer("emitters-life-drag", {
+      autoPlay: false,
+      emitters: {
+        ...defaultEmitterOptions,
+        position: { x: 150, y: 150 },
+        life: {
+          duration: 0.1,
+          count: 2,
+        },
+      },
+    });
+
+    try {
+      const emitter = container.getEmitter?.();
+
+      expect(emitter).to.be.not.undefined;
+
+      emitter?.externalPlay();
+      emitter?.setPosition({ x: 250, y: 300 });
+
+      emitter?.update({ value: 200, factor: 1 });
 
       expect(emitter?.position).to.deep.equal({ x: 250, y: 300 });
     } finally {

@@ -13,7 +13,7 @@
     "@tsparticles/lit": "^4.4.0"
   },
   "devDependencies": {
-    "vite": "^8.3.1",
+    "vite": "^8.3.5",
     "typescript": "~5.7.0"
   }
 }

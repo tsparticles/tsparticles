@@ -43,7 +43,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   /**
    * Sets if the emitter shape will be drawn on the canvas
    */
-  draw = true;
+  draw = false;
   /**
    * Sets if the particles will spawn at the emitter perimeter or inside the area
    */

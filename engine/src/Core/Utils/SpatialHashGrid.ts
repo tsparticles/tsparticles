@@ -113,12 +113,13 @@ export class SpatialHashGrid {
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    const circle = this.#acquireCircle(position.x, position.y, radius),
-      result = this.query(circle, check, out);
+    const circle = this.#acquireCircle(position.x, position.y, radius);
 
-    this.#releaseShapes();
-
-    return result;
+    try {
+      return this.query(circle, check, out);
+    } finally {
+      this.#circlePoolIdx--;
+    }
   }
 
   /**
@@ -135,12 +136,13 @@ export class SpatialHashGrid {
     check?: (particle: Particle) => boolean,
     out: Particle[] = [],
   ): Particle[] {
-    const rect = this.#acquireRectangle(position.x, position.y, size.width, size.height),
-      result = this.query(rect, check, out);
+    const rect = this.#acquireRectangle(position.x, position.y, size.width, size.height);
 
-    this.#releaseShapes();
-
-    return result;
+    try {
+      return this.query(rect, check, out);
+    } finally {
+      this.#rectanglePoolIdx--;
+    }
   }
 
   #acquireCircle(x: number, y: number, r: number): Circle {
@@ -239,10 +241,5 @@ export class SpatialHashGrid {
         out.push(p);
       }
     }
-  }
-
-  #releaseShapes(): void {
-    this.#circlePoolIdx = 0;
-    this.#rectanglePoolIdx = 0;
   }
 }

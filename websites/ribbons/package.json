@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ribbons-website",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "tsParticles ribbons webpage",
   "private": true,
   "type": "module",
@@ -33,19 +33,19 @@
     "@tsparticles/confetti": "workspace:*",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/ribbons": "workspace:*",
-    "ace-builds": "^1.44.0",
-    "dompurify": "^3.4.16",
+    "ace-builds": "^1.45.2",
+    "dompurify": "^3.4.17",
     "js-beautify": "^2.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "gh-pages": "^6.3.0",
-    "globals": "^17.12.0",
+    "globals": "^17.13.0",
     "prettier": "^3.9.10",
-    "vite": "^8.3.1"
+    "vite": "^8.3.5"
   },
   "nx": {
     "implicitDependencies": [

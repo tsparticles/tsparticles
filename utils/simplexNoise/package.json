@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/simplex-noise",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "tsParticles simplex noise library",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,6 +108,6 @@
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   }
 }

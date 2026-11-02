@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/qwik",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "Official tsParticles Qwik Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.",
   "keywords": [
     "front-end",
@@ -81,10 +81,10 @@
     "@builder.io/qwik": "^1.20.0",
     "@tsparticles/engine": "workspace:*",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^26.6.5",
-    "@typescript-eslint/eslint-plugin": "^8.66.0",
-    "@typescript-eslint/parser": "^8.66.0",
-    "eslint": "^10.13.0",
+    "@types/node": "^26.6.6",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
+    "eslint": "^10.14.0",
     "eslint-plugin-qwik": "^1.20.0",
     "np": "^12.0.1",
     "prettier": "^3.9.10",
@@ -93,7 +93,7 @@
     "undici": "^8.10.0",
     "vite": "^7.3.6",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   },
   "publishConfig": {
     "access": "public"

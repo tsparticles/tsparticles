@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt2-demo",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -41,11 +41,11 @@
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@types/node": "^26.6.5",
-    "@typescript-eslint/parser": "^8.66.0",
+    "@types/node": "^26.6.6",
+    "@typescript-eslint/parser": "^8.72.1",
     "babel-loader": "^8.4.1",
     "css-loader": "^5.2.7",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^10.10.0",

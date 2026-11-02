@@ -28,7 +28,9 @@ function resolveDeps(deps, version) {
     return Object.fromEntries(
         Object.entries(deps).map(([name, value]) => [
             name,
-            resolveWorkspaceVersion(value, version),
+            // @tsparticles packages are always aligned with the released version,
+            // even when their specifier is not using the workspace protocol anymore
+            name.startsWith("@tsparticles/") ? `^${version}` : resolveWorkspaceVersion(value, version),
         ]),
     );
 }
@@ -58,14 +60,14 @@ async function main() {
         pkgJson.dependencies = resolveDeps(pkgJson.dependencies, version);
     }
 
-    if (pkgJson.peerDependencies?.["@tsparticles/engine"]) {
-        pkgJson.peerDependencies["@tsparticles/engine"] = `^${version}`;
+    if (pkgJson.peerDependencies) {
+        pkgJson.peerDependencies = resolveDeps(pkgJson.peerDependencies, version);
     }
 
     pkgDistJson.version = version;
 
-    if (pkgDistJson.peerDependencies?.["@tsparticles/engine"]) {
-        pkgDistJson.peerDependencies["@tsparticles/engine"] = `^${version}`;
+    if (pkgDistJson.peerDependencies) {
+        pkgDistJson.peerDependencies = resolveDeps(pkgDistJson.peerDependencies, version);
     }
 
     const jsonIndent = 2;
