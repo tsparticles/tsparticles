@@ -4,6 +4,9 @@ import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { GifParticle } from "./types.js";
 import type { IGifShape } from "./IGifShape.js";
 
+const gifShape = "gif",
+  gifsShape = "gifs";
+
 export class GifDrawer implements IShapeDrawer<GifParticle> {
   readonly #container: Container;
   readonly #failedGifs: Set<string>;
@@ -89,6 +92,10 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       }
 
       setTimeout((): void => {
+        if (container.destroyed || particle.destroyed) {
+          return;
+        }
+
         this.particleInit(container, particle);
       });
 
@@ -129,9 +136,16 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
 
     if (container.destroyed) return;
 
-    const waitingParticles = container.particles.filter(
-      particle => !(particle as GifParticle).gifData && (particle.shapeData as IGifShape | undefined)?.src === src,
-    );
+    const waitingParticles = container.particles.filter(particle => {
+      const shape = particle.shape;
+
+      return (
+        !(particle as GifParticle).gifData &&
+        /* image particles can share the same src, but they must not receive the GIF playback state */
+        (shape === gifShape || shape === gifsShape) &&
+        (particle.shapeData as IGifShape | undefined)?.src === src
+      );
+    });
 
     for (const particle of waitingParticles) {
       const waitingParticle = particle as GifParticle,

@@ -726,7 +726,10 @@ function disposeFrame(
       context.clearRect(originPoint.x, originPoint.y, gifData.width, gifData.height);
 
       if (!gifData.globalColorTable.length) {
-        context.putImageData(gifData.frames[firstIndex]!.image, originPoint.x, originPoint.y);
+        const firstFrame = gifData.frames[firstIndex]!;
+
+        /* the first frame of the gif is not necessarily at its top left corner */
+        context.putImageData(firstFrame.image, originPoint.x + firstFrame.left, originPoint.y + firstFrame.top);
       } else {
         context.putImageData(gifData.backgroundImage, originPoint.x, originPoint.y);
       }

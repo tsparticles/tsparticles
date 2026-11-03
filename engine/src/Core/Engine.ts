@@ -35,6 +35,14 @@ export class Engine {
    */
   #initialized = false;
 
+  #loadSequence = 0;
+
+  /**
+   * The sequence of the latest load requested for each container id, so the loads superseded by a
+   * newer one for the same id cannot install or replace the container of the newer one
+   */
+  readonly #loadSequences = new Map<string, number>();
+
   /**
    * The container instances
    * @returns the instances loaded in the engine
@@ -121,20 +129,34 @@ export class Engine {
    * @returns A Promise with the {@link Container} object created
    */
   async load(params: ILoadParams): Promise<Container | undefined> {
-    await this.init();
-
     let domSourceElement: HTMLElement | undefined;
 
     if (typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement) {
       domSourceElement = params.element;
     }
 
+    /* the sequence is assigned before the first await, so the loads are ordered by when they were requested */
+    const id =
+        params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+      loadSequence = ++this.#loadSequence;
+
+    this.#loadSequences.set(id, loadSequence);
+
+    await this.init();
+
     const { Container } = await import("./Container.js"),
-      id = params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
       { index, url } = params,
-      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
-      /* elements */
-      currentOptions = itemFromSingleOrMultiple(options, index),
+      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
+
+    if (this.#loadSequences.get(id) !== loadSequence) {
+      /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
+      return undefined;
+    }
+
+    this.#loadSequences.delete(id);
+
+    /* elements */
+    const currentOptions = itemFromSingleOrMultiple(options, index),
       { items } = this,
       oldIndex = items.findIndex(v => v.id.description === id),
       newItem = new Container({

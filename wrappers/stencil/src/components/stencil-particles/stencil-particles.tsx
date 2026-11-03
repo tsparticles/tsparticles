@@ -5,12 +5,27 @@ import { initParticlesEngine } from "../../initParticlesEngine";
 
 let instanceCount = 0;
 
+/**
+ * Generates a per-instance container id, skipping the candidates already used by a rendered element,
+ * so an id generated here never collides with another instance or with an explicit container-id
+ * @returns the generated container id
+ */
+const getFallbackContainerId = (): string => {
+  let id: string;
+
+  do {
+    id = `stencil-particles-${(++instanceCount).toString()}`;
+  } while (typeof document !== "undefined" && document.getElementById(id));
+
+  return id;
+};
+
 @Component({
   tag: "stencil-particles",
 })
 export class StencilParticles {
   private containerElement?: HTMLDivElement;
-  private readonly fallbackContainerId = `stencil-particles-${(++instanceCount).toString()}`;
+  private readonly fallbackContainerId = getFallbackContainerId();
 
   @Event() particlesLoaded!: EventEmitter<Container | undefined>;
 
