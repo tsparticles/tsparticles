@@ -61,7 +61,8 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
   }
 
   /**
-   * Clears the compositing state, so a recycled particle starts from a clean surface
+   * Clears the decoded data and the compositing state, so a recycled particle starts from a clean
+   * surface and cannot render the animation of a previous source
    * @param particle - The particle to process
    */
   particleDestroy(particle: GifParticle): void {
@@ -69,6 +70,10 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
     delete particle.gifCanvasContext;
     delete particle.gifCanvasFrame;
     delete particle.gifPreviousCanvas;
+    delete particle.gifData;
+    delete particle.gifFrame;
+    delete particle.gifLoopCount;
+    delete particle.gifTime;
   }
 
   particleInit(container: Container, particle: GifParticle): void {
