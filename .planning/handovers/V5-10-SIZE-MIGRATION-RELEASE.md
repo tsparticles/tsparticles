@@ -65,3 +65,8 @@ Stato finale per ogni requisito V5, report riproducibile e problemi residui con
 passi di riproduzione. Non segnare v5 completata se resta aperto un gate richiesto;
 non presentare un limite dell'ambiente come verifica superata. Lasciare al flusso
 release separato commit/tag/versionamento, pubblicazione e deployment.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

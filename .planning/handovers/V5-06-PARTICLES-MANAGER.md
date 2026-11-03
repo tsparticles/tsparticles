@@ -53,3 +53,8 @@ Coordinare modifiche ai contratti Particle con 07; non annullare modifiche altru
 Inventario metodi/invarianti revisionati, semplificazioni applicate e parti mantenute
 con motivazione. Report bundle/runtime e contratti da verificare in 07/08.
 Aggiornare matrice di copertura dell'intero engine e stato in indice.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

@@ -46,3 +46,8 @@ salvo gli adattamenti di firma necessari. Non annullare modifiche altrui.
 Tabella lifecycle, componenti realmente estratti, byte prima/dopo e prove. Se la
 riduzione non è dimostrata, riportare il risultato senza presentarlo come obiettivo
 raggiunto. Aggiornare architettura, changelog se API cambiata e stato in indice.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

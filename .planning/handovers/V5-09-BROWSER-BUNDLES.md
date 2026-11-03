@@ -65,3 +65,8 @@ loader globali. Questa infrastruttura richiede revisione oltre alla rimozione
 
 Matrice formato/entry/bundler, contratto browser definitivo con esempi, test reali
 ed esiti, cambiamenti ai manifest e misure. Il gate 10 include questa matrice.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

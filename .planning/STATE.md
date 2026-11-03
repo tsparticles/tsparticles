@@ -16,6 +16,9 @@ See: .planning/PROJECT.md (initialized)
   No runtime implementation was performed in this session.
 - Verified singleton creation/global reuse, module-level random/logger state,
   type-only core class exports and current build CLI behavior against source.
+- Expanded the performance/size plan into six linked technical documents under
+  `handovers/improvements/`, integrated into the relevant handovers and final gate.
+  Runtime experiments and measurements remain pending.
 - Baseline bundle measurement and numeric budgets are deliberately pending until
   the implementation agent builds the unmodified baseline. No size reduction claimed.
 - Updated PROJECT, REQUIREMENTS, ROADMAP and relevant architecture/structure/stack

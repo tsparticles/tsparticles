@@ -142,12 +142,12 @@ Se un budget non è raggiunto, il gate rimane aperto con dati e motivazione.
 
 ## Miglioramenti candidati
 
-Le opportunità di performance e bundle size trovate durante la ricognizione sono
-in [V5-IMPROVEMENTS.md](V5-IMPROVEMENTS.md). Include scansioni ripetute per limiti
-per gruppo, Set per frame, griglia spaziale, ordinamento z, rendering e import
-transitivi. Sono ipotesi da misurare nei rispettivi handover, non attività da
-implementare alla cieca. I candidati aggiuntivi emersi nell'audit vanno registrati
-nello stesso documento con scenario e criterio di decisione.
+Il [piano miglioramenti](V5-IMPROVEMENTS.md) è articolato in sei approfondimenti:
+misure/baseline, grafo bundle e browser, collection particelle, indice spaziale,
+stato per particella, rendering/lifecycle. Ogni documento specifica ownership,
+alternative, vincoli, scenari e criteri di accettazione. Gli handover principali
+rimandano agli approfondimenti di propria competenza; il gate 10 verifica anche
+il registro delle decisioni e gli esiti delle opportunità analizzate.
 
 ## Stato di questo piano
 

@@ -51,3 +51,8 @@ pacchetti già corretti; non annullare modifiche altrui.
 Matrice pacchetto per pacchetto, elenco modifiche effettivamente necessarie e
 residui riproducibili. L'assenza di modifiche è un risultato valido con prove;
 non dichiarare “tutti a posto” sulla sola ricerca del nome `tsParticles`.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

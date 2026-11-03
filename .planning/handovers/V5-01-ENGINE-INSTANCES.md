@@ -77,3 +77,8 @@ Aggiornare `V5-BUNDLE-REPORT.md`, matrice delle API migrate e stato in indice.
 Fornire comandi/esiti e problemi riproducibili. A questo punto random/logger sono
 ancora condivisi: dichiararlo fino al completamento di 02, senza rivendicare
 isolamento completo. Il checkout deve compilare e i consumer devono funzionare.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md), [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

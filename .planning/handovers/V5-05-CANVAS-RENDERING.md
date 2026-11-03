@@ -50,3 +50,8 @@ nuovi package solo per distribuire i file. Non annullare modifiche di altri agen
 Misure per scenario, prove browser e inventario responsabilità finali. Registrare
 anche ottimizzazioni considerate e scartate quando spiegano un tradeoff concreto.
 Aggiornare ARCHITECTURE/STRUCTURE, changelog se necessario e indice.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

@@ -101,3 +101,8 @@ Inventario completo `V5-ENGINE-AUDIT.md`, con ogni file assegnato e stato di rev
 Matrice public/internal, grafo dei domini, regole applicate, elenco rimozioni API e
 misure. Aggiornare ARCHITECTURE/STRUCTURE e stato. I due handover seguenti usano i
 nuovi percorsi; i nomi vecchi nei loro riferimenti identificano le responsabilità.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).

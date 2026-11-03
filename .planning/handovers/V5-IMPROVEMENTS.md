@@ -1,47 +1,32 @@
-# V5 — Opportunità candidate per bundle size e performance
+# V5 — Piano di miglioramento performance e bundle size
 
-Queste sono ipotesi di lavoro ricavate dal sorgente 4.5.1. Aiutano a scegliere cosa
-profilare durante gli handover; non sono modifiche già approvate né una promessa di
-risparmio. Per ogni voce misurare la scena consumer reale prima/dopo e mantenere il
-comportamento osservabile. Priorità indica valore potenziale × evidenza iniziale,
-non una garanzia di implementazione.
+Parte integrante del piano v5. I sei documenti seguenti approfondiscono opportunità
+emerse nel sorgente e specificano esperimenti, alternative, rischi e criteri di
+accettazione. L'analisi è richiesta; la scelta di implementare una variante dipende
+dalle misure. Nessuna riduzione è già dimostrata.
 
-## Bundle size
+| Documento                                                                              | Responsabile                          | Risultato richiesto                                     |
+| -------------------------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------- |
+| [IMP-01 — Misure e baseline](improvements/V5-IMP-01-MEASUREMENT.md)                    | 01 e 10; tutti gli owner per le prove | Scenari riproducibili e registro delle decisioni        |
+| [IMP-02 — Grafo bundle e browser](improvements/V5-IMP-02-BUNDLE-GRAPH.md)              | 03/09 con 01/05/07/08                 | Import selettivi, optional feature, lazy e duplicazioni |
+| [IMP-03 — Collection delle particelle](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md) | 06                                    | Conteggi gruppi, rimozioni, bucket e pool               |
+| [IMP-04 — Indice spaziale](improvements/V5-IMP-04-SPATIAL-INDEX.md)                    | 06 e consumer in 08                   | Lookup/chiavi, celle, output query e cell size          |
+| [IMP-05 — Stato per particella](improvements/V5-IMP-05-PARTICLE-STATE.md)              | 07 con 02/03/08                       | Options, getter/vettori, memoria e cache                |
+| [IMP-06 — Rendering e lifecycle](improvements/V5-IMP-06-RENDER-LIFECYCLE.md)           | 04/05 e consumer in 08                | Hook/layer, stato canvas, resize e cleanup              |
 
-| Priorità | Opportunità                                                                                 | Evidenza e verifica                                                                                                                                                                                                                                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Alta     | Misurare l'import selettivo di utility e dei root export engine                             | `engine/src/exports.ts` riesporta molte utility, enum e classi option. Creare fixture consumer per un helper puro, API factory e scena minima; controllare import graph e byte emessi da Rollup, Webpack/Rolldown supportati. `export *` da solo non prova che l'intero grafo venga incluso.                                            |
-| Alta     | Isolare le dipendenze DOM e lifecycle dietro entrypoint/capacità necessarie                 | `Engine.load()` importa dinamicamente `Container`; confrontare consumer che usano utility/API di configurazione senza `load()` e scena base. Verificare entry più tutti i chunk: il dynamic import conta solo se il consumer può non caricarlo.                                                                                         |
-| Alta     | Valutare le opzioni core che trascinano grandi dipendenze opzionali                         | Seguire import transitivi da `CanvasManager`/`RenderManager`, `Particle` e options verso HDR, fullscreen, background o plugin. Estrarre soltanto se loader/default chiari conservano le feature nelle distribuzioni previste e la fixture prova una riduzione reale. HDR e feature pubbliche non sono candidati a rimozione automatica. |
-| Media    | Ridurre re-export e codice di supporto duplicato nei browser bundle e nei pacchetti feature | Auditare `browser.ts`, `index.lazy.ts`, `exports.ts`, entry `bundle` e build map. Confrontare CDN completo, engine+plugin external e più plugin; riportare duplicati realmente spediti e costo di una configurazione condivisa.                                                                                                         |
-| Media    | Eliminare import runtime usati soltanto per tipi e cicli evitabili                          | Verificare `import type`, output JS e circular-deps check sulle aree migrate. È un intervento a basso rischio quando confermato dall'output; misurare il delta perché TS già elimina molti import type.                                                                                                                                 |
-| Media    | Progettare le nuove facciate di dominio come API selettive                                  | Indici pubblici minimi e regole anti-deep-import rendono chiari i confini; misurare consumer tree-shaking e dichiarazioni. La sola creazione di cartelle non riduce byte.                                                                                                                                                               |
+## Esecuzione e tracciamento
 
-## Performance e memoria
+Gli IMP si eseguono dentro gli [handover principali](README.md), secondo ownership
+e dipendenze indicate; non aggiungono una fase di riscrittura dopo il gate finale.
+Gli owner leggono i documenti assegnati prima di iniziare il proprio handover.
+La numerazione IMP identifica approfondimenti tecnici, non nuovi passaggi sequenziali.
 
-| Priorità    | Opportunità                                                                | Evidenza e verifica                                                                                                                                                                                                                                                                                                                          |
-| ----------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Alta        | Evitare scansioni ripetute delle particelle per conteggi gruppo/limiti     | `ParticlesManager.#applyDensity()` e `#checkAndApplyLimits()` usano `filter(...).length`; in inserimenti e rimozioni ripetute il costo può moltiplicarsi per N. Profilare caricamento denso/churn. Valutare conteggi per gruppo aggiornati in un unico punto, con invarianti testati su pool, plugin, gruppi, delete/wait, destroy e resize. |
-| Alta        | Ridurre le allocazioni per frame nella fase di update                      | `#updateParticlesPhase1()` crea un `Set<Particle>` per frame e la fase successiva lo muta. Misurare GC e throughput; provare un buffer riusabile o stato di rimozione più semplice solo se mantiene rimozioni differite e callback che distruggono particelle.                                                                               |
-| Alta        | Misurare costi di ordinamento dei bucket z                                 | `#insertParticleIntoBucket()` può ordinare un bucket quando l'ordine id non è rispettato. Profilare distribuzioni diverse di z-layer e inserimenti; mantenere l'ordine osservabile di draw, evitare sort per frame non necessario.                                                                                                           |
-| Alta        | Analizzare SpatialHashGrid sotto densità e dimensioni diverse              | `#cells` usa chiavi stringa, `insert()` fa `has` + `get`, le query traversano celle e riusano pool di forme. Misurare chiavi/hot lookup e candidati visitati. Confrontare chiavi numeriche/nidificazioni o lookup singolo senza creare array temporanei; includere coordinate negative, celle ai bordi, resize e cell size.                  |
-| Media       | Ridurre il lavoro di enumerazione nel rendering                            | `RenderManager.clear()` crea un Set e enumera `Object.values(DrawLayer)` per deduplicare i plugin; verificare se è hot nella scena e se i layer/plugin possono cambiare durante il lifecycle. Precalcolare solo dati stabili o usare un percorso equivalente che non perda plugin registrati dinamicamente.                                  |
-| Media       | Controllare cache globali e allocazioni una tantum                         | `ColorUtils` ha già una cache `styleCache` limitata a 2000; preservarne il limite. Cercare altre cache/array per engine o plugin; misurare crescita nel tempo e cleanup prima di modificarle.                                                                                                                                                |
-| Media       | Profilare getter e trasformazioni per particella/frame                     | In `Particle`, `RenderManager` e `Retina` misurare conversioni colore, accessori posizione, merge options e vettori. Ottimizzare soltanto i call path caldi; niente memoizzazione che diventa stale quando plugin/options mutano.                                                                                                            |
-| Media       | Semplificare aggiornamenti resize e setup dello stile fuori dal frame loop | `CanvasManager.setStyle()` combina chiavi CSS tramite un Set. È lavoro di setup, non automaticamente hot: misurare caricamento/resize e numero proprietà prima di intervenire.                                                                                                                                                               |
-| Da valutare | Spostare capacità core opzionali in plugin o chunk lazy                    | Mappa per feature la quota byte e il costo runtime. Definire loader, default e fallback espliciti; verificare basic/slim/full/all e consumer custom. L'estensione non deve riattivare implicitamente un singleton.                                                                                                                           |
+Ogni candidato B/P/S/T/R deve avere nel registro un esito: implementato e verificato,
+scartato con evidenza oppure rinviato con motivazione e impatto sul budget. Il solo
+rinvio non soddisfa un requisito o un budget obbligatorio del piano. Il gate 10
+controlla i risultati, la copertura dell'analisi e i residui; non richiede di applicare
+un'ottimizzazione che le misure hanno dimostrato inutile.
 
-## Metodo di decisione
-
-Per ogni candidato, l'handover che possiede il codice registra: scenario e macchina,
-artefatto/commit, warmup, N particelle e configurazione, mediane e dispersione di
-throughput/update/draw, allocazioni o heap dove disponibili, byte raw/min/gzip/Brotli,
-regressioni funzionali controllate e rischio di compatibilità plugin. Confrontare la
-stessa toolchain e lo stesso seed. Una riduzione di righe o del solo entry file non è
-un risultato. Scartare una proposta quando costo/complessità superano il vantaggio
-dimostrato; lasciare dati e motivazione nel relativo handover.
-
-Riferimenti: [indice dei passaggi](README.md), [confini core](V5-03-CORE-BOUNDARIES.md),
-[Container](V5-04-CONTAINER.md), [canvas/render](V5-05-CANVAS-RENDERING.md),
-[ParticlesManager](V5-06-PARTICLES-MANAGER.md), [Particle](V5-07-PARTICLE.md),
-[bundle browser](V5-09-BROWSER-BUNDLES.md), [gate misure](V5-10-SIZE-MIGRATION-RELEASE.md).
+Le evidenze iniziali si riferiscono al checkout 4.5.1 analizzato. Gli agent devono
+riverificarle sul codice aggiornato: una precedente fase potrebbe avere già
+risolto il costo o cambiato il contratto. Non duplicare refactor né test esistenti.

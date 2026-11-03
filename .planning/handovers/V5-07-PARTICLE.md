@@ -47,3 +47,8 @@ Non annullare modifiche altrui; mantenere gli invarianti stabiliti in 06.
 
 Mappa campi/metodi e decisioni di revisione, API cambiate e migrazioni, report delle
 misure. Aggiornare la matrice engine di 03: nessuna area senza owner o verifica.
+
+## Approfondimenti di performance e dimensioni
+
+Consultare [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md).
+Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
