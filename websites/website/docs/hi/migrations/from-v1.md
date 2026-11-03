@@ -55,7 +55,7 @@ particles: {
 // बाद में
 particles: {
   paint: {
-    fill: { value: ["#ff6b6b", "#4ecdc4"] },
+    fill: { color: { value: ["#ff6b6b", "#4ecdc4"] } },
     stroke: { width: 0 }
   }
 }

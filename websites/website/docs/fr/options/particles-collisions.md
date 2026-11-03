@@ -67,7 +67,7 @@ the bottom.
 
 Overlaps are prevented by a non-penetration constraint and not by these values, so raising
 `nearStiffness` / `maxForce` to fight an overlap only adds energy, spreading the fluid out like a
-gas. To get visible gaps between the particles, raise `restDensity` instead, keeping in mind that a
+gas. To get visible gaps between the particles, lower `restDensity` instead, keeping in mind that a
 dense fluid needs room: with `size` and `number` fixed, too many particles cannot fit with gaps and
 will settle into a compact packed layer.
 
