@@ -4,18 +4,27 @@ import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 import { initParticlesEngine } from "../../initParticlesEngine";
 
 let instanceCount = 0;
+const usedIds = new Set<string>();
 
 /**
- * Generates a per-instance container id, skipping the candidates already used by a rendered element,
- * so an id generated here never collides with another instance or with an explicit container-id
+ * Generates a per-instance container id, skipping candidates already used by a rendered element or
+ * by an explicit container-id on another instance, so an id generated here never collides with
+ * another instance or with an explicit container-id
+ * @param explicitId - an id that a duplicate of this instance has already claimed
  * @returns the generated container id
  */
-const getFallbackContainerId = (): string => {
+const getFallbackContainerId = (explicitId?: string): string => {
   let id: string;
 
   do {
     id = `stencil-particles-${(++instanceCount).toString()}`;
-  } while (typeof document !== "undefined" && document.getElementById(id));
+  } while (
+    typeof document !== "undefined" && (
+      document.getElementById(id) || (explicitId && usedIds.has(explicitId))
+    )
+  );
+
+  usedIds.add(id);
 
   return id;
 };
@@ -89,13 +98,24 @@ export class StencilParticles {
       // If a container-id is provided, use it so consumers can retrieve the container later;
       // otherwise a per-instance id is used, since the engine does not generate one when the
       // element id is an empty string, which would make every instance share the same container.
-      const containerId = this.containerId ?? this.fallbackContainerId,
-        loadParams: Record<string, unknown> = {
-          element: this.containerElement,
-          id: containerId,
-          ...(this.options ? { options: this.options } : {}),
-          ...(this.url ? { url: this.url } : {}),
-        };
+      const explicitId = this.containerId;
+      let containerId = this.containerId ?? this.fallbackContainerId;
+      const fallbackId = this.fallbackContainerId;
+
+      if (!containerId) {
+        // Ensure a generated id is still unique when an explicit one is set too.
+        usedIds.delete(fallbackId);
+        const nextId = getFallbackContainerId(explicitId);
+        usedIds.add(nextId);
+        containerId = nextId;
+      }
+
+      const loadParams: Record<string, unknown> = {
+        element: this.containerElement,
+        id: containerId,
+        ...(this.options ? { options: this.options } : {}),
+        ...(this.url ? { url: this.url } : {}),
+      };
 
       container = await tsParticles.load(loadParams);
     } catch (error: unknown) {

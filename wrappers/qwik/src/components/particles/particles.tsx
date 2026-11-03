@@ -15,12 +15,18 @@ const Particles = component$<IParticlesProps>(props => {
     const options = track(() => props.options);
     const url = track(() => props.url);
 
+    // A cancellation flag keeps a superseded load from publishing its result
+    // and overwriting the container of a newer load for the same id.
+    let cancelled = false;
+
     cleanup(() => {
       const c = librarySig.value;
       if (c) {
         c.destroy();
         librarySig.value = undefined;
       }
+
+      cancelled = true;
     });
 
     void (async () => {
@@ -41,6 +47,12 @@ const Particles = component$<IParticlesProps>(props => {
         id: trackedId,
         options: options ?? props.params,
       });
+
+      if (cancelled) {
+        container?.destroy();
+
+        return;
+      }
 
       if (props.container) {
         props.container.value = noSerialize(container);

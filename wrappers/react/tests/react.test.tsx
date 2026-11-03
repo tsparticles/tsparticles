@@ -177,6 +177,47 @@ describe("Particles", () => {
     expect(newerContainer.destroy).toHaveBeenCalledTimes(1);
   });
 
+  it("unmounts while a load is pending without destroying the newer container", async () => {
+    const { Particles, ParticlesProvider } = await loadModules(),
+      particlesLoaded = vi.fn();
+
+    let resolveOlder: (container: typeof containerMock | undefined) => void = () => undefined;
+
+    const olderLoad = new Promise<typeof containerMock | undefined>(resolve => {
+      resolveOlder = resolve;
+    });
+
+    const pendingContainer = { destroyed: false, destroy: vi.fn() };
+    loadMock.mockImplementationOnce(async () => {
+      await olderLoad;
+      return pendingContainer;
+    });
+    loadMock.mockImplementationOnce(async () => newerContainer);
+
+    root = createRoot(host!);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    await act(async () => {
+      root!.unmount();
+      root = undefined;
+    });
+
+    await olderLoad;
+
+    expect(loadMock).toHaveBeenCalledTimes(2);
+    expect(particlesLoaded).not.toHaveBeenCalled();
+    expect(newerContainer.destroy).not.toHaveBeenCalled();
+    expect(pendingContainer.destroy).toHaveBeenCalledTimes(1);
+  });
+
   it("calls the init callback with the engine instance", async () => {
     const { Particles, ParticlesProvider } = await loadModules(),
       init = vi.fn(async () => Promise.resolve());

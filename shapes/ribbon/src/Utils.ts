@@ -291,14 +291,15 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
     head = getHead(particle),
     previousHead = getPreviousHead(particle),
     velocityInherit = getVelocityInherit(particle),
-    followsParticleMotion = particle.options.move.enable;
+    followsParticleMotion = particle.options.move.enable,
+    oscillationSpeed = getOscillationSpeed(particle);
 
-  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * getOscillationSpeed(particle);
+  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * oscillationSpeed;
 
   if (followsParticleMotion) {
-    const oscillationSpeed = getOscillationSpeed(particle),
+    const oscillationDistance = getOscillationDistance(particle),
       oscillationOffset = oscillationSpeed
-        ? (Math.cos(particle.ribbonTime) * getOscillationDistance(particle)) / oscillationSpeed
+        ? (Math.cos(particle.ribbonTime) * oscillationDistance) / oscillationSpeed
         : noDistance;
 
     head.x = particle.position.x + oscillationOffset;

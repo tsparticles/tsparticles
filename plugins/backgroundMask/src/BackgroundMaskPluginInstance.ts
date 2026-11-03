@@ -54,12 +54,10 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     if (maskElement) {
       dynamicUsed = true;
 
-      const opacity = cover.opacity;
-
       canvas.render.draw(ctx => {
         const previousAlpha = ctx.globalAlpha;
 
-        ctx.globalAlpha = opacity;
+        ctx.globalAlpha = cover.opacity;
 
         try {
           ctx.drawImage(maskElement, originPoint.x, originPoint.y, canvas.size.width, canvas.size.height);

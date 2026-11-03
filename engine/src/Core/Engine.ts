@@ -202,6 +202,11 @@ export class Engine {
       /* launch tsParticles */
       await newItem.start();
 
+      if (newItem.destroyed) {
+        /* the container was destroyed before start() completed, so do not return it */
+        return undefined;
+      }
+
       return newItem;
     } finally {
       /* a newer load for the same id keeps its own entry, which must not be cleared here */

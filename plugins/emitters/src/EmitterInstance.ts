@@ -231,6 +231,23 @@ export class EmitterInstance {
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
 
+    /* initialize the draw styles now, without waiting for particle emission, so a paused emitter
+     * with draw: true still renders fillOpacity, strokeOpacity and strokeWidth */
+    const defaultOpacityValue = defaultOpacity,
+      defaultStrokeWidthValue = defaultStrokeWidth;
+    this.spawnFillOpacity =
+      this.options.spawn.fill?.opacity === undefined
+        ? defaultOpacityValue
+        : getRangeValue(this.options.spawn.fill.opacity);
+    this.spawnStrokeOpacity =
+      this.options.spawn.stroke?.opacity === undefined
+        ? defaultOpacityValue
+        : getRangeValue(this.options.spawn.stroke.opacity);
+    this.spawnStrokeWidth =
+      this.options.spawn.stroke?.width === undefined
+        ? defaultStrokeWidthValue
+        : getRangeValue(this.options.spawn.stroke.width);
+
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);
 
