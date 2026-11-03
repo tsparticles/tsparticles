@@ -65,7 +65,7 @@ Après :
 ```ts
 particles: {
   paint: {
-    fill: { value: "#00ffcc" },
+    fill: { color: { value: "#00ffcc" } },
     stroke: { width: 1, color: "#003344" }
   }
 }
