@@ -48,6 +48,7 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
     void decodeGIF(src, { colorSpace: "srgb" })
       .then(gifData => {
         this.#gifCache.set(src, gifData);
+        this.#resumeWaitingParticles(src, gifData);
       })
       .catch((error: unknown) => {
         this.#failedGifs.add(src);
@@ -57,6 +58,17 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       .finally(() => {
         this.#loadingGifs.delete(src);
       });
+  }
+
+  /**
+   * Clears the compositing state, so a recycled particle starts from a clean surface
+   * @param particle - The particle to process
+   */
+  particleDestroy(particle: GifParticle): void {
+    delete particle.gifCanvas;
+    delete particle.gifCanvasContext;
+    delete particle.gifCanvasFrame;
+    delete particle.gifPreviousCanvas;
   }
 
   particleInit(container: Container, particle: GifParticle): void {
@@ -78,9 +90,16 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       return;
     }
 
+    this.#applyGifData(particle, shapeData, gifData);
+  }
+
+  #applyGifData(particle: GifParticle, shapeData: IGifShape, gifData: GIF): void {
     particle.gifData = gifData;
     particle.gifFrame = 0;
     particle.gifTime = 0;
+
+    delete particle.gifCanvasFrame;
+    delete particle.gifPreviousCanvas;
     particle.gifLoopCount = getGIFLoopAmount(gifData);
 
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -90,6 +109,32 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
 
     if (shapeData.loopCount !== undefined) {
       particle.gifLoopCount = shapeData.loopCount;
+    }
+  }
+
+  /**
+   * Gives the decoded data to the particles that stopped waiting after a failed decode, since a later
+   * particle retried the source successfully. Live particles are read from the container instead of
+   * being tracked here, so particles removed or recycled in the meantime are never resumed.
+   * @param src - the source that has just been decoded
+   * @param gifData - the decoded GIF data
+   */
+  #resumeWaitingParticles(src: string, gifData: GIF): void {
+    const container = this.#container;
+
+    if (container.destroyed) return;
+
+    const waitingParticles = container.particles.filter(
+      particle => !(particle as GifParticle).gifData && (particle.shapeData as IGifShape | undefined)?.src === src,
+    );
+
+    for (const particle of waitingParticles) {
+      const waitingParticle = particle as GifParticle,
+        shapeData = waitingParticle.shapeData as IGifShape | undefined;
+
+      if (!shapeData || waitingParticle.destroyed) continue;
+
+      this.#applyGifData(waitingParticle, shapeData, gifData);
     }
   }
 }

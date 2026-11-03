@@ -135,7 +135,8 @@ function getPreviousHead(particle: RibbonParticle): Vector {
  */
 export function createRibbonState(particle: RibbonParticle): void {
   const shapeData = particle.shapeData,
-    count = Math.max(minPointCount, Math.round(getRangeValue(shapeData?.count ?? defaultPointCount))),
+    countConfig = shapeData?.count ?? defaultPointCount,
+    count = Math.max(minPointCount, Math.round(getRangeValue(countConfig))),
     particleDist = getRangeValue(shapeData?.particleDist ?? defaultParticleDist),
     mass = getRangeValue(shapeData?.mass ?? defaultMass),
     drag = getRangeValue(shapeData?.drag ?? defaultDrag),
@@ -151,6 +152,8 @@ export function createRibbonState(particle: RibbonParticle): void {
     return;
   }
 
+  particle.ribbonCountConfig = countConfig;
+  particle.ribbonPointsCount = count;
   particle.ribbonParticleDist = particleDist;
   particle.ribbonMass = mass;
   particle.ribbonDrag = drag;

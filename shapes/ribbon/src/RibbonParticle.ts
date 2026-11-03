@@ -1,4 +1,4 @@
-import type { Particle, Vector } from "@tsparticles/engine";
+import type { Particle, RangeValue, Vector } from "@tsparticles/engine";
 import type { IRibbonData } from "./IRibbonData.js";
 
 export interface IRibbonPoint {
@@ -10,6 +10,7 @@ export interface IRibbonPoint {
 export type RibbonParticle = Particle & {
   ribbonBackColor?: string;
   ribbonBounds?: Vector;
+  ribbonCountConfig?: RangeValue;
   ribbonDrag?: number;
   ribbonHead?: Vector;
   ribbonMass?: number;
@@ -18,6 +19,7 @@ export type RibbonParticle = Particle & {
   ribbonOscillationSpeed?: number;
   ribbonParticleDist?: number;
   ribbonPoints?: IRibbonPoint[];
+  ribbonPointsCount?: number;
   ribbonPreviousHead?: Vector;
   ribbonPreviousPosition?: Vector;
   ribbonTime?: number;
