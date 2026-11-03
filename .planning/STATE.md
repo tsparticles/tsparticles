@@ -4,7 +4,26 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 3 complete — 4.5.0 (2026-10-25) and 4.5.1 (2026-11-02) released; final website gate closed 2026-11-03.
+**Current focus:** v5 major planning on branch `v5`; 4.5.0/4.5.1 release history retained below.
+
+## Session Status — 2026-11-03 — v5 planning
+
+- Prepared [ten ordered implementation handovers](handovers/README.md): explicit
+  engines first, per-engine services, core boundaries, Container, canvas/render,
+  ParticlesManager, Particle/Retina, ecosystem plugin audit, browser/CDN refinement
+  and size/migration gate. Mandatory file-level review covers all of engine/src.
+  No runtime implementation was performed in this session.
+- Verified singleton creation/global reuse, module-level random/logger state,
+  type-only core class exports and current build CLI behavior against source.
+- Baseline bundle measurement and numeric budgets are deliberately pending until
+  the implementation agent builds the unmodified baseline. No size reduction claimed.
+- Updated PROJECT, REQUIREMENTS, ROADMAP and relevant architecture/structure/stack
+  notes. Other April codebase/research audits remain historical and require verification.
+- Nx project discovery succeeded using `NX_DAEMON=false NX_ISOLATE_PLUGINS=false`;
+  default discovery was blocked by sandbox socket permissions.
+- Next action: start V5-01 with baseline capture, then remove the singleton and
+  migrate all active consumers. See individual handovers for tests and exit gates.
+- Historical “v5 fluid plan” below means solver revision 5, not product major v5.
 
 ## Session Status — 2026-11-03
 
@@ -51,15 +70,16 @@ See: .planning/PROJECT.md (initialized)
 - **Contact damping added.** `#dampContacts()` bleeds off the velocity of a particle supported by enough neighbors, since the non-penetration projection only corrects positions and gravity would otherwise keep accumulating velocity on a resting particle. Damping is isotropic: removing velocity along contact normals sums one push per neighbor and launched the cloud across the canvas.
 - **`supportContacts = 5` chosen empirically.** The contact count cannot distinguish a falling cloud from a resting pool, both hold a similar number of neighbors, so the value balances the two failure modes. Measured over 1500 particles at 2000 frames:
 
-  | `supportContacts` | pool height | mean speed | calm |
-  |---|---|---|---|
-  | 2 | 1130 (suspended) | 0.45 | 1200 |
-  | 4 | 600 (half suspended) | 1.65 | 580 |
-  | **5** | **240 (pooled)** | **3.58** | **365** |
-  | 6 | 220 (pooled) | 4.55 | 362 |
-  | no damping | 238 (pooled) | 4.91 | 251 |
+  | `supportContacts` | pool height          | mean speed | calm    |
+  | ----------------- | -------------------- | ---------- | ------- |
+  | 2                 | 1130 (suspended)     | 0.45       | 1200    |
+  | 4                 | 600 (half suspended) | 1.65       | 580     |
+  | **5**             | **240 (pooled)**     | **3.58**   | **365** |
+  | 6                 | 220 (pooled)         | 4.55       | 362     |
+  | no damping        | 238 (pooled)         | 4.91       | 251     |
 
   `restDensity` was verified not to affect the suspension (1 / 3 / 8 all behave the same), so attraction is not the cause.
+
 - **Residual overlap accepted.** ~3400 overlapping pairs of ~1.1M in the densest region, handled by per-pair hard projection; the test thresholds were relaxed to `0.008` / `0.7` and the docs state it honestly. A global relaxation pass in `IContainerPlugin.postUpdate` was considered and rejected by the user.
 - **Validation:** tests package 302/302, `Successfully ran target build for 463 projects`. The 6 failing `lint` tasks (`ember`, `svelte-kit`, `ionic`, `nuxt2/3/4` demos) fail identically on a clean tree: a broken `demo/ionic/eslint.config.mjs`.
 - **Not verified:** behavior in a real browser.
@@ -69,6 +89,7 @@ See: .planning/PROJECT.md (initialized)
 ### 4.5.0 — Feature A implemented (fluid as collision mode)
 
 **Fluid-as-collision-mode runtime shipped** inside `@tsparticles/interaction-particles-collisions`, no new package/interactor:
+
 - `CollisionMode.fluid`, `ICollisionsFluid` / `CollisionsFluid` (radius 30, stiffness 0.5, nearStiffness 0.5, restDensity 3, maxForce 2.5, maxNeighbors 64), wired in `Collisions.load()`
 - `src/Fluid.ts`: `FluidSolver` DDR neighborhood solver (q²/q³ density, focal-only pair displacement, `maxForce` clamp, `maxNeighbors` cap), soft wall spring + hard boundary clamp, contact damping, wall velocity cancellation
 - `Collider`: `reset()` snapshots the position for fluid particles, `interact()` branches on the mode (classic path untouched), `maxDistance` tracks the fluid radius
@@ -80,6 +101,7 @@ See: .planning/PROJECT.md (initialized)
 ### 4.5.0 — In progress (Feature B implemented)
 
 **MCP `generate_code` tool — implemented.** Deterministic codegen for `@tsparticles/mcp-server`:
+
 - `src/tools/generateCode.ts` (keyword extraction, priority-ordered bundle matching, template+override options, 5-framework codegen, HTML + install command)
 - Types/validation added (`src/types.ts`, `src/validation.ts`); tool registered in `src/index.ts`
 - 44 new tests in `src/tools/generateCode.test.ts` — full mcp-server suite green (146 tests, 8 files); build passes
@@ -92,6 +114,7 @@ now shipped — see the 2026-11-03 session above for the final re-check.
 ### 4.3.0 — Released ✅
 
 All 6 features implemented and gate checks passed:
+
 - A: GIF Shape — new `@tsparticles/shape-gif` package
 - B: Background Canvas — layered background pipeline
 - C: Background Mask Dynamic — `cover.element` + `cover.draw`
@@ -110,6 +133,7 @@ Build: 461 projects ✅ | Tests: 152/152 ✅ | No blocking issues.
 Fluid-in-collisions work moved to 4.5.0.
 
 **v5 fluid plan drafted** (fluid as collision mode). Key changes from v3:
+
 - Velocity reconstruction added (critical fix)
 - Correct `q` factor in DDR displacement formula
 - Explicit boundary handling (soft spring + hard clamp) instead of outModes
@@ -119,6 +143,7 @@ Fluid-in-collisions work moved to 4.5.0.
 **MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection.
 
 ### Outcome
+
 **S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented.
 
 **S2 (Vue 2 wrapper) completed**: wrapper reactivity + `tsParticles.init()` fix in event-bus + `theme` prop + fixed `particlesLoaded` type + removed stale `IParticlesProps` export.
@@ -136,6 +161,7 @@ Fluid-in-collisions work moved to 4.5.0.
 **S12 (Preact wrapper) completed**: wrapper reactivity (`theme` prop, `loadTheme` in `loadParticles` + selective `componentDidUpdate` without refresh for theme-only changes), `container` ref type fixed to `Container | undefined`, `particlesLoaded` callback fixed with optional container param, demo keeps original constructor init + conditional render (module-level init + unconditional render causes Preact page freeze — Preact-specific limitation), README updated with `theme` prop and plugin caveat. Build passes.
 
 ### Key Findings (S22)
+
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
   theme-prop implementation must use a type cast (`as unknown as { loadTheme?: ... }`) or bracket access.
 - `tsParticles.load()` returns `Container | undefined`. All `particlesLoaded` callbacks and
@@ -147,6 +173,7 @@ Fluid-in-collisions work moved to 4.5.0.
 - **S22 findings**: All 16 wrapper guide pages lack `theme` prop documentation (even though all wrappers now support it). Reactivity contracts (id/options/url → destroy+reload) are missing from 15/16 guides. Cleanup/teardown docs missing from 15/16 guides. Nuxt guide still documents stale `@particles-init`/`@particles-destroy` events removed in S18. Solid and Svelte guides describe reactivity incorrectly (as "targeted updates" or "without recreating the instance" vs actual destroy+reload).
 
 ### Next Steps
+
 1. ✅ **S1 Vue 3** — done
 2. ✅ **S2 Vue 2** — done
 3. ✅ **S3 Angular** — done

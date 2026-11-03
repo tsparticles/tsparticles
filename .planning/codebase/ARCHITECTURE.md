@@ -54,11 +54,35 @@
 - Depends on: Nx + pnpm workspace metadata.
 - Used by: CI and local development workflows.
 
+## v5 planning overlay — verified 2026-11-03
+
+Current runtime remains 4.5.1. The sections below are the April architecture audit
+with targeted entrypoint corrections; other claims require checking before use.
+The target architecture is [the v5 handover plan](../handovers/README.md), not an
+already implemented state.
+
+- Current singleton paths: `index.ts` / `index.lazy.ts` → `initEngine()` → global
+  reuse or `new Engine()`. Engine already owns its PluginManager and container list.
+- Custom random (`MathUtils._random`), scheduler (`_animationLoop`) and logger
+  (`LogUtils._logger`) are module state. Removing only `tsParticles` does not
+  isolate them. Handover 02 covers transitive uses and shared-state audit.
+- `Engine.load()` dynamically imports Container. Core runtime classes including
+  Engine, Container and CanvasManager are currently root type-only exports.
+- CanvasManager has a resource-level transfer WeakMap; preserve browser resource
+  semantics when defining ownership across engines.
+- v5 scope: mandatory review of all engine sources, including Particle,
+  ParticlesManager, Retina, registries, events, options and utilities. File-level
+  coverage is tracked by handover 03; plugin compatibility by 08 and the browser
+  namespace/external/bootstrap contract by 09 (initial decisions in 01).
+- v5 target: explicit factory, per-engine services, domain folders with selective
+  public indexes and import-boundary enforcement. Keep plugin option/type contracts
+  reachable and compare actual shipped bytes before claiming a reduction.
+
 ## Data Flow
 
 **Runtime Initialization and Animation Flow:**
 
-1. Importing engine entrypoint creates singleton instance (`engine/src/index.ts`) and assigns `globalThis.tsParticles`.
+1. Importing `engine/src/index.ts` creates the exported singleton via `initEngine()`, which can reuse `globalThis.tsParticles`. The standard index does not itself assign globals; `index.lazy.ts` and `browser.ts` do.
 2. Consumer calls `engine.load(...)` (implemented in `engine/src/Core/Engine.ts`), which initializes plugin manager, resolves options (including optional URL fetch), creates/replaces a `Container`, and binds/creates canvas.
 3. `Container.start()` in `engine/src/Core/Container.ts` initializes plugins/drawers/updaters, computes effective options, initializes canvas + particles, and starts draw loop.
 4. `RenderManager.drawParticles(...)` in `engine/src/Core/RenderManager.ts` clears canvas, updates particles through `ParticlesManager.update(...)`, then renders particles and plugin overlays each frame.
@@ -73,7 +97,7 @@
 
 **State Management:**
 
-- Engine-level state is centralized in in-memory registries/maps: `Engine._domArray` (`engine/src/Core/Engine.ts`) and `PluginManager` maps/sets (`engine/src/Core/Utils/PluginManager.ts`).
+- Engine-level state is centralized in in-memory registries/maps: `Engine.#domArray` (`engine/src/Core/Engine.ts`) and `PluginManager` maps/sets (`engine/src/Core/Utils/PluginManager.ts`).
 - Container-level mutable state (running/paused/destroyed/options/plugins) is maintained in instance fields in `engine/src/Core/Container.ts`.
 - Particle-level state is maintained in arrays plus spatial hash grid in `engine/src/Core/ParticlesManager.ts`.
 
@@ -115,13 +139,12 @@
 
 - Location: `engine/src/index.ts`
 - Triggers: Package import of `@tsparticles/engine`.
-- Responsibilities: Create singleton engine (`tsParticles`), publish on `globalThis`, re-export public API/types.
+- Responsibilities: Create/reuse singleton engine (`tsParticles`) and re-export public API/types. Global assignment belongs to browser/lazy entrypoints.
 
-**Engine Bundle Entrypoint (no type exports):**
+**Engine Browser and Lazy Entrypoints:**
 
-- Location: `engine/src/bundle.ts`
-- Triggers: Bundle-oriented engine consumption.
-- Responsibilities: Create global `tsParticles` and export runtime API.
+- Locations: `engine/src/browser.ts`, `engine/src/index.lazy.ts`. There is no current `engine/src/bundle.ts`.
+- Responsibilities: Browser/global integration of the existing singleton. `browser.ts` also exposes random/logger globals; `index.lazy.ts` assigns the engine globally.
 
 **Bundle Entrypoints:**
 
