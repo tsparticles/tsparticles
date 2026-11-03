@@ -11,7 +11,8 @@ See: .planning/PROJECT.md (initialized)
 - Prepared [ten ordered implementation handovers](handovers/README.md): explicit
   engines first, per-engine services, core boundaries, Container, canvas/render,
   ParticlesManager, Particle/Retina, ecosystem plugin audit, browser/CDN refinement
-  and size/migration gate. Mandatory file-level review covers all of engine/src.
+  and size/migration gate, plus measured performance/bundle-size candidates in
+  [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md). Mandatory file-level review covers all of engine/src.
   No runtime implementation was performed in this session.
 - Verified singleton creation/global reuse, module-level random/logger state,
   type-only core class exports and current build CLI behavior against source.

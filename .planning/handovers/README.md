@@ -140,6 +140,15 @@ Se un budget non è raggiunto, il gate rimane aperto con dati e motivazione.
 - Test deterministici, fake scheduler o tick espliciti; verifiche browser per
   canvas/HDR. I mock jsdom non sostituiscono il controllo visivo.
 
+## Miglioramenti candidati
+
+Le opportunità di performance e bundle size trovate durante la ricognizione sono
+in [V5-IMPROVEMENTS.md](V5-IMPROVEMENTS.md). Include scansioni ripetute per limiti
+per gruppo, Set per frame, griglia spaziale, ordinamento z, rendering e import
+transitivi. Sono ipotesi da misurare nei rispettivi handover, non attività da
+implementare alla cieca. I candidati aggiuntivi emersi nell'audit vanno registrati
+nello stesso documento con scenario e criterio di decisione.
+
 ## Stato di questo piano
 
 - [x] Ricognizione dei punti critici e aggiornamento della documentazione di planning.

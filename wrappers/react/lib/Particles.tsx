@@ -15,7 +15,16 @@ const Particles: FC<IParticlesProps> = props => {
 
     const particleId = id ?? "tsparticles";
 
+    let cancelled = false;
+
     tsParticles.load({ id: particleId, url, options }).then(c => {
+      if (cancelled) {
+        /* a newer effect owns the animation now, so a container from this load is not referenced anymore */
+        c?.destroy();
+
+        return;
+      }
+
       if (c?.destroyed) {
         return;
       }
@@ -32,6 +41,8 @@ const Particles: FC<IParticlesProps> = props => {
     });
 
     return () => {
+      cancelled = true;
+
       containerRef.current?.destroy();
 
       containerRef.current = undefined;

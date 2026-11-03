@@ -142,68 +142,73 @@ export class Engine {
 
     this.#loadSequences.set(id, loadSequence);
 
-    await this.init();
+    try {
+      await this.init();
 
-    const { Container } = await import("./Container.js"),
-      { index, url } = params,
-      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
+      const { Container } = await import("./Container.js"),
+        { index, url } = params,
+        options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
-    if (this.#loadSequences.get(id) !== loadSequence) {
-      /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
-      return undefined;
-    }
-
-    this.#loadSequences.delete(id);
-
-    /* elements */
-    const currentOptions = itemFromSingleOrMultiple(options, index),
-      { items } = this,
-      oldIndex = items.findIndex(v => v.id.description === id),
-      newItem = new Container({
-        dispatchCallback: (eventType, args): void => {
-          this.dispatchEvent(eventType, args);
-        },
-        id,
-        onDestroy: (remove): void => {
-          if (!remove) {
-            return;
-          }
-
-          const mainArr = this.items,
-            idx = mainArr.indexOf(newItem);
-
-          if (idx >= removeMinIndex) {
-            mainArr.splice(idx, removeDeleteCount);
-          }
-        },
-        pluginManager: this.pluginManager,
-        sourceOptions: currentOptions,
-      });
-
-    if (oldIndex >= loadMinIndex) {
-      const old = this.item(oldIndex),
-        deleteCount = old ? one : none;
-
-      if (old && !old.destroyed) {
-        old.destroy(false);
+      if (this.#loadSequences.get(id) !== loadSequence) {
+        /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
+        return undefined;
       }
 
-      items.splice(oldIndex, deleteCount, newItem);
-    } else {
-      items.push(newItem);
+      /* elements */
+      const currentOptions = itemFromSingleOrMultiple(options, index),
+        { items } = this,
+        oldIndex = items.findIndex(v => v.id.description === id),
+        newItem = new Container({
+          dispatchCallback: (eventType, args): void => {
+            this.dispatchEvent(eventType, args);
+          },
+          id,
+          onDestroy: (remove): void => {
+            if (!remove) {
+              return;
+            }
+
+            const mainArr = this.items,
+              idx = mainArr.indexOf(newItem);
+
+            if (idx >= removeMinIndex) {
+              mainArr.splice(idx, removeDeleteCount);
+            }
+          },
+          pluginManager: this.pluginManager,
+          sourceOptions: currentOptions,
+        });
+
+      if (oldIndex >= loadMinIndex) {
+        const old = this.item(oldIndex),
+          deleteCount = old ? one : none;
+
+        if (old && !old.destroyed) {
+          old.destroy(false);
+        }
+
+        items.splice(oldIndex, deleteCount, newItem);
+      } else {
+        items.push(newItem);
+      }
+
+      const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
+        typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
+          ? params.element
+          : getCanvasFromContainer(getDomContainer(id, domSourceElement));
+
+      newItem.canvas.loadCanvas(sourceCanvas);
+
+      /* launch tsParticles */
+      await newItem.start();
+
+      return newItem;
+    } finally {
+      /* a newer load for the same id keeps its own entry, which must not be cleared here */
+      if (this.#loadSequences.get(id) === loadSequence) {
+        this.#loadSequences.delete(id);
+      }
     }
-
-    const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
-      typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
-        ? params.element
-        : getCanvasFromContainer(getDomContainer(id, domSourceElement));
-
-    newItem.canvas.loadCanvas(sourceCanvas);
-
-    /* launch tsParticles */
-    await newItem.start();
-
-    return newItem;
   }
 
   /**

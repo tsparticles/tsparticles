@@ -123,6 +123,60 @@ describe("Particles", () => {
     expect(containerMock.destroy).toHaveBeenCalledTimes(1);
   });
 
+  it("ignores a superseded load that resolves after the newer one", async () => {
+    const { Particles, ParticlesProvider } = await loadModules(),
+      particlesLoaded = vi.fn(),
+      newerContainer = { destroyed: false, destroy: vi.fn() };
+
+    let resolveOlder: (container: typeof containerMock | undefined) => void = () => undefined;
+
+    const olderLoad = new Promise<typeof containerMock | undefined>(resolve => {
+      resolveOlder = resolve;
+    });
+
+    loadMock.mockImplementationOnce(() => olderLoad);
+    loadMock.mockImplementation(async () => newerContainer);
+
+    root = createRoot(host!);
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 1 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    await act(async () => {
+      root!.render(
+        <ParticlesProvider init={async () => Promise.resolve()}>
+          <Particles options={{ particles: { number: { value: 2 } } }} particlesLoaded={particlesLoaded} />
+        </ParticlesProvider>,
+      );
+      await Promise.resolve();
+    });
+
+    expect(loadMock).toHaveBeenCalledTimes(2);
+    expect(particlesLoaded).toHaveBeenCalledTimes(1);
+    expect(particlesLoaded).toHaveBeenCalledWith(newerContainer);
+
+    await act(async () => {
+      /* the superseded load resolves with undefined, as the engine does for the same id */
+      resolveOlder(undefined);
+      await Promise.resolve();
+    });
+
+    expect(particlesLoaded).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      root!.unmount();
+      root = undefined;
+    });
+
+    expect(newerContainer.destroy).toHaveBeenCalledTimes(1);
+  });
+
   it("calls the init callback with the engine instance", async () => {
     const { Particles, ParticlesProvider } = await loadModules(),
       init = vi.fn(async () => Promise.resolve());

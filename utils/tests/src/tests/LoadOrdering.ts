@@ -25,30 +25,41 @@ function loadContainer(id: string): Promise<Container | undefined> {
 describe("container load ordering", () => {
   it("discards an overlapping load for the same id instead of replacing the newer container", async () => {
     globalThis.window = TestWindow as unknown as Window & typeof globalThis;
-    containerId += 1;
+
+    const one = 1,
+      firstIndex = 0;
+
+    containerId++;
 
     const id = `load-order-${containerId.toString()}`,
       older = loadContainer(id),
-      newer = loadContainer(id),
-      [olderContainer, newerContainer] = await Promise.all([older, newer]);
+      newer = loadContainer(id);
 
     try {
+      const [olderContainer, newerContainer] = await Promise.all([older, newer]);
+
       expect(olderContainer).toBeUndefined();
       expect(newerContainer).toBeDefined();
 
       const items = tsParticles.items.filter(item => item.id.description === id);
 
-      expect(items).toHaveLength(1);
-      expect(items[0]).toBe(newerContainer);
+      expect(items).toHaveLength(one);
+      expect(items[firstIndex]).toBe(newerContainer);
       expect(newerContainer?.destroyed).toBe(false);
     } finally {
-      newerContainer?.destroy();
+      /* both loads must settle, so a rejected one cannot install a container after the cleanup */
+      await Promise.allSettled([older, newer]);
+
+      for (const item of tsParticles.items.filter(item => item.id.description === id)) {
+        item.destroy();
+      }
     }
   });
 
   it("returns the container of sequential loads for the same id", async () => {
     globalThis.window = TestWindow as unknown as Window & typeof globalThis;
-    containerId += 1;
+
+    containerId++;
 
     const id = `load-order-sequential-${containerId.toString()}`,
       firstContainer = await loadContainer(id);

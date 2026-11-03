@@ -27,6 +27,8 @@ baseline precedes that change. Follow [handover index](handovers/README.md).
 | 9    | Browser/CDN distribution refinement                                 | [09](handovers/V5-09-BROWSER-BUNDLES.md)        |
 | 10   | Complete coverage, budget and migration gate                        | [10](handovers/V5-10-SIZE-MIGRATION-RELEASE.md) |
 
+Performance and bundle-size candidates are tracked in [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md) and enter implementation only when the relevant measurements support them.
+
 No implementation step is complete yet. Historical fluid references to “v5” below
 identify a solver-plan revision, not this product major release.
 
