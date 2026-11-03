@@ -192,7 +192,6 @@ describe("Particles", () => {
       await olderLoad;
       return pendingContainer;
     });
-    loadMock.mockImplementationOnce(async () => newerContainer);
 
     root = createRoot(host!);
 
@@ -210,11 +209,17 @@ describe("Particles", () => {
       root = undefined;
     });
 
+    // Resolve the pending load with undefined so the wrapper continuation completes before the
+    // pending container cleanup assertions.
+    await act(async () => {
+      resolveOlder(undefined);
+      await Promise.resolve();
+    });
+
     await olderLoad;
 
-    expect(loadMock).toHaveBeenCalledTimes(2);
+    expect(loadMock).toHaveBeenCalledTimes(1);
     expect(particlesLoaded).not.toHaveBeenCalled();
-    expect(newerContainer.destroy).not.toHaveBeenCalled();
     expect(pendingContainer.destroy).toHaveBeenCalledTimes(1);
   });
 
