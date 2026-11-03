@@ -211,6 +211,13 @@ export class EmitterInstance {
       this.spawnStrokeColor = rangeColorToHsl(this.#pluginManager, this.options.spawn.stroke.color);
     }
 
+    const spawnFill = this.options.spawn.fill,
+      spawnStroke = this.options.spawn.stroke;
+
+    this.spawnFillOpacity = spawnFill?.opacity === undefined ? defaultOpacity : getRangeValue(spawnFill.opacity);
+    this.spawnStrokeOpacity = spawnStroke?.opacity === undefined ? defaultOpacity : getRangeValue(spawnStroke.opacity);
+    this.spawnStrokeWidth = spawnStroke?.width === undefined ? defaultStrokeWidth : getRangeValue(spawnStroke.width);
+
     this.#paused = !this.options.autoPlay;
     this.#particlesOptions = particlesOptions;
     this.#size = this.#calcSize();

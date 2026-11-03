@@ -3,11 +3,14 @@ import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine
 import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 import { initParticlesEngine } from "../../initParticlesEngine";
 
+let instanceCount = 0;
+
 @Component({
   tag: "stencil-particles",
 })
 export class StencilParticles {
   private containerElement?: HTMLDivElement;
+  private readonly fallbackContainerId = `stencil-particles-${(++instanceCount).toString()}`;
 
   @Event() particlesLoaded!: EventEmitter<Container | undefined>;
 
@@ -68,13 +71,16 @@ export class StencilParticles {
       }
 
       // Load particles directly onto the DOM element.
-      // If a container-id is provided, use it so consumers can retrieve the container later.
-      const loadParams: Record<string, unknown> = {
-        element: this.containerElement,
-        ...(this.containerId ? { id: this.containerId } : {}),
-        ...(this.options ? { options: this.options } : {}),
-        ...(this.url ? { url: this.url } : {}),
-      };
+      // If a container-id is provided, use it so consumers can retrieve the container later;
+      // otherwise a per-instance id is used, since the engine does not generate one when the
+      // element id is an empty string, which would make every instance share the same container.
+      const containerId = this.containerId ?? this.fallbackContainerId,
+        loadParams: Record<string, unknown> = {
+          element: this.containerElement,
+          id: containerId,
+          ...(this.options ? { options: this.options } : {}),
+          ...(this.url ? { url: this.url } : {}),
+        };
 
       container = await tsParticles.load(loadParams);
     } catch (error: unknown) {
@@ -100,7 +106,7 @@ export class StencilParticles {
   render(): JSX.Element {
     return (
       <div
-        id={this.containerId}
+        id={this.containerId ?? this.fallbackContainerId}
         ref={el => {
           this.containerElement = el as HTMLDivElement;
         }}

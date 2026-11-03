@@ -3,13 +3,12 @@
 </template>
 
 <script setup lang="ts">
-import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/engine";
+import { type Container, type ISourceOptions, getLogger, tsParticles } from "@tsparticles/engine";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useParticlesProvider } from "./particles-provider";
 
 let container: Container | undefined,
-  loadId = 0,
-  loadQueue: Promise<void> = Promise.resolve();
+  loadId = 0;
 
 const props = defineProps<{
     id: string;
@@ -22,45 +21,39 @@ const props = defineProps<{
   }>(),
   provider = useParticlesProvider(),
   isMounted = ref(false),
-  loadParticles = (): Promise<void> => {
-    const currentLoadId = ++loadId,
-      load = loadQueue
-        .catch(() => {
-          /* a previous load failed, the queue must stay usable for the next reload */
-        })
-        .then(async () => {
-          /* a newer load was requested while this one was queued */
-          if (currentLoadId !== loadId) {
-            return;
-          }
+  loadParticles = async (): Promise<void> => {
+    const currentLoadId = ++loadId;
 
-          container?.destroy();
-          container = undefined;
+    /* every requested load starts immediately, the load id discards the results of the outdated ones */
+    container?.destroy();
+    container = undefined;
 
-          const newContainer = await tsParticles.load({
-            id: props.id,
-            url: props.url,
-            options: props.options,
-          });
+    try {
+      const newContainer = await tsParticles.load({
+        id: props.id,
+        url: props.url,
+        options: props.options,
+      });
 
-          if (currentLoadId !== loadId) {
-            newContainer?.destroy();
+      if (currentLoadId !== loadId) {
+        newContainer?.destroy();
 
-            return;
-          }
+        return;
+      }
 
-          container = newContainer;
+      container = newContainer;
 
-          if (container && props.theme) {
-            (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
-          }
+      if (container && props.theme) {
+        (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
+      }
 
-          emit("particlesLoaded", container);
-        });
-
-    loadQueue = load;
-
-    return load;
+      emit("particlesLoaded", container);
+    } catch (error: unknown) {
+      /* a failure must not block the next load, and only the latest one is worth reporting */
+      if (currentLoadId === loadId) {
+        getLogger().error("Particles: error during load", error);
+      }
+    }
   };
 
 onMounted(() => {
