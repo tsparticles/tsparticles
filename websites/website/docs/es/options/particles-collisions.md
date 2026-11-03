@@ -44,16 +44,18 @@ surrounding particles and not on a single contact.
 
 ```json
 {
-  "collisions": {
-    "enable": true,
-    "mode": "fluid",
-    "fluid": {
-      "radius": 26,
-      "stiffness": 1.5,
-      "nearStiffness": 1.5,
-      "restDensity": 8,
-      "maxForce": 30,
-      "maxNeighbors": 64
+  "particles": {
+    "collisions": {
+      "enable": true,
+      "mode": "fluid",
+      "fluid": {
+        "radius": 26,
+        "stiffness": 1.5,
+        "nearStiffness": 1.5,
+        "restDensity": 8,
+        "maxForce": 30,
+        "maxNeighbors": 64
+      }
     }
   }
 }
@@ -67,9 +69,10 @@ the bottom.
 
 Overlaps are prevented by a non-penetration constraint and not by these values, so raising
 `nearStiffness` / `maxForce` to fight an overlap only adds energy, spreading the fluid out like a
-gas. To get visible gaps between the particles, raise `restDensity` instead, keeping in mind that a
+gas. To get visible gaps between the particles, lower `restDensity` instead, keeping in mind that a
 dense fluid needs room: with `size` and `number` fixed, too many particles cannot fit with gaps and
-will settle into a compact packed layer.
+will settle into a compact packed layer. In very dense pools, a small share of particle pairs may remain
+slightly interpenetrating.
 
 Any [out mode](/options/particles-move) still applies on top of the fluid, and `bounce` is the one to
 pick: it lets a pool slide along the canvas border and settle against it, instead of piling up on

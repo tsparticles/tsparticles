@@ -15,6 +15,7 @@ The `plugins/emittersShapes/` plugins supply additional emitter shape implementa
 For emitter options see [Emitters](./Emitters.md). Use the shape name (e.g. `"circle"`, `"path"`) as the value of `emitters.shape.type`.
 
 Every shape implements the `draw` contract used by the emitter `draw` option: when
-`emitters.draw` is enabled, the selected shape is rendered on the canvas behind the particles and
-is also used as the drag area when `emitters.draggable` is enabled. Both options default to
+`emitters.draw` is enabled, the selected shape is rendered on the canvas behind the particles. When
+`emitters.draggable` is enabled, the drag area is the bounding box defined by `size.width` and
+`size.height` and centered on the emitter position, not the drawn shape. Both options default to
 `false`.

@@ -409,11 +409,13 @@ export class FluidSolver {
    * @param maxNeighbors - the maximum number of neighbors to collect
    */
   #queryNeighbors(container: Container, particle: CollisionParticle, radius: number, maxNeighbors: number): void {
+    /* the shared buffer must be emptied even when the query is skipped, otherwise the previous
+       particle's neighborhood is reused by the density solve and by the overlap projection */
+    this.#neighbors.length = 0;
+
     if (radius <= minRadius || maxNeighbors <= minCount) {
       return;
     }
-
-    this.#neighbors.length = 0;
 
     container.particles.grid.queryCircle(particle.getPosition(), radius, this.#isNeighbor, this.#neighbors);
   }

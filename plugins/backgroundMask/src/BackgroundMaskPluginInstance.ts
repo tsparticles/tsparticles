@@ -33,7 +33,9 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       return false;
     }
 
-    return this.canvasPaint();
+    this.#container.canvas.render.canvasClear();
+
+    return true;
   }
 
   canvasPaint(): boolean {
@@ -43,11 +45,8 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       return false;
     }
 
-    const canvas = this.#container.canvas;
-
-    canvas.render.canvasClear();
-
-    const cover = backgroundMask.cover;
+    const canvas = this.#container.canvas,
+      cover = backgroundMask.cover;
     let dynamicUsed = false;
     const maskElement = this.#maskElement;
 
@@ -166,6 +165,14 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
     }
   };
 
+  readonly #isSupportedMaskElement = (
+    element: unknown,
+  ): element is HTMLCanvasElement | OffscreenCanvas | HTMLVideoElement | HTMLImageElement =>
+    (typeof HTMLCanvasElement !== "undefined" && element instanceof HTMLCanvasElement) ||
+    (typeof OffscreenCanvas !== "undefined" && element instanceof OffscreenCanvas) ||
+    (typeof HTMLVideoElement !== "undefined" && element instanceof HTMLVideoElement) ||
+    (typeof HTMLImageElement !== "undefined" && element instanceof HTMLImageElement);
+
   readonly #maskWarnOnce = (key: string, message: string): void => {
     if (this.#maskWarnings.has(key)) {
       return;
@@ -188,7 +195,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
       if (typeof document !== "undefined") {
         const node = document.querySelector(cover.element);
 
-        if (node instanceof HTMLCanvasElement || node instanceof HTMLVideoElement || node instanceof HTMLImageElement) {
+        if (node && this.#isSupportedMaskElement(node)) {
           this.#maskElement = node;
         } else if (node) {
           this.#maskWarnOnce(
@@ -202,12 +209,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
           );
         }
       }
-    } else if (
-      cover.element instanceof HTMLCanvasElement ||
-      cover.element instanceof OffscreenCanvas ||
-      cover.element instanceof HTMLVideoElement ||
-      cover.element instanceof HTMLImageElement
-    ) {
+    } else if (this.#isSupportedMaskElement(cover.element)) {
       this.#maskElement = cover.element;
     }
   };

@@ -17,7 +17,8 @@ Cartelle sorgente:
 - `star` (`options.star.sides`, `options.star.inset`, `options.star.close`)
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
 - `emoji` (`options.emoji.value`, `font`, `padding`, `close`)
-- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `replaceColor`, `close`)
+- `gif` / `gifs` (`options.gif.src`, `name`, `width`, `height`, `loopCount`)
 - `arrow` (`options.arrow.heightFactor`, `headWidthFactor`, `bodyHeightFactor`)
 - `cog` (`options.cog.notches`, `innerRadius`, `holeRadius`, `innerTaper`, `outerTaper`)
 - `rounded-rect` (`options.rounded-rect.radius`)
@@ -100,7 +101,6 @@ particles: {
         name: "strawberry",
         width: 64,
         height: 64,
-        gif: false,
         replaceColor: false,
       },
     },

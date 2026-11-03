@@ -6,14 +6,6 @@
         let initPromise;
         let initCallback;
 
-        let container;
-        let mounted = false;
-        let prevId;
-        let prevOptions;
-        let prevUrl;
-        let prevTheme;
-        let loadId = 0;
-
         export async function initParticlesEngine(cb) {
             if (initialized) {
                 return;
@@ -56,8 +48,8 @@
             await (initPromise ? initPromise : Promise.resolve());
         }
 
-        async function loadParticles(props) {
-            const currentLoadId = ++loadId;
+        async function loadParticles(tag, props) {
+            const currentLoadId = ++tag.loadId;
 
             if (!props.id) {
                 if (props.particlesLoaded) {
@@ -72,16 +64,16 @@
                 url: props.url,
             });
 
-            if (currentLoadId !== loadId) {
+            if (currentLoadId !== tag.loadId) {
                 newContainer?.destroy();
                 return;
             }
 
-            container = newContainer;
-            prevId = props.id;
-            prevOptions = props.options;
-            prevUrl = props.url;
-            prevTheme = props.theme;
+            tag.container = newContainer;
+            tag.prevId = props.id;
+            tag.prevOptions = props.options;
+            tag.prevUrl = props.url;
+            tag.prevTheme = props.theme;
 
             if (newContainer && props.theme) {
                 newContainer?.loadTheme?.(props.theme);
@@ -100,39 +92,47 @@
                     throw new Error("initParticlesEngine(...) must be called once before mounting <riot-particles /> components.");
                 }
 
-                mounted = true;
+                this.container = undefined;
+                this.loadId = 0;
+                this.mounted = true;
+                this.prevId = undefined;
+                this.prevOptions = undefined;
+                this.prevTheme = undefined;
+                this.prevUrl = undefined;
 
-                await loadParticles(props);
+                await loadParticles(this, props);
             },
             onUnmounted() {
-                mounted = false;
-                container?.destroy();
-                container = undefined;
+                this.mounted = false;
+                this.loadId++;
+
+                this.container?.destroy();
+                this.container = undefined;
             },
             async onUpdated(props) {
-                if (!mounted) {
+                if (!this.mounted) {
                     return;
                 }
 
-                const idChanged = props.id !== prevId;
-                const optionsChanged = props.options !== prevOptions;
-                const urlChanged = props.url !== prevUrl;
-                const themeChanged = props.theme !== prevTheme;
+                const idChanged = props.id !== this.prevId;
+                const optionsChanged = props.options !== this.prevOptions;
+                const urlChanged = props.url !== this.prevUrl;
+                const themeChanged = props.theme !== this.prevTheme;
 
                 if (idChanged || optionsChanged || urlChanged) {
-                    container?.destroy();
-                    container = undefined;
+                    this.container?.destroy();
+                    this.container = undefined;
 
-                    await loadParticles(props);
-                } else if (themeChanged && container) {
-                    container?.loadTheme?.(props.theme);
+                    await loadParticles(this, props);
+                } else if (themeChanged && this.container) {
+                    this.container?.loadTheme?.(props.theme);
 
-                    prevTheme = props.theme;
+                    this.prevTheme = props.theme;
                 } else {
-                    prevId = props.id;
-                    prevOptions = props.options;
-                    prevUrl = props.url;
-                    prevTheme = props.theme;
+                    this.prevId = props.id;
+                    this.prevOptions = props.options;
+                    this.prevUrl = props.url;
+                    this.prevTheme = props.theme;
                 }
             },
         }

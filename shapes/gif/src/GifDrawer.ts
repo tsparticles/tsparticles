@@ -1,4 +1,4 @@
-import type { Container, IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getLogger } from "@tsparticles/engine";
 import { decodeGIF, drawGif, getGIFLoopAmount } from "./GifUtils/Utils.js";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { GifParticle } from "./types.js";
@@ -6,15 +6,21 @@ import type { IGifShape } from "./IGifShape.js";
 
 export class GifDrawer implements IShapeDrawer<GifParticle> {
   readonly #container: Container;
+  readonly #failedGifs: Set<string>;
   readonly #gifCache: Map<string, GIF>;
+  readonly #loadingGifs: Set<string>;
 
   constructor(container: Container) {
     this.#container = container;
     this.#gifCache = new Map();
+    this.#failedGifs = new Set();
+    this.#loadingGifs = new Set();
   }
 
   destroy(): void {
     this.#gifCache.clear();
+    this.#failedGifs.clear();
+    this.#loadingGifs.clear();
   }
 
   draw(data: IShapeDrawData<GifParticle>): void {
@@ -32,11 +38,24 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
 
     if (!shapeData?.src) return;
 
-    if (this.#gifCache.has(shapeData.src)) return;
+    const src = shapeData.src;
 
-    void decodeGIF(shapeData.src, { colorSpace: "srgb" }).then(gifData => {
-      this.#gifCache.set(shapeData.src, gifData);
-    });
+    if (this.#gifCache.has(src) || this.#failedGifs.has(src) || this.#loadingGifs.has(src)) return;
+
+    this.#loadingGifs.add(src);
+
+    void decodeGIF(src, { colorSpace: "srgb" })
+      .then(gifData => {
+        this.#gifCache.set(src, gifData);
+      })
+      .catch((error: unknown) => {
+        this.#failedGifs.add(src);
+
+        getLogger().error(`Error decoding GIF "${src}"`, error);
+      })
+      .finally(() => {
+        this.#loadingGifs.delete(src);
+      });
   }
 
   particleInit(container: Container, particle: GifParticle): void {
@@ -47,6 +66,10 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
     const gifData = this.#gifCache.get(shapeData.src);
 
     if (!gifData) {
+      if (this.#failedGifs.has(shapeData.src) || container.destroyed || particle.destroyed) {
+        return;
+      }
+
       setTimeout((): void => {
         this.particleInit(container, particle);
       });

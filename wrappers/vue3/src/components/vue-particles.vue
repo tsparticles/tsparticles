@@ -7,7 +7,9 @@ import { type Container, type ISourceOptions, tsParticles } from "@tsparticles/e
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useParticlesProvider } from "./particles-provider";
 
-let container: Container | undefined;
+let container: Container | undefined,
+  loadId = 0,
+  loadQueue: Promise<void> = Promise.resolve();
 
 const props = defineProps<{
     id: string;
@@ -20,20 +22,45 @@ const props = defineProps<{
   }>(),
   provider = useParticlesProvider(),
   isMounted = ref(false),
-  loadParticles = async () => {
-    container?.destroy();
+  loadParticles = (): Promise<void> => {
+    const currentLoadId = ++loadId,
+      load = loadQueue
+        .catch(() => {
+          /* a previous load failed, the queue must stay usable for the next reload */
+        })
+        .then(async () => {
+          /* a newer load was requested while this one was queued */
+          if (currentLoadId !== loadId) {
+            return;
+          }
 
-    container = await tsParticles.load({
-      id: props.id,
-      url: props.url,
-      options: props.options,
-    });
+          container?.destroy();
+          container = undefined;
 
-    if (container && props.theme) {
-      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
-    }
+          const newContainer = await tsParticles.load({
+            id: props.id,
+            url: props.url,
+            options: props.options,
+          });
 
-    emit("particlesLoaded", container);
+          if (currentLoadId !== loadId) {
+            newContainer?.destroy();
+
+            return;
+          }
+
+          container = newContainer;
+
+          if (container && props.theme) {
+            (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(props.theme);
+          }
+
+          emit("particlesLoaded", container);
+        });
+
+    loadQueue = load;
+
+    return load;
   };
 
 onMounted(() => {
@@ -47,6 +74,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  ++loadId;
+
   container?.destroy();
 
   container = undefined;

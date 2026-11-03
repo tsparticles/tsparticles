@@ -40,61 +40,61 @@ denote the positional arguments.
 
 ### Engine
 
-| Code       | Message                                                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| `TSP-1001` | The tsParticles version is different from the loaded plugins version. Engine version: `{0}`. Plugin version: `{1}` |
-| `TSP-1002` | a valid position cannot be found for particle                                                                      |
-| `TSP-1003` | Register plugins can only be done before calling tsParticles.load()                                                |
-| `TSP-1101` | OffscreenCanvas is required but not supported by this browser                                                      |
-| `TSP-1102` | OffscreenCanvas transfer failed                                                                                    |
-| `TSP-1201` | Invalid HDR `enable` value: expected a boolean, got `{0}`                                                          |
-| `TSP-1202` | Invalid HDR `mode` value: expected one of `{0}`, got `{1}`                                                         |
-| `TSP-1203` | Invalid HDR `peakNits` value: expected a positive number, got `{0}`                                                |
+| Code                            | Message                                                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| <a id="TSP-1001"></a>`TSP-1001` | The tsParticles version is different from the loaded plugins version. Engine version: `{0}`. Plugin version: `{1}` |
+| <a id="TSP-1002"></a>`TSP-1002` | a valid position cannot be found for particle                                                                      |
+| <a id="TSP-1003"></a>`TSP-1003` | Register plugins can only be done before calling tsParticles.load()                                                |
+| <a id="TSP-1101"></a>`TSP-1101` | OffscreenCanvas is required but not supported by this browser                                                      |
+| <a id="TSP-1102"></a>`TSP-1102` | OffscreenCanvas transfer failed                                                                                    |
+| <a id="TSP-1201"></a>`TSP-1201` | Invalid HDR `enable` value: expected a boolean, got `{0}`                                                          |
+| <a id="TSP-1202"></a>`TSP-1202` | Invalid HDR `mode` value: expected one of `{0}`, got `{1}`                                                         |
+| <a id="TSP-1203"></a>`TSP-1203` | Invalid HDR `peakNits` value: expected a positive number, got `{0}`                                                |
 
 ### Image shape
 
-| Code       | Message                     |
-| ---------- | --------------------------- |
-| `TSP-2001` | No images collection found  |
-| `TSP-2002` | No image source provided    |
-| `TSP-2003` | `{0}` not found             |
-| `TSP-2004` | Image shape not initialized |
+| Code                            | Message                     |
+| ------------------------------- | --------------------------- |
+| <a id="TSP-2001"></a>`TSP-2001` | No images collection found  |
+| <a id="TSP-2002"></a>`TSP-2002` | No image source provided    |
+| <a id="TSP-2003"></a>`TSP-2003` | `{0}` not found             |
+| <a id="TSP-2004"></a>`TSP-2004` | Image shape not initialized |
 
 ### GIF shape
 
-| Code       | Message                                   |
-| ---------- | ----------------------------------------- |
-| `TSP-2101` | not a supported GIF file                  |
-| `TSP-2102` | GIF frame size is to large                |
-| `TSP-2103` | error while parsing frame `{0}` "{1}"     |
-| `TSP-2104` | could not create offscreen canvas context |
+| Code                            | Message                                   |
+| ------------------------------- | ----------------------------------------- |
+| <a id="TSP-2101"></a>`TSP-2101` | not a supported GIF file                  |
+| <a id="TSP-2102"></a>`TSP-2102` | GIF frame size is to large                |
+| <a id="TSP-2103"></a>`TSP-2103` | error while parsing frame `{0}` "{1}"     |
+| <a id="TSP-2104"></a>`TSP-2104` | could not create offscreen canvas context |
 
 ### Polygon mask plugin
 
-| Code       | Message                                                  |
-| ---------- | -------------------------------------------------------- |
-| `TSP-3001` | No polygon found, you need to specify SVG url in config. |
-| `TSP-3002` | Error occurred during polygon mask download              |
-| `TSP-3003` | No polygon data loaded.                                  |
+| Code                            | Message                                                  |
+| ------------------------------- | -------------------------------------------------------- |
+| <a id="TSP-3001"></a>`TSP-3001` | No polygon found, you need to specify SVG url in config. |
+| <a id="TSP-3002"></a>`TSP-3002` | Error occurred during polygon mask download              |
+| <a id="TSP-3003"></a>`TSP-3003` | No polygon data loaded.                                  |
 
 ### Emitters + emitters shapes
 
-| Code       | Message                                   |
-| ---------- | ----------------------------------------- |
-| `TSP-3101` | tsParticles Emitters Plugin is not loaded |
-| `TSP-3102` | No 2d context available                   |
-| `TSP-3103` | No path data available                    |
+| Code                            | Message                                   |
+| ------------------------------- | ----------------------------------------- |
+| <a id="TSP-3101"></a>`TSP-3101` | tsParticles Emitters Plugin is not loaded |
+| <a id="TSP-3102"></a>`TSP-3102` | No 2d context available                   |
+| <a id="TSP-3103"></a>`TSP-3103` | No path data available                    |
 
 ### Interactivity + base mover
 
-| Code       | Message                                                         |
-| ---------- | --------------------------------------------------------------- |
-| `TSP-3201` | tsParticles Interactivity Plugin is not loaded                  |
-| `TSP-3202` | Click handlers can only be set after calling tsParticles.load() |
-| `TSP-3203` | tsParticles Base Mover is not loaded                            |
+| Code                            | Message                                                         |
+| ------------------------------- | --------------------------------------------------------------- |
+| <a id="TSP-3201"></a>`TSP-3201` | tsParticles Interactivity Plugin is not loaded                  |
+| <a id="TSP-3202"></a>`TSP-3202` | Click handlers can only be set after calling tsParticles.load() |
+| <a id="TSP-3203"></a>`TSP-3203` | tsParticles Base Mover is not loaded                            |
 
 ### Particle interactions
 
-| Code       | Message                                     |
-| ---------- | ------------------------------------------- |
-| `TSP-4001` | Particle is overlapping and can't be placed |
+| Code                            | Message                                     |
+| ------------------------------- | ------------------------------------------- |
+| <a id="TSP-4001"></a>`TSP-4001` | Particle is overlapping and can't be placed |

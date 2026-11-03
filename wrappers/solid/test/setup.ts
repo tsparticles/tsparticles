@@ -4,6 +4,7 @@ import { vi } from "vitest";
 const { containerMock } = vi.hoisted(() => ({
   containerMock: {
     destroy: vi.fn(),
+    loadTheme: vi.fn(async () => Promise.resolve()),
   },
 }));
 

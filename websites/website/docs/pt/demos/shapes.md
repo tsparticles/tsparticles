@@ -17,7 +17,8 @@ Pastas de origem:
 - `star` (`options.star.sides`, `options.star.inset`)
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
 - `emoji` (`options.emoji.value`)
-- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `replaceColor`, `close`)
+- `gif` / `gifs` (`options.gif.src`, `name`, `width`, `height`, `loopCount`)
 - `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## Notas sobre aliases e bundles
@@ -93,7 +94,6 @@ particles: {
         name: "strawberry",
         width: 64,
         height: 64,
-        gif: false,
         replaceColor: false,
       },
     },

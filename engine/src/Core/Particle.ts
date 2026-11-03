@@ -1015,7 +1015,7 @@ export class Particle {
     const radius = this.getRadius(),
       canvasSize = this.#container.canvas.size,
       position = this.position,
-      isBounce = outMode === OutMode.bounce;
+      isBounce = outMode === OutMode.bounce || outMode === OutMode.split;
 
     if (direction === OutModeDirection.bottom) {
       return {

@@ -53,8 +53,12 @@ keyword matching to pick the right bundle, preferring specialized bundles such a
 generate_code({ description: "confetti on my React website", framework: "react" })
 ```
 
-The result includes the selected bundle, the npm install command, the HTML container, and the
-framework-specific component code.
+The result includes the selected bundle, the npm install command, the generated `code`, and the
+`html` snippet. Auto-initialized bundles ignore the `framework` option: `@tsparticles/confetti`
+with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
+"@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
+leaves `html` empty. Other bundles return the framework-specific component in `code`, and
+`html` is only populated for `framework: "vanilla"`.
 
 ## Resources
 
