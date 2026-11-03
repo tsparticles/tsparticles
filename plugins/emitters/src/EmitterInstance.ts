@@ -214,6 +214,8 @@ export class EmitterInstance {
     const spawnFill = this.options.spawn.fill,
       spawnStroke = this.options.spawn.stroke;
 
+    /* initialize the draw styles now, without waiting for particle emission, so a paused emitter
+     * with draw: true still renders fillOpacity, strokeOpacity and strokeWidth */
     this.spawnFillOpacity = spawnFill?.opacity === undefined ? defaultOpacity : getRangeValue(spawnFill.opacity);
     this.spawnStrokeOpacity = spawnStroke?.opacity === undefined ? defaultOpacity : getRangeValue(spawnStroke.opacity);
     this.spawnStrokeWidth = spawnStroke?.width === undefined ? defaultStrokeWidth : getRangeValue(spawnStroke.width);
@@ -230,23 +232,6 @@ export class EmitterInstance {
         : { width: this.#size.width, height: this.#size.height };
     this.#lifeCount = this.options.life.count ?? defaultLifeCount;
     this.#immortal = this.#lifeCount <= minLifeCount;
-
-    /* initialize the draw styles now, without waiting for particle emission, so a paused emitter
-     * with draw: true still renders fillOpacity, strokeOpacity and strokeWidth */
-    const defaultOpacityValue = defaultOpacity,
-      defaultStrokeWidthValue = defaultStrokeWidth;
-    this.spawnFillOpacity =
-      this.options.spawn.fill?.opacity === undefined
-        ? defaultOpacityValue
-        : getRangeValue(this.options.spawn.fill.opacity);
-    this.spawnStrokeOpacity =
-      this.options.spawn.stroke?.opacity === undefined
-        ? defaultOpacityValue
-        : getRangeValue(this.options.spawn.stroke.opacity);
-    this.spawnStrokeWidth =
-      this.options.spawn.stroke?.width === undefined
-        ? defaultStrokeWidthValue
-        : getRangeValue(this.options.spawn.stroke.width);
 
     if (this.options.domId) {
       const element = safeDocument().getElementById(this.options.domId);

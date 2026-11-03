@@ -36,6 +36,10 @@ const Particles = component$<IParticlesProps>(props => {
         throw new Error("initParticlesEngine(...) must be called once before rendering <Particles /> components.");
       }
 
+      if (cancelled) {
+        return;
+      }
+
       const old = librarySig.value;
       if (old) {
         old.destroy();
