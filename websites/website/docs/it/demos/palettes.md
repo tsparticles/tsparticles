@@ -11,7 +11,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 
 ## Gruppi di tavolozze disponibili
 
-## Atmosfera (12 tavolozze)
+### Atmosfera (12 tavolozze)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `fog-morning`
 - `volcanic-ash`
 
-## Atmosferico (10 tavolozze)
+### Atmosferico (10 tavolozze)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `thermal-map`
 - `thunderstorm`
 
-## Coriandoli (12 palette)
+### Coriandoli (12 palette)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Terra (7 tavolozze)
+### Terra (7 tavolozze)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Fantasia (8 tavolozze)
+### Fantasia (8 tavolozze)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Fuoco (8 tavolozze)
+### Fuoco (8 tavolozze)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `metal-sparks`
 - `molten-metal`
 
-## Fuochi d'artificio (24 tavolozze)
+### Fuochi d'artificio (24 tavolozze)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Impatto (7 tavolozze)
+### Videogiochi (4 tavolozze)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impatto (7 tavolozze)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `shockwave-blast`
 - `splatter-dark`
 
-## Monocromatico (14 tavolozze)
+### Monocromatico (14 tavolozze)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Natura (9 tavolozze)
+### Natura (9 tavolozze)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `snowfall`
 - `spring-bloom`
 
-## Ottica (7 tavolozze)
+### Ottica (7 tavolozze)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Pastello (5 tavolozze)
+### Pastello (5 tavolozze)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `pastel-sunset`
 - `pastel-warm`
 
-## Spazio (10 tavolozze)
+### Spazio (10 tavolozze)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `solar-wind`
 - `supernova`
 
-## Spettro (10 tavolozze)
+### Spettro (10 tavolozze)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `rainbow`
 - `rgb-primaries`
 
-## Tecnologia (9 tavolozze)
+### Tecnologia (9 tavolozze)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `plasma-arc`
 - `vaporwave`
 
-## Vibrante (5 tavolozze)
+### Vibrante (5 tavolozze)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@ Cartella di origine: <https://github.com/tsparticles/tsparticles/tree/main/palet
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Acqua (8 tavolozze)
+### Acqua (8 tavolozze)
 
 - `deep-ocean`
 - `foam-and-bubbles`

@@ -16,8 +16,9 @@
 
 - Select a shape via `emitters.shape.type`.
 - Requires the `@tsparticles/plugin-emitters` package.
-- When the emitter `draw` option is enabled (default), the selected shape is rendered on the canvas
-  behind the particles. Set `emitters.draw: false` to keep the emitter invisible.
+- When the emitter `draw` option is enabled, the selected shape is rendered on the canvas behind
+  the particles. It is disabled by default, so set `emitters.draw: true` to make the emitter
+  visible.
 - Emitters of every shape can be dragged with the mouse when `emitters.draggable` is enabled.
 
 ## Source reference

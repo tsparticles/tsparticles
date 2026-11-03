@@ -22,3 +22,10 @@
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## 另请参阅
+
+- [`/migrations/from-v3`](/zh/migrations/from-v3)
+- [`/migrations/from-v2`](/zh/migrations/from-v2)
+- [`/migrations/from-v1`](/zh/migrations/from-v1)
+- [`/migrations/particles-js`](/zh/migrations/particles-js)

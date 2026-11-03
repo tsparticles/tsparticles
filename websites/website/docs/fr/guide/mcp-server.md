@@ -1,6 +1,6 @@
 # MCP Server (AI Integration)
 
-The [MCP (Model Context Protocol)](https://modelcontextprotocol.io) server for tsParticles lets AI assistants inspect the package catalog, suggest required plugins and bundles from options, and generate tsParticles configurations from natural language.
+The [MCP (Model Context Protocol)](https://modelcontextprotocol.io) server for tsParticles lets AI assistants inspect the package catalog, suggest required plugins and bundles from options, diagnose configuration issues, and generate complete tsParticles code from natural language.
 
 ## Quick start (local)
 
@@ -35,11 +35,26 @@ In Cursor settings, add a new MCP server with:
 
 Once connected, the AI assistant can use these tools:
 
-| Tool               | Description                                                                     |
-| ------------------ | ------------------------------------------------------------------------------- |
-| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed |
-| `list_packages`    | Lists available packages, optionally filtered by category or search query       |
-| `get_package_info` | Returns detailed info about a specific package                                  |
+| Tool               | Description                                                                             |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `suggest_plugins`  | Given a tsParticles options object, returns the npm packages and imports needed         |
+| `list_packages`    | Lists available packages, optionally filtered by category or search query               |
+| `get_package_info` | Returns detailed info about a specific package                                          |
+| `diagnose_issues`  | Analyzes options for configuration problems and performance issues                      |
+| `generate_code`    | Generates complete code from a natural language description with smart bundle selection |
+
+### Generating code
+
+`generate_code` turns a natural language description into ready-to-use code. It uses deterministic
+keyword matching to pick the right bundle, preferring specialized bundles such as
+`@tsparticles/confetti`, `@tsparticles/fireworks`, and `@tsparticles/ribbons` over the generic ones.
+
+```
+generate_code({ description: "confetti on my React website", framework: "react" })
+```
+
+The result includes the selected bundle, the npm install command, the HTML container, and the
+framework-specific component code.
 
 ## Resources
 

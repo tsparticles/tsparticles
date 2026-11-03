@@ -1,17 +1,39 @@
-# Витрина
+---
+title: Showcase
+description: Реальные проекты и креативные дизайны, созданные с tsParticles. Вдохновляйтесь и узнайте, что возможно.
+---
 
-Содержимое витрины теперь интегрировано в основной поток документов, поэтому примеры не разбиваются на несколько небольших страниц.
+# Showcase
 
-## Вместо этого используйте эти разделы
+Посмотрите, что другие создали с tsParticles. От анимированных фонов до интерактивных конфетти и фейерверков — здесь собраны проекты, демо и работы сообщества.
 
-- Интерактивные демо и рецепты: [`/demos/`](/ru/demos/)
-- Живые редактируемые игровые площадки: [`/playground/`](/ru/playground/)
-  - Документы по интеграции для конкретной оболочки: [`/guide/wrappers`](/ru/guide/wrappers).
+## Официальные интерактивные демо
 
-## Папки репозитория
+Попробуйте готовые рецепты, которые можно скопировать и адаптировать:
 
-- Демо-приложения: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- [Все демо](/ru/demos/) — эффекты по категориям (ambient, конфетти, фейерверки, снег и т.д.)
+- [Открыть Playground](/ru/playground/) — редактируйте JSON-конфигурации в реальном времени
+- [Каталог пресетов](/ru/demos/presets) — готовые анимированные сцены
+- [Каталог форм](/ru/demos/shapes) — все доступные формы частиц
+- [Каталог палитр](/ru/demos/palettes) — цветовые пресеты
 
-- Обертки: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- Рабочая область предустановок: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-  - Рабочая область «Палитры»: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+## Интеграции с фреймворками
+
+Узнайте, как tsParticles вписывается в ваш стек:
+
+- [Vanilla JS](/ru/guides/vanilla), [React](/ru/guides/react), [Vue 3](/ru/guides/vue3), [Angular](/ru/guides/angular), [Svelte](/ru/guides/svelte)
+- [Next.js](/ru/guides/nextjs), [Nuxt](/ru/guides/nuxt), [Astro](/ru/guides/astro)
+- [Solid](/ru/guides/solid), [Preact](/ru/guides/preact), [Lit](/ru/guides/lit)
+- [Web Components](/ru/guides/webcomponents), [Stencil](/ru/guides/stencil)
+- [WordPress](/ru/guides/wordpress), [Ember](/ru/guides/ember), [Riot](/ru/guides/riot)
+
+## Ресурсы репозитория
+
+- [Исходники демо](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- [Исходники обёрток](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- [Пресеты](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- [Палитры](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+
+## Поделитесь своей работой
+
+Если вы создали что-то с tsParticles, поделитесь в [GitHub Discussions](https://github.com/tsparticles/tsparticles/discussions/categories/show-and-tell) или отметьте [@tsparticles](https://github.com/tsparticles) в соцсетях.

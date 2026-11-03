@@ -40,13 +40,13 @@
 
 `canvas-confetti` から移行する場合、最も簡単な切り替えは、命令型呼び出しを `@tsparticles/confetti` API 呼び出しに置き換えることです。
 
-## 一般的なマッピング
+### 一般的なマッピング
 
 - `confetti({...})` -> `await confetti({...})`
 - カスタム キャンバス -> `const local = await confetti.create(canvas, defaults)`、次に `await local({...})`
 - 繰り返しのショット -> 既存のタイマー/ループを保持し、それらのコールバックで `await confetti(...)` を呼び出します
 
-## 変換例
+### 変換例
 
 前 (`canvas-confetti` スタイル):
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## オプション名の注意事項
+### オプション名の注意事項
 
 - `particleCount` -> `count`
 - `0..1` の `origin.x`/`origin.y` -> `0..100` の `position.x`/`position.y`

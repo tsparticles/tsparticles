@@ -22,3 +22,10 @@ Reference rapide pour les renommages les plus frequents pendant les migrations.
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## Voir aussi
+
+- [`/migrations/from-v3`](/fr/migrations/from-v3)
+- [`/migrations/from-v2`](/fr/migrations/from-v2)
+- [`/migrations/from-v1`](/fr/migrations/from-v1)
+- [`/migrations/particles-js`](/fr/migrations/particles-js)

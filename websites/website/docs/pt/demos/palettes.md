@@ -11,7 +11,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
 ## Grupos de paletas disponíveis
 
-## Atmosfera (12 paletas)
+### Atmosfera (12 paletas)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fog-morning`
 - `volcanic-ash`
 
-## Atmosférico (10 paletas)
+### Atmosférico (10 paletas)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `thermal-map`
 - `thunderstorm`
 
-## Confete (12 paletas)
+### Confete (12 paletas)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Terra (7 paletas)
+### Terra (7 paletas)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Fantasia (8 paletas)
+### Fantasia (8 paletas)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Fogo (8 paletas)
+### Fogo (8 paletas)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `metal-sparks`
 - `molten-metal`
 
-## Fogos de artifício (24 paletas)
+### Fogos de artifício (24 paletas)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Impacto (7 paletas)
+### Jogos (4 paletas)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impacto (7 paletas)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `shockwave-blast`
 - `splatter-dark`
 
-## Monocromático (14 paletas)
+### Monocromático (14 paletas)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Natureza (9 paletas)
+### Natureza (9 paletas)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `snowfall`
 - `spring-bloom`
 
-## Óptica (7 paletas)
+### Óptica (7 paletas)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Pastel (5 paletas)
+### Pastel (5 paletas)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `pastel-sunset`
 - `pastel-warm`
 
-## Espaço (10 paletas)
+### Espaço (10 paletas)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `solar-wind`
 - `supernova`
 
-## Espectro (10 paletas)
+### Espectro (10 paletas)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rainbow`
 - `rgb-primaries`
 
-## Tecnologia (9 paletas)
+### Tecnologia (9 paletas)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `plasma-arc`
 - `vaporwave`
 
-## Vibrante (5 paletas)
+### Vibrante (5 paletas)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@ Pasta de origem: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Água (8 paletas)
+### Água (8 paletas)
 
 - `deep-ocean`
 - `foam-and-bubbles`

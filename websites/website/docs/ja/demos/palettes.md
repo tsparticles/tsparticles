@@ -11,7 +11,7 @@
 
 ## 使用可能なパレット グループ
 
-## アトモスフィア (12 パレット)
+### アトモスフィア (12 パレット)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## 大気 (10 パレット)
+### 大気 (10 パレット)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## コンフェッティ (12 パレット)
+### コンフェッティ (12 パレット)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## アース (7 パレット)
+### アース (7 パレット)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## ファンタジー (8 パレット)
+### ファンタジー (8 パレット)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## 火 (8 パレット)
+### 火 (8 パレット)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## 花火 (24 パレット)
+### 花火 (24 パレット)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## インパクト (7 パレット)
+### ゲーム (4 パレット)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### インパクト (7 パレット)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## モノクロ (14 パレット)
+### モノクロ (14 パレット)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## ネイチャー (9 パレット)
+### ネイチャー (9 パレット)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## 光学系 (7 パレット)
+### 光学系 (7 パレット)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## パステル (5 パレット)
+### パステル (5 パレット)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## スペース (10 パレット)
+### スペース (10 パレット)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@
 - `solar-wind`
 - `supernova`
 
-## スペクトル (10 パレット)
+### スペクトル (10 パレット)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## テック (9 パレット)
+### テック (9 パレット)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## 鮮やか (5 パレット)
+### 鮮やか (5 パレット)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## 水 (8パレット)
+### 水 (8パレット)
 
 - `deep-ocean`
 - `foam-and-bubbles`

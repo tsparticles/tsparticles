@@ -11,7 +11,7 @@
 
 ## उपलब्ध पैलेट समूह
 
-## वातावरण (12 पैलेट्स)
+### वातावरण (12 पैलेट्स)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## वायुमंडलीय (10 पैलेट)
+### वायुमंडलीय (10 पैलेट)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## कंफ़ेद्दी (12 पैलेट)
+### कंफ़ेद्दी (12 पैलेट)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## पृथ्वी (7 पैलेट)
+### पृथ्वी (7 पैलेट)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## फंतासी (8 पैलेट)
+### फंतासी (8 पैलेट)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## आग (8 पैलेट)
+### आग (8 पैलेट)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## आतिशबाज़ी (24 पैलेट)
+### आतिशबाज़ी (24 पैलेट)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## प्रभाव (7 पैलेट)
+### गेमिंग (4 पैलेट)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### प्रभाव (7 पैलेट)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## मोनोक्रोमैटिक (14 पैलेट्स)
+### मोनोक्रोमैटिक (14 पैलेट्स)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## प्रकृति (9 पैलेट)
+### प्रकृति (9 पैलेट)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## प्रकाशिकी (7 पैलेट)
+### प्रकाशिकी (7 पैलेट)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## पेस्टल (5 पैलेट)
+### पेस्टल (5 पैलेट)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## स्पेस (10 पैलेट्स)
+### स्पेस (10 पैलेट्स)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@
 - `solar-wind`
 - `supernova`
 
-## स्पेक्ट्रम (10 पैलेट)
+### स्पेक्ट्रम (10 पैलेट)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## टेक (9 पैलेट्स)
+### टेक (9 पैलेट्स)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## जीवंत (5 पैलेट)
+### जीवंत (5 पैलेट)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## पानी (8 पैलेट)
+### पानी (8 पैलेट)
 
 - `deep-ocean`
 - `foam-and-bubbles`

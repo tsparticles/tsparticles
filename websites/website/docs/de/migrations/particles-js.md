@@ -41,13 +41,13 @@ Weiterführende Literatur:
 
 Wenn Sie von `canvas-confetti` migrieren, besteht der einfachste Wechsel darin, imperative Aufrufe durch `@tsparticles/confetti` API-Aufrufe zu ersetzen.
 
-## Typische Zuordnung
+### Typische Zuordnung
 
 - `confetti({...})` -> `await confetti({...})`
 - Benutzerdefinierte Leinwand -> `const local = await confetti.create(canvas, defaults)` dann `await local({...})`
 - wiederholte Aufnahmen -> behalten Sie Ihre vorhandenen Timer/Schleifen bei, rufen Sie `await confetti(...)` in diesen Rückrufen auf
 
-## Beispielkonvertierung
+### Beispielkonvertierung
 
 Vorher (Stil `canvas-confetti`):
 
@@ -73,7 +73,7 @@ await confetti({
 });
 ```
 
-## Hinweise zum Optionsnamen
+### Hinweise zum Optionsnamen
 
 - `particleCount` -> `count`
 - `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`

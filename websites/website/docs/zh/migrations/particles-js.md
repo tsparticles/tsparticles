@@ -40,13 +40,13 @@
 
 如果您要从 `canvas-confetti` 迁移，最简单的切换是将命令式调用替换为 `@tsparticles/confetti` API 调用。
 
-## 典型映射
+### 典型映射
 
 - `confetti({...})` -> `await confetti({...})`
 - 自定义画布 -> `const local = await confetti.create(canvas, defaults)` 然后 `await local({...})`
 - 重复拍摄 -> 保留现有的计时器/循环，在这些回调中调用 `await confetti(...)`
 
-## 转换示例
+### 转换示例
 
 之前（`canvas-confetti` 样式）：
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## 选项名称注释
+### 选项名称注释
 
 - `particleCount` -> `count`
 - `0..1` 中的 `origin.x`/`origin.y` -> `0..100` 中的 `position.x`/`position.y`

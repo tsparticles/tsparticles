@@ -22,3 +22,10 @@
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## См. также
+
+- [`/migrations/from-v3`](/ru/migrations/from-v3)
+- [`/migrations/from-v2`](/ru/migrations/from-v2)
+- [`/migrations/from-v1`](/ru/migrations/from-v1)
+- [`/migrations/particles-js`](/ru/migrations/particles-js)

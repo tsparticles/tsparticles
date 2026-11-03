@@ -18,6 +18,7 @@
 - `text`（`options.text.value`、`font`、`weight`、`style`、`close`）
 - `emoji`（`options.emoji.value`）
 - `image` / `images`（`options.image.src`、`name`、`width`、`height`、`gif`、`replaceColor`、`close`）
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## 别名与 bundle 说明
 
@@ -27,3 +28,75 @@
 - 大多数高级形状需要 `@tsparticles/slim`（或 `@tsparticles/all`）或独立 shape 包。
 
 如需通过 Start/Pause 控件和可编辑 JSON 快速测试，请使用 [`/playground/shapes`](/zh/playground/shapes)。
+
+## 快速示例
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
+
+### Text
+
+```ts
+particles: {
+  shape: {
+    type: "text",
+    options: {
+      text: {
+        value: ["TS", "DOCS"],
+        font: "Verdana",
+        weight: "700",
+        style: "",
+      },
+    },
+  },
+}
+```
+
+### Image
+
+```ts
+particles: {
+  shape: {
+    type: "image",
+    options: {
+      image: {
+        src: "https://particles.js.org/images/hdr/fruits/strawberry.png",
+        name: "strawberry",
+        width: 64,
+        height: 64,
+        gif: false,
+        replaceColor: false,
+      },
+    },
+  },
+}
+```

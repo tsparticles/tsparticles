@@ -1,16 +1,39 @@
-# शोकेस
+---
+title: Showcase
+description: tsParticles से बने वास्तविक प्रोजेक्ट और रचनात्मक डिज़ाइन। प्रेरणा लें और देखें कि क्या संभव है।
+---
 
-शोकेस सामग्री को अब मुख्य दस्तावेज़ प्रवाह में एकीकृत कर दिया गया है ताकि उदाहरण कई छोटे पृष्ठों में विभाजित न हों।
+# Showcase
 
-## इसके बजाय इन अनुभागों का उपयोग करें
+देखें कि दूसरों ने tsParticles से क्या बनाया है। एनिमेटेड backgrounds से लेकर interactive confetti और fireworks तक, यहाँ प्रोजेक्ट, demos और community कार्यों का संग्रह है।
 
-- इंटरएक्टिव डेमो और रेसिपी: [`/demos/`](/hi/demos/)
-- लाइव संपादन योग्य खेल के मैदान: [`/playground/`](/hi/playground/)
-- रैपर-विशिष्ट एकीकरण दस्तावेज़: [`/guide/wrappers`](/hi/guide/wrappers)
+## आधिकारिक interactive demos
 
-## रिपॉजिटरी फ़ोल्डर्स
+तैयार recipes आज़माएँ जिन्हें आप कॉपी और अनुकूलित कर सकते हैं:
 
-- डेमो ऐप्स: [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- रैपर: [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- प्रीसेट कार्यक्षेत्र: [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- पैलेट्स कार्यक्षेत्र: [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- [सभी demos ब्राउज़ करें](/hi/demos/) — श्रेणी के अनुसार effects (ambient, confetti, fireworks, snow आदि)
+- [Playground खोलें](/hi/playground/) — live JSON configs एडिट करें
+- [Presets catalog](/hi/demos/presets) — पूर्व-निर्मित animated scenes
+- [Shapes catalog](/hi/demos/shapes) — सभी उपलब्ध particle shapes
+- [Palettes catalog](/hi/demos/palettes) — color presets
+
+## Framework integrations
+
+देखें कि tsParticles आपके stack में कैसे फिट होता है:
+
+- [Vanilla JS](/hi/guides/vanilla), [React](/hi/guides/react), [Vue 3](/hi/guides/vue3), [Angular](/hi/guides/angular), [Svelte](/hi/guides/svelte)
+- [Next.js](/hi/guides/nextjs), [Nuxt](/hi/guides/nuxt), [Astro](/hi/guides/astro)
+- [Solid](/hi/guides/solid), [Preact](/hi/guides/preact), [Lit](/hi/guides/lit)
+- [Web Components](/hi/guides/webcomponents), [Stencil](/hi/guides/stencil)
+- [WordPress](/hi/guides/wordpress), [Ember](/hi/guides/ember), [Riot](/hi/guides/riot)
+
+## Repository resources
+
+- [Demo apps source](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- [Wrappers source](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- [Presets](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- [Palettes](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+
+## अपना काम साझा करें
+
+अगर आपने tsParticles से कुछ बनाया है, तो इसे [GitHub Discussions](https://github.com/tsparticles/tsparticles/discussions/categories/show-and-tell) पर साझा करें या सोशल media पर [@tsparticles](https://github.com/tsparticles) को tag करें।

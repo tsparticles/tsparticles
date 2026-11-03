@@ -40,13 +40,13 @@
 
 यदि आप `canvas-confetti` से माइग्रेट कर रहे हैं, तो सबसे आसान स्विच अनिवार्य कॉल को `@tsparticles/confetti` API कॉल से बदलना है।
 
-## विशिष्ट मानचित्रण
+### विशिष्ट मानचित्रण
 
 - `confetti({...})` -> `await confetti({...})`
 - कस्टम कैनवास -> `const local = await confetti.create(canvas, defaults)` फिर `await local({...})`
 - बार-बार शॉट -> अपने मौजूदा टाइमर/लूप रखें, उन कॉलबैक में `await confetti(...)` पर कॉल करें
 
-## उदाहरण रूपांतरण
+### उदाहरण रूपांतरण
 
 पहले (`canvas-confetti` शैली):
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## विकल्प नाम नोट्स
+### विकल्प नाम नोट्स
 
 - `particleCount` -> `count`
 - `origin.x`/`origin.y` `0..1` में -> `position.x`/`position.y` `0..100` में

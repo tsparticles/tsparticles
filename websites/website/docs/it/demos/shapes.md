@@ -27,6 +27,7 @@ Cartelle sorgente:
 - `matrix` (`options.matrix.interval`)
 - `path` (`options.path.half`, `options.path.segments`)
 - `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## Note su alias e bundle
 
@@ -36,6 +37,38 @@ Cartelle sorgente:
 - La maggior parte delle forme avanzate richiede `@tsparticles/slim` (o `@tsparticles/all`) o pacchetti shape dedicati.
 
 ## Esempi rapidi
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
 
 ### Text
 

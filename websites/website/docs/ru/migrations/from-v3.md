@@ -98,7 +98,20 @@ await tsParticles.load({
 
 Все остальные пакеты фигур (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) экспортируют одну функцию `load*Shape` напрямую.
 
-## Ресурсы
+## Контрольный список
+
+- Держите единую линейку версий для engine, бандлов, обёрток, пресетов и плагинов.
+- При необходимости замените устаревшие импорты на импорты уровня пакета.
+- Убедитесь, что SSR-обёртки (Next/Nuxt) инициализируются только на клиенте.
+
+## Полезная документация по опциям
 
 - Матрица переименований: [`/migrations/option-rename-matrix`](/ru/migrations/option-rename-matrix)
 - `particles.paint`: [`/options/particles-paint`](/ru/options/particles-paint)
+- Заметка о миграции `particles.color`: [`/options/particles-color`](/ru/options/particles-color)
+- Заметка о миграции `particles.stroke`: [`/options/particles-stroke`](/ru/options/particles-stroke)
+
+## Ссылки
+
+- Заметки о версиях: [`/migrations/releases`](/ru/migrations/releases)
+- Релизы репозитория: <https://github.com/tsparticles/tsparticles/releases>

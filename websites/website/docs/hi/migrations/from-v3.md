@@ -98,7 +98,20 @@ await tsParticles.load({
 
 अन्य सभी आकार पैकेज (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) सीधे एकल `load*Shape` फ़ंक्शन निर्यात करते हैं।
 
-## Resources
+## चेकलिस्ट
 
-- Option rename matrix: [`/migrations/option-rename-matrix`](/hi/migrations/option-rename-matrix)
+- engine, bundles, wrappers, presets और plugins के लिए एक ही वर्ज़न लाइन रखें।
+- ज़रूरत हो तो पुराने imports को package-level imports से बदलें।
+- सुनिश्चित करें कि SSR wrappers (Next/Nuxt) केवल client पर initialize हों।
+
+## उपयोगी विकल्प दस्तावेज़
+
+- रीनेम मैट्रिक्स: [`/migrations/option-rename-matrix`](/hi/migrations/option-rename-matrix)
 - `particles.paint`: [`/options/particles-paint`](/hi/options/particles-paint)
+- `particles.color` माइग्रेशन नोट: [`/options/particles-color`](/hi/options/particles-color)
+- `particles.stroke` माइग्रेशन नोट: [`/options/particles-stroke`](/hi/options/particles-stroke)
+
+## संदर्भ
+
+- वर्ज़न नोट्स: [`/migrations/releases`](/hi/migrations/releases)
+- रिपॉज़िटरी रिलीज़: <https://github.com/tsparticles/tsparticles/releases>

@@ -22,3 +22,10 @@ Riferimento rapido per le rinomine piu comuni durante le migrazioni.
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## Vedi anche
+
+- [`/migrations/from-v3`](/it/migrations/from-v3)
+- [`/migrations/from-v2`](/it/migrations/from-v2)
+- [`/migrations/from-v1`](/it/migrations/from-v1)
+- [`/migrations/particles-js`](/it/migrations/particles-js)

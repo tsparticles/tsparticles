@@ -4,7 +4,41 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 3 — 4.5.0 Fluid Particle Interaction & MCP generate_code
+**Current focus:** Phase 3 complete — 4.5.0 (2026-10-25) and 4.5.1 (2026-11-02) released; final website gate closed 2026-11-03.
+
+## Session Status — 2026-11-03
+
+### 4.5.0 / 4.5.1 — Final plan re-check & website gate
+
+- **Re-checked every handover against `v5`**: all 4.5.0 features are implemented and shipped — fluid as
+  `collisions.mode`, MCP `generate_code`, emitters draw/drag, absorber split + multi-absorber, engine
+  particle/group tests, workspace test coverage (waves 1–6), error codes/messages,
+  code review fixes. No feature work is left over; the only open items are the ones listed
+  at the end of this section.
+- **Tests:** `pnpm --filter @tsparticles/tests test` → **45 files / 612 tests green** (2026-11-03).
+- **Error-code bundles:** every `bundles/*/dist/*.min.js` ships `TSP-xxxx` codes with no full message
+  sentence; `engine/dist/tsparticles.engine.js` keeps the full message. This closes the previously
+  blocked error-code bundle spot-check.
+- **Website gate (executed last):** all three sites resolve the 4.5.1 workspace packages; the EN docs
+  already covered fluid, absorber split, emitter draw/drag, error codes and the MCP tool. Found and
+  fixed one drift caused by 4.5.1: `emitters.draw` default flipped `true` → `false`, but the site still
+  documented `true`.
+  - `websites/website/docs/options/plugin-emitters.md` — default `false`, notes reworded.
+  - `websites/website/docs/options/plugin-emitter-shapes.md` — draw no longer described as default.
+  - `markdown/Options/Plugins/EmittersShapes.md` — same correction.
+  - Verified: `vitepress build docs` green (108.95s) and Prettier clean on the touched pages.
+
+### Still open (not blocking release)
+
+- **Fluid visual validation in a real browser** — never done (same limitation recorded on 2026-10-02).
+- **Deployment** of the websites — external to this workspace, not run.
+- **Localized docs** (zh, ja, hi, ru, pt, fr, de, es, it): **all** localized pages are now in sync
+  with the EN source. Beyond the 4.5.x pages and the missing `errors/index.md`, the following were
+  aligned too: `migrations/particles-js`, `migrations/option-rename-matrix`, `migrations/from-v1/v2/v3`,
+  `showcase/index`, `demos/shapes`, `demos/palettes`, `guide/color-formats` and `guide/wrappers`
+  (missing sections translated, heading levels/structure aligned, `gaming` palette group added,
+  "see also"/checklist/references sections added). Verified with a heading-structure audit across all
+  9 locales: **zero mismatches**; `vitepress build docs` green.
 
 ## Session Status — 2026-10-02
 
@@ -50,9 +84,10 @@ See: .planning/PROJECT.md (initialized)
 - Types/validation added (`src/types.ts`, `src/validation.ts`); tool registered in `src/index.ts`
 - 44 new tests in `src/tools/generateCode.test.ts` — full mcp-server suite green (146 tests, 8 files); build passes
 - README tools table updated (`generate_code` + `diagnose_issues`)
-- Checklists marked in `MCP_GENERATE_CODE_PLAN.md`; Feature B phases marked in `4.5.0_PLAN.md`
+- Checklists and Feature B phases recorded as completed
 
-Remaining for 4.5.0: nothing pending for Feature A (fluid-as-collision-mode).
+Remaining for 4.5.0: nothing pending for Feature A (fluid-as-collision-mode). All 4.5.0 features are
+now shipped — see the 2026-11-03 session above for the final re-check.
 
 ### 4.3.0 — Released ✅
 
@@ -68,9 +103,9 @@ Build: 461 projects ✅ | Tests: 152/152 ✅ | No blocking issues.
 
 ### 4.4.0 — HDR Color Fix & Rendering Modes ✅
 
-4.4.0 scope re-assigned: HDR color fidelity fixes (tone mapping, linear-space mixing, `peakNits`, `hdrMode` presets) + code review fixes. See `.planning/handovers/4.4.0_PLAN.md`.
+4.4.0 scope re-assigned: HDR color fidelity fixes (tone mapping, linear-space mixing, `peakNits`, `hdrMode` presets) + code review fixes.
 
-**Status: implemented.** Engine HDR pipeline (ACES tone mapping, linear-space `colorMix`, `HdrMode` presets, display listeners) fully threaded through all consumer packages. FIX-PROMPT fixes verified applied, including the remaining `ribbons.lazy.ts` fallback bug. Full suite green (168/168 tests). Remaining FIX-PROMPT Verification step re-run clean.
+**Status: implemented.** Engine HDR pipeline (ACES tone mapping, linear-space `colorMix`, `HdrMode` presets, display listeners) fully threaded through all consumer packages. Code review fixes verified applied, including the remaining `ribbons.lazy.ts` fallback bug. Full suite green (168/168 tests). Remaining verification step re-run clean.
 
 Fluid-in-collisions work moved to 4.5.0.
 
@@ -81,10 +116,10 @@ Fluid-in-collisions work moved to 4.5.0.
 - Per-particle `prevPos` state for velocity reconstruction
 - Confirmed ParticlesInteractorBase is the correct integration point with these fixes
 
-**MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection. See `MCP_GENERATE_CODE_PLAN.md`.
+**MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection.
 
 ### Outcome
-**S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
+**S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented.
 
 **S2 (Vue 2 wrapper) completed**: wrapper reactivity + `tsParticles.init()` fix in event-bus + `theme` prop + fixed `particlesLoaded` type + removed stale `IParticlesProps` export.
 

@@ -11,7 +11,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 
 ## Verfügbare Palettengruppen
 
-## Atmosphäre (12 Paletten)
+### Atmosphäre (12 Paletten)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fog-morning`
 - `volcanic-ash`
 
-## Atmosphärisch (10 Paletten)
+### Atmosphärisch (10 Paletten)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `thermal-map`
 - `thunderstorm`
 
-## Konfetti (12 Paletten)
+### Konfetti (12 Paletten)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Erde (7 Paletten)
+### Erde (7 Paletten)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Fantasie (8 Paletten)
+### Fantasie (8 Paletten)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Feuer (8 Paletten)
+### Feuer (8 Paletten)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `metal-sparks`
 - `molten-metal`
 
-## Feuerwerk (24 Paletten)
+### Feuerwerk (24 Paletten)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Impact (7 Paletten)
+### Gaming (4 Paletten)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 Paletten)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `shockwave-blast`
 - `splatter-dark`
 
-## Monochromatisch (14 Paletten)
+### Monochromatisch (14 Paletten)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Natur (9 Paletten)
+### Natur (9 Paletten)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `snowfall`
 - `spring-bloom`
 
-## Optik (7 Paletten)
+### Optik (7 Paletten)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Pastell (5 Paletten)
+### Pastell (5 Paletten)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `pastel-sunset`
 - `pastel-warm`
 
-## Space (10 Paletten)
+### Space (10 Paletten)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `solar-wind`
 - `supernova`
 
-## Spektrum (10 Paletten)
+### Spektrum (10 Paletten)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `rainbow`
 - `rgb-primaries`
 
-## Tech (9 Paletten)
+### Tech (9 Paletten)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `plasma-arc`
 - `vaporwave`
 
-## Lebendig (5 Paletten)
+### Lebendig (5 Paletten)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@ Quellordner: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Wasser (8 Paletten)
+### Wasser (8 Paletten)
 
 - `deep-ocean`
 - `foam-and-bubbles`

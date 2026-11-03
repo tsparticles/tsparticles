@@ -22,3 +22,10 @@ Referencia rapida para los renombres mas comunes durante migraciones.
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## Ver también
+
+- [`/migrations/from-v3`](/es/migrations/from-v3)
+- [`/migrations/from-v2`](/es/migrations/from-v2)
+- [`/migrations/from-v1`](/es/migrations/from-v1)
+- [`/migrations/particles-js`](/es/migrations/particles-js)

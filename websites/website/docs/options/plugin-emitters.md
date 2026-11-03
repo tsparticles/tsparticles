@@ -19,7 +19,7 @@ emitters: {
 
 ## Drawing and dragging
 
-Emitters are drawn behind particles when `draw` is enabled (default) and can be made interactive with
+Emitters are drawn behind particles when `draw` is enabled and can be made interactive with
 `draggable`:
 
 ```json
@@ -37,7 +37,7 @@ Emitters are drawn behind particles when `draw` is enabled (default) and can be 
 }
 ```
 
-- `draw` (default `true`): renders the emitter shape, filled with `spawn.fill.color` (default black)
+- `draw` (default `false`): renders the emitter shape, filled with `spawn.fill.color` (default black)
   and stroked with `spawn.stroke.color` when provided.
 - `draggable` (default `false`): when `true`, the emitter can be grabbed and dragged inside its shape
   bounds; emitters linked to a `domId` are never draggable.
@@ -46,7 +46,7 @@ Emitters are drawn behind particles when `draw` is enabled (default) and can be 
 
 - Great for burst effects and dynamic particle generation.
 - Keep emission rates balanced to avoid performance spikes.
-- `draw: false` keeps the emitter invisible, preserving the legacy behavior.
+- Emitters are invisible by default: set `draw: true` to render them.
 - Dragging works inside the emitter shape bounds and keeps the emitter emitting while it moves.
 
 ## Source reference

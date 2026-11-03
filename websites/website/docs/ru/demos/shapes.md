@@ -18,6 +18,7 @@
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
 - `emoji` (`options.emoji.value`)
 - `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## Примечания по алиасам и бандлам
 
@@ -27,3 +28,75 @@
 - Большинство расширенных форм требуют `@tsparticles/slim` (или `@tsparticles/all`) либо отдельные shape-пакеты.
 
 Чтобы быстро протестировать их с кнопками Start/Pause и редактируемым JSON, используйте [`/playground/shapes`](/ru/playground/shapes).
+
+## Быстрые примеры
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
+
+### Text
+
+```ts
+particles: {
+  shape: {
+    type: "text",
+    options: {
+      text: {
+        value: ["TS", "DOCS"],
+        font: "Verdana",
+        weight: "700",
+        style: "",
+      },
+    },
+  },
+}
+```
+
+### Image
+
+```ts
+particles: {
+  shape: {
+    type: "image",
+    options: {
+      image: {
+        src: "https://particles.js.org/images/hdr/fruits/strawberry.png",
+        name: "strawberry",
+        width: 64,
+        height: 64,
+        gif: false,
+        replaceColor: false,
+      },
+    },
+  },
+}
+```
