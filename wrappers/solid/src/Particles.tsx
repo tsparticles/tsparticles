@@ -1,4 +1,4 @@
-import { tsParticles, type Container } from "@tsparticles/engine";
+import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
 import { createEffect, createMemo, createSignal, JSX, mergeProps, onCleanup, untrack } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
@@ -46,7 +46,17 @@ const Particles = (props: IParticlesProps): JSX.Element => {
       theme = props.theme;
 
     if (!currentContainer || !theme) return;
-    (currentContainer as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+
+    const currentThemeContainer = currentContainer as unknown as {
+        loadTheme?: (name?: string) => Promise<void>;
+      },
+      loadTheme = currentThemeContainer.loadTheme;
+
+    if (!loadTheme) return;
+
+    void loadTheme(theme).catch((error: unknown) => {
+      getLogger().error(`Particles: error loading theme "${theme}"`, error);
+    });
   });
 
   onCleanup(() => {

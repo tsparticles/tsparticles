@@ -57,8 +57,7 @@ The result includes the selected bundle, the npm install command, the generated 
 `html` snippet. Auto-initialized bundles ignore the `framework` option: `@tsparticles/confetti`
 with `framework: "react"` returns the load-function snippet in `code` (`import { confetti } from
 "@tsparticles/confetti"` plus an `await confetti(...)` call), not a framework component, and
-leaves `html` empty. Other bundles return the framework-specific component in `code`, and
-`html` is only populated for `framework: "vanilla"`.
+leaves `html` empty. Other bundles return the framework-specific component in `code`; for `framework: "vanilla"` `code` is a load script instead, and `html` — populated only for `framework: "vanilla"` — contains the container `div`.
 
 ## Resources
 

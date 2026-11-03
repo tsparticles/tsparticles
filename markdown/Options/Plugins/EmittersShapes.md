@@ -17,5 +17,6 @@ For emitter options see [Emitters](./Emitters.md). Use the shape name (e.g. `"ci
 Every shape implements the `draw` contract used by the emitter `draw` option: when
 `emitters.draw` is enabled, the selected shape is rendered on the canvas behind the particles. When
 `emitters.draggable` is enabled, the drag area is the bounding box defined by `size.width` and
-`size.height` and centered on the emitter position, not the drawn shape. Both options default to
-`false`.
+`size.height` and centered on the emitter position, not the drawn shape; this size-based drag area
+does not apply when `emitters.domId` is set, since emitters linked to a DOM element are never
+draggable. Both options default to `false`.

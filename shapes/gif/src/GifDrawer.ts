@@ -40,9 +40,10 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
 
     const src = shapeData.src;
 
-    if (this.#gifCache.has(src) || this.#failedGifs.has(src) || this.#loadingGifs.has(src)) return;
+    if (this.#gifCache.has(src) || this.#loadingGifs.has(src)) return;
 
     this.#loadingGifs.add(src);
+    this.#failedGifs.delete(src);
 
     void decodeGIF(src, { colorSpace: "srgb" })
       .then(gifData => {
