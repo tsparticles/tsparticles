@@ -59,7 +59,10 @@ export class StencilParticles {
 
   connectedCallback(): void {
     // The element was detached and reattached; Stencil runs componentDidLoad() only once, so
-    // load particles again while keeping the initial render-readiness guard.
+    // re-run the initial load when the container element is available, otherwise the
+    // render ref will trigger componentDidLoad once it becomes available.
+    if (!this.containerElement) return;
+
     this.renderId++;
     void this.loadParticles(this.renderId);
   }
@@ -117,17 +120,26 @@ export class StencilParticles {
       }
 
       // Use the stored container id. Resolve it to a value owned by this instance: an explicit
-      // container-id is preferred, but if it collides with an existing live element this instance
-      // does not own, fall back to a generated id and track its ownership.
+      // container-id is preferred, but if it collides with another live element this instance does
+      // not own, fall back to a generated id and warn.
       let resolvedId = containerId;
       if (!resolvedId) {
         resolvedId = this.fallbackContainerId;
         this.generatedContainerId = resolvedId;
-      } else if (typeof document !== "undefined" && document.getElementById(resolvedId) && !this.generatedContainerId) {
-        // The explicit id is already used by another live element and this instance does not own
-        // a generated id, so allocate a unique generated one.
-        resolvedId = getFallbackContainerId(this.resolvedContainerId);
-        this.generatedContainerId = resolvedId;
+      } else {
+        // Another live instance already uses this id: exclude the element owned by this
+        // instance itself, then either skip rendering/loading with a warning or fall back to
+        // a generated id.
+        const containerElement = this.containerElement;
+        const otherElement = typeof document !== "undefined" ? document.getElementById(resolvedId) : null;
+        if (otherElement && otherElement !== containerElement) {
+          console.warn(
+            `[stencil-particles] container id \"${resolvedId}\" is already used by another element; skipping load`,
+          );
+          return;
+        }
+
+        // The explicit id is free for this instance.
       }
 
       const loadParams: Record<string, unknown> = {
