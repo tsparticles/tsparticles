@@ -5370,9 +5370,6 @@ importers:
       svelte-eslint-parser:
         specifier: ^1.10.1
         version: 1.10.1(svelte@5.57.3(@typescript-eslint/types@8.72.1))
-      svelte-preprocess:
-        specifier: ^6.0.5
-        version: 6.0.5(@babel/core@7.29.7(supports-color@10.2.2))(less@4.6.6)(postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.30)(yaml@2.9.0))(postcss@8.5.30)(pug@3.0.4)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(svelte@5.57.3(@typescript-eslint/types@8.72.1))(typescript@6.0.3)
       tslib:
         specifier: ^2.9.1
         version: 2.9.1
@@ -77140,15 +77137,6 @@ snapshots:
       yaml: 2.9.0
     optional: true
 
-  postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.30)(yaml@2.9.0):
-    dependencies:
-      lilconfig: 3.1.3
-    optionalDependencies:
-      jiti: 2.7.0
-      postcss: 8.5.30
-      yaml: 2.9.0
-    optional: true
-
   postcss-loader@4.3.0(postcss@8.5.15)(webpack@4.47.0):
     dependencies:
       cosmiconfig: 7.1.0
@@ -81874,19 +81862,6 @@ snapshots:
       less: 4.6.6
       postcss: 8.5.26
       postcss-load-config: 6.0.1(jiti@2.7.0)(postcss@8.5.26)(yaml@2.9.0)
-      pug: 3.0.4
-      sass: 1.107.0
-      stylus: 0.64.0(supports-color@10.2.2)
-      typescript: 6.0.3
-
-  svelte-preprocess@6.0.5(@babel/core@7.29.7(supports-color@10.2.2))(less@4.6.6)(postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.30)(yaml@2.9.0))(postcss@8.5.30)(pug@3.0.4)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(svelte@5.57.3(@typescript-eslint/types@8.72.1))(typescript@6.0.3):
-    dependencies:
-      svelte: 5.57.3(@typescript-eslint/types@8.72.1)
-    optionalDependencies:
-      '@babel/core': 7.29.7(supports-color@10.2.2)
-      less: 4.6.6
-      postcss: 8.5.30
-      postcss-load-config: 6.0.1(jiti@2.7.0)(postcss@8.5.30)(yaml@2.9.0)
       pug: 3.0.4
       sass: 1.107.0
       stylus: 0.64.0(supports-color@10.2.2)
