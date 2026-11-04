@@ -16,14 +16,26 @@ const containerOwners = new WeakMap<Container, number>();
 const pendingContainerRequests = new Map<string, number>();
 const pendingContainerDestructions = new Map<string, Set<Container>>();
 
+/**
+ * Adds an owner reference for a shared container.
+ * @param container - The container being retained
+ */
 function retainContainer(container: Container): void {
   containerOwners.set(container, (containerOwners.get(container) ?? 0) + 1);
 }
 
+/**
+ * Records an in-flight request for a container identifier.
+ * @param id - The requested container identifier
+ */
 function retainPendingContainerRequest(id: string): void {
   pendingContainerRequests.set(id, (pendingContainerRequests.get(id) ?? 0) + 1);
 }
 
+/**
+ * Releases an in-flight request and destroys any unowned deferred containers.
+ * @param id - The completed container identifier
+ */
 function releasePendingContainerRequest(id: string): void {
   const pending = pendingContainerRequests.get(id);
 
@@ -46,6 +58,11 @@ function releasePendingContainerRequest(id: string): void {
   }
 }
 
+/**
+ * Defers destruction while requests for the identifier are still pending.
+ * @param id - The container identifier associated with the request
+ * @param container - The container to destroy or defer
+ */
 function deferContainerDestruction(id: string, container: Container): void {
   if (containerOwners.has(container)) {
     return;
@@ -64,6 +81,11 @@ function deferContainerDestruction(id: string, container: Container): void {
   }
 }
 
+/**
+ * Releases an owner reference and destroys the container when it is no longer shared.
+ * @param container - The container being released
+ * @param id - The container identifier
+ */
 function releaseContainer(container: Container, id: string): void {
   const owners = containerOwners.get(container);
 

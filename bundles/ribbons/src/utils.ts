@@ -11,7 +11,7 @@ let nextCanvasId = 0;
 
 /**
  * Gets the identifier for a ribbons canvas, generating one when needed
- * @param engine
+ * @param engine - The engine used to find existing container identifiers
  * @param canvas - The canvas to identify
  * @returns The canvas identifier
  */

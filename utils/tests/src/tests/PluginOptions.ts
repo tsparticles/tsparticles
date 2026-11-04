@@ -353,6 +353,51 @@ describe("Plugin options tests", async () => {
     }
   });
 
+  it("preserves drawable element references in theme options", async () => {
+    const backgroundElement = document.createElement("canvas"),
+      maskElement = document.createElement("canvas"),
+      container = await loadContainer({
+        themes: [
+          {
+            name: "element-theme",
+            default: { value: true, mode: "any" },
+            options: {
+              background: {
+                element: backgroundElement,
+              },
+              backgroundMask: {
+                cover: {
+                  element: maskElement,
+                },
+              },
+            },
+          },
+        ],
+      });
+
+    try {
+      const themeOptions = actual(container).themes[0].options,
+        context = container.canvas.renderCanvas?.getContext("2d");
+
+      expect(themeOptions.background.element).to.equal(backgroundElement);
+      expect(themeOptions.backgroundMask.cover.element).to.equal(maskElement);
+      expect(actual(container).background.element).to.equal(backgroundElement);
+
+      if (!context) {
+        throw new Error("Test render context not initialized");
+      }
+
+      const drawImage = vi.spyOn(context, "drawImage").mockImplementation(() => undefined);
+
+      container.canvas.render.setContext(context);
+      container.canvas.render.drawParticles({ value: 1, factor: 1 });
+
+      expect(drawImage.mock.calls[0]?.[0]).to.equal(backgroundElement);
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("resolves the themed background element on initialization and theme changes", async () => {
     const baseElement = document.createElement("canvas"),
       firstThemeElement = document.createElement("canvas"),

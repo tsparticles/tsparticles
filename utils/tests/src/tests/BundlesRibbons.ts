@@ -7,6 +7,10 @@ import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { ribbons } from "@tsparticles/ribbons";
 import { ribbons as lazyRibbons } from "@tsparticles/ribbons/lazy";
 
+/**
+ * Creates a test canvas with controllable ID attributes and the shared test document.
+ * @returns The configured canvas
+ */
 function createRibbonCanvas(): HTMLCanvasElement {
   const canvas = createCustomCanvas(1920, 1080) as unknown as HTMLCanvasElement,
     attributes = new Map<string, string>(),
