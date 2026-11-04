@@ -1080,7 +1080,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       webpack-bundle-analyzer:
         specifier: ^5.4.1
         version: 5.4.1
@@ -1189,7 +1189,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   cli/commands/build-bundle-rollup:
     dependencies:
@@ -1292,7 +1292,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   cli/commands/build-bundle-webpack:
     dependencies:
@@ -1401,7 +1401,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       webpack-bundle-analyzer:
         specifier: ^5.4.1
         version: 5.4.1
@@ -1504,7 +1504,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-clear:
     dependencies:
@@ -1601,7 +1601,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-distfiles:
     dependencies:
@@ -1698,7 +1698,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-diststats:
     dependencies:
@@ -1786,7 +1786,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-eslint:
     dependencies:
@@ -1883,7 +1883,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-prettier:
     dependencies:
@@ -1980,7 +1980,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/build-tsc:
     dependencies:
@@ -2077,7 +2077,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create:
     dependencies:
@@ -2186,7 +2186,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   cli/commands/create-app:
     dependencies:
@@ -2292,7 +2292,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-bundle:
     dependencies:
@@ -2365,7 +2365,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-effect:
     dependencies:
@@ -2438,7 +2438,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-interaction:
     dependencies:
@@ -2511,7 +2511,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-palette:
     dependencies:
@@ -2584,7 +2584,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-path:
     dependencies:
@@ -2657,7 +2657,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-plugin:
     dependencies:
@@ -2730,7 +2730,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-preset:
     dependencies:
@@ -2803,7 +2803,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-shape:
     dependencies:
@@ -2876,7 +2876,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-updater:
     dependencies:
@@ -2949,7 +2949,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
 
   cli/commands/create-utils:
     dependencies:
@@ -3043,7 +3043,7 @@ importers:
         version: 10.9.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   cli/packages/cli-build:
     dependencies:
@@ -3059,7 +3059,7 @@ importers:
         version: link:../../utils/prettier-config
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
 
   cli/packages/cli-create:
     dependencies:
@@ -3075,7 +3075,7 @@ importers:
         version: link:../../utils/prettier-config
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
 
   cli/packages/create-404:
     dependencies:
@@ -3173,7 +3173,7 @@ importers:
         version: 8.72.1(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     devDependencies:
       '@types/node':
         specifier: ^26.6.6
@@ -6917,7 +6917,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   interactions/external/attract:
     devDependencies:
@@ -10145,7 +10145,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/blend:
@@ -10182,7 +10182,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/hsl:
@@ -10195,7 +10195,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/hsv:
@@ -10208,7 +10208,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/hwb:
@@ -10221,7 +10221,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/lab:
@@ -10234,7 +10234,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/lch:
@@ -10247,7 +10247,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/named:
@@ -10260,7 +10260,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/oklab:
@@ -10273,7 +10273,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/oklch:
@@ -10286,7 +10286,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/colors/rgb:
@@ -10299,7 +10299,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   plugins/easings/back:
@@ -10312,7 +10312,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/bounce:
@@ -10325,7 +10325,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/circ:
@@ -10338,7 +10338,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/cubic:
@@ -10351,7 +10351,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/elastic:
@@ -10364,7 +10364,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/expo:
@@ -10377,7 +10377,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/gaussian:
@@ -10394,7 +10394,7 @@ importers:
         version: link:../../../cli/commands/build
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/linear:
@@ -10411,7 +10411,7 @@ importers:
         version: link:../../../cli/commands/build
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/quad:
@@ -10428,7 +10428,7 @@ importers:
         version: link:../../../cli/commands/build
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/quart:
@@ -10441,7 +10441,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/quint:
@@ -10454,7 +10454,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/sigmoid:
@@ -10467,7 +10467,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/sine:
@@ -10480,7 +10480,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/easings/smoothstep:
@@ -10493,7 +10493,7 @@ importers:
         version: link:../../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   plugins/emitters:
@@ -11979,7 +11979,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/canvasUtils:
@@ -11992,7 +11992,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/configs:
@@ -12019,7 +12019,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/noiseField:
@@ -12035,7 +12035,7 @@ importers:
         version: link:../../plugins/move/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/pathUtils:
@@ -12048,7 +12048,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/perlinNoise:
@@ -12061,7 +12061,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/simplexNoise:
@@ -12074,7 +12074,7 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/smoothValueNoise:
@@ -12087,53 +12087,10 @@ importers:
         version: link:../../engine/dist
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   utils/tests:
-    dependencies:
-      '@tsparticles/configs':
-        specifier: workspace:*
-        version: link:../configs/dist
-      '@tsparticles/engine':
-        specifier: workspace:*
-        version: link:../../engine/dist
-      '@tsparticles/interaction-particles-collisions':
-        specifier: workspace:*
-        version: link:../../interactions/particles/collisions/dist
-      '@tsparticles/plugin-absorbers':
-        specifier: workspace:*
-        version: link:../../plugins/absorbers/dist
-      '@tsparticles/plugin-emitters':
-        specifier: workspace:*
-        version: link:../../plugins/emitters/dist
-      '@tsparticles/plugin-emitters-shape-square':
-        specifier: workspace:*
-        version: link:../../plugins/emittersShapes/square/dist
-      '@tsparticles/plugin-hex-color':
-        specifier: workspace:*
-        version: link:../../plugins/colors/hex/dist
-      '@tsparticles/plugin-hsl-color':
-        specifier: workspace:*
-        version: link:../../plugins/colors/hsl/dist
-      '@tsparticles/plugin-hsv-color':
-        specifier: workspace:*
-        version: link:../../plugins/colors/hsv/dist
-      '@tsparticles/plugin-interactivity':
-        specifier: workspace:*
-        version: link:../../plugins/interactivity/dist
-      '@tsparticles/plugin-move':
-        specifier: workspace:*
-        version: link:../../plugins/move/dist
-      '@tsparticles/plugin-rgb-color':
-        specifier: workspace:*
-        version: link:../../plugins/colors/rgb/dist
-      '@tsparticles/shape-circle':
-        specifier: workspace:*
-        version: link:../../shapes/circle/dist
-      '@tsparticles/updater-size':
-        specifier: workspace:*
-        version: link:../../updaters/size/dist
     devDependencies:
       '@tsparticles/all':
         specifier: workspace:*
@@ -12150,6 +12107,9 @@ importers:
       '@tsparticles/confetti':
         specifier: workspace:*
         version: link:../../bundles/confetti/dist
+      '@tsparticles/configs':
+        specifier: workspace:*
+        version: link:../configs/dist
       '@tsparticles/effect-bubble':
         specifier: workspace:*
         version: link:../../effects/bubble/dist
@@ -12165,6 +12125,9 @@ importers:
       '@tsparticles/effect-trail':
         specifier: workspace:*
         version: link:../../effects/trail/dist
+      '@tsparticles/engine':
+        specifier: workspace:*
+        version: link:../../engine/dist
       '@tsparticles/fireworks':
         specifier: workspace:*
         version: link:../../bundles/fireworks/dist
@@ -12228,6 +12191,9 @@ importers:
       '@tsparticles/interaction-particles-attract':
         specifier: workspace:*
         version: link:../../interactions/particles/attract/dist
+      '@tsparticles/interaction-particles-collisions':
+        specifier: workspace:*
+        version: link:../../interactions/particles/collisions/dist
       '@tsparticles/interaction-particles-links':
         specifier: workspace:*
         version: link:../../interactions/particles/links/dist
@@ -12291,6 +12257,9 @@ importers:
       '@tsparticles/pjs':
         specifier: workspace:*
         version: link:../../bundles/pjs/dist
+      '@tsparticles/plugin-absorbers':
+        specifier: workspace:*
+        version: link:../../plugins/absorbers/dist
       '@tsparticles/plugin-blend':
         specifier: workspace:*
         version: link:../../plugins/blend/dist
@@ -12339,6 +12308,9 @@ importers:
       '@tsparticles/plugin-easing-smoothstep':
         specifier: workspace:*
         version: link:../../plugins/easings/smoothstep/dist
+      '@tsparticles/plugin-emitters':
+        specifier: workspace:*
+        version: link:../../plugins/emitters/dist
       '@tsparticles/plugin-emitters-shape-canvas':
         specifier: workspace:*
         version: link:../../plugins/emittersShapes/canvas/dist
@@ -12351,6 +12323,9 @@ importers:
       '@tsparticles/plugin-emitters-shape-polygon':
         specifier: workspace:*
         version: link:../../plugins/emittersShapes/polygon/dist
+      '@tsparticles/plugin-emitters-shape-square':
+        specifier: workspace:*
+        version: link:../../plugins/emittersShapes/square/dist
       '@tsparticles/plugin-export-image':
         specifier: workspace:*
         version: link:../../plugins/exports/image/dist
@@ -12360,15 +12335,30 @@ importers:
       '@tsparticles/plugin-export-video':
         specifier: workspace:*
         version: link:../../plugins/exports/video/dist
+      '@tsparticles/plugin-hex-color':
+        specifier: workspace:*
+        version: link:../../plugins/colors/hex/dist
+      '@tsparticles/plugin-hsl-color':
+        specifier: workspace:*
+        version: link:../../plugins/colors/hsl/dist
+      '@tsparticles/plugin-hsv-color':
+        specifier: workspace:*
+        version: link:../../plugins/colors/hsv/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:*
         version: link:../../plugins/infection/dist
+      '@tsparticles/plugin-interactivity':
+        specifier: workspace:*
+        version: link:../../plugins/interactivity/dist
       '@tsparticles/plugin-manual-particles':
         specifier: workspace:*
         version: link:../../plugins/manualParticles/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:*
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-move':
+        specifier: workspace:*
+        version: link:../../plugins/move/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:*
         version: link:../../plugins/poisson/dist
@@ -12378,6 +12368,9 @@ importers:
       '@tsparticles/plugin-responsive':
         specifier: workspace:*
         version: link:../../plugins/responsive/dist
+      '@tsparticles/plugin-rgb-color':
+        specifier: workspace:*
+        version: link:../../plugins/colors/rgb/dist
       '@tsparticles/plugin-sounds':
         specifier: workspace:*
         version: link:../../plugins/sounds/dist
@@ -12465,6 +12458,9 @@ importers:
       '@tsparticles/shape-cards':
         specifier: workspace:*
         version: link:../../shapes/cards/dist
+      '@tsparticles/shape-circle':
+        specifier: workspace:*
+        version: link:../../shapes/circle/dist
       '@tsparticles/shape-cog':
         specifier: workspace:*
         version: link:../../shapes/cog/dist
@@ -12555,6 +12551,9 @@ importers:
       '@tsparticles/updater-rotate':
         specifier: workspace:*
         version: link:../../updaters/rotate/dist
+      '@tsparticles/updater-size':
+        specifier: workspace:*
+        version: link:../../updaters/size/dist
       '@tsparticles/updater-tilt':
         specifier: workspace:*
         version: link:../../updaters/tilt/dist
@@ -12568,11 +12567,11 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@vitest/coverage-v8':
-        specifier: ^5.0.5
-        version: 5.0.5(vitest@5.1.0)
+        specifier: ^5.1.0
+        version: 5.1.0(vitest@5.1.0)
       '@vitest/ui':
-        specifier: ^5.0.5
-        version: 5.0.5(vitest@5.1.0)
+        specifier: ^5.1.0
+        version: 5.1.0(vitest@5.1.0)
       canvas:
         specifier: ^3.2.3
         version: 3.2.3
@@ -12584,7 +12583,7 @@ importers:
         version: 3.0.2(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
 
   websites/confetti:
     dependencies:
@@ -13470,7 +13469,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist/ng-particles
 
   wrappers/angular-confetti:
@@ -13559,7 +13558,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist/ng-confetti
 
   wrappers/angular-fireworks:
@@ -13648,7 +13647,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist/ng-fireworks
 
   wrappers/astro:
@@ -13674,7 +13673,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   wrappers/ember:
     dependencies:
@@ -13879,7 +13878,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       webpack:
         specifier: ^5.112.2
         version: 5.112.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.26))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(sharp@0.35.5(@types/node@26.6.6))(svgo@4.1.0)(uglify-js@3.19.3)(webpack-cli@7.3.1)
@@ -13960,7 +13959,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
       webpack:
         specifier: ^5.112.2
         version: 5.112.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.26))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(sharp@0.35.5(@types/node@26.6.6))(svgo@4.1.0)(uglify-js@3.19.3)(webpack-cli@7.3.1)
@@ -14033,7 +14032,7 @@ importers:
         version: 3.19.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   wrappers/lit:
@@ -14053,7 +14052,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
 
   wrappers/nextjs:
     dependencies:
@@ -14114,7 +14113,7 @@ importers:
         version: 5.1.2(@vue/language-core@3.3.14)(esbuild@0.28.2)(rolldown@1.2.14)(rollup@4.67.4)(supports-color@10.2.2)(typescript@6.0.3)(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))(webpack@5.112.2)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/nuxt2:
@@ -14152,7 +14151,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   wrappers/nuxt3:
@@ -14193,7 +14192,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/nuxt4:
@@ -14234,7 +14233,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/preact:
@@ -14301,7 +14300,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
       webpack:
         specifier: ^5.112.2
         version: 5.112.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.26))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(sharp@0.35.5(@types/node@26.6.6))(svgo@4.1.0)(uglify-js@3.19.3)(webpack-cli@7.3.1)
@@ -14364,7 +14363,7 @@ importers:
         version: 6.1.1(supports-color@10.2.2)(typescript@6.0.3)(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
   wrappers/react:
     devDependencies:
@@ -14421,7 +14420,7 @@ importers:
         version: 2.2.2(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/riot:
@@ -14480,7 +14479,7 @@ importers:
         version: 10.0.0(rollup@4.67.4)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/solid:
@@ -14550,7 +14549,7 @@ importers:
         version: 2.11.14(@testing-library/jest-dom@6.9.1)(solid-js@1.9.14)(supports-color@10.2.2)(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/stencil:
@@ -14566,7 +14565,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
 
   wrappers/svelte:
     devDependencies:
@@ -14632,7 +14631,7 @@ importers:
         version: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     publishDirectory: dist
 
   wrappers/vue2:
@@ -14682,7 +14681,7 @@ importers:
         version: 5.1.2(@vue/language-core@3.3.14)(esbuild@0.28.2)(rolldown@1.2.15)(rollup@4.67.4)(supports-color@10.2.2)(typescript@6.0.3)(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))(webpack@5.112.2)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
       vue:
         specifier: ^2.7.16
         version: 2.7.16
@@ -14770,7 +14769,7 @@ importers:
         version: 5.1.2(@vue/language-core@3.3.14)(esbuild@0.28.2)(rolldown@1.2.15)(rollup@4.67.4)(supports-color@10.2.2)(typescript@6.0.3)(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))(webpack@5.112.2)
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       vue:
         specifier: 3.5.38
         version: 3.5.38(typescript@6.0.3)
@@ -14819,7 +14818,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
     publishDirectory: dist
 
   wrappers/wordpress:
@@ -15328,7 +15327,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: ^5.1.0
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
       webpack:
         specifier: ^5.112.2
         version: 5.112.2(@swc/core@1.16.21(@swc/helpers@0.5.23))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.26))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)(sharp@0.35.5(@types/node@26.6.6))(svgo@4.1.0)(uglify-js@3.19.3)(webpack-cli@5.1.4)
@@ -25202,21 +25201,21 @@ packages:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
       vue: ^3.2.25 || ^3.6.0-rc.10
 
-  '@vitest/coverage-v8@5.0.5':
-    resolution: {integrity: sha512-4KpkGdIrSqBihx/JyP/e+S+IKB98etg1XDQiLAxksLfcShnwi1VReGeOT9NI43hLHbknosKp/1CCLn9Zgcs8mg==}
+  '@vitest/coverage-v8@5.1.0':
+    resolution: {integrity: sha512-OY9aShBQG5KOIw2zCo9fDoCHI9RHliNHJ//nM7m6jGg41Hyke9JOGWmeMlK74xYErsxMoK8mIB3gAeEyFVA7LA==}
     peerDependencies:
-      '@vitest/browser': 5.0.5
-      vitest: 5.0.5
+      '@vitest/browser': 5.1.0
+      vitest: 5.1.0
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
 
-  '@vitest/istanbul-lib-coverage@1.0.2':
-    resolution: {integrity: sha512-9J/JMwOf9AoJhAywhrn7ScKTL38hsWQP/qPG60OtaAFcQ5OXPwKsxZFlbnuCKmZ61m8/lGgHYnFpdyQZUvG/iA==}
+  '@vitest/istanbul-lib-coverage@2.1.0':
+    resolution: {integrity: sha512-WOjuS+xcjSIy7ruYBQ+9BUcV7XZQ0FyVcbWbWxW9TRx/kLGx5SQaeFRIFDJxjNplb6YsT7SpKo2zuXXUo91OIQ==}
     engines: {node: '>=22'}
 
-  '@vitest/istanbul-lib-report@1.0.2':
-    resolution: {integrity: sha512-gUsfXZJbzPamoIY5TvHFiMMoXESBrUMo+xqaj+rYrWI69+EnvRlYBlP96ZnHPY4vX8kyUpgAnFUCg5wZG/HkDQ==}
+  '@vitest/istanbul-lib-report@2.1.0':
+    resolution: {integrity: sha512-+ZFta25nWtGCOBG9/IET8w1RO5Oawsd6H8Uf6AJ9EA/StFuKVtKAEJEJ6uRt84OH+T4YkI0ASmIHAhRA+0KVxw==}
     engines: {node: '>=22'}
 
   '@vitest/mocker@5.1.0':
@@ -25230,19 +25229,19 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@5.0.5':
-    resolution: {integrity: sha512-24sSdIlMA9DVPXnYiB9siwU0bTd887Y9jX3+vabztCSsvHwo7ipvJ/a2L3Rljw8+2rK1f5fCj3h5U9I/Jsqgbw==}
+  '@vitest/pretty-format@5.1.0':
+    resolution: {integrity: sha512-IRx5mc30CrFzyMNni6SZKQ1r53kv049Mcvvk0WbWcD6PUz/bFjG4zYv0KosQAeonPpGp5WxqYBMqdSOfJfvVWw==}
 
   '@vitest/spy@5.1.0':
     resolution: {integrity: sha512-2DPO5OMHWKrBngC+fCmTQqemNF0gidRhp3lxbBmRhW+M1XJrfgPpqNqWVevXtn2f2ufD5ZaR1B6B641aAlcX5A==}
 
-  '@vitest/ui@5.0.5':
-    resolution: {integrity: sha512-dCoGUOdgmCaSB2g+WQ/spPCBkytAWdNUkFSXY4z+eYp2d8JEOY8v0uDRaJTG9qf/kTlTVZ4CuYMYMz/f1HS/qQ==}
+  '@vitest/ui@5.1.0':
+    resolution: {integrity: sha512-00S3x4NRmqIBUiTVWF9/xLaA9EP9KeKv0+1sBO7e2Y4luBISlW+2ttnhlk/zjbTqEvVhJWCCo7MXzu6zNbefqQ==}
     peerDependencies:
-      vitest: 5.0.5
+      vitest: 5.1.0
 
-  '@vitest/utils@5.0.5':
-    resolution: {integrity: sha512-/rBu7gzLDQI/SC79Tn98b5DwOgaHU/Gt4I9OVeP3YofzNaYtbImRCOJQmT1S6vOJg9gEIlWC+r3QxKkjuSa1nQ==}
+  '@vitest/utils@5.1.0':
+    resolution: {integrity: sha512-V+qgCwkvVw+s1t1S5TaoBHsLi5Sz/YmohCMoOu0mZ8ZQst2bKhRYARAQucWpVg8D0mv0x5MHcWXY5QdOsoiGBQ==}
 
   '@volar/kit@2.4.28':
     resolution: {integrity: sha512-cKX4vK9dtZvDRaAzeoUdaAJEew6IdxHNCRrdp5Kvcl6zZOqb6jTOfk3kXkIkG3T7oTFXguEMt5+9ptyqYR84Pg==}
@@ -44715,7 +44714,7 @@ snapshots:
       ng-packagr: 22.2.5(@angular/compiler-cli@22.2.4(@angular/compiler@22.2.4)(typescript@6.0.3))(@volar/typescript@2.4.28(typescript@6.0.3))(@vue/language-core@3.3.14)(oxc-resolver@11.20.0)(tslib@2.9.1)(typescript@6.0.3)(vue-tsc@3.3.14(typescript@6.0.3))
       postcss: 8.5.26
       rollup: 4.67.4
-      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@types/node'
       - '@vitejs/devtools'
@@ -44772,7 +44771,7 @@ snapshots:
       ng-packagr: 22.2.5(@angular/compiler-cli@22.2.4(@angular/compiler@22.2.4)(typescript@6.0.3))(@volar/typescript@2.4.28(typescript@6.0.3))(@vue/language-core@3.3.14)(oxc-resolver@11.20.0)(tslib@2.9.1)(typescript@6.0.3)(vue-tsc@3.3.14(typescript@6.0.3))
       postcss: 8.5.30
       rollup: 4.67.4
-      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.104.1)(sass@1.104.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.104.1)(sass@1.104.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@types/node'
       - '@vitejs/devtools'
@@ -58301,23 +58300,23 @@ snapshots:
       vite: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
       vue: 3.5.44(typescript@6.0.3)
 
-  '@vitest/coverage-v8@5.0.5(vitest@5.1.0)':
+  '@vitest/coverage-v8@5.1.0(vitest@5.1.0)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
-      '@vitest/istanbul-lib-coverage': 1.0.2
-      '@vitest/istanbul-lib-report': 1.0.2
+      '@vitest/istanbul-lib-coverage': 2.1.0
+      '@vitest/istanbul-lib-report': 2.1.0
       ast-v8-to-istanbul: 1.0.7
       magicast: 0.5.5
       obug: 3.0.0
       std-env: 4.3.0
       tinyrainbow: 3.2.0
-      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
-  '@vitest/istanbul-lib-coverage@1.0.2': {}
+  '@vitest/istanbul-lib-coverage@2.1.0': {}
 
-  '@vitest/istanbul-lib-report@1.0.2':
+  '@vitest/istanbul-lib-report@2.1.0':
     dependencies:
-      '@vitest/istanbul-lib-coverage': 1.0.2
+      '@vitest/istanbul-lib-coverage': 2.1.0
 
   '@vitest/mocker@5.1.0(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))':
     dependencies:
@@ -58392,25 +58391,25 @@ snapshots:
     optionalDependencies:
       vite: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)
 
-  '@vitest/pretty-format@5.0.5':
+  '@vitest/pretty-format@5.1.0':
     dependencies:
       tinyrainbow: 3.2.0
 
   '@vitest/spy@5.1.0': {}
 
-  '@vitest/ui@5.0.5(vitest@5.1.0)':
+  '@vitest/ui@5.1.0(vitest@5.1.0)':
     dependencies:
-      '@vitest/utils': 5.0.5
+      '@vitest/utils': 5.1.0
       fflate: 0.8.3
       flatted: 3.4.4
       pathe: 2.0.3
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
 
-  '@vitest/utils@5.0.5':
+  '@vitest/utils@5.1.0':
     dependencies:
-      '@vitest/pretty-format': 5.0.5
+      '@vitest/pretty-format': 5.1.0
       convert-source-map: 2.0.0
       tinyrainbow: 3.2.0
 
@@ -84485,32 +84484,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.0.5)(@vitest/ui@5.0.5)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0)):
-    dependencies:
-      '@types/chai': 5.2.3
-      '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
-      chai: 6.3.0
-      es-module-lexer: 2.3.2
-      expect-type: 1.4.0
-      magic-string: 1.4.3
-      obug: 3.0.0
-      picomatch: 4.0.7
-      std-env: 4.3.0
-      tinybench: 6.2.2
-      tinyexec: 1.3.1
-      tinyglobby: 0.2.17
-      vite: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0)
-      why-is-node-running: 3.2.1
-    optionalDependencies:
-      '@opentelemetry/api': 1.9.1
-      '@types/node': 26.6.6
-      '@vitest/coverage-v8': 5.0.5(vitest@5.1.0)
-      '@vitest/ui': 5.0.5(vitest@5.1.0)
-      jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
-    transitivePeerDependencies:
-      - msw
-
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.32.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
@@ -84529,11 +84503,13 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@7.3.6(@types/node@26.6.6)(jiti@2.7.0)(less@4.6.6)(lightningcss@1.33.0)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
@@ -84552,11 +84528,13 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.104.1)(sass@1.104.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.104.1)(sass@1.104.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.104.1)(sass@1.104.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.48.0)(yaml@2.9.0))
@@ -84575,12 +84553,14 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
     optional: true
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
@@ -84599,11 +84579,13 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.1))
@@ -84622,11 +84604,38 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0)):
+    dependencies:
+      '@types/chai': 5.2.3
+      '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0))
+      chai: 6.3.0
+      es-module-lexer: 2.3.2
+      expect-type: 1.4.0
+      magic-string: 1.4.3
+      obug: 3.0.0
+      picomatch: 4.0.7
+      std-env: 4.3.0
+      tinybench: 6.2.2
+      tinyexec: 1.3.1
+      tinyglobby: 0.2.17
+      vite: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.0)
+      why-is-node-running: 3.2.1
+    optionalDependencies:
+      '@opentelemetry/api': 1.9.1
+      '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
+      jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
+    transitivePeerDependencies:
+      - msw
+
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.0)(stylus@0.64.0(supports-color@7.2.0))(terser@5.51.2)(yaml@2.9.1))
@@ -84645,11 +84654,13 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
 
-  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
+  vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3))(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0)):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/mocker': 5.1.0(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.105.2)(sass@1.107.1)(stylus@0.64.0(supports-color@10.2.2))(terser@5.51.2)(yaml@2.9.0))
@@ -84668,6 +84679,8 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.6.6
+      '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
+      '@vitest/ui': 5.1.0(vitest@5.1.0)
       jsdom: 30.1.3(@noble/hashes@2.2.0)(canvas@3.2.3)
     transitivePeerDependencies:
       - msw
