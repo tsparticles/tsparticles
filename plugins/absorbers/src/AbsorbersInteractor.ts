@@ -155,6 +155,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
 
+    if (!mouse.clicking && this.#dragging) {
+      this.#dragging = false;
+      this.#draggingAbsorber = undefined;
+    }
+
     if (
       !particle &&
       mouse.clicking &&
