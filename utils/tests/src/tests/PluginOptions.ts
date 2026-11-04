@@ -521,6 +521,43 @@ describe("Plugin options tests", async () => {
     }
   });
 
+  it("activates the blend plugin for particle group overrides", async () => {
+    const container = await loadContainer({
+      autoPlay: false,
+      particles: {
+        groups: {
+          blended: {
+            blend: { enable: true },
+            number: { value: 1 },
+          },
+        },
+      },
+    });
+
+    try {
+      expect(container.plugins.some(plugin => plugin.drawParticleSetup)).to.be.true;
+    } finally {
+      container.destroy(false);
+    }
+  });
+
+  it("activates the blend plugin for emitter particle overrides", async () => {
+    const container = await loadContainer({
+      autoPlay: false,
+      emitters: {
+        particles: {
+          blend: { enable: true },
+        },
+      },
+    });
+
+    try {
+      expect(container.plugins.some(plugin => plugin.drawParticleSetup)).to.be.true;
+    } finally {
+      container.destroy(false);
+    }
+  });
+
   it("interactivity options resolve through the container", async () => {
     const container = await loadContainer({
       autoPlay: false,

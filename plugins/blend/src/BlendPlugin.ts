@@ -3,6 +3,21 @@ import type { Container, IContainerPlugin, IPlugin, RecursivePartial } from "@ts
 import { Blend } from "./Options/Classes/Blend.js";
 
 /**
+ * Checks whether a particle option override enables blending.
+ * @param particleOptions - the particle options to inspect
+ * @returns whether blending is enabled
+ */
+function hasEnabledBlend(particleOptions: unknown): boolean {
+  if (!particleOptions || typeof particleOptions !== "object" || !("blend" in particleOptions)) {
+    return false;
+  }
+
+  const blend = particleOptions.blend;
+
+  return !!blend && typeof blend === "object" && "enable" in blend && !!blend.enable;
+}
+
+/**
  */
 export class BlendPlugin implements IPlugin {
   readonly id = "blend";
@@ -38,6 +53,31 @@ export class BlendPlugin implements IPlugin {
   }
 
   needsPlugin(options?: RecursivePartial<IBlendOptions>): boolean {
-    return !!options?.blend?.enable || !!options?.particles?.blend?.enable;
+    if (
+      options?.blend?.enable ||
+      options?.particles?.blend?.enable ||
+      Object.values(options?.particles?.groups ?? {}).some(hasEnabledBlend)
+    ) {
+      return true;
+    }
+
+    const emitters = options?.["emitters"];
+    let emitterList: unknown[] = [];
+
+    if (Array.isArray(emitters)) {
+      emitterList = emitters;
+    } else if (emitters) {
+      emitterList = [emitters];
+    }
+
+    return emitterList.some(emitter => {
+      if (!emitter || typeof emitter !== "object" || !("particles" in emitter)) {
+        return false;
+      }
+
+      const particles = emitter.particles;
+
+      return Array.isArray(particles) ? particles.some(hasEnabledBlend) : hasEnabledBlend(particles);
+    });
   }
 }

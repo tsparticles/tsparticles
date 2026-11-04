@@ -91,6 +91,108 @@ describe("NgxConfettiComponent", () => {
     expect(nextContainer.destroy).toHaveBeenCalledTimes(1);
   });
 
+  it("destroys a container returned after the component is destroyed", async () => {
+    confettiMock.mockClear();
+    containerMock.destroy.mockClear();
+
+    let resolveConfetti: ((container: typeof containerMock) => void) | undefined;
+    const pendingResult = new Promise<typeof containerMock>(resolve => {
+      resolveConfetti = resolve;
+    });
+    const component = createComponent();
+
+    confettiMock.mockReturnValueOnce(pendingResult);
+
+    component.ngAfterViewInit();
+    component.ngOnDestroy();
+    resolveConfetti?.(containerMock);
+
+    await vi.waitFor(() => {
+      expect(containerMock.destroy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it("does not destroy a pending container while another component awaits it", async () => {
+    confettiMock.mockClear();
+    containerMock.destroy.mockClear();
+
+    let resolveFirst: ((container: typeof containerMock) => void) | undefined,
+      resolveSecond: ((container: typeof containerMock) => void) | undefined;
+    const firstResult = new Promise<typeof containerMock>(resolve => {
+        resolveFirst = resolve;
+      }),
+      secondResult = new Promise<typeof containerMock>(resolve => {
+        resolveSecond = resolve;
+      }),
+      abandonedComponent = createComponent(),
+      liveComponent = createComponent();
+
+    confettiMock.mockReturnValueOnce(firstResult).mockReturnValueOnce(secondResult);
+
+    abandonedComponent.ngAfterViewInit();
+    liveComponent.ngAfterViewInit();
+    abandonedComponent.ngOnDestroy();
+
+    resolveFirst?.(containerMock);
+
+    await vi.waitFor(() => {
+      expect(confettiMock).toHaveBeenCalledTimes(2);
+    });
+
+    expect(containerMock.destroy).not.toHaveBeenCalled();
+
+    resolveSecond?.(containerMock);
+    await Promise.resolve();
+
+    expect(containerMock.destroy).not.toHaveBeenCalled();
+
+    liveComponent.ngOnDestroy();
+
+    expect(containerMock.destroy).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps an owned container alive while another component awaits it", async () => {
+    confettiMock.mockClear();
+    containerMock.destroy.mockClear();
+
+    let resolveConfetti: ((container: typeof containerMock) => void) | undefined;
+    const pendingResult = new Promise<typeof containerMock>(resolve => {
+      resolveConfetti = resolve;
+    });
+    const ownerComponent = createComponent(),
+      waitingComponent = createComponent();
+
+    confettiMock.mockResolvedValueOnce(containerMock);
+
+    ownerComponent.ngAfterViewInit();
+
+    await vi.waitFor(() => {
+      expect(confettiMock).toHaveBeenCalledTimes(1);
+    });
+    await Promise.resolve();
+
+    confettiMock.mockReturnValueOnce(pendingResult);
+
+    waitingComponent.ngAfterViewInit();
+
+    await vi.waitFor(() => {
+      expect(confettiMock).toHaveBeenCalledTimes(2);
+    });
+
+    ownerComponent.ngOnDestroy();
+
+    expect(containerMock.destroy).not.toHaveBeenCalled();
+
+    resolveConfetti?.(containerMock);
+    await Promise.resolve();
+
+    expect(containerMock.destroy).not.toHaveBeenCalled();
+
+    waitingComponent.ngOnDestroy();
+
+    expect(containerMock.destroy).toHaveBeenCalledTimes(1);
+  });
+
   it("does not destroy a shared container when firing with a different id", async () => {
     confettiMock.mockClear();
     containerMock.destroy.mockClear();
