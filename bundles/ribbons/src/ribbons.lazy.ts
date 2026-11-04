@@ -1,7 +1,7 @@
 import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine/lazy";
 import type { RibbonsFirstParam, RibbonsFunc } from "./types.js";
+import { getRibbonsId, setRibbons } from "./utils.js";
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
-import { setRibbons } from "./utils.js";
 
 declare const __VERSION__: string;
 
@@ -117,7 +117,7 @@ ribbons.create = async (
 ): Promise<RibbonsFunc> => {
   await initPlugins(tsParticles);
 
-  const id = canvas?.getAttribute("id") ?? "ribbons";
+  const id = getRibbonsId(canvas);
 
   canvas?.setAttribute("id", id);
 

@@ -7,6 +7,33 @@ const sizeFactor = 8,
   emitterTop = 0,
   ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
 
+let nextCanvasId = 0;
+
+/**
+ * Gets the identifier for a ribbons canvas, generating one when needed
+ * @param canvas - The canvas to identify
+ * @returns The canvas identifier
+ */
+export function getRibbonsId(canvas?: HTMLCanvasElement | null): string {
+  if (!canvas) {
+    return "ribbons";
+  }
+
+  const id = canvas.getAttribute("id");
+
+  if (id !== null) {
+    return id;
+  }
+
+  let generatedId: string;
+
+  do {
+    generatedId = `ribbons-${++nextCanvasId}`;
+  } while (ids.has(generatedId));
+
+  return generatedId;
+}
+
 /**
  * Adds an emitter to the container for ribbon particles
  * @param container - The container to handle
