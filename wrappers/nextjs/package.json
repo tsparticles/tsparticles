@@ -71,7 +71,7 @@
     "@types/react-dom": "^19.3.0",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
-    "@vitejs/plugin-react": "^6.1.2",
+    "@vitejs/plugin-react": "^6.2.1",
     "eslint": "^10.14.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
@@ -83,7 +83,7 @@
     "typescript": "^6.0.3",
     "vite": "^8.3.5",
     "vite-plugin-dts": "^5.1.2",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "nx": {
     "targets": {

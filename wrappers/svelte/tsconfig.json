@@ -1,9 +1,6 @@
 {
+	"extends": "$app/tsconfig",
 	"compilerOptions": {
-		"paths": {
-			"$lib": ["./src/lib"],
-			"$lib/*": ["./src/lib/*"]
-		},
 		"allowJs": true,
 		"checkJs": true,
 		"esModuleInterop": true,
@@ -12,9 +9,8 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext"
+		"verbatimModuleSyntax": true
 	},
-	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
-	"exclude": ["node_modules/**", "dist/**"]
+	"include": ["src", "test", "*"],
+	"exclude": ["src/service-worker"]
 }

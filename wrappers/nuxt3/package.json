@@ -66,9 +66,9 @@
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
     "eslint": "^10.14.0",
-    "globals": "^17.11.0",
+    "globals": "^17.14.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "nx": {
     "targets": {

@@ -117,7 +117,7 @@
     "qunit-dom": "^3.6.0",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5",
+    "vitest": "^5.1.0",
     "webpack": "^5.112.2"
   },
   "engines": {

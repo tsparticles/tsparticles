@@ -52,7 +52,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@nuxt/kit": "^4.5.2",
+    "@nuxt/kit": "^4.6.3",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/vue3": "workspace:*"
   },
@@ -62,14 +62,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@nuxt/schema": "^4.5.2",
+    "@nuxt/schema": "^4.6.3",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
     "eslint": "^10.14.0",
-    "globals": "^17.11.0",
-    "nuxt": "^4.5.2",
+    "globals": "^17.14.0",
+    "nuxt": "^4.6.4",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "nx": {
     "targets": {

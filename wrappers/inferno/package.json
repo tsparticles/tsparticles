@@ -104,7 +104,7 @@
     "inferno": "<=9"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.1.0",
     "@babel/plugin-transform-private-property-in-object": "^8.0.1",
     "@babel/plugin-transform-runtime": "^8.0.1",
     "@babel/preset-env": "^8.0.2",
@@ -128,7 +128,7 @@
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5",
+    "vitest": "^5.1.0",
     "webpack": "^5.112.2",
     "webpack-cli": "^7.3.1",
     "webpack-dev-server": "^6.0.0"

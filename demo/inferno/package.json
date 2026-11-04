@@ -24,7 +24,7 @@
     "tsparticles": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.1.0",
     "@babel/preset-env": "^8.0.2",
     "@babel/preset-typescript": "^8.0.1",
     "babel-loader": "^10.1.1",

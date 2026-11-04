@@ -4,7 +4,7 @@
       "@tsparticles/react": "^4.5.1",
       "@tsparticles/engine": "^4.5.1",
       "tsparticles": "^4.5.1",
-      "tslib": "^2.8.1"
+      "tslib": "^2.9.1"
     }
   }
 }

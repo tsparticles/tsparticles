@@ -108,7 +108,7 @@
     "@tsparticles/engine": "workspace:*"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.1.0",
     "@babel/preset-typescript": "^8.0.1",
     "@riotjs/cli": "^10.0.0",
     "@riotjs/compiler": "^10.0.4",
@@ -122,9 +122,9 @@
     "nyc": "^18.0.0",
     "prettier": "^3.9.10",
     "riot": "^10.1.6",
-    "rollup": "^4.66.0",
+    "rollup": "^4.67.4",
     "rollup-plugin-riot": "^10.0.0",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "publishConfig": {
     "access": "public",
