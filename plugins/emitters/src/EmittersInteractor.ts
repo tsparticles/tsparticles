@@ -177,6 +177,11 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
 
+    if (!mouse.clicking && this.#dragging) {
+      this.#dragging = false;
+      this.#draggingEmitter = undefined;
+    }
+
     if (this.#dragging) {
       return true;
     }

@@ -11,10 +11,11 @@ let nextCanvasId = 0;
 
 /**
  * Gets the identifier for a ribbons canvas, generating one when needed
+ * @param engine
  * @param canvas - The canvas to identify
  * @returns The canvas identifier
  */
-export function getRibbonsId(canvas?: HTMLCanvasElement | null): string {
+export function getRibbonsId(engine: Engine, canvas?: HTMLCanvasElement | null): string {
   if (!canvas) {
     return "ribbons";
   }
@@ -29,7 +30,11 @@ export function getRibbonsId(canvas?: HTMLCanvasElement | null): string {
 
   do {
     generatedId = `ribbons-${++nextCanvasId}`;
-  } while (ids.has(generatedId));
+  } while (
+    ids.has(generatedId) ||
+    canvas.ownerDocument.getElementById(generatedId) !== null ||
+    engine.items.some(container => container.id.description === generatedId)
+  );
 
   return generatedId;
 }

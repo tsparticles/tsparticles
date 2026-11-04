@@ -503,6 +503,62 @@ describe("Emitters tests", () => {
     }
   });
 
+  it("should reset drag state when the dragged emitter is removed before release", async () => {
+    const container = (await loadEmitterContainer("emitters-drag-removed", {
+      autoPlay: false,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: false,
+          },
+        },
+      },
+      emitters: {
+        ...defaultEmitterOptions,
+        draggable: true,
+      },
+    })) as EmittersDragTestContainer;
+
+    try {
+      const emitter = container.getEmitter?.(),
+        manager = container.interactionManager!,
+        mouse = manager.interactivityData.mouse;
+
+      expect(emitter).to.be.not.undefined;
+      expect(manager).to.be.not.undefined;
+
+      emitter?.setPosition({ x: 200, y: 200 });
+
+      mouse.clicking = true;
+      mouse.downPosition = { x: 200, y: 200 };
+      mouse.position = { x: 250, y: 250 };
+      manager.externalInteract({ value: 1, factor: 1 });
+
+      container.removeEmitter?.(0);
+      expect(container.getEmitter?.()).to.be.undefined;
+
+      mouse.clicking = false;
+      manager.externalInteract({ value: 1, factor: 1 });
+
+      const replacement = await container.addEmitter?.({
+        ...defaultEmitterOptions,
+        draggable: true,
+      });
+
+      expect(replacement).to.be.not.undefined;
+
+      replacement?.setPosition({ x: 500, y: 500 });
+      mouse.clicking = true;
+      mouse.downPosition = { x: 500, y: 500 };
+      mouse.position = { x: 550, y: 550 };
+      manager.externalInteract({ value: 1, factor: 1 });
+
+      expect(replacement?.position).to.deep.equal({ x: 550, y: 550 });
+    } finally {
+      container.destroy();
+    }
+  });
+
   it("should still add an emitter on an empty space click when the click mode is enabled", async () => {
     const container = (await loadEmitterContainer("emitters-click-mode", {
       autoPlay: false,

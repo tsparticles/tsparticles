@@ -117,7 +117,7 @@ ribbons.create = async (
 ): Promise<RibbonsFunc> => {
   await initPlugins(tsParticles);
 
-  const id = getRibbonsId(canvas);
+  const id = getRibbonsId(tsParticles, canvas);
 
   canvas?.setAttribute("id", id);
 
