@@ -51,13 +51,17 @@ describe("NgxConfettiComponent", () => {
     });
 
     expect(confettiMock).toHaveBeenCalledWith("my-confetti", options);
+    component.ngOnDestroy();
   });
 
-  it("destroys the container on destroy", async () => {
+  it("releases a single-owner container on refire and destroy", async () => {
     confettiMock.mockClear();
     containerMock.destroy.mockClear();
 
-    const component = createComponent();
+    const nextContainer = { destroy: vi.fn() },
+      component = createComponent();
+
+    confettiMock.mockResolvedValueOnce(containerMock).mockResolvedValueOnce(nextContainer);
 
     component.ngAfterViewInit();
 
@@ -65,9 +69,26 @@ describe("NgxConfettiComponent", () => {
       expect(confettiMock).toHaveBeenCalledTimes(1);
     });
 
-    component.ngOnDestroy();
+    component.id = "another-confetti";
+    component.ngOnChanges({
+      fire: {
+        currentValue: true,
+        firstChange: false,
+        isFirstChange: () => false,
+        previousValue: false,
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(confettiMock).toHaveBeenCalledTimes(2);
+    });
 
     expect(containerMock.destroy).toHaveBeenCalledTimes(1);
+    expect(nextContainer.destroy).not.toHaveBeenCalled();
+
+    component.ngOnDestroy();
+
+    expect(nextContainer.destroy).toHaveBeenCalledTimes(1);
   });
 
   it("does not destroy a shared container when firing with a different id", async () => {
@@ -145,6 +166,8 @@ describe("NgxConfettiComponent", () => {
     await vi.waitFor(() => {
       expect(confettiMock).toHaveBeenCalledTimes(2);
     });
+
+    component.ngOnDestroy();
   });
 
   it("does not react to changes on the server platform", () => {

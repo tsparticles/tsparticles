@@ -12,6 +12,27 @@ import {
 import { confetti, ConfettiOptions } from "@tsparticles/confetti";
 import type { Container } from "@tsparticles/engine";
 
+const containerOwners = new WeakMap<Container, number>();
+
+function retainContainer(container: Container): void {
+  containerOwners.set(container, (containerOwners.get(container) ?? 0) + 1);
+}
+
+function releaseContainer(container: Container): void {
+  const owners = containerOwners.get(container);
+
+  if (owners === undefined) {
+    return;
+  }
+
+  if (owners === 1) {
+    containerOwners.delete(container);
+    container.destroy();
+  } else {
+    containerOwners.set(container, owners - 1);
+  }
+}
+
 @Component({
   selector: "ngx-confetti",
   standalone: false,
@@ -49,9 +70,13 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
 
   public ngOnDestroy(): void {
     this.#renderId++;
-    this.#container?.destroy();
 
+    const container = this.#container;
     this.#container = undefined;
+
+    if (container) {
+      releaseContainer(container);
+    }
   }
 
   async #tryFire(): Promise<void> {
@@ -59,11 +84,21 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
     const container = await confetti(this.id, this.options);
 
     if (currentRenderId !== this.#renderId) {
-      container?.destroy();
-
       return;
     }
 
-    this.#container = container;
+    const previousContainer = this.#container;
+
+    if (container !== previousContainer) {
+      if (container) {
+        retainContainer(container);
+      }
+
+      this.#container = container;
+
+      if (previousContainer) {
+        releaseContainer(previousContainer);
+      }
+    }
   }
 }
