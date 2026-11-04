@@ -637,6 +637,8 @@ export class Container {
       }
     }
 
+    this.canvas.render.updateBackgroundElement();
+
     return refresh;
   }
 

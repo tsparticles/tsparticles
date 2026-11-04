@@ -68,10 +68,10 @@ describe("ribbons bundle", async () => {
       expect(firstCanvas.getAttribute("id")).to.not.equal(secondCanvas.getAttribute("id"));
       expect([...lazyTsParticles.items].filter(container => !previousContainers.has(container))).to.have.length(2);
     } finally {
-      for (const container of lazyTsParticles.items) {
+      for (const container of [...lazyTsParticles.items]) {
         if (!previousContainers.has(container)) {
           container.stop();
-          container.destroy(false);
+          container.destroy(true);
         }
       }
     }

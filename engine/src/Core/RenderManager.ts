@@ -517,6 +517,11 @@ export class RenderManager {
     });
   }
 
+  /** Updates the cached background element from the effective container options */
+  updateBackgroundElement(): void {
+    this.#resolveBackgroundElement();
+  }
+
   #applyPostDrawUpdaters(particle: Particle): void {
     for (const updater of this.#postDrawUpdaters) {
       updater.afterDraw?.(particle);

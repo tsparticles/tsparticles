@@ -24,7 +24,7 @@ import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadThemesPlugin } from "@tsparticles/plugin-themes";
 import { loadTrailPlugin } from "@tsparticles/plugin-trail";
 import { Zoom, loadZoomPlugin } from "@tsparticles/plugin-zoom";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
@@ -350,6 +350,71 @@ describe("Plugin options tests", async () => {
       expect(options.particles.number.value).to.equal(11);
     } finally {
       container.destroy(false);
+    }
+  });
+
+  it("resolves the themed background element on initialization and theme changes", async () => {
+    const baseElement = document.createElement("canvas"),
+      firstThemeElement = document.createElement("canvas"),
+      secondThemeElement = document.createElement("canvas");
+
+    baseElement.id = "background-base";
+    firstThemeElement.id = "background-theme-one";
+    secondThemeElement.id = "background-theme-two";
+    document.body.append(baseElement, firstThemeElement, secondThemeElement);
+
+    const container = await loadContainer({
+      autoPlay: false,
+      background: {
+        element: "#background-base",
+      },
+      themes: [
+        {
+          name: "background-one",
+          default: { value: true, mode: "any" },
+          options: {
+            background: {
+              element: "#background-theme-one",
+            },
+          },
+        },
+        {
+          name: "background-two",
+          options: {
+            background: {
+              element: "#background-theme-two",
+            },
+          },
+        },
+      ],
+    });
+
+    try {
+      const context = container.canvas.renderCanvas?.getContext("2d"),
+        themeContainer = container as Container & { loadTheme?: (name?: string) => Promise<void> };
+
+      if (!context) {
+        throw new Error("Test render context not initialized");
+      }
+
+      const drawImage = vi.spyOn(context, "drawImage").mockImplementation(() => undefined);
+
+      container.canvas.render.setContext(context);
+
+      container.canvas.render.drawParticles({ value: 1, factor: 1 });
+
+      expect(drawImage.mock.calls[0]?.[0]).to.equal(firstThemeElement);
+
+      drawImage.mockClear();
+      await themeContainer.loadTheme?.("background-two");
+      container.canvas.render.drawParticles({ value: 1, factor: 1 });
+
+      expect(drawImage.mock.calls[0]?.[0]).to.equal(secondThemeElement);
+    } finally {
+      container.destroy(false);
+      baseElement.remove();
+      firstThemeElement.remove();
+      secondThemeElement.remove();
     }
   });
 
