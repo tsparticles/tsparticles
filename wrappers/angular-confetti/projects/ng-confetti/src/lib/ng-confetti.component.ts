@@ -64,6 +64,10 @@ export class NgxConfettiComponent implements AfterViewInit, OnChanges, OnDestroy
       return;
     }
 
+    if (this.#container !== container) {
+      this.#container?.destroy();
+    }
+
     this.#container = container;
   }
 }

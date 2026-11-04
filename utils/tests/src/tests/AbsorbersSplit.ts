@@ -536,6 +536,38 @@ describe("AbsorbersInstancesManager.splitAbsorber tests", () => {
       container.destroy();
     }
   });
+
+  it("should scale released particle sizes back to CSS units", async () => {
+    const container = await loadAbsorberContainer("absorbers-split-retina-size", {
+      ...noParticles,
+      absorbers: [{ ...defaultAbsorberOptions, split: { enable: true, quantity: 4 } }],
+    });
+
+    try {
+      const manager = await getInstancesManager(),
+        absorber = container.getAbsorber?.(),
+        addSpy = vi.spyOn(container.particles, "addParticle");
+
+      expect(absorber).to.be.not.undefined;
+
+      if (!absorber) {
+        return;
+      }
+
+      container.retina.pixelRatio = 2;
+      absorber.size = 80;
+
+      manager.splitAbsorber(container, absorber);
+
+      expect(addSpy).toHaveBeenCalledTimes(4);
+
+      for (const [, options] of addSpy.mock.calls) {
+        expect(options?.size?.value).to.equal(9);
+      }
+    } finally {
+      container.destroy();
+    }
+  });
 });
 
 describe("AbsorbersPluginInstance.update tests", () => {

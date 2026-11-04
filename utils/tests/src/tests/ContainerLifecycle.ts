@@ -80,11 +80,13 @@ describe("Container lifecycle", () => {
   it("keeps the container lifecycle working with an invalid background selector", async () => {
     const container = await loadContainer({ background: { element: "[" } });
 
-    await container.refresh();
+    try {
+      await container.refresh();
 
-    expect(container.destroyed).to.be.false;
-
-    container.destroy();
+      expect(container.destroyed).to.be.false;
+    } finally {
+      container.destroy();
+    }
   });
 
   it("stops, clears and restarts without throwing", async () => {
