@@ -47,11 +47,14 @@ describe("Particle", async () => {
         // no-op
       },
     },
-    shapeDrawerInside: IShapeDrawer = {
+    shapeDrawerInside: IShapeDrawer & { inside: boolean } = {
+      inside: true,
       draw: () => {
         // no-op
       },
-      isInsideCanvas: () => true,
+      isInsideCanvas() {
+        return this.inside;
+      },
     },
     shapeDrawerOutside: IShapeDrawer = {
       draw: () => {
@@ -59,8 +62,11 @@ describe("Particle", async () => {
       },
       isInsideCanvas: () => false,
     },
-    effectDrawerInside: IEffectDrawer = {
-      isInsideCanvas: () => true,
+    effectDrawerInside: IEffectDrawer & { inside: boolean } = {
+      inside: true,
+      isInsideCanvas() {
+        return this.inside;
+      },
     },
     effectDrawerOutside: IEffectDrawer = {
       isInsideCanvas: () => false,

@@ -279,6 +279,45 @@ describe("Collisions tests", () => {
     await container.destroy();
   });
 
+  it("should keep fluid particles inside the canvas while separating overlaps", async () => {
+    const { container, particles } = await loadFluidContainer(
+      2,
+      3,
+      {
+        particles: {
+          number: { value: 2, animation: { enable: false, speed: 0 } },
+          position: { animation: { enable: false } },
+          move: { enable: false, outModes: { default: "none" } },
+          size: { value: 20 },
+          collisions: {
+            enable: true,
+            mode: "fluid",
+          },
+        },
+      },
+      true,
+    );
+
+    container.canvas.size.width = 100;
+    container.canvas.size.height = 100;
+
+    particles[0].position.x = 2;
+    particles[0].position.y = 50;
+    particles[1].position.x = 5;
+    particles[1].position.y = 50;
+
+    container.particles.update(testDelta);
+
+    for (const particle of particles) {
+      expect(particle.position.x).toBeGreaterThanOrEqual(0);
+      expect(particle.position.x).toBeLessThanOrEqual(100);
+      expect(particle.position.y).toBeGreaterThanOrEqual(0);
+      expect(particle.position.y).toBeLessThanOrEqual(100);
+    }
+
+    await container.destroy();
+  });
+
   it("should move a free fluid particle without keeping any per particle state", async () => {
     const { container, particles } = await loadFluidContainer(2, 100, {
         particles: {

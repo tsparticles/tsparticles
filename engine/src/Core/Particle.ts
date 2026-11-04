@@ -818,7 +818,7 @@ export class Particle {
    * @returns true if the particle is still inside the canvas
    */
   isInsideCanvas(direction?: OutModeDirection): boolean {
-    return this.#getInsideCanvasResult({ direction }).inside;
+    return this.#getInsideCanvasResult(direction).inside;
   }
 
   /**
@@ -828,7 +828,7 @@ export class Particle {
    * @returns true if the particle is still inside for the given strategy
    */
   isInsideCanvasForOutMode(outMode: OutMode | keyof typeof OutMode, direction?: OutModeDirection): boolean {
-    return this.#getInsideCanvasResult({ direction, outMode }).inside;
+    return this.#getInsideCanvasResult(direction, outMode).inside;
   }
 
   /**
@@ -1008,6 +1008,12 @@ export class Particle {
     });
   }
 
+  /**
+   * Computes the default canvas bounds result for the given direction and out mode.
+   * @param direction - optional bounds side check
+   * @param outMode - optional out mode strategy
+   * @returns the default bounds result
+   */
   #getDefaultInsideCanvasResult(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
@@ -1055,6 +1061,12 @@ export class Particle {
     };
   }
 
+  /**
+   * Creates the data passed to custom shape and effect bounds callbacks.
+   * @param direction - optional bounds side check
+   * @param outMode - optional out mode strategy
+   * @returns the callback data for the current particle
+   */
   #getInsideCanvasCallbackData(
     direction?: OutModeDirection,
     outMode?: OutMode | keyof typeof OutMode,
@@ -1068,24 +1080,32 @@ export class Particle {
     };
   }
 
-  #getInsideCanvasResult(data: {
-    direction?: OutModeDirection;
-    outMode?: OutMode | keyof typeof OutMode;
-  }): IParticleCanvasBoundsResult {
-    const defaultResult = this.#getDefaultInsideCanvasResult(data.direction, data.outMode),
+  /**
+   * Combines the default bounds result with any custom shape and effect results.
+   * @param direction - optional bounds side check
+   * @param outMode - optional out mode strategy
+   * @returns the combined canvas bounds result
+   */
+  #getInsideCanvasResult(
+    direction?: OutModeDirection,
+    outMode?: OutMode | keyof typeof OutMode,
+  ): IParticleCanvasBoundsResult {
+    const defaultResult = this.#getDefaultInsideCanvasResult(direction, outMode),
       container = this.#container,
       shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined,
-      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined,
-      shapeCheck = shapeDrawer?.isInsideCanvas,
-      effectCheck = effectDrawer?.isInsideCanvas;
+      effectDrawer = this.effect ? container.effectDrawers.get(this.effect) : undefined;
 
-    if (!shapeCheck && !effectCheck) {
+    if (!shapeDrawer?.isInsideCanvas && !effectDrawer?.isInsideCanvas) {
       return defaultResult;
     }
 
-    const callbackData = this.#getInsideCanvasCallbackData(data.direction, data.outMode),
-      shapeResult = shapeCheck ? this.#normalizeInsideCanvasResult(shapeCheck(callbackData), "shape") : undefined,
-      effectResult = effectCheck ? this.#normalizeInsideCanvasResult(effectCheck(callbackData), "effect") : undefined;
+    const callbackData = this.#getInsideCanvasCallbackData(direction, outMode),
+      shapeResult = shapeDrawer?.isInsideCanvas
+        ? this.#normalizeInsideCanvasResult(shapeDrawer.isInsideCanvas(callbackData), "shape")
+        : undefined,
+      effectResult = effectDrawer?.isInsideCanvas
+        ? this.#normalizeInsideCanvasResult(effectDrawer.isInsideCanvas(callbackData), "effect")
+        : undefined;
 
     if (shapeResult && effectResult) {
       const margin = Math.max(shapeResult.margin ?? defaultAngle, effectResult.margin ?? defaultAngle);
@@ -1158,6 +1178,12 @@ export class Particle {
     this.offset = Vector.origin;
   }
 
+  /**
+   * Normalizes a custom bounds callback result and assigns its source.
+   * @param result - the boolean or structured callback result
+   * @param reason - the drawer type that returned the result
+   * @returns the normalized bounds result
+   */
   #normalizeInsideCanvasResult(
     result: boolean | IParticleCanvasBoundsResult,
     reason: Exclude<IParticleCanvasBoundsResult["reason"], "combined" | "default">,

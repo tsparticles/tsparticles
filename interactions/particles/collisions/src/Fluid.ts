@@ -161,8 +161,17 @@ export class FluidSolver {
    * enough energy to turn the pool into a chaotic, endlessly bouncing gas).
    * @param particle - the particle being solved
    * @param position - the position of the particle being solved
+   * @param margin - optional minimum distance from the canvas borders
+   * @param maxX - optional maximum horizontal position
+   * @param maxY - optional maximum vertical position
    */
-  separateOverlaps(particle: CollisionParticle, position: Vector3d): void {
+  separateOverlaps(
+    particle: CollisionParticle,
+    position: Vector3d,
+    margin?: number,
+    maxX?: number,
+    maxY?: number,
+  ): void {
     const neighbors = this.#neighbors,
       particlePosition = particle.position;
 
@@ -175,6 +184,10 @@ export class FluidSolver {
            of a later particle separated for good, with nothing to fix them again */
         this.#projectPair(particle, neighbor);
       }
+    }
+
+    if (margin !== undefined && maxX !== undefined && maxY !== undefined) {
+      clampToWalls(particlePosition, margin, maxX, maxY);
     }
   }
 
@@ -285,9 +298,8 @@ export class FluidSolver {
       clampToWalls(position, margin, maxX, maxY);
     }
 
-    /* the non-penetration projection is the last thing to run, so neither the wall clamp nor the
-       pressure solve can leave the particle interpenetrating with one of its neighbors */
-    this.separateOverlaps(particle, position);
+    /* project overlaps while enforcing the walls, so the final correction cannot eject the particle */
+    this.separateOverlaps(particle, position, hasBounds ? margin : undefined, maxX, maxY);
 
     this.#dampContacts(particle);
 
