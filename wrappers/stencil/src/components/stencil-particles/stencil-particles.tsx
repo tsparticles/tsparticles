@@ -3,11 +3,31 @@ import { Container, type ISourceOptions, tsParticles } from "@tsparticles/engine
 import type { ParticlesPluginRegistrar } from "../../initParticlesEngine";
 import { initParticlesEngine } from "../../initParticlesEngine";
 
+let instanceCount = 0;
+
+/**
+ * Generates a per-instance container id, skipping candidates already used by a rendered element or
+ * by an explicit container-id on another instance, so an id generated here never collides with
+ * another instance or with an explicit container-id
+ * @param explicitId - an id that a duplicate of this instance has already claimed
+ * @returns the generated container id
+ */
+const getFallbackContainerId = (explicitId?: string): string => {
+  let id: string;
+
+  do {
+    id = `stencil-particles-${(++instanceCount).toString()}`;
+  } while (typeof document !== "undefined" && document.getElementById(id));
+
+  return id;
+};
+
 @Component({
   tag: "stencil-particles",
 })
 export class StencilParticles {
   private containerElement?: HTMLDivElement;
+  private readonly fallbackContainerId = getFallbackContainerId();
 
   @Event() particlesLoaded!: EventEmitter<Container | undefined>;
 
@@ -17,17 +37,44 @@ export class StencilParticles {
   @Prop() containerId?: string;
   @Prop() theme?: string;
 
+  /**
+   * The resolved container id for this instance, stored so render() and loadParticles() use the
+   * same value and the containerId watcher keeps it current.
+   */
+  private resolvedContainerId = this.containerId ?? this.fallbackContainerId;
+
   private container?: Container;
   private renderId = 0;
 
+  /**
+   * The generated container id owned by this instance, if any. Used to release ownership on
+   * disconnect so a reused id is not left reserved across a reload.
+   */
+  private generatedContainerId?: string;
+
   async componentDidLoad(): Promise<void> {
+    this.resolvedContainerId = this.containerId ?? this.fallbackContainerId;
     await this.loadParticles(++this.renderId);
+  }
+
+  connectedCallback(): void {
+    // The element was detached and reattached; Stencil runs componentDidLoad() only once, so
+    // re-run the initial load when the container element is available, otherwise the
+    // render ref will trigger componentDidLoad once it becomes available.
+    if (!this.containerElement) return;
+
+    this.renderId++;
+    void this.loadParticles(this.renderId);
   }
 
   disconnectedCallback(): void {
     this.renderId++; // Invalidate any pending load promises
     this.container?.destroy();
     this.container = undefined;
+
+    // Release any generated id this instance owns. Ownership is tracked per instance, so no
+    // generated id remains reserved after a disconnect.
+    this.generatedContainerId = undefined;
   }
 
   @Watch("options")
@@ -35,6 +82,7 @@ export class StencilParticles {
   @Watch("init")
   @Watch("containerId")
   protected async onPropsChange(): Promise<void> {
+    this.resolvedContainerId = this.containerId ?? this.fallbackContainerId;
     await this.loadParticles(++this.renderId);
   }
 
@@ -54,6 +102,10 @@ export class StencilParticles {
 
     let container: Container | undefined;
 
+    // Resolve the container id once to a stored value, updated by the containerId watcher, so
+    // render() and loadParticles() use the same id.
+    const containerId = this.resolvedContainerId;
+
     try {
       // Use the shared initialization logic to ensure consistent plugin registration
       // and avoid duplicate initialization when multiple instances mount concurrently.
@@ -67,11 +119,32 @@ export class StencilParticles {
         return;
       }
 
-      // Load particles directly onto the DOM element.
-      // If a container-id is provided, use it so consumers can retrieve the container later.
+      // Use the stored container id. Resolve it to a value owned by this instance: an explicit
+      // container-id is preferred, but if it collides with another live element this instance does
+      // not own, fall back to a generated id and warn.
+      let resolvedId = containerId;
+      if (!resolvedId) {
+        resolvedId = this.fallbackContainerId;
+        this.generatedContainerId = resolvedId;
+      } else {
+        // Another live instance already uses this id: exclude the element owned by this
+        // instance itself, then either skip rendering/loading with a warning or fall back to
+        // a generated id.
+        const containerElement = this.containerElement;
+        const otherElement = typeof document !== "undefined" ? document.getElementById(resolvedId) : null;
+        if (otherElement && otherElement !== containerElement) {
+          console.warn(
+            `[stencil-particles] container id \"${resolvedId}\" is already used by another element; skipping load`,
+          );
+          return;
+        }
+
+        // The explicit id is free for this instance.
+      }
+
       const loadParams: Record<string, unknown> = {
         element: this.containerElement,
-        ...(this.containerId ? { id: this.containerId } : {}),
+        id: resolvedId,
         ...(this.options ? { options: this.options } : {}),
         ...(this.url ? { url: this.url } : {}),
       };
@@ -100,7 +173,7 @@ export class StencilParticles {
   render(): JSX.Element {
     return (
       <div
-        id={this.containerId}
+        id={this.resolvedContainerId}
         ref={el => {
           this.containerElement = el as HTMLDivElement;
         }}

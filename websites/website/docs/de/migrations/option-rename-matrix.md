@@ -22,3 +22,10 @@ Schnellreferenz fuer die haeufigsten Umbenennungen waehrend Migrationen.
 | --------------------------------- | ----------------------------------------- |
 | `tsParticles.load("id", options)` | `tsParticles.load({ id: "id", options })` |
 | `particlesJS("id", options)`      | `tsParticles.load({ id: "id", options })` |
+
+## Siehe auch
+
+- [`/migrations/from-v3`](/de/migrations/from-v3)
+- [`/migrations/from-v2`](/de/migrations/from-v2)
+- [`/migrations/from-v1`](/de/migrations/from-v1)
+- [`/migrations/particles-js`](/de/migrations/particles-js)

@@ -312,8 +312,10 @@ export class RenderManager {
    * @see DrawLayer
    */
   drawParticles(delta: IDelta): void {
-    const { particles, actualOptions } = this.#container,
-      clearedPlugin = this.clear();
+    const { particles, actualOptions } = this.#container;
+
+    /* clear (or let a plugin replace the clearing, e.g. trail) before painting background layers */
+    this.clear();
 
     /* update each particle before drawing */
     particles.update(delta);
@@ -342,12 +344,10 @@ export class RenderManager {
         }
       }
 
-      /* Layer 2 — BackgroundMask: plugin canvasPaint (already painted during the
-       * clear phase when the plugin handled clearing, so skip it to avoid double work) */
+      /* Layer 2 — BackgroundMask: plugin canvasPaint, painted after the background layers
+       * so the mask cover stays visible over them */
       for (const plugin of this.#getLayerPlugins(DrawLayer.BackgroundMask)) {
-        if (plugin !== clearedPlugin) {
-          plugin.canvasPaint?.();
-        }
+        plugin.canvasPaint?.();
       }
 
       /* Layer 3 — CanvasSetup: plugin drawSettingsSetup */

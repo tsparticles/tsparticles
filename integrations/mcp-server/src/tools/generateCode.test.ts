@@ -107,7 +107,14 @@ describe("generateOptions", () => {
 
   it("applies color keyword overrides", () => {
     const result = generateCode({ description: "red particles floating" });
-    expect((result.options.particles as Record<string, unknown>).color).toEqual({
+    expect((result.options.particles as Record<string, unknown>).paint).toEqual({
+      color: { value: "#ff0000" },
+    });
+  });
+
+  it("applies color keyword override to paint.color", () => {
+    const result = generateCode({ description: "red particles floating" });
+    expect((result.options.particles as unknown as { paint: { color: { value: string } } }).paint!.color).toEqual({
       value: "#ff0000",
     });
   });

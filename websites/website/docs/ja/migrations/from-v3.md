@@ -98,7 +98,20 @@ await tsParticles.load({
 
 他のすべてのシェイプパッケージ（arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text）は、単一の `load*Shape` 関数を直接エクスポートします。
 
-## リソース
+## チェックリスト
+
+- engine、バンドル、ラッパー、プリセット、プラグインのバージョン系列を揃えてください。
+- 必要に応じて古いインポートをパッケージ単位のインポートに置き換えてください。
+- SSR ラッパー（Next/Nuxt）がクライアント側でのみ初期化されることを確認してください。
+
+## 便利なオプション資料
 
 - 改名マトリクス: [`/migrations/option-rename-matrix`](/ja/migrations/option-rename-matrix)
 - `particles.paint`: [`/options/particles-paint`](/ja/options/particles-paint)
+- `particles.color` の移行メモ: [`/options/particles-color`](/ja/options/particles-color)
+- `particles.stroke` の移行メモ: [`/options/particles-stroke`](/ja/options/particles-stroke)
+
+## 参考リンク
+
+- バージョンに関する注意: [`/migrations/releases`](/ja/migrations/releases)
+- リポジトリのリリース: <https://github.com/tsparticles/tsparticles/releases>

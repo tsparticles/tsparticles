@@ -98,7 +98,20 @@ Einige Pakete bieten einzelne Ladefunktionen, um nur das zu laden, was benötigt
 
 Alle anderen Formpakete (arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text) exportieren direkt eine einzelne `load*Shape`-Funktion.
 
-## Ressourcen
+## Checkliste
 
-- Option-Rename-Matrix: [`/migrations/option-rename-matrix`](/de/migrations/option-rename-matrix)
+- Halte eine Versionslinie über Engine, Bundles, Wrapper, Presets und Plugins hinweg.
+- Ersetze veraltete Importe bei Bedarf durch Paket-Importe.
+- Prüfe, dass SSR-Wrapper (Next/Nuxt) nur clientseitig initialisieren.
+
+## Nützliche Optionsdokumentation
+
+- Options-Rename-Matrix: [`/migrations/option-rename-matrix`](/de/migrations/option-rename-matrix)
 - `particles.paint`: [`/options/particles-paint`](/de/options/particles-paint)
+- Migrationshinweis `particles.color`: [`/options/particles-color`](/de/options/particles-color)
+- Migrationshinweis `particles.stroke`: [`/options/particles-stroke`](/de/options/particles-stroke)
+
+## Referenzen
+
+- Versionshinweise: [`/migrations/releases`](/de/migrations/releases)
+- Releases des Repositorys: <https://github.com/tsparticles/tsparticles/releases>

@@ -40,13 +40,13 @@ Lectura adicional:
 
 Si está migrando desde `canvas-confetti`, el cambio más sencillo es reemplazar las llamadas imperativas con llamadas API `@tsparticles/confetti`.
 
-## Mapeo típico
+### Mapeo típico
 
 - `confetti({...})` -> `await confetti({...})`
 - lienzo personalizado -> `const local = await confetti.create(canvas, defaults)` luego `await local({...})`
 - disparos repetidos -> mantenga sus temporizadores/bucles existentes, llame a `await confetti(...)` en esas devoluciones de llamada
 
-## Ejemplo de conversión
+### Ejemplo de conversión
 
 Antes (estilo `canvas-confetti`):
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## Notas del nombre de la opción
+### Notas del nombre de la opción
 
 - `particleCount` -> `count`
 - `origin.x`/`origin.y` en `0..1` -> `position.x`/`position.y` en `0..100`

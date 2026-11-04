@@ -11,7 +11,7 @@
 
 ## 可用的调色板组
 
-## 氛围（12 个调色板）
+### 氛围（12 个调色板）
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## 大气（10 个调色板）
+### 大气（10 个调色板）
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## 五彩纸屑（12 个调色板）
+### 五彩纸屑（12 个调色板）
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## 地球（7 个调色板）
+### 地球（7 个调色板）
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## 幻想（8 个调色板）
+### 幻想（8 个调色板）
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## 火（8 个调色板）
+### 火（8 个调色板）
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## 烟花（24 个调色板）
+### 烟花（24 个调色板）
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## 影响力（7 个调色板）
+### 游戏（4 个调色板）
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### 影响力（7 个调色板）
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## 单色（14 个调色板）- `monochrome-blues`
+### 单色（14 个调色板）- `monochrome-blues`
 
 - `monochrome-brown`
 - `monochrome-cyan`
@@ -139,7 +146,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## 自然（9 个调色板）
+### 自然（9 个调色板）
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -151,7 +158,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## 光学（7 个调色板）
+### 光学（7 个调色板）
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -161,7 +168,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## 粉彩（5 个调色板）
+### 粉彩（5 个调色板）
 
 - `pastel-cool`
 - `pastel-dream`
@@ -169,7 +176,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## 空间（10 个调色板）
+### 空间（10 个调色板）
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -182,7 +189,7 @@
 - `solar-wind`
 - `supernova`
 
-## 光谱（10 个调色板）
+### 光谱（10 个调色板）
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -195,7 +202,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## 科技（9 个调色板）
+### 科技（9 个调色板）
 
 - `crt-phosphor`
 - `glitch`
@@ -207,7 +214,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## 充满活力（5 个调色板）
+### 充满活力（5 个调色板）
 
 - `vibrant`
 - `vibrant-electric`
@@ -215,7 +222,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## 水（8 盘）
+### 水（8 盘）
 
 - `deep-ocean`
 - `foam-and-bubbles`

@@ -5,7 +5,7 @@ import {
   type IShapeDrawer,
   OutMode,
   OutModeDirection,
-  getRangeValue,
+  type RangeValue,
   minRadius,
 } from "@tsparticles/engine";
 import { createRibbonState, drawRibbon, setRibbonBounds, updateRibbon } from "./Utils.js";
@@ -13,7 +13,6 @@ import type { RibbonParticle } from "./RibbonParticle.js";
 
 const defaultSides = 12,
   defaultRibbonCount = 30,
-  minRibbonCount = 4,
   sidesMultiplier = 2,
   insideMargin = 0;
 
@@ -26,18 +25,29 @@ const defaultSides = 12,
 function prepareRibbonParticle(particle: RibbonParticle, width: number, height: number): void {
   setRibbonBounds(particle, width, height);
 
-  if (!particle.ribbonPoints?.length) {
-    createRibbonState(particle);
-  }
+  ensureRibbonState(particle);
 }
 
 /**
  *
  * @param particle - The particle to process
- * @returns the expected ribbon points count from shape data
+ * @returns the count configuration currently set in shape data
  */
-function getRibbonCount(particle: RibbonParticle): number {
-  return Math.max(minRibbonCount, Math.round(getRangeValue(particle.shapeData?.count ?? defaultRibbonCount)));
+function getRibbonCountConfig(particle: RibbonParticle): RangeValue {
+  return particle.shapeData?.count ?? defaultRibbonCount;
+}
+
+/**
+ *
+ * @param particle - The particle to process
+ */
+function ensureRibbonState(particle: RibbonParticle): void {
+  const points = particle.ribbonPoints,
+    countConfig = getRibbonCountConfig(particle);
+
+  if (!points?.length || points.length !== particle.ribbonPointsCount || particle.ribbonCountConfig !== countConfig) {
+    createRibbonState(particle);
+  }
 }
 
 /**
@@ -95,10 +105,6 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
     const bounds = this.#container.canvas.size;
 
     prepareRibbonParticle(data.particle, bounds.width, bounds.height);
-
-    if (data.particle.ribbonPoints && data.particle.ribbonPoints.length !== getRibbonCount(data.particle)) {
-      createRibbonState(data.particle);
-    }
 
     updateRibbon(data);
     drawRibbon(data, this.#container.hdr, this.#container.peakNits, this.#container.hdrMode);
@@ -189,11 +195,7 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
       return;
     }
 
-    const count = getRibbonCount(particle);
-
-    if (!particle.ribbonPoints?.length || particle.ribbonPoints.length !== count) {
-      createRibbonState(particle);
-    }
+    ensureRibbonState(particle);
   }
 
   /**
@@ -209,6 +211,8 @@ export class RibbonDrawer implements IShapeDrawer<RibbonParticle> {
    */
   particleDestroy(particle: RibbonParticle): void {
     delete particle.ribbonPoints;
+    delete particle.ribbonPointsCount;
+    delete particle.ribbonCountConfig;
     delete particle.ribbonHead;
     delete particle.ribbonPreviousHead;
     delete particle.ribbonPreviousPosition;

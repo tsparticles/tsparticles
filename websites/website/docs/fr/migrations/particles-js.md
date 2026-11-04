@@ -40,13 +40,13 @@ Lectures complémentaires :
 
 Si vous migrez depuis `canvas-confetti`, le changement le plus simple consiste à remplacer les appels impératifs par des appels API `@tsparticles/confetti`.
 
-## Cartographie typique
+### Cartographie typique
 
 - `confetti({...})` -> `await confetti({...})`
 - canevas personnalisé -> `const local = await confetti.create(canvas, defaults)` puis `await local({...})`
 - tirs répétés -> conservez vos minuteries/boucles existantes, appelez `await confetti(...)` dans ces rappels
 
-## Exemple de conversion
+### Exemple de conversion
 
 Avant (style `canvas-confetti`) :
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## Remarques sur le nom de l'option
+### Remarques sur le nom de l'option
 
 - `particleCount` -> `count`
 - `origin.x`/`origin.y` dans `0..1` -> `position.x`/`position.y` dans `0..100`

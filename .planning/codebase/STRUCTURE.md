@@ -85,12 +85,28 @@ tsparticles/
 - Contains: Vite TS app, Express + Pug demo app, Electron demo, static demo site.
 - Key files: `demo/vite/src/main.ts`, `demo/vanilla/app.ts`, `demo/electron/app/index.js`, `demo/electron/client/client.js`, `demo/vanilla_new/js/404.js`.
 
+## v5 planning overlay — verified 2026-11-03
+
+The layout below largely reflects the April audit. [v5 handovers](../handovers/README.md)
+define the proposed domain folders; these have not been created in the runtime.
+
+- Additional migration surfaces: `wrappers/`, `templates/`,
+  `cli/commands/create-utils/`, CLI bundled templates and `integrations/mcp-server/`.
+  Discover exact codegen files before editing; include generated snippet strings.
+- Build infrastructure: `cli/commands/build/` selects standard Rollup and optional
+  Webpack/Rolldown; adapters live under `cli/utils/`. Avoid assuming Webpack-only.
+- `engine/src/exports.ts` and `export-types.ts` control public surface; domain
+  indexes will be selective. Package `exports` and dependency rules enforce
+  different boundaries and both need validation.
+- Generated `dist/` and `docs/` are ignored build outputs; their presence on disk
+  does not mean they are tracked or current.
+
 ## Key File Locations
 
 **Entry Points:**
 
-- `engine/src/index.ts`: Primary engine import path; initializes global `tsParticles` and exports API/types.
-- `engine/src/bundle.ts`: Bundle-focused engine entrypoint.
+- `engine/src/index.ts`: Primary engine import path; creates/reuses the exported singleton and exports API/types. Global writes occur in browser/lazy entrypoints.
+- `engine/src/browser.ts` and `engine/src/index.lazy.ts`: Browser/global and lazy entrypoints; no current engine `bundle.ts`.
 - `bundles/basic/src/index.ts`: Minimal curated loader.
 - `bundles/slim/src/index.ts`: Mid-size curated loader.
 - `bundles/full/src/index.ts`: Full compatibility loader.
@@ -111,7 +127,7 @@ tsparticles/
 - `engine/src/Core/Container.ts`: Container lifecycle, animation loop, plugin wiring.
 - `engine/src/Core/ParticlesManager.ts`: Particle creation/update/density/spatial indexing.
 - `engine/src/Core/RenderManager.ts`: Per-frame draw orchestration and plugin render hooks.
-- `engine/src/Core/Utils/PluginManager.ts`: Global registries for plugins/updaters/shapes/effects.
+- `engine/src/Core/Utils/PluginManager.ts`: Per-engine registries for plugins/updaters/shapes/effects.
 
 **Testing:**
 
@@ -154,13 +170,13 @@ tsparticles/
 
 - Purpose: Generated TypeDoc output used for published/reference docs.
 - Generated: Yes.
-- Committed: Yes.
+- Committed: No by default (`docs/` is ignored; website authored docs are an exception).
 
 **`dist/` directories inside packages (for example `engine/dist/`, `bundles/full/dist/`):**
 
 - Purpose: Build artifacts for package publishing/consumption.
 - Generated: Yes.
-- Committed: Yes (present across packages in current tree).
+- Committed: No by default (`dist/` is ignored); verify any explicit exceptions with Git.
 
 **`.planning/codebase/`:**
 

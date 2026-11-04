@@ -40,13 +40,13 @@ Ulteriori letture:
 
 Se stai eseguendo la migrazione da `canvas-confetti`, la soluzione più semplice è sostituire le chiamate imperative con chiamate API `@tsparticles/confetti`.
 
-## Mappatura tipica
+### Mappatura tipica
 
 - `confetti({...})` -> `await confetti({...})`
 - tela personalizzata -> `const local = await confetti.create(canvas, defaults)` quindi `await local({...})`
 - scatti ripetuti -> mantieni i tuoi timer/loop esistenti, chiama `await confetti(...)` in quei callback
 
-## Esempio di conversione
+### Esempio di conversione
 
 Prima (stile `canvas-confetti`):
 
@@ -72,7 +72,7 @@ await confetti({
 });
 ```
 
-## Note sul nome dell'opzione
+### Note sul nome dell'opzione
 
 - `particleCount` -> `count`
 - `origin.x`/`origin.y` in `0..1` -> `position.x`/`position.y` in `0..100`

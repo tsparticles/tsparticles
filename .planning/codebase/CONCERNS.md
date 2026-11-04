@@ -1,5 +1,10 @@
 # Codebase Concerns
 
+> Historical audit (2026-04-10), not revalidated as a current defect list.
+> For the v5 scope, use [the handovers](../handovers/README.md). The current STATE
+> records later test expansion and fixes; verify each concern before planning
+> additional work. No security policy or unrelated plugin rewrite is implied by v5.
+
 **Analysis Date:** 2026-04-10
 
 ## Tech Debt

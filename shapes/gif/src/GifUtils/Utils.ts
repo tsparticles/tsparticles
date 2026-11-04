@@ -15,6 +15,7 @@ import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
 import { ByteStream } from "./ByteStream.js";
 import { DisposalMethod } from "./Enums/DisposalMethod.js";
 import { ErrorCodes } from "../ErrorCodes.js";
+import type { Frame } from "./Types/Frame.js";
 import type { GIF } from "./Types/GIF.js";
 import { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
 import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction.js";
@@ -656,6 +657,94 @@ export async function decodeGIF(
 }
 
 /**
+ * Returns the compositing surface of the particle, creating it once per playback state instead of for
+ * every drawn frame, so the frames that must be combined keep the pixels of the previous ones
+ * @param particle - The particle to process
+ * @param gifData - The decoded GIF data
+ * @param canvasSettings - The canvasSettings
+ * @returns the compositing context
+ */
+function getCompositingContext(
+  particle: GifParticle,
+  gifData: GIF,
+  canvasSettings?: CanvasRenderingContext2DSettings,
+): OffscreenCanvasRenderingContext2D {
+  const width = gifData.width,
+    height = gifData.height,
+    canvas = particle.gifCanvas,
+    context = particle.gifCanvasContext;
+
+  if (canvas && context && canvas.width === width && canvas.height === height) {
+    return context;
+  }
+
+  const newCanvas = new OffscreenCanvas(width, height),
+    newContext = newCanvas.getContext("2d", canvasSettings);
+
+  if (!newContext) {
+    throw new Error(getErrorMessage(ErrorCodes.gifOffscreenCanvasUnsupported));
+  }
+
+  newContext.imageSmoothingQuality = "low";
+  newContext.imageSmoothingEnabled = false;
+
+  particle.gifCanvas = newCanvas;
+  particle.gifCanvasContext = newContext;
+
+  delete particle.gifCanvasFrame;
+  delete particle.gifPreviousCanvas;
+
+  return newContext;
+}
+
+/**
+ * Applies the disposal method of the given frame to the compositing surface, before the next frame is drawn
+ * @param gifData - The decoded GIF data
+ * @param frame - The frame to dispose
+ * @param context - The compositing context
+ * @param previousCanvas - The surface state saved before the frame was drawn
+ */
+function disposeFrame(
+  gifData: GIF,
+  frame: Frame,
+  context: OffscreenCanvasRenderingContext2D,
+  previousCanvas: ImageData | undefined,
+): void {
+  switch (frame.disposalMethod) {
+    case DisposalMethod.Combine:
+      // ~ keep the frame, the next one is drawn over it
+      return;
+    case DisposalMethod.RestorePrevious:
+      if (previousCanvas) {
+        context.putImageData(previousCanvas, originPoint.x, originPoint.y);
+      } else {
+        context.clearRect(originPoint.x, originPoint.y, gifData.width, gifData.height);
+      }
+
+      return;
+    case DisposalMethod.RestoreBackground:
+      context.clearRect(originPoint.x, originPoint.y, gifData.width, gifData.height);
+
+      if (!gifData.globalColorTable.length) {
+        const firstFrame = gifData.frames[firstIndex]!;
+
+        /* the first frame of the gif is not necessarily at its top left corner */
+        context.putImageData(firstFrame.image, originPoint.x + firstFrame.left, originPoint.y + firstFrame.top);
+      } else {
+        context.putImageData(gifData.backgroundImage, originPoint.x, originPoint.y);
+      }
+
+      return;
+    case DisposalMethod.UndefinedA: // ! fall through
+    case DisposalMethod.UndefinedB: // ! fall through
+    case DisposalMethod.UndefinedC: // ! fall through
+    case DisposalMethod.UndefinedD: // ! fall through
+    case DisposalMethod.Replace:
+      context.clearRect(originPoint.x, originPoint.y, gifData.width, gifData.height);
+  }
+}
+
+/**
  * @param data - The data to handle
  * @param canvasSettings - The canvasSettings
  */
@@ -667,22 +756,15 @@ export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: Canv
     return;
   }
 
-  const offscreenCanvas = new OffscreenCanvas(gifData.width, gifData.height),
-    offscreenContext = offscreenCanvas.getContext("2d", canvasSettings);
-
-  if (!offscreenContext) {
-    throw new Error(getErrorMessage(ErrorCodes.gifOffscreenCanvasUnsupported));
-  }
-
-  offscreenContext.imageSmoothingQuality = "low";
-  offscreenContext.imageSmoothingEnabled = false;
-
-  offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
+  const offscreenContext = getCompositingContext(particle, gifData, canvasSettings),
+    offscreenCanvas = particle.gifCanvas!,
+    width = gifData.width,
+    height = gifData.height,
+    pos = { x: -width * half, y: -height * half };
 
   let frameIndex = particle.gifFrame ?? defaultFrame;
 
-  const pos = { x: -gifData.width * half, y: -gifData.height * half },
-    frame = gifData.frames[frameIndex]!;
+  const frame = gifData.frames[frameIndex]!;
 
   particle.gifTime ??= initialTime;
 
@@ -690,59 +772,29 @@ export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: Canv
     return;
   }
 
-  context.scale(radius / gifData.width, radius / gifData.height);
+  if (particle.gifCanvasFrame !== frameIndex) {
+    const previousFrameIndex = particle.gifCanvasFrame;
 
-  switch (frame.disposalMethod) {
-    case DisposalMethod.UndefinedA: // ! fall through
-    case DisposalMethod.UndefinedB: // ! fall through
-    case DisposalMethod.UndefinedC: // ! fall through
-    case DisposalMethod.UndefinedD: // ! fall through
-    case DisposalMethod.Replace:
-      offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+    if (previousFrameIndex === undefined) {
+      offscreenContext.clearRect(originPoint.x, originPoint.y, width, height);
+    } else {
+      disposeFrame(gifData, gifData.frames[previousFrameIndex]!, offscreenContext, particle.gifPreviousCanvas);
+    }
 
-      context.drawImage(offscreenCanvas, pos.x, pos.y);
+    if (frame.disposalMethod === DisposalMethod.RestorePrevious) {
+      particle.gifPreviousCanvas = offscreenContext.getImageData(originPoint.x, originPoint.y, width, height);
+    } else {
+      delete particle.gifPreviousCanvas;
+    }
 
-      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
+    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
 
-      break;
-    case DisposalMethod.Combine:
-      offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-      context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-      break;
-    case DisposalMethod.RestoreBackground:
-      offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-      context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
-
-      if (!gifData.globalColorTable.length) {
-        offscreenContext.putImageData(gifData.frames[firstIndex]!.image, pos.x + frame.left, pos.y + frame.top);
-      } else {
-        offscreenContext.putImageData(gifData.backgroundImage, pos.x, pos.y);
-      }
-
-      break;
-    case DisposalMethod.RestorePrevious:
-      {
-        const previousImageData = offscreenContext.getImageData(
-          originPoint.x,
-          originPoint.y,
-          offscreenCanvas.width,
-          offscreenCanvas.height,
-        );
-
-        offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-        context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-        offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
-        offscreenContext.putImageData(previousImageData, originPoint.x, originPoint.y);
-      }
-      break;
+    particle.gifCanvasFrame = frameIndex;
   }
+
+  context.scale(radius / width, radius / height);
+  context.drawImage(offscreenCanvas, pos.x, pos.y);
+  context.scale(width / radius, height / radius);
 
   particle.gifTime += delta.value;
 
@@ -756,12 +808,11 @@ export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: Canv
 
       frameIndex = firstIndex;
 
-      // ? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
-      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
+      // ? some GIFs seam to set the disposal method of the last frame wrong, so the compositing surface restarts on loop
+      delete particle.gifCanvasFrame;
+      delete particle.gifPreviousCanvas;
     }
 
     particle.gifFrame = frameIndex;
   }
-
-  context.scale(gifData.width / radius, gifData.height / radius);
 }

@@ -63,40 +63,40 @@ const group = __("Plugins"),
 			name: "plugin-hex-color",
 			description: `${__("Hex")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color");
 
-				await loadHexColorPlugin();
+				await loadHexColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-hsl-color",
 			description: `${__("HSL")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color");
 
-				await loadHslColorPlugin();
+				await loadHslColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-hsv-color",
 			description: `${__("HSV")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadHsvColorPlugin } = await import("@tsparticles/plugin-hsv-color");
 
-				await loadHsvColorPlugin();
+				await loadHsvColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-hwb-color",
 			description: `${__("HWB")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadHwbColorPlugin } = await import("@tsparticles/plugin-hwb-color");
 
-				await loadHwbColorPlugin();
+				await loadHwbColorPlugin(engine);
 			},
 		},
 		{
@@ -123,40 +123,40 @@ const group = __("Plugins"),
 			name: "plugin-lab-color",
 			description: `${__("LAB")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadLabColorPlugin } = await import("@tsparticles/plugin-lab-color");
 
-				await loadLabColorPlugin();
+				await loadLabColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-lch-color",
 			description: `${__("LCH")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadLchColorPlugin } = await import("@tsparticles/plugin-lch-color");
 
-				await loadLchColorPlugin();
+				await loadLchColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-oklch-color",
 			description: `${__("OKLCH")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadOklchColorPlugin } = await import("@tsparticles/plugin-oklch-color");
 
-				await loadOklchColorPlugin();
+				await loadOklchColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-rgb-color",
 			description: `${__("RGB")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color");
 
-				await loadRgbColorPlugin();
+				await loadRgbColorPlugin(engine);
 			},
 		},
 		{
@@ -193,20 +193,20 @@ const group = __("Plugins"),
 			name: "plugin-named-color",
 			description: `${__("Named")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadNamedColorPlugin } = await import("@tsparticles/plugin-named-color");
 
-				await loadNamedColorPlugin();
+				await loadNamedColorPlugin(engine);
 			},
 		},
 		{
 			name: "plugin-oklab-color",
 			description: `${__("OKLAB")} ${__("Color")}`,
 			group,
-			load: async () => {
+			load: async engine => {
 				const { loadOklabColorPlugin } = await import("@tsparticles/plugin-oklab-color");
 
-				await loadOklabColorPlugin();
+				await loadOklabColorPlugin(engine);
 			},
 		},
 		{

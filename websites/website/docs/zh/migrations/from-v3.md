@@ -98,7 +98,20 @@ await tsParticles.load({
 
 所有其他形状包（arrow, circle, cog, emoji, heart, image, infinity, line, matrix, path, rounded-polygon, rounded-rect, spiral, square, squircle, star, text）直接导出单个 `load*Shape` 函数。
 
-## 参考
+## 检查清单
+
+- 保持 engine、bundle、wrapper、preset 和插件使用同一版本线。
+- 如有需要，将过时的导入替换为包级导入。
+- 确认 SSR wrapper（Next/Nuxt）仅在客户端初始化。
+
+## 有用的选项文档
 
 - 重命名矩阵: [`/migrations/option-rename-matrix`](/zh/migrations/option-rename-matrix)
 - `particles.paint`: [`/options/particles-paint`](/zh/options/particles-paint)
+- `particles.color` 迁移说明: [`/options/particles-color`](/zh/options/particles-color)
+- `particles.stroke` 迁移说明: [`/options/particles-stroke`](/zh/options/particles-stroke)
+
+## 参考资料
+
+- 版本说明: [`/migrations/releases`](/zh/migrations/releases)
+- 仓库发布: <https://github.com/tsparticles/tsparticles/releases>

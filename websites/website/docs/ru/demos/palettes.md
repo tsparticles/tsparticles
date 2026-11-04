@@ -11,7 +11,7 @@
 
 ## Доступные группы палитр
 
-## Атмосфера (12 палитр)
+### Атмосфера (12 палитр)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@
 - `fog-morning`
 - `volcanic-ash`
 
-## Атмосферный (10 палитр)
+### Атмосферный (10 палитр)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@
 - `thermal-map`
 - `thunderstorm`
 
-## Конфетти (12 палитр)
+### Конфетти (12 палитр)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Земля (7 палитр)
+### Земля (7 палитр)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Фэнтези (8 палитр)
+### Фэнтези (8 палитр)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Огонь (8 палитр)
+### Огонь (8 палитр)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@
 - `metal-sparks`
 - `molten-metal`
 
-## Фейерверк (24 палитры)
+### Фейерверк (24 палитры)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Импакт (7 палитр)
+### Игры (4 палитры)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Импакт (7 палитр)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@
 - `shockwave-blast`
 - `splatter-dark`
 
-## Монохроматический (14 палитр)
+### Монохроматический (14 палитр)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Природа (9 палитр)
+### Природа (9 палитр)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@
 - `snowfall`
 - `spring-bloom`
 
-## Оптика (7 палитр)
+### Оптика (7 палитр)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Пастель (5 палитр)
+### Пастель (5 палитр)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@
 - `pastel-sunset`
 - `pastel-warm`
 
-## Пространство (10 палитр)
+### Пространство (10 палитр)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@
 - `solar-wind`
 - `supernova`
 
-## Спектр (10 палитр)
+### Спектр (10 палитр)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@
 - `rainbow`
 - `rgb-primaries`
 
-## Тех (9 палитр)
+### Тех (9 палитр)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@
 - `plasma-arc`
 - `vaporwave`
 
-## Яркий (5 палитр)
+### Яркий (5 палитр)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Вода (8 палитр)
+### Вода (8 палитр)
 
 - `deep-ocean`
 - `foam-and-bubbles`

@@ -29,6 +29,20 @@ interactivity: {
 }
 ```
 
+## Emitter / Absorber
+
+These modes are available when the corresponding plugin package is loaded.
+
+| Mode             | Type               | Notes                                                                                   |
+| ---------------- | ------------------ | --------------------------------------------------------------------------------------- |
+| `emitter`        | `object` / `array` | See [Emitters plugin](/options/plugin-emitters)                                         |
+| `absorber`       | `object` / `array` | See [Absorbers plugin](/options/plugin-absorbers)                                       |
+| `absorber-split` | -                  | Splits the absorber under the cursor, see [Absorbers plugin](/options/plugin-absorbers) |
+
+`absorber-split` is a click mode: enable it under `interactivity.events.onClick.mode` to split the
+absorber under the pointer. The absorber also needs `split.enable` set to `true`; the same option
+enables automatic splitting when the absorber reaches its size limit.
+
 ## Practical guidance
 
 - Enable only the modes you really use.

@@ -11,7 +11,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 
 ## Groupes de palettes disponibles
 
-## Ambiance (12 palettes)
+### Ambiance (12 palettes)
 
 - `colored-smoke-amber`
 - `colored-smoke-blue`
@@ -26,7 +26,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `fog-morning`
 - `volcanic-ash`
 
-## Atmosphérique (10 palettes)
+### Atmosphérique (10 palettes)
 
 - `heat-duality`
 - `heat-haze`
@@ -39,7 +39,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `thermal-map`
 - `thunderstorm`
 
-## Confettis (12 palettes)
+### Confettis (12 palettes)
 
 - `confetti`
 - `confetti-gold`
@@ -54,7 +54,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `confetti-rainbow`
 - `confetti-winter`
 
-## Terre (7 palettes)
+### Terre (7 palettes)
 
 - `caustics`
 - `desert-sand`
@@ -64,7 +64,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `rust-and-corrosion`
 - `skin-and-organic`
 
-## Fantaisie (8 palettes)
+### Fantaisie (8 palettes)
 
 - `bioluminescence`
 - `blood-and-gore`
@@ -75,7 +75,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `jellyfish-glow`
 - `poison-and-venom`
 
-## Feu (8 palettes)
+### Feu (8 palettes)
 
 - `candlelight`
 - `embers-and-ash`
@@ -86,7 +86,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `metal-sparks`
 - `molten-metal`
 
-## Feux d'artifice (24 palettes)
+### Feux d'artifice (24 palettes)
 
 - `fireworks-blue`
 - `fireworks-blue-stroke`
@@ -113,7 +113,14 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `fireworks-silver`
 - `fireworks-silver-stroke`
 
-## Impact (7 palettes)
+### Jeux (4 palettes)
+
+- `minecraft`
+- `pacman`
+- `super-mario-bros`
+- `tetris`
+
+### Impact (7 palettes)
 
 - `bullet-hit`
 - `explosion-debris`
@@ -123,7 +130,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `shockwave-blast`
 - `splatter-dark`
 
-## Monochromatique (14 palettes)
+### Monochromatique (14 palettes)
 
 - `monochrome-blues`
 
@@ -141,7 +148,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `monochrome-white`
 - `monochrome-yellows`
 
-## Nature (9 palettes)
+### Nature (9 palettes)
 
 - `autumn-leaves`
 - `cherry-blossom`
@@ -153,7 +160,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `snowfall`
 - `spring-bloom`
 
-## Optique (7 palettes)
+### Optique (7 palettes)
 
 - `bokeh-cold`
 - `bokeh-gold`
@@ -163,7 +170,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `lens-flare-dust`
 - `prism-spectrum`
 
-## Pastel (5 palettes)
+### Pastel (5 palettes)
 
 - `pastel-cool`
 - `pastel-dream`
@@ -171,7 +178,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `pastel-sunset`
 - `pastel-warm`
 
-## Espace (10 palettes)
+### Espace (10 palettes)
 
 - `aurora-borealis`
 - `cosmic-radiation`
@@ -184,7 +191,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `solar-wind`
 - `supernova`
 
-## Spectre (10 palettes)
+### Spectre (10 palettes)
 
 - `acid-pair`
 - `cmy-secondaries`
@@ -197,7 +204,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `rainbow`
 - `rgb-primaries`
 
-## Technologie (9 palettes)
+### Technologie (9 palettes)
 
 - `crt-phosphor`
 - `glitch`
@@ -209,7 +216,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `plasma-arc`
 - `vaporwave`
 
-## Vibrant (5 palettes)
+### Vibrant (5 palettes)
 
 - `vibrant`
 - `vibrant-electric`
@@ -217,7 +224,7 @@ Dossier source : <https://github.com/tsparticles/tsparticles/tree/main/palettes
 - `vibrant-retro`
 - `vibrant-tropical`
 
-## Eau (8 palettes)
+### Eau (8 palettes)
 
 - `deep-ocean`
 - `foam-and-bubbles`

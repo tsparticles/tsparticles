@@ -3,7 +3,30 @@
 **Defined:** auto-init
 **Core Value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-## v1 Requirements
+## v5 major requirements — planned 2026-11-03
+
+These requirements supersede the auto-initialized backlog for current execution.
+See [handover index](handovers/README.md) for dependencies and acceptance checks.
+No v5 implementation or bundle baseline has been validated yet.
+
+| ID      | Requirement                                                                                                            | Handover                | Status  |
+| ------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------- | ------- |
+| V5-ENG  | Explicit engine factory; no singleton; independent registries and lifecycle; consumers migrated                        | 01                      | Planned |
+| V5-SVC  | Per-engine random/logger, helper/plugin chains and async errors; shared-state audit                                    | 02                      | Planned |
+| V5-MOD  | Full engine/src review inventory; selective facades, boundaries and public plugin types                                | 03; closure 10          | Planned |
+| V5-CTR  | Complete Container/events lifecycle review, deterministic tests and measured costs                                     | 04                      | Planned |
+| V5-CAN  | Complete CanvasManager/RenderManager review with OffscreenCanvas/HDR preserved                                         | 05                      | Planned |
+| V5-PMG  | Complete ParticlesManager/SpatialHashGrid review: collection, pool, groups, density, limits, buckets and update phases | 06                      | Planned |
+| V5-PAR  | Complete Particle/Retina review: init, options, state, modifiers, lifecycle and per-particle costs                     | 07                      | Planned |
+| V5-PLG  | Per-package impact audit of all extension families; multi-engine registration/runtime compatibility                    | 01/02 initial; 08 final | Planned |
+| V5-BRW  | Browser/CDN bootstrap, namespaces, externals, lazy and multiple bundles without singleton                              | 01 initial; 09 final    | Planned |
+| V5-SIZE | Reproducible baseline/budgets, smaller minimal scene/slim in gzip/Brotli, total chunks accounted for                   | 01 baseline; 04–10      | Planned |
+| V5-MIG  | Built-package, wrappers, CLI/MCP, demos, migration docs, translations and full validation                              | 01–10                   | Planned |
+
+Numeric budgets are set from a clean baseline before size refactoring; source line
+counts and moved chunks do not satisfy V5-SIZE. See index for the comparison matrix.
+
+## Historical v1 Requirements (auto-initialized, not revalidated)
 
 ### Developer Experience
 
@@ -25,7 +48,7 @@
 - [ ] **DOC-01**: Typedoc-generated API docs are buildable (`pnpm run build:docs`) and published locally for reviewers.
 - [ ] **DOC-02**: Add at least 2 end-to-end demo examples in `demo/vanilla` showcasing core plugin usage.
 
-## v2 Requirements
+## Historical v2 Requirements
 
 - **DX-01**: Starter templates for common frameworks (React, Vue) demonstrating integration.
 
@@ -36,7 +59,7 @@
 | Native mobile SDKs      | Web-first focus for initial roadmap                |
 | Paid plugin marketplace | Commercialization beyond initial open-source scope |
 
-## Traceability
+## Historical traceability
 
 | Requirement | Phase   | Status  |
 | ----------- | ------- | ------- |

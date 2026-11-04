@@ -17,7 +17,8 @@ Cartelle sorgente:
 - `star` (`options.star.sides`, `options.star.inset`, `options.star.close`)
 - `text` (`options.text.value`, `font`, `weight`, `style`, `close`)
 - `emoji` (`options.emoji.value`, `font`, `padding`, `close`)
-- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `gif`, `replaceColor`, `close`)
+- `image` / `images` (`options.image.src`, `name`, `width`, `height`, `replaceColor`, `close`)
+- `gif` / `gifs` (`options.gif.src`, `name`, `width`, `height`, `loopCount`)
 - `arrow` (`options.arrow.heightFactor`, `headWidthFactor`, `bodyHeightFactor`)
 - `cog` (`options.cog.notches`, `innerRadius`, `holeRadius`, `innerTaper`, `outerTaper`)
 - `rounded-rect` (`options.rounded-rect.radius`)
@@ -27,6 +28,7 @@ Cartelle sorgente:
 - `matrix` (`options.matrix.interval`)
 - `path` (`options.path.half`, `options.path.segments`)
 - `card` (`options.card.suit`, `options.card.value`)
+- `ribbon` (`options.ribbon.angle`, `count`, `drag`, `mass`, `oscillationDistance`, `oscillationSpeed`, `particleDist`, `velocityInherit`)
 
 ## Note su alias e bundle
 
@@ -36,6 +38,38 @@ Cartelle sorgente:
 - La maggior parte delle forme avanzate richiede `@tsparticles/slim` (o `@tsparticles/all`) o pacchetti shape dedicati.
 
 ## Esempi rapidi
+
+### Polygon
+
+```ts
+particles: {
+  shape: {
+    type: "polygon",
+    options: {
+      polygon: {
+        sides: 6,
+      },
+    },
+  },
+}
+```
+
+### Emoji
+
+```ts
+particles: {
+  shape: {
+    type: "emoji",
+    options: {
+      emoji: {
+        value: ["😀", "🎉", "✨"],
+        font: "Apple Color Emoji",
+        padding: 0,
+      },
+    },
+  },
+}
+```
 
 ### Text
 
@@ -67,7 +101,6 @@ particles: {
         name: "strawberry",
         width: 64,
         height: 64,
-        gif: false,
         replaceColor: false,
       },
     },

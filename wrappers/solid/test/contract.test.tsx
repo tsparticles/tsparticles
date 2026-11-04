@@ -61,6 +61,24 @@ describe("Particles contract", () => {
     host.remove();
   });
 
+  it("applies the theme once the asynchronously loaded container exists", async () => {
+    const host = document.createElement("div");
+
+    document.body.appendChild(host);
+
+    dispose = render(() => <Particles theme="dark" />, host);
+
+    await tick();
+
+    const container = (await loadMock.mock.results[0]!.value) as Container & {
+      loadTheme: ReturnType<typeof vi.fn>;
+    };
+
+    expect(container.loadTheme).toHaveBeenCalledWith("dark");
+
+    host.remove();
+  });
+
   it("destroys the container exactly once on cleanup", async () => {
     const host = document.createElement("div");
 

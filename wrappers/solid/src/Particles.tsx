@@ -1,12 +1,12 @@
-import { tsParticles, type Container } from "@tsparticles/engine";
-import { createEffect, createMemo, JSX, mergeProps, onCleanup } from "solid-js";
+import { getLogger, tsParticles, type Container } from "@tsparticles/engine";
+import { createEffect, createMemo, createSignal, JSX, mergeProps, onCleanup, untrack } from "solid-js";
 import type { IParticlesProps } from "./IParticlesProps";
 import { isParticlesEngineInitialized, waitForParticlesEngineInitialization } from "./initParticlesEngine";
 
 const Particles = (props: IParticlesProps): JSX.Element => {
   const merged = mergeProps({ id: "tsparticles" }, props);
 
-  let container: Container | undefined;
+  const [container, setContainer] = createSignal<Container | undefined>();
   let loadId = 0;
 
   const loadParams = createMemo(() => ({
@@ -20,7 +20,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
     const currentLoadId = ++loadId;
 
     void (async () => {
-      container?.destroy();
+      untrack(() => container())?.destroy();
 
       await waitForParticlesEngineInitialization();
 
@@ -35,22 +35,33 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         return;
       }
 
-      container = newContainer;
+      setContainer(newContainer);
 
-      props.particlesLoaded?.(container);
+      props.particlesLoaded?.(newContainer);
     })();
   });
 
   createEffect(() => {
-    const theme = props.theme;
+    const currentContainer = container(),
+      theme = props.theme;
 
-    if (!container || !theme) return;
-    (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+    if (!currentContainer || !theme) return;
+
+    const currentThemeContainer = currentContainer as unknown as {
+        loadTheme?: (name?: string) => Promise<void>;
+      },
+      loadTheme = currentThemeContainer.loadTheme;
+
+    if (!loadTheme) return;
+
+    void loadTheme(theme).catch((error: unknown) => {
+      getLogger().error(`Particles: error loading theme "${theme}"`, error);
+    });
   });
 
   onCleanup(() => {
     ++loadId;
-    container?.destroy();
+    untrack(() => container())?.destroy();
   });
 
   return (

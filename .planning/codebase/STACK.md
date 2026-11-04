@@ -1,6 +1,9 @@
 # Technology Stack
 
-**Analysis Date:** 2026-04-10
+**Analysis Date:** 2026-04-10; targeted v5 planning corrections 2026-11-03.
+
+Current source of truth is package manifests and `cli/commands/build/src/build.ts`.
+Sections not explicitly corrected remain historical. [v5 execution plan](../handovers/README.md).
 
 ## Languages
 
@@ -23,14 +26,14 @@
 
 **Package Manager:**
 
-- pnpm 10.33.0 at workspace root (`package.json` → `packageManager`).
+- pnpm 12.17.0 at workspace root (`package.json` → `packageManager`).
 - Lockfile: present at `pnpm-lock.yaml`.
 
 ## Frameworks
 
 **Core:**
 
-- Nx 22.6.4 - monorepo task orchestration and affected builds (`package.json`, `nx.json`).
+- Nx 24.0.3 - monorepo task orchestration and affected builds (`package.json`, `nx.json`).
 - tsParticles CLI (`@tsparticles/cli`) - package build pipeline invoked by package scripts (`engine/package.json`, `bundles/full/package.json`).
 
 **Testing:**
@@ -40,8 +43,8 @@
 
 **Build/Dev:**
 
-- Webpack 5 + webpack-cli + `@tsparticles/webpack-plugin` - package bundling (`engine/webpack.config.js`, `bundles/*/webpack.config.js`).
-- TypeDoc 0.28.18 - API docs generation (`typedoc.json`, root scripts `build:docs`/`build:docs:json` in `package.json`).
+- Standard build: Rollup through `tsparticles-build`; Webpack and Rolldown are opt-in. Configs/adapters coexist under packages and `cli/utils/`; compare identical pipelines for v5 size measurements.
+- TypeDoc - API docs generation; verify the current website package targets. Root `build:docs`/`build:docs:json` scripts from the April audit are no longer present.
 - SWC (`@swc/core`, `swc-loader`) - transpilation support in toolchain (`package.json`, `demo/vanilla_new/package.json`).
 - ESLint 10 + Prettier 3 - linting/formatting baseline (`package.json`, package-level `eslint.config.js`).
 
@@ -50,7 +53,7 @@
 **Critical:**
 
 - `@tsparticles/engine` (`engine/package.json`) - foundational runtime consumed by all bundles/plugins and demos (`demo/vanilla/package.json`, `demo/vite/package.json`).
-- `@tsparticles/webpack-plugin` (`package.json`) - standardizes package build output for the modular ecosystem (`engine/webpack.config.js`).
+- `@tsparticles/rollup-plugin`, `@tsparticles/rolldown-plugin`, `@tsparticles/webpack-plugin` - adapters for their respective bundlers; presence does not imply execution in the default build.
 - `nx` + `nx-cloud` (`package.json`) - incremental/distributed CI and affected-task execution (`nx.json`, `.github/workflows/nodejs.yml`).
 
 **Infrastructure:**

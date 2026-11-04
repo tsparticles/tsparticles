@@ -5,13 +5,15 @@ import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-const { initMock } = vi.hoisted(() => ({
+const { initMock, loadMock } = vi.hoisted(() => ({
   initMock: vi.fn(async () => Promise.resolve()),
+  loadMock: vi.fn(),
 }));
 
 vi.mock("@tsparticles/engine", () => ({
   tsParticles: {
     init: initMock,
+    load: loadMock,
   },
 }));
 
@@ -88,5 +90,42 @@ describe("riot-particles component", () => {
     const module = await loadRiotModule();
 
     await expect(module.waitForParticlesEngineInitialization()).resolves.toBeUndefined();
+  });
+
+  it("keeps container and reload state per component instance", async () => {
+    const { component } = await import("riot"),
+      module = await loadRiotModule();
+
+    await module.initParticlesEngine(async () => Promise.resolve());
+
+    loadMock.mockReset();
+
+    const containers: { destroy: ReturnType<typeof vi.fn> }[] = [];
+
+    loadMock.mockImplementation(async ({ id }: { id: string }) => {
+      const container = { destroy: vi.fn(), id, loadTheme: vi.fn() };
+
+      containers.push(container);
+
+      return container;
+    });
+
+    const mount = component((module as unknown as { default: never }).default),
+      first = mount(document.createElement("div"), { id: "first", options: {} }),
+      second = mount(document.createElement("div"), { id: "second", options: {} });
+
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(loadMock).toHaveBeenCalledTimes(2);
+    expect(containers).toHaveLength(2);
+
+    first.unmount();
+
+    expect(containers[0]!.destroy).toHaveBeenCalledTimes(1);
+    expect(containers[1]!.destroy).not.toHaveBeenCalled();
+
+    second.unmount();
+
+    expect(containers[1]!.destroy).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,7 +4,64 @@ See: .planning/PROJECT.md (initialized)
 
 **Core value:** Provide a small, high-performance, and extensible particle engine that developers can integrate into web projects with minimal configuration.
 
-**Current focus:** Phase 3 — 4.5.0 Fluid Particle Interaction & MCP generate_code
+**Current focus:** v5 major planning on branch `v5`; 4.5.0/4.5.1 release history retained below.
+
+## Session Status — 2026-11-03 — v5 planning
+
+- Prepared [ten ordered implementation handovers](handovers/README.md): explicit
+  engines first, per-engine services, core boundaries, Container, canvas/render,
+  ParticlesManager, Particle/Retina, ecosystem plugin audit, browser/CDN refinement
+  and size/migration gate, plus measured performance/bundle-size candidates in
+  [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md). Mandatory file-level review covers all of engine/src.
+  No runtime implementation was performed in this session.
+- Verified singleton creation/global reuse, module-level random/logger state,
+  type-only core class exports and current build CLI behavior against source.
+- Expanded the performance/size plan into six linked technical documents under
+  `handovers/improvements/`, integrated into the relevant handovers and final gate.
+  Runtime experiments and measurements remain pending.
+- Baseline bundle measurement and numeric budgets are deliberately pending until
+  the implementation agent builds the unmodified baseline. No size reduction claimed.
+- Updated PROJECT, REQUIREMENTS, ROADMAP and relevant architecture/structure/stack
+  notes. Other April codebase/research audits remain historical and require verification.
+- Nx project discovery succeeded using `NX_DAEMON=false NX_ISOLATE_PLUGINS=false`;
+  default discovery was blocked by sandbox socket permissions.
+- Next action: start V5-01 with baseline capture, then remove the singleton and
+  migrate all active consumers. See individual handovers for tests and exit gates.
+- Historical “v5 fluid plan” below means solver revision 5, not product major v5.
+
+## Session Status — 2026-11-03
+
+### 4.5.0 / 4.5.1 — Final plan re-check & website gate
+
+- **Re-checked every handover against `v5`**: all 4.5.0 features are implemented and shipped — fluid as
+  `collisions.mode`, MCP `generate_code`, emitters draw/drag, absorber split + multi-absorber, engine
+  particle/group tests, workspace test coverage (waves 1–6), error codes/messages,
+  code review fixes. No feature work is left over; the only open items are the ones listed
+  at the end of this section.
+- **Tests:** `pnpm --filter @tsparticles/tests test` → **45 files / 612 tests green** (2026-11-03).
+- **Error-code bundles:** every `bundles/*/dist/*.min.js` ships `TSP-xxxx` codes with no full message
+  sentence; `engine/dist/tsparticles.engine.js` keeps the full message. This closes the previously
+  blocked error-code bundle spot-check.
+- **Website gate (executed last):** all three sites resolve the 4.5.1 workspace packages; the EN docs
+  already covered fluid, absorber split, emitter draw/drag, error codes and the MCP tool. Found and
+  fixed one drift caused by 4.5.1: `emitters.draw` default flipped `true` → `false`, but the site still
+  documented `true`.
+  - `websites/website/docs/options/plugin-emitters.md` — default `false`, notes reworded.
+  - `websites/website/docs/options/plugin-emitter-shapes.md` — draw no longer described as default.
+  - `markdown/Options/Plugins/EmittersShapes.md` — same correction.
+  - Verified: `vitepress build docs` green (108.95s) and Prettier clean on the touched pages.
+
+### Still open (not blocking release)
+
+- **Fluid visual validation in a real browser** — never done (same limitation recorded on 2026-10-02).
+- **Deployment** of the websites — external to this workspace, not run.
+- **Localized docs** (zh, ja, hi, ru, pt, fr, de, es, it): **all** localized pages are now in sync
+  with the EN source. Beyond the 4.5.x pages and the missing `errors/index.md`, the following were
+  aligned too: `migrations/particles-js`, `migrations/option-rename-matrix`, `migrations/from-v1/v2/v3`,
+  `showcase/index`, `demos/shapes`, `demos/palettes`, `guide/color-formats` and `guide/wrappers`
+  (missing sections translated, heading levels/structure aligned, `gaming` palette group added,
+  "see also"/checklist/references sections added). Verified with a heading-structure audit across all
+  9 locales: **zero mismatches**; `vitepress build docs` green.
 
 ## Session Status — 2026-10-02
 
@@ -17,15 +74,16 @@ See: .planning/PROJECT.md (initialized)
 - **Contact damping added.** `#dampContacts()` bleeds off the velocity of a particle supported by enough neighbors, since the non-penetration projection only corrects positions and gravity would otherwise keep accumulating velocity on a resting particle. Damping is isotropic: removing velocity along contact normals sums one push per neighbor and launched the cloud across the canvas.
 - **`supportContacts = 5` chosen empirically.** The contact count cannot distinguish a falling cloud from a resting pool, both hold a similar number of neighbors, so the value balances the two failure modes. Measured over 1500 particles at 2000 frames:
 
-  | `supportContacts` | pool height | mean speed | calm |
-  |---|---|---|---|
-  | 2 | 1130 (suspended) | 0.45 | 1200 |
-  | 4 | 600 (half suspended) | 1.65 | 580 |
-  | **5** | **240 (pooled)** | **3.58** | **365** |
-  | 6 | 220 (pooled) | 4.55 | 362 |
-  | no damping | 238 (pooled) | 4.91 | 251 |
+  | `supportContacts` | pool height          | mean speed | calm    |
+  | ----------------- | -------------------- | ---------- | ------- |
+  | 2                 | 1130 (suspended)     | 0.45       | 1200    |
+  | 4                 | 600 (half suspended) | 1.65       | 580     |
+  | **5**             | **240 (pooled)**     | **3.58**   | **365** |
+  | 6                 | 220 (pooled)         | 4.55       | 362     |
+  | no damping        | 238 (pooled)         | 4.91       | 251     |
 
   `restDensity` was verified not to affect the suspension (1 / 3 / 8 all behave the same), so attraction is not the cause.
+
 - **Residual overlap accepted.** ~3400 overlapping pairs of ~1.1M in the densest region, handled by per-pair hard projection; the test thresholds were relaxed to `0.008` / `0.7` and the docs state it honestly. A global relaxation pass in `IContainerPlugin.postUpdate` was considered and rejected by the user.
 - **Validation:** tests package 302/302, `Successfully ran target build for 463 projects`. The 6 failing `lint` tasks (`ember`, `svelte-kit`, `ionic`, `nuxt2/3/4` demos) fail identically on a clean tree: a broken `demo/ionic/eslint.config.mjs`.
 - **Not verified:** behavior in a real browser.
@@ -35,6 +93,7 @@ See: .planning/PROJECT.md (initialized)
 ### 4.5.0 — Feature A implemented (fluid as collision mode)
 
 **Fluid-as-collision-mode runtime shipped** inside `@tsparticles/interaction-particles-collisions`, no new package/interactor:
+
 - `CollisionMode.fluid`, `ICollisionsFluid` / `CollisionsFluid` (radius 30, stiffness 0.5, nearStiffness 0.5, restDensity 3, maxForce 2.5, maxNeighbors 64), wired in `Collisions.load()`
 - `src/Fluid.ts`: `FluidSolver` DDR neighborhood solver (q²/q³ density, focal-only pair displacement, `maxForce` clamp, `maxNeighbors` cap), soft wall spring + hard boundary clamp, contact damping, wall velocity cancellation
 - `Collider`: `reset()` snapshots the position for fluid particles, `interact()` branches on the mode (classic path untouched), `maxDistance` tracks the fluid radius
@@ -46,17 +105,20 @@ See: .planning/PROJECT.md (initialized)
 ### 4.5.0 — In progress (Feature B implemented)
 
 **MCP `generate_code` tool — implemented.** Deterministic codegen for `@tsparticles/mcp-server`:
+
 - `src/tools/generateCode.ts` (keyword extraction, priority-ordered bundle matching, template+override options, 5-framework codegen, HTML + install command)
 - Types/validation added (`src/types.ts`, `src/validation.ts`); tool registered in `src/index.ts`
 - 44 new tests in `src/tools/generateCode.test.ts` — full mcp-server suite green (146 tests, 8 files); build passes
 - README tools table updated (`generate_code` + `diagnose_issues`)
-- Checklists marked in `MCP_GENERATE_CODE_PLAN.md`; Feature B phases marked in `4.5.0_PLAN.md`
+- Checklists and Feature B phases recorded as completed
 
-Remaining for 4.5.0: nothing pending for Feature A (fluid-as-collision-mode).
+Remaining for 4.5.0: nothing pending for Feature A (fluid-as-collision-mode). All 4.5.0 features are
+now shipped — see the 2026-11-03 session above for the final re-check.
 
 ### 4.3.0 — Released ✅
 
 All 6 features implemented and gate checks passed:
+
 - A: GIF Shape — new `@tsparticles/shape-gif` package
 - B: Background Canvas — layered background pipeline
 - C: Background Mask Dynamic — `cover.element` + `cover.draw`
@@ -68,23 +130,25 @@ Build: 461 projects ✅ | Tests: 152/152 ✅ | No blocking issues.
 
 ### 4.4.0 — HDR Color Fix & Rendering Modes ✅
 
-4.4.0 scope re-assigned: HDR color fidelity fixes (tone mapping, linear-space mixing, `peakNits`, `hdrMode` presets) + code review fixes. See `.planning/handovers/4.4.0_PLAN.md`.
+4.4.0 scope re-assigned: HDR color fidelity fixes (tone mapping, linear-space mixing, `peakNits`, `hdrMode` presets) + code review fixes.
 
-**Status: implemented.** Engine HDR pipeline (ACES tone mapping, linear-space `colorMix`, `HdrMode` presets, display listeners) fully threaded through all consumer packages. FIX-PROMPT fixes verified applied, including the remaining `ribbons.lazy.ts` fallback bug. Full suite green (168/168 tests). Remaining FIX-PROMPT Verification step re-run clean.
+**Status: implemented.** Engine HDR pipeline (ACES tone mapping, linear-space `colorMix`, `HdrMode` presets, display listeners) fully threaded through all consumer packages. Code review fixes verified applied, including the remaining `ribbons.lazy.ts` fallback bug. Full suite green (168/168 tests). Remaining verification step re-run clean.
 
 Fluid-in-collisions work moved to 4.5.0.
 
 **v5 fluid plan drafted** (fluid as collision mode). Key changes from v3:
+
 - Velocity reconstruction added (critical fix)
 - Correct `q` factor in DDR displacement formula
 - Explicit boundary handling (soft spring + hard clamp) instead of outModes
 - Per-particle `prevPos` state for velocity reconstruction
 - Confirmed ParticlesInteractorBase is the correct integration point with these fixes
 
-**MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection. See `MCP_GENERATE_CODE_PLAN.md`.
+**MCP `generate_code` tool** drafted for 4.5.0: deterministic codegen for `@tsparticles/mcp-server`, specialized-bundle-first selection.
 
 ### Outcome
-**S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented. Plan remaining steps on `.planning/handovers/WRAPPER_REACTIVITY_PLAN.md`.
+
+**S1 (Vue 3 wrapper) completed**: wrapper reactivity implemented (`id`/`options`/`url` → destroy+reload, `theme` → safe `loadTheme`), demo aligned with reactive config switching, README fully documented.
 
 **S2 (Vue 2 wrapper) completed**: wrapper reactivity + `tsParticles.init()` fix in event-bus + `theme` prop + fixed `particlesLoaded` type + removed stale `IParticlesProps` export.
 
@@ -101,6 +165,7 @@ Fluid-in-collisions work moved to 4.5.0.
 **S12 (Preact wrapper) completed**: wrapper reactivity (`theme` prop, `loadTheme` in `loadParticles` + selective `componentDidUpdate` without refresh for theme-only changes), `container` ref type fixed to `Container | undefined`, `particlesLoaded` callback fixed with optional container param, demo keeps original constructor init + conditional render (module-level init + unconditional render causes Preact page freeze — Preact-specific limitation), README updated with `theme` prop and plugin caveat. Build passes.
 
 ### Key Findings (S22)
+
 - `Container` type in `@tsparticles/engine` does not declare `loadTheme()` — it is injected at runtime by optional `@tsparticles/plugin-themes`. Any
   theme-prop implementation must use a type cast (`as unknown as { loadTheme?: ... }`) or bracket access.
 - `tsParticles.load()` returns `Container | undefined`. All `particlesLoaded` callbacks and
@@ -112,6 +177,7 @@ Fluid-in-collisions work moved to 4.5.0.
 - **S22 findings**: All 16 wrapper guide pages lack `theme` prop documentation (even though all wrappers now support it). Reactivity contracts (id/options/url → destroy+reload) are missing from 15/16 guides. Cleanup/teardown docs missing from 15/16 guides. Nuxt guide still documents stale `@particles-init`/`@particles-destroy` events removed in S18. Solid and Svelte guides describe reactivity incorrectly (as "targeted updates" or "without recreating the instance" vs actual destroy+reload).
 
 ### Next Steps
+
 1. ✅ **S1 Vue 3** — done
 2. ✅ **S2 Vue 2** — done
 3. ✅ **S3 Angular** — done

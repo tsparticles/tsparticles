@@ -135,7 +135,8 @@ function getPreviousHead(particle: RibbonParticle): Vector {
  */
 export function createRibbonState(particle: RibbonParticle): void {
   const shapeData = particle.shapeData,
-    count = Math.max(minPointCount, Math.round(getRangeValue(shapeData?.count ?? defaultPointCount))),
+    countConfig = shapeData?.count ?? defaultPointCount,
+    count = Math.max(minPointCount, Math.round(getRangeValue(countConfig))),
     particleDist = getRangeValue(shapeData?.particleDist ?? defaultParticleDist),
     mass = getRangeValue(shapeData?.mass ?? defaultMass),
     drag = getRangeValue(shapeData?.drag ?? defaultDrag),
@@ -151,6 +152,8 @@ export function createRibbonState(particle: RibbonParticle): void {
     return;
   }
 
+  particle.ribbonCountConfig = countConfig;
+  particle.ribbonPointsCount = count;
   particle.ribbonParticleDist = particleDist;
   particle.ribbonMass = mass;
   particle.ribbonDrag = drag;
@@ -288,14 +291,18 @@ export function updateRibbon(data: IShapeDrawData<RibbonParticle>): void {
     head = getHead(particle),
     previousHead = getPreviousHead(particle),
     velocityInherit = getVelocityInherit(particle),
-    followsParticleMotion = particle.options.move.enable;
+    followsParticleMotion = particle.options.move.enable,
+    oscillationSpeed = getOscillationSpeed(particle);
 
-  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * getOscillationSpeed(particle);
+  particle.ribbonTime = (particle.ribbonTime ?? noPoint) + dt * oscillationSpeed;
 
   if (followsParticleMotion) {
-    head.x =
-      particle.position.x +
-      (Math.cos(particle.ribbonTime) * getOscillationDistance(particle)) / getOscillationSpeed(particle);
+    const oscillationDistance = getOscillationDistance(particle),
+      oscillationOffset = oscillationSpeed
+        ? (Math.cos(particle.ribbonTime) * oscillationDistance) / oscillationSpeed
+        : noDistance;
+
+    head.x = particle.position.x + oscillationOffset;
     head.y = particle.position.y;
   } else {
     head.x += Math.cos(particle.ribbonTime) * getOscillationDistance(particle) * dt;
@@ -594,6 +601,14 @@ export function drawRibbon(
   context.lineJoin = "round";
   context.lineCap = "round";
 
+  // ~ reusable scratch vectors, so drawing a segment does not allocate new ones every frame
+  const currentOffset = Vector.origin,
+    nextOffset = Vector.origin,
+    currentBase = Vector.origin,
+    nextBase = Vector.origin,
+    currentSide = Vector.origin,
+    nextSide = Vector.origin;
+
   for (let i = noPoint; i < points.length - firstPoint; i++) {
     const current = points[i],
       next = points[i + firstPoint];
@@ -602,13 +617,20 @@ export function drawRibbon(
       continue;
     }
 
-    const currentOffset = current.position.add(drawOffsets),
-      nextOffset = next.position.add(drawOffsets),
-      currentBase = current.position.sub(center),
-      nextBase = next.position.sub(center),
-      currentSide = currentOffset.sub(center),
-      nextSide = nextOffset.sub(center),
-      minY = Math.min(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
+    currentOffset.setTo(current.position);
+    currentOffset.addTo(drawOffsets);
+    nextOffset.setTo(next.position);
+    nextOffset.addTo(drawOffsets);
+    currentBase.setTo(current.position);
+    currentBase.subFrom(center);
+    nextBase.setTo(next.position);
+    nextBase.subFrom(center);
+    currentSide.setTo(currentOffset);
+    currentSide.subFrom(center);
+    nextSide.setTo(nextOffset);
+    nextSide.subFrom(center);
+
+    const minY = Math.min(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
       maxY = Math.max(current.position.y, next.position.y, currentOffset.y, nextOffset.y),
       isFront =
         getSegmentSide(

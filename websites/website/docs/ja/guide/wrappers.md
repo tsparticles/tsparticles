@@ -56,75 +56,52 @@ No matter the framework:
 Ordering rule for this section:
 
 - alphabetical by package name
-
 - exceptions are explicitly called out in mapping notes (for example WordPress requires a full WordPress installation)
 
 - `@tsparticles/angular`: Angular component wrapper (`<ngx-particles />`)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular#readme> - local guide: [`/guide/wrappers-angular`](/guide/wrappers-angular)
-
 - `@tsparticles/astro`: Astro component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/astro#readme> - local guide: [`/guide/wrappers-astro`](/guide/wrappers-astro)
-
 - `@tsparticles/ember`: Ember wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/ember#readme> - local guide: [`/guide/wrappers-ember`](/guide/wrappers-ember)
-
 - `@tsparticles/inferno`: Inferno component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/inferno#readme> - local guide: [`/guide/wrappers-inferno`](/guide/wrappers-inferno)
-
 - `@tsparticles/jquery`: jQuery plugin wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/jquery#readme> - local guide: [`/guide/wrappers-jquery`](/guide/wrappers-jquery)
-
 - `@tsparticles/lit`: Lit component package  
   Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/lit> - local guide: [`/guide/wrappers-lit`](/guide/wrappers-lit)
-
 - `@tsparticles/nextjs`: Next.js wrapper around `@tsparticles/react`  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nextjs#readme> - local guide: [`/guide/wrappers-nextjs`](/guide/wrappers-nextjs)
-
 - `@tsparticles/nuxt2`: Nuxt 2 module (client-side registration)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt2#readme> - local guide: [`/guide/wrappers-nuxt2`](/guide/wrappers-nuxt2)
-
 - `@tsparticles/nuxt3`: Nuxt 3 module (client-side registration)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt3#readme> - local guide: [`/guide/wrappers-nuxt3`](/guide/wrappers-nuxt3)
-
 - `@tsparticles/nuxt4`: Nuxt 4 module (client-side registration)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/nuxt4#readme> - local guide: [`/guide/wrappers-nuxt4`](/guide/wrappers-nuxt4)
-
 - `@tsparticles/preact`: Preact component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/preact#readme> - local guide: [`/guide/wrappers-preact`](/guide/wrappers-preact)
-
 - `@tsparticles/qwik`: Qwik component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/qwik#readme> - local guide: [`/guide/wrappers-qwik`](/guide/wrappers-qwik)
-
 - `@tsparticles/react`: React component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/react#readme> - local guide: [`/guide/wrappers-react`](/guide/wrappers-react)
-
 - `@tsparticles/riot`: Riot wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/riot#readme> - local guide: [`/guide/wrappers-riot`](/guide/wrappers-riot)
-
 - `@tsparticles/solid`: Solid component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/solid#readme> - local guide: [`/guide/wrappers-solid`](/guide/wrappers-solid)
-
 - `@tsparticles/stencil`: Stencil component wrapper (`<stencil-particles />`)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/stencil#readme> - local guide: [`/guide/wrappers-stencil`](/guide/wrappers-stencil)
-
 - `@tsparticles/svelte`: Svelte component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/svelte#readme> - local guide: [`/guide/wrappers-svelte`](/guide/wrappers-svelte)
-
 - `@tsparticles/vue2`: Vue 2 component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue2#readme> - local guide: [`/guide/wrappers-vue2`](/guide/wrappers-vue2)
-
 - `@tsparticles/vue3`: Vue 3 component wrapper  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/vue3#readme> - local guide: [`/guide/wrappers-vue3`](/guide/wrappers-vue3)
-
 - `@tsparticles/webcomponents`: Web Components wrapper (`<web-particles />`)  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/webcomponents#readme> - local guide: [`/guide/wrappers-webcomponents`](/guide/wrappers-webcomponents)
-
 - `@tsparticles/wordpress`: official WordPress plugin package  
   Source: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/wordpress> - local guide: [`/guide/wrappers-wordpress`](/guide/wrappers-wordpress)
-
 - `angular-confetti`: Angular wrapper for `@tsparticles/confetti`  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-confetti#readme> - local guide: [`/guide/wrappers-angular-confetti`](/guide/wrappers-angular-confetti)
-
 - `angular-fireworks`: Angular wrapper for `@tsparticles/fireworks`  
   Docs: <https://github.com/tsparticles/tsparticles/tree/main/wrappers/angular-fireworks#readme> - local guide: [`/guide/wrappers-angular-fireworks`](/guide/wrappers-angular-fireworks)
 

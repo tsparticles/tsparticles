@@ -1,16 +1,39 @@
-# Vitrine
+---
+title: Showcase
+description: Projets réels et créations créatives réalisés avec tsParticles. Inspirez-vous et découvrez ce qui est possible.
+---
 
-Le contenu de la présentation est désormais intégré au flux de documents principal afin que les exemples ne soient pas répartis sur plusieurs petites pages.
+# Showcase
 
-## Utilisez plutôt ces sections
+Découvrez ce que d'autres ont construit avec tsParticles. Des arrière-plans animés aux confettis et feux d'artifice interactifs, voici une collection de projets, démos et travaux de la communauté.
 
-- Démos et recettes interactives : [`/demos/`](/fr/demos/)
-- Terrains de jeux modifiables en direct : [`/playground/`](/fr/playground/)
-- Documents d'intégration spécifiques au Wrapper : [`/guide/wrappers`](/fr/guide/wrappers)
+## Démos interactives officielles
 
-## Dossiers du référentiel
+Essayez des recettes prêtes à l'emploi que vous pouvez copier et adapter :
 
-- Applications de démonstration : [`tsparticles/demo`](https://github.com/tsparticles/tsparticles/tree/main/demo)
-- Emballages : [`tsparticles/wrappers`](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
-- Espace de travail des préréglages : [`tsparticles/presets`](https://github.com/tsparticles/tsparticles/tree/main/presets)
-- Espace de travail Palettes : [`tsparticles/palettes`](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+- [Parcourir toutes les démos](/fr/demos/) — effets par catégorie (ambient, confettis, feux d'artifice, neige, etc.)
+- [Ouvrir le Playground](/fr/playground/) — modifiez des configurations JSON en direct
+- [Catalogue de presets](/fr/demos/presets) — scènes animées prédéfinies
+- [Catalogue de formes](/fr/demos/shapes) — toutes les formes de particules disponibles
+- [Catalogue de palettes](/fr/demos/palettes) — presets de couleurs
+
+## Intégrations de frameworks
+
+Découvrez comment tsParticles s'intègre à votre stack :
+
+- [Vanilla JS](/fr/guides/vanilla), [React](/fr/guides/react), [Vue 3](/fr/guides/vue3), [Angular](/fr/guides/angular), [Svelte](/fr/guides/svelte)
+- [Next.js](/fr/guides/nextjs), [Nuxt](/fr/guides/nuxt), [Astro](/fr/guides/astro)
+- [Solid](/fr/guides/solid), [Preact](/fr/guides/preact), [Lit](/fr/guides/lit)
+- [Web Components](/fr/guides/webcomponents), [Stencil](/fr/guides/stencil)
+- [WordPress](/fr/guides/wordpress), [Ember](/fr/guides/ember), [Riot](/fr/guides/riot)
+
+## Ressources du dépôt
+
+- [Code source des démos](https://github.com/tsparticles/tsparticles/tree/main/demo)
+- [Code source des wrappers](https://github.com/tsparticles/tsparticles/tree/main/wrappers)
+- [Presets](https://github.com/tsparticles/tsparticles/tree/main/presets)
+- [Palettes](https://github.com/tsparticles/tsparticles/tree/main/palettes)
+
+## Partagez votre travail
+
+Si vous avez construit quelque chose avec tsParticles, partagez-le sur [GitHub Discussions](https://github.com/tsparticles/tsparticles/discussions/categories/show-and-tell) ou mentionnez [@tsparticles](https://github.com/tsparticles) sur les réseaux sociaux.

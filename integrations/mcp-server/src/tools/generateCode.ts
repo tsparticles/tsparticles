@@ -40,6 +40,7 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
       color: { value: "#ffffff" },
+      paint: { color: { value: "#ffffff" } },
       shape: { type: "circle" },
       opacity: { value: { min: 0.1, max: 0.8 } },
       size: { value: { min: 1, max: 5 } },
@@ -667,7 +668,7 @@ function generateGenericOptions(keywords: string[], lower: string): Record<strin
 
   const color = findNamedColor(lower);
   if (color !== undefined) {
-    (particles.color as Record<string, unknown>).value = color;
+    (particles.paint as Record<string, unknown>).color = { value: color };
   }
 
   const shape = findShape(lower);

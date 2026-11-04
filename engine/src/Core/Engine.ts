@@ -35,6 +35,14 @@ export class Engine {
    */
   #initialized = false;
 
+  #loadSequence = 0;
+
+  /**
+   * The sequence of the latest load requested for each container id, so the loads superseded by a
+   * newer one for the same id cannot install or replace the container of the newer one
+   */
+  readonly #loadSequences = new Map<string, number>();
+
   /**
    * The container instances
    * @returns the instances loaded in the engine
@@ -121,67 +129,91 @@ export class Engine {
    * @returns A Promise with the {@link Container} object created
    */
   async load(params: ILoadParams): Promise<Container | undefined> {
-    await this.init();
-
     let domSourceElement: HTMLElement | undefined;
 
     if (typeof HTMLElement !== "undefined" && params.element instanceof HTMLElement) {
       domSourceElement = params.element;
     }
 
-    const { Container } = await import("./Container.js"),
-      id = params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
-      { index, url } = params,
-      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
-      /* elements */
-      currentOptions = itemFromSingleOrMultiple(options, index),
-      { items } = this,
-      oldIndex = items.findIndex(v => v.id.description === id),
-      newItem = new Container({
-        dispatchCallback: (eventType, args): void => {
-          this.dispatchEvent(eventType, args);
-        },
-        id,
-        onDestroy: (remove): void => {
-          if (!remove) {
-            return;
-          }
+    /* the sequence is assigned before the first await, so the loads are ordered by when they were requested */
+    const id =
+        params.id ?? domSourceElement?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+      loadSequence = ++this.#loadSequence;
 
-          const mainArr = this.items,
-            idx = mainArr.indexOf(newItem);
+    this.#loadSequences.set(id, loadSequence);
 
-          if (idx >= removeMinIndex) {
-            mainArr.splice(idx, removeDeleteCount);
-          }
-        },
-        pluginManager: this.pluginManager,
-        sourceOptions: currentOptions,
-      });
+    try {
+      await this.init();
 
-    if (oldIndex >= loadMinIndex) {
-      const old = this.item(oldIndex),
-        deleteCount = old ? one : none;
+      const { Container } = await import("./Container.js"),
+        { index, url } = params,
+        options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
-      if (old && !old.destroyed) {
-        old.destroy(false);
+      if (this.#loadSequences.get(id) !== loadSequence) {
+        /* a newer load for the same id was requested while this one was waiting, so this result is discarded */
+        return undefined;
       }
 
-      items.splice(oldIndex, deleteCount, newItem);
-    } else {
-      items.push(newItem);
+      /* elements */
+      const currentOptions = itemFromSingleOrMultiple(options, index),
+        { items } = this,
+        oldIndex = items.findIndex(v => v.id.description === id),
+        newItem = new Container({
+          dispatchCallback: (eventType, args): void => {
+            this.dispatchEvent(eventType, args);
+          },
+          id,
+          onDestroy: (remove): void => {
+            if (!remove) {
+              return;
+            }
+
+            const mainArr = this.items,
+              idx = mainArr.indexOf(newItem);
+
+            if (idx >= removeMinIndex) {
+              mainArr.splice(idx, removeDeleteCount);
+            }
+          },
+          pluginManager: this.pluginManager,
+          sourceOptions: currentOptions,
+        });
+
+      if (oldIndex >= loadMinIndex) {
+        const old = this.item(oldIndex),
+          deleteCount = old ? one : none;
+
+        if (old && !old.destroyed) {
+          old.destroy(false);
+        }
+
+        items.splice(oldIndex, deleteCount, newItem);
+      } else {
+        items.push(newItem);
+      }
+
+      const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
+        typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
+          ? params.element
+          : getCanvasFromContainer(getDomContainer(id, domSourceElement));
+
+      newItem.canvas.loadCanvas(sourceCanvas);
+
+      /* launch tsParticles */
+      await newItem.start();
+
+      if (newItem.destroyed) {
+        /* the container was destroyed before start() completed, so do not return it */
+        return undefined;
+      }
+
+      return newItem;
+    } finally {
+      /* a newer load for the same id keeps its own entry, which must not be cleared here */
+      if (this.#loadSequences.get(id) === loadSequence) {
+        this.#loadSequences.delete(id);
+      }
     }
-
-    const sourceCanvas: HTMLCanvasElement | OffscreenCanvas =
-      typeof OffscreenCanvas !== "undefined" && params.element instanceof OffscreenCanvas
-        ? params.element
-        : getCanvasFromContainer(getDomContainer(id, domSourceElement));
-
-    newItem.canvas.loadCanvas(sourceCanvas);
-
-    /* launch tsParticles */
-    await newItem.start();
-
-    return newItem;
   }
 
   /**

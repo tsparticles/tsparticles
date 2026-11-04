@@ -85,6 +85,7 @@
 
 - `background`
 - `fullScreen`
+- `hdr`
 - `interactivity`
 - `particles`
 - `detectRetina`
@@ -94,6 +95,7 @@
 ## Most-used sections
 
 - `background`: canvas background and masking basics.
+- `hdr`: high dynamic range rendering, including tone mapping modes and `peakNits`.
 - `particles.number`: quantity and density.
 - `particles.move`: movement speed, direction, and out modes.
 - `particles.shape`: circle, polygon, image, emoji, custom.
@@ -165,6 +167,7 @@ export const particlesOptions: ISourceOptions = {
 
 ## Related references
 
+- [Errors reference](/errors/): error codes thrown by the engine and feature packages
 - Config package docs: <https://github.com/tsparticles/tsparticles/blob/main/utils/configs/README.md>
 - Presets folder: <https://github.com/tsparticles/tsparticles/tree/main/presets>
 - Palettes folder: <https://github.com/tsparticles/tsparticles/tree/main/palettes>
