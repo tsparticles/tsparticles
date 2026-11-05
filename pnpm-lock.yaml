@@ -11626,8 +11626,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/confetti:
     dependencies:
@@ -11639,8 +11639,8 @@ importers:
         version: link:../../engine/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/landing:
     dependencies:
@@ -11655,8 +11655,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/login:
     dependencies:
@@ -11671,8 +11671,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/particles:
     dependencies:
@@ -11684,8 +11684,8 @@ importers:
         version: link:../../bundles/particles/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/portfolio:
     dependencies:
@@ -11700,8 +11700,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/react:
     dependencies:
@@ -11719,8 +11719,8 @@ importers:
         version: link:../../bundles/full/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.3.5
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/react-ts:
     dependencies:
@@ -11768,8 +11768,8 @@ importers:
         version: 5.3.0
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.3.5
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/ribbons:
     dependencies:
@@ -11781,8 +11781,8 @@ importers:
         version: link:../../bundles/ribbons/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/scaffold:
     dependencies:
@@ -11797,8 +11797,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   templates/tictactoe:
     dependencies:
@@ -11813,8 +11813,8 @@ importers:
         version: link:../../bundles/slim/dist
     devDependencies:
       fs-extra:
-        specifier: ^11.3.4
-        version: 11.4.0
+        specifier: ^11.4.1
+        version: 11.4.1
 
   updaters/destroy:
     devDependencies:
@@ -31901,18 +31901,6 @@ packages:
     resolution: {integrity: sha512-CTXd6rk/M3/ULNQj8FBqBWHYBVYybQ3VPBw0xGKFe3tuH7ytT6ACnvzpIQ3UZtB8yvUKC2cXn1a+x+5EVQLovA==}
     engines: {node: '>=14.14'}
 
-  fs-extra@11.3.5:
-    resolution: {integrity: sha512-eKpRKAovdpZtR1WopLHxlBWvAgPny3c4gX1G5Jhwmmw4XJj0ifSD5qB5TOo8hmA0wlRKDAOAhEE1yVPgs6Fgcg==}
-    engines: {node: '>=14.14'}
-
-  fs-extra@11.3.6:
-    resolution: {integrity: sha512-w8ZNZr2mKIc7qeNaQ9AVPT1+iFaI+Avd4xudVOvdDJ8VytREi1Ft5Ih7hd9jjehod8vAM5GMsfQ/TpPf4EyoEA==}
-    engines: {node: '>=14.14'}
-
-  fs-extra@11.4.0:
-    resolution: {integrity: sha512-EQsFzMUJkCKGr1ePqlYADkIUmHW1s3ZXr5Yqy6wbGrfUCphpl2maM/kyOIRA2HpP3AaFQTZXD4ldjek+nccddA==}
-    engines: {node: '>=14.14'}
-
   fs-extra@11.4.1:
     resolution: {integrity: sha512-KYAb4c9BJQI6QqGKthV68OHe0badztdXJWKo0WtBA9IuCFPTKvE5ZdUBglP833aMjhaSPNO4A5j/EkzZtGlKjA==}
     engines: {node: '>=14.14'}
@@ -48723,7 +48711,7 @@ snapshots:
       commander: 12.1.0
       debug: 4.4.3(supports-color@10.2.2)
       env-paths: 2.2.1
-      fs-extra: 11.3.6
+      fs-extra: 11.4.1
       kleur: 4.1.5
       native-run: 2.0.3(supports-color@10.2.2)
       open: 8.4.2
@@ -49477,7 +49465,7 @@ snapshots:
       diff: 8.0.4
       ember-cli-normalize-entity-name: 1.0.0(supports-color@10.2.2)
       ember-cli-string-utils: 1.1.0
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       heimdalljs-logger: 0.1.10(supports-color@10.2.2)
       inflection: 3.0.2
       isbinaryfile: 5.0.7
@@ -49498,7 +49486,7 @@ snapshots:
       chalk: 5.6.2
       ember-cli-normalize-entity-name: 1.0.0(supports-color@10.2.2)
       ember-cli-string-utils: 1.1.0
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       lodash: 4.18.1
       silent-error: 1.1.1(supports-color@10.2.2)
       sort-package-json: 2.15.1
@@ -52000,7 +51988,7 @@ snapshots:
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       glob: 8.1.0
       hash-sum: 2.0.0
       ignore: 5.3.2
@@ -52082,7 +52070,7 @@ snapshots:
       chalk: 4.1.2
       chokidar: 3.6.0
       consola: 3.4.2
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       glob: 8.1.0
       hash-sum: 2.0.0
       ignore: 5.3.2
@@ -52169,7 +52157,7 @@ snapshots:
       destr: 2.0.5
       execa: 5.1.1
       exit: 0.1.2
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       globby: 11.1.0
       hookable: 4.4.1
       lodash: 4.18.1
@@ -52324,7 +52312,7 @@ snapshots:
       '@nuxt/server': 2.18.1(supports-color@10.2.2)
       '@nuxt/utils': 2.18.1
       consola: 3.4.2
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       hash-sum: 2.0.0
       hookable: 4.4.1
       lodash: 4.18.1
@@ -52545,7 +52533,7 @@ snapshots:
       consola: 3.4.2
       defu: 6.1.7
       devalue: 2.0.1
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       html-minifier-terser: 7.2.0
       node-html-parser: 6.1.13
       ufo: 1.6.4
@@ -53100,7 +53088,7 @@ snapshots:
       consola: 3.4.2
       etag: 1.8.1
       fresh: 0.5.2
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       ip: 2.0.1
       launch-editor-middleware: 2.14.1
       on-headers: 1.1.0
@@ -53194,7 +53182,7 @@ snapshots:
     dependencies:
       consola: 3.4.2
       create-require: 1.1.1
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       hash-sum: 2.0.0
       jiti: 1.21.7
       lodash: 4.18.1
@@ -53552,7 +53540,7 @@ snapshots:
       '@nuxt/utils': 2.18.1
       consola: 3.4.2
       defu: 6.1.7
-      fs-extra: 11.4.0
+      fs-extra: 11.4.1
       lodash: 4.18.1
       lru-cache: 5.1.1
       ufo: 1.6.4
@@ -65871,7 +65859,7 @@ snapshots:
       filesize: 11.0.17
       find-up: 8.0.0
       find-yarn-workspace-root: 2.0.0
-      fs-extra: 11.3.6
+      fs-extra: 11.4.1
       fs-tree-diff: 2.0.1(supports-color@10.2.2)
       get-caller-file: 2.0.5
       git-repo-info: 2.1.1
@@ -68640,24 +68628,6 @@ snapshots:
       universalify: 2.0.1
 
   fs-extra@11.3.4:
-    dependencies:
-      graceful-fs: 4.2.11
-      jsonfile: 6.2.1
-      universalify: 2.0.1
-
-  fs-extra@11.3.5:
-    dependencies:
-      graceful-fs: 4.2.11
-      jsonfile: 6.2.1
-      universalify: 2.0.1
-
-  fs-extra@11.3.6:
-    dependencies:
-      graceful-fs: 4.2.11
-      jsonfile: 6.2.1
-      universalify: 2.0.1
-
-  fs-extra@11.4.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.2.1

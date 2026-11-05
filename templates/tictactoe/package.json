@@ -23,6 +23,6 @@
     "@tsparticles/slim": "workspace:*"
   },
   "devDependencies": {
-    "fs-extra": "^11.3.4"
+    "fs-extra": "^11.4.1"
   }
 }

@@ -103,7 +103,7 @@
     "web-vitals": "^5.2.0"
   },
   "devDependencies": {
-    "fs-extra": "^11.3.4"
+    "fs-extra": "^11.4.1"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
