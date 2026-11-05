@@ -35,7 +35,10 @@ async function checkLinks(
     element: createCustomCanvas(width, height) as unknown as HTMLCanvasElement,
     options: { autoPlay: false, detectRetina: false, particles: { number: { value: 0 } } },
   })) as LinkContainer | undefined;
-  if (!container) throw new Error("Container missing");
+
+  if (!container) {
+    throw new Error("Container missing");
+  }
   try {
     container.canvas.size.width = width;
     container.canvas.size.height = height;
@@ -54,6 +57,7 @@ async function checkLinks(
       p1 = particle(p1Position),
       p2 = particle(p2Position),
       linker = new Linker(tsParticles.pluginManager, container);
+
     links.enable = true;
     links.warp = warp;
     linker.init();
@@ -64,6 +68,7 @@ async function checkLinks(
       const query = new CircleWarp(p1Position.x, p1Position.y, distance, { width, height }).query(
         container.particles.grid,
       );
+
       expect(query).toHaveLength(expected ? 2 : 1);
       expect(new Set(query).size).toBe(query.length);
     }

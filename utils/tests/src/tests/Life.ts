@@ -31,6 +31,7 @@ async function fixture(width = 800, height = 200, count = 2, duration = 0.001, d
     element: createCustomCanvas(width, height) as unknown as HTMLCanvasElement,
     options: { autoPlay: false, particles: { number: { value: 0 } } },
   });
+
   if (!container) {
     throw new Error("Missing test container");
   }
@@ -38,10 +39,12 @@ async function fixture(width = 800, height = 200, count = 2, duration = 0.001, d
     container.canvas.size.width = width;
     container.canvas.size.height = height;
     const particle = container.particles.addParticle({ x: 10, y: 10 });
+
     if (!particle) {
       throw new Error("Missing test particle");
     }
     const life = new Life();
+
     life.count = count;
     life.duration.sync = true;
     life.duration.value = duration;
@@ -49,7 +52,9 @@ async function fixture(width = 800, height = 200, count = 2, duration = 0.001, d
     life.delay.value = delay;
     particle.options.life = life;
     const updater = new LifeUpdater(container);
+
     updater.init(particle);
+
     return { container, particle, updater };
   } catch (error) {
     container.destroy();
@@ -65,6 +70,7 @@ type Fixture = LifeFixture;
  */
 async function run(test: (value: Fixture) => void, ...args: Parameters<typeof fixture>): Promise<void> {
   const value = await fixture(...args);
+
   try {
     setRandom(() => 0.75);
     test(value);
@@ -115,6 +121,7 @@ describe("Life respawn canvas bounds", () => {
   it("draws the two coordinates independently", async () => {
     await run(({ particle, updater }) => {
       const values = [0.25, 0.875];
+
       setRandom(() => values.shift() ?? 0.5);
       updater.update(particle, delta);
       expect(particle.position.x).toBe(200);

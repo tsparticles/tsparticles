@@ -23,6 +23,7 @@ async function loadStoppedContainer(): Promise<Container> {
     });
 
     let loaded = false;
+
     void loading.then(() => {
       loaded = true;
     });

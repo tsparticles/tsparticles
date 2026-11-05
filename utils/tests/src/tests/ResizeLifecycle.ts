@@ -57,6 +57,7 @@ describe.each(["window", "observer"])("resize listener lifecycle: %s", mode => {
       };
 
     listeners.addListeners();
+
     return { listeners, resize, windowResize, disconnect };
   }
 
