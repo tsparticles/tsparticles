@@ -1,4 +1,4 @@
-import { type IPalette } from "@tsparticles/engine";
+import type { IPalette } from "@tsparticles/engine";
 
 // Iris — accurate anodized rainbow
 export const options: IPalette = {
