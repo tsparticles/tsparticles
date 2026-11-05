@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixed after AI reviews ([b6a043a](https://github.com/tsparticles/tsparticles/commit/b6a043a63713bb74412ec408bf8c6de35f40fb08))
+* fixes after AI reviews ([2950455](https://github.com/tsparticles/tsparticles/commit/29504552aa774152483817c2a6b2d478ee02c2c2))
+* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+* fixes after AI reviews ([d056b3d](https://github.com/tsparticles/tsparticles/commit/d056b3d30561965cff12b02e6d4b54cf1b8139be))
+* fixes after AI reviews ([84927c6](https://github.com/tsparticles/tsparticles/commit/84927c6bb6523398f283a6273758adc3c616a3d6))
+* fixes after AI reviews ([389323b](https://github.com/tsparticles/tsparticles/commit/389323bd95fb0a88e3636055af9469f0150fe96c))
+* fixes after AI reviews ([65e664c](https://github.com/tsparticles/tsparticles/commit/65e664c039bfb68463242df877d3f3bb38508825))
+* fixes after AI reviews ([d8de9a5](https://github.com/tsparticles/tsparticles/commit/d8de9a5af46173f30809860db390cbcd2202f509))
+* fixes after AI reviews ([f82fbfa](https://github.com/tsparticles/tsparticles/commit/f82fbfad468395e6b0ea1081f105392d7d491f84))
+* fixes after AI reviews ([1975dbe](https://github.com/tsparticles/tsparticles/commit/1975dbedbb1be445db53794ca86ed3924843d798))
+* fixes after AI reviews ([cfbf8c7](https://github.com/tsparticles/tsparticles/commit/cfbf8c76a3c159c4ce415c8c1dcb697c463aaf84))
+* fixes after AI reviews ([f6e2dab](https://github.com/tsparticles/tsparticles/commit/f6e2dabc9bd6038f377456239716412ea8ca8cdd))
+* fixes after AI reviews ([54ebd32](https://github.com/tsparticles/tsparticles/commit/54ebd32cab83ecce224b6df5f39d17e8fe222fc4))
+* fixes after AI reviews ([feb0028](https://github.com/tsparticles/tsparticles/commit/feb002871091228db8d77c48a19430277e030111))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 **Note:** Version bump only for package @tsparticles/tests

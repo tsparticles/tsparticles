@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixed after AI reviews ([b6a043a](https://github.com/tsparticles/tsparticles/commit/b6a043a63713bb74412ec408bf8c6de35f40fb08))
+* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+* fixes after AI reviews ([389323b](https://github.com/tsparticles/tsparticles/commit/389323bd95fb0a88e3636055af9469f0150fe96c))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 **Note:** Version bump only for package @tsparticles/interaction-particles-collisions
