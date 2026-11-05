@@ -21,6 +21,7 @@ describe("LCH conversion", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert LCH(${input.l},${input.c},${input.h}) to ${name}`, () => {
       const result = lchToRgb(input);
+
       expect(result).toEqual(expected);
     });
   }

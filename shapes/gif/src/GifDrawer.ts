@@ -29,7 +29,9 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
   draw(data: IShapeDrawData<GifParticle>): void {
     const { context, opacity } = data;
 
-    if (!data.particle.gifData) return;
+    if (!data.particle.gifData) {
+      return;
+    }
 
     context.globalAlpha = opacity;
     drawGif(data, this.#container.canvas.render.settings);
@@ -39,11 +41,15 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
   loadShape(particle: GifParticle): void {
     const shapeData = particle.shapeData as IGifShape | undefined;
 
-    if (!shapeData?.src) return;
+    if (!shapeData?.src) {
+      return;
+    }
 
     const src = shapeData.src;
 
-    if (this.#gifCache.has(src) || this.#loadingGifs.has(src)) return;
+    if (this.#gifCache.has(src) || this.#loadingGifs.has(src)) {
+      return;
+    }
 
     this.#loadingGifs.add(src);
     this.#failedGifs.delete(src);
@@ -82,7 +88,9 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
   particleInit(container: Container, particle: GifParticle): void {
     const shapeData = particle.shapeData as IGifShape | undefined;
 
-    if (!shapeData?.src) return;
+    if (!shapeData?.src) {
+      return;
+    }
 
     const gifData = this.#gifCache.get(shapeData.src);
 
@@ -114,7 +122,6 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
     delete particle.gifPreviousCanvas;
     particle.gifLoopCount = getGIFLoopAmount(gifData);
 
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     if (particle.gifLoopCount === 0) {
       particle.gifLoopCount = Number.POSITIVE_INFINITY;
     }
@@ -134,7 +141,9 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
   #resumeWaitingParticles(src: string, gifData: GIF): void {
     const container = this.#container;
 
-    if (container.destroyed) return;
+    if (container.destroyed) {
+      return;
+    }
 
     const waitingParticles = container.particles.filter(particle => {
       const shape = particle.shape;
@@ -151,7 +160,9 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       const waitingParticle = particle as GifParticle,
         shapeData = waitingParticle.shapeData as IGifShape | undefined;
 
-      if (!shapeData || waitingParticle.destroyed) continue;
+      if (!shapeData || waitingParticle.destroyed) {
+        continue;
+      }
 
       this.#applyGifData(waitingParticle, shapeData, gifData);
     }

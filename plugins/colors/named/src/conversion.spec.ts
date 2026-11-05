@@ -18,6 +18,7 @@ describe("NamedColorManager", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert "${input}" to ${name}`, () => {
       const result = manager.handleColor({ value: input });
+
       expect(result).toMatchObject(expected);
     });
   }
