@@ -1,4 +1,4 @@
-import { type Container, type ICoordinates, type IDimension } from "@tsparticles/engine";
+import type { Container, ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IEmitterShape, IEmitterShapeGenerator } from "@tsparticles/plugin-emitters";
 import { EmittersCanvasShape } from "./EmittersCanvasShape.js";
 import { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
