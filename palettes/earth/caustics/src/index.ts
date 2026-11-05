@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 
 const paletteName = "caustics";
