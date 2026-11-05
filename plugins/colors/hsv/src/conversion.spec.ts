@@ -22,6 +22,7 @@ describe("HsvColorManager", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert HSV(${input.h}°,${input.s}%,${input.v}%) to ${name}`, () => {
       const result = manager.handleColor({ value: input });
+
       expect(result).toMatchObject(expected);
     });
   }

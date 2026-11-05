@@ -58,12 +58,16 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
   interact(interactivityData: IInteractivityData, delta: IDelta): void {
     const container = this.container;
 
-    if (!container.retina.reduceFactor) return;
+    if (!container.retina.reduceFactor) {
+      return;
+    }
 
     const options = container.actualOptions,
       trailOptions = options.interactivity?.modes.trail;
 
-    if (!trailOptions) return;
+    if (!trailOptions) {
+      return;
+    }
 
     const optDelay = (trailOptions.delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
 
@@ -71,7 +75,9 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
       this.#delay += delta.value;
     }
 
-    if (this.#delay < optDelay) return;
+    if (this.#delay < optDelay) {
+      return;
+    }
 
     const mousePos = interactivityData.mouse.position,
       canEmit = !(
@@ -104,7 +110,9 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             originalValue: RangeValue | undefined,
             defaultMax: number,
           ): number | undefined => {
-            if (!hasWeights(comp)) return undefined;
+            if (!hasWeights(comp)) {
+              return undefined;
+            }
 
             const w = comp?.weights,
               factor = norm.x * (w?.x ?? defaultWeight) + norm.y * (w?.y ?? defaultWeight),

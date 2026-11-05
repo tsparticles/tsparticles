@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { ExportVideoPlugin } from "./ExportVideoPlugin.js";
 
 declare const __VERSION__: string;

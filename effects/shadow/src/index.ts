@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { ShadowDrawer } from "./ShadowDrawer.js";
 
 declare const __VERSION__: string;

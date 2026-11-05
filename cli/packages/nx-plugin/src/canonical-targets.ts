@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
 import type { ProjectConfiguration } from "@nx/devkit";
 
 interface TsParticlesAliasDefinition {

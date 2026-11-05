@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions,jsdoc/require-param,jsdoc/check-param-names */
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
 import {
   type IPaint,
   type IParticlesOptions,

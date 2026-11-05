@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine/lazy";
+import type { Engine } from "@tsparticles/engine/lazy";
 
 const presetNames = ["bigCircles", "big-circles"];
 

@@ -1,4 +1,4 @@
-import { type Container, type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IManualParticlesOptions, ManualParticlesContainer, ManualParticlesOptions } from "./types.js";
 import { ManualParticle } from "./Options/Classes/ManualParticle.js";
 

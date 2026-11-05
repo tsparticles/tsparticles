@@ -6,17 +6,16 @@ import { shuffleSeed } from "../utils.js";
 const half = 0.5;
 
 export class SimplexNoise2D {
-  readonly #NORM_2D;
-  readonly #SQUISH_2D;
-  readonly #STRETCH_2D;
-
   readonly #base2D;
   readonly #gradients2D;
   #lookup: Contribution2D[];
   readonly #lookupPairs2D;
+  readonly #NORM_2D;
   readonly #p2D;
   #perm: Uint8Array;
   #perm2D: Uint8Array;
+  readonly #SQUISH_2D;
+  readonly #STRETCH_2D;
 
   constructor() {
     this.#NORM_2D = 1 / 47;

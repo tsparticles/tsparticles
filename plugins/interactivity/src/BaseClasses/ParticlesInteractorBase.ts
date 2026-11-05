@@ -1,5 +1,5 @@
 import type { InteractivityContainer, InteractivityParticle } from "../types.js";
-import { type IDelta } from "@tsparticles/engine";
+import type { IDelta } from "@tsparticles/engine";
 import type { IInteractivityData } from "../Interfaces/IInteractivityData.js";
 import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor.js";
 import { InteractorType } from "../Enums/InteractorType.js";

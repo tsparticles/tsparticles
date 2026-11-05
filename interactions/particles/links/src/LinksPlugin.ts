@@ -1,4 +1,4 @@
-import { type IPlugin, type PluginManager } from "@tsparticles/engine";
+import type { IPlugin, PluginManager } from "@tsparticles/engine";
 import type { LinkContainer } from "./Types.js";
 import type { LinkInstance } from "./LinkInstance.js";
 

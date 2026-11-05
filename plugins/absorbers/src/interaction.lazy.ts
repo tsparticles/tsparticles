@@ -1,5 +1,5 @@
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import { type Engine } from "@tsparticles/engine/lazy";
+import type { Engine } from "@tsparticles/engine/lazy";
 import type { InteractivityEngine } from "@tsparticles/plugin-interactivity/lazy";
 
 declare const __VERSION__: string;

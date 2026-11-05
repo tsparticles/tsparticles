@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { TextDrawer } from "./TextDrawer.js";
 import { validTypes } from "./Utils.js";
 

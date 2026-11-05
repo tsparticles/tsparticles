@@ -1,4 +1,4 @@
-import { type Container, type Engine, type ISourceOptions } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import { RibbonsOptions } from "./RibbonsOptions.js";
 import type { RibbonsParams } from "./RibbonsParams.js";

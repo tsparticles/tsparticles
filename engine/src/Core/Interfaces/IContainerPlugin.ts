@@ -62,16 +62,16 @@ export interface IContainerPlugin {
   particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
   /** Resets a particle state */
   particleReset?: (particle: Particle) => void;
-  /** Returns the stroke color for a particle */
-  particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
-  /** Updates a particle each frame */
-  particleUpdate?: (particle: Particle, delta: IDelta) => void;
   /** Returns the particle density count */
   particlesDensityCount?: () => number;
   /** Handles particle initialization, returns true if handled */
   particlesInitialization?: () => boolean;
   /** Sets up particles for the container */
   particlesSetup?: () => void;
+  /** Returns the stroke color for a particle */
+  particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
+  /** Updates a particle each frame */
+  particleUpdate?: (particle: Particle, delta: IDelta) => void;
   /** Pauses the plugin */
   pause?: () => void;
   /** Resumes the plugin */

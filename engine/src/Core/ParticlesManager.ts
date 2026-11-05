@@ -21,7 +21,7 @@ import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/I
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
-import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { PluginManager } from "./Utils/PluginManager.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";

@@ -23,7 +23,9 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
   quantity = 1;
 
   load(data?: RecursivePartial<ITrail>): void {
-    if (isNull(data)) return;
+    if (isNull(data)) {
+      return;
+    }
 
     loadProperty(this, "delay", data.delay);
     loadProperty(this, "quantity", data.quantity);

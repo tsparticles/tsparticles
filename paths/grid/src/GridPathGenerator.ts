@@ -12,7 +12,7 @@ import {
 } from "@tsparticles/engine";
 import type { GridPathParticle } from "./GridPathParticle.js";
 import type { IGridPathOptions } from "./IGridPathOptions.js";
-import { type IMovePathGenerator } from "@tsparticles/plugin-move";
+import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const dirs = [
     Vector.create(identity, originPoint.y), // 0 right
@@ -83,6 +83,7 @@ export class GridPathGenerator implements IMovePathGenerator {
       } else if (!this.options.graph) {
         // free grid fallback
         const turn = Math.trunc(getRandom() * 3) - 1;
+
         grid.direction = (grid.direction + turn + 4) % dirs.length;
       }
     }

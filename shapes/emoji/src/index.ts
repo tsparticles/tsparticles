@@ -1,5 +1,5 @@
 import { EmojiDrawer } from "./EmojiDrawer.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { validTypes } from "./Utils.js";
 
 declare const __VERSION__: string;

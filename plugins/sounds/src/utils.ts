@@ -24,7 +24,7 @@ notes.set("A", [27.5, 55.0, 110.0, 220.0, 440.0, 880.0, 1760.0, 3520.0, 7040.0])
 notes.set("Bb", [29.14, 58.27, 116.54, 233.08, 466.16, 932.33, 1864.66, 3729.31, 7458.62]);
 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
 notes.set("B", [30.87, 61.74, 123.47, 246.94, 493.88, 987.77, 1975.53, 3951.07, 7902.13]);
-// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
 notes.set("pause", [0]);
 
 /**

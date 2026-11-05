@@ -1,5 +1,5 @@
 import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tsparticles/plugin-interactivity";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { Repulser } from "./Repulser.js";
 
 declare const __VERSION__: string;

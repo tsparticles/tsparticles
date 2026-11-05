@@ -1,4 +1,4 @@
-import { type CollisionParticle, type IParticlesCollisionOptions, type ParticlesCollisionOptions } from "./Types.js";
+import type { CollisionParticle, IParticlesCollisionOptions, ParticlesCollisionOptions } from "./Types.js";
 import {
   type Container,
   type IDelta,

@@ -394,7 +394,7 @@ describe("Plugin options tests", async () => {
 
       expect(drawImage.mock.calls[0]?.[0]).to.equal(backgroundElement);
     } finally {
-      container.destroy(false);
+      container.destroy();
     }
   });
 

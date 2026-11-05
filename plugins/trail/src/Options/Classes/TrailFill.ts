@@ -1,5 +1,5 @@
 import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
-import { type ITrailFill } from "../Interfaces/ITrailFill.js";
+import type { ITrailFill } from "../Interfaces/ITrailFill.js";
 
 export class TrailFill implements ITrailFill, IOptionLoader<ITrailFill> {
   color?: OptionsColor;

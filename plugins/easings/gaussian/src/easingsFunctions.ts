@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction } from "@tsparticles/engine";
+import type { EasingFunction } from "@tsparticles/engine";
 
 const easingsFunctions = new Map<string, EasingFunction>(),
   gaussian = (t: number): number => Math.exp(-4 * (1 - t) * (1 - t));

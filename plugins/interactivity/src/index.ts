@@ -1,5 +1,5 @@
 import { type Engine, type Particle, addErrorMessages, getErrorMessage } from "@tsparticles/engine";
-import { type InteractivityContainer, type InteractivityEngine, type InteractorInitializer } from "./types.js";
+import type { InteractivityContainer, InteractivityEngine, InteractorInitializer } from "./types.js";
 import { ErrorCodes } from "./ErrorCodes.js";
 import { ErrorMessages } from "./ErrorMessages.js";
 import { InteractivityPlugin } from "./InteractivityPlugin.js";

@@ -265,6 +265,7 @@ export class ZoomEventListeners {
 
     if (this.#touchDistance === initialTouchDistance) {
       this.#touchDistance = distance;
+
       return;
     }
 

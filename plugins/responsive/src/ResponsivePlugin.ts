@@ -1,10 +1,4 @@
-import {
-  type Container,
-  type IContainerPlugin,
-  type IPlugin,
-  type ISourceOptions,
-  type RecursivePartial,
-} from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
 import type { IResponsiveOptions, ResponsiveContainer, ResponsiveOptions } from "./types.js";
 import { Responsive } from "./Options/Classes/Responsive.js";
 import { ResponsiveMode } from "./ResponsiveMode.js";

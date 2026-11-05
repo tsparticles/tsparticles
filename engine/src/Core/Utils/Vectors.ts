@@ -174,7 +174,7 @@ export class Vector3d implements ICoordinates3d {
   normalize(): void {
     const length = this.length;
 
-    if (length != none) {
+    if (length !== none) {
       this.multTo(inverseFactorNumerator / length);
     }
   }

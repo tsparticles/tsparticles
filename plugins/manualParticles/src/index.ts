@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { ManualParticlesPlugin } from "./ManualParticlesPlugin.js";
 
 declare const __VERSION__: string;

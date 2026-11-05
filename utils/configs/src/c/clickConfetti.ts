@@ -172,4 +172,5 @@ const options: ISourceOptions = {
   },
   detectRetina: true,
 };
+
 export default options;

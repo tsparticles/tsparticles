@@ -1,4 +1,4 @@
-import { type Container, type Engine } from "@tsparticles/engine";
+import type { Container, Engine } from "@tsparticles/engine";
 import { RibbonDrawer } from "./RibbonDrawer.js";
 
 declare const __VERSION__: string;

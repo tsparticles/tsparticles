@@ -1,4 +1,4 @@
-import { type IContainerPlugin, type IDelta, type Particle } from "@tsparticles/engine";
+import type { IContainerPlugin, IDelta, Particle } from "@tsparticles/engine";
 import type { InteractivityContainer, InteractivityParticle, InteractivityPluginManager } from "./types.js";
 import { InteractionManager } from "./InteractionManager.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";

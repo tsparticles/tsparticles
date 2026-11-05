@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { TrailDrawer } from "./TrailDrawer.js";
 
 declare const __VERSION__: string;

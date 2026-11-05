@@ -1,6 +1,6 @@
 import { CollisionMode } from "./CollisionMode.js";
-import { type CollisionParticle } from "./Types.js";
-import { type IDelta } from "@tsparticles/engine";
+import type { CollisionParticle } from "./Types.js";
+import type { IDelta } from "@tsparticles/engine";
 import { absorb } from "./Absorb.js";
 import { bounce } from "./Bounce.js";
 import { destroy } from "./Destroy.js";

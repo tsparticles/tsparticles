@@ -15,7 +15,7 @@ import {
   minRadius,
 } from "@tsparticles/engine";
 import { CollisionMode } from "./CollisionMode.js";
-import { type CollisionParticle } from "./Types.js";
+import type { CollisionParticle } from "./Types.js";
 
 const wallMarginFactor = 0.15,
   /**

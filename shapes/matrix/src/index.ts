@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { MatrixDrawer } from "./MatrixDrawer.js";
 
 declare const __VERSION__: string;

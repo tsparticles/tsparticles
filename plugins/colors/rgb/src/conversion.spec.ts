@@ -22,6 +22,7 @@ describe("RgbColorManager", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert RGB(${input.r},${input.g},${input.b}) to ${name}`, () => {
       const result = manager.handleColor({ value: input });
+
       expect(result).toMatchObject(expected);
     });
   }

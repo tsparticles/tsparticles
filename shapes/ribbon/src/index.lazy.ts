@@ -1,5 +1,5 @@
-import { type Container } from "@tsparticles/engine";
-import { type Engine } from "@tsparticles/engine/lazy";
+import type { Container } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine/lazy";
 
 declare const __VERSION__: string;
 

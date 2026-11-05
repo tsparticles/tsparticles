@@ -1,4 +1,4 @@
-import { type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
+import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 import { drawInfinity } from "./Utils.js";
 
 /** Infinity shape drawer plugin */

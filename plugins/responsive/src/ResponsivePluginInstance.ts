@@ -1,4 +1,4 @@
-import { type IContainerPlugin } from "@tsparticles/engine";
+import type { IContainerPlugin } from "@tsparticles/engine";
 import type { ResponsiveContainer } from "./types.js";
 
 export class ResponsivePluginInstance implements IContainerPlugin {

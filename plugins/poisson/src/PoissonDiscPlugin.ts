@@ -1,4 +1,4 @@
-import { type Container, type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPoissonOptions, PoissonOptions } from "./types.js";
 import { Poisson } from "./Options/Classes/Poisson.js";
 

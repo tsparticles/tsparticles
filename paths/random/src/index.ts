@@ -1,5 +1,5 @@
 import { type MoveEngine, ensureBaseMoverLoaded } from "@tsparticles/plugin-move";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { RandomPathGenerator } from "./RandomPathGenerator.js";
 
 declare const __VERSION__: string;

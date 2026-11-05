@@ -1,7 +1,7 @@
 import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tsparticles/plugin-interactivity";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import { AbsorbersInteractor } from "./AbsorbersInteractor.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { getAbsorbersInstancesManager } from "./getAbsorbersInstancesManager.js";
 
 declare const __VERSION__: string;

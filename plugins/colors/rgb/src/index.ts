@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { RgbColorManager } from "./RgbColorManager.js";
 
 declare const __VERSION__: string;

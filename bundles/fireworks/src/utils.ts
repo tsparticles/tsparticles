@@ -254,6 +254,7 @@ export async function getFireworksInstance(
 
       if (!container) {
         instances.delete(id); // Clean up on failure
+
         return;
       }
 

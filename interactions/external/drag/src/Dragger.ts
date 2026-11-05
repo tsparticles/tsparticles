@@ -47,9 +47,9 @@ interface MomentumSample {
 export class Dragger extends ExternalInteractorBase<DragContainer> {
   readonly maxDistance = 0;
 
-  #dragStartClickTime?: number;
-  #dragStartClickingFalseTime?: number;
   #draggedParticle?: Particle;
+  #dragStartClickingFalseTime?: number;
+  #dragStartClickTime?: number;
   #grabOffset?: ICoordinates;
   #lastMousePosition?: ICoordinates;
   #momentumSamples: MomentumSample[] = [];
@@ -195,7 +195,6 @@ export class Dragger extends ExternalInteractorBase<DragContainer> {
     // do nothing - release logic is handled in interact()
   }
 
-  // eslint-disable-next-line jsdoc/require-param -- tsdoc forbids @param mousePos.x
   /**
    * Finds the closest particle under the cursor within its radius
    * @param interactivityData - The interactivity data

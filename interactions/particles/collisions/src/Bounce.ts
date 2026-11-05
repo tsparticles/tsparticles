@@ -1,5 +1,5 @@
 import { circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
-import { type CollisionParticle } from "./Types.js";
+import type { CollisionParticle } from "./Types.js";
 
 /**
  * Bounce particle extension type

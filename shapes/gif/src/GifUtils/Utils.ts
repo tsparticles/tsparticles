@@ -182,6 +182,7 @@ function parseExtensionBlock(
 function readBits(imageData: Uint8Array, pos: number, len: number): number {
   const bytePos = pos >>> 3,
     bitPos = pos & 7;
+
   return (
     ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
       (((1 << len) - 1) << bitPos)) >>>
@@ -268,7 +269,7 @@ async function parseImageBlock(
       }
     })();
 
-  if (image == null) {
+  if (image === null) {
     throw new EvalError("GIF frame size is to large");
   }
 
@@ -444,6 +445,7 @@ async function parseBlock(
     default:
       throw new EvalError("undefined block found");
   }
+
   return false;
 }
 
@@ -556,7 +558,7 @@ export async function decodeGIF(
     }
   })();
 
-  if (backgroundImage == null) {
+  if (backgroundImage === null) {
     throw new Error(getErrorMessage(ErrorCodes.gifFrameSizeTooLarge));
   }
 
@@ -592,12 +594,13 @@ export async function decodeGIF(
      * @returns current transparency index
      */
     getTransparencyIndex = (newValue?: number | null): number => {
-      if (newValue != null) {
+      if (newValue !== null && newValue !== undefined) {
         transparencyIndex = newValue;
       }
 
       return transparencyIndex;
     };
+
   try {
     do {
       if (incrementFrameIndex) {
@@ -802,7 +805,7 @@ export function drawGif(data: IShapeDrawData<GifParticle>, canvasSettings?: Canv
     particle.gifTime -= frame.delayTime;
 
     if (++frameIndex >= gifData.frames.length) {
-      if (particle.gifLoopCount == null || --particle.gifLoopCount <= defaultLoopCount) {
+      if (particle.gifLoopCount === undefined || --particle.gifLoopCount <= defaultLoopCount) {
         return;
       }
 

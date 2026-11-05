@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { PoissonDiscPlugin } from "./PoissonDiscPlugin.js";
 
 declare const __VERSION__: string;
