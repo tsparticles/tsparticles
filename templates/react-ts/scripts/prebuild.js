@@ -44,7 +44,7 @@ fs.readFile(libPackage, function (error, data) {
     }
   }
 
-  for (const dep of Object.keys(libObj.package.devDependencies)) {
+  for (const dep of Object.keys(libObj.package.devDependencies ?? {})) {
     const resolved = resolveWorkspaceDependency(dep);
     if (resolved) {
       libObj.package.devDependencies[dep] = resolved;
