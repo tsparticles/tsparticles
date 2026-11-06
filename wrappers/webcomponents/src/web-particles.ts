@@ -334,6 +334,12 @@ export class Particles extends HTMLElement {
   #notifyParticlesLoaded(container?: Container): void {
     this.container.current = container;
 
+    const theme = this.getAttribute("data-theme");
+
+    if (container && theme) {
+      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+    }
+
     this.dispatchEvent(
       new CustomEvent("particlesLoaded", {
         detail: container,

@@ -5,7 +5,8 @@ type WebcomponentsModule = typeof import("../src/web-particles.js");
 
 const initMock = vi.fn(async () => Promise.resolve()),
   destroyMock = vi.fn(),
-  loadMock = vi.fn(async () => ({ destroy: destroyMock }));
+  loadThemeMock = vi.fn(async () => Promise.resolve()),
+  loadMock = vi.fn(async () => ({ destroy: destroyMock, loadTheme: loadThemeMock }));
 
 const globalWithEngine = globalThis as typeof globalThis & {
   tsParticles?: { init: typeof initMock; load: typeof loadMock };
@@ -20,6 +21,7 @@ async function loadModule(): Promise<WebcomponentsModule> {
 beforeEach(() => {
   initMock.mockClear();
   loadMock.mockClear();
+  loadThemeMock.mockClear();
   destroyMock.mockClear();
   globalWithEngine.tsParticles = { init: initMock, load: loadMock };
 });
@@ -100,5 +102,49 @@ describe("webcomponents Particles element", () => {
 
     expect(destroyMock).toHaveBeenCalled();
     expect(element.container.current).toBeUndefined();
+  });
+
+  it("applies the current data-theme to each loaded container", async () => {
+    const module = await loadModule();
+    let resolveLoad: (() => void) | undefined;
+
+    loadMock.mockImplementationOnce(async () => {
+      await new Promise<void>(resolve => {
+        resolveLoad = resolve;
+      });
+
+      return { destroy: destroyMock, loadTheme: loadThemeMock };
+    });
+
+    module.defineParticlesElement();
+
+    const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>;
+
+    element.setAttribute("options", JSON.stringify({ particles: { number: { value: 1 } } }));
+    element.setAttribute("data-theme", "dark");
+    document.body.appendChild(element);
+
+    await vi.waitFor(() => {
+      expect(loadMock).toHaveBeenCalledTimes(1);
+    });
+
+    element.setAttribute("data-theme", "light");
+    expect(resolveLoad).toBeDefined();
+    resolveLoad?.();
+
+    await vi.waitFor(() => {
+      expect(loadThemeMock).toHaveBeenCalledWith("light");
+    });
+
+    element.options = { particles: { number: { value: 2 } } };
+
+    await vi.waitFor(() => {
+      expect(loadMock).toHaveBeenCalledTimes(2);
+      expect(loadThemeMock).toHaveBeenCalledTimes(2);
+    });
+
+    expect(loadThemeMock).toHaveBeenNthCalledWith(2, "light");
+
+    element.remove();
   });
 });

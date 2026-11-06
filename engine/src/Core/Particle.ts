@@ -1020,8 +1020,8 @@ export class Particle {
   ): IParticleCanvasBoundsResult {
     const radius = this.getRadius(),
       canvasSize = this.#container.canvas.size,
-      position = this.position,
-      isBounce = outMode === OutMode.bounce || outMode === OutMode.split;
+      isBounce = outMode === OutMode.bounce || outMode === OutMode.split,
+      position = isBounce ? this.getPosition() : this.position;
 
     if (direction === OutModeDirection.bottom) {
       return {

@@ -17,6 +17,42 @@ env:
   NODE_OPTIONS: "--max-old-space-size=4096"
 
 jobs:
+  build-node-24:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          fetch-depth: 0
+
+      - name: Derive SHAs for nx affected
+        uses: nrwl/nx-set-shas@v5
+
+      - name: Ensure NX_BASE is available
+        if: github.event_name == 'pull_request' && env.NX_BASE == ''
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
+          echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
+
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettify README
+        run: pnpm run prettify:ci:readme
+
+      - name: Build packages
+        run: pnpm run build:affected:ci
+
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
