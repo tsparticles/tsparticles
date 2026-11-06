@@ -147,4 +147,102 @@ describe("webcomponents Particles element", () => {
 
     element.remove();
   });
+
+  it("waits for the theme refresh before dispatching particlesLoaded", async () => {
+    const module = await loadModule();
+    let resolveTheme: (() => void) | undefined;
+
+    loadThemeMock.mockImplementationOnce(async () => {
+      await new Promise<void>(resolve => {
+        resolveTheme = resolve;
+      });
+    });
+
+    module.defineParticlesElement();
+
+    const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
+      loaded = vi.fn();
+
+    element.addEventListener("particlesLoaded", loaded);
+    element.options = { particles: { number: { value: 1 } } };
+    element.setAttribute("data-theme", "dark");
+    document.body.appendChild(element);
+
+    await vi.waitFor(() => {
+      expect(loadThemeMock).toHaveBeenCalledWith("dark");
+    });
+
+    expect(loaded).not.toHaveBeenCalled();
+    resolveTheme?.();
+
+    await vi.waitFor(() => {
+      expect(loaded).toHaveBeenCalledOnce();
+    });
+
+    element.remove();
+  });
+
+  it("does not dispatch particlesLoaded when a load becomes stale during the theme refresh", async () => {
+    const module = await loadModule();
+    let resolveTheme: (() => void) | undefined;
+
+    loadThemeMock.mockImplementationOnce(async () => {
+      await new Promise<void>(resolve => {
+        resolveTheme = resolve;
+      });
+    });
+
+    module.defineParticlesElement();
+
+    const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
+      loaded = vi.fn();
+
+    element.addEventListener("particlesLoaded", loaded);
+    element.options = { particles: { number: { value: 1 } } };
+    element.setAttribute("data-theme", "dark");
+    document.body.appendChild(element);
+
+    await vi.waitFor(() => {
+      expect(loadThemeMock).toHaveBeenCalledWith("dark");
+    });
+
+    element.remove();
+    resolveTheme?.();
+
+    await vi.waitFor(() => {
+      expect(destroyMock).toHaveBeenCalled();
+    });
+
+    expect(loaded).not.toHaveBeenCalled();
+  });
+
+  it("reports theme refresh failures through particlesError", async () => {
+    const module = await loadModule(),
+      consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    loadThemeMock.mockRejectedValueOnce(new Error("theme refresh failed"));
+
+    module.defineParticlesElement();
+
+    const element = document.createElement("web-particles") as unknown as InstanceType<typeof module.Particles>,
+      error = vi.fn(),
+      loaded = vi.fn();
+
+    element.addEventListener("particlesError", error);
+    element.addEventListener("particlesLoaded", loaded);
+    element.options = { particles: { number: { value: 1 } } };
+    element.setAttribute("data-theme", "dark");
+    document.body.appendChild(element);
+
+    try {
+      await vi.waitFor(() => {
+        expect(error).toHaveBeenCalledOnce();
+      });
+
+      expect(loaded).not.toHaveBeenCalled();
+    } finally {
+      element.remove();
+      consoleError.mockRestore();
+    }
+  });
 });

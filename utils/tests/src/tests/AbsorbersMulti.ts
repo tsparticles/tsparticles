@@ -363,6 +363,27 @@ describe("Absorbers multi-instance tests", () => {
       }
     });
 
+    it("should preserve particle depth while updating orbit coordinates", async () => {
+      const container = await loadMultiContainer("multi-orbit-depth", [
+        { orbits: true, destroy: false, size: { value: 20, density: 600 } },
+      ]);
+
+      try {
+        placeAbsorbers(container, [{ x: 200, y: 500 }]);
+
+        const particle = singleParticle(container);
+
+        particle.position.setTo({ x: 700, y: 500, z: 7 });
+
+        container.particles.update(frameDelta);
+
+        expect(particle.absorberOrbit).to.not.be.undefined;
+        expect(particle.position.z).to.equal(7);
+      } finally {
+        container.destroy();
+      }
+    });
+
     it("should let the heaviest absorber bend the orbit more than the closest one", async () => {
       const heavy = await loadMultiContainer("multi-orbit-heavy", [
         { orbits: true, destroy: false, size: { value: 20, density: 6000 } },

@@ -284,7 +284,7 @@ export class Particles extends HTMLElement {
         return;
       }
 
-      this.#notifyParticlesLoaded(container);
+      await this.#notifyParticlesLoaded(container, currentLoadId);
     } catch (err) {
       // Prevent an unhandled rejection by catching load errors and exposing
       // them via events so the embedding page can surface diagnostics.
@@ -331,13 +331,19 @@ export class Particles extends HTMLElement {
     }
   }
 
-  #notifyParticlesLoaded(container?: Container): void {
+  async #notifyParticlesLoaded(container: Container | undefined, currentLoadId: number): Promise<void> {
     this.container.current = container;
 
     const theme = this.getAttribute("data-theme");
 
     if (container && theme) {
-      (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+      await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
+    }
+
+    if (currentLoadId !== this.#loadId) {
+      container?.destroy();
+
+      return;
     }
 
     this.dispatchEvent(
