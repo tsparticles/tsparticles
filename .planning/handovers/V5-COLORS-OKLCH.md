@@ -248,6 +248,10 @@ in 03; le integrazioni minime si consegnano con 05, la revisione integrale resta
   output finito nel gamut scelto e confronto con riferimento indipendente.
 - Parser e tipi per tutti i manager, alpha zero, alpha percentuale, range e array,
   input invalidi/ambigui, manager custom e isolamento RNG su due engine.
+- Link `mid`: usare due colori distinti e raggi non nulli e disuguali; confrontare
+  il colore mixato con un riferimento calcolato indipendentemente, applicando i
+  pesi basati sui raggi e il metodo d'interpolazione deciso in C0. Non riusare
+  l'helper di produzione nel calcolo atteso.
 - Aggiornare `utils/tests/src/tests/ColorUtils.ts`, `EngineUtils.ts`, `HDROptions.ts`,
   test Particle/Updaters/Emitters/Options/Configs/Exports e `conversion.spec.ts`
   dei manager; aggiungere fixture di riferimento e test specifici mancanti.
