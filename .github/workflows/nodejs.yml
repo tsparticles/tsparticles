@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Reset Nx Cloud client cache
+        run: rm -rf .nx/cache/cloud
+
       - name: Prettify README
         run: pnpm run prettify:ci:readme
 
