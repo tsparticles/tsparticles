@@ -20,8 +20,39 @@ No v5 implementation or bundle baseline has been validated yet.
 | V5-PAR  | Complete Particle/Retina review: init, options, state, modifiers, lifecycle and per-particle costs                     | 07                      | Planned |
 | V5-PLG  | Per-package impact audit of all extension families; multi-engine registration/runtime compatibility                    | 01/02 initial; 08 final | Planned |
 | V5-BRW  | Browser/CDN bootstrap, namespaces, externals, lazy and multiple bundles without singleton                              | 01 initial; 09 final    | Planned |
+| V5-LEG  | Retire obsolete framework integrations, deprecated compatibility APIs and browser support with negligible usage        | 09; closure 10          | Planned |
 | V5-SIZE | Reproducible baseline/budgets, smaller minimal scene/slim in gzip/Brotli, total chunks accounted for                   | 01 baseline; 04–10      | Planned |
 | V5-MIG  | Built-package, wrappers, CLI/MCP, demos, migration docs, translations and full validation                              | 01–10                   | Planned |
+
+**V5-LEG scope and acceptance:** remove the Vue 2, Nuxt 2 and Nuxt 3 wrappers from
+the v5 workspace and distribution, together with their demos, starter-template
+variants, installer detection, package references, documentation and translations.
+Remove public APIs explicitly marked `@deprecated` when a supported replacement is
+documented, and update migration guidance. Review browser targets using Browserslist
+data for the v5 release: drop targets older than the agreed 5–6 year window when
+their usage share is negligible, and remove compatibility code needed only by those
+targets. Record the share threshold and target list in handover 09 before changing
+the shared browser configuration. Keep feature detection and fallbacks for optional
+capabilities that remain in supported browsers (for example OffscreenCanvas); age
+alone is not grounds to remove those. Validate package/workspace references and
+browser bundles, and include the removals in the v5 migration notes and final gate.
+
+Additional planning requirement (2026-11-06): **V5-ARCH** — evaluate Particle
+state/serialization (06/07), engine package boundaries (03/09), options resolution
+(03/07/08) and a common extension architecture (03/08). Compare alternatives and
+record decisions, evidence and migration impact; closure in 10. Status: Planned.
+See [architecture plan](handovers/V5-ARCHITECTURE.md). Evaluation is required;
+splitting packages, serializing the entire runtime and rewriting all extension
+families are not predetermined implementation requirements.
+
+Additional requirement (2026-11-06): **V5-COLOR** — make `IOklch` and h/c/l
+animations the canonical particle color model; preserve existing color-manager
+input formats, floating-point precision and wide gamut until output; define
+explicit conversion, gamut mapping, alpha, legacy-animation migration and separate
+P3/HDR capabilities. Contracts in 03, implementation in 05/07/08, distribution in
+09 and numerical/browser/performance gates in 10. Status: Planned. See the
+[detailed color plan](handovers/V5-COLORS-OKLCH.md). This is a v5 requirement,
+not merely an optional performance experiment.
 
 Numeric budgets are set from a clean baseline before size refactoring; source line
 counts and moved chunks do not satisfy V5-SIZE. See index for the comparison matrix.

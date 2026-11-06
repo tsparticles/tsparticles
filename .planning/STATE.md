@@ -6,6 +6,34 @@ See: .planning/PROJECT.md (initialized)
 
 **Current focus:** v5 major planning on branch `v5`; 4.5.0/4.5.1 release history retained below.
 
+## Session Status — 2026-11-06 — v5 OKLCH color planning
+
+- Added [V5-COLOR detailed plan](handovers/V5-COLORS-OKLCH.md), phases C0–C5,
+  runtime/input contracts, migration matrix and numerical/browser/performance gates.
+- Confirmed early sRGB clipping/8-bit rounding in the current OKLCH manager and
+  RGB → HSL normalization for particle state; also identified P3/HDR coupling.
+- Proposed canonical IOklch, h/c/l animation, explicit alpha and gamut/HDR handling;
+  old color values remain supported, HSL animation semantics need explicit migration.
+- Integrated with handovers 03/05/07/08/09/10 and V5 requirements/roadmap.
+- Documentation only: no runtime changes, test runs, builds or benchmark claims.
+
+## Session Status — 2026-11-06 — v5 architecture planning
+
+- Added [four dedicated architecture evaluations](handovers/V5-ARCHITECTURE.md)
+  with source evidence, alternatives, initial recommendations, ownership,
+  experiments, acceptance criteria and migration considerations.
+- Particle: evaluate explicit snapshots and separation of state/behavior without
+  moving every method into ParticlesManager. Full runtime serialization is not assumed.
+- Engine: compare internal domains, selective subpaths and publishable packages.
+- Options: separate input, resolved configuration and mutable runtime state;
+  investigate normalization, extension contributions and cache invalidation.
+- Extensions: evaluate common registration/lifecycle with typed capabilities and
+  specialized frame pipelines, including all extension families in the audit.
+- Integrated evaluations with handovers 03/06/07/08/09/10 and IMP plans; final gate
+  requires a decision and evidence for each theme. Runtime experiments remain pending.
+- Source/package baseline inspected today is `4.5.2`; original `4.5.1` plan
+  evidence below remains historical. No runtime change, build or benchmark performed.
+
 ## Session Status — 2026-11-03 — v5 planning
 
 - Prepared [ten ordered implementation handovers](handovers/README.md): explicit

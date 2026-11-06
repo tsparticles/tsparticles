@@ -27,7 +27,12 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 - [ ] V5-SIZE: Review all engine sources and reduce shipped bytes, including Container, CanvasManager/RenderManager, ParticlesManager and Particle; compare consistent min/gzip/Brotli consumer scenarios.
 - [ ] V5-PLG: Audit all extension packages for singleton removal, per-engine services, registration and core API compatibility.
 - [ ] V5-BRW: Refine browser/CDN bundles, globals, externals, lazy chunks and multi-engine composition without a default engine.
+- [ ] V5-COLOR: Adopt OKLCH as the canonical particle/animation model, preserve color-manager inputs and wide-gamut fidelity, and separate gamut/HDR capabilities; follow the [color migration plan](handovers/V5-COLORS-OKLCH.md).
 - [ ] V5-MIG: Validate downstream packages, browser rendering and v4 → v5 migration/documentation.
+
+- [ ] V5-ARCH: Evaluate Particle state/serialization, engine package boundaries,
+      options resolution and a common capability architecture for extensions;
+      record decisions and evidence in the [architecture plan](handovers/V5-ARCHITECTURE.md).
 
 ### Historical initialization backlog (not the v5 execution plan)
 
@@ -63,4 +68,4 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 
 ---
 
-_Last updated: 2026-11-03 — v5 planning; runtime changes pending_
+_Last updated: 2026-11-06 — v5 architecture and OKLCH color plans added; runtime changes pending_

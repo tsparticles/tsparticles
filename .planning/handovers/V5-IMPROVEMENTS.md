@@ -30,3 +30,12 @@ un'ottimizzazione che le misure hanno dimostrato inutile.
 Le evidenze iniziali si riferiscono al checkout 4.5.1 analizzato. Gli agent devono
 riverificarle sul codice aggiornato: una precedente fase potrebbe avere già
 risolto il costo o cambiato il contratto. Non duplicare refactor né test esistenti.
+
+## Collegamento alle scelte architetturali
+
+Le quattro [valutazioni architetturali](V5-ARCHITECTURE.md) usano le misure IMP
+per confrontare modelli alternativi. IMP-05 alimenta ARCH-01/03 (Particle e options),
+IMP-02 alimenta ARCH-02 (pacchetti) e IMP-06 alimenta ARCH-04 (lifecycle delle
+estensioni). I risultati architetturali confluiscono nel registro dedicato; non
+aggiungere una seconda implementazione o ripetere le stesse misure per chiudere
+entrambi i piani.

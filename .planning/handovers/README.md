@@ -149,6 +149,30 @@ alternative, vincoli, scenari e criteri di accettazione. Gli handover principali
 rimandano agli approfondimenti di propria competenza; il gate 10 verifica anche
 il registro delle decisioni e gli esiti delle opportunità analizzate.
 
+## Valutazioni architetturali aggiunte il 2026-11-06
+
+Il [piano architetturale](V5-ARCHITECTURE.md) raccoglie quattro valutazioni
+obbligatorie e i relativi piani dedicati: modello/serializzabilità di Particle,
+eventuale divisione di engine in pacchetti, pipeline delle options e architettura
+comune delle estensioni. Contiene raccomandazioni iniziali, alternative e prove;
+le riscritture restano subordinate alle evidenze.
+
+I contratti si discutono in 03 prima dei refactor di 04–07; 06/07 verificano stato
+e responsabilità, 08 chiude la migrazione delle estensioni, 09 il packaging e 10
+il registro delle decisioni. Gli ARCH si affiancano agli IMP senza duplicarne
+misure e ottimizzazioni. Il checkout analizzato per queste valutazioni è `4.5.2`;
+la baseline `4.5.1` riportata sopra documenta la ricognizione originale.
+
+## Migrazione colori OKLCH aggiunta il 2026-11-06
+
+[V5-COLOR — piano dettagliato](V5-COLORS-OKLCH.md) rende OKLCH il modello
+canonico delle particelle e delle animazioni h/c/l, preservando i formati di input
+dei color manager. Definisce conversioni float, alpha, interpolazione, mapping
+del gamut e separazione P3/HDR, con migrazione esplicita delle animazioni HSL.
+Le fasi C0–C5 entrano in 03/05/07/08/09/10: contratti prima del rendering,
+integrazione verticale in 05, revisione Particle in 07, chiusura consumer in 08,
+distribuzione in 09 e gate in 10. Non è un esperimento opzionale degli IMP.
+
 ## Stato di questo piano
 
 - [x] Ricognizione dei punti critici e aggiornamento della documentazione di planning.

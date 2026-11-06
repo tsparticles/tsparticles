@@ -61,3 +61,12 @@ RNG/logger e plugin. Scope/eviction/cleanup delle nuove cache devono essere espl
 Misure per particella e per fase, template/cache introdotti con invalidazione,
 consumer delle API coinvolte e delta bundle. Test di reset/pool, override, modifier,
 Retina, HDR e due engine. Chiudere T1–T4 in 07 e verificare le estensioni in 08.
+
+## Contratti architetturali collegati
+
+Le alternative di modello sono definite in
+[ARCH-01 — Particle](../architecture/V5-ARCH-01-PARTICLE-MODEL.md) e
+[ARCH-03 — Options](../architecture/V5-ARCH-03-OPTIONS.md). Usare T1–T3 come evidenza
+per confrontare classe, snapshot e stato plain, pipeline di normalizzazione e
+template risolti. Serializzabilità e immutabilità richiedono contratti espliciti;
+non sono conseguenze automatiche dell'estrazione di helper o del riuso di options.

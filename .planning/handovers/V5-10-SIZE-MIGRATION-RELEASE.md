@@ -70,3 +70,20 @@ release separato commit/tag/versionamento, pubblicazione e deployment.
 
 Consultare [V5-IMP-01-MEASUREMENT](improvements/V5-IMP-01-MEASUREMENT.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Raccogliere anche `V5-ARCHITECTURE-DECISIONS.md`, previsto dal
+[piano architetturale](V5-ARCHITECTURE.md). Ogni voce ARCH-01–04 deve avere scelta,
+alternative, evidenze, impatto sui consumer ed esito; mantenere o rinviare una
+riscrittura richiede motivazione e non esenta dai requisiti v5. Verificare la guida
+di migrazione per stato/metodi Particle, pacchetti/subpath, options ed estensioni
+solo dove le decisioni hanno prodotto cambiamenti effettivi. L'analisi incompleta
+di uno dei quattro temi lascia aperto il gate.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Richiedere chiusura C0–C5, V5-COLOR-DECISIONS.md e V5-COLOR-REPORT.md:
+matrice pacchetti, prove numeriche/browser, budget e guida breaking per manager,
+animazioni e offset. Gamut/HDR non verificati lasciano aperto il gate V5-COLOR.

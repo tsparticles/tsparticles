@@ -58,3 +58,12 @@ Aggiornare matrice di copertura dell'intero engine e stato in indice.
 
 Consultare [V5-IMP-03-PARTICLE-COLLECTIONS](improvements/V5-IMP-03-PARTICLE-COLLECTIONS.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Consultare [ARCH-01 — Modello Particle](architecture/V5-ARCH-01-PARTICLE-MODEL.md)
+e [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md) prima di modificare
+le collection e la pipeline. Concordare con 07 i confini tra stato, helper e manager;
+ParticlesManager resta responsabile di collection/pool e coordinamento, senza
+assorbire automaticamente tutti i metodi Particle. Preparare invarianti per
+l'eventuale restore di snapshot solo se questa capacità viene adottata.
