@@ -55,3 +55,10 @@ Aggiornare ARCHITECTURE/STRUCTURE, changelog se necessario e indice.
 
 Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Eseguire C1/C2 e integrazione minima C3: conversioni senza clipping anticipato,
+output OKLCH/P3 e fallback, capability gamut/precisione/HDR separate, superfici
+intermedie e test numerici/browser. La revisione integrale Particle resta in 07.

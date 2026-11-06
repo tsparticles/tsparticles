@@ -78,3 +78,10 @@ e [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md): risoluzione d
 pacchetti/subpath eventualmente adottati, loader e capacità selettive, assenza di
 copie runtime e registri duplicati nella composizione browser/CDN/lazy. Confrontare
 il payload totale della stessa scena, anche se lo split modifica entry e chunk.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Verificare in C5 bundle, loader e facciate: il modello/rendering OKLCH canonico
+non deve richiedere il plugin parser OKLCH per colori risolti da altri manager.
+Provare sRGB/P3 SDR/HDR e contesti reali, anche nei consumer built-package.

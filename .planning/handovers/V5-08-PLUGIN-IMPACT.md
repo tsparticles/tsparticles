@@ -66,3 +66,10 @@ nell'audit i consumer di [ARCH-01](architecture/V5-ARCH-01-PARTICLE-MODEL.md) e
 [ARCH-03](architecture/V5-ARCH-03-OPTIONS.md): campi/metodi Particle, eventuale
 snapshot e codec, classi option, precedenze e mutabilità. Non imporre serializzazione
 o una riscrittura universale a tutte le estensioni senza una decisione motivata.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Completare C4 per tutti i manager e consumer della matrice colore, inclusi links,
+bubble, gradient, split, trail coordinates, emitters, immagini/SVG e background.
+La compilazione non sostituisce le prove di accuratezza, alpha e wide gamut.

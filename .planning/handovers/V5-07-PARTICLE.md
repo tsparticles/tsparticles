@@ -62,3 +62,10 @@ Confrontare classe, snapshot esplicito e stato plain, definendo quale livello di
 serializzazione è utile e supportato. Distinguere spostamento dei metodi da vera
 separazione delle dipendenze; coordinare stato mutabile, template options, codec
 opzionali e reset con 06/08. Registrare anche le alternative mantenute o scartate.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Completare C3: IOklch e IParticleOklchAnimation, fill/stroke/back color e modifier,
+reset/pool, paint/gradient e animazioni h/c/l. Vietati alias s → c e doppio stato
+HSL persistente; applicare il contratto legacy e alpha definito in C0.

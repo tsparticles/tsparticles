@@ -115,3 +115,10 @@ options e capacità di estensione; confrontare poi confini interni, subpath e sp
 in pacchetti. Registrare le decisioni iniziali e i vincoli per 04–08, con alternative
 e consumer reali. La verifica nei successivi handover può richiedere revisioni
 esplicite del contratto, senza attendere 08 per scoprirne le incompatibilità.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Definire in C0/C1 unità, alpha, contratto dei color manager, animazioni h/c/l,
+legacy input e confini delle conversioni prima di propagare i nuovi tipi.
+Coordinare ARCH-01/03/04 e rendere disponibili a 05 i contratti Particle necessari.

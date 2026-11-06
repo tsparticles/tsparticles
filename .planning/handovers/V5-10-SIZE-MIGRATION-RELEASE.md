@@ -80,3 +80,10 @@ riscrittura richiede motivazione e non esenta dai requisiti v5. Verificare la gu
 di migrazione per stato/metodi Particle, pacchetti/subpath, options ed estensioni
 solo dove le decisioni hanno prodotto cambiamenti effettivi. L'analisi incompleta
 di uno dei quattro temi lascia aperto il gate.
+
+## Migrazione colore obbligatoria
+
+Consultare [V5-COLOR — OKLCH](V5-COLORS-OKLCH.md).
+Richiedere chiusura C0–C5, V5-COLOR-DECISIONS.md e V5-COLOR-REPORT.md:
+matrice pacchetti, prove numeriche/browser, budget e guida breaking per manager,
+animazioni e offset. Gamut/HDR non verificati lasciano aperto il gate V5-COLOR.
