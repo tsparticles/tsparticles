@@ -92,15 +92,23 @@ export class GifDrawer implements IShapeDrawer<GifParticle> {
       return;
     }
 
-    const gifData = this.#gifCache.get(shapeData.src);
+    const src = shapeData.src,
+      gifData = this.#gifCache.get(src);
 
     if (!gifData) {
-      if (this.#failedGifs.has(shapeData.src) || container.destroyed || particle.destroyed) {
+      if (this.#failedGifs.has(src) || container.destroyed || particle.destroyed) {
         return;
       }
 
       setTimeout((): void => {
-        if (container.destroyed || particle.destroyed) {
+        const currentShapeData = particle.shapeData as IGifShape | undefined;
+
+        if (
+          container.destroyed ||
+          particle.destroyed ||
+          (particle.shape !== gifShape && particle.shape !== gifsShape) ||
+          currentShapeData?.src !== src
+        ) {
           return;
         }
 

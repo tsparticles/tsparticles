@@ -8,7 +8,7 @@ const workspaceVersions = {
   "@tsparticles/confetti": require("../../../bundles/confetti/package.json").version,
 };
 
-function resolveWorkspaceDependency(name) {
+function resolveWorkspaceDependency(name, currentRange) {
   const spec = mainPackage.dependencies[name];
 
   if (!spec?.startsWith("workspace:")) {
@@ -27,7 +27,15 @@ function resolveWorkspaceDependency(name) {
     throw new Error(`Cannot resolve workspace dependency version for ${name}`);
   }
 
-  return workspaceRange === "^" || workspaceRange === "~" ? `${workspaceRange}${version}` : `^${version}`;
+  let prefix = "";
+
+  if (workspaceRange === "^" || workspaceRange === "~") {
+    prefix = workspaceRange;
+  } else if (currentRange[0] === "^" || currentRange[0] === "~") {
+    prefix = currentRange[0];
+  }
+
+  return `${prefix}${version}`;
 }
 
 fs.readFile(libPackage, function (error, data) {
@@ -38,14 +46,14 @@ fs.readFile(libPackage, function (error, data) {
   const libObj = JSON.parse(data.toString());
 
   for (const dep of Object.keys(libObj.package.dependencies)) {
-    const resolved = resolveWorkspaceDependency(dep);
+    const resolved = resolveWorkspaceDependency(dep, libObj.package.dependencies[dep]);
     if (resolved) {
       libObj.package.dependencies[dep] = resolved;
     }
   }
 
   for (const dep of Object.keys(libObj.package.devDependencies)) {
-    const resolved = resolveWorkspaceDependency(dep);
+    const resolved = resolveWorkspaceDependency(dep, libObj.package.devDependencies[dep]);
     if (resolved) {
       libObj.package.devDependencies[dep] = resolved;
     }
