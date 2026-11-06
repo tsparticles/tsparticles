@@ -24,10 +24,9 @@ export default defineConfig([
       prettier: prettierPlugin,
     },
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
-        project: "./tsconfig.json",
-        tsconfigRootDir: import.meta.url,
+        projectService: true,
+        tsconfigRootDir: process.cwd(),
       },
     },
     rules: {

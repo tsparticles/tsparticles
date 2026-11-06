@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type EasingFunction } from "@tsparticles/engine";
+import type { EasingFunction } from "@tsparticles/engine";
 
 const easingsFunctions = new Map<string, EasingFunction>(),
   bounceOut = (t: number): number => {
@@ -10,12 +10,15 @@ const easingsFunctions = new Map<string, EasingFunction>(),
       return n1 * t * t;
     } else if (t < 2 / d1) {
       t -= 1.5 / d1;
+
       return n1 * t * t + 0.75;
     } else if (t < 2.5 / d1) {
       t -= 2.25 / d1;
+
       return n1 * t * t + 0.9375;
     } else {
       t -= 2.625 / d1;
+
       return n1 * t * t + 0.984375;
     }
   };

@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadClubsSuitShape } from "./clubs/index.js";
 import { loadDiamondsSuitShape } from "./diamonds/index.js";
 import { loadHeartsSuitShape } from "./hearts/index.js";

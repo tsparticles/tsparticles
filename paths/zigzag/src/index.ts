@@ -1,5 +1,5 @@
 import { type MoveEngine, ensureBaseMoverLoaded } from "@tsparticles/plugin-move";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { ZigZagPathGenerator } from "./ZigZagPathGenerator.js";
 
 declare const __VERSION__: string;

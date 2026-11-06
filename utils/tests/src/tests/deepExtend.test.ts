@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { describe, expect, it } from "vitest";
 import { deepExtend } from "@tsparticles/engine";
 

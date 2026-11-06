@@ -9,7 +9,7 @@ import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 import { loadMovePlugin } from "@tsparticles/plugin-move";
 
-globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+globalThis.window = TestWindow;
 
 const clickData: IInteractivityData = { mouse: { clickPosition: { x: 100, y: 100 }, clicking: false, inside: true } };
 let nextId = 0;

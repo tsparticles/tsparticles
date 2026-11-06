@@ -22,6 +22,7 @@ describe("HslColorManager", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert HSL(${input.h},${input.s}%,${input.l}%) to ${name}`, () => {
       const result = manager.handleColor({ value: input });
+
       expect(result).toMatchObject(expected);
     });
   }

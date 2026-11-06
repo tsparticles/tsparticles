@@ -1,4 +1,4 @@
-import { type IOptionsColor } from "@tsparticles/engine";
+import type { IOptionsColor } from "@tsparticles/engine";
 
 /** The trail fill options */
 export interface ITrailFill {

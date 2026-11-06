@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { LifeUpdater } from "./LifeUpdater.js";
 
 declare const __VERSION__: string;

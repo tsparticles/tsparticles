@@ -1,6 +1,6 @@
 import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
-import { type IMovePathGenerator } from "@tsparticles/plugin-move";
+import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
 import type { INoiseGenerator } from "./INoiseGenerator.js";
 

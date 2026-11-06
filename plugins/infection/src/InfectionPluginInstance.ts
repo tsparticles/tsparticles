@@ -31,10 +31,6 @@ export class InfectionPluginInstance implements IContainerPlugin {
     return infectionStage === undefined ? undefined : infectionStages[infectionStage]?.color;
   }
 
-  particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
-    return this.particleFillColor(particle);
-  }
-
   particlesSetup(): void {
     const options = this.#container.actualOptions;
 
@@ -58,5 +54,9 @@ export class InfectionPluginInstance implements IContainerPlugin {
 
       this.#container.infecter?.startInfection(infected, minStage);
     }
+  }
+
+  particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
+    return this.particleFillColor(particle);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/perlin-noise",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "tsParticles perlin noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -122,6 +122,6 @@
   "devDependencies": {
     "@tsparticles/cli-build": "workspace:*",
     "@tsparticles/engine": "workspace:*",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }

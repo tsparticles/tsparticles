@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
 import { loadBranchesPath } from "@tsparticles/path-branches";

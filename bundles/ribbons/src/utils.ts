@@ -1,4 +1,4 @@
-import { type Container, type Engine, type ISourceOptions } from "@tsparticles/engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import { RibbonsOptions } from "./RibbonsOptions.js";
 import type { RibbonsParams } from "./RibbonsParams.js";
@@ -6,6 +6,38 @@ import type { RibbonsParams } from "./RibbonsParams.js";
 const sizeFactor = 8,
   emitterTop = 0,
   ids = new Map<string, Container | Promise<Container | undefined> | undefined>();
+
+let nextCanvasId = 0;
+
+/**
+ * Gets the identifier for a ribbons canvas, generating one when needed
+ * @param engine - The engine used to find existing container identifiers
+ * @param canvas - The canvas to identify
+ * @returns The canvas identifier
+ */
+export function getRibbonsId(engine: Engine, canvas?: HTMLCanvasElement | null): string {
+  if (!canvas) {
+    return "ribbons";
+  }
+
+  const id = canvas.getAttribute("id");
+
+  if (id !== null) {
+    return id;
+  }
+
+  let generatedId: string;
+
+  do {
+    generatedId = `ribbons-${++nextCanvasId}`;
+  } while (
+    ids.has(generatedId) ||
+    canvas.ownerDocument.getElementById(generatedId) !== null ||
+    engine.items.some(container => container.id.description === generatedId)
+  );
+
+  return generatedId;
+}
 
 /**
  * Adds an emitter to the container for ribbon particles

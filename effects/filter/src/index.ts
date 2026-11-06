@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { FilterDrawer } from "./FilterDrawer.js";
 
 declare const __VERSION__: string;

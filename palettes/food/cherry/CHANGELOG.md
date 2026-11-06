@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixes after AI reviews ([0bc6134](https://github.com/tsparticles/tsparticles/commit/0bc61345153b76fa246b30766ff63321b645aa94))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 **Note:** Version bump only for package @tsparticles/palette-cherry

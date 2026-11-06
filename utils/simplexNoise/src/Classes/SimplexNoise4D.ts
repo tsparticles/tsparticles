@@ -7,17 +7,16 @@ import { shuffleSeed } from "../utils.js";
 const quarter = 0.25;
 
 export class SimplexNoise4D {
-  readonly #NORM_4D;
-  readonly #SQUISH_4D;
-  readonly #STRETCH_4D;
-
   readonly #base4D;
   readonly #gradients4D;
   #lookup: Contribution4D[];
   readonly #lookupPairs4D;
+  readonly #NORM_4D;
   readonly #p4D;
   #perm: Uint8Array;
   #perm4D: Uint8Array;
+  readonly #SQUISH_4D;
+  readonly #STRETCH_4D;
 
   constructor() {
     this.#NORM_4D = 1 / 30;

@@ -1,5 +1,6 @@
 import { type Container, type Engine, type RecursivePartial, isString, tsParticles } from "@tsparticles/engine";
 import type { RibbonsFirstParam, RibbonsFunc } from "./types.js";
+import { getRibbonsId, setRibbons } from "./utils.js";
 import type { IRibbonsOptions } from "./IRibbonsOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEmittersPluginSimple } from "@tsparticles/plugin-emitters/plugin";
@@ -7,7 +8,6 @@ import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-squa
 import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 import { loadRibbonShape } from "@tsparticles/shape-ribbon";
-import { setRibbons } from "./utils.js";
 
 declare const __VERSION__: string;
 
@@ -108,7 +108,7 @@ ribbons.create = async (
 ): Promise<RibbonsFunc> => {
   await initPlugins(tsParticles);
 
-  const id = canvas?.getAttribute("id") ?? "ribbons";
+  const id = getRibbonsId(tsParticles, canvas);
 
   canvas?.setAttribute("id", id);
 

@@ -1,5 +1,5 @@
 import { BackgroundMaskPlugin } from "./BackgroundMaskPlugin.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 

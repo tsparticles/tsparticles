@@ -1,4 +1,4 @@
-import { type IPalette } from "@tsparticles/engine";
+import type { IPalette } from "@tsparticles/engine";
 
 export const options: IPalette = {
   name: "Holy Light",

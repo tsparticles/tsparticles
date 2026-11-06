@@ -1,4 +1,4 @@
-import { type IParticlesOptions, type Particle, type ParticlesOptions } from "@tsparticles/engine";
+import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { IOpacity } from "./Options/Interfaces/IOpacity.js";
 import type { Opacity } from "./Options/Classes/Opacity.js";
 

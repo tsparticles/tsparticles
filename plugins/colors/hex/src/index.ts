@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { HexColorManager } from "./HexColorManager.js";
 
 declare const __VERSION__: string;

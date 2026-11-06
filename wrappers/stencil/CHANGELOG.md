@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixes after AI reviews ([d4f481d](https://github.com/tsparticles/tsparticles/commit/d4f481dc119574e6e5216257b317163c5ff019c1))
+* fixes after AI reviews ([59df34f](https://github.com/tsparticles/tsparticles/commit/59df34f8c9fcdf2507a46e7692ff0a4f2821bc3a))
+* fixes after AI reviews ([81be838](https://github.com/tsparticles/tsparticles/commit/81be83892964d7d540d575d8278faa74cb10d8a8))
+* fixes after AI reviews ([feb0028](https://github.com/tsparticles/tsparticles/commit/feb002871091228db8d77c48a19430277e030111))
+* fixes after AI reviews ([8d0ba04](https://github.com/tsparticles/tsparticles/commit/8d0ba0446fdccec85393b8fc5b1e0045508b251c))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 **Note:** Version bump only for package @tsparticles/stencil

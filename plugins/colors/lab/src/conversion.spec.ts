@@ -21,6 +21,7 @@ describe("lab conversion", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert LAB(${input.l},${input.aAxis},${input.bAxis}) to ${name}`, () => {
       const result = labToRgb(input);
+
       expect(result).toEqual(expected);
     });
   }

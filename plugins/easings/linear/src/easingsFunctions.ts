@@ -1,4 +1,4 @@
-import { type EasingFunction } from "@tsparticles/engine";
+import type { EasingFunction } from "@tsparticles/engine";
 
 const easingsFunctions = new Map<string, EasingFunction>();
 

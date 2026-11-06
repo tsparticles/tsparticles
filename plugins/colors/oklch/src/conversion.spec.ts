@@ -25,6 +25,7 @@ describe("OKLCH conversion", () => {
     for (const { name, input, expected } of testCases) {
       it(`should convert OKLCH(${input.l},${input.c},${input.h}) to ${name}`, () => {
         const result = oklchToRgb(input);
+
         expect(result).toEqual(expected);
       });
     }
@@ -50,6 +51,7 @@ describe("OKLCH conversion", () => {
     for (const { name, input, expected } of stringCases) {
       it(`should parse "${input}" to ${name}`, () => {
         const result = manager.parseString(input);
+
         expect(result).toMatchObject(expected);
       });
     }

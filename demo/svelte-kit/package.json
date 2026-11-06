@@ -1,43 +1,45 @@
 {
-  "name": "@tsparticles/svelte-kit-demo",
-  "version": "4.5.1",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "demo/svelte-kit"
-  },
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin=\"prettier-plugin-svelte\" --check . && eslint .",
-    "format": "prettier --plugin=\"prettier-plugin-svelte\" --write ."
-  },
-  "devDependencies": {
-    "@fontsource/fira-mono": "^5.3.0",
-    "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/kit": "^2.70.2",
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "@tsparticles/engine": "workspace:*",
-    "@tsparticles/svelte": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^8.72.1",
-    "@typescript-eslint/parser": "^8.72.1",
-    "eslint": "^10.14.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-svelte": "^3.22.0",
-    "prettier": "^3.9.10",
-    "prettier-plugin-svelte": "^4.1.1",
-    "svelte": "^5.56.8",
-    "svelte-check": "^4.7.5",
-    "svelte-eslint-parser": "^1.8.0",
-    "svelte-preprocess": "^6.0.5",
-    "tslib": "^2.8.1",
-    "tsparticles": "workspace:*",
-    "typescript": "^6.0.3",
-    "vite": "^8.3.5"
-  },
-  "type": "module"
+	"name": "@tsparticles/svelte-kit-demo",
+	"version": "4.5.2",
+	"private": true,
+	"imports": {
+		"#lib/*": "./src/lib/*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tsparticles/tsparticles.git",
+		"directory": "demo/svelte-kit"
+	},
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin=\"prettier-plugin-svelte\" --check . && eslint .",
+		"format": "prettier --plugin=\"prettier-plugin-svelte\" --write ."
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^5.3.0",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "^3.1.1",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@tsparticles/engine": "workspace:*",
+		"@tsparticles/svelte": "workspace:*",
+		"@typescript-eslint/eslint-plugin": "^8.72.1",
+		"@typescript-eslint/parser": "^8.72.1",
+		"eslint": "^10.14.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.24.0",
+		"prettier": "^3.9.10",
+		"prettier-plugin-svelte": "^4.1.1",
+		"svelte": "^5.57.3",
+		"svelte-check": "^4.7.8",
+		"svelte-eslint-parser": "^1.10.1",
+		"tslib": "^2.9.1",
+		"tsparticles": "workspace:*",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.5"
+	},
+	"type": "module"
 }

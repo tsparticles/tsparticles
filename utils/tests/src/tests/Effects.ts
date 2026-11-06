@@ -1,5 +1,12 @@
 /* eslint-disable */
-import { type Container, type ISourceOptions, millisecondsToSeconds, tsParticles } from "@tsparticles/engine";
+import {
+  OutMode,
+  OutModeDirection,
+  type Container,
+  type ISourceOptions,
+  millisecondsToSeconds,
+  tsParticles,
+} from "@tsparticles/engine";
 import { beforeAll, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -276,6 +283,41 @@ describe("Effects", async () => {
     expect(particle.trailTransform).to.be.false;
 
     container.destroy(false);
+  }, 30000);
+
+  it("uses the particle head bounds for trail bounce checks", async () => {
+    const container = await loadContainer({
+        particles: {
+          number: { value: 1 },
+          effect: { type: "trail" },
+        },
+      }),
+      particle = firstParticle(container),
+      canvasWidth = container.canvas.size.width,
+      radius = particle.getRadius(),
+      drawer = container.effectDrawers.get("trail"),
+      bounds = {
+        canvasSize: container.canvas.size,
+        direction: OutModeDirection.right,
+        particle,
+        radius,
+      };
+
+    try {
+      particle.position.x = canvasWidth + radius + 1;
+      particle.trail = [
+        {
+          break: false,
+          color: "#000000",
+          position: { x: canvasWidth - 1, y: particle.position.y },
+        },
+      ];
+
+      expect(drawer?.isInsideCanvas?.({ ...bounds, outMode: OutMode.bounce })).to.be.false;
+      expect(drawer?.isInsideCanvas?.({ ...bounds, outMode: OutMode.out })).to.be.true;
+    } finally {
+      container.destroy(false);
+    }
   }, 30000);
 
   it("particles effect stores spawn rate and quantity on the particle", async () => {

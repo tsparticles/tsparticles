@@ -195,7 +195,9 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       minY = position.y - radius,
       maxY = position.y + radius;
 
-    if (trail?.length) {
+    const useTrailBounds = outMode !== OutMode.bounce && outMode !== OutMode.split;
+
+    if (trail?.length && useTrailBounds) {
       const widthPadding = Math.max(
         radius,
         particle.trailMaxWidth ?? defaultWidth,

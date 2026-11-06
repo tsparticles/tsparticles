@@ -1,57 +1,73 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import fs from "node:fs";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import js from "@eslint/js";
-import jsdoc from "eslint-plugin-jsdoc";
-import path from "node:path";
-import prettierConfig from "eslint-config-prettier/flat";
-import prettierPlugin from "eslint-plugin-prettier";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import stylistic from "@stylistic/eslint-plugin";
 import tsdoc from "eslint-plugin-tsdoc";
 import tseslint from "typescript-eslint";
 
-const consumerDir = process.cwd(),
-  consumerTsconfig = path.resolve(consumerDir, "tsconfig.json"),
-  parserProject = fs.existsSync(consumerTsconfig) ? consumerTsconfig : undefined,
-  strictTypeCheckedConfigs = tseslint.configs.strictTypeChecked as unknown[],
-  stylisticTypeCheckedConfigs = tseslint.configs.stylisticTypeChecked as unknown[],
-  tsParticlesConfig = {
-    plugins: {
-      "@stylistic": stylistic,
-      "@typescript-eslint": tseslint.plugin,
-      jsdoc,
-      tsdoc,
-      prettier: prettierPlugin,
-    },
+const tsFiles = ["**/*.{ts,tsx,mts,cts}"],
+  jsFiles = ["**/*.{js,jsx,mjs,cjs}"],
+  // process.cwd() is intentional: this is a shared config, the consumer's tsconfig is the one that matters
+  hasTsconfig = existsSync(join(process.cwd(), "tsconfig.json"));
+
+export default defineConfig([
+  globalIgnores(["dist", "build", "coverage", "node_modules"]),
+
+  js.configs.recommended,
+
+  // --- TypeScript: presets + type-aware parsing ---
+  {
+    files: tsFiles,
+    extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: parserProject
+      parserOptions: hasTsconfig
         ? {
-            project: parserProject,
-            tsconfigRootDir: consumerDir,
+            projectService: {
+              allowDefaultProject: ["*.config.ts"],
+            },
+            tsconfigRootDir: process.cwd(),
           }
         : undefined,
     },
+  },
+
+  // --- JS files: no type-aware rules ---
+  {
+    files: jsFiles,
+    extends: [tseslint.configs.disableTypeChecked],
+  },
+
+  // --- Prettier: disables conflicting rules, must come BEFORE our own rules ---
+  // (eslint-config-prettier turns off `curly` and some stylistic rules, so our rules must be re-applied after it)
+  prettierRecommended,
+
+  // --- Project rules (only overrides/additions relative to the presets) ---
+  {
+    files: tsFiles,
+    plugins: {
+      "@stylistic": stylistic,
+      tsdoc,
+    },
+    linterOptions: {
+      reportUnusedDisableDirectives: "error",
+    },
     rules: {
-      // --- stylistic ---
-      "@stylistic/arrow-parens": ["error", "as-needed"],
-      "@stylistic/arrow-spacing": "error",
-      "@stylistic/comma-spacing": ["error"],
-      "@stylistic/keyword-spacing": "error",
-      "@stylistic/no-extra-semi": "error",
-      "@stylistic/quote-props": ["error", "as-needed"],
-      "@stylistic/quotes": ["error", "double", { allowTemplateLiterals: true, avoidEscape: true }],
-      "@stylistic/semi": ["error", "always"],
-      "@stylistic/space-before-blocks": "error",
-      "@stylistic/space-in-parens": ["error", "never"],
-      "@stylistic/space-infix-ops": "error",
+      // --- stylistic (only rules Prettier does not cover) ---
+      "@stylistic/lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
+      "@stylistic/padding-line-between-statements": [
+        "error",
+        { blankLine: "always", prev: "*", next: "return" },
+        { blankLine: "always", prev: ["const", "let"], next: "*" },
+        { blankLine: "any", prev: ["const", "let"], next: ["const", "let"] },
+      ],
       "@stylistic/spaced-comment": ["error", "always", { block: { balanced: true } }],
 
       // --- typescript-eslint ---
-      "@typescript-eslint/consistent-generic-constructors": ["error", "constructor"],
       "@typescript-eslint/consistent-type-exports": "error",
       "@typescript-eslint/consistent-type-imports": "error",
-      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
       "@typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "no-public" }],
       "@typescript-eslint/member-ordering": [
         "error",
@@ -121,31 +137,26 @@ const consumerDir = process.cwd(),
               "decorated-method",
               "method",
             ],
-            order: "alphabetically",
+            order: "alphabetically-case-insensitive",
           },
         },
       ],
-      "@typescript-eslint/no-empty-function": "error",
-      "@typescript-eslint/no-empty-object-type": "warn",
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-floating-promises": "error",
-      "@typescript-eslint/no-inferrable-types": "error",
+      "@typescript-eslint/no-import-type-side-effects": "error",
       "@typescript-eslint/no-magic-numbers": [
         "error",
         {
-          ignore: [],
+          ignore: [-1, 0, 1, 2],
+          ignoreArrayIndexes: true,
           ignoreClassFieldInitialValues: true,
           ignoreEnums: true,
           ignoreNumericLiteralTypes: true,
           ignoreReadonlyClassProperties: true,
         },
       ],
-      "@typescript-eslint/no-misused-promises": "error",
-      "@typescript-eslint/no-restricted-types": "warn",
-      "@typescript-eslint/no-unnecessary-condition": "error",
+      // intentional downgrade from "error" (strictTypeChecked)
+      "@typescript-eslint/no-empty-object-type": "warn",
+      "@typescript-eslint/no-wrapper-object-types": "warn",
       "@typescript-eslint/no-unnecessary-type-arguments": "off",
-      "@typescript-eslint/no-unnecessary-type-assertion": "error",
-      "@typescript-eslint/no-unused-expressions": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -155,12 +166,6 @@ const consumerDir = process.cwd(),
           varsIgnorePattern: "^_",
         },
       ],
-      "@typescript-eslint/no-useless-constructor": "error",
-      "@typescript-eslint/no-require-imports": "error",
-      "@typescript-eslint/no-wrapper-object-types": "warn",
-      "@typescript-eslint/only-throw-error": "error",
-      "@typescript-eslint/prefer-nullish-coalescing": "error",
-      "@typescript-eslint/prefer-optional-chain": "error",
       "@typescript-eslint/prefer-readonly": "error",
       "@typescript-eslint/restrict-template-expressions": [
         "error",
@@ -179,41 +184,21 @@ const consumerDir = process.cwd(),
         },
       ],
 
-      // --- core rules ---
-      "constructor-super": "error",
+      // --- core rules (not in js.recommended / typescript-eslint presets) ---
       curly: ["error", "all"],
+      eqeqeq: ["error", "always"],
       "no-alert": "error",
-      "no-case-declarations": "error",
       "no-console": "error",
-      "no-debugger": "error",
-      "no-duplicate-case": "error",
-      "no-duplicate-imports": "error",
-      "no-empty": "error",
-      "no-empty-pattern": "error",
-      "no-extra-boolean-cast": "error",
-      "no-func-assign": "error",
+      "no-duplicate-imports": ["error", { allowSeparateTypeImports: true }],
       "no-inner-declarations": "error",
-      "no-irregular-whitespace": "error",
       "no-nested-ternary": "error",
-      "no-prototype-builtins": "error",
-      "no-restricted-syntax": "error",
-      "no-self-assign": "error",
-      "no-this-before-super": "error",
-      "no-unexpected-multiline": "error",
       "no-unneeded-ternary": "error",
-      "no-unreachable": "error",
-      "no-unsafe-finally": "error",
-      "no-unused-labels": "error",
-      "no-useless-catch": "error",
       "no-useless-computed-key": "error",
       "no-useless-concat": "error",
-      "no-useless-escape": "error",
       "no-useless-rename": "error",
       "no-useless-return": "error",
-      "no-var": "error",
       "one-var": ["error", "consecutive"],
       "prefer-arrow-callback": "error",
-      "prefer-const": "error",
       "prefer-object-spread": "error",
       "prefer-template": "error",
       "sort-imports": [
@@ -226,26 +211,24 @@ const consumerDir = process.cwd(),
           memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
         },
       ],
-      "tsdoc/syntax": "warn",
-      "valid-typeof": "error",
       yoda: ["error", "never", { exceptRange: true }],
 
-      // duplicate rules (replaced by @typescript-eslint)
-      "no-empty-function": "off",
-      "no-magic-numbers": "off",
-      "no-unused-expressions": "off",
-      "no-useless-constructor": "off",
+      // --- docs ---
+      "tsdoc/syntax": "warn",
     },
-  } as unknown;
+  },
 
-export default defineConfig([
-  globalIgnores(["dist", "node_modules"]),
-  js.configs.recommended,
-  stylistic.configs.recommended,
-  jsdoc.configs["flat/recommended-typescript"],
-  ...strictTypeCheckedConfigs,
-  ...stylisticTypeCheckedConfigs,
-  tsParticlesConfig,
-  prettierConfig,
-  prettierRecommended,
-] as never);
+  // --- No tsconfig.json found: type-aware rules cannot run, so turn them off for TS files too ---
+  ...(hasTsconfig ? [] : [{ files: tsFiles, extends: [tseslint.configs.disableTypeChecked] }]),
+
+  // --- Tests, scripts and config files ---
+  {
+    files: ["**/*.{test,spec}.{ts,tsx}", "scripts/**", "**/*.config.{ts,js,mjs,cjs}"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-magic-numbers": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "no-console": "off",
+    },
+  },
+]);

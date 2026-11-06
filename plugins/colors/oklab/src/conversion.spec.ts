@@ -21,6 +21,7 @@ describe("OKLab conversion", () => {
   for (const { name, input, expected } of testCases) {
     it(`should convert OKLab(${input.l},${input.aAxis},${input.bAxis}) to ${name}`, () => {
       const result = oklabToRgb(input);
+
       expect(result).toEqual(expected);
     });
   }

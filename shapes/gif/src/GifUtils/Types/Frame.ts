@@ -4,11 +4,6 @@ import type { PlainTextData } from "./PlainTextData.js";
 
 export interface Frame {
   /**
-   * _reserved for future use_ (from packed field in graphics control extension block)
-   */
-  GCreserved: number;
-
-  /**
    * the bitmap data of this frame
    */
   bitmap?: ImageBitmap;
@@ -22,6 +17,11 @@ export interface Frame {
    * disposal method see {@link DisposalMethod}
    */
   disposalMethod: DisposalMethod;
+
+  /**
+   * _reserved for future use_ (from packed field in graphics control extension block)
+   */
+  GCreserved: number;
 
   /**
    * the height of this frame in pixels

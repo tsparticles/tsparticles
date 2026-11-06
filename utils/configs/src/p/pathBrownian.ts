@@ -1,4 +1,4 @@
-import { type ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const angleDeltaFactor = 18,
   options: ISourceOptions = {

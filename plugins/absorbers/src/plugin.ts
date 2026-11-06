@@ -1,5 +1,5 @@
 import { AbsorbersPlugin } from "./AbsorbersPlugin.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { getAbsorbersInstancesManager } from "./getAbsorbersInstancesManager.js";
 
 declare const __VERSION__: string;

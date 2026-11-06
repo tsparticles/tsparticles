@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment */
-import { type Canvas, createCanvas } from "canvas";
+import { type Canvas, createCanvas } from "@napi-rs/canvas";
 
 import { installTransferControlToOffscreen } from "./OffscreenCanvas.js";
 

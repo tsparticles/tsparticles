@@ -172,6 +172,73 @@ describe("Absorbers tests", () => {
     }
   });
 
+  it("should select a new absorber after releasing the mouse", async () => {
+    const container = (await loadAbsorberContainer("absorbers-drag-release", {
+      autoPlay: false,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: false,
+          },
+        },
+      },
+      absorbers: [
+        {
+          ...defaultAbsorberOptions,
+          draggable: true,
+          position: { x: 200, y: 200 },
+        },
+        {
+          ...defaultAbsorberOptions,
+          draggable: true,
+          position: { x: 500, y: 500 },
+        },
+      ],
+    })) as AbsorbersDragTestContainer;
+
+    try {
+      const firstAbsorber = container.getAbsorber?.(0),
+        secondAbsorber = container.getAbsorber?.(1),
+        mouse = container.interactionManager!.interactivityData.mouse;
+
+      expect(firstAbsorber).to.be.not.undefined;
+      expect(secondAbsorber).to.be.not.undefined;
+      expect(container.interactionManager).to.be.not.undefined;
+
+      if (!firstAbsorber || !secondAbsorber) {
+        return;
+      }
+
+      firstAbsorber.position.setTo({ x: 200, y: 200 });
+      secondAbsorber.position.setTo({ x: 500, y: 500 });
+
+      mouse.clicking = true;
+      mouse.downPosition = { x: 200, y: 200 };
+      mouse.position = { x: 300, y: 320 };
+
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+
+      expect(firstAbsorber.position.x).to.equal(300);
+      expect(firstAbsorber.position.y).to.equal(320);
+
+      mouse.clicking = false;
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+
+      mouse.clicking = true;
+      mouse.downPosition = { x: 500, y: 500 };
+      mouse.position = { x: 600, y: 620 };
+
+      container.interactionManager!.externalInteract({ value: 1, factor: 1 });
+
+      expect(firstAbsorber.position.x).to.equal(300);
+      expect(firstAbsorber.position.y).to.equal(320);
+      expect(secondAbsorber.position.x).to.equal(600);
+      expect(secondAbsorber.position.y).to.equal(620);
+    } finally {
+      container.destroy();
+    }
+  });
+
   it("should still add an absorber on an empty space click when the click mode is enabled", async () => {
     const container = (await loadAbsorberContainer("absorbers-click-mode", {
       autoPlay: false,

@@ -141,7 +141,7 @@ export class AbsorbersInstancesManager {
     }
 
     // the absorbed mass is shared between the released particles, minus the drained slice
-    const particleSize = (size * splitMassRatio) / quantity;
+    const particleSize = (size * splitMassRatio) / quantity / container.retina.pixelRatio;
 
     for (let i = defaultIndex; i < quantity; i++) {
       const angle = getRandom() * doublePI;

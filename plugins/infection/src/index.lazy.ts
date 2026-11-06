@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine/lazy";
+import type { Engine } from "@tsparticles/engine/lazy";
 import type { InfectableContainer } from "./Types.js";
 import type { InteractivityEngine } from "@tsparticles/plugin-interactivity/lazy";
 

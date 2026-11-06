@@ -1,6 +1,6 @@
 import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tsparticles/plugin-interactivity";
 import { Connector } from "./Connector.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 

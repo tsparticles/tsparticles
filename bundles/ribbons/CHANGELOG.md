@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+* fixes after AI reviews ([d056b3d](https://github.com/tsparticles/tsparticles/commit/d056b3d30561965cff12b02e6d4b54cf1b8139be))
+* fixes after AI reviews ([cfbf8c7](https://github.com/tsparticles/tsparticles/commit/cfbf8c76a3c159c4ce415c8c1dcb697c463aaf84))
+* fixes after AI reviews ([f6e2dab](https://github.com/tsparticles/tsparticles/commit/f6e2dabc9bd6038f377456239716412ea8ca8cdd))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 **Note:** Version bump only for package @tsparticles/ribbons

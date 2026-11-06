@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/ember",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "Official tsParticles Ember.js Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "keywords": [
     "ember-addon",
@@ -117,7 +117,7 @@
     "qunit-dom": "^3.6.0",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5",
+    "vitest": "^5.1.0",
     "webpack": "^5.112.2"
   },
   "engines": {

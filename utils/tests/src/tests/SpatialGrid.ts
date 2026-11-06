@@ -61,7 +61,7 @@ describe("SpatialGrid tests", () => {
 });
 
 describe("SpatialGrid nested queries", () => {
-  globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+  globalThis.window = TestWindow;
   for (const shape of ["circle", "rectangle"] as const) {
     it(`preserves the outer ${shape} through repeated nested queries`, async () => {
       const container = await tsParticles.load({

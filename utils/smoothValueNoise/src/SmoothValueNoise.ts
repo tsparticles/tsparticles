@@ -111,6 +111,7 @@ export class SmoothValueNoise {
 
   seed(seed: number): void {
     const s = Math.sin(seed) * 10000;
+
     this.#coeffX = fract(s * 15731);
     this.#coeffY = fract(s * 789221);
     this.#coeffZ = fract(s * 1376312589);

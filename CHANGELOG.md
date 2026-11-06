@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/tsparticles/tsparticles/compare/v4.5.1...v4.5.2) (2026-11-05)
+
+### Bug Fixes
+
+* fixed after AI reviews ([3402557](https://github.com/tsparticles/tsparticles/commit/34025572c5d4b9d67b8088dc5841835992626045))
+* fixed after AI reviews ([b6a043a](https://github.com/tsparticles/tsparticles/commit/b6a043a63713bb74412ec408bf8c6de35f40fb08))
+* fixes after AI reviews ([2950455](https://github.com/tsparticles/tsparticles/commit/29504552aa774152483817c2a6b2d478ee02c2c2))
+* fixes after AI reviews ([505e280](https://github.com/tsparticles/tsparticles/commit/505e280e4b75b2094fe76d59485a3913b0ebc0f0))
+* fixes after AI reviews ([0bc6134](https://github.com/tsparticles/tsparticles/commit/0bc61345153b76fa246b30766ff63321b645aa94))
+* fixes after AI reviews ([873d6bd](https://github.com/tsparticles/tsparticles/commit/873d6bd8128595062fd750685a26b1fec10bd4fb))
+* fixes after AI reviews ([acea1bf](https://github.com/tsparticles/tsparticles/commit/acea1bf996666978b69ecd6de51eb14edd36a7b9))
+* fixes after AI reviews ([31c6e5a](https://github.com/tsparticles/tsparticles/commit/31c6e5afedf358e7e09d1a308b184a1b2818079e))
+* fixes after AI reviews ([15574e3](https://github.com/tsparticles/tsparticles/commit/15574e3b0c05e1fa5515a2c0c0ff6cc3229417ff))
+* fixes after AI reviews ([4a7d59a](https://github.com/tsparticles/tsparticles/commit/4a7d59a711fb99dde0f4c5c3a4fc53a7d08f3418))
+* fixes after AI reviews ([7863c85](https://github.com/tsparticles/tsparticles/commit/7863c858576e91d8ca881a9fe02bce725300569f))
+* fixes after AI reviews ([5e4a652](https://github.com/tsparticles/tsparticles/commit/5e4a65282adf7f36c75ce28ee26333a489b9fc54))
+* fixes after AI reviews ([74b3887](https://github.com/tsparticles/tsparticles/commit/74b3887b89c82bdec419f3df15c798439a9bcb10))
+* fixes after AI reviews ([c406d62](https://github.com/tsparticles/tsparticles/commit/c406d625a7a32c06fc02c5122e9e7e2aff3d578a))
+* fixes after AI reviews ([25da6d8](https://github.com/tsparticles/tsparticles/commit/25da6d88bc035e0511915c8853aaf7dedda80e4a))
+* fixes after AI reviews ([f125242](https://github.com/tsparticles/tsparticles/commit/f125242260d32f066c0f25f4fdebc3770e184b1d))
+* fixes after AI reviews ([ec88825](https://github.com/tsparticles/tsparticles/commit/ec8882504179a8bd7c4f86d436dac4c1108d89ec))
+* fixes after AI reviews ([8b9678b](https://github.com/tsparticles/tsparticles/commit/8b9678b02e7c85b59a4472b043f26ff0e8659161))
+* fixes after AI reviews ([db2b1cf](https://github.com/tsparticles/tsparticles/commit/db2b1cf46667b6988fd4bc2887ae2b8f9bc06615))
+* fixes after AI reviews ([ba39bed](https://github.com/tsparticles/tsparticles/commit/ba39bed9811df97169923afaa894e485ef854a6a))
+* fixes after AI reviews ([e0a8f5e](https://github.com/tsparticles/tsparticles/commit/e0a8f5e0764044ceb56437ce1c892ce4eb753637))
+* fixes after AI reviews ([1376c14](https://github.com/tsparticles/tsparticles/commit/1376c14c08e0abbe065fcf1ee8fce05b7c1931e1))
+* fixes after AI reviews ([d056b3d](https://github.com/tsparticles/tsparticles/commit/d056b3d30561965cff12b02e6d4b54cf1b8139be))
+* fixes after AI reviews ([84927c6](https://github.com/tsparticles/tsparticles/commit/84927c6bb6523398f283a6273758adc3c616a3d6))
+* fixes after AI reviews ([389323b](https://github.com/tsparticles/tsparticles/commit/389323bd95fb0a88e3636055af9469f0150fe96c))
+* fixes after AI reviews ([a6790e1](https://github.com/tsparticles/tsparticles/commit/a6790e192dd731ce943166dce636f399add15ea1))
+* fixes after AI reviews ([65e664c](https://github.com/tsparticles/tsparticles/commit/65e664c039bfb68463242df877d3f3bb38508825))
+* fixes after AI reviews ([d8de9a5](https://github.com/tsparticles/tsparticles/commit/d8de9a5af46173f30809860db390cbcd2202f509))
+* fixes after AI reviews ([f82fbfa](https://github.com/tsparticles/tsparticles/commit/f82fbfad468395e6b0ea1081f105392d7d491f84))
+* fixes after AI reviews ([1975dbe](https://github.com/tsparticles/tsparticles/commit/1975dbedbb1be445db53794ca86ed3924843d798))
+* fixes after AI reviews ([cfbf8c7](https://github.com/tsparticles/tsparticles/commit/cfbf8c76a3c159c4ce415c8c1dcb697c463aaf84))
+* fixes after AI reviews ([f6e2dab](https://github.com/tsparticles/tsparticles/commit/f6e2dabc9bd6038f377456239716412ea8ca8cdd))
+* fixes after AI reviews ([34b1547](https://github.com/tsparticles/tsparticles/commit/34b1547e57a03d22cddf61f839a421587c95ade8))
+* fixes after AI reviews ([d4f481d](https://github.com/tsparticles/tsparticles/commit/d4f481dc119574e6e5216257b317163c5ff019c1))
+* fixes after AI reviews ([59df34f](https://github.com/tsparticles/tsparticles/commit/59df34f8c9fcdf2507a46e7692ff0a4f2821bc3a))
+* fixes after AI reviews ([81be838](https://github.com/tsparticles/tsparticles/commit/81be83892964d7d540d575d8278faa74cb10d8a8))
+* fixes after AI reviews ([54ebd32](https://github.com/tsparticles/tsparticles/commit/54ebd32cab83ecce224b6df5f39d17e8fe222fc4))
+* fixes after AI reviews ([feb0028](https://github.com/tsparticles/tsparticles/commit/feb002871091228db8d77c48a19430277e030111))
+* fixes after AI reviews ([f1d51b3](https://github.com/tsparticles/tsparticles/commit/f1d51b3ca3a42441c528403db7cf055c3a35d022))
+* fixes after AI reviews ([8d0ba04](https://github.com/tsparticles/tsparticles/commit/8d0ba0446fdccec85393b8fc5b1e0045508b251c))
+* fixes after AI reviews ([c6d317f](https://github.com/tsparticles/tsparticles/commit/c6d317fca7a60cde6f8d6680f6455d70ab950a97))
+
 ## [4.5.1](https://github.com/tsparticles/tsparticles/compare/v4.5.0...v4.5.1) (2026-11-02)
 
 ### Bug Fixes

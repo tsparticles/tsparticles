@@ -22,6 +22,7 @@ const paletteMap = palettes
   .filter((p): p is ISourceOptions & { key: string } => !!p.key)
   .reduce<Record<string, ISourceOptions>>((acc, p) => {
     acc[p.key] = p;
+
     return acc;
   }, {});
 

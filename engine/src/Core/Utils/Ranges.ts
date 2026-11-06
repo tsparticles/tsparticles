@@ -198,6 +198,7 @@ export class Rectangle extends BaseRange {
     this._resetPosition(x, y);
     this.size.width = width;
     this.size.height = height;
+
     return this;
   }
 }

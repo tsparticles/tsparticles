@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/nuxt4-demo",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "private": true,
   "type": "module",
   "repository": {
@@ -23,27 +23,27 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.1.0",
     "@eslint/js": "^10.0.1",
     "@tsparticles/engine": "workspace:*",
     "@tsparticles/nuxt4": "workspace:*",
     "@tsparticles/vue3": "workspace:*",
     "@typescript-eslint/parser": "^8.72.1",
-    "@vue/reactivity": "^3.5.41",
-    "@vue/runtime-core": "^3.5.41",
-    "@vue/runtime-dom": "^3.5.41",
-    "@vue/shared": "^3.5.41",
+    "@vue/reactivity": "^3.5.44",
+    "@vue/runtime-core": "^3.5.44",
+    "@vue/runtime-dom": "^3.5.44",
+    "@vue/shared": "^3.5.44",
     "consola": "^3.4.2",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.10.0",
-    "globals": "^17.11.0",
-    "lint-staged": "^17.3.0",
-    "nuxt": "^4.5.2",
+    "eslint-plugin-vue": "^10.12.0",
+    "globals": "^17.14.0",
+    "lint-staged": "^17.6.0",
+    "nuxt": "^4.6.4",
     "prettier": "^3.9.10",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.3",
-    "vue": "^3.5.41",
+    "vue": "^3.5.44",
     "vue-eslint-parser": "^10.4.1"
   }
 }

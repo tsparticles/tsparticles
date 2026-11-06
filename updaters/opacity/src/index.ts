@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { OpacityUpdater } from "./OpacityUpdater.js";
 
 declare const __VERSION__: string;

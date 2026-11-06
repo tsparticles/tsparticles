@@ -1,4 +1,4 @@
-import { type Container, type IContainerPlugin, type IPlugin } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin } from "@tsparticles/engine";
 
 export class OverlapPlugin implements IPlugin {
   id = "overlap";

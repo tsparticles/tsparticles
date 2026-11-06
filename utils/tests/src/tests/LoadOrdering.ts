@@ -24,7 +24,7 @@ function loadContainer(id: string): Promise<Container | undefined> {
 
 describe("container load ordering", () => {
   it("discards an overlapping load for the same id instead of replacing the newer container", async () => {
-    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    globalThis.window = TestWindow;
 
     const one = 1,
       firstIndex = 0;
@@ -57,7 +57,7 @@ describe("container load ordering", () => {
   });
 
   it("returns the container of sequential loads for the same id", async () => {
-    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    globalThis.window = TestWindow;
 
     containerId++;
 

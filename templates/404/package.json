@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/template-404",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -22,6 +22,6 @@
     "@tsparticles/slim": "workspace:*"
   },
   "devDependencies": {
-    "fs-extra": "^11.3.4"
+    "fs-extra": "^11.4.1"
   }
 }

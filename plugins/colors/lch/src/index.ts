@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { LchColorManager } from "./LchColorManager.js";
 
 declare const __VERSION__: string;

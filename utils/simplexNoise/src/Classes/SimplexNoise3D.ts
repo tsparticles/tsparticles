@@ -6,17 +6,16 @@ import { shuffleSeed } from "../utils.js";
 const third = 1 / 3;
 
 export class SimplexNoise3D {
-  readonly #NORM_3D;
-  readonly #SQUISH_3D;
-  readonly #STRETCH_3D;
-
   readonly #base3D;
   readonly #gradients3D;
   #lookup: Contribution3D[];
   readonly #lookupPairs3D;
+  readonly #NORM_3D;
   readonly #p3D;
   #perm: Uint8Array;
   #perm3D: Uint8Array;
+  readonly #SQUISH_3D;
+  readonly #STRETCH_3D;
 
   constructor() {
     this.#NORM_3D = 1 / 103;
@@ -523,6 +522,7 @@ export class SimplexNoise3D {
         value += attn * attn * attn * attn * valuePart;
       }
     }
+
     return value * NORM_3D;
   }
 

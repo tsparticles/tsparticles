@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadBasic } from "@tsparticles/basic";
 import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
 import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";

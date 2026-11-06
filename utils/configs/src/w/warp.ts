@@ -95,4 +95,5 @@ const options: ISourceOptions = {
     color: "#0d47a1",
   },
 };
+
 export default options;

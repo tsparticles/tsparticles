@@ -1,5 +1,5 @@
 import type { ISide } from "./ISide.js";
-import { type Particle } from "@tsparticles/engine";
+import type { Particle } from "@tsparticles/engine";
 import { PolygonDrawerBase } from "./PolygonDrawerBase.js";
 
 const sides = 3,

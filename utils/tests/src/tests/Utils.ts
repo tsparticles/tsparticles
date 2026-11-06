@@ -70,11 +70,13 @@ describe("Utils", () => {
 
     it("should return true when value is number contained in numeric array", () => {
       const value = numericArray[4];
+
       expect(isInArray(value, numericArray)).to.be.true;
     });
 
     it("should return false when value is number not contained in numeric array", () => {
       const value = Math.SQRT2;
+
       expect(isInArray(value, numericArray)).to.be.false;
     });
 
@@ -90,11 +92,13 @@ describe("Utils", () => {
 
     it("should return true when value is string contained in numeric array", () => {
       const value = stringArray[0];
+
       expect(isInArray(value, stringArray)).to.be.true;
     });
 
     it("should return false when value is string not contained in numeric array", () => {
       const value = "sit";
+
       expect(isInArray(value, stringArray)).to.be.false;
     });
 
@@ -166,6 +170,7 @@ describe("Utils", () => {
 
     it("should return the requested numeric item when specifying index", () => {
       const index = 3;
+
       expect(itemFromArray(numericArray, index)).to.equal(numericArray[index]);
     });
 
@@ -177,6 +182,7 @@ describe("Utils", () => {
 
     it("should return the requested string item when specifying index", () => {
       const index = 1;
+
       expect(itemFromArray(stringArray, index)).to.equal(stringArray[index]);
     });
 
@@ -188,6 +194,7 @@ describe("Utils", () => {
 
     it("should return the requested object when specifying index", () => {
       const index = 1;
+
       expect(itemFromArray(objectArray, index)).to.eql(objectArray[index]);
     });
   });

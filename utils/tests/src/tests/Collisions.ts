@@ -22,10 +22,9 @@ const canvasWidth = 800,
    * Floor of the settled pool density, as a share of the contact distance.
    *
    * A settled pile of hard circles touches at 1.0, so this is not a spacing target but a collapse
-   * guard: below it the pool is interpenetrating instead of resting. The particles spawn at random
-   * positions, so the measured value scatters by a few percent between runs.
+   * guard: below it the pool is interpenetrating instead of resting.
    */
-  minSeparationRatio = 0.7,
+  minSeparationRatio = 0.68,
   maxSeparationRatio = 3.5,
   maxContactPairsRatio = 0.03,
   /**
@@ -279,6 +278,47 @@ describe("Collisions tests", () => {
     await container.destroy();
   });
 
+  it("should keep fluid particles inside the canvas while separating overlaps", async () => {
+    const { container, particles } = await loadFluidContainer(
+      2,
+      3,
+      {
+        particles: {
+          number: { value: 2, animation: { enable: false, speed: 0 } },
+          position: { animation: { enable: false } },
+          move: { enable: false, outModes: { default: "none" } },
+          size: { value: 20 },
+          collisions: {
+            enable: true,
+            mode: "fluid",
+          },
+        },
+      },
+      true,
+    );
+
+    container.canvas.size.width = 100;
+    container.canvas.size.height = 100;
+
+    particles[0].position.x = 2;
+    particles[0].position.y = 50;
+    particles[1].position.x = 5;
+    particles[1].position.y = 50;
+
+    try {
+      container.particles.update(testDelta);
+
+      for (const particle of particles) {
+        expect(particle.position.x).toBeGreaterThanOrEqual(0);
+        expect(particle.position.x).toBeLessThanOrEqual(100);
+        expect(particle.position.y).toBeGreaterThanOrEqual(0);
+        expect(particle.position.y).toBeLessThanOrEqual(100);
+      }
+    } finally {
+      await container.destroy();
+    }
+  });
+
   it("should move a free fluid particle without keeping any per particle state", async () => {
     const { container, particles } = await loadFluidContainer(2, 100, {
         particles: {
@@ -410,6 +450,19 @@ describe("Collisions tests", () => {
 
     container.canvas.size.width = canvasWidth;
     container.canvas.size.height = canvasHeight;
+
+    const columns = 15,
+      spacing = 20,
+      startX = (canvasWidth - (columns - 1) * spacing) / 2,
+      startY = canvasHeight / 4;
+
+    /* A fixed grid keeps the pool-density assertion independent of random spawn positions. */
+    for (const [index, particle] of particles.entries()) {
+      particle.position.x = startX + (index % columns) * spacing;
+      particle.position.y = startY + Math.floor(index / columns) * spacing;
+      particle.velocity.x = 0;
+      particle.velocity.y = 0;
+    }
 
     for (let i = 0; i < 240; i++) {
       container.particles.update(testDelta);

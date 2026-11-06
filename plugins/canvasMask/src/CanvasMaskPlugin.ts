@@ -1,5 +1,5 @@
 import type { CanvasMaskOptions, ICanvasMaskOptions } from "./types.js";
-import { type Container, type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import { CanvasMask } from "./Options/Classes/CanvasMask.js";
 
 /**

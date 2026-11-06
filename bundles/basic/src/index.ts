@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadBlendPlugin } from "@tsparticles/plugin-blend";
 import { loadCircleShape } from "@tsparticles/shape-circle";
 import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";

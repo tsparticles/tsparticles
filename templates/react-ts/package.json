@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles-typescript",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "deprecated": "Use @tsparticles/template-scaffold instead. Create React App is deprecated. Run `npm create tsparticles` for Vite-based templates.",
   "description": "Official TypeScript React tsParticles template",
   "keywords": [
@@ -97,13 +97,13 @@
     "@types/node": "^26.6.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "tslib": "^2.8.1",
+    "tslib": "^2.9.1",
     "tsparticles": "workspace:*",
     "typescript": "^6.0.2",
     "web-vitals": "^5.2.0"
   },
   "devDependencies": {
-    "fs-extra": "^11.3.4"
+    "fs-extra": "^11.4.1"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

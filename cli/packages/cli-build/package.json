@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli-build",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@tsparticles/prettier-config": "workspace:*",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "description": "tsParticles CLI - Build command only (no circular dependencies)",
   "author": "Matteo Bruni <matteo.bruni@me.com>"

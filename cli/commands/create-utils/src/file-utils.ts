@@ -93,6 +93,7 @@ export async function getRepositoryUrl(): Promise<string> {
     exec("git config --get remote.origin.url", (error, stdout) => {
       if (error) {
         resolve("");
+
         return;
       }
 

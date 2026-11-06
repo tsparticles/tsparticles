@@ -2,7 +2,7 @@ import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tspa
 export type { DragContainer, DragMode, IDragMode } from "./Types.js";
 export { Drag } from "./Options/Classes/Drag.js";
 import { Dragger } from "./Dragger.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 export type { IDrag } from "./Options/Interfaces/IDrag.js";
 
 declare const __VERSION__: string;

@@ -77,6 +77,18 @@ describe("Container lifecycle", () => {
     container.destroy();
   });
 
+  it("keeps the container lifecycle working with an invalid background selector", async () => {
+    const container = await loadContainer({ background: { element: "[" } });
+
+    try {
+      await container.refresh();
+
+      expect(container.destroyed).to.be.false;
+    } finally {
+      container.destroy();
+    }
+  });
+
   it("stops, clears and restarts without throwing", async () => {
     const particleCount = 4,
       container = await loadContainer({ particles: { number: { value: particleCount } } });

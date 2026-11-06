@@ -23,6 +23,7 @@ describe("HwbColorManager", () => {
     it(`should convert HWB(${input.h},${input.w}%,${input.b}%) to ${name}`, () => {
       const color: IColor = { value: { hwb: input } },
         result = manager.handleColor(color);
+
       expect(result).toMatchObject(expected);
     });
   }

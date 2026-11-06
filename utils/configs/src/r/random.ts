@@ -96,4 +96,5 @@ const options: ISourceOptions = {
     size: "cover",
   },
 };
+
 export default options;

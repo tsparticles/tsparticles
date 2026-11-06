@@ -517,6 +517,11 @@ export class RenderManager {
     });
   }
 
+  /** Updates the cached background element from the effective container options */
+  updateBackgroundElement(): void {
+    this.#resolveBackgroundElement();
+  }
+
   #applyPostDrawUpdaters(particle: Particle): void {
     for (const updater of this.#postDrawUpdaters) {
       updater.afterDraw?.(particle);
@@ -800,7 +805,18 @@ export class RenderManager {
 
     if (typeof background.element === "string") {
       if (typeof document !== "undefined") {
-        const node = document.querySelector(background.element);
+        let node: Element | null;
+
+        try {
+          node = document.querySelector(background.element);
+        } catch {
+          this.#warnOnce(
+            "background-element-invalid-selector",
+            `Background element selector "${background.element}" is invalid`,
+          );
+
+          return;
+        }
 
         if (node && this.#isSupportedElement(node)) {
           this.#backgroundElement = node as CanvasImageSource;

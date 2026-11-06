@@ -1,7 +1,7 @@
 /**
  * [[include:pjsMigration.md]]
  */
-import { type Container, type Engine } from "@tsparticles/engine/lazy";
+import type { Container, Engine } from "@tsparticles/engine/lazy";
 import type { IParticlesJS } from "./VincentGarreau/IParticlesJS.js";
 import { MBParticles } from "./marcbruederlin/Particles.js";
 import { initParticlesJS } from "./VincentGarreau/particles.js";

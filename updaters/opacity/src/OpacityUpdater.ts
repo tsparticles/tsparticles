@@ -8,7 +8,7 @@ import {
   loadOptionProperty,
   percentDenominator,
 } from "@tsparticles/engine";
-import { type IOpacityParticlesOptions, type OpacityParticle, type OpacityParticlesOptions } from "./Types.js";
+import type { IOpacityParticlesOptions, OpacityParticle, OpacityParticlesOptions } from "./Types.js";
 import { initParticleNumericAnimationValue, updateAnimation } from "@tsparticles/animation-utils";
 import { Opacity } from "./Options/Classes/Opacity.js";
 

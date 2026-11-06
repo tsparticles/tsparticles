@@ -1,4 +1,4 @@
-import { type IParticlesOptions, type Particle, type ParticlesOptions } from "@tsparticles/engine";
+import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { ISize } from "./Options/Interfaces/ISize.js";
 import type { Size } from "./Options/Classes/Size.js";
 

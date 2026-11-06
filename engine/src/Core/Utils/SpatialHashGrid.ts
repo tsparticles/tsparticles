@@ -14,8 +14,8 @@ interface RangeBounds {
  * SpatialHashGrid for fast particle lookup
  */
 export class SpatialHashGrid {
-  #cellSize: number;
   readonly #cells = new Map<string, Particle[]>();
+  #cellSize: number;
   readonly #circlePool: Circle[] = [];
   #circlePoolIdx;
   #pendingCellSize?: number;

@@ -1,5 +1,5 @@
 import { type InteractivityEngine, ensureInteractivityPluginLoaded } from "@tsparticles/plugin-interactivity";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import type { InfectableContainer } from "./Types.js";
 import { InfectionPlugin } from "./InfectionPlugin.js";
 import { ParticlesInfecter } from "./ParticlesInfecter.js";

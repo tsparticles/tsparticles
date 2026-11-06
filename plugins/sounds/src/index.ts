@@ -1,4 +1,4 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { SoundsPlugin } from "./SoundsPlugin.js";
 
 declare const __VERSION__: string;

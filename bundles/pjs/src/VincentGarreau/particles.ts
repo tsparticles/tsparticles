@@ -126,16 +126,16 @@ const defaultMinOpacity = 0,
     engine: InteractivityEngine,
   ): {
     /**
-     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
-     * The particles.js compatibility dom array
-     */
-    pJSDom: Container[];
-
-    /**
      * @deprecated this method is obsolete, please use the new `tsParticles.load`
      * The particles.js compatibility instance
      */
     particlesJS: IParticlesJS;
+
+    /**
+     * @deprecated this method is obsolete, please use the new `tsParticles.dom`
+     * The particles.js compatibility dom array
+     */
+    pJSDom: Container[];
   } => {
     /**
      * Loads the provided options to create a {@link Container} object.

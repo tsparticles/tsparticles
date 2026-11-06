@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RecursivePartial, isNull, loadProperty } from "@tsparticles/engine";
-import { type ITrail } from "../Interfaces/ITrail.js";
+import type { ITrail } from "../Interfaces/ITrail.js";
 import { TrailFill } from "./TrailFill.js";
 
 /**

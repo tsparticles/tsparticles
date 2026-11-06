@@ -132,6 +132,11 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       emitters = this.#instancesManager.getArray(container),
       updateEmitters = !container.plugins.some(plugin => plugin instanceof EmittersPluginInstance);
 
+    if (!interactivityData.mouse.clicking) {
+      this.#dragging = false;
+      this.#draggingEmitter = undefined;
+    }
+
     for (const emitter of emitters) {
       if (emitter.options.draggable && !emitter.options.domId) {
         const mouse = interactivityData.mouse;
@@ -147,9 +152,6 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
               this.#draggingEmitter = emitter;
             }
           }
-        } else {
-          this.#dragging = false;
-          this.#draggingEmitter = undefined;
         }
 
         if (this.#dragging && this.#draggingEmitter === emitter && mouse.position) {
@@ -174,6 +176,15 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
       options = container.actualOptions,
       mouse = interactivityData.mouse,
       events = (particle?.interactivity ?? options.interactivity).events;
+
+    if (!mouse.clicking && this.#dragging) {
+      this.#dragging = false;
+      this.#draggingEmitter = undefined;
+    }
+
+    if (this.#dragging) {
+      return true;
+    }
 
     if (
       mouse.clicking &&

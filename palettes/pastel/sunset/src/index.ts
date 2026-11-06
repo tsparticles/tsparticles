@@ -1,6 +1,7 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 import { options } from "./options.js";
 const paletteName = "pastel-sunset";
+
 /**
  * @param engine - The engine to load the shape in
  */

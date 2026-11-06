@@ -1,10 +1,4 @@
-import {
-  type Container,
-  type Engine,
-  type IContainerPlugin,
-  type IPlugin,
-  type RecursivePartial,
-} from "@tsparticles/engine";
+import type { Container, Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types.js";
 import { mouseDownEvent, touchStartEvent } from "./constants.js";
 import { Sounds } from "./Options/Classes/Sounds.js";

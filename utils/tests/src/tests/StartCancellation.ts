@@ -13,7 +13,7 @@ let id = 0;
 async function loadStoppedContainer(): Promise<Container> {
   vi.useFakeTimers();
   try {
-    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    globalThis.window = TestWindow;
     id += 1;
 
     const loading = tsParticles.load({
@@ -23,6 +23,7 @@ async function loadStoppedContainer(): Promise<Container> {
     });
 
     let loaded = false;
+
     void loading.then(() => {
       loaded = true;
     });

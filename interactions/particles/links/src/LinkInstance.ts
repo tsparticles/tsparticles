@@ -161,6 +161,7 @@ export class LinkInstance implements IContainerPlugin {
     this.#freqs.links.clear();
     this.#freqs.triangles.clear();
     this.#colorCache.clear();
+
     return Promise.resolve();
   }
 

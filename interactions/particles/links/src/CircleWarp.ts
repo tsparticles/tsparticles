@@ -26,7 +26,9 @@ export class CircleWarp extends Circle {
    * @returns true if point is inside the range, false otherwise
    */
   override contains(point: ICoordinates): boolean {
-    if (super.contains(point)) return true;
+    if (super.contains(point)) {
+      return true;
+    }
 
     const { width, height } = this.#canvasSize,
       { x, y } = point;
@@ -50,7 +52,9 @@ export class CircleWarp extends Circle {
    * @returns true if range intersects, false otherwise
    */
   override intersects(range: Rectangle | Circle): boolean {
-    if (super.intersects(range)) return true;
+    if (super.intersects(range)) {
+      return true;
+    }
 
     const { width, height } = this.#canvasSize,
       pos = range.position,
@@ -82,7 +86,9 @@ export class CircleWarp extends Circle {
         shiftedRange = new Rectangle(shiftedPos.x, shiftedPos.y, rect.size.width, rect.size.height);
       }
 
-      if (super.intersects(shiftedRange)) return true;
+      if (super.intersects(shiftedRange)) {
+        return true;
+      }
     }
 
     return false;
@@ -109,10 +115,18 @@ export class CircleWarp extends Circle {
     const xShifts = [originPoint.x],
       yShifts = [originPoint.y];
 
-    if (crossesLeft) xShifts.push(width);
-    if (crossesRight) xShifts.push(-width);
-    if (crossesTop) yShifts.push(height);
-    if (crossesBottom) yShifts.push(-height);
+    if (crossesLeft) {
+      xShifts.push(width);
+    }
+    if (crossesRight) {
+      xShifts.push(-width);
+    }
+    if (crossesTop) {
+      yShifts.push(height);
+    }
+    if (crossesBottom) {
+      yShifts.push(-height);
+    }
 
     const particles = new Set<Particle>();
 

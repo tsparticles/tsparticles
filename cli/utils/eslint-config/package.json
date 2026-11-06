@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/eslint-config",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "tsParticles default ESLint Configuration (ESLint 10 + Flat Config)",
   "type": "module",
   "main": "dist/eslint.config.js",
@@ -40,7 +40,6 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tsparticles/prettier-config": "workspace:*",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^65.4.2",
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-tsdoc": "^0.5.4",
     "jiti": "^2.7.0",

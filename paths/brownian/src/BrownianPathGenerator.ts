@@ -2,7 +2,7 @@
 import { type Container, Vector, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { BrownianPathParticle } from "./BrownianPathParticle.js";
 import type { IBrownianPathOptions } from "./IBrownianPathOptions.js";
-import { type IMovePathGenerator } from "@tsparticles/plugin-move";
+import type { IMovePathGenerator } from "@tsparticles/plugin-move";
 
 /** Brownian motion path generator plugin */
 export class BrownianPathGenerator implements IMovePathGenerator {

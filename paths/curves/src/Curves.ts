@@ -28,7 +28,9 @@ export function CurvesPathGen(
 
   let globAmplitude = 0;
 
-  if (nbHarmonics < 1) nbHarmonics = 1;
+  if (nbHarmonics < 1) {
+    nbHarmonics = 1;
+  }
 
   for (let kh = 1; kh <= nbHarmonics; ++kh) {
     arP0[kh] = randomFunc();

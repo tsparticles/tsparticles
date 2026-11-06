@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/mcp-server",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "MCP server for tsParticles - generate options from natural language and suggest required plugins",
   "homepage": "https://particles.js.org",
   "type": "module",
@@ -53,6 +53,6 @@
     "@types/node": "^26.6.6",
     "eslint": "^10.14.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }

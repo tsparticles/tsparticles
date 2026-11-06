@@ -57,6 +57,7 @@ describe.each(["window", "observer"])("resize listener lifecycle: %s", mode => {
       };
 
     listeners.addListeners();
+
     return { listeners, resize, windowResize, disconnect };
   }
 
@@ -108,7 +109,7 @@ describe.each(["window", "observer"])("resize listener lifecycle: %s", mode => {
 
 describe("stopped container resize", () => {
   it("does not process a resize queued before stop", async () => {
-    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    globalThis.window = TestWindow;
     vi.stubGlobal("ResizeObserver", undefined);
     const container = await tsParticles.load({
       id: "pending-resize-stop",
