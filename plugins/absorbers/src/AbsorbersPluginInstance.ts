@@ -263,6 +263,6 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
     particle.absorberOrbit.length = Math.max(minRadius, orbitRadius + radial);
     particle.absorberOrbit.angle +=
-      (moveSpeed + tangential * container.retina.reduceFactor) * (identity / maxDegreeAngle);
+      (moveSpeed + tangential) * container.retina.reduceFactor * (identity / maxDegreeAngle);
   }
 }
