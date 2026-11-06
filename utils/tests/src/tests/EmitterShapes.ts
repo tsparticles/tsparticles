@@ -28,6 +28,7 @@ interface RandomPositionData {
 interface ShapeLike {
   position: Coords;
   size: Dims;
+  checkContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
   init(): Promise<void>;
   draw(context: OffscreenCanvasRenderingContext2D): void;
   randomPosition(): RandomPositionData | null;
@@ -317,6 +318,7 @@ describe("Emitter shapes", async () => {
       const shape = generateShape("path", true, pathOptions);
 
       await shape.init();
+      shape.checkContext.isPointInPath = () => false;
 
       expect(shape.randomPosition()).to.be.null;
     }, 30000);

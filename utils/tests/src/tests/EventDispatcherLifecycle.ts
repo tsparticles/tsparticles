@@ -7,7 +7,7 @@ import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 describe("event listener removal during dispatch", () => {
   it("notifies remaining listeners when a one-shot listener removes itself", async () => {
-    globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+    globalThis.window = TestWindow;
     const container = await tsParticles.load({
       id: "self-removing-container-listener",
       element: createCustomCanvas(800, 600) as unknown as HTMLCanvasElement,
