@@ -21,11 +21,14 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 const instances = new Map<string, FireworksInstance | Promise<FireworksInstance | undefined>>();
 
 /**
- * @param id
+ * @param id - The cache key
+ * @param instance - The instance expected to be cached
  * @internal
  */
-export function deleteFireworksInstance(id: string): void {
-  instances.delete(id);
+export function deleteFireworksInstance(id: string, instance: FireworksInstance): void {
+  if (instances.get(id) === instance) {
+    instances.delete(id);
+  }
 }
 
 /**

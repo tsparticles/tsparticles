@@ -25,7 +25,7 @@ export class FireworksInstance {
   destroy(): void {
     this.#container.destroy();
 
-    deleteFireworksInstance(this.#id);
+    deleteFireworksInstance(this.#id, this);
   }
 
   /** Pauses the fireworks animation */
