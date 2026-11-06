@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { type Container, tsParticles } from "@tsparticles/engine";
-import { ImageData as CanvasImageData } from "canvas";
+import { ImageData as CanvasImageData } from "@napi-rs/canvas";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";

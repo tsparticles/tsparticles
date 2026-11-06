@@ -1,9 +1,9 @@
-import { type Canvas, createCanvas } from "canvas";
+import { type Canvas, createCanvas } from "@napi-rs/canvas";
 
 const zeroValue = 0;
 
 /**
- * Minimal OffscreenCanvas test double backed by node-canvas.
+ * Minimal OffscreenCanvas test double backed by napi-rs canvas.
  */
 export class TestOffscreenCanvas {
   readonly #canvas: Canvas;

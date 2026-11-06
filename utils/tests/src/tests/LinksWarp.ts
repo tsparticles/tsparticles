@@ -87,7 +87,7 @@ async function checkLinks(
 }
 
 describe("Warped links", () => {
-  globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+  globalThis.window = TestWindow;
   for (const [name, p1, p2] of [
     ["left", { x: 5, y: 300 }, { x: 795, y: 300 }],
     ["right", { x: 795, y: 300 }, { x: 5, y: 300 }],

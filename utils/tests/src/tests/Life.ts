@@ -13,7 +13,7 @@ interface LifeFixture {
   updater: LifeUpdater;
 }
 
-globalThis.window = TestWindow as unknown as Window & typeof globalThis;
+globalThis.window = TestWindow;
 let id = 0;
 
 /**

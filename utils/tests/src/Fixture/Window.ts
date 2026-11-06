@@ -2,11 +2,7 @@ import { type DOMWindow, JSDOM } from "jsdom";
 
 import { TestOffscreenCanvas, installTransferControlToOffscreen } from "./OffscreenCanvas.js";
 
-type TestWindowWithOffscreen = DOMWindow & {
-  OffscreenCanvas?: typeof TestOffscreenCanvas;
-};
-
-const testWindow = new JSDOM("").window as TestWindowWithOffscreen;
+const testWindow: DOMWindow = new JSDOM("").window;
 
 Object.defineProperty(testWindow, "OffscreenCanvas", {
   configurable: true,
