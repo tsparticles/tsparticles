@@ -26,8 +26,19 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
 
+      - name: Fetch target base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${BASE_REF}:refs/remotes/upstream/${BASE_REF}"
+
       - name: Derive SHAs for nx affected
         uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
+        with:
+          main-branch-name: ${{ github.event.pull_request.base.ref || 'main' }}
+          remote: ${{ github.event_name == 'pull_request' && 'upstream' || 'origin' }}
 
       - name: Ensure NX_BASE is available
         if: github.event_name == 'pull_request' && env.NX_BASE == ''
@@ -66,8 +77,19 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
 
+      - name: Fetch target base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${BASE_REF}:refs/remotes/upstream/${BASE_REF}"
+
       - name: Derive SHAs for nx affected
         uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
+        with:
+          main-branch-name: ${{ github.event.pull_request.base.ref || 'main' }}
+          remote: ${{ github.event_name == 'pull_request' && 'upstream' || 'origin' }}
 
       - name: Ensure NX_BASE is available
         if: github.event_name == 'pull_request' && env.NX_BASE == ''
