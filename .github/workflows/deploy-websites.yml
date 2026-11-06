@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: '26'
 
       - name: Initialize Nx Cloud or fall back to local
         run: |
