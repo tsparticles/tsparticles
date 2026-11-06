@@ -51,7 +51,7 @@ export default class Particles extends Component<IParticlesProps> {
 				return;
 			}
 
-			const { id, url, options, loaded, particlesLoaded, container, theme } = this.props;
+			const { id, url, options, loaded, particlesLoaded, container } = this.props;
 
 			const newContainer = await tsParticles.load({ id: id ?? "tsparticles", url, options });
 
@@ -66,6 +66,8 @@ export default class Particles extends Component<IParticlesProps> {
 			if (container) {
 				container.current = newContainer;
 			}
+
+			const theme = this.props.theme;
 
 			if (newContainer && theme) {
 				(newContainer as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
