@@ -1,9 +1,9 @@
 name: Node.js CI
 on:
   push:
-    branches: [main, v4, v3, v2, v1]
+    branches: [main, v5, v4, v3, v2, v1]
   pull_request:
-    branches: [main, v4, v3, v2, v1]
+    branches: [main, v5, v4, v3, v2, v1]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -11,13 +11,13 @@ concurrency:
 
 env:
   NX_VERBOSE_LOGGING: true
-  NODE_VERSION: "24"
+  NODE_VERSION: "26"
   NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
   firebaseToken: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
   NODE_OPTIONS: "--max-old-space-size=4096"
 
 jobs:
-  build-and-deploy:
+  build-node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -26,8 +26,19 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
 
+      - name: Fetch target base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${BASE_REF}:refs/remotes/upstream/${BASE_REF}"
+
       - name: Derive SHAs for nx affected
-        uses: nrwl/nx-set-shas@v5
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
+        with:
+          main-branch-name: ${{ github.event.pull_request.base.ref || 'main' }}
+          remote: ${{ github.event_name == 'pull_request' && 'upstream' || 'origin' }}
 
       - name: Ensure NX_BASE is available
         if: github.event_name == 'pull_request' && env.NX_BASE == ''
@@ -36,7 +47,58 @@ jobs:
           git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
           echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
+        with:
+          cache: true
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Reset Nx Cloud client cache
+        run: rm -rf .nx/cache/cloud
+
+      - name: Prettify README
+        run: pnpm run prettify:ci:readme
+
+      - name: Build packages
+        run: pnpm run build:affected:ci
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: build-node
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          fetch-depth: 0
+
+      - name: Fetch target base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${BASE_REF}:refs/remotes/upstream/${BASE_REF}"
+
+      - name: Derive SHAs for nx affected
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
+        with:
+          main-branch-name: ${{ github.event.pull_request.base.ref || 'main' }}
+          remote: ${{ github.event_name == 'pull_request' && 'upstream' || 'origin' }}
+
+      - name: Ensure NX_BASE is available
+        if: github.event_name == 'pull_request' && env.NX_BASE == ''
+        run: |
+          git remote add upstream "https://github.com/${{ github.repository }}.git" 2>/dev/null || git remote set-url upstream "https://github.com/${{ github.repository }}.git"
+          git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
+          echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
         with:
           cache: true
 

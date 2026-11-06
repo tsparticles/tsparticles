@@ -250,7 +250,11 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
       orbitY = field.center.y + orbitRadius * sin;
 
     // the absorbers override the particle movement, so they have to keep it inside the visible area
-    particle.position.setTo({ x: clamp(orbitX, minRadius, width), y: clamp(orbitY, minRadius, height) });
+    particle.position.setTo({
+      x: clamp(orbitX, minRadius, width),
+      y: clamp(orbitY, minRadius, height),
+      z: particle.position.z,
+    });
 
     // the force is resolved on the orbit axes: outward grows the radius, sideways speeds the turn.
     // absorbers pulling on opposite sides cancel out instead of adding up their magnitude
@@ -259,6 +263,6 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
     particle.absorberOrbit.length = Math.max(minRadius, orbitRadius + radial);
     particle.absorberOrbit.angle +=
-      (moveSpeed + tangential * container.retina.reduceFactor) * (identity / maxDegreeAngle);
+      (moveSpeed + tangential) * container.retina.reduceFactor * (identity / maxDegreeAngle);
   }
 }

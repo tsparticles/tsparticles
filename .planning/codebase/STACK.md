@@ -21,7 +21,7 @@ Sections not explicitly corrected remain historical. [v5 execution plan](../hand
 
 **Environment:**
 
-- Node.js 24 in CI (`actions/setup-node@v6` with `node-version: "24"`) in `.github/workflows/nodejs.yml` and `.github/workflows/npm-publish.yml`.
+- Node.js 26 in CI (`actions/setup-node@v7` with `node-version: "26"`) in `.github/workflows/nodejs.yml` and `.github/workflows/npm-publish.yml`.
 - Browser runtime for published libraries and demos (`engine/package.json` and `bundles/full/package.json` expose browser/cjs/esm outputs).
 
 **Package Manager:**
