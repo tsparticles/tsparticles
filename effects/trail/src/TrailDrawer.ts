@@ -213,22 +213,23 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     }
 
     const strictBounds = outMode === OutMode.destroy,
-      isBounce = outMode === OutMode.bounce || outMode === OutMode.split;
+      isBounce = outMode === OutMode.bounce || outMode === OutMode.split,
+      bouncePosition = isBounce ? particle.getPosition() : position;
 
     if (direction === OutModeDirection.bottom) {
-      return isBounce ? position.y + radius < canvasSize.height : minY <= canvasSize.height;
+      return isBounce ? bouncePosition.y + radius < canvasSize.height : minY <= canvasSize.height;
     }
 
     if (direction === OutModeDirection.left) {
-      return isBounce ? position.x - radius > minBound : maxX >= minBound;
+      return isBounce ? bouncePosition.x - radius > minBound : maxX >= minBound;
     }
 
     if (direction === OutModeDirection.right) {
-      return isBounce ? position.x + radius < canvasSize.width : minX <= canvasSize.width;
+      return isBounce ? bouncePosition.x + radius < canvasSize.width : minX <= canvasSize.width;
     }
 
     if (direction === OutModeDirection.top) {
-      return isBounce ? position.y - radius > minBound : maxY >= minBound;
+      return isBounce ? bouncePosition.y - radius > minBound : maxY >= minBound;
     }
 
     if (!strictBounds) {

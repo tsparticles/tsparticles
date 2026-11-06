@@ -320,6 +320,73 @@ describe("Effects", async () => {
     }
   }, 30000);
 
+  it("uses offset-aware positions for trail bounce and split checks in every direction", async () => {
+    const container = await loadContainer({
+        particles: {
+          number: { value: 1 },
+          effect: { type: "trail" },
+        },
+      }),
+      particle = firstParticle(container),
+      canvasWidth = container.canvas.size.width,
+      canvasHeight = container.canvas.size.height,
+      radius = particle.getRadius(),
+      drawer = container.effectDrawers.get("trail"),
+      directions = [
+        {
+          direction: OutModeDirection.bottom,
+          x: canvasWidth / 2,
+          y: canvasHeight - radius - 1,
+          offsetX: 0,
+          offsetY: 3,
+        },
+        {
+          direction: OutModeDirection.left,
+          x: radius + 1,
+          y: canvasHeight / 2,
+          offsetX: -(radius + 2),
+          offsetY: 0,
+        },
+        {
+          direction: OutModeDirection.right,
+          x: canvasWidth - radius - 1,
+          y: canvasHeight / 2,
+          offsetX: 3,
+          offsetY: 0,
+        },
+        {
+          direction: OutModeDirection.top,
+          x: canvasWidth / 2,
+          y: radius + 1,
+          offsetX: 0,
+          offsetY: -(radius + 2),
+        },
+      ];
+
+    try {
+      for (const outMode of [OutMode.bounce, OutMode.split]) {
+        for (const { direction, x, y, offsetX, offsetY } of directions) {
+          particle.position.x = x;
+          particle.position.y = y;
+          particle.offset.x = offsetX;
+          particle.offset.y = offsetY;
+
+          expect(
+            drawer?.isInsideCanvas?.({
+              canvasSize: container.canvas.size,
+              direction,
+              outMode,
+              particle,
+              radius,
+            }),
+          ).to.be.false;
+        }
+      }
+    } finally {
+      container.destroy(false);
+    }
+  }, 30000);
+
   it("particles effect stores spawn rate and quantity on the particle", async () => {
     const container = await loadContainer({
         particles: {
