@@ -11,7 +11,11 @@ export default defineConfig({
 					return null;
 				}
 
-				const result = await transformAsync(code, { filename: id, babelrc: true });
+				const result = await transformAsync(code, {
+					filename: id,
+					babelrc: true,
+					caller: { name: "vitest", supportsStaticESM: true },
+				});
 
 				return result?.code ? { code: result.code, map: result.map } : null;
 			},
