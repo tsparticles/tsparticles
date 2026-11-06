@@ -95,12 +95,6 @@
 
 			currentContainer = container;
 
-			if (container && theme) {
-				(container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(
-					theme
-				);
-			}
-
 			cb(container);
 		} else {
 			dispatch(particlesLoadedEvent, {

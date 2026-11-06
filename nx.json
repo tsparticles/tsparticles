@@ -86,7 +86,11 @@
       "{projectRoot}/index.*",
       "{projectRoot}/package.json",
       "{projectRoot}/tsconfig*.json",
+      "nodeVersion",
       "sharedGlobals"
+    ],
+    "nodeVersion": [
+      { "runtime": "node --version" }
     ]
   },
   "analytics": true

@@ -469,6 +469,30 @@ describe("Particle", async () => {
       expect(particle.isInsideCanvasForOutMode(OutMode.split, OutModeDirection.right)).to.be.true;
     });
 
+    it("should use the rendered position for bounce bounds", async () => {
+      await container.reset(defaultOptions);
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      const canvasWidth = container.canvas.size.width,
+        radius = particle.getRadius();
+
+      particle.position.x = canvasWidth - radius - 1;
+      particle.offset.x = 2;
+
+      expect(particle.isInsideCanvasForOutMode(OutMode.bounce, OutModeDirection.right)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out, OutModeDirection.right)).to.be.true;
+    });
+
     afterAll(async () => {
       await container.reset();
     });

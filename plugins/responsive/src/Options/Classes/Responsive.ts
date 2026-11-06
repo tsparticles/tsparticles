@@ -8,6 +8,18 @@ import {
 import type { IResponsive } from "../Interfaces/IResponsive.js";
 import { ResponsiveMode } from "../../ResponsiveMode.js";
 
+const preserveElementReference = (source: unknown, destination: unknown): void => {
+  if (typeof source !== "object" || source === null || typeof destination !== "object" || destination === null) {
+    return;
+  }
+
+  const element = (source as { element?: unknown }).element;
+
+  if (element !== undefined && typeof element !== "string") {
+    (destination as { element?: unknown }).element = element;
+  }
+};
+
 /**
  * Responsive options class
  * [[include:Options/Plugins/Responsive.md]]
@@ -36,7 +48,14 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     }
 
     if (!isNull(data.options)) {
-      this.options = deepExtend({}, data.options) as ISourceOptions;
+      const options = deepExtend({}, data.options) as ISourceOptions,
+        sourceBackgroundMask = data.options["backgroundMask"] as { cover?: unknown } | undefined,
+        copiedBackgroundMask = options["backgroundMask"] as { cover?: unknown } | undefined;
+
+      preserveElementReference(data.options.background, options.background);
+      preserveElementReference(sourceBackgroundMask?.cover, copiedBackgroundMask?.cover);
+
+      this.options = options;
     }
   }
 }

@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    target-branch: "v4"
+    target-branch: "v5"
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"

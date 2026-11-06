@@ -10,7 +10,7 @@ reviews:
     # Also review PRs whose base branch is the actively developed v4 branch,
     # in addition to the default branch (main).
     base_branches:
-      - "v4"
+      - "v5"
 
   # Skip generated/build artifacts and the lockfile — they add noise.
   path_filters:

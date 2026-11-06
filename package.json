@@ -2,7 +2,7 @@
   "private": true,
   "name": "@tsparticles/workspace",
   "description": "tsParticles monorepository",
-  "version": "4.5.2",
+  "version": "4.5.3",
   "type": "module",
   "scripts": {
     "build": "pnpm run prettify:readme && nx run-many -t build --parallel=50%",
@@ -83,5 +83,5 @@
     "webpack-cli": "^7.3.1",
     "yargs": "^18.2.0"
   },
-  "packageManager": "pnpm@12.17.0"
+  "packageManager": "pnpm@12.18.0"
 }
