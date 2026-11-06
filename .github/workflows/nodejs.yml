@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
 
       - name: Derive SHAs for nx affected
-        uses: nrwl/nx-set-shas@v5
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
 
       - name: Ensure NX_BASE is available
         if: github.event_name == 'pull_request' && env.NX_BASE == ''
@@ -36,7 +36,7 @@ jobs:
           git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
           echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
         with:
           cache: true
 
@@ -67,7 +67,7 @@ jobs:
           fetch-depth: 0
 
       - name: Derive SHAs for nx affected
-        uses: nrwl/nx-set-shas@v5
+        uses: nrwl/nx-set-shas@e602fada7ad5987b0f7b1905e7a99ea1c661514c
 
       - name: Ensure NX_BASE is available
         if: github.event_name == 'pull_request' && env.NX_BASE == ''
@@ -76,7 +76,7 @@ jobs:
           git fetch --no-tags --depth=1 upstream "refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/upstream/${{ github.event.pull_request.base.ref }}"
           echo "NX_BASE=$(git rev-parse refs/remotes/upstream/${{ github.event.pull_request.base.ref }})" >> $GITHUB_ENV
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115
         with:
           cache: true
 
