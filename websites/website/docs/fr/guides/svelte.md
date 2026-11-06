@@ -534,7 +534,7 @@ In SvelteKit, the canvas requires the browser environment. Disable SSR for the c
 
 ```svelte
 <script lang="ts">
-  import { browser } from "$app/env";
+  import { browser } from "$app/environment";
   import { onMount } from "svelte";
 
   let Component: typeof import("@tsparticles/svelte").default;
