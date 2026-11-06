@@ -135,4 +135,56 @@ describe("Inferno Particles component", () => {
 		expect(container.play).toHaveBeenCalledOnce();
 		expect(loaded).toHaveBeenCalledWith(container);
 	});
+
+	it("does not resume playback when an older theme refresh rejects", async () => {
+		const error = new Error("theme refresh failed");
+		let rejectFirstTheme: ((error: Error) => void) | undefined, resolveSecondTheme: (() => void) | undefined;
+		const container = {
+			destroy: vi.fn(),
+			destroyed: false,
+			animationStatus: true,
+			loadTheme: vi
+				.fn()
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>((_, reject) => {
+							rejectFirstTheme = reject;
+						}),
+				)
+				.mockImplementationOnce(
+					() =>
+						new Promise<void>(resolve => {
+							resolveSecondTheme = resolve;
+						}),
+				),
+			play: vi.fn(),
+		};
+
+		loadMock.mockResolvedValueOnce(container);
+
+		const component = new Particles({ theme: "dark" }),
+			loadPromise = component.loadContainer();
+
+		await vi.waitFor(() => {
+			expect(container.loadTheme).toHaveBeenCalledTimes(1);
+		});
+
+		component.props = { ...component.props, theme: "light" };
+		component.componentDidUpdate({ theme: "dark" });
+
+		await vi.waitFor(() => {
+			expect(container.loadTheme).toHaveBeenCalledTimes(2);
+		});
+
+		rejectFirstTheme?.(error);
+
+		await vi.waitFor(() => {
+			expect(loggerError).toHaveBeenCalledWith("Particles: error during theme load", error);
+		});
+
+		expect(container.play).not.toHaveBeenCalled();
+
+		resolveSecondTheme?.();
+		await loadPromise;
+	});
 });

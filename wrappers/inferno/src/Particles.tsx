@@ -11,6 +11,7 @@ export default class Particles extends Component<IParticlesProps> {
 	_container?: Container;
 	_cancelled = false;
 	_loadId = 0;
+	_themeLoadId = 0;
 
 	componentDidMount() {
 		this._cancelled = false;
@@ -95,14 +96,16 @@ export default class Particles extends Component<IParticlesProps> {
 	}
 
 	async loadTheme(container: Container, theme: string, isCurrent: () => boolean = () => true): Promise<void> {
-		const wasPlaying = container.animationStatus;
+		const themeLoadId = ++this._themeLoadId,
+			wasPlaying = container.animationStatus,
+			isCurrentRequest = () => themeLoadId === this._themeLoadId && isCurrent();
 
 		try {
 			await (container as unknown as { loadTheme?: (name?: string) => Promise<void> }).loadTheme?.(theme);
 		} catch (e) {
 			getLogger().error("Particles: error during theme load", e);
 
-			if (wasPlaying && isCurrent() && !container.destroyed) {
+			if (wasPlaying && isCurrentRequest() && !container.destroyed) {
 				container.play();
 			}
 		}
