@@ -23,6 +23,14 @@ No v5 implementation or bundle baseline has been validated yet.
 | V5-SIZE | Reproducible baseline/budgets, smaller minimal scene/slim in gzip/Brotli, total chunks accounted for                   | 01 baseline; 04–10      | Planned |
 | V5-MIG  | Built-package, wrappers, CLI/MCP, demos, migration docs, translations and full validation                              | 01–10                   | Planned |
 
+Additional planning requirement (2026-11-06): **V5-ARCH** — evaluate Particle
+state/serialization (06/07), engine package boundaries (03/09), options resolution
+(03/07/08) and a common extension architecture (03/08). Compare alternatives and
+record decisions, evidence and migration impact; closure in 10. Status: Planned.
+See [architecture plan](handovers/V5-ARCHITECTURE.md). Evaluation is required;
+splitting packages, serializing the entire runtime and rewriting all extension
+families are not predetermined implementation requirements.
+
 Numeric budgets are set from a clean baseline before size refactoring; source line
 counts and moved chunks do not satisfy V5-SIZE. See index for the comparison matrix.
 

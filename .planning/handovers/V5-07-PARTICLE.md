@@ -52,3 +52,13 @@ misure. Aggiornare la matrice engine di 03: nessuna area senza owner o verifica.
 
 Consultare [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Applicare [ARCH-01 — Modello Particle](architecture/V5-ARCH-01-PARTICLE-MODEL.md),
+[ARCH-03 — Options](architecture/V5-ARCH-03-OPTIONS.md) e
+[ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md).
+Confrontare classe, snapshot esplicito e stato plain, definendo quale livello di
+serializzazione è utile e supportato. Distinguere spostamento dei metodi da vera
+separazione delle dipendenze; coordinare stato mutabile, template options, codec
+opzionali e reset con 06/08. Registrare anche le alternative mantenute o scartate.

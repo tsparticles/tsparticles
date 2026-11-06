@@ -29,6 +29,12 @@ baseline precedes that change. Follow [handover index](handovers/README.md).
 
 Performance and bundle-size candidates are tracked in [V5-IMPROVEMENTS.md](handovers/V5-IMPROVEMENTS.md) and enter implementation only when the relevant measurements support them.
 
+The [architecture plan](handovers/V5-ARCHITECTURE.md), added on 2026-11-06,
+provides four dedicated evaluations: Particle state/serialization, engine package
+boundaries, options resolution and a common extension architecture. Contracts are
+proposed in step 03, verified in 04–09 and closed with evidence in step 10; no
+additional sequential phase or mandatory full rewrite is introduced.
+
 No implementation step is complete yet. Historical fluid references to “v5” below
 identify a solver-plan revision, not this product major release.
 

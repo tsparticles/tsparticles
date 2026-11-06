@@ -106,3 +106,12 @@ nuovi percorsi; i nomi vecchi nei loro riferimenti identificano le responsabilit
 
 Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Consultare tutti e quattro i [piani architetturali](V5-ARCHITECTURE.md).
+Prima di cambiare i contratti produrre una bozza coordinata di stato Particle,
+options e capacità di estensione; confrontare poi confini interni, subpath e split
+in pacchetti. Registrare le decisioni iniziali e i vincoli per 04–08, con alternative
+e consumer reali. La verifica nei successivi handover può richiedere revisioni
+esplicite del contratto, senza attendere 08 per scoprirne le incompatibilità.

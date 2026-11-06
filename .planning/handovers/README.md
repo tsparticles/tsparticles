@@ -86,7 +86,7 @@ const first = createEngine();
 const second = createEngine();
 first.setRandom(() => 0.25);
 second.setRandom(() => 0.75);
-first.setLogger({ warning: message => console.warn(message) });
+first.setLogger({ warning: (message) => console.warn(message) });
 await loadSlim(first);
 await loadSlim(second);
 await first.load({ id: "first", options: {} });
@@ -148,6 +148,20 @@ stato per particella, rendering/lifecycle. Ogni documento specifica ownership,
 alternative, vincoli, scenari e criteri di accettazione. Gli handover principali
 rimandano agli approfondimenti di propria competenza; il gate 10 verifica anche
 il registro delle decisioni e gli esiti delle opportunità analizzate.
+
+## Valutazioni architetturali aggiunte il 2026-11-06
+
+Il [piano architetturale](V5-ARCHITECTURE.md) raccoglie quattro valutazioni
+obbligatorie e i relativi piani dedicati: modello/serializzabilità di Particle,
+eventuale divisione di engine in pacchetti, pipeline delle options e architettura
+comune delle estensioni. Contiene raccomandazioni iniziali, alternative e prove;
+le riscritture restano subordinate alle evidenze.
+
+I contratti si discutono in 03 prima dei refactor di 04–07; 06/07 verificano stato
+e responsabilità, 08 chiude la migrazione delle estensioni, 09 il packaging e 10
+il registro delle decisioni. Gli ARCH si affiancano agli IMP senza duplicarne
+misure e ottimizzazioni. Il checkout analizzato per queste valutazioni è `4.5.2`;
+la baseline `4.5.1` riportata sopra documenta la ricognizione originale.
 
 ## Stato di questo piano
 

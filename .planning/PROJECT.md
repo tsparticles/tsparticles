@@ -29,6 +29,10 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 - [ ] V5-BRW: Refine browser/CDN bundles, globals, externals, lazy chunks and multi-engine composition without a default engine.
 - [ ] V5-MIG: Validate downstream packages, browser rendering and v4 → v5 migration/documentation.
 
+- [ ] V5-ARCH: Evaluate Particle state/serialization, engine package boundaries,
+      options resolution and a common capability architecture for extensions;
+      record decisions and evidence in the [architecture plan](handovers/V5-ARCHITECTURE.md).
+
 ### Historical initialization backlog (not the v5 execution plan)
 
 - [ ] DEV-01: Stabilize build & CI across the monorepo (consistent Node/pnpm + Nx pipelines)
@@ -63,4 +67,4 @@ Runtime implementation has not started; current package baseline is `4.5.1`.
 
 ---
 
-_Last updated: 2026-11-03 — v5 planning; runtime changes pending_
+_Last updated: 2026-11-06 — v5 architectural evaluations added; runtime changes pending_

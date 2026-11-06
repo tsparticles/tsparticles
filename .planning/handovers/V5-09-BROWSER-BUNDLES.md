@@ -70,3 +70,11 @@ ed esiti, cambiamenti ai manifest e misure. Il gate 10 include questa matrice.
 
 Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Verificare l'esito di [ARCH-02 — Pacchetti engine](architecture/V5-ARCH-02-ENGINE-PACKAGES.md)
+e [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md): risoluzione dei
+pacchetti/subpath eventualmente adottati, loader e capacità selettive, assenza di
+copie runtime e registri duplicati nella composizione browser/CDN/lazy. Confrontare
+il payload totale della stessa scena, anche se lo split modifica entry e chunk.

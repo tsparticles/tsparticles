@@ -56,3 +56,13 @@ non dichiarare “tutti a posto” sulla sola ricerca del nome `tsParticles`.
 
 Consultare [V5-IMP-02-BUNDLE-GRAPH](improvements/V5-IMP-02-BUNDLE-GRAPH.md), [V5-IMP-04-SPATIAL-INDEX](improvements/V5-IMP-04-SPATIAL-INDEX.md), [V5-IMP-05-PARTICLE-STATE](improvements/V5-IMP-05-PARTICLE-STATE.md), [V5-IMP-06-RENDER-LIFECYCLE](improvements/V5-IMP-06-RENDER-LIFECYCLE.md).
 Registrare gli esiti dei candidati assegnati come richiesto dal [piano miglioramenti](V5-IMPROVEMENTS.md).
+
+## Valutazioni architetturali
+
+Chiudere [ARCH-04 — Estensioni](architecture/V5-ARCH-04-EXTENSIONS.md) sulla base
+dei contratti definiti in 03 e verificati in 04–07. Valutare registrazione/lifecycle
+comuni con capacità tipizzate, mantenendo pipeline specializzate. Integrare
+nell'audit i consumer di [ARCH-01](architecture/V5-ARCH-01-PARTICLE-MODEL.md) e
+[ARCH-03](architecture/V5-ARCH-03-OPTIONS.md): campi/metodi Particle, eventuale
+snapshot e codec, classi option, precedenze e mutabilità. Non imporre serializzazione
+o una riscrittura universale a tutte le estensioni senza una decisione motivata.
