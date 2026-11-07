@@ -11,7 +11,7 @@ import { suggestPlugins } from "./suggestPlugins.js";
 // parameters (count, color, speed, shape, direction, ...).
 
 const CONFETTI_TEMPLATE: Record<string, unknown> = {
-    particleCount: 120,
+    count: 120,
     spread: 100,
     origin: { y: 0.7 },
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
@@ -19,23 +19,17 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     ticks: 200,
   },
   FIREWORKS_TEMPLATE: Record<string, unknown> = {
-    particleCount: 50,
-    spread: 360,
-    startVelocity: 30,
-    decay: 0.9,
-    gravity: 0.8,
-    ticks: 200,
+    splitCount: 50,
+    speed: 30,
+    gravity: 30,
     colors: ["#ff0000", "#ffff00", "#00ff00", "#00ffff", "#ff00ff"],
-    origin: { x: 0.5, y: 0.8 },
   },
   RIBBONS_TEMPLATE: Record<string, unknown> = {
-    particleCount: 60,
-    spread: 120,
-    origin: { y: 0.5 },
+    count: 60,
+    positionX: 50,
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
-    gravity: 1.5,
-    ticks: 300,
   },
+  MAX_FIREWORKS_SPLIT_COUNT = 500,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -636,12 +630,19 @@ function findDirection(text: string): string | undefined {
  * @param template
  * @param lower
  */
-function applySpecializedOverrides(template: Record<string, unknown>, lower: string): Record<string, unknown> {
+function applySpecializedOverrides(
+  template: Record<string, unknown>,
+  lower: string,
+  countProperty: "count" | "splitCount",
+  maxCount?: number,
+): Record<string, unknown> {
   const result = { ...template },
     count = extractCount(lower);
+
   if (count !== undefined) {
-    result.particleCount = count;
+    result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
   }
+
   return result;
 }
 
@@ -727,7 +728,12 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
     } else {
       template = CONFETTI_TEMPLATE;
     }
-    return applySpecializedOverrides(template, lower);
+    return applySpecializedOverrides(
+      template,
+      lower,
+      bundle.bundleName === "@tsparticles/fireworks" ? "splitCount" : "count",
+      bundle.bundleName === "@tsparticles/fireworks" ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
+    );
   }
   return generateGenericOptions(keywords, lower);
 }
@@ -1286,6 +1292,16 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     html = generateHtml(framework, bundleMatch),
     matchedRuleCount = SPECIALIZED_RULES.filter(rule => matchesAny(lower, rule.keywords)).length,
     notes = buildNotes(bundleMatch, framework, lower, keywords, extraPackages, matchedRuleCount > CONFLICT_THRESHOLD);
+
+  if (bundleMatch.bundleName === "@tsparticles/fireworks") {
+    const requestedSplitCount = extractCount(lower);
+
+    if (requestedSplitCount !== undefined && requestedSplitCount > MAX_FIREWORKS_SPLIT_COUNT) {
+      notes.push(
+        `Requested fireworks splitCount of ${requestedSplitCount} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+      );
+    }
+  }
 
   return {
     options,

@@ -76,7 +76,7 @@ describe("generateOptions", () => {
     const match = matchBundle(extractKeywords("confetti"), "confetti"),
       options = generateOptions(match, extractKeywords("confetti"), "confetti");
     expect(options).toMatchObject({
-      particleCount: 120,
+      count: 120,
       spread: 100,
       gravity: 1.2,
       ticks: 200,
@@ -88,7 +88,37 @@ describe("generateOptions", () => {
   it("produces the fireworks template", () => {
     const match = matchBundle(extractKeywords("fireworks"), "fireworks"),
       options = generateOptions(match, extractKeywords("fireworks"), "fireworks");
-    expect(options).toMatchObject({ particleCount: 50, spread: 360, startVelocity: 30 });
+    expect(options).toMatchObject({ splitCount: 50, speed: 30, gravity: 30 });
+    expect(options).not.toHaveProperty("particleCount");
+    expect(options).not.toHaveProperty("spread");
+  });
+
+  it("applies fireworks count overrides to splitCount", () => {
+    const result = generateCode({ description: "200 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 200);
+  });
+
+  it("caps excessive fireworks splitCount requests and reports the cap", () => {
+    const result = generateCode({ description: "1000 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("preserves count overrides above the fireworks cap for other bundles", () => {
+    const result = generateCode({ description: "1000 ribbons" });
+
+    expect(result.options).toHaveProperty("count", 1000);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
+  it("uses supported ribbon options and count overrides", () => {
+    const result = generateCode({ description: "200 ribbons" });
+
+    expect(result.options).toMatchObject({ count: 200, positionX: 50 });
+    expect(result.options).not.toHaveProperty("spread");
+    expect(result.options).not.toHaveProperty("gravity");
   });
 
   it("produces a generic template with core sections", () => {
