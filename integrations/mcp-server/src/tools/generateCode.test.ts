@@ -99,6 +99,20 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 200);
   });
 
+  it("caps excessive fireworks splitCount requests and reports the cap", () => {
+    const result = generateCode({ description: "1000 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("preserves count overrides above the fireworks cap for other bundles", () => {
+    const result = generateCode({ description: "1000 ribbons" });
+
+    expect(result.options).toHaveProperty("count", 1000);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
   it("uses supported ribbon options and count overrides", () => {
     const result = generateCode({ description: "200 ribbons" });
 

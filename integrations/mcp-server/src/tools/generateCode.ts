@@ -29,6 +29,7 @@ const CONFETTI_TEMPLATE: Record<string, unknown> = {
     positionX: 50,
     colors: ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"],
   },
+  MAX_FIREWORKS_SPLIT_COUNT = 500,
   GENERIC_TEMPLATE: Record<string, unknown> = {
     particles: {
       number: { value: 80, density: { enable: true } },
@@ -633,12 +634,13 @@ function applySpecializedOverrides(
   template: Record<string, unknown>,
   lower: string,
   countProperty: "count" | "splitCount",
+  maxCount?: number,
 ): Record<string, unknown> {
   const result = { ...template },
     count = extractCount(lower);
 
   if (count !== undefined) {
-    result[countProperty] = count;
+    result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
   }
 
   return result;
@@ -730,6 +732,7 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
       template,
       lower,
       bundle.bundleName === "@tsparticles/fireworks" ? "splitCount" : "count",
+      bundle.bundleName === "@tsparticles/fireworks" ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
     );
   }
   return generateGenericOptions(keywords, lower);
@@ -1289,6 +1292,16 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     html = generateHtml(framework, bundleMatch),
     matchedRuleCount = SPECIALIZED_RULES.filter(rule => matchesAny(lower, rule.keywords)).length,
     notes = buildNotes(bundleMatch, framework, lower, keywords, extraPackages, matchedRuleCount > CONFLICT_THRESHOLD);
+
+  if (bundleMatch.bundleName === "@tsparticles/fireworks") {
+    const requestedSplitCount = extractCount(lower);
+
+    if (requestedSplitCount !== undefined && requestedSplitCount > MAX_FIREWORKS_SPLIT_COUNT) {
+      notes.push(
+        `Requested fireworks splitCount of ${requestedSplitCount} exceeds the maximum of ${MAX_FIREWORKS_SPLIT_COUNT}; using ${MAX_FIREWORKS_SPLIT_COUNT}.`,
+      );
+    }
+  }
 
   return {
     options,
