@@ -583,6 +583,20 @@ function extractCount(text: string): number | undefined {
  *
  * @param text
  */
+function extractFireworksSplitCount(text: string): number | undefined {
+  const match =
+      /\b(\d{1,4})\s+(?:fireworks|particles|sparks)\b|\b(?:split\s*count|count)\s*(?:of\s*)?(\d{1,4})\b|\b(?:fireworks|particles|sparks)\s+(?:(?:with|using)\s+)?(\d{1,4})\b/i.exec(
+        text,
+      ),
+    count = match?.[1] ?? match?.[2] ?? match?.[3];
+
+  return count === undefined ? undefined : Number(count);
+}
+
+/**
+ *
+ * @param text
+ */
 function findNamedColor(text: string): string | undefined {
   for (const [name, hex] of Object.entries(NAMED_COLORS)) {
     if (matchesKeyword(text, name)) {
@@ -632,12 +646,11 @@ function findDirection(text: string): string | undefined {
  */
 function applySpecializedOverrides(
   template: Record<string, unknown>,
-  lower: string,
+  count: number | undefined,
   countProperty: "count" | "splitCount",
   maxCount?: number,
 ): Record<string, unknown> {
-  const result = { ...template },
-    count = extractCount(lower);
+  const result = { ...template };
 
   if (count !== undefined) {
     result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);
@@ -728,11 +741,13 @@ export function generateOptions(bundle: BundleMatch, keywords: string[], lower: 
     } else {
       template = CONFETTI_TEMPLATE;
     }
+    const isFireworks = bundle.bundleName === "@tsparticles/fireworks";
+
     return applySpecializedOverrides(
       template,
-      lower,
-      bundle.bundleName === "@tsparticles/fireworks" ? "splitCount" : "count",
-      bundle.bundleName === "@tsparticles/fireworks" ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
+      isFireworks ? extractFireworksSplitCount(lower) : extractCount(lower),
+      isFireworks ? "splitCount" : "count",
+      isFireworks ? MAX_FIREWORKS_SPLIT_COUNT : undefined,
     );
   }
   return generateGenericOptions(keywords, lower);
@@ -1294,7 +1309,7 @@ export function generateCode(input: GenerateCodeInput): GenerateCodeOutput {
     notes = buildNotes(bundleMatch, framework, lower, keywords, extraPackages, matchedRuleCount > CONFLICT_THRESHOLD);
 
   if (bundleMatch.bundleName === "@tsparticles/fireworks") {
-    const requestedSplitCount = extractCount(lower);
+    const requestedSplitCount = extractFireworksSplitCount(lower);
 
     if (requestedSplitCount !== undefined && requestedSplitCount > MAX_FIREWORKS_SPLIT_COUNT) {
       notes.push(

@@ -99,6 +99,13 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 200);
   });
 
+  it("does not treat a year as a fireworks splitCount request", () => {
+    const result = generateCode({ description: "fireworks for 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
+  });
+
   it("caps excessive fireworks splitCount requests and reports the cap", () => {
     const result = generateCode({ description: "1000 fireworks" });
 
