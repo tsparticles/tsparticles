@@ -195,6 +195,13 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
   });
 
+  it("recognizes year of before a bare spark count", () => {
+    const result = generateCode({ description: "fireworks for the year of 2026 sparks" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Please clarify with a labeled count"))).toBe(true);
+  });
+
   it("uses a later bare spark count after an ambiguous year value", () => {
     const result = generateCode({ description: "fireworks for the new year 2026 sparks and 120 sparks" });
 
