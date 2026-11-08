@@ -621,21 +621,26 @@ function extractLabeledFireworksCount(text: string, labelPattern: RegExp, skipSp
  * @param text - The fireworks description.
  */
 function extractFireworksSplitCount(text: string): { ambiguous: boolean; raw: string; value: number } | undefined {
-  const labeledCount =
-    extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false) ??
-    extractLabeledFireworksCount(text, /\bcount\b/gi, true);
+  const splitCount = extractLabeledFireworksCount(text, /\bsplit\s*count\b/gi, false);
+
+  if (splitCount !== undefined) {
+    return { ambiguous: false, raw: splitCount, value: Number(splitCount) };
+  }
+
+  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text);
+
+  if (explicitSparkCount) {
+    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
+  }
+
+  const labeledCount = extractLabeledFireworksCount(text, /\bcount\b/gi, true);
 
   if (labeledCount !== undefined) {
     return { ambiguous: false, raw: labeledCount, value: Number(labeledCount) };
   }
 
-  const explicitSparkCount = /\b(?:with|using)\s+(\d+)\s+(?:sparks|particles)\b/i.exec(text),
-    withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),
+  const withCount = /\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(text),
     bareCount = /\b(\d+)\s+(?:fireworks|particles|sparks)\b/i.exec(text);
-
-  if (explicitSparkCount) {
-    return { ambiguous: false, raw: explicitSparkCount[1], value: Number(explicitSparkCount[1]) };
-  }
 
   if (withCount) {
     return { ambiguous: false, raw: withCount[1], value: Number(withCount[1]) };

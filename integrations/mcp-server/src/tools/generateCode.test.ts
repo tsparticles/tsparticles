@@ -159,6 +159,14 @@ describe("generateOptions", () => {
     expect(result.options).toHaveProperty("splitCount", 50);
   });
 
+  it("prioritizes a spark count over a generic count but keeps split count labels highest", () => {
+    const sparkCountResult = generateCode({ description: "count 4 fireworks with 200 sparks" }),
+      splitCountResult = generateCode({ description: "count 4 fireworks with 200 sparks, split count: 300" });
+
+    expect(sparkCountResult.options).toHaveProperty("splitCount", 200);
+    expect(splitCountResult.options).toHaveProperty("splitCount", 300);
+  });
+
   it("parses labeled counts after long whitespace without stalling", () => {
     const result = generateCode({ description: `fireworks${" ".repeat(LONG_WHITESPACE_LENGTH)}split count: 200` }),
       malformedResult = generateCode({
