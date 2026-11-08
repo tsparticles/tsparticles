@@ -168,10 +168,17 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     { key: "particles.move.repulse", pkg: "@tsparticles/interaction-particles-repulse" },
   ];
 
+  let hasParticleInteraction = false;
+
   for (const { key, pkg } of pluginInteractions) {
     if (isOptionEnabled(options, key)) {
       matched.add(pkg);
+      hasParticleInteraction = true;
     }
+  }
+
+  if (hasParticleInteraction) {
+    matched.add("@tsparticles/plugin-interactivity");
   }
 
   const interactivityModes = collectInteractivityModes(options.interactivity as Record<string, unknown> | undefined);
@@ -196,9 +203,14 @@ export function suggestPlugins(options: Record<string, unknown>): SuggestPlugins
     matched.add("@tsparticles/plugin-absorbers");
   }
 
-  const matchedArr = [...matched].filter(Boolean).sort();
+  const interactivityPackage = "@tsparticles/plugin-interactivity",
+    matchedArr = [...matched].filter(Boolean).sort(),
+    importOrder = [
+      ...(matchedArr.includes(interactivityPackage) ? [interactivityPackage] : []),
+      ...matchedArr.filter(pkgName => pkgName !== interactivityPackage),
+    ];
 
-  for (const pkgName of matchedArr) {
+  for (const pkgName of importOrder) {
     const pkgInfo = packageCatalog.byName[pkgName];
     if (pkgInfo.loadFunction) {
       imports.push({

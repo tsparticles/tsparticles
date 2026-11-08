@@ -93,6 +93,22 @@ describe("generateOptions", () => {
     expect(options).not.toHaveProperty("spread");
   });
 
+  it("returns independent copies of specialized templates", () => {
+    const match = matchBundle(extractKeywords("confetti"), "confetti"),
+      keywords = extractKeywords("confetti"),
+      first = generateOptions(match, keywords, "confetti"),
+      firstColors = first.colors as string[],
+      firstOrigin = first.origin as Record<string, number>;
+
+    firstColors[0] = "#000000";
+    firstOrigin.y = 0.5;
+
+    const second = generateOptions(match, keywords, "confetti");
+
+    expect(second.colors).toEqual(["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"]);
+    expect(second.origin).toEqual({ y: 0.7 });
+  });
+
   it("applies fireworks count overrides to splitCount", () => {
     const result = generateCode({ description: "200 fireworks" });
 
@@ -106,11 +122,33 @@ describe("generateOptions", () => {
     expect(result.notes.some(note => note.includes("exceeds the maximum"))).toBe(false);
   });
 
+  it("does not treat a bare number after fireworks as a splitCount request", () => {
+    const result = generateCode({ description: "fireworks 2026" });
+
+    expect(result.options).toHaveProperty("splitCount", 50);
+    expect(result.notes.some(note => note.includes("Requested fireworks splitCount"))).toBe(false);
+  });
+
+  it("parses labeled split counts separated by a colon or equals sign", () => {
+    const colonResult = generateCode({ description: "fireworks split count: 200" }),
+      equalsResult = generateCode({ description: "fireworks count=200" });
+
+    expect(colonResult.options).toHaveProperty("splitCount", 200);
+    expect(equalsResult.options).toHaveProperty("splitCount", 200);
+  });
+
   it("caps excessive fireworks splitCount requests and reports the cap", () => {
     const result = generateCode({ description: "1000 fireworks" });
 
     expect(result.options).toHaveProperty("splitCount", 500);
     expect(result.notes).toContain("Requested fireworks splitCount of 1000 exceeds the maximum of 500; using 500.");
+  });
+
+  it("captures full fireworks counts before applying the cap", () => {
+    const result = generateCode({ description: "10000 fireworks" });
+
+    expect(result.options).toHaveProperty("splitCount", 500);
+    expect(result.notes).toContain("Requested fireworks splitCount of 10000 exceeds the maximum of 500; using 500.");
   });
 
   it("preserves count overrides above the fireworks cap for other bundles", () => {

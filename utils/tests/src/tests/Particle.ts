@@ -390,6 +390,36 @@ describe("Particle", async () => {
       expect(particle.isInsideCanvas(OutModeDirection.top)).to.be.false;
     });
 
+    it("should use union bounds for destroy and out modes, while retaining AND for collision modes", async () => {
+      await container.reset({
+        particles: {
+          ...defaultOptions.particles,
+          effect: {
+            type: "bounds-effect-outside",
+          },
+          shape: {
+            type: "bounds-shape-inside",
+          },
+        },
+      });
+
+      const particle = container.particles.addParticle({
+        x: width * 0.5,
+        y: height * 0.5,
+      });
+
+      expect(particle).to.be.not.undefined;
+
+      if (!particle) {
+        return;
+      }
+
+      expect(particle.isInsideCanvasForOutMode(OutMode.destroy)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.out)).to.be.true;
+      expect(particle.isInsideCanvasForOutMode(OutMode.bounce)).to.be.false;
+      expect(particle.isInsideCanvasForOutMode(OutMode.split)).to.be.false;
+    });
+
     it("should pass out mode to callbacks for strategy-aware bounds", async () => {
       await container.reset({
         particles: {

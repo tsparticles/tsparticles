@@ -585,7 +585,7 @@ function extractCount(text: string): number | undefined {
  */
 function extractFireworksSplitCount(text: string): number | undefined {
   const match =
-      /\b(\d{1,4})\s+(?:fireworks|particles|sparks)\b|\b(?:split\s*count|count)\s*(?:of\s*)?(\d{1,4})\b|\b(?:fireworks|particles|sparks)\s+(?:(?:with|using)\s+)?(\d{1,4})\b/i.exec(
+      /\b(\d+)\s+(?:fireworks|particles|sparks)\b|\b(?:split\s*count|count)\s*(?:(?:of\s*)?[:=]?\s*)(\d+)\b|\b(?:fireworks|particles|sparks)\s+(?:with|using)\s+(\d+)\b/i.exec(
         text,
       ),
     count = match?.[1] ?? match?.[2] ?? match?.[3];
@@ -650,7 +650,7 @@ function applySpecializedOverrides(
   countProperty: "count" | "splitCount",
   maxCount?: number,
 ): Record<string, unknown> {
-  const result = { ...template };
+  const result = JSON.parse(JSON.stringify(template)) as Record<string, unknown>;
 
   if (count !== undefined) {
     result[countProperty] = maxCount === undefined ? count : Math.min(count, maxCount);

@@ -30,6 +30,27 @@ describe("suggestPlugins", () => {
     expect(result.npmPackages).toContain("@tsparticles/interaction-particles-collisions");
   });
 
+  it("should load interactivity before particle interaction loaders", () => {
+    const result = suggestPlugins({
+        particles: {
+          links: { enable: true },
+          collisions: { enable: true },
+          move: {
+            attract: { enable: true },
+            repulse: { enable: true },
+          },
+        },
+      }),
+      interactivityIndex = result.imports.findIndex(item => item.from === "@tsparticles/plugin-interactivity"),
+      particleInteractionIndexes = result.imports
+        .map((item, index) => (item.from.startsWith("@tsparticles/interaction-particles-") ? index : -1))
+        .filter(index => index >= 0);
+
+    expect(result.npmPackages).toContain("@tsparticles/plugin-interactivity");
+    expect(interactivityIndex).toBeGreaterThanOrEqual(0);
+    expect(particleInteractionIndexes.every(index => interactivityIndex < index)).toBe(true);
+  });
+
   it("should detect absorbers", () => {
     const result = suggestPlugins({
       absorbers: [{ position: { x: 50, y: 50 } }],
